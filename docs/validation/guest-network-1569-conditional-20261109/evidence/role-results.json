@@ -1,0 +1,660 @@
+[
+  {
+    "cluster": 31,
+    "role": "admin",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "admin",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "admin",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "admin",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "admin",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "owner",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "configdrive-network-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "vpc-create-stopped",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "project-network-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "project-vpc-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "project-acl-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "domainadmin",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "configdrive-network-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "vpc-create-stopped",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "project-network-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "project-vpc-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "project-acl-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "member",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "configdrive-network-create",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "vpc-create-stopped",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "project-network-update",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "project-vpc-update",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "project-acl-create",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "omit-projectid-l2",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "omit-projectid-vpc",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "omit-projectid-l2",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "omit-projectid-vpc",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "omit-projectid-l2",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "omit-projectid-vpc",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "nic-denied-project",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 31,
+    "role": "readonly",
+    "case": "nic-denied-omit-project",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "nic-denied-project",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "peer",
+    "case": "nic-denied-omit-project",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "nic-denied-project",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 31,
+    "role": "outsider",
+    "case": "nic-denied-omit-project",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "admin",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "owner",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "configdrive-network-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "vpc-create-stopped",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "project-network-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "project-vpc-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "project-acl-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "domainadmin",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "configdrive-network-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "vpc-create-stopped",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "project-network-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "project-vpc-update",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "project-acl-create",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "case": "configdrive-network-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "case": "vpc-create-stopped",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "case": "project-network-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "case": "project-vpc-update",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "member",
+    "case": "project-acl-create",
+    "accepted": true,
+    "errorcode": null
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "configdrive-network-create",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "vpc-create-stopped",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "project-network-update",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "project-vpc-update",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "project-acl-create",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "omit-projectid-l2",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "omit-projectid-vpc",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "omit-projectid-l2",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "omit-projectid-vpc",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "omit-projectid-l2",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "omit-projectid-vpc",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "nic-denied-project",
+    "accepted": false,
+    "errorcode": 401
+  },
+  {
+    "cluster": 32,
+    "role": "readonly",
+    "case": "nic-denied-omit-project",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "nic-denied-project",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "peer",
+    "case": "nic-denied-omit-project",
+    "accepted": false,
+    "errorcode": 531
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "nic-denied-project",
+    "accepted": false,
+    "errorcode": 432
+  },
+  {
+    "cluster": 32,
+    "role": "outsider",
+    "case": "nic-denied-omit-project",
+    "accepted": false,
+    "errorcode": 531
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "fields": [
+    "qa-gn1611-32-autoscale-lb",
+    "18982",
+    "22",
+    "10.10.0.0/16"
+  ],
+  "submitDisabled": false,
+  "selectedCheckboxes": 0,
+  "status": "Public LB 지원과 오퍼링 제공자가 확인된 Tier만 표시합니다."
+}

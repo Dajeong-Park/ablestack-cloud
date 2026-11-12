@@ -1,0 +1,11 @@
+[
+  {
+    "id": "a8599ccb-5ed7-42ca-ae3b-0afcfabea008",
+    "name": "qa-gn1569-32-p07-role-domainAdmin-http",
+    "methodname": "LbCookie",
+    "params": {
+      "mode": "insert",
+      "cookie-name": "QA_LB_COOKIE"
+    }
+  }
+]

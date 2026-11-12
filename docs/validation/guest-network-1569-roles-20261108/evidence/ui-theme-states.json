@@ -1,0 +1,24 @@
+[
+  {
+    "cluster": 31,
+    "theme": "light",
+    "darkClass": false
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "darkClass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "background": "rgb(245, 247, 250)",
+    "dark": false
+  },
+  {
+    "cluster": 32,
+    "theme": "dark-restored",
+    "background": "rgb(22, 27, 34)",
+    "dark": true
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "head": "cfd7e55ae1ada53a0099b13f872a06ea87c214dc",
+  "unknown": 3576,
+  "unchangedPreMergeEpic": 3572,
+  "unchangedFromUpstream": [
+    "developer/issue-1436/validation.md",
+    "docs/validation/snapshot-template-1474-20261024/scripts/SnapshotMethodPatchAsm.java"
+  ],
+  "newOrChangedOwnUnknown": [
+    "docs/validation/guest-network-1625-20261111/test-results.ko.md",
+    "docs/validation/guest-network-1625-20261111/design.ko.md"
+  ],
+  "licenseRun": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42969495030",
+  "fixedOwnDocumentHeaders": [
+    "docs/validation/guest-network-1625-20261111/design.ko.md",
+    "docs/validation/guest-network-1625-20261111/test-results.ko.md"
+  ],
+  "focusedRatVersion": "0.12",
+  "focusedOwnUnknownAfterFix": 0,
+  "remainingBaselineUnknown": 3574,
+  "fullCiPassClaimed": false
+}

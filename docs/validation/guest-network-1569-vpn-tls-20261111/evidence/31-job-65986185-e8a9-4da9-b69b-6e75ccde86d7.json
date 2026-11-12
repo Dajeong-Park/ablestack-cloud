@@ -1,0 +1,8 @@
+{
+  "command": "removeVpnUser",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "username": "qa-gn1569-31-matrix-root"
+  },
+  "jobid": "65986185-e8a9-4da9-b69b-6e75ccde86d7"
+}

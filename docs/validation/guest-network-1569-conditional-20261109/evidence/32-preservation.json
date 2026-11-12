@@ -1,0 +1,47 @@
+{
+  "old-vms": {
+    "unchanged": true,
+    "beforeCount": 5,
+    "afterCount": 5,
+    "beforeSha256": "855a3ef635b58eb2c87fd52e5a29774386a6c264021bb4005798264cf498afad",
+    "afterSha256": "855a3ef635b58eb2c87fd52e5a29774386a6c264021bb4005798264cf498afad"
+  },
+  "old-networks": {
+    "unchanged": true,
+    "beforeCount": 46,
+    "afterCount": 46,
+    "beforeSha256": "a06a6b003f29d3d57bcb4a175eb3849c9b165a559e9a6abf45c466c60a0bacd5",
+    "afterSha256": "a06a6b003f29d3d57bcb4a175eb3849c9b165a559e9a6abf45c466c60a0bacd5"
+  },
+  "new1597-vms": {
+    "unchanged": true,
+    "beforeCount": 1,
+    "afterCount": 1,
+    "beforeSha256": "ef8e899db7cadd075a7d4e7268bb4dd68a03acf9c53891746956f8306561ea42",
+    "afterSha256": "ef8e899db7cadd075a7d4e7268bb4dd68a03acf9c53891746956f8306561ea42"
+  },
+  "new1597-networks": {
+    "unchanged": true,
+    "beforeCount": 1,
+    "afterCount": 1,
+    "beforeSha256": "24b7d153f8877b4afce79fcd664b85000db73be10ffa3da271c332ecfa2e475e",
+    "afterSha256": "24b7d153f8877b4afce79fcd664b85000db73be10ffa3da271c332ecfa2e475e"
+  },
+  "personal-vms": {
+    "unchanged": true,
+    "beforeCount": 61,
+    "afterCount": 61,
+    "beforeSha256": "21d74943c748d21a444349c6c6aad15b71dd48812fb2b0ae13e6e49ed8d690b3",
+    "afterSha256": "21d74943c748d21a444349c6c6aad15b71dd48812fb2b0ae13e6e49ed8d690b3"
+  },
+  "personal-networks": {
+    "unchanged": true,
+    "beforeCount": 21,
+    "afterCount": 21,
+    "beforeSha256": "846e08ba257b02c79b166c830102741e14050614b9f65b6cdef76c64e8b56387",
+    "afterSha256": "846e08ba257b02c79b166c830102741e14050614b9f65b6cdef76c64e8b56387"
+  },
+  "existingOfferingsUnchanged": true,
+  "providersUnchanged": true,
+  "policyUnchanged": true
+}

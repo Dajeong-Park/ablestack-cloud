@@ -1,0 +1,11 @@
+{
+  "probe": {
+    "exit": 0,
+    "out": "{\"banner\": \"SSH-2.0-OpenSSH_8.7\"}",
+    "error": ""
+  },
+  "host": "10.10.32.1",
+  "backend": "f2f65780-56e0-405e-b471-7a077e3045df",
+  "vip": "10.236.32.85:18973",
+  "kind": "single backend SSH banner; no load distribution measurement"
+}

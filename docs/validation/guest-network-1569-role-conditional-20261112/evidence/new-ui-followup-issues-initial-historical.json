@@ -1,0 +1,21 @@
+{
+  "recordedBeforeUserPriorityChange": true,
+  "items": [
+    {
+      "key": "tagRecovery",
+      "number": 1634,
+      "title": "[Europa][P2][UI] 태그 제출 결과 미확인(job ID 없음)의 동일 세션 복구 경로 누락",
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1634",
+      "state": "open",
+      "parent": 1554
+    },
+    {
+      "key": "annotationLength",
+      "number": 1635,
+      "title": "[Europa][P3][UI] 코멘트 255자 제한 사전 안내와 입력 길이 표시 누락",
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1635",
+      "state": "open",
+      "parent": 1554
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "cluster": 31,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 2,
+      "out": "",
+      "error": "ping: SO_BINDTODEVICE ppp69: No such device"
+    },
+    "tcp": [
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 19] No such device"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.31.6 via 172.30.144.1 dev eth0 src 172.30.150.178 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-31: #10, ESTABLISHED, IKEv1, 4b4e1964467708ca_i* bd74ed709bf04017_r\n  local  '172.30.150.178' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 51s ago, rekeying in 13261s\n  qa-ra-child-31: #10, reqid 1, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 51s ago, rekeying in 3492s, expires in 3909s\n    in  c8ab16da,   2297 bytes,    42 packets,    29s ago\n    out c31774ad,   2523 bytes,    44 packets,    32s ago\n    local  172.30.150.178/32[udp/49324]\n    remote 10.10.31.148/32[udp/l2tp]",
+    "error": ""
+  }
+}

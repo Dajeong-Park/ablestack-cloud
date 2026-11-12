@@ -1,0 +1,667 @@
+[
+  {
+    "command": "listApis",
+    "method": "GET",
+    "params": {
+      "command": "listApis"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {
+      "command": "getWallAlertAvailability",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listWallAlertRules",
+    "method": "GET",
+    "params": {
+      "includestatus": "true",
+      "page": "1",
+      "pagesize": "200",
+      "command": "listWallAlertRules",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "resourcetype": "domain",
+      "command": "listResourceIcon"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "resourcetype": "project",
+      "command": "listResourceIcon"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "command": "listZones"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "showicon": "true",
+      "command": "listZones"
+    }
+  },
+  {
+    "command": "listAlerts",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listAlerts"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listEvents"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+      "command": "readyForShutdown"
+    }
+  },
+  {
+    "command": "listCapacity",
+    "method": "GET",
+    "params": {
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "fetchlatest": "false",
+      "command": "listCapacity"
+    }
+  },
+  {
+    "command": "listPods",
+    "method": "GET",
+    "params": {
+      "command": "listPods"
+    }
+  },
+  {
+    "command": "listClusters",
+    "method": "GET",
+    "params": {
+      "command": "listClusters"
+    }
+  },
+  {
+    "command": "listHosts",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "type": "routing",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listHosts"
+    }
+  },
+  {
+    "command": "listHosts",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "type": "routing",
+      "command": "listHosts"
+    }
+  },
+  {
+    "command": "listStoragePools",
+    "method": "GET",
+    "params": {
+      "command": "listStoragePools"
+    }
+  },
+  {
+    "command": "listSystemVms",
+    "method": "GET",
+    "params": {
+      "command": "listSystemVms"
+    }
+  },
+  {
+    "command": "listRouters",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "projectid": "-1",
+      "command": "listRouters"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "projectid": "-1",
+      "details": "min",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines"
+    }
+  },
+  {
+    "command": "listProjects",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "100",
+      "details": "min",
+      "listall": "true",
+      "timestamp": "1794237954951",
+      "showicon": "true",
+      "command": "listProjects"
+    }
+  },
+  {
+    "command": "listApis",
+    "method": "GET",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "command": "listApis"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {
+      "command": "getWallAlertAvailability"
+    }
+  },
+  {
+    "command": "listWallAlertRules",
+    "method": "GET",
+    "params": {
+      "includestatus": "true",
+      "page": "1",
+      "pagesize": "200",
+      "command": "listWallAlertRules"
+    }
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "listall": "true",
+      "page": "1",
+      "pageSize": "200",
+      "pagesize": "200",
+      "command": "listHostsMetrics"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "listall": "true",
+      "details": "all",
+      "page": "1",
+      "pageSize": "200",
+      "pagesize": "200",
+      "command": "listVirtualMachines"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.interval",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.yellow.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listConfigurations",
+    "method": "GET",
+    "params": {
+      "name": "favicon.state.red.capacity",
+      "command": "listConfigurations"
+    }
+  },
+  {
+    "command": "listProjects",
+    "method": "GET",
+    "params": {
+      "id": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "listall": "true",
+      "command": "listProjects",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "state": "running",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "min",
+      "state": "stopped",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVirtualMachines",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true",
+      "command": "listEvents",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listKubernetesClusters",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listKubernetesClusters",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listVolumes",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVolumes",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listSnapshots",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listSnapshots",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listNetworks",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listVPCs",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listVPCs",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listPublicIpAddresses",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listTemplates",
+    "method": "GET",
+    "params": {
+      "templatefilter": "self",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "command": "listTemplates",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listWallAlertSilences",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pageSize": "1000",
+      "pagesize": "1000",
+      "states": "active",
+      "command": "listWallAlertSilences",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "tab": "autoscale.operations",
+      "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "listall": "true",
+      "command": "listNetworks",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "listall": "true",
+      "command": "listAutoScaleVmGroups"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "autoscalevmgroupid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "10",
+      "details": "min",
+      "command": "listVirtualMachines"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "id": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "resourceid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "resourcetype": "AutoScaleVmGroup",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "5",
+      "command": "listEvents",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "resourcetype": "domain",
+      "command": "listResourceIcon",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "resourcetype": "project",
+      "command": "listResourceIcon",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "listall": "true",
+      "command": "listAutoScaleVmGroups"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "08240e4e-77c4-40af-bea7-4ed6020ec48c",
+      "command": "queryAsyncJobResult"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "tab": "autoscale.operations",
+      "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "listall": "true",
+      "command": "listAutoScaleVmGroups"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "autoscalevmgroupid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "10",
+      "details": "min",
+      "command": "listVirtualMachines"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "id": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listEvents",
+    "method": "GET",
+    "params": {
+      "resourceid": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+      "resourcetype": "AutoScaleVmGroup",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "5",
+      "command": "listEvents",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "resourcetype": "domain",
+      "command": "listResourceIcon",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  },
+  {
+    "command": "listResourceIcon",
+    "method": "GET",
+    "params": {
+      "resourceids": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "resourcetype": "project",
+      "command": "listResourceIcon",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  }
+]

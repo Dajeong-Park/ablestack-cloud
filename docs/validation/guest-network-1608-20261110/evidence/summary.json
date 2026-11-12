@@ -1,0 +1,30 @@
+{
+  "issue": 1608,
+  "implementationComplete": true,
+  "sourceCommit": "8f27a55dfeb78a488f56bc5d07070414617f5daf",
+  "apiOrJavaChanged": false,
+  "focusedSuites": 6,
+  "focusedTests": 174,
+  "newRegressionTests": 19,
+  "lintPass": true,
+  "localUiBuildPass": true,
+  "fullCloudBuild": false,
+  "deployedStaticFilesPerCluster": 664,
+  "clusters": [
+    31,
+    32
+  ],
+  "uiResponsiveCases": 60,
+  "capturedImages": 89,
+  "allImagesMatchLiveViewport": true,
+  "newResources": 0,
+  "groupNameChangedForReview": true,
+  "finalGroupState": "DISABLED",
+  "existingMembersRunning": true,
+  "realAsyncFailureCode": 431,
+  "controlledAcceptedReceiptLoss": true,
+  "recoveryUpdateCalls": 0,
+  "interceptionAndViewportOverridesCleared": true,
+  "lbBackendDistributionMeasured": false,
+  "epic1569Complete": false
+}

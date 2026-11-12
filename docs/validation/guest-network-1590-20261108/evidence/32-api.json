@@ -1,0 +1,1212 @@
+[
+  {
+    "case": "read-3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.05,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+          "name": "qa-gn1569-32-reg-lb",
+          "description": "GN1569 LB API/UI review",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18569",
+          "privateport": "18569",
+          "algorithm": "roundrobin",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Add",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "project-attach-dedicated-nat",
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "virtualmachineid": "da7f69ed-1948-4927-b377-55beb9c4620d",
+      "networkid": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "f3eb8a97-7624-4d9d-9173-588f5e6eda30",
+    "seconds": 38.56
+  },
+  {
+    "case": "project-lb-ip",
+    "command": "associateIpAddress",
+    "params": {
+      "networkid": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "68ad8cbb-7b07-4d1f-bb5d-ab9cb739561f",
+    "seconds": 2.17
+  },
+  {
+    "case": "project-create-default-protocol",
+    "command": "createLoadBalancerRule",
+    "params": {
+      "name": "qa-gn1569-32-1590-project-lb",
+      "publicipid": "6db281fa-f2c0-4c70-9f35-48b79ced6581",
+      "networkid": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "publicport": 18592,
+      "privateport": 18592,
+      "algorithm": "roundrobin",
+      "openfirewall": "false",
+      "cidrlist": "192.0.2.156/32"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "a4e9e62b-b73a-4661-9589-b05ac88bd8a8",
+    "seconds": 2.16
+  },
+  {
+    "case": "project-backend-assign",
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "virtualmachineids": "da7f69ed-1948-4927-b377-55beb9c4620d",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "e8e07bdd-4f55-4f2a-a9f3-3e4d3b9a9cf0",
+    "seconds": 4.1
+  },
+  {
+    "case": "project-role-owner",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "algorithm": "leastconn",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "999114b0-ff52-4455-8576-cd8a87f54fc2",
+    "seconds": 4.12
+  },
+  {
+    "case": "project-role-member",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "algorithm": "leastconn",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "224505e1-e033-4903-aea1-eb1b2006417c",
+    "seconds": 2.07
+  },
+  {
+    "case": "project-role-domainadmin",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "algorithm": "leastconn",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "81494856-9b79-4229-a7d8-f0d9d176b335",
+    "seconds": 2.08
+  },
+  {
+    "case": "project-role-peer",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "algorithm": "leastconn",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [updateLoadBalancerRule] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "jobid": null,
+    "seconds": 0.02
+  },
+  {
+    "case": "project-role-outsider",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "algorithm": "leastconn",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 432,
+    "errorText": "The API [updateLoadBalancerRule] does not exist or is not available for this account/user in project [0db180fc-4a19-4f9a-b387-00599ffa86c0].",
+    "jobid": null,
+    "seconds": 0.01
+  },
+  {
+    "case": "read-7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "listall": "true",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+          "name": "qa-gn1569-32-1590-project-lb",
+          "publicipid": "6db281fa-f2c0-4c70-9f35-48b79ced6581",
+          "publicip": "10.10.32.162",
+          "publicport": "18592",
+          "privateport": "18592",
+          "algorithm": "leastconn",
+          "networkid": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+          "cidrlist": "192.0.2.156/32",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "project": "qa-gn1569-32-project",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+      "listall": "true",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "7f2c0153-c4e0-4c3f-bf15-cb1a9587cf6f",
+          "name": "qa-gn1569-32-1590-project-lb",
+          "publicipid": "6db281fa-f2c0-4c70-9f35-48b79ced6581",
+          "publicip": "10.10.32.162",
+          "publicport": "18592",
+          "privateport": "18592",
+          "algorithm": "leastconn",
+          "networkid": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+          "cidrlist": "192.0.2.156/32",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "project": "qa-gn1569-32-project",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "legacy-api-algorithm",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+      "algorithm": "leastconn"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "d06e898b-b4de-4f3a-aea0-9005c75fe7d7",
+    "seconds": 4.11
+  },
+  {
+    "case": "legacy-backend-assign",
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+      "virtualmachineids": "d67429be-281f-443d-8ee6-ed7b7683e09d"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "40d56d85-f514-49f1-9d5d-ea7407ceba97",
+    "seconds": 4.13
+  },
+  {
+    "case": "read-3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+          "name": "qa-gn1569-32-reg-lb",
+          "description": "GN1569 LB API/UI review",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18569",
+          "privateport": "18569",
+          "algorithm": "leastconn",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "legacy-same-value",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+      "algorithm": "leastconn",
+      "protocol": "tcp"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "ed13df77-138b-49b1-83e3-a59277e4efe8",
+    "seconds": 2.1
+  },
+  {
+    "case": "create-omitted-protocol",
+    "command": "createLoadBalancerRule",
+    "params": {
+      "name": "qa-gn1569-32-1590-default",
+      "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+      "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+      "publicport": 18590,
+      "privateport": 18590,
+      "algorithm": "roundrobin",
+      "openfirewall": "false",
+      "cidrlist": "192.0.2.156/32"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "5fa555e0-c642-4d0e-98f0-9dfe4b20c77e",
+    "seconds": 0.14
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "roundrobin",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Add",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "roundrobin",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Add",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "omitted-update",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "algorithm": "leastconn"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "73915b34-885e-497b-b348-5290cdec1863",
+    "seconds": 4.1
+  },
+  {
+    "case": "omitted-backend",
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "virtualmachineids": "d67429be-281f-443d-8ee6-ed7b7683e09d"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "938908cb-951b-459c-a23b-2279d4b21862",
+    "seconds": 4.11
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "leastconn",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "leastconn",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "reject-tcp-backendssl",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "protocol": "tcp",
+      "backendssl": "true"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 431,
+    "errorText": "Parameter backendssl can be true only when protocol is ssl.",
+    "jobid": "64f3f81d-bd2a-44a1-8d88-57daa715368e",
+    "seconds": 2.07
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "leastconn",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "reject-invalid-cidr",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "cidrlist": "192.0.2.1/99",
+      "name": "must-not-persist"
+    },
+    "accepted": false,
+    "expected": false,
+    "pass_": true,
+    "errorCode": 431,
+    "errorText": "CIDR [192.0.2.1/99] is invalid.",
+    "jobid": "53c810d6-c599-4a2e-8a94-da2dbe23ce56",
+    "seconds": 2.07
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "leastconn",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "http-normalization",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "protocol": " HTTP ",
+      "algorithm": "source"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "8ee5cd42-dd73-4730-ae5c-6fb0e1192c1a",
+    "seconds": 4.12
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "source",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "http",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "ssl-without-cert",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "protocol": "ssl",
+      "backendssl": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "3e789d9c-8643-4880-869d-5014114ff31a",
+    "seconds": 4.09
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "source",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "ssl",
+          "backendssl": true,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "upload-dedicated-ssl-cert",
+    "command": "uploadSslCert",
+    "params": {
+      "name": "qa-gn1569-32-1590-cert",
+      "privatekey": "[REDACTED]",
+      "certificate": "-----BEGIN CERTIFICATE-----\nMIIDKTCCAhGgAwIBAgIURjcelEM8GbkIkGCYOU9HxqXRwTUwDQYJKoZIhvcNAQEL\nBQAwJDEiMCAGA1UEAwwZcWEtZ24xNTkwLmV4YW1wbGUuaW52YWxpZDAeFw0yNjEx\nMDcxNTI2MzVaFw0yNjExMTQxNTI2MzVaMCQxIjAgBgNVBAMMGXFhLWduMTU5MC5l\neGFtcGxlLmludmFsaWQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCj\nfjo5krQghAvLiMtquHjpFr/T8HwmT9QBvXsZ4dmlmyittn/o/bjrmDd+6qOk0uvN\nYXdRsTfkR2L2e8WgpNI4uzMSpNOfjEHgSaTxNLhq/9i0qxPP7wKr6iFrDmlzvwyY\nNCYfkNRqYcqkAPJQLrbiJ4D73QnSSAGoNbJZZSNjt79sSAJC4ZyXNtwsuCWLVjUV\n/z6nkQLNMtFEAup33H3lt65I/MHJkAxZD9aA2z15P14dcLe4O8D87/A9UUc9hbUw\nXaxmih6HyYG3yERaVEDeyZFdeZre4HKyMeqAcynV6eFIExjpddjgLc7kYGAyDQWR\nTxSVo0zVFnsVh7cZ63nNAgMBAAGjUzBRMB0GA1UdDgQWBBRAUaPARpncMx9X0g92\n4O0FgwchhzAfBgNVHSMEGDAWgBRAUaPARpncMx9X0g924O0FgwchhzAPBgNVHRMB\nAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAxh/FrYlghx7gYxzqgtzn1Lo9r\ngwZy9MwYkoHU9FgZslZTcVP7U8PoMWySCuxMdGpJp0xlcMT8/XmemzRXc7fZPqnY\nH/OzkYqKUvapEU385U/+VO17YIylW9IB3yGVTfQ46OaKdZ6ztrL641gmCJfv2J5z\nJ87ZbDanHSExejIGlp8T7o239M/baxkAmI2dv/+3jYqIGlx6b+YgrhSbwkJrOM/Z\n8My0yZeJZwhwlAlOAYfWnYvUZg0RR+RQWzZinOKL2E6Oi9N+5AoRFw6bvCTwBBn3\nH9JOlacxiZDnHV7SiqXiFxgSnWORzqZLvuLQE6rfgqebyfg7wyq22N29r1Io\n-----END CERTIFICATE-----\n"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.05
+  },
+  {
+    "case": "ssl-certificate-assign",
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "certid": "ca82ecee-57e3-43a5-814c-be15d49324a8"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "f7d90130-d5d7-4cac-b08f-cef5b79535b6",
+    "seconds": 4.09
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.02,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "source",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "ssl",
+          "backendssl": true,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-assigned-cert",
+    "command": "listSslCerts",
+    "params": {
+      "lbruleid": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.02,
+    "result": {
+      "count": 1,
+      "sslcert": [
+        {
+          "id": "ca82ecee-57e3-43a5-814c-be15d49324a8",
+          "certificate": "-----BEGIN CERTIFICATE-----\nMIIDKTCCAhGgAwIBAgIURjcelEM8GbkIkGCYOU9HxqXRwTUwDQYJKoZIhvcNAQEL\nBQAwJDEiMCAGA1UEAwwZcWEtZ24xNTkwLmV4YW1wbGUuaW52YWxpZDAeFw0yNjEx\nMDcxNTI2MzVaFw0yNjExMTQxNTI2MzVaMCQxIjAgBgNVBAMMGXFhLWduMTU5MC5l\neGFtcGxlLmludmFsaWQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCj\nfjo5krQghAvLiMtquHjpFr/T8HwmT9QBvXsZ4dmlmyittn/o/bjrmDd+6qOk0uvN\nYXdRsTfkR2L2e8WgpNI4uzMSpNOfjEHgSaTxNLhq/9i0qxPP7wKr6iFrDmlzvwyY\nNCYfkNRqYcqkAPJQLrbiJ4D73QnSSAGoNbJZZSNjt79sSAJC4ZyXNtwsuCWLVjUV\n/z6nkQLNMtFEAup33H3lt65I/MHJkAxZD9aA2z15P14dcLe4O8D87/A9UUc9hbUw\nXaxmih6HyYG3yERaVEDeyZFdeZre4HKyMeqAcynV6eFIExjpddjgLc7kYGAyDQWR\nTxSVo0zVFnsVh7cZ63nNAgMBAAGjUzBRMB0GA1UdDgQWBBRAUaPARpncMx9X0g92\n4O0FgwchhzAfBgNVHSMEGDAWgBRAUaPARpncMx9X0g924O0FgwchhzAPBgNVHRMB\nAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAxh/FrYlghx7gYxzqgtzn1Lo9r\ngwZy9MwYkoHU9FgZslZTcVP7U8PoMWySCuxMdGpJp0xlcMT8/XmemzRXc7fZPqnY\nH/OzkYqKUvapEU385U/+VO17YIylW9IB3yGVTfQ46OaKdZ6ztrL641gmCJfv2J5z\nJ87ZbDanHSExejIGlp8T7o239M/baxkAmI2dv/+3jYqIGlx6b+YgrhSbwkJrOM/Z\n8My0yZeJZwhwlAlOAYfWnYvUZg0RR+RQWzZinOKL2E6Oi9N+5AoRFw6bvCTwBBn3\nH9JOlacxiZDnHV7SiqXiFxgSnWORzqZLvuLQE6rfgqebyfg7wyq22N29r1Io\n-----END CERTIFICATE-----\n",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "fingerprint": "E4:56:48:BB:98:4E:82:DB:D7:49:9E:86:1F:C2:18:EA:A7:C1:E1:4D:DC:0A:5A:2E:9E:4B:66:CA:A0:43:33:F5",
+          "loadbalancerrulelist": [
+            "27c713e0-5619-4005-9e60-8fb042a08ccf"
+          ],
+          "name": "qa-gn1569-32-1590-cert"
+        }
+      ]
+    }
+  },
+  {
+    "case": "ssl-exit-to-tcp",
+    "command": "updateLoadBalancerRule",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "protocol": "tcp"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "cf238bbd-d374-4160-b7fd-f621cc8b6a6c",
+    "seconds": 4.12
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "source",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-assigned-cert",
+    "command": "listSslCerts",
+    "params": {
+      "lbruleid": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.03,
+    "result": {}
+  },
+  {
+    "case": "create-explicit-ssl",
+    "command": "createLoadBalancerRule",
+    "params": {
+      "name": "qa-gn1569-32-1590-ssl",
+      "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+      "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+      "publicport": 18591,
+      "privateport": 18591,
+      "algorithm": "roundrobin",
+      "protocol": "ssl",
+      "backendssl": "true",
+      "openfirewall": "false",
+      "cidrlist": "192.0.2.156/32"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "e4c816bd-6fdd-4ae8-b3ba-64a937c18444",
+    "seconds": 0.13
+  },
+  {
+    "case": "review-ssl-cert",
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "06c83112-50b4-4db4-a7ef-9ab18da4f6ba",
+      "certid": "ca82ecee-57e3-43a5-814c-be15d49324a8"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "ce9e9fe7-d8d9-44e2-8822-d2294351c68d",
+    "seconds": 4.09
+  },
+  {
+    "case": "review-ssl-backend",
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "id": "06c83112-50b4-4db4-a7ef-9ab18da4f6ba",
+      "virtualmachineids": "d67429be-281f-443d-8ee6-ed7b7683e09d"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": "dc63afb1-00c4-45c0-81b8-8b0a3eae1286",
+    "seconds": 4.09
+  },
+  {
+    "case": "read-06c83112-50b4-4db4-a7ef-9ab18da4f6ba",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "06c83112-50b4-4db4-a7ef-9ab18da4f6ba",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "06c83112-50b4-4db4-a7ef-9ab18da4f6ba",
+          "name": "qa-gn1569-32-1590-ssl",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18591",
+          "privateport": "18591",
+          "algorithm": "roundrobin",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "ssl",
+          "backendssl": true,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-assigned-cert",
+    "command": "listSslCerts",
+    "params": {
+      "lbruleid": "06c83112-50b4-4db4-a7ef-9ab18da4f6ba",
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "sslcert": [
+        {
+          "id": "ca82ecee-57e3-43a5-814c-be15d49324a8",
+          "certificate": "-----BEGIN CERTIFICATE-----\nMIIDKTCCAhGgAwIBAgIURjcelEM8GbkIkGCYOU9HxqXRwTUwDQYJKoZIhvcNAQEL\nBQAwJDEiMCAGA1UEAwwZcWEtZ24xNTkwLmV4YW1wbGUuaW52YWxpZDAeFw0yNjEx\nMDcxNTI2MzVaFw0yNjExMTQxNTI2MzVaMCQxIjAgBgNVBAMMGXFhLWduMTU5MC5l\neGFtcGxlLmludmFsaWQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCj\nfjo5krQghAvLiMtquHjpFr/T8HwmT9QBvXsZ4dmlmyittn/o/bjrmDd+6qOk0uvN\nYXdRsTfkR2L2e8WgpNI4uzMSpNOfjEHgSaTxNLhq/9i0qxPP7wKr6iFrDmlzvwyY\nNCYfkNRqYcqkAPJQLrbiJ4D73QnSSAGoNbJZZSNjt79sSAJC4ZyXNtwsuCWLVjUV\n/z6nkQLNMtFEAup33H3lt65I/MHJkAxZD9aA2z15P14dcLe4O8D87/A9UUc9hbUw\nXaxmih6HyYG3yERaVEDeyZFdeZre4HKyMeqAcynV6eFIExjpddjgLc7kYGAyDQWR\nTxSVo0zVFnsVh7cZ63nNAgMBAAGjUzBRMB0GA1UdDgQWBBRAUaPARpncMx9X0g92\n4O0FgwchhzAfBgNVHSMEGDAWgBRAUaPARpncMx9X0g924O0FgwchhzAPBgNVHRMB\nAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAxh/FrYlghx7gYxzqgtzn1Lo9r\ngwZy9MwYkoHU9FgZslZTcVP7U8PoMWySCuxMdGpJp0xlcMT8/XmemzRXc7fZPqnY\nH/OzkYqKUvapEU385U/+VO17YIylW9IB3yGVTfQ46OaKdZ6ztrL641gmCJfv2J5z\nJ87ZbDanHSExejIGlp8T7o239M/baxkAmI2dv/+3jYqIGlx6b+YgrhSbwkJrOM/Z\n8My0yZeJZwhwlAlOAYfWnYvUZg0RR+RQWzZinOKL2E6Oi9N+5AoRFw6bvCTwBBn3\nH9JOlacxiZDnHV7SiqXiFxgSnWORzqZLvuLQE6rfgqebyfg7wyq22N29r1Io\n-----END CERTIFICATE-----\n",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "fingerprint": "E4:56:48:BB:98:4E:82:DB:D7:49:9E:86:1F:C2:18:EA:A7:C1:E1:4D:DC:0A:5A:2E:9E:4B:66:CA:A0:43:33:F5",
+          "loadbalancerrulelist": [
+            "06c83112-50b4-4db4-a7ef-9ab18da4f6ba"
+          ],
+          "name": "qa-gn1569-32-1590-cert"
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "3cc2a1c8-4362-44fd-9bd7-aeddd77c6f5e",
+          "name": "qa-gn1569-32-reg-lb",
+          "description": "GN1569 LB API/UI review",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18569",
+          "privateport": "18569",
+          "algorithm": "leastconn",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "case": "read-27c713e0-5619-4005-9e60-8fb042a08ccf",
+    "command": "listLoadBalancerRules",
+    "params": {
+      "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+      "listall": "true"
+    },
+    "accepted": true,
+    "expected": true,
+    "pass_": true,
+    "errorCode": null,
+    "errorText": null,
+    "jobid": null,
+    "seconds": 0.01,
+    "result": {
+      "count": 1,
+      "loadbalancerrule": [
+        {
+          "id": "27c713e0-5619-4005-9e60-8fb042a08ccf",
+          "name": "qa-gn1569-32-1590-default",
+          "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+          "publicip": "10.10.32.170",
+          "publicport": "18590",
+          "privateport": "18590",
+          "algorithm": "source",
+          "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "cidrlist": "192.0.2.156/32",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "tcp",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "resourceids": "a803353e-3992-47fd-b9d5-df789b264f73",
+    "resourcetype": "Network",
+    "tags[0].key": "gn1569-20261112-review",
+    "tags[0].value": "L2"
+  },
+  "jobid": "1171fbc5-55eb-4e3e-8c68-0126bd01d841"
+}

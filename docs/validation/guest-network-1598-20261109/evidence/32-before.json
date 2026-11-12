@@ -1,0 +1,3079 @@
+{
+  "scopes": {
+    "old": {
+      "vms": [
+        {
+          "id": "da7f69ed-1948-4927-b377-55beb9c4620d",
+          "name": "qa-gn1569-32-prj-vm",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "50c37979-c7c8-4182-b1bb-d07c131e2e04",
+              "networkid": "e251eb02-f215-48f7-b956-0576233d97a2",
+              "networkname": "qa-gn1569-32-prj-base",
+              "netmask": "255.255.255.224",
+              "gateway": "10.180.32.1",
+              "ipaddress": "10.180.32.20",
+              "isolationuri": "vlan://795",
+              "broadcasturi": "vlan://795",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": true,
+              "macaddress": "1e:01:6e:00:02:e7",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            },
+            {
+              "id": "ce7677b8-553c-4e77-a32f-dfc58658d211",
+              "networkid": "e95802c5-94a0-48a6-a810-16f0a4ae7bb3",
+              "networkname": "qa-gn1569-32-prj-l2",
+              "isolationuri": "vlan://158",
+              "broadcasturi": "vlan://158",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:a3:00:07",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            },
+            {
+              "id": "da50f2de-03fb-4ac4-913e-7d61d1b00e25",
+              "networkid": "1f1f7c2d-58df-466d-9b7b-090ee67d3dfc",
+              "networkname": "qa-gn1569-32-prj-1587-l2",
+              "isolationuri": "vlan://156",
+              "broadcasturi": "vlan://156",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:b2:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "2",
+              "enabled": true
+            },
+            {
+              "id": "f8d7483b-aaad-4a51-951d-b896e39e2b54",
+              "networkid": "5f01ed79-0dc9-4ccf-adfa-43a76571ee8f",
+              "networkname": "qa-gn1569-32-prj-1588-l2",
+              "isolationuri": "vlan://157",
+              "broadcasturi": "vlan://157",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:b6:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "3",
+              "enabled": true
+            },
+            {
+              "id": "754ba4fd-36e5-4bb8-920a-fe9e182ab1b5",
+              "networkid": "265930da-18eb-4131-8b94-860e18d80a4e",
+              "networkname": "qa-gn1569-32-prj-1589-root-l2",
+              "isolationuri": "vlan://120",
+              "broadcasturi": "vlan://120",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:b7:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "4",
+              "enabled": true
+            },
+            {
+              "id": "0b547461-061d-4241-a069-6ddd14290c14",
+              "networkid": "7bbb5e0f-c387-45de-bd88-703f9e37fd71",
+              "networkname": "qa-gn1569-32-prj-1589-ui-l2",
+              "isolationuri": "vlan://151",
+              "broadcasturi": "vlan://151",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:bb:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "5",
+              "enabled": true
+            },
+            {
+              "id": "a9b72932-a687-4e65-9529-e9f18331a5ce",
+              "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+              "networkname": "qa-gn1569-32-reg-personal-share",
+              "isolationuri": "vlan://196",
+              "broadcasturi": "vlan://196",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:cb:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "6",
+              "enabled": true
+            },
+            {
+              "id": "8a83bbe5-9d5d-457d-86ea-aaf125d2d407",
+              "networkid": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+              "networkname": "qa-gn1569-32-reg-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.185.32.1",
+              "ipaddress": "10.185.32.84",
+              "isolationuri": "vlan://132",
+              "broadcasturi": "vlan://132",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": false,
+              "macaddress": "02:01:01:bd:00:06",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "7",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "b594bcaf-bcbf-4145-83b0-0af06586ab04",
+          "name": "qa-gn1569-32-r2-vm",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "a83a2560-bd14-4437-8b6c-6e9654a66978",
+              "networkid": "e251eb02-f215-48f7-b956-0576233d97a2",
+              "networkname": "qa-gn1569-32-prj-base",
+              "netmask": "255.255.255.224",
+              "gateway": "10.180.32.1",
+              "ipaddress": "10.180.32.21",
+              "isolationuri": "vlan://795",
+              "broadcasturi": "vlan://795",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": true,
+              "macaddress": "1e:01:ed:00:02:e8",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            },
+            {
+              "id": "a4b3c4e1-611e-42f2-9864-db64bbf4b8ec",
+              "networkid": "0d972041-b686-446a-84a5-594fb25a6a39",
+              "networkname": "qa-gn1569-32-r2-domainadmin-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.233.32.1",
+              "ipaddress": "10.233.32.140",
+              "isolationuri": "vlan://176",
+              "broadcasturi": "vlan://176",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": false,
+              "macaddress": "02:01:01:db:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            },
+            {
+              "id": "2eddbc0a-1ae5-421c-a901-e2e6379d6bcc",
+              "networkid": "ba14e62c-b442-4493-92e8-1c50e1b1bb10",
+              "networkname": "qa-gn1569-32-r2-domainadmin-l2",
+              "isolationuri": "vlan://155",
+              "broadcasturi": "vlan://155",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:dc:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "2",
+              "enabled": true
+            },
+            {
+              "id": "e46d6d06-75ff-4d53-8bae-1e53f7ce81af",
+              "networkid": "85490640-20dc-4536-82a3-2e1813b201f6",
+              "networkname": "qa-gn1569-32-r2-domainadmin-shared",
+              "netmask": "255.255.255.0",
+              "gateway": "10.243.32.1",
+              "ipaddress": "10.243.32.58",
+              "isolationuri": "vlan://122",
+              "broadcasturi": "vlan://122",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:01:01:dd:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "3",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "5aa20e59-56c9-45cb-a144-54bfe5957a1d",
+          "name": "qa-gn1594-32-owner-vm",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "6ec54fe9-8347-4db6-9450-630a0f23f93a",
+              "networkid": "e251eb02-f215-48f7-b956-0576233d97a2",
+              "networkname": "qa-gn1569-32-prj-base",
+              "netmask": "255.255.255.224",
+              "gateway": "10.180.32.1",
+              "ipaddress": "10.180.32.19",
+              "isolationuri": "vlan://795",
+              "broadcasturi": "vlan://795",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": true,
+              "macaddress": "1e:01:cc:00:02:e6",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            },
+            {
+              "id": "fd5a9075-9e9e-439c-9c7c-60be24614cb8",
+              "networkid": "9b172331-4eb7-4eab-9586-664ad5fe3eff",
+              "networkname": "qa-gn1594-32-vm-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.252.32.1",
+              "ipaddress": "10.252.32.228",
+              "isolationuri": "vlan://127",
+              "broadcasturi": "vlan://127",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": false,
+              "macaddress": "02:01:01:e4:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            },
+            {
+              "id": "1d87181a-1c05-4429-9f78-4d59a63f3d8f",
+              "networkid": "395d6dad-c006-4b42-97cd-f061215148e6",
+              "networkname": "qa-gn1594-32-vm-l2",
+              "isolationuri": "vlan://140",
+              "broadcasturi": "vlan://140",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:e5:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "2",
+              "enabled": true
+            },
+            {
+              "id": "9de04942-f717-447c-b559-280b5524fcb4",
+              "networkid": "832dd4b1-33b2-4ada-b2e1-2b77a7d73230",
+              "networkname": "qa-gn1594-32-vm-shared",
+              "netmask": "255.255.255.0",
+              "gateway": "10.247.32.1",
+              "ipaddress": "10.247.32.58",
+              "isolationuri": "vlan://140",
+              "broadcasturi": "vlan://140",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:01:01:e6:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "3",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+          "name": "qa-gn1569-32-vnf-ui",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+              "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+              "networkname": "qa-gn1594-32-project-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.251.32.1",
+              "ipaddress": "10.251.32.38",
+              "isolationuri": "vlan://191",
+              "broadcasturi": "vlan://191",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:de:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "publicipid": "e7c28643-7499-47fd-ac74-51e3fb6bafbf",
+              "publicip": "10.10.32.173",
+              "enabled": true
+            },
+            {
+              "id": "3433e9f2-0618-4c05-820d-545ca137d1b2",
+              "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+              "networkname": "qa-gn1594-32-project-l2",
+              "isolationuri": "vlan://199",
+              "broadcasturi": "vlan://199",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:df:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            },
+            {
+              "id": "31b5acdd-417b-4f1e-bf2a-bb9eaf040643",
+              "networkid": "15a7e449-7333-401a-a7f1-448283423553",
+              "networkname": "qa-gn1594-32-project-shared",
+              "netmask": "255.255.255.0",
+              "gateway": "10.246.32.1",
+              "ipaddress": "10.246.32.58",
+              "isolationuri": "vlan://199",
+              "broadcasturi": "vlan://199",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": false,
+              "macaddress": "02:01:01:e0:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "2",
+              "enabled": true
+            }
+          ],
+          "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "fc92af85-adce-4690-a746-9fee3cb3af0e",
+          "name": "qa-gn1595-32-project-vnf",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "e7448cfa-33fd-41ab-ab66-c9fa88e5a6fc",
+              "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+              "networkname": "qa-gn1594-32-project-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.251.32.1",
+              "ipaddress": "10.251.32.245",
+              "isolationuri": "vlan://191",
+              "broadcasturi": "vlan://191",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:de:00:04",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "publicipid": "bc0014cc-6540-4695-9dc6-ff9c5e2bc61c",
+              "publicip": "10.10.32.155",
+              "enabled": true
+            },
+            {
+              "id": "5f940d99-50de-4c05-bc58-ea78f1a57b6f",
+              "networkid": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+              "networkname": "qa-gn1569-32-reg-personal-share",
+              "isolationuri": "vlan://196",
+              "broadcasturi": "vlan://196",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:cb:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            }
+          ],
+          "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        }
+      ],
+      "networks": [
+        {
+          "id": "832dd4b1-33b2-4ada-b2e1-2b77a7d73230",
+          "name": "qa-gn1594-32-vm-shared",
+          "state": "Setup",
+          "cidr": "10.247.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "395d6dad-c006-4b42-97cd-f061215148e6",
+          "name": "qa-gn1594-32-vm-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "9b172331-4eb7-4eab-9586-664ad5fe3eff",
+          "name": "qa-gn1594-32-vm-nat",
+          "state": "Implemented",
+          "cidr": "10.252.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "15a7e449-7333-401a-a7f1-448283423553",
+          "name": "qa-gn1594-32-project-shared",
+          "state": "Setup",
+          "cidr": "10.246.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+          "name": "qa-gn1594-32-project-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+          "name": "qa-gn1594-32-project-nat",
+          "state": "Implemented",
+          "cidr": "10.251.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "85490640-20dc-4536-82a3-2e1813b201f6",
+          "name": "qa-gn1569-32-r2-domainadmin-shared",
+          "state": "Setup",
+          "cidr": "10.243.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "ba14e62c-b442-4493-92e8-1c50e1b1bb10",
+          "name": "qa-gn1569-32-r2-domainadmin-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "0d972041-b686-446a-84a5-594fb25a6a39",
+          "name": "qa-gn1569-32-r2-domainadmin-nat",
+          "state": "Implemented",
+          "cidr": "10.233.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "78290382-5267-417e-ae55-e33143193064",
+          "name": "qa-gn1569-32-r2-member-shared",
+          "state": "Setup",
+          "cidr": "10.242.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "f386e216-173c-4004-87b6-92ae91ee791a",
+          "name": "qa-gn1569-32-r2-member-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "811b1c6b-ace9-4e4c-96ce-657fcc867dbd",
+          "name": "qa-gn1569-32-r2-member-nat",
+          "state": "Allocated",
+          "cidr": "10.232.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "322bc2f1-a9be-442c-9cdc-458e484fe485",
+          "name": "qa-gn1569-32-r2-owner-shared",
+          "state": "Setup",
+          "cidr": "10.241.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "654093be-83a1-494b-bbe3-cf1f74248f22",
+          "name": "qa-gn1569-32-r2-owner-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "d61d4c4b-cf25-4f04-9e0f-fda9812b3e07",
+          "name": "qa-gn1569-32-r2-owner-nat",
+          "state": "Allocated",
+          "cidr": "10.231.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "5b9ba728-c05f-46b5-b725-07dc265c8538",
+          "name": "qa-gn1569-32-r2-admin-shared",
+          "state": "Setup",
+          "cidr": "10.240.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "1f1e0ae2-2d6d-41e4-bfee-4257d2eb4a63",
+          "name": "qa-gn1569-32-r2-admin-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "f330b78c-8989-431f-826f-d02e5c8cf174",
+          "name": "qa-gn1569-32-r2-admin-nat",
+          "state": "Allocated",
+          "cidr": "10.230.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+          "name": "qa-gn1569-32-reg-personal-share",
+          "state": "Implemented",
+          "cidr": null,
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "92102e11-abf4-464f-9592-b04671c9946a",
+          "name": "qa-gn1569-32-reg-shared",
+          "state": "Setup",
+          "cidr": "10.190.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "520b13f5-966b-4ee9-af3a-e5e6339e11ca",
+          "name": "qa-gn1569-32-reg-nat",
+          "state": "Implemented",
+          "cidr": "10.185.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "8e90bb7a-8fca-469b-accc-8a33c349b611",
+          "name": "qa-gn1569-32-reg-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "7bbb5e0f-c387-45de-bd88-703f9e37fd71",
+          "name": "qa-gn1569-32-prj-1589-ui-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "34d7589a-ee42-4064-891c-8d1bae4b41b3",
+          "name": "qa-gn1569-32-prj-1589-domainadmin-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "0474d9ec-196b-417b-b9dc-7b1ba81554f0",
+          "name": "qa-gn1569-32-prj-1589-member-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "c6419cc0-62de-4b38-9673-e9a1f71ef47c",
+          "name": "qa-gn1569-32-prj-1589-owner-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "265930da-18eb-4131-8b94-860e18d80a4e",
+          "name": "qa-gn1569-32-prj-1589-root-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "5f01ed79-0dc9-4ccf-adfa-43a76571ee8f",
+          "name": "qa-gn1569-32-prj-1588-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "d8b89c8a-89b0-41b6-8c56-76ee509da5cb",
+          "name": "qa-gn1569-32-prj-1588-api-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "1f1f7c2d-58df-466d-9b7b-090ee67d3dfc",
+          "name": "qa-gn1569-32-prj-1587-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "7af904b4-ae8f-45c2-82c5-fa1fd85c331c",
+          "name": "qa-gn1569-32-prj-ui-admin-l2",
+          "state": "Allocated",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "d2446c57-3634-4f4a-83c4-538d47865b0f",
+          "name": "qa-gn1569-32-prj-ui-member-l2",
+          "state": "Allocated",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "c8fb1f5b-dd71-4a10-9cb9-6cfd66009990",
+          "name": "qa-gn1569-32-prj-ui-owner-l2",
+          "state": "Allocated",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "ce6ab5de-f61c-4ed9-9569-81c663c86fdf",
+          "name": "qa-gn1569-32-prj-api-member-shared-auto",
+          "state": "Setup",
+          "cidr": "10.183.32.96/27",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "5a28ec96-f935-41f4-b962-54514d665601",
+          "name": "qa-gn1569-32-prj-api-owner-shared-auto",
+          "state": "Setup",
+          "cidr": "10.183.32.64/27",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "43299012-72da-42e4-9c1f-e80d4135a4e0",
+          "name": "qa-gn1569-32-prj-api-domainadmin-shared-auto",
+          "state": "Setup",
+          "cidr": "10.183.32.32/27",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "1b2f159e-f516-40ce-9395-2dc64b9d0b95",
+          "name": "qa-gn1569-32-prj-api-admin-shared-auto",
+          "state": "Setup",
+          "cidr": "10.183.32.0/27",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "af3b901c-e446-470f-ab9b-9460d804c735",
+          "name": "qa-gn1569-32-prj-api-member-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "c75aec2a-fb86-43af-a69a-995e537ed299",
+          "name": "qa-gn1569-32-prj-api-owner-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "bea39c70-88c0-40a5-8ce8-5cc2395c6e2d",
+          "name": "qa-gn1569-32-prj-api-domainadmin-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "94205e36-52bc-4bb8-ae37-a1f9bddc5d3c",
+          "name": "qa-gn1569-32-prj-shared-auto",
+          "state": "Setup",
+          "cidr": "10.182.32.0/27",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "bae5c362-d038-40fa-9123-52e8acc7374d",
+          "name": "qa-gn1569-32-prj-api-admin-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "e251eb02-f215-48f7-b956-0576233d97a2",
+          "name": "qa-gn1569-32-prj-base",
+          "state": "Setup",
+          "cidr": "10.180.32.0/27",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69"
+        },
+        {
+          "id": "a8a685fe-41b1-448a-891e-2e45ab65a8ce",
+          "name": "qa-gn1569-32-prj-shared",
+          "state": "Setup",
+          "cidr": "10.179.32.0/27",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69"
+        },
+        {
+          "id": "e95802c5-94a0-48a6-a810-16f0a4ae7bb3",
+          "name": "qa-gn1569-32-prj-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "d58e60cb-b88f-48ed-b5e7-eee0fccf8aec",
+          "name": "qa-gn1569-32-prj-nat",
+          "state": "Allocated",
+          "cidr": "10.181.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        }
+      ]
+    },
+    "new": {
+      "vms": [
+        {
+          "id": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "name": "qa-gn1597-32-project-vnf",
+          "state": "Running",
+          "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+          "nic": [
+            {
+              "id": "45bb1066-6d6f-4843-abac-d93212d7e98f",
+              "networkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+              "networkname": "qa-gn1597-32-project-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.253.32.1",
+              "ipaddress": "10.253.32.220",
+              "isolationuri": "vlan://104",
+              "broadcasturi": "vlan://104",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:19:97:32:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "publicipid": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+              "publicip": "10.10.32.154",
+              "enabled": true
+            }
+          ],
+          "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        }
+      ],
+      "networks": [
+        {
+          "id": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "name": "qa-gn1597-32-project-nat",
+          "state": "Implemented",
+          "cidr": "10.253.32.0/24",
+          "account": null,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        }
+      ]
+    },
+    "personal": {
+      "vms": [
+        {
+          "id": "d76c74bc-c7cc-4793-9401-fb889e7b227b",
+          "name": "ShareVolume-VM-1",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "41e7ab46-98b5-4b0f-8776-ec9fee736d38",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.234",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "814b573c-4713-4a21-82d6-b6990d6b6c80",
+          "name": "ShareVolume-VM-2",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "faf21837-361a-457a-ae15-a7162ca7dab4",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.83",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "efc95839-7394-402d-b6fb-951ba269499c",
+          "name": "HA-VM-13",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "ea47e276-ef9e-4a51-af0a-e653287afa82",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.117",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:0f",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "af949062-c901-4897-ba65-f69c0655979c",
+          "name": "HA-VM-14",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "8efec7cc-ae2a-4350-b2c8-624a7daf02b5",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.70",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:10",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "24358070-daf3-4396-b764-1427ebb18e9b",
+          "name": "HA-VM-15",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "e8e32c33-5254-4a26-a69a-2b308733fe37",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.119",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:11",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "6090c295-1bef-4704-9c36-53aa003cf5ab",
+          "name": "HA-VM-16",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "bda952c3-5eb3-4b6a-996c-ba2afc221f9b",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.121",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:12",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "6e2adaa9-9a85-4c72-b4b2-c7ddab924fbe",
+          "name": "HA-VM-17",
+          "state": "Running",
+          "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+          "nic": [
+            {
+              "id": "855dc885-e856-49c0-beba-84090091751e",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.118",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:13",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "d04fbf24-5094-42aa-91d2-fcc819cb3063",
+          "name": "HA-VM-18",
+          "state": "Running",
+          "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+          "nic": [
+            {
+              "id": "437cfaa2-8b88-4563-bd44-8577b66bf72a",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.120",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:14",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "d77e1d17-2804-4d50-83bd-f6f0fecb85d0",
+          "name": "HA-VM-19",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "ecb12c27-76f8-4420-bda4-86ab79c9a316",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.122",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:15",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "8f892268-89dd-4294-899a-d91e6bcfc95d",
+          "name": "HA-VM-20",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "221784a8-d27b-4d50-a073-78c2954abe20",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.7",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:16",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "ca2075df-12e9-4110-94c7-bd11068b621c",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "cfc29141-8164-42f8-ac31-d0abe61edfe9",
+          "name": "test",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "fc32899d-dd05-4278-94ec-6296294e02b0",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.185",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:17",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "d396c580-3d9a-4e81-bbe9-75f488ee27b7",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "8185dc8f-757c-4fa2-b6f5-36ff991a894d",
+          "name": "test2",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "359684a2-cefe-45c6-b290-73b4bb676b4d",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.179",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:18",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "d396c580-3d9a-4e81-bbe9-75f488ee27b7",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "7db80258-f535-4669-b7aa-7f1b4fdc1322",
+          "name": "jsjs2",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "7bf59248-215e-4111-a833-dfc8b972779f",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:19",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "d396c580-3d9a-4e81-bbe9-75f488ee27b7",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "5b77d90b-070b-4087-9f14-5f6a31238d70",
+          "name": "E1335-32-L-BIOS-seed-r2",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "428ad453-2c13-4d9b-b7d1-7536a7a9ba2b",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "83231e10-63f3-412a-94d0-55b0fe51d83f",
+          "name": "E1335-32-W-UEFI-seed",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "08184229-adfe-4ea5-a22b-a66fd652fa5f",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "67614e8c-51fe-4265-90e3-261e72c26776",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "97307bee-992f-47c8-b6ab-4b399d8bfaa4",
+          "name": "E1335-32-L-BIOS-volume-off",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "78a0e513-8e59-4222-8e2e-79b47899daf1",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:03",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "4502b429-5662-4d95-a02b-61d65a3c95d7",
+          "name": "E1335-32-L-BIOS-volume-off-r2",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "5878faec-374e-4a9c-a70d-c59bf378e106",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:04",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "ed3fe1e8-215d-4e67-877b-6ef6118c3133",
+          "name": "E1335-32-L-BIOS-snapshot-off-r2",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "a99a3b77-486d-49ae-9b91-7f1936351da4",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:06",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "d1a1337e-1da2-4fc8-bd50-226b5db1d47a",
+          "name": "E1335-32-L-BIOS-volume-on",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "c8861d80-0111-49f7-9648-b906a1abcf60",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:07",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "e400c8ba-123a-4f2c-92f1-6f1f2a1ec6af",
+          "name": "E1335-32-L-BIOS-snapshot-on",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "a74afad7-5697-4642-94d9-2240d4664b89",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:08",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "5d455a66-bb2e-416a-abe8-9bb91af282ea",
+          "name": "E1335-32-L-BIOS-snapshot-data-two",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "fdfd5d08-efe2-4576-a4c4-b5d0c79f91c2",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:09",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "46757bcc-987a-4ced-953e-16694d4040e7",
+          "name": "E1335-32-concurrent-adopt-a",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "14452808-cf68-4602-b4e9-fb3a4bf34c33",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:0a",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "2031e251-fd4b-4f7b-8bc6-7a8c4fab3a36",
+          "name": "E1335-32-W-UEFI-volume-off",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "3467b89a-d000-4417-a60f-9fd772d5974a",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:0c",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "67614e8c-51fe-4265-90e3-261e72c26776",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "63008885-b08f-4d89-a162-c11c72df7bd3",
+          "name": "E1335-32-W-UEFI-volume-on",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "9a1868a5-db2d-43f8-a574-347c3c272ecf",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:0d",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "67614e8c-51fe-4265-90e3-261e72c26776",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "72f699ad-51ad-4de6-acf9-1a8d94888c3a",
+          "name": "E1335-32-W-UEFI-snapshot-off",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "95447a4b-e2ae-4d48-9bff-1bf088a5af3f",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:0e",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "67614e8c-51fe-4265-90e3-261e72c26776",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "5870f38f-a68e-44b4-9016-30b604acc0ea",
+          "name": "E1335-32-W-UEFI-snapshot-on",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "fbd71e4a-f5d5-4354-af56-4337d9b556e4",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:0f",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "67614e8c-51fe-4265-90e3-261e72c26776",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "a77141f0-a23e-40d9-9c4b-6be33b139da8",
+          "name": "E1335-32-ISO-two-plain-r2",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "e6567fbe-ab86-403f-81ea-7852ab8ecb83",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:1a",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "c07e05de-d2c7-4866-9ca1-528b649bb80a",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "e7a29afd-bca4-4baa-8085-2b06fc3b5338",
+          "name": "E1335-32-L-BIOS-deleted-source-restore",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "e2e91124-a940-420e-a9ee-0ee6cb2b0959",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:11",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "85a5ef23-f276-4f67-9e4a-f82b3beeca26",
+          "name": "E1335-32-permission-user-seed",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "46681c34-23f0-4a01-91c8-94e1d81d1059",
+              "networkid": "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+              "networkname": "E1335-32-permission-user-L2",
+              "isolationuri": "vlan://236",
+              "broadcasturi": "vlan://236",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cf:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "a4e61fc8-ae73-4ed6-aad2-fed63f7896aa",
+          "name": "E1335-32-permission-user-snapshot-create",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "9643ce63-dc91-4557-a394-4e1d60b53c71",
+              "networkid": "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+              "networkname": "E1335-32-permission-user-L2",
+              "isolationuri": "vlan://236",
+              "broadcasturi": "vlan://236",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cf:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "2ef20a68-4ba7-40a5-a4ed-727f69ebef5e",
+          "name": "E1335-32-permission-user-volume-create-r2",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "c7dcd4d7-7366-4231-85fe-30daeaf68bec",
+              "networkid": "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+              "networkname": "E1335-32-permission-user-L2",
+              "isolationuri": "vlan://236",
+              "broadcasturi": "vlan://236",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cf:00:03",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "afe0fa28-bf36-418c-a93f-654bb69115cd",
+          "name": "E1335-32-response-loss-snapshot",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "dbc6607b-0c76-4831-ab52-d63b88c22110",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:14",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "3ecfb561-b374-40c8-925d-844e9a5ba9b4",
+          "name": "E1335-32-response-loss-snapshot-r2",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "1b913e61-57e4-4bfb-8e09-1a6f88fe501e",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:15",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "752ece3c-3d54-42c6-b8e2-a06181b20946",
+          "name": "E1335-32-response-loss-snapshot-r3",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "2282fe0c-265d-43ee-b8d3-f1b3ef09a741",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:16",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "06a15a87-21ad-467d-82e4-95db344fedc0",
+          "name": "E1335-32-fault-management-qos",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "878099a7-346b-4e54-b256-b46e1e075f2e",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "ipaddress": "172.31.235.32",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:17",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "38ba8098-562a-4596-aa8c-557f8bc7b20e",
+          "name": "E1345-32-file-boot-on",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "50afb50c-855f-4af7-99c8-3b1daa754b54",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:18",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": null,
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "42fa5f69-a98b-4c3a-ac68-e2eac582ab66",
+          "name": "E1345-32-generic-snapshot-off",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "d07f6f3f-54e6-4cfe-8a2c-f534c79bd485",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:19",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": null,
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "692145c3-07fb-40c0-aff5-2bde2776b7a2",
+          "name": "E1345-32-file-start-retry",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "5b581cb7-4e15-4024-9f6e-00f672fdfaf4",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:1a",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": null,
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "7fe75646-6ba9-4bca-9f8c-f9399746173d",
+          "name": "E1345-32-local-off",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "53b6f4f7-644b-4070-b4dc-5e3c19dc6a57",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:1b",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": null,
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "be04ea93-c0ce-4d98-a256-36bfb1e6ea5c",
+          "name": "E1345-32-url-on",
+          "state": "Running",
+          "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+          "nic": [
+            {
+              "id": "970228fc-f80f-44a5-9e04-1297bcf202e6",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:1c",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": null,
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "21d16fe1-6677-452b-ae9e-6544ba679a58",
+          "name": "E1345-32-response-loss-generic",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "161f3037-2a4a-4206-be19-216e7a25f1ad",
+              "networkid": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+              "networkname": "E1335-VM-Origin-L2-235",
+              "isolationuri": "vlan://235",
+              "broadcasturi": "vlan://235",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:ce:00:1d",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": null,
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "3fb1df28-1bf9-4e40-8991-54e547a13dc7",
+          "name": "autoScaleVm-AS-PROD-32-AS01-USER-1-xhszap",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "da5f0f2c-586d-48c9-acfa-94b2162a6c1d",
+              "networkid": "f889cc7d-02c5-490b-b256-a289b73ff824",
+              "networkname": "AS-PROD-32-AS01-userNetwork",
+              "netmask": "255.255.255.0",
+              "gateway": "172.28.32.1",
+              "ipaddress": "172.28.32.94",
+              "isolationuri": "vlan://197",
+              "broadcasturi": "vlan://197",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:00:d2:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "14635a86-3bc8-4a4e-bd35-485afe1f30b5",
+          "name": "autoScaleVm-AS-PROD-32-AS01-VPC-1-qrnvwt",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "bd6841f3-2528-4443-8af3-b5bf2bfe56aa",
+              "networkid": "07f53267-063b-4975-ac47-5a5c10d57fb4",
+              "networkname": "AS-PROD-32-AS01-VPC-Tier",
+              "netmask": "255.255.255.0",
+              "gateway": "172.30.32.1",
+              "ipaddress": "172.30.32.220",
+              "isolationuri": "vlan://142",
+              "broadcasturi": "vlan://142",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:00:d4:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true,
+              "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+              "vpcname": "AS-PROD-32-AS01-VPC"
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "3ffff2f4-50d1-4fa9-976a-4a391a01758c",
+          "name": "autoScaleVm-AS-PROD-32-AS02-RECOVERY-1-ttxwzv",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "9a6704e6-efb9-4017-93bd-5e9f95fb2cc2",
+              "networkid": "f889cc7d-02c5-490b-b256-a289b73ff824",
+              "networkname": "AS-PROD-32-AS01-userNetwork",
+              "netmask": "255.255.255.0",
+              "gateway": "172.28.32.1",
+              "ipaddress": "172.28.32.97",
+              "isolationuri": "vlan://197",
+              "broadcasturi": "vlan://197",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:00:d2:00:03",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "6f9bd71b-1745-48c5-9c88-cc0cccd9d1ff",
+          "name": "autoScaleVm-AS-PROD-32-AS04-CONCURRENCY-1-zoqdbs",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "c59be8ca-7589-4d22-8d36-e3896f2fad1f",
+              "networkid": "f889cc7d-02c5-490b-b256-a289b73ff824",
+              "networkname": "AS-PROD-32-AS01-userNetwork",
+              "netmask": "255.255.255.0",
+              "gateway": "172.28.32.1",
+              "ipaddress": "172.28.32.160",
+              "isolationuri": "vlan://197",
+              "broadcasturi": "vlan://197",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:00:d2:00:04",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "2eec7586-9b6d-4e6e-95c7-c6cbc1d96668",
+          "name": "fio-test",
+          "state": "Running",
+          "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+          "nic": [
+            {
+              "id": "483bd033-15c7-49d6-b81b-55605387a663",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.139",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:1b",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "1070e701-4c6e-4d69-a20f-ef009b70bce2",
+          "name": "mcjeong-test",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "5da9d2b5-9098-41b0-8fe0-16e8a52414a0",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.104",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:20",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "c07e05de-d2c7-4866-9ca1-528b649bb80a",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "4714c3bc-5c8b-4807-a736-c33c439717ae",
+          "name": "E1367-VM-DETAIL-32",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "b2964ff3-d4bc-4e43-9122-7dd111eafff5",
+              "networkid": "f889cc7d-02c5-490b-b256-a289b73ff824",
+              "networkname": "AS-PROD-32-AS01-userNetwork",
+              "netmask": "255.255.255.0",
+              "gateway": "172.28.32.1",
+              "ipaddress": "172.28.32.25",
+              "isolationuri": "vlan://197",
+              "broadcasturi": "vlan://197",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:00:d2:00:59",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "298dc25c-f455-4a15-898c-e66272966fae",
+          "name": "VM-298dc25c-f455-4a15-898c-e66272966fae",
+          "state": "Stopped",
+          "hostid": null,
+          "nic": [
+            {
+              "id": "f5c25c25-839e-45a8-8f1b-14d7f2cc940f",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.29",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:29",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": null,
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "a672ffa2-946a-40fb-8f86-522087309324",
+          "name": "tj-win-vm-1",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "35b60ad9-c74b-4cee-a890-608c604bebec",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.150",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:39",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "67614e8c-51fe-4265-90e3-261e72c26776",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "fa443b56-1e83-4a2c-8796-bcfbb922cc8f",
+          "name": "tj-win-vm-2",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "46243da3-b700-4f76-8043-8c620d74e14e",
+              "networkid": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+              "networkname": "ADMIN-L2-Network",
+              "ipaddress": "10.10.254.221",
+              "isolationuri": "vlan://untagged",
+              "broadcasturi": "vlan://untagged",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": true,
+              "macaddress": "02:01:00:cc:00:3a",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "67614e8c-51fe-4265-90e3-261e72c26776",
+          "serviceofferingid": "601d6b07-f649-4781-95a1-a522d3cd7125"
+        },
+        {
+          "id": "7c8248bf-bd95-4b63-adf6-4734bdcb41eb",
+          "name": "js-control-1a18a33f5e7",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "ccc5aa3a-1cb7-42c0-aec6-a0fac87faf03",
+              "networkid": "9a4c510d-021a-47c4-96dd-dc289655293e",
+              "networkname": "js-network",
+              "netmask": "255.255.255.0",
+              "gateway": "10.1.1.1",
+              "ipaddress": "10.1.1.190",
+              "isolationuri": "vlan://162",
+              "broadcasturi": "vlan://162",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:12:00:02",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "fabff053-3f1d-4c10-99f4-7bf627ee75b1",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "63ad33a3-46b1-4a65-9745-3a224e9ea2c3",
+          "name": "js-control-1a18a342ed1",
+          "state": "Running",
+          "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+          "nic": [
+            {
+              "id": "d188d5ea-037d-43e3-a6a6-dfe2d7000870",
+              "networkid": "9a4c510d-021a-47c4-96dd-dc289655293e",
+              "networkname": "js-network",
+              "netmask": "255.255.255.0",
+              "gateway": "10.1.1.1",
+              "ipaddress": "10.1.1.55",
+              "isolationuri": "vlan://162",
+              "broadcasturi": "vlan://162",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:12:00:03",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "fabff053-3f1d-4c10-99f4-7bf627ee75b1",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "6b2e1fdf-64fe-4cb2-8cad-7b088a50c08d",
+          "name": "js-node-1a18a346b83",
+          "state": "Running",
+          "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+          "nic": [
+            {
+              "id": "fac04be7-183a-47c7-a2e6-7c1b28d5e375",
+              "networkid": "9a4c510d-021a-47c4-96dd-dc289655293e",
+              "networkname": "js-network",
+              "netmask": "255.255.255.0",
+              "gateway": "10.1.1.1",
+              "ipaddress": "10.1.1.193",
+              "isolationuri": "vlan://162",
+              "broadcasturi": "vlan://162",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:12:00:04",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "fabff053-3f1d-4c10-99f4-7bf627ee75b1",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "8c9ac3a7-3849-459f-95d7-4024e4797502",
+          "name": "js-node-1a18a34a025",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "7740ae48-3712-48ae-8748-b94390c8bc48",
+              "networkid": "9a4c510d-021a-47c4-96dd-dc289655293e",
+              "networkname": "js-network",
+              "netmask": "255.255.255.0",
+              "gateway": "10.1.1.1",
+              "ipaddress": "10.1.1.5",
+              "isolationuri": "vlan://162",
+              "broadcasturi": "vlan://162",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:12:00:05",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "fabff053-3f1d-4c10-99f4-7bf627ee75b1",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "d67429be-281f-443d-8ee6-ed7b7683e09d",
+          "name": "qa-gn1569-32-nat-vm",
+          "state": "Running",
+          "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+          "nic": [
+            {
+              "id": "60a5043e-6958-4bfd-81c5-bb0cb52e4bbf",
+              "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+              "networkname": "qa-gn1569-32-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.176.32.1",
+              "ipaddress": "10.176.32.75",
+              "isolationuri": "vlan://108",
+              "broadcasturi": "vlan://108",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:9e:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            },
+            {
+              "id": "5f5533a5-5511-4d36-91ec-cabe14664f89",
+              "networkid": "aefaf6fa-4255-4b64-9f28-2da2a25ea711",
+              "networkname": "qa-gn1569-32-l2",
+              "isolationuri": "vlan://791",
+              "broadcasturi": "vlan://791",
+              "traffictype": "Guest",
+              "type": "L2",
+              "isdefault": false,
+              "macaddress": "02:01:01:a0:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "1",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "c0ae91e3-1538-49c7-94cb-a513c50e08ee",
+          "name": "qa-gn1569-32-shared-vm",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "d2bcc0ff-cfbd-49a6-89eb-5b992e365440",
+              "networkid": "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e",
+              "networkname": "qa-gn1569-32-shared",
+              "netmask": "255.255.255.224",
+              "gateway": "10.178.32.1",
+              "ipaddress": "10.178.32.20",
+              "isolationuri": "vlan://792",
+              "broadcasturi": "vlan://792",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": true,
+              "macaddress": "1e:01:8a:00:02:c4",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "23dbc3f4-4378-4fef-9420-959d724ae98e",
+          "name": "qa-gn1569-32-nosnat-vm",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "397fde63-5edd-4695-8f91-751ce13dfc87",
+              "networkid": "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+              "networkname": "qa-gn1569-32-nosnat",
+              "netmask": "255.255.255.224",
+              "gateway": "10.177.32.1",
+              "ipaddress": "10.177.32.20",
+              "isolationuri": "vlan://651",
+              "broadcasturi": "vlan://651",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "1e:01:90:00:02:b4",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "f309cc72-72dc-4f43-b18e-723e87098f22",
+          "name": "qa-gn1569-32-shared-peer",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "7208c694-3c19-4c46-92a0-cb293500c8a8",
+              "networkid": "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e",
+              "networkname": "qa-gn1569-32-shared",
+              "netmask": "255.255.255.224",
+              "gateway": "10.178.32.1",
+              "ipaddress": "10.178.32.21",
+              "isolationuri": "vlan://792",
+              "broadcasturi": "vlan://792",
+              "traffictype": "Guest",
+              "type": "Shared",
+              "isdefault": true,
+              "macaddress": "1e:01:d6:00:02:c5",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "ef8ecf84-8508-4bda-b69a-eb1e2914969f",
+          "name": "qa-gn1569-32-nosnat-peer",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "3589d68a-7f14-44ea-82a9-792988ae1920",
+              "networkid": "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+              "networkname": "qa-gn1569-32-nosnat",
+              "netmask": "255.255.255.224",
+              "gateway": "10.177.32.1",
+              "ipaddress": "10.177.32.21",
+              "isolationuri": "vlan://651",
+              "broadcasturi": "vlan://651",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "1e:01:1d:00:02:b5",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "enabled": true
+            }
+          ],
+          "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        },
+        {
+          "id": "55bd5dec-d12f-4d0a-b206-5ee064548252",
+          "name": "qa-gn1595-32-personal-vnf",
+          "state": "Running",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "nic": [
+            {
+              "id": "c647c702-b487-458b-9f38-6f5fad11b0e7",
+              "networkid": "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+              "networkname": "qa-gn1595-32-personal-nat",
+              "netmask": "255.255.255.0",
+              "gateway": "10.253.32.1",
+              "ipaddress": "10.253.32.34",
+              "isolationuri": "vlan://178",
+              "broadcasturi": "vlan://178",
+              "traffictype": "Guest",
+              "type": "Isolated",
+              "isdefault": true,
+              "macaddress": "02:01:01:e7:00:01",
+              "secondaryip": [],
+              "extradhcpoption": [],
+              "deviceid": "0",
+              "publicipid": "e23b8fd0-1837-476a-85a4-9f6ab5b5a168",
+              "publicip": "10.10.32.156",
+              "enabled": true
+            }
+          ],
+          "templateid": "b0319f2a-ddc7-4eff-92ed-c6f1e4f2af7a",
+          "serviceofferingid": "b02ac1bf-2da7-46e1-8961-d94d76dad9ab"
+        }
+      ],
+      "networks": [
+        {
+          "id": "5c0c95b6-e9d7-4102-acd7-be70f2b1d7d9",
+          "name": "qa-gn1595-32-personal-nat",
+          "state": "Implemented",
+          "cidr": "10.253.32.0/24",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "f50fec93-0b1a-443d-9007-b5d9ee4aa6c4",
+          "name": "qa-gn1594-32-personal-shared",
+          "state": "Setup",
+          "cidr": "10.245.32.0/24",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "d000e9f9-e188-42c6-b559-8da3c637f5ae"
+        },
+        {
+          "id": "ef224b7a-068a-4769-a134-affc926ecaca",
+          "name": "qa-gn1594-32-personal-l2",
+          "state": "Implemented",
+          "cidr": null,
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "79680906-8028-4e2d-81b0-ebe59ad0e88b",
+          "name": "qa-gn1594-32-personal-nat",
+          "state": "Allocated",
+          "cidr": "10.250.32.0/24",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be"
+        },
+        {
+          "id": "72d12468-4cdf-4a72-87ca-d99a5353120e",
+          "name": "qa-gn1569-32-reg-scope-account",
+          "state": "Setup",
+          "cidr": "10.223.32.0/24",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69"
+        },
+        {
+          "id": "a988b4b0-dd71-4d1a-a493-0ecb5acdfa72",
+          "name": "qa-gn1569-32-reg-pvlan",
+          "state": "Setup",
+          "cidr": null,
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37"
+        },
+        {
+          "id": "5758eb68-7d2e-4c8f-a9be-6699990d07fa",
+          "name": "qa-gn1569-32-reg-tier",
+          "state": "Allocated",
+          "cidr": "10.211.32.0/25",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "88945f5e-a659-4961-94a2-dbe77809ed87"
+        },
+        {
+          "id": "d5ebfabd-d845-4411-9266-d6d16efe7587",
+          "name": "qa-gn1569-32-reg-personal-share",
+          "state": "Implemented",
+          "cidr": null,
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1"
+        },
+        {
+          "id": "eb1c8ca5-d19b-49a7-9de5-5575549a2b6e",
+          "name": "qa-gn1569-32-shared",
+          "state": "Setup",
+          "cidr": "10.178.32.0/27",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69"
+        },
+        {
+          "id": "aefaf6fa-4255-4b64-9f28-2da2a25ea711",
+          "name": "qa-gn1569-32-l2",
+          "state": "Setup",
+          "cidr": null,
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "f5df1ea4-d7a5-479e-8754-97cd6cce2b37"
+        },
+        {
+          "id": "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+          "name": "qa-gn1569-32-nosnat",
+          "state": "Setup",
+          "cidr": "10.177.32.0/27",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "2a7d6bc0-2ef3-4811-87a4-0635a71fd7f5"
+        },
+        {
+          "id": "75ccea08-34d0-48b6-80a9-006202b76e39",
+          "name": "qa-gn1569-32-nat",
+          "state": "Implemented",
+          "cidr": "10.176.32.0/24",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": null,
+          "networkofferingid": "24b37019-c2c2-41b9-addb-31fecb59a8e4"
+        },
+        {
+          "id": "9a4c510d-021a-47c4-96dd-dc289655293e",
+          "name": "js-network",
+          "state": "Implemented",
+          "cidr": "10.1.1.0/24",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "6ab556b4-ca17-481b-98db-f5437d110c96"
+        },
+        {
+          "id": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+          "name": "asdsad",
+          "state": "Allocated",
+          "cidr": "10.1.1.0/24",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "e8d9487d-f70b-451f-8a58-7d26e8bfdc79"
+        },
+        {
+          "id": "07f53267-063b-4975-ac47-5a5c10d57fb4",
+          "name": "AS-PROD-32-AS01-VPC-Tier",
+          "state": "Implemented",
+          "cidr": "172.30.32.0/24",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "88945f5e-a659-4961-94a2-dbe77809ed87"
+        },
+        {
+          "id": "f889cc7d-02c5-490b-b256-a289b73ff824",
+          "name": "AS-PROD-32-AS01-userNetwork",
+          "state": "Implemented",
+          "cidr": "172.28.32.0/24",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "e8d9487d-f70b-451f-8a58-7d26e8bfdc79"
+        },
+        {
+          "id": "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+          "name": "AS-PROD-32-AS01-net",
+          "state": "Allocated",
+          "cidr": "172.27.32.0/24",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "e8d9487d-f70b-451f-8a58-7d26e8bfdc79"
+        },
+        {
+          "id": "560eca90-f51b-4cdd-ac51-0682a1ed2308",
+          "name": "E1335-32-permission-user-L2",
+          "state": "Setup",
+          "cidr": null,
+          "account": "epic1335-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "3366af24-de7b-48b5-ae81-7c380aaa72d1"
+        },
+        {
+          "id": "24bc7be2-9d53-43cd-9e7f-d4e74c7a9ba3",
+          "name": "E1335-VM-Origin-L2-235",
+          "state": "Setup",
+          "cidr": null,
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "3366af24-de7b-48b5-ae81-7c380aaa72d1"
+        },
+        {
+          "id": "6400f908-4315-49db-a3e1-1fa58948c303",
+          "name": "E1335-VM-Origin-L2",
+          "state": "Setup",
+          "cidr": null,
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "3366af24-de7b-48b5-ae81-7c380aaa72d1"
+        },
+        {
+          "id": "78aabc42-0648-49c9-9d39-4cd6b212ebe8",
+          "name": "ADMIN-L2-Network",
+          "state": "Setup",
+          "cidr": null,
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": null,
+          "networkofferingid": "4a711c03-f9bd-4989-96fc-ea38ca9e79a1"
+        }
+      ]
+    }
+  },
+  "template": {
+    "vnfnics": [
+      {
+        "deviceid": 0,
+        "name": "Management",
+        "required": true,
+        "management": true
+      }
+    ],
+    "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+    "name": "qa-gn1597-32-project-template",
+    "displaytext": "QA1597 Skudonet project template 32",
+    "ispublic": false,
+    "created": "2026-11-08T23:21:21+0900",
+    "isready": true,
+    "passwordenabled": false,
+    "format": "QCOW2",
+    "isfeatured": false,
+    "crossZones": false,
+    "ostypeid": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+    "ostypename": "Other Linux (64-bit)",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "status": "Download Complete",
+    "size": 107374182400,
+    "physicalsize": 2541944832,
+    "templatetype": "VNF",
+    "hypervisor": "KVM",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "isextractable": false,
+    "checksum": "fc76e797cb986c54ab4f8d949cdf5073521d41041d0f235764a86fedac8e9d3ee75c5ebdc015c3c9a1a4f4dba23ac405fee3c5e37090dfd4ba7336428b6f5a02",
+    "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+    "project": "qa-gn1597-32-project",
+    "details": {},
+    "downloaddetails": [
+      {
+        "downloadState": "DOWNLOADED",
+        "datastore": "Secondary",
+        "datastoreRole": "Image",
+        "downloadPercent": "100",
+        "datastoreId": "af746f16-4e36-4f19-805c-61307d373e64"
+      }
+    ],
+    "arch": "x86_64",
+    "bits": 0,
+    "sshkeyenabled": false,
+    "isdynamicallyscalable": false,
+    "directdownload": false,
+    "kvdoenable": false,
+    "deployasis": false,
+    "forcks": false,
+    "requireshvm": true,
+    "url": "http://10.10.0.202:81/OS-template/Link%20VNF/ABLESTACK-Link-Skudonet-7-2-1-LB-Appliance.qcow2",
+    "tags": [],
+    "hasannotations": false
+  },
+  "project": {
+    "id": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+    "name": "qa-gn1597-32-project",
+    "displaytext": "qa-gn1597-32-project",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "owner": [
+      {
+        "account": "qa-gn1569-32-owner"
+      }
+    ],
+    "projectaccountname": "PrjAcct-qa-gn1597-32-project-64",
+    "state": "Active",
+    "tags": [],
+    "networklimit": "20",
+    "networktotal": 0,
+    "networkavailable": "20",
+    "vpclimit": "20",
+    "vpctotal": 0,
+    "vpcavailable": "20",
+    "cpulimit": "40",
+    "cputotal": 0,
+    "cpuavailable": "40",
+    "memorylimit": "40960",
+    "memorytotal": 0,
+    "memoryavailable": "40960",
+    "gpulimit": "20",
+    "gputotal": 0,
+    "gpuavailable": "20",
+    "primarystoragelimit": "200",
+    "primarystoragetotal": 0,
+    "primarystorageavailable": "200",
+    "secondarystoragelimit": "400",
+    "secondarystoragetotal": 0.0,
+    "secondarystorageavailable": "400.0",
+    "bucketlimit": "20",
+    "buckettotal": 0,
+    "bucketavailable": "20",
+    "objectstoragelimit": "400",
+    "objectstoragetotal": 0,
+    "objectstorageavailable": "400",
+    "vmlimit": "20",
+    "vmtotal": 0,
+    "vmavailable": "20",
+    "iplimit": "20",
+    "iptotal": 0,
+    "ipavailable": "20",
+    "volumelimit": "20",
+    "volumetotal": 0,
+    "volumeavailable": "20",
+    "snapshotlimit": "20",
+    "snapshottotal": 0,
+    "snapshotavailable": "20",
+    "backuplimit": "20",
+    "backuptotal": 0,
+    "backupavailable": "20",
+    "backupstoragelimit": "400",
+    "backupstoragetotal": 0,
+    "backupstorageavailable": "400",
+    "templatelimit": "20",
+    "templatetotal": 0,
+    "templateavailable": "20",
+    "vmstopped": 0,
+    "vmrunning": 0,
+    "created": "2026-11-08T23:21:18+0900"
+  },
+  "policy": [
+    {
+      "category": "Advanced",
+      "group": "Miscellaneous",
+      "subgroup": "Others",
+      "name": "admin.is.allowed.to.deploy.anywhere",
+      "value": "false",
+      "defaultvalue": "false",
+      "description": "This will determine if the root admin is allowed to deploy in networks in subdomains.",
+      "isdynamic": true,
+      "component": "NetworkModel",
+      "displaytext": "Admin is allowed to deploy anywhere",
+      "type": "Boolean"
+    }
+  ],
+  "limits": {
+    "count": 17,
+    "resourcelimit": [
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "0",
+        "resourcetypename": "user_vm",
+        "max": 2,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "6",
+        "resourcetypename": "network",
+        "max": 4,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "8",
+        "resourcetypename": "cpu",
+        "max": 8,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "9",
+        "resourcetypename": "memory",
+        "max": 8192,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "10",
+        "resourcetypename": "primary_storage",
+        "max": 150,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "1",
+        "resourcetypename": "public_ip",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "2",
+        "resourcetypename": "volume",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "3",
+        "resourcetypename": "snapshot",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "4",
+        "resourcetypename": "template",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "5",
+        "resourcetypename": "project",
+        "max": -1,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "7",
+        "resourcetypename": "vpc",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "11",
+        "resourcetypename": "secondary_storage",
+        "max": 400,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "12",
+        "resourcetypename": "backup",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "13",
+        "resourcetypename": "backup_storage",
+        "max": 400,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "14",
+        "resourcetypename": "bucket",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "15",
+        "resourcetypename": "object_storage",
+        "max": 400,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      },
+      {
+        "account": "PrjAcct-qa-gn1597-32-project-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "resourcetype": "16",
+        "resourcetypename": "gpu",
+        "max": 20,
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "7a6714b50e8b73fc03e4800543ce7eb19b06ea0a",
+  "viewportThemeCombinations": 12,
+  "summaryNicStageCases": 24,
+  "visibleLinkMeasurements": 72,
+  "actualNetworkNavigation": 12,
+  "nativeJpegCount": 58,
+  "excludedTransitionCaptures": 12,
+  "viewportImageDimensionsMatch": true,
+  "apiRoleProbes": 84,
+  "uiRoleSessions": 6,
+  "uiNicJobs": 2,
+  "allNicJobsSuccessful": true,
+  "existingVmNetworkRoleLimitPreserved": true,
+  "originalSharingRestored": true,
+  "apiJavaCssChanges": false,
+  "fullCloudBuild": false,
+  "projectTransitionFirstFrameRetainedOldDom": true,
+  "projectTransitionSettledOldPanelsRemoved": true
+}

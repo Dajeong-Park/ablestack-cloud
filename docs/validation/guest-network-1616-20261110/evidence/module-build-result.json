@@ -1,0 +1,12 @@
+{
+  "exit": 0,
+  "command": [
+    "mvn",
+    "-pl",
+    "plugins/network-elements/internal-loadbalancer",
+    "-Drat.skip=true",
+    "package"
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

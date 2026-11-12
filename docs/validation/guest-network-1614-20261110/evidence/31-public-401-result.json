@@ -1,0 +1,23 @@
+{
+  "controlled": true,
+  "mode": "401",
+  "commands": [
+    {
+      "command": "removeFromLoadBalancerRule",
+      "params": {
+        "command": "removeFromLoadBalancerRule",
+        "response": "json",
+        "id": "3d478d60-a422-440d-88c9-fc9ce82a0393",
+        "vmidipmap[0].vmid": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "vmidipmap[0].vmip": "10.234.31.6",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      },
+      "controlled": true
+    }
+  ],
+  "status": "실패\n\nThe API removeFromLoadBalancerRule is not available for user QA1614 controlled deny.\n\n오류 코드: 401",
+  "inlineErrors": 1,
+  "globalErrorNotices": 0,
+  "spinners": 0,
+  "backendRows": 1
+}

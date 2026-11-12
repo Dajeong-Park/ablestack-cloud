@@ -125,20 +125,21 @@ describe.each([['progress', BulkActionProgress]])('bucket bulk %s dialog', (_, c
 
 describe('actual Autogen bucket group confirmation', () => {
   const source = fs.readFileSync(path.join(__dirname, '../../../src/views/AutogenView.vue'), 'utf8')
-  const marker = source.indexOf(':width="isBucketGroupDelete ?')
-  const start = source.lastIndexOf('<component', marker)
-  const end = source.indexOf('      >', marker) + '      >'.length
-  const opening = source.slice(start, end).replace(/\s+v-else(?=\s|>)/, '')
+  const marker = source.search(/:width="[^"]*isBucketGroupDelete/)
+  const start = source.lastIndexOf('<', marker)
+  const readOpening = offset => source.slice(offset).match(/^<(?:[^"'<>]|"[^"]*"|'[^']*')*>/)[0]
+  const opening = readOpening(start).replace(/\s+v-else(?=\s|>)/, '')
+  const end = start + readOpening(start).length
   const tableStart = source.indexOf('<a-table', end)
-  const tableEnd = source.indexOf('\n              >', tableStart) + '\n              >'.length
-  const table = source.slice(tableStart, tableEnd)
+  const table = readOpening(tableStart)
+  const closing = '</' + opening.match(/^<([A-Za-z][\w-]*)/)[1] + '>'
   const Modal = { name: 'ActualGenericDialogProbe', props: ['width', 'size'], render () { return Vue.h('section', this.$slots.default?.()) } }
   const Table = { name: 'ActualGenericTableProbe', props: ['scroll'], render () { return Vue.h('div') } }
   const Host = {
-    data: () => ({ isStorageUi: false, currentAction: { api: 'deleteBucket', invokedAsGroupAction: true }, showAction: true, modalWidth: '50vw', actionLoading: false, selectedRowKeys: ['fixture'], selectedItems: [{ id: 'fixture' }], chosenColumns: [] }),
+    data: () => ({ isStorageUi: false, isGuestNetworkDelete: false, currentAction: { api: 'deleteBucket', invokedAsGroupAction: true }, showAction: true, modalWidth: '50vw', actionLoading: false, selectedRowKeys: ['fixture'], selectedItems: [{ id: 'fixture' }], chosenColumns: [] }),
     computed: { isBucketGroupDelete: Autogen.computed.isBucketGroupDelete },
     methods: { getOkProps: () => ({}), getCancelProps: () => ({}), cancelAction () {} },
-    render: compileTemplate(opening + table + '</a-table></component>')
+    render: compileTemplate(opening + table + '</a-table>' + closing)
   }
   test.each(['/buckets', '/vm'])('actual generic popup bindings follow %s scope', routePath => {
     const view = mount(Host, { global: { mocks: { $route: { path: routePath, meta: {} } }, stubs: { MoldDialog: Modal, 'a-modal': Modal, 'a-table': Table } } })

@@ -1,0 +1,177 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "프로젝트 네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#001529"
+- generic: 텍스트 색상
+- textbox: "#ffffff"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- combobox
+- img "project":
+- text: qa-gn1569-32-conditional
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "가상머신용 네트워크":
+    - /url: "#/guestnetwork"
+  - text: /
+  - generic: qa-gn1599-32-isolated
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#adding-an-additional-guest-network
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "edit":
+  - img "apartment":
+  - heading "qa-gn1599-32-isolated" [level=4]
+  - generic: L2
+  - generic: pvlan://3110-i3111
+  - separator
+  - generic: 상태
+  - generic: 구성 완료
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "3d504e87-0e5f-4e8c-b58e-049064d7f05d":
+    - /url: javascript:;
+  - generic: 프로젝트
+  - img "project":
+  - link "qa-gn1569-32-conditional":
+    - /url: "#/project/f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+  - generic: 설명
+  - generic: QA1599 guarded OVS Isolated
+  - generic: 네트워크 오퍼링
+  - img "wifi":
+  - link "qa-pvlan1599-32-l2":
+    - /url: "#/networkoffering/494dda3c-2410-486c-a7df-d900e093b366"
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+  - generic: 도메인
+  - img "block":
+  - link "qa-gn1569-32-domain":
+    - /url: "#/domain/a051d20d-2c05-43d5-833e-e231a80b12f7?tab=details"
+  - generic: 생성일
+  - img "calendar":
+  - text: 2026. 11. 9. 오전 6:28:51
+  - separator
+  - link "cloud-server 가상머신 보기":
+    - /url: "#/vm?networkid=3d504e87-0e5f-4e8c-b58e-049064d7f05d"
+    - button "cloud-server 가상머신 보기":
+      - img "cloud-server":
+      - generic: 가상머신 보기
+  - separator
+  - strong: 태그
+  - button "reload 태그 새로고침":
+    - img "reload":
+    - generic: 태그 새로고침
+  - generic: 태그가 없습니다.
+  - button "plus 새 태그":
+    - img "plus":
+    - generic: 새 태그
+  - tablist:
+    - tab "상세" [selected]
+    - tab "VNF 기기"
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "상세":
+    - strong: PVLAN 지원 진단
+    - button "PVLAN 지원 다시 조회":
+      - img "reload":
+    - alert:
+      - img "check-circle":
+      - generic: 이 물리 네트워크에 PVLAN 정책을 적용할 수 있는 호스트가 있습니다.
+      - generic: 생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다.
+    - alert:
+      - img "info-circle":
+      - generic: 기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.
+    - list:
+      - strong: 이름
+      - generic: qa-gn1599-32-isolated
+      - strong: 아이디
+      - generic: 3d504e87-0e5f-4e8c-b58e-049064d7f05d
+      - strong: 설명
+      - generic: QA1599 guarded OVS Isolated
+      - strong: 유형
+      - generic: L2
+      - strong: 트래픽 유형
+      - generic: Guest
+      - strong: VLAN/VNI
+      - text: "3110"
+      - generic: Secondary VLAN 유형 · 격리
+      - generic: Secondary VLAN ID · 3111
+      - strong: 브로드 캐스트
+      - generic: pvlan://3110-i3111
+      - strong: 영구적
+      - generic: "false"
+      - strong: Zone
+      - generic: Zone
+      - strong: 도메인
+      - generic: ROOT/qa-gn1569-32-domain
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (3건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":

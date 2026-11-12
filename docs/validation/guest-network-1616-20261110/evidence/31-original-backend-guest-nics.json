@@ -1,0 +1,8 @@
+{
+  "host": "10.10.31.1",
+  "result": {
+    "exit": 0,
+    "out": "{\"return\":[{\"name\":\"lo\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"127.0.0.1\",\"prefix\":8},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"::1\",\"prefix\":128}],\"statistics\":{\"tx-packets\":16,\"tx-errs\":0,\"rx-bytes\":1280,\"rx-dropped\":0,\"rx-packets\":16,\"rx-errs\":0,\"tx-bytes\":1280,\"tx-dropped\":0},\"hardware-address\":\"00:00:00:00:00:00\"},{\"name\":\"ens3\",\"ip-addresses\":[{\"ip-address-type\":\"ipv4\",\"ip-address\":\"10.248.31.42\",\"prefix\":28},{\"ip-address-type\":\"ipv6\",\"ip-address\":\"fe80::1f:2ff:fe79:1\",\"prefix\":64}],\"statistics\":{\"tx-packets\":314,\"tx-errs\":0,\"rx-bytes\":43185,\"rx-dropped\":147,\"rx-packets\":562,\"rx-errs\":0,\"tx-bytes\":24124,\"tx-dropped\":0},\"hardware-address\":\"02:1f:02:79:00:01\"}]}\n",
+    "error": ""
+  }
+}

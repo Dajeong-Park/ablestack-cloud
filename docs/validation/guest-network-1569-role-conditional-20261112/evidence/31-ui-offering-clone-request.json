@@ -1,0 +1,8 @@
+{
+  "command": "updateNetwork",
+  "networkId": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+  "offeringId": "9ad5dc88-c27f-426f-8951-6473c6a2a1d8",
+  "response": {
+    "jobid": "4cbf1ce4-3630-4d80-84c0-19ffffd20d0b"
+  }
+}

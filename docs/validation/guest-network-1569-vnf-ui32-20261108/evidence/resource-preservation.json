@@ -1,0 +1,55 @@
+{
+  "checkedAtUtc": "2026-11-08T08:54:53.434184+00:00",
+  "cluster": 32,
+  "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+  "checks": {
+    "vms": true,
+    "vnfs": true,
+    "networks": true,
+    "members": true,
+    "limits": true
+  },
+  "vmCount": 4,
+  "nicCount": 19,
+  "networkCount": 46,
+  "vnf": [
+    {
+      "id": "d4b7e358-98c8-475d-b8aa-893479539a36",
+      "name": "qa-gn1569-32-vnf-ui",
+      "state": "Running",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "projectid": "0db180fc-4a19-4f9a-b387-00599ffa86c0",
+      "templateid": "70e17a67-263d-4993-86f4-22904df772da",
+      "nic": [
+        {
+          "id": "31b5acdd-417b-4f1e-bf2a-bb9eaf040643",
+          "networkid": "15a7e449-7333-401a-a7f1-448283423553",
+          "ipaddress": "10.246.32.58",
+          "macaddress": "02:01:01:e0:00:01",
+          "isdefault": false,
+          "deviceid": "2",
+          "type": "Shared"
+        },
+        {
+          "id": "3433e9f2-0618-4c05-820d-545ca137d1b2",
+          "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+          "ipaddress": null,
+          "macaddress": "02:01:01:df:00:01",
+          "isdefault": false,
+          "deviceid": "1",
+          "type": "L2"
+        },
+        {
+          "id": "6db38707-bf7d-42e9-91d7-6052b25849fc",
+          "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+          "ipaddress": "10.251.32.38",
+          "macaddress": "02:01:01:de:00:01",
+          "isdefault": true,
+          "deviceid": "0",
+          "type": "Isolated"
+        }
+      ]
+    }
+  ],
+  "resourceMutationsThisRun": 0
+}

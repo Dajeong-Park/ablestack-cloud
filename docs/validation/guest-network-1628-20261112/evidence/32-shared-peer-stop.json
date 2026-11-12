@@ -1,0 +1,191 @@
+{
+  "samples": 2323,
+  "first": [
+    {
+      "sequence": 0,
+      "utc": "2026-11-11T15:55:00Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1,
+      "utc": "2026-11-11T15:55:01Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    }
+  ],
+  "last": [
+    {
+      "sequence": 2321,
+      "utc": "2026-11-11T16:33:52Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 2322,
+      "utc": "2026-11-11T16:33:53Z",
+      "dnsUdp": true,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    }
+  ],
+  "failed": [
+    {
+      "sequence": 1128,
+      "utc": "2026-11-11T16:13:50Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1129,
+      "utc": "2026-11-11T16:13:52Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1130,
+      "utc": "2026-11-11T16:13:54Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1131,
+      "utc": "2026-11-11T16:13:56Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1132,
+      "utc": "2026-11-11T16:13:58Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1133,
+      "utc": "2026-11-11T16:14:00Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1134,
+      "utc": "2026-11-11T16:14:02Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1135,
+      "utc": "2026-11-11T16:14:04Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1136,
+      "utc": "2026-11-11T16:14:06Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1137,
+      "utc": "2026-11-11T16:14:07Z",
+      "dnsUdp": false,
+      "dnsTcp": true,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1150,
+      "utc": "2026-11-11T16:14:20Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1151,
+      "utc": "2026-11-11T16:14:21Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1152,
+      "utc": "2026-11-11T16:14:22Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1153,
+      "utc": "2026-11-11T16:14:23Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1154,
+      "utc": "2026-11-11T16:14:24Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1155,
+      "utc": "2026-11-11T16:14:25Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1156,
+      "utc": "2026-11-11T16:14:26Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    },
+    {
+      "sequence": 1157,
+      "utc": "2026-11-11T16:14:27Z",
+      "dnsUdp": false,
+      "dnsTcp": false,
+      "icmp": true,
+      "ssh": true
+    }
+  ],
+  "counts": {
+    "dnsUdp": 2305,
+    "dnsTcp": 2306,
+    "icmp": 2323,
+    "ssh": 2323
+  }
+}

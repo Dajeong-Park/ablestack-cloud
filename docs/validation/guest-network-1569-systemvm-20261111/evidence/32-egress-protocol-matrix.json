@@ -1,0 +1,207 @@
+[
+  {
+    "case": "default-deny-baseline",
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "summary": [
+          "1 packets transmitted, 0 received, 100% packet loss, time 0ms",
+          ""
+        ]
+      }
+    }
+  },
+  {
+    "case": "udp-created",
+    "rule": {
+      "id": "152b8fb1-a330-4b52-b7d0-c2f49f0ba80a",
+      "protocol": "udp",
+      "startport": 20682,
+      "endport": 20682,
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "state": "Active",
+      "cidrlist": "10.234.32.80/32",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "10.10.32.10/32",
+      "traffictype": "Egress"
+    }
+  },
+  {
+    "case": "udp-allowed",
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": true,
+        "reply": "qa1569-final-egress-ok"
+      },
+      "icmp": {
+        "ok": false,
+        "summary": [
+          "1 packets transmitted, 0 received, 100% packet loss, time 0ms",
+          ""
+        ]
+      }
+    }
+  },
+  {
+    "case": "udp-revoked",
+    "result": {
+      "jobid": "e472aaf4-8d94-43c0-a65d-fae9a9fddaf6",
+      "jobstatus": 1,
+      "success": true
+    },
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "summary": [
+          "1 packets transmitted, 0 received, 100% packet loss, time 0ms",
+          ""
+        ]
+      }
+    }
+  },
+  {
+    "case": "icmp-created",
+    "rule": {
+      "id": "2260abee-f9c6-49ee-9b08-1cbb4b68b334",
+      "protocol": "icmp",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "state": "Active",
+      "cidrlist": "10.234.32.80/32",
+      "icmptype": 8,
+      "icmpcode": 0,
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "10.10.32.10/32",
+      "traffictype": "Egress"
+    }
+  },
+  {
+    "case": "icmp-allowed",
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": true,
+        "summary": [
+          "1 packets transmitted, 1 received, 0% packet loss, time 0ms",
+          "rtt min/avg/max/mdev = 0.531/0.531/0.531/0.000 ms"
+        ]
+      }
+    }
+  },
+  {
+    "case": "icmp-revoked",
+    "result": {
+      "jobid": "bc91c2a2-412f-4ca4-982c-90fae02a30b6",
+      "jobstatus": 1,
+      "success": true
+    },
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "summary": [
+          "1 packets transmitted, 0 received, 100% packet loss, time 0ms",
+          ""
+        ]
+      }
+    }
+  },
+  {
+    "case": "all-created",
+    "rule": {
+      "id": "17148839-1e96-45e1-a6ab-60d66ad0f1be",
+      "protocol": "all",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "state": "Active",
+      "cidrlist": "10.234.32.80/32",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "10.10.32.10/32",
+      "traffictype": "Egress"
+    }
+  },
+  {
+    "case": "all-allowed",
+    "traffic": {
+      "tcp": {
+        "ok": true,
+        "reply": "qa1569-final-egress-ok"
+      },
+      "udp": {
+        "ok": true,
+        "reply": "qa1569-final-egress-ok"
+      },
+      "icmp": {
+        "ok": true,
+        "summary": [
+          "1 packets transmitted, 1 received, 0% packet loss, time 0ms",
+          "rtt min/avg/max/mdev = 0.277/0.277/0.277/0.000 ms"
+        ]
+      }
+    }
+  },
+  {
+    "case": "all-revoked",
+    "result": {
+      "jobid": "2f23f99a-c07f-451b-875f-8857fc050901",
+      "jobstatus": 1,
+      "success": true
+    },
+    "traffic": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "summary": [
+          "1 packets transmitted, 0 received, 100% packet loss, time 0ms",
+          ""
+        ]
+      }
+    }
+  },
+  {
+    "case": "original-rules-restored",
+    "unchanged": true
+  }
+]

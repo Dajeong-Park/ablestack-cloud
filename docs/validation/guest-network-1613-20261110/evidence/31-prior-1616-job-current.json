@@ -1,0 +1,21 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "account": "admin",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domainpath": "ROOT",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignToLoadBalancerRuleCmd",
+    "jobprocstatus": 0,
+    "jobresultcode": 530,
+    "jobresulttype": "object",
+    "jobresult": {
+      "errorcode": 530,
+      "errortext": "Failed to assign load balancer rule due to: Failed to add specified loadbalancerruleid for Instances [1005]"
+    },
+    "created": "2026-11-10T16:40:06+0900",
+    "completed": "2026-11-10T17:40:15+0900",
+    "jobid": "9717c435-3a02-4040-afb7-8ffab5d2475b",
+    "jobstatus": 2
+  }
+}

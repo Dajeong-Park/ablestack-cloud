@@ -1,0 +1,24 @@
+[
+  {
+    "command": "createVlanIpRange",
+    "params": {
+      "command": "createVlanIpRange",
+      "response": "json",
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "forvirtualnetwork": "false",
+      "startip": "10.249.32.100",
+      "endip": "10.249.32.102",
+      "gateway": "10.249.32.1",
+      "netmask": "255.255.255.0"
+    },
+    "response": {
+      "createvlaniprangeresponse": {
+        "uuidList": [],
+        "errorcode": 530,
+        "cserrorcode": 4250,
+        "errortext": "Unable to update on DB, due to: Data truncation: Data too long for column 'cidr' at row 1"
+      }
+    }
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "plan": {
+    "post": "transport"
+  },
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "name": "qa-gn1626-32-transport-final",
+        "methodname": "LbCookie",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ],
+  "jobId": null,
+  "receipt": null,
+  "queries": [],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": true,
+      "kind": "transport"
+    }
+  ]
+}

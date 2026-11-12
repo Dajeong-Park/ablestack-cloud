@@ -1,0 +1,31 @@
+{
+  "markers": {
+    "message.acl.access.readonly": [
+      "js/chunk-bbe73e9c.0b9a8a89.js",
+      "js/chunk-c73b26de.c78a611f.js"
+    ],
+    "message.acl.job.pending": [
+      "js/chunk-bbe73e9c.0b9a8a89.js",
+      "js/chunk-c73b26de.c78a611f.js"
+    ],
+    "blockingLoadingState": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ],
+    "fetchSyncProgress": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ],
+    "extractJobId": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ]
+  },
+  "management_jar_sha256": "a8f056931835bb0b61c7dbaaa3899300b1aef8d5e9c5199f7b7a21024fe9282d",
+  "static_files": 662,
+  "static_bytes": 30024140,
+  "hash_mismatches": [],
+  "index_sha256": "1d0c181cd55943ee023e05a5a027b1a9c823874780a78a3d2ee638ad3d557e9d",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 154927894528,
+  "remote_stage": "/dev/shm/gn1601-20261109-120716",
+  "backup_sha256": "161ca658ad476348370a6bbc6dde749d2ed56a4a1c6a8c919aa4c6c8929f80c4"
+}

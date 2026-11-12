@@ -1,0 +1,45 @@
+[
+  {
+    "command": "deleteVPC",
+    "id": "ac61c550-14e8-4641-b273-4935c8afd1db",
+    "jobid": null,
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "time": 1794219673.851517,
+    "status": 200,
+    "body": {
+      "deletevpcresponse": {
+        "jobid": "a48778b0-0643-4ce6-9370-abc0c6ccfaa1"
+      }
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "id": null,
+    "jobid": "a48778b0-0643-4ce6-9370-abc0c6ccfaa1",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "time": 1794219673.88127,
+    "status": 200,
+    "body": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 431,
+        "jobresulttype": "object",
+        "jobresult": {
+          "errorcode": 431,
+          "errortext": "Can't delete VPC VPC {\"id\":14,\"name\":\"qa-gn1569-31-svc-delete\",\"uuid\":\"ac61c550-14e8-4641-b273-4935c8afd1db\"} as its used by 1 networks"
+        },
+        "jobinstancetype": "Vpc",
+        "created": "2026-11-09T19:21:15+0900",
+        "completed": "2026-11-09T19:21:15+0900",
+        "jobid": "a48778b0-0643-4ce6-9370-abc0c6ccfaa1",
+        "jobstatus": 2
+      }
+    }
+  }
+]

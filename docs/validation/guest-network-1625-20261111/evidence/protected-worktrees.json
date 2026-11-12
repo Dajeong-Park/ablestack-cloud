@@ -1,0 +1,14 @@
+[
+  {
+    "platform": "native",
+    "worktrees": 8,
+    "files": 12791,
+    "headStatusDiffAndFileHashesUnchanged": true
+  },
+  {
+    "platform": "wsl",
+    "worktrees": 14,
+    "files": 107,
+    "headStatusDiffAndFileHashesUnchanged": true
+  }
+]

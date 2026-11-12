@@ -1,0 +1,593 @@
+{
+  "images": [
+    {
+      "name": "31-after-legacy-allocated-ready.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "d9f7b98cc378b193ac0b89338c4ff76709b9196f2a82a360a91858b7a1e646fc",
+      "layoutEvidence": false
+    },
+    {
+      "name": "31-after-legacy-allocated.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "d41b817c3745b7776b03feacca74ecaa845a3e34daf777e415c951ef44d536be",
+      "layoutEvidence": false
+    },
+    {
+      "name": "31-attach-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "dfd4acc05ceeefb57678f7b03d2210901ea09b7ea8abb50ab0ea8e92a94b3b48",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-attach-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "9cc5ded20c05c8eb8fe51fc1e74c3a334cc83a0a41e01ff7f12238d5d645be59",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-attach-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "0ecc1d123ceafcf53145f8e974420bfac25fdf2e1d040846cd08c38f839db655",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-attach-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "52f5a355bb83431c89f8e7b0722c3767a4644f25d2e8da9d1a2d5ec020934371",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-attach-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "b5cd03785d6bf1985e535b7254883391b0ec144c2a69e9be77ed89285b7daf0e",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-attach-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "af416a822d3151a72cc5472cc3304527ebf8724840803c1e7299a5f5ab189c8e",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-before-ghost-active.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "f60348bf2abde87c917a6d7a0535992fc9c4f01eb4c64fad6c8be6bb7d112d64",
+      "layoutEvidence": false
+    },
+    {
+      "name": "31-breadcrumb-vm-list.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "6b6e374b3bfd1b2475dc14c56fb167a527efd82da30df59c4eff9c6e7ff1648f",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-capacity-failure-no-residue.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "88a25e713799020b9df7e27d45929abacec2144ecab2d368f43792a142724a46",
+      "layoutEvidence": false
+    },
+    {
+      "name": "31-capacity-failure-request.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "9941054452b97367f48363c717651c0905a4aac4d9fed315ab14c0d5dc6242d1",
+      "layoutEvidence": false
+    },
+    {
+      "name": "31-final-admin-nics.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "9aacf20506b532e9490e09773952abea6bdafd189f9a80c5d54c90fca41e8db9",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-instant-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "e869ea5c1117b6267b0321ca79dede73ed772e914802717443dce48b279583d5",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-legacy-cleanup-complete.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "7c003ac5adc5316a91548231071e6bca97b51611ea0df418fbb5a29c20d1c71b",
+      "layoutEvidence": false
+    },
+    {
+      "name": "31-nic-dark-1280-allocation.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "d17e2d56106bc105a467dfb0f7214626405ab9223a1e5a6f5c0889cfefc89437",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-1280-left.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "0c49ac7035df3748f1cf33166becd563f22e8c8f215142160a40267bb4ed541a",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-1280-state.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "d17e2d56106bc105a467dfb0f7214626405ab9223a1e5a6f5c0889cfefc89437",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-390-allocation.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "0bcf0b618889f3cfe79307992ccfc23402d08428814dea73758c3682b9b30d42",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-390-left.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "06293a938c48359c8f5ca14795ce098b1b1eec8004bf9d8aafc1b17580ccbb32",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-390-state.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "23d813d560a5956cb04c9d82ff7142d85ff07827ff85ce8b5ea8bb3b25dd9fd8",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-768-allocation.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "d4239810957d0d0367c9daca75143ab82443f7f88db268a2e66a04ddc634a2d3",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-768-left.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "5966db1cfb2a30488d1e7228581685eddd93957bde8af904e1e60c6a6d1ad3c7",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-dark-768-state.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "d4239810957d0d0367c9daca75143ab82443f7f88db268a2e66a04ddc634a2d3",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-1280-allocation.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "917bebbd68b7f5e42524bd07d9168be88dcf3cc87d6c4b5e1cd0098b594d1036",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-1280-left.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "515e84899764eff11d11fa1025df1e30835cd1610591c95d2440bc2414054a40",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-1280-state.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "68ca3e7348d5be33bbc3423f4fb256b9cea35c2a63f70be07bc6fbe7bc346c17",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-390-allocation.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "b674949dbbca26174315ad7ce30fce69e9848b8bd08f191b8d550beb3fac313e",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-390-left.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "752b5ad8ed6af1afbcf0d6e0207ed0cb5fe97280fd54e28aa58d5e5d18cefeca",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-390-state.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "e4c4c34916d0f0f6d80e9c42224c4bd9ea671722875e7a7ed7dd8861c1456b69",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-768-allocation.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "f5a613d3eaa39b112a553841b34e72bf8cb53ac73262c0d11dfa36670613cecd",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-768-left.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "ac6ca93ba7a3a674480c765ad283e509a2f1ccba6a10f56149b8fb1cde9a5fab",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-light-768-state.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "f5a613d3eaa39b112a553841b34e72bf8cb53ac73262c0d11dfa36670613cecd",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-nic-network-link.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "1f29b3396cfe146fc2a5baa0ee177b9eded57032575aea1a3493fe5a93eb55a9",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "7957f59eca6e316715763d5150e701c1ddbc6936fafc6fd140110ca5c209e16d",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-readonly-nics.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "c7dd86e07401dc895a812de5e6594985c917055cc184c753a3112121aec3442d",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-retry-complete.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "d6053fa0104fcfd3bb40827960f11328a109e67e952171888d00422cab6fd8c0",
+      "layoutEvidence": false
+    },
+    {
+      "name": "31-vm-details-project.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "3ac9e647aad5e626c2b128000c338b62ac3c45312271b0cecf41b40abfa218ce",
+      "layoutEvidence": true
+    },
+    {
+      "name": "31-vm-list-project.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "9fade335a542e92ddd6170a8060b5aabf25546471558d893f35189e318dfa50a",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-attach-dark-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "1162e9a7346edb13a0d0a253edc996639be738aaf1882ccb52d98007c966fca9",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-attach-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "d9d42dcac2f9af27140526a98edf8e70057b5d63b25601f95768eb494d842e3f",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-attach-dark-768.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "0f7251dabad6d249e176c216d09fe4fdf118a9e6c382fb9a8c58b66227eef855",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-attach-light-1280.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "1d9081d4731f8f9a040782505ad60349ba3d1a3cb1c91906022f69e2b8788d58",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-attach-light-390.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "b170f864a1a1742c9abfc8a8478ed61d1a0eb8475696978bfa5bb6a65d6f52f5",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-attach-light-768.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "3268f3225f0d29a970675ff1bf952773bc33872b282d0c43dedc6b7a318154e9",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-final-admin-nics.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "08fe1a30e37982e002adde419d3e3f4e220ba8d2405e11ef4184913c4b2a4aad",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-instant-dark-390.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "dee73751f34bba3c4e4c6e123ff08b4368509d0c7f4650eee710a74e1f8f2b90",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-1280-allocation.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "79bbbf2d68a361f7c41746bdc2e63e856ce5e0adc9ba02937513358f9c12c1a4",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-1280-left.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "89ca223705a549dc088872a8eaa8b2e53c0a79473e8bfaa8874b4328575c6dba",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-1280-state.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "79bbbf2d68a361f7c41746bdc2e63e856ce5e0adc9ba02937513358f9c12c1a4",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-390-allocation.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "848da14bfaab086c8535a2b0f93999672747d62c4dcd62376be63fd98f362896",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-390-left.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "517736a1cd93ebc01d3f1bbfe9f9245bf0de11f1a595110bc81b37ad5268eeac",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-390-state.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "9acf1fa17907a1ef7971a9302703f6b396e7390549fc05eef7741a0b60d9c08c",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-768-allocation.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "4fa33843d8515a167362f780cfeccd74bb18b7f4b39f752be0b7c8c1cdbd8237",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-768-left.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "914623521a3a1cbc7dadab9a1eb1ebebeda4d3ecc112db5d7f73af1565bd153d",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-dark-768-state.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "4fa33843d8515a167362f780cfeccd74bb18b7f4b39f752be0b7c8c1cdbd8237",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-1280-allocation.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "7c628edda90c96856df62c32ed643fed2d43c359e87e176dde1df6b030642d4f",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-1280-left.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "cbf0bbffd432e779323c46d67a41faa941ffc7a8ca3a82d5bf893e1e9146126c",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-1280-state.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "7c628edda90c96856df62c32ed643fed2d43c359e87e176dde1df6b030642d4f",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-390-allocation.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "d28950cbe8d3f12fa1023c69fc03d1dd5d22bd0899cc8a900bec39f30bdfae1c",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-390-left.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "cc83ae64275b7702db5e9ef8710def71a7ba4c134f82719983fe76c7b340a3d4",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-390-state.jpg",
+      "width": 390,
+      "height": 844,
+      "nativeJPEG": true,
+      "sha256": "ca58e417b6e34856853a8bd66dc9318ac8eaa872f119720f7550c2b52dea25f8",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-768-allocation.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "427089cdc5c113be051eff2363d274a8c9eee7c1bc79fed2c0c287cac1ac0c89",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-768-left.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "eb0b5f4c2417aeee7932c6bd0a3ecd3bd8b7488cfaf1238664b70db62e395023",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-light-768-state.jpg",
+      "width": 768,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "427089cdc5c113be051eff2363d274a8c9eee7c1bc79fed2c0c287cac1ac0c89",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-nic-network-link.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "467677f27b1a2596621232d935c705321dca1dab4ee590dd412786e5d28525fb",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-preparation-failure-no-residue.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "0bf69471fc8cfa5b1a28f8d2b816c1750f4087c87e58fa6d29e05b871a1a28cc",
+      "layoutEvidence": false
+    },
+    {
+      "name": "32-preparation-failure-request.jpg",
+      "width": 1680,
+      "height": 841,
+      "nativeJPEG": true,
+      "sha256": "52870f11d0dc04224961d421be9080d31af6699db2ff6b1a53df6e718285b321",
+      "layoutEvidence": false
+    },
+    {
+      "name": "32-project-default.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "877f6e588f7e7a433909f642b2dceb8c3905a5681ae9f3af1ee4851c30a80dc3",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-readonly-nics.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "0cdc2f51ee55ff6de095b76b8dd0f6248a5aa8aef8e785a307abf8c16ba04275",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-vm-details-project.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "a3253decc5504407e9e4001436f446ebfd301028dab206ba3bc8fe4ecc8fb66f",
+      "layoutEvidence": true
+    },
+    {
+      "name": "32-vm-list-project.jpg",
+      "width": 1280,
+      "height": 900,
+      "nativeJPEG": true,
+      "sha256": "eb4df3af6f2b4a76129ede79343602b56f8e56f318039e43d24b3d8806c0a1e0",
+      "layoutEvidence": true
+    }
+  ],
+  "total": 72,
+  "layoutEvidence": 63,
+  "excluded": [
+    "31-after-legacy-allocated-ready.jpg",
+    "31-after-legacy-allocated.jpg",
+    "31-before-ghost-active.jpg",
+    "31-capacity-failure-no-residue.jpg",
+    "31-capacity-failure-request.jpg",
+    "31-legacy-cleanup-complete.jpg",
+    "31-retry-complete.jpg",
+    "32-preparation-failure-no-residue.jpg",
+    "32-preparation-failure-request.jpg"
+  ]
+}

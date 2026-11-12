@@ -1,0 +1,11 @@
+{
+  "clusters": [
+    31,
+    32
+  ],
+  "result": "dashboard on each context change, restored QA project",
+  "urls": [
+    "http://10.10.31.10:8080/client/#/dashboard",
+    "http://10.10.32.10:8080/client/#/dashboard"
+  ]
+}

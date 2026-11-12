@@ -1,0 +1,15 @@
+[
+  {
+    "command": "removeCertFromLoadBalancer",
+    "params": {
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "removeCertFromLoadBalancer",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "removecertfromloadbalancerresponse": {
+        "jobid": "de1df4f1-29fb-49b8-a65d-8f9e54f2aabb"
+      }
+    }
+  }
+]

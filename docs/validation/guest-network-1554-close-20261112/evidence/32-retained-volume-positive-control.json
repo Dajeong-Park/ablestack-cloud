@@ -1,0 +1,9 @@
+{
+  "source": {
+    "dev": "/dev/rbd/rbd/d817bfca-a567-4ce7-bf82-b20143e42e55",
+    "index": "3"
+  },
+  "exists": true,
+  "pool": "rbd",
+  "size": 107374182400
+}

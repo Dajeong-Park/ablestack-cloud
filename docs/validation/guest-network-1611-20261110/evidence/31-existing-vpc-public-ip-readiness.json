@@ -1,0 +1,37 @@
+{
+  "candidates": [
+    {
+      "id": "d54fabbc-1852-4853-9121-baee9f7a5c69",
+      "ipaddress": "10.10.31.109",
+      "allocated": "2026-10-07T08:57:03+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "projectid": "d629aa4e-eb4a-43fb-abf6-45ad86cae21c",
+      "project": "rt1230-vpc-project-r26",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "allocationgeneration": "1e0c75ce-a658-44fc-b0bb-b314211fbc6d",
+      "forvirtualnetwork": true,
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "isstaticnat": false,
+      "issystem": false,
+      "associatednetworkid": "28dae49b-c2f5-42a0-a9c7-26599cebf547",
+      "associatednetworkname": "rt1230-vpc-project-r26-tier",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Allocated",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "vpcid": "a2d3f00c-11e2-4c58-883d-1af57ab50366",
+      "vpcname": "rt1230-vpc-project-r26-vpc",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    }
+  ]
+}

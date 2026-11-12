@@ -1,0 +1,19 @@
+{
+  "newVpnTests": 8,
+  "existingCsFileTests": 1,
+  "total": 9,
+  "failures": 0,
+  "errors": 0,
+  "baselineFailureEntriesIncludingSubtests": 8,
+  "baselineErrors": 0,
+  "repoFlake8SelectedRulesExit": 0,
+  "newTestPycodestyleExit": 0,
+  "sourceChangedLinesPycodestyleExit": 0,
+  "normalMavenSystemvmPhaseBlockedByMissingConsoleProxyDependency": true,
+  "identicalSystemvmResourceTaskExit": 0,
+  "wslExt4": true,
+  "fullCloudBuild": false,
+  "manualActions": 0,
+  "productUiChanges": 0,
+  "apiSourceChanges": 0
+}

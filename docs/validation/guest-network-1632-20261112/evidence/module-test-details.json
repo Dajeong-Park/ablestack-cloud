@@ -1,0 +1,29 @@
+{
+  "total": 53,
+  "suites": [
+    {
+      "name": "CertServiceTest",
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "CertificateRevocationValidatorTest",
+      "tests": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "RevocationHttpClientTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "checkstyleViolations": 0,
+  "fullCloudBuild": false,
+  "localWslExt4": true
+}

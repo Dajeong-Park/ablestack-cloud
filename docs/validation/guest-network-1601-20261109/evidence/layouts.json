@@ -1,0 +1,1076 @@
+{
+  "cases": [
+    {
+      "c": 32,
+      "theme": "dark",
+      "w": 390,
+      "h": 844,
+      "activeTab": "rc-tabs-10-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": true,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          364,
+          364
+        ],
+        "contrast": [
+          "rgb(34, 40, 47)",
+          "rgb(240, 243, 246)"
+        ],
+        "footer": true,
+        "right": 378,
+        "size": [
+          366,
+          672
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        390,
+        380
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "c": 32,
+      "theme": "dark",
+      "w": 768,
+      "h": 1024,
+      "activeTab": "rc-tabs-10-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": true,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(34, 40, 47)",
+          "rgb(240, 243, 246)"
+        ],
+        "footer": true,
+        "right": 744,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        768,
+        758
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        768,
+        1024
+      ]
+    },
+    {
+      "c": 32,
+      "theme": "dark",
+      "w": 1280,
+      "h": 900,
+      "activeTab": "rc-tabs-10-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": true,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(34, 40, 47)",
+          "rgb(240, 243, 246)"
+        ],
+        "footer": true,
+        "right": 1000,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    {
+      "c": 32,
+      "theme": "light",
+      "w": 390,
+      "h": 844,
+      "activeTab": "rc-tabs-10-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          364,
+          364
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 386.0794982910156,
+        "size": [
+          366,
+          672
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        390,
+        380
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "c": 32,
+      "theme": "light",
+      "w": 768,
+      "h": 1024,
+      "activeTab": "rc-tabs-10-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 744,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        768,
+        758
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        768,
+        1024
+      ]
+    },
+    {
+      "c": 32,
+      "theme": "light",
+      "w": 1280,
+      "h": 900,
+      "activeTab": "rc-tabs-10-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-32-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 1000,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/18c31552-54c3-4528-aba6-a85bfc112160?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    {
+      "c": 31,
+      "theme": "dark",
+      "w": 390,
+      "h": 844,
+      "activeTab": "rc-tabs-12-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": true,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          364,
+          364
+        ],
+        "contrast": [
+          "rgb(34, 40, 47)",
+          "rgb(240, 243, 246)"
+        ],
+        "footer": true,
+        "right": 378,
+        "size": [
+          366,
+          672
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        390,
+        380
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "c": 31,
+      "theme": "dark",
+      "w": 768,
+      "h": 1024,
+      "activeTab": "rc-tabs-12-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": true,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(34, 40, 47)",
+          "rgb(240, 243, 246)"
+        ],
+        "footer": true,
+        "right": 744,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        768,
+        758
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        768,
+        1024
+      ]
+    },
+    {
+      "c": 31,
+      "theme": "dark",
+      "w": 1280,
+      "h": 900,
+      "activeTab": "rc-tabs-12-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": true,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(34, 40, 47)",
+          "rgb(240, 243, 246)"
+        ],
+        "footer": true,
+        "right": 1000,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    },
+    {
+      "c": 31,
+      "theme": "light",
+      "w": 390,
+      "h": 844,
+      "activeTab": "rc-tabs-12-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          364,
+          364
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 380.2346801757813,
+        "size": [
+          366,
+          672
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        390,
+        380
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "c": 31,
+      "theme": "light",
+      "w": 768,
+      "h": 1024,
+      "activeTab": "rc-tabs-12-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 744,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        768,
+        758
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        768,
+        1024
+      ]
+    },
+    {
+      "c": 31,
+      "theme": "light",
+      "w": 1280,
+      "h": 900,
+      "activeTab": "rc-tabs-12-tab-acl.rules",
+      "buttons": [
+        [
+          "규칙 추가",
+          false
+        ],
+        [
+          "업데이트",
+          false
+        ],
+        [
+          "규칙 가져오기",
+          false
+        ],
+        [
+          "ACL 내보내기",
+          false
+        ],
+        [
+          "",
+          false
+        ],
+        [
+          "마지막으로 이동",
+          false
+        ],
+        [
+          "태그",
+          false
+        ],
+        [
+          "편집",
+          false
+        ],
+        [
+          "삭제",
+          false
+        ],
+        [
+          "처음으로 이동",
+          false
+        ]
+      ],
+      "crumb": "/네트워크 ACL/qa-gn1601-31-acl업데이트",
+      "dark": false,
+      "drag": 5,
+      "modal": {
+        "bodyScroll": [
+          718,
+          718
+        ],
+        "contrast": [
+          "rgb(255, 255, 255)",
+          "rgb(31, 41, 55)"
+        ],
+        "footer": true,
+        "right": 1000,
+        "size": [
+          720,
+          688
+        ],
+        "title": "규칙 편집",
+        "vertical": true
+      },
+      "page": [
+        1280,
+        1270
+      ],
+      "path": "#/acllist/e890e024-8dbf-4043-90c9-fe17c745ea1c?tab=acl.rules",
+      "ruleCount": 5,
+      "viewport": [
+        1280,
+        900
+      ]
+    }
+  ],
+  "images": {
+    "31-readonly-dark-1280.jpg": {
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        900
+      ],
+      "sha256": "463607af17f566ee3800f558c1a996dda917a60b47e375e7a4ffcb1b7746fb4c"
+    },
+    "31-edit-invalid-cidr-dark-1280.jpg": {
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        900
+      ],
+      "sha256": "9032aca7f5ae5cf2d639d0321956595401c07120bd115db8c7aa2fd89109c612"
+    },
+    "31-csv-preview-dark-768.jpg": {
+      "viewport": [
+        768,
+        1024
+      ],
+      "jpeg": [
+        758,
+        1024
+      ],
+      "sha256": "de8382e6202d358297a0ec1b3f41e47e5824d29c5dedbce656f05f363e5bf616"
+    },
+    "31-edit-light-1280.jpg": {
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        900
+      ],
+      "sha256": "c3c3e2c4dc7210985985c3f68f547501ae3f76df23b49d6e49165c1af7dc6eda"
+    },
+    "32-before-readonly.jpg": {
+      "viewport": [
+        1680,
+        841
+      ],
+      "jpeg": [
+        1670,
+        841
+      ],
+      "sha256": "3578b7161ee1db29285108cd19a46b3a591b4c7a7604e89944a5cc3d76b4c555"
+    },
+    "32-readonly-dark-390.jpg": {
+      "viewport": [
+        390,
+        844
+      ],
+      "jpeg": [
+        380,
+        844
+      ],
+      "sha256": "cf40378a6476f8510028b8a76e3fa7e53dda489877a08cea50bcb23b63179939"
+    },
+    "32-edit-dark-390.jpg": {
+      "viewport": [
+        390,
+        844
+      ],
+      "jpeg": [
+        380,
+        844
+      ],
+      "sha256": "0c9deba6051a860b708bd53e1fe8e3ae8f7f71415f5c6ee1ddb71f91f671d3e2"
+    },
+    "32-edit-light-1280.jpg": {
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        913
+      ],
+      "sha256": "0e22f169186a023778475a820f6771ed93fdb25100513479df22c1dce8db518e"
+    },
+    "32-edit-permission-loss-light-1280.jpg": {
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        900
+      ],
+      "sha256": "ed88f3932e8d1ed4943fdc2b2f841c936b93c841460b7fe3209d6f6964a61a00"
+    },
+    "32-csv-failure-light-1280.jpg": {
+      "viewport": [
+        1280,
+        900
+      ],
+      "jpeg": [
+        1270,
+        900
+      ],
+      "sha256": "643f92866183fe5d3af11f6705acc26c1ee187ff15aca9ba1e42ac1086d52bf2"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+  "account": "admin",
+  "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+  "domainpath": "ROOT",
+  "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+  "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateLBStickinessPolicyCmd",
+  "jobprocstatus": 0,
+  "jobresultcode": 0,
+  "jobresulttype": "object",
+  "jobresult": {
+    "stickinesspolicies": {
+      "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "stickinesspolicy": [
+        {
+          "id": "6b82d578-2119-4a19-8410-a598bed99703",
+          "name": "qa-gn1626-32-source-final",
+          "methodname": "SourceBased",
+          "fordisplay": true,
+          "params": {
+            "expire": "10m",
+            "tablesize": "20k"
+          }
+        }
+      ]
+    }
+  },
+  "jobinstancetype": "None",
+  "created": "2026-11-11T16:03:17+0900",
+  "completed": "2026-11-11T16:03:20+0900",
+  "jobid": "4e2cc992-9892-44e2-a818-05d55b5a7db7",
+  "jobstatus": 1
+}

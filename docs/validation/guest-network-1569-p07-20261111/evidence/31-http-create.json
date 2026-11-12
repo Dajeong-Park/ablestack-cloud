@@ -1,0 +1,27 @@
+{
+  "jobid": "03047f81-3a66-46f9-98c3-0a3465101815",
+  "jobstatus": 1,
+  "loadbalancer": {
+    "id": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+    "name": "qa-gn1569-31-p07-http",
+    "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+    "publicip": "10.10.31.149",
+    "publicport": "19172",
+    "privateport": "18080",
+    "algorithm": "roundrobin",
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "cidrlist": "10.10.0.0/16",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "state": "Add",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "protocol": "http",
+    "backendssl": false,
+    "tags": [],
+    "fordisplay": true
+  }
+}

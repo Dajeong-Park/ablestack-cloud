@@ -1,0 +1,13 @@
+{
+  "unit": "qa-gn1569-egress-31",
+  "path": "/var/tmp/qa-gn1569-egress-31.py",
+  "firewallActive": true,
+  "addedRules": [
+    "rule family=\"ipv4\" source address=\"10.10.31.148/32\" port port=\"20681\" protocol=\"tcp\" accept",
+    "rule family=\"ipv4\" source address=\"10.10.31.148/32\" port port=\"20682\" protocol=\"udp\" accept"
+  ],
+  "sourceVip": "10.10.31.148",
+  "tcp": 20681,
+  "udp": 20682,
+  "started": true
+}

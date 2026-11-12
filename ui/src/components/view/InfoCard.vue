@@ -74,6 +74,7 @@
                   <AffinityGroupPolicy v-if="resource.type && $route.meta.name === 'affinitygroup'" :type="resource.type" compact />
                   <a-tag v-else-if="resource.type">
                     <span v-if="['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(resource.type)">{{ $t(resource.type.toLowerCase()) }}</span>
+                    <span v-else-if="$route.meta.name === 'guestnetwork'">{{ $t(networkTypeLabel(resource.type)) }}</span>
                     <span v-else>
                       {{ resource.type }}
                     </span>
@@ -610,6 +611,7 @@
               <div class="resource-detail-item__label">{{ $t('label.network') }}</div>
               <div class="resource-detail-item__details resource-detail-item__details--start">
                 <wifi-outlined />
+                <loading-outlined v-if="vmNetworkAccessStatus === 'loading'" class="vm-network-access-loading" :aria-label="$t('label.loading')" />
                 <div>
                   <div v-if="'networkkbsread' in resource && 'networkkbswrite' in resource">
                     <a-tag><ArrowDownOutlined />RX {{ toSize(resource.networkkbsread) }}</a-tag>
@@ -632,11 +634,15 @@
                     <span v-if="!isStatic && eth.networkname && eth.networkid">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <apartment-outlined/>
-                      <router-link :to="{ path: '/guestnetwork/' + eth.networkid      }">
+                      <router-link v-if="!vmNetworkAccessManaged || vmNetworks[eth.networkid]" :to="{ path: '/guestnetwork/' + eth.networkid }">
                         {{ eth.networkname }}
                       </router-link>
+                      <span v-else>{{ eth.networkname }}</span>
                     </span>
                   </div>
+                  <a-alert v-if="vmNetworkAccessFailed" class="vm-network-access-error" type="warning" show-icon :message="$t('message.vm.network.lookup.failed')" role="status">
+                    <template #description><a-button size="small" @click="fetchVmNetworkAccess()">{{ $t('label.retry') }}</a-button></template>
+                  </a-alert>
                 </div>
               </div>
             </div>
@@ -718,12 +724,15 @@
                 <resource-label :resourceType="resource.resourcetype" :resourceId="resource.resourceid" :resourceName="resource.resourcename" />
               </div>
             </div>
-            <div class="resource-detail-item" v-if="resource.virtualmachineid && $route.meta.name !== 'snapshot'">
+            <div class="resource-detail-item" v-if="(resource.virtualmachineid || $route.meta.name === 'publicip') && $route.meta.name !== 'snapshot'">
               <div class="resource-detail-item__label">{{ $t('label.vmname') }}</div>
               <div class="resource-detail-item__details">
-                <desktop-outlined />
-                <router-link v-if="volumeVmPath(resource, $router)" :to="{ path: volumeVmPath(resource, $router) }">{{ resource.vmname || resource.vm || resource.virtualmachinename || resource.virtualmachineid }} </router-link>
-                <span v-else>{{ resource.vmname || resource.virtualmachinename || resource.virtualmachineid }}</span>
+                <network-ip-vm-link v-if="$route.meta.name === 'publicip'" :record="resource" />
+                <template v-else>
+                  <desktop-outlined />
+                  <router-link v-if="volumeVmPath(resource, $router)" :to="{ path: volumeVmPath(resource, $router) }">{{ resource.vmname || resource.vm || resource.virtualmachinename || resource.virtualmachineid }} </router-link>
+                  <span v-else>{{ resource.vmname || resource.virtualmachinename || resource.virtualmachineid }}</span>
+                </template>
                 <status class="status status--end" :text="resource.vmstate" v-if="resource.vmstate"/>
               </div>
             </div>
@@ -1145,10 +1154,14 @@
 </template>
 
 <script>
+import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
+import { offeringNetworkQuery } from '@/utils/guestNetworkSearch'
 import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue'
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { volumeVmPath } from '@/utils/storageUi'
+import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
 import { creationVmOsName } from '@/utils/creationVmPresentation'
 import BucketUsageStatus from '@/components/view/BucketUsageStatus'
@@ -1178,7 +1191,9 @@ import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 
 export default {
   name: 'InfoCard',
+  mixins: [vmNetworkAccessMixin()],
   components: {
+    NetworkIpVmLink,
     SharedFSCapacitySummary,
     SharedFSBootRecoverySummary,
     BucketUsageStatus,
@@ -1392,6 +1407,7 @@ export default {
     }
   },
   methods: {
+    networkTypeLabel,
     policyVolumePath,
     volumeVmPath,
     sshKeyPairNameLink,
@@ -1596,6 +1612,7 @@ export default {
       return ['Admin'].includes(this.$store.getters.userInfo.roletype)
     },
     getRouterQuery (item) {
+      if (item.param === 'networkofferingid' && item.name === 'guestnetwork') return offeringNetworkQuery(this.resource, this.$route, this.$store.getters)
       const query = {}
       if (item.value) {
         query[item.param] = this.resource[item.value]
@@ -1645,6 +1662,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.vm-network-access-error {
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
 :deep(.ant-card-body) {
   padding: 0;
 }

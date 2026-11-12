@@ -1,0 +1,226 @@
+[
+  {
+    "role": "admin",
+    "phase": "revoke",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "admin",
+    "phase": "revoke",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": false,
+    "count": 44
+  },
+  {
+    "role": "owner",
+    "phase": "revoke",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "owner",
+    "phase": "revoke",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": false,
+    "count": 44
+  },
+  {
+    "role": "member",
+    "phase": "revoke",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "member",
+    "phase": "revoke",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": false,
+    "count": 44
+  },
+  {
+    "role": "readonly",
+    "phase": "revoke",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "readonly",
+    "phase": "revoke",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": false,
+    "count": 44
+  },
+  {
+    "role": "domainadmin",
+    "phase": "revoke",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": null,
+    "errortext": null,
+    "vnfVisible": true,
+    "nicCount": 3
+  },
+  {
+    "role": "domainadmin",
+    "phase": "revoke",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": null,
+    "errortext": null,
+    "sharedVisible": false,
+    "count": 44
+  },
+  {
+    "role": "peer",
+    "phase": "revoke",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": 432,
+    "errortext": "The API [listVnfAppliances] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "vnfVisible": false,
+    "nicCount": 0
+  },
+  {
+    "role": "peer",
+    "phase": "revoke",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": 432,
+    "errortext": "The API [listNetworks] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "sharedVisible": false,
+    "count": 0
+  },
+  {
+    "role": "outsider",
+    "phase": "revoke",
+    "api": "listVnfAppliances",
+    "params": {
+      "id": "adb32350-7764-489c-a70d-12323eabc24d",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true"
+    },
+    "errorcode": 432,
+    "errortext": "The API [listVnfAppliances] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "vnfVisible": false,
+    "nicCount": 0
+  },
+  {
+    "role": "outsider",
+    "phase": "revoke",
+    "api": "listNetworks",
+    "params": {
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "ignoreproject": "true",
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "errorcode": 432,
+    "errortext": "The API [listNetworks] does not exist or is not available for this account/user in project [4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe].",
+    "sharedVisible": false,
+    "count": 0
+  }
+]

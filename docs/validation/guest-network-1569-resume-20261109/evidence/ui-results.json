@@ -1,0 +1,180 @@
+{
+  "32-stored-v2": true,
+  "31-stored-v2": true,
+  "userdataWire": {
+    "31": [
+      {
+        "command": "resetUserDataForVirtualMachine",
+        "method": "POST",
+        "status": 200
+      },
+      {
+        "command": "getVirtualMachineUserData",
+        "method": "GET",
+        "status": 200
+      },
+      {
+        "command": "startVirtualMachine",
+        "method": "POST",
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "status": 200
+      }
+    ],
+    "32": [
+      {
+        "command": "resetUserDataForVirtualMachine",
+        "method": "POST",
+        "status": 200
+      },
+      {
+        "command": "getVirtualMachineUserData",
+        "method": "GET",
+        "status": 200
+      },
+      {
+        "command": "startVirtualMachine",
+        "method": "POST",
+        "status": 200
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "status": 200
+      }
+    ]
+  },
+  "31-vm-standard": {
+    "crumb": "/가상머신/qa-gn1569-31-configdrive-clone-vm업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        718,
+        718
+      ],
+      "color": "rgb(31, 41, 55)",
+      "footer": true,
+      "formVertical": true,
+      "standard": true,
+      "title": "기존 네트워크 연결",
+      "width": 720
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  "31-route-reset": {
+    "dialogCount": 0,
+    "crumb": "/가상머신용 네트워크/qa-gn1569-31-configdrive-clone-net업데이트"
+  },
+  "32-vm-standard": {
+    "crumb": "/가상머신/qa-gn1569-32-configdrive-clone-vm업데이트",
+    "dark": false,
+    "dialog": {
+      "background": "rgb(255, 255, 255)",
+      "body": [
+        718,
+        718
+      ],
+      "color": "rgb(31, 41, 55)",
+      "footer": true,
+      "formVertical": true,
+      "standard": true,
+      "title": "기존 네트워크 연결",
+      "width": 720
+    },
+    "page": [
+      1280,
+      1270
+    ],
+    "viewport": [
+      1280,
+      900
+    ]
+  },
+  "32-route-reset": {
+    "dialogCount": 0,
+    "crumb": "/가상머신용 네트워크/qa-gn1569-32-configdrive-clone-net업데이트"
+  },
+  "31-source-nat-link": {
+    "ip": "10.10.31.141",
+    "associatednetworkid": null,
+    "links": [
+      {
+        "href": "#/guestnetwork/undefined",
+        "text": ""
+      }
+    ]
+  },
+  "32-source-nat-link": {
+    "ip": "10.10.32.153",
+    "associatednetworkid": null,
+    "links": [
+      {
+        "href": "#/guestnetwork/undefined",
+        "text": ""
+      }
+    ]
+  },
+  "32-default": {
+    "immediate": {
+      "dialogs": 0,
+      "head": "0\n기본 보기\n생성\n\n3\n\nAC\nadmin cloud",
+      "route": "#/vpc/87964ae1-ca02-4224-aa97-126f63b15620?tab=ip"
+    },
+    "settled": {
+      "dialogs": 0,
+      "head": "기본 보기\n생성\n\n3\n\nAC\nadmin cloud",
+      "route": "#/dashboard"
+    }
+  },
+  "31-default": {
+    "immediate": {
+      "dialogs": 0,
+      "head": "0\n기본 보기\n생성\n\n3\n\nAC\nadmin cloud",
+      "route": "#/vpc/c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc?tab=ip"
+    },
+    "settled": {
+      "dialogs": 0,
+      "head": "기본 보기\n생성\n\n3\n\nAC\nadmin cloud",
+      "route": "#/dashboard"
+    }
+  },
+  "31-return-project": {
+    "dialogs": 0,
+    "head": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687\nqa-gn1569-31-conditional\n생성\n\n3\n\nAC\nadmin cloud",
+    "route": "#/dashboard"
+  },
+  "32-return-project": {
+    "dialogs": 0,
+    "head": "f794c1da-2d1a-4918-92ca-ed192dcdb5df\nqa-gn1569-32-conditional\n생성\n\n3\n\nAC\nadmin cloud",
+    "route": "#/dashboard"
+  },
+  "31-breadcrumbs": {
+    "path": "http://10.10.31.10:8080/client/#/guestnetwork",
+    "networkLink": true
+  },
+  "32-breadcrumbs": {
+    "path": "http://10.10.32.10:8080/client/#/guestnetwork",
+    "networkLink": true
+  },
+  "31-final-vm": {
+    "dialogs": 0,
+    "head": "qa-gn1569-31-conditional\n생성\n\n3\n\nAC\nadmin cloud",
+    "route": "#/vm/c7f40539-4192-424d-8186-256e58b78318?tab=nics"
+  },
+  "32-final-vm": {
+    "dialogs": 0,
+    "head": "qa-gn1569-32-conditional\n\n3\n\nAC\nadmin cloud",
+    "route": "#/vm/c6f2ad48-bd55-4620-a579-331316025e68?tab=nics"
+  }
+}

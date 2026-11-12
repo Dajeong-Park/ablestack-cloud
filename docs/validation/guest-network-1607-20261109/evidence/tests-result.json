@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/views/compute/CreateAutoScaleVmGroup.vue tests/unit/views/compute/AutoScaleUserDataInitialization.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/compute/AutoScaleUserDataInitialization.spec.js tests/unit/views/compute/AutoScaleCreationPreflight.spec.js tests/unit/views/compute/UserDataSelection.spec.js tests/unit/views/compute/AutoScaleUiStandard.spec.js tests/unit/views/compute/AutoScaleOperations.spec.js tests/unit/views/compute/AutoScaleEditing.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "cluster": 31,
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "project": "qa-gn1569-31-project",
+    "rows": 4,
+    "dark": false,
+    "dialogs": 0,
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    }
+  },
+  {
+    "cluster": 32,
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "project": "qa-gn1569-32-project",
+    "rows": 4,
+    "dark": true,
+    "dialogs": 0,
+    "user": "ACadmin cloud",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    }
+  }
+]

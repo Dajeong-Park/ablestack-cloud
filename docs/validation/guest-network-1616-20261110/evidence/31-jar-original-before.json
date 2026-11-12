@@ -1,0 +1,12 @@
+{
+  "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "sha256": "6999ab4695027faa6dedff0ca4fe1a25f5a24a109346babb11cbe8c48adf6f97",
+  "bytes": 277210641,
+  "entries": {
+    "org/apache/cloudstack/network/element/InternalLoadBalancerElementService.class": "ebe618a10839ea47813f9f7c6e07ce1bfd73579a69a35fd0eed48234540a54bf",
+    "org/apache/cloudstack/network/element/InternalLoadBalancerElement.class": "0ff2ddab8a08ce47c10388f418606c0a6e225495cd05048d38ad41936f402955"
+  },
+  "df": "Filesystem             1B-blocks         Used    Available Use% Mounted on\n/dev/mapper/rl-root 410542669824 259971043328 150571626496  64% /\n/dev/mapper/rl-root 410542669824 259971043328 150571626496  64% /\n/dev/mapper/rl-root 410542669824 259971043328 150571626496  64% /",
+  "pid": "1356314",
+  "webinf": true
+}

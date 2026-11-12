@@ -1,0 +1,111 @@
+{
+  "network": true,
+  "networkAdded": [
+    {
+      "id": "7ec78662-447f-41b1-bc20-4c72a4d8751d",
+      "name": "qa-gn1610-32-recovery-review-tier",
+      "state": "Allocated",
+      "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+      "vpcid": "1468145f-80bd-4682-a2d3-715381a5ba21",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "cidr": "10.237.32.0/24",
+      "gateway": "10.237.32.1"
+    },
+    {
+      "id": "67135724-e829-45be-bf44-69c3964fdf8f",
+      "name": "qa-gn1610-32-review-tier",
+      "state": "Allocated",
+      "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+      "vpcid": "8f2df5ac-af30-4633-b663-aae8e8cab356",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "cidr": "10.238.32.0/24",
+      "gateway": "10.238.32.1"
+    }
+  ],
+  "virtualmachine": true,
+  "virtualmachineAdded": [],
+  "vpngateway": true,
+  "vpngatewayAdded": [
+    {
+      "id": "fea08613-c6b2-4a5c-9554-8feb074ad284",
+      "vpcid": "1468145f-80bd-4682-a2d3-715381a5ba21",
+      "publicip": "10.10.32.148",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    {
+      "id": "67a1d96b-aa42-49a7-8693-b279fb7afe55",
+      "vpcid": "8f2df5ac-af30-4633-b663-aae8e8cab356",
+      "publicip": "10.10.32.149",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  ],
+  "vpnconnection": true,
+  "vpnconnectionAdded": [
+    {
+      "id": "8b069d60-b00c-495e-8952-8f2f12823c35",
+      "s2svpngatewayid": "67a1d96b-aa42-49a7-8693-b279fb7afe55",
+      "s2scustomergatewayid": "bc651b18-0ffb-45c7-b24c-45f53047d9a0",
+      "passive": false,
+      "gateway": "10.10.31.150",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  ],
+  "vpncustomergateway": true,
+  "vpncustomergatewayAdded": [
+    {
+      "id": "bc651b18-0ffb-45c7-b24c-45f53047d9a0",
+      "name": "qa-gn1610-32-peer-31",
+      "gateway": "10.10.31.150",
+      "cidrlist": "10.238.31.0/24",
+      "ikepolicy": "aes256-sha256;modp2048",
+      "esppolicy": "aes256-sha256",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  ],
+  "vpc": true,
+  "vpcAdded": [
+    {
+      "id": "1468145f-80bd-4682-a2d3-715381a5ba21",
+      "name": "qa-gn1610-32-recovery-review",
+      "state": "Enabled",
+      "cidr": "10.237.32.0/24",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    {
+      "id": "8f2df5ac-af30-4633-b663-aae8e8cab356",
+      "name": "qa-gn1610-32-review",
+      "state": "Enabled",
+      "cidr": "10.238.32.0/24",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  ],
+  "counts": {
+    "network": 100,
+    "virtualmachine": 85,
+    "vpngateway": 3,
+    "vpnconnection": 2,
+    "vpncustomergateway": 2,
+    "vpc": 12
+  },
+  "jobs": [
+    {
+      "case": "32-gateway-real-success",
+      "command": "createVpnGateway",
+      "jobId": "cb0eb966-9b4c-45e0-a676-4a0506eb4597",
+      "jobstatus": 1
+    },
+    {
+      "case": "32-connection-real-success",
+      "command": "createVpnConnection",
+      "jobId": "dc2c60f8-cfc6-43ee-91da-9c65308f7638",
+      "jobstatus": 1
+    }
+  ],
+  "existingVpnKeysUnchanged": true,
+  "existingS2SConnected": true,
+  "existingRemoteRunning": true,
+  "newConnectionState": "Connecting",
+  "newConnectionPassive": false
+}

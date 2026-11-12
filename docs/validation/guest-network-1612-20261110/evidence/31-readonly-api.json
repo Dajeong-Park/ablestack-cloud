@@ -1,0 +1,26 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createLoadBalancer] does not exist or is not available for this account/user in project [dc9a2e6e-c977-44c2-b87c-dcf3d8e70687]."
+    },
+    "expected": "denied",
+    "serverMutationSucceeded": false
+  },
+  {
+    "command": "assignToLoadBalancerRule",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [assignToLoadBalancerRule] does not exist or is not available for this account/user in project [dc9a2e6e-c977-44c2-b87c-dcf3d8e70687]."
+    },
+    "expected": "denied",
+    "serverMutationSucceeded": false
+  }
+]

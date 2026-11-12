@@ -1,0 +1,20 @@
+{
+  "staticFiles": 671,
+  "hashMismatches": [],
+  "jarSha256": "d876b4284dda557c185526a3610b752a89b25cf820a8f0f7679837a1b2ffeb98",
+  "classHashes": {
+    "com/cloud/api/ApiServer$1.class": "b9058c03aec8393260f6d86a1795aa64b92e9592f7f63ab28e0d517f44dd407b",
+    "com/cloud/api/ApiServer$WorkerTask.class": "789301a9c3177296ce532792848b8628c44db8a8575b33df9bed1fe41710f700",
+    "com/cloud/api/ApiServer$ListenerThread.class": "e5aa7547c8f064261132007ffec9e2a9a4d2560e7903dec77c1bf2dd2fe1b869",
+    "com/cloud/api/ApiServer$2.class": "0d82d2bc65a8c2f87d9b350d8a7df373fce889910005c13fbd03d78fa81b5256",
+    "com/cloud/api/ApiServer.class": "afb20ee6270e50c1f31a9c7e29533062111f3e0e7db2a95375b12418b63394a0"
+  },
+  "serverFiles": {
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "webinf": true,
+  "metainf": false,
+  "http": 200,
+  "pid": "1619945",
+  "service": "active"
+}

@@ -1,0 +1,27 @@
+{
+  "rule": {
+    "id": "739c314f-a5a9-418c-bc6c-6040a77f9046",
+    "name": "qa-gn1569-31-reg-lb",
+    "description": "GN1569 LB API/UI review",
+    "publicipid": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+    "publicip": "10.10.31.110",
+    "publicport": "18569",
+    "privateport": "18569",
+    "algorithm": "roundrobin",
+    "networkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+    "cidrlist": "192.0.2.156/32",
+    "account": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "state": "Add",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "protocol": "tcp",
+    "backendssl": false,
+    "tags": [],
+    "fordisplay": true
+  },
+  "rawProtocol": "NULL",
+  "effectiveProtocol": "tcp"
+}

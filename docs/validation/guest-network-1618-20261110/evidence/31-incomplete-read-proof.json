@@ -1,0 +1,25 @@
+{
+  "controlledReadResponse": true,
+  "serverMutation": false,
+  "request": {
+    "listall": "true",
+    "tab": "details",
+    "id": "237808a1-e9d2-4401-a5d7-38dc1e73ccf6",
+    "page": "1",
+    "pagesize": "20",
+    "command": "listLoadBalancers",
+    "response": "json"
+  },
+  "originalRules": [
+    {
+      "sourceport": 19018,
+      "instanceport": 22,
+      "state": "Active"
+    }
+  ],
+  "displayedRules": [
+    {
+      "sourceport": 19018
+    }
+  ]
+}

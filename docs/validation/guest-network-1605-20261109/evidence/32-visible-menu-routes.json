@@ -1,0 +1,302 @@
+[
+  {
+    "href": "#/dashboard",
+    "text": "대시보드"
+  },
+  {
+    "href": "#/vm",
+    "text": "가상머신"
+  },
+  {
+    "href": "#/vmsnapshot",
+    "text": "VM 스냅샷"
+  },
+  {
+    "href": "#/kubernetes",
+    "text": "쿠버네티스"
+  },
+  {
+    "href": "#/autoscalevmgroup",
+    "text": "오토스케일 VM 그룹"
+  },
+  {
+    "href": "#/vmgroup",
+    "text": "가상머신 그룹"
+  },
+  {
+    "href": "#/ssh",
+    "text": "SSH 키 쌍"
+  },
+  {
+    "href": "#/userdata",
+    "text": "사용자 데이터 라이브러리"
+  },
+  {
+    "href": "#/cniconfiguration",
+    "text": "CNI 구성"
+  },
+  {
+    "href": "#/affinitygroup",
+    "text": "Affinity 그룹"
+  },
+  {
+    "href": "#/volume",
+    "text": "볼륨"
+  },
+  {
+    "href": "#/snapshot",
+    "text": "스냅샷"
+  },
+  {
+    "href": "#/snapshotpolicy",
+    "text": "스냅샷 정책"
+  },
+  {
+    "href": "#/buckets",
+    "text": "버킷"
+  },
+  {
+    "href": "#/sharedfs",
+    "text": "공유 파일 시스템"
+  },
+  {
+    "href": "#/guestnetwork",
+    "text": "가상머신용 네트워크"
+  },
+  {
+    "href": "#/vpc",
+    "text": "VPC"
+  },
+  {
+    "href": "#/vnfapp",
+    "text": "VNF 기기"
+  },
+  {
+    "href": "#/publicip",
+    "text": "Public IP 주소"
+  },
+  {
+    "href": "#/asnumbers",
+    "text": "AS Numbers"
+  },
+  {
+    "href": "#/s2svpn",
+    "text": "사이트간 사설네트워크(VPN)"
+  },
+  {
+    "href": "#/s2svpnconn",
+    "text": "사이트 간 VPN 연결"
+  },
+  {
+    "href": "#/acllist",
+    "text": "네트워크 ACL"
+  },
+  {
+    "href": "#/vpnuser",
+    "text": "VPN 사용자"
+  },
+  {
+    "href": "#/vpncustomergateway",
+    "text": "VPN 고객 게이트웨이"
+  },
+  {
+    "href": "#/guestvlans",
+    "text": "게스트 VLAN"
+  },
+  {
+    "href": "#/ipv4subnets",
+    "text": "IPv4 서브넷"
+  },
+  {
+    "href": "#/dnszone",
+    "text": "DNS 영역"
+  },
+  {
+    "href": "#/dnsserver",
+    "text": "DNS 서버"
+  },
+  {
+    "href": "#/template",
+    "text": "템플릿"
+  },
+  {
+    "href": "#/iso",
+    "text": "ISO"
+  },
+  {
+    "href": "#/kubernetesiso",
+    "text": "쿠버네티스 ISO"
+  },
+  {
+    "href": "#/kmskey",
+    "text": "KMS 키"
+  },
+  {
+    "href": "#/hsmprofile",
+    "text": "HSM 프로파일"
+  },
+  {
+    "href": "#/event",
+    "text": "이벤트"
+  },
+  {
+    "href": "#/project",
+    "text": "프로젝트"
+  },
+  {
+    "href": "#/role",
+    "text": "역할"
+  },
+  {
+    "href": "#/account",
+    "text": "계정"
+  },
+  {
+    "href": "#/domain",
+    "text": "도메인"
+  },
+  {
+    "href": "#/infrasummary",
+    "text": "요약"
+  },
+  {
+    "href": "#/zone",
+    "text": "Zone"
+  },
+  {
+    "href": "#/pod",
+    "text": "Pod"
+  },
+  {
+    "href": "#/cluster",
+    "text": "클러스터"
+  },
+  {
+    "href": "#/host",
+    "text": "호스트"
+  },
+  {
+    "href": "#/storagepool",
+    "text": "기본 스토리지"
+  },
+  {
+    "href": "#/imagestore",
+    "text": "2차 스토리지"
+  },
+  {
+    "href": "#/objectstore",
+    "text": "오브젝트 스토리지"
+  },
+  {
+    "href": "#/systemvm",
+    "text": "시스템 VM"
+  },
+  {
+    "href": "#/router",
+    "text": "가상 라우터"
+  },
+  {
+    "href": "#/ilbvm",
+    "text": "내부 LB"
+  },
+  {
+    "href": "#/managementserver",
+    "text": "관리 서버"
+  },
+  {
+    "href": "#/cpusocket",
+    "text": "CPU 소켓"
+  },
+  {
+    "href": "#/metric",
+    "text": "DB/Usage 서버"
+  },
+  {
+    "href": "#/alert",
+    "text": "경보"
+  },
+  {
+    "href": "#/alertRules",
+    "text": "경보 규칙"
+  },
+  {
+    "href": "#/computeoffering",
+    "text": "컴퓨트 오퍼링"
+  },
+  {
+    "href": "#/systemoffering",
+    "text": "시스템 오퍼링"
+  },
+  {
+    "href": "#/diskoffering",
+    "text": "디스크 오퍼링"
+  },
+  {
+    "href": "#/networkoffering",
+    "text": "네트워크 오퍼링"
+  },
+  {
+    "href": "#/vpcoffering",
+    "text": "VPC 오퍼링"
+  },
+  {
+    "href": "#/globalsetting",
+    "text": "글로벌 설정"
+  },
+  {
+    "href": "#/ldapsetting",
+    "text": "LDAP 구성"
+  },
+  {
+    "href": "#/oauthsetting",
+    "text": "OAuth 구성"
+  },
+  {
+    "href": "#/hypervisorcapability",
+    "text": "하이퍼바이저 기능"
+  },
+  {
+    "href": "#/guestoscategory",
+    "text": "게스트 OS 카테고리들"
+  },
+  {
+    "href": "#/guestos",
+    "text": "게스트 OS"
+  },
+  {
+    "href": "#/guestoshypervisormapping",
+    "text": "게스트 OS 매핑"
+  },
+  {
+    "href": "#/gpucard",
+    "text": "GPU 카드 유형"
+  },
+  {
+    "href": "#/extension",
+    "text": "확장"
+  },
+  {
+    "href": "#/comment",
+    "text": "코멘트"
+  },
+  {
+    "href": "#/usage",
+    "text": "사용량"
+  },
+  {
+    "href": "#/manageinstances",
+    "text": "인스턴스 가져오기-내보내기"
+  },
+  {
+    "href": "#/managevolumes",
+    "text": "데이터 볼륨 가져오기"
+  },
+  {
+    "href": "#/webhook",
+    "text": "Webhooks"
+  },
+  {
+    "href": "#/apidocs/",
+    "text": "API 문서"
+  }
+]

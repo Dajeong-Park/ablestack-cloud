@@ -1,0 +1,9 @@
+[
+  {
+    "cluster": 31,
+    "staleReceiptPid": 280,
+    "currentExecutable": "/usr/libexec/strongswan/charon",
+    "receiptOnlyRemoved": true,
+    "processNotSignalled": true
+  }
+]

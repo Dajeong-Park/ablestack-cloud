@@ -1,0 +1,15 @@
+{
+  "command": "createLoadBalancerRule",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "name": "qa-gn1614-31-public-review",
+    "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "publicport": 18991,
+    "privateport": 22,
+    "algorithm": "roundrobin",
+    "protocol": "tcp",
+    "cidrlist": "10.10.0.0/16"
+  },
+  "jobid": "c8d09b29-83c0-4e6a-af88-63c53c3688c7"
+}

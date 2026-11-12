@@ -1,0 +1,74 @@
+{
+  "body": {
+    "bottom": 572,
+    "height": 254,
+    "left": 281,
+    "right": 999,
+    "top": 318,
+    "width": 718,
+    "x": 281,
+    "y": 318
+  },
+  "bodyOverflow": 0,
+  "dialogCount": 1,
+  "footer": {
+    "bottom": 637,
+    "height": 65,
+    "left": 281,
+    "right": 999,
+    "top": 572,
+    "width": 718,
+    "x": 281,
+    "y": 572
+  },
+  "footerButtons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 621,
+        "height": 32,
+        "left": 839.46875,
+        "right": 897.234375,
+        "top": 589,
+        "width": 57.765625,
+        "x": 839.46875,
+        "y": 589
+      },
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 621,
+        "height": 32,
+        "left": 913.234375,
+        "right": 971,
+        "top": 589,
+        "width": 57.765625,
+        "x": 913.234375,
+        "y": 589
+      },
+      "text": "확인"
+    }
+  ],
+  "form": {
+    "bottom": 542,
+    "height": 62,
+    "left": 309,
+    "right": 971,
+    "top": 480,
+    "width": 662,
+    "x": 309,
+    "y": 480
+  },
+  "labels": [
+    {
+      "color": "rgba(255, 255, 255, 0.65)",
+      "text": "IP"
+    }
+  ],
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

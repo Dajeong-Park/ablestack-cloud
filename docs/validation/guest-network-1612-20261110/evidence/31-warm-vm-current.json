@@ -1,0 +1,23 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "account": "admin",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domainpath": "ROOT",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "cmd": "org.apache.cloudstack.api.command.admin.vm.DeployVMCmdByAdmin",
+    "jobprocstatus": 0,
+    "jobresultcode": 530,
+    "jobresulttype": "object",
+    "jobresult": {
+      "errorcode": 530,
+      "errortext": "Unable to start a VM [149f3103-b75c-48e7-b8bc-68af1d6a43f4] due to [Unable to create a deployment for VM instance {\"id\":1007,\"instanceName\":\"i-424-1007-VM\",\"state\":\"Starting\",\"type\":\"User\",\"uuid\":\"149f3103-b75c-48e7-b8bc-68af1d6a43f4\"} after 2 attempts]."
+    },
+    "jobinstancetype": "VirtualMachine",
+    "jobinstanceid": "149f3103-b75c-48e7-b8bc-68af1d6a43f4",
+    "created": "2026-11-10T16:46:06+0900",
+    "completed": "2026-11-10T16:46:10+0900",
+    "jobid": "8db11fa4-3939-4ede-9f7e-571a0366e26f",
+    "jobstatus": 2
+  }
+}

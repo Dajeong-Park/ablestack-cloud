@@ -217,6 +217,13 @@ public class BridgeVifDriver extends VifDriverBase {
     @Override
     public LibvirtVMDef.InterfaceDef plug(NicTO nic, String guestOsType, String nicAdapter, Map<String, String> extraConfig) throws InternalErrorException, LibvirtException {
 
+        // A PVLAN must never fall through to the ordinary guest bridge. The
+        // bridge driver cannot enforce isolated/community forwarding policy.
+        if (nic.getBroadcastType() == Networks.BroadcastDomainType.Pvlan
+                || nic.getBroadcastUri() != null && "pvlan".equalsIgnoreCase(nic.getBroadcastUri().getScheme())) {
+            throw new InternalErrorException("PVLAN is not supported by BridgeVifDriver. Configure a guarded Open vSwitch physical network; ordinary guest bridge fallback is forbidden.");
+        }
+
         if (logger.isDebugEnabled()) {
             logger.debug("nic=" + nic);
             if (nicAdapter != null && !nicAdapter.isEmpty()) {
@@ -316,7 +323,7 @@ public class BridgeVifDriver extends VifDriverBase {
     }
 
     private String generateVnetBrName(String pifName, String vnetId) {
-        return "br" + pifName + "-" + vnetId;
+        return VlanBridgeName.forVlan(pifName, vnetId);
     }
 
     private String generateVxnetBrName(String pifName, String vnetId) {
@@ -356,7 +363,8 @@ public class BridgeVifDriver extends VifDriverBase {
 
             final String result = command.execute();
             if (result != null) {
-                throw new InternalErrorException("Failed to create vnet " + vnetId + ": " + result);
+                throw new InternalErrorException("Failed to create vnet " + vnetId + " on pif " + pif
+                        + " (bridge=" + brName + ", length=" + brName.length() + "): " + result);
             }
         }
     }
@@ -403,6 +411,9 @@ public class BridgeVifDriver extends VifDriverBase {
                 scriptPath = _modifyVxlanPath;
             } else {
                 scriptPath = _modifyVlanPath;
+                // Compact names contain a parent hash. Resolve the actual parent through the VLAN member.
+                String actualPif = getPif(brName);
+                pName = StringUtils.isBlank(actualPif) ? "undefined" : actualPif;
             }
 
             final Script command = new Script(scriptPath, _timeout, logger);

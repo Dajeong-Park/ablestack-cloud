@@ -1,0 +1,20 @@
+[
+  {
+    "cluster": 31,
+    "controlledHttp": 503,
+    "command": "createTags",
+    "noJobId": true,
+    "parametersVisible": true,
+    "refreshReposts": false,
+    "sameSessionRecoveryUi": false
+  },
+  {
+    "cluster": 32,
+    "controlledHttp": 503,
+    "command": "createTags",
+    "noJobId": true,
+    "parametersVisible": true,
+    "refreshReposts": false,
+    "sameSessionRecoveryUi": false
+  }
+]

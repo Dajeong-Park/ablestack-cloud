@@ -1,0 +1,1381 @@
+[
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "0042597f-2a6a-4512-a020-aaace325b2ed"
+    },
+    "jobid": "0042597f-2a6a-4512-a020-aaace325b2ed",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateRemoteAccessVpnCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "remoteaccessvpn": {
+          "publicipid": "d286ca9d-1d48-42e7-8dac-ff2e73fe3c46",
+          "publicip": "10.10.32.150",
+          "iprange": "10.1.2.2-10.1.2.8",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Running",
+          "id": "967e2956-8e86-4431-aac7-a040df0d6a7a",
+          "fordisplay": true
+        }
+      },
+      "jobinstancetype": "IpAddress",
+      "jobinstanceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "created": "2026-11-11T00:13:11+0900",
+      "completed": "2026-11-11T00:13:14+0900",
+      "jobid": "0042597f-2a6a-4512-a020-aaace325b2ed",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "updateNetwork",
+    "params": {
+      "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "changecidr": false
+    },
+    "jobid": "0dd09986-7f79-49f7-84ef-762910345e56",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "network": {
+          "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "name": "qa-gn1569-32-vpn-lb",
+          "displaytext": "QA1569 VPN LB AutoScale regression",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.234.32.1",
+          "netmask": "255.255.255.0",
+          "cidr": "10.234.32.0/24",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+          "networkofferingname": "qa-gn1569-32-nat",
+          "networkofferingdisplaytext": "qa-gn1569-32-nat",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Implemented",
+          "related": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "broadcasturi": "vlan://179",
+          "dns1": "8.8.8.8",
+          "type": "Isolated",
+          "vlan": "179",
+          "acltype": "Account",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "service": [
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": []
+            },
+            {
+              "name": "Vpn",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedVpnTypes",
+                  "value": "pptp,l2tp,ipsec",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "VpnTypes",
+                  "value": "remoteaccessvpn",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "StaticNat",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "ElasticIp",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "AssociatePublicIP",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "PortForwarding",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp,udp",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Lb",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedStickinessMethods",
+                  "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"prefix\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is App session based sticky method. Define session stickiness on an existing application cookie. It can be used only for a specific http traffic\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "AutoScaleCounters",
+                  "value": "[{\"methodname\":\"CPU\",\"paramlist\":[]},{\"methodname\":\"MEMORY\",\"paramlist\":[]},{\"methodname\":\"VIRTUALROUTER\",\"paramlist\":[]}]",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedLbAlgorithms",
+                  "value": "roundrobin,leastconn,source",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp, udp, tcp-proxy, ssl, http",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedLBIsolation",
+                  "value": "dedicated",
+                  "canchooseservicecapability": true
+                },
+                {
+                  "name": "LbSchemes",
+                  "value": "Public",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SslTermination",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "VmAutoScaling",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "ElasticLb",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "InlineMode",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "SourceNat",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedSourceNatTypes",
+                  "value": "peraccount",
+                  "canchooseservicecapability": true
+                },
+                {
+                  "name": "RedundantRouter",
+                  "value": "false",
+                  "canchooseservicecapability": true
+                }
+              ]
+            },
+            {
+              "name": "Firewall",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedTrafficDirection",
+                  "value": "ingress, egress",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp,udp,icmp",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "MultipleIps",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedEgressProtocols",
+                  "value": "tcp,udp,icmp, all",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "TrafficStatistics",
+                  "value": "per public ip",
+                  "canchooseservicecapability": false
+                }
+              ]
+            }
+          ],
+          "networkdomain": "vpnlb32.qa.internal",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "restartrequired": false,
+          "specifyvlan": false,
+          "specifyipranges": false,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "details": {},
+          "displaynetwork": true,
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": true,
+          "created": "2026-11-09T21:55:46+0900",
+          "receivedbytes": 0,
+          "sentbytes": 416924,
+          "egressdefaultpolicy": false,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "keepmacaddressonpublicnic": true,
+          "hasannotations": false
+        }
+      },
+      "jobinstancetype": "Network",
+      "jobinstanceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "created": "2026-11-11T00:26:15+0900",
+      "completed": "2026-11-11T00:27:08+0900",
+      "jobid": "0dd09986-7f79-49f7-84ef-762910345e56",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "migrateSystemVm",
+    "params": {
+      "virtualmachineid": "5d84ece2-137d-4058-bd2c-8c947bd2203b",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62"
+    },
+    "jobid": "11f3e537-f336-4cab-afaa-85ff174094cb",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.admin.systemvm.MigrateSystemVMCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "systemvm": {
+          "id": "5d84ece2-137d-4058-bd2c-8c947bd2203b",
+          "systemvmtype": "domainrouter",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "dns1": "8.8.8.8",
+          "gateway": "10.10.0.1",
+          "name": "r-487-VM",
+          "podid": "6c4b9931-7684-4ba0-bcd6-9d8e97fd6cad",
+          "podname": "Pod",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "hostname": "ablecube32-2",
+          "hostcontrolstate": "Enabled",
+          "hypervisor": "KVM",
+          "linklocalip": "169.254.130.37",
+          "linklocalmacaddress": "0e:00:a9:fe:82:25",
+          "linklocalnetmask": "255.255.0.0",
+          "publicip": "10.10.32.150",
+          "publicmacaddress": "1e:01:a5:00:00:36",
+          "publicnetmask": "255.255.0.0",
+          "templateid": "c7e287ea-fb99-444f-8f9f-5504cd703625",
+          "templatename": "SystemVM-gn1569-dnsfix-20261109-KVM-r2",
+          "created": "2026-11-11T00:22:20+0900",
+          "state": "Running",
+          "isdynamicallyscalable": false,
+          "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+          "serviceofferingname": "System Offering For Software Router",
+          "arch": "x86_64",
+          "hasannotations": false
+        }
+      },
+      "created": "2026-11-11T00:24:04+0900",
+      "completed": "2026-11-11T00:24:13+0900",
+      "jobid": "11f3e537-f336-4cab-afaa-85ff174094cb",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "removeVpnUser",
+    "params": {
+      "username": "qa-gn1569-32-vpn-domainadmin",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "1dc9a375-7e05-4313-b367-e83f9da5544d",
+    "result": {
+      "accountid": "cd0a22a7-6047-47ba-a6bf-64bddbf70626",
+      "account": "qa-gn1569-32-scope-domainadmin",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "548bb084-abdf-40e9-86be-01777f994783",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.RemoveVpnUserCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:25:53+0900",
+      "completed": "2026-11-11T00:25:54+0900",
+      "jobid": "1dc9a375-7e05-4313-b367-e83f9da5544d",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "1f923c4d-2db8-4cfa-984b-9bf9617cd0c4"
+    },
+    "jobid": "1f923c4d-2db8-4cfa-984b-9bf9617cd0c4",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.DeleteRemoteAccessVpnCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "IpAddress",
+      "jobinstanceid": "d286ca9d-1d48-42e7-8dac-ff2e73fe3c46",
+      "created": "2026-11-11T00:12:23+0900",
+      "completed": "2026-11-11T00:12:26+0900",
+      "jobid": "1f923c4d-2db8-4cfa-984b-9bf9617cd0c4",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "updateNetwork",
+    "params": {
+      "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "networkofferingid": "9ca47de9-d51e-420e-a1ea-b9b611f4d1f0",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "changecidr": false
+    },
+    "jobid": "290384d4-07a1-42b6-95b4-045afb43e9e9",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.admin.network.UpdateNetworkCmdByAdmin",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "network": {
+          "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "name": "qa-gn1569-32-vpn-lb",
+          "displaytext": "QA1569 VPN LB AutoScale regression",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.234.32.1",
+          "netmask": "255.255.255.0",
+          "cidr": "10.234.32.0/24",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "networkofferingid": "9ca47de9-d51e-420e-a1ea-b9b611f4d1f0",
+          "networkofferingname": "qa-gn1569-32-nat-clone-20261111",
+          "networkofferingdisplaytext": "QA1569 VPN TLS offering regression clone",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Implemented",
+          "related": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "broadcasturi": "vlan://179",
+          "dns1": "8.8.8.8",
+          "type": "Isolated",
+          "vlan": "179",
+          "acltype": "Account",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "service": [
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": []
+            },
+            {
+              "name": "Vpn",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedVpnTypes",
+                  "value": "pptp,l2tp,ipsec",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "VpnTypes",
+                  "value": "remoteaccessvpn",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "StaticNat",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "ElasticIp",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "AssociatePublicIP",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "PortForwarding",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp,udp",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Lb",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedStickinessMethods",
+                  "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"prefix\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is App session based sticky method. Define session stickiness on an existing application cookie. It can be used only for a specific http traffic\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "AutoScaleCounters",
+                  "value": "[{\"methodname\":\"CPU\",\"paramlist\":[]},{\"methodname\":\"MEMORY\",\"paramlist\":[]},{\"methodname\":\"VIRTUALROUTER\",\"paramlist\":[]}]",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedLbAlgorithms",
+                  "value": "roundrobin,leastconn,source",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp, udp, tcp-proxy, ssl, http",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedLBIsolation",
+                  "value": "dedicated",
+                  "canchooseservicecapability": true
+                },
+                {
+                  "name": "LbSchemes",
+                  "value": "Public",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SslTermination",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "VmAutoScaling",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "ElasticLb",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "InlineMode",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "SourceNat",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedSourceNatTypes",
+                  "value": "peraccount",
+                  "canchooseservicecapability": true
+                },
+                {
+                  "name": "RedundantRouter",
+                  "value": "false",
+                  "canchooseservicecapability": true
+                }
+              ]
+            },
+            {
+              "name": "Firewall",
+              "provider": [
+                {
+                  "name": "VirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedTrafficDirection",
+                  "value": "ingress, egress",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp,udp,icmp",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "MultipleIps",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "SupportedEgressProtocols",
+                  "value": "tcp,udp,icmp, all",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "TrafficStatistics",
+                  "value": "per public ip",
+                  "canchooseservicecapability": false
+                }
+              ]
+            }
+          ],
+          "networkdomain": "vpnlb32.qa.internal",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "restartrequired": false,
+          "specifyvlan": false,
+          "specifyipranges": false,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "details": {},
+          "displaynetwork": true,
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": true,
+          "created": "2026-11-09T21:55:46+0900",
+          "receivedbytes": 0,
+          "sentbytes": 416048,
+          "egressdefaultpolicy": false,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "keepmacaddressonpublicnic": true,
+          "hasannotations": false
+        }
+      },
+      "jobinstancetype": "Network",
+      "jobinstanceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "created": "2026-11-11T00:22:13+0900",
+      "completed": "2026-11-11T00:23:08+0900",
+      "jobid": "290384d4-07a1-42b6-95b4-045afb43e9e9",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+      "certid": "90ee4288-25da-4d74-861c-aada3b5af923",
+      "forced": true,
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "46001bee-1087-4b90-bc55-3ec74efa88f2",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:51:50+0900",
+      "completed": "2026-11-11T00:51:57+0900",
+      "jobid": "46001bee-1087-4b90-bc55-3ec74efa88f2",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "certid": "da9225e9-e11e-494b-b292-57993dc2e045",
+      "forced": true
+    },
+    "jobid": "4f3fa22e-a3cf-4a74-b801-ac1a782c682e",
+    "result": {
+      "accountid": "779a7a93-34d1-42e2-b927-943fdf901214",
+      "account": "qa-gn1569-32-vpn-lb-readonly",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "8c61f628-d462-4d6f-8fc7-22cef7112626",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:30:09+0900",
+      "completed": "2026-11-11T00:30:16+0900",
+      "jobid": "4f3fa22e-a3cf-4a74-b801-ac1a782c682e",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "id": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "virtualmachineids": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645"
+    },
+    "jobid": "66b2b8e8-c2b5-43d3-8373-a418895cfbb9",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignToLoadBalancerRuleCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:18:03+0900",
+      "completed": "2026-11-11T00:18:07+0900",
+      "jobid": "66b2b8e8-c2b5-43d3-8373-a418895cfbb9",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "addVpnUser",
+    "params": {
+      "username": "qa-gn1569-32-vpn-domainadmin",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "6f99b616-f651-4b5e-bc32-37527837c689",
+    "result": {
+      "accountid": "cd0a22a7-6047-47ba-a6bf-64bddbf70626",
+      "account": "qa-gn1569-32-scope-domainadmin",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "548bb084-abdf-40e9-86be-01777f994783",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.AddVpnUserCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpnuser": {
+          "id": "6b01c28e-43f5-422a-86f8-4c7ce6f83aee",
+          "username": "qa-gn1569-32-vpn-domainadmin",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "state": "Active"
+        }
+      },
+      "jobinstancetype": "None",
+      "created": "2026-11-11T00:25:54+0900",
+      "completed": "2026-11-11T00:25:55+0900",
+      "jobid": "6f99b616-f651-4b5e-bc32-37527837c689",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "7c32d13c-3be1-40b3-b861-41e5d5c844af"
+    },
+    "jobid": "7c32d13c-3be1-40b3-b861-41e5d5c844af",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.UpdateLoadBalancerRuleCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "loadbalancer": {
+          "id": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+          "name": "qa-gn1569-32-backend-tls-review",
+          "description": "QA1569 single TLS backend, no distribution measurement",
+          "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+          "publicip": "10.10.32.177",
+          "publicport": "19111",
+          "privateport": "18443",
+          "algorithm": "roundrobin",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "cidrlist": "",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "ssl",
+          "backendssl": false,
+          "tags": [],
+          "fordisplay": true
+        }
+      },
+      "created": "2026-11-11T00:18:50+0900",
+      "completed": "2026-11-11T00:18:53+0900",
+      "jobid": "7c32d13c-3be1-40b3-b861-41e5d5c844af",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "certid": "da9225e9-e11e-494b-b292-57993dc2e045",
+      "forced": true
+    },
+    "jobid": "82bae148-e760-4f41-b27c-d3168d864e8a",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:18:08+0900",
+      "completed": "2026-11-11T00:18:11+0900",
+      "jobid": "82bae148-e760-4f41-b27c-d3168d864e8a",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "migrateSystemVm",
+    "params": {
+      "virtualmachineid": "b5409094-90cf-4ca5-96bb-150ced1b52d1",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62"
+    },
+    "jobid": "9848ff82-fc4c-4681-9554-02679cdf2fe4",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.admin.systemvm.MigrateSystemVMCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "systemvm": {
+          "id": "b5409094-90cf-4ca5-96bb-150ced1b52d1",
+          "systemvmtype": "domainrouter",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "dns1": "8.8.8.8",
+          "gateway": "10.10.0.1",
+          "name": "r-488-VM",
+          "podid": "6c4b9931-7684-4ba0-bcd6-9d8e97fd6cad",
+          "podname": "Pod",
+          "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+          "hostname": "ablecube32-2",
+          "hostcontrolstate": "Enabled",
+          "hypervisor": "KVM",
+          "linklocalip": "169.254.202.248",
+          "linklocalmacaddress": "0e:00:a9:fe:ca:f8",
+          "linklocalnetmask": "255.255.0.0",
+          "publicip": "10.10.32.150",
+          "publicmacaddress": "1e:01:53:00:00:36",
+          "publicnetmask": "255.255.0.0",
+          "templateid": "c7e287ea-fb99-444f-8f9f-5504cd703625",
+          "templatename": "SystemVM-gn1569-dnsfix-20261109-KVM-r2",
+          "created": "2026-11-11T00:26:20+0900",
+          "state": "Running",
+          "isdynamicallyscalable": false,
+          "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+          "serviceofferingname": "System Offering For Software Router",
+          "arch": "x86_64",
+          "hasannotations": false
+        }
+      },
+      "created": "2026-11-11T00:28:00+0900",
+      "completed": "2026-11-11T00:28:09+0900",
+      "jobid": "9848ff82-fc4c-4681-9554-02679cdf2fe4",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "99dec5da-a398-4d6a-aab0-49cb3e6b9d53"
+    },
+    "jobid": "99dec5da-a398-4d6a-aab0-49cb3e6b9d53",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:15:41+0900",
+      "completed": "2026-11-11T00:15:44+0900",
+      "jobid": "99dec5da-a398-4d6a-aab0-49cb3e6b9d53",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "createFirewallRule",
+    "params": {
+      "ipaddressid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "protocol": "tcp",
+      "startport": 19111,
+      "endport": 19111,
+      "cidrlist": "10.10.0.0/16"
+    },
+    "jobid": "ac942f55-28e0-4fef-8d6b-3ecf43417f4e",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.firewall.CreateFirewallRuleCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "firewallrule": {
+          "id": "b7c77074-bfca-4d38-a082-fa957e43d20e",
+          "protocol": "tcp",
+          "startport": 19111,
+          "endport": 19111,
+          "ipaddressid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "ipaddress": "10.10.32.177",
+          "state": "Active",
+          "cidrlist": "10.10.0.0/16",
+          "tags": [],
+          "fordisplay": true,
+          "destcidrlist": "",
+          "traffictype": "Ingress"
+        }
+      },
+      "jobinstancetype": "FirewallRule",
+      "jobinstanceid": "b7c77074-bfca-4d38-a082-fa957e43d20e",
+      "created": "2026-11-11T00:18:12+0900",
+      "completed": "2026-11-11T00:18:13+0900",
+      "jobid": "ac942f55-28e0-4fef-8d6b-3ecf43417f4e",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "aec140b5-15f1-4588-ac26-5bfd9b784398"
+    },
+    "jobid": "aec140b5-15f1-4588-ac26-5bfd9b784398",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.UpdateLoadBalancerRuleCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "loadbalancer": {
+          "id": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+          "name": "qa-gn1569-32-backend-tls-review",
+          "description": "QA1569 single TLS backend, no distribution measurement",
+          "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+          "publicip": "10.10.32.177",
+          "publicport": "19111",
+          "privateport": "18443",
+          "algorithm": "roundrobin",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "cidrlist": "",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Active",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "ssl",
+          "backendssl": true,
+          "tags": [],
+          "fordisplay": true
+        }
+      },
+      "created": "2026-11-11T00:19:12+0900",
+      "completed": "2026-11-11T00:19:16+0900",
+      "jobid": "aec140b5-15f1-4588-ac26-5bfd9b784398",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "af98d8df-d82b-4a7a-a2e1-46b7be5ff7dc"
+    },
+    "jobid": "af98d8df-d82b-4a7a-a2e1-46b7be5ff7dc",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:14:54+0900",
+      "completed": "2026-11-11T00:15:00+0900",
+      "jobid": "af98d8df-d82b-4a7a-a2e1-46b7be5ff7dc",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "ba21fc2f-7234-4d80-b7bc-a1b691294fb8"
+    },
+    "jobid": "ba21fc2f-7234-4d80-b7bc-a1b691294fb8",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.RemoveVpnUserCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:10:50+0900",
+      "completed": "2026-11-11T00:10:50+0900",
+      "jobid": "ba21fc2f-7234-4d80-b7bc-a1b691294fb8",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "createLoadBalancerRule",
+    "params": {
+      "name": "qa-gn1569-32-backend-tls-review",
+      "description": "QA1569 single TLS backend, no distribution measurement",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "publicport": 19111,
+      "privateport": 18443,
+      "algorithm": "roundrobin",
+      "protocol": "ssl",
+      "backendssl": true,
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "openfirewall": false
+    },
+    "jobid": "ca3c8bf4-09f1-4b34-af8d-958faa6eff13",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateLoadBalancerRuleCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "loadbalancer": {
+          "id": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+          "name": "qa-gn1569-32-backend-tls-review",
+          "description": "QA1569 single TLS backend, no distribution measurement",
+          "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+          "publicip": "10.10.32.177",
+          "publicport": "19111",
+          "privateport": "18443",
+          "algorithm": "roundrobin",
+          "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "state": "Add",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "protocol": "ssl",
+          "backendssl": true,
+          "tags": [],
+          "fordisplay": true
+        }
+      },
+      "jobinstancetype": "FirewallRule",
+      "jobinstanceid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "created": "2026-11-11T00:18:03+0900",
+      "completed": "2026-11-11T00:18:03+0900",
+      "jobid": "ca3c8bf4-09f1-4b34-af8d-958faa6eff13",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "ca425167-a468-44c7-bb9f-0e920970d1cf"
+    },
+    "jobid": "ca425167-a468-44c7-bb9f-0e920970d1cf",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.AddVpnUserCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpnuser": {
+          "id": "0eec412f-92fc-4581-8e6d-3e7c650f9472",
+          "username": "qa-gn1569-32-vpn-revoke",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "state": "Active"
+        }
+      },
+      "jobinstancetype": "None",
+      "created": "2026-11-11T00:11:44+0900",
+      "completed": "2026-11-11T00:11:45+0900",
+      "jobid": "ca425167-a468-44c7-bb9f-0e920970d1cf",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "addVpnUser",
+    "params": {
+      "username": "qa-gn1569-32-vpn-member",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "cbc56707-56cd-49a8-8aec-6e42be45ceb7",
+    "result": {
+      "accountid": "b1f0e958-f4f9-4a8f-8307-71e6a686b693",
+      "account": "qa-gn1569-32-scope-peer",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "ba7942d5-82a7-4e4f-b29b-b0ab0ca6b7d2",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.AddVpnUserCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpnuser": {
+          "id": "4544c535-3b65-4b50-ae1b-ed91026a0a58",
+          "username": "qa-gn1569-32-vpn-member",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "state": "Active"
+        }
+      },
+      "jobinstancetype": "None",
+      "created": "2026-11-11T00:25:52+0900",
+      "completed": "2026-11-11T00:25:52+0900",
+      "jobid": "cbc56707-56cd-49a8-8aec-6e42be45ceb7",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+      "certid": "da9225e9-e11e-494b-b292-57993dc2e045",
+      "forced": true,
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "cd9bc1e1-63f1-4d18-9268-ab6fcfe278d9",
+    "result": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.AssignCertToLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:51:17+0900",
+      "completed": "2026-11-11T00:51:24+0900",
+      "jobid": "cd9bc1e1-63f1-4d18-9268-ab6fcfe278d9",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "removeVpnUser",
+    "params": {
+      "username": "qa-gn1569-32-vpn-member",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "e68ff763-d37f-4ee5-bd12-36c26d1e5195",
+    "result": {
+      "accountid": "b1f0e958-f4f9-4a8f-8307-71e6a686b693",
+      "account": "qa-gn1569-32-scope-peer",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "ba7942d5-82a7-4e4f-b29b-b0ab0ca6b7d2",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.RemoveVpnUserCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 530,
+      "jobresulttype": "object",
+      "jobresult": {
+        "errorcode": 530,
+        "errortext": "Failed to refresh VPN User=[qa-gn1569-32-vpn-member] due to resource unavailable. VPN owner id=[252]."
+      },
+      "created": "2026-11-11T00:22:47+0900",
+      "completed": "2026-11-11T00:22:47+0900",
+      "jobid": "e68ff763-d37f-4ee5-bd12-36c26d1e5195",
+      "jobstatus": 2
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "f2387740-0109-4e7d-a436-b26846667fd0"
+    },
+    "jobid": "f2387740-0109-4e7d-a436-b26846667fd0",
+    "result": {
+      "accountid": "c91c0443-aca0-45d8-b42c-86d03534c3c7",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+      "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.RemoveCertFromLoadBalancerCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:15:17+0900",
+      "completed": "2026-11-11T00:15:21+0900",
+      "jobid": "f2387740-0109-4e7d-a436-b26846667fd0",
+      "jobstatus": 1
+    }
+  },
+  {
+    "command": "removeVpnUser",
+    "params": {
+      "username": "qa-gn1569-32-vpn-member",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "jobid": "fc0efb7e-0f35-4e48-9cde-fd80e1d70931",
+    "result": {
+      "accountid": "b1f0e958-f4f9-4a8f-8307-71e6a686b693",
+      "account": "qa-gn1569-32-scope-peer",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "userid": "ba7942d5-82a7-4e4f-b29b-b0ab0ca6b7d2",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.RemoveVpnUserCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-11T00:25:51+0900",
+      "completed": "2026-11-11T00:25:51+0900",
+      "jobid": "fc0efb7e-0f35-4e48-9cde-fd80e1d70931",
+      "jobstatus": 1
+    }
+  }
+]

@@ -1,0 +1,868 @@
+[
+  {
+    "role": "root",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "ecd17ca5-1088-41fe-b16e-4be4209a809d",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "f6825b5c-1434-4d82-8e2d-9882ed8d7cc3",
+            "name": "qa-gn1569-31-p07-role-root-tcp",
+            "methodname": "SourceBased",
+            "fordisplay": true,
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "root",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "5166a353-9dfc-4f66-86e3-76ef6393fa50",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "root",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "9eef343f-e374-4d5d-9516-3fdc9ad969b5",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "8398446f-47a4-4b38-883b-6c21d2f13a95",
+            "name": "qa-gn1569-31-p07-role-root-http",
+            "methodname": "LbCookie",
+            "fordisplay": true,
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "root",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "73cfe546-40dc-4254-824f-20ae2c34cc6d",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "root",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "9bb2b915-21c4-419a-a980-e9e4700ff771",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "9d2238e9-ed2d-4036-8750-1fa5b8ee5f75",
+            "name": "qa-gn1569-31-p07-role-root-ssl",
+            "methodname": "AppCookie",
+            "fordisplay": true,
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "root",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "687342e5-d843-4791-953a-596dcf1776b7",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "owner",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "486150ee-7cee-4067-8999-51d054e64301",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "865ba1f7-d191-467b-9813-4dc706239946",
+            "name": "qa-gn1569-31-p07-role-owner-tcp",
+            "methodname": "SourceBased",
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "owner",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "3a3f8e8d-915b-417b-b7c9-4c03ff46ee80",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "owner",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "7e76e728-72e1-40bc-8ee4-6aa187c859e9",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "3084c09d-c3b9-41d4-9598-5d1b1b66a4fb",
+            "name": "qa-gn1569-31-p07-role-owner-http",
+            "methodname": "LbCookie",
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "owner",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "b67a1de5-0ad9-4855-ba01-705638ca8f5f",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "owner",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "904ac648-a1cb-40ba-8852-e135b4f79379",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "93c27e75-c23f-4fbe-a167-d42ed35a4711",
+            "name": "qa-gn1569-31-p07-role-owner-ssl",
+            "methodname": "AppCookie",
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "owner",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "b5fed96a-b2ed-4813-bd28-c82ab1dfb08a",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "peer",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "e3bc391c-e476-4c06-bea8-33b417451dab",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "4339cd41-c924-4197-970c-958760ede757",
+            "name": "qa-gn1569-31-p07-role-peer-tcp",
+            "methodname": "SourceBased",
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "peer",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "690e8708-7a57-4bf4-8ce0-bd1e97e548d9",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "peer",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "eb316e8f-516c-4711-b663-211adf010d55",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "3689a61d-b2a1-4f29-8b37-ab18d2f21e20",
+            "name": "qa-gn1569-31-p07-role-peer-http",
+            "methodname": "LbCookie",
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "peer",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "4947b586-e519-4f48-833c-1e43ea5c7b87",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "peer",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "3360573c-cc84-4f96-9260-be58a47bf5d8",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "851be65a-01d0-4d45-b8b6-ded416002968",
+            "name": "qa-gn1569-31-p07-role-peer-ssl",
+            "methodname": "AppCookie",
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "peer",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "804616f1-c2f9-4880-a084-4f84acebb5b7",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "domainAdmin",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "a3f0ff1b-49cb-4bc7-9029-59ec09d1eef0",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "07227223-8efa-452f-9fdc-83b087cdf1ba",
+            "name": "qa-gn1569-31-p07-role-domainAdmin-tcp",
+            "methodname": "SourceBased",
+            "params": {
+              "expire": "10m",
+              "tablesize": "20k"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "domainAdmin",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "3050cb87-0c83-41ee-8823-6c13112b87a5",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "domainAdmin",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "893313b7-9260-4c6b-b194-cac6acdc78ec",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "01059b3a-5bf0-42b9-b33f-8b491083508b",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "2701c1c1-61a4-40d8-bea3-42cab5aa1737",
+            "name": "qa-gn1569-31-p07-role-domainAdmin-http",
+            "methodname": "LbCookie",
+            "params": {
+              "mode": "insert",
+              "cookie-name": "QA_LB_COOKIE"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "domainAdmin",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "2ce9e3bb-7e41-4075-aa5b-396e18c3333e",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "domainAdmin",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "50709ee4-0654-45f3-bd96-2728bdeef9e7",
+      "jobstatus": 1,
+      "stickinesspolicies": {
+        "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "stickinesspolicy": [
+          {
+            "id": "a7bb5f20-7f92-4ade-a42f-662e82aa7ca2",
+            "name": "qa-gn1569-31-p07-role-domainAdmin-ssl",
+            "methodname": "AppCookie",
+            "params": {
+              "request-learn": "false",
+              "length": "32",
+              "cookie-name": "QA_SESSION",
+              "holdtime": "3h"
+            }
+          }
+        ]
+      }
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "domainAdmin",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "allowed",
+    "actual": "allowed",
+    "result": {
+      "jobid": "af7bf502-0831-4c90-9fc6-155c4d9b6c2c",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist or is not available for the user"
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "allowed",
+    "result": {
+      "jobid": "d72e099d-4ed5-497f-b18d-f7461c82530b",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": false
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist or is not available for the user"
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "allowed",
+    "result": {
+      "jobid": "ef9e7670-5e40-407a-b0ce-bca48bd0ad39",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": false
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 401,
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteLBStickinessPolicy' either does not exist, is not available for user."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "The given command 'createLBStickinessPolicy' either does not exist or is not available for the user"
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "readOnly",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "allowed",
+    "result": {
+      "jobid": "6373c7f9-c4ed-4405-8fbf-ab3f08fa8e87",
+      "jobstatus": 1,
+      "success": true
+    },
+    "matchesExpected": false
+  },
+  {
+    "role": "child",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "allowed",
+    "result": {
+      "jobid": "4bd0ff50-ecf5-4aba-a85e-ac851945400a",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    },
+    "matchesExpected": false
+  },
+  {
+    "role": "child",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "allowed",
+    "result": {
+      "jobid": "9762541f-037b-4856-8588-ed0f550356e6",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    },
+    "matchesExpected": false
+  },
+  {
+    "role": "child",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [createLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": true,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 432,
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [deleteLBStickinessPolicy] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "createLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "denied",
+    "result": {
+      "httpStatus": 531,
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    },
+    "matchesExpected": true
+  },
+  {
+    "role": "child",
+    "command": "deleteLBStickinessPolicy",
+    "projectIdExplicit": false,
+    "expected": "denied",
+    "actual": "allowed",
+    "result": {
+      "jobid": "643e855d-ac33-430c-8b05-27161a86e2de",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Caller does not have permission to operate with provided resource."
+    },
+    "matchesExpected": false
+  }
+]

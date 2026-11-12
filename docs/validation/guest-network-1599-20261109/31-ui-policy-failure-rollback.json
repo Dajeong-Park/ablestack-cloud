@@ -1,0 +1,8 @@
+{
+  "dialog": "네트워크 작업 진행qa-gn1569-31-cond-vm11qa-gn1599-31-isolated기존 네트워크 연결실패 — 완료된 단계는 유지됨Unable to add NIC to i-439-973-VM: Resource [Host:4] is unreachable: PVLAN policy setup failed; NIC attachment was rolled back남은 단계 재시도남은 작업 취소 · 리소스 보존닫기",
+  "height": 841,
+  "scrollWidth": 1670,
+  "theme": "ant-scrolling-effect",
+  "url": "http://10.10.31.10:8080/client/#/vm/1cdd7204-2b82-4b88-9b39-7e3d9b318117?tab=nics",
+  "width": 1680
+}

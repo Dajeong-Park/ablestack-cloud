@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "LISTEN 0      4096    10.10.32.177:19111      0.0.0.0:*    users:((\"haproxy\",pid=16091,fd=18))                                                  \nLISTEN 0      4096    10.10.32.177:18871      0.0.0.0:*    users:((\"haproxy\",pid=16091,fd=9))                                                   \nlocal 10.10.32.177 dev lo table local src 10.10.32.150 uid 0 \n    cache <local> \n-A FIREWALL_10.10.32.177 -s 10.10.0.0/16 -p tcp -m tcp --dport 19111 -j RETURN\n-A INPUT -d 10.10.32.177/32 -p tcp -m tcp --dport 18871 -m state --state NEW -j ACCEPT\n-A INPUT -d 10.10.32.177/32 -p tcp -m tcp --dport 19111 -m state --state NEW -j ACCEPT",
+  "error": ""
+}

@@ -5506,7 +5506,17 @@ public class ManagementServerImpl extends MutualExclusiveIdsManagerBase implemen
                     _accountMgr.checkAccess(caller, null, false, _accountDao.findById(networkMap.getAccountId()));
                 } catch (PermissionDeniedException ex) {
                     logger.info("Account " + caller + " do not have permission to access account of network " + network);
-                    _accountMgr.checkAccess(caller, SecurityChecker.AccessType.UseEntry, false, network);
+                    Account networkCaller = caller;
+                    final Long projectId = cmd.getProjectId();
+                    if (projectId != null) {
+                        if (projectId <= 0) {
+                            throw new InvalidParameterValueException("A single valid project is required for the Shared IP lookup");
+                        }
+                        // Validate membership before using the project's explicit network grant.
+                        // The IP search below still applies the original caller/project ACL filters.
+                        networkCaller = _accountMgr.finalizeOwner(caller, null, null, projectId);
+                    }
+                    _accountMgr.checkAccess(networkCaller, SecurityChecker.AccessType.UseEntry, false, network);
                     isAllocated = Boolean.TRUE;
                 }
             } else { // Domain level

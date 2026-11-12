@@ -1,0 +1,32 @@
+[
+  {
+    "cluster": 31,
+    "target": "기본 보기",
+    "selected": "기본 보기",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "oldVmHeadingCount": 0,
+    "nicTabMounted": 0
+  },
+  {
+    "cluster": 31,
+    "target": "qa-gn1569-31-project",
+    "selected": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "oldVmHeadingCount": 0,
+    "nicTabMounted": 0
+  },
+  {
+    "cluster": 32,
+    "target": "기본 보기",
+    "selected": "기본 보기",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "nicTabMounted": 0
+  },
+  {
+    "cluster": 32,
+    "target": "qa-gn1569-32-project",
+    "selected": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "nicTabMounted": 0
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "mergeCommit": "5030bdde5191972697c361b6e8d5aceff2bbf6bf",
+  "parents": [
+    "6d94bdd6039f0a6dcb4434fd0bd73e30342aee06",
+    "2d34af8f8a9b76eb9b143ef42e775883aaa630d0"
+  ],
+  "incomingCommits": 19,
+  "incomingFiles": 84,
+  "epicUiExclusiveFilesUnchanged": 186,
+  "overlappingUiFiles": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/store/modules/user.js",
+    "ui/src/views/AutogenView.vue"
+  ],
+  "manualConflictFiles": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/store/modules/user.js"
+  ],
+  "backendManualConflicts": 0,
+  "semanticUiConflictResolution": {
+    "file": "ui/src/views/compute/VmDevicesTab.vue",
+    "reason": "Full UI regression detected changed Running-PCI staging permission; preserve the existing Epic Stopped-only PCI guard per user preference",
+    "commit": "f9b34658514",
+    "apiChanges": false
+  }
+}

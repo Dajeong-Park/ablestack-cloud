@@ -1,0 +1,8 @@
+{
+  "version": [
+    "HAProxy version 2.6.12-1+deb12u4 2026/10/17 - https://haproxy.org/",
+    "Status: long-term supported branch - will stop receiving fixes around Q2 2027."
+  ],
+  "checkerSha256": "6b2e8abbf4e6509e709c2e672037d56e0d427b7226fc94d8d54fb6044c82e5da",
+  "rules": 9
+}

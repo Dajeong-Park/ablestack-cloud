@@ -1,0 +1,164 @@
+{
+  "createdIds": [
+    "391eeb0c-7d33-47ea-89c3-5350cfd723eb",
+    "efae6a96-7e23-4f4d-afaf-329353f77654",
+    "be8dbf48-ca23-4256-8d0e-78c9a4128798",
+    "20d16606-6d80-41c7-9392-2009e811df62",
+    "e21ee365-e9af-4c14-9678-8421da290e01",
+    "d5b8f4d4-96b3-4a74-99fc-ca9b411c9143",
+    "6ddd43bc-2287-4325-a58c-bd47d666ac6b",
+    "f57b7dbc-c89a-49f1-a28c-764320bf39af",
+    "ebb93f56-43ba-422c-946d-18fd3f08afc5",
+    "444b443b-0603-40de-ad24-f1295b545ff4",
+    "f34987ba-289e-4cba-8263-f0e4ceee77e5"
+  ],
+  "all": {
+    "httpStatus": 200,
+    "count": 13,
+    "annotation": [
+      {
+        "id": "f34987ba-289e-4cba-8263-f0e4ceee77e5",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 11",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "444b443b-0603-40de-ad24-f1295b545ff4",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 10",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "ebb93f56-43ba-422c-946d-18fd3f08afc5",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 09",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "f57b7dbc-c89a-49f1-a28c-764320bf39af",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 08",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "6ddd43bc-2287-4325-a58c-bd47d666ac6b",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 07",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "d5b8f4d4-96b3-4a74-99fc-ca9b411c9143",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 06",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "e21ee365-e9af-4c14-9678-8421da290e01",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 05",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "20d16606-6d80-41c7-9392-2009e811df62",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 04",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "be8dbf48-ca23-4256-8d0e-78c9a4128798",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 03",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "efae6a96-7e23-4f4d-afaf-329353f77654",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 02",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "391eeb0c-7d33-47ea-89c3-5350cfd723eb",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 UI page review 01",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:31:11+0900"
+      },
+      {
+        "id": "d1e213b1-1144-4ec8-9a7c-fa9737e11f88",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 Isolated admin review",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": true,
+        "created": "2026-11-12T17:07:34+0900"
+      },
+      {
+        "id": "7e13bdaa-a9a6-4fb1-b4fd-8b288eadd30f",
+        "entitytype": "NETWORK",
+        "entityid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "entityname": "qa-gn1569-32-vpn-lb",
+        "annotation": "gn1569-20261112 Isolated public review",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "adminsonly": false,
+        "created": "2026-11-12T17:07:34+0900"
+      }
+    ]
+  }
+}

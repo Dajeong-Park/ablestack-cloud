@@ -1,0 +1,41 @@
+{
+  "bridge": "breno12399-154",
+  "address": "172.30.31.254",
+  "alreadyPresent": false,
+  "before": [
+    {
+      "ifindex": 843,
+      "ifname": "breno12399-154",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "noqueue",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "20:3a:43:01:a3:c0",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "addr_info": []
+    }
+  ],
+  "configDrives": [
+    {
+      "device": "cdrom",
+      "target": "hdc",
+      "source": null
+    },
+    {
+      "device": "cdrom",
+      "target": "hdd",
+      "source": {
+        "file": "/mnt/006ac919-7755-3e59-9cd8-9b906a9e22e8/i-439-973-VM.iso",
+        "index": "1"
+      }
+    }
+  ]
+}

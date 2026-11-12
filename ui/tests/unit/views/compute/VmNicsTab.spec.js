@@ -23,19 +23,20 @@ const nic = { id: 'nic', networkid: 'l2', type: 'L2', isdefault: true, enabled: 
 const flush = async () => { for (let i = 0; i < 40; i++) await Promise.resolve() }
 const responses = (api, params) => {
   if (api === 'listVirtualMachines') return { listvirtualmachinesresponse: { virtualmachine: [{ ...vm, id: params.id, nic: [nic] }] } }
+  if (api === 'listVnfAppliances') return { listvnfappliancesresponse: { virtualmachine: [{ ...vm, id: params.id, ...(params.projectid ? { projectid: params.projectid } : {}), nic: [nic] }] } }
   if (api === 'listNics') return { listnicsresponse: { nic: [{ ...nic, linkstate: false }] } }
   if (api === 'listZones') return { listzonesresponse: { zone: [{ networktype: 'Advanced' }] } }
   if (api === 'listVMSnapshot') {
     if (params.pagesize && !params.page) throw new Error('page is required with pagesize')
     return { listvmsnapshotresponse: {} }
   }
-  if (api === 'listNetworks') return { listnetworksresponse: { network: [{ id: 'l2', type: 'L2', state: 'Setup' }] } }
+  if (api === 'listNetworks') return { listnetworksresponse: { count: 1, network: [{ id: 'l2', type: 'L2', state: 'Setup' }] } }
   throw new Error('Unexpected API: ' + api)
 }
-function mount () {
+function mount (path = '/vm/vm', extra = {}) {
   return shallowMount(VmNicsTab, {
-    props: { resource: vm },
-    global: { mocks: { $store: { getters: { apis: { listZones: {}, listVMSnapshot: {}, createNetwork: {}, addNicToVirtualMachine: {} }, project: {}, userInfo: { id: 'admin' } }, state: { user: { token: 'token' } } }, $route: { path: '/vm/vm', fullPath: '/vm/vm?tab=nics' }, $t: x => x, $te: () => true } }
+    props: { resource: { ...vm, nic: [nic], ...extra } },
+    global: { mocks: { $store: { getters: { apis: { listNetworks: {}, listZones: {}, listVMSnapshot: {}, createNetwork: {}, addNicToVirtualMachine: {} }, project: {}, userInfo: { id: 'admin' } }, state: { user: { token: 'token' } } }, $route: { path, fullPath: path + '?tab=nics' }, $t: x => x, $te: () => true } }
   })
 }
 beforeEach(() => { jest.useFakeTimers(); jest.clearAllMocks(); getAPI.mockImplementation(async (api, params) => responses(api, params)) })
@@ -51,6 +52,24 @@ test('initial load completes and snapshot API uses the existing singular command
   expect(getAPI).toHaveBeenCalledWith('listVMSnapshot', expect.objectContaining({ virtualmachineid: 'vm' }))
   wrapper.unmount()
 })
+
+test('VNF refresh uses its existing metadata command and virtualmachine response field with project scope', async () => {
+  const wrapper = mount('/vnfapp/vm', { projectid: 'project' }); await flush()
+  expect(getAPI).toHaveBeenCalledWith('listVnfAppliances', { id: 'vm', projectid: 'project', ignoreproject: true })
+  expect(getAPI.mock.calls.some(([api]) => api === 'listVirtualMachines')).toBe(false)
+  expect(wrapper.vm.rows).toHaveLength(1); expect(wrapper.vm.rows[0].linkstate).toBe(false)
+  expect(wrapper.vm.networks.l2.id).toBe('l2'); wrapper.unmount()
+})
+
+test('a malformed or denied VNF metadata response preserves NICs without falling back to the VM API', async () => {
+  const wrapper = mount('/vnfapp/vm'); await flush()
+  getAPI.mockImplementation(async (api, params) => api === 'listVnfAppliances' ? { listvirtualmachinesresponse: { virtualmachine: [vm] } } : responses(api, params))
+  await wrapper.vm.fetchData(); await flush()
+  expect(wrapper.vm.listRefreshFailed).toBe(true); expect(wrapper.vm.rows).toHaveLength(1)
+  expect(getAPI.mock.calls.some(([api]) => api === 'listVirtualMachines')).toBe(false)
+  getAPI.mockImplementation(async (api, params) => responses(api, params)); await wrapper.vm.fetchData(); await flush()
+  expect(wrapper.vm.listRefreshFailed).toBe(false); wrapper.unmount()
+})
 test('failed refresh preserves data and blocks writes; recovery clears the warning', async () => {
   const wrapper = mount(); await flush()
   getAPI.mockRejectedValue(new Error('offline')); await wrapper.vm.fetchData(); await flush()
@@ -62,10 +81,29 @@ test('failed refresh preserves data and blocks writes; recovery clears the warni
 })
 test('candidate pagination keeps VM ownership and excludes attached networks', async () => {
   const wrapper = mount(); await flush()
-  getAPI.mockImplementation(async (api, params) => params.canusefordeploy ? { listnetworksresponse: { count: 3, network: params.page === 1 ? [{ id: 'l2', state: 'Setup' }, { id: 'first', state: 'Allocated' }] : [{ id: 'second', state: 'Implemented' }] } } : responses(api, params))
+  getAPI.mockImplementation(async (api, params) => params.canusefordeploy ? { listnetworksresponse: { count: 3, network: (params.page === 1 ? [{ id: 'l2', state: 'Setup' }, { id: 'first', state: 'Allocated' }] : [{ id: 'second', state: 'Implemented' }]).map(row => ({ ...row, zoneid: 'zone' })) } } : responses(api, params))
   await wrapper.vm.openAttach()
   expect(wrapper.vm.candidates.map(n => n.id)).toEqual(['first', 'second'])
-  expect(getAPI).toHaveBeenCalledWith('listNetworks', expect.objectContaining({ page: 2, account: 'admin', domainid: 'domain', zoneid: 'zone', canusefordeploy: true }))
+  expect(getAPI).toHaveBeenCalledWith('listNetworks', expect.objectContaining({ page: 2, account: 'admin', domainid: 'domain', zoneid: 'zone', canusefordeploy: true }), { preserveOnFailure: true })
+  wrapper.unmount()
+})
+
+test('a shared network lookup retry clears both link and write gates without a second VM reload', async () => {
+  const wrapper = mount(); await flush()
+  getAPI.mockImplementation(async (api, params) => {
+    if (api === 'listNetworks') throw new Error('Network lookup unavailable')
+    return responses(api, params)
+  })
+  await wrapper.vm.fetchData(); await flush()
+  expect(wrapper.vm.rows).toHaveLength(1)
+  expect(wrapper.vm.vmNetworkAccessFailed).toBe(true)
+  expect(wrapper.vm.networks).toEqual({})
+  expect(wrapper.vm.reason('addNicToVirtualMachine')).toBe('message.list.refresh.stale')
+  getAPI.mockImplementation(async (api, params) => responses(api, params))
+  await wrapper.vm.fetchVmNetworkAccess(); await flush()
+  expect(wrapper.vm.listRefreshFailed).toBe(false)
+  expect(wrapper.vm.networks.l2.id).toBe('l2')
+  expect(wrapper.vm.reason('addNicToVirtualMachine')).toBe('')
   wrapper.unmount()
 })
 test('refresh leaves the open creation form resource stable and VM switch closes it', async () => {
@@ -75,6 +113,25 @@ test('refresh leaves the open creation form resource stable and VM switch closes
   expect(wrapper.vm.formVm).toBe(original)
   await wrapper.setProps({ resource: { ...vm, id: 'next' } }); await flush()
   expect(wrapper.vm.form).toBe(''); expect(wrapper.vm.loading).toBe(false)
+  wrapper.unmount()
+})
+
+test('a late candidate response cannot repopulate a closed and reopened attachment dialog', async () => {
+  const wrapper = mount(); await flush()
+  let resolveOld
+  getAPI.mockImplementation(async (api, params) => params.canusefordeploy
+    ? new Promise(resolve => { resolveOld = resolve })
+    : responses(api, params))
+  const old = wrapper.vm.openAttach()
+  wrapper.vm.closeForm()
+  getAPI.mockImplementation(async (api, params) => params.canusefordeploy
+    ? { listnetworksresponse: { count: 0 } }
+    : responses(api, params))
+  await wrapper.vm.openAttach()
+  resolveOld({ listnetworksresponse: { count: 1, network: [{ id: 'stale', zoneid: 'zone', state: 'Setup' }] } })
+  await old
+  expect(wrapper.vm.candidates).toEqual([])
+  expect(wrapper.vm.candidatesLoading).toBe(false)
   wrapper.unmount()
 })
 

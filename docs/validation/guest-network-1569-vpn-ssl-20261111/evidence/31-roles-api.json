@@ -1,0 +1,449 @@
+{
+  "results": [
+    {
+      "role": "member",
+      "command": "removeVpnUser",
+      "result": {
+        "jobid": "eafe0882-9a47-48a8-abb8-61218f9d644b",
+        "jobstatus": 1,
+        "success": true
+      },
+      "targetAbsent": true
+    },
+    {
+      "role": "member",
+      "command": "addVpnUser",
+      "result": {
+        "jobid": "3ccf67b8-e811-4c4a-b2d3-ecce1baada10",
+        "jobstatus": 1,
+        "vpnuser": {
+          "id": "047ac853-5d2c-4406-a4c4-0d8dec427e08",
+          "username": "qa-gn1569-31-vpn-member",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        }
+      }
+    },
+    {
+      "role": "domainAdmin",
+      "command": "removeVpnUser",
+      "result": {
+        "jobid": "f80a07a3-1c6b-4b36-b20a-8b3d76fdcd9d",
+        "jobstatus": 1,
+        "success": true
+      },
+      "targetAbsent": true
+    },
+    {
+      "role": "domainAdmin",
+      "command": "addVpnUser",
+      "result": {
+        "jobid": "896834c5-cbb7-4b28-af18-f3b25ac1478e",
+        "jobstatus": 1,
+        "vpnuser": {
+          "id": "1090c4e6-79e4-4903-a12f-591b9c5dd940",
+          "username": "qa-gn1569-31-vpn-domainadmin",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+          "project": "qa-gn1569-31-shared-reg",
+          "state": "Active"
+        }
+      }
+    },
+    {
+      "role": "vpnLbReadOnly",
+      "command": "removeVpnUser",
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'removeVpnUser' either does not exist, is not available for user."
+      },
+      "expected": "denied"
+    },
+    {
+      "role": "vpnLbReadOnly",
+      "command": "deleteRemoteAccessVpn",
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'deleteRemoteAccessVpn' either does not exist, is not available for user."
+      },
+      "expected": "denied"
+    },
+    {
+      "role": "vpnLbReadOnly",
+      "command": "removeFromLoadBalancerRule",
+      "result": {
+        "httpStatus": 401,
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'removeFromLoadBalancerRule' either does not exist, is not available for user."
+      },
+      "expected": "denied"
+    },
+    {
+      "role": "nonMemberChild",
+      "command": "removeVpnUser",
+      "result": {
+        "httpStatus": 432,
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [removeVpnUser] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+      },
+      "expected": "denied"
+    },
+    {
+      "role": "nonMemberChild",
+      "command": "deleteRemoteAccessVpn",
+      "result": {
+        "httpStatus": 432,
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [deleteRemoteAccessVpn] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+      },
+      "expected": "denied"
+    },
+    {
+      "role": "nonMemberChild",
+      "command": "removeFromLoadBalancerRule",
+      "result": {
+        "httpStatus": 432,
+        "uuidList": [],
+        "errorcode": 432,
+        "cserrorcode": 9999,
+        "errortext": "The API [removeFromLoadBalancerRule] does not exist or is not available for this account/user in project [59614883-4085-4a76-99da-b8a1e3a78eed]."
+      },
+      "expected": "denied"
+    }
+  ],
+  "readonlyPolicy": {
+    "httpStatus": 200,
+    "count": 34,
+    "projectrolepermission": [
+      {
+        "id": "89762594-6dd3-4ae7-a585-a242b022e752",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "addVpnUser",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "da5f0f61-407a-423f-9191-90edb4490002",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "removeVpnUser",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "1b8da70e-0568-4bea-aa56-3b98e39080c7",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createRemoteAccessVpn",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "0b4adbcb-d666-4403-bb64-23ba8a06c840",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteRemoteAccessVpn",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "7e5acfdf-8f9f-47a6-be5d-7032499e9a40",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createVpnGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "ea5563e4-5ea8-4200-9c83-83eb0ca65f7f",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteVpnGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "783bf949-43e9-4986-933f-5d9f785a0e21",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createVpnConnection",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "f98c9aeb-cccd-445e-a717-a5c883365ec9",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "resetVpnConnection",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "9100133b-c646-4455-9fd7-1bf5f8c8b7b0",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteVpnConnection",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "7966217c-7215-4dd3-8eda-5d1fe0d9ad61",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createVpnCustomerGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "b719abce-9168-4b5f-98de-6c86965d892a",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "updateVpnCustomerGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "81ec886f-0dbe-40b5-bb04-85693bec104a",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteVpnCustomerGateway",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "108df896-92a3-4fb4-b187-aedb59c6e2c7",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "20938bff-b654-4f88-b733-e0668dba7d2b",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "updateLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "b8f148f4-8076-4d5f-b79a-2e966d627868",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "a6bb382b-9496-4f83-909f-cad807c9416f",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "assignToLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "27ea5f11-b809-40b0-a23c-91001c3e2338",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "removeFromLoadBalancerRule",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "404dcd09-80fb-4a34-9b87-1a2a361121a5",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "3fe148e8-8310-413f-9c15-24dfeb43f7dd",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "updateLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "48a21eae-335c-40ab-94c4-e1dfaf624a34",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "f9255fbe-4aae-4b65-aa57-99842e57d0aa",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "assignToLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "e0f31c35-61fb-4dc5-affb-364a68f6521c",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "removeFromLoadBalancer",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "5cbb17af-4165-4757-995d-0b1cd9c619b4",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createLBStickinessPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "f2ea0716-98be-4bfb-b94b-2ddc8aed3480",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteLBStickinessPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "4733007d-ef00-4be9-8167-a63b350b2d9e",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createLBHealthCheckPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "af1ce461-1709-40ea-9dee-4d8f43337a9a",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteLBHealthCheckPolicy",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "8fe69c69-4168-4550-87fd-0264758307e1",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "createNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "f5117d41-8e84-4a4b-a6f2-ce0083f0145c",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "updateNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "ed97ff2b-3462-446b-b76a-648b26c7178e",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "deleteNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "6c8730a1-fa50-4cef-a037-fed3fdda23f8",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "restartNetwork",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "a7396e5a-a361-4fcb-8e8f-b56a9db368c6",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "addNicToVirtualMachine",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "6b4b0042-52dd-4719-aa91-be7a5880c343",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "removeNicFromVirtualMachine",
+        "permission": "deny",
+        "description": "QA regression read-only"
+      },
+      {
+        "id": "281bc676-67db-4982-9f72-061c7c6c066f",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "assignCertToLoadBalancer",
+        "permission": "deny",
+        "description": "Temporary QA1569 SSL UI/API guard validation"
+      },
+      {
+        "id": "2eb91ead-0d64-452a-a969-306cdc59fe17",
+        "projectroleid": "553d2b1e-4521-4fbd-8730-67f1260c4b95",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "projectrolename": "qa-gn1569-31-vpn-lb-readonly",
+        "rule": "removeCertFromLoadBalancer",
+        "permission": "deny",
+        "description": "Temporary QA1569 SSL UI/API guard validation"
+      }
+    ]
+  },
+  "sslExplicitlyDenied": {
+    "assignCertToLoadBalancer": true,
+    "removeCertFromLoadBalancer": true
+  },
+  "note": "Existing custom read-only project role does not explicitly deny the SSL certificate APIs; no SSL write was attempted under that incomplete policy."
+}

@@ -1,0 +1,17 @@
+{
+  "active": "active",
+  "iface": "bridge0",
+  "zone": "public",
+  "rules": [
+    {
+      "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.10.32.150/32\" port port=\"19569\" protocol=\"udp\" accept",
+      "existedBefore": false,
+      "temporary": true
+    },
+    {
+      "rule": "rule family=\"ipv4\" priority=\"-100\" source address=\"10.10.32.150/32\" icmp-type name=\"echo-request\" accept",
+      "existedBefore": false,
+      "temporary": true
+    }
+  ]
+}

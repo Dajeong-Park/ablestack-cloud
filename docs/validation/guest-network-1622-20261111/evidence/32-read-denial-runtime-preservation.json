@@ -1,0 +1,42 @@
+{
+  "before": {
+    "files": {
+      "/etc/haproxy/haproxy.cfg": {
+        "hash": "dc864c957d26e825813ca8e7d2840e05b0489ca78879f18c6f14d8843f8f492c",
+        "mtime": 1794361958482794810
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-18874.pem": {
+        "hash": "ec4629336ce12d2617005984f2392477078ee4587af58c0b420ba2c64f4133e5",
+        "mtime": 1794361958482794810
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-19111.pem": {
+        "hash": "b428380ec468c65ef5069444b015f418175d1aba95e8243912b2adbb125a4747",
+        "mtime": 1794361958482794810
+      }
+    },
+    "haproxyPids": "2300\n295602",
+    "xl2tpdPids": "9660"
+  },
+  "after": {
+    "files": {
+      "/etc/haproxy/haproxy.cfg": {
+        "hash": "dc864c957d26e825813ca8e7d2840e05b0489ca78879f18c6f14d8843f8f492c",
+        "mtime": 1794361958482794810
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-18874.pem": {
+        "hash": "ec4629336ce12d2617005984f2392477078ee4587af58c0b420ba2c64f4133e5",
+        "mtime": 1794361958482794810
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-19111.pem": {
+        "hash": "b428380ec468c65ef5069444b015f418175d1aba95e8243912b2adbb125a4747",
+        "mtime": 1794361958482794810
+      }
+    },
+    "haproxyPids": "2300\n295602",
+    "xl2tpdPids": "9660"
+  },
+  "allConfigPidsAndCertMappingUnchanged": true,
+  "records": 124,
+  "allow": 40,
+  "deny": 84
+}

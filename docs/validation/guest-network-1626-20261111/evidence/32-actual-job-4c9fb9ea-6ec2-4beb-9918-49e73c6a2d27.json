@@ -1,0 +1,38 @@
+{
+  "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+  "account": "admin",
+  "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+  "domainpath": "ROOT",
+  "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+  "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateLBStickinessPolicyCmd",
+  "jobprocstatus": 0,
+  "jobresultcode": 0,
+  "jobresulttype": "object",
+  "jobresult": {
+    "stickinesspolicies": {
+      "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "stickinesspolicy": [
+        {
+          "id": "1367a0cb-6712-4107-b3ec-34beead632a1",
+          "name": "qa-gn1626-32-review",
+          "methodname": "AppCookie",
+          "fordisplay": true,
+          "params": {
+            "request-learn": "false",
+            "length": "32",
+            "cookie-name": "QA_SESSION",
+            "holdtime": "3h"
+          }
+        }
+      ]
+    }
+  },
+  "jobinstancetype": "None",
+  "created": "2026-11-11T16:08:36+0900",
+  "completed": "2026-11-11T16:08:40+0900",
+  "jobid": "4c9fb9ea-6ec2-4beb-9918-49e73c6a2d27",
+  "jobstatus": 1
+}

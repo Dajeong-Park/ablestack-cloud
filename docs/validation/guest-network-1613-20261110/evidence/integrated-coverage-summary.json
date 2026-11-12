@@ -1,0 +1,22 @@
+{
+  "rows": 63,
+  "counts": {
+    "31": {
+      "부분": 54,
+      "환경 차단": 6,
+      "적용 제외": 3
+    },
+    "32": {
+      "부분": 54,
+      "환경 차단": 6,
+      "적용 제외": 3
+    }
+  },
+  "complete1569": false,
+  "resolvedIssue": 1613,
+  "nextIssues": [
+    1616,
+    1569
+  ],
+  "backend31Incomplete": true
+}

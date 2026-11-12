@@ -1,0 +1,14 @@
+{
+  "cluster": 32,
+  "mode": "connect",
+  "load": {
+    "exit": 0,
+    "out": "loaded ike secret 'ike-qa-32'\nno authorities found, 0 unloaded\nno pools found, 0 unloaded\nloaded connection 'qa-ra-32'\nsuccessfully loaded 1 connections, 0 unloaded",
+    "error": "opening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509ca' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509ocsp' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509aa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509ac' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/x509crl' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/pubkey' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/private' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/rsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/ecdsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/pkcs8' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32/pkcs12' failed: No such file or directory"
+  },
+  "initiate": {
+    "exit": 1,
+    "out": "[IKE] initiating Main Mode IKE_SA qa-ra-32[12] to 10.10.32.150\n[ENC] generating ID_PROT request 0 [ SA V V V V V ]\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (312 bytes)\n[IKE] sending retransmit 1 of request message ID 0, seq 1\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (312 bytes)\n[IKE] sending retransmit 2 of request message ID 0, seq 1\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (312 bytes)\n[IKE] giving up after 2 retransmits\n[IKE] establishing IKE_SA failed, peer not responding",
+    "error": "initiate failed: establishing CHILD_SA 'qa-ra-child-32' failed"
+  }
+}

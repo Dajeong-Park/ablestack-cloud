@@ -1,0 +1,323 @@
+{
+  "rulesUnchangedAfterReadonlyUi401": true,
+  "projectRoleUnchanged": true,
+  "tierBRestoredToDefaultAllow": true,
+  "rules": {
+    "count": 4,
+    "networkacl": [
+      {
+        "id": "e76dc2e8-1a0c-40ad-9dd2-1621be584fc6",
+        "protocol": "all",
+        "traffictype": "Egress",
+        "state": "Active",
+        "cidrlist": "0.0.0.0/0",
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 200,
+        "action": "Allow",
+        "fordisplay": true
+      },
+      {
+        "id": "a900900a-1b1e-4356-aec4-888a24fbb513",
+        "protocol": "all",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "0.0.0.0/0",
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 100,
+        "action": "Allow",
+        "fordisplay": true
+      },
+      {
+        "id": "d9274e9a-2c62-400a-835e-287c2963c6a2",
+        "protocol": "tcp",
+        "startport": "22",
+        "endport": "22",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "10.243.32.0/25",
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 20,
+        "action": "Deny",
+        "fordisplay": true
+      },
+      {
+        "id": "46dec476-3815-4947-9517-b31435089d1d",
+        "protocol": "icmp",
+        "traffictype": "Ingress",
+        "state": "Active",
+        "cidrlist": "10.243.32.0/25",
+        "icmptype": -1,
+        "icmpcode": -1,
+        "tags": [],
+        "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+        "aclname": "qa-gn1569-32-cond-traffic-acl",
+        "number": 10,
+        "action": "Deny",
+        "fordisplay": true
+      }
+    ]
+  },
+  "role": {
+    "count": 11,
+    "projectrolepermission": [
+      {
+        "id": "b8c52021-341e-4cdd-89e8-f0829594c48e",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "createNetwork",
+        "permission": "deny"
+      },
+      {
+        "id": "fceff221-59b2-46e1-8be5-981bf4f60f98",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "updateNetwork",
+        "permission": "deny"
+      },
+      {
+        "id": "8b5d4eb8-d01d-47fc-95d7-a77186c81c3e",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "addNicToVirtualMachine",
+        "permission": "deny"
+      },
+      {
+        "id": "6e74a85f-7a03-4f39-bdf7-73107e004fc9",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "removeNicFromVirtualMachine",
+        "permission": "deny"
+      },
+      {
+        "id": "b26e3d9e-a239-4581-88c7-198350d3695a",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "list*",
+        "permission": "allow"
+      },
+      {
+        "id": "d54963da-9cad-4a6c-b2d8-4d0dc04ec2c5",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "get*",
+        "permission": "allow"
+      },
+      {
+        "id": "8d06b7c8-9aad-4aa6-a26b-5dfc6d21a648",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "queryAsyncJobResult",
+        "permission": "allow"
+      },
+      {
+        "id": "684ee6b8-1ec9-4425-bee7-fa03cd92607d",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "listApis",
+        "permission": "allow"
+      },
+      {
+        "id": "ecb33374-45b9-4773-a958-95222df809d1",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "listNetworks",
+        "permission": "allow"
+      },
+      {
+        "id": "6bfabb58-e86c-46ca-9c07-0dc14d51ec49",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "listVirtualMachines",
+        "permission": "allow"
+      },
+      {
+        "id": "f14fe39e-d902-4b75-bd52-a230ad2ce6eb",
+        "projectroleid": "b6158711-fd48-4123-960b-c8d74a235ad6",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "projectrolename": "qa-gn1569-32-conditional-readonly",
+        "rule": "*",
+        "permission": "deny"
+      }
+    ]
+  },
+  "network": {
+    "id": "0ebf7b1a-6383-4060-b317-45a848e91372",
+    "name": "qa-gn1569-32-cond-tier-b",
+    "displaytext": "QA1569 compatible VPC ACL traffic",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.243.32.129",
+    "netmask": "255.255.255.128",
+    "cidr": "10.243.32.128/25",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone",
+    "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+    "networkofferingname": "qa-gn1569-32-vpc-no-lb",
+    "networkofferingdisplaytext": "QA1569 VPC compatible No LB 32",
+    "networkofferingconservemode": true,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Implemented",
+    "related": "0ebf7b1a-6383-4060-b317-45a848e91372",
+    "broadcasturi": "vlan://147",
+    "dns1": "8.8.8.8",
+    "type": "Isolated",
+    "vlan": "147",
+    "acltype": "Account",
+    "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+    "project": "qa-gn1569-32-conditional",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "ElasticIp",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AssociatePublicIP",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp,icmp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "value": "peraccount",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "RedundantRouter",
+            "value": "false",
+            "canchooseservicecapability": true
+          }
+        ]
+      }
+    ],
+    "networkdomain": "cond32.qa.internal",
+    "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+    "restartrequired": false,
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+    "vpcname": "qa-gn1569-32-cond-vpc",
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [],
+    "details": {},
+    "displaynetwork": true,
+    "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935",
+    "aclname": "default_allow",
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": false,
+    "created": "2026-11-09T04:55:54+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  }
+}

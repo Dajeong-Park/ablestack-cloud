@@ -1,0 +1,11 @@
+{
+  "command": "deleteTags",
+  "params": {
+    "ignoreproject": true,
+    "resourceids": "87601b32-f211-4609-819f-6d0f4810b788",
+    "resourcetype": "Network",
+    "tags[0].key": "gn1569-20261112-root",
+    "tags[0].value": "temporary"
+  },
+  "jobid": "2e62bb63-7b2a-4d9e-b0c9-b2dde9d143bb"
+}

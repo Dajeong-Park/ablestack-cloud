@@ -1,0 +1,282 @@
+[
+  {
+    "case": "baseline-default-deny",
+    "utc": "2026-11-12T09:50:54Z",
+    "result": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 2051ms\n\n"
+      }
+    }
+  },
+  {
+    "case": "tcp-create-job",
+    "utc": "2026-11-12T09:50:56Z",
+    "result": {
+      "jobid": "88f60c4f-cdc8-4236-a107-adc12b407dae",
+      "jobstatus": 1,
+      "firewallrule": {
+        "id": "a1abfea2-72e9-4df4-bf4d-f4c01c564d18",
+        "protocol": "tcp",
+        "startport": 22,
+        "endport": 22,
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "state": "Active",
+        "cidrlist": "10.234.31.6/32",
+        "tags": [],
+        "fordisplay": true,
+        "destcidrlist": "10.10.31.1/32",
+        "traffictype": "Egress"
+      }
+    }
+  },
+  {
+    "case": "tcp-allowed",
+    "utc": "2026-11-12T09:51:01Z",
+    "result": {
+      "tcp": {
+        "ok": true,
+        "data": "SSH-2.0-OpenSSH_9.9\r\n"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 2025ms\n\n"
+      }
+    }
+  },
+  {
+    "case": "tcp-delete-job",
+    "utc": "2026-11-12T09:51:03Z",
+    "result": {
+      "jobid": "a867ab97-711d-45c6-a5e6-07e213a27a24",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "tcp-denied-after-delete",
+    "utc": "2026-11-12T09:51:09Z",
+    "result": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 2081ms\n\n"
+      }
+    }
+  },
+  {
+    "case": "udp-create-job",
+    "utc": "2026-11-12T09:51:11Z",
+    "result": {
+      "jobid": "6c25a61f-4df1-41a0-b6be-67e5ffa6c6a0",
+      "jobstatus": 1,
+      "firewallrule": {
+        "id": "01320ffc-fcfa-4261-814e-5d4464460b61",
+        "protocol": "udp",
+        "startport": 19569,
+        "endport": 19569,
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "state": "Active",
+        "cidrlist": "10.234.31.6/32",
+        "tags": [],
+        "fordisplay": true,
+        "destcidrlist": "10.10.31.1/32",
+        "traffictype": "Egress"
+      }
+    }
+  },
+  {
+    "case": "udp-allowed",
+    "utc": "2026-11-12T09:51:16Z",
+    "result": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": true,
+        "data": "GN1569-31-host|udp|19569|peer=10.10.31.148|qa-gn1569-egress"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 2069ms\n\n"
+      }
+    }
+  },
+  {
+    "case": "udp-delete-job",
+    "utc": "2026-11-12T09:51:18Z",
+    "result": {
+      "jobid": "b830a813-9fc4-4f1c-8fc2-489f929cf2e9",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "udp-denied-after-delete",
+    "utc": "2026-11-12T09:51:23Z",
+    "result": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 2040ms\n\n"
+      }
+    }
+  },
+  {
+    "case": "icmp-create-job",
+    "utc": "2026-11-12T09:51:26Z",
+    "result": {
+      "jobid": "6b1885ea-0a6d-473f-852c-bf26e3969139",
+      "jobstatus": 1,
+      "firewallrule": {
+        "id": "2425a409-d9a3-418a-992d-86514d6f9825",
+        "protocol": "icmp",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "state": "Active",
+        "cidrlist": "10.234.31.6/32",
+        "icmptype": 8,
+        "icmpcode": 0,
+        "tags": [],
+        "fordisplay": true,
+        "destcidrlist": "10.10.31.1/32",
+        "traffictype": "Egress"
+      }
+    }
+  },
+  {
+    "case": "icmp-allowed",
+    "utc": "2026-11-12T09:51:31Z",
+    "result": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": true,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n64 bytes from 10.10.31.1: icmp_seq=1 ttl=63 time=0.386 ms\n64 bytes from 10.10.31.1: icmp_seq=2 ttl=63 time=0.357 ms\n64 bytes from 10.10.31.1: icmp_seq=3 ttl=63 time=0.283 ms\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2060ms\nrtt min/avg/max/mdev = 0.283/0.342/0.386/0.043 ms\n"
+      }
+    }
+  },
+  {
+    "case": "icmp-delete-job",
+    "utc": "2026-11-12T09:51:33Z",
+    "result": {
+      "jobid": "ad85dda9-2be3-4c11-8e7d-e05f42bcb181",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "icmp-denied-after-delete",
+    "utc": "2026-11-12T09:51:39Z",
+    "result": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 2067ms\n\n"
+      }
+    }
+  },
+  {
+    "case": "all-create-job",
+    "utc": "2026-11-12T09:51:41Z",
+    "result": {
+      "jobid": "8391f5cc-7d1b-48ba-9007-f034de530ed1",
+      "jobstatus": 1,
+      "firewallrule": {
+        "id": "14416a50-2fa1-4fd7-a1df-64d102c79cd5",
+        "protocol": "all",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "state": "Active",
+        "cidrlist": "10.234.31.6/32",
+        "tags": [],
+        "fordisplay": true,
+        "destcidrlist": "10.10.31.1/32",
+        "traffictype": "Egress"
+      }
+    }
+  },
+  {
+    "case": "all-allowed",
+    "utc": "2026-11-12T09:51:44Z",
+    "result": {
+      "tcp": {
+        "ok": true,
+        "data": "SSH-2.0-OpenSSH_9.9\r\n"
+      },
+      "udp": {
+        "ok": true,
+        "data": "GN1569-31-host|udp|19569|peer=10.10.31.148|qa-gn1569-egress"
+      },
+      "icmp": {
+        "ok": true,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n64 bytes from 10.10.31.1: icmp_seq=1 ttl=63 time=0.159 ms\n64 bytes from 10.10.31.1: icmp_seq=2 ttl=63 time=0.343 ms\n64 bytes from 10.10.31.1: icmp_seq=3 ttl=63 time=0.314 ms\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2082ms\nrtt min/avg/max/mdev = 0.159/0.272/0.343/0.080 ms\n"
+      }
+    }
+  },
+  {
+    "case": "all-delete-job",
+    "utc": "2026-11-12T09:51:46Z",
+    "result": {
+      "jobid": "df8c2321-9889-4b23-9db5-b41dce0eee6b",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "case": "all-denied-after-delete",
+    "utc": "2026-11-12T09:51:52Z",
+    "result": {
+      "tcp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "udp": {
+        "ok": false,
+        "error": "timeout"
+      },
+      "icmp": {
+        "ok": false,
+        "out": "PING 10.10.31.1 (10.10.31.1) from 10.234.31.6 : 56(84) bytes of data.\n\n--- 10.10.31.1 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 2059ms\n\n"
+      }
+    }
+  }
+]

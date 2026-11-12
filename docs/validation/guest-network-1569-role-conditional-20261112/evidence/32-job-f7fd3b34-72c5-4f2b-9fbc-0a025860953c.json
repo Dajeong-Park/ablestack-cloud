@@ -1,0 +1,14 @@
+{
+  "command": "createLoadBalancerRule",
+  "params": {
+    "name": "qa-gn1569-32-final-delete-lb",
+    "publicipid": "0ff155b4-7efd-4a25-8532-ca8db7a4897b",
+    "publicport": 19369,
+    "privateport": 8080,
+    "algorithm": "roundrobin",
+    "protocol": "tcp",
+    "networkid": "0f173bc8-351d-429e-8578-7c701e17ed33",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "f7fd3b34-72c5-4f2b-9fbc-0a025860953c"
+}

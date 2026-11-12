@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "4.23.0.0\t2026-09-17 04:52:42\tComplete\n4.22.1.0\t2026-09-17 04:52:42\tComplete\n4.22.0.0\t2026-09-17 04:52:41\tComplete\n4.21.0.0\t2026-09-17 04:52:41\tComplete\n4.20.4.0\t2026-09-17 04:52:38\tComplete\ngateway\tvarchar(255)\tYES\tNULL\tgateway(s) for this network configuration\ncidr\tvarchar(255)\tYES\tNULL\tCloudStack managed vms get IP address from cidr.In general this cidr also serves as the network CIDR. But in case IP reservation feature is being used by a Guest network, networkcidr is the Effective network CIDR for that network\nip6_gateway\tvarchar(1024)\tYES\tNULL\tIPv6 gateway(s) for this network\nip6_cidr\tvarchar(1024)\tYES\tNULL\tIPv6 cidr(s) for this network",
+  "error": ""
+}

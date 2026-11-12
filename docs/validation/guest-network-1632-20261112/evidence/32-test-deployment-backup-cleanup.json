@@ -1,0 +1,1153 @@
+{
+  "cluster": 32,
+  "beforeFree": 20480,
+  "afterFree": 29507571712,
+  "recoveredBytes": 29507551232,
+  "removed": [
+    {
+      "path": "/root/volume-1154-ui-77475f80bd2-1792602124",
+      "fileBytes": 126157495,
+      "files": 1816
+    },
+    {
+      "path": "/root/volume-1433-ui-60bf0bd3fe0-1792673547",
+      "fileBytes": 100073120,
+      "files": 1220
+    },
+    {
+      "path": "/root/offering-dialogs-ui-12b3ff3fd68-1792685269",
+      "fileBytes": 126284798,
+      "files": 1818
+    },
+    {
+      "path": "/root/volume-1433-ui-60bf0bd3fe0-1792674112",
+      "fileBytes": 126717489,
+      "files": 1821
+    },
+    {
+      "path": "/root/offering-dialogs-ui-dcfa1a3232d-1792685877",
+      "fileBytes": 126493487,
+      "files": 1823
+    },
+    {
+      "path": "/root/volume-1434-ui-4101cbe5cd9-1792689796",
+      "fileBytes": 126568678,
+      "files": 1826
+    },
+    {
+      "path": "/root/epic1335-root-adoption-fix-20261009-095746",
+      "fileBytes": 276663083,
+      "files": 2
+    },
+    {
+      "path": "/root/volume-1431-01e64be7b5c",
+      "fileBytes": 276815910,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1431-ui-13fa9b104c6-postjar",
+      "fileBytes": 125773409,
+      "files": 1786
+    },
+    {
+      "path": "/root/volume-1429-ui-cdbf29fb7a6-resize-iops",
+      "fileBytes": 126015061,
+      "files": 1790
+    },
+    {
+      "path": "/root/volume-1430-ui-6ff0f0e75f2-1792562361",
+      "fileBytes": 125477985,
+      "files": 1774
+    },
+    {
+      "path": "/root/volume-1432-bc6cccd9897-1792588337",
+      "fileBytes": 276823705,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1471-b1052a73d44",
+      "fileBytes": 278600498,
+      "files": 19
+    },
+    {
+      "path": "/root/volume-tab-latency-ui-bbf1b9cc4d4-1792680325",
+      "fileBytes": 116765098,
+      "files": 1646
+    },
+    {
+      "path": "/root/snapshot1474-stage",
+      "fileBytes": 164627,
+      "files": 11
+    },
+    {
+      "path": "/root/volume-1428-ui-7bd56a4b185-edit-protection",
+      "fileBytes": 125976309,
+      "files": 1790
+    },
+    {
+      "path": "/root/volume-operation-dialogs-ui-2c5ab260cf9-1792512435",
+      "fileBytes": 125956188,
+      "files": 1784
+    },
+    {
+      "path": "/root/volume-1430-ui-d2c9c75b4e0-1792565691",
+      "fileBytes": 126023170,
+      "files": 1793
+    },
+    {
+      "path": "/root/volume-1471-e329e8af1e5",
+      "fileBytes": 278599611,
+      "files": 19
+    },
+    {
+      "path": "/root/volume-policy-tab-ui-4efaa62d521-1792677151",
+      "fileBytes": 126510273,
+      "files": 1813
+    },
+    {
+      "path": "/root/volume-1434-6ee8e831b3d",
+      "fileBytes": 293586394,
+      "files": 19
+    },
+    {
+      "path": "/root/issue1365-ui-20261014-162949",
+      "fileBytes": 604761213,
+      "files": 3865
+    },
+    {
+      "path": "/root/issue1365-ui-20261014-170240",
+      "fileBytes": 121710053,
+      "files": 1698
+    },
+    {
+      "path": "/root/issue1367-ui-20261014-192453",
+      "fileBytes": 119991651,
+      "files": 1695
+    },
+    {
+      "path": "/root/volume-1424-0abb19f8075",
+      "fileBytes": 276780596,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1431-ui-e52a4b3c436",
+      "fileBytes": 75034908,
+      "files": 958
+    },
+    {
+      "path": "/root/volume-1431-ui-ffbbf9443f0-postjar",
+      "fileBytes": 125675166,
+      "files": 1783
+    },
+    {
+      "path": "/root/volume-resize-layout-ui-28c85867ed8",
+      "fileBytes": 126020620,
+      "files": 1790
+    },
+    {
+      "path": "/root/volume-1430-final-6f5b0b35820",
+      "fileBytes": 276821167,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1432-ui-aa7063fced9-1792588043",
+      "fileBytes": 121643573,
+      "files": 1767
+    },
+    {
+      "path": "/root/volume-1433-ui-29769c5a06f-1792671919",
+      "fileBytes": 119624680,
+      "files": 1690
+    },
+    {
+      "path": "/root/offering-dialogs-ui-679d97650e6-1792683675",
+      "fileBytes": 124629009,
+      "files": 1789
+    },
+    {
+      "path": "/root/epic1335-preflight-response-fix-20261009-091815",
+      "fileBytes": 276662905,
+      "files": 2
+    },
+    {
+      "path": "/root/epic1335-snapshot-target-fix-20261009-101315",
+      "fileBytes": 276660150,
+      "files": 2
+    },
+    {
+      "path": "/root/volume-1424-a320e4a6b79",
+      "fileBytes": 276810799,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1431-e52a4b3c436",
+      "fileBytes": 276818423,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1431-ui-a720247198a-detail-style",
+      "fileBytes": 121799454,
+      "files": 1740
+    },
+    {
+      "path": "/root/volume-resize-layout-ui-7025ea66ae1",
+      "fileBytes": 126021835,
+      "files": 1790
+    },
+    {
+      "path": "/root/volume-1430-ui-6f5b0b35820-1792563530",
+      "fileBytes": 126111686,
+      "files": 1790
+    },
+    {
+      "path": "/root/volume-1209-ui-70dd965b2b6-1792607074",
+      "fileBytes": 125268538,
+      "files": 1811
+    },
+    {
+      "path": "/root/volume-1433-ui-4e1016a6c40-1792675067",
+      "fileBytes": 126450242,
+      "files": 1822
+    },
+    {
+      "path": "/root/offering-dialogs-ui-2b244f6dd77-1792686433",
+      "fileBytes": 126550584,
+      "files": 1826
+    },
+    {
+      "path": "/root/volume-1427-70610aea823",
+      "fileBytes": 276822277,
+      "files": 16
+    },
+    {
+      "path": "/root/volume-1431-13fa9b104c6",
+      "fileBytes": 276819504,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1429-ui-5d718731694-resize-iops",
+      "fileBytes": 126010498,
+      "files": 1790
+    },
+    {
+      "path": "/root/volume-1430-03c5d26e899",
+      "fileBytes": 276820805,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1430-ui-0b13490238f-1792564632",
+      "fileBytes": 125761317,
+      "files": 1783
+    },
+    {
+      "path": "/root/volume-1210-ui-e7641e885ba-1792609034",
+      "fileBytes": 126461818,
+      "files": 1814
+    },
+    {
+      "path": "/root/volume-policy-tab-ui-93f73e95597-1792677994",
+      "fileBytes": 126649224,
+      "files": 1823
+    },
+    {
+      "path": "/root/volume-1434-f5be0f7dd40-final",
+      "fileBytes": 293583798,
+      "files": 19
+    },
+    {
+      "path": "/root/snapshot-delete-1478-ui-20261023",
+      "fileBytes": 10736021,
+      "files": 244
+    },
+    {
+      "path": "/root/snapshot-archive-1477-ui-20261023",
+      "fileBytes": 61024503,
+      "files": 913
+    },
+    {
+      "path": "/root/epic1357-vg06-ui-final-20261014-125129",
+      "fileBytes": 120305900,
+      "files": 3
+    },
+    {
+      "path": "/root/issue1365-ui-20261014-160624",
+      "fileBytes": 616133073,
+      "files": 4159
+    },
+    {
+      "path": "/root/issue1365-ui-20261014-163521",
+      "fileBytes": 120786138,
+      "files": 1697
+    },
+    {
+      "path": "/root/issue1367-ui-20261014-190100",
+      "fileBytes": 74616980,
+      "files": 1145
+    },
+    {
+      "path": "/root/volume-1423-c7b5ea1c6c8",
+      "fileBytes": 276756751,
+      "files": 12
+    },
+    {
+      "path": "/root/volume-1426-defb87309a9",
+      "fileBytes": 276809161,
+      "files": 15
+    },
+    {
+      "path": "/root/volume-1431-ui-e52a4b3c436-postjar",
+      "fileBytes": 130118987,
+      "files": 1791
+    },
+    {
+      "path": "/root/volume-1428-ui-4fa57a84294-edit-protection",
+      "fileBytes": 125980311,
+      "files": 1790
+    },
+    {
+      "path": "/root/volume-operation-dialogs-ui-2d7e96619e0-1792513166",
+      "fileBytes": 126021759,
+      "files": 1787
+    },
+    {
+      "path": "/root/volume-1432-54c28e6b83c-1792587163",
+      "fileBytes": 276822749,
+      "files": 14
+    },
+    {
+      "path": "/root/volume-1210-ui-5c9a982064d-1792609647",
+      "fileBytes": 126462603,
+      "files": 1814
+    },
+    {
+      "path": "/root/volume-policy-tab-ui-04a5b31a27c-1792678589",
+      "fileBytes": 126752445,
+      "files": 1826
+    },
+    {
+      "path": "/root/snapshot-dialogs-1488-20261023-final",
+      "fileBytes": 58525320,
+      "files": 915
+    },
+    {
+      "path": "/root/snapshot-transfer-1481-20261024-ui-final-backup",
+      "fileBytes": 58674792,
+      "files": 913
+    },
+    {
+      "path": "/root/snapshot1481-server-physical-accounting",
+      "fileBytes": 554946,
+      "files": 9
+    },
+    {
+      "path": "/root/snapshot1482-server",
+      "fileBytes": 299113,
+      "files": 6
+    },
+    {
+      "path": "/root/snapshot1482-ui-final-stage",
+      "fileBytes": 63732104,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot-dialogs-1488-20261023-initial",
+      "fileBytes": 57955241,
+      "files": 884
+    },
+    {
+      "path": "/root/snapshot-template-1474-20261024-management",
+      "fileBytes": 276820975,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1475-server-final",
+      "fileBytes": 155294,
+      "files": 4
+    },
+    {
+      "path": "/root/snapshot-transfer-1481-20261024-management-qualified-final",
+      "fileBytes": 276851056,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-download-1475-20261024-ui-backup",
+      "fileBytes": 58713810,
+      "files": 916
+    },
+    {
+      "path": "/root/snapshot-download-1475-20261024-ui-verified-backup",
+      "fileBytes": 58974427,
+      "files": 914
+    },
+    {
+      "path": "/root/snapshot1476-server-capacity-final",
+      "fileBytes": 764759,
+      "files": 8
+    },
+    {
+      "path": "/root/snapshot1476-ui-verified-stage",
+      "fileBytes": 63680490,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot-restore-1476-20261024-ui-verified-backup",
+      "fileBytes": 57021736,
+      "files": 914
+    },
+    {
+      "path": "/root/snapshot-restore-1476-20261024-ui-contract-final-backup",
+      "fileBytes": 57022453,
+      "files": 914
+    },
+    {
+      "path": "/root/snapshot-copies-1480-20261024-management-final",
+      "fileBytes": 276827646,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1480-copy-ui-stage",
+      "fileBytes": 63700138,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot1480-copy-ui-backup",
+      "fileBytes": 59016292,
+      "files": 917
+    },
+    {
+      "path": "/root/snapshot-transfer-1481-20261024-management-final",
+      "fileBytes": 276832958,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1481-server-release",
+      "fileBytes": 554214,
+      "files": 9
+    },
+    {
+      "path": "/root/snapshot-transfer-1481-20261024-management-release",
+      "fileBytes": 276850559,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-transfer-1481-20261024-management-qualified",
+      "fileBytes": 276850725,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1481-server-qualified-final",
+      "fileBytes": 820484,
+      "files": 10
+    },
+    {
+      "path": "/root/snapshot-order-1482-20261024-management",
+      "fileBytes": 276850703,
+      "files": 2
+    },
+    {
+      "path": "/root/volume-1434-ui-1c0307d3cc8-1792693913",
+      "fileBytes": 126569147,
+      "files": 1826
+    },
+    {
+      "path": "/root/snapshot-dialog-1490-ui-e35c162bd5b-1792728601",
+      "fileBytes": 126541733,
+      "files": 1823
+    },
+    {
+      "path": "/root/snapshot-delete-1478-backend-20261023",
+      "fileBytes": 291559146,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-delete-1478-backend-quota-20261023",
+      "fileBytes": 276802559,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-archive-1477-backend-20261023",
+      "fileBytes": 276802971,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-archive-1477-backend-final-20261023",
+      "fileBytes": 276815802,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-archive-1477-backend-metadata-20261023",
+      "fileBytes": 276815811,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-archive-1477-ui-final-20261023",
+      "fileBytes": 61027018,
+      "files": 913
+    },
+    {
+      "path": "/root/snapshot-archive-1477-backend-permissions-20261023",
+      "fileBytes": 276815994,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-actions-1479-backend-20261023",
+      "fileBytes": 276812642,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-initial-20261023",
+      "fileBytes": 35711952,
+      "files": 891
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-interim-20261023",
+      "fileBytes": 60777859,
+      "files": 905
+    },
+    {
+      "path": "/root/snapshot-actions-1479-backend-requests-20261023",
+      "fileBytes": 276817387,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-actions-1479-backend-fixed-20261023",
+      "fileBytes": 276821912,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-actions-1479-backend-final-20261023",
+      "fileBytes": 276822860,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-final-20261023",
+      "fileBytes": 60482958,
+      "files": 904
+    },
+    {
+      "path": "/root/snapshot-actions-1479-backend-owner-20261023",
+      "fileBytes": 276824676,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-bootstrap-20261023",
+      "fileBytes": 60778591,
+      "files": 907
+    },
+    {
+      "path": "/root/snapshot-actions-1479-locales-final-20261023",
+      "fileBytes": 1483889,
+      "files": 3
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-envelope-20261023",
+      "fileBytes": 60955536,
+      "files": 913
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-final-routes-20261023",
+      "fileBytes": 60969775,
+      "files": 918
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-notices-20261023-initial",
+      "fileBytes": 36301573,
+      "files": 904
+    },
+    {
+      "path": "/root/snapshot-actions-1479-ui-notices-20261023-final",
+      "fileBytes": 60971091,
+      "files": 918
+    },
+    {
+      "path": "/root/snapshot-dialogs-1488-20261023-verified",
+      "fileBytes": 53986491,
+      "files": 884
+    },
+    {
+      "path": "/root/snapshot1475-stage",
+      "fileBytes": 205937,
+      "files": 13
+    },
+    {
+      "path": "/root/snapshot-download-1475-20261024-management",
+      "fileBytes": 276821478,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-download-1475-20261024-management-final",
+      "fileBytes": 276824373,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1475-ui-stage",
+      "fileBytes": 63658574,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot1475-ui-verified-stage",
+      "fileBytes": 63659381,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot1476-server-final",
+      "fileBytes": 500872,
+      "files": 6
+    },
+    {
+      "path": "/root/snapshot-restore-1476-20261024-management-final",
+      "fileBytes": 276824578,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-restore-1476-20261024-management-capacity-final",
+      "fileBytes": 276827627,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1476-ui-contract-final-stage",
+      "fileBytes": 63678834,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot1480-server-final",
+      "fileBytes": 311043,
+      "files": 8
+    },
+    {
+      "path": "/root/snapshot1480-ui-final-stage",
+      "fileBytes": 63710889,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot-copies-1480-20261024-ui-final-backup",
+      "fileBytes": 59012799,
+      "files": 917
+    },
+    {
+      "path": "/root/snapshot1481-server-final",
+      "fileBytes": 552304,
+      "files": 9
+    },
+    {
+      "path": "/root/snapshot1481-server-verified",
+      "fileBytes": 553821,
+      "files": 9
+    },
+    {
+      "path": "/root/snapshot-transfer-1481-20261024-management-verified",
+      "fileBytes": 276849527,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1481-ui-final-stage",
+      "fileBytes": 63725581,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot1481-server-qualified",
+      "fileBytes": 554789,
+      "files": 9
+    },
+    {
+      "path": "/root/snapshot-transfer-1481-20261024-management-physical-accounting",
+      "fileBytes": 276850922,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1482-ui-stage",
+      "fileBytes": 63731665,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot-order-1482-20261024-management-final",
+      "fileBytes": 276858463,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-order-1482-20261024-ui-backup",
+      "fileBytes": 58819625,
+      "files": 919
+    },
+    {
+      "path": "/root/snapshot-order-1482-20261024-ui-final-backup",
+      "fileBytes": 58819601,
+      "files": 919
+    },
+    {
+      "path": "/root/snapshot1483-server",
+      "fileBytes": 275992,
+      "files": 5
+    },
+    {
+      "path": "/root/snapshot-search-1483-20261024-management-final",
+      "fileBytes": 276858785,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1483-ui-final-stage",
+      "fileBytes": 63832474,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot-search-1483-20261024-ui-final-backup",
+      "fileBytes": 34583979,
+      "files": 914
+    },
+    {
+      "path": "/root/snapshot1483-ui-final2-stage",
+      "fileBytes": 63824871,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot-search-1483-20261024-ui-final2-backup",
+      "fileBytes": 34642771,
+      "files": 917
+    },
+    {
+      "path": "/root/snapshot1493-stage",
+      "fileBytes": 225358,
+      "files": 11
+    },
+    {
+      "path": "/root/snapshot-policy-1493-20261024-management",
+      "fileBytes": 276861336,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1489-management-stage",
+      "fileBytes": 431849,
+      "files": 17
+    },
+    {
+      "path": "/root/snapshot-regression-1489-20261025-management",
+      "fileBytes": 276864277,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1489-management-stage-r2",
+      "fileBytes": 431891,
+      "files": 17
+    },
+    {
+      "path": "/root/snapshot1489-management-stage-r3",
+      "fileBytes": 438456,
+      "files": 17
+    },
+    {
+      "path": "/root/wall-footer-backup.0qR0mU",
+      "fileBytes": 26891,
+      "files": 1
+    },
+    {
+      "path": "/root/wall-footer-stage.VoARnD",
+      "fileBytes": 155282372,
+      "files": 657
+    },
+    {
+      "path": "/root/snapshot1489-management-stage-r5",
+      "fileBytes": 508905,
+      "files": 25
+    },
+    {
+      "path": "/root/snapshot1489-policy-recovery",
+      "fileBytes": 23157,
+      "files": 3
+    },
+    {
+      "path": "/root/snapshot-regression-1489-20261025-ui-stage-resume",
+      "fileBytes": 64401629,
+      "files": 925
+    },
+    {
+      "path": "/root/snapshot-regression-1489-20261025-ui-resume-backup",
+      "fileBytes": 59263232,
+      "files": 920
+    },
+    {
+      "path": "/root/snapshot1489-management-stage-r6",
+      "fileBytes": 173216,
+      "files": 4
+    },
+    {
+      "path": "/root/snapshot1489-kube-stage-r7",
+      "fileBytes": 167358,
+      "files": 3
+    },
+    {
+      "path": "/root/snapshot-regression-1489-20261025-r7-management",
+      "fileBytes": 276865108,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot1489-management-stage-r8",
+      "fileBytes": 173081,
+      "files": 4
+    },
+    {
+      "path": "/root/snapshot-regression-1489-20261025-r8-management",
+      "fileBytes": 276864547,
+      "files": 2
+    },
+    {
+      "path": "/root/snapshot-regression-1489-20261025-ui-stage-review1492",
+      "fileBytes": 64401545,
+      "files": 925
+    },
+    {
+      "path": "/root/snapshot-regression-1489-20261025-ui-review1492-backup",
+      "fileBytes": 59263220,
+      "files": 920
+    },
+    {
+      "path": "/root/sp01-1495-20261026-ui-stage",
+      "fileBytes": 66644539,
+      "files": 924
+    },
+    {
+      "path": "/root/sp02-1496-20261026-ui-stage",
+      "fileBytes": 66669495,
+      "files": 924
+    },
+    {
+      "path": "/root/sp02-1496-20261026-ui-final-stage",
+      "fileBytes": 66669716,
+      "files": 924
+    },
+    {
+      "path": "/root/snapshot-policy-1500-20261026",
+      "fileBytes": 1163751616,
+      "files": 10
+    },
+    {
+      "path": "/root/issue1524-ui-20261030-162833",
+      "fileBytes": 54813761,
+      "files": 926
+    },
+    {
+      "path": "/root/gn1569-followup-code-20261109-163659",
+      "fileBytes": 554423260,
+      "files": 3
+    },
+    {
+      "path": "/root/wall-footer-backup.O7u1W8",
+      "fileBytes": 0,
+      "files": 0
+    },
+    {
+      "path": "/root/issue1512-ui-20261028-111449",
+      "fileBytes": 292905927,
+      "files": 23
+    },
+    {
+      "path": "/root/issue1511-jars-20261028-125127",
+      "fileBytes": 276891243,
+      "files": 2
+    },
+    {
+      "path": "/root/issue1511-jars-20261028-125805",
+      "fileBytes": 276942573,
+      "files": 2
+    },
+    {
+      "path": "/root/issue1511-ui-20261028-130014",
+      "fileBytes": 294509781,
+      "files": 25
+    },
+    {
+      "path": "/root/issue1511-jars-20261028-131522",
+      "fileBytes": 276942797,
+      "files": 2
+    },
+    {
+      "path": "/root/issue1513-ui-20261029-043348",
+      "fileBytes": 292961268,
+      "files": 23
+    },
+    {
+      "path": "/root/issue1513-jars-20261029-045017",
+      "fileBytes": 276940690,
+      "files": 2
+    },
+    {
+      "path": "/root/issue1513-jars-20261029-050745",
+      "fileBytes": 276953846,
+      "files": 2
+    },
+    {
+      "path": "/root/issue1520-20261030-145847",
+      "fileBytes": 276991072,
+      "files": 3
+    },
+    {
+      "path": "/root/issue1520-ui-20261030-150033",
+      "fileBytes": 54813210,
+      "files": 926
+    },
+    {
+      "path": "/root/issue1520-20261030-150742",
+      "fileBytes": 276991123,
+      "files": 3
+    },
+    {
+      "path": "/root/issue1524-20261030-155949",
+      "fileBytes": 0,
+      "files": 0
+    },
+    {
+      "path": "/root/issue1524-20261030-161836",
+      "fileBytes": 0,
+      "files": 0
+    },
+    {
+      "path": "/root/wall-footer-stage.2Qxyzl",
+      "fileBytes": 158689775,
+      "files": 663
+    },
+    {
+      "path": "/root/issue1520-ui-20261030-142124",
+      "fileBytes": 30614046,
+      "files": 924
+    },
+    {
+      "path": "/root/issue1520-ui-20261030-143137",
+      "fileBytes": 54813225,
+      "files": 926
+    },
+    {
+      "path": "/root/issue1520-20261030-144817",
+      "fileBytes": 276990293,
+      "files": 2
+    },
+    {
+      "path": "/root/issue1520-ui-20261030-151656",
+      "fileBytes": 54813211,
+      "files": 926
+    },
+    {
+      "path": "/root/issue1524-ui-20261030-160158",
+      "fileBytes": 54813205,
+      "files": 926
+    },
+    {
+      "path": "/root/issue1524-20261030-162303",
+      "fileBytes": 277003761,
+      "files": 1
+    },
+    {
+      "path": "/home/ablecloud/issue1365-ui-stage",
+      "fileBytes": 45195388,
+      "files": 5
+    },
+    {
+      "path": "/home/ablecloud/issue1367-ui-stage",
+      "fileBytes": 30145790,
+      "files": 4
+    },
+    {
+      "path": "/home/ablecloud/volume-1423-c7b5ea1c6c8",
+      "fileBytes": 276740930,
+      "files": 2
+    },
+    {
+      "path": "/home/ablecloud/volume-1424-0abb19f8075",
+      "fileBytes": 276771865,
+      "files": 2
+    },
+    {
+      "path": "/home/ablecloud/volume-1424-a320e4a6b79",
+      "fileBytes": 276772120,
+      "files": 2
+    },
+    {
+      "path": "/home/ablecloud/snapshot-delete-1478-stage",
+      "fileBytes": 81702396,
+      "files": 945
+    },
+    {
+      "path": "/home/ablecloud/snapshot-archive-1477-stage",
+      "fileBytes": 86223609,
+      "files": 955
+    },
+    {
+      "path": "/home/ablecloud/snapshot-1477-faults",
+      "fileBytes": 0,
+      "files": 0
+    },
+    {
+      "path": "/home/ablecloud/snapshot-actions-1479-stage",
+      "fileBytes": 324703857,
+      "files": 2854
+    },
+    {
+      "path": "/home/ablecloud/snapshot-actions-1479-ui-notices-20261023-initial",
+      "fileBytes": 81706639,
+      "files": 923
+    },
+    {
+      "path": "/home/ablecloud/snapshot-actions-1479-ui-notices-20261023-final",
+      "fileBytes": 81709355,
+      "files": 923
+    },
+    {
+      "path": "/home/ablecloud/snapshot-dialogs-1488-20261023-initial",
+      "fileBytes": 78788741,
+      "files": 923
+    },
+    {
+      "path": "/home/ablecloud/snapshot-dialogs-1488-20261023-final",
+      "fileBytes": 78799713,
+      "files": 923
+    },
+    {
+      "path": "/home/ablecloud/snapshot-dialogs-1488-20261023-verified",
+      "fileBytes": 78867434,
+      "files": 924
+    },
+    {
+      "path": "/var/tmp/gn1569-followup-ui-20261109-164243",
+      "fileBytes": 12871187,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1569-followup-ui-20261109-165534",
+      "fileBytes": 12873628,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1569-followup-ui-20261109-174527",
+      "fileBytes": 12891491,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1605-ui-20261109-182802",
+      "fileBytes": 12627761,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1606-ui-20261109-230450",
+      "fileBytes": 12838150,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1607-ui-20261109-234346",
+      "fileBytes": 12832827,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1608-ui-20261110-002451",
+      "fileBytes": 12925175,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-061053",
+      "fileBytes": 11210465,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-093530",
+      "fileBytes": 12891315,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-094821",
+      "fileBytes": 12884043,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-095549",
+      "fileBytes": 12891270,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-100121",
+      "fileBytes": 12891437,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-101051",
+      "fileBytes": 12886293,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-102542",
+      "fileBytes": 12926944,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1609-ui-20261110-103234",
+      "fileBytes": 12926023,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1610-ui-20261110-112436",
+      "fileBytes": 12789191,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1610-ui-20261110-114038",
+      "fileBytes": 12916299,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1610-ui-20261110-115439",
+      "fileBytes": 13318872,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1610-ui-20261110-115729",
+      "fileBytes": 12916041,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1611-ui-20261110-135605",
+      "fileBytes": 12935499,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1611-ui-20261110-142542",
+      "fileBytes": 12936047,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1611-ui-20261110-143221",
+      "fileBytes": 12935827,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1614-ui-20261110-150205",
+      "fileBytes": 12896398,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1614-ui-20261110-151548",
+      "fileBytes": 12943696,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1612-ui-20261110-162234",
+      "fileBytes": 12942839,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1612-ui-20261110-163148",
+      "fileBytes": 12941177,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1612-ui-20261110-163720",
+      "fileBytes": 12988332,
+      "files": 5
+    },
+    {
+      "path": "/var/tmp/gn1613-ui-20261110-174721",
+      "fileBytes": 12537274,
+      "files": 5
+    }
+  ],
+  "activeJarSha256": "220aa960d40f20c2e0c3a3052c955252e5d033a03e8a3091c3b672cbe76ea4a6",
+  "webInfPreserved": true,
+  "source": "User explicitly requested deletion of existing test deployment/backups",
+  "current1632HelperPreserved": false,
+  "helperProbeExplanation": "current1632HelperPreserved checks a non-existent helper path on32. The current public-only responder is on31, created after cleanup; its path does not match any deleted deployment/backup pattern."
+}

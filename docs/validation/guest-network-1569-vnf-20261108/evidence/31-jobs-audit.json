@@ -1,0 +1,35 @@
+[
+  {
+    "id": "c3e20013-ef42-421d-99e5-a6456401a918",
+    "command": "org.apache.cloudstack.api.command.admin.vm.DeployVnfApplianceCmdByAdmin",
+    "status": 1,
+    "caller": "admin",
+    "vmid": "adb32350-7764-489c-a70d-12323eabc24d",
+    "nicNetworks": [
+      "e7b218a3-3df0-41d6-abfd-5afc667bfcdf"
+    ]
+  },
+  {
+    "id": "5be2d0a8-7d56-43ff-9fe2-3ea294cc1a02",
+    "command": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+    "status": 1,
+    "caller": "admin",
+    "vmid": "adb32350-7764-489c-a70d-12323eabc24d",
+    "nicNetworks": [
+      "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+      "3292f7fb-9e94-4a90-95cd-501f653e9d8f"
+    ]
+  },
+  {
+    "id": "8e04f161-cfd0-4d64-90b3-29b57cc2f478",
+    "command": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+    "status": 1,
+    "caller": "admin",
+    "vmid": "adb32350-7764-489c-a70d-12323eabc24d",
+    "nicNetworks": [
+      "e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+      "3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+      "11243734-0f21-4a5a-a771-1770d8ce2d21"
+    ]
+  }
+]

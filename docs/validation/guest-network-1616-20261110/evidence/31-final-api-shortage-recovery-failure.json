@@ -1,0 +1,9 @@
+{
+  "elapsedSeconds": 5.129,
+  "result": {
+    "jobid": "30fbe640-e155-449c-8fb0-7dfe7fed9e5f",
+    "jobstatus": 2,
+    "errorcode": 530,
+    "errortext": "Failed to assign load balancer rule due to: Failed to add specified loadbalancerruleid for Instances [1005]"
+  }
+}

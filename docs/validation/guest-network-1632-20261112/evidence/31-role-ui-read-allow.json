@@ -1,0 +1,9 @@
+{
+  "cluster": 31,
+  "role": "customAllow",
+  "account": "qa-gn1622-31-ssl-allow",
+  "rows": 10,
+  "uploadVisible": true,
+  "policyNote": "Existing role allows SSL read/upload; assign/remove remain denied by explicit project rules",
+  "defaultRevocation": true
+}

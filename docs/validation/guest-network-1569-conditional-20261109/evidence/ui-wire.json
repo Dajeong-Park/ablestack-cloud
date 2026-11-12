@@ -1,0 +1,1857 @@
+[
+  {
+    "cluster": 32,
+    "requestId": "52656.2396",
+    "command": "createNetwork",
+    "method": "POST",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "991d2f57-0f37-4445-b956-09773d064816",
+      "name": "qa-gn1569-32-cond-configdrive",
+      "displayText": "QA1569 ConfigDrive L2 same-host validation",
+      "networkOfferingId": "75182977-a621-4b59-bf18-358d09343692",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "createnetworkresponse": {
+        "network": {
+          "id": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+          "name": "qa-gn1569-32-cond-configdrive",
+          "displaytext": "QA1569 ConfigDrive L2 same-host validation",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+          "networkofferingname": "qa-gn1569-32-configdrive-auto",
+          "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 32",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Allocated",
+          "related": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+          "dns1": "8.8.8.8",
+          "type": "L2",
+          "acltype": "Account",
+          "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+          "project": "qa-gn1569-32-conditional",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "service": [
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "ConfigDrive"
+                }
+              ],
+              "capability": []
+            }
+          ],
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "restartrequired": false,
+          "specifyvlan": false,
+          "specifyipranges": false,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "details": {},
+          "displaynetwork": true,
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T04:43:39+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2416",
+    "command": "createVPC",
+    "method": "POST",
+    "params": {
+      "command": "createVPC",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "start": "true",
+      "keepmacaddressonpublicnic": "true",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "name": "qa-gn1569-32-cond-vpc",
+      "displaytext": "QA1569 VPC ACL same-host validation",
+      "cidr": "10.243.32.0/24",
+      "networkdomain": "cond32.qa.internal"
+    },
+    "status": 200,
+    "result": {
+      "createvpcresponse": {
+        "id": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2417",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2418",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2420",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2421",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2424",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2426",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2427",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2430",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2431",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2447",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2449",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2450",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2452",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:44:06+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2457",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpc": {
+            "id": "87964ae1-ca02-4224-aa97-126f63b15620",
+            "name": "qa-gn1569-32-cond-vpc",
+            "displaytext": "QA1569 VPC ACL same-host validation",
+            "state": "Enabled",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "service": [
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Vpn",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "StaticNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "PortForwarding",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Dns",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Lb",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  },
+                  {
+                    "name": "InternalLbVm"
+                  }
+                ]
+              },
+              {
+                "name": "Dhcp",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "cidr": "10.243.32.0/24",
+            "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+            "vpcofferingname": "Default VPC offering",
+            "vpcofferingconservemode": false,
+            "created": "2026-11-09T04:44:06+0900",
+            "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+            "project": "qa-gn1569-32-conditional",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "network": [],
+            "restartrequired": false,
+            "networkdomain": "cond32.qa.internal",
+            "tags": [],
+            "fordisplay": true,
+            "distributedvpcrouter": false,
+            "regionlevelvpc": false,
+            "redundantvpcrouter": false,
+            "publicmtu": 1500,
+            "keepmacaddressonpublicnic": true,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-09T04:44:06+0900",
+        "completed": "2026-11-09T04:44:43+0900",
+        "jobid": "99baa3e9-6e5b-4f2b-9f1e-9c2755b8c5c0",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2471",
+    "command": "createNetwork",
+    "method": "POST",
+    "params": {
+      "command": "createNetwork",
+      "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "networkOfferingId": "72de7ec8-f271-4bb2-83ae-b5af9a5bca04",
+      "name": "qa-gn1569-32-cond-tier-a",
+      "displayText": "qa-gn1569-32-cond-tier-a",
+      "gateway": "10.243.32.1",
+      "netmask": "255.255.255.128",
+      "zoneId": "991d2f57-0f37-4445-b956-09773d064816",
+      "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 530,
+    "result": {
+      "createnetworkresponse": {
+        "uuidList": [],
+        "errorcode": 530,
+        "cserrorcode": 4390,
+        "errortext": "Provider VpcVirtualRouter is either not enabled or doesn't support service Firewall in physical network id=200"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "52656.2552",
+    "command": "createNetwork",
+    "method": "POST",
+    "params": {
+      "command": "createNetwork",
+      "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "networkOfferingId": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+      "name": "qa-gn1569-32-cond-tier-a",
+      "displayText": "qa-gn1569-32-cond-tier-a",
+      "gateway": "10.243.32.1",
+      "netmask": "255.255.255.128",
+      "zoneId": "991d2f57-0f37-4445-b956-09773d064816",
+      "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "createnetworkresponse": {
+        "network": {
+          "id": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+          "name": "qa-gn1569-32-cond-tier-a",
+          "displaytext": "qa-gn1569-32-cond-tier-a",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "gateway": "10.243.32.1",
+          "netmask": "255.255.255.128",
+          "cidr": "10.243.32.0/25",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+          "networkofferingname": "qa-gn1569-32-vpc-no-lb",
+          "networkofferingdisplaytext": "QA1569 VPC compatible No LB 32",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Allocated",
+          "related": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+          "dns1": "8.8.8.8",
+          "type": "Isolated",
+          "acltype": "Account",
+          "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+          "project": "qa-gn1569-32-conditional",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain",
+          "service": [
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ],
+              "capability": []
+            },
+            {
+              "name": "StaticNat",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "ElasticIp",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                },
+                {
+                  "name": "AssociatePublicIP",
+                  "value": "false",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "PortForwarding",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp,udp",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "NetworkACL",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedProtocols",
+                  "value": "tcp,udp,icmp",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "AllowDnsSuffixModification",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "DhcpAccrossMultipleSubnets",
+                  "value": "true",
+                  "canchooseservicecapability": false
+                }
+              ]
+            },
+            {
+              "name": "SourceNat",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ],
+              "capability": [
+                {
+                  "name": "SupportedSourceNatTypes",
+                  "value": "peraccount",
+                  "canchooseservicecapability": true
+                },
+                {
+                  "name": "RedundantRouter",
+                  "value": "false",
+                  "canchooseservicecapability": true
+                }
+              ]
+            }
+          ],
+          "networkdomain": "cond32.qa.internal",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "restartrequired": false,
+          "specifyvlan": false,
+          "specifyipranges": false,
+          "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+          "vpcname": "qa-gn1569-32-cond-vpc",
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "details": {},
+          "displaynetwork": true,
+          "aclid": "3b64a0c2-b23b-11f1-990e-0024811f8935",
+          "aclname": "default_allow",
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T04:49:24+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.720",
+    "command": "createNetwork",
+    "method": "POST",
+    "params": {
+      "command": "createNetwork",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "name": "qa-gn1569-31-cond-configdrive",
+      "displayText": "QA1569 ConfigDrive L2 same-host validation",
+      "networkOfferingId": "0e028b53-2315-484f-bcb7-18f33976bd82",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "createnetworkresponse": {
+        "network": {
+          "id": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+          "name": "qa-gn1569-31-cond-configdrive",
+          "displaytext": "QA1569 ConfigDrive L2 same-host validation",
+          "broadcastdomaintype": "Vlan",
+          "traffictype": "Guest",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "networkofferingid": "0e028b53-2315-484f-bcb7-18f33976bd82",
+          "networkofferingname": "qa-gn1569-31-configdrive-auto",
+          "networkofferingdisplaytext": "QA1569 ConfigDrive auto VLAN 31",
+          "networkofferingconservemode": true,
+          "networkofferingavailability": "Optional",
+          "issystem": false,
+          "state": "Allocated",
+          "related": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+          "dns1": "8.8.8.8",
+          "type": "L2",
+          "acltype": "Account",
+          "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+          "project": "qa-gn1569-31-conditional",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "domainpath": "ROOT/qa-gn1569-31-domain",
+          "service": [
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "ConfigDrive"
+                }
+              ],
+              "capability": []
+            }
+          ],
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "restartrequired": false,
+          "specifyvlan": false,
+          "specifyipranges": false,
+          "canusefordeploy": true,
+          "ispersistent": false,
+          "tags": [],
+          "strechedl2subnet": false,
+          "redundantrouter": false,
+          "supportsvmautoscaling": false,
+          "created": "2026-11-09T04:52:28+0900",
+          "receivedbytes": 0,
+          "sentbytes": 0,
+          "publicmtu": 1500,
+          "privatemtu": 1500,
+          "hasannotations": false
+        }
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.728",
+    "command": "createVPC",
+    "method": "POST",
+    "params": {
+      "command": "createVPC",
+      "start": "true",
+      "keepmacaddressonpublicnic": "true",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "vpcofferingid": "49767c4b-61bd-4535-9957-af9908e220f1",
+      "name": "qa-gn1569-31-cond-vpc",
+      "displaytext": "QA1569 VPC ACL same-host validation",
+      "cidr": "10.243.31.0/24",
+      "networkdomain": "cond31.qa.internal",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "createvpcresponse": {
+        "id": "c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.729",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.730",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.731",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.732",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.734",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.735",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.736",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.738",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.739",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "None",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:52:49+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.740",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateVPCCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpc": {
+            "id": "c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc",
+            "name": "qa-gn1569-31-cond-vpc",
+            "displaytext": "QA1569 VPC ACL same-host validation",
+            "state": "Enabled",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "service": [
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Vpn",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "StaticNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "PortForwarding",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Dns",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Lb",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  },
+                  {
+                    "name": "InternalLbVm"
+                  }
+                ]
+              },
+              {
+                "name": "Dhcp",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "cidr": "10.243.31.0/24",
+            "vpcofferingid": "49767c4b-61bd-4535-9957-af9908e220f1",
+            "vpcofferingname": "Default VPC offering",
+            "vpcofferingconservemode": false,
+            "created": "2026-11-09T04:52:49+0900",
+            "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+            "project": "qa-gn1569-31-conditional",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "network": [],
+            "restartrequired": false,
+            "networkdomain": "cond31.qa.internal",
+            "tags": [],
+            "distributedvpcrouter": false,
+            "regionlevelvpc": false,
+            "redundantvpcrouter": false,
+            "publicmtu": 1500,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-09T04:52:49+0900",
+        "completed": "2026-11-09T04:53:16+0900",
+        "jobid": "d9d3f571-3c6d-465b-b87a-4f77043e9b7a",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.767",
+    "command": "createNetwork",
+    "method": "POST",
+    "params": {
+      "command": "createNetwork",
+      "vpcid": "c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "networkOfferingId": "6ca89a72-99dc-46b1-8aa9-956047231c42",
+      "name": "qa-gn1569-31-cond-tier-a",
+      "displayText": "qa-gn1569-31-cond-tier-a",
+      "gateway": "10.243.31.1",
+      "netmask": "255.255.255.128",
+      "zoneId": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "aclid": "8cc96409-b253-11f1-a895-0024814c313f",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 431,
+    "result": {
+      "createnetworkresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 4350,
+        "errortext": "Service/provider combination Firewall/VpcVirtualRouter is not supported by VPC VPC {\"id\":10,\"name\":\"qa-gn1569-31-cond-vpc\",\"uuid\":\"c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc\"}"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.862",
+    "command": "addNicToVirtualMachine",
+    "method": "POST",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+      "networkid": "970f42a1-5570-4872-8faf-3c88ca9a0d3a",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "addnictovirtualmachineresponse": {
+        "jobid": "a3578ae6-253d-4911-8ad8-affca8e2671f"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.863",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "a3578ae6-253d-4911-8ad8-affca8e2671f",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vm.AddNicToVMCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+        "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T04:58:02+0900",
+        "jobid": "a3578ae6-253d-4911-8ad8-affca8e2671f",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "22684.864",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "a3578ae6-253d-4911-8ad8-affca8e2671f",
+      "command": "queryAsyncJobResult",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+        "cmd": "org.apache.cloudstack.api.command.user.vm.AddNicToVMCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "virtualmachine": {
+            "id": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+            "name": "qa-gn1569-31-cond-vm11",
+            "displayname": "qa-gn1569-31-cond-vm11",
+            "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+            "username": "admin",
+            "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+            "project": "qa-gn1569-31-conditional",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "created": "2026-11-09T04:55:01+0900",
+            "lastupdated": "2026-11-09T04:55:08+0900",
+            "state": "Running",
+            "haenable": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "hostcontrolstate": "Enabled",
+            "volumemutationblockedreason": "",
+            "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "efc50dc2-7618-413e-a469-3b0709b72bb1",
+                "networkid": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+                "networkname": "qa-gn1569-31-cond-configdrive",
+                "ipaddress": "172.30.31.11",
+                "isolationuri": "vlan://154",
+                "broadcasturi": "vlan://154",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": true,
+                "macaddress": "02:15:69:31:09:11",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "enabled": true
+              },
+              {
+                "id": "3bdc13f3-e0b9-4d14-8e7f-c037723ccf34",
+                "networkid": "970f42a1-5570-4872-8faf-3c88ca9a0d3a",
+                "networkname": "qa-gn1569-31-cond-basic-l2",
+                "isolationuri": "vlan://200",
+                "broadcasturi": "vlan://200",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": false,
+                "macaddress": "02:1f:02:62:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "1",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "172.30.31.11",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "readonlydetails": "dataDiskController, rootDiskController, backupValidationCommandTimeout, backupValidationScreenshotWait, backupValidationBootTimeout",
+            "affinitygroup": [],
+            "isdynamicallyscalable": true,
+            "deleteprotection": false,
+            "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+            "osdisplayname": "Rocky Linux 9",
+            "pooltype": "SharedMountPoint",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vbmcport": "None",
+            "qemuagentversion": "9.0.0",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false,
+            "jobid": "a3578ae6-253d-4911-8ad8-affca8e2671f",
+            "jobstatus": 0
+          }
+        },
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+        "created": "2026-11-09T04:58:02+0900",
+        "completed": "2026-11-09T04:58:04+0900",
+        "jobid": "a3578ae6-253d-4911-8ad8-affca8e2671f",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "48688.728",
+    "command": "addNicToVirtualMachine",
+    "method": "POST",
+    "params": {
+      "command": "addNicToVirtualMachine",
+      "virtualmachineid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+      "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "addnictovirtualmachineresponse": {
+        "jobid": "fb7e09c3-d7cb-4902-8793-a8e31953820c"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "48688.729",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "fb7e09c3-d7cb-4902-8793-a8e31953820c",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T05:01:54+0900",
+        "jobid": "fb7e09c3-d7cb-4902-8793-a8e31953820c",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "48688.731",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "fb7e09c3-d7cb-4902-8793-a8e31953820c",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.admin.vm.AddNicToVMCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "virtualmachine": {
+            "id": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+            "name": "qa-gn1569-32-cond-vm11",
+            "displayname": "qa-gn1569-32-cond-vm11",
+            "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+            "username": "admin",
+            "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+            "project": "qa-gn1569-32-conditional",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "domain": "qa-gn1569-32-domain",
+            "domainpath": "ROOT/qa-gn1569-32-domain",
+            "created": "2026-11-09T04:46:07+0900",
+            "lastupdated": "2026-11-09T04:46:13+0900",
+            "state": "Running",
+            "haenable": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+            "hostname": "ablecube32-1",
+            "hostcontrolstate": "Enabled",
+            "volumemutationblockedreason": "",
+            "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+            "securitygroup": [],
+            "nic": [
+              {
+                "id": "6f845fac-9568-4de0-8c76-b2671fdad1f3",
+                "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+                "networkname": "qa-gn1569-32-cond-configdrive",
+                "ipaddress": "172.30.32.11",
+                "isolationuri": "vlan://188",
+                "broadcasturi": "vlan://188",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": true,
+                "macaddress": "02:15:69:32:09:11",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "0",
+                "enabled": true
+              },
+              {
+                "id": "d5256718-5c8f-4c50-a0cf-c93494ae24aa",
+                "networkid": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+                "networkname": "qa-gn1569-32-cond-tier-a",
+                "netmask": "255.255.255.128",
+                "gateway": "10.243.32.1",
+                "ipaddress": "10.243.32.102",
+                "isolationuri": "vlan://139",
+                "broadcasturi": "vlan://139",
+                "traffictype": "Guest",
+                "type": "Isolated",
+                "isdefault": false,
+                "macaddress": "02:01:01:ea:00:01",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "1",
+                "enabled": true
+              },
+              {
+                "id": "d97127b2-35e4-485b-adbb-e410aecce393",
+                "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+                "networkname": "qa-gn1569-32-cond-basic-l2",
+                "isolationuri": "vlan://172",
+                "broadcasturi": "vlan://172",
+                "traffictype": "Guest",
+                "type": "L2",
+                "isdefault": false,
+                "macaddress": "02:01:01:f0:00:02",
+                "secondaryip": [],
+                "extradhcpoption": [],
+                "deviceid": "2",
+                "enabled": true
+              }
+            ],
+            "hypervisor": "KVM",
+            "ipaddress": "172.30.32.11",
+            "instancename": "i-251-448-VM",
+            "details": {
+              "tpmversion": "NONE",
+              "rootDiskController": "osdefault"
+            },
+            "clonefastsourcepowerallowed": false,
+            "clonefastpowerallowed": false,
+            "affinitygroup": [],
+            "displayvm": true,
+            "isdynamicallyscalable": true,
+            "deleteprotection": false,
+            "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+            "osdisplayname": "Rocky Linux 9",
+            "pooltype": "RBD",
+            "receivedbytes": 0,
+            "sentbytes": 0,
+            "vbmcport": "None",
+            "qemuagentversion": "9.0.0",
+            "kvdoenable": false,
+            "kvdoinuse": false,
+            "arch": "x86_64",
+            "vbmcstatus": "Unallocated",
+            "tags": [],
+            "hasannotations": false,
+            "jobid": "fb7e09c3-d7cb-4902-8793-a8e31953820c",
+            "jobstatus": 0
+          }
+        },
+        "jobinstancetype": "VirtualMachine",
+        "jobinstanceid": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+        "created": "2026-11-09T05:01:54+0900",
+        "completed": "2026-11-09T05:01:56+0900",
+        "jobid": "fb7e09c3-d7cb-4902-8793-a8e31953820c",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "48688.836",
+    "command": "replaceNetworkACLList",
+    "method": "POST",
+    "params": {
+      "command": "replaceNetworkACLList",
+      "aclid": "98804505-78a3-4901-b2d9-e0495cc141a5",
+      "networkid": "0ebf7b1a-6383-4060-b317-45a848e91372",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "replacenetworkacllistresponse": {
+        "jobid": "bb921898-7f9e-483f-baa1-4cf9fabbbf8e"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "48688.837",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "bb921898-7f9e-483f-baa1-4cf9fabbbf8e",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.network.ReplaceNetworkACLListCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+        "managementservername": "ccvm-mngt",
+        "created": "2026-11-09T05:03:50+0900",
+        "jobid": "bb921898-7f9e-483f-baa1-4cf9fabbbf8e",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "48688.839",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "bb921898-7f9e-483f-baa1-4cf9fabbbf8e",
+      "command": "queryAsyncJobResult",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 200,
+    "result": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.network.ReplaceNetworkACLListCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "success": true
+        },
+        "created": "2026-11-09T05:03:50+0900",
+        "completed": "2026-11-09T05:03:52+0900",
+        "jobid": "bb921898-7f9e-483f-baa1-4cf9fabbbf8e",
+        "jobstatus": 1
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "requestId": "45720.1195",
+    "command": "updateNetworkACLItem",
+    "method": "POST",
+    "params": {
+      "command": "updateNetworkACLItem",
+      "cidrlist": "10.243.31.0/25",
+      "number": "10",
+      "protocol": "icmp",
+      "traffictype": "Ingress",
+      "action": "Deny",
+      "reason": "QA1569 readonly edit must reject",
+      "icmptype": "-1",
+      "icmpcode": "-1",
+      "id": "8f68753a-0580-4528-af90-e4ffc0b80645",
+      "partialupgrade": "false",
+      "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687"
+    },
+    "status": 401,
+    "result": {
+      "createnetworkaclresponse": {
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'updateNetworkACLItem' either does not exist, is not available for user."
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "requestId": "55652.814",
+    "command": "updateNetworkACLItem",
+    "method": "POST",
+    "params": {
+      "command": "updateNetworkACLItem",
+      "cidrlist": "10.243.32.0/25",
+      "number": "10",
+      "protocol": "icmp",
+      "traffictype": "Ingress",
+      "action": "Deny",
+      "reason": "QA1569 readonly edit must reject",
+      "icmptype": "-1",
+      "icmpcode": "-1",
+      "id": "46dec476-3815-4947-9517-b31435089d1d",
+      "partialupgrade": "false",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    },
+    "status": 401,
+    "result": {
+      "createnetworkaclresponse": {
+        "uuidList": [],
+        "errorcode": 401,
+        "cserrorcode": 9999,
+        "errortext": "The given command 'updateNetworkACLItem' either does not exist, is not available for user."
+      }
+    }
+  }
+]

@@ -1,0 +1,257 @@
+{
+  "running": false,
+  "rows": [
+    {
+      "time": "2026-11-11T11:26:45.131395+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:45.143173+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:47.152286+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:47.160224+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:49.166020+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:49.172154+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:51.180251+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:51.185512+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:53.193313+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:53.199559+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:55.208067+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:55.214435+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:57.221334+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:57.227597+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:59.233931+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:26:59.239632+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:01.247662+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:01.254056+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:03.262205+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:03.267159+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:05.274843+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:05.281924+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:07.289105+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:07.294429+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:09.300940+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:09.305956+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:11.391458+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:11.447764+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:13.456862+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    },
+    {
+      "time": "2026-11-11T11:27:13.463316+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": false,
+      "sshOk": false,
+      "error": "[Errno 19] No such device"
+    }
+  ],
+  "summary": {
+    "31": {
+      "samples": 15,
+      "pingFailures": 15,
+      "sshFailures": 15
+    },
+    "32": {
+      "samples": 15,
+      "pingFailures": 15,
+      "sshFailures": 15
+    }
+  }
+}

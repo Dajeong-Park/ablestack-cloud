@@ -1,0 +1,72 @@
+[
+  {
+    "id": "lb-stickiness-5_methodname",
+    "label": "세션 고정 방식",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_name",
+    "label": "정책 이름",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_cookieName",
+    "label": "Cookie 이름",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_mode",
+    "label": "모드",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_nocache",
+    "label": "캐시 비활성화",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_indirect",
+    "label": "간접",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_postonly",
+    "label": "POST 요청만 적용",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_domain",
+    "label": "도메인",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_length",
+    "label": "길이",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_holdtime",
+    "label": "보관 유지시간",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_requestLearn",
+    "label": "요청에서 학습",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_prefix",
+    "label": "접두사",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_tablesize",
+    "label": "테이블 크기",
+    "linked": true
+  },
+  {
+    "id": "lb-stickiness-5_expire",
+    "label": "만료시간",
+    "linked": true
+  }
+]

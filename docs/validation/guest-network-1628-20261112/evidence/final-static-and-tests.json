@@ -1,0 +1,100 @@
+{
+  "staticVerification": [
+    {
+      "cluster": 31,
+      "staticFiles": 675,
+      "mismatches": [],
+      "webInfPresent": true,
+      "http": 200,
+      "uiSourceChanged": false
+    },
+    {
+      "cluster": 32,
+      "staticFiles": 675,
+      "mismatches": [],
+      "webInfPresent": true,
+      "http": 200,
+      "uiSourceChanged": false
+    }
+  ],
+  "focusedTests": [
+    {
+      "name": "SharedNetworkSubnetSchemaUpgradeTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "DatabaseUpgradeCheckerTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "DatabaseUpgradeCheckerDoUpgradesTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "Upgrade42040to42100Test",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "Upgrade42100to42200Test",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "Upgrade42210to42300Test",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "SharedSubnetRouterBootTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "VirtualNetworkApplianceManagerImplTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "CommandSetupHelperTest",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "ApiResponseHelperTest",
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "NicStateResponseTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "total": 96
+}

@@ -1,0 +1,28 @@
+{
+  "plan": {},
+  "posts": [
+    {
+      "command": "deleteLBStickinessPolicy",
+      "params": {
+        "command": "deleteLBStickinessPolicy",
+        "response": "json",
+        "id": "4103b94a-423a-4646-8d5d-4d4c385769c7",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      }
+    }
+  ],
+  "jobId": "6fd127fe-4c5d-4008-b54a-9d417a9d6fe9",
+  "receipt": {
+    "deleteLBstickinessrruleresponse": {
+      "jobid": "6fd127fe-4c5d-4008-b54a-9d417a9d6fe9"
+    }
+  },
+  "queries": [],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": false
+    }
+  ]
+}

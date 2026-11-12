@@ -1,0 +1,48 @@
+{
+  "completed": true,
+  "reviewTabs": [
+    {
+      "id": "51376958",
+      "url": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates"
+    },
+    {
+      "id": "51376961",
+      "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates"
+    }
+  ],
+  "reviewSessions": "admin",
+  "expectedApp": "js/app.e01a5204.js",
+  "roleUiBothClusters": [
+    "customReadDeny",
+    "customAllow"
+  ],
+  "responsiveCases": 12,
+  "temporaryViewportResets": [
+    {
+      "tab": "initial31",
+      "cleared": true
+    },
+    {
+      "tab": "initial32",
+      "cleared": true
+    },
+    {
+      "tab": "deny31",
+      "cleared": true
+    },
+    {
+      "tab": "deny32",
+      "cleared": true
+    },
+    {
+      "tab": "allow31",
+      "cleared": true
+    },
+    {
+      "tab": "allow32",
+      "cleared": true
+    }
+  ],
+  "cachedOldRolePageExcluded": true,
+  "publicCapturesContainNoPemInputs": true
+}

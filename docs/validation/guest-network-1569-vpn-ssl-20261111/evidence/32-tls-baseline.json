@@ -1,0 +1,99 @@
+[
+  {
+    "rule": {
+      "id": "06c83112-50b4-4db4-a7ef-9ab18da4f6ba",
+      "name": "qa-gn1569-32-1590-ssl",
+      "publicipid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+      "publicip": "10.10.32.170",
+      "publicport": "18591",
+      "privateport": "18591",
+      "algorithm": "roundrobin",
+      "networkid": "75ccea08-34d0-48b6-80a9-006202b76e39",
+      "cidrlist": "192.0.2.156/32",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "state": "Active",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "protocol": "ssl",
+      "backendssl": true,
+      "tags": [],
+      "fordisplay": true
+    },
+    "certs": {
+      "httpStatus": 200,
+      "count": 1,
+      "sslcert": [
+        {
+          "id": "ca82ecee-57e3-43a5-814c-be15d49324a8",
+          "certificate": "-----BEGIN CERTIFICATE-----\nMIIDKTCCAhGgAwIBAgIURjcelEM8GbkIkGCYOU9HxqXRwTUwDQYJKoZIhvcNAQEL\nBQAwJDEiMCAGA1UEAwwZcWEtZ24xNTkwLmV4YW1wbGUuaW52YWxpZDAeFw0yNjEx\nMDcxNTI2MzVaFw0yNjExMTQxNTI2MzVaMCQxIjAgBgNVBAMMGXFhLWduMTU5MC5l\neGFtcGxlLmludmFsaWQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCj\nfjo5krQghAvLiMtquHjpFr/T8HwmT9QBvXsZ4dmlmyittn/o/bjrmDd+6qOk0uvN\nYXdRsTfkR2L2e8WgpNI4uzMSpNOfjEHgSaTxNLhq/9i0qxPP7wKr6iFrDmlzvwyY\nNCYfkNRqYcqkAPJQLrbiJ4D73QnSSAGoNbJZZSNjt79sSAJC4ZyXNtwsuCWLVjUV\n/z6nkQLNMtFEAup33H3lt65I/MHJkAxZD9aA2z15P14dcLe4O8D87/A9UUc9hbUw\nXaxmih6HyYG3yERaVEDeyZFdeZre4HKyMeqAcynV6eFIExjpddjgLc7kYGAyDQWR\nTxSVo0zVFnsVh7cZ63nNAgMBAAGjUzBRMB0GA1UdDgQWBBRAUaPARpncMx9X0g92\n4O0FgwchhzAfBgNVHSMEGDAWgBRAUaPARpncMx9X0g924O0FgwchhzAPBgNVHRMB\nAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAxh/FrYlghx7gYxzqgtzn1Lo9r\ngwZy9MwYkoHU9FgZslZTcVP7U8PoMWySCuxMdGpJp0xlcMT8/XmemzRXc7fZPqnY\nH/OzkYqKUvapEU385U/+VO17YIylW9IB3yGVTfQ46OaKdZ6ztrL641gmCJfv2J5z\nJ87ZbDanHSExejIGlp8T7o239M/baxkAmI2dv/+3jYqIGlx6b+YgrhSbwkJrOM/Z\n8My0yZeJZwhwlAlOAYfWnYvUZg0RR+RQWzZinOKL2E6Oi9N+5AoRFw6bvCTwBBn3\nH9JOlacxiZDnHV7SiqXiFxgSnWORzqZLvuLQE6rfgqebyfg7wyq22N29r1Io\n-----END CERTIFICATE-----",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "fingerprint": "E4:56:48:BB:98:4E:82:DB:D7:49:9E:86:1F:C2:18:EA:A7:C1:E1:4D:DC:0A:5A:2E:9E:4B:66:CA:A0:43:33:F5",
+          "loadbalancerrulelist": [
+            "06c83112-50b4-4db4-a7ef-9ab18da4f6ba"
+          ],
+          "name": "qa-gn1569-32-1590-cert"
+        }
+      ]
+    },
+    "probe": {
+      "exit": 124,
+      "out": "",
+      "error": ""
+    }
+  },
+  {
+    "rule": {
+      "id": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+      "name": "qa-gn1569-32-ssl",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "publicip": "10.10.32.177",
+      "publicport": "18874",
+      "privateport": "22",
+      "algorithm": "roundrobin",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "cidrlist": "",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "state": "Active",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "protocol": "ssl",
+      "backendssl": false,
+      "tags": [],
+      "fordisplay": true
+    },
+    "certs": {
+      "httpStatus": 200,
+      "count": 1,
+      "sslcert": [
+        {
+          "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+          "certificate": "-----BEGIN CERTIFICATE-----\nMIIDGzCCAgOgAwIBAgIUOsaxZfho5lZCdBdVaCcZk7aZKVUwDQYJKoZIhvcNAQEL\nBQAwHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMyLmxvY2FsMB4XDTI2MTEwOTEzMTEy\nNloXDTI2MTExNjEzMTEyNlowHTEbMBkGA1UEAwwScWEtZ24xNTY5LTMyLmxvY2Fs\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAy3h3otkRSFeo7djOQ8Z7\nE674BGoeTBvL5UlNJ237V291FYIe712/7Cxh2UIUByjDzfDgNXEozBTZrWSZ4Nw2\nAfLayk0Ah2jT+ClxUozSQKYQ2fgYyCRHsIsC2SYRQhay/BlS55bJ/3pax4FjBLG7\nlyV5VQQPjHFzvzyVhwqmTCD7Blqo030cBDDNKNEVuZpXL3DHbevSvqlqoQJJQBL3\nwxbZ9kyl+Wflq/STm2s2H2tlpLU+cF5z3fy80Mo1CfFdcTQA75EVU/2NKIJvFzUR\nVp3mF72T5ICDdK60tjlWUV74KJeOLsTJ/xXYo+6IA2umfOXBLYchq4wnsgq2giz+\n4wIDAQABo1MwUTAdBgNVHQ4EFgQU3iRXvX1KJbLeMcZe3aOBIoFnqQ0wHwYDVR0j\nBBgwFoAU3iRXvX1KJbLeMcZe3aOBIoFnqQ0wDwYDVR0TAQH/BAUwAwEB/zANBgkq\nhkiG9w0BAQsFAAOCAQEAYBGLciQGtegyAXGT1npOCWVhTX5Us9cyPViAUksytP/Y\nBFnVFgSaAtaQ/qvmWAE+XGl8wSXBdhA3uZXyuJDtzX9n+ekvxZpd/bo8a6RTJcpn\n3kB+OOqRWpQMplaREIYSPBfTSxPKJEeabDG+5g1T6yAmbZa1OVoo7//V9L/81C0s\nvLln/b1/jynJFNyRUC/UF60UUMF2SyEJLPwq0RMLkCPMkH29dFrBWv+z9RFgcv8T\n2jqnHXYi/s28sDrWivb3Pk2odxR4XQWkVjbxiES2PryAyt5S9uh5829cnFUh3gdT\nw73i54sBjP7zZAXn2vNsBQJnlOgxS3oM4zL8LwXFiA==\n-----END CERTIFICATE-----",
+          "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+          "loadbalancerrulelist": [
+            "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+          ],
+          "name": "qa-gn1569-32-tls"
+        }
+      ]
+    },
+    "probe": {
+      "exit": 0,
+      "out": "subject=CN = qa-gn1569-32.local\nsha256 Fingerprint=8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+      "error": ""
+    }
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "issue": 1569,
+  "scope": "VPN client + VPC S2S + current Health Monitor capability",
+  "clusters": [
+    31,
+    32
+  ],
+  "productSourceChanged": false,
+  "apiOrJavaChanged": false,
+  "newBuildOrDeployment": false,
+  "fullCloudBuild": false,
+  "existingDeployedUiSource": "8f27a55dfeb78a488f56bc5d07070414617f5daf",
+  "remoteVpnClientAuthenticationAndTraffic": true,
+  "remoteVpnClientRecoveredBoth": true,
+  "s2sIkev2ConnectedBoth": true,
+  "s2sBidirectionalIcmpTcpAndEsp": true,
+  "s2sPeerFailureAndRecovery": true,
+  "healthMonitorUnsupported430Both": true,
+  "healthMonitorNormalAndRecoveryEnvironmentBlocked": true,
+  "geometryCases": 60,
+  "supplementalActivePanelCaptures": 16,
+  "capturedImages": 114,
+  "nativeCrops": 7,
+  "defaultPlainPskSurfaces": 10,
+  "newUiDefects": [
+    1609,
+    1610
+  ],
+  "overall1569Complete": false,
+  "lbBackendDistributionMeasured": false,
+  "reviewResourcesRetained": true,
+  "temporaryHostAndClientProbesCleared": true,
+  "healthMonitorProviderAbsentConfirmedByUser": true,
+  "healthMonitorUserConfirmationDate": "2026-11-10"
+}

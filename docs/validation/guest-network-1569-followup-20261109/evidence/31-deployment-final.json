@@ -1,0 +1,26 @@
+{
+  "staticFiles": 662,
+  "mismatches": [],
+  "markers": {
+    "blockingLoadingState": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ],
+    "fetchSyncProgress": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ],
+    "extractJobId": [
+      "js/chunk-1b0a0aea.9ed8a281.js"
+    ],
+    "cachedOptions": [
+      "js/app.b0d837fb.js"
+    ],
+    "network-routers-tab": [
+      "js/chunk-58218515.d6f838dd.js",
+      "js/chunk-6ff9b29d.de77e97e.js"
+    ]
+  },
+  "jarSha256": "6999ab4695027faa6dedff0ca4fe1a25f5a24a109346babb11cbe8c48adf6f97",
+  "webInfPresent": true,
+  "http": 200,
+  "managementPid": "1356314"
+}

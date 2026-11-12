@@ -1,0 +1,909 @@
+{
+  "count": 56,
+  "files": [
+    {
+      "label": "31-project-return",
+      "path": "screenshots/31-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794365574951,
+      "cluster": 31,
+      "sha256": "ac4d77b5ce5bdf2428ab0e3c802f9c59c79bc33137455df4f23f66f3a6d4f75a",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 141628
+    },
+    {
+      "label": "31-before-health-tab",
+      "path": "screenshots/31-before-health-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/d958315b-8746-4460-884b-5ba9649087cd?tab=router.health.checks",
+      "time": 1794364475811,
+      "expectedFailure": "haproxy_check.py",
+      "sha256": "3ef7aacb8086da480758383a819e455e06c511015603efb0166986c796acd871",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 121143
+    },
+    {
+      "label": "32-project-return",
+      "path": "screenshots/32-project-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794365650082,
+      "cluster": 32,
+      "sha256": "bab554fb073560287ee481f06b3f59d3aa981e78f30d0515935c4e1d23c94c87",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 153685
+    },
+    {
+      "label": "32-before-health-tab",
+      "path": "screenshots/32-before-health-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364733501,
+      "cluster": 32,
+      "sha256": "fd5b8b51934a29e0d680e941c1eafb09b8438cc1ac13f4fa278c7dc8bf32429e",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 129238
+    },
+    {
+      "label": "32-actual-health-success",
+      "path": "screenshots/32-actual-health-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+      "time": 1794365385771,
+      "cluster": 32,
+      "actual": true,
+      "sha256": "b45cf7d0ea6c0829607718fba5d12ced350faf391bbbd9f540395c64d13dcf97",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 139104
+    },
+    {
+      "label": "32-health-read-pending",
+      "path": "screenshots/32-health-read-pending.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364909780,
+      "cluster": 32,
+      "controlled": true,
+      "sha256": "4e94ddf19f4c6116eeea47761eb8ff5d50c8408341d7b5b71176cffddfa01e21",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 103540
+    },
+    {
+      "label": "32-health-read-failed-input-preserved",
+      "path": "screenshots/32-health-read-failed-input-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364910435,
+      "cluster": 32,
+      "controlled": true,
+      "sha256": "9eda3655abbcb5c2b51797a5a8e106f3842befc17baddc204edc96915fd98d65",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 104615
+    },
+    {
+      "label": "32-health-read-recovered",
+      "path": "screenshots/32-health-read-recovered.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364924652,
+      "cluster": 32,
+      "actual": true,
+      "sha256": "82bc8ca9ac63a7f5948e61632fbc6ba6f99cf0b720734605a5354d4f95712f10",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 138934
+    },
+    {
+      "label": "32-health-1280-dark",
+      "path": "screenshots/32-health-1280-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364945959,
+      "cluster": 32,
+      "sha256": "081e963044030142336da02f917aabadeb6963dd273ee08ecb20de9affae154d",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 138509
+    },
+    {
+      "label": "32-health-1280-dark-dialog",
+      "path": "screenshots/32-health-1280-dark-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364948971,
+      "cluster": 32,
+      "sha256": "7de7c78a68784f47ba572ed12467decaa76f3a5c817198961de5abe97bb721b7",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 103267
+    },
+    {
+      "label": "32-health-768-dark",
+      "path": "screenshots/32-health-768-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364950669,
+      "cluster": 32,
+      "sha256": "aebe7ffe7e6ad37c4c9b0ebe454e7ada200028a70e487fa7259175d6db3887aa",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 61783
+    },
+    {
+      "label": "32-health-768-dark-dialog",
+      "path": "screenshots/32-health-768-dark-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364953644,
+      "cluster": 32,
+      "sha256": "e93b414a2f6ff70ad8659dde4402b4ea21990f7d5d3c3712bc9d22d07c975241",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 59940
+    },
+    {
+      "label": "32-health-390-dark",
+      "path": "screenshots/32-health-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364955231,
+      "cluster": 32,
+      "sha256": "e175ce3f0006eecc9008573c4e8b4dfe4b72e247011156b254dece988d8fa8a9",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 44578
+    },
+    {
+      "label": "32-health-390-dark-dialog",
+      "path": "screenshots/32-health-390-dark-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364958142,
+      "cluster": 32,
+      "sha256": "5777f7a3cce11cd4e1ba95bcc74c04cf1fa68eed290beb12758fe614943504af",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 34877
+    },
+    {
+      "label": "32-health-1280-light",
+      "path": "screenshots/32-health-1280-light.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364963114,
+      "cluster": 32,
+      "sha256": "60abb15c1a2f36f7c2370c6ad9a77a1914cb495bebfd99f062d65ab54d28ac07",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 105863
+    },
+    {
+      "label": "32-health-1280-light-dialog",
+      "path": "screenshots/32-health-1280-light-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364966154,
+      "cluster": 32,
+      "sha256": "928fee9a9ec4d1e42f4fc953dd2d00b6069b1421f24cde52714a83af15d1bacd",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 105197
+    },
+    {
+      "label": "32-health-768-light",
+      "path": "screenshots/32-health-768-light.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364967823,
+      "cluster": 32,
+      "sha256": "71611cfe9a0cc15880b06dce8f9e1ce977ec35b1a57168c0424250a429761a05",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 62420
+    },
+    {
+      "label": "32-health-768-light-dialog",
+      "path": "screenshots/32-health-768-light-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364970778,
+      "cluster": 32,
+      "sha256": "7ea126581204d6e5e256a7ae578796bb5657dc18449a95d22e860c1ec6c4d4b9",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 60938
+    },
+    {
+      "label": "32-health-390-light",
+      "path": "screenshots/32-health-390-light.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364972355,
+      "cluster": 32,
+      "sha256": "b252a2f179ac580bfe71935746da9a1e098cda3400c8968b75db354f23d861f8",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 44004
+    },
+    {
+      "label": "32-health-390-light-dialog",
+      "path": "screenshots/32-health-390-light-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/5fdc8ecb-c611-418c-b1fa-9773f60703d0?tab=router.health.checks",
+      "time": 1794364975251,
+      "cluster": 32,
+      "sha256": "d9a4ed35130240602fdc54213289d51a50df8c4f11e0a8db3f341dba62524541",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 35923
+    },
+    {
+      "label": "31-actual-health-success",
+      "path": "screenshots/31-actual-health-success.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365088931,
+      "cluster": 31,
+      "actual": true,
+      "sha256": "ba0d8b1bb6ec757fb3aab7e57f672b4aec596a703c3b1b28b1f0e34b6c7b7504",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 129997
+    },
+    {
+      "label": "31-health-read-pending",
+      "path": "screenshots/31-health-read-pending.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365105779,
+      "cluster": 31,
+      "controlled": true,
+      "sha256": "cea3862018725aa0210f10ea9f9764facf4345bb894089e857a18c2d34c959d7",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 96873
+    },
+    {
+      "label": "31-health-read-failed-input-preserved",
+      "path": "screenshots/31-health-read-failed-input-preserved.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365106402,
+      "cluster": 31,
+      "controlled": true,
+      "sha256": "2b86b32641cd46ff6aa68c5f0f4dcf735b7072c63dfd0a0ea6135f958dd5dd48",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 98115
+    },
+    {
+      "label": "31-health-read-recovered",
+      "path": "screenshots/31-health-read-recovered.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365120282,
+      "cluster": 31,
+      "actual": true,
+      "sha256": "24a14d3c7cb660d04ac7a5d830639d178d5a96d81eff0f97efc1555cf97012e6",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 130035
+    },
+    {
+      "label": "31-late-tab-response-discarded",
+      "path": "screenshots/31-late-tab-response-discarded.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365122718,
+      "cluster": 31,
+      "sha256": "33abe59e4fe232b45e76ab077187b315b3ccfb77528943b0a73224631e2501a1",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 129388
+    },
+    {
+      "label": "31-health-1280-dark",
+      "path": "screenshots/31-health-1280-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365144773,
+      "cluster": 31,
+      "sha256": "58778d9b935fb7ce536209667e05deb8badf5b2db1066d1964a89c3e0e8bb64b",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 130068
+    },
+    {
+      "label": "31-health-1280-dark-dialog",
+      "path": "screenshots/31-health-1280-dark-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365147748,
+      "cluster": 31,
+      "sha256": "97006df6e2c4cbe648af7bbd938db66c0c220c381ff211f07a0fd7e1f5e11401",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 96788
+    },
+    {
+      "label": "31-health-768-dark",
+      "path": "screenshots/31-health-768-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365149708,
+      "cluster": 31,
+      "sha256": "a211e25b3b90ec9249912909437fc63af2059b5bd732bda90d528e8f27d60124",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 47764
+    },
+    {
+      "label": "31-health-768-dark-dialog",
+      "path": "screenshots/31-health-768-dark-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365152674,
+      "cluster": 31,
+      "sha256": "b6417977faff8cb5ef01d0e0f9aff69b27c80764267773521d1c7fe01bc3ea5b",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 50660
+    },
+    {
+      "label": "31-health-390-dark",
+      "path": "screenshots/31-health-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365154511,
+      "cluster": 31,
+      "sha256": "8bf25de8ff76b4f81f93950a26cd3daaa34f145eb4ecb3ea673e8c6beb0ad74f",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 35772
+    },
+    {
+      "label": "31-health-390-dark-dialog",
+      "path": "screenshots/31-health-390-dark-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365157407,
+      "cluster": 31,
+      "sha256": "ce11d664acb6172e1643cc8f9a3f9b1cd601f2de7eb4560fc526faf469dac788",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 28685
+    },
+    {
+      "label": "31-health-1280-light",
+      "path": "screenshots/31-health-1280-light.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365162455,
+      "cluster": 31,
+      "sha256": "6c57822e6d2d34104a536dc1412d96cc3f9ddaced45198adc67bfcb5fc89030f",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 104669
+    },
+    {
+      "label": "31-health-1280-light-dialog",
+      "path": "screenshots/31-health-1280-light-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365165433,
+      "cluster": 31,
+      "sha256": "f13a5776b878cc8200c8d6f5e5a664fc0450ea1fb46e2b07e8d62c8ee7f56759",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 98399
+    },
+    {
+      "label": "31-health-768-light",
+      "path": "screenshots/31-health-768-light.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365167386,
+      "cluster": 31,
+      "sha256": "a8619ee360beef533e5077830af7b20e61d4012572c27aaab85484f5bcc494bb",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 50211
+    },
+    {
+      "label": "31-health-768-light-dialog",
+      "path": "screenshots/31-health-768-light-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365170363,
+      "cluster": 31,
+      "sha256": "36f13ef08985b69271844630539bb3aadb49ded054dd598f0ad17433bdd1b541",
+      "decodedWidth": 768,
+      "decodedHeight": 900,
+      "bytes": 52544
+    },
+    {
+      "label": "31-health-390-light",
+      "path": "screenshots/31-health-390-light.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365172230,
+      "cluster": 31,
+      "sha256": "616fab15864e0cee7dba99b81b368b84aa337040dc0634d650351299e5f11490",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 35243
+    },
+    {
+      "label": "31-health-390-light-dialog",
+      "path": "screenshots/31-health-390-light-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365175167,
+      "cluster": 31,
+      "sha256": "0705d6ca8075b99c741cf3d5757f4e833ff1f542bb9a2602a99dae91cc8f06f8",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 29375
+    },
+    {
+      "label": "31-project-default",
+      "path": "screenshots/31-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/dashboard",
+      "time": 1794365187171,
+      "cluster": 31,
+      "sha256": "beee0f803fdabac7dfef89f2a62cb10bde0df6395dcd1135b43ec2aea5509c2e",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 132021
+    },
+    {
+      "label": "31-project-health-return",
+      "path": "screenshots/31-project-health-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/router/44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b?tab=router.health.checks",
+      "time": 1794365209424,
+      "cluster": 31,
+      "sha256": "4f5f9452ca73679e2a412c6347758a22309aa2e08df6662ca6dee960e7ef1bb8",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 132780
+    },
+    {
+      "label": "31-vm-standard-detail",
+      "path": "screenshots/31-vm-standard-detail.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf",
+      "time": 1794365233064,
+      "cluster": 31,
+      "sha256": "55c914b2c370ca3fe8b44b394d5aee3b2afc93ae6b19a2b768d9006e9d0d1d8f",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 106461
+    },
+    {
+      "label": "31-vm-standard-nic-tab",
+      "path": "screenshots/31-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794365234364,
+      "cluster": 31,
+      "sha256": "7905a07464e518a0e4b180b97c541c84f2bd62e7419ad51d7ff23b6f45f90931",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 89414
+    },
+    {
+      "label": "31-vm-standard-connect-dialog",
+      "path": "screenshots/31-vm-standard-connect-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794365237442,
+      "cluster": 31,
+      "sha256": "961a19deb03e9127e7f85b17a8e9356c29fc10bc1552038794f8be32b9c33f2f",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 76157
+    },
+    {
+      "label": "31-vm-standard-390-dark",
+      "path": "screenshots/31-vm-standard-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+      "time": 1794365242452,
+      "cluster": 31,
+      "sha256": "cd68409c9c4607e9cae7783552a92d3d117f42bda37318ed7c7c28a794cd1f74",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 36491
+    },
+    {
+      "label": "31-vm-breadcrumb-return",
+      "path": "screenshots/31-vm-breadcrumb-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/vm",
+      "time": 1794365247748,
+      "cluster": 31,
+      "sha256": "a262dfce0780316a5a0232a51c9b9229f01b6a35b214df8dbf297e5efaed0500",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 115681
+    },
+    {
+      "label": "32-late-tab-response-discarded",
+      "path": "screenshots/32-late-tab-response-discarded.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+      "time": 1794365482944,
+      "cluster": 32,
+      "sha256": "70efc7f8fa6475f2ec59548ec1cfe46f6e5aabb8172039d94249b9e36fe14629",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 138823
+    },
+    {
+      "label": "32-project-default",
+      "path": "screenshots/32-project-default.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/dashboard",
+      "time": 1794365469745,
+      "cluster": 32,
+      "sha256": "5cb998ed896d24da26d60481b2c1e95818be5ca159d12ab58d135ee3710a72f4",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 147044
+    },
+    {
+      "label": "32-project-health-return",
+      "path": "screenshots/32-project-health-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+      "time": 1794365473235,
+      "cluster": 32,
+      "sha256": "6dbc51e53498c70e18e1ef25e272e1320dc422e7de2d0417c951d5d67214d349",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 142209
+    },
+    {
+      "label": "32-vm-standard-detail",
+      "path": "screenshots/32-vm-standard-detail.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+      "time": 1794365524852,
+      "cluster": 32,
+      "sha256": "7590be951b23a2d53b07a3581db8e830d15ac7c977ab35c0d4f7d37079ab614e",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 115349
+    },
+    {
+      "label": "32-vm-standard-nic-tab",
+      "path": "screenshots/32-vm-standard-nic-tab.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794365526242,
+      "cluster": 32,
+      "sha256": "caff4302fa5ddea570912fd77cb0b54cf87600dfc761a538f31ca09bee0a00f8",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 99655
+    },
+    {
+      "label": "32-vm-standard-connect-dialog",
+      "path": "screenshots/32-vm-standard-connect-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794365529311,
+      "cluster": 32,
+      "sha256": "53abffd161343134c14b8451d9f1597d2f224915822b51d400af0dc47b69fe3d",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 83660
+    },
+    {
+      "label": "32-vm-standard-390-dark",
+      "path": "screenshots/32-vm-standard-390-dark.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "theme": "dark",
+      "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+      "time": 1794365534330,
+      "cluster": 32,
+      "sha256": "9c358edc7a1367c06ddfaab1f1599103f8a6e0005feb6d7ff18c7593d4ab9179",
+      "decodedWidth": 390,
+      "decodedHeight": 900,
+      "bytes": 45226
+    },
+    {
+      "label": "32-vm-breadcrumb-return",
+      "path": "screenshots/32-vm-breadcrumb-return.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/vm",
+      "time": 1794365539631,
+      "cluster": 32,
+      "sha256": "f83733cf7dddf01437c171b1efaeaeaf00684be2a90ad43cac9050345ab2bf16",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 121976
+    },
+    {
+      "label": "31-readonly-router-access-denied",
+      "path": "screenshots/31-readonly-router-access-denied.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.31.10:8080/client/#/dashboard?tab=router.health.checks",
+      "time": 1794365568853,
+      "cluster": 31,
+      "sha256": "db613120b4b3d11a9582fa29ef5d9e481ab7ba4307aa44ff5d12aafa78603162",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 135191
+    },
+    {
+      "label": "32-readonly-router-access-denied",
+      "path": "screenshots/32-readonly-router-access-denied.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/dashboard?tab=router.health.checks",
+      "time": 1794365643273,
+      "cluster": 32,
+      "sha256": "7023fb2932a9b0943ea9a5d8b37e8d8bf892a251599dc759eb8782ac881f7441",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 136046
+    },
+    {
+      "label": "32-final-health-toolbar",
+      "path": "screenshots/32-final-health-toolbar.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+      "time": 1794365679354,
+      "cluster": 32,
+      "sha256": "c8a217899f4e87349a1c841d1be691bbae26879128e369acf479c5dacf4dd149",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 138930
+    },
+    {
+      "label": "32-final-standard-health-dialog",
+      "path": "screenshots/32-final-standard-health-dialog.jpg",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "theme": "light",
+      "url": "http://10.10.32.10:8080/client/#/router/f51cb34d-80db-4578-b2c0-8968dd5868e4?tab=router.health.checks",
+      "time": 1794365682159,
+      "cluster": 32,
+      "sha256": "1cced1e5433dca0e77d039bbf08419a834ecc9633225242a6780b0928e32fe0b",
+      "decodedWidth": 1280,
+      "decodedHeight": 900,
+      "bytes": 105002
+    }
+  ]
+}

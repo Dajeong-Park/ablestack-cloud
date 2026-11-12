@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/utils/vmNetworkAccess.js src/components/view/InfoCard.vue src/views/compute/VmNicsTab.vue tests/unit/utils/vmNetworkAccess.spec.js tests/unit/views/compute/VmNicsTab.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/utils/vmNetworkAccess.spec.js tests/unit/views/compute/VmNicsTab.spec.js tests/unit/utils/vmNicActions.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false
+}

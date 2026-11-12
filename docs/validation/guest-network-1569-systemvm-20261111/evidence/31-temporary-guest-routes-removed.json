@@ -1,0 +1,106 @@
+{
+  "before": [
+    {
+      "dst": "10.10.0.0/16",
+      "gateway": "10.234.31.1",
+      "dev": "ens8",
+      "flags": []
+    },
+    {
+      "dst": "10.10.31.10",
+      "gateway": "10.234.31.1",
+      "dev": "ens8",
+      "prefsrc": "10.234.31.146",
+      "flags": []
+    },
+    {
+      "dst": "10.234.31.0/24",
+      "dev": "ens8",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.234.31.146",
+      "metric": 101,
+      "flags": []
+    },
+    {
+      "dst": "10.247.31.0/24",
+      "dev": "ens11",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.247.31.110",
+      "metric": 103,
+      "flags": []
+    },
+    {
+      "dst": "10.248.31.0/24",
+      "dev": "ens10",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.248.31.51",
+      "metric": 102,
+      "flags": []
+    },
+    {
+      "dst": "172.26.31.0/24",
+      "dev": "ens3",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "172.26.31.25",
+      "metric": 100,
+      "flags": []
+    }
+  ],
+  "removed": [
+    {
+      "dst": "10.10.0.0/16",
+      "gateway": "10.234.31.1",
+      "dev": "ens8",
+      "flags": []
+    },
+    {
+      "dst": "10.10.31.10",
+      "gateway": "10.234.31.1",
+      "dev": "ens8",
+      "prefsrc": "10.234.31.146",
+      "flags": []
+    }
+  ],
+  "after": [
+    {
+      "dst": "10.234.31.0/24",
+      "dev": "ens8",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.234.31.146",
+      "metric": 101,
+      "flags": []
+    },
+    {
+      "dst": "10.247.31.0/24",
+      "dev": "ens11",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.247.31.110",
+      "metric": 103,
+      "flags": []
+    },
+    {
+      "dst": "10.248.31.0/24",
+      "dev": "ens10",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.248.31.51",
+      "metric": 102,
+      "flags": []
+    },
+    {
+      "dst": "172.26.31.0/24",
+      "dev": "ens3",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "172.26.31.25",
+      "metric": 100,
+      "flags": []
+    }
+  ]
+}

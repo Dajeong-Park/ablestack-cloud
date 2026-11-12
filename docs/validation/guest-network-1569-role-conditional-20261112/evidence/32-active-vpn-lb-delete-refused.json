@@ -1,0 +1,6 @@
+{
+  "jobid": "f9ac946a-63bc-4a29-aa62-150d1825e2f5",
+  "jobstatus": 2,
+  "errorcode": 530,
+  "errortext": "Cannot delete network b7cd0439-ed95-4e7d-8b31-eb0ebacbd711: virtual machine e3ddbdd1-ccd7-4299-9461-a33d25d6b645 is Running and still has a NIC in this network. Detach the NIC or expunge the VM, then retry only this network."
+}

@@ -1,0 +1,12 @@
+{
+  "command": "createVPC",
+  "params": {
+    "name": "qa-gn1610-32-review",
+    "displaytext": "QA1610 async VPN dialog review",
+    "cidr": "10.238.32.0/24",
+    "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "48bd6532-2090-4ada-b055-c7a5fe6a30d0"
+}

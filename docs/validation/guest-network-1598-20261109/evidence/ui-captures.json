@@ -1,0 +1,873 @@
+[
+  {
+    "cluster": 32,
+    "label": "before-duplicate-dialogs",
+    "file": "screenshots/32-before-duplicate-dialogs.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n*장치 ID\n*이름\n*필수 사항\n*관리 NIC\n설명\n취소확인",
+      "VNF nic 추가\n*장치 ID\n*이름\n*필수 사항\n*관리 NIC\n설명\n취소확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "6e1e2ae9c7ed996847082e1a1798d431381d821e3facd5afde41acc30c2b8a2e"
+  },
+  {
+    "cluster": 31,
+    "label": "before-duplicate-dialogs",
+    "file": "screenshots/31-before-duplicate-dialogs.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n*장치 ID\n*이름\n*필수 사항\n*관리 NIC\n설명\n취소확인",
+      "VNF nic 추가\n*장치 ID\n*이름\n*필수 사항\n*관리 NIC\n설명\n취소확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "49a2cd9726fa0ed5f4981ffee048f91b106e9faa0ed7c18818c3f7ee299f2ade"
+  },
+  {
+    "cluster": 31,
+    "label": "single-add-desktop",
+    "file": "screenshots/31-single-add-desktop.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "208e64d19cea291c2a5e1abcb89bd4eea7d8c19399869b2d77ad1d4baf87fac7"
+  },
+  {
+    "cluster": 31,
+    "label": "save-failure-input-preserved",
+    "file": "screenshots/31-save-failure-input-preserved.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n요청 실패\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "2338f0e46ffede1e9255db0c63e5978d2591a25ea6bc28f058e1ae0000486c0f"
+  },
+  {
+    "cluster": 31,
+    "label": "single-save-pending",
+    "file": "screenshots/31-single-save-pending.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "9a80f1d8bf113cb7b658ed56b96f92d45f28a20a7c036c233c8d41d579c29ef5"
+  },
+  {
+    "cluster": 31,
+    "label": "saved-retained-definition",
+    "file": "screenshots/31-saved-retained-definition.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "87a7367bcf728e6e7552801006d181a4d5b3d4879295c873ffa3e137d0bcb5c7"
+  },
+  {
+    "cluster": 31,
+    "label": "optional-definition-moved-up",
+    "file": "screenshots/31-optional-definition-moved-up.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Spare\t아니오\t아니오\tQA1598 reorder and delete fixture\t\n\t\n2\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "70bff3e80ef45c3ac9ebfcdfd947e9285ed722a2f8652c70710100eba7076b15"
+  },
+  {
+    "cluster": 31,
+    "label": "add-light-1280",
+    "file": "screenshots/31-add-light-1280.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "84ea666be5cff0b129da45ec7a374027f5e41299cbd17a06e9c785e40b5daf97"
+  },
+  {
+    "cluster": 31,
+    "label": "add-light-768",
+    "file": "screenshots/31-add-light-768.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "98393be7382549509bb96d8014d5e246f54169f3d245a43865a2bae59134ee9a"
+  },
+  {
+    "cluster": 31,
+    "label": "add-light-390",
+    "file": "screenshots/31-add-light-390.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "fde68d1e4a075e13b17b5eeef78030c6479291116d830662cedd9124275203b9"
+  },
+  {
+    "cluster": 31,
+    "label": "add-light-390-tab-end",
+    "file": "screenshots/31-add-light-390-tab-end.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "083f8da931e4d1c5f2d15adfb8369b697cdccc05e5ff49568525cd52bc4674c3"
+  },
+  {
+    "cluster": 31,
+    "label": "edit-light-1280",
+    "file": "screenshots/31-edit-light-1280.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "3ee1e1948304b8692899c89ed5acb65570eb322c73be9f8495753dd051077ff2"
+  },
+  {
+    "cluster": 31,
+    "label": "edit-light-768",
+    "file": "screenshots/31-edit-light-768.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "d51586142c23cb606c56973e0650ac6eabf11757e52018ebaec8411fe8cc9922"
+  },
+  {
+    "cluster": 31,
+    "label": "edit-light-390",
+    "file": "screenshots/31-edit-light-390.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "8b976a4450dd778f21d6bfa5454ef64faacb2175a30722cf29f55febd1949c5f"
+  },
+  {
+    "cluster": 31,
+    "label": "add-dark-1280",
+    "file": "screenshots/31-add-dark-1280.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "da4b91e2225efde277eb7585613a314be93621c9813fd085703a45c24b04a84a"
+  },
+  {
+    "cluster": 31,
+    "label": "add-dark-768",
+    "file": "screenshots/31-add-dark-768.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "cc24442c7f8c27d1f145fbb7fb32a1a65c1508b426707798798a222ec26fc487"
+  },
+  {
+    "cluster": 31,
+    "label": "add-dark-390",
+    "file": "screenshots/31-add-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "820ded283220aca3c83812faa4fb8411579cc34441ad7bb804c8a99e42a297d1"
+  },
+  {
+    "cluster": 31,
+    "label": "edit-dark-1280",
+    "file": "screenshots/31-edit-dark-1280.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "96dcddd4a49b463c63de916c06bbd526da8b581c0f5e3edb012e68154a6507ee"
+  },
+  {
+    "cluster": 31,
+    "label": "edit-dark-768",
+    "file": "screenshots/31-edit-dark-768.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "78c2591d471a771abc90295ce124baa4e2a0dce9ef3e61fd3a358102ae9472f4"
+  },
+  {
+    "cluster": 31,
+    "label": "edit-dark-390",
+    "file": "screenshots/31-edit-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-31-project-template\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "10e0e7fbec751e45d6ca725130585ab55b5720defed2469b73baeb3d735ebc9e"
+  },
+  {
+    "cluster": 31,
+    "label": "project-switch-cleared",
+    "file": "screenshots/31-project-switch-cleared.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": " 리소스\n가상머신\n 5\n쿠버네티스 클러스터\n 0\n볼륨\n 5\n스냅샷\n 0\n가상머신용 네트워크\n 45\nVPCs\n 0\nPublic IP 주소\n 11\n템플릿\n 1\n 컴퓨트\n실행 중 가상머신\n5\n정지된 VM 가상머신\n0\n가상머신\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\nCPU 코어\n10 사용됨\n25%\n\n30 사용 가능 | 40 제한\n메모리\n10.00 GiB 사용됨\n25%\n\n30.00 GiB 사용 가능 | 40.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n기본 스토리지\n500.00 GiB 사용됨\n100%\n\n0.00 GiB 사용 가능 | 500.00 GiB 제한\n2차 스토리지\n100.00 GiB 사용됨\n25%\n\n300.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n11 사용됨\n55%\n\n8 사용 가능 | 20 제한\n네트워크\n42 사용됨\n84%\n\n8 사용 가능 | 50 제한\nVPCs\n0 사용됨\n0%\n\n20 사용 가능 | 50 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Successfully completed adding account to project. Project ID: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe; accountName qa-gn1597-31-ip-member\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Adding account to project. Project ID: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe; accountName qa-gn1597-31-ip-member\n2026. 11. 8. 오후 11:02:03  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-31-project\n(admin) Adding account qa-gn1597-31-ip-member to project: 4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe\n2026. 11. 8. 오후 10:10:49  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Successfully completed Creating NIC. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153 Network ID: 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d\n2026. 11. 8. 오후 10:10:47  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Creating NIC. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153 Network ID: 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d\n2026. 11. 8. 오후 10:10:47  NIC.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Adding NIC on Network 0bb7a305-e2c0-4fd6-af30-5f8aec0b720d to User Instance: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:18  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Successfully completed deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n2026. 11. 8. 오후 8:55:09  VM.CREATE\n\nqa-gn1595-31-project-vnf\n(admin) Deploying Vm. Instance ID: 700bca14-4b49-4728-b915-345f87b3a153\n보기 이벤트",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "536069d5a50329bafcd3536184df7f4d98767b01bcf8c8ca685fcf900626200d"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-standard-mobile-dialog",
+    "file": "screenshots/31-VM-standard-mobile-dialog.jpg",
+    "dark": true,
+    "dialogs": [
+      "기존 네트워크 연결\n가상머신\nqa-gn1594-31-owner-vm\nZone\nZone\n프로젝트\nqa-gn1569-31-project\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결"
+    ],
+    "main": "/가상머신/qa-gn1594-31-owner-vm업데이트\n작업\nqa-gn1594-31-owner-vm\ni-428-961-VM\nx86_64\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\nc655dfeb-fc4e-4bbc-8f61-2e038160089f \nIP\n10.180.31.12 \nQGA · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  10.180.31.12   기본\n      qa-gn1569-31-prj-base\neth1  10.252.31.91  \n      qa-gn1594-31-vm-nat\neth2    \n      qa-gn1594-31-vm-l2\neth3  10.247.31.50  \n      qa-gn1594-31-vm-shared\n프로젝트\nqa-gn1569-31-project\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\n2Core 2GB\n호스트\nablecube31-3\nZone\nZone\n도메인\nqa-gn1569-31-domain\n생성일\n2026. 11. 8. 오후 2:36:02\n마지막 업데이트\n2026. 11. 8. 오후 2:36:07\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-prj-base\nShared기본\t0\t10.180.31.12\n1e:1f:03:00:02:e1\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-nat\nIsolated\t1\t10.252.31.91\n02:1f:02:56:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-l2\nL2\t2\tCloud IP 관리 안 함\n02:1f:02:57:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-shared\nShared\t3\t10.247.31.50\n02:1f:02:58:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "3d41a54a3b516a49b26d4daf218d1aea4a36106278818728834e6086f15e402c"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-breadcrumb-list",
+    "file": "screenshots/31-VM-breadcrumb-list.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/가상머신업데이트\n모두\n메트릭\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n내부 이름\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 형식\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n호스트\n\t\n계정\n\t\nZone\n\t\n\n\n\tqa-gn1569-31-prj-vm\ti-428-945-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.31.25/27 \n+3\n\tUSER\t\tx86_64\tablecube31-3\t\tZone\t\n\n\tqa-gn1569-31-r2-vm\ti-428-952-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.31.11/27 \n+3\n\tUSER\t\tx86_64\tablecube31-3\t\tZone\t\n\n\tqa-gn1594-31-owner-vm\ti-428-961-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.31.12/27 \n+3\n\tUSER\t\tx86_64\tablecube31-3\t\tZone\t\n\n\tqa-gn1569-31-vnf-ui\ti-428-964-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.31.98/24 \n+3\n\tVNF\t\tx86_64\tablecube31-3\t\tZone\t\n\n\tqa-gn1595-31-project-vnf\ti-428-967-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.31.119/24 \n+3\n\tVNF\t\tx86_64\tablecube31-3\t\tZone\t\n전체 5 개 항목 중 1-5 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "cf56cf7e84d9c19f42600f528574bc3960fea44f5365f0b8d992477389e9558a"
+  },
+  {
+    "cluster": 31,
+    "label": "navigation-cleared",
+    "file": "screenshots/31-navigation-cleared.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/템플릿업데이트\n모두\nURL로 템플릿 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n크기\n\t\n계정\n\t\n템플릿 형식\n\t\n순서\n\t\n\nrocky-9-4-minimal.qcow22\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nsystemvmtemplate-x86_64-kvm-Europa-202609091134\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\nUbuntu 26.04 Server x86_64 Base Install\t\n사용 가능\n\tUbuntu 26.04 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nUbuntu 24.04 Server x86_64 Base Install\t\n사용 가능\n\tUbuntu 24.04 LTS\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nUbuntu 22.04 Server x86_64 Base Install\t\n사용 가능\n\tUbuntu 22.04 LTS\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nWindows Server 2025 x86_64 Base Install\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nWindows Server 2022 x86_64 Base Install\t\n사용 가능\n\tWindows Server 2022 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nSystemVM Template (KVM)\t\n사용 가능\n\tDebian GNU/Linux 5.0 (64-bit)\tx86_64\tKVM\t4.88 GiB\tsystem\tSYSTEM\t\n\t\nRT1230-CKS-node-1251-prepared-v1\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tk1230-20261006\tUSER\t\n\t\nkvm-blank-vm-template\t\n대기 중\n\tCentOS 4.5 (32-bit)\tx86_64\tKVM\t\tsystem\tSYSTEM\t\n\t\nAS-PROD-31-AS04-HTTP8080\t\n사용 가능\n\tUbuntu 24.04 LTS\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nAS-PROD-31-AS04-PROJECT-HTTP8080\t\n사용 가능\n\tUbuntu 24.04 LTS\tx86_64\tKVM\t100.00 GiB\t\tUSER\t\n\t\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nqa-gn1574-31-skudonet-7-2-1\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\tqa-gn1574-31-owner\tVNF\t\n\t\nqa-gn1569-31-vnf-ui-template\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\t\tVNF\t\n\t\nqa-gn1595-31-personal-template\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tVNF\t\n\t\nqa-gn1597-31-project-template\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\t\tVNF\t\n\t\n전체 17 개 항목 중 1-17 표시\n1\n20 / 쪽",
+    "url": "http://10.10.31.10:8080/client/#/template",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "99af742a2dfdf04c7dca7957ee3bf99aee43a5ab8a78142e0b7572e5e60aeeda"
+  },
+  {
+    "cluster": 31,
+    "label": "final-retained-template",
+    "file": "screenshots/31-final-retained-template.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/템플릿/qa-gn1597-31-project-template업데이트\n작업\nqa-gn1597-31-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nade68127-cd11-48d4-8e5f-ce9bcd53592c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-31-project\n도메인\nqa-gn1569-31-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.31.10:8080/client/#/template/ade68127-cd11-48d4-8e5f-ce9bcd53592c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "f69bd4916bed8de325ce9d54c8605676fda2dbe799aa6f4c58229bea30152241"
+  },
+  {
+    "cluster": 32,
+    "label": "save-failure-input-preserved",
+    "file": "screenshots/32-save-failure-input-preserved.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n요청 실패\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "49499b23535b7d4bdb22fd915a534c880624ff5fa479423b57e76700e43b434e"
+  },
+  {
+    "cluster": 32,
+    "label": "single-save-pending",
+    "file": "screenshots/32-single-save-pending.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "ad645a0c1e7012a94c7999a5277701233306e1f0a40904020bd060b3f03128bb"
+  },
+  {
+    "cluster": 32,
+    "label": "saved-retained-definition",
+    "file": "screenshots/32-saved-retained-definition.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "b5ae0a31a92916d5a9794e7f9957af653b0adf33172b29cf25064b0da9a6bd9c"
+  },
+  {
+    "cluster": 32,
+    "label": "optional-definition-moved-up",
+    "file": "screenshots/32-optional-definition-moved-up.jpg",
+    "dark": true,
+    "dialogs": [],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Spare\t아니오\t아니오\tQA1598 reorder and delete fixture\t\n\t\n2\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "decodedFormat": "JPEG",
+    "sha256": "d4a94faff8ec67c4a62242a8ecb8b47d2198d251ab8e2e4bf813e662a46b57cd"
+  },
+  {
+    "cluster": 32,
+    "label": "add-dark-1280",
+    "file": "screenshots/32-add-dark-1280.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "e8082681f7494804ecaf54ffbb22e5e0419099e22568d7dd61b53dc979da54af"
+  },
+  {
+    "cluster": 32,
+    "label": "add-dark-768",
+    "file": "screenshots/32-add-dark-768.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "d9df4b14826fca6e54c02bdde279ef7effcf78b0e6e6d43d5b73c3ed3dee2db7"
+  },
+  {
+    "cluster": 32,
+    "label": "add-dark-390",
+    "file": "screenshots/32-add-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "f27dcf35891292e049321adc1066a04ee5eda25cdf40bcf99e3ac31dfa69dc64"
+  },
+  {
+    "cluster": 32,
+    "label": "add-dark-390-tab-end",
+    "file": "screenshots/32-add-dark-390-tab-end.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "6a9c31fa6f1d90ef5fe0c0a0916b6a777e0ed93643b55071d9ceb2d081e2c044"
+  },
+  {
+    "cluster": 32,
+    "label": "edit-dark-1280",
+    "file": "screenshots/32-edit-dark-1280.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "b6babc4fea696d03632d4b72eb1aab4704b36c01ad3792ac677ca71bc2a2edb7"
+  },
+  {
+    "cluster": 32,
+    "label": "edit-dark-768",
+    "file": "screenshots/32-edit-dark-768.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "7f7b885e6134d4d023da601274c06f4596bc11ea5aa33acb517f1cfdb16585e8"
+  },
+  {
+    "cluster": 32,
+    "label": "edit-dark-390",
+    "file": "screenshots/32-edit-dark-390.jpg",
+    "dark": true,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "276123ea0a9c7ec03f4247448b7c6da1765e329173b8c26cb76dcdcff5f6530a"
+  },
+  {
+    "cluster": 32,
+    "label": "add-light-1280",
+    "file": "screenshots/32-add-light-1280.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "b4e277c5fc5110bb5d99d649f99d2d58d516024e22f8c4ee319ae4f54b46bb5f"
+  },
+  {
+    "cluster": 32,
+    "label": "add-light-768",
+    "file": "screenshots/32-add-light-768.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "c7ab811e53fbcf06d23c813e58848ac4e9f9fc06a2d1177a695589443d905066"
+  },
+  {
+    "cluster": 32,
+    "label": "add-light-390",
+    "file": "screenshots/32-add-light-390.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 추가\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "8f35fac83301f41ab24baebca6c26a6ecb8263e942adb2935f4ed1d1406c5761"
+  },
+  {
+    "cluster": 32,
+    "label": "edit-light-1280",
+    "file": "screenshots/32-edit-light-1280.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "470a797f106fa7cbe1962ae312355ceed9926be93c78e0b340b8979e6a3eb6cb"
+  },
+  {
+    "cluster": 32,
+    "label": "edit-light-768",
+    "file": "screenshots/32-edit-light-768.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "decodedFormat": "JPEG",
+    "sha256": "ae1d99a3e2a14d2881337cb585ac965fcf05718082b2ac2e33c81ccf250d6185"
+  },
+  {
+    "cluster": 32,
+    "label": "edit-light-390",
+    "file": "screenshots/32-edit-light-390.jpg",
+    "dark": false,
+    "dialogs": [
+      "VNF nic 편집\n템플릿\nqa-gn1597-32-project-template\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n장치 ID\nVNF nic의 장치 ID. 0으로 시작합니다.\n이름\nVNF nic의 이름\n필수 사항\nVNF nic가 필수이면 True입니다. 그렇지 않으면 선택 사항입니다.\n관리 NIC\nVNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.\n설명\n취소\n확인"
+    ],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "a94301153f68f6f307e0f341591741c2f2fb8910c1f6bccb9c8090f8ae155702"
+  },
+  {
+    "cluster": 32,
+    "label": "project-switch-cleared",
+    "file": "screenshots/32-project-switch-cleared.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": " 리소스\n가상머신\n 5\n쿠버네티스 클러스터\n 0\n볼륨\n 5\n스냅샷\n 0\n가상머신용 네트워크\n 46\nVPCs\n 0\nPublic IP 주소\n 11\n템플릿\n 1\n 컴퓨트\n실행 중 가상머신\n5\n정지된 VM 가상머신\n0\n가상머신\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\nCPU 코어\n10 사용됨\n25%\n\n30 사용 가능 | 40 제한\n메모리\n10.00 GiB 사용됨\n25%\n\n30.00 GiB 사용 가능 | 40.00 GiB 제한\nGPU\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n 스토리지\n볼륨\n5 사용됨\n25%\n\n15 사용 가능 | 20 제한\n스냅샷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n템플릿\n1 사용됨\n5%\n\n19 사용 가능 | 20 제한\n기본 스토리지\n500.00 GiB 사용됨\n100%\n\n0.00 GiB 사용 가능 | 500.00 GiB 제한\n2차 스토리지\n100.00 GiB 사용됨\n25%\n\n300.00 GiB 사용 가능 | 400.00 GiB 제한\n백업\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n백업 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n버킷\n0 사용됨\n0%\n\n20 사용 가능 | 20 제한\n오브젝트 스토리지\n0.00 GiB 사용됨\n0%\n\n400.00 GiB 사용 가능 | 400.00 GiB 제한\n 네트워크\nPublic IP 주소\n11 사용됨\n55%\n\n9 사용 가능 | 20 제한\n네트워크\n43 사용됨\n86%\n\n7 사용 가능 | 50 제한\nVPCs\n0 사용됨\n0%\n\n20 사용 가능 | 50 제한\n 도움말\nDocumentation\nABLESTACK documentation website\nEmail Support\nJoin ABLESTACK users mailing list to seek and provide support\nReport Issue\nSubmit a bug or improvement request\n 이벤트\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Successfully completed adding account to project. Project ID: 0db180fc-4a19-4f9a-b387-00599ffa86c0; accountName qa-gn1597-32-ip-member\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Adding account to project. Project ID: 0db180fc-4a19-4f9a-b387-00599ffa86c0; accountName qa-gn1597-32-ip-member\n2026. 11. 8. 오후 11:02:06  PROJECT.ACCOUNT.ADD\n\nqa-gn1569-32-project\n(admin) Adding account qa-gn1597-32-ip-member to project: 0db180fc-4a19-4f9a-b387-00599ffa86c0\n2026. 11. 8. 오후 10:17:31  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Successfully completed Creating NIC. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e Network ID: d5ebfabd-d845-4411-9266-d6d16efe7587\n2026. 11. 8. 오후 10:17:30  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Creating NIC. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e Network ID: d5ebfabd-d845-4411-9266-d6d16efe7587\n2026. 11. 8. 오후 10:17:30  NIC.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Adding NIC on Network d5ebfabd-d845-4411-9266-d6d16efe7587 to User Instance: fc92af85-adce-4690-a746-9fee3cb3af0e\n2026. 11. 8. 오후 9:04:34  VM.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Successfully completed deploying Vm. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e\n2026. 11. 8. 오후 9:04:25  VM.CREATE\n\nqa-gn1595-32-project-vnf\n(admin) Deploying Vm. Instance ID: fc92af85-adce-4690-a746-9fee3cb3af0e\n보기 이벤트",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "f6a6e9aceebb424861d1e2d263d22a2c68a8d5fbad2e6023d19ae6ffbf91ba75"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-standard-mobile-dialog",
+    "file": "screenshots/32-VM-standard-mobile-dialog.jpg",
+    "dark": false,
+    "dialogs": [
+      "기존 네트워크 연결\n가상머신\nqa-gn1594-32-owner-vm\nZone\nZone\n프로젝트\nqa-gn1569-32-project\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결"
+    ],
+    "main": "/가상머신/qa-gn1594-32-owner-vm업데이트\n작업\nqa-gn1594-32-owner-vm\ni-240-436-VM\nx86_64\nKVM\n동적으로 확장 가능\n상태\n실행 중\n아이디\n5aa20e59-56c9-45cb-a144-54bfe5957a1d \nIP\n10.180.32.19 \n클라우드 · 주 IP\nCPU\n2 CPU x 2.00 GHz \nx86_64\n메모리\n2048 MB 메모리\n네트워크\n4 NIC(s)\neth0  10.180.32.19   기본\n      qa-gn1569-32-prj-base\neth1  10.252.32.228  \n      qa-gn1594-32-vm-nat\neth2    \n      qa-gn1594-32-vm-l2\neth3  10.247.32.58  \n      qa-gn1594-32-vm-shared\n프로젝트\nqa-gn1569-32-project\n템플릿\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\n컴퓨트 오퍼링\nAS-PROD-32-AS01-2C2G\n호스트\nablecube32-2\nZone\nZone\n도메인\nqa-gn1569-32-domain\n생성일\n2026. 11. 8. 오후 2:36:09\n마지막 업데이트\n2026. 11. 8. 오후 2:36:16\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\n생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-prj-base\nShared기본\t0\t10.180.32.19\n1e:01:cc:00:02:e6\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-nat\nIsolated\t1\t10.252.32.228\n02:01:01:e4:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-l2\nL2\t2\tCloud IP 관리 안 함\n02:01:01:e5:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-shared\nShared\t3\t10.247.32.58\n02:01:01:e6:00:01\t활성화\t\n연결 해제",
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "decodedFormat": "JPEG",
+    "sha256": "07a0994a25d93b318f2c988b20ec06d14eba65b6cc121d9c368ab600368f8073"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-breadcrumb-list",
+    "file": "screenshots/32-VM-breadcrumb-list.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/가상머신업데이트\n모두\n메트릭\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n내부 이름\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 형식\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n호스트\n\t\n계정\n\t\nZone\n\t\n\n\n\tqa-gn1569-32-prj-vm\ti-240-420-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.32.20 \n\tUSER\t\tx86_64\tablecube32-2\t\tZone\t\n\n\tqa-gn1569-32-r2-vm\ti-240-427-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.32.21 \n\tUSER\t\tx86_64\tablecube32-2\t\tZone\t\n\n\tqa-gn1594-32-owner-vm\ti-240-436-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t9.0.0\t\n10.180.32.19 \n\tUSER\t\tx86_64\tablecube32-2\t\tZone\t\n\n\tqa-gn1569-32-vnf-ui\ti-240-439-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.32.38 \n\tVNF\t\tx86_64\tablecube32-2\t\tZone\t\n\n\tqa-gn1595-32-project-vnf\ti-240-444-VM\t\n실행 중\n\t\n2 CPU\n2048 MB\n\t7.2.15\t\n10.251.32.245 \n\tVNF\t\tx86_64\tablecube32-2\t\tZone\t\n전체 5 개 항목 중 1-5 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "080608dc73cb60256668c5ffd3de2b57156319a223f48fffd33e3b77378409f3"
+  },
+  {
+    "cluster": 32,
+    "label": "navigation-cleared",
+    "file": "screenshots/32-navigation-cleared.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/템플릿업데이트\n모두\nURL로 템플릿 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n크기\n\t\n계정\n\t\n템플릿 형식\n\t\n순서\n\t\n\nnginx-lb-test.qcow2\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nRocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nsystemvmtemplate-x86_64-kvm-202610011153.qcow2.bz2\t\n사용 가능\n\tDebian GNU/Linux 5.0 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\nE1335-Windows2022-UEFI-base\t\n사용 가능\n\tWindows Server 2022 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\nkvm-blank-vm-template\t\n대기 중\n\tCentOS 4.5 (32-bit)\tx86_64\tKVM\t\tsystem\tSYSTEM\t\n\t\nmonitoring-vm.qcow2\t\n대기 중\n\tWindows 11 (64-bit)\tx86_64\tKVM\t\tadmin\tUSER\t\n\t\nqa-gn1574-32-skudonet-7-2-1\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\tqa-gn1574-32-owner\tVNF\t\n\t\nqa-gn1569-32-vnf-ui-template\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\t\tVNF\t\n\t\nqa-gn1595-32-personal-template\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tVNF\t\n\t\nqa-gn1597-32-project-template\t\n사용 가능\n\tOther Linux (64-bit)\tx86_64\tKVM\t100.00 GiB\t\tVNF\t\n\t\nSystemVM Template (KVM)\t\n사용 가능\n\tDebian GNU/Linux 5.0 (64-bit)\tx86_64\tKVM\t4.88 GiB\tsystem\tSYSTEM\t\n\t\n전체 11 개 항목 중 1-11 표시\n1\n20 / 쪽",
+    "url": "http://10.10.32.10:8080/client/#/template",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "171f70b0bf2301b524b3bf728b021db5223cfc081be95f8ea0af6b4d8b4fad0a"
+  },
+  {
+    "cluster": 32,
+    "label": "final-retained-template",
+    "file": "screenshots/32-final-retained-template.jpg",
+    "dark": false,
+    "dialogs": [],
+    "main": "/템플릿/qa-gn1597-32-project-template업데이트\n작업\nqa-gn1597-32-project-template\nx86_64\nKVM\n상태\n사용 가능\n아이디\nbc71c53f-767b-4674-b993-855e6b73347c \nOS 유형\nOther Linux (64-bit)\n프로젝트\nqa-gn1597-32-project\n도메인\nqa-gn1569-32-domain\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n설정\nVNF 설정\n이벤트\n코멘트\nVNF nics\nVNF nic 추가\n장치 ID\t이름\t필수 사항\t관리 NIC\t설명\t동작\t\n0\tManagement\t예\t예\t\t\n\t\n1\tQA1598 Data\t아니오\t아니오\tQA1598 retained optional NIC / UI edit passed\t\n\t\nVNF 세부정보\nVNF 세부정보 추가\n\n데이터 없음",
+    "url": "http://10.10.32.10:8080/client/#/template/bc71c53f-767b-4674-b993-855e6b73347c?tab=vnf.settings",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "decodedFormat": "JPEG",
+    "sha256": "0ca2dcd40aa5f1afc05a64bf3305f3bfde9fb732eb5bbc01f311ee8600e5ef1a"
+  }
+]

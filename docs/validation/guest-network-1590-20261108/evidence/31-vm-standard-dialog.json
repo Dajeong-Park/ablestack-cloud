@@ -1,0 +1,23 @@
+{
+  "bodyClass": "ant-scrolling-effect",
+  "dialogs": [
+    {
+      "rect": {
+        "bottom": 841,
+        "height": 841,
+        "left": 0,
+        "right": 1680,
+        "top": 0,
+        "width": 1680,
+        "x": 0,
+        "y": 0
+      },
+      "text": "기존 네트워크 연결\n가상머신\nqa-gn1569-31-prj-vm\nZone\nZone\n프로젝트\nqa-gn1569-31-project\n네트워크\nIP 주소\n비우면 자동 할당합니다.\nMAC 주소\n비우면 자동 생성합니다.\n기본값으로 설정\n취소\n기존 네트워크 연결"
+    }
+  ],
+  "height": 841,
+  "scrollHeight": 841,
+  "scrollWidth": 1670,
+  "url": "http://10.10.31.10:8080/client/#/vm/625141be-7145-4557-9d8f-731500c61cb0?tab=nics",
+  "width": 1680
+}

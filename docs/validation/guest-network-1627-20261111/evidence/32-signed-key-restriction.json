@@ -1,0 +1,10 @@
+{
+  "unrelatedApiDenied": true,
+  "result": {
+    "httpStatus": 432,
+    "uuidList": [],
+    "errorcode": 432,
+    "cserrorcode": 9999,
+    "errortext": "The API [listVirtualMachines] does not exist or is not available for the account qa-gn1569-32-owner."
+  }
+}

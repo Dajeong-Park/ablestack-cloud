@@ -1,0 +1,57 @@
+[
+  {
+    "role": "admin",
+    "command": "listAvailableGuestIps",
+    "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+    "result": {
+      "uuidList": [],
+      "errorcode": 531,
+      "cserrorcode": 4365,
+      "errortext": "Unable to use network with id= c50abf1a-d037-498a-b29f-bcc5ad4e2d68, permission denied"
+    }
+  },
+  {
+    "role": "owner",
+    "command": "listAvailableGuestIps",
+    "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-owner."
+    }
+  },
+  {
+    "role": "member",
+    "command": "listAvailableGuestIps",
+    "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-member."
+    }
+  },
+  {
+    "role": "domainadmin",
+    "command": "listAvailableGuestIps",
+    "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-domainadmin."
+    }
+  },
+  {
+    "role": "peer",
+    "command": "listAvailableGuestIps",
+    "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+    "result": {
+      "uuidList": [],
+      "errorcode": 432,
+      "cserrorcode": 9999,
+      "errortext": "The API [listAvailableGuestIps] does not exist or is not available for the account qa-gn1569-32-peer."
+    }
+  }
+]

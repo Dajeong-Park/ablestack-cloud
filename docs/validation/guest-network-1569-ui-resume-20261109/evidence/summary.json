@@ -1,0 +1,15 @@
+{
+  "uiScopeComplete": true,
+  "issue1569Complete": false,
+  "productCodeChanged": false,
+  "newDeployment": false,
+  "roleApiDenials": 18,
+  "primaryResponsiveCases": 60,
+  "dynamicResizeCases": 6,
+  "allLayoutChecks": 66,
+  "capturedImages": 121,
+  "allImagesMatchViewport": true,
+  "viewportOverridesCleared": true,
+  "vmNicHostGrantsPreserved": true,
+  "resourcesDeleted": false
+}

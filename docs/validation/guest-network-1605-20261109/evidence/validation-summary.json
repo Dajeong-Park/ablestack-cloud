@@ -1,0 +1,65 @@
+{
+  "source_commit": "b2491ac151f16421ea9e2f65bacba6358655a226",
+  "records": 137,
+  "sticky_records": 131,
+  "core_resize_cases": 40,
+  "ip_tab_cases": 24,
+  "dialog_cases": 4,
+  "ui_refresh_api_cases": 4,
+  "screenshots": 85,
+  "dimension_matched_registered_captures": 77,
+  "excluded_image_dimensions": [
+    {
+      "path": "screenshots/31-guestnetwork-navigation.jpg",
+      "recorded": {
+        "width": 1280,
+        "height": 900
+      },
+      "image": {
+        "width": 1280,
+        "height": 641
+      }
+    },
+    {
+      "path": "screenshots/31-sidebar-collapsed.jpg",
+      "recorded": {
+        "width": 1280,
+        "height": 900
+      },
+      "image": {
+        "width": 1280,
+        "height": 641
+      }
+    },
+    {
+      "path": "screenshots/31-sidebar-expanded.jpg",
+      "recorded": {
+        "width": 1280,
+        "height": 900
+      },
+      "image": {
+        "width": 1280,
+        "height": 641
+      }
+    },
+    {
+      "path": "screenshots/32-vm-reload-initial.jpg",
+      "recorded": {
+        "height": 900,
+        "width": 1280
+      },
+      "image": {
+        "width": 1280,
+        "height": 641
+      }
+    }
+  ],
+  "source_files": 15,
+  "project_selection_diagnostics": [
+    "31-project-default-immediate",
+    "31-project-restored-dashboard",
+    "31-project-restored-vm",
+    "32-vm-dark-resize-0-390"
+  ],
+  "all_geometry_checks_passed": true
+}

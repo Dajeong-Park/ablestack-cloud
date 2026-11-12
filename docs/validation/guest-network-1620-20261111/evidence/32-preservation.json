@@ -1,0 +1,16 @@
+{
+  "existingRuleCount": 36,
+  "finalRuleCount": 37,
+  "newPersonalRuleId": "cf07d2ac-7b7f-4c04-9111-7157dc85fa81",
+  "oldDefinitionsAndBindingsPreserved": true,
+  "networkVmVpcNicPublicIpAndInternalControllerIdsPreserved": true,
+  "allVmNicPowerHostPreserved": true,
+  "networkOfferingsPreserved": true,
+  "originalCertificatesReattached": true,
+  "oldProjectMembersRolesAndReadonlyPermissionsPreserved": true,
+  "newMembersAndRoles": 1,
+  "newRoleExactlyTwoSslDenies": true,
+  "vpnUsersActive": 4,
+  "vpnPskUnchanged": true,
+  "noActiveVpnClientDuringMutations": true
+}

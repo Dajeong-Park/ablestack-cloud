@@ -1,0 +1,128 @@
+{
+  "beforeFlags": {
+    "healthchecksfailed": false
+  },
+  "afterFlags": {
+    "healthchecksfailed": false
+  },
+  "checks": {
+    "httpStatus": 200,
+    "routerhealthchecks": {
+      "routerid": "815c0909-a541-4aa2-8e83-2e33d3b4ac5a",
+      "healthchecks": [
+        {
+          "checkname": "connectivity.test",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:33:02+0900",
+          "details": "Successfully connected to router"
+        },
+        {
+          "checkname": "cpu_usage_check.py",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:01+0900",
+          "details": "CPU Usage within limits with current at 28.3%"
+        },
+        {
+          "checkname": "dhcp.service",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:01+0900",
+          "details": "service is running"
+        },
+        {
+          "checkname": "dhcp_check.py",
+          "checktype": "advanced",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:01+0900",
+          "details": "All 6 VMs are present in dhcphosts.txt"
+        },
+        {
+          "checkname": "disk_space_check.py",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:05+0900",
+          "details": "Sufficient free space is 2287.1484375 MB"
+        },
+        {
+          "checkname": "dns_check.py",
+          "checktype": "advanced",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:01+0900",
+          "details": "All 6 VMs are present in /etc/hosts"
+        },
+        {
+          "checkname": "filesystem.writable.test",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:33:02+0900",
+          "details": "Successfully written to file system"
+        },
+        {
+          "checkname": "gateways_check.py",
+          "checktype": "basic",
+          "result": false,
+          "status": "FAILED",
+          "lastupdated": "2026-11-12T01:30:05+0900",
+          "details": "Unreachable gateways found-\n['10.247.32.1']"
+        },
+        {
+          "checkname": "haproxy_check.py",
+          "checktype": "advanced",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:02+0900",
+          "details": "No data provided to check, skipping"
+        },
+        {
+          "checkname": "iptables_check.py",
+          "checktype": "advanced",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:01+0900",
+          "details": "No portforwarding rules provided to check, skipping"
+        },
+        {
+          "checkname": "memory_usage_check.py",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:05+0900",
+          "details": "Memory Usage within limits with current at 46.5732%"
+        },
+        {
+          "checkname": "router_version_check.py",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:05+0900",
+          "details": "Template and scripts version match successful"
+        },
+        {
+          "checkname": "ssh.service",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:01+0900",
+          "details": "service is running"
+        },
+        {
+          "checkname": "webserver.service",
+          "checktype": "basic",
+          "result": true,
+          "status": "SUCCESS",
+          "lastupdated": "2026-11-12T01:30:01+0900",
+          "details": "service is running"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "inventory": {
+    "network": {
+      "before": 118,
+      "after": 118,
+      "sameIds": true
+    },
+    "virtualmachine": {
+      "before": 161,
+      "after": 161,
+      "sameIds": true
+    },
+    "vpc": {
+      "before": 12,
+      "after": 12,
+      "sameIds": true
+    },
+    "loadbalancerrule": {
+      "before": 36,
+      "after": 36,
+      "sameIds": true
+    },
+    "loadbalancer": {
+      "before": 1,
+      "after": 1,
+      "sameIds": true
+    }
+  },
+  "oldLbMappings": 37,
+  "stableMappingsUnchanged": true,
+  "pendingJobMappingChanges": [
+    {
+      "id": "37debda7-24fa-4211-a95f-ee838bf7cbd1",
+      "before": [
+        [
+          "a8e17702-a4e4-4d6d-a581-432d130e50c6",
+          [
+            "10.248.31.42"
+          ]
+        ]
+      ],
+      "after": [],
+      "cause": "Previously pending #1616 backend job changed independently; no mutation in #1613"
+    }
+  ],
+  "securityUnchanged": true,
+  "noClusterMutations": true
+}

@@ -1,0 +1,61 @@
+{
+  "32-dark": [
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "text": "가상머신용 네트워크"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "qa-gn1569-32-shared-reg"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": ""
+    },
+    {
+      "background": "rgb(24, 144, 255)",
+      "color": "rgb(255, 255, 255)",
+      "text": "IP 주소 범위 추가"
+    },
+    {
+      "background": "rgb(39, 46, 54)",
+      "color": "rgb(64, 150, 255)",
+      "text": "업데이트"
+    }
+  ],
+  "31-light": [
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "text": ""
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "text": "가상머신용 네트워크"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "text": "qa-gn1569-31-shared-reg"
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "text": ""
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(75, 85, 99)",
+      "text": "업데이트"
+    }
+  ]
+}

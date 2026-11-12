@@ -1,0 +1,10 @@
+{
+  "host": "qa-gn1569-32-chain.test",
+  "info": {
+    "root.pem": "subject=CN=QA1569 Root 32\nissuer=CN=QA1569 Root 32\nnotBefore=Nov 11 03:07:21 2026 GMT\nnotAfter=Jan 10 03:07:21 2027 GMT\nsha256 Fingerprint=E2:64:49:3A:05:75:83:19:95:94:01:4F:7B:09:88:C3:71:F4:58:A7:5D:80:8D:C9:2B:5E:7E:2B:5B:34:E8:2C",
+    "inter.pem": "subject=CN=QA1569 Intermediate 32\nissuer=CN=QA1569 Root 32\nnotBefore=Nov 11 03:07:21 2026 GMT\nnotAfter=Dec 11 03:07:21 2026 GMT\nsha256 Fingerprint=AB:3E:8D:5D:62:8A:8D:58:70:2E:58:BC:34:32:5C:FA:1E:6A:80:E6:13:35:EE:BA:D1:13:CE:9B:50:79:33:29",
+    "leaf.pem": "subject=CN=qa-gn1569-32-chain.test\nissuer=CN=QA1569 Intermediate 32\nnotBefore=Nov 11 03:07:21 2026 GMT\nnotAfter=Nov 18 03:07:21 2026 GMT\nsha256 Fingerprint=7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+    "expired.pem": "subject=CN=qa-gn1569-32-chain.test\nissuer=CN=QA1569 Intermediate 32\nnotBefore=Nov  4 03:07:21 2026 GMT\nnotAfter=Nov 10 03:07:21 2026 GMT\nsha256 Fingerprint=92:92:E7:47:CC:E6:E4:9F:37:88:69:09:46:16:B3:79:82:1F:3F:30:3F:80:4B:79:D1:CA:F0:3E:BF:05:BE:05",
+    "future.pem": "subject=CN=qa-gn1569-32-chain.test\nissuer=CN=QA1569 Intermediate 32\nnotBefore=Nov 12 03:07:21 2026 GMT\nnotAfter=Nov 18 03:07:21 2026 GMT\nsha256 Fingerprint=2A:3B:93:79:3F:74:9B:10:E3:70:4E:B4:D9:C3:FF:2B:47:34:4E:3E:AC:BF:06:69:3C:B0:15:C8:D9:69:A7:6A"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "implementation": "d0e79561b0ccee011932a4f036bcea770e808961",
+  "uiChanged": false,
+  "modules": [
+    "api",
+    "server"
+  ],
+  "focusedTests": 66,
+  "failures": 0,
+  "errors": 0,
+  "baselineExpectedFailures": 14,
+  "baselineExpectedErrors": 3,
+  "traffic": {
+    "31": {
+      "samples": 1188,
+      "pingFailures": 0,
+      "sshFailures": 0
+    },
+    "32": {
+      "samples": 1188,
+      "pingFailures": 0,
+      "sshFailures": 0
+    }
+  },
+  "apiMatrixRows": 260,
+  "uiActualJobs": 12,
+  "sslResponsiveFrames": 12,
+  "captures": 80,
+  "diagnosticCaptures": 1,
+  "nativeProtected": {
+    "worktrees": 8,
+    "files": 12935
+  },
+  "wslProtected": {
+    "worktrees": 14,
+    "files": 107
+  },
+  "retained": true
+}

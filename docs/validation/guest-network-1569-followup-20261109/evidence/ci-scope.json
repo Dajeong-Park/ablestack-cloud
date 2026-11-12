@@ -1,0 +1,45 @@
+{
+  "checkedHead": "677148c245747ce7231d45f543cdbf4faed2b6bf",
+  "comparisonBase": "d62eaeb3c074910f758f708e0ceb802024295243",
+  "method": "Intersect unapproved paths printed in CI RAT report with git diff --name-only base..checkedHead",
+  "licenseScope": {
+    "totalUnknown": 3573,
+    "changedFilesUnknown": [],
+    "sample": [
+      "developer/issue-1261/failed-add-ping.txt",
+      "developer/issue-1261/guest-stopped-add-started.txt",
+      "developer/issue-1261/hot-remove-ping.txt",
+      "developer/issue-1261/SHA256SUMS",
+      "developer/issue-1261/guest-four-nics.txt",
+      "docs/validation/bucket-1530-20261101/ui-production-build.txt",
+      "docs/validation/snapshot-dialogs-1488-20261025/verify_evidence.py",
+      "docs/validation/snapshot-dialogs-1488-20261025/scripts/deploy_ui_repair.py"
+    ]
+  },
+  "checks": [
+    {
+      "link": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42590198260/job/129069799501",
+      "name": "Run pre-commit",
+      "state": "IN_PROGRESS",
+      "workflow": "Lint"
+    },
+    {
+      "link": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42590198545/job/129069683053",
+      "name": "build",
+      "state": "FAILURE",
+      "workflow": "License Check"
+    },
+    {
+      "link": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42590198288/job/129069686496",
+      "name": "triage",
+      "state": "SUCCESS",
+      "workflow": "PR Merge Conflict Check"
+    },
+    {
+      "link": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/42590194478/job/129069673338",
+      "name": "triage",
+      "state": "CANCELLED",
+      "workflow": "PR Merge Conflict Check"
+    }
+  ]
+}

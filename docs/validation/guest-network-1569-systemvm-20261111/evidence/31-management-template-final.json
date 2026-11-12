@@ -1,0 +1,10 @@
+{
+  "jarSha256": "baa20755fb2dec6117528a46a68dc15c6fbd0764d5caddb5e8e326eec0254974",
+  "indexSha256": "30f47fae240fb78f865dce5c0919f6ab495b23e514ed84ce8f6f64f95734ba29",
+  "webInfPresent": true,
+  "metaInfPresent": false,
+  "http": 200,
+  "managementActive": "active",
+  "pid": "1667996",
+  "df": "Filesystem           Size  Used Avail Use% Mounted on\n/dev/mapper/rl-root  383G  244G  139G  64% /\n/dev/mapper/rl-nfs   350G  318G   33G  91% /nfs"
+}

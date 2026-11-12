@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "public-scheme",
+    "number": 1611,
+    "id": 6300083177,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1611",
+    "state": "open",
+    "title": "[Europa][P2][LB] VPC Public LB 생성 후보에서 Internal 전용 Tier 제외",
+    "parentLinked": true,
+    "parentResponse": "linked"
+  },
+  {
+    "slug": "internal-dialog",
+    "number": 1612,
+    "id": 6300084403,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1612",
+    "state": "open",
+    "title": "[Europa][P2][LB] Internal LB 생성 실패 입력 보존과 비동기 상태·VM 대화상자 표준 적용",
+    "parentLinked": true,
+    "parentResponse": "linked"
+  },
+  {
+    "slug": "acl-link",
+    "number": 1613,
+    "id": 6300085464,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1613",
+    "state": "open",
+    "title": "[Europa][P3][VPC] Tier ACL 식별자 누락 시 빈 undefined 링크 제거",
+    "parentLinked": true,
+    "parentResponse": "linked"
+  },
+  {
+    "slug": "backend-permission",
+    "number": 1614,
+    "id": 6300235825,
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1614",
+    "state": "open",
+    "title": "[Europa][P2][LB] 읽기 전용 프로젝트 역할의 Public·Internal LB 백엔드 해제 버튼 권한 가드",
+    "parentLinked": true
+  }
+]

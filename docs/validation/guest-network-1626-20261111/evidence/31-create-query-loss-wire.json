@@ -1,0 +1,50 @@
+{
+  "plan": {
+    "query": "fail"
+  },
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+        "name": "qa-gn1626-31-source-query-recovery",
+        "methodname": "SourceBased",
+        "param[0].name": "tablesize",
+        "param[0].value": "20k",
+        "param[1].name": "expire",
+        "param[1].value": "10m",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      }
+    }
+  ],
+  "jobId": "77a65d4d-a865-4e17-9727-3c6c11c024a6",
+  "receipt": {
+    "createLBStickinessPolicy": {
+      "id": "4103b94a-423a-4646-8d5d-4d4c385769c7",
+      "jobid": "77a65d4d-a865-4e17-9727-3c6c11c024a6"
+    }
+  },
+  "queries": [
+    {
+      "jobid": "77a65d4d-a865-4e17-9727-3c6c11c024a6",
+      "action": "fail"
+    },
+    {
+      "jobid": "77a65d4d-a865-4e17-9727-3c6c11c024a6",
+      "action": "fail"
+    },
+    {
+      "jobid": "77a65d4d-a865-4e17-9727-3c6c11c024a6",
+      "action": "fail"
+    }
+  ],
+  "queryFaults": 3,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": false
+    }
+  ]
+}

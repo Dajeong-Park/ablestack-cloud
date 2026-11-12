@@ -1,0 +1,33 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "resourceids": "8b17de67-84e7-4d26-a1d8-9169ce370ded",
+    "resourcetype": "FirewallRule",
+    "tags[0].key": "gn1569-page-00",
+    "tags[1].key": "gn1569-page-01",
+    "tags[2].key": "gn1569-page-02",
+    "tags[3].key": "gn1569-page-03",
+    "tags[4].key": "gn1569-page-04",
+    "tags[5].key": "gn1569-page-05",
+    "tags[6].key": "gn1569-page-06",
+    "tags[7].key": "gn1569-page-07",
+    "tags[8].key": "gn1569-page-08",
+    "tags[9].key": "gn1569-page-09",
+    "tags[10].key": "gn1569-page-10",
+    "tags[11].key": "gn1569-page-11",
+    "tags[0].value": "page-check",
+    "tags[1].value": "page-check",
+    "tags[2].value": "page-check",
+    "tags[3].value": "page-check",
+    "tags[4].value": "page-check",
+    "tags[5].value": "page-check",
+    "tags[6].value": "page-check",
+    "tags[7].value": "page-check",
+    "tags[8].value": "page-check",
+    "tags[9].value": "page-check",
+    "tags[10].value": "page-check",
+    "tags[11].value": "page-check"
+  },
+  "jobid": "a7ce7f20-c827-461a-a99c-a8e5d62959d1"
+}

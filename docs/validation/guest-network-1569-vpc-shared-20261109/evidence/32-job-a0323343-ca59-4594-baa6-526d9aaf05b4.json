@@ -1,0 +1,15 @@
+{
+  "command": "createNetworkACL",
+  "params": {
+    "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+    "action": "allow",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "protocol": "tcp",
+    "startport": 22,
+    "endport": 22,
+    "cidrlist": "10.10.32.0/24",
+    "traffictype": "Ingress",
+    "number": 10
+  },
+  "jobid": "a0323343-ca59-4594-baa6-526d9aaf05b4"
+}

@@ -1,0 +1,19 @@
+{
+  "height": 1024,
+  "notices": [
+    {
+      "background": "rgb(27, 48, 36)",
+      "text": "PVLAN 지원 진단\n이 물리 네트워크에 PVLAN 정책을 적용할 수 있는 호스트가 있습니다.\n생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다.",
+      "textColor": "rgb(240, 243, 246)",
+      "width": 482.390625,
+      "x": 228.609375
+    }
+  ],
+  "scrollWidth": 758,
+  "theme": "dark",
+  "url": "http://10.10.32.10:8080/client/#/guestnetwork/3d504e87-0e5f-4e8c-b58e-049064d7f05d",
+  "width": 768,
+  "imageWidth": 768,
+  "imageHeight": 1024,
+  "nativeCaptureScaled": false
+}

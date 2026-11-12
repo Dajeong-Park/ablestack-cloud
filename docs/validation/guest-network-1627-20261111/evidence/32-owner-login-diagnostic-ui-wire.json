@@ -1,0 +1,31 @@
+[
+  {
+    "requestId": "30060.5854",
+    "command": "login",
+    "params": {
+      "command": "login",
+      "username": "qa-gn1569-32-owner",
+      "domain": "qa-gn1569-32-domain",
+      "response": "json"
+    },
+    "response": {
+      "loginresponse": {
+        "username": "qa-gn1569-32-owner",
+        "userid": "033eb4f1-3313-416d-8ec0-99c17f8d5653",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "timeout": 600,
+        "account": "qa-gn1569-32-owner",
+        "firstname": "Network",
+        "lastname": "QA1569",
+        "type": "0",
+        "timezone": "UTC",
+        "timezoneoffset": "0.0",
+        "registered": "false",
+        "is2faenabled": "false",
+        "is2faverified": "true",
+        "issuerfor2fa": "CloudStack",
+        "firstlogin": "false"
+      }
+    }
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "sha256": "d876b4284dda557c185526a3610b752a89b25cf820a8f0f7679837a1b2ffeb98",
+  "bytes": 277214938,
+  "entries": {
+    "com/cloud/network/HAProxyConfigurator.class": "1b43c720dc01eaae937cb23ba86140e0c37572d6535a94ad6c4e454813bc4585"
+  },
+  "df": "Filesystem            1B-blocks        Used Available Use% Mounted on\n/dev/mapper/rl-root 88420122624 87768240128 651882496 100% /\n/dev/mapper/rl-root 88420122624 87768240128 651882496 100% /\n/dev/mapper/rl-root 88420122624 87768240128 651882496 100% /",
+  "pid": "1874503",
+  "webinf": true
+}

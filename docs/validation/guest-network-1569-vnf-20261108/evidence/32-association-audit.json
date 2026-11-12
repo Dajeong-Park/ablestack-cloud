@@ -1,0 +1,31 @@
+[
+  {
+    "type": "Shared",
+    "networkid": "15a7e449-7333-401a-a7f1-448283423553",
+    "count": 1,
+    "vnfid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+    "networkIp": "10.246.32.58",
+    "macaddress": "02:01:01:e0:00:01"
+  },
+  {
+    "type": "L2",
+    "networkid": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+    "count": 1,
+    "vnfid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+    "networkIp": null,
+    "macaddress": "02:01:01:df:00:01"
+  },
+  {
+    "type": "Isolated",
+    "networkid": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+    "count": 1,
+    "vnfid": "d4b7e358-98c8-475d-b8aa-893479539a36",
+    "networkIp": "10.251.32.38",
+    "macaddress": "02:01:01:de:00:01"
+  },
+  {
+    "case": "regular-VM-only-L2",
+    "networkid": "395d6dad-c006-4b42-97cd-f061215148e6",
+    "count": 0
+  }
+]

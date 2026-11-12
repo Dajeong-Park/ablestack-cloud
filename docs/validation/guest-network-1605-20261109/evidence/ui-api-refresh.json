@@ -1,0 +1,144 @@
+[
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+    "associatednetworkid": null,
+    "status": 200,
+    "count": 9,
+    "rows": [
+      {
+        "id": "bcb5bca9-5310-4b31-bf4a-bc496e551f20",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.51"
+      },
+      {
+        "id": "c922d028-abb1-4102-a2b8-80776cbfced6",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.52"
+      },
+      {
+        "id": "f4071a08-53b1-4365-bc6f-6d8e118f37f7",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.53"
+      },
+      {
+        "id": "b116f5b5-b64a-485b-bca9-7eb6748853fb",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.54"
+      },
+      {
+        "id": "3d43098e-a3f9-4fd6-b6f3-b550f1b84cb9",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.55"
+      },
+      {
+        "id": "e0b74880-8040-4620-abdb-a64b8f95de5d",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.56"
+      },
+      {
+        "id": "1c28934e-be9c-4d86-9f0e-8061100b622a",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.57"
+      },
+      {
+        "id": "1a37f3ca-9ea4-49e9-8fd7-9982d2eaa56e",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.58"
+      },
+      {
+        "id": "1adc16dc-1c57-417d-80db-9ccc6bf667f4",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.247.31.59"
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "command": "listVlanIpRanges",
+    "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+    "associatednetworkid": null,
+    "status": 200,
+    "count": 1,
+    "rows": [
+      {
+        "id": "f5327e4a-0c44-462c-a80e-852c21746d81",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "startip": "10.247.31.51",
+        "endip": "10.247.31.59"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "associatednetworkid": null,
+    "status": 200,
+    "count": 9,
+    "rows": [
+      {
+        "id": "98130d26-7cba-43a7-a870-0589d3880103",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.51"
+      },
+      {
+        "id": "0c51c162-3337-4705-9103-b73aa5866527",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.52"
+      },
+      {
+        "id": "683ed842-75d6-49f7-a613-8625f0e10cca",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.53"
+      },
+      {
+        "id": "865e7999-9a90-4b22-b2aa-3121dc3341ee",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.54"
+      },
+      {
+        "id": "2671a3de-7f6b-418c-8549-a9afaea792de",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.55"
+      },
+      {
+        "id": "e42ebcd5-daf9-4c4b-b696-886bef4526f2",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.56"
+      },
+      {
+        "id": "7f572b18-a3e4-4944-926b-41ba75dd6e2d",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.57"
+      },
+      {
+        "id": "a85ce767-5252-45e3-82a5-c9fb6415acbb",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.58"
+      },
+      {
+        "id": "30368a49-4b58-4620-aba9-bc434e2e216e",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "ipaddress": "10.247.32.59"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "command": "listVlanIpRanges",
+    "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "associatednetworkid": null,
+    "status": 200,
+    "count": 1,
+    "rows": [
+      {
+        "id": "4149bbf3-f563-4cb6-a590-77fa7052550b",
+        "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "startip": "10.247.32.51",
+        "endip": "10.247.32.59"
+      }
+    ]
+  }
+]

@@ -1,0 +1,100 @@
+{
+  "background": "rgb(255, 255, 255)",
+  "buttons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 288.421875,
+        "height": 48,
+        "left": 951,
+        "right": 999,
+        "top": 240.421875,
+        "width": 48,
+        "x": 951,
+        "y": 240.421875
+      },
+      "text": ""
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 643.5625,
+        "height": 32,
+        "left": 644.171875,
+        "right": 701.9375,
+        "top": 611.5625,
+        "width": 57.765625,
+        "x": 644.171875,
+        "y": 611.5625
+      },
+      "text": "닫기"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 643.5625,
+        "height": 32,
+        "left": 717.9375,
+        "right": 823.46875,
+        "top": 611.5625,
+        "width": 105.53125,
+        "x": 717.9375,
+        "y": 611.5625
+      },
+      "text": "업데이트"
+    },
+    {
+      "disabled": true,
+      "rect": {
+        "bottom": 643.5625,
+        "height": 32,
+        "left": 839.46875,
+        "right": 897.234375,
+        "top": 611.5625,
+        "width": 57.765625,
+        "x": 839.46875,
+        "y": 611.5625
+      },
+      "text": "삭제"
+    },
+    {
+      "disabled": true,
+      "rect": {
+        "bottom": 643.5625,
+        "height": 32,
+        "left": 913.234375,
+        "right": 971,
+        "top": 611.5625,
+        "width": 57.765625,
+        "x": 913.234375,
+        "y": 611.5625
+      },
+      "text": "할당"
+    }
+  ],
+  "current": "—",
+  "foreground": "rgb(75, 85, 99)",
+  "overflow": 0,
+  "rect": {
+    "bottom": 900,
+    "height": 900,
+    "left": 0,
+    "right": 1280,
+    "top": 0,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "selectRect": {
+    "bottom": 564.5625,
+    "height": 32,
+    "left": 309,
+    "right": 971,
+    "top": 532.5625,
+    "width": 662,
+    "x": 309,
+    "y": 532.5625
+  },
+  "spinners": 0,
+  "text": "SSL 인증서 관리작업 완료작업: 13aef876-70ac-4507-8f1c-7622fcc6357e현재 SSL 인증서—신규 SSL 인증서닫기업데이트삭제할당"
+}

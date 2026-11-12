@@ -1,0 +1,40 @@
+{
+  "clusters": {
+    "31": {
+      "roleReadQueries": 72,
+      "scopeProjectNicAttachments": 8,
+      "scopeDhcpLeases": 8,
+      "scopeTrafficPhases": 5,
+      "sharedDuringVpcDeleteSamples": 90,
+      "vpcDeleteJob": {
+        "jobid": "1aaccec3-ca27-404b-86bc-2577530ddc49",
+        "jobstatus": 1,
+        "success": true
+      },
+      "temporaryHostAddressRemoved": true
+    },
+    "32": {
+      "roleReadQueries": 72,
+      "scopeProjectNicAttachments": 8,
+      "scopeDhcpLeases": 8,
+      "scopeTrafficPhases": 5,
+      "sharedDuringVpcDeleteSamples": 90,
+      "vpcDeleteJob": {
+        "jobid": "bbcd1682-cb2d-4d72-9d3b-ea05b3962ba2",
+        "jobstatus": 1,
+        "success": true
+      },
+      "temporaryHostAddressRemoved": true
+    }
+  },
+  "captures": 26,
+  "validCaptures": 26,
+  "productCodeChanged": false,
+  "uiCompletion": false,
+  "uiBlocker": "Computer Use stopped: unable to determine current browser URL with enough confidence to enforce policy. No further UI control attempted.",
+  "remaining": [
+    "31/32 read-only project UI and remaining role navigation",
+    "32 non-admin Shared scope UI",
+    "31/32 mobile/tablet and immediate theme/project round trips on these new fixtures"
+  ]
+}

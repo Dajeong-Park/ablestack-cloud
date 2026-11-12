@@ -1,0 +1,49 @@
+{
+  "state": {
+    "alerts": [
+      "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.VPC·Internal Tier·오퍼링·VM/NIC 상태가 변경되었거나 적합하지 않습니다. 후보를 업데이트하세요."
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "이름",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "설명",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "Source IP 주소",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "Source 포트",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "가상머신 포트",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": null,
+        "value": ""
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  },
+  "createDisabled": true,
+  "backendFollowup": 1616
+}

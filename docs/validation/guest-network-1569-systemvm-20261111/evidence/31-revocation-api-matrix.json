@@ -1,0 +1,46 @@
+[
+  {
+    "certificate": "good",
+    "enabledRevocationCheck": true,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Invalid certificate chain"
+    }
+  },
+  {
+    "certificate": "revoked",
+    "enabledRevocationCheck": true,
+    "accepted": false,
+    "result": {
+      "httpStatus": 530,
+      "uuidList": [],
+      "errorcode": 530,
+      "cserrorcode": 9999,
+      "errortext": "Invalid certificate chain"
+    }
+  },
+  {
+    "certificate": "good",
+    "enabledRevocationCheck": false,
+    "accepted": true,
+    "result": {
+      "httpStatus": 200,
+      "sslcert": {
+        "id": "08ae45e3-cea1-4738-8f88-2a3ee0f8e621",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIID2DCCAsCgAwIBAgICEAEwDQYJKoZIhvcNAQELBQAwKTEnMCUGA1UEAwweUUEx\nNTY5IFJldm9jYXRpb24gSW50ZXJtZWRpYXRlMB4XDTI2MTExMTEyMjEyNFoXDTI2\nMTExODEyMjEyNFowJDEiMCAGA1UEAwwZcWEtZ24xNTY5LXJldm9jYXRpb24udGVz\ndDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK3rI0iAB65HSaj6Jo+I\n4rjQqS4zKz3XnjZjmzyPHAnZhkuqbb5EmhsIPRGc7uN/JGn2XPogwgC/03ZWgHTO\nOf3kxf8qZzQQllFGquPCFU0fzv1XewYlEbk1vq6vlbrTKhcMreusUliQ3a5oA4N7\naljW16fCsdKfkfq7HaGX6vm/eYX9Hwyf5DCrKIihOjsDjGKQoajEq04D5jHnbxys\nUjBQP8KPsTPgddEEZscYXdvVFY4fTsPH0+KFmxQJGFKRfmtv5TY/BSl/w7SAQh0C\nYSRdFBV0WRZWQgFRZW8yrldGnC9c23T1R5VMxmgjAn4nxjctWiA2RWoOcoaTT3nb\nRIUCAwEAAaOCAQ0wggEJMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgWgMBMG\nA1UdJQQMMAoGCCsGAQUFBwMBMB0GA1UdDgQWBBQH+8yEtedz05aM9/F/ujDyDVGm\ntTAfBgNVHSMEGDAWgBTDJQa5f21Xo8+Se3jcZQVeMNvRSDAkBgNVHREEHTAbghlx\nYS1nbjE1NjktcmV2b2NhdGlvbi50ZXN0MDMGA1UdHwQsMCowKKAmoCSGImh0dHA6\nLy8xMC4xMC4zMS4xMDoyMDY4My9pbnRlci5jcmwwOQYIKwYBBQUHAQEELTArMCkG\nCCsGAQUFBzABhh1odHRwOi8vMTAuMTAuMzEuMTA6MjA2ODMvb2NzcDANBgkqhkiG\n9w0BAQsFAAOCAQEAWI+g89gAUjrwpJ13WfFoQh56fFn35V/HUdLT9Kh6IwN8e7rW\nypaR27ac8jIt+tnbtwe9Wo7MBKc0wqhZlvEXYOspsuNKWYY70P0l1t7xQbyTthgd\n8Sj7kvXwpVFhAGkUVnDJiaFCITJVM0Apali3FMXXO7VyWRd8t+7r+7gn4A4UBCuf\nsyY/5ZrTPtMmkyDPVlE3ZRmzly5clSMO59ydpzsXon9GUnSa03fAMgfenPP8giEs\nydoOncHttSvnRpuf9HFfwPBlVrD4G+14unpQMrlUeDG++bNjT/k87nFv8k1aBmo+\nYltzGBIG80zijESQZOKgod6PYOz+/QF9ARgOdQ==\n-----END CERTIFICATE-----",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "certchain": "-----BEGIN CERTIFICATE-----\nMIIDnDCCAoSgAwIBAgIBAjANBgkqhkiG9w0BAQsFADAhMR8wHQYDVQQDDBZRQTE1\nNjkgUmV2b2NhdGlvbiBSb290MB4XDTI2MTExMTEyMjEyNFoXDTI2MTExODEyMjEy\nNFowKTEnMCUGA1UEAwweUUExNTY5IFJldm9jYXRpb24gSW50ZXJtZWRpYXRlMIIB\nIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1r5iM5GEcLTYmJgQJRLBXOyG\ndRXDF6cqZNssmtN+3wa2T1wx05azMxH+eEICxS9PFYv3mXYlhjnddA0EZ8WtKAUH\n1M925ekRimlW7/1EZSiMW0ypAj9UEPAn2rtb86/JYbpRIKscP1E2qWL6KZcEbzN1\nzWmxWWgdQ0UZBA09XbzetLwc9+d3stJaB7FmpUeMUkH/g3FQEjouuXh2jrHEVKmk\n2AFPSh6STcFDdrOsfDAfn+eLtL9F2Q5XNxBZHivnZm6jw92a9sCwkPNCl64KeFtp\ng49IQoCBVdNqxwSQlewzmkd4NDJMLEv+t+wx+7v/aPtgL2+xyNXaRpFVIsckLwID\nAQABo4HWMIHTMBIGA1UdEwEB/wQIMAYBAf8CAQAwDgYDVR0PAQH/BAQDAgEGMB0G\nA1UdDgQWBBTDJQa5f21Xo8+Se3jcZQVeMNvRSDAfBgNVHSMEGDAWgBQp1TOgBiQh\nFLXR0DrgTtK08r12ezAyBgNVHR8EKzApMCegJaAjhiFodHRwOi8vMTAuMTAuMzEu\nMTA6MjA2ODMvcm9vdC5jcmwwOQYIKwYBBQUHAQEELTArMCkGCCsGAQUFBzABhh1o\ndHRwOi8vMTAuMTAuMzEuMTA6MjA2ODMvb2NzcDANBgkqhkiG9w0BAQsFAAOCAQEA\nDepHUNQt/wqPEuZCy3l7SzvfQLobmt5UZRmVDbOsmmPRoqF/NrGE90LUNNGxLceQ\nkaJ5r5yqgJsGrviOJOi+HWsgjz2GqRexGL/yFskU5PjW4Y/yt0glYYiBVNF9gWac\nZ8Mlt+V7cVB7qWVUWv5mXVYh3MTQ/SfGj+FVREeU+Zv3dQXR8rSQkfFhMsRKn/XJ\nlvc5PYXctEqBtBGOL+DsI1hb8rk4Dv/IzibkqiaRWsdhg1XpS6p8O0JaW7LlVN2j\ncXqx3uzUs34uZ8kqsEmqVAKEgp2WlI5n6mrw7JO44gEhpstS46OK6Cja1PuglWJN\nm4AA7vxcW6oFpk+aKXnBsg==\n-----END CERTIFICATE-----\n-----BEGIN CERTIFICATE-----\nMIIDNjCCAh6gAwIBAgIUWJGVGCs/bwOcNXB2AIf3XZ5g+4EwDQYJKoZIhvcNAQEL\nBQAwITEfMB0GA1UEAwwWUUExNTY5IFJldm9jYXRpb24gUm9vdDAeFw0yNjExMTEx\nMjIxMjRaFw0yNjEyMTExMjIxMjRaMCExHzAdBgNVBAMMFlFBMTU2OSBSZXZvY2F0\naW9uIFJvb3QwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCztyMI8XJy\nKUx62bBkv2z96u/xBbx2l7p5SwdUoMyp+iwcAfZRvW1g3n4436VxjNCbAQ+LKSqL\nwBx0sdF+z49dkaLzoKlCJ4reNP3WaMWpFiRm9t6OHbJcYn4vkvSoCbHO9XIC3fMz\no900eu7HQLN+Cr7XpDQwzrx9EUwRPK01OuiDdI77FoggDWcD1hfaF/gsjVMNzzYt\n+7gJJRPSfn/cnGSqemLiu2Lj+vWin1hTIIT6dd/l453TMNaCHgSr1246oC/ZetbY\nkxgdM0/WPKPxzfdswxBnsVfx9JnZVDaLkRkpM+w+6PYvB+eGHIoRKqC340HfrtgX\nMjt7Vqec8aE3AgMBAAGjZjBkMB8GA1UdIwQYMBaAFCnVM6AGJCEUtdHQOuBO0rTy\nvXZ7MBIGA1UdEwEB/wQIMAYBAf8CAQEwDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQW\nBBQp1TOgBiQhFLXR0DrgTtK08r12ezANBgkqhkiG9w0BAQsFAAOCAQEAkgepMq7d\nBC0ibe7hy53AKoM89c9oiBIIvYUEiVM4scRFXL/OllPR6X02+9+8531AR5w5tkPT\nSPo0qwzCgl6mms+mtOFlEVe3TiJBmOAqPfrLeoDE/WPdwMmBssqLx/tnj5/MlMck\n6zYAMG73KE1O5KYIixXc0rAb881mN/bDw1+2jRZgyR0GHnVSlRH1pGAej1rWCV64\nulatHIYTUXODjnq6OiQ+WnFesl1cK695U3fO8Ca2xIjzRmo0F162eM/td+Cm/9iX\nKrQyK20aX+sLgVoL0Yq35ZVXH/u1lnWRODFjqjZtcbWaJ6tQmtNdc+9ZulJs+PXI\nKcrXzs+3j32ogA==\n-----END CERTIFICATE-----",
+        "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+        "name": "qa-gn1569-31-revocation-good-false"
+      }
+    }
+  }
+]

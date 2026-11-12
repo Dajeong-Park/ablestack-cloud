@@ -1,0 +1,902 @@
+[
+  {
+    "name": "31-before-member-ip531",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "32-before-readonly-ip531",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794413743651.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-ip-recovered",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-ip-dark-1280-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-ip-dark-1280-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-ip-dark-768-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-ip-dark-768-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-ip-dark-390-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-ip-dark-390-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-vm-detail-standard",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readonly-ip-recovered",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-vm-nics",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readOnly-ip-dark-1280-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readOnly-ip-dark-1280-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readOnly-ip-dark-768-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readOnly-ip-dark-768-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readOnly-ip-dark-390-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readOnly-ip-dark-390-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-nic-dialog-standard",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-project-default-cleared",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-project-default-stable",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readonly-vm-nics-guard",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readonly-vm-list-breadcrumb",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-member-project-return-ip",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readOnly-project-default",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-readonly-project-return-ip",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-ip-dark-1280-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-ip-dark-1280-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-ip-dark-768-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-ip-dark-768-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-ip-dark-390-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-ip-dark-390-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readonly-vm-nics-guard",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207?tab=nics",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-project-default",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794413742567.6,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-ip-dark-1280-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-ip-dark-1280-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-ip-dark-768-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-ip-dark-768-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-ip-dark-390-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-ip-dark-390-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-vm-nics",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-nic-dialog-standard",
+    "url": "http://10.10.32.10:8080/client/#/vm/b312d970-d11d-48e0-a91e-a1589d646fe6?tab=nics",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-domainAdmin-ip-authorized",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-project-default",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-member-ip-authorized",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "31-owner-ip-authorized",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "dark"
+  },
+  {
+    "name": "32-domainAdmin-ip-authorized",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-nonmember-no-project",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "dark"
+  },
+  {
+    "name": "31-nonmember-direct-denied",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "dark"
+  },
+  {
+    "name": "32-owner-ip-authorized",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "32-nonmember-no-project",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-root-ip-authorized",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-admin-immediate-light",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "32-nonmember-direct-denied",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-readOnly-ip-authorized",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-readOnly-ip-light-1280-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-readOnly-ip-light-1280-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-readOnly-ip-light-768-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-readOnly-ip-light-768-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-readOnly-ip-light-390-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-readOnly-ip-light-390-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "32-root-ip-authorized",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-admin-immediate-light",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "31-readonly-vm-detail-standard",
+    "url": "http://10.10.31.10:8080/client/#/vm/17c683ba-1798-44b0-a4fb-f40572a4b207",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-readonly-vm-list-breadcrumb",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-member-ip-authorized",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-member-ip-light-1280-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-member-ip-light-1280-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-member-ip-light-768-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-member-ip-light-768-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-member-ip-light-390-addresses",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "31-member-ip-light-390-links",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "32-member-ip-light-1280-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-member-ip-light-1280-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-member-ip-light-768-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-member-ip-light-768-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-member-ip-light-390-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-member-ip-light-390-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-readOnly-ip-authorized",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-readOnly-ip-light-1280-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-readOnly-ip-light-1280-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-readOnly-ip-light-768-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-readOnly-ip-light-768-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 768,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-readOnly-ip-light-390-addresses",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "32-readOnly-ip-light-390-links",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "light"
+  },
+  {
+    "name": "31-admin-immediate-dark",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "dark"
+  },
+  {
+    "name": "31-other-project-ip-cleared",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "light"
+  },
+  {
+    "name": "32-admin-immediate-dark",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  },
+  {
+    "name": "31-final-admin-shared-ip",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794418002151.2,
+    "theme": "dark"
+  },
+  {
+    "name": "32-final-admin-shared-ip",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "timeOrigin": 1794417381164.4,
+    "theme": "dark"
+  }
+]

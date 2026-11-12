@@ -1,0 +1,59 @@
+{
+  "before": {
+    "files": {
+      "/etc/haproxy/haproxy.cfg": {
+        "hash": "dc864c957d26e825813ca8e7d2840e05b0489ca78879f18c6f14d8843f8f492c",
+        "mtime": 1794328050115079759
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-18874.pem": {
+        "hash": "ec4629336ce12d2617005984f2392477078ee4587af58c0b420ba2c64f4133e5",
+        "mtime": 1794328050115079759
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-19111.pem": {
+        "hash": "b428380ec468c65ef5069444b015f418175d1aba95e8243912b2adbb125a4747",
+        "mtime": 1794328050115079759
+      }
+    },
+    "haproxyPids": "2298\n62218",
+    "xl2tpdPids": "62201"
+  },
+  "after": {
+    "files": {
+      "/etc/haproxy/haproxy.cfg": {
+        "hash": "dc864c957d26e825813ca8e7d2840e05b0489ca78879f18c6f14d8843f8f492c",
+        "mtime": 1794328050115079759
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-18874.pem": {
+        "hash": "ec4629336ce12d2617005984f2392477078ee4587af58c0b420ba2c64f4133e5",
+        "mtime": 1794328050115079759
+      },
+      "/etc/cloudstack/ssl/10_10_32_177-19111.pem": {
+        "hash": "b428380ec468c65ef5069444b015f418175d1aba95e8243912b2adbb125a4747",
+        "mtime": 1794328050115079759
+      }
+    },
+    "haproxyPids": "2298\n62218",
+    "xl2tpdPids": "62201"
+  },
+  "allUnchanged": true,
+  "certMap": {
+    "httpStatus": 200,
+    "count": 1,
+    "sslcert": [
+      {
+        "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIIDLTCCAhWgAwIBAgIULTrHxjigj3KHDDXm/YBNc2EE7bMwDQYJKoZIhvcNAQEL\nBQAwJjEkMCIGA1UEAwwbcWEtZ24xNTY5LTMyLXJvdGF0aW9uLmxvY2FsMB4XDTI2\nMTExMDE1MTI1OVoXDTI2MTExNzE1MTI1OVowJjEkMCIGA1UEAwwbcWEtZ24xNTY5\nLTMyLXJvdGF0aW9uLmxvY2FsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC\nAQEA6gmvGoWnCffi4AT5bV3JT0uyQ4XuPhTrPdXaykLMPXIWmOHYIGoD5osUPHuN\nSQl+HxfU2vjeGUW1iJR9qBC9C9JHRMx9SM+6NBHGuGeD5FRvX/zFSNylVvrDPEXE\ntr8TTZsAaJghjOjdggZYffPtOepcKdTQpqPwGjvgqtjWtB/Lj69NwKZjgx2zwWUR\ntpz8zGjaB2Y1L3fJEEDusb+iX5DkFVUU2Mkj87ZbQ+AnL/kEiSGeB03osiWcDYmQ\n0LKJbARjpAD+Br4pkE1hZP68ZV4lz+gUME7cI1qAmhQHYSGOi9NOfuSZmV0wjj4G\nX9MSNBxMh6+OTJbKX+uM2iNDZwIDAQABo1MwUTAdBgNVHQ4EFgQUbWoH939gnGsG\nS1fO3UBY9o+qqHcwHwYDVR0jBBgwFoAUbWoH939gnGsGS1fO3UBY9o+qqHcwDwYD\nVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAF8lmLfO0o96SfUu+d4Wv\nYOzasjB/RTpN99BhbwW/rM+m9p9Oq6PDE8gWXCTKtQLxD1+dVZMCbxNJfpCkvQAL\nRHlAn5vj54K58gSlcVppdGpU4UktxZ5Jmel4mvnerpqVz1y1/Klvo7r/4GTpbnkv\nB88GtHFvqbPVwx4/j1Suai3jlF3SZvFKkuG99Pisn0AvF8k6F9zaGQVTve57F+i2\n5s0fWdKli3gGveVhM3GSWBiSjffm+gNRRwDzeqmky2Kc0/XiI8WxH+6v3vka6Dm9\nBCsycVWwufCnfgB6805aBoejOMJT1x3M9uTnu7+4wFJgSvxQjihp3k3MSOEOujTi\njw==\n-----END CERTIFICATE-----",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+        "loadbalancerrulelist": [
+          "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+        ],
+        "name": "qa-gn1569-32-tls-rotation-20261111"
+      }
+    ]
+  }
+}

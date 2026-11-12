@@ -1,0 +1,865 @@
+{
+  "sourceCommit": "21fff9be5aa83a253afbfed6a968d67c4bffa0ca",
+  "clusters": {
+    "31": {
+      "roles": {
+        "readonly": {
+          "createNetworkACL": {
+            "allowed": false,
+            "error": 401
+          },
+          "updateNetworkACLItem": {
+            "allowed": false,
+            "error": 401
+          },
+          "moveNetworkAclItem": {
+            "allowed": false,
+            "error": 401
+          },
+          "createTags": {
+            "allowed": false,
+            "error": 401
+          },
+          "deleteTags": {
+            "allowed": false,
+            "error": 401
+          },
+          "deleteNetworkACL": {
+            "allowed": false,
+            "error": 401
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 5,
+            "dragHandles": 0,
+            "buttons": [
+              [
+                "규칙 추가",
+                true
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "태그",
+                false
+              ]
+            ],
+            "writes": []
+          }
+        },
+        "outsider": {
+          "createNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "updateNetworkACLItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "moveNetworkAclItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "createTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 0,
+            "dragHandles": 0,
+            "buttons": [],
+            "writes": []
+          }
+        },
+        "owner": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 5,
+            "dragHandles": 5,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "member": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 5,
+            "dragHandles": 5,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "domainadmin": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 5,
+            "dragHandles": 5,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "admin": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "ui": {
+            "ruleCount": 5,
+            "dragHandles": 5,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "규칙 가져오기",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "peer": {
+          "createNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "updateNetworkACLItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "moveNetworkAclItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "createTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 0,
+            "dragHandles": 0,
+            "buttons": [],
+            "writes": []
+          }
+        }
+      },
+      "writeChecks": 49
+    },
+    "32": {
+      "roles": {
+        "readonly": {
+          "createNetworkACL": {
+            "allowed": false,
+            "error": 401
+          },
+          "updateNetworkACLItem": {
+            "allowed": false,
+            "error": 401
+          },
+          "moveNetworkAclItem": {
+            "allowed": false,
+            "error": 401
+          },
+          "createTags": {
+            "allowed": false,
+            "error": 401
+          },
+          "deleteTags": {
+            "allowed": false,
+            "error": 401
+          },
+          "deleteNetworkACL": {
+            "allowed": false,
+            "error": 401
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 6,
+            "dragHandles": 0,
+            "buttons": [
+              [
+                "규칙 추가",
+                true
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "태그",
+                false
+              ]
+            ],
+            "writes": []
+          }
+        },
+        "outsider": {
+          "createNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "updateNetworkACLItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "moveNetworkAclItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "createTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 0,
+            "dragHandles": 0,
+            "buttons": [],
+            "writes": []
+          }
+        },
+        "owner": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 4,
+            "dragHandles": 4,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "member": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 4,
+            "dragHandles": 4,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "domainadmin": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 4,
+            "dragHandles": 4,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "admin": {
+          "createNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "updateNetworkACLItem": {
+            "allowed": true,
+            "error": null
+          },
+          "moveNetworkAclItem": {
+            "allowed": true,
+            "error": null
+          },
+          "createTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteTags": {
+            "allowed": true,
+            "error": null
+          },
+          "deleteNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "importNetworkACL": {
+            "allowed": true,
+            "error": null
+          },
+          "ui": {
+            "ruleCount": 4,
+            "dragHandles": 4,
+            "buttons": [
+              [
+                "규칙 추가",
+                false
+              ],
+              [
+                "업데이트",
+                false
+              ],
+              [
+                "규칙 가져오기",
+                false
+              ],
+              [
+                "ACL 내보내기",
+                false
+              ],
+              [
+                "",
+                false
+              ],
+              [
+                "마지막으로 이동",
+                false
+              ],
+              [
+                "태그",
+                false
+              ],
+              [
+                "편집",
+                false
+              ],
+              [
+                "삭제",
+                false
+              ],
+              [
+                "처음으로 이동",
+                false
+              ]
+            ],
+            "writes": null
+          }
+        },
+        "peer": {
+          "createNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "updateNetworkACLItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "moveNetworkAclItem": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "createTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "deleteTags": {
+            "allowed": false,
+            "error": 432
+          },
+          "importNetworkACL": {
+            "allowed": false,
+            "error": 432
+          },
+          "ui": {
+            "ruleCount": 0,
+            "dragHandles": 0,
+            "buttons": [],
+            "writes": []
+          }
+        }
+      },
+      "writeChecks": 49
+    }
+  }
+}

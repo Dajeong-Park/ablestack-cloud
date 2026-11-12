@@ -1,0 +1,41 @@
+{
+  "cluster": 32,
+  "network": {
+    "id": "9cf04f35-ff5f-4959-9749-658d3c826a3b",
+    "name": "qa-gn1569-32-configdrive-clone-net",
+    "type": "L2",
+    "state": "Allocated",
+    "broadcasturi": null,
+    "networkofferingid": "419f4dbd-cd9f-450e-8a70-c5bc5d259752",
+    "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+  },
+  "jobid": "0f6f9c38-7763-43dc-b305-af0ea7a9124b",
+  "vm": {
+    "id": "c6f2ad48-bd55-4620-a579-331316025e68",
+    "name": "qa-gn1569-32-configdrive-clone-vm",
+    "instancename": "i-251-450-VM",
+    "hostname": "ablecube32-1",
+    "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+    "state": "Running",
+    "nic": [
+      {
+        "id": "1c3d216e-0110-4395-b655-c82cab268d70",
+        "networkid": "9cf04f35-ff5f-4959-9749-658d3c826a3b",
+        "networkname": "qa-gn1569-32-configdrive-clone-net",
+        "isolationuri": "vlan://105",
+        "broadcasturi": "vlan://105",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": true,
+        "macaddress": "02:01:01:fa:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "enabled": true
+      }
+    ],
+    "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+  },
+  "marker": "QA1569-CONFIGDRIVE-CLONE-32-V1",
+  "userdataSha256": "81c82639ee64ae0d532deb0a306e676bec6490d730caee175bb722a1c44f6707"
+}

@@ -1,0 +1,12 @@
+{
+  "jobid": "74c351d3-9133-4053-8a02-46b346ad3ab6",
+  "jobstatus": 1,
+  "virtualmachine": {
+    "volumemutationblockedreason": "",
+    "securitygroup": [],
+    "nic": [],
+    "affinitygroup": [],
+    "deleteprotection": false,
+    "tags": []
+  }
+}

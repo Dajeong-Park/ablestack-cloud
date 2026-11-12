@@ -1,0 +1,87 @@
+{
+  "cluster": 32,
+  "mode": "connect",
+  "load": {
+    "exit": 0,
+    "out": "loaded ike secret 'ike-qa-32-multi-2'\nno authorities found, 0 unloaded\nno pools found, 0 unloaded\nloaded connection 'qa-ra-32-multi-2'\nsuccessfully loaded 1 connections, 1 unloaded",
+    "error": "opening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509ca' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509ocsp' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509aa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509ac' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/x509crl' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/pubkey' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/private' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/rsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/ecdsa' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/pkcs8' failed: No such file or directory\nopening directory '/home/ablecloud/work/.qa-gn1569-vpn-client/32-multi-2/pkcs12' failed: No such file or directory"
+  },
+  "initiate": {
+    "exit": 0,
+    "out": "[IKE] initiating Main Mode IKE_SA qa-ra-32-multi-2[54] to 10.10.32.150\n[ENC] generating ID_PROT request 0 [ SA V V V V V ]\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (312 bytes)\n[NET] received packet: from 10.10.32.150[500] to 172.30.150.178[500] (160 bytes)\n[ENC] parsed ID_PROT response 0 [ SA V V V V ]\n[IKE] received XAuth vendor ID\n[IKE] received DPD vendor ID\n[IKE] received FRAGMENTATION vendor ID\n[IKE] received NAT-T (RFC 3947) vendor ID\n[CFG] selected proposal: IKE:AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n[ENC] generating ID_PROT request 0 [ KE No NAT-D NAT-D ]\n[NET] sending packet: from 172.30.150.178[500] to 10.10.32.150[500] (396 bytes)\n[NET] received packet: from 10.10.32.150[500] to 172.30.150.178[500] (396 bytes)\n[ENC] parsed ID_PROT response 0 [ KE No NAT-D NAT-D ]\n[IKE] local host is behind NAT, sending keep alives\n[ENC] generating ID_PROT request 0 [ ID HASH ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (108 bytes)\n[NET] received packet: from 10.10.32.150[4500] to 172.30.150.178[4500] (92 bytes)\n[ENC] parsed ID_PROT response 0 [ ID HASH ]\n[IKE] IKE_SA qa-ra-32-multi-2[54] established between 172.30.150.178[qa-gn1569-32-parallel-b]...10.10.32.150[10.10.32.150]\n[IKE] scheduling rekeying in 14381s\n[IKE] maximum IKE_SA lifetime 15821s\n[ENC] generating QUICK_MODE request 3327073502 [ HASH SA No ID ID NAT-OA NAT-OA ]\n[NET] sending packet: from 172.30.150.178[4500] to 10.10.32.150[4500] (284 bytes)\n[NET] received packet: from 10.10.32.150[4500] to 172.30.150.178[4500] (204 bytes)\n[ENC] parsed QUICK_MODE response 3327073502 [ HASH SA No ID ID NAT-OA NAT-OA ]\n[CFG] selected proposal: ESP:AES_CBC_256/HMAC_SHA2_256_128/NO_EXT_SEQ\n[IKE] CHILD_SA qa-ra-child-32-multi-2{62} established with SPIs c223fa00_i c6569887_o and TS 172.30.150.178/32[udp/53418] === 10.10.32.150/32[udp/l2tp]\n[ENC] generating QUICK_MODE request 3327073502 [ HASH ]\ninitiate completed successfully",
+    "error": ""
+  },
+  "ppp": [
+    {
+      "ifindex": 53,
+      "ifname": "ppp85",
+      "flags": [
+        "POINTOPOINT",
+        "MULTICAST",
+        "NOARP",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1400,
+      "qdisc": "fq_codel",
+      "operstate": "UNKNOWN",
+      "group": "default",
+      "txqlen": 3,
+      "link_type": "ppp",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.1.2.2",
+          "address": "10.1.2.1",
+          "prefixlen": 32,
+          "scope": "global",
+          "label": "ppp85",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "pppReady": true,
+  "testInterfaceReversePathFilter": {
+    "exit": 0,
+    "out": "net.ipv4.conf.ppp85.rp_filter = 2",
+    "error": ""
+  },
+  "routeAdded": {
+    "exit": 0,
+    "out": "",
+    "error": ""
+  },
+  "traffic": {
+    "ping": {
+      "exit": 0,
+      "out": "PING 10.234.32.227 (10.234.32.227) from 10.1.2.2 ppp85: 56(84) bytes of data.\n64 bytes from 10.234.32.227: icmp_seq=1 ttl=63 time=1.88 ms\n64 bytes from 10.234.32.227: icmp_seq=2 ttl=63 time=1.57 ms\n64 bytes from 10.234.32.227: icmp_seq=3 ttl=63 time=1.68 ms\n64 bytes from 10.234.32.227: icmp_seq=4 ttl=63 time=1.60 ms\n64 bytes from 10.234.32.227: icmp_seq=5 ttl=63 time=1.80 ms\n\n--- 10.234.32.227 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4006ms\nrtt min/avg/max/mdev = 1.565/1.704/1.875/0.116 ms",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.32.227 dev ppp85 src 10.1.2.2 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32-multi-2: #54, ESTABLISHED, IKEv1, c471d1ba511450a7_i* e1b1ffa8f15f7bcd_r\n  local  'qa-gn1569-32-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 4s ago, rekeying in 14377s\n  qa-ra-child-32-multi-2: #62, reqid 5, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 4s ago, rekeying in 3366s, expires in 3956s\n    in  c223fa00,   2109 bytes,    35 packets,     0s ago\n    out c6569887,   2373 bytes,    38 packets,     0s ago\n    local  172.30.150.178/32[udp/53418]\n    remote 10.10.32.150/32[udp/l2tp]\nqa-ra-31-multi-2: #53, ESTABLISHED, IKEv1, c07b27ba7ce69151_i* 374162a2beb0254f_r\n  local  'qa-gn1569-31-parallel-b' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 10s ago, rekeying in 13958s\n  qa-ra-child-31-multi-2: #61, reqid 6, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 10s ago, rekeying in 3250s, expires in 3950s\n    in  c209eb98,   2093 bytes,    36 packets,     1s ago\n    out ce91bde0,   2425 bytes,    40 packets,     1s ago\n    local  172.30.150.178/32[udp/53314]\n    remote 10.10.31.148/32[udp/l2tp]",
+    "error": ""
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "invalidLinks": 0,
+  "project": "qa-gn1569-31-conditional",
+  "rows": [
+    {
+      "aclLinks": [],
+      "name": "qa-gn1600-31-ui-tier",
+      "network": "#/guestnetwork/594a3da2-28ab-45cb-b8ed-8377c07da94b",
+      "state": "missing",
+      "value": "—"
+    },
+    {
+      "aclLinks": [],
+      "name": "qa-gn1600-31-owner-tier",
+      "network": "#/guestnetwork/6517a76f-bbf6-42d6-8a23-d3997706962b",
+      "state": "missing",
+      "value": "—"
+    },
+    {
+      "aclLinks": [],
+      "name": "qa-gn1612-31-internal-tier",
+      "network": "#/guestnetwork/459ddffd-f321-4d21-9be4-f090db569830",
+      "state": "missing",
+      "value": "—"
+    }
+  ],
+  "spinners": 0,
+  "url": "http://10.10.31.10:8080/client/#/vpc/874d72f2-55f9-4fcc-925d-89fb2294b0d4?tab=tier",
+  "controlled": true
+}

@@ -1,0 +1,174 @@
+{
+  "sourceTests": [
+    {
+      "label": "VPC",
+      "source": "10.239.32.248",
+      "server": "10.239.32.1",
+      "name": "qa-gn1569-32-shared-reg-vm24.service32.qa.internal"
+    },
+    {
+      "label": "Shared",
+      "source": "10.247.32.54",
+      "server": "10.247.32.51",
+      "name": "qa-gn1569-32-shared-reg-vm24.cseccloud.internal"
+    }
+  ],
+  "peer": "10.247.32.58",
+  "samples": [
+    {
+      "time": 1794220471.1915376,
+      "dns": {
+        "VPC": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        },
+        "Shared": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        }
+      },
+      "sharedPing": true,
+      "sharedTcp": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "time": 1794220471.7090137,
+      "dns": {
+        "VPC": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        },
+        "Shared": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        }
+      },
+      "sharedPing": true,
+      "sharedTcp": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "time": 1794220472.2235978,
+      "dns": {
+        "VPC": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        },
+        "Shared": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        }
+      },
+      "sharedPing": true,
+      "sharedTcp": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "time": 1794220472.738471,
+      "dns": {
+        "VPC": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        },
+        "Shared": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        }
+      },
+      "sharedPing": true,
+      "sharedTcp": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "time": 1794220473.2542138,
+      "dns": {
+        "VPC": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        },
+        "Shared": {
+          "udp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          },
+          "tcp": {
+            "ok": true,
+            "rcode": 0,
+            "answers": 1
+          }
+        }
+      },
+      "sharedPing": true,
+      "sharedTcp": "SSH-2.0-OpenSSH_8.7"
+    }
+  ]
+}

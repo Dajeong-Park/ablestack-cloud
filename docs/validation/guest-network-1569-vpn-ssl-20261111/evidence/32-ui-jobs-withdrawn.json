@@ -1,0 +1,38 @@
+[
+  {
+    "uiEvidence": "32-owner-vpn-service-remove-ui.json",
+    "command": "deleteRemoteAccessVpn",
+    "result": {
+      "jobid": "1f923c4d-2db8-4cfa-984b-9bf9617cd0c4",
+      "jobstatus": 1,
+      "success": true
+    }
+  },
+  {
+    "uiEvidence": "32-owner-vpn-user-restore-ui.json",
+    "command": "addVpnUser",
+    "result": {
+      "jobid": "ca425167-a468-44c7-bb9f-0e920970d1cf",
+      "jobstatus": 1,
+      "vpnuser": {
+        "id": "0eec412f-92fc-4581-8e6d-3e7c650f9472",
+        "username": "qa-gn1569-32-vpn-revoke",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "state": "Active"
+      }
+    }
+  },
+  {
+    "uiEvidence": "32-vpn-user-remove-ui.json",
+    "command": "removeVpnUser",
+    "result": {
+      "jobid": "ba21fc2f-7234-4d80-b7bc-a1b691294fb8",
+      "jobstatus": 1,
+      "success": true
+    }
+  }
+]

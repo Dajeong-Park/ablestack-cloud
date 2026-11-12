@@ -1,0 +1,21 @@
+{
+  "source": "12b9d2f958b25bea4ffb54cb80b5b8a2552059c0",
+  "baselineJarSha256": "d876b4284dda557c185526a3610b752a89b25cf820a8f0f7679837a1b2ffeb98",
+  "otherEntriesUnchanged": 198355,
+  "modules": 13,
+  "wholeModuleEntries": 6513,
+  "classes": 6166,
+  "newEntries": 216,
+  "removedEntries": 5,
+  "baselineOwnMissingClasses": [
+    "org.apache.cloudstack.storage.formatinspector.SnapshotImageMetadata"
+  ],
+  "candidateOwnMissingClasses": [
+    "org.apache.cloudstack.storage.formatinspector.SnapshotImageMetadata"
+  ],
+  "newOwnMissingClasses": [],
+  "candidateSha256": "3f4de1380fa2695460c4d8e483c47196ec96378d05dfa98873c982a1a2144d97",
+  "missingStartupClassIncluded": true,
+  "jdepsSuccessful": true,
+  "analysis": "Selected module class directories with complete flattened JAR on classpath; excludes JPMS module descriptors from input"
+}

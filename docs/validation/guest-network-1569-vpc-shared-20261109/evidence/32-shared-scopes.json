@@ -1,0 +1,419 @@
+{
+  "networks": {
+    "all": {
+      "id": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+      "name": "qa-gn1569-32-scope-all",
+      "displaytext": "QA1569 remaining Shared all",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "gateway": "10.236.32.1",
+      "netmask": "255.255.255.192",
+      "cidr": "10.236.32.0/26",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "networkofferingname": "qa-gn1569-32-shared",
+      "networkofferingdisplaytext": "qa-gn1569-32-shared",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+      "broadcasturi": "vlan://2840",
+      "dns1": "8.8.8.8",
+      "type": "Shared",
+      "vlan": "2840",
+      "acltype": "Domain",
+      "subdomainaccess": true,
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": []
+        },
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "AllowDnsSuffixModification",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "DhcpAccrossMultipleSubnets",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        }
+      ],
+      "networkdomain": "cs1cloud.internal",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": true,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-09T19:17:20+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    "domain": {
+      "id": "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+      "name": "qa-gn1569-32-scope-domain",
+      "displaytext": "QA1569 remaining Shared domain",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "gateway": "10.236.32.65",
+      "netmask": "255.255.255.192",
+      "cidr": "10.236.32.64/26",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "networkofferingname": "qa-gn1569-32-shared",
+      "networkofferingdisplaytext": "qa-gn1569-32-shared",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+      "broadcasturi": "vlan://2841",
+      "dns1": "8.8.8.8",
+      "type": "Shared",
+      "vlan": "2841",
+      "acltype": "Domain",
+      "subdomainaccess": false,
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": []
+        },
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "AllowDnsSuffixModification",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "DhcpAccrossMultipleSubnets",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        }
+      ],
+      "networkdomain": "cs1cloud.internal",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": true,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-09T19:17:20+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    "subdomains": {
+      "id": "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+      "name": "qa-gn1569-32-scope-subdomains",
+      "displaytext": "QA1569 remaining Shared subdomains",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "gateway": "10.236.32.129",
+      "netmask": "255.255.255.192",
+      "cidr": "10.236.32.128/26",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "networkofferingname": "qa-gn1569-32-shared",
+      "networkofferingdisplaytext": "qa-gn1569-32-shared",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+      "broadcasturi": "vlan://2842",
+      "dns1": "8.8.8.8",
+      "type": "Shared",
+      "vlan": "2842",
+      "acltype": "Domain",
+      "subdomainaccess": true,
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": []
+        },
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "AllowDnsSuffixModification",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "DhcpAccrossMultipleSubnets",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        }
+      ],
+      "networkdomain": "cs1cloud.internal",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": true,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-09T19:17:20+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    "account": {
+      "id": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "name": "qa-gn1569-32-scope-account",
+      "displaytext": "QA1569 remaining Shared account",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "gateway": "10.236.32.193",
+      "netmask": "255.255.255.192",
+      "cidr": "10.236.32.192/26",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "networkofferingname": "qa-gn1569-32-shared",
+      "networkofferingdisplaytext": "qa-gn1569-32-shared",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "broadcasturi": "vlan://2843",
+      "dns1": "8.8.8.8",
+      "type": "Shared",
+      "vlan": "2843",
+      "acltype": "Account",
+      "account": "qa-gn1569-32-followup-consumer",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": []
+        },
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "AllowDnsSuffixModification",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "DhcpAccrossMultipleSubnets",
+              "value": "true",
+              "canchooseservicecapability": false
+            }
+          ]
+        }
+      ],
+      "networkdomain": "csfecloud.internal",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": true,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-09T19:17:20+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    }
+  },
+  "actors": {
+    "peer": {
+      "id": "b1f0e958-f4f9-4a8f-8307-71e6a686b693",
+      "name": "qa-gn1569-32-scope-peer",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+      "roletype": "User"
+    },
+    "child": {
+      "id": "2797b108-fea2-412d-bff9-edcaa69003f9",
+      "name": "qa-gn1569-32-scope-child",
+      "domainid": "33a87791-c280-4039-9c84-2720f0978dad",
+      "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+      "roletype": "User"
+    },
+    "domainAdmin": {
+      "id": "cd0a22a7-6047-47ba-a6bf-64bddbf70626",
+      "name": "qa-gn1569-32-scope-domainadmin",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "roleid": "49e69974-b23b-11f1-990e-0024811f8935",
+      "roletype": "DomainAdmin"
+    },
+    "readOnly": {
+      "id": "6131b815-dfec-4d53-aab3-f839f8d37670",
+      "name": "qa-gn1569-32-scope-readonly",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "roleid": "49e69f80-b23b-11f1-990e-0024811f8935",
+      "roletype": "User"
+    },
+    "owner": {
+      "id": "46020da1-0a88-4b12-84ef-cf434547e3d1",
+      "name": "qa-gn1569-32-followup-consumer",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7"
+    },
+    "outsider": {
+      "id": "9bbb59bc-a5db-40ef-b5d6-e563645f11c4",
+      "name": "qa-gn1569-32-followup-outsider",
+      "domainid": "a31a8a1e-7f77-4fee-ab52-097769b2df1c"
+    }
+  },
+  "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+  "readOnlyProjectRole": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "id": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+    "name": "qa-gn1569-32-scope-readonly",
+    "description": "Dedicated Shared regression read-only project role",
+    "ispublic": true
+  },
+  "grants": [
+    {
+      "networkid": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "accountid": "285102d5-643d-4078-a4f1-26d01932ba16",
+      "project": "qa-gn1569-32-shared-reg",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  ]
+}

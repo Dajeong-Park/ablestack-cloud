@@ -1,0 +1,32 @@
+{
+  "source": "10.239.32.248",
+  "destination": "10.239.31.121",
+  "time": 1794254298.2812488,
+  "ping": {
+    "exit": 0,
+    "out": "PING 10.239.31.121 (10.239.31.121) from 10.239.32.248 : 56(84) bytes of data.\n64 bytes from 10.239.31.121: icmp_seq=1 ttl=62 time=0.742 ms\n64 bytes from 10.239.31.121: icmp_seq=2 ttl=62 time=0.716 ms\n64 bytes from 10.239.31.121: icmp_seq=3 ttl=62 time=0.834 ms\n64 bytes from 10.239.31.121: icmp_seq=4 ttl=62 time=0.688 ms\n64 bytes from 10.239.31.121: icmp_seq=5 ttl=62 time=0.764 ms\n64 bytes from 10.239.31.121: icmp_seq=6 ttl=62 time=0.765 ms\n64 bytes from 10.239.31.121: icmp_seq=7 ttl=62 time=0.849 ms\n64 bytes from 10.239.31.121: icmp_seq=8 ttl=62 time=0.701 ms\n64 bytes from 10.239.31.121: icmp_seq=9 ttl=62 time=0.911 ms\n64 bytes from 10.239.31.121: icmp_seq=10 ttl=62 time=0.657 ms\n\n--- 10.239.31.121 ping statistics ---\n10 packets transmitted, 10 received, 0% packet loss, time 9240ms\nrtt min/avg/max/mdev = 0.657/0.762/0.911/0.075 ms\n",
+    "error": ""
+  },
+  "tcp": [
+    {
+      "ok": true,
+      "banner": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "ok": true,
+      "banner": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "ok": true,
+      "banner": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "ok": true,
+      "banner": "SSH-2.0-OpenSSH_8.7"
+    },
+    {
+      "ok": true,
+      "banner": "SSH-2.0-OpenSSH_8.7"
+    }
+  ]
+}

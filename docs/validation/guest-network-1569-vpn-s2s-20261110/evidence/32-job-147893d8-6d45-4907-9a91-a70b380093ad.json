@@ -1,0 +1,14 @@
+{
+  "command": "createNetworkACL",
+  "params": {
+    "aclid": "bcdd9a67-4d6b-402b-ba48-e68625fe68c9",
+    "protocol": "icmp",
+    "cidrlist": "10.239.31.121/32",
+    "action": "Allow",
+    "traffictype": "Ingress",
+    "number": 32,
+    "icmptype": 8,
+    "icmpcode": -1
+  },
+  "jobid": "147893d8-6d45-4907-9a91-a70b380093ad"
+}

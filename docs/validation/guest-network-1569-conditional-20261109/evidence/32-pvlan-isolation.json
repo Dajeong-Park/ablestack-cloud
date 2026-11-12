@@ -1,0 +1,104 @@
+[
+  {
+    "source": 11,
+    "target": 12,
+    "icmpExit": 0,
+    "icmp": "PING 172.29.32.12 (172.29.32.12) from 172.29.32.11 : 56(84) bytes of data.\n64 bytes from 172.29.32.12: icmp_seq=1 ttl=64 time=0.263 ms\n64 bytes from 172.29.32.12: icmp_seq=2 ttl=64 time=0.181 ms\n64 bytes from 172.29.32.12: icmp_seq=3 ttl=64 time=0.211 ms\n\n--- 172.29.32.12 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2036ms\nrtt min/avg/max/mdev = 0.181/0.218/0.263/0.033 ms\n",
+    "tcp22": true,
+    "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+    "error": null,
+    "neighbors": [
+      {
+        "dst": "172.30.32.254",
+        "dev": "ens3",
+        "lladdr": "00:62:0b:e7:99:50",
+        "state": [
+          "DELAY"
+        ]
+      },
+      {
+        "dst": "10.243.32.1",
+        "dev": "ens8",
+        "lladdr": "02:01:01:ea:00:02",
+        "state": [
+          "STALE"
+        ]
+      },
+      {
+        "dst": "172.31.32.12",
+        "dev": "ens10",
+        "lladdr": "02:01:01:f0:00:01",
+        "state": [
+          "STALE"
+        ]
+      },
+      {
+        "dst": "172.29.32.12",
+        "dev": "ens11",
+        "lladdr": "02:01:01:f1:00:02",
+        "state": [
+          "REACHABLE"
+        ]
+      },
+      {
+        "dst": "172.30.32.12",
+        "dev": "ens3",
+        "lladdr": "02:15:69:32:09:12",
+        "state": [
+          "STALE"
+        ]
+      }
+    ]
+  },
+  {
+    "source": 12,
+    "target": 11,
+    "icmpExit": 0,
+    "icmp": "PING 172.29.32.11 (172.29.32.11) from 172.29.32.12 : 56(84) bytes of data.\n64 bytes from 172.29.32.11: icmp_seq=1 ttl=64 time=0.225 ms\n64 bytes from 172.29.32.11: icmp_seq=2 ttl=64 time=0.168 ms\n64 bytes from 172.29.32.11: icmp_seq=3 ttl=64 time=0.204 ms\n\n--- 172.29.32.11 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2081ms\nrtt min/avg/max/mdev = 0.168/0.199/0.225/0.023 ms\n",
+    "tcp22": true,
+    "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+    "error": null,
+    "neighbors": [
+      {
+        "dst": "172.31.32.11",
+        "dev": "ens8",
+        "lladdr": "02:01:01:f0:00:02",
+        "state": [
+          "STALE"
+        ]
+      },
+      {
+        "dst": "172.30.32.11",
+        "dev": "ens3",
+        "lladdr": "02:15:69:32:09:11",
+        "state": [
+          "STALE"
+        ]
+      },
+      {
+        "dst": "10.243.32.129",
+        "dev": "ens10",
+        "lladdr": "02:01:01:ef:00:02",
+        "state": [
+          "STALE"
+        ]
+      },
+      {
+        "dst": "172.30.32.254",
+        "dev": "ens3",
+        "lladdr": "00:62:0b:e7:99:50",
+        "state": [
+          "REACHABLE"
+        ]
+      },
+      {
+        "dst": "172.29.32.11",
+        "dev": "ens11",
+        "lladdr": "02:01:01:f1:00:01",
+        "state": [
+          "DELAY"
+        ]
+      }
+    ]
+  }
+]

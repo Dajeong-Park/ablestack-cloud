@@ -1,0 +1,18 @@
+{
+  "pid": 7156,
+  "path": "/var/tmp/qa-gn1569-protocol-32-secondary.py",
+  "pidfile": "/var/tmp/qa-gn1569-protocol-32-secondary.pid",
+  "config": {
+    "bind": "10.234.32.240",
+    "marker": "GN1569-32-secondary",
+    "tcp": [
+      19570,
+      19571
+    ],
+    "udp": [
+      19570,
+      19571
+    ]
+  },
+  "ready": true
+}

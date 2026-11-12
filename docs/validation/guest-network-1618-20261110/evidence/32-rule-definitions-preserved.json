@@ -1,0 +1,22 @@
+{
+  "count": 35,
+  "comparedFields": [
+    "id",
+    "name",
+    "description",
+    "networkid",
+    "sourceipaddress",
+    "sourceipaddressnetworkid",
+    "publicip",
+    "publicipid",
+    "publicport",
+    "privateport",
+    "algorithm",
+    "protocol",
+    "lbprotocol",
+    "cidrlist",
+    "loadbalancerrule",
+    "state"
+  ],
+  "changed": []
+}

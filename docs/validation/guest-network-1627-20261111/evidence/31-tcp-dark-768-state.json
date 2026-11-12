@@ -1,0 +1,50 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "text": "Close"
+    },
+    {
+      "disabled": false,
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": false,
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "disabled": false,
+      "label": "정책 이름",
+      "value": "qa-gn1627-31-review-tcp"
+    },
+    {
+      "disabled": false,
+      "label": "테이블 크기",
+      "value": "20k"
+    },
+    {
+      "disabled": false,
+      "label": "만료시간",
+      "value": "10m"
+    }
+  ],
+  "focus": "ant-input",
+  "modal": {
+    "bottom": 729,
+    "height": 558,
+    "left": 24,
+    "right": 744,
+    "top": 171,
+    "width": 720,
+    "x": 24,
+    "y": 171
+  },
+  "visible": true
+}

@@ -1,0 +1,22 @@
+{
+  "dark": {
+    "before": {
+      "theme": "light",
+      "origin": 1794321799205
+    },
+    "after": {
+      "theme": "dark",
+      "origin": 1794321799205
+    }
+  },
+  "light": {
+    "before": {
+      "theme": "dark",
+      "origin": 1794321799205
+    },
+    "after": {
+      "theme": "light",
+      "origin": 1794321799205
+    }
+  }
+}

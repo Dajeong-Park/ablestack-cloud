@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "/usr/bin/genisoimage\n/usr/bin/mkisofs\n-rw-r--r--. 1 root root 12611312 Nov 12 18:18 /var/log/cloudstack/agent/agent.log\nFilesystem                                      Size  Used Avail Use% Mounted on\n10.10.31.10:/nfs/secondary/configdrive          350G  318G   32G  91% /mnt/006ac919-7755-3e59-9cd8-9b906a9e22e8\n/dev/mapper/ablestack_ablecube31--3-root        382G   45G  338G  12% /\n/dev/mapper/ablestack_ablecube31--3-root        382G   45G  338G  12% /\n/dev/mapper/ablestack_ablecube31--3-root        382G   45G  338G  12% /\n/dev/mapper/ablestack_ablecube31--3-root        382G   45G  338G  12% /\n/dev/mapper/ablestack_ablecube31--3-root        382G   45G  338G  12% /\n10.10.31.10:/nfs/secondary/template/tmpl/2/276  350G  318G   32G  91% /mnt/15c3ab6c-09c4-300e-9302-4edb6f0ebaae\n/dev/mapper/ablestack_ablecube31--3-root        382G   45G  338G  12% /\n10.10.31.10:/nfs/secondary/template/tmpl/2/234  350G  318G   32G  91% /mnt/1dfb3263-27ac-3657-9d2f-b0ba3f71fc58\n",
+  "error": ""
+}

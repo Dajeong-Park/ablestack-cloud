@@ -1,0 +1,13 @@
+{
+  "host": {
+    "exit": 0,
+    "out": "Thu Nov 12 09:49:36 AM UTC 2026\nudp   UNCONN 0      0         10.10.32.1:19569      0.0.0.0:*    users:((\"python3\",pid=1326394,fd=3))                             \nactive\n",
+    "error": ""
+  },
+  "guest": {
+    "clock": "Thu Nov 12 09:49:33 AM UTC 2026",
+    "sockets": "udp   UNCONN 0      0      10.234.32.227:19570      0.0.0.0:*    users:((\"python3\",pid=6527,fd=5))\nudp   UNCONN 0      0      10.234.32.227:19571      0.0.0.0:*    users:((\"python3\",pid=6527,fd=6))\ntcp   LISTEN 0      10     10.234.32.227:19570      0.0.0.0:*    users:((\"python3\",pid=6527,fd=3))\ntcp   LISTEN 0      10     10.234.32.227:19571      0.0.0.0:*    users:((\"python3\",pid=6527,fd=4))",
+    "firewall": "active",
+    "log": ""
+  }
+}

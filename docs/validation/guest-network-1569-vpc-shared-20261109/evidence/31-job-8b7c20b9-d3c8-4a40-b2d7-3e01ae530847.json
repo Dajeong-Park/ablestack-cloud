@@ -1,0 +1,10 @@
+{
+  "command": "addAccountToProject",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "account": "qa-gn1569-31-scope-readonly",
+    "role": "Regular",
+    "projectroleid": "42157776-66ca-4491-804a-91d0f9256e42"
+  },
+  "jobid": "8b7c20b9-d3c8-4a40-b2d7-3e01ae530847"
+}

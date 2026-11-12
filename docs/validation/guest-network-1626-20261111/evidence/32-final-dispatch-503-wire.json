@@ -1,0 +1,38 @@
+{
+  "plan": {
+    "post": 503
+  },
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "name": "qa-gn1626-32-lb-cookie-retry",
+        "methodname": "LbCookie",
+        "param[0].name": "cookie-name",
+        "param[0].value": "QA_LB_COOKIE",
+        "param[1].name": "mode",
+        "param[1].value": "insert",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ],
+  "jobId": null,
+  "receipt": {
+    "errorresponse": {
+      "errorcode": 503,
+      "errortext": "QA1626 controlled pre-dispatch failure"
+    }
+  },
+  "queries": [],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": true,
+      "kind": 503
+    }
+  ]
+}

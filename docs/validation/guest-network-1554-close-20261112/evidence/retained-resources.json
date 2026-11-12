@@ -1,0 +1,1602 @@
+{
+  "31": {
+    "vms": [
+      {
+        "id": "cae707e9-1851-4ce1-a63c-ecd5173a64f7",
+        "name": "qa-gn1569-31-nosnat-vm",
+        "displayname": "qa-gn1569-31-nosnat-vm",
+        "state": "Running",
+        "account": "qa-gn1569-31-owner",
+        "hostname": "ablecube31-2",
+        "hostid": "3fb147f3-aea4-4f65-b8c6-e7192ea26138",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "f9a4ad3b-a8de-411c-b8b4-1ecc3c3d3dbc",
+            "networkid": "b056b626-fe5e-4b75-ba17-78e421162dd7",
+            "networkname": "qa-gn1569-31-nosnat",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:1f:58:00:02:bb",
+            "ipaddress": "10.177.31.25",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+        "name": "qa-gn1597-31-project-vnf",
+        "displayname": "qa-gn1597-31-project-vnf",
+        "state": "Running",
+        "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+        "project": "qa-gn1597-31-project",
+        "hostname": "ablecube31-1",
+        "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+        "templateid": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+        "templatename": "qa-gn1597-31-project-template",
+        "nic": [
+          {
+            "id": "4eec96b4-8ade-475c-b18b-b448dd5b603b",
+            "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+            "networkname": "qa-gn1597-31-project-nat",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:19:97:31:00:01",
+            "ipaddress": "10.253.31.220",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "1cdd7204-2b82-4b88-9b39-7e3d9b318117",
+        "name": "qa-gn1569-31-cond-vm11",
+        "displayname": "qa-gn1569-31-cond-vm11",
+        "state": "Running",
+        "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+        "project": "qa-gn1569-31-conditional",
+        "hostname": "ablecube31-2",
+        "hostid": "3fb147f3-aea4-4f65-b8c6-e7192ea26138",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "efc50dc2-7618-413e-a469-3b0709b72bb1",
+            "networkid": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+            "networkname": "qa-gn1569-31-cond-configdrive",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:31:09:11",
+            "ipaddress": "172.30.31.11",
+            "deviceid": "0"
+          },
+          {
+            "id": "3bdc13f3-e0b9-4d14-8e7f-c037723ccf34",
+            "networkid": "970f42a1-5570-4872-8faf-3c88ca9a0d3a",
+            "networkname": "qa-gn1569-31-cond-basic-l2",
+            "type": "L2",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:62:00:01",
+            "ipaddress": "172.31.31.11",
+            "deviceid": "1"
+          },
+          {
+            "id": "61d216b8-e274-4428-8158-daf0d00983e5",
+            "networkid": "4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+            "networkname": "qa-gn1569-31-cond-tier-a",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:60:00:01",
+            "ipaddress": "10.243.31.77",
+            "deviceid": "2"
+          }
+        ]
+      },
+      {
+        "id": "2670be1a-f4a0-4d03-b15c-e10a81e3d358",
+        "name": "qa-gn1569-31-cond-vm12",
+        "displayname": "qa-gn1569-31-cond-vm12",
+        "state": "Running",
+        "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+        "project": "qa-gn1569-31-conditional",
+        "hostname": "ablecube31-2",
+        "hostid": "3fb147f3-aea4-4f65-b8c6-e7192ea26138",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "36ff865c-6d9b-4742-8195-a497bfd05869",
+            "networkid": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+            "networkname": "qa-gn1569-31-cond-configdrive",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:31:09:12",
+            "ipaddress": "172.30.31.12",
+            "deviceid": "0"
+          },
+          {
+            "id": "a7a31754-fdd4-45c7-9a36-cdcef12357ac",
+            "networkid": "970f42a1-5570-4872-8faf-3c88ca9a0d3a",
+            "networkname": "qa-gn1569-31-cond-basic-l2",
+            "type": "L2",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:62:00:02",
+            "ipaddress": "172.31.31.12",
+            "deviceid": "1"
+          },
+          {
+            "id": "c39411ec-e590-4d47-89b7-1a492d74937b",
+            "networkid": "b80539e9-306a-4b76-933f-b1f48399627f",
+            "networkname": "qa-gn1569-31-cond-tier-b",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:61:00:01",
+            "ipaddress": "10.243.31.208",
+            "deviceid": "2"
+          }
+        ]
+      },
+      {
+        "id": "bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+        "name": "qa-gn1569-31-shared-reg-vm21",
+        "displayname": "qa-gn1569-31-shared-reg-vm21",
+        "state": "Running",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "hostname": "ablecube31-3",
+        "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "7b7b1ad3-6a84-48c3-b63d-1174d0ac9548",
+            "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "networkname": "qa-gn1569-31-shared-reg-control",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:31:19:21",
+            "ipaddress": "172.26.31.21",
+            "deviceid": "0"
+          },
+          {
+            "id": "f11e8ce7-7802-4f4e-b678-53f9fbfe7bb8",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "networkname": "qa-gn1569-31-shared-reg",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:6e:00:01",
+            "ipaddress": "10.247.31.58",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+        "name": "qa-gn1569-31-shared-reg-vm24",
+        "displayname": "qa-gn1569-31-shared-reg-vm24",
+        "state": "Running",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "hostname": "ablecube31-3",
+        "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "f6b78aea-ed4e-419a-9e36-d1e0f08c082f",
+            "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "networkname": "qa-gn1569-31-shared-reg-control",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:31:19:24",
+            "ipaddress": "172.26.31.24",
+            "deviceid": "0"
+          },
+          {
+            "id": "a81e246d-e90d-40dd-8387-27815fb72169",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "networkname": "qa-gn1569-31-shared-reg",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:6e:00:04",
+            "ipaddress": "10.247.31.54",
+            "deviceid": "1"
+          },
+          {
+            "id": "c5203517-19cc-49b1-9b6d-7a5f5c42f7c2",
+            "networkid": "5a3960c8-ddca-441d-977f-0ff0fa4f6f0a",
+            "networkname": "qa-gn1569-31-svc-review-tier",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:76:00:01",
+            "ipaddress": "10.239.31.121",
+            "deviceid": "2"
+          }
+        ]
+      },
+      {
+        "id": "ecdb6b5b-3675-4878-af3b-04252f17a7ea",
+        "name": "qa-gn1569-31-scope-owner-vm",
+        "displayname": "qa-gn1569-31-scope-owner-vm",
+        "state": "Running",
+        "account": "qa-gn1569-31-followup-consumer",
+        "hostname": "ablecube31-3",
+        "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "11c3a9ee-b2eb-40de-8666-1e5c7f1347cb",
+            "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+            "networkname": "qa-gn1569-31-scope-all",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:1f:31:00:03:d2",
+            "ipaddress": "10.236.31.12",
+            "deviceid": "0"
+          },
+          {
+            "id": "265913c0-627f-41b8-aa3a-7b221307c8a0",
+            "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+            "networkname": "qa-gn1569-31-scope-account",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:75:00:03",
+            "ipaddress": "10.236.31.205",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "5adc4475-fc07-403d-ad2a-8e6f95595e47",
+        "name": "qa-gn1569-31-scope-child-vm",
+        "displayname": "qa-gn1569-31-scope-child-vm",
+        "state": "Running",
+        "account": "qa-gn1569-31-scope-child",
+        "hostname": "ablecube31-3",
+        "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "ddc26b76-604b-411f-b2e5-8ae5295a5154",
+            "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+            "networkname": "qa-gn1569-31-scope-all",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:1f:57:00:03:d4",
+            "ipaddress": "10.236.31.14",
+            "deviceid": "0"
+          },
+          {
+            "id": "43a6b409-25fb-45b4-8faa-23fc1f8b5129",
+            "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+            "networkname": "qa-gn1569-31-scope-subdomains",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:74:00:03",
+            "ipaddress": "10.236.31.141",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "1f6adf08-ba15-4afb-9f10-69fba5d18bd4",
+        "name": "qa-gn1569-31-scope-outsider-vm",
+        "displayname": "qa-gn1569-31-scope-outsider-vm",
+        "state": "Running",
+        "account": "qa-gn1569-31-followup-outsider",
+        "hostname": "ablecube31-3",
+        "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "9e4116bc-1398-4fb1-a58f-2b3dfb7fc635",
+            "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+            "networkname": "qa-gn1569-31-scope-all",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:1f:be:00:03:d5",
+            "ipaddress": "10.236.31.15",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "551067c6-fbfb-40df-8313-037e21de78cf",
+        "name": "qa-gn1569-31-vpn-lb-vm",
+        "displayname": "qa-gn1569-31-vpn-lb-vm",
+        "state": "Running",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "hostname": "ablecube31-1",
+        "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "40f7075e-2430-483c-a3c9-bf5b68d9a3d2",
+            "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+            "networkname": "qa-gn1569-31-vpn-lb",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:1f:02:77:00:01",
+            "ipaddress": "10.234.31.6",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "95f9dac8-920a-475d-91ff-5bc015c15d0e",
+        "name": "qa-gn1616-31-allocated-vm",
+        "displayname": "qa-gn1616-31-allocated-vm",
+        "state": "Running",
+        "account": "qa-gn1569-31-owner",
+        "hostname": "ablecube31-1",
+        "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "9b8cddcb-b3ef-4278-b7db-11dbc918ad93",
+            "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+            "networkname": "qa-gn1612-31-warm-internal-tier",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:1f:02:7a:00:02",
+            "ipaddress": "10.210.31.173",
+            "deviceid": "0"
+          },
+          {
+            "id": "643c0036-d912-4da4-8bb8-984dd021f8cd",
+            "networkid": "4a5ac294-90e7-418c-9755-b17f4a9b78f3",
+            "networkname": "qa-gn1569-31-reg-tier",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:1f:02:3e:00:01",
+            "ipaddress": "10.210.31.112",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+        "name": "qa-gn1628-31-subnet-vm26",
+        "displayname": "qa-gn1628-31-subnet-vm26",
+        "state": "Running",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "hostname": "ablecube31-3",
+        "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "cc5bb654-cf9f-4ef9-83e7-dff7d1b65ee1",
+            "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+            "networkname": "qa-gn1569-31-shared-reg-control",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:16:28:31:26:26",
+            "ipaddress": "172.26.31.26",
+            "deviceid": "0"
+          },
+          {
+            "id": "771b7b45-4ce8-463e-96ed-4296da2016c7",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "networkname": "qa-gn1569-31-shared-reg",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:16:28:31:49:26",
+            "ipaddress": "10.249.31.102",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "f5c1c0a6-6658-4d96-96fc-6324703e2b9e",
+        "name": "qa-gn1569-31-final-functional-vm",
+        "displayname": "qa-gn1569-31-final-functional-vm",
+        "state": "Running",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "hostname": "ablecube31-3",
+        "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "db767ac8-3b2f-4b09-9485-0454946e3897",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "networkname": "qa-gn1569-31-shared-reg",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:1f:86:00:03:c8",
+            "ipaddress": "10.247.31.52",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "23f01208-cacd-4ac2-bdf9-39235325e923",
+        "name": "autoScaleVm-qa-gn1607-31-default-1-dsqime",
+        "displayname": "autoScaleVm-qa-gn1607-31-default-1-dsqime",
+        "state": "Running",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "hostname": "ablecube31-1",
+        "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+        "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "18b0cdb3-3973-4489-9b7e-29d0859e06b4",
+            "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+            "networkname": "qa-gn1569-31-vpn-lb",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:1f:02:77:00:06",
+            "ipaddress": "10.234.31.249",
+            "deviceid": "0"
+          }
+        ]
+      }
+    ],
+    "networks": [
+      {
+        "id": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+        "name": "qa-gn1612-31-warm-internal-tier",
+        "state": "Implemented",
+        "account": "qa-gn1569-31-owner",
+        "networkofferingid": "a0969b04-b072-4a83-b1ad-c88fdc596660",
+        "networkofferingname": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링(with 내부 LB)",
+        "type": "Isolated",
+        "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "gateway": "10.210.31.129",
+        "netmask": "255.255.255.192",
+        "cidr": "10.210.31.128/26",
+        "networkdomain": "cs1a8cloud.internal"
+      },
+      {
+        "id": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "name": "qa-gn1569-31-vpn-lb",
+        "state": "Implemented",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+        "networkofferingname": "qa-gn1569-31-nat",
+        "type": "Isolated",
+        "gateway": "10.234.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.234.31.0/24",
+        "networkdomain": "vpnlb31.qa.internal"
+      },
+      {
+        "id": "5a3960c8-ddca-441d-977f-0ff0fa4f6f0a",
+        "name": "qa-gn1569-31-svc-review-tier",
+        "state": "Implemented",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "networkofferingid": "c22f22f2-bee1-47f3-9b5c-33b5d7719529",
+        "networkofferingname": "qa-gn1569-31-vpc-no-lb",
+        "type": "Isolated",
+        "vpcid": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+        "gateway": "10.239.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.239.31.0/24",
+        "networkdomain": "service31.qa.internal"
+      },
+      {
+        "id": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+        "name": "qa-gn1569-31-scope-account",
+        "state": "Setup",
+        "account": "qa-gn1569-31-followup-consumer",
+        "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+        "networkofferingname": "qa-gn1569-31-shared",
+        "type": "Shared",
+        "gateway": "10.236.31.193",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.31.192/26",
+        "networkdomain": "cs1bacloud.internal"
+      },
+      {
+        "id": "2de83b57-a297-4bae-868e-cd31d1292f12",
+        "name": "qa-gn1569-31-scope-subdomains",
+        "state": "Setup",
+        "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+        "networkofferingname": "qa-gn1569-31-shared",
+        "type": "Shared",
+        "gateway": "10.236.31.129",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.31.128/26",
+        "networkdomain": "cs1cloud.internal"
+      },
+      {
+        "id": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+        "name": "qa-gn1569-31-scope-domain",
+        "state": "Setup",
+        "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+        "networkofferingname": "qa-gn1569-31-shared",
+        "type": "Shared",
+        "gateway": "10.236.31.65",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.31.64/26",
+        "networkdomain": "cs1cloud.internal"
+      },
+      {
+        "id": "b55e3a03-25f0-4790-b576-71d736b5995b",
+        "name": "qa-gn1569-31-scope-all",
+        "state": "Setup",
+        "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+        "networkofferingname": "qa-gn1569-31-shared",
+        "type": "Shared",
+        "gateway": "10.236.31.1",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.31.0/26",
+        "networkdomain": "cs1cloud.internal"
+      },
+      {
+        "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "name": "qa-gn1569-31-shared-reg-control",
+        "state": "Implemented",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "networkofferingid": "c9b236d6-2c61-4462-bf97-683e51d0b2df",
+        "networkofferingname": "qa-gn1569-31-configdrive-clone",
+        "type": "L2"
+      },
+      {
+        "id": "87601b32-f211-4609-819f-6d0f4810b788",
+        "name": "qa-gn1569-31-shared-reg",
+        "state": "Setup",
+        "account": "qa-gn1569-31-owner",
+        "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+        "networkofferingname": "qa-gn1569-31-shared",
+        "type": "Shared",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.31.0/24",
+        "networkdomain": "cs1a8cloud.internal"
+      },
+      {
+        "id": "970f42a1-5570-4872-8faf-3c88ca9a0d3a",
+        "name": "qa-gn1569-31-cond-basic-l2",
+        "state": "Implemented",
+        "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+        "project": "qa-gn1569-31-conditional",
+        "networkofferingid": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+        "networkofferingname": "qa-gn1569-31-prj-l2-auto",
+        "type": "L2"
+      },
+      {
+        "id": "b80539e9-306a-4b76-933f-b1f48399627f",
+        "name": "qa-gn1569-31-cond-tier-b",
+        "state": "Implemented",
+        "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+        "project": "qa-gn1569-31-conditional",
+        "networkofferingid": "c22f22f2-bee1-47f3-9b5c-33b5d7719529",
+        "networkofferingname": "qa-gn1569-31-vpc-no-lb",
+        "type": "Isolated",
+        "vpcid": "c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc",
+        "gateway": "10.243.31.129",
+        "netmask": "255.255.255.128",
+        "cidr": "10.243.31.128/25",
+        "networkdomain": "cond31.qa.internal"
+      },
+      {
+        "id": "4dc9dd9e-8b5a-451d-9112-1602b7a0ece1",
+        "name": "qa-gn1569-31-cond-tier-a",
+        "state": "Implemented",
+        "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+        "project": "qa-gn1569-31-conditional",
+        "networkofferingid": "c22f22f2-bee1-47f3-9b5c-33b5d7719529",
+        "networkofferingname": "qa-gn1569-31-vpc-no-lb",
+        "type": "Isolated",
+        "vpcid": "c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc",
+        "gateway": "10.243.31.1",
+        "netmask": "255.255.255.128",
+        "cidr": "10.243.31.0/25",
+        "networkdomain": "cond31.qa.internal"
+      },
+      {
+        "id": "92be2db0-3837-4e3f-8c5b-987cb9d5054b",
+        "name": "qa-gn1569-31-cond-configdrive",
+        "state": "Implemented",
+        "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+        "project": "qa-gn1569-31-conditional",
+        "networkofferingid": "0e028b53-2315-484f-bcb7-18f33976bd82",
+        "networkofferingname": "qa-gn1569-31-configdrive-auto",
+        "type": "L2"
+      },
+      {
+        "id": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "name": "qa-gn1597-31-project-nat",
+        "state": "Implemented",
+        "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+        "project": "qa-gn1597-31-project",
+        "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+        "networkofferingname": "qa-gn1569-31-nat",
+        "type": "Isolated",
+        "gateway": "10.253.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.253.31.0/24",
+        "networkdomain": "cs1b6cloud.internal"
+      },
+      {
+        "id": "4a5ac294-90e7-418c-9755-b17f4a9b78f3",
+        "name": "qa-gn1569-31-reg-tier",
+        "state": "Implemented",
+        "account": "qa-gn1569-31-owner",
+        "networkofferingid": "dc536f7b-7c49-4f57-bcae-8576af82176c",
+        "networkofferingname": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링",
+        "type": "Isolated",
+        "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "gateway": "10.210.31.1",
+        "netmask": "255.255.255.128",
+        "cidr": "10.210.31.0/25",
+        "networkdomain": "cs1a8cloud.internal"
+      },
+      {
+        "id": "b056b626-fe5e-4b75-ba17-78e421162dd7",
+        "name": "qa-gn1569-31-nosnat",
+        "state": "Setup",
+        "account": "qa-gn1569-31-owner",
+        "networkofferingid": "fb745c1e-8d8a-4860-9d9c-204ff9f54537",
+        "networkofferingname": "qa-gn1569-31-nosnat",
+        "type": "Isolated",
+        "gateway": "10.177.31.1",
+        "netmask": "255.255.255.224",
+        "cidr": "10.177.31.0/27",
+        "networkdomain": "cs1a8cloud.internal"
+      }
+    ],
+    "vpcs": [
+      {
+        "id": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+        "name": "qa-gn1569-31-svc-review",
+        "state": "Enabled",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "cidr": "10.239.31.0/24",
+        "networkdomain": "service31.qa.internal"
+      },
+      {
+        "id": "c87ad78b-fc90-4a8d-9c45-c50e8f5b16fc",
+        "name": "qa-gn1569-31-cond-vpc",
+        "state": "Enabled",
+        "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+        "project": "qa-gn1569-31-conditional",
+        "cidr": "10.243.31.0/24",
+        "networkdomain": "cond31.qa.internal"
+      },
+      {
+        "id": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "name": "qa-gn1569-31-reg-vpc",
+        "state": "Enabled",
+        "account": "qa-gn1569-31-owner",
+        "cidr": "10.210.31.0/24",
+        "networkdomain": "cs1a8cloud.internal"
+      }
+    ],
+    "projectIds": [
+      "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "ded3436a-00a8-4043-990d-69200d9a321b"
+    ],
+    "templates": [
+      {
+        "projectId": "ded3436a-00a8-4043-990d-69200d9a321b",
+        "projectName": "qa-gn1597-31-project",
+        "template": {
+          "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+          "name": "qa-gn1597-31-project-template",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+          "project": "qa-gn1597-31-project",
+          "isready": true
+        }
+      }
+    ],
+    "networkOfferings": [
+      {
+        "id": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+        "name": "qa-gn1569-31-nat",
+        "state": "Enabled"
+      },
+      {
+        "id": "fb745c1e-8d8a-4860-9d9c-204ff9f54537",
+        "name": "qa-gn1569-31-nosnat",
+        "state": "Enabled"
+      },
+      {
+        "id": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+        "name": "qa-gn1569-31-shared",
+        "state": "Enabled"
+      },
+      {
+        "id": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+        "name": "qa-gn1569-31-prj-l2-auto",
+        "state": "Enabled"
+      },
+      {
+        "id": "0e028b53-2315-484f-bcb7-18f33976bd82",
+        "name": "qa-gn1569-31-configdrive-auto",
+        "state": "Enabled"
+      },
+      {
+        "id": "c22f22f2-bee1-47f3-9b5c-33b5d7719529",
+        "name": "qa-gn1569-31-vpc-no-lb",
+        "state": "Enabled"
+      },
+      {
+        "id": "c9b236d6-2c61-4462-bf97-683e51d0b2df",
+        "name": "qa-gn1569-31-configdrive-clone",
+        "state": "Enabled"
+      },
+      {
+        "id": "9ad5dc88-c27f-426f-8951-6473c6a2a1d8",
+        "name": "qa-gn1569-31-nat-clone-20261111",
+        "state": "Enabled"
+      }
+    ],
+    "autoScale": [
+      {
+        "id": "d16e2a69-50d4-43ca-bbde-3af3c4cbeddf",
+        "name": "qa-gn1608-31-review",
+        "state": "DISABLED",
+        "lbruleid": "af2b39fa-8654-4652-a738-4ea1d899a259"
+      }
+    ],
+    "vpnUsers": [
+      {
+        "id": "258b84f3-c6fe-4f42-8276-9b7f124ca8d3",
+        "username": "qa-gn1569-31-vpn-revoke",
+        "state": "Active",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+      }
+    ],
+    "boundCertificateIds": [
+      "2ec387a3-2ff4-4e8e-9a44-399a9741a939",
+      "f62b72ac-6991-4aa4-8b78-4734c7b5ac66"
+    ]
+  },
+  "32": {
+    "vms": [
+      {
+        "id": "23dbc3f4-4378-4fef-9420-959d724ae98e",
+        "name": "qa-gn1569-32-nosnat-vm",
+        "displayname": "qa-gn1569-32-nosnat-vm",
+        "state": "Running",
+        "account": "qa-gn1569-32-owner",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "397fde63-5edd-4695-8f91-751ce13dfc87",
+            "networkid": "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+            "networkname": "qa-gn1569-32-nosnat",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:01:90:00:02:b4",
+            "ipaddress": "10.177.32.20",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "ef8ecf84-8508-4bda-b69a-eb1e2914969f",
+        "name": "qa-gn1569-32-nosnat-peer",
+        "displayname": "qa-gn1569-32-nosnat-peer",
+        "state": "Running",
+        "account": "qa-gn1569-32-owner",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "3589d68a-7f14-44ea-82a9-792988ae1920",
+            "networkid": "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+            "networkname": "qa-gn1569-32-nosnat",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:01:1d:00:02:b5",
+            "ipaddress": "10.177.32.21",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+        "name": "qa-gn1597-32-project-vnf",
+        "displayname": "qa-gn1597-32-project-vnf",
+        "state": "Running",
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project",
+        "hostname": "ablecube32-1",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "templateid": "bc71c53f-767b-4674-b993-855e6b73347c",
+        "templatename": "qa-gn1597-32-project-template",
+        "nic": [
+          {
+            "id": "45bb1066-6d6f-4843-abac-d93212d7e98f",
+            "networkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+            "networkname": "qa-gn1597-32-project-nat",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:19:97:32:00:01",
+            "ipaddress": "10.253.32.220",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "2d831a7f-ba81-4c8a-b554-5edc51e66b77",
+        "name": "qa-gn1569-32-cond-vm11",
+        "displayname": "qa-gn1569-32-cond-vm11",
+        "state": "Running",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "hostname": "ablecube32-1",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "6f845fac-9568-4de0-8c76-b2671fdad1f3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:32:09:11",
+            "ipaddress": "172.30.32.11",
+            "deviceid": "0"
+          },
+          {
+            "id": "d5256718-5c8f-4c50-a0cf-c93494ae24aa",
+            "networkid": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+            "networkname": "qa-gn1569-32-cond-tier-a",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:01:ea:00:01",
+            "ipaddress": "10.243.32.102",
+            "deviceid": "1"
+          },
+          {
+            "id": "d97127b2-35e4-485b-adbb-e410aecce393",
+            "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+            "networkname": "qa-gn1569-32-cond-basic-l2",
+            "type": "L2",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:01:f0:00:02",
+            "ipaddress": "172.31.32.11",
+            "deviceid": "2"
+          }
+        ]
+      },
+      {
+        "id": "7b85552e-6134-4e49-92b1-f6b4ebb6ddb8",
+        "name": "qa-gn1569-32-cond-vm12",
+        "displayname": "qa-gn1569-32-cond-vm12",
+        "state": "Running",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "hostname": "ablecube32-1",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "a6b78e9a-2a54-416a-b115-6801a300e6e3",
+            "networkid": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+            "networkname": "qa-gn1569-32-cond-configdrive",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:32:09:12",
+            "ipaddress": "172.30.32.12",
+            "deviceid": "0"
+          },
+          {
+            "id": "50545b6b-1319-43b2-b9ba-5bb0d2152e11",
+            "networkid": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+            "networkname": "qa-gn1569-32-cond-basic-l2",
+            "type": "L2",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:01:f0:00:01",
+            "ipaddress": "172.31.32.12",
+            "deviceid": "1"
+          },
+          {
+            "id": "5493f742-1fbf-4203-85ab-058af26aa6eb",
+            "networkid": "0ebf7b1a-6383-4060-b317-45a848e91372",
+            "networkname": "qa-gn1569-32-cond-tier-b",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:01:ef:00:01",
+            "ipaddress": "10.243.32.229",
+            "deviceid": "2"
+          }
+        ]
+      },
+      {
+        "id": "30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "name": "qa-gn1569-32-shared-reg-vm21",
+        "displayname": "qa-gn1569-32-shared-reg-vm21",
+        "state": "Running",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "51ca037f-f3ef-4c82-b0f3-6dee732a7589",
+            "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+            "networkname": "qa-gn1569-32-shared-reg-control",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:32:19:21",
+            "ipaddress": "172.26.32.21",
+            "deviceid": "0"
+          },
+          {
+            "id": "4dceed40-9dd3-44ec-a3c1-cc82e1774c86",
+            "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+            "networkname": "qa-gn1569-32-shared-reg",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:01:fb:00:01",
+            "ipaddress": "10.247.32.58",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "dc8437d4-834a-4120-8958-d501fb96895a",
+        "name": "qa-gn1569-32-shared-reg-vm24",
+        "displayname": "qa-gn1569-32-shared-reg-vm24",
+        "state": "Running",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "26307588-34ee-4948-8960-7c96e6eacd51",
+            "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+            "networkname": "qa-gn1569-32-shared-reg-control",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:15:69:32:19:24",
+            "ipaddress": "172.26.32.24",
+            "deviceid": "0"
+          },
+          {
+            "id": "2e6ed956-29a4-44b8-a928-7c60bddb5417",
+            "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+            "networkname": "qa-gn1569-32-shared-reg",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:01:fb:00:04",
+            "ipaddress": "10.247.32.54",
+            "deviceid": "1"
+          },
+          {
+            "id": "3eb42717-04a6-408d-8eb6-87ca9565c5c3",
+            "networkid": "3e020c34-8209-4336-bf63-5633baef13c4",
+            "networkname": "qa-gn1569-32-svc-review-tier",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:02:03:00:01",
+            "ipaddress": "10.239.32.248",
+            "deviceid": "2"
+          }
+        ]
+      },
+      {
+        "id": "604b6a30-ae4d-4378-9393-00f5b310fcdd",
+        "name": "qa-gn1569-32-scope-owner-vm",
+        "displayname": "qa-gn1569-32-scope-owner-vm",
+        "state": "Running",
+        "account": "qa-gn1569-32-followup-consumer",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "b291c0b6-4542-4174-a03e-e1ca6bb3e91b",
+            "networkid": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+            "networkname": "qa-gn1569-32-scope-all",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:01:01:00:03:da",
+            "ipaddress": "10.236.32.22",
+            "deviceid": "0"
+          },
+          {
+            "id": "799f105c-fdb5-474d-b075-38bc6cc4e5f1",
+            "networkid": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+            "networkname": "qa-gn1569-32-scope-account",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:02:02:00:03",
+            "ipaddress": "10.236.32.216",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "86b6540c-a9b1-49da-8f59-6be0c8a06ce2",
+        "name": "qa-gn1569-32-scope-child-vm",
+        "displayname": "qa-gn1569-32-scope-child-vm",
+        "state": "Running",
+        "account": "qa-gn1569-32-scope-child",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "ce5f5f9a-8196-44e0-93bf-e337ddfb3bd2",
+            "networkid": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+            "networkname": "qa-gn1569-32-scope-all",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:01:97:00:03:dc",
+            "ipaddress": "10.236.32.24",
+            "deviceid": "0"
+          },
+          {
+            "id": "d995ef92-711e-4084-bfaa-0ed03cb6bce8",
+            "networkid": "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+            "networkname": "qa-gn1569-32-scope-subdomains",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:02:01:00:03",
+            "ipaddress": "10.236.32.152",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "c2773fe8-b7ca-4f0f-a0ed-c6d69f50fbcc",
+        "name": "qa-gn1569-32-scope-outsider-vm",
+        "displayname": "qa-gn1569-32-scope-outsider-vm",
+        "state": "Running",
+        "account": "qa-gn1569-32-followup-outsider",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "8bca012a-cc4a-4a4f-91c5-7410efa1ad8e",
+            "networkid": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+            "networkname": "qa-gn1569-32-scope-all",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:01:2b:00:03:d9",
+            "ipaddress": "10.236.32.21",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "name": "qa-gn1569-32-vpn-lb-vm",
+        "displayname": "qa-gn1569-32-vpn-lb-vm",
+        "state": "Running",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "hostname": "ablecube32-1",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+            "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+            "networkname": "qa-gn1569-32-vpn-lb",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:01:02:04:00:01",
+            "ipaddress": "10.234.32.227",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "f2f65780-56e0-405e-b471-7a077e3045df",
+        "name": "qa-gn1569-32-lb-int-reg-vm",
+        "displayname": "qa-gn1569-32-lb-int-reg-vm",
+        "state": "Running",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "hostname": "ablecube32-1",
+        "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "c96ed71e-3426-4140-8e34-799e50914592",
+            "networkid": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+            "networkname": "qa-gn1569-32-lb-int-reg-publicTier",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:01:02:07:00:01",
+            "ipaddress": "10.236.32.36",
+            "deviceid": "0"
+          },
+          {
+            "id": "2cc7d021-e199-47d4-8cdd-d542cc86bee1",
+            "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+            "networkname": "qa-gn1569-32-lb-int-reg-internalTier",
+            "type": "Isolated",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:01:02:08:00:01",
+            "ipaddress": "10.236.32.79",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "b312d970-d11d-48e0-a91e-a1589d646fe6",
+        "name": "qa-gn1628-32-subnet-vm26",
+        "displayname": "qa-gn1628-32-subnet-vm26",
+        "state": "Running",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "46df0f77-d285-41cc-b2fd-b0244728b99f",
+            "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+            "networkname": "qa-gn1569-32-shared-reg-control",
+            "type": "L2",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:16:28:32:26:26",
+            "ipaddress": "172.26.32.26",
+            "deviceid": "0"
+          },
+          {
+            "id": "bf101350-9bf3-4e3f-a0c0-47f64f54c019",
+            "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+            "networkname": "qa-gn1569-32-shared-reg",
+            "type": "Shared",
+            "isdefault": false,
+            "enabled": true,
+            "macaddress": "02:16:28:32:49:26",
+            "ipaddress": "10.249.32.102",
+            "deviceid": "1"
+          }
+        ]
+      },
+      {
+        "id": "27ca6e8a-132e-46a8-9b83-18a136fa6f0f",
+        "name": "qa-gn1569-32-final-functional-vm",
+        "displayname": "qa-gn1569-32-final-functional-vm",
+        "state": "Running",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "06ab2d45-8a48-4d04-a6e6-5ab3da988577",
+            "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+            "networkname": "qa-gn1569-32-shared-reg",
+            "type": "Shared",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "1e:01:65:00:03:ca",
+            "ipaddress": "10.247.32.56",
+            "deviceid": "0"
+          }
+        ]
+      },
+      {
+        "id": "f28c0cb6-8c43-4ad8-9356-dacb99bdf996",
+        "name": "autoScaleVm-qa-gn1607-32-default-1-aqmcvp",
+        "displayname": "autoScaleVm-qa-gn1607-32-default-1-aqmcvp",
+        "state": "Running",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "hostname": "ablecube32-2",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "templateid": "b31d2c92-67b9-40c4-a137-4ff9778c6b0d",
+        "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+        "nic": [
+          {
+            "id": "98dbf438-dda6-4acb-883a-d67f4788609a",
+            "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+            "networkname": "qa-gn1569-32-vpn-lb",
+            "type": "Isolated",
+            "isdefault": true,
+            "enabled": true,
+            "macaddress": "02:01:02:04:00:06",
+            "ipaddress": "10.234.32.161",
+            "deviceid": "0"
+          }
+        ]
+      }
+    ],
+    "networks": [
+      {
+        "id": "258eda56-c559-432d-91cc-1c5224852008",
+        "name": "qa-gn1569-32-lb-int-reg-internalTier",
+        "state": "Implemented",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "networkofferingid": "1342c576-3785-4294-b778-f31d7b5496bc",
+        "networkofferingname": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링(with 내부 LB)",
+        "type": "Isolated",
+        "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+        "gateway": "10.236.32.65",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.32.64/26",
+        "networkdomain": "csfccloud.internal"
+      },
+      {
+        "id": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+        "name": "qa-gn1569-32-lb-int-reg-publicTier",
+        "state": "Implemented",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "networkofferingid": "88945f5e-a659-4961-94a2-dbe77809ed87",
+        "networkofferingname": "VPC 네트워크에 대한 기본 격리 네트워크오퍼링",
+        "type": "Isolated",
+        "vpcid": "91c180fc-6f94-4a64-a875-49697b0f3266",
+        "gateway": "10.236.32.1",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.32.0/26",
+        "networkdomain": "csfccloud.internal"
+      },
+      {
+        "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "name": "qa-gn1569-32-vpn-lb",
+        "state": "Implemented",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+        "networkofferingname": "qa-gn1569-32-nat",
+        "type": "Isolated",
+        "gateway": "10.234.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.234.32.0/24",
+        "networkdomain": "vpnlb32.qa.internal"
+      },
+      {
+        "id": "3e020c34-8209-4336-bf63-5633baef13c4",
+        "name": "qa-gn1569-32-svc-review-tier",
+        "state": "Implemented",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+        "networkofferingname": "qa-gn1569-32-vpc-no-lb",
+        "type": "Isolated",
+        "vpcid": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+        "gateway": "10.239.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.239.32.0/24",
+        "networkdomain": "service32.qa.internal"
+      },
+      {
+        "id": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+        "name": "qa-gn1569-32-scope-account",
+        "state": "Setup",
+        "account": "qa-gn1569-32-followup-consumer",
+        "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+        "networkofferingname": "qa-gn1569-32-shared",
+        "type": "Shared",
+        "gateway": "10.236.32.193",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.32.192/26",
+        "networkdomain": "csfecloud.internal"
+      },
+      {
+        "id": "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+        "name": "qa-gn1569-32-scope-subdomains",
+        "state": "Setup",
+        "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+        "networkofferingname": "qa-gn1569-32-shared",
+        "type": "Shared",
+        "gateway": "10.236.32.129",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.32.128/26",
+        "networkdomain": "cs1cloud.internal"
+      },
+      {
+        "id": "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+        "name": "qa-gn1569-32-scope-domain",
+        "state": "Setup",
+        "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+        "networkofferingname": "qa-gn1569-32-shared",
+        "type": "Shared",
+        "gateway": "10.236.32.65",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.32.64/26",
+        "networkdomain": "cs1cloud.internal"
+      },
+      {
+        "id": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+        "name": "qa-gn1569-32-scope-all",
+        "state": "Setup",
+        "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+        "networkofferingname": "qa-gn1569-32-shared",
+        "type": "Shared",
+        "gateway": "10.236.32.1",
+        "netmask": "255.255.255.192",
+        "cidr": "10.236.32.0/26",
+        "networkdomain": "cs1cloud.internal"
+      },
+      {
+        "id": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+        "name": "qa-gn1569-32-shared-reg-control",
+        "state": "Implemented",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "networkofferingid": "419f4dbd-cd9f-450e-8a70-c5bc5d259752",
+        "networkofferingname": "qa-gn1569-32-configdrive-clone",
+        "type": "L2"
+      },
+      {
+        "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+        "name": "qa-gn1569-32-shared-reg",
+        "state": "Setup",
+        "account": "qa-gn1569-32-owner",
+        "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+        "networkofferingname": "qa-gn1569-32-shared",
+        "type": "Shared",
+        "gateway": "10.247.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.32.0/24",
+        "networkdomain": "cseccloud.internal"
+      },
+      {
+        "id": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+        "name": "qa-gn1569-32-cond-basic-l2",
+        "state": "Implemented",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "networkofferingid": "2fe3181f-595c-4881-a328-74af9d2b94e1",
+        "networkofferingname": "qa-gn1569-32-prj-l2-auto",
+        "type": "L2"
+      },
+      {
+        "id": "0ebf7b1a-6383-4060-b317-45a848e91372",
+        "name": "qa-gn1569-32-cond-tier-b",
+        "state": "Implemented",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+        "networkofferingname": "qa-gn1569-32-vpc-no-lb",
+        "type": "Isolated",
+        "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "gateway": "10.243.32.129",
+        "netmask": "255.255.255.128",
+        "cidr": "10.243.32.128/25",
+        "networkdomain": "cond32.qa.internal"
+      },
+      {
+        "id": "c61de8f7-8ea7-4d63-a335-a5fd31914826",
+        "name": "qa-gn1569-32-cond-tier-a",
+        "state": "Implemented",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "networkofferingid": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+        "networkofferingname": "qa-gn1569-32-vpc-no-lb",
+        "type": "Isolated",
+        "vpcid": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "gateway": "10.243.32.1",
+        "netmask": "255.255.255.128",
+        "cidr": "10.243.32.0/25",
+        "networkdomain": "cond32.qa.internal"
+      },
+      {
+        "id": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+        "name": "qa-gn1569-32-cond-configdrive",
+        "state": "Implemented",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "networkofferingid": "75182977-a621-4b59-bf18-358d09343692",
+        "networkofferingname": "qa-gn1569-32-configdrive-auto",
+        "type": "L2"
+      },
+      {
+        "id": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "name": "qa-gn1597-32-project-nat",
+        "state": "Implemented",
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project",
+        "networkofferingid": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+        "networkofferingname": "qa-gn1569-32-nat",
+        "type": "Isolated",
+        "gateway": "10.253.32.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.253.32.0/24",
+        "networkdomain": "csfacloud.internal"
+      },
+      {
+        "id": "28a009ed-333e-4968-8a8e-3f5b2f9ca667",
+        "name": "qa-gn1569-32-nosnat",
+        "state": "Setup",
+        "account": "qa-gn1569-32-owner",
+        "networkofferingid": "2a7d6bc0-2ef3-4811-87a4-0635a71fd7f5",
+        "networkofferingname": "qa-gn1569-32-nosnat",
+        "type": "Isolated",
+        "gateway": "10.177.32.1",
+        "netmask": "255.255.255.224",
+        "cidr": "10.177.32.0/27",
+        "networkdomain": "cseccloud.internal"
+      }
+    ],
+    "vpcs": [
+      {
+        "id": "91c180fc-6f94-4a64-a875-49697b0f3266",
+        "name": "qa-gn1569-32-lb-int-reg",
+        "state": "Enabled",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "cidr": "10.236.32.0/24",
+        "networkdomain": "csfccloud.internal"
+      },
+      {
+        "id": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+        "name": "qa-gn1569-32-svc-review",
+        "state": "Enabled",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "cidr": "10.239.32.0/24",
+        "networkdomain": "service32.qa.internal"
+      },
+      {
+        "id": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "name": "qa-gn1569-32-cond-vpc",
+        "state": "Enabled",
+        "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+        "project": "qa-gn1569-32-conditional",
+        "cidr": "10.243.32.0/24",
+        "networkdomain": "cond32.qa.internal"
+      }
+    ],
+    "projectIds": [
+      "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    ],
+    "templates": [
+      {
+        "projectId": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "projectName": "qa-gn1597-32-project",
+        "template": {
+          "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+          "name": "qa-gn1597-32-project-template",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "isready": true
+        }
+      }
+    ],
+    "networkOfferings": [
+      {
+        "id": "82d3cc3d-1bb8-48b6-a0b3-a8e7271bf5be",
+        "name": "qa-gn1569-32-nat",
+        "state": "Enabled"
+      },
+      {
+        "id": "2a7d6bc0-2ef3-4811-87a4-0635a71fd7f5",
+        "name": "qa-gn1569-32-nosnat",
+        "state": "Enabled"
+      },
+      {
+        "id": "0426e221-e598-4692-b185-c9db58c03f69",
+        "name": "qa-gn1569-32-shared",
+        "state": "Enabled"
+      },
+      {
+        "id": "2fe3181f-595c-4881-a328-74af9d2b94e1",
+        "name": "qa-gn1569-32-prj-l2-auto",
+        "state": "Enabled"
+      },
+      {
+        "id": "75182977-a621-4b59-bf18-358d09343692",
+        "name": "qa-gn1569-32-configdrive-auto",
+        "state": "Enabled"
+      },
+      {
+        "id": "8bc831da-3b5c-4ba6-ad8e-6bde9d1d9474",
+        "name": "qa-gn1569-32-vpc-no-lb",
+        "state": "Enabled"
+      },
+      {
+        "id": "419f4dbd-cd9f-450e-8a70-c5bc5d259752",
+        "name": "qa-gn1569-32-configdrive-clone",
+        "state": "Enabled"
+      },
+      {
+        "id": "9ca47de9-d51e-420e-a1ea-b9b611f4d1f0",
+        "name": "qa-gn1569-32-nat-clone-20261111",
+        "state": "Enabled"
+      }
+    ],
+    "autoScale": [
+      {
+        "id": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+        "name": "qa-gn1608-32-review",
+        "state": "DISABLED",
+        "lbruleid": "d337c44d-bce7-4c6a-af70-e2ff1a06e170"
+      }
+    ],
+    "vpnUsers": [
+      {
+        "id": "0f291542-1725-4871-bcc9-426178875160",
+        "username": "qa-gn1569-32-vpn-revoke",
+        "state": "Active",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    ],
+    "boundCertificateIds": [
+      "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+      "44a59880-7190-4dda-99b6-b5ab18270fe0"
+    ]
+  }
+}

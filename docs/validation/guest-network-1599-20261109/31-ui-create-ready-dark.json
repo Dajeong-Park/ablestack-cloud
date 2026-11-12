@@ -1,0 +1,8 @@
+{
+  "dialog": "네트워크 추가IsolatedL2공유형 (Shared)네트워크 소유 범위프로젝트qa-gn1569-31-conditional도메인f3772036-4b8f-41fd-83f2-b71751950364이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.이름설명Zone Zone네트워크 도메인네트워크 오퍼링기본 격리 네트워크오퍼링(with SourceNat)서비스·제공자 확인요구 서비스와 제공자 설정이 일치합니다.Physical Network 1 · 51cdd7ed-ab33-419d-98fc-8e7eabea1194구성 확인 결과입니다. 외부 장비 준비 상태와 실제 통신은 별도로 확인해야 합니다.서비스 제공자 (9)Dns → VirtualRouter · 설정 확인Dhcp → VirtualRouter · 설정 확인SourceNat → VirtualRouter · 설정 확인StaticNat → VirtualRouter · 설정 확인Lb → VirtualRouter · 설정 확인Vpn → VirtualRouter · 설정 확인UserData → VirtualRouter · 설정 확인PortForwarding → VirtualRouter · 설정 확인Firewall → VirtualRouter · 설정 확인외부 아이디게이트웨이넷마스크DNS 1DNS 2서비스용 네트워크의 라우터에 대한 IPv4 주소공용 NIC의 MAC 주소 유지네트워크 소유 범위프로젝트qa-gn1569-31-conditional도메인f3772036-4b8f-41fd-83f2-b71751950364이 소유 범위에 네트워크를 생성합니다. 목록의 조회 필터는 생성 소유자를 바꾸지 않습니다.이름설명Zone Zone네트워크 오퍼링QA1599 31 dedicated guarded OVS PVLAN (same host)기본 L2는 프레임을 연결합니다. 게스트 IP는 외부 DHCP 또는 게스트 설정으로 구성하세요.서비스·제공자 확인요구 서비스와 제공자 설정이 일치합니다.qa-pvlan1599-31 · 1f1e349b-2895-4248-9856-22457d737bf4구성 확인 결과입니다. 외부 장비 준비 상태와 실제 통신은 별도로 확인해야 합니다.VLAN/VNIVLAN ID/범위 중복 우회Secondary VLAN 유형없음커뮤니티격리무차별Secondary VLAN IDPVLAN 지원 진단이 물리 네트워크에 PVLAN 정책을 적용할 수 있는 호스트가 있습니다.생성 완료만으로 격리가 보장되지는 않습니다. 대상 호스트의 정책 적용이 성공해야 하며 스위치·트렁크 연결은 별도로 검증해야 합니다.취소확인",
+  "height": 841,
+  "scrollWidth": 1670,
+  "theme": "dark-mode ant-scrolling-effect",
+  "url": "http://10.10.31.10:8080/client/#/guestnetwork",
+  "width": 1680
+}

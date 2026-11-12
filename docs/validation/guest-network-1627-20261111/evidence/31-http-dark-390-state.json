@@ -1,0 +1,73 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "text": "Close"
+    },
+    {
+      "disabled": false,
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": false,
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "disabled": false,
+      "label": "정책 이름",
+      "value": "qa-gn1627-31-review-http"
+    },
+    {
+      "disabled": false,
+      "label": "Cookie 이름",
+      "value": "QA_LB_COOKIE"
+    },
+    {
+      "disabled": false,
+      "label": "모드",
+      "value": "insert"
+    },
+    {
+      "checked": true,
+      "disabled": false,
+      "label": "캐시 비활성화",
+      "value": "on"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "간접",
+      "value": "on"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "POST 요청만 적용",
+      "value": "on"
+    },
+    {
+      "disabled": false,
+      "label": "도메인",
+      "value": ""
+    }
+  ],
+  "focus": "ant-input",
+  "modal": {
+    "bottom": 857,
+    "height": 814,
+    "left": 12,
+    "right": 378,
+    "top": 43,
+    "width": 366,
+    "x": 12,
+    "y": 43
+  },
+  "visible": true
+}

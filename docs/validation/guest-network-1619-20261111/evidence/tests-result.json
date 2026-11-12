@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/components/network/LoadBalancerSslDialog.vue src/views/network/LoadBalancing.vue tests/unit/views/network/LoadBalancerSslDialog.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/LoadBalancerSslDialog.spec.js tests/unit/views/network/LoadBalancerEdit.spec.js tests/unit/views/network/LoadBalancerCreate.spec.js tests/unit/views/network/LbBackendRemoval.spec.js tests/unit/utils/networkMutation.spec.js tests/unit/Permission.spec.js tests/unit/projectApiMetadata.spec.js tests/unit/views/ProjectMenu.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}

@@ -1,0 +1,112 @@
+{
+  "reportCommit": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6",
+  "branch": "dhslove/epic-1554-guest-networks",
+  "publications": [
+    {
+      "number": 1554,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1554",
+      "state": "OPEN",
+      "isDraft": null,
+      "head": null,
+      "bodyBytes": 239481,
+      "frozenHashesBefore": [
+        "fbd12ab5e07cfb944edcc6b88a2e282673477b42dcf68c54cd5d74adf8e23356"
+      ],
+      "frozenHashesAfter": [
+        "fbd12ab5e07cfb944edcc6b88a2e282673477b42dcf68c54cd5d74adf8e23356"
+      ],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    },
+    {
+      "number": 1569,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1569",
+      "state": "OPEN",
+      "isDraft": null,
+      "head": null,
+      "bodyBytes": 155988,
+      "frozenHashesBefore": [
+        "58151c64c2403a7fb5efb44ddd1e27ca6b6638462befacb21f59bd9e47999c9e"
+      ],
+      "frozenHashesAfter": [
+        "58151c64c2403a7fb5efb44ddd1e27ca6b6638462befacb21f59bd9e47999c9e"
+      ],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    },
+    {
+      "number": 1577,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/pull/1577",
+      "state": "OPEN",
+      "isDraft": true,
+      "head": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6",
+      "bodyBytes": 159128,
+      "frozenHashesBefore": [],
+      "frozenHashesAfter": [],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    },
+    {
+      "number": 1628,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1628",
+      "state": "OPEN",
+      "isDraft": null,
+      "head": null,
+      "bodyBytes": 4481,
+      "frozenHashesBefore": [],
+      "frozenHashesAfter": [],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    },
+    {
+      "number": 1629,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1629",
+      "state": "OPEN",
+      "isDraft": null,
+      "head": null,
+      "bodyBytes": 4651,
+      "frozenHashesBefore": [],
+      "frozenHashesAfter": [],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    },
+    {
+      "number": 1630,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1630",
+      "state": "OPEN",
+      "isDraft": null,
+      "head": null,
+      "bodyBytes": 4456,
+      "frozenHashesBefore": [],
+      "frozenHashesAfter": [],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    },
+    {
+      "number": 1631,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1631",
+      "state": "OPEN",
+      "isDraft": null,
+      "head": null,
+      "bodyBytes": 4669,
+      "frozenHashesBefore": [],
+      "frozenHashesAfter": [],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    },
+    {
+      "number": 1632,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1632",
+      "state": "OPEN",
+      "isDraft": null,
+      "head": null,
+      "bodyBytes": 5393,
+      "frozenHashesBefore": [],
+      "frozenHashesAfter": [],
+      "exactBodyVerified": true,
+      "reportSha": "3ba8ee643b78d816b3b82c05f7c441a42e97e5e6"
+    }
+  ],
+  "issuesKeptOpen": true,
+  "epicPrDraft": true
+}

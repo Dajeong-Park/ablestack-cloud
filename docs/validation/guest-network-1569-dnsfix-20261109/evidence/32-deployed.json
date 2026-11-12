@@ -1,0 +1,8 @@
+{
+  "out": "dnsmasq-base-patched.deb: OK\ndnsmasq-base-original.deb: OK\n/usr/sbin/dnsmasq: OK\n(Reading database ... 38239 files and directories currently installed.)\nPreparing to unpack dnsmasq-base-patched.deb ...\nUnpacking dnsmasq-base (2.90-4~deb12u2+ablestack1) over (2.90-4~deb12u2) ...\nSetting up dnsmasq-base (2.90-4~deb12u2+ablestack1) ...\nProcessing triggers for dbus (1.14.10-1~deb12u1) ...\nactive\n/proc/23701/exe: OK\n2026-11-09T06:09:52+00:00\ndnsmasq\t2.90-4~deb12u2\ndnsmasq-base\t2.90-4~deb12u2+ablestack1\n74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc  /usr/sbin/dnsmasq\nMainPID=23701\nNRestarts=0\nActiveState=active\nUNCONN 0      0             0.0.0.0:67        0.0.0.0:*    users:((\"dnsmasq\",pid=23701,fd=4)) \nUNCONN 0      0           127.0.0.1:53        0.0.0.0:*    users:((\"dnsmasq\",pid=23701,fd=9)) \nUNCONN 0      0        10.247.32.51:53        0.0.0.0:*    users:((\"dnsmasq\",pid=23701,fd=6)) \n",
+  "daemonSha256": "74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc",
+  "version": "2.90-4~deb12u2+ablestack1",
+  "network": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+  "router": "f936aa25-8df0-46c8-814c-db7d0ff6c761",
+  "host": "ablecube32-2"
+}

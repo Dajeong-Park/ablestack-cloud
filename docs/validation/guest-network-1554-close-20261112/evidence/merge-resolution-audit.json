@@ -1,0 +1,58 @@
+{
+  "fullCheckExit": 2,
+  "fullCheckLines": [
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionImpactCmd.java:31: trailing whitespace.",
+    "+    ",
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionOperationCmd.java:31: trailing whitespace.",
+    "+    ",
+    "docs/design/sharedfs-1443-bootstrap-guard-20261023/probes/deployed-guard.sh:1: trailing whitespace.",
+    "+sharedfs_boot_state=$(systemctl show cloud-early-config.service -p ActiveState -p SubState -p Result); if ! printf '%s\\n' \"$sharedfs_boot_state\" | grep -qx 'ActiveState=active' || ! printf '%s\\n' \"$sharedfs_boot_state\" | grep -qx 'SubState=exited' || ! printf '%s\\n' \"$sharedfs_boot_state\" | grep -qx 'Result=success'; then echo 'SHAREDFS_BOOTSTRAP_PENDING: waiting for guest network initialization' >&2; exit 75; fi; ",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:7: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:9: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:11: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:13: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:15: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:17: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:19: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:24: trailing whitespace.",
+    "+\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:25: trailing whitespace.",
+    "+ Ready\tROOT\t0\t4.88 GB\tPrimary Storage\t\t",
+    "docs/design/sharedfs-1450-nfs-posix-20261027/evidence/source-volume-ui.txt:30: trailing whitespace."
+  ],
+  "fullCheckLineCount": 4362,
+  "resolvedFilesCheckExit": 0,
+  "files": [
+    {
+      "path": "ui/public/locales/en.json",
+      "sha256": "17b19c57e3c143ddfb0d03815821a84a2d2e61f4f40abf3e87f315c264bd8635"
+    },
+    {
+      "path": "ui/public/locales/ko_KR.json",
+      "sha256": "6e4dc36ba10a3d99eb9968835408474ab8cc37c7229762db33882fb9f3e2f9b8"
+    },
+    {
+      "path": "ui/src/components/view/InfoCard.vue",
+      "sha256": "bebb3e6be67de855a5e69ff38ac8ca2c125ace4bc72c68ab9e5fbf6014fbf774"
+    },
+    {
+      "path": "ui/src/components/view/ListView.vue",
+      "sha256": "0a082f5e28fc9d89abe2b951a5fd771a687a1a310c4f6d3030d51d8ddd6d5be9"
+    },
+    {
+      "path": "ui/src/utils/listRefreshMixin.js",
+      "sha256": "5099f41dedb98ebd7150e9956d815c5e32f5035090a3c2656437b942de771784"
+    },
+    {
+      "path": "ui/src/views/AutogenView.vue",
+      "sha256": "4a0b7d14f8463d291cab55c0e851a9c96122dd4d63531b48f7154c417221400d"
+    }
+  ]
+}

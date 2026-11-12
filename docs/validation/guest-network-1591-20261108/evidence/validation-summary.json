@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "8fc52194ff78c1360dffad8dc30536021c2fd4fc",
+  "changedModule": "plugins/network-elements/tungsten",
+  "mavenTests": 10,
+  "uiTests": 21,
+  "changedJavaCheckstyleViolations": 0,
+  "postDeploymentApiCases": 56,
+  "beforeDeploymentApiCases": 56,
+  "uiAdminClusters": [
+    31,
+    32
+  ],
+  "apiRoles": [
+    "admin",
+    "owner",
+    "member",
+    "readonly",
+    "domainadmin",
+    "peer",
+    "outsider"
+  ],
+  "screenshots": 48,
+  "uiSourceChanged": false,
+  "uiAssetsRedeployed": false,
+  "fullCloudBuild": false,
+  "actionsTriggered": false,
+  "tungstenDataPlaneTested": false,
+  "reviewResourcesPreserved": true
+}

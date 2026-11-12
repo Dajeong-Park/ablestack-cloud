@@ -1,0 +1,44 @@
+{
+  "rule": {
+    "id": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+    "name": "qa-gn1569-31-backend-tls-review",
+    "description": "QA1569 single TLS backend, no distribution measurement",
+    "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+    "publicip": "10.10.31.149",
+    "publicport": "19111",
+    "privateport": "18443",
+    "algorithm": "roundrobin",
+    "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "cidrlist": "",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "state": "Active",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "protocol": "ssl",
+    "backendssl": true,
+    "tags": [],
+    "fordisplay": true
+  },
+  "original": {
+    "id": "ec942970-8d50-410e-8e0d-9814281061d8",
+    "certificate": {
+      "pemOmitted": true,
+      "sha256": "1783c8600690a20e56a9514c3d8880a6aebbce29d75c6d369b7b38b668f05bb4",
+      "bytes": 1164
+    },
+    "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "fingerprint": "09:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0",
+    "loadbalancerrulelist": [
+      "9649f2d1-d4ba-42e9-8022-d764dfb45611"
+    ],
+    "name": "qa-gn1569-31-tls-rotation-20261111"
+  }
+}

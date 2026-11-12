@@ -1,0 +1,9 @@
+{
+  "command": "addIpToNic",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "nicid": "595905d9-1fc8-4503-b048-6f0d9c56c5be",
+    "ipaddress": "10.234.32.240"
+  },
+  "jobid": "e04351f7-f371-486a-8e2a-34aa5f059795"
+}

@@ -1,0 +1,9 @@
+{
+  "host": "10.10.32.1",
+  "name": "b-484-VM",
+  "result": {
+    "exit": 0,
+    "out": "running\n\n Interface   Type     Source            Model    MAC\n--------------------------------------------------------------------\n vnet318     bridge   brens1f0np0-175   virtio   02:01:02:0a:00:02\n vnet319     bridge   cloud0            virtio   0e:00:a9:fe:d3:70\n\n-rw-------. 1 root root 1823 Oct  6 17:13 /root/.ssh/id_rsa\n-rw-------. 1 root root  227 Nov 10 18:26 /root/.ssh/id_rsa.cloud",
+    "error": ""
+  }
+}

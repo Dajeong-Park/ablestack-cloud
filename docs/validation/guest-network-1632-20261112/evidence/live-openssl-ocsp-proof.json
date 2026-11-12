@@ -1,0 +1,37 @@
+[
+  {
+    "name": "good",
+    "exit": 0,
+    "out": "/home/ablecloud/work/gn1632-revocation/pki/good.pem: good\n\tThis Update: Nov 12 05:52:36 2026 GMT\n\tNext Update: Nov 13 05:57:36 2026 GMT\nResponse verify OK\n"
+  },
+  {
+    "name": "revoked",
+    "exit": 0,
+    "out": "/home/ablecloud/work/gn1632-revocation/pki/revoked.pem: revoked\n\tThis Update: Nov 12 05:52:36 2026 GMT\n\tNext Update: Nov 13 05:57:36 2026 GMT\n\tReason: keyCompromise\n\tRevocation Time: Nov 12 05:47:36 2026 GMT\nResponse verify OK\n"
+  },
+  {
+    "name": "ocsp-good",
+    "exit": 0,
+    "out": "/home/ablecloud/work/gn1632-revocation/pki/ocsp-good.pem: good\n\tThis Update: Nov 12 05:52:36 2026 GMT\n\tNext Update: Nov 13 05:57:36 2026 GMT\nResponse verify OK\n"
+  },
+  {
+    "name": "ocsp-revoked",
+    "exit": 0,
+    "out": "/home/ablecloud/work/gn1632-revocation/pki/ocsp-revoked.pem: revoked\n\tThis Update: Nov 12 05:52:36 2026 GMT\n\tNext Update: Nov 13 05:57:36 2026 GMT\n\tReason: keyCompromise\n\tRevocation Time: Nov 12 05:47:36 2026 GMT\nResponse verify OK\n"
+  },
+  {
+    "name": "unknown",
+    "exit": 0,
+    "out": "/home/ablecloud/work/gn1632-revocation/pki/unknown.pem: unknown\n\tThis Update: Nov 12 05:52:36 2026 GMT\n\tNext Update: Nov 13 05:57:36 2026 GMT\nResponse verify OK\n"
+  },
+  {
+    "name": "inter",
+    "exit": 0,
+    "out": "/home/ablecloud/work/gn1632-revocation/pki/inter.pem: good\n\tThis Update: Nov 12 05:52:36 2026 GMT\n\tNext Update: Nov 13 05:57:36 2026 GMT\nResponse verify OK\n"
+  },
+  {
+    "name": "inter-ocsp",
+    "exit": 0,
+    "out": "/home/ablecloud/work/gn1632-revocation/pki/inter-ocsp.pem: good\n\tThis Update: Nov 12 05:52:36 2026 GMT\n\tNext Update: Nov 13 05:57:36 2026 GMT\nResponse verify OK\n"
+  }
+]

@@ -1898,9 +1898,11 @@ public class VpcManagerImpl extends ManagerBase implements VpcManager, VpcProvis
 
         // verify permissions
         _accountMgr.checkAccess(ctx.getCallingAccount(), null, false, vpc);
-        _resourceTagDao.removeByIdAndType(vpcId, ResourceObjectType.Vpc);
-
-        return destroyVpc(vpc, ctx.getCallingAccount(), ctx.getCallingUserId());
+        final boolean destroyed = destroyVpc(vpc, ctx.getCallingAccount(), ctx.getCallingUserId());
+        if (destroyed) {
+            _resourceTagDao.removeByIdAndType(vpcId, ResourceObjectType.Vpc);
+        }
+        return destroyed;
     }
 
     @Override

@@ -1,0 +1,30 @@
+{
+  "sourceCommit": "87dd587c1a119d75f581726fab6f48adfaca0a8f",
+  "license": {
+    "run": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43035744936",
+    "conclusion": "FAILURE",
+    "unapproved": 3574,
+    "summary": "[INFO] Rat check: Summary over all files. Unapproved: 3574, unknown: 3574, generated: 0, approved: 15001 licenses."
+  },
+  "lint": {
+    "run": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43035744925",
+    "conclusion": "FAILURE",
+    "failedHooks": [
+      "fix utf-8 byte order marker..............................................^[[41mFailed^[[m",
+      "mixed line ending........................................................^[[41mFailed^[[m",
+      "trim trailing whitespace.................................................^[[41mFailed^[[m",
+      "run codespell............................................................^[[41mFailed^[[m",
+      "flake8...................................................................^[[41mFailed^[[m",
+      "run markdownlint.........................................................^[[41mFailed^[[m"
+    ],
+    "ownedFileMentions": [
+      "NicPreparationRollbackTest.java",
+      "NicHotplugFailureTest.java",
+      "NicStateResponseTest.java",
+      "VmNicsTab.vue",
+      "vmNicActions.js",
+      "vmNicActions.spec.js"
+    ]
+  },
+  "fullCloudBuild": false
+}

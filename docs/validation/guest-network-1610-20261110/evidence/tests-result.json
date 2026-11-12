@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/utils/vpcVpn.js src/views/network/VpcVpnCreate.vue src/views/network/VpcTab.vue tests/unit/views/network/VpcVpnCreate.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/VpcVpnCreate.spec.js tests/unit/views/compute/AutoScaleGroupUpdate.spec.js tests/unit/views/ProjectMenu.spec.js tests/unit/components/network/VpnPsk.spec.js tests/unit/views/compute/AutoScaleUiStandard.spec.js tests/unit/views/network/NetworkTabs.spec.js tests/unit/views/network/VpnCustomerGateway.spec.js tests/unit/views/network/NetworkPermissions.spec.js tests/unit/views/network/NetworkOwnerContext.spec.js tests/unit/views/compute/InstanceGroupTab.spec.js tests/unit/components/view/SSHKeyPairNamePresentation.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false
+}

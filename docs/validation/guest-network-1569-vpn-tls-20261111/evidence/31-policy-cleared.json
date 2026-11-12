@@ -1,0 +1,13 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "stickinesspolicies": [
+    {
+      "lbruleid": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+      "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "stickinesspolicy": []
+    }
+  ]
+}

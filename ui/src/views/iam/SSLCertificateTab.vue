@@ -18,17 +18,14 @@
 <template>
   <div>
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-row :gutter="12">
-      <a-spin :spinning="loading">
-        <a-button
-          shape="round"
-          style="left: 10px; float: right;margin-bottom: 10px; z-index: 8"
-          @click="() => { showUploadForm = true }">
-          <template #icon><plus-outlined /></template>
-          {{ $t('label.upload.ssl.certificate') }}
-        </a-button>
-      </a-spin>
-    </a-row>
+    <div class="ssl-cert-toolbar">
+      <a-button v-if="canUpload" type="primary" :disabled="loading || uploading" @click="openUpload">
+        <template #icon><plus-outlined /></template>{{ $t('label.upload.ssl.certificate') }}
+      </a-button>
+      <a-button :loading="loading" :disabled="!canRead || uploading" @click="fetchData">
+        <template #icon><reload-outlined /></template>{{ $t('label.refresh') }}
+      </a-button>
+    </div>
     <a-row :gutter="12">
       <a-col :md="24" :lg="24">
         <a-table
@@ -37,7 +34,9 @@
           :columns="columns"
           :dataSource="dataSource"
           :rowKey="record => record.id"
-          :pagination="false"
+          :pagination="{ current: page, pageSize, total, hideOnSinglePage: true }"
+          @change="handleTableChange"
+          :scroll="{ x: 680 }"
           v-if="!quickview"
         >
           <template #bodyCell="{ column, record }">
@@ -52,7 +51,7 @@
               <tooltip-button
                 tooltipPlacement="top"
                 :tooltip="$t('label.delete.sslcertificate')"
-                :disabled="!('deleteSslCert' in $store.getters.apis)"
+                v-if="canDelete"
                 type="primary"
                 :danger="true"
                 icon="delete-outlined"
@@ -81,20 +80,18 @@
       </a-col>
     </a-row>
 
-    <a-modal
+    <MoldDialog
       v-if="showUploadForm"
-      :visible="showUploadForm"
+      class="ssl-cert-upload-dialog"
+      size="md"
       :title="$t('label.upload.ssl.certificate')"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="() => { showUploadForm = false }"
-      centered
-      width="30vw">
+      :closable="!uploading"
+      :keyboard="!uploading"
+      @cancel="closeUpload">
 
       <a-form
         layout="vertical"
-        :ref="formRef"
+        ref="uploadForm"
         :model="form"
         :rules="rules"
         @finish="uploadSslCert"
@@ -171,16 +168,12 @@
           <a-checkbox v-model:checked="form.enabledrevocationcheck"></a-checkbox>
         </a-form-item>
 
-        <div :span="24" class="action-button">
-          <a-button @click="showUploadForm = false" class="close-button">
-            {{ $t('label.cancel' ) }}
-          </a-button>
-          <a-button type="primary" ref="submit" :loading="uploading" @click="uploadSslCert">
-            {{ $t('label.submit' ) }}
-          </a-button>
-        </div>
       </a-form>
-    </a-modal>
+      <template #footer>
+        <a-button :disabled="uploading" @click="closeUpload">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="uploading" :disabled="!canUpload || uploading" @click="uploadSslCert">{{ $t('label.submit') }}</a-button>
+      </template>
+    </MoldDialog>
   </div>
 </template>
 
@@ -190,14 +183,17 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { getAPI, postAPI } from '@/api'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import TooltipLabel from '@/components/widgets/TooltipLabel.vue'
-import { ref, reactive, toRaw } from 'vue'
+import { reactive, toRaw } from 'vue'
+import MoldDialog from '@/components/view/MoldDialog'
+import eventBus from '@/config/eventBus'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], { scopeKey: vm => [vm.sslScope, vm.scopeSuspended, vm.page, vm.pageSize] })],
   name: 'SSLCertificate',
   components: {
     TooltipLabel,
-    TooltipButton
+    TooltipButton,
+    MoldDialog
   },
   data () {
     return {
@@ -208,10 +204,16 @@ export default {
       detail: [],
       page: 1,
       pageSize: 10,
+      total: 0,
       quickview: false,
       loading: false,
       uploading: false,
-      showUploadForm: false
+      showUploadForm: false,
+      form: { enabledrevocationcheck: true },
+      rules: {},
+      uploadVersion: 0,
+      scopeSuspended: false,
+      disposed: false
     }
   },
   props: {
@@ -228,9 +230,31 @@ export default {
       }
     }
   },
+  computed: {
+    ownerScopeValid () {
+      const project = this.$store.getters.project?.id
+      return this.$route.meta.name === 'account' || !project || project === '0' || this.resource.id === project
+    },
+    canRead () { return !this.disposed && !this.scopeSuspended && this.ownerScopeValid && 'listSslCerts' in this.$store.getters.apis },
+    canUpload () { return this.canRead && 'uploadSslCert' in this.$store.getters.apis },
+    canDelete () { return this.canRead && 'deleteSslCert' in this.$store.getters.apis },
+    sslScope () {
+      const user = this.$store.getters.userInfo || {}
+      return JSON.stringify([this.$route.path, this.resource.id, this.$store.getters.project?.id, user.id, user.roleid,
+        Object.keys(this.$store.getters.apis || {}).sort()])
+    }
+  },
   watch: {
+    sslScope (value, oldValue) {
+      const before = JSON.parse(oldValue); const after = JSON.parse(value)
+      this.invalidateScope()
+      if (before[0] !== after[0] || before[1] !== after[1]) {
+        this.scopeSuspended = false
+        if (this.ownerScopeValid) this.fetchData()
+      }
+    },
     tab (newValue, oldValue) {
-      if (newValue === 'certificate') {
+      if (['certificate', 'certificates'].includes(newValue)) {
         this.quickview = false
         this.fetchData()
       }
@@ -240,7 +264,7 @@ export default {
       handler (newValue) {
         if (Object.keys(newValue).length > 0 &&
           newValue.id &&
-          this.tab === 'certificate'
+          ['certificate', 'certificates'].includes(this.tab)
         ) {
           this.quickview = false
           this.fetchData()
@@ -254,6 +278,7 @@ export default {
   created () {
     this.columns = [
       {
+        width: 220,
         key: 'name',
         title: this.$t('label.name'),
         dataIndex: 'name'
@@ -262,7 +287,7 @@ export default {
         key: 'id',
         title: this.$t('label.certificateid'),
         dataIndex: 'id',
-        width: 450
+        width: 340
       },
       {
         key: 'actions',
@@ -274,20 +299,29 @@ export default {
     ]
     this.detailColumn = ['name', 'certificate', 'certchain']
     this.initForm()
+    eventBus.on('project-switch-start', this.invalidateScope)
     this.fetchData()
   },
+  beforeUnmount () { this.disposed = true; this.invalidateScope(); eventBus.off('project-switch-start', this.invalidateScope) },
   methods: {
+    invalidateScope () {
+      this.scopeSuspended = true; this.uploadVersion++; this.showUploadForm = false; this.uploading = false
+      this.dataSource = []; this.total = 0; this.page = 1; this.detail = []; this.quickview = false; this.loading = false; this.initForm()
+    },
+    openUpload () { if (!this.canUpload || this.uploading) return; this.initForm(); this.showUploadForm = true },
+    closeUpload () { if (this.uploading) return; this.showUploadForm = false; this.initForm() },
     initForm () {
-      this.formRef = ref()
-      this.form = reactive({})
+      this.form = reactive({ enabledrevocationcheck: true })
       this.rules = reactive({
         certificate: [{ required: true, message: this.$t('label.required') }],
         privatekey: [{ required: true, message: this.$t('label.required') }]
       })
     },
+    handleTableChange (pagination) { this.page = pagination.current; this.pageSize = pagination.pageSize; this.fetchData() },
     fetchData () {
+      if (!this.canRead || !this.resource.id) return Promise.resolve()
       const listRequest = this.listRequestToken('fetchData')
-      const params = {}
+      const params = { ignoreproject: true }
       params.page = this.page
       params.pageSize = this.pageSize
       if (this.$route.meta.name === 'account') {
@@ -302,6 +336,7 @@ export default {
       return getAPI('listSslCerts', params).then(json => {
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
 
+        this.total = json.listsslcertsresponse.count || 0
         const listSslResponse = json.listsslcertsresponse.sslcert
 
         // check exists json response
@@ -322,9 +357,6 @@ export default {
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
 
         this.loading = false
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.loading = false
       })
     },
     onQuickView (id) {
@@ -335,6 +367,7 @@ export default {
       this.loading = false
     },
     onDelete (row) {
+      if (!this.canDelete || !this.dataSource.some(item => item.id === row.id)) return
       const params = {}
       params.id = row.id
 
@@ -363,6 +396,7 @@ export default {
       })
     },
     onShowConfirm (row) {
+      if (!this.canDelete) return
       const self = this
       const title = `${this.$t('label.deleteconfirm')} ${this.$t('label.certificate')}`
 
@@ -376,51 +410,47 @@ export default {
         }
       })
     },
-    uploadSslCert () {
-      if (this.uploading) return
-      this.formRef.value.validate().then(() => {
-        const formValues = toRaw(this.form)
-        this.uploading = true
+    async uploadSslCert () {
+      if (!this.canUpload || this.uploading) return false
+      const version = this.uploadVersion; const scope = this.sslScope
+      const active = () => !this.disposed && version === this.uploadVersion && scope === this.sslScope && this.canUpload
+      this.uploading = true
+      let validated = false
+      try {
+        await this.$refs.uploadForm.validate()
+        validated = true
+        if (!active()) return false
+        const values = toRaw(this.form)
         const params = {
-          name: formValues.name,
-          certificate: formValues.certificate,
-          privatekey: formValues.privatekey
+          name: values.name,
+          certificate: values.certificate,
+          privatekey: values.privatekey,
+          enabledrevocationcheck: values.enabledrevocationcheck !== false
         }
-        if (formValues.enabledrevocationcheck != null && formValues.enabledrevocationcheck) {
-          params.enabledrevocationcheck = 'true'
-        } else {
-          params.enabledrevocationcheck = 'false'
-        }
-        if (this.$route.meta.name === 'account') {
-          params.account = this.resource.name
-          params.domainid = this.resource.domainid
-        } else { // project
-          params.projectid = this.resource.id
-        }
-        if (formValues.password) {
-          params.password = formValues.password
-        }
-        if (formValues.certchain) {
-          params.certchain = formValues.certchain
-        }
-        postAPI('uploadSslCert', params).then(json => {
-          this.$notification.success({
-            message: this.$t('message.success.upload.ssl.cert')
-          })
-        }).catch(error => {
-          this.$notifyError(error)
-        }).finally(() => {
-          this.fetchData()
-          this.uploading = false
-          this.showUploadForm = false
-        })
-      })
+        if (this.$route.meta.name === 'account') { params.account = this.resource.name; params.domainid = this.resource.domainid } else { params.projectid = this.resource.id }
+        if (values.password) params.password = values.password
+        if (values.certchain) params.certchain = values.certchain
+        await postAPI('uploadSslCert', params, { preserveOnFailure: true })
+        if (!active()) return false
+        this.$notification.success({ message: this.$t('message.success.upload.ssl.cert') })
+        this.showUploadForm = false
+        this.initForm()
+        await this.fetchData()
+        return true
+      } catch (error) {
+        if (active() && validated) this.$notifyError(error)
+        return false
+      } finally { if (active()) this.uploading = false }
     }
   }
 }
 </script>
 
 <style scoped>
+.ssl-cert-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.ssl-cert-upload-dialog :deep(textarea) { font-family: monospace; }
+@media (max-width: 575px) { .ssl-cert-toolbar > .ant-btn { flex: 1 1 auto; } }
+
 :deep(.ant-table-fixed-right) {
   z-index: 5;
 }

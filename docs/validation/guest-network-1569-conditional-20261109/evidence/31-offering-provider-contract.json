@@ -1,0 +1,1002 @@
+{
+  "defaultNoLb": [
+    {
+      "id": "6ca89a72-99dc-46b1-8aa9-956047231c42",
+      "name": "DefaultIsolatedNetworkOfferingForVpcNetworksNoLB",
+      "displaytext": "Offering for Isolated VPC networks with Source Nat service enabled and LB service disabled",
+      "created": "2026-09-17T13:52:59+0900",
+      "traffictype": "Guest",
+      "isdefault": true,
+      "specifyvlan": false,
+      "conservemode": false,
+      "specifyipranges": false,
+      "availability": "Optional",
+      "networkrate": 200,
+      "state": "Enabled",
+      "guestiptype": "Isolated",
+      "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "Vpn",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "StaticNat",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "ElasticIp",
+              "value": "false",
+              "canchooseservicecapability": false
+            },
+            {
+              "name": "AssociatePublicIP",
+              "value": "false",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "PortForwarding",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "NetworkACL",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "SourceNat",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ],
+          "capability": [
+            {
+              "name": "SupportedSourceNatTypes",
+              "value": "peraccount",
+              "canchooseservicecapability": false
+            },
+            {
+              "name": "RedundantRouter",
+              "value": "false",
+              "canchooseservicecapability": false
+            }
+          ]
+        },
+        {
+          "name": "Firewall",
+          "provider": [
+            {
+              "name": "VpcVirtualRouter"
+            }
+          ]
+        }
+      ],
+      "forvpc": true,
+      "fornsx": false,
+      "fortungsten": false,
+      "ispersistent": false,
+      "egressdefaultpolicy": false,
+      "keepaliveenabled": true,
+      "supportsstrechedl2subnet": false,
+      "supportspublicaccess": false,
+      "supportsinternallb": false,
+      "internetprotocol": "IPv4",
+      "specifyasnumber": false,
+      "hasannotations": false
+    }
+  ],
+  "vpcOfferings": {
+    "count": 7,
+    "vpcoffering": [
+      {
+        "id": "49767c4b-61bd-4535-9957-af9908e220f1",
+        "name": "Default VPC offering",
+        "displaytext": "Default VPC offering",
+        "created": "2026-09-17T13:52:59+0900",
+        "isdefault": true,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": false,
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      },
+      {
+        "id": "99610eae-9728-4741-879d-303372ce954a",
+        "name": "Default VPC  offering with Netscaler",
+        "displaytext": "Default VPC  offering with Netscaler",
+        "created": "2026-09-17T13:52:59+0900",
+        "isdefault": false,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "Netscaler"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": false,
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      },
+      {
+        "id": "c92622b0-692f-4d0e-a948-6db0f6ec6159",
+        "name": "Redundant VPC offering",
+        "displaytext": "Redundant VPC offering",
+        "created": "2026-09-17T13:52:59+0900",
+        "isdefault": true,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": false,
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      },
+      {
+        "id": "7f586547-1949-44bd-8dc1-0a8d9fdaf177",
+        "name": "VPC offering with NSX - NAT Mode",
+        "displaytext": "VPC offering with NSX - NAT Mode",
+        "created": "2026-09-17T13:52:59+0900",
+        "isdefault": false,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": true,
+        "networkmode": "NATTED",
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      },
+      {
+        "id": "b6e0f549-a4f8-4f6f-8453-4d1c5c3bc941",
+        "name": "VPC offering with NSX - Route Mode",
+        "displaytext": "VPC offering with NSX - Route Mode",
+        "created": "2026-09-17T13:52:59+0900",
+        "isdefault": false,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "Nsx"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": true,
+        "networkmode": "ROUTED",
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      },
+      {
+        "id": "c7e7e72b-1123-4a42-b909-2f9d986e3c65",
+        "name": "VPC offering with Netris - Route Mode",
+        "displaytext": "VPC offering with Netris - Route Mode",
+        "created": "2026-09-17T13:52:59+0900",
+        "isdefault": false,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "Netris"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "Netris"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": false,
+        "networkmode": "ROUTED",
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      },
+      {
+        "id": "d64a752e-71cd-4844-bc51-9a3937b14a3b",
+        "name": "VPC offering with Netris - NAT Mode",
+        "displaytext": "VPC offering with Netris - NAT Mode",
+        "created": "2026-09-17T13:52:59+0900",
+        "isdefault": false,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "Netris"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "Netris"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "Netris"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "Netris"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "Netris"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": false,
+        "networkmode": "NATTED",
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      }
+    ]
+  },
+  "providers": {
+    "count": 9,
+    "networkserviceprovider": [
+      {
+        "name": "Netris",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Enabled",
+        "id": "d2141d24-999e-4820-afbe-a36aabbe0335",
+        "servicelist": [
+          "Dhcp",
+          "Dns",
+          "Gateway",
+          "Firewall",
+          "Lb",
+          "SourceNat",
+          "StaticNat",
+          "PortForwarding",
+          "NetworkACL"
+        ],
+        "canenableindividualservice": true
+      },
+      {
+        "name": "Nsx",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Disabled",
+        "id": "8c7003c8-fabf-40cd-acdd-821e6da68478",
+        "servicelist": [
+          "Dhcp",
+          "Dns",
+          "Firewall",
+          "Lb",
+          "SourceNat",
+          "StaticNat",
+          "PortForwarding",
+          "NetworkACL"
+        ],
+        "canenableindividualservice": true
+      },
+      {
+        "name": "ConfigDrive",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Enabled",
+        "id": "dd650504-644b-4d75-950a-f280bdb9407a",
+        "servicelist": [
+          "Dhcp",
+          "Dns",
+          "UserData"
+        ],
+        "canenableindividualservice": true
+      },
+      {
+        "name": "Tungsten",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Disabled",
+        "id": "1a9972ef-bfc2-49da-bf97-82821b2acfdd",
+        "servicelist": [
+          "Dhcp",
+          "Dns",
+          "Firewall",
+          "Lb",
+          "SourceNat",
+          "StaticNat",
+          "PortForwarding",
+          "SecurityGroup"
+        ],
+        "canenableindividualservice": true
+      },
+      {
+        "name": "InternalLbVm",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Enabled",
+        "id": "48e1193a-15c2-412b-88d5-b4ce6096f0d1",
+        "servicelist": [
+          "Lb"
+        ],
+        "canenableindividualservice": true
+      },
+      {
+        "name": "BaremetalPxeProvider",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Enabled",
+        "id": "64b9c95c-6ea5-44d1-97f2-d5a506e72476",
+        "servicelist": [],
+        "canenableindividualservice": false
+      },
+      {
+        "name": "VpcVirtualRouter",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Enabled",
+        "id": "11ee13f6-c766-405a-8929-a7bafb934506",
+        "servicelist": [
+          "Vpn",
+          "Dhcp",
+          "Dns",
+          "Gateway",
+          "Firewall",
+          "Lb",
+          "SourceNat",
+          "StaticNat",
+          "PortForwarding",
+          "NetworkACL",
+          "UserData"
+        ],
+        "canenableindividualservice": true
+      },
+      {
+        "name": "SecurityGroupProvider",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Disabled",
+        "id": "d1242da0-0f35-4bab-8d5e-1b4252459bb8",
+        "servicelist": [
+          "SecurityGroup"
+        ],
+        "canenableindividualservice": false
+      },
+      {
+        "name": "VirtualRouter",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "state": "Enabled",
+        "id": "ff865653-09f8-426d-87b9-e41d83be0176",
+        "servicelist": [
+          "Vpn",
+          "Dhcp",
+          "Dns",
+          "Gateway",
+          "Firewall",
+          "Lb",
+          "SourceNat",
+          "StaticNat",
+          "PortForwarding",
+          "UserData"
+        ],
+        "canenableindividualservice": true
+      }
+    ]
+  },
+  "policy": {
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "Miscellaneous",
+        "subgroup": "Others",
+        "name": "admin.is.allowed.to.deploy.anywhere",
+        "value": "false",
+        "defaultvalue": "false",
+        "description": "This will determine if the root admin is allowed to deploy in networks in subdomains.",
+        "isdynamic": true,
+        "component": "NetworkModel",
+        "displaytext": "Admin is allowed to deploy anywhere",
+        "type": "Boolean"
+      }
+    ]
+  },
+  "compatibleNoLb": {
+    "id": "c22f22f2-bee1-47f3-9b5c-33b5d7719529",
+    "name": "qa-gn1569-31-vpc-no-lb",
+    "displaytext": "QA1569 VPC compatible No LB 31",
+    "created": "2026-11-09T04:46:52+0900",
+    "traffictype": "Guest",
+    "isdefault": false,
+    "specifyvlan": false,
+    "conservemode": true,
+    "specifyipranges": false,
+    "availability": "Optional",
+    "networkrate": 200,
+    "state": "Enabled",
+    "guestiptype": "Isolated",
+    "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "ElasticIp",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AssociatePublicIP",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "NetworkACL",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VpcVirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "value": "peraccount",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "RedundantRouter",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      }
+    ],
+    "forvpc": true,
+    "fornsx": false,
+    "fortungsten": false,
+    "ispersistent": false,
+    "egressdefaultpolicy": true,
+    "keepaliveenabled": false,
+    "supportsstrechedl2subnet": false,
+    "supportspublicaccess": false,
+    "supportsinternallb": false,
+    "internetprotocol": "IPv4",
+    "specifyasnumber": false,
+    "hasannotations": false
+  },
+  "configDrive": {
+    "id": "0e028b53-2315-484f-bcb7-18f33976bd82",
+    "name": "qa-gn1569-31-configdrive-auto",
+    "displaytext": "QA1569 ConfigDrive auto VLAN 31",
+    "created": "2026-11-09T04:42:03+0900",
+    "traffictype": "Guest",
+    "isdefault": false,
+    "specifyvlan": false,
+    "conservemode": true,
+    "specifyipranges": false,
+    "availability": "Optional",
+    "networkrate": 200,
+    "state": "Enabled",
+    "guestiptype": "L2",
+    "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "ConfigDrive"
+          }
+        ]
+      }
+    ],
+    "forvpc": false,
+    "fornsx": false,
+    "fortungsten": false,
+    "ispersistent": false,
+    "egressdefaultpolicy": true,
+    "keepaliveenabled": false,
+    "supportsstrechedl2subnet": false,
+    "supportspublicaccess": false,
+    "supportsinternallb": false,
+    "internetprotocol": "IPv4",
+    "specifyasnumber": false,
+    "hasannotations": false
+  }
+}

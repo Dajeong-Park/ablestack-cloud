@@ -1,0 +1,37 @@
+{
+  "files": {
+    "/etc/ipsec.d/l2tp.conf": {
+      "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+      "mtime": 1794375453138829779
+    },
+    "/etc/ipsec.d/ipsec.any.secrets": {
+      "sha256": "2516840f67526915e0ac0850721373f984701b5e779e0dcdc6293813a97a329d",
+      "mtime": 1794375453138829779
+    },
+    "/etc/xl2tpd/xl2tpd.conf": {
+      "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+      "mtime": 1794375453138829779
+    },
+    "/etc/ppp/options.xl2tpd": {
+      "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+      "mtime": 1794375453138829779
+    },
+    "/etc/haproxy/haproxy.cfg": {
+      "sha256": "542b6f284ef7fbf3ff71cbcd30e8cab57eba74562f0fc51c6659de9d3f96124d",
+      "mtime": 1794387135627018976
+    }
+  },
+  "xl2tpd": {
+    "exit": 0,
+    "out": "3337 /usr/sbin/xl2tpd\n"
+  },
+  "pppd": {
+    "exit": 0,
+    "out": "917233 /usr/sbin/pppd plugin pppol2tp.so pppol2tp 7 pppol2tp_lns_mode pppol2tp_tunnel_id 18648 pppol2tp_session_id 42725 passive nodetach 10.1.2.1:10.1.2.2 refuse-pap file /etc/ppp/options.xl2tpd\n"
+  },
+  "interfaces": {
+    "exit": 0,
+    "out": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"ifname\":\"eth0\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"02:01:02:04:00:11\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s3\",\"ens3\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.234.32.1\",\"prefixlen\":24,\"broadcast\":\"10.234.32.255\",\"scope\":\"global\",\"label\":\"eth0\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"ifname\":\"eth1\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"0e:00:a9:fe:2b:82\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s4\",\"ens4\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"169.254.43.130\",\"prefixlen\":16,\"broadcast\":\"169.254.255.255\",\"scope\":\"global\",\"label\":\"eth1\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":4,\"ifname\":\"eth2\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"fq_codel\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"1e:01:ea:00:00:36\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp0s5\",\"ens5\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.10.32.150\",\"prefixlen\":16,\"broadcast\":\"10.10.255.255\",\"scope\":\"global\",\"label\":\"eth2\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet\",\"local\":\"10.10.32.177\",\"prefixlen\":16,\"broadcast\":\"10.10.255.255\",\"scope\":\"global\",\"secondary\":true,\"label\":\"eth2\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":10,\"ifname\":\"ppp0\",\"flags\":[\"POINTOPOINT\",\"MULTICAST\",\"NOARP\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":3,\"link_type\":\"ppp\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"10.1.2.1\",\"address\":\"10.1.2.2\",\"prefixlen\":32,\"scope\":\"global\",\"label\":\"ppp0\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n"
+  },
+  "journal": "Nov 12 06:25:30 r-499-VM xl2tpd[3337]: Connection established to 10.10.21.101, 49348.  Local: 18648, Remote: 47962 (ref=0/0).  LNS session is 'default'"
+}

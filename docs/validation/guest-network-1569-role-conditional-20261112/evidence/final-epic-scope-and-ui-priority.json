@@ -1,0 +1,308 @@
+{
+  "epic": {
+    "totalCount": 56,
+    "nodes": [
+      {
+        "number": 1555,
+        "title": "[Europa][P1] 네트워크 DNS 2 단독 수정 실패 및 DNS 쌍 전송 계약 복원",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1556,
+        "title": "[Europa][P1] 네트워크 오퍼링 변경 후보의 호환성 필터 및 변경 영향 안내",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1557,
+        "title": "[Europa][P2] SourceNat 없는 격리 네트워크의 게스트 IP 범위 관리 탭 복원",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1558,
+        "title": "[Europa][P2] 네트워크 설명 displaytext의 상세 표시 및 수정 정합성 복원",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1559,
+        "title": "[Europa][P2] 네트워크 일괄 재시작의 대상 제어와 Live Patch 인자 전달 복원",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1560,
+        "title": "[Europa][P3] VM 없는 Public IP 행의 잘못된 VM 링크 제거",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1561,
+        "title": "[Europa][P2] 네트워크 조건부 탭 중복 제거 및 고정 탭 URL 계약 정리",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1562,
+        "title": "[Europa][P2] 오퍼링 제공자 적합성 진단 및 32번 no-SourceNat 구성 정합성 복원",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1563,
+        "title": "[Europa][P2] 관리자 네트워크 물리망 마이그레이션 및 실패 재개 UI 설계·구현",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1564,
+        "title": "[Europa][P2] 공유 네트워크 IP 사용량 집계 제외 설정의 수정 UI 추가",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1565,
+        "title": "[Europa][P2] 네트워크 고급 검색과 오퍼링 사용 네트워크 조회 연계",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1566,
+        "title": "[Europa][P3] 네트워크 오퍼링 LB 연결 수·Keepalive 수정 설정의 지원 범위 정합성",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1567,
+        "title": "[Europa][P3] 관리자 강제 삭제·CIDR·사용자 지정 ID 변경 API의 UI 노출 정책 설계",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1568,
+        "title": "[Europa][P2] 네트워크 비동기 작업·삭제 의존성·상태 안내 및 UI 사용성 표준화",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1569,
+        "title": "[Europa][P2] 31·32 네트워크 API·UI·실제 통신 및 권한 통합 회귀 검증",
+        "state": "OPEN"
+      },
+      {
+        "number": 1570,
+        "title": "[Europa][P2] Isolated 네트워크 목록·생성·상세·전체 탭의 UI 기능 계약 보강",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1571,
+        "title": "[Europa][P2] L2 네트워크 VLAN·PVLAN·ConfigDrive·VM 접속 및 상세 탭 UI 설계 보강",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1572,
+        "title": "[Europa][P2] Shared 네트워크 공유 범위·IP/DHCP/DNS·전체 상세 탭 UI 설계 보강",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1573,
+        "title": "[Europa][P2] Public IP 상세의 NAT·방화벽·PF·LB·VPN 중첩 UI 기능 검토 및 설계 보강",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1574,
+        "title": "[Europa][P2] BGP·라우팅·IPv6·Tungsten·VNF·Custom Actions 조건부 탭 기능 계약 보강",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1575,
+        "title": "[Europa][P2] 유형별 소유·공유·프로젝트 권한과 VM·이벤트·코멘트·태그 UI 연계 검토",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1576,
+        "title": "[Europa][P2] Isolated·L2·Shared 오퍼링 서비스·제공자·기능 조합 UI 설계 보강",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1580,
+        "title": "[Europa][P2] KVM VLAN 브리지 이름 길이 초과로 4자리 VLAN VM·라우터 시작 실패",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1587,
+        "title": "[Europa][P2] 31번 관리자 프로젝트 전환 시 API 메타데이터 저장 용량 초과",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1588,
+        "title": "[Europa][P2] 도메인 관리자의 프로젝트 API 탐색과 네트워크 작업 권한 불일치",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1589,
+        "title": "[Europa][P2] 사용자 정의 프로젝트 역할의 명시적 조회 허용 API가 401로 거부됨",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1590,
+        "title": "[Europa][P1] 프로토콜 생략 LB 수정의 NPE와 Add 상태 잔류 개선",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1591,
+        "title": "[Europa][P2] 미등록 Tungsten 제공자의 Zone 지정 조회 NPE 개선",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1592,
+        "title": "[Europa][P2] 공유 회수 후 VM 요약의 접근 불가 네트워크 링크 제거",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1593,
+        "title": "[Europa][P3] VM NIC 탭의 390px 다크모드 고정 작업 열 제목 겹침 수정",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1594,
+        "title": "[Europa][P3] 네트워크 생성 대화상자의 소유 계정·프로젝트 문맥 표시 보완",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1595,
+        "title": "[Europa][P2] VNF 기본 배포 화면의 숨은 User Data 준비 가드로 실행 버튼 비활성",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1596,
+        "title": "[Europa][P2] VNF 상세 요약·NIC에서 접근 가능한 네트워크 링크가 표시되지 않음",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1597,
+        "title": "[Europa][P2] 루트 관리자의 프로젝트 VNF 배포와 Isolated IP 후보 조회 권한 불일치",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1598,
+        "title": "[Europa][P3] VNF 템플릿 NIC 추가 시 동일 대화상자 두 개가 동시에 열림",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1599,
+        "title": "[Europa][P1] Linux bridge에서 Isolated PVLAN NIC의 일반 브리지 연결과 격리 우회 방지",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1600,
+        "title": "[Europa][P2] VPC Tier 오퍼링 제공자 적합성 검사와 생성 실패 입력 보존",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1601,
+        "title": "[Europa][P2] 프로젝트 읽기 전용 역할의 VPC ACL 편집·이동·가져오기 UI 가드 통일",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1602,
+        "title": "[Europa][P2] VPC 삭제 실패 시 기존 태그 보존",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1603,
+        "title": "[Europa][P2] 프로젝트 검색 직후 선택 시 지연 검색으로 인한 전환 누락 방지",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1604,
+        "title": "[Europa][P2] 프로젝트 모드 Shared 라우터 탭의 소유 범위 조회 수정",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1605,
+        "title": "[Europa][P2] 공통 breadcrumb 폭·스크롤 일관성과 IP 탭 업데이트 버튼 표준화",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1606,
+        "title": "[네트워크] AutoScale LB 추가가 숨겨진 수동 백엔드 검증 때문에 무응답",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1607,
+        "title": "[오토스케일] 고급 설정을 열기 전 User Data 준비 대기로 그룹 생성 비활성화",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1608,
+        "title": "[오토스케일] 그룹 업데이트 비동기 실패 시 대화상자가 닫혀 입력 유실",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1609,
+        "title": "[Europa][P1][VPN] S2S·VPN 고객 게이트웨이 목록과 상세의 PSK 기본 평문 노출 차단",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1610,
+        "title": "[Europa][P2][VPN] VPC VPN 게이트웨이 생성 창의 비동기 상태·성공 종료와 VM 대화상자 표준 정합성",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1611,
+        "title": "[Europa][P2][LB] VPC Public LB 생성 후보에서 Internal 전용 Tier 제외",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1612,
+        "title": "[Europa][P2][LB] Internal LB 생성 실패 입력 보존과 비동기 상태·VM 대화상자 표준 적용",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1613,
+        "title": "[Europa][P3][VPC] Tier ACL 식별자 누락 시 빈 undefined 링크 제거",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1614,
+        "title": "[Europa][P2][LB] 읽기 전용 프로젝트 역할의 Public·Internal LB 백엔드 해제 버튼 권한 가드",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1616,
+        "title": "[Europa][P2][Internal LB] 신규 Tier 최초 할당의 시스템 VM Starting 대기·복구 경로 검토",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1617,
+        "title": "[Europa][P2][Internal LB] 같은 Tier·Source IP의 다른 포트 규칙 생성 537 오류",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1618,
+        "title": "[Europa][P3][UI] Internal LB 상세 규칙의 원시 JSON 표시 개선",
+        "state": "CLOSED"
+      },
+      {
+        "number": 1634,
+        "title": "[Europa][P3][UI] 태그 제출 결과 미확인(job ID 없음)의 동일 세션 복구 경로 누락",
+        "state": "OPEN"
+      },
+      {
+        "number": 1635,
+        "title": "[Europa][P3][UI] 코멘트 255자 제한 사전 안내와 입력 길이 표시 누락",
+        "state": "OPEN"
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false
+    }
+  },
+  "uiBacklog": [
+    {
+      "number": 1634,
+      "title": "[Europa][P3][UI] 태그 제출 결과 미확인(job ID 없음)의 동일 세션 복구 경로 누락",
+      "state": "OPEN",
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1634",
+      "nonBlockingUi": true
+    },
+    {
+      "number": 1635,
+      "title": "[Europa][P3][UI] 코멘트 255자 제한 사전 안내와 입력 길이 표시 누락",
+      "state": "OPEN",
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1635",
+      "nonBlockingUi": true
+    }
+  ],
+  "openFunctionalImplementationIssues": [],
+  "resourceCleanup1586Excluded": true
+}

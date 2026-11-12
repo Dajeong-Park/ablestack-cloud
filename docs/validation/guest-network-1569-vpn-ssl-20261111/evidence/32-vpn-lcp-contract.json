@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "lcp-echo-interval 30\nlcp-echo-failure 4\nidle 1800",
+  "error": ""
+}

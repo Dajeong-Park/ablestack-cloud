@@ -1,0 +1,1430 @@
+[
+  {
+    "label": "32-customer-explicit-copy-masked",
+    "path": "screenshots/32-customer-explicit-copy-masked.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273398697,
+    "cluster": 32
+  },
+  {
+    "label": "32-connection-explicit-copy-masked",
+    "path": "screenshots/32-connection-explicit-copy-masked.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn/89e9cb02-102d-4db2-81e1-014744f38675?tab=details",
+    "time": 1794273411082,
+    "cluster": 32
+  },
+  {
+    "label": "32-remote-explicit-copy-masked",
+    "path": "screenshots/32-remote-explicit-copy-masked.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273423866,
+    "cluster": 32
+  },
+  {
+    "label": "31-customer-explicit-copy-masked",
+    "path": "screenshots/31-customer-explicit-copy-masked.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273355832,
+    "cluster": 31
+  },
+  {
+    "label": "31-connection-explicit-copy-masked",
+    "path": "screenshots/31-connection-explicit-copy-masked.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details",
+    "time": 1794273368180,
+    "cluster": 31
+  },
+  {
+    "label": "31-remote-explicit-copy-masked",
+    "path": "screenshots/31-remote-explicit-copy-masked.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273381005,
+    "cluster": 31
+  },
+  {
+    "label": "31-vpc-1280-light",
+    "path": "screenshots/31-vpc-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7?tab=vpnc",
+    "time": 1794273188213,
+    "cluster": 31
+  },
+  {
+    "label": "31-connections-1280-light",
+    "path": "screenshots/31-connections-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn",
+    "time": 1794273189854,
+    "cluster": 31
+  },
+  {
+    "label": "31-connection-1280-light",
+    "path": "screenshots/31-connection-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details",
+    "time": 1794273191358,
+    "cluster": 31
+  },
+  {
+    "label": "31-customers-1280-light",
+    "path": "screenshots/31-customers-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway",
+    "time": 1794273192967,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-1280-light",
+    "path": "screenshots/31-customer-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273194264,
+    "cluster": 31
+  },
+  {
+    "label": "31-remote-1280-light",
+    "path": "screenshots/31-remote-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273195833,
+    "cluster": 31
+  },
+  {
+    "label": "31-vpc-768-light",
+    "path": "screenshots/31-vpc-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7?tab=vpnc",
+    "time": 1794273198358,
+    "cluster": 31
+  },
+  {
+    "label": "31-connections-768-light",
+    "path": "screenshots/31-connections-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn",
+    "time": 1794273199924,
+    "cluster": 31
+  },
+  {
+    "label": "31-connection-768-light",
+    "path": "screenshots/31-connection-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details",
+    "time": 1794273201319,
+    "cluster": 31
+  },
+  {
+    "label": "31-customers-768-light",
+    "path": "screenshots/31-customers-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway",
+    "time": 1794273203023,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-768-light",
+    "path": "screenshots/31-customer-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273204421,
+    "cluster": 31
+  },
+  {
+    "label": "31-remote-768-light",
+    "path": "screenshots/31-remote-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273206318,
+    "cluster": 31
+  },
+  {
+    "label": "31-vpc-390-light",
+    "path": "screenshots/31-vpc-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7?tab=vpnc",
+    "time": 1794273211913,
+    "cluster": 31
+  },
+  {
+    "label": "31-connections-390-light",
+    "path": "screenshots/31-connections-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn",
+    "time": 1794273213421,
+    "cluster": 31
+  },
+  {
+    "label": "31-connection-390-light",
+    "path": "screenshots/31-connection-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details",
+    "time": 1794273214686,
+    "cluster": 31
+  },
+  {
+    "label": "31-customers-390-light",
+    "path": "screenshots/31-customers-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway",
+    "time": 1794273216346,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-390-light",
+    "path": "screenshots/31-customer-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273217614,
+    "cluster": 31
+  },
+  {
+    "label": "31-remote-390-light",
+    "path": "screenshots/31-remote-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273219428,
+    "cluster": 31
+  },
+  {
+    "label": "31-vpc-390-dark",
+    "path": "screenshots/31-vpc-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7?tab=vpnc",
+    "time": 1794273224364,
+    "cluster": 31
+  },
+  {
+    "label": "31-connections-390-dark",
+    "path": "screenshots/31-connections-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn",
+    "time": 1794273225878,
+    "cluster": 31
+  },
+  {
+    "label": "31-connection-390-dark",
+    "path": "screenshots/31-connection-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details",
+    "time": 1794273227193,
+    "cluster": 31
+  },
+  {
+    "label": "31-customers-390-dark",
+    "path": "screenshots/31-customers-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway",
+    "time": 1794273228853,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-390-dark",
+    "path": "screenshots/31-customer-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273230170,
+    "cluster": 31
+  },
+  {
+    "label": "31-remote-390-dark",
+    "path": "screenshots/31-remote-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273232004,
+    "cluster": 31
+  },
+  {
+    "label": "31-vpc-768-dark",
+    "path": "screenshots/31-vpc-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7?tab=vpnc",
+    "time": 1794273241165,
+    "cluster": 31
+  },
+  {
+    "label": "31-connections-768-dark",
+    "path": "screenshots/31-connections-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn",
+    "time": 1794273242671,
+    "cluster": 31
+  },
+  {
+    "label": "31-connection-768-dark",
+    "path": "screenshots/31-connection-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details",
+    "time": 1794273244005,
+    "cluster": 31
+  },
+  {
+    "label": "31-customers-768-dark",
+    "path": "screenshots/31-customers-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway",
+    "time": 1794273245658,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-768-dark",
+    "path": "screenshots/31-customer-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273246976,
+    "cluster": 31
+  },
+  {
+    "label": "31-remote-768-dark",
+    "path": "screenshots/31-remote-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273248844,
+    "cluster": 31
+  },
+  {
+    "label": "31-vpc-1280-dark",
+    "path": "screenshots/31-vpc-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7?tab=vpnc",
+    "time": 1794273251660,
+    "cluster": 31
+  },
+  {
+    "label": "31-connections-1280-dark",
+    "path": "screenshots/31-connections-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn",
+    "time": 1794273253274,
+    "cluster": 31
+  },
+  {
+    "label": "31-connection-1280-dark",
+    "path": "screenshots/31-connection-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details",
+    "time": 1794273254804,
+    "cluster": 31
+  },
+  {
+    "label": "31-customers-1280-dark",
+    "path": "screenshots/31-customers-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway",
+    "time": 1794273256441,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-1280-dark",
+    "path": "screenshots/31-customer-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273257772,
+    "cluster": 31
+  },
+  {
+    "label": "31-remote-1280-dark",
+    "path": "screenshots/31-remote-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273259388,
+    "cluster": 31
+  },
+  {
+    "label": "32-vpc-1280-light",
+    "path": "screenshots/32-vpc-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/545de2b6-04d7-4815-b8d2-8a29e96d94f1?tab=vpnc",
+    "time": 1794273268435,
+    "cluster": 32
+  },
+  {
+    "label": "32-connections-1280-light",
+    "path": "screenshots/32-connections-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn",
+    "time": 1794273270053,
+    "cluster": 32
+  },
+  {
+    "label": "32-connection-1280-light",
+    "path": "screenshots/32-connection-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn/89e9cb02-102d-4db2-81e1-014744f38675?tab=details",
+    "time": 1794273271564,
+    "cluster": 32
+  },
+  {
+    "label": "32-customers-1280-light",
+    "path": "screenshots/32-customers-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway",
+    "time": 1794273273073,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-1280-light",
+    "path": "screenshots/32-customer-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273274386,
+    "cluster": 32
+  },
+  {
+    "label": "32-remote-1280-light",
+    "path": "screenshots/32-remote-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273275984,
+    "cluster": 32
+  },
+  {
+    "label": "32-vpc-768-light",
+    "path": "screenshots/32-vpc-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/545de2b6-04d7-4815-b8d2-8a29e96d94f1?tab=vpnc",
+    "time": 1794273278497,
+    "cluster": 32
+  },
+  {
+    "label": "32-connections-768-light",
+    "path": "screenshots/32-connections-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn",
+    "time": 1794273280047,
+    "cluster": 32
+  },
+  {
+    "label": "32-connection-768-light",
+    "path": "screenshots/32-connection-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn/89e9cb02-102d-4db2-81e1-014744f38675?tab=details",
+    "time": 1794273281446,
+    "cluster": 32
+  },
+  {
+    "label": "32-customers-768-light",
+    "path": "screenshots/32-customers-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway",
+    "time": 1794273283149,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-768-light",
+    "path": "screenshots/32-customer-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273284531,
+    "cluster": 32
+  },
+  {
+    "label": "32-remote-768-light",
+    "path": "screenshots/32-remote-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273286465,
+    "cluster": 32
+  },
+  {
+    "label": "32-vpc-390-light",
+    "path": "screenshots/32-vpc-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpc/545de2b6-04d7-4815-b8d2-8a29e96d94f1?tab=vpnc",
+    "time": 1794273294031,
+    "cluster": 32
+  },
+  {
+    "label": "32-connections-390-light",
+    "path": "screenshots/32-connections-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn",
+    "time": 1794273295558,
+    "cluster": 32
+  },
+  {
+    "label": "32-connection-390-light",
+    "path": "screenshots/32-connection-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn/89e9cb02-102d-4db2-81e1-014744f38675?tab=details",
+    "time": 1794273296841,
+    "cluster": 32
+  },
+  {
+    "label": "32-customers-390-light",
+    "path": "screenshots/32-customers-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway",
+    "time": 1794273298533,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-390-light",
+    "path": "screenshots/32-customer-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273299825,
+    "cluster": 32
+  },
+  {
+    "label": "32-remote-390-light",
+    "path": "screenshots/32-remote-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273301477,
+    "cluster": 32
+  },
+  {
+    "label": "32-vpc-390-dark",
+    "path": "screenshots/32-vpc-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpc/545de2b6-04d7-4815-b8d2-8a29e96d94f1?tab=vpnc",
+    "time": 1794273306498,
+    "cluster": 32
+  },
+  {
+    "label": "32-connections-390-dark",
+    "path": "screenshots/32-connections-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn",
+    "time": 1794273307992,
+    "cluster": 32
+  },
+  {
+    "label": "32-connection-390-dark",
+    "path": "screenshots/32-connection-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn/89e9cb02-102d-4db2-81e1-014744f38675?tab=details",
+    "time": 1794273309289,
+    "cluster": 32
+  },
+  {
+    "label": "32-customers-390-dark",
+    "path": "screenshots/32-customers-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway",
+    "time": 1794273310989,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-390-dark",
+    "path": "screenshots/32-customer-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273312288,
+    "cluster": 32
+  },
+  {
+    "label": "32-remote-390-dark",
+    "path": "screenshots/32-remote-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273314029,
+    "cluster": 32
+  },
+  {
+    "label": "32-vpc-768-dark",
+    "path": "screenshots/32-vpc-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpc/545de2b6-04d7-4815-b8d2-8a29e96d94f1?tab=vpnc",
+    "time": 1794273320057,
+    "cluster": 32
+  },
+  {
+    "label": "32-connections-768-dark",
+    "path": "screenshots/32-connections-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn",
+    "time": 1794273321609,
+    "cluster": 32
+  },
+  {
+    "label": "32-connection-768-dark",
+    "path": "screenshots/32-connection-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn/89e9cb02-102d-4db2-81e1-014744f38675?tab=details",
+    "time": 1794273322946,
+    "cluster": 32
+  },
+  {
+    "label": "32-customers-768-dark",
+    "path": "screenshots/32-customers-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway",
+    "time": 1794273324630,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-768-dark",
+    "path": "screenshots/32-customer-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273325965,
+    "cluster": 32
+  },
+  {
+    "label": "32-remote-768-dark",
+    "path": "screenshots/32-remote-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273327820,
+    "cluster": 32
+  },
+  {
+    "label": "32-vpc-1280-dark",
+    "path": "screenshots/32-vpc-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpc/545de2b6-04d7-4815-b8d2-8a29e96d94f1?tab=vpnc",
+    "time": 1794273330673,
+    "cluster": 32
+  },
+  {
+    "label": "32-connections-1280-dark",
+    "path": "screenshots/32-connections-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn",
+    "time": 1794273332274,
+    "cluster": 32
+  },
+  {
+    "label": "32-connection-1280-dark",
+    "path": "screenshots/32-connection-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/s2svpnconn/89e9cb02-102d-4db2-81e1-014744f38675?tab=details",
+    "time": 1794273333805,
+    "cluster": 32
+  },
+  {
+    "label": "32-customers-1280-dark",
+    "path": "screenshots/32-customers-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway",
+    "time": 1794273335320,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-1280-dark",
+    "path": "screenshots/32-customer-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273336632,
+    "cluster": 32
+  },
+  {
+    "label": "32-remote-1280-dark",
+    "path": "screenshots/32-remote-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273338251,
+    "cluster": 32
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794273107158,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-dialog-1280-light",
+    "path": "screenshots/31-customer-dialog-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794274399007,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-dialog-768-light",
+    "path": "screenshots/31-customer-dialog-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794274403618,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-dialog-390-light",
+    "path": "screenshots/31-customer-dialog-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794274407406,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-dialog-390-dark",
+    "path": "screenshots/31-customer-dialog-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794274423089,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-dialog-768-dark",
+    "path": "screenshots/31-customer-dialog-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794274419296,
+    "cluster": 31
+  },
+  {
+    "label": "31-customer-dialog-1280-dark",
+    "path": "screenshots/31-customer-dialog-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794274414728,
+    "cluster": 31
+  },
+  {
+    "label": "32-customer-dialog-1280-light",
+    "path": "screenshots/32-customer-dialog-1280-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794274436241,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-dialog-768-light",
+    "path": "screenshots/32-customer-dialog-768-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794274440804,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-dialog-390-light",
+    "path": "screenshots/32-customer-dialog-390-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794274444612,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-dialog-390-dark",
+    "path": "screenshots/32-customer-dialog-390-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794274460188,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-dialog-768-dark",
+    "path": "screenshots/32-customer-dialog-768-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 768
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794274456372,
+    "cluster": 32
+  },
+  {
+    "label": "32-customer-dialog-1280-dark",
+    "path": "screenshots/32-customer-dialog-1280-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794274451869,
+    "cluster": 32
+  },
+  {
+    "label": "31-project-default",
+    "path": "screenshots/31-project-default.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "time": 1794273104986,
+    "cluster": 31
+  },
+  {
+    "label": "32-project-default",
+    "path": "screenshots/32-project-default.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794273151717,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "time": 1794273153970,
+    "cluster": 32
+  },
+  {
+    "label": "32-project-return-mask",
+    "path": "screenshots/32-project-return-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273155504,
+    "cluster": 32
+  },
+  {
+    "label": "31-tab-return-mask",
+    "path": "screenshots/31-tab-return-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273079127,
+    "cluster": 31
+  },
+  {
+    "label": "31-refresh-mask",
+    "path": "screenshots/31-refresh-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273085502,
+    "cluster": 31
+  },
+  {
+    "label": "31-reload-mask",
+    "path": "screenshots/31-reload-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273091847,
+    "cluster": 31
+  },
+  {
+    "label": "31-instant-light",
+    "path": "screenshots/31-instant-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273096346,
+    "cluster": 31
+  },
+  {
+    "label": "31-instant-dark",
+    "path": "screenshots/31-instant-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273100685,
+    "cluster": 31
+  },
+  {
+    "label": "31-project-return-mask",
+    "path": "screenshots/31-project-return-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273108681,
+    "cluster": 31
+  },
+  {
+    "label": "32-tab-return-mask",
+    "path": "screenshots/32-tab-return-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273125619,
+    "cluster": 32
+  },
+  {
+    "label": "32-refresh-mask",
+    "path": "screenshots/32-refresh-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273132001,
+    "cluster": 32
+  },
+  {
+    "label": "32-reload-mask",
+    "path": "screenshots/32-reload-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273138294,
+    "cluster": 32
+  },
+  {
+    "label": "32-instant-light",
+    "path": "screenshots/32-instant-light.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273142864,
+    "cluster": 32
+  },
+  {
+    "label": "32-instant-dark",
+    "path": "screenshots/32-instant-dark.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273147216,
+    "cluster": 32
+  },
+  {
+    "label": "31-remote-tab-refresh-mask",
+    "path": "screenshots/31-remote-tab-refresh-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn",
+    "time": 1794273172996,
+    "cluster": 31
+  },
+  {
+    "label": "32-remote-tab-refresh-mask",
+    "path": "screenshots/32-remote-tab-refresh-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/publicip/d286ca9d-1d48-42e7-8dac-ff2e73fe3c46?tab=vpn",
+    "time": 1794273178068,
+    "cluster": 32
+  },
+  {
+    "label": "31-mobile-keyboard-mask",
+    "path": "screenshots/31-mobile-keyboard-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273514779,
+    "cluster": 31
+  },
+  {
+    "label": "32-mobile-keyboard-mask",
+    "path": "screenshots/32-mobile-keyboard-mask.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 390
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794273522389,
+    "cluster": 32
+  },
+  {
+    "label": "31-customer-first-default",
+    "path": "screenshots/31-customer-first-default.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794273536860,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-standard",
+    "path": "screenshots/31-vm-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67?tab=details",
+    "time": 1794273538056,
+    "cluster": 31
+  },
+  {
+    "label": "31-vm-nic-standard",
+    "path": "screenshots/31-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67?tab=nics",
+    "time": 1794273539214,
+    "cluster": 31
+  },
+  {
+    "label": "32-vm-standard",
+    "path": "screenshots/32-vm-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=details",
+    "time": 1794273540970,
+    "cluster": 32
+  },
+  {
+    "label": "32-vm-nic-standard",
+    "path": "screenshots/32-vm-nic-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+    "time": 1794273542434,
+    "cluster": 32
+  },
+  {
+    "label": "31-vm-dialog-standard",
+    "path": "screenshots/31-vm-dialog-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67?tab=nics",
+    "time": 1794273556202,
+    "cluster": 31
+  },
+  {
+    "label": "32-vm-dialog-standard",
+    "path": "screenshots/32-vm-dialog-standard.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+    "time": 1794273557851,
+    "cluster": 32
+  },
+  {
+    "label": "31-final-review",
+    "path": "screenshots/31-final-review.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details",
+    "time": 1794274500526,
+    "cluster": 31
+  },
+  {
+    "label": "32-final-review",
+    "path": "screenshots/32-final-review.jpg",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "theme": "dark",
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details",
+    "time": 1794274502762,
+    "cluster": 32
+  }
+]

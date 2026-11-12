@@ -1,0 +1,32 @@
+[
+  {
+    "cluster": 31,
+    "from": "qa-gn1569-31-project",
+    "to": "기본 보기",
+    "url": "http://10.10.31.10:8080/client/#/dashboard"
+  },
+  {
+    "cluster": 31,
+    "from": "기본 보기",
+    "to": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/dashboard"
+  },
+  {
+    "cluster": 32,
+    "from": "기본 보기",
+    "to": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/dashboard"
+  },
+  {
+    "cluster": 32,
+    "from": "qa-gn1569-32-project",
+    "to": "기본 보기",
+    "url": "http://10.10.32.10:8080/client/#/dashboard"
+  },
+  {
+    "cluster": 32,
+    "from": "기본 보기",
+    "to": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/dashboard"
+  }
+]

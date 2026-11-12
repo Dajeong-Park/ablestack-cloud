@@ -1,0 +1,437 @@
+[
+  {
+    "case": "before",
+    "ranges": [
+      {
+        "id": "f5327e4a-0c44-462c-a80e-852c21746d81",
+        "forvirtualnetwork": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "vlan": "2790",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.31.0/24",
+        "startip": "10.247.31.51",
+        "endip": "10.247.31.59",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "forsystemvms": false
+      },
+      {
+        "id": "415f5936-56dc-4cce-af80-ff94bc3d3981",
+        "forvirtualnetwork": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "vlan": "2790",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.31.0/24",
+        "startip": "10.247.31.110",
+        "endip": "10.247.31.112",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "forsystemvms": false
+      }
+    ],
+    "nics": {
+      "21": [
+        {
+          "id": "7b7b1ad3-6a84-48c3-b63d-1174d0ac9548",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "networkname": "qa-gn1569-31-shared-reg-control",
+          "ipaddress": "172.26.31.21",
+          "isolationuri": "vlan://173",
+          "broadcasturi": "vlan://173",
+          "traffictype": "Guest",
+          "type": "L2",
+          "isdefault": true,
+          "macaddress": "02:15:69:31:19:21",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "0",
+          "enabled": true
+        },
+        {
+          "id": "f11e8ce7-7802-4f4e-b678-53f9fbfe7bb8",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "networkname": "qa-gn1569-31-shared-reg",
+          "netmask": "255.255.255.0",
+          "gateway": "10.247.31.1",
+          "ipaddress": "10.247.31.58",
+          "isolationuri": "vlan://2790",
+          "broadcasturi": "vlan://2790",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:6e:00:01",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "1",
+          "enabled": true
+        }
+      ],
+      "22": [
+        {
+          "id": "f6c4ed10-0831-4e70-88f0-8c015bfb930b",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "networkname": "qa-gn1569-31-shared-reg-control",
+          "ipaddress": "172.26.31.22",
+          "isolationuri": "vlan://173",
+          "broadcasturi": "vlan://173",
+          "traffictype": "Guest",
+          "type": "L2",
+          "isdefault": true,
+          "macaddress": "02:15:69:31:19:22",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "0",
+          "enabled": true
+        },
+        {
+          "id": "fec07621-1a60-4fb9-acee-fa5ebe30c570",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "networkname": "qa-gn1569-31-shared-reg",
+          "netmask": "255.255.255.0",
+          "gateway": "10.247.31.1",
+          "ipaddress": "10.247.31.57",
+          "isolationuri": "vlan://2790",
+          "broadcasturi": "vlan://2790",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:6e:00:02",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "1",
+          "enabled": true
+        },
+        {
+          "id": "31c69722-15a6-4e39-b714-8d3be2962eb3",
+          "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+          "networkname": "qa-gn1569-31-scope-all",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.1",
+          "ipaddress": "10.236.31.10",
+          "isolationuri": "vlan://2830",
+          "broadcasturi": "vlan://2830",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:72:00:01",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "2",
+          "enabled": true
+        },
+        {
+          "id": "8cd12061-47b6-4d1d-b2ff-e0e1125c169f",
+          "networkid": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+          "networkname": "qa-gn1569-31-scope-domain",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.65",
+          "ipaddress": "10.236.31.74",
+          "isolationuri": "vlan://2831",
+          "broadcasturi": "vlan://2831",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:73:00:01",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "3",
+          "enabled": true
+        },
+        {
+          "id": "1eafe6dc-8bda-4d92-ad22-4ff1badc8c69",
+          "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+          "networkname": "qa-gn1569-31-scope-subdomains",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.129",
+          "ipaddress": "10.236.31.138",
+          "isolationuri": "vlan://2832",
+          "broadcasturi": "vlan://2832",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:74:00:01",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "4",
+          "enabled": true
+        },
+        {
+          "id": "01ff9448-4281-4dd3-a898-b60d0cba496a",
+          "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "networkname": "qa-gn1569-31-scope-account",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.193",
+          "ipaddress": "10.236.31.202",
+          "isolationuri": "vlan://2833",
+          "broadcasturi": "vlan://2833",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:75:00:01",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "5",
+          "enabled": true
+        }
+      ],
+      "23": [
+        {
+          "id": "ef43e03a-ebf4-469a-9aa1-2370f35adcff",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "networkname": "qa-gn1569-31-shared-reg-control",
+          "ipaddress": "172.26.31.23",
+          "isolationuri": "vlan://173",
+          "broadcasturi": "vlan://173",
+          "traffictype": "Guest",
+          "type": "L2",
+          "isdefault": true,
+          "macaddress": "02:15:69:31:19:23",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "0",
+          "enabled": true
+        },
+        {
+          "id": "9e2291e6-733c-465b-8417-e2af13f99619",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "networkname": "qa-gn1569-31-shared-reg",
+          "netmask": "255.255.255.0",
+          "gateway": "10.247.31.1",
+          "ipaddress": "10.247.31.55",
+          "isolationuri": "vlan://2790",
+          "broadcasturi": "vlan://2790",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:6e:00:03",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "1",
+          "enabled": true
+        },
+        {
+          "id": "85eb4734-7570-4b63-ad69-a15affbdc6a2",
+          "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+          "networkname": "qa-gn1569-31-scope-all",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.1",
+          "ipaddress": "10.236.31.13",
+          "isolationuri": "vlan://2830",
+          "broadcasturi": "vlan://2830",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:72:00:02",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "2",
+          "enabled": true
+        },
+        {
+          "id": "3fe762e4-d216-4a97-8c5c-5fbf933372e3",
+          "networkid": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+          "networkname": "qa-gn1569-31-scope-domain",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.65",
+          "ipaddress": "10.236.31.76",
+          "isolationuri": "vlan://2831",
+          "broadcasturi": "vlan://2831",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:73:00:02",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "3",
+          "enabled": true
+        },
+        {
+          "id": "aecb315b-7741-45fb-9725-dc3a664440d5",
+          "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+          "networkname": "qa-gn1569-31-scope-subdomains",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.129",
+          "ipaddress": "10.236.31.140",
+          "isolationuri": "vlan://2832",
+          "broadcasturi": "vlan://2832",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:74:00:02",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "4",
+          "enabled": true
+        },
+        {
+          "id": "9468d90d-93d3-4fe7-83ca-bd718fa0f917",
+          "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "networkname": "qa-gn1569-31-scope-account",
+          "netmask": "255.255.255.192",
+          "gateway": "10.236.31.193",
+          "ipaddress": "10.236.31.204",
+          "isolationuri": "vlan://2833",
+          "broadcasturi": "vlan://2833",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": false,
+          "macaddress": "02:1f:02:75:00:02",
+          "secondaryip": [],
+          "extradhcpoption": [],
+          "deviceid": "5",
+          "enabled": true
+        }
+      ]
+    },
+    "process": {
+      "exit": 0,
+      "out": "MainPID=2628\nNRestarts=0\nActiveState=active",
+      "error": ""
+    }
+  },
+  {
+    "case": "duplicate-rejected",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "The IP range already has IPs that overlap with the new range. Please specify a different start IP/end IP."
+    }
+  },
+  {
+    "case": "in-use-range-delete-rejected",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "5  Ips are in use. Cannot delete this vlan"
+    }
+  },
+  {
+    "case": "shrink-over-allocated-rejected",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "The start IP address must be less than or equal to 10.247.31.51 which is already in use. The end IP address must be greater than or equal to 10.247.31.58 which is already in use. There are 5 IPs already allocated in this range."
+    }
+  },
+  {
+    "case": "second-subnet-create",
+    "range": {
+      "id": "3aa657d1-30cf-49cc-a343-a805ef8ad92a",
+      "forvirtualnetwork": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "vlan": "2790",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "gateway": "10.249.31.1",
+      "netmask": "255.255.255.0",
+      "cidr": "10.249.31.0/24",
+      "startip": "10.249.31.100",
+      "endip": "10.249.31.102",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "forsystemvms": false
+    }
+  },
+  {
+    "case": "second-subnet-expand",
+    "range": {
+      "id": "3aa657d1-30cf-49cc-a343-a805ef8ad92a",
+      "forvirtualnetwork": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "vlan": "2790",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "gateway": "10.249.31.1",
+      "netmask": "255.255.255.0",
+      "cidr": "10.249.31.0/24",
+      "startip": "10.249.31.100",
+      "endip": "10.249.31.103",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "forsystemvms": false
+    }
+  },
+  {
+    "case": "invalid-order-preserves-range",
+    "result": {
+      "httpStatus": 431,
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "The start IP address must have a lower value than the end IP address."
+    }
+  },
+  {
+    "case": "second-subnet-delete",
+    "result": {
+      "httpStatus": 200,
+      "success": true
+    }
+  },
+  {
+    "case": "existing-nics-process-and-ranges-preserved",
+    "after": [
+      {
+        "id": "f5327e4a-0c44-462c-a80e-852c21746d81",
+        "forvirtualnetwork": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "vlan": "2790",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.31.0/24",
+        "startip": "10.247.31.51",
+        "endip": "10.247.31.59",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "forsystemvms": false
+      },
+      {
+        "id": "415f5936-56dc-4cce-af80-ff94bc3d3981",
+        "forvirtualnetwork": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "vlan": "2790",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "gateway": "10.247.31.1",
+        "netmask": "255.255.255.0",
+        "cidr": "10.247.31.0/24",
+        "startip": "10.247.31.110",
+        "endip": "10.247.31.112",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "forsystemvms": false
+      }
+    ],
+    "process": {
+      "exit": 0,
+      "out": "MainPID=2628\nNRestarts=0\nActiveState=active",
+      "error": ""
+    }
+  }
+]

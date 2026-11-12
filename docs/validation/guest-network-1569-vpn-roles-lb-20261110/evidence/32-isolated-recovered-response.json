@@ -1,0 +1,25 @@
+[
+  {
+    "command": "createLoadBalancerRule",
+    "params": {
+      "command": "createLoadBalancerRule",
+      "openfirewall": "false",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "algorithm": "roundrobin",
+      "name": "qa-gn1569-32-role-lb-review",
+      "privateport": "22",
+      "protocol": "tcp",
+      "publicport": "18969",
+      "cidrlist": "10.10.0.0/16",
+      "backendssl": "false",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "createloadbalancerruleresponse": {
+        "id": "bd8e5b52-70da-40f0-bd1e-b8ba233bf53e",
+        "jobid": "36311ab9-f9a7-4891-bef6-d2449ed180e0"
+      }
+    }
+  }
+]

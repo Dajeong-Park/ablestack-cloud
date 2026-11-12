@@ -1,0 +1,17 @@
+[
+  {
+    "ip": "10.10.31.1",
+    "state": "Up",
+    "supported": ""
+  },
+  {
+    "ip": "10.10.31.2",
+    "state": "Up",
+    "supported": "qa-pvlan1599"
+  },
+  {
+    "ip": "10.10.31.3",
+    "state": "Up",
+    "supported": ""
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "command": "deleteRemoteAccessVpn",
+    "params": {
+      "command": "deleteRemoteAccessVpn",
+      "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "deleteremoteaccessvpnresponse": {
+        "jobid": "faad701e-ebeb-46b5-8af2-563535859e57"
+      }
+    }
+  }
+]

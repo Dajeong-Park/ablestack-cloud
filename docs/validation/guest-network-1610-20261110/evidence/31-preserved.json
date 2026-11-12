@@ -1,0 +1,87 @@
+{
+  "network": true,
+  "networkAdded": [
+    {
+      "id": "10721e72-5662-4203-b8ae-4ace8bdf2d8f",
+      "name": "qa-gn1610-31-review-tier",
+      "state": "Allocated",
+      "networkofferingid": "c22f22f2-bee1-47f3-9b5c-33b5d7719529",
+      "vpcid": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "cidr": "10.238.31.0/24",
+      "gateway": "10.238.31.1"
+    }
+  ],
+  "virtualmachine": true,
+  "virtualmachineAdded": [],
+  "vpngateway": true,
+  "vpngatewayAdded": [
+    {
+      "id": "0c82746f-93bc-40f3-8dcf-6c5933208e07",
+      "vpcid": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "publicip": "10.10.31.150",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  ],
+  "vpnconnection": true,
+  "vpnconnectionAdded": [
+    {
+      "id": "a2222e04-c9d8-4526-8954-a93bbc988949",
+      "s2svpngatewayid": "0c82746f-93bc-40f3-8dcf-6c5933208e07",
+      "s2scustomergatewayid": "be5dabcd-5e6c-44c7-80f9-865ae7b31d98",
+      "passive": true,
+      "gateway": "10.10.32.149",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  ],
+  "vpncustomergateway": true,
+  "vpncustomergatewayAdded": [
+    {
+      "id": "be5dabcd-5e6c-44c7-80f9-865ae7b31d98",
+      "name": "qa-gn1610-31-peer-32",
+      "gateway": "10.10.32.149",
+      "cidrlist": "10.238.32.0/24",
+      "ikepolicy": "aes256-sha256;modp2048",
+      "esppolicy": "aes256-sha256",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  ],
+  "vpc": true,
+  "vpcAdded": [
+    {
+      "id": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "name": "qa-gn1610-31-review",
+      "state": "Enabled",
+      "cidr": "10.238.31.0/24",
+      "vpcofferingid": "49767c4b-61bd-4535-9957-af9908e220f1",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  ],
+  "counts": {
+    "network": 116,
+    "virtualmachine": 158,
+    "vpngateway": 2,
+    "vpnconnection": 2,
+    "vpncustomergateway": 2,
+    "vpc": 12
+  },
+  "jobs": [
+    {
+      "case": "31-gateway-real-success",
+      "command": "createVpnGateway",
+      "jobId": "b814b5bf-ec7c-4b1c-8deb-165603b1e2ce",
+      "jobstatus": 1
+    },
+    {
+      "case": "31-connection-real-success",
+      "command": "createVpnConnection",
+      "jobId": "b1c7dc68-c95c-4499-8e52-8004f323c4de",
+      "jobstatus": 1
+    }
+  ],
+  "existingVpnKeysUnchanged": true,
+  "existingS2SConnected": true,
+  "existingRemoteRunning": true,
+  "newConnectionState": "Disconnected",
+  "newConnectionPassive": true
+}

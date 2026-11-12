@@ -1,0 +1,61 @@
+[
+  {
+    "requestId": "25912.832",
+    "command": "createLoadBalancerRule",
+    "params": {
+      "command": "createLoadBalancerRule",
+      "response": "json",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "openfirewall": "false",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "algorithm": "roundrobin",
+      "name": "qa-gn1569-31-p07-ssl",
+      "privateport": "18443",
+      "protocol": "ssl",
+      "publicport": "19171",
+      "cidrlist": "10.10.0.0/16",
+      "backendssl": "true"
+    },
+    "response": {
+      "createloadbalancerruleresponse": {
+        "id": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+        "jobid": "86b02511-be89-4286-957f-982bde954072"
+      }
+    }
+  },
+  {
+    "requestId": "25912.834",
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "command": "assignToLoadBalancerRule",
+      "response": "json",
+      "id": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+      "vmidipmap[0].vmid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "vmidipmap[0].vmip": "10.234.31.6",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "assigntoloadbalancerruleresponse": {
+        "jobid": "f54c3e0f-2c01-4da7-93ed-f8d3d1105128"
+      }
+    }
+  },
+  {
+    "requestId": "25912.839",
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "lbruleid": "0f9311d2-8686-41d2-b6c8-246daa46ee71",
+      "certid": "ec942970-8d50-410e-8e0d-9814281061d8",
+      "forced": "true",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "command": "assignCertToLoadBalancer",
+      "response": "json"
+    },
+    "response": {
+      "assigncerttoloadbalancerresponse": {
+        "jobid": "4a8e8184-9dc2-489a-9664-78e11f7f8981"
+      }
+    }
+  }
+]

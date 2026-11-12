@@ -1,0 +1,12 @@
+{
+  "host": {
+    "exit": 0,
+    "out": "ablecube32-2\nrunning\n",
+    "error": ""
+  },
+  "router": {
+    "exit": 0,
+    "out": "lo               UNKNOWN        127.0.0.1/8 \neth0             UP             10.234.32.1/24 \neth1             UP             169.254.75.91/16 \neth2             UP             10.10.32.150/16 10.10.32.177/16 \n2296 /usr/sbin/haproxy -Ws -f /etc/haproxy/haproxy.cfg -p /run/haproxy.pid -S /run/haproxy-master.sock\n524847 /usr/sbin/haproxy -sf 524224 -x sockpair@3 -Ws -f /etc/haproxy/haproxy.cfg -p /run/haproxy.pid -S /run/haproxy-master.sock\nState  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess\nLISTEN 0      5        10.234.32.1:8080       0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18880      0.0.0.0:*          \nLISTEN 0      4096    10.10.32.150:8081       0.0.0.0:*          \nLISTEN 0      511      10.234.32.1:443        0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18871      0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18874      0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18873      0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18879      0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18878      0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18877      0.0.0.0:*          \nLISTEN 0      4096    10.10.32.177:18876      0.0.0.0:*          \nLISTEN 0      32       10.234.32.1:53         0.0.0.0:*          \nLISTEN 0      3          127.0.0.1:2616       0.0.0.0:*          \nLISTEN 0      511      10.234.32.1:80         0.0.0.0:*          ",
+    "error": ""
+  }
+}

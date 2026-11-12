@@ -1,0 +1,7 @@
+{
+  "command": "disableStaticNat",
+  "params": {
+    "ipaddressid": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  "jobid": "c5ec088b-ca9a-46c5-b610-9d8d52b0ce6a"
+}

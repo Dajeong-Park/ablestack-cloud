@@ -1,0 +1,20 @@
+{
+  "head": "b2491ac151f16421ea9e2f65bacba6358655a226",
+  "files": {
+    "ui/src/components/page/GlobalLayout.vue": "115ed4b50af29f7a668885ec31b6d185738fdd9a448ba8e1114926b2ea4064f6",
+    "ui/src/views/AutogenView.vue": "2108fecfdb46fb4ec0dabdf02b9fcf7776c9458e1dd0ddb1068032b82a9be7c3",
+    "ui/src/views/event/EventDownload.vue": "f20bb381beb0946aabae8875fc762b3fb056ba70a404072b3fec4fdbdb016a15",
+    "ui/src/views/iam/DomainView.vue": "fcbe872827ffd8831ebf4a6b98ab4dd5cc445bb2a73f4d7c025367245b312940",
+    "ui/src/views/infra/CpuSockets.vue": "2a5494213c93953df4a857da29e6a50bc10496dff22a41b33d501902cf9f3f22",
+    "ui/src/views/infra/InfraSummary.vue": "b75863f9b66ae614534f777a5da019b3427728f1688795fa3f0f1ff88de98c7a",
+    "ui/src/views/infra/Metrics.vue": "8a087146f995025d2b54e971bdb7d579d520153fbe43416d401e882b45a0cd8d",
+    "ui/src/views/infra/UsageRecords.vue": "8fe00e2beecdd2b39801ec67b8044acd51b298f2eac10a1367b668b93ff13448",
+    "ui/src/views/infra/dr/DrPlanList.vue": "5b00e51053032931252c0e934829b158f2527e1a88b1512c99a931edb77864be",
+    "ui/src/views/infra/dr/DrSiteList.vue": "3d083f228a3cfeb7b84241c5fe58d8bc9c019741301d07c58f905d7392c74a43",
+    "ui/src/views/network/GuestIpRanges.vue": "2d5637dbc7b4013464529e5e5ca91a9768d39785d84205c7f12c470f8f84149a",
+    "ui/src/views/network/IpAddressesTab.vue": "ebb8375e552450cafe523dfd33eccaa3aae357a12f0a21386ec133363991957d",
+    "ui/src/views/setting/ConfigurationTab.vue": "e041702a44718ad215cb87117a795a7fe0c04be798fad34571c22c02ad4a6b9e",
+    "ui/src/views/tools/ManageInstances.vue": "6163342998d60bc797e2dddfc5f777b3dccd6d17deeed00e89037b24b80f355b",
+    "ui/src/views/tools/ManageVolumes.vue": "b582592cd0be1ca50e13373c32213d7c77fb94028b8d9e64f461bc0c5b98490e"
+  }
+}

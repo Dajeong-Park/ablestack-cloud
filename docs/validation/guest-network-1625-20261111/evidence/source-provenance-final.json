@@ -1,0 +1,15 @@
+{
+  "sourceHead": "cfd7e55ae1ada53a0099b13f872a06ea87c214dc",
+  "backendBuildSource": "12b9d2f958b25bea4ffb54cb80b5b8a2552059c0",
+  "javaOrMavenChangesSinceBuild": false,
+  "uiChangesSinceBuild": [
+    "ui/src/utils/appCookie.js",
+    "ui/src/views/network/LoadBalancing.vue",
+    "ui/tests/unit/utils/appCookie.spec.js",
+    "ui/tests/unit/views/network/AppCookieFormIdentity.spec.js"
+  ],
+  "merge": "f22a53c775d18238bf5f0168c2831fd6c05a73a6",
+  "upstream": "45944c40dedef7ff6b377db94225cf598c82739d",
+  "managementJarSha256": "3f4de1380fa2695460c4d8e483c47196ec96378d05dfa98873c982a1a2144d97",
+  "uiManifestFiles": 675
+}

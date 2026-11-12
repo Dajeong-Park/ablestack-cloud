@@ -1,0 +1,16 @@
+{
+  "vpn": {
+    "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+    "publicip": "10.10.31.148",
+    "iprange": "10.1.2.3-10.1.2.8",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "state": "Running",
+    "id": "18c6906c-fc8f-4369-afe6-4843ef74c4f5",
+    "fordisplay": true
+  },
+  "keyRotated": true
+}

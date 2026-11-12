@@ -1,0 +1,24 @@
+{
+  "curl": {
+    "exit": 0,
+    "out": "qa-gn1569-single-backend-tls-ok\n\nHTTP:200\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n100    32  100    32    0     0   3982      0 --:--:-- --:--:-- --:--:--  4000\n"
+  },
+  "tls": {
+    "exit": 0,
+    "summary": "subject=CN = qa-gn1569-revocation.test\nissuer=CN = QA1569 Revocation Intermediate\nVerification: OK\nNew, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384\nVerify return code: 0 (ok)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 0 (ok)\n    Protocol  : TLSv1.3\n    Cipher    : TLS_AES_256_GCM_SHA384\n    Verify return code: 0 (ok)\ndepth=2 CN = QA1569 Revocation Root\ndepth=1 CN = QA1569 Revocation Intermediate\ndepth=0 CN = qa-gn1569-revocation.test",
+    "peerChain": [
+      "subject=CN = qa-gn1569-revocation.test\nissuer=CN = QA1569 Revocation Intermediate\nsha256 Fingerprint=09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B\n",
+      "subject=CN = QA1569 Revocation Intermediate\nissuer=CN = QA1569 Revocation Root\nsha256 Fingerprint=F7:90:E7:B3:1F:9A:9C:1F:8A:40:25:03:A9:67:5E:5F:89:6F:FE:BB:77:7A:05:5A:BA:41:AD:EA:78:AB:F5:13\n",
+      "subject=CN = QA1569 Revocation Root\nissuer=CN = QA1569 Revocation Root\nsha256 Fingerprint=DF:67:82:4C:59:EC:0F:46:78:1B:6F:B1:DA:EB:EA:1C:22:E9:65:C9:5F:55:67:1F:FF:41:B5:5B:5E:6A:3F:8D\n"
+    ],
+    "chainCount": 3
+  },
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (19599) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (19599) : path to executable is /usr/sbin/haproxy\n[WARNING]  (19599) : config : parsing [/etc/haproxy/haproxy.cfg:124] : a 'tcp-request' rule placed after an 'http-request' rule will still be processed before.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18871' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18873' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18876' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18877' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18878' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18879' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18880' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18969' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18981' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18991' as it requires HTTP mode.\n[WARNING]  (19599) : config : 'option forwardfor' ignored for proxy '10_10_31_149-19173' as it requires HTTP mode.\n"
+  },
+  "health": {
+    "exit": 0,
+    "out": "All checks pass\n"
+  }
+}

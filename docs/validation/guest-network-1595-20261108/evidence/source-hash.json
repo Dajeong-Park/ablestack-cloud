@@ -1,0 +1,4 @@
+{
+  "ui/src/views/compute/DeployVnfAppliance.vue": "654f5c3aada995ecd58ed6fb0a590cde4b924f0988c6ffba16b8c00bf0327351",
+  "ui/tests/unit/views/compute/VnfUserDataSelection.spec.js": "c2cb090646cdd802fd1ecc3fa83ae1af809292b7b8f68b6146db1be66376b4bf"
+}

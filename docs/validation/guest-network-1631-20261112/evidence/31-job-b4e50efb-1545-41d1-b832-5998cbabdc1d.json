@@ -1,0 +1,10 @@
+{
+  "command": "addResourceDetail",
+  "params": {
+    "resourceid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+    "resourcetype": "PublicIpAddress",
+    "details[0].key": "qa.gn1631.probe",
+    "details[0].value": "temporary UI regression test"
+  },
+  "jobid": "b4e50efb-1545-41d1-b832-5998cbabdc1d"
+}

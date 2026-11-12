@@ -1,0 +1,27 @@
+[
+  {
+    "command": "listNetworkACLLists",
+    "params": {
+      "listall": "true",
+      "id": "08e2e719-bc1b-4071-b967-6eb815707e37",
+      "page": "1",
+      "pagesize": "20",
+      "command": "listNetworkACLLists"
+    },
+    "response": {
+      "listnetworkacllistsresponse": {
+        "count": 1,
+        "networkacllist": [
+          {
+            "id": "08e2e719-bc1b-4071-b967-6eb815707e37",
+            "name": "qa-gn1569-31-reg-acl",
+            "description": "GN1569 dedicated ACL",
+            "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+            "vpcname": "qa-gn1569-31-reg-vpc",
+            "fordisplay": true
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "command": "deleteNetwork",
+  "params": {
+    "id": "392fe0b1-d50d-47fa-a48d-d9b3e1333927",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "2cafc14d-49a5-4b7a-b8bb-9150ab134174"
+}

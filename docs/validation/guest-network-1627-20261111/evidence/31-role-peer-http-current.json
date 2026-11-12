@@ -1,0 +1,11 @@
+[
+  {
+    "id": "9e1431d7-4714-4804-9919-fdbdabec837d",
+    "name": "qa-gn1569-31-p07-role-peer-http",
+    "methodname": "LbCookie",
+    "params": {
+      "mode": "insert",
+      "cookie-name": "QA_LB_COOKIE"
+    }
+  }
+]

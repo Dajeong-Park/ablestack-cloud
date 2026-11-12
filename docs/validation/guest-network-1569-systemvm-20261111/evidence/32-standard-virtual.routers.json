@@ -1,0 +1,173 @@
+{
+  "breadcrumb": {
+    "position": "sticky",
+    "rect": {
+      "bottom": 262,
+      "height": 111,
+      "left": 268,
+      "right": 1248,
+      "top": 151,
+      "width": 980,
+      "x": 268,
+      "y": 151
+    },
+    "text": "/가상머신용 네트워크/qa-gn1569-32-shared-reg업데이트/작업"
+  },
+  "textStyles": [
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "text": "태그"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgb(64, 169, 255)",
+      "text": "가상 라우터"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "이름"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "상태"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "게스트 IP 주소"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "Public IP 주소"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "버전"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "업그레이드 필요"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "Redundant 라우터"
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "text": "호스트"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": "r-502-VM"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": "실행 중"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": "10.247.32.51"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": ""
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": "4.23.0.0"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": "아니오"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": "아니오"
+    },
+    {
+      "background": "rgb(34, 40, 47)",
+      "color": "rgb(197, 204, 212)",
+      "text": "ablecube32-2"
+    }
+  ],
+  "theme": "dark",
+  "toolbar": [
+    {
+      "disabled": false,
+      "icons": [
+        "reload"
+      ],
+      "rect": {
+        "bottom": 331,
+        "height": 32,
+        "left": 751.5625,
+        "right": 857.09375,
+        "top": 299,
+        "width": 105.53125,
+        "x": 751.5625,
+        "y": 299
+      },
+      "text": "업데이트"
+    }
+  ],
+  "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=virtual.routers",
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

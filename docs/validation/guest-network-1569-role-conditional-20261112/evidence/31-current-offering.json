@@ -1,0 +1,153 @@
+{
+  "id": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+  "name": "qa-gn1569-31-nat",
+  "displaytext": "qa-gn1569-31-nat",
+  "created": "2026-11-06T17:48:41+0900",
+  "traffictype": "Guest",
+  "isdefault": false,
+  "specifyvlan": false,
+  "conservemode": true,
+  "specifyipranges": false,
+  "availability": "Optional",
+  "networkrate": 200,
+  "state": "Enabled",
+  "guestiptype": "Isolated",
+  "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+  "service": [
+    {
+      "name": "Lb",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ],
+      "capability": [
+        {
+          "name": "SupportedLBIsolation",
+          "value": "dedicated",
+          "canchooseservicecapability": false
+        },
+        {
+          "name": "ElasticLb",
+          "value": "false",
+          "canchooseservicecapability": false
+        },
+        {
+          "name": "InlineMode",
+          "value": "false",
+          "canchooseservicecapability": false
+        },
+        {
+          "name": "VmAutoScaling",
+          "value": "true",
+          "canchooseservicecapability": false
+        }
+      ]
+    },
+    {
+      "name": "PortForwarding",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    },
+    {
+      "name": "UserData",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    },
+    {
+      "name": "Dhcp",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    },
+    {
+      "name": "Dns",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    },
+    {
+      "name": "Firewall",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    },
+    {
+      "name": "SourceNat",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ],
+      "capability": [
+        {
+          "name": "SupportedSourceNatTypes",
+          "value": "peraccount",
+          "canchooseservicecapability": false
+        },
+        {
+          "name": "RedundantRouter",
+          "value": "false",
+          "canchooseservicecapability": false
+        }
+      ]
+    },
+    {
+      "name": "StaticNat",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ],
+      "capability": [
+        {
+          "name": "ElasticIp",
+          "value": "false",
+          "canchooseservicecapability": false
+        },
+        {
+          "name": "AssociatePublicIP",
+          "value": "false",
+          "canchooseservicecapability": false
+        }
+      ]
+    },
+    {
+      "name": "Vpn",
+      "provider": [
+        {
+          "name": "VirtualRouter"
+        }
+      ]
+    }
+  ],
+  "forvpc": false,
+  "fornsx": false,
+  "fortungsten": false,
+  "ispersistent": false,
+  "egressdefaultpolicy": false,
+  "maxconnections": 4096,
+  "keepaliveenabled": false,
+  "supportsstrechedl2subnet": false,
+  "supportspublicaccess": false,
+  "supportsinternallb": false,
+  "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+  "domain": "/qa-gn1569-31-domain/",
+  "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+  "zone": "Zone",
+  "internetprotocol": "IPv4",
+  "specifyasnumber": false,
+  "hasannotations": false
+}

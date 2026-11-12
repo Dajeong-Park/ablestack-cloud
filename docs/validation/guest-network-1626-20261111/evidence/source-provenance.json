@@ -1,0 +1,17 @@
+{
+  "source": "1f08ae1fa784368afc7aa095874ce40acff09fb6",
+  "files": {
+    "ui/public/locales/en.json": "822fe218dd936bd01d77b5ae0b2178456e3e6df466970dce92b92e2ce3fde332",
+    "ui/public/locales/ko_KR.json": "848e7f08c6d6bdd0e1da3dfccfbf546da399562b793146ee5070758f524ddffb",
+    "ui/src/components/network/LoadBalancerStickinessDialog.vue": "3a4525217d4fbe27f93263d641a57655d3aa42a52e63b8c5bf8c932d1e5b02e8",
+    "ui/src/utils/networkMutation.js": "1b207a6daa73fd061f65438c7c4a2eb60f0f1ce28066aa8fa51b9e7d69188f97",
+    "ui/src/views/network/LoadBalancing.vue": "4f6ee260d3f32fac34c604d27ad52b745d887f6486931c2dd5746fdaf41de968",
+    "ui/tests/unit/views/network/AppCookieCapability.spec.js": "f790318084df4b665bd63cde99732a6c2a73f0cac134ab5dd8bfd8915099a647",
+    "ui/tests/unit/views/network/AppCookieFormIdentity.spec.js": "f2fc0e42df7e078a20a4c307b802942cb0776e836103c9a72a65c3b0bfa97327",
+    "ui/tests/unit/views/network/KubernetesNetworkUi.spec.js": "3b6e714ebce9cfc46c2e6e424171349af3ad2c72a5a8ef12b18f865e498f682b",
+    "ui/tests/unit/views/network/LoadBalancerStickinessDialog.spec.js": "1c4d0b7922ee418540dcc2a443d7e7ffa7309e4047eb1aa5a2fbc05e37225e13"
+  },
+  "wslExt4": true,
+  "apiJavaMavenChanges": false,
+  "fullCloudBuild": false
+}

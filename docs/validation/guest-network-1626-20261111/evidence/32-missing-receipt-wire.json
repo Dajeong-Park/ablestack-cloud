@@ -1,0 +1,39 @@
+{
+  "plan": {
+    "post": "missing"
+  },
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "name": "qa-gn1626-32-preflight-draft",
+        "methodname": "AppCookie",
+        "param[0].name": "cookie-name",
+        "param[0].value": "QA_SESSION",
+        "param[1].name": "length",
+        "param[1].value": "32",
+        "param[2].name": "holdtime",
+        "param[2].value": "3h",
+        "param[3].name": "request-learn",
+        "param[3].value": "false",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ],
+  "jobId": null,
+  "receipt": {
+    "createLBStickinessPolicy": {}
+  },
+  "queries": [],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": true,
+      "kind": "missing"
+    }
+  ]
+}

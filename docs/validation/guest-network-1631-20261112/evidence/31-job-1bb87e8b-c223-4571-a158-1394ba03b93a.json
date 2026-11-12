@@ -1,0 +1,9 @@
+{
+  "command": "removeResourceDetail",
+  "params": {
+    "resourceid": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+    "resourcetype": "PublicIpAddress",
+    "key": "ROUTER.PUBLIC.NIC.MAC.V1"
+  },
+  "jobid": "1bb87e8b-c223-4571-a158-1394ba03b93a"
+}

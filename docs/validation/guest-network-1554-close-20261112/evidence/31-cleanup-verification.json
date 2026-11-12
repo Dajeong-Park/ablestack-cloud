@@ -1,0 +1,171 @@
+{
+  "allVerified": true,
+  "nonQaPreserved": {
+    "listVirtualMachines": {
+      "count": 135,
+      "stableFieldsUnchanged": true
+    },
+    "listNetworks": {
+      "count": 28,
+      "stableFieldsUnchanged": true
+    },
+    "listVPCs": {
+      "count": 2,
+      "stableFieldsUnchanged": true
+    }
+  },
+  "removedVmCount": 17,
+  "removedNicCount": 9,
+  "removedNetworkCount": 74,
+  "removedVpcCount": 7,
+  "removedPhysicalVolumes": 38,
+  "runtime": [
+    {
+      "host": "10.10.31.1",
+      "result": {
+        "removedDomainsPresent": [],
+        "retained": [
+          {
+            "name": "qa-gn1597-31-project-vnf",
+            "instance": "i-438-970-VM",
+            "macs": [
+              "02:19:97:31:00:01"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-vpn-lb-vm",
+            "instance": "i-440-994-VM",
+            "macs": [
+              "02:1f:02:77:00:01"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1616-31-allocated-vm",
+            "instance": "i-424-1009-VM",
+            "macs": [
+              "02:1f:02:3e:00:01",
+              "02:1f:02:7a:00:02"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "autoScaleVm-qa-gn1607-31-default-1-dsqime",
+            "instance": "i-440-999-VM",
+            "macs": [
+              "02:1f:02:77:00:06"
+            ],
+            "state": "running"
+          }
+        ]
+      }
+    },
+    {
+      "host": "10.10.31.2",
+      "result": {
+        "removedDomainsPresent": [],
+        "retained": [
+          {
+            "name": "qa-gn1569-31-nosnat-vm",
+            "instance": "i-424-939-VM",
+            "macs": [
+              "1e:1f:58:00:02:bb"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-cond-vm11",
+            "instance": "i-439-973-VM",
+            "macs": [
+              "02:15:69:31:09:11",
+              "02:1f:02:60:00:01",
+              "02:1f:02:62:00:01"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-cond-vm12",
+            "instance": "i-439-974-VM",
+            "macs": [
+              "02:15:69:31:09:12",
+              "02:1f:02:61:00:01",
+              "02:1f:02:62:00:02"
+            ],
+            "state": "running"
+          }
+        ]
+      }
+    },
+    {
+      "host": "10.10.31.3",
+      "result": {
+        "removedDomainsPresent": [],
+        "retained": [
+          {
+            "name": "qa-gn1569-31-shared-reg-vm21",
+            "instance": "i-440-976-VM",
+            "macs": [
+              "02:15:69:31:19:21",
+              "02:1f:02:6e:00:01"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-shared-reg-vm24",
+            "instance": "i-440-982-VM",
+            "macs": [
+              "02:15:69:31:19:24",
+              "02:1f:02:6e:00:04",
+              "02:1f:02:76:00:01"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-scope-owner-vm",
+            "instance": "i-442-987-VM",
+            "macs": [
+              "02:1f:02:75:00:03",
+              "1e:1f:31:00:03:d2"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-scope-child-vm",
+            "instance": "i-446-991-VM",
+            "macs": [
+              "02:1f:02:74:00:03",
+              "1e:1f:57:00:03:d4"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-scope-outsider-vm",
+            "instance": "i-443-992-VM",
+            "macs": [
+              "1e:1f:be:00:03:d5"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1628-31-subnet-vm26",
+            "instance": "i-440-1031-VM",
+            "macs": [
+              "02:16:28:31:26:26",
+              "02:16:28:31:49:26"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-31-final-functional-vm",
+            "instance": "i-440-1051-VM",
+            "macs": [
+              "1e:1f:86:00:03:c8"
+            ],
+            "state": "running"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "label": "all",
+    "source": "10.236.31.10",
+    "peer": "10.236.31.13",
+    "server": "10.236.31.11",
+    "name": "qa-gn1569-31-shared-reg-vm22.cs1cloud.internal",
+    "time": 1794220814.5116408,
+    "dns": {
+      "udp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      },
+      "tcp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      }
+    },
+    "ping": true,
+    "ssh": "SSH-2.0-OpenSSH_8.7"
+  },
+  {
+    "label": "domain",
+    "source": "10.236.31.74",
+    "peer": "10.236.31.76",
+    "server": "10.236.31.75",
+    "name": "qa-gn1569-31-shared-reg-vm22.cs1cloud.internal",
+    "time": 1794220815.5477839,
+    "dns": {
+      "udp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      },
+      "tcp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      }
+    },
+    "ping": true,
+    "ssh": "SSH-2.0-OpenSSH_8.7"
+  },
+  {
+    "label": "subdomains",
+    "source": "10.236.31.138",
+    "peer": "10.236.31.140",
+    "server": "10.236.31.139",
+    "name": "qa-gn1569-31-shared-reg-vm22.cs1cloud.internal",
+    "time": 1794220816.5706809,
+    "dns": {
+      "udp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      },
+      "tcp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      }
+    },
+    "ping": true,
+    "ssh": "SSH-2.0-OpenSSH_8.7"
+  },
+  {
+    "label": "account",
+    "source": "10.236.31.202",
+    "peer": "10.236.31.204",
+    "server": "10.236.31.203",
+    "name": "qa-gn1569-31-shared-reg-vm22.cs1bacloud.internal",
+    "time": 1794220817.594696,
+    "dns": {
+      "udp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      },
+      "tcp": {
+        "ok": true,
+        "rcode": 0,
+        "answers": 1
+      }
+    },
+    "ping": true,
+    "ssh": "SSH-2.0-OpenSSH_8.7"
+  }
+]

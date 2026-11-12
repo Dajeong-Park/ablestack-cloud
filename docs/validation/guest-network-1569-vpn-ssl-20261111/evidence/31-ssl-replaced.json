@@ -1,0 +1,56 @@
+{
+  "rule": {
+    "httpStatus": 200,
+    "count": 1,
+    "loadbalancerrule": [
+      {
+        "id": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+        "name": "qa-gn1569-31-ssl",
+        "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+        "publicip": "10.10.31.149",
+        "publicport": "18874",
+        "privateport": "22",
+        "algorithm": "roundrobin",
+        "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+        "cidrlist": "",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      }
+    ]
+  },
+  "certs": {
+    "httpStatus": 200,
+    "count": 1,
+    "sslcert": [
+      {
+        "id": "ec942970-8d50-410e-8e0d-9814281061d8",
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIIDLTCCAhWgAwIBAgIUJ7/XorUHggiY7RaDLdzvMCTpjQ0wDQYJKoZIhvcNAQEL\nBQAwJjEkMCIGA1UEAwwbcWEtZ24xNTY5LTMxLXJvdGF0aW9uLmxvY2FsMB4XDTI2\nMTExMDE1MTI1OVoXDTI2MTExNzE1MTI1OVowJjEkMCIGA1UEAwwbcWEtZ24xNTY5\nLTMxLXJvdGF0aW9uLmxvY2FsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC\nAQEA2guwAY8OaYBw71SGaJmPr7vNXuKieEl3mvUjY90MCgGat9AcykGUoWy7llj6\nWyxXDzZzZna7pQSXWHLlahTa9WvqYKzEjZ0cMR9076vkpc6p7D3SW4BKfXwmzVLV\nib3tHxabRuwmzeXgn7Qhq/6Blizre2tUrtVlEvjAHHwBMydWCwnLb2qqZpC2aqrR\nIMsbMZyxidlK9WHmW0JUppOs3+AiaI+aW8R6MALYYgBf2TRodY8YzH933nef58YR\nBuZfU+VJOB5uyH0Zdmh0pei19eqr8sY2RAtq+Oi/vguIoKGoQN8G24LBPSI+SykK\nb530xnoDnkyvhcmYDJzIZddw+wIDAQABo1MwUTAdBgNVHQ4EFgQUlTsM2nM3L7z1\nCHO2SioA58mCdfQwHwYDVR0jBBgwFoAUlTsM2nM3L7z1CHO2SioA58mCdfQwDwYD\nVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAHA7zPTNtj8Uj0I01ivOp\nlvYMBiVvfkvQS5RDXvWDEuTE9LsyeTkWgAUoIO8WZk84H2f8ugaH1ocorHA8F1u7\nrDBfYxHbHzb32SYo9tTu1WoDpNzg+VbF2EcOjBzxO0/WmRqNUyzCdWX69dIc8qFY\nUBux5xoP//kg0TIZpeWaYfhE+Wm0CLrHCfeFJysUhNLZsYRpFGKk8OVdCQWGSUsV\ncw7BbSvcBcFltMMbMLxbiTW14siR9i/K7IbAK5JAKN97LoKrFytKsROOSqKTpQR/\nUfgaIaZ97mvFNt7ctDQPfZ/g+wInV0bAqBZ/T/19iC9wBbN3FZ/ybfoVQtQcI9H+\nUw==\n-----END CERTIFICATE-----",
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "fingerprint": "09:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0",
+        "loadbalancerrulelist": [
+          "d7b90433-a208-40e4-a3d2-ab854a28138a"
+        ],
+        "name": "qa-gn1569-31-tls-rotation-20261111"
+      }
+    ]
+  },
+  "probe": {
+    "exit": 0,
+    "out": "subject=CN = qa-gn1569-31-rotation.local\nsha256 Fingerprint=09:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0",
+    "error": ""
+  }
+}

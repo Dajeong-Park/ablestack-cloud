@@ -1,0 +1,9 @@
+{
+  "actualResponseHeld": true,
+  "serverMutation": false,
+  "requestCancelled": false,
+  "state": {
+    "dialogs": 0,
+    "url": "http://10.10.31.10:8080/client/#/dashboard"
+  }
+}

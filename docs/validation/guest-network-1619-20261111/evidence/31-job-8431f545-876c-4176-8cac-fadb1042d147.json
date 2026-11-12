@@ -1,0 +1,8 @@
+{
+  "command": "queryAsyncJobResult",
+  "params": {
+    "jobid": "8431f545-876c-4176-8cac-fadb1042d147",
+    "ignoreproject": true
+  },
+  "jobid": "8431f545-876c-4176-8cac-fadb1042d147"
+}

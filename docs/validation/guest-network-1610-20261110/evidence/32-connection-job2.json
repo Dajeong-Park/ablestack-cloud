@@ -1,0 +1,76 @@
+{
+  "jobId": "7b7d64ab-3776-4bdd-b85a-df7d667bab2a",
+  "command": "createVpnConnection",
+  "pending": {
+    "buttons": [
+      {
+        "disabled": true,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": true,
+        "text": "취소"
+      },
+      {
+        "disabled": true,
+        "text": "작업 결과 다시 조회"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": true,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": true,
+        "value": "on"
+      }
+    ],
+    "selected": [
+      "qa-gn1610-32-peer-31 · 10.10.31.150"
+    ],
+    "text": "VPN 접속 생성qa-gn1610-32-review8f2df5ac-af30-4633-b663-aae8e8cab356프로젝트: qa-gn1569-32-shared-regVPN 작업을 진행 중입니다. 결과를 기다려 주세요.7b7d64ab-3776-4bdd-b85a-df7d667bab2a선택 항목 다시 조회VPN 게이트웨이10.10.32.149VPN 고객 게이트웨이qa-gn1610-32-peer-31 · 10.10.31.150수동 대기수동 대기VPC 라우터 쌍 중 한쪽에만 설정합니다. 수동 대기 측은 상대 라우터가 VPN 연결을 시작할 때까지 기다립니다.취소작업 결과 다시 조회"
+  },
+  "terminal": {
+    "buttons": [
+      {
+        "disabled": false,
+        "text": ""
+      },
+      {
+        "disabled": false,
+        "text": "선택 항목 다시 조회"
+      },
+      {
+        "disabled": false,
+        "text": "취소"
+      },
+      {
+        "disabled": false,
+        "text": "확인"
+      }
+    ],
+    "inputs": [
+      {
+        "checked": false,
+        "disabled": false,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": false,
+        "value": "on"
+      }
+    ],
+    "selected": [
+      "qa-gn1610-32-peer-31 · 10.10.31.150"
+    ],
+    "text": "VPN 접속 생성qa-gn1610-32-review8f2df5ac-af30-4633-b663-aae8e8cab356프로젝트: qa-gn1569-32-shared-regVPN 작업을 완료하지 못했습니다. 입력한 내용은 유지됩니다.431: QA1610 controlled asynchronous failure선택 항목 다시 조회VPN 게이트웨이10.10.32.149VPN 고객 게이트웨이qa-gn1610-32-peer-31 · 10.10.31.150수동 대기수동 대기VPC 라우터 쌍 중 한쪽에만 설정합니다. 수동 대기 측은 상대 라우터가 VPN 연결을 시작할 때까지 기다립니다.취소확인"
+  },
+  "queries": 1,
+  "duplicateBlocked": true,
+  "controlled": "job2",
+  "networkCursor": 671
+}

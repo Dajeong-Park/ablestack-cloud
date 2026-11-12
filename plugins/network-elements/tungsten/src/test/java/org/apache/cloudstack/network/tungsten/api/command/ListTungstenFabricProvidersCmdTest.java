@@ -32,6 +32,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -68,5 +69,14 @@ public class ListTungstenFabricProvidersCmdTest {
         ListResponse<BaseResponse> responseList = (ListResponse<BaseResponse>) listTungstenFabricProvidersCmd.getResponseObject();
         Assert.assertEquals(baseResponseList, responseList.getResponses());
         Assert.assertEquals(Integer.valueOf(1), responseList.getCount());
+    }
+    @Test
+    public void emptyProviderListReturnsZeroCount() throws Exception {
+        Mockito.when(tungstenProviderService.listTungstenProvider(1L)).thenReturn(Collections.emptyList());
+        listTungstenFabricProvidersCmd.execute();
+        ListResponse<BaseResponse> response = (ListResponse<BaseResponse>) listTungstenFabricProvidersCmd.getResponseObject();
+        Assert.assertTrue(response.getResponses().isEmpty());
+        Assert.assertEquals(Integer.valueOf(0), response.getCount());
+        Assert.assertEquals("listtungstenfabricprovidersresponse", response.getResponseName());
     }
 }

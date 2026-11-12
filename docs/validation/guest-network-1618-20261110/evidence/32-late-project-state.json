@@ -1,0 +1,10 @@
+{
+  "controlledRead": true,
+  "actualResponseHeld": true,
+  "requestCancelled": false,
+  "serverMutation": false,
+  "after": {
+    "rules": 0,
+    "url": "http://10.10.32.10:8080/client/#/dashboard"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "hostname": {
+    "exit": 0,
+    "out": "r-1028-VM"
+  },
+  "release": "Cloudstack Release 4.23.0.0 Wed Nov 11 11:24:20 AM UTC 2026",
+  "version": {
+    "exit": 0,
+    "out": "2.90-4~deb12u2+ablestack1"
+  },
+  "binarySha256": "74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc",
+  "runningSha256": "74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc",
+  "unit": {
+    "exit": 0,
+    "out": "MainPID=2666\nNRestarts=0\nActiveState=active"
+  },
+  "listeners": {
+    "exit": 0,
+    "out": "Netid State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess                                                                               \nudp   UNCONN 0      0          127.0.0.1:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2666,fd=9))                                                    \nudp   UNCONN 0      0       10.247.31.51:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2666,fd=6))                                                    \nudp   UNCONN 0      0            0.0.0.0:67        0.0.0.0:*    users:((\"dnsmasq\",pid=2666,fd=4))                                                    \nudp   UNCONN 0      0          127.0.0.1:69        0.0.0.0:*    users:((\"dnsmasq\",pid=2666,fd=11))                                                   \nudp   UNCONN 0      0       10.247.31.51:69        0.0.0.0:*    users:((\"dnsmasq\",pid=2666,fd=8))                                                    \nudp   UNCONN 0      0            0.0.0.0:3914      0.0.0.0:*    users:((\"rsyslogd\",pid=475,fd=7))                                                    \nudp   UNCONN 0      0       169.254.10.0:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=20))                                                       \nudp   UNCONN 0      0       10.247.31.51:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=19))                                                       \nudp   UNCONN 0      0          127.0.0.1:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=18))                                                       \nudp   UNCONN 0      0            0.0.0.0:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=17))                                                       \nudp   UNCONN 0      0               [::]:3914         [::]:*    users:((\"rsyslogd\",pid=475,fd=8))                                                    \nudp   UNCONN 0      0               [::]:123          [::]:*    users:((\"ntpd\",pid=928,fd=16))                                                       \ntcp   LISTEN 0      32      10.247.31.51:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2666,fd=7))                                                    \ntcp   LISTEN 0      511     10.247.31.51:80        0.0.0.0:*    users:((\"apache2\",pid=1700,fd=3),(\"apache2\",pid=1699,fd=3),(\"apache2\",pid=1698,fd=3))\ntcp   LISTEN 0      128          0.0.0.0:3922      0.0.0.0:*    users:((\"sshd\",pid=1494,fd=3))                                                       \ntcp   LISTEN 0      511     10.247.31.51:443       0.0.0.0:*    users:((\"apache2\",pid=1700,fd=4),(\"apache2\",pid=1699,fd=4),(\"apache2\",pid=1698,fd=4))\ntcp   LISTEN 0      5       10.247.31.51:8080      0.0.0.0:*    users:((\"python\",pid=1650,fd=3))                                                     \ntcp   LISTEN 0      3          127.0.0.1:2605      0.0.0.0:*    users:((\"bgpd\",pid=1830,fd=18))                                                      \ntcp   LISTEN 0      3          127.0.0.1:2601      0.0.0.0:*    users:((\"zebra\",pid=1824,fd=23))                                                     \ntcp   LISTEN 0      32         127.0.0.1:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2666,fd=10))                                                   \ntcp   LISTEN 0      3          127.0.0.1:2616      0.0.0.0:*    users:((\"staticd\",pid=1837,fd=12))                                                   \ntcp   LISTEN 0      128             [::]:3922         [::]:*    users:((\"sshd\",pid=1494,fd=4))                                                       "
+  },
+  "kernelSegfault": {
+    "exit": 1,
+    "out": "-- No entries --"
+  },
+  "leases": {
+    "exit": 0,
+    "out": "0 02:1f:02:6e:00:04 10.247.31.54 qa-gn1569-31-shared-reg-vm24 *\n0 02:1f:02:6e:00:03 10.247.31.55 qa-gn1569-31-shared-reg-vm23 *\n0 02:1f:02:6e:00:02 10.247.31.57 qa-gn1569-31-shared-reg-vm22 *\n0 02:1f:02:6e:00:01 10.247.31.58 qa-gn1569-31-shared-reg-vm21 *"
+  },
+  "dhcpHosts": {
+    "exit": 0,
+    "out": "02:1f:02:6e:00:04,set:10_247_31_54,10.247.31.54,qa-gn1569-31-shared-reg-vm24,infinite\n02:1f:02:6e:00:03,set:10_247_31_55,10.247.31.55,qa-gn1569-31-shared-reg-vm23,infinite\n02:1f:02:6e:00:02,set:10_247_31_57,10.247.31.57,qa-gn1569-31-shared-reg-vm22,infinite\n02:1f:02:6e:00:01,set:10_247_31_58,10.247.31.58,qa-gn1569-31-shared-reg-vm21,infinite"
+  },
+  "interfaces": [
+    {
+      "ifindex": 1,
+      "ifname": "lo",
+      "flags": [
+        "LOOPBACK",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 65536,
+      "qdisc": "noqueue",
+      "operstate": "UNKNOWN",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "loopback",
+      "address": "00:00:00:00:00:00",
+      "broadcast": "00:00:00:00:00:00",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "127.0.0.1",
+          "prefixlen": 8,
+          "scope": "host",
+          "label": "lo",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 2,
+      "ifname": "eth0",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "1e:1f:f7:00:03:c7",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s3",
+        "ens3"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.247.31.51",
+          "prefixlen": 24,
+          "broadcast": "10.247.31.255",
+          "scope": "global",
+          "label": "eth0",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 3,
+      "ifname": "eth1",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "0e:00:a9:fe:0a:00",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s4",
+        "ens4"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "169.254.10.0",
+          "prefixlen": 16,
+          "broadcast": "169.254.255.255",
+          "scope": "global",
+          "label": "eth1",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ]
+}

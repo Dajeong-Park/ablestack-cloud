@@ -1,0 +1,27 @@
+[
+  {
+    "command": "createLoadBalancerRule",
+    "params": {
+      "command": "createLoadBalancerRule",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "openfirewall": "false",
+      "networkid": "75743a2a-f020-4f65-9ea2-a65acba1a409",
+      "publicipid": "0c2a14fe-22df-4f6f-8057-c39628138538",
+      "algorithm": "roundrobin",
+      "name": "qa-gn1611-32-public-lb",
+      "privateport": "22",
+      "protocol": "tcp",
+      "publicport": "18981",
+      "cidrlist": "bad/99",
+      "backendssl": "false"
+    },
+    "response": {
+      "createloadbalancerruleresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "CIDR [bad/99] is invalid."
+      }
+    }
+  }
+]

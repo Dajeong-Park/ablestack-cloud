@@ -1,0 +1,22 @@
+{
+  "id": "c6f2ad48-bd55-4620-a579-331316025e68",
+  "state": "Running",
+  "hostid": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+  "nic": [
+    {
+      "id": "1c3d216e-0110-4395-b655-c82cab268d70",
+      "networkid": "9cf04f35-ff5f-4959-9749-658d3c826a3b",
+      "networkname": "qa-gn1569-32-configdrive-clone-net",
+      "isolationuri": "vlan://105",
+      "broadcasturi": "vlan://105",
+      "traffictype": "Guest",
+      "type": "L2",
+      "isdefault": true,
+      "macaddress": "02:01:01:fa:00:01",
+      "secondaryip": [],
+      "extradhcpoption": [],
+      "deviceid": "0",
+      "enabled": true
+    }
+  ]
+}

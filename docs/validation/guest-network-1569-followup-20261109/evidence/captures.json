@@ -1,0 +1,647 @@
+[
+  {
+    "c": 31,
+    "file": "31-revoke-confirm-fixed.jpg",
+    "dark": false,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=network.permissions",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "98db679c280496cf0964d1dc050c6afad84181bd37d28ae5d5694454f32be525"
+  },
+  {
+    "c": 32,
+    "file": "32-revoke-confirm-fixed.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=network.permissions",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "a12ab6091dbef6ed9e3bcef6c29a2e6fa37347d3cdc21b35573fdd9392684d69"
+  },
+  {
+    "c": 31,
+    "file": "31-shared-used-delete-rejected.jpg",
+    "dark": false,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=network.permissions",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "16d49372005e3841008fdf38f37fa3d8bc056884b0d58c0e3f1cbd9f885d27ac"
+  },
+  {
+    "c": 32,
+    "file": "32-shared-used-delete-rejected.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=network.permissions",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "fee225cc530ec8eae956b43fff89819b9f5e21e62cbb47cb4dc04c0f40aef5ab"
+  },
+  {
+    "c": 31,
+    "file": "31-permission-reset-empty.jpg",
+    "dark": false,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=network.permissions",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "94bc629f2488ae8d419640b8823fca1b15558a27309ff7fcc2e3da10cdb50529"
+  },
+  {
+    "c": 32,
+    "file": "32-permission-reset-empty.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=network.permissions",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "1a098c531bb6af31331a2ade854e64a945235a0f58112f3058c05ec5f422dcf8"
+  },
+  {
+    "c": 31,
+    "file": "31-revoke-fixed-768-light.jpg",
+    "dark": false,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=network.permissions",
+    "viewport": [
+      768,
+      1024
+    ],
+    "jpegSize": [
+      758,
+      1032
+    ],
+    "sha256": "9a2a002932bf857acb266001d35c02e2989ef942d0b6b5ed41b3d4aff869c9ef"
+  },
+  {
+    "c": 31,
+    "file": "31-revoke-fixed-768-dark.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=network.permissions",
+    "viewport": [
+      768,
+      1024
+    ],
+    "jpegSize": [
+      758,
+      1042
+    ],
+    "sha256": "ffa1565d759e9c48d129b2e7d799d81b5e46b9ec0d20d3feaac07a2ced09aea2"
+  },
+  {
+    "c": 32,
+    "file": "32-revoke-fixed-768-light.jpg",
+    "dark": false,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=network.permissions",
+    "viewport": [
+      768,
+      1024
+    ],
+    "jpegSize": [
+      758,
+      1027
+    ],
+    "sha256": "c499621402d5ac2275005f06146bc421a78c2e7357dd23e56f85ffbab4b3dcd0"
+  },
+  {
+    "c": 32,
+    "file": "32-revoke-fixed-768-dark.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=network.permissions",
+    "viewport": [
+      768,
+      1024
+    ],
+    "jpegSize": [
+      758,
+      1027
+    ],
+    "sha256": "317fe9b397a7317d35b5fb4da6497f0656ce08f035f35cd2c324bd16a0118712"
+  },
+  {
+    "c": 31,
+    "file": "31-consumer-project-nic.jpg",
+    "dark": false,
+    "route": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "23aef45c6038618ce2c611d7d40bf8c2781031de5d07645bcbcc026635a8cf53"
+  },
+  {
+    "c": 32,
+    "file": "32-consumer-project-nic.jpg",
+    "dark": true,
+    "route": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "ad041d1228262195dc64f30825ba4067eae4860ac3eb8b233037ccbf70e47917"
+  },
+  {
+    "c": 31,
+    "file": "31-vpc-delete-refused-tags-preserved.jpg",
+    "dark": false,
+    "route": "#/vpc/aec68c28-9274-41be-95cf-7f833f93811c",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "43c3e24d9d33e35eb35f9166bdce7aa567254ee2072e905614acf513225d378c"
+  },
+  {
+    "c": 32,
+    "file": "32-vpc-delete-refused-tags-preserved.jpg",
+    "dark": true,
+    "route": "#/vpc/6b0803d7-b8a6-4116-851d-725da7b22c91",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "ca2d1d027dbb737997813be3fbfdb8add56648b862f2f14b7d44db45a5d89f8f"
+  },
+  {
+    "c": 31,
+    "file": "31-vm-standard-connect-1280-light.jpg",
+    "dark": false,
+    "route": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "26579013d3045a9191047fdf39e593c9ba4151c7405410da55ea716ea7a4270c"
+  },
+  {
+    "c": 31,
+    "file": "31-vm-standard-connect-390-dark.jpg",
+    "dark": true,
+    "route": "#/vm/bc8ec9c0-6cdb-4091-afcf-1bd289019fc6?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "7c78cdbc53ff107520fe725f67bc56a2ede157f183966f56243ae717bb0a7017"
+  },
+  {
+    "c": 32,
+    "file": "32-vm-standard-connect-1280-light.jpg",
+    "dark": false,
+    "route": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "be57cdce2a3d4f7c7607485f60424081ce1476a908f47877012d2901e03f4c63"
+  },
+  {
+    "c": 32,
+    "file": "32-vm-standard-connect-390-dark.jpg",
+    "dark": true,
+    "route": "#/vm/30d3760d-98db-46a7-a5c8-cd1c7950cd60?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "efa15e3bdbca9242a03927244bc37101485115abe5a821f401dda27c7bdfd03a"
+  },
+  {
+    "c": 31,
+    "file": "31-project-network-navigation.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "9f6c371ff6798974fa33bfd637cdd8a6929e32eba76d7d1af2ed7bedefc64a01"
+  },
+  {
+    "c": 32,
+    "file": "32-project-network-navigation.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "56ec04aa23f0bd14631480db5ac7974724554b9d703ce78c8967c97ad1990e48"
+  },
+  {
+    "c": 31,
+    "file": "31-new-template-recreate-options.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "d4af37eb2de2b1b7ee5646b3cc1a5f3a04d95ad48c87b4e56ecd1fa158b829a5"
+  },
+  {
+    "c": 32,
+    "file": "32-new-template-recreate-options-390-dark.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "26615cac3234267f171029fa45500cbc8c11686d9adc90610c4333908b95c7f7"
+  },
+  {
+    "c": 31,
+    "file": "31-recreate-invalid-release-failure.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "a2f1c4c28fbdf63a13770327b94edb7f79231beaf0b028d1c55ce2261e85e371"
+  },
+  {
+    "c": 32,
+    "file": "32-recreate-invalid-release-failure.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "cce4c79cb3f79aace7c59fe0b19e25f6e923f4047d90714187810335d23fd2ed"
+  },
+  {
+    "c": 31,
+    "file": "31-new-template-recreate-complete.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "a13a6ab61daa19d546a0335b513d2234058fb7f34ddb3bcc6cf4f4677083fd51"
+  },
+  {
+    "c": 32,
+    "file": "32-new-template-recreate-complete.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "e515ec1e24a8489b653714d9d590803bbdb09c503d0c1650cf29de52ab1c1c6e"
+  },
+  {
+    "c": 31,
+    "file": "31-new-router-normal-restart-options.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "889d4258078597a253a5bb87fe0f15e79b7dbbebd05ebee4c3eee93ea7187ac9"
+  },
+  {
+    "c": 32,
+    "file": "32-new-router-normal-restart-options.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "e0a916f5d4e6b885e0abace1b423c85c24c4b1a828ddbb916a6b0eee7b4b05ee"
+  },
+  {
+    "c": 31,
+    "file": "31-new-router-normal-restart-complete.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "10cd365e424850305a32a3edb909d54f1cac0775da94fec5a82b39f8d69826ca"
+  },
+  {
+    "c": 32,
+    "file": "32-new-router-normal-restart-complete.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "014aa37341865efb68598e882064711676426f6eefa5ee8f246187f827f3f628"
+  },
+  {
+    "c": 31,
+    "file": "31-restart-after-new-dhcp-complete.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "565cdfbb8b0290f1862fb019fb909c09dd6b7589cc66a637201d23e334abb3d7"
+  },
+  {
+    "c": 32,
+    "file": "32-restart-after-new-dhcp-complete.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "62d96b47a19e845548635dd31bdeef5e4f49cebe5cc5d020e85e2cd3bf324c4f"
+  },
+  {
+    "c": 31,
+    "file": "31-project-router-empty-before-fix.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=virtual.routers",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "cf839161b42e2bc6ebe0f2b9da590b658f5aedb9f55aebf89be79d9241d0ca6d"
+  },
+  {
+    "c": 32,
+    "file": "32-project-router-empty-before-fix.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=virtual.routers",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "dfd6577ae230180095d29becb22c2165ea92909e3c5e5042a125bdbbe92c8a9f"
+  },
+  {
+    "c": 31,
+    "file": "31-project-router-owner-scope-fixed.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=virtual.routers",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "4b09e91b5e83e198438a80b94c80887023842ec3ffe0872b8313b63d654a179f"
+  },
+  {
+    "c": 32,
+    "file": "32-project-router-owner-scope-fixed.jpg",
+    "dark": true,
+    "route": "#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=virtual.routers",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "47db379c09a863e61af2038a395edc4499a99fa83fafe85df13a34b0ae1941e5"
+  },
+  {
+    "c": 31,
+    "file": "31-new-router-detail.jpg",
+    "dark": false,
+    "route": "#/router/29fcde3a-1599-450b-a8bf-5431c9b70de6",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "2ad970cda21e7dd1c5ebc980c66f0d211474ba18453c4ba99d4834cba4667d2a"
+  },
+  {
+    "c": 32,
+    "file": "32-new-router-detail.jpg",
+    "dark": true,
+    "route": "#/router/19b0614e-e9d2-4faa-a15b-d5874c6568ed",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      873
+    ],
+    "sha256": "01c3fd3c0dab96ab28b68e41fbdc9023e821b6151a0ca16f45546f921933057c"
+  },
+  {
+    "c": 31,
+    "file": "31-new-client24-nic.jpg",
+    "dark": false,
+    "route": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "ab4d2d617cab6f08f188a0430cb88120d7c0b0283c8f11f2fe62d205e946fd2c"
+  },
+  {
+    "c": 32,
+    "file": "32-new-client24-nic.jpg",
+    "dark": true,
+    "route": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+    "viewport": [
+      390,
+      844
+    ],
+    "jpegSize": [
+      380,
+      844
+    ],
+    "sha256": "24795d777be8c02511e6e9d6cfa06007649e775c8334854e208cc8657951f155"
+  },
+  {
+    "c": 32,
+    "file": "32-breadcrumb-resize-stale-width.jpg",
+    "dark": true,
+    "route": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+    "viewport": [
+      1280,
+      900
+    ],
+    "jpegSize": [
+      1270,
+      900
+    ],
+    "sha256": "e41d49f84fc007c8c27f6dd62774db0aa4d68af23ced316d732c3005a37bf17a"
+  },
+  {
+    "c": 31,
+    "file": "31-review-vm24-native.jpg",
+    "dark": false,
+    "route": "#/vm/4d8dc91e-db04-4d4a-b53b-0275fe680e67?tab=nics",
+    "viewport": [
+      1680,
+      841
+    ],
+    "jpegSize": [
+      1670,
+      841
+    ],
+    "sha256": "fc6dba15eb4f6d963fe30ff3aa7f790a1f61c221c4fc19762307b23cbc2403c6"
+  },
+  {
+    "c": 32,
+    "file": "32-review-vm24-native.jpg",
+    "dark": true,
+    "route": "#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+    "viewport": [
+      1680,
+      841
+    ],
+    "jpegSize": [
+      1670,
+      841
+    ],
+    "sha256": "2f64ff67f27dd346f3a0fb68c340847393c965a45f4f4e42ec949475c48d6b81"
+  }
+]

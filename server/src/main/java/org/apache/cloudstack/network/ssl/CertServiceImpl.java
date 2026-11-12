@@ -40,6 +40,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.CertificateNotYetValidException;
 import java.security.cert.CollectionCertStoreParameters;
 import java.security.cert.PKIXBuilderParameters;
+import java.security.cert.PKIXCertPathBuilderResult;
 import java.security.cert.TrustAnchor;
 import java.security.cert.X509CertSelector;
 import java.security.cert.X509Certificate;
@@ -58,6 +59,8 @@ import org.apache.cloudstack.api.command.user.loadbalancer.ListSslCertsCmd;
 import org.apache.cloudstack.api.command.user.loadbalancer.UploadSslCertCmd;
 import org.apache.cloudstack.api.response.SslCertResponse;
 import org.apache.cloudstack.context.CallContext;
+import org.apache.cloudstack.framework.config.ConfigKey;
+import org.apache.cloudstack.framework.config.Configurable;
 import org.apache.cloudstack.network.tls.CertService;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -101,7 +104,22 @@ import com.cloud.utils.exception.CloudRuntimeException;
 import com.cloud.utils.security.CertificateHelper;
 import com.google.common.base.Preconditions;
 
-public class CertServiceImpl implements CertService {
+public class CertServiceImpl implements CertService, Configurable {
+
+    public static final ConfigKey<String> RevocationInternalEndpoints = new ConfigKey<>(ConfigKey.CATEGORY_NETWORK, String.class,
+            "ssl.revocation.allowed.internal.endpoints", "",
+            "Exact HTTP(S) origins permitted for private-address SSL CRL/OCSP responders, separated by commas. "
+                    + "Empty blocks private addresses. Loopback, link-local, unspecified and multicast are always blocked.", true);
+
+    @Override
+    public String getConfigComponentName() {
+        return "CertService";
+    }
+
+    @Override
+    public ConfigKey<?>[] getConfigKeys() {
+        return new ConfigKey<?>[] {RevocationInternalEndpoints};
+    }
 
     protected Logger logger = LogManager.getLogger(getClass());
 
@@ -301,7 +319,7 @@ public class CertServiceImpl implements CertService {
             final PrivateKey key = parsePrivateKey(keyInput, password);
 
             if (chainInput != null) {
-                chain = CertificateHelper.parseChain(chainInput);
+                chain = parseCertificateChain(chainInput);
             }
 
             validateCert(cert);
@@ -429,6 +447,26 @@ public class CertServiceImpl implements CertService {
         }
     }
 
+    protected List<Certificate> parseCertificateChain(String input) throws IOException, CertificateException {
+        if (input.length() > 262144) {
+            throw new IllegalStateException("Invalid certificate chain: chain is too large");
+        }
+        List<Certificate> certificates = new ArrayList<>();
+        try (PemReader reader = new PemReader(new StringReader(input))) {
+            PemObject object;
+            while ((object = reader.readPemObject()) != null) {
+                certificates.addAll(CertificateFactory.getInstance("X.509").generateCertificates(new ByteArrayInputStream(object.getContent())));
+                if (certificates.size() > 9) {
+                    throw new IllegalStateException("Invalid certificate chain: too many certificates");
+                }
+            }
+        }
+        if (certificates.isEmpty()) {
+            throw new IllegalStateException("Invalid certificate chain: no certificates");
+        }
+        return certificates;
+    }
+
     private void validateChain(final List<Certificate> chain, final Certificate cert, boolean revocationEnabled) {
 
         final List<Certificate> certs = new ArrayList<Certificate>();
@@ -448,13 +486,36 @@ public class CertServiceImpl implements CertService {
         final X509CertSelector target = new X509CertSelector();
         target.setCertificate((X509Certificate)cert);
 
+        if (revocationEnabled) {
+            anchors.clear();
+            for (final Certificate c : chain) {
+                final X509Certificate ca = (X509Certificate)c;
+                // A supplied self-signed trust anchor may be a legacy v1 root without BasicConstraints.
+                if (!ca.equals(cert) && ca.getSubjectX500Principal().equals(ca.getIssuerX500Principal())) {
+                    try {
+                        ca.verify(ca.getPublicKey());
+                        anchors.add(new TrustAnchor(ca, null));
+                    } catch (java.security.GeneralSecurityException e) {
+                        throw new IllegalStateException("Invalid certificate chain: invalid root signature", e);
+                    }
+                }
+            }
+            if (anchors.isEmpty()) {
+                throw new IllegalStateException("Invalid certificate chain: revocation checking requires the issuer root CA");
+            }
+        }
+
         PKIXBuilderParameters params = null;
         try {
             params = new PKIXBuilderParameters(anchors, target);
-            params.setRevocationEnabled(revocationEnabled);
+            // Build the complete path locally first. Never enable a provider's unbounded implicit URL fetching.
+            params.setRevocationEnabled(false);
             params.addCertStore(CertStore.getInstance("Collection", new CollectionCertStoreParameters(certs)));
             final CertPathBuilder builder = CertPathBuilder.getInstance("PKIX", "BC");
-            builder.build(params);
+            final PKIXCertPathBuilderResult result = (PKIXCertPathBuilderResult)builder.build(params);
+            if (revocationEnabled) {
+                createRevocationValidator().validate(result);
+            }
 
         } catch (final InvalidAlgorithmParameterException | CertPathBuilderException | NoSuchAlgorithmException e) {
             throw new IllegalStateException("Invalid certificate chain", e);
@@ -462,6 +523,10 @@ public class CertServiceImpl implements CertService {
             throw new CloudRuntimeException("No provider for certificate validation", e);
         }
 
+    }
+
+    protected CertificateRevocationValidator createRevocationValidator() {
+        return new CertificateRevocationValidator(new RevocationHttpClient(RevocationInternalEndpoints.value()));
     }
 
     public PrivateKey parsePrivateKey(final String key, String password) throws IOException, OperatorCreationException, PKCSException, NoSuchAlgorithmException, InvalidKeySpecException {

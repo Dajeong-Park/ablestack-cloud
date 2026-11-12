@@ -1,0 +1,19 @@
+{
+  "missing": {
+    "network": [],
+    "virtualmachine": [],
+    "internalloadbalancervm": [],
+    "router": [],
+    "vpc": [],
+    "publicipaddress": [],
+    "loadbalancerrule": [],
+    "loadbalancer": [],
+    "project": [],
+    "vpnuser": [],
+    "remoteaccessvpn": [],
+    "host": []
+  },
+  "externalKubernetesCleanup": false,
+  "globalUnchanged": true,
+  "taskTestResourcesUnchanged": true
+}

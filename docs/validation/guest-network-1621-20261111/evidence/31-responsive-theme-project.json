@@ -1,0 +1,668 @@
+[
+  {
+    "theme": "light",
+    "width": 1280,
+    "instant": {
+      "before": {
+        "theme": "light",
+        "origin": 1794321799205
+      },
+      "after": {
+        "theme": "light",
+        "origin": 1794321799205
+      }
+    },
+    "layout": {
+      "activePanel": {
+        "bottom": 551,
+        "height": 347,
+        "left": 682.578125,
+        "right": 1222.984375,
+        "top": 204,
+        "width": 540.40625,
+        "x": 682.578125,
+        "y": 204
+      },
+      "breadcrumb": {
+        "bottom": 167,
+        "height": 89,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 574,
+        "height": 53,
+        "left": 443,
+        "right": 827,
+        "top": 521,
+        "width": 384,
+        "x": 443,
+        "y": 521
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 574,
+        "height": 248,
+        "left": 443,
+        "right": 827,
+        "top": 326,
+        "width": 384,
+        "x": 443,
+        "y": 326
+      },
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    "geometry": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "",
+          "width": 56
+        },
+        {
+          "disabled": false,
+          "text": "삭제",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "교체",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "할당",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "취소",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "확인",
+          "width": 57.765625
+        }
+      ],
+      "contentWidth": 1270,
+      "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-20261111삭제신규 SSL 인증서qa-gn1569-31-tls교체할당취소확인",
+      "width": 1270
+    },
+    "knownUiIssue": 1619
+  },
+  {
+    "theme": "light",
+    "width": 768,
+    "instant": {
+      "before": {
+        "theme": "light",
+        "origin": 1794321799205
+      },
+      "after": {
+        "theme": "light",
+        "origin": 1794321799205
+      }
+    },
+    "layout": {
+      "activePanel": {
+        "bottom": 1407.5,
+        "height": 347,
+        "left": 217.25,
+        "right": 711,
+        "top": 1060.5,
+        "width": 493.75,
+        "x": 217.25,
+        "y": 1060.5
+      },
+      "breadcrumb": {
+        "bottom": 189,
+        "height": 111,
+        "left": 92,
+        "right": 736,
+        "top": 78,
+        "width": 644,
+        "x": 92,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 611,
+        "height": 53,
+        "left": 263.796875,
+        "right": 494.1875,
+        "top": 558,
+        "width": 230.390625,
+        "x": 263.796875,
+        "y": 558
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 80,
+        "right": 758,
+        "top": 78,
+        "width": 678,
+        "x": 80,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 611,
+        "height": 322,
+        "left": 263.796875,
+        "right": 494.1875,
+        "top": 289,
+        "width": 230.390625,
+        "x": 263.796875,
+        "y": 289
+      },
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    "geometry": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "",
+          "width": 56
+        },
+        {
+          "disabled": false,
+          "text": "삭제",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "교체",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "할당",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "취소",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "확인",
+          "width": 57.765625
+        }
+      ],
+      "contentWidth": 758,
+      "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-20261111삭제신규 SSL 인증서qa-gn1569-31-tls교체할당취소확인",
+      "width": 758
+    },
+    "knownUiIssue": 1619
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "instant": {
+      "before": {
+        "theme": "light",
+        "origin": 1794321799205
+      },
+      "after": {
+        "theme": "light",
+        "origin": 1794321799205
+      }
+    },
+    "layout": {
+      "activePanel": {
+        "bottom": 1579.5,
+        "height": 411,
+        "left": 37,
+        "right": 333,
+        "top": 1168.5,
+        "width": 296,
+        "x": 37,
+        "y": 1168.5
+      },
+      "breadcrumb": {
+        "bottom": 227,
+        "height": 149,
+        "left": 12,
+        "right": 358,
+        "top": 78,
+        "width": 346,
+        "x": 12,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 691,
+        "height": 53,
+        "left": 131.5,
+        "right": 248.5,
+        "top": 638,
+        "width": 117,
+        "x": 131.5,
+        "y": 638
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 0,
+        "right": 380,
+        "top": 78,
+        "width": 380,
+        "x": 0,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 691,
+        "height": 482,
+        "left": 131.5,
+        "right": 248.5,
+        "top": 209,
+        "width": 117,
+        "x": 131.5,
+        "y": 209
+      },
+      "pageOverflow": 0,
+      "theme": "light",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      }
+    },
+    "geometry": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "",
+          "width": 56
+        },
+        {
+          "disabled": false,
+          "text": "삭제",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "교체",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "할당",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "취소",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "확인",
+          "width": 57.765625
+        }
+      ],
+      "contentWidth": 380,
+      "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-20261111삭제신규 SSL 인증서qa-gn1569-31-tls교체할당취소확인",
+      "width": 380
+    },
+    "knownUiIssue": 1619
+  },
+  {
+    "theme": "dark",
+    "width": 1280,
+    "instant": {
+      "before": {
+        "theme": "light",
+        "origin": 1794321799205
+      },
+      "after": {
+        "theme": "dark",
+        "origin": 1794321799205
+      }
+    },
+    "layout": {
+      "activePanel": {
+        "bottom": 551,
+        "height": 347,
+        "left": 682.578125,
+        "right": 1222.984375,
+        "top": 204,
+        "width": 540.40625,
+        "x": 682.578125,
+        "y": 204
+      },
+      "breadcrumb": {
+        "bottom": 167,
+        "height": 89,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 574,
+        "height": 53,
+        "left": 443,
+        "right": 827,
+        "top": 521,
+        "width": 384,
+        "x": 443,
+        "y": 521
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 574,
+        "height": 248,
+        "left": 443,
+        "right": 827,
+        "top": 326,
+        "width": 384,
+        "x": 443,
+        "y": 326
+      },
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      }
+    },
+    "geometry": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "",
+          "width": 56
+        },
+        {
+          "disabled": false,
+          "text": "삭제",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "교체",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "할당",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "취소",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "확인",
+          "width": 57.765625
+        }
+      ],
+      "contentWidth": 1270,
+      "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-20261111삭제신규 SSL 인증서qa-gn1569-31-tls교체할당취소확인",
+      "width": 1270
+    },
+    "knownUiIssue": 1619
+  },
+  {
+    "theme": "dark",
+    "width": 768,
+    "instant": {
+      "before": {
+        "theme": "light",
+        "origin": 1794321799205
+      },
+      "after": {
+        "theme": "dark",
+        "origin": 1794321799205
+      }
+    },
+    "layout": {
+      "activePanel": {
+        "bottom": 1407.5,
+        "height": 347,
+        "left": 217.25,
+        "right": 711,
+        "top": 1060.5,
+        "width": 493.75,
+        "x": 217.25,
+        "y": 1060.5
+      },
+      "breadcrumb": {
+        "bottom": 189,
+        "height": 111,
+        "left": 92,
+        "right": 736,
+        "top": 78,
+        "width": 644,
+        "x": 92,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 611,
+        "height": 53,
+        "left": 263.796875,
+        "right": 494.1875,
+        "top": 558,
+        "width": 230.390625,
+        "x": 263.796875,
+        "y": 558
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 80,
+        "right": 758,
+        "top": 78,
+        "width": 678,
+        "x": 80,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 611,
+        "height": 322,
+        "left": 263.796875,
+        "right": 494.1875,
+        "top": 289,
+        "width": 230.390625,
+        "x": 263.796875,
+        "y": 289
+      },
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 768
+      }
+    },
+    "geometry": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "",
+          "width": 56
+        },
+        {
+          "disabled": false,
+          "text": "삭제",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "교체",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "할당",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "취소",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "확인",
+          "width": 57.765625
+        }
+      ],
+      "contentWidth": 758,
+      "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-20261111삭제신규 SSL 인증서qa-gn1569-31-tls교체할당취소확인",
+      "width": 758
+    },
+    "knownUiIssue": 1619
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "instant": {
+      "before": {
+        "theme": "light",
+        "origin": 1794321799205
+      },
+      "after": {
+        "theme": "dark",
+        "origin": 1794321799205
+      }
+    },
+    "layout": {
+      "activePanel": {
+        "bottom": 1579.5,
+        "height": 411,
+        "left": 37,
+        "right": 333,
+        "top": 1168.5,
+        "width": 296,
+        "x": 37,
+        "y": 1168.5
+      },
+      "breadcrumb": {
+        "bottom": 227,
+        "height": 149,
+        "left": 12,
+        "right": 358,
+        "top": 78,
+        "width": 346,
+        "x": 12,
+        "y": 78
+      },
+      "breadcrumbPosition": "sticky",
+      "footer": {
+        "bottom": 691,
+        "height": 53,
+        "left": 131.5,
+        "right": 248.5,
+        "top": 638,
+        "width": 117,
+        "x": 131.5,
+        "y": 638
+      },
+      "main": {
+        "bottom": 900,
+        "height": 822,
+        "left": 0,
+        "right": 380,
+        "top": 78,
+        "width": 380,
+        "x": 0,
+        "y": 78
+      },
+      "modal": {
+        "bottom": 691,
+        "height": 482,
+        "left": 131.5,
+        "right": 248.5,
+        "top": 209,
+        "width": 117,
+        "x": 131.5,
+        "y": 209
+      },
+      "pageOverflow": 0,
+      "theme": "dark",
+      "viewport": {
+        "height": 900,
+        "width": 390
+      }
+    },
+    "geometry": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "",
+          "width": 56
+        },
+        {
+          "disabled": false,
+          "text": "삭제",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "교체",
+          "width": 79.765625
+        },
+        {
+          "disabled": false,
+          "text": "할당",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "취소",
+          "width": 0
+        },
+        {
+          "disabled": false,
+          "text": "확인",
+          "width": 57.765625
+        }
+      ],
+      "contentWidth": 380,
+      "text": "SSL 인증서 관리현재 SSL 인증서qa-gn1569-31-tls-rotation-20261111삭제신규 SSL 인증서qa-gn1569-31-tls교체할당취소확인",
+      "width": 380
+    },
+    "knownUiIssue": 1619
+  }
+]

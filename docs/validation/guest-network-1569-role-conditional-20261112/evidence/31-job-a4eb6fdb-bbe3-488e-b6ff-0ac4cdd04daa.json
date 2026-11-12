@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "resourceids": "0f125a06-064d-4b2b-95ae-3fccf84a057b",
+    "resourcetype": "PortForwardingRule",
+    "tags[0].key": "gn1569-functional-domainAdmin",
+    "tags[0].value": "scope-check"
+  },
+  "jobid": "a4eb6fdb-bbe3-488e-b6ff-0ac4cdd04daa"
+}

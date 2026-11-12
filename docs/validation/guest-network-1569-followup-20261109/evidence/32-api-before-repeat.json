@@ -1,0 +1,91 @@
+{
+  "network": {
+    "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "name": "qa-gn1569-32-shared-reg",
+    "state": "Setup",
+    "type": "Shared",
+    "acltype": "Account",
+    "restartrequired": false
+  },
+  "router": {
+    "id": "19b0614e-e9d2-4faa-a15b-d5874c6568ed",
+    "name": "r-459-VM",
+    "state": "Running",
+    "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+    "hostname": "ablecube32-2",
+    "guestipaddress": "10.247.32.51"
+  },
+  "vms": {
+    "21": {
+      "id": "30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+      "name": "qa-gn1569-32-shared-reg-vm21",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "nics": [
+        {
+          "id": "4dceed40-9dd3-44ec-a3c1-cc82e1774c86",
+          "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "ipaddress": "10.247.32.58",
+          "macaddress": "02:01:01:fb:00:01",
+          "isdefault": false,
+          "enabled": true
+        },
+        {
+          "id": "51ca037f-f3ef-4c82-b0f3-6dee732a7589",
+          "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+          "ipaddress": "172.26.32.21",
+          "macaddress": "02:15:69:32:19:21",
+          "isdefault": true,
+          "enabled": true
+        }
+      ]
+    },
+    "22": {
+      "id": "655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+      "name": "qa-gn1569-32-shared-reg-vm22",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "nics": [
+        {
+          "id": "d19adfa8-49b8-4bb4-832c-e5c9410cca00",
+          "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "ipaddress": "10.247.32.57",
+          "macaddress": "02:01:01:fb:00:02",
+          "isdefault": false,
+          "enabled": true
+        },
+        {
+          "id": "d9c71df3-30b7-41c9-9736-b1729860462d",
+          "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+          "ipaddress": "172.26.32.22",
+          "macaddress": "02:15:69:32:19:22",
+          "isdefault": true,
+          "enabled": true
+        }
+      ]
+    },
+    "23": {
+      "id": "c74285b6-8f22-4f4c-a396-a2e262ca41f2",
+      "name": "qa-gn1569-32-shared-reg-vm23",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "nics": [
+        {
+          "id": "3a5fcd72-3b63-4828-a317-d2a4c86c15a1",
+          "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "ipaddress": "10.247.32.55",
+          "macaddress": "02:01:01:fb:00:03",
+          "isdefault": false,
+          "enabled": true
+        },
+        {
+          "id": "b71fc4e8-0e10-4dab-9f26-5717594b786e",
+          "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+          "ipaddress": "172.26.32.23",
+          "macaddress": "02:15:69:32:19:23",
+          "isdefault": true,
+          "enabled": true
+        }
+      ]
+    }
+  },
+  "process": "MainPID=2675\nNRestarts=0\nActiveState=active\n",
+  "routerTime": "1794213355.888909356"
+}

@@ -1,0 +1,18 @@
+{
+  "layoutCases": 18,
+  "captureCount": 32,
+  "nativeJpegDimensionsMatchViewport": true,
+  "visibleTablesInsideViewport": true,
+  "noDocumentHorizontalOverflow": true,
+  "excludedOpenDrawerCaptures": [
+    "screenshots/32-VNF-list-dark-390.jpg",
+    "screenshots/32-project-QA-VNF-return-dark-390.jpg"
+  ],
+  "resourcePreservation": {
+    "vms": true,
+    "vnfs": true,
+    "networks": true,
+    "members": true,
+    "limits": true
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "sourceHead": "25eb4bb1e4e07b63b40aefc51914a793a4a8c45f",
+  "backendSourceCommit": "2a8fce6fb7c1e6727887d236f8d4da824d131780",
+  "localServerTests": 103,
+  "localUiTests": 87,
+  "apiModuleTestsSkipped": true,
+  "fullCloudBuild": false,
+  "uiDeploymentsSuccessful": 2,
+  "newVnfsRunning": 2,
+  "uiDeployJobsSuccessful": 2,
+  "originalProjectQuotaFailure": {
+    "cluster": 31,
+    "code": 535,
+    "jobCreated": false
+  },
+  "securityApiCases": 54,
+  "policyFalsePreserved": true,
+  "existingRolePermissionsPreserved": true,
+  "sharedPermissionsRestored": true,
+  "oldProjectVms": 5,
+  "oldProjectNics": 21,
+  "newProjectVms": 1,
+  "newProjectNics": 1,
+  "layoutCombinations": 12,
+  "fullInputAndButtonInsideAncestorClippingBounds": true,
+  "inputControlWidth": 220,
+  "refreshIconWidth": 32,
+  "nativeJpegCount": 35,
+  "viewportAndImageDimensionsMatch": true,
+  "jarByteChangedEntries": 12,
+  "jarUnchangedEntries": 204645,
+  "retained": true
+}

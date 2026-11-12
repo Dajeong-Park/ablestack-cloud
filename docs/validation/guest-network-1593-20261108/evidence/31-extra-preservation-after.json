@@ -1,0 +1,25 @@
+{
+  "allFiveReviewLoadBalancersActive": true,
+  "lbRulesUnchanged": true,
+  "certificateUnchanged": true,
+  "firewallPortForwardingUnchanged": true,
+  "sharesUnchanged": true,
+  "permissions": [
+    {
+      "networkid": "0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "account": "qa-gn1569-31-peer",
+      "accountid": "def86464-faa3-40ca-a6f4-d45c0e345dfb"
+    },
+    {
+      "networkid": "0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "account": "PrjAcct-qa-gn1569-31-project-105",
+      "accountid": "8237aaf2-de22-4e22-8938-3a0bfba9b7c7",
+      "project": "qa-gn1569-31-project",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+    }
+  ]
+}

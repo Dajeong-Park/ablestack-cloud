@@ -1,0 +1,34 @@
+{
+  "inventory": {
+    "network": {
+      "before": 103,
+      "after": 103,
+      "sameIds": true
+    },
+    "virtualmachine": {
+      "before": 86,
+      "after": 86,
+      "sameIds": true
+    },
+    "vpc": {
+      "before": 13,
+      "after": 13,
+      "sameIds": true
+    },
+    "loadbalancerrule": {
+      "before": 27,
+      "after": 27,
+      "sameIds": true
+    },
+    "loadbalancer": {
+      "before": 4,
+      "after": 4,
+      "sameIds": true
+    }
+  },
+  "oldLbMappings": 31,
+  "stableMappingsUnchanged": true,
+  "pendingJobMappingChanges": [],
+  "securityUnchanged": true,
+  "noClusterMutations": true
+}

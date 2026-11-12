@@ -1,0 +1,15 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "networkpermission": [
+    {
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "accountid": "285102d5-643d-4078-a4f1-26d01932ba16",
+      "project": "qa-gn1569-32-shared-reg",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    }
+  ]
+}

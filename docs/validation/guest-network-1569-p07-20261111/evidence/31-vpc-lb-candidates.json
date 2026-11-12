@@ -1,0 +1,62 @@
+[
+  {
+    "id": "37debda7-24fa-4211-a95f-ee838bf7cbd1",
+    "name": "qa-gn1612-31-review",
+    "protocol": null,
+    "publicip": null,
+    "publicipid": null,
+    "vpcid": "874d72f2-55f9-4fcc-925d-89fb2294b0d4",
+    "networkid": "459ddffd-f321-4d21-9be4-f090db569830",
+    "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+    "state": null,
+    "lbvm": []
+  },
+  {
+    "id": "6e9cde24-21d1-487e-b429-b1b5f2dbc1db",
+    "name": "qa-gn1616-31-allocated-lb",
+    "protocol": null,
+    "publicip": null,
+    "publicipid": null,
+    "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "projectid": null,
+    "state": null,
+    "lbvm": []
+  },
+  {
+    "id": "d53859bc-f9d8-4792-b6b7-21a46f0ff161",
+    "name": "qa-gn1616-31-implemented-lb",
+    "protocol": null,
+    "publicip": null,
+    "publicipid": null,
+    "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "projectid": null,
+    "state": null,
+    "lbvm": []
+  },
+  {
+    "id": "237808a1-e9d2-4401-a5d7-38dc1e73ccf6",
+    "name": "qa-gn1617-31-same-vip-lb",
+    "protocol": null,
+    "publicip": null,
+    "publicipid": null,
+    "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "projectid": null,
+    "state": null,
+    "lbvm": []
+  },
+  {
+    "id": "12844f26-8f83-4c99-8ba5-dd9aa8796534",
+    "name": "qa-gn1617-31-api-same-vip-lb",
+    "protocol": null,
+    "publicip": null,
+    "publicipid": null,
+    "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+    "projectid": null,
+    "state": null,
+    "lbvm": []
+  }
+]

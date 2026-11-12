@@ -1,0 +1,23 @@
+{
+  "state": {
+    "alerts": [
+      "처리 중입니다. 최종 결과를 확인할 때까지 기다려 주세요.9717c435-3a02-4040-afb7-8ffab5d2475b",
+      "선택한 가상머신: 1"
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "검색",
+        "value": ""
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 1
+  },
+  "mutationPosts": 0,
+  "queryJobs": [
+    "9717c435-3a02-4040-afb7-8ffab5d2475b"
+  ],
+  "sameJob": true
+}

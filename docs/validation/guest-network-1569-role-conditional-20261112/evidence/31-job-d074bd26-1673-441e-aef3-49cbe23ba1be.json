@@ -1,0 +1,8 @@
+{
+  "command": "associateIpAddress",
+  "params": {
+    "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "ipaddress": "10.10.31.107"
+  },
+  "jobid": "d074bd26-1673-441e-aef3-49cbe23ba1be"
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "cluster": 31,
+    "scenario": "before-noop",
+    "create": 0,
+    "assign": 0
+  },
+  {
+    "cluster": 31,
+    "scenario": "default",
+    "create": 1,
+    "assign": 0
+  },
+  {
+    "cluster": 31,
+    "scenario": "switch",
+    "create": 1,
+    "assign": 0
+  },
+  {
+    "cluster": 31,
+    "scenario": "manual",
+    "create": 1,
+    "assign": 1
+  },
+  {
+    "cluster": 31,
+    "scenario": "later",
+    "create": 1,
+    "assign": 0
+  },
+  {
+    "cluster": 31,
+    "scenario": "retry",
+    "create": 2,
+    "assign": 0
+  },
+  {
+    "cluster": 31,
+    "scenario": "navigation",
+    "create": 0,
+    "assign": 0
+  },
+  {
+    "cluster": 32,
+    "scenario": "before-noop",
+    "create": 0,
+    "assign": 0
+  },
+  {
+    "cluster": 32,
+    "scenario": "default",
+    "create": 1,
+    "assign": 0
+  },
+  {
+    "cluster": 32,
+    "scenario": "switch",
+    "create": 1,
+    "assign": 0
+  },
+  {
+    "cluster": 32,
+    "scenario": "manual",
+    "create": 1,
+    "assign": 1
+  },
+  {
+    "cluster": 32,
+    "scenario": "later",
+    "create": 1,
+    "assign": 0
+  },
+  {
+    "cluster": 32,
+    "scenario": "retry",
+    "create": 2,
+    "assign": 0
+  },
+  {
+    "cluster": 32,
+    "scenario": "navigation",
+    "create": 0,
+    "assign": 0
+  }
+]

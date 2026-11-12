@@ -1,0 +1,27 @@
+[
+  {
+    "cluster": 32,
+    "label": "vm-Isolated",
+    "text": "네트워크 작업 진행\n\nqa-gn1594-32-owner-vm\n\nqa-gn1594-32-vm-nat\n\n생성 및 연결\n기존 네트워크 연결\n완료\n닫기"
+  },
+  {
+    "cluster": 31,
+    "label": "vm-L2",
+    "text": "네트워크 작업 진행\n\nqa-gn1594-31-owner-vm\n\nqa-gn1594-31-vm-l2\n\n생성 및 연결\n기존 네트워크 연결\n완료\n닫기"
+  },
+  {
+    "cluster": 32,
+    "label": "vm-L2",
+    "text": "네트워크 작업 진행\n\nqa-gn1594-32-owner-vm\n\nqa-gn1594-32-vm-l2\n\n생성 및 연결\n기존 네트워크 연결\n완료\n닫기"
+  },
+  {
+    "cluster": 31,
+    "label": "vm-Shared",
+    "text": "네트워크 작업 진행\n\nqa-gn1594-31-owner-vm\n\nqa-gn1594-31-vm-shared\n\n생성 및 연결\n기존 네트워크 연결\n완료\n닫기"
+  },
+  {
+    "cluster": 32,
+    "label": "vm-Shared",
+    "text": "네트워크 작업 진행\n\nqa-gn1594-32-owner-vm\n\nqa-gn1594-32-vm-shared\n\n생성 및 연결\n기존 네트워크 연결\n완료\n닫기"
+  }
+]

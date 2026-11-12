@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "rect": {
+        "bottom": 811,
+        "height": 32,
+        "left": 591.46875,
+        "right": 649.234375,
+        "top": 779,
+        "width": 57.765625,
+        "x": 591.46875,
+        "y": 779
+      },
+      "text": "취소"
+    },
+    {
+      "rect": {
+        "bottom": 811,
+        "height": 32,
+        "left": 657.234375,
+        "right": 715,
+        "top": 779,
+        "width": 57.765625,
+        "x": 657.234375,
+        "y": 779
+      },
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "label": "정책 이름",
+      "value": "qa-gn1626-32-review"
+    },
+    {
+      "label": "Cookie 이름",
+      "value": "QA_SESSION"
+    },
+    {
+      "label": "길이",
+      "value": "32"
+    },
+    {
+      "label": "보관 유지시간",
+      "value": "3h"
+    },
+    {
+      "checked": false,
+      "label": "요청에서 학습",
+      "value": "on"
+    }
+  ],
+  "footer": {
+    "bottom": 827,
+    "height": 65,
+    "left": 25,
+    "right": 743,
+    "top": 762,
+    "width": 718,
+    "x": 25,
+    "y": 762
+  },
+  "vertical": true
+}

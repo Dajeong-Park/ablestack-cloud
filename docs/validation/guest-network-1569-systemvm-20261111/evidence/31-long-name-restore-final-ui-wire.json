@@ -1,0 +1,19 @@
+[
+  {
+    "command": "updateNetwork",
+    "params": {
+      "command": "updateNetwork",
+      "response": "json",
+      "id": "a803353e-3992-47fd-b9d5-df789b264f73",
+      "name": "qa-gn1569-31-shared-reg-control",
+      "displaynetwork": "true",
+      "displaytext": "QA1569 ConfigDrive control NIC",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "updatenetworkresponse": {
+        "jobid": "a7f22208-ace8-43c3-9858-45ab165a7e4b"
+      }
+    }
+  }
+]

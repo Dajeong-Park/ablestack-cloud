@@ -1,0 +1,4 @@
+{
+  "query": "SELECT v.id,v.uuid,v.instance_name,v.state,h.private_ip_address,d.template_version,d.scripts_version,d.software_version,t.name FROM vm_instance v JOIN domain_router d ON d.id=v.id LEFT JOIN host h ON h.id=v.host_id JOIN vm_template t ON t.id=v.vm_template_id WHERE (t.uuid='1846bd8c-a780-4918-a12d-23db003a78a8' OR v.uuid='e054e33f-8941-4d8e-b569-cb530c622254') AND v.removed IS NULL;",
+  "rows": "983\t2076aaab-4dc7-43a0-be13-f8c82c3bfeba\tr-983-VM\tRunning\t10.10.31.2\tCloudstack Release 4.23.0.0.1569.20261109 Mon Nov  9 07:57:22 AM UTC 2026\tc1d1cbda6f5bcf2541e88b0bce829d4ef12c05092796c75d9bea132be116e3017346f58ef91fcafb729945d4e24a1b8042b9af49b756e9a62cbd5491f172c4a5\t4.23.0.0\tSystemVM-gn1569-dnsfix-20261109-KVM\n"
+}

@@ -1,0 +1,9 @@
+{
+  "command": "updateDefaultNicForVirtualMachine",
+  "params": {
+    "virtualmachineid": "27ca6e8a-132e-46a8-9b83-18a136fa6f0f",
+    "nicid": "06ab2d45-8a48-4d04-a6e6-5ab3da988577",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "796828c8-43e6-4423-9945-216445b8c4c2"
+}

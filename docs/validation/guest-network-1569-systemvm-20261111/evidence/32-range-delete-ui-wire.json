@@ -1,0 +1,15 @@
+[
+  {
+    "command": "deleteVlanIpRange",
+    "params": {
+      "command": "deleteVlanIpRange",
+      "response": "json",
+      "id": "250bc9ef-b905-4103-b08a-ed1955a10e28"
+    },
+    "response": {
+      "deletevlaniprangeresponse": {
+        "success": true
+      }
+    }
+  }
+]

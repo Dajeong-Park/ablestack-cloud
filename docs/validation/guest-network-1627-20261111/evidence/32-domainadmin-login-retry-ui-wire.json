@@ -1,0 +1,31 @@
+[
+  {
+    "requestId": "30060.6338",
+    "command": "login",
+    "params": {
+      "command": "login",
+      "username": "qa-gn1569-32-scope-domainadmin",
+      "domain": "qa-gn1569-32-domain",
+      "response": "json"
+    },
+    "response": {
+      "loginresponse": {
+        "username": "qa-gn1569-32-scope-domainadmin",
+        "userid": "548bb084-abdf-40e9-86be-01777f994783",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "timeout": 600,
+        "account": "qa-gn1569-32-scope-domainadmin",
+        "firstname": "Shared",
+        "lastname": "Scope",
+        "type": "2",
+        "timezone": "UTC",
+        "timezoneoffset": "0.0",
+        "registered": "false",
+        "is2faenabled": "false",
+        "is2faverified": "true",
+        "issuerfor2fa": "CloudStack",
+        "firstlogin": "false"
+      }
+    }
+  }
+]

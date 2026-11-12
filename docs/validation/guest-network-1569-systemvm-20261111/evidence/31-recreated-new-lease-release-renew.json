@@ -1,0 +1,158 @@
+[
+  {
+    "case": "actual-new-dhcp-lease",
+    "nic": {
+      "id": "68a2b645-687e-4953-96a2-a9223efcc034",
+      "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+      "networkname": "qa-gn1569-31-shared-reg",
+      "netmask": "255.255.255.0",
+      "gateway": "10.247.31.1",
+      "ipaddress": "10.247.31.110",
+      "isolationuri": "vlan://2790",
+      "broadcasturi": "vlan://2790",
+      "traffictype": "Guest",
+      "type": "Shared",
+      "isdefault": false,
+      "macaddress": "02:1f:02:6e:00:05",
+      "secondaryip": [],
+      "extradhcpoption": [],
+      "deviceid": "3",
+      "enabled": true
+    },
+    "guest": {
+      "iface": "ens11",
+      "addresses": [
+        {
+          "ifindex": 5,
+          "ifname": "ens11",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:1f:02:6e:00:05",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s11"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.247.31.110",
+              "prefixlen": 24,
+              "broadcast": "10.247.31.255",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens11",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.247.31.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:6e:00:05\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.247.31.51\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-31-systemvm-vm25\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.247.31.110\nDHCP4.OPTION[9]:                        next_server = 10.247.31.51\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.0"
+    }
+  },
+  {
+    "case": "raw-dhcp-new",
+    "result": {
+      "mode": "new",
+      "mac": "02:1f:02:6e:00:05",
+      "messages": [
+        {
+          "sent": 1794397349.9443533,
+          "received": 1794397349.9447355,
+          "type": 2,
+          "ip": "10.247.31.110",
+          "server": "10.247.31.51",
+          "xid": 799189759,
+          "leaseSeconds": 4294967295,
+          "requestCiaddr": "0.0.0.0",
+          "requestDestination": "255.255.255.255"
+        },
+        {
+          "sent": 1794397349.944748,
+          "received": 1794397349.9448683,
+          "type": 5,
+          "ip": "10.247.31.110",
+          "server": "10.247.31.51",
+          "xid": 799189759,
+          "leaseSeconds": 4294967295,
+          "requestCiaddr": "0.0.0.0",
+          "requestDestination": "255.255.255.255"
+        }
+      ]
+    }
+  },
+  {
+    "case": "raw-dhcp-renew",
+    "result": {
+      "mode": "renew",
+      "mac": "02:1f:02:6e:00:05",
+      "messages": [
+        {
+          "sent": 1794397350.528357,
+          "received": 1794397350.5287793,
+          "type": 5,
+          "ip": "10.247.31.110",
+          "server": "10.247.31.51",
+          "xid": 2077738300,
+          "leaseSeconds": 4294967295,
+          "requestCiaddr": "10.247.31.110",
+          "requestDestination": "10.247.31.51"
+        }
+      ]
+    }
+  },
+  {
+    "case": "release",
+    "result": {
+      "dhcpReleaseSent": true,
+      "ip": "10.247.31.110",
+      "server": "10.247.31.51"
+    },
+    "leases": "0 02:1f:02:6e:00:01 10.247.31.58 qa-gn1569-31-shared-reg-vm21 *\n0 02:1f:02:6e:00:02 10.247.31.57 qa-gn1569-31-shared-reg-vm22 *\n0 02:1f:02:6e:00:03 10.247.31.55 qa-gn1569-31-shared-reg-vm23 *\n0 02:1f:02:6e:00:04 10.247.31.54 qa-gn1569-31-shared-reg-vm24 *"
+  },
+  {
+    "case": "new-lease-after-release",
+    "result": {
+      "mode": "new",
+      "mac": "02:1f:02:6e:00:05",
+      "messages": [
+        {
+          "sent": 1794397353.5243506,
+          "received": 1794397353.5247488,
+          "type": 2,
+          "ip": "10.247.31.110",
+          "server": "10.247.31.51",
+          "xid": 1936905711,
+          "leaseSeconds": 4294967295,
+          "requestCiaddr": "0.0.0.0",
+          "requestDestination": "255.255.255.255"
+        },
+        {
+          "sent": 1794397353.5247598,
+          "received": 1794397353.5281873,
+          "type": 5,
+          "ip": "10.247.31.110",
+          "server": "10.247.31.51",
+          "xid": 1936905711,
+          "leaseSeconds": 4294967295,
+          "requestCiaddr": "0.0.0.0",
+          "requestDestination": "255.255.255.255"
+        }
+      ]
+    }
+  },
+  {
+    "case": "retained-lease-restored",
+    "leases": "0 02:1f:02:6e:00:05 10.247.31.110 qa-gn1569-31-systemvm-vm25 *\n0 02:1f:02:6e:00:01 10.247.31.58 qa-gn1569-31-shared-reg-vm21 *\n0 02:1f:02:6e:00:02 10.247.31.57 qa-gn1569-31-shared-reg-vm22 *\n0 02:1f:02:6e:00:03 10.247.31.55 qa-gn1569-31-shared-reg-vm23 *\n0 02:1f:02:6e:00:04 10.247.31.54 qa-gn1569-31-shared-reg-vm24 *"
+  }
+]

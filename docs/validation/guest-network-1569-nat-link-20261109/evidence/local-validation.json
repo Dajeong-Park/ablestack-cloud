@@ -1,0 +1,15 @@
+{
+  "testCount": 42,
+  "build": {
+    "exit": 0,
+    "command": "NODE_OPTIONS=--openssl-legacy-provider VUE_CLI_SERVICE_CONFIG_PATH=/home/ablecloud/work/guest-network-1569-nat-link-validation/ui-build.config.js npm run build"
+  },
+  "test": {
+    "exit": 0,
+    "command": "npx vue-cli-service lint --no-fix src/views/network/IpAddressesTab.vue tests/unit/views/network/IpAddressesVmLinks.spec.js && CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/IpAddressesVmLinks.spec.js tests/unit/views/network/NetworkTabs.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  },
+  "source": {
+    "ui/src/views/network/IpAddressesTab.vue": "4fead4696551b9b1ef28e59616022692c30b74fa7ccc9ab7f0e95973c11fda99",
+    "ui/tests/unit/views/network/IpAddressesVmLinks.spec.js": "9fc1e4341b621553c13f2df625ae774ee0ee54b092487f2fb0ab43d25a0202d4"
+  }
+}

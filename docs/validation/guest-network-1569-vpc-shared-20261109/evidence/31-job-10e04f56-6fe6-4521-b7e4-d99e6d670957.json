@@ -1,0 +1,9 @@
+{
+  "command": "addNicToVirtualMachine",
+  "params": {
+    "virtualmachineid": "36fa510b-3746-419c-91bf-3f58f457a8ae",
+    "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "10e04f56-6fe6-4521-b7e4-d99e6d670957"
+}

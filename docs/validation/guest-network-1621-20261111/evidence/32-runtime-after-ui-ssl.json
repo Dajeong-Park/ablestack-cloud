@@ -1,0 +1,27 @@
+{
+  "files": {
+    "/etc/ipsec.d/l2tp.conf": {
+      "sha256": "f19e7e5cc492c814c508f4f3b1658d4353a27c55c3fbb362e82bb2c049b2cb4d",
+      "mtime": 1794324419464224983,
+      "mode": "0o755"
+    },
+    "/etc/xl2tpd/xl2tpd.conf": {
+      "sha256": "7df9154ce8893cb0d9ab8463f85d130c831eeffae3b8ca82b4b42a69a377b52a",
+      "mtime": 1794324419464224983,
+      "mode": "0o755"
+    },
+    "/etc/ppp/options.xl2tpd": {
+      "sha256": "d8692a431844b43f7e44da3828c86215bb07f1007d8268c1459d87999eeee7ef",
+      "mtime": 1794324419464224983,
+      "mode": "0o755"
+    }
+  },
+  "xl2tpdPids": "74293",
+  "pppdPids": "100876",
+  "keyFileMetadata": {
+    "sha256": "8a325a7840b5538f05affac7b403e19e5d66d138c4d4ece56a154c758a292ac6",
+    "mtime": 1794328899583628984,
+    "mode": "0o644"
+  },
+  "keyFileUnwrittenSinceBeforeSslWindow": true
+}

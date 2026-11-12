@@ -1,0 +1,79 @@
+[
+  {
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1599-32-reject-native-shared-isolated",
+      "displaytext": "QA1599 native Shared PVLAN must reject",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "acltype": "Account",
+      "vlan": "3732",
+      "isolatedpvlantype": "Isolated",
+      "gateway": "10.246.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.246.32.11",
+      "endip": "10.246.32.19",
+      "isolatedpvlan": "3782"
+    },
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden."
+    },
+    "accepted": false
+  },
+  {
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1599-32-reject-native-shared-community",
+      "displaytext": "QA1599 native Shared PVLAN must reject",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "acltype": "Account",
+      "vlan": "3732",
+      "isolatedpvlantype": "Community",
+      "gateway": "10.246.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.246.32.11",
+      "endip": "10.246.32.19",
+      "isolatedpvlan": "3783"
+    },
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden."
+    },
+    "accepted": false
+  },
+  {
+    "command": "createNetwork",
+    "params": {
+      "name": "qa-gn1599-32-reject-native-shared-promiscuous",
+      "displaytext": "QA1599 native Shared PVLAN must reject",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "projectid": "f794c1da-2d1a-4918-92ca-ed192dcdb5df",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "acltype": "Account",
+      "vlan": "3732",
+      "isolatedpvlantype": "Promiscuous",
+      "gateway": "10.246.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.246.32.11",
+      "endip": "10.246.32.19"
+    },
+    "result": {
+      "uuidList": [],
+      "errorcode": 431,
+      "cserrorcode": 4350,
+      "errortext": "PVLAN is unsupported on this physical network. A guarded Open vSwitch bridge is required; native Linux bridge fallback is forbidden."
+    },
+    "accepted": false
+  }
+]

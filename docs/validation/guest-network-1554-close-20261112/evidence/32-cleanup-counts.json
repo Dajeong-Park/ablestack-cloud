@@ -1,0 +1,15 @@
+{
+  "retainedVms": 15,
+  "retainedNetworks": 16,
+  "retainedVpcs": 3,
+  "removedVms": 16,
+  "removedNetworks": 80,
+  "removedVpcs": 9,
+  "removedNics": 9,
+  "freeVirtualNetworkPublicIpsBefore": 59,
+  "freeVirtualNetworkPublicIpsAfter": 84,
+  "certificatesBefore": 15,
+  "certificatesAfter": 2,
+  "qaAccountsBefore": 22,
+  "qaAccountsAfter": 16
+}

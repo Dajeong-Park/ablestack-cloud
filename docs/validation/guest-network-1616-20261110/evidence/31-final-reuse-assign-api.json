@@ -1,0 +1,19 @@
+[
+  {
+    "command": "assignToLoadBalancerRule",
+    "params": {
+      "command": "assignToLoadBalancerRule",
+      "id": "d53859bc-f9d8-4792-b6b7-21a46f0ff161",
+      "vmidipmap[0].vmid": "95f9dac8-920a-475d-91ff-5bc015c15d0e",
+      "vmidipmap[0].vmip": "10.210.31.173",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "customjobid": "8c65fe64-915f-497e-b59d-5974e50cdba9"
+    },
+    "response": {
+      "assigntoloadbalancerruleresponse": {
+        "jobid": "8c65fe64-915f-497e-b59d-5974e50cdba9"
+      }
+    }
+  }
+]

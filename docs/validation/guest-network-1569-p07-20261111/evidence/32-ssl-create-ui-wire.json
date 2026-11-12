@@ -1,0 +1,27 @@
+[
+  {
+    "requestId": "30060.831",
+    "command": "createLoadBalancerRule",
+    "params": {
+      "command": "createLoadBalancerRule",
+      "response": "json",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "openfirewall": "false",
+      "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+      "algorithm": "roundrobin",
+      "name": "qa-gn1569-32-p07-ssl",
+      "privateport": "18443",
+      "protocol": "ssl",
+      "publicport": "19171",
+      "cidrlist": "10.10.0.0/16",
+      "backendssl": "true"
+    },
+    "response": {
+      "createloadbalancerruleresponse": {
+        "id": "66c01dd9-10dc-47af-a8d2-9175e2eeced3",
+        "jobid": "fed36078-569a-4e8d-ba67-546705a35f6e"
+      }
+    }
+  }
+]

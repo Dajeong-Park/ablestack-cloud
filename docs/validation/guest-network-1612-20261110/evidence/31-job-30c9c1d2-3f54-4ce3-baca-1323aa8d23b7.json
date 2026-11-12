@@ -1,0 +1,14 @@
+{
+  "command": "deployVirtualMachine",
+  "params": {
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "serviceofferingid": "e2858825-9b43-4fb6-902d-8f92f17a8fc2",
+    "networkids": "459ddffd-f321-4d21-9be4-f090db569830",
+    "projectid": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+    "name": "qa-gn1612-31-internal-vm",
+    "displayname": "qa-gn1612-31-internal-vm",
+    "startvm": false
+  },
+  "jobid": "30c9c1d2-3f54-4ce3-baca-1323aa8d23b7"
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "label": "Isolated",
+    "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "name": "qa-gn1569-32-vpn-lb",
+    "entity": "NETWORK",
+    "tag": "Network",
+    "event": "Network",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  {
+    "label": "L2",
+    "id": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+    "name": "qa-gn1569-32-shared-reg-control",
+    "entity": "NETWORK",
+    "tag": "Network",
+    "event": "Network",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  {
+    "label": "Shared",
+    "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "name": "qa-gn1569-32-shared-reg",
+    "entity": "NETWORK",
+    "tag": "Network",
+    "event": "Network",
+    "projectid": null
+  },
+  {
+    "label": "PublicIP-Isolated",
+    "id": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+    "name": "10.10.32.177",
+    "entity": "PUBLIC_IP_ADDRESS",
+    "tag": "PublicIpAddress",
+    "event": "IpAddress",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  {
+    "label": "PublicIP-VPC",
+    "id": "eb9043d0-adaa-4711-ac89-463c5e8fd012",
+    "name": "10.10.32.147",
+    "entity": "PUBLIC_IP_ADDRESS",
+    "tag": "PublicIpAddress",
+    "event": "IpAddress",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  }
+]

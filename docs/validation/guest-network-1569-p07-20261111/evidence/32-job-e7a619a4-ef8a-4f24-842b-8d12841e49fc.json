@@ -1,0 +1,10 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "66c01dd9-10dc-47af-a8d2-9175e2eeced3",
+    "name": "qa-gn1569-32-p07-denial-restored",
+    "methodname": "SourceBased",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "e7a619a4-ef8a-4f24-842b-8d12841e49fc"
+}

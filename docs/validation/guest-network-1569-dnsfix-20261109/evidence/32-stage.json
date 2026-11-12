@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "dnsmasq-base-patched.deb": "81929d5d7dd5443bff6f389015f9b8c790b2b15f11679f4c6d56d5cdc7b3290b",
+    "dnsmasq-base-original.deb": "77f56034a23b200c9787d3d9b423030a1e95618f476e011d988daacc19919bc1"
+  },
+  "out": "/usr/sbin/dnsmasq: OK\n74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc  candidate/usr/sbin/dnsmasq\n"
+}

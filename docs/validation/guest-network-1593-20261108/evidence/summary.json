@@ -1,0 +1,21 @@
+{
+  "issue": 1593,
+  "implementation": "8e10ca50f8fdb26dc3932b8132a2ea110f1ffdf4",
+  "productPaths": [
+    "ui/src/views/compute/VmNicsTab.vue"
+  ],
+  "apiSourceChanges": false,
+  "javaJarDeployment": false,
+  "localUiTests": 22,
+  "clusters": [
+    31,
+    32
+  ],
+  "roleUiCases": 12,
+  "viewportThemeCombinations": 12,
+  "captures": 47,
+  "newCaptures": 45,
+  "referenceCaptures": 2,
+  "resourcesPreserved": true,
+  "nextIssue": 1594
+}

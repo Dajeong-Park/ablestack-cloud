@@ -104,12 +104,14 @@ describe('SharedFS initial backing contract', () => {
   })
   it('preserved initial shares keep squash mapping without invented POSIX ownership', () => {
     const ctx = { boolValue: x => !!x }
-    const policy = SharedFSTab.methods.effectiveNfsExportConfig.call(ctx, { rootSquash: true, posixPolicy: 'PRESERVE_EXISTING_INITIAL' })
+    const policy = SharedFSTab.methods.effectiveNfsExportConfig.call(ctx, { rootSquash: true, posixPolicy: 'PRESERVE_EXISTING_INITIAL', anonUid: 65534 })
     expect(policy.anonUid).toBe(65534)
     expect(policy.ownerUid).toBeUndefined()
     expect(policy.mode).toBeUndefined()
-    const legacy = SharedFSTab.methods.effectiveNfsExportConfig.call(ctx, { rootSquash: true })
+    const legacy = SharedFSTab.methods.effectiveNfsExportConfig.call(ctx, { rootSquash: true, ownerUid: 65534, mode: '0775' })
     expect(legacy.ownerUid).toBe(65534)
     expect(legacy.mode).toBe('0775')
+    const unspecified = SharedFSTab.methods.effectiveNfsExportConfig.call(ctx, { rootSquash: true })
+    expect(unspecified).toEqual({ rootSquash: true })
   })
 })

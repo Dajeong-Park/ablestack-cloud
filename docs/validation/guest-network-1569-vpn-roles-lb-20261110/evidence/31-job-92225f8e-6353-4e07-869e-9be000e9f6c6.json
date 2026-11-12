@@ -1,0 +1,12 @@
+{
+  "command": "createVPC",
+  "params": {
+    "name": "qa-gn1569-31-lb-int-reg",
+    "displaytext": "QA1569 VPC/internal LB offering integration",
+    "cidr": "10.236.31.0/24",
+    "vpcofferingid": "49767c4b-61bd-4535-9957-af9908e220f1",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "92225f8e-6353-4e07-869e-9be000e9f6c6"
+}

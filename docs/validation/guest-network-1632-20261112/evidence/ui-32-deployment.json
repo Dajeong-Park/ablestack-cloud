@@ -1,0 +1,11 @@
+{
+  "static_files": 675,
+  "static_bytes": 30437043,
+  "hash_mismatches": [],
+  "index_sha256": "b2162a5bdc364c71868ed154a7c0a7ed983884ab5d9228830d8752ac34eed197",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 29138481152,
+  "remote_stage": "/dev/shm/gn1632-revocation-20261112-153854",
+  "backup_sha256": "a4c280917ef6d453da5ff78af3dee3cf11f7dd724c8af61e84e2d4cc85fff678"
+}

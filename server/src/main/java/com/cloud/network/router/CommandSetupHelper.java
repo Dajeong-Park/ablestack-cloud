@@ -1423,7 +1423,7 @@ public class CommandSetupHelper {
                 dhcpRange = NetUtils.getIpRangeStartIpFromCidr(cidr, cidrSize);
             }
         } else if (dc.getNetworkType() == NetworkType.Advanced) {
-            final String cidr = guestNetwork.getCidr();
+            final String cidr = GuestNicCidr.select(guestNetwork, guestNic, guestNetwork.getCidr());
             if (cidr != null) {
                 dhcpRange = NetUtils.getDhcpRange(cidr);
             }

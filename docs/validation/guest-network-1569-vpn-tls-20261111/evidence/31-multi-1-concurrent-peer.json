@@ -1,0 +1,35 @@
+{
+  "cluster": 31,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 0,
+      "out": "PING 10.234.31.6 (10.234.31.6) from 10.1.2.2 ppp82: 56(84) bytes of data.\n64 bytes from 10.234.31.6: icmp_seq=1 ttl=63 time=1.90 ms\n64 bytes from 10.234.31.6: icmp_seq=2 ttl=63 time=1.78 ms\n64 bytes from 10.234.31.6: icmp_seq=3 ttl=63 time=1.48 ms\n64 bytes from 10.234.31.6: icmp_seq=4 ttl=63 time=1.61 ms\n64 bytes from 10.234.31.6: icmp_seq=5 ttl=63 time=1.70 ms\n\n--- 10.234.31.6 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4007ms\nrtt min/avg/max/mdev = 1.477/1.693/1.904/0.144 ms",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      },
+      {
+        "ok": true,
+        "banner": "SSH-2.0-OpenSSH_8.7"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.31.6 dev ppp82 src 10.1.2.2 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-31-multi-1: #22, ESTABLISHED, IKEv1, 84034dfb4cda1fa1_i* 46fa1998392ec5d7_r\n  local  '172.30.150.178' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 30s ago, rekeying in 14134s\n  qa-ra-child-31-multi-1: #27, reqid 1, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 30s ago, rekeying in 3251s, expires in 3930s\n    in  c690254c,   3546 bytes,    57 packets,     0s ago\n    out cdb38328,   4165 bytes,    66 packets,     0s ago\n    local  172.30.150.178/32[udp/53201]\n    remote 10.10.31.148/32[udp/l2tp]\n  qa-ra-child-31-multi-2: #28, reqid 3, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 25s ago, rekeying in 3259s, expires in 3935s\n    in  cb8e4058,   2762 bytes,    48 packets,     1s ago\n    out c83f7fb0,   1949 bytes,    36 packets,     1s ago\n    local  172.30.150.178/32[udp/53301]\n    remote 10.10.31.148/32[udp/l2tp]\nqa-ra-32: #21, ESTABLISHED, IKEv1, 0a341810f19b5950_i* 1ce4a797ea39f986_r\n  local  '172.30.150.178' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 1246s ago, rekeying in 13108s\n  qa-ra-child-32: #26, reqid 2, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 1246s ago, rekeying in 2078s, expires in 2714s\n    in  cef91e1f,  14873 bytes,   529 packets,     3s ago\n    out c7dadf3d,  15137 bytes,   532 packets,     3s ago\n    local  172.30.150.178/32[udp/49347]\n    remote 10.10.32.150/32[udp/l2tp]",
+    "error": ""
+  }
+}

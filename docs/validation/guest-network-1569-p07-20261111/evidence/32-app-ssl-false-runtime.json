@@ -1,0 +1,20 @@
+{
+  "section": "listen 10_10_32_177-19171\n\tbind 10.10.32.177:19171 ssl crt /etc/cloudstack/ssl/10_10_32_177-19171.pem alpn h2,http/1.1 ssl-min-ver TLSv1.2 no-tls-tickets ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256 ciphersuites TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256\n\thttp-request add-header X-Forwarded-Proto https\n\tmode http\n\toption httpclose\n\tacl network_allowed src 10.10.0.0/16 \n\ttcp-request connection reject if !network_allowed\n\tbalance roundrobin\n\tserver 10_10_32_177-19171_0 10.234.32.227:18443 ssl verify none check ssl-min-ver TLSv1.2 no-tls-tickets ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-GCM-SHA256 ciphersuites TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256 cookie 10_234_32_227-18443\n\tstick-table type string len 32 size 200k expire 3h\n\tstick match req.cook(QA_SESSION)\n\tstick store-response res.cook(QA_SESSION)\n\t ",
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (102531) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (102531) : path to executable is /usr/sbin/haproxy\n[WARNING]  (102531) : config : parsing [/etc/haproxy/haproxy.cfg:110] : a 'tcp-request' rule placed after an 'http-request' rule will still be processed before.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18871' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18873' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18876' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18877' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18878' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18879' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18880' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-18969' as it requires HTTP mode.\n[WARNING]  (102531) : config : 'option forwardfor' ignored for proxy '10_10_32_177-19173' as it requires HTTP mode."
+  },
+  "requests": [
+    {
+      "label": "response-cookie",
+      "exit": 0,
+      "out": "HTTP/2 200 \nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 07:51:04 GMT\ncontent-length: 32\nset-cookie: QA_SESSION=qa1625_response_cookie; Path=/; Secure; HttpOnly\n\nqa-gn1569-single-backend-tls-ok\n\nHTTP:200"
+    },
+    {
+      "label": "request-only",
+      "exit": 0,
+      "out": "HTTP/2 200 \nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 07:51:04 GMT\ncontent-length: 32\n\nqa-gn1569-single-backend-tls-ok\n\nHTTP:200"
+    }
+  ],
+  "table": "# table: 10_10_32_177-19171, type: string, size:204800, used:1\n0x55a7053dcf60: key=qa1625_response_cookie use=0 exp=10799983 server_id=1 server_key=10_10_32_177-19171_0\n"
+}

@@ -1,0 +1,40 @@
+{
+  "plan": {},
+  "posts": [
+    {
+      "command": "createLBStickinessPolicy",
+      "params": {
+        "command": "createLBStickinessPolicy",
+        "response": "json",
+        "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+        "name": "qa-gn1626-32-lb-cookie-retry",
+        "methodname": "LbCookie",
+        "param[0].name": "cookie-name",
+        "param[0].value": "QA_LB_COOKIE",
+        "param[1].name": "mode",
+        "param[1].value": "qa-invalid-mode",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ],
+  "jobId": "679496b6-b95d-4140-ae26-a843bc4573d6",
+  "receipt": {
+    "createLBStickinessPolicy": {
+      "id": "185a9924-457e-4eb5-9a52-b30b4478a24c",
+      "jobid": "679496b6-b95d-4140-ae26-a843bc4573d6"
+    }
+  },
+  "queries": [
+    {
+      "jobid": "679496b6-b95d-4140-ae26-a843bc4573d6",
+      "action": "actual"
+    }
+  ],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": false
+    }
+  ]
+}

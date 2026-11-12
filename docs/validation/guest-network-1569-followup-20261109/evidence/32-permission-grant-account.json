@@ -1,0 +1,41 @@
+{
+  "grants": [
+    {
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "accountid": "285102d5-643d-4078-a4f1-26d01932ba16",
+      "project": "qa-gn1569-32-shared-reg",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    {
+      "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "account": "qa-gn1569-32-followup-consumer",
+      "accountid": "46020da1-0a88-4b12-84ef-cf434547e3d1"
+    }
+  ],
+  "candidates": {
+    "consumer": {
+      "personal": true,
+      "project": true
+    },
+    "outsider": {
+      "personal": false
+    }
+  },
+  "actors": {
+    "consumer": {
+      "id": "46020da1-0a88-4b12-84ef-cf434547e3d1",
+      "name": "qa-gn1569-32-followup-consumer",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7"
+    },
+    "outsider": {
+      "id": "9bbb59bc-a5db-40ef-b5d6-e563645f11c4",
+      "name": "qa-gn1569-32-followup-outsider",
+      "domainid": "a31a8a1e-7f77-4fee-ab52-097769b2df1c"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "rows": [
+    {
+      "cluster": 31,
+      "counts": {
+        "roles": 48,
+        "signed": 12,
+        "invalid": 12,
+        "personal": 8,
+        "ssl": 26,
+        "runtime-denials": 24
+      },
+      "total": 130
+    },
+    {
+      "cluster": 32,
+      "counts": {
+        "roles": 48,
+        "signed": 12,
+        "invalid": 12,
+        "personal": 8,
+        "ssl": 26,
+        "runtime-denials": 24
+      },
+      "total": 130
+    }
+  ],
+  "total": 260,
+  "allExpected": true
+}

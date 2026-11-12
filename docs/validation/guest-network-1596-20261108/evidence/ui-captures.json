@@ -1,0 +1,2392 @@
+[
+  {
+    "cluster": 31,
+    "label": "before-summary3-NIC0",
+    "file": "screenshots/31-before-summary3-NIC0.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "d226665875c739a774ba1bbf6db228d4ff1852d7fef419ee88c038b43ee1802b"
+  },
+  {
+    "cluster": 32,
+    "label": "before-summary3-NIC0",
+    "file": "screenshots/32-before-summary3-NIC0.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "ad011e48cad77081b02f231728b277be5dd7260fa58c4a9ce670aa7ca5ad9629"
+  },
+  {
+    "cluster": 31,
+    "label": "after-summary3-NIC3",
+    "file": "screenshots/31-after-summary3-NIC3.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "8c314aec9690492890fc53665830ed67c9cc09f420e93ddc3a927da18747767d"
+  },
+  {
+    "cluster": 31,
+    "label": "lookup-pending-links-hidden",
+    "file": "screenshots/31-lookup-pending-links-hidden.jpg",
+    "dark": true,
+    "links": [],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "67c4b09853b3ab4a339249451683af2e91ef2fd25e51211d12f097c040d87c9d"
+  },
+  {
+    "cluster": 31,
+    "label": "lookup-failed-NIC3-links0",
+    "file": "screenshots/31-lookup-failed-NIC3-links0.jpg",
+    "dark": true,
+    "links": [],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 조회를 완료하지 못해 링크를 숨겼습니다. 네트워크 이름과 NIC는 유지됩니다.\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "fd8a8b2f209fd05be90cacf4aa22c70f20279a22ccac21bc22fd94ffd14c8073"
+  },
+  {
+    "cluster": 31,
+    "label": "lookup-recovered-summary3-NIC3",
+    "file": "screenshots/31-lookup-recovered-summary3-NIC3.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "e20c3e232762f79a8f8485d66c63614156b67b55ece42820af78ffc90f941570"
+  },
+  {
+    "cluster": 31,
+    "label": "links-summary-dark-1280",
+    "file": "screenshots/31-links-summary-dark-1280.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "7f03ead99f0b35dd32134e039056733546186a0cb8aa5c0ef46b1c4a86e175a8"
+  },
+  {
+    "cluster": 31,
+    "label": "links-NIC-dark-1280",
+    "file": "screenshots/31-links-NIC-dark-1280.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "404d67bcdd01fb4206c51b4901a9ed7634bc1c805328beb31f98be2fdd9bf5dd"
+  },
+  {
+    "cluster": 31,
+    "label": "links-summary-dark-768",
+    "file": "screenshots/31-links-summary-dark-768.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "8dd956f6e0983978fc1c6e0a11f8b222c301386d118ac6024b0f45f27d73b5c7"
+  },
+  {
+    "cluster": 31,
+    "label": "links-NIC-dark-768",
+    "file": "screenshots/31-links-NIC-dark-768.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "35ac5276da09afcd4c97bc80a2d371e8b6eabc0715515a778faa9bf83ad07615"
+  },
+  {
+    "cluster": 31,
+    "label": "links-summary-dark-390",
+    "file": "screenshots/31-links-summary-dark-390.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "cd27f26b6a715013b7a8677ec32e38bbfdcf31053b58b0ab5baa3a9a65eaa608"
+  },
+  {
+    "cluster": 31,
+    "label": "links-NIC-dark-390",
+    "file": "screenshots/31-links-NIC-dark-390.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "b445db4d7ef4aff446782ad16140a6dd1793ded85070f999fc344b4153845b3e"
+  },
+  {
+    "cluster": 31,
+    "label": "links-summary-light-1280",
+    "file": "screenshots/31-links-summary-light-1280.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "11786a92771a9d01a8304be40179477c8d3dad833503150f87bd79ebcac33f92"
+  },
+  {
+    "cluster": 31,
+    "label": "links-NIC-light-1280",
+    "file": "screenshots/31-links-NIC-light-1280.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "a0a1c3943d450b1ce3cf6aafd7c18aa148153796d0230ae771db46b2f7039a65"
+  },
+  {
+    "cluster": 31,
+    "label": "links-summary-light-768",
+    "file": "screenshots/31-links-summary-light-768.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "6ceca13deff7fd7f33d9c40c1b9203d9e496866b9e9d75e7f53f510410300938"
+  },
+  {
+    "cluster": 31,
+    "label": "links-NIC-light-768",
+    "file": "screenshots/31-links-NIC-light-768.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "c461219361e523dd4cf2cb136a816236ef2e443ebcc135aa952da44b06d5a3f8"
+  },
+  {
+    "cluster": 31,
+    "label": "links-summary-light-390",
+    "file": "screenshots/31-links-summary-light-390.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "715a6e51bf45631f59d00fbb9cef2b623606f025f90d5343fe88b04d23bc1f7a"
+  },
+  {
+    "cluster": 31,
+    "label": "links-NIC-light-390",
+    "file": "screenshots/31-links-NIC-light-390.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "e16284ee6b9e63144684b17e0b0f775f75f32048adf961a708818589bd44c646"
+  },
+  {
+    "cluster": 31,
+    "label": "share-attach-dialog-light",
+    "file": "screenshots/31-share-attach-dialog-light.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      }
+    ],
+    "nicRows": 1,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.119\n02:1f:02:50:00:04\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "f73a1643208d2647ae0dcf5129a60f543eb602956e691d99c17a9b7668d654b9"
+  },
+  {
+    "cluster": 31,
+    "label": "share-granted-two-NIC",
+    "file": "screenshots/31-share-granted-two-NIC.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+        "inNic": false,
+        "text": "qa-gn1569-31-reg-personal-share"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+        "inNic": true,
+        "text": "qa-gn1569-31-reg-personal-share"
+      }
+    ],
+    "nicRows": 2,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.119\n02:1f:02:50:00:04\t활성화\t\n연결 해제\n\nqa-gn1569-31-reg-personal-share\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:3d:00:02\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "36d69ebac2552875efd7df827c6a5f92d580c24d6b098add7e69ea13ba4e1b4f"
+  },
+  {
+    "cluster": 31,
+    "label": "share-revoked-NIC-preserved",
+    "file": "screenshots/31-share-revoked-NIC-preserved.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      }
+    ],
+    "nicRows": 2,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.119\n02:1f:02:50:00:04\t활성화\t\n연결 해제\n\nqa-gn1569-31-reg-personal-share\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:3d:00:02\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "64620fdd6e691265cb1e694f99ea11355e5ca06c543db504d40630c171cc8ef0"
+  },
+  {
+    "cluster": 31,
+    "label": "share-restored-two-NIC",
+    "file": "screenshots/31-share-restored-two-NIC.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+        "inNic": false,
+        "text": "qa-gn1569-31-reg-personal-share"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+        "inNic": true,
+        "text": "qa-gn1569-31-reg-personal-share"
+      }
+    ],
+    "nicRows": 2,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.119\n02:1f:02:50:00:04\t활성화\t\n연결 해제\n\nqa-gn1569-31-reg-personal-share\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:3d:00:02\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/700bca14-4b49-4728-b915-345f87b3a153?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "412f177a1718d10f693e6ade668ce60103229be285de0712bab321eafce17e70"
+  },
+  {
+    "cluster": 31,
+    "label": "role-readonly-links",
+    "file": "screenshots/31-role-readonly-links.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "c01b8145efe7ee47f4e1185f1037b585d16b2a968e2d896de51a0ce2e1e911bf"
+  },
+  {
+    "cluster": 31,
+    "label": "role-outsider-denied",
+    "file": "screenshots/31-role-outsider-denied.jpg",
+    "dark": false,
+    "links": [],
+    "nicRows": 0,
+    "project": "기본 보기",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "59326b42ec72d7fb95f9be9e08565aa69660d3618dfae6457e6a4254e9126666"
+  },
+  {
+    "cluster": 31,
+    "label": "project-default-cleared",
+    "file": "screenshots/31-project-default-cleared.jpg",
+    "dark": false,
+    "links": [],
+    "nicRows": 0,
+    "project": "기본 보기",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "e527f7ca2e1ed440aa6b54669a7a0c0656e1d07583a264a4675d98bae18ce4f0"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-standard-NIC",
+    "file": "screenshots/31-VM-standard-NIC.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "inNic": false,
+        "text": "qa-gn1569-31-prj-base"
+      },
+      {
+        "href": "#/guestnetwork/d8ac9ffd-3295-4c8b-a8a0-1450b9063743",
+        "inNic": false,
+        "text": "qa-gn1594-31-vm-nat"
+      },
+      {
+        "href": "#/guestnetwork/ab761ff0-5a40-47cc-911a-6180b1470b98",
+        "inNic": false,
+        "text": "qa-gn1594-31-vm-l2"
+      },
+      {
+        "href": "#/guestnetwork/746ecad7-83e8-4ccb-84cf-2088cad0082d",
+        "inNic": false,
+        "text": "qa-gn1594-31-vm-shared"
+      },
+      {
+        "href": "#/guestnetwork/424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "inNic": true,
+        "text": "qa-gn1569-31-prj-base"
+      },
+      {
+        "href": "#/guestnetwork/d8ac9ffd-3295-4c8b-a8a0-1450b9063743",
+        "inNic": true,
+        "text": "qa-gn1594-31-vm-nat"
+      },
+      {
+        "href": "#/guestnetwork/ab761ff0-5a40-47cc-911a-6180b1470b98",
+        "inNic": true,
+        "text": "qa-gn1594-31-vm-l2"
+      },
+      {
+        "href": "#/guestnetwork/746ecad7-83e8-4ccb-84cf-2088cad0082d",
+        "inNic": true,
+        "text": "qa-gn1594-31-vm-shared"
+      }
+    ],
+    "nicRows": 4,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-prj-base\nShared기본\t0\t10.180.31.12\n1e:1f:03:00:02:e1\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-nat\nIsolated\t1\t10.252.31.91\n02:1f:02:56:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-l2\nL2\t2\tCloud IP 관리 안 함\n02:1f:02:57:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-shared\nShared\t3\t10.247.31.50\n02:1f:02:58:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "a1026c1b18d6c97ffba09c7cbe309ac0458ade1e6998afa56a0202e84b44ec04"
+  },
+  {
+    "cluster": 32,
+    "label": "after-summary3-NIC3",
+    "file": "screenshots/32-after-summary3-NIC3.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "146d7fa91a3ccb3e62070ae7ed0693ab60cecb33343c8e79f588477274fb560b"
+  },
+  {
+    "cluster": 32,
+    "label": "network-lookup-pending",
+    "file": "screenshots/32-network-lookup-pending.jpg",
+    "dark": false,
+    "links": [],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "722088073feae13a39ce2b63171f6a74b80c47c326752a6efb2b9457d164cebd"
+  },
+  {
+    "cluster": 32,
+    "label": "network-lookup-failed-NIC-preserved",
+    "file": "screenshots/32-network-lookup-failed-NIC-preserved.jpg",
+    "dark": false,
+    "links": [],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 조회를 완료하지 못해 링크를 숨겼습니다. 네트워크 이름과 NIC는 유지됩니다.\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "8115550e81329f22b41c59bb033369ae4e81cbb49c5b063a99b133d0e3896c3d"
+  },
+  {
+    "cluster": 32,
+    "label": "network-lookup-recovered",
+    "file": "screenshots/32-network-lookup-recovered.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "fa87e17a5dfec4e49e152b2dbbc9c9d0ab46c14056ab039ed525c17c35663a15"
+  },
+  {
+    "cluster": 32,
+    "label": "links-summary-light-1280",
+    "file": "screenshots/32-links-summary-light-1280.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "bcd954c277fa8b905f59ac0b39917c78edf9d38d0bb3590d6d0db6c685afdeea"
+  },
+  {
+    "cluster": 32,
+    "label": "links-NIC-light-1280",
+    "file": "screenshots/32-links-NIC-light-1280.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "0a6ae92e2e739b0db54de25e76810edcf0fa5ec9c270034c4043a8e86c385909"
+  },
+  {
+    "cluster": 32,
+    "label": "links-summary-light-768",
+    "file": "screenshots/32-links-summary-light-768.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "8615e9b10eeb9c28e121517881855d784a0dcb109bcb7bd260aa22e7c1abac71"
+  },
+  {
+    "cluster": 32,
+    "label": "links-NIC-light-768",
+    "file": "screenshots/32-links-NIC-light-768.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "90aef82b64383172a664f1d83ce409c499c98654916bda031c21d9a96aa5d64c"
+  },
+  {
+    "cluster": 32,
+    "label": "links-summary-light-390",
+    "file": "screenshots/32-links-summary-light-390.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "31475f86fd05737952e34f2edfe8fd5ca5d6f1de801483e9a30624c3d0f2e40b"
+  },
+  {
+    "cluster": 32,
+    "label": "links-NIC-light-390",
+    "file": "screenshots/32-links-NIC-light-390.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "aecfb10c293e68c6cf7a3c0d56a45c2f3f201b43bb18b9ad31e06eefe62b7c78"
+  },
+  {
+    "cluster": 32,
+    "label": "links-summary-dark-1280",
+    "file": "screenshots/32-links-summary-dark-1280.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "f5a350e31a3e3885ed16a5b8f5ceab79874e2b95950bd7faae288c9fc91c15ca"
+  },
+  {
+    "cluster": 32,
+    "label": "links-NIC-dark-1280",
+    "file": "screenshots/32-links-NIC-dark-1280.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "4c39764d410e6d67937477e9044b3df04f964e668f6c6b5512a87f1ec381f4ca"
+  },
+  {
+    "cluster": 32,
+    "label": "links-summary-dark-768",
+    "file": "screenshots/32-links-summary-dark-768.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "5324c34492aeb137369e5abf9532808e2edfb317991e644d50ef96284ef6e198"
+  },
+  {
+    "cluster": 32,
+    "label": "links-NIC-dark-768",
+    "file": "screenshots/32-links-NIC-dark-768.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 768,
+    "decodedHeight": 1024,
+    "sha256": "612fa220612d6825aa7c87dce8a6c17290580fa9057e13a3c8a1a0ecf918b029"
+  },
+  {
+    "cluster": 32,
+    "label": "links-summary-dark-390",
+    "file": "screenshots/32-links-summary-dark-390.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "22ebe9dbc598a9185a733cfb38880350f6a6ba7f02e53c194e39eac44e435dcb"
+  },
+  {
+    "cluster": 32,
+    "label": "links-NIC-dark-390",
+    "file": "screenshots/32-links-NIC-dark-390.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "b0032a24b8f57a9df329badf39b3f10b5ddcdca6e5b821ca6e347dc1d55238f8"
+  },
+  {
+    "cluster": 32,
+    "label": "share-attach-dialog-dark-mobile",
+    "file": "screenshots/32-share-attach-dialog-dark-mobile.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      }
+    ],
+    "nicRows": 1,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.245\n02:01:01:de:00:04\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "dfd2320d3fe27817cecfd7555f057ac117677efe074363dd1c762ddde734edc2"
+  },
+  {
+    "cluster": 32,
+    "label": "share-granted-two-NIC",
+    "file": "screenshots/32-share-granted-two-NIC.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "inNic": false,
+        "text": "qa-gn1569-32-reg-personal-share"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "inNic": true,
+        "text": "qa-gn1569-32-reg-personal-share"
+      }
+    ],
+    "nicRows": 2,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.245\n02:01:01:de:00:04\t활성화\t\n연결 해제\n\nqa-gn1569-32-reg-personal-share\nL2\t1\tCloud IP 관리 안 함\n02:01:01:cb:00:02\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "c75d4296408fa8675a086acf6367dc6021816e45850dbcf88bcbec223f241c8d"
+  },
+  {
+    "cluster": 32,
+    "label": "share-revoked-NIC-preserved",
+    "file": "screenshots/32-share-revoked-NIC-preserved.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      }
+    ],
+    "nicRows": 2,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.245\n02:01:01:de:00:04\t활성화\t\n연결 해제\n\nqa-gn1569-32-reg-personal-share\nL2\t1\tCloud IP 관리 안 함\n02:01:01:cb:00:02\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "5ffd3c902b678ecd9ef59d766ce0c176ab8a977bd9838f14645be169b17c6d5d"
+  },
+  {
+    "cluster": 32,
+    "label": "share-restored-two-NIC",
+    "file": "screenshots/32-share-restored-two-NIC.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "inNic": false,
+        "text": "qa-gn1569-32-reg-personal-share"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "inNic": true,
+        "text": "qa-gn1569-32-reg-personal-share"
+      }
+    ],
+    "nicRows": 2,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크 작업 진행: 완료\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.245\n02:01:01:de:00:04\t활성화\t\n연결 해제\n\nqa-gn1569-32-reg-personal-share\nL2\t1\tCloud IP 관리 안 함\n02:01:01:cb:00:02\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "8031e4908011f0be14fc0d69117867067adb03260a90239b6d1910f4c452688c"
+  },
+  {
+    "cluster": 32,
+    "label": "role-readonly-links",
+    "file": "screenshots/32-role-readonly-links.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "aabb4da4b5158fad2697e403ab13435bcee294753f2ef9026419fe1ed30ce8dd"
+  },
+  {
+    "cluster": 32,
+    "label": "role-outsider-denied",
+    "file": "screenshots/32-role-outsider-denied.jpg",
+    "dark": true,
+    "links": [],
+    "nicRows": 0,
+    "project": "기본 보기",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "7c2fedb02793f390a507f390b1dd6042615d1be64b1aa302b99408e484f39515"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-standard-mobile-dialog",
+    "file": "screenshots/32-VM-standard-mobile-dialog.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/e251eb02-f215-48f7-b956-0576233d97a2",
+        "inNic": false,
+        "text": "qa-gn1569-32-prj-base"
+      },
+      {
+        "href": "#/guestnetwork/9b172331-4eb7-4eab-9586-664ad5fe3eff",
+        "inNic": false,
+        "text": "qa-gn1594-32-vm-nat"
+      },
+      {
+        "href": "#/guestnetwork/395d6dad-c006-4b42-97cd-f061215148e6",
+        "inNic": false,
+        "text": "qa-gn1594-32-vm-l2"
+      },
+      {
+        "href": "#/guestnetwork/832dd4b1-33b2-4ada-b2e1-2b77a7d73230",
+        "inNic": false,
+        "text": "qa-gn1594-32-vm-shared"
+      },
+      {
+        "href": "#/guestnetwork/e251eb02-f215-48f7-b956-0576233d97a2",
+        "inNic": true,
+        "text": "qa-gn1569-32-prj-base"
+      },
+      {
+        "href": "#/guestnetwork/9b172331-4eb7-4eab-9586-664ad5fe3eff",
+        "inNic": true,
+        "text": "qa-gn1594-32-vm-nat"
+      },
+      {
+        "href": "#/guestnetwork/395d6dad-c006-4b42-97cd-f061215148e6",
+        "inNic": true,
+        "text": "qa-gn1594-32-vm-l2"
+      },
+      {
+        "href": "#/guestnetwork/832dd4b1-33b2-4ada-b2e1-2b77a7d73230",
+        "inNic": true,
+        "text": "qa-gn1594-32-vm-shared"
+      }
+    ],
+    "nicRows": 4,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-32-prj-base\nShared기본\t0\t10.180.32.19\n1e:01:cc:00:02:e6\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-nat\nIsolated\t1\t10.252.32.228\n02:01:01:e4:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-l2\nL2\t2\tCloud IP 관리 안 함\n02:01:01:e5:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-vm-shared\nShared\t3\t10.247.32.58\n02:01:01:e6:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vm/5aa20e59-56c9-45cb-a144-54bfe5957a1d?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "4185dcce6ffb5d70ce2189451eda3a3a4d2c3971398b351abd1bd160a20e7f46"
+  },
+  {
+    "cluster": 32,
+    "label": "VM-standard-breadcrumb-list",
+    "file": "screenshots/32-VM-standard-breadcrumb-list.jpg",
+    "dark": true,
+    "links": [],
+    "nicRows": 0,
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "acae476600b7defae7510f0c97516d59caabde326b154632298c7ade96796551"
+  },
+  {
+    "cluster": 32,
+    "label": "mobile-project-default-cleared",
+    "file": "screenshots/32-mobile-project-default-cleared.jpg",
+    "dark": true,
+    "links": [],
+    "nicRows": 0,
+    "project": "기본 보기",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "7d7dcf969201d5e54becc4ffabd9e5899eab41414e0e537203ea80c78c07ebdc"
+  },
+  {
+    "cluster": 32,
+    "label": "VNF-breadcrumb-list",
+    "file": "screenshots/32-VNF-breadcrumb-list.jpg",
+    "dark": true,
+    "links": [],
+    "nicRows": 0,
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "f2d9a0cbc66cb28e98877a1b075c236f5888d9badaf2a08631904b917fdc0a1d"
+  },
+  {
+    "cluster": 32,
+    "label": "final-three-network-VNF",
+    "file": "screenshots/32-final-three-network-VNF.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/15a7e449-7333-401a-a7f1-448283423553",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.38\n02:01:01:de:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:01:01:df:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-32-project-shared\nShared\t2\t10.246.32.58\n02:01:01:e0:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/d4b7e358-98c8-475d-b8aa-893479539a36?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "0e70893c9877216f07efd1a50506d4cc1be9eaf067252ae8c8044627210b71c4"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-standard-mobile-dialog",
+    "file": "screenshots/31-VM-standard-mobile-dialog.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "inNic": false,
+        "text": "qa-gn1569-31-prj-base"
+      },
+      {
+        "href": "#/guestnetwork/d8ac9ffd-3295-4c8b-a8a0-1450b9063743",
+        "inNic": false,
+        "text": "qa-gn1594-31-vm-nat"
+      },
+      {
+        "href": "#/guestnetwork/ab761ff0-5a40-47cc-911a-6180b1470b98",
+        "inNic": false,
+        "text": "qa-gn1594-31-vm-l2"
+      },
+      {
+        "href": "#/guestnetwork/746ecad7-83e8-4ccb-84cf-2088cad0082d",
+        "inNic": false,
+        "text": "qa-gn1594-31-vm-shared"
+      },
+      {
+        "href": "#/guestnetwork/424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+        "inNic": true,
+        "text": "qa-gn1569-31-prj-base"
+      },
+      {
+        "href": "#/guestnetwork/d8ac9ffd-3295-4c8b-a8a0-1450b9063743",
+        "inNic": true,
+        "text": "qa-gn1594-31-vm-nat"
+      },
+      {
+        "href": "#/guestnetwork/ab761ff0-5a40-47cc-911a-6180b1470b98",
+        "inNic": true,
+        "text": "qa-gn1594-31-vm-l2"
+      },
+      {
+        "href": "#/guestnetwork/746ecad7-83e8-4ccb-84cf-2088cad0082d",
+        "inNic": true,
+        "text": "qa-gn1594-31-vm-shared"
+      }
+    ],
+    "nicRows": 4,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1569-31-prj-base\nShared기본\t0\t10.180.31.12\n1e:1f:03:00:02:e1\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-nat\nIsolated\t1\t10.252.31.91\n02:1f:02:56:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-l2\nL2\t2\tCloud IP 관리 안 함\n02:1f:02:57:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-vm-shared\nShared\t3\t10.247.31.50\n02:1f:02:58:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vm/c655dfeb-fc4e-4bbc-8f61-2e038160089f?tab=nics",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "61e88ac798ad2303a072a5dad5dfe21e809168a6e4fb1b9f8af98a13b93965ce"
+  },
+  {
+    "cluster": 31,
+    "label": "VM-standard-breadcrumb-list",
+    "file": "screenshots/31-VM-standard-breadcrumb-list.jpg",
+    "dark": false,
+    "links": [],
+    "nicRows": 0,
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 390,
+    "decodedHeight": 844,
+    "sha256": "61d65829df0b2b39e855a65d2a84ce854c23eb74f4e8ede36ebac65de9ffe5a7"
+  },
+  {
+    "cluster": 31,
+    "label": "VNF-breadcrumb-list",
+    "file": "screenshots/31-VNF-breadcrumb-list.jpg",
+    "dark": false,
+    "links": [],
+    "nicRows": 0,
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "98324faf0eddd803222601afa8fca80354b4f374d39c2469c485b5b4f8a06b89"
+  },
+  {
+    "cluster": 31,
+    "label": "final-three-network-VNF",
+    "file": "screenshots/31-final-three-network-VNF.jpg",
+    "dark": false,
+    "links": [
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": false,
+        "text": "qa-gn1594-31-project-shared"
+      },
+      {
+        "href": "#/guestnetwork/e7b218a3-3df0-41d6-abfd-5afc667bfcdf",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/3292f7fb-9e94-4a90-95cd-501f653e9d8f",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-l2"
+      },
+      {
+        "href": "#/guestnetwork/11243734-0f21-4a5a-a771-1770d8ce2d21",
+        "inNic": true,
+        "text": "qa-gn1594-31-project-shared"
+      }
+    ],
+    "nicRows": 3,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-31-project-nat\nIsolated기본\t0\t10.251.31.98\n02:1f:02:50:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-l2\nL2\t1\tCloud IP 관리 안 함\n02:1f:02:51:00:01\t활성화\t\n연결 해제\n\nqa-gn1594-31-project-shared\nShared\t2\t10.246.31.50\n02:1f:02:52:00:01\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-31-project",
+    "url": "http://10.10.31.10:8080/client/#/vnfapp/adb32350-7764-489c-a70d-12323eabc24d?tab=nics",
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "0c29db895fad085d80dfd7fcfbbc927d9c2ed6429b246f1908248cc1fa5202c5"
+  },
+  {
+    "cluster": 32,
+    "label": "final-retained-review-two-NIC",
+    "file": "screenshots/32-final-retained-review-two-NIC.jpg",
+    "dark": true,
+    "links": [
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": false,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "inNic": false,
+        "text": "qa-gn1569-32-reg-personal-share"
+      },
+      {
+        "href": "#/guestnetwork/c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+        "inNic": true,
+        "text": "qa-gn1594-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/d5ebfabd-d845-4411-9266-d6d16efe7587",
+        "inNic": true,
+        "text": "qa-gn1569-32-reg-personal-share"
+      }
+    ],
+    "nicRows": 2,
+    "nicText": "생성 및 연결\n기존 네트워크 연결\n업데이트\n네트워크\t장치 ID\tIP / MAC 주소\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-gn1594-32-project-nat\nIsolated기본\t0\t10.251.32.245\n02:01:01:de:00:04\t활성화\t\n연결 해제\n\nqa-gn1569-32-reg-personal-share\nL2\t1\tCloud IP 관리 안 함\n02:01:01:cb:00:02\t활성화\t\n연결 해제",
+    "project": "qa-gn1569-32-project",
+    "url": "http://10.10.32.10:8080/client/#/vnfapp/fc92af85-adce-4690-a746-9fee3cb3af0e?tab=nics",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "decodedFormat": "JPEG",
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "3863aebcdaac8a4af7490274153c64d8c38c2aba4f834f73595a8f64fb3d5742"
+  }
+]

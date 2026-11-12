@@ -1,0 +1,1103 @@
+{
+  "network": {
+    "id": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+    "name": "qa-gn1569-31-nat",
+    "displaytext": "#1569 nat integrated review",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.176.31.1",
+    "netmask": "255.255.255.0",
+    "cidr": "10.176.31.0/24",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "networkofferingid": "5b8d528b-6af2-47a5-9488-aa8d2f9f8b66",
+    "networkofferingname": "qa-gn1569-31-nat",
+    "networkofferingdisplaytext": "qa-gn1569-31-nat",
+    "networkofferingconservemode": true,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Implemented",
+    "related": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+    "broadcasturi": "vlan://176",
+    "dns1": "8.8.8.8",
+    "dns2": "1.1.1.1",
+    "type": "Isolated",
+    "vlan": "176",
+    "acltype": "Account",
+    "account": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "service": [
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "SourceNat",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedSourceNatTypes",
+            "value": "peraccount",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "RedundantRouter",
+            "value": "false",
+            "canchooseservicecapability": true
+          }
+        ]
+      },
+      {
+        "name": "StaticNat",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "ElasticIp",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "AssociatePublicIP",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Lb",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AutoScaleCounters",
+            "value": "[{\"methodname\":\"CPU\",\"paramlist\":[]},{\"methodname\":\"MEMORY\",\"paramlist\":[]},{\"methodname\":\"VIRTUALROUTER\",\"paramlist\":[]}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLbAlgorithms",
+            "value": "roundrobin,leastconn,source",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp, udp, tcp-proxy, ssl, http",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "VmAutoScaling",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedStickinessMethods",
+            "value": "[{\"methodname\":\"LbCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"nocache\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"indirect\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"postonly\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"domain\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is loadbalancer cookie based stickiness method.\"},{\"methodname\":\"AppCookie\",\"paramlist\":[{\"paramname\":\"cookie-name\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"length\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"holdtime\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"request-learn\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"prefix\",\"required\":false,\"isflag\":true,\"description\":\" \"},{\"paramname\":\"mode\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is App session based sticky method. Define session stickiness on an existing application cookie. It can be used only for a specific http traffic\"},{\"methodname\":\"SourceBased\",\"paramlist\":[{\"paramname\":\"tablesize\",\"required\":false,\"isflag\":false,\"description\":\" \"},{\"paramname\":\"expire\",\"required\":false,\"isflag\":false,\"description\":\" \"}],\"description\":\"This is source based Stickiness method, it can be used for any type of protocol.\"}]",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SslTermination",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedLBIsolation",
+            "value": "dedicated",
+            "canchooseservicecapability": true
+          },
+          {
+            "name": "LbSchemes",
+            "value": "Public",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "ElasticLb",
+            "value": "false",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "InlineMode",
+            "value": "false",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Vpn",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "VpnTypes",
+            "value": "remoteaccessvpn",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedVpnTypes",
+            "value": "pptp,l2tp,ipsec",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "PortForwarding",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Firewall",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "MultipleIps",
+            "value": "true",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "TrafficStatistics",
+            "value": "per public ip",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedProtocols",
+            "value": "tcp,udp,icmp",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedEgressProtocols",
+            "value": "tcp,udp,icmp, all",
+            "canchooseservicecapability": false
+          },
+          {
+            "name": "SupportedTrafficDirection",
+            "value": "ingress, egress",
+            "canchooseservicecapability": false
+          }
+        ]
+      }
+    ],
+    "networkdomain": "cs1a8cloud.internal",
+    "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+    "restartrequired": false,
+    "specifyvlan": false,
+    "specifyipranges": false,
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [
+      {
+        "key": "검증",
+        "value": "#1569 역할·조건부 회귀"
+      }
+    ],
+    "details": {},
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": true,
+    "created": "2026-11-06T17:51:37+0900",
+    "receivedbytes": 98960,
+    "sentbytes": 365802,
+    "egressdefaultpolicy": false,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "keepmacaddressonpublicnic": true,
+    "hasannotations": true
+  },
+  "vm": {
+    "id": "ee5d34e7-fab2-4159-af9d-a28a55f87ebb",
+    "name": "qa-gn1569-31-nat-vm",
+    "displayname": "qa-gn1569-31-nat-vm",
+    "account": "qa-gn1569-31-owner",
+    "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+    "username": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "created": "2026-11-06T18:03:29+0900",
+    "lastupdated": "2026-11-06T18:18:56+0900",
+    "state": "Running",
+    "haenable": true,
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+    "hostname": "ablecube31-1",
+    "hostcontrolstate": "Enabled",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "templatetype": "USER",
+    "templateformat": "QCOW2",
+    "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "isos": [],
+    "isomaxcount": 2,
+    "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+    "serviceofferingname": "2Core 2GB",
+    "volumemutationblockedreason": "",
+    "cpunumber": 2,
+    "cpuspeed": 2000,
+    "memory": 2048,
+    "statslastsampled": 1794301529000,
+    "statscollectionstatus": "FRESH",
+    "cpuused": "0.12%",
+    "networkkbsread": 16,
+    "networkkbswrite": 8,
+    "diskkbsread": 0,
+    "diskkbswrite": 1,
+    "memorykbs": 2097152,
+    "memoryintfreekbs": 1216484,
+    "memorytargetkbs": 2097152,
+    "memoryintusablekbs": 0,
+    "diskioread": 0,
+    "diskiowrite": 1,
+    "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "rootdeviceid": 0,
+    "rootdevicetype": "ROOT",
+    "securitygroup": [],
+    "nic": [
+      {
+        "id": "c3fc3bc5-0b9f-42a5-8512-4cee8b6c023f",
+        "networkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "networkname": "qa-gn1569-31-nat",
+        "netmask": "255.255.255.0",
+        "gateway": "10.176.31.1",
+        "ipaddress": "10.176.31.21",
+        "isolationuri": "vlan://176",
+        "broadcasturi": "vlan://176",
+        "traffictype": "Guest",
+        "type": "Isolated",
+        "isdefault": true,
+        "macaddress": "02:1f:02:11:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "enabled": true
+      },
+      {
+        "id": "d94dfd9a-0d61-4b30-a724-15e39b85c069",
+        "networkid": "9103d235-6ff9-42b7-ad1f-0225d21f507a",
+        "networkname": "qa-gn1569-31-l2",
+        "isolationuri": "vlan://791",
+        "broadcasturi": "vlan://791",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": false,
+        "macaddress": "02:1f:02:13:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "1",
+        "enabled": true
+      }
+    ],
+    "hypervisor": "KVM",
+    "ipaddress": "10.176.31.21",
+    "instancename": "i-424-941-VM",
+    "details": {
+      "tpmversion": "NONE",
+      "rootDiskController": "osdefault"
+    },
+    "clonefastsourcepowerallowed": false,
+    "clonefastpowerallowed": false,
+    "affinitygroup": [],
+    "displayvm": true,
+    "isdynamicallyscalable": true,
+    "deleteprotection": false,
+    "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "osdisplayname": "Rocky Linux 9",
+    "pooltype": "SharedMountPoint",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "vbmcport": "None",
+    "qemuagentversion": "9.0.0",
+    "kvdoenable": false,
+    "kvdoinuse": false,
+    "arch": "x86_64",
+    "guestnetwork": {
+      "status": "PARTIAL",
+      "observed": "2026-11-10T18:06:33+0900",
+      "lastsuccess": "2026-11-10T18:06:33+0900",
+      "ipv4addresses": [
+        "10.176.31.21/24",
+        "127.0.0.1/8"
+      ],
+      "ipv6addresses": [
+        "fe80::1f:2ff:fe11:1/64",
+        "::1/128"
+      ],
+      "interfacecount": 3,
+      "representativeaddress": "10.176.31.21",
+      "representativeprefix": 24,
+      "representativefamily": "IPv4",
+      "representativesource": "QGA_SINGLE_ADDRESS"
+    },
+    "vbmcstatus": "Unallocated",
+    "tags": [],
+    "hasannotations": false
+  },
+  "controlCandidates": [
+    {
+      "id": "82f8f50c-63f5-482a-871c-bc1fb2157031",
+      "name": "qa-gn1594-31-personal-l2",
+      "displaytext": "qa-gn1594-31-personal-l2",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "networkofferingname": "qa-gn1569-31-prj-l2-auto",
+      "networkofferingdisplaytext": "Project permission tests, auto allocated VLAN",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Implemented",
+      "related": "82f8f50c-63f5-482a-871c-bc1fb2157031",
+      "broadcasturi": "vlan://167",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "167",
+      "acltype": "Account",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "service": [],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": false,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-08T14:44:43+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "189f2d99-13db-4719-a774-69aeac2bac8f",
+      "name": "qa-gn1569-31-reg-pvlan",
+      "displaytext": "GN1569 isolated PVLAN control-plane",
+      "broadcastdomaintype": "Pvlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "9c92a68b-2908-445e-9b8e-4beb855d5bad",
+      "networkofferingname": "qa-gn1569-31-l2",
+      "networkofferingdisplaytext": "qa-gn1569-31-l2",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "189f2d99-13db-4719-a774-69aeac2bac8f",
+      "broadcasturi": "pvlan://2460-i2470",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "N/A",
+      "acltype": "Account",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "service": [],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {
+        "isolatedpvlantype": "Isolated"
+      },
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-07T23:03:55+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+      "name": "qa-gn1569-31-reg-personal-share",
+      "displaytext": "GN1569 grant/revoke review",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "8097eb7e-8311-434c-afd1-98ba6f95e193",
+      "networkofferingname": "qa-gn1569-31-prj-l2-auto",
+      "networkofferingdisplaytext": "Project permission tests, auto allocated VLAN",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Implemented",
+      "related": "0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+      "broadcasturi": "vlan://165",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "165",
+      "acltype": "Account",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "service": [],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": false,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-07T22:58:27+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "9103d235-6ff9-42b7-ad1f-0225d21f507a",
+      "name": "qa-gn1569-31-l2",
+      "displaytext": "#1569 l2 integrated review",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "9c92a68b-2908-445e-9b8e-4beb855d5bad",
+      "networkofferingname": "qa-gn1569-31-l2",
+      "networkofferingdisplaytext": "qa-gn1569-31-l2",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "9103d235-6ff9-42b7-ad1f-0225d21f507a",
+      "broadcasturi": "vlan://791",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "791",
+      "acltype": "Account",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain",
+      "service": [],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-11-06T17:54:35+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "18733c35-2768-4f0e-a5fb-b7f2f4c12382",
+      "name": "E1335-31-permission-user-L2",
+      "displaytext": "E1335-31-permission-user-L2",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "bc740904-060d-4e13-a850-3609e588116a",
+      "networkofferingname": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingdisplaytext": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "18733c35-2768-4f0e-a5fb-b7f2f4c12382",
+      "broadcasturi": "vlan://3136",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "3136",
+      "acltype": "Account",
+      "account": "epic1335-user31",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "ConfigDrive"
+            }
+          ],
+          "capability": []
+        }
+      ],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-10-09T23:55:22+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "ae274fff-3d8e-4285-ac73-26a767c1fea7",
+      "name": "E1335-VM-Origin-L2",
+      "displaytext": "Epic 1335 volume/snapshot VM fixtures - isolated L2 VLAN",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "bc740904-060d-4e13-a850-3609e588116a",
+      "networkofferingname": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingdisplaytext": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "ae274fff-3d8e-4285-ac73-26a767c1fea7",
+      "broadcasturi": "vlan://3135",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "3135",
+      "acltype": "Account",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "ConfigDrive"
+            }
+          ],
+          "capability": []
+        }
+      ],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-10-09T02:16:15+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "c865539a-00db-4f9a-bfe1-b1dc53e323c9",
+      "name": "epic1216-acl-user-b",
+      "displaytext": "Epic1216 disposable L2 ACL test",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "bc740904-060d-4e13-a850-3609e588116a",
+      "networkofferingname": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingdisplaytext": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "c865539a-00db-4f9a-bfe1-b1dc53e323c9",
+      "broadcasturi": "vlan://3102",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "3102",
+      "acltype": "Account",
+      "account": "epic1216-user-b",
+      "domainid": "1c32dd7e-dde2-47f0-b551-8e2e448fb110",
+      "domain": "epic1216-domain-b",
+      "domainpath": "ROOT/epic1216-domain-b",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "ConfigDrive"
+            }
+          ],
+          "capability": []
+        }
+      ],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-10-03T20:42:00+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "2e440c60-362e-4dc7-9d76-bed0c801b9ab",
+      "name": "epic1216-acl-user-a",
+      "displaytext": "Epic1216 disposable L2 ACL test",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "bc740904-060d-4e13-a850-3609e588116a",
+      "networkofferingname": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingdisplaytext": "기본 L2 VLAN 네트워크오퍼링(with ConfigDrive)",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "2e440c60-362e-4dc7-9d76-bed0c801b9ab",
+      "broadcasturi": "vlan://3101",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "3101",
+      "acltype": "Account",
+      "account": "epic1216-user-a",
+      "domainid": "41104588-fae9-495a-be0c-557230dafdf2",
+      "domain": "epic1216-domain-a",
+      "domainpath": "ROOT/epic1216-domain-a",
+      "service": [
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "ConfigDrive"
+            }
+          ],
+          "capability": []
+        }
+      ],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-10-03T20:41:44+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "0e7813ec-b262-47e2-9b60-ccde56e16a70",
+      "name": "L2-Test",
+      "displaytext": "L2-Test",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "79ec5c18-b71c-4f7a-9b5d-8694b16b8a54",
+      "networkofferingname": "기본 L2 VLAN 네트워크오퍼링",
+      "networkofferingdisplaytext": "기본 L2 VLAN 네트워크오퍼링",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "0e7813ec-b262-47e2-9b60-ccde56e16a70",
+      "broadcasturi": "vlan://untagged",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "untagged",
+      "acltype": "Account",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "service": [],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-09-18T14:24:28+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    },
+    {
+      "id": "d2fb4fd9-e933-4862-8527-5c2d92bf8c71",
+      "name": "ADMIN-L2-Network",
+      "displaytext": "ADMIN-L2-Network",
+      "broadcastdomaintype": "Vlan",
+      "traffictype": "Guest",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "networkofferingid": "79ec5c18-b71c-4f7a-9b5d-8694b16b8a54",
+      "networkofferingname": "기본 L2 VLAN 네트워크오퍼링",
+      "networkofferingdisplaytext": "기본 L2 VLAN 네트워크오퍼링",
+      "networkofferingconservemode": true,
+      "networkofferingavailability": "Optional",
+      "issystem": false,
+      "state": "Setup",
+      "related": "d2fb4fd9-e933-4862-8527-5c2d92bf8c71",
+      "broadcasturi": "vlan://untagged",
+      "dns1": "8.8.8.8",
+      "type": "L2",
+      "vlan": "untagged",
+      "acltype": "Account",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "service": [],
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "restartrequired": false,
+      "specifyvlan": true,
+      "specifyipranges": false,
+      "canusefordeploy": true,
+      "ispersistent": false,
+      "tags": [],
+      "details": {},
+      "displaynetwork": true,
+      "strechedl2subnet": false,
+      "redundantrouter": false,
+      "supportsvmautoscaling": false,
+      "created": "2026-09-17T14:09:49+0900",
+      "receivedbytes": 0,
+      "sentbytes": 0,
+      "publicmtu": 1500,
+      "privatemtu": 1500,
+      "hasannotations": false
+    }
+  ],
+  "quarantine": {
+    "httpStatus": 200,
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Network",
+        "group": "Miscellaneous",
+        "subgroup": "Others",
+        "name": "public.ip.address.quarantine.duration",
+        "value": "0",
+        "defaultvalue": "0",
+        "description": "The duration (in minutes) for the public IP address to be quarantined when it is disassociated.",
+        "isdynamic": true,
+        "component": "IpAddressManager",
+        "displaytext": "Public ip address quarantine duration",
+        "type": "Number"
+      }
+    ]
+  },
+  "ips": {
+    "httpStatus": 200,
+    "count": 3,
+    "publicipaddress": [
+      {
+        "id": "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+        "ipaddress": "10.10.31.106",
+        "allocated": "2026-11-06T18:09:39+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": false,
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "e2e7e25a-7978-468b-b4c5-975bb88df176",
+        "forvirtualnetwork": true,
+        "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+        "vlanname": "vlan://untagged",
+        "isstaticnat": false,
+        "issystem": false,
+        "associatednetworkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "associatednetworkname": "qa-gn1569-31-nat",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Allocated",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": true,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      },
+      {
+        "id": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+        "ipaddress": "10.10.31.110",
+        "allocated": "2026-11-07T22:55:42+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": false,
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "3a9694e1-3ed8-4478-914e-ab50b8148d5a",
+        "forvirtualnetwork": true,
+        "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+        "vlanname": "vlan://untagged",
+        "isstaticnat": false,
+        "issystem": false,
+        "associatednetworkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "associatednetworkname": "qa-gn1569-31-nat",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Allocated",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": true,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      },
+      {
+        "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+        "ipaddress": "10.10.31.143",
+        "allocated": "2026-11-06T18:03:30+0900",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "issourcenat": true,
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "allocationgeneration": "6fe03884-184f-48e7-9d8f-d8ef40c00b67",
+        "forvirtualnetwork": true,
+        "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+        "vlanname": "vlan://untagged",
+        "isstaticnat": false,
+        "issystem": false,
+        "associatednetworkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "associatednetworkname": "qa-gn1569-31-nat",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "state": "Allocated",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "tags": [],
+        "isportable": false,
+        "fordisplay": true,
+        "hasrules": false,
+        "forsystemvms": false,
+        "forprovider": false,
+        "hasannotations": false
+      }
+    ]
+  },
+  "rules": {
+    "httpStatus": 200,
+    "count": 4,
+    "loadbalancerrule": [
+      {
+        "id": "739c314f-a5a9-418c-bc6c-6040a77f9046",
+        "name": "qa-gn1569-31-reg-lb",
+        "description": "GN1569 LB API/UI review",
+        "publicipid": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+        "publicip": "10.10.31.110",
+        "publicport": "18569",
+        "privateport": "18569",
+        "algorithm": "leastconn",
+        "networkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "cidrlist": "192.0.2.156/32",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      },
+      {
+        "id": "46b0048d-e3e9-48df-8df9-eebbcf465404",
+        "name": "qa-gn1569-31-reg-lb-tcp",
+        "description": "GN1569 LB explicit TCP API/UI review",
+        "publicipid": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+        "publicip": "10.10.31.110",
+        "publicport": "18572",
+        "privateport": "18572",
+        "algorithm": "leastconn",
+        "networkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "cidrlist": "192.0.2.156/32",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      },
+      {
+        "id": "e753dfe9-7e93-4c6a-8cb8-c19682c68de5",
+        "name": "qa-gn1569-31-1590-default",
+        "publicipid": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+        "publicip": "10.10.31.110",
+        "publicport": "18590",
+        "privateport": "18590",
+        "algorithm": "source",
+        "networkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "cidrlist": "192.0.2.156/32",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "tcp",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      },
+      {
+        "id": "c83d253b-07c6-4a19-a5ac-94f73ab7133e",
+        "name": "qa-gn1569-31-1590-ssl",
+        "publicipid": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+        "publicip": "10.10.31.110",
+        "publicport": "18591",
+        "privateport": "18591",
+        "algorithm": "roundrobin",
+        "networkid": "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0",
+        "cidrlist": "192.0.2.156/32",
+        "account": "qa-gn1569-31-owner",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "domainpath": "ROOT/qa-gn1569-31-domain",
+        "state": "Active",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": true,
+        "tags": [],
+        "fordisplay": true
+      }
+    ]
+  }
+}

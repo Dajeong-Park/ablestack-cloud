@@ -1,0 +1,13 @@
+{
+  "issue": 1610,
+  "uiOnly": true,
+  "tests": 183,
+  "suites": 11,
+  "dialogMatrix": 24,
+  "captures": 85,
+  "realCreateJobs": 4,
+  "allPreserved": true,
+  "apiModified": false,
+  "healthMonitor": "environment-blocked",
+  "remainingOwnerIssue": 1569
+}

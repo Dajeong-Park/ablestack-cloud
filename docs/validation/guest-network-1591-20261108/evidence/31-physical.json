@@ -1,0 +1,12 @@
+[
+  {
+    "id": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+    "name": "Physical Network 1",
+    "broadcastdomainrange": "ZONE",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "state": "Enabled",
+    "vlan": "151-200",
+    "isolationmethods": "VLAN"
+  }
+]

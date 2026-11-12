@@ -1,0 +1,28 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1617-32-same-vip-lb",
+      "description": "1617 same VIP different port retained review",
+      "sourceipaddress": "10.211.32.150",
+      "sourceport": "19018",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "sourceipaddressnetworkid": "199a28d8-708d-405e-91a0-4b3bfe504266",
+      "scheme": "Internal",
+      "account": "qa-gn1569-32-owner",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "customjobid": "e31ca391-6d83-4048-95d8-9cc653c9dbb3"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "uuidList": [],
+        "errorcode": 537,
+        "cserrorcode": 9999,
+        "errortext": "New rule is for a different network than what's specified in rule d3a3ed52-8c9a-48ce-8779-75f5820aeda9"
+      }
+    }
+  }
+]

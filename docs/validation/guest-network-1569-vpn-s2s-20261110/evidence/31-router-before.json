@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "Linux strongSwan U5.9.8/K6.1.0-54-amd64\nUniversity of Applied Sciences Rapperswil, Switzerland\nState  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\nUNCONN 0      0          127.0.0.1:53        0.0.0.0:*          \nUNCONN 0      0        10.239.31.1:53        0.0.0.0:*          \nUNCONN 0      0            0.0.0.0:67        0.0.0.0:*          \nUNCONN 0      0            0.0.0.0:3914      0.0.0.0:*          \nUNCONN 0      0       10.10.31.147:123       0.0.0.0:*          \nUNCONN 0      0        10.239.31.1:123       0.0.0.0:*          \nUNCONN 0      0       10.10.31.146:123       0.0.0.0:*          \n",
+  "error": "Warning: Permanently added '[169.254.8.21]:3922' (ED25519) to the list of known hosts.\n"
+}

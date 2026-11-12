@@ -1,0 +1,45 @@
+{
+  "running": true,
+  "rows": [
+    {
+      "time": "2026-11-11T11:46:47.876657+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": true,
+      "sshOk": true
+    },
+    {
+      "time": "2026-11-11T11:46:47.898859+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": true,
+      "sshOk": true
+    },
+    {
+      "time": "2026-11-11T11:46:49.919566+00:00",
+      "cluster": 31,
+      "interface": "ppp83",
+      "pingOk": true,
+      "sshOk": true
+    },
+    {
+      "time": "2026-11-11T11:46:49.936460+00:00",
+      "cluster": 32,
+      "interface": "ppp85",
+      "pingOk": true,
+      "sshOk": true
+    }
+  ],
+  "summary": {
+    "31": {
+      "samples": 2,
+      "pingFailures": 0,
+      "sshFailures": 0
+    },
+    "32": {
+      "samples": 2,
+      "pingFailures": 0,
+      "sshFailures": 0
+    }
+  }
+}

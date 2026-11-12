@@ -1,0 +1,71 @@
+{
+  "network": {
+    "before": 116,
+    "after": 116,
+    "removed": [],
+    "changed": [],
+    "added": []
+  },
+  "virtualmachine": {
+    "before": 159,
+    "after": 159,
+    "removed": [
+      "a001b387-9060-43f3-b4c2-026ae52332d1"
+    ],
+    "changed": [],
+    "added": [
+      "8558f355-43c8-47ac-b15d-f18d2e992bcd"
+    ]
+  },
+  "vpc": {
+    "before": 12,
+    "after": 12,
+    "removed": [],
+    "changed": [],
+    "added": []
+  },
+  "vpnuser": {
+    "before": 4,
+    "after": 4,
+    "removed": [],
+    "changed": [],
+    "added": []
+  },
+  "remoteaccessvpn": {
+    "before": 1,
+    "after": 1,
+    "removed": [],
+    "changed": [],
+    "added": []
+  },
+  "vpnconnection": {
+    "before": 2,
+    "after": 2,
+    "removed": [],
+    "changed": [],
+    "added": []
+  },
+  "loadbalancerrule": {
+    "before": 34,
+    "after": 35,
+    "removed": [],
+    "changed": [],
+    "added": [
+      "64131bd5-62a8-4b8e-9026-0d18e4e76132"
+    ]
+  },
+  "loadbalancer": {
+    "before": 0,
+    "after": 0,
+    "removed": [],
+    "changed": [],
+    "added": []
+  },
+  "autoscalevmgroup": {
+    "before": 6,
+    "after": 6,
+    "removed": [],
+    "changed": [],
+    "added": []
+  }
+}

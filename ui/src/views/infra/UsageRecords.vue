@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <a-affix :offsetTop="this.$store.getters.shutdownTriggered ? 103 : 78">
+  <div class="content-breadcrumb">
     <a-card class="breadcrumb-card">
       <a-row>
         <a-col
@@ -70,7 +70,7 @@
         </a-col>
       </a-row>
     </a-card>
-  </a-affix>
+  </div>
   <a-col>
     <a-card size="small" :loading="serverMetricsLoading" v-if="'listUsageServerMetrics' in $store.getters.apis">
       <a-row justify="space-around">

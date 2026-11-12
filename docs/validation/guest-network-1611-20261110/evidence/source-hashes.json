@@ -1,0 +1,10 @@
+{
+  "ui/src/views/network/LoadBalancing.vue": "1ade67c516fad6dbb382a4d4d539a172df3746e2679d80d3f8c4eeec53f8adf1",
+  "ui/src/components/view/PublicLbTierSelect.vue": "07e8b42237295e6b1d6a30c974f235cba1861d6eee8fd3653d5d0a6ffec2415f",
+  "ui/src/utils/publicLbTiers.js": "e3f491874527af1a4e3ceca08fd24e8523ec0a7b6f6ea243192c67b20af8daa2",
+  "ui/public/locales/en.json": "dcd627ebe142b00cfae7a5c28e3097ef42421050c9899148fd31c07c26a8d1da",
+  "ui/public/locales/ko_KR.json": "eecef851e8be5183706fb1e87ec4308323dd3ce11bae94d5a6d91b7eb756d594",
+  "ui/tests/unit/views/network/PublicLbTiers.spec.js": "6b779e3c552754b43cb205e20ea3624d479502cc8989a5b572b658519c770d71",
+  "ui/tests/unit/views/network/LoadBalancerCreate.spec.js": "05f80cbe4e472262538798fe8aabb8419ee5744c42d6e2708d28d2996166be5d",
+  "ui/tests/unit/views/network/LoadBalancerEdit.spec.js": "68cf508711ef56bf058b96dc6f57e69d1179c3a62ad0e0d4af96c60cdbaab8c4"
+}

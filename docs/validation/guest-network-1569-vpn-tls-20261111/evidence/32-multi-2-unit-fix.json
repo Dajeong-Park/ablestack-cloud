@@ -1,0 +1,14 @@
+{
+  "cluster": 32,
+  "mode": "stop",
+  "stopped": {
+    "exit": 1,
+    "out": "",
+    "error": "terminate failed: no matching SAs to terminate found"
+  },
+  "interfaces": {
+    "exit": 1,
+    "out": "",
+    "error": "Device \"ppp84\" does not exist."
+  }
+}

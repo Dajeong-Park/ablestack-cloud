@@ -1,0 +1,24 @@
+{
+  "bridge": "breno12399-173",
+  "temporaryAddressRemoved": "172.26.31.254/24",
+  "originalAddressesPreserved": true,
+  "after": {
+    "ifindex": 930,
+    "ifname": "breno12399-173",
+    "flags": [
+      "BROADCAST",
+      "MULTICAST",
+      "UP",
+      "LOWER_UP"
+    ],
+    "mtu": 1500,
+    "qdisc": "noqueue",
+    "operstate": "UP",
+    "group": "default",
+    "txqlen": 1000,
+    "link_type": "ether",
+    "address": "20:3a:43:01:a6:80",
+    "broadcast": "ff:ff:ff:ff:ff:ff",
+    "addr_info": []
+  }
+}

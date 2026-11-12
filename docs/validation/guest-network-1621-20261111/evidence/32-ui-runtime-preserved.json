@@ -1,0 +1,11 @@
+{
+  "before": {
+    "xl2tpd": "9660",
+    "pppd": "9858"
+  },
+  "after": {
+    "xl2tpd": "9660",
+    "pppd": "9858"
+  },
+  "projectThemeResponsiveUiDidNotRestartVpn": true
+}

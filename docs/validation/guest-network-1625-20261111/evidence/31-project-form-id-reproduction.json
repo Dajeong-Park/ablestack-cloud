@@ -1,0 +1,44 @@
+[
+  {
+    "duplicates": 2,
+    "id": "form_item_methodname",
+    "label": "세션 고정 방식",
+    "labelFor": "form_item_methodname",
+    "labelTargetsOwnInput": false
+  },
+  {
+    "duplicates": 2,
+    "id": "form_item_name",
+    "label": "정책 이름",
+    "labelFor": "form_item_name",
+    "labelTargetsOwnInput": false
+  },
+  {
+    "duplicates": 2,
+    "id": "form_item_cookieName",
+    "label": "Cookie 이름",
+    "labelFor": "form_item_cookieName",
+    "labelTargetsOwnInput": false
+  },
+  {
+    "duplicates": 2,
+    "id": "form_item_length",
+    "label": "길이",
+    "labelFor": "form_item_length",
+    "labelTargetsOwnInput": false
+  },
+  {
+    "duplicates": 2,
+    "id": "form_item_holdtime",
+    "label": "보관 유지시간",
+    "labelFor": "form_item_holdtime",
+    "labelTargetsOwnInput": false
+  },
+  {
+    "duplicates": 2,
+    "id": "form_item_requestLearn",
+    "label": "요청에서 학습",
+    "labelFor": "form_item_requestLearn",
+    "labelTargetsOwnInput": false
+  }
+]

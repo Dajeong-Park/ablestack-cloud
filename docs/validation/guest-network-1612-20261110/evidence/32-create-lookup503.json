@@ -1,0 +1,94 @@
+{
+  "before": {
+    "alerts": [
+      "Tier CIDR에 속한 유효한 호스트 IPv4 주소를 입력하세요. 게이트웨이는 사용할 수 없습니다."
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "이름",
+        "value": "qa-gn1612-32-invalid-cidr"
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "설명",
+        "value": "1612 retained draft"
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "Source IP 주소",
+        "value": "10.236.32.20"
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "Source 포트",
+        "value": "19012"
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "가상머신 포트",
+        "value": "22"
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": null,
+        "value": ""
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  },
+  "failed": {
+    "alerts": [
+      "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.503: QA1612 controlled candidate outage",
+      "Tier CIDR에 속한 유효한 호스트 IPv4 주소를 입력하세요. 게이트웨이는 사용할 수 없습니다."
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "이름",
+        "value": "qa-gn1612-32-invalid-cidr"
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "설명",
+        "value": "1612 retained draft"
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "Source IP 주소",
+        "value": "10.236.32.20"
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "Source 포트",
+        "value": "19012"
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": "가상머신 포트",
+        "value": "22"
+      },
+      {
+        "checked": false,
+        "disabled": true,
+        "label": null,
+        "value": ""
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  },
+  "controlled": true
+}

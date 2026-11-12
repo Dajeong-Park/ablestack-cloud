@@ -1,0 +1,39 @@
+{
+  "rule": {
+    "httpStatus": 200,
+    "count": 1,
+    "loadbalancerrule": [
+      {
+        "id": "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c",
+        "name": "qa-gn1569-32-ssl",
+        "publicipid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "publicip": "10.10.32.177",
+        "publicport": "18874",
+        "privateport": "22",
+        "algorithm": "roundrobin",
+        "networkid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "cidrlist": "",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "state": "Active",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "protocol": "ssl",
+        "backendssl": false,
+        "tags": [],
+        "fordisplay": true
+      }
+    ]
+  },
+  "certs": {
+    "httpStatus": 200
+  },
+  "probe": {
+    "exit": 1,
+    "out": "",
+    "error": "Could not read certificate from <stdin>\n807BF993907F0000:error:1608010C:STORE routines:ossl_store_handle_load_result:unsupported:../crypto/store/store_result.c:149:\nUnable to load certificate"
+  }
+}

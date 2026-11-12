@@ -1,0 +1,79 @@
+{
+  "checks": {
+    "networkExistingIdsPreserved": true,
+    "virtualmachineExistingIdsPreserved": true,
+    "internalloadbalancervmExistingIdsPreserved": true,
+    "vpcExistingIdsPreserved": true,
+    "publicipaddressExistingIdsPreserved": true,
+    "loadbalancerruleExistingIdsPreserved": true,
+    "loadbalancerExistingIdsPreserved": true,
+    "projectExistingIdsPreserved": true,
+    "vpnuserExistingIdsPreserved": true,
+    "remoteaccessvpnExistingIdsPreserved": true,
+    "hostExistingIdsPreserved": true,
+    "allVmNics": true,
+    "members": true,
+    "projectroles": true,
+    "readonly-permissions": true,
+    "lbBackendBindings": true,
+    "sslBindings": true,
+    "originalOffering": true,
+    "hostsUp": true
+  },
+  "counts": {
+    "network": 105,
+    "virtualmachine": 89,
+    "internalloadbalancervm": 5,
+    "router": 40,
+    "vpc": 13,
+    "publicipaddress": 42,
+    "loadbalancerrule": 29,
+    "loadbalancer": 8,
+    "project": 8,
+    "vpnuser": 6,
+    "remoteaccessvpn": 1,
+    "host": 5
+  },
+  "concurrentAdditions": {
+    "network": [
+      {
+        "id": "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+        "name": "tj-isolated-net"
+      }
+    ],
+    "virtualmachine": [
+      {
+        "id": "1c541e01-0c55-4138-8215-ac0382868ed8",
+        "name": "tj-vm-1"
+      },
+      {
+        "id": "cc5db1d0-74ca-479b-b0b5-bd2894fa94fa",
+        "name": "tj-vm-2"
+      }
+    ],
+    "internalloadbalancervm": [],
+    "vpc": [],
+    "publicipaddress": [
+      {
+        "id": "078a87ba-8a96-4292-8f33-03163f599ef9",
+        "name": null
+      }
+    ],
+    "loadbalancerrule": [],
+    "loadbalancer": [],
+    "project": [],
+    "vpnuser": [],
+    "remoteaccessvpn": [],
+    "host": []
+  },
+  "routerReplacements": {
+    "removed": [
+      "r-494-VM"
+    ],
+    "added": [
+      "r-497-VM",
+      "r-499-VM"
+    ]
+  },
+  "testResourcesRetained": true
+}

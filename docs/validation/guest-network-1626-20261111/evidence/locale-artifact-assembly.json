@@ -1,0 +1,14 @@
+{
+  "javascriptBundleSource": "84e627e59ef",
+  "publicLocaleCopyOnly": true,
+  "files": {
+    "ui/public/locales/en.json": {
+      "sourceSha256": "822fe218dd936bd01d77b5ae0b2178456e3e6df466970dce92b92e2ce3fde332",
+      "distSha256": "822fe218dd936bd01d77b5ae0b2178456e3e6df466970dce92b92e2ce3fde332"
+    },
+    "ui/public/locales/ko_KR.json": {
+      "sourceSha256": "848e7f08c6d6bdd0e1da3dfccfbf546da399562b793146ee5070758f524ddffb",
+      "distSha256": "848e7f08c6d6bdd0e1da3dfccfbf546da399562b793146ee5070758f524ddffb"
+    }
+  }
+}

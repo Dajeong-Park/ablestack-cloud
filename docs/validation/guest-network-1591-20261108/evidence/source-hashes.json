@@ -1,0 +1,5 @@
+{
+  "plugins/network-elements/tungsten/src/main/java/org/apache/cloudstack/network/tungsten/service/TungstenProviderServiceImpl.java": "9de73c05e91fdbcd3695c7b7a0d3ff3ceedc76c49bbc4e0e76d7fb26f1e978ca",
+  "plugins/network-elements/tungsten/src/test/java/org/apache/cloudstack/network/tungsten/service/TungstenProviderListTest.java": "44ff614b3e4ba39d4ea232a11890b297ad2539eb9dff215d744e7afe62e16c79",
+  "plugins/network-elements/tungsten/src/test/java/org/apache/cloudstack/network/tungsten/api/command/ListTungstenFabricProvidersCmdTest.java": "8027510a8964d889514c9011e922974b447aa9aa74ab0cc40a51c0386f80085b"
+}

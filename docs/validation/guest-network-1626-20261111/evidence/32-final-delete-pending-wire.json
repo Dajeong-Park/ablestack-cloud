@@ -1,0 +1,39 @@
+{
+  "plan": {
+    "query": null
+  },
+  "posts": [
+    {
+      "command": "deleteLBStickinessPolicy",
+      "params": {
+        "command": "deleteLBStickinessPolicy",
+        "response": "json",
+        "id": "6b82d578-2119-4a19-8410-a598bed99703",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    }
+  ],
+  "jobId": "69b09710-5861-438f-8287-ac6ef5378599",
+  "receipt": {
+    "deleteLBstickinessrruleresponse": {
+      "jobid": "69b09710-5861-438f-8287-ac6ef5378599"
+    }
+  },
+  "queries": [
+    {
+      "jobid": "69b09710-5861-438f-8287-ac6ef5378599",
+      "action": "pending"
+    },
+    {
+      "jobid": "69b09710-5861-438f-8287-ac6ef5378599",
+      "action": "hold"
+    }
+  ],
+  "queryFaults": 0,
+  "events": [
+    {
+      "request": "mutation",
+      "injected": false
+    }
+  ]
+}

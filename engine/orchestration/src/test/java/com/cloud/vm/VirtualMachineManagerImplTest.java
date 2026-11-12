@@ -304,6 +304,22 @@ public class VirtualMachineManagerImplTest {
     private ConfigDepotImpl configDepotImpl;
     private boolean updatedConfigKeyDepot = false;
 
+    // Isolate the container-backed SharedFS guard from ordinary VM orchestration fixtures.
+    private MockedStatic<org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard> sharedFsDeletionGuard;
+
+    @org.junit.Before
+    public void prepareNonSharedFsDeletionGuard() {
+        sharedFsDeletionGuard = Mockito.mockStatic(org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.class);
+        sharedFsDeletionGuard.when(() -> org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.enter(Mockito.anyString()))
+                .thenReturn(Mockito.mock(org.apache.cloudstack.storage.sharedfs.SharedFSDeletionPowerGuard.class));
+    }
+
+    @org.junit.After
+    public void releaseNonSharedFsDeletionGuard() {
+        sharedFsDeletionGuard.close();
+    }
+
+
     @Test
     public void stoppedBackupBlocksBeforeVmStartStateTransition() throws Exception {
         when(vmInstanceDaoMock.findByUuid("protected-vm")).thenReturn(vmInstanceMock);

@@ -2203,7 +2203,7 @@ Configurable, StateListener<VirtualMachine.State, VirtualMachine.Event, VirtualM
                 dhcpRange = NetUtils.getIpRangeStartIpFromCidr(cidr, cidrSize);
             }
         } else if (dc.getNetworkType() == NetworkType.Advanced) {
-            final String cidr = _networkModel.getValidNetworkCidr(guestNetwork);
+            final String cidr = getGuestBootCidr(guestNetwork, guestNic);
             if (cidr != null) {
                 cidrSize = NetUtils.getCidrSize(NetUtils.getCidrNetmask(cidr));
                 dhcpRange = NetUtils.getDhcpRange(cidr);
@@ -2217,6 +2217,10 @@ Configurable, StateListener<VirtualMachine.State, VirtualMachine.Event, VirtualM
         }
 
         return buf;
+    }
+
+    protected String getGuestBootCidr(final Network guestNetwork, final NicProfile guestNic) {
+        return GuestNicCidr.select(guestNetwork, guestNic, _networkModel.getValidNetworkCidr(guestNetwork));
     }
 
     protected StringBuilder createRedundantRouterArgs(final NicProfile nic, final DomainRouterVO router) {

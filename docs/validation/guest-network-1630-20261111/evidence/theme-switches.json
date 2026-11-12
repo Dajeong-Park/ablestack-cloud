@@ -1,0 +1,66 @@
+[
+  {
+    "url": "http://10.10.31.10:8080/client/#/vm/5989ced4-0f5a-4e18-9179-46531819d602?tab=nics",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794406660542.2,
+    "after": 1794406660542.2,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/vm/5989ced4-0f5a-4e18-9179-46531819d602?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794406660542.2,
+    "after": 1794406660542.2,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/vm/5989ced4-0f5a-4e18-9179-46531819d602?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794406660542.2,
+    "after": 1794406660542.2,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c?tab=nics",
+    "wanted": "light",
+    "actual": "light",
+    "before": 1794406863233.7,
+    "after": 1794406863233.7,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794406863233.7,
+    "after": 1794406863233.7,
+    "changed": true
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794406863233.7,
+    "after": 1794406863233.7,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.31.10:8080/client/#/vm/5989ced4-0f5a-4e18-9179-46531819d602?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794406660542.2,
+    "after": 1794406660542.2,
+    "changed": false
+  },
+  {
+    "url": "http://10.10.32.10:8080/client/#/vm/effa8f4f-53e7-46f0-9520-d61c34a1569c?tab=nics",
+    "wanted": "dark",
+    "actual": "dark",
+    "before": 1794406863233.7,
+    "after": 1794406863233.7,
+    "changed": false
+  }
+]

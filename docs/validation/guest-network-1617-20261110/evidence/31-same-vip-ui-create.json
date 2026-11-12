@@ -1,0 +1,26 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1617-31-same-vip-lb",
+      "description": "1617 same VIP different port retained review",
+      "sourceipaddress": "10.210.31.188",
+      "sourceport": "19018",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "sourceipaddressnetworkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "scheme": "Internal",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "customjobid": "e96ec6bc-93bf-4943-beb4-fd2f86f1862c"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "id": "237808a1-e9d2-4401-a5d7-38dc1e73ccf6",
+        "jobid": "e96ec6bc-93bf-4943-beb4-fd2f86f1862c"
+      }
+    }
+  }
+]

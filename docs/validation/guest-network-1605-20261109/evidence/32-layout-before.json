@@ -1,0 +1,69 @@
+{
+  "scrolls": [
+    {
+      "clientHeight": 841,
+      "cls": "dark-mode",
+      "overflow": "visible",
+      "position": "static",
+      "scrollHeight": 841,
+      "scrollTop": 0,
+      "style": "--autoBannerHeight: 73px; --affixTopHeader: 73px; --affixTopContent: 151px;",
+      "tag": "HTML",
+      "top": 0,
+      "width": 1670
+    },
+    {
+      "clientHeight": 841,
+      "cls": "dark-mode",
+      "overflow": "auto",
+      "position": "static",
+      "scrollHeight": 841,
+      "scrollTop": 0,
+      "style": null,
+      "tag": "BODY",
+      "top": 0,
+      "width": 1670
+    },
+    {
+      "clientHeight": 768,
+      "cls": "ant-layout ant-layout-has-sider layout global-workbench desktop",
+      "overflow": "hidden",
+      "position": "static",
+      "scrollHeight": 768,
+      "scrollTop": 0,
+      "style": "height: calc(100dvh - 73px);",
+      "tag": "SECTION",
+      "top": 73,
+      "width": 1670
+    },
+    {
+      "clientHeight": 680,
+      "cls": "ant-layout-content layout-content is-header-fixed",
+      "overflow": "auto",
+      "position": "static",
+      "scrollHeight": 1539,
+      "scrollTop": 3,
+      "style": null,
+      "tag": "MAIN",
+      "top": 151,
+      "width": 1414
+    },
+    {
+      "clientHeight": 87,
+      "cls": "ant-card ant-card-bordered breadcrumb-card",
+      "overflow": "visible",
+      "position": "relative",
+      "scrollHeight": 87,
+      "scrollTop": 0,
+      "style": "z-index: 10;",
+      "tag": "DIV",
+      "top": 132,
+      "width": 1428
+    }
+  ],
+  "url": "http://10.10.32.10:8080/client/#/vm/dc8437d4-834a-4120-8958-d501fb96895a?tab=nics",
+  "viewport": [
+    1680,
+    841
+  ]
+}

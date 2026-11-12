@@ -34,7 +34,7 @@
       :customRow="onClickRow"
       :rowKey="record => record.id"
       size="middle"
-      :scroll="{ y: 225 }">
+      :scroll="{ x: 850, y: 225 }">
       <template #bodyCell="{ column, text, record }">
         <template v-if="column.key === 'name'">
           <div>{{ text }}</div>
@@ -46,25 +46,36 @@
               style="display: block"
               v-if="record.type !== 'L2'"
               :name="'ipAddress' + record.id">
-              <a-select
-                style="width: 150px;"
-                v-model:value="form['ipAddress' + record.id]"
-                :loading="ipOptionsLoading[record.id]"
-                allowClear
-                showSearch
-                optionFilterProp="value"
-                :placeholder="record.cidr"
-                :filterOption="(input, option) => {
-                  return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                }"
-                @change="($event) => updateNetworkData('ipAddress', record.id, $event)">
-                <a-select-option v-for="ip in ipOptions[record.id] || []" :key="ip.ipaddress" :value="ip.ipaddress">
-                  {{ ip.ipaddress }}
-                </a-select-option>
-              </a-select>
-              <a-tooltip :title="getIpRangeDescription(record)">
-                <info-circle-outlined style="color: rgba(0,0,0,.45); margin-left: 6px;" />
-              </a-tooltip>
+              <div class="network-ip-options">
+                <a-auto-complete
+                  v-model:value="form['ipAddress' + record.id]"
+                  :aria-label="$t('label.ip') + ' ' + record.name"
+                  :options="(ipOptions[record.id] || []).map(ip => ({ value: ip.ipaddress }))"
+                  allowClear
+                  :placeholder="$t('label.auto.assign')"
+                  :filterOption="(input, option) => option.value.includes(input)"
+                  @change="($event) => updateNetworkData('ipAddress', record.id, $event)" />
+                <a-tooltip :title="$t('label.refresh')">
+                  <a-button
+                    v-if="canQueryIps(record)"
+                    :aria-label="$t('label.refresh') + ' ' + record.name"
+                    :loading="ipOptionsLoading[record.id]"
+                    :disabled="ipOptionsLoading[record.id]"
+                    @click.stop="readIpOptions(record, true)">
+                    <template #icon><reload-outlined /></template>
+                  </a-button>
+                </a-tooltip>
+                <a-tooltip :title="getIpRangeDescription(record)">
+                  <info-circle-outlined />
+                </a-tooltip>
+              </div>
+              <small class="network-ip-hint">{{ $t('message.network.ip.manual.or.auto') }}</small>
+              <a-alert
+                v-if="['error', 'unavailable'].includes(ipOptionsStatus[record.id])"
+                class="network-ip-feedback"
+                :type="ipOptionsStatus[record.id] === 'error' ? 'warning' : 'info'"
+                show-icon
+                :message="$t(ipOptionsStatus[record.id] === 'error' ? 'message.network.ip.lookup.failed' : 'message.network.ip.lookup.unavailable')" />
             </a-form-item>
           </template>
           <template v-if="column.key === 'macAddress'">
@@ -137,30 +148,35 @@ export default {
           key: 'name',
           dataIndex: 'name',
           title: this.$t('label.network'),
-          width: '25%'
+          width: 200
         },
         {
           key: 'ipAddress',
           dataIndex: 'ip',
           title: this.$t('label.ip'),
-          width: '25%'
+          width: 280
         },
         {
           key: 'macAddress',
           dataIndex: 'mac',
           title: this.$t('label.macaddress'),
-          width: '25%'
+          width: 220
         },
         {
           key: 'enabled',
           dataIndex: 'enabled',
-          title: this.$t('label.vmnic.enabled')
+          title: this.$t('label.vmnic.enabled'),
+          width: 100
         }
       ],
       selectedRowKeys: [],
       dataItems: [],
       ipOptions: {},
       ipOptionsLoading: {},
+      ipOptionsStatus: {},
+      ipRequests: {},
+      ipRequestSequence: 0,
+      ipLookupStopped: false,
       macRegex: /^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/i,
       ipV4Regex: /^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$/i
     }
@@ -178,6 +194,11 @@ export default {
     }
   },
   computed: {
+    ipLookupScope () {
+      const { project, userInfo, apis } = this.$store.getters
+      return JSON.stringify([project?.id, userInfo?.id, userInfo?.roleid, this.$store.state?.user?.token,
+        this.$route?.path, Object.keys(apis || {}).sort()])
+    },
     rowSelection () {
       if (this.vnf) {
         return null
@@ -190,6 +211,13 @@ export default {
     }
   },
   watch: {
+    ipLookupScope () {
+      this.ipRequests = {}
+      this.ipOptions = {}
+      this.ipOptionsLoading = {}
+      this.ipOptionsStatus = {}
+      this.fetchIpOptions()
+    },
     value (newValue, oldValue) {
       if (newValue && newValue !== oldValue) {
         this.selectedRowKeys = [newValue]
@@ -198,23 +226,29 @@ export default {
     items: {
       deep: true,
       handler (newData) {
-        console.log('items :>> ', this.items)
-        if (newData && newData.length > 0) {
-          this.dataItems = newData
+        const signature = rows => JSON.stringify((rows || []).map(n => [n.id, n.type, n.cidr, n.projectid]))
+        const changed = signature(this.dataItems) !== signature(newData)
+        this.dataItems = newData || []
+        if (changed) {
           this.initForm()
           this.fetchIpOptions()
           const keyEx = this.dataItems.filter((item) => this.selectedRowKeys.includes(item.id))
           if (!keyEx || keyEx.length === 0) {
-            this.selectedRowKeys = [this.dataItems[0].id]
-            this.$emit('select-default-network-item', this.dataItems[0].id)
+            this.selectedRowKeys = this.dataItems.length ? [this.dataItems[0].id] : []
+            this.$emit('select-default-network-item', this.dataItems[0]?.id)
           }
         }
       }
     }
   },
+  beforeUnmount () {
+    this.ipLookupStopped = true
+    this.ipRequests = {}
+  },
   emits: ['update-network-config', 'select-default-network-item', 'handler-error'],
   methods: {
     initForm () {
+      const previous = this.form || {}
       this.formRef = ref()
       this.form = reactive({})
       this.rules = reactive({})
@@ -233,12 +267,12 @@ export default {
           cidr: record.cidr,
           networkType: record.type
         }]
-        if (record.ipAddress) {
-          form[ipAddressKey] = record.ipAddress
-        }
+        form[ipAddressKey] = record.ipAddress !== undefined ? record.ipAddress : previous[ipAddressKey]
         rules[macAddressKey] = [{ validator: this.validatorMacAddress }]
-        if (record.macAddress) {
+        if (record.macAddress !== undefined) {
           form[macAddressKey] = record.macAddress
+        } else if (previous[macAddressKey]) {
+          form[macAddressKey] = previous[macAddressKey]
         } else if (this.preFillContent.macAddressArray && this.preFillContent.macAddressArray[presetMacAddressIndex]) {
           form[macAddressKey] = this.preFillContent.macAddressArray[presetMacAddressIndex]
           presetMacAddressIndex++
@@ -249,6 +283,14 @@ export default {
       this.rules = reactive(rules)
     },
     fetchIpOptions () {
+      for (const id of Object.keys(this.ipRequests)) {
+        if (!this.dataItems.some(n => n.id === id)) {
+          delete this.ipRequests[id]
+          delete this.ipOptions[id]
+          delete this.ipOptionsLoading[id]
+          delete this.ipOptionsStatus[id]
+        }
+      }
       this.dataItems.forEach(record => {
         if (record.type === 'Shared') {
           this.fetchPublicIps(record)
@@ -260,41 +302,57 @@ export default {
       })
     },
     fetchPublicIps (network) {
-      this.ipOptions[network.id] = []
-      this.ipOptionsLoading[network.id] = false
-      if (!this.$store.getters.apis.listPublicIpAddresses) return Promise.resolve()
-      this.ipOptionsLoading[network.id] = true
-      return getAPI('listPublicIpAddresses', {
-        networkid: network.id,
-        allocatedonly: false,
-        forvirtualnetwork: false
-      }).then(json => {
-        const listPublicIps = json.listpublicipaddressesresponse?.publicipaddress || []
-        this.ipOptions[network.id] = listPublicIps
-          .filter(item => item.state === 'Free')
-          .map(item => ({ ipaddress: item.ipaddress }))
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.ipOptionsLoading[network.id] = false
-      })
+      return this.readIpOptions(network)
     },
     fetchAvailableGuestIps (network) {
+      return this.readIpOptions(network)
+    },
+    canQueryIps (network) {
+      return !!this.$store.getters.apis[network.type === 'Shared' ? 'listPublicIpAddresses' : 'listAvailableGuestIps']
+    },
+    readIpOptions (network, force = false) {
+      const id = network.id
+      const scope = this.ipLookupScope
+      const old = this.ipRequests[id]
+      // Parent updates to IP/MAC/enabled fields must not restart discovery or
+      // repeatedly notify. Only an explicit refresh retries a completed failure.
+      if (!force && old && old.scope === scope) return old.promise || Promise.resolve()
+      const sequence = ++this.ipRequestSequence
+      this.ipRequests[id] = { scope, sequence }
       this.ipOptions[network.id] = []
       this.ipOptionsLoading[network.id] = false
-      if (!this.$store.getters.apis.listAvailableGuestIps) return Promise.resolve()
+      if (!this.canQueryIps(network)) {
+        this.ipOptionsStatus[id] = 'unavailable'
+        return Promise.resolve()
+      }
+      const projectid = this.$store.getters.project?.id
+      if (network.projectid && network.projectid !== projectid) return Promise.resolve()
+      const shared = network.type === 'Shared'
+      const api = shared ? 'listPublicIpAddresses' : 'listAvailableGuestIps'
+      const params = {
+        networkid: id,
+        ignoreproject: true,
+        ...(projectid ? { projectid } : {}),
+        ...(shared ? { allocatedonly: false, forvirtualnetwork: false } : { pagesize: -1 })
+      }
+      const current = () => !this.ipLookupStopped && this.ipLookupScope === scope && this.ipRequests[id]?.sequence === sequence && this.dataItems.some(n => n.id === id)
       this.ipOptionsLoading[network.id] = true
-      return getAPI('listAvailableGuestIps', {
-        networkid: network.id,
-        pagesize: -1
-      }).then(json => {
-        const listAvailableGuestIps = json.listavailableguestipsresponse?.availableguestip || []
-        this.ipOptions[network.id] = listAvailableGuestIps.map(item => ({ ipaddress: item.ipaddress }))
-      }).catch(error => {
-        this.$notifyError(error)
+      this.ipOptionsStatus[id] = 'loading'
+      const promise = getAPI(api, params, { preserveOnFailure: true }).then(json => {
+        const response = json[shared ? 'listpublicipaddressesresponse' : 'listavailableguestipsresponse']
+        if (!response || response.errorcode || (response.availableguestip && !Array.isArray(response.availableguestip)) ||
+            (response.publicipaddress && !Array.isArray(response.publicipaddress))) throw new Error('Invalid IP candidate response')
+        if (!current()) return
+        const rows = shared ? (response.publicipaddress || []).filter(ip => ip.state === 'Free') : response.availableguestip || []
+        this.ipOptions[id] = rows.map(ip => ({ ipaddress: ip.ipaddress }))
+        this.ipOptionsStatus[id] = 'ready'
+      }).catch(() => {
+        if (current()) this.ipOptionsStatus[id] = 'error'
       }).finally(() => {
-        this.ipOptionsLoading[network.id] = false
+        if (current()) this.ipOptionsLoading[id] = false
       })
+      this.ipRequests[id].promise = promise
+      return promise
     },
     onSelectRow (value) {
       this.selectedRowKeys = value
@@ -447,8 +505,26 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  .network-ip-options {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 220px;
+    min-width: 220px;
+
+    .ant-select { flex: 1; min-width: 0; }
+  }
+
+  .network-ip-hint { display: block; margin-top: 6px; }
+  .network-ip-feedback { margin-top: 6px; }
+
   .ant-table-wrapper {
     margin: 2rem 0;
+  }
+
+  .ant-table-wrapper :deep(.ant-table-body) {
+    min-width: 0 !important;
+    max-width: 100%;
   }
 
   :deep(.ant-table-tbody) > tr > td {

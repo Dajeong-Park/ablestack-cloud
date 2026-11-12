@@ -1,0 +1,31 @@
+{
+  "archive": "/home/ablecloud/work/guest-network-1599-validation/backups/31-code-1794177758180444360.tar.gz",
+  "archiveSha256": "7b356834f6a1334e8ce402189f91a808206f802bd6a92ee065ecf0c30c99198e",
+  "verifiedFiles": {
+    "/dev/shm/gn1599-code-20261109-062428/receipt.json": {
+      "sha256": "2c95b335366df203b6e4a62cae57a6d072a822dc143e7fb06f73582472427630",
+      "bytes": 5093
+    },
+    "/dev/shm/gn1599-code-20261109-064802/receipt.json": {
+      "sha256": "d1f83fe6fac1bb2590cd16769c6884246cc82f40263c819814eccf3751ed394b",
+      "bytes": 9228
+    },
+    "/dev/shm/gn1599-code-20261109-065720/receipt.json": {
+      "sha256": "95b07fe068f769746d68789673369d55307be6c55e20018ee45198348a589b86",
+      "bytes": 8025
+    },
+    "/dev/shm/gn1599-code-20261109-065720/patched.jar": {
+      "sha256": "525bf075f2c5b3f7fd88a858a4fdd8f19a0cfc96d27a06503daa4485084c6990",
+      "bytes": 277210615
+    },
+    "/dev/shm/gn1599-code-20261109-065720/original.jar": {
+      "sha256": "64e2334537cc1b55b2a9d6dce1a79f0f4c7e5745b4985673b4f3ed109b7409ba",
+      "bytes": 277210410
+    }
+  },
+  "removedArchivedJarCopies": [
+    "/dev/shm/gn1599-code-20261109-065720/patched.jar",
+    "/dev/shm/gn1599-code-20261109-065720/original.jar"
+  ],
+  "freeAfter": 1142775808
+}

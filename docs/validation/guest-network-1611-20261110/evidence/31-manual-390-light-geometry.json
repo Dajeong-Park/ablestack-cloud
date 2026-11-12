@@ -1,0 +1,35 @@
+{
+  "body": {
+    "bottom": 822,
+    "height": 754,
+    "left": 13,
+    "right": 377,
+    "top": 68,
+    "width": 364,
+    "x": 13,
+    "y": 68
+  },
+  "bodyOverflowY": "hidden",
+  "bodyScrollWidth": 364,
+  "bodyWidth": 364,
+  "footer": {
+    "bottom": 887,
+    "height": 65,
+    "left": 13,
+    "right": 377,
+    "top": 822,
+    "width": 364,
+    "x": 13,
+    "y": 822
+  },
+  "modal": {
+    "bottom": 888,
+    "height": 876,
+    "left": 12,
+    "right": 378,
+    "top": 12,
+    "width": 366,
+    "x": 12,
+    "y": 12
+  }
+}

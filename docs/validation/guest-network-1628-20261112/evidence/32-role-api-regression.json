@@ -1,0 +1,34 @@
+[
+  {
+    "role": "root",
+    "nics": 2,
+    "states": [
+      "Reserved",
+      "Reserved"
+    ]
+  },
+  {
+    "role": "owner",
+    "nics": 2,
+    "states": [
+      "Reserved",
+      "Reserved"
+    ]
+  },
+  {
+    "role": "peer",
+    "nics": 2,
+    "states": [
+      "Reserved",
+      "Reserved"
+    ]
+  },
+  {
+    "role": "readOnly",
+    "nics": 2,
+    "states": [
+      "Reserved",
+      "Reserved"
+    ]
+  }
+]

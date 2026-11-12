@@ -1,0 +1,19 @@
+[
+  {
+    "requestId": "30060.3463",
+    "command": "assignCertToLoadBalancer",
+    "params": {
+      "command": "assignCertToLoadBalancer",
+      "response": "json",
+      "lbruleid": "66c01dd9-10dc-47af-a8d2-9175e2eeced3",
+      "certid": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+      "forced": "true",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "assigncerttoloadbalancerresponse": {
+        "jobid": "58bfcd26-bd03-4459-a849-a210a6550709"
+      }
+    }
+  }
+]

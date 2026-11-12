@@ -1,0 +1,8 @@
+{
+  "exit": 1,
+  "commands": [
+    "mvn -pl engine/orchestration -Drat.skip=true -Dtest=NicPreparationRollbackTest -Dsurefire.failIfNoSpecifiedTests=false test"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}

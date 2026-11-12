@@ -1,0 +1,17 @@
+{
+  "files": [
+    "screenshots/31-NIC-Isolated-detail.jpg",
+    "screenshots/31-NIC-qa-gn1594-31-project-l2-detail.jpg",
+    "screenshots/31-NIC-qa-gn1594-31-project-shared-detail.jpg",
+    "screenshots/31-summary-qa-gn1594-31-project-nat-detail.jpg",
+    "screenshots/31-summary-qa-gn1594-31-project-l2-detail.jpg",
+    "screenshots/31-summary-qa-gn1594-31-project-shared-detail.jpg",
+    "screenshots/32-NIC-qa-gn1594-32-project-nat-detail.jpg",
+    "screenshots/32-summary-qa-gn1594-32-project-nat-detail.jpg",
+    "screenshots/32-NIC-qa-gn1594-32-project-l2-detail.jpg",
+    "screenshots/32-summary-qa-gn1594-32-project-l2-detail.jpg",
+    "screenshots/32-NIC-qa-gn1594-32-project-shared-detail.jpg",
+    "screenshots/32-summary-qa-gn1594-32-project-shared-detail.jpg"
+  ],
+  "reason": "Navigation URL/heading was observed, but JPEG captured an intermediate/back-navigation render. Excluded from final visual evidence; raw originals retained locally."
+}

@@ -1,0 +1,9 @@
+{
+  "host": "10.10.32.2",
+  "systemVm": "b-486-VM",
+  "result": {
+    "exit": 0,
+    "out": "2: eth0    inet 10.211.32.153/26 brd 10.211.32.191 scope global eth0\\       valid_lft forever preferred_lft forever\nLISTEN 0      4096    10.211.32.153:19017      0.0.0.0:*          \nlisten stats_on_public\n\tbind 10.211.32.153:8081\nlisten 10_211_32_153-19017\n\tbind 10.211.32.153:19017\n\tserver 10_211_32_153-19017_0 10.211.32.181:22 check",
+    "error": ""
+  }
+}

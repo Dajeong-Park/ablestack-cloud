@@ -1,0 +1,36 @@
+{
+  "accountid": "0f981bb7-b32c-4766-a990-6974c224d4d4",
+  "account": "qa-gn1569-31-owner",
+  "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+  "domainpath": "ROOT/qa-gn1569-31-domain",
+  "userid": "8c56c525-7ba6-4acd-9233-5852c75d885c",
+  "cmd": "org.apache.cloudstack.api.command.user.loadbalancer.CreateLBStickinessPolicyCmd",
+  "jobprocstatus": 0,
+  "jobresultcode": 0,
+  "jobresulttype": "object",
+  "jobresult": {
+    "stickinesspolicies": {
+      "lbruleid": "c161f7ad-82eb-415f-841a-93838024f854",
+      "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "stickinesspolicy": [
+        {
+          "id": "9c13b419-15fb-45bd-bd2a-61bfe22e49ed",
+          "name": "qa-gn1627-31-review-tcp",
+          "methodname": "SourceBased",
+          "fordisplay": true,
+          "params": {
+            "expire": "10m",
+            "tablesize": "20k"
+          }
+        }
+      ]
+    }
+  },
+  "jobinstancetype": "None",
+  "created": "2026-11-11T17:43:19+0900",
+  "completed": "2026-11-11T17:43:22+0900",
+  "jobid": "25c23c65-ba5c-4f27-a98d-b12f551ed4af",
+  "jobstatus": 1
+}

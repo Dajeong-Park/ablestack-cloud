@@ -1,0 +1,9 @@
+{
+  "command": "addAccountToProject",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "account": "qa-gn1569-32-scope-peer",
+    "role": "Admin"
+  },
+  "jobid": "90faa1ac-39f0-4a37-95d3-0bac989d0ae2"
+}

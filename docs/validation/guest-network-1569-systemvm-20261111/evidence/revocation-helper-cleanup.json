@@ -1,0 +1,15 @@
+{
+  "stopped": true,
+  "firewallRuleRemoved": true,
+  "publicFilesRetained": true,
+  "files": {
+    "root.pem": "7455b2a446fb3fb27fd0a4aec0004fd2fb1eae211f736e5395b4348965e41059",
+    "inter.pem": "5e6cea5039770c8382aa905799643090bf48f52708d4a01ff75b63716c24955b",
+    "root.crl": "7afb26752dfeb7e80112e74e0b4b0334e1c50e7d1134bca5f0b68113eb8f2388",
+    "inter.crl": "a77c4922c463c2bf319be8d6e0dab3bff6af24c4b2d89675c3c58a54ac6034a1",
+    "good.ocsp": "16b0062284ca71f1f2ccb0aa62c0513a35af1f10991749d2d23bf23a75d18fa6",
+    "revoked.ocsp": "d016eb0ceac1957d4a89142cdada03ab47396611eee4235e116145ddd8aae9fc",
+    "inter.ocsp": "4e67131a9ebfe1adf144b3234f4336c11fc5f1965e433d31c6ba526c1f3ec021",
+    "serve.py": "0b8e3c5d0deeb8eac25c9b2bf8b4e8badf0a7dc80284f649d61be55b83ac42b3"
+  }
+}

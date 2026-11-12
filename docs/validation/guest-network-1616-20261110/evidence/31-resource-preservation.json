@@ -1,0 +1,34 @@
+{
+  "baselineRules": 37,
+  "finalRules": 35,
+  "removed": {
+    "internalloadbalancervm": [],
+    "network": [
+      "9c79eaa6-e3de-4892-9cb9-fecb6b6f15a0"
+    ],
+    "virtualmachine": [],
+    "vpc": []
+  },
+  "authorizedDeletedRules": [
+    "739c314f-a5a9-418c-bc6c-6040a77f9046",
+    "46b0048d-e3e9-48df-8df9-eebbcf465404",
+    "e753dfe9-7e93-4c6a-8cb8-c19682c68de5",
+    "c83d253b-07c6-4a19-a5ac-94f73ab7133e"
+  ],
+  "modifiedOriginalBinding": [
+    "37debda7-24fa-4211-a95f-ee838bf7cbd1"
+  ],
+  "authorizedNicChange": [
+    "ee5d34e7-fab2-4159-af9d-a28a55f87ebb"
+  ],
+  "powerChanges": [
+    {
+      "id": "a8e17702-a4e4-4d6d-a581-432d130e50c6",
+      "before": "Stopped",
+      "after": "Running"
+    }
+  ],
+  "otherOriginalNicSignaturesIdentical": true,
+  "otherOriginalBindingsIdentical": true,
+  "securityIdentical": true
+}

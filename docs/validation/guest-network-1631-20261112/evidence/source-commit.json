@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "7358e8aa80232d496251680fecfd78ff4890d355",
+  "wslHead": "7358e8aa80232d496251680fecfd78ff4890d355",
+  "originHead": "7358e8aa80232d496251680fecfd78ff4890d355",
+  "wslClean": true,
+  "sourceHashes": {
+    "server/src/test/java/com/cloud/metadata/DeploymentStorageMetadataTest.java": "3edf3ba9f33d5334f20ef16a893cb7077b78d9afc77a7fbcda32d8ff16459f7c",
+    "server/src/main/java/com/cloud/network/router/RouterPublicMacManager.java": "870fa0c1d3c4db015326217e05bec4ac6255411a7e13aaeed964a4c992513c29",
+    "server/src/main/java/com/cloud/network/router/NetworkHelperImpl.java": "9fc23525e0e7300b929e89c69c91174ae883d0f8654d3ae4a3a66bf12ece9481",
+    "server/src/main/java/com/cloud/metadata/ResourceMetaDataManagerImpl.java": "04463cb315a27fb4bb1e8de581dae32aa9feb9e227bfae281605cc1669d95ed0",
+    "server/src/main/resources/META-INF/cloudstack/core/spring-server-core-managers-context.xml": "22321e1928b30e21ccaaa56c762ba4227a87a62a6522b91cae559e2a229f0b67",
+    "server/src/test/java/com/cloud/network/router/RouterPublicMacManagerTest.java": "adbed716a1c326ce92c758c8de231bf2a0026824a01017f12145f966e4899835",
+    "server/src/test/java/com/cloud/network/router/NetworkHelperImplTest.java": "2e828e7dd5a53cda7b4c8e82b41c4a88e8d7b5a08924d02e98c62e2789cc4ef2"
+  }
+}

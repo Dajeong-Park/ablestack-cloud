@@ -1,0 +1,24 @@
+{
+  "target": "/usr/share/cloudstack-agent/lib/cloud-plugin-hypervisor-kvm-4.23.0.0.jar",
+  "before": "aafa470902a6cea6ca051d5f496b1fb1ef1399a54e26324a22c68dcda4c3d844",
+  "after": "aafa470902a6cea6ca051d5f496b1fb1ef1399a54e26324a22c68dcda4c3d844",
+  "changed": [],
+  "added": [],
+  "classes": {
+    "com/cloud/hypervisor/kvm/resource/BridgeVifDriver.class": "0a91b253ae6d7841b81b0e7d452f49cc1ed323d54549551534df2c29e859815a",
+    "com/cloud/hypervisor/kvm/resource/OvsVifDriver.class": "d8ced26f8ea312bddd5a81051369aec9fd61c0fc0cd4083383f283130298ad53",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource$KeyValueInterpreter.class": "7e64cf39aa93befbc7c2cad64cbb02252c907541751acc92bc1f12b7b61ec650",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource$SecondaryNfsIsoMount.class": "c41290e081def206a5b50c5d42199d24a83908da5656b3ff4d0f8572127f81a0",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource$1.class": "8db33ab6e21fb8715e9ec3cef75545b391d54964928aaa75710edbbb67c0008e",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource$BridgeType.class": "50b1f022fadf4db8212fba419fa83365f9e1cc66392b590a0c2de0c8c821c329",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource$CpuSchedulerParameter.class": "139b7d2bcc4ad7246f96c5ea87d41aa6b714226140f90b684b83f769502d28d8",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource.class": "629fc124d32e4c701b49ad9ce336d6927a242e63d2e95f1ccb475e9e30641e9d",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource$HealthCheckResult.class": "18cc4fa60e6634ccbd474abe62d111ace646ef581ddfe2d4319bbcb9e30a2d07",
+    "com/cloud/hypervisor/kvm/resource/LibvirtComputingResource$ClvmVolumeState.class": "7e91abe7b3a19c9c2c9c2976718210cac86aafc1207475c7492e8cffd940341c",
+    "com/cloud/hypervisor/kvm/resource/KvmBoundedStats.class": "6477d2ab3b4aa18e99b2b598f043c26fb02d425daa10289ecf33261143be69b6",
+    "com/cloud/hypervisor/kvm/resource/wrapper/LibvirtPvlanSetupCommandWrapper.class": "559c3d05df6c15c16a3eb3599f908c0d116ca3d4e43f48286b9f027eecfff2b3"
+  },
+  "stage": "/dev/shm/gn1599-code-20261109-075345",
+  "policySha256": "d2fb7af109644d9e70f79885890d683f0c92ccf8a4bb1a516dac94d78bc0dac6",
+  "active": "mold-agent"
+}

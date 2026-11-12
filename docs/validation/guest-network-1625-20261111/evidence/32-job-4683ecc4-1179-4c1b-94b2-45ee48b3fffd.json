@@ -1,0 +1,14 @@
+{
+  "command": "createLBStickinessPolicy",
+  "params": {
+    "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "name": "qa-gn1625-32-lb-cookie",
+    "methodname": "LbCookie",
+    "param[0].name": "cookie-name",
+    "param[0].value": "QA_LB_COOKIE",
+    "param[1].name": "mode",
+    "param[1].value": "insert"
+  },
+  "jobid": "4683ecc4-1179-4c1b-94b2-45ee48b3fffd"
+}

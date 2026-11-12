@@ -1,0 +1,30 @@
+{
+  "jobid": "dc2c60f8-cfc6-43ee-91da-9c65308f7638",
+  "jobstatus": 1,
+  "vpnconnection": {
+    "id": "8b069d60-b00c-495e-8952-8f2f12823c35",
+    "s2svpngatewayid": "67a1d96b-aa42-49a7-8693-b279fb7afe55",
+    "publicip": "10.10.32.149",
+    "s2scustomergatewayid": "bc651b18-0ffb-45c7-b24c-45f53047d9a0",
+    "gateway": "10.10.31.150",
+    "cidrlist": "10.238.31.0/24",
+    "ikepolicy": "aes256-sha256;modp2048",
+    "esppolicy": "aes256-sha256",
+    "ikelifetime": 28800,
+    "esplifetime": 3600,
+    "dpd": true,
+    "forceencap": false,
+    "state": "Connecting",
+    "passive": false,
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "created": "2026-11-10T11:48:15+0900",
+    "fordisplay": true,
+    "splitconnections": false,
+    "ikeversion": "ikev2"
+  }
+}

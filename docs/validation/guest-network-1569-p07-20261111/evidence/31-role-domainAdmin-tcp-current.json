@@ -1,0 +1,11 @@
+[
+  {
+    "id": "07227223-8efa-452f-9fdc-83b087cdf1ba",
+    "name": "qa-gn1569-31-p07-role-domainAdmin-tcp",
+    "methodname": "SourceBased",
+    "params": {
+      "expire": "10m",
+      "tablesize": "20k"
+    }
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "command": [
+    "npm",
+    "exec",
+    "--offline",
+    "--yes",
+    "--package=markdownlint-cli@0.45.0",
+    "--",
+    "markdownlint",
+    "--config=.markdown-lint.yml",
+    "capture-matrix.ko.md",
+    "design-acl-link.ko.md",
+    "design-backend-permission.ko.md",
+    "design-internal-dialog.ko.md",
+    "design-public-scheme.ko.md",
+    "followups.ko.md",
+    "README.ko.md",
+    "resources.ko.md",
+    "test-results.ko.md",
+    "integrated-coverage.ko.md"
+  ],
+  "files": 10,
+  "wslExt4": true
+}

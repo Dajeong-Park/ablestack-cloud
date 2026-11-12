@@ -1,0 +1,30 @@
+{
+  "invalidLinks": 0,
+  "project": "qa-gn1569-32-shared-reg",
+  "rows": [
+    {
+      "aclLinks": [],
+      "name": "qa-gn1569-32-lb-int-reg-publicTier",
+      "network": "#/guestnetwork/75743a2a-f020-4f65-9ea2-a65acba1a409",
+      "state": "missing",
+      "value": "—"
+    },
+    {
+      "aclLinks": [],
+      "name": "qa-gn1569-32-lb-int-reg-internalTier",
+      "network": "#/guestnetwork/258eda56-c559-432d-91cc-1c5224852008",
+      "state": "missing",
+      "value": "—"
+    },
+    {
+      "aclLinks": [],
+      "name": "qa-gn1611-32-public-alt",
+      "network": "#/guestnetwork/0243e576-addd-4af2-be33-bd542d225ce4",
+      "state": "missing",
+      "value": "—"
+    }
+  ],
+  "spinners": 0,
+  "url": "http://10.10.32.10:8080/client/#/vpc/91c180fc-6f94-4a64-a875-49697b0f3266?tab=tier",
+  "controlled": true
+}

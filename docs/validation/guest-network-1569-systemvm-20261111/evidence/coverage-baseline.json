@@ -1,0 +1,632 @@
+[
+  {
+    "id": "C01 공통",
+    "feature": "목록·필터·검색·페이지",
+    "required": "세 유형/Zone/domain/account/project/VPC/태그·정렬·선택",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "31·32에서 네 유형 검색과 목록→상세→breadcrumb 복귀. 31 일반 사용자 목록도 확인. 정렬·권한 필터 전체 조합 미실행.",
+    "evidence": "[브라우저](evidence/browser-actions.json)"
+  },
+  {
+    "id": "C02 공통",
+    "feature": "요약·상세 필드",
+    "required": "유형별 표시·API 값·상속·빈 값·직접 링크·long/mobile",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "세 유형 상세와 API/DB 값을 대조. 31 L2 설명 저장, 양쪽 NAT DNS 쌍 재조회. 필드 전체와 긴 문자열 조합 미실행.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [브라우저](evidence/browser-actions.json)"
+  },
+  {
+    "id": "C03 공통",
+    "feature": "작업·일괄 작업",
+    "required": "update/restart/delete·busy/권한/유형·부분 실패·물리 정리",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "두 곳 일반 Isolated 재시작 완료 및 L2 동작 제외. 이전 #1572는 API로 정리. 일괄·부분 실패·Live Patch 미실행. **11-09 VPC/Shared 후속:** 서비스 VPC의 연결 Tier/VM 보호, PF 연결 NIC 분리 거부, PF→NIC→Tier 해소 후 UI VPC 정상 삭제 및 기존 Shared 통신 90표본을 양쪽 확인. VPN/LB 연결 삭제 조합은 남음.",
+    "evidence": "[작업](evidence/vm-jobs.json) · [정리](evidence/cleanup-preservation.json) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md)"
+  },
+  {
+    "id": "C04 공통",
+    "feature": "오퍼링 선택·상세 연결",
+    "required": "유형/Zone/provider/service/capability·현재/변경 후보",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "두 곳 NAT 오퍼링 비교/변경 후 API ID 대조. 무효 Zone·모든 제공자 조합 미실행. **2026-11-09:** 기본 VPC NoLB의 Firewall/VpcVirtualRouter 부적합 후보를 431/530으로 재현했다(#1600). 호환 전용 NoLB로 생성·NIC·실제 ACL 통신 성공, 전체 후보 계약은 남음.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [브라우저](evidence/browser-actions.json) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md)"
+  },
+  {
+    "id": "C05 공통",
+    "feature": "관련 VM·NIC",
+    "required": "VM 보기/생성/추가 NIC/기본 NIC/게스트 상태",
+    "role": "Admin/DomainAdmin/owner/member",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "VM 기본 NIC 유지, UI L2 보조 NIC 연결·상세 링크, API/작업 ID 및 NAT 게스트 확인. L2 프레임 전달 미실행. 2026-11-08 4개 허용 역할의 세 유형 UI NIC 연결 24건과 실제 호스트 MAC을 확인했고 새 VM 기본 NIC는 유지했다. #1594에서 기본 보기의 프로젝트 VM 내 생성도 고정 VM 소유로 유지되고 6개 NIC 연결이 성공했다. **2026-11-09:** 새 전용 VM4대로 ConfigDrive/기본 L2 실제 프레임·VPC 보조 NIC 연결을 확인했다. Cloud 기본 NIC는 보존했고 PVLAN 격리 실패는 L02/L05 및 #1599에 기록한다.",
+    "evidence": "[작업](evidence/vm-jobs.json) · [게스트](evidence/guest-traffic.json) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md)  · [#1594 완료](../guest-network-1594-20261108/README.ko.md) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md)"
+  },
+  {
+    "id": "C06 공통",
+    "feature": "갱신·실패·사용성",
+    "required": "입력/목록 유지·응답 역전·job·retry·keyboard/dark/mobile",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "대상 이동 시 업데이트 대화상자 종료, 동일 리소스 탭 유지. 31 오류 431 뒤 CIDR 입력 보존과 재제출 성공. 응답 유실/역전 미실행. 2026-11-08 양쪽 프로젝트 왕복/목록·상세·탭·대화상자와 12개 viewport/테마를 확인. 390px 다크 NIC 표에서 고정 작업 열과 장치 ID 제목 겹침을 발견해 실패로 갱신했다. 역할/UI 상태 복구 및 미실행 조건은 부분 범위다. #1593 UI 수정·31/32 배포 후 12개 폭/테마 조합과 스크롤 좌우에서 겹침이 사라져 실패를 해소했다. 나머지 광범위 사용성 조건은 부분이다.  11-08 VNF 추가 검증: 기본 화면 실행 버튼이 고급 User Data mount 전 비활성이고 템플릿 NIC 추가창이2개다(#1595/#1598). 31 반응형18조합과 양쪽 VNF 읽기 실패 복구를 확인했다. 후속 실행에서32의18조합·프로젝트 전환·VM 표준 창 비교도 완료했다. 기본 실행 가드는 #1595에서 수정·양쪽 실제 배포/선택 오류 차단으로 검증했다. 중복 창은 #1598에서 단일 MoldDialog로 개선·양쪽 저장/복구/포커스/24폭·테마로 검증해 실패를 해소했다. 나머지 미실행 사용성 조건으로 부분을 유지한다. **2026-11-09:** 31/32 VPC Tier 기본 NoLB 제출이431/530으로 실패하며 창이 닫히고 입력 소실(#1600). ACL readonly 편집도401 뒤 닫힘(#1601). 36개 폭/테마·프로젝트 왕복/열린 VM 창 경로 이동은 확인했으나 알려진 실패로 갱신한다. **추가 회귀** #1600/#1601의 실패 입력 보존·재시도, ConfigDrive 사용자 데이터 12폭/테마와 경로 이동을 확인했다. 기본 보기 선택 직후 이전 VPC 주소가 잠시 남았다. **이번 후속:** #1603 검색/선택 경합과 #1604 프로젝트 문맥 Shared 라우터 빈 목록을 수정했다. VM 연결창 12폭/테마·라벨 대비 7.13:1 이상. 다만 32 모바일 스크롤 후 1280px 확대 시 breadcrumb Affix356px/부모980px 잔상(#1605)을 재현해 32는 실패, 31 동작은 미확인이다. **11-09 VPC/Shared 후속:** #1605 공통 breadcrumb 폭/스크롤·IP 버튼 UI는 별도 수정/31·32 검증 완료다. 이번 신규 자원의 역할 UI 일부와 반응형/즉시 테마는 브라우저 제어 중단으로 미완료다. **11-09 UI 잔여 후속 완료:** 역할/읽기 전용 UI·프로젝트 왕복·60폭/테마 배치·동적 폭6개를 새 자원에서 확인했다. 18개 관련 API 401, 자원/권한 보존. 전체 조건부 조합 완료는 아님. **11-09 VPN/LB·AS:** 72개 VM 표준/폭/테마 배치와 프로젝트 왕복은 통과했으나 AutoScale LB 예 기본 추가 무응답(#1606), 기본 User Data 준비 대기(#1607), 그룹 업데이트 실패 입력 유실(#1608)을 양쪽 재현해 실패다. **#1606 후속:** 기본 AutoScale LB 생성 무응답 수정·양쪽 실UI/API job1·hidden 백엔드 분리·모드전환·79테스트·60배치 검증 완료. #1607 UserData 초기화와 #1608 job실패 입력 유실이 남아 실패 유지. **#1607 후속:** 숨겨진 UserData 초기화 수정·31/32 기본/저장 데이터 실제생성·503차단/복구·프로젝트초기화·160테스트/60배치/실제VM4 확인. #1608 job실패 입력 유실은 미수정이라 실패 유지. **#1608 완료:** 양쪽 실제job431 실패 창/초안/오류 유지·60수정 성공·유실응답 동일ID복구(update0)·174테스트/60배치 완료. 잔여 조건은 부분 유지. **11-10 VPN/S2S:** 실제 양쪽 RA 클라이언트 인증/통신·암호거부/복구, VPC S2S Connected/ESP·양방향 ICMP/TCP·피어 장애/자동복구 확인. UI조회503/프로젝트/60배치·본문16캡처 확인. PSK기본평문 #1609·GW성공창미종료 #1610 미수정. Health 정상/복구는 제공자 미준비로 환경 차단. **#1609 완료:** 양쪽 기본 PSK 노출·프로젝트/탭/재조회 초기화와 모바일 폼 폭을 수정/검증했다. #1610 생성 창 미해결로 실패 판정 유지.  **#1610 완료:** 양쪽 실제 GW/접속 생성 POST1/job1/자동닫힘/목록1, 통제 job2 초안 보존·수정 재시도와 실제 응답 유실의 동일ID 복구를 검증했다. API/보안 정책은 유지했다. VM 표준 대화상자24조합·프로젝트/즉시 테마·183검사·최종 단일 경고를 확인했다. VPN 역할·사용자 철회와 오퍼링 등 잔여 조건은 미완료로 부분 판정한다.  **11-10 VPN/LB 역할 후속:** 양쪽 실제 역할 UI·VPN 목록/LB 생성창24폭·테마·VM NIC/연결창·프로젝트 왕복을 확인했다. 32 Internal LB 실제431 후 창 종료/초안 유실과 legacy 작업 배치(#1612)를 재현했다. 31 추가 VPC는 공인IP 부족으로 미실행이며 공통 소스만으로 양쪽 실패로 확대하지 않는다.  **11-10 backend 권한 추가:** 31 Public/32 Internal의 읽기 전용 backend 해제 버튼이 활성이다. 클릭은 공통 postAPI 로컬 권한 검사에서 거부/실제 POST0, 직접API401·backend 유지. UI 버튼/핸들러 일관성 결함 #1614이며 보안 우회로 판정하지 않는다.  **#1614 완료:** 읽기 전용 해제 버튼/핸들러·단일 실패 상태를UI만 수정하고31Public/32Public·Internal 실제역할·실패 복구·프로젝트·18배치를 확인했다. 기존보안/AutoScale/62규칙매핑을 유지했다. 32 Internal 생성창 #1612는 남아32실패를 유지한다.  **#1612 UI 완료:** 양쪽 실제533 입력 보존/생성job1·로컬CIDR거부POST0·통제job실패/복구·36배치·프로젝트와32실제할당/응답유실복구 확인.31시작대기는#1616으로 분리하며 성공으로 집계하지 않는다.  **#1617 UI 회귀:**실제충돌입력보존·정상재시도·26배치·프로젝트/VM표준확인.상세규칙JSON은값정상/비차단가독성개선#1618로분리.  **#1618 완료:**상세/목록 규칙을공통VM표준포트/상태로렌더링.실제값/링크·통제누락/복수/503/프로젝트·40배치확인.원시JSON가독성개선해소,광범위조건은부분유지.  **11-11:** SSL401후교체/삭제버튼잠김과30vw모바일창잘림을재현(#1619). VM기준·프로젝트왕복·즉시테마·36배치/82캡처를대조했으나이실패를남긴다.  **#1619 완료:** SSL 조회/할당/해제 가드, 503/job2 입력 보존/재시도·동일 job 재조회·프로젝트/탭 늦은 응답 취소, VM 표준/24 SSL 배치·88 JPEG·실제 UI16작업/TLS를 확인했다. 시험 권한·인증서·76규칙을 원복/보존했다.",
+    "evidence": "[브라우저](evidence/browser-actions.json) · [캡처](capture-matrix.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md) · [#1593 완료](../guest-network-1593-20261108/README.ko.md)  · [#1594 완료](../guest-network-1594-20261108/README.ko.md)  · [VNF 추가 결과](../guest-network-1569-vnf-20261108/README.ko.md)  · [32 UI 후속](../guest-network-1569-vnf-ui32-20261108/README.ko.md) · [#1598 완료](../guest-network-1598-20261109/README.ko.md) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md) · [Shared 후속 검증](../guest-network-1569-followup-20261109/README.ko.md) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md) · [UI 잔여 완료](../guest-network-1569-ui-resume-20261109/README.ko.md) · [VPN/LB·AS 후속](../guest-network-1569-vpn-lb-20261109/README.ko.md) · [#1606 완료](../guest-network-1606-20261109/README.ko.md) · [#1607 완료](../guest-network-1607-20261109/README.ko.md) · [#1608 완료](../guest-network-1608-20261110/README.ko.md) · [VPN/S2S 후속](../guest-network-1569-vpn-s2s-20261110/README.ko.md) · [#1609 완료](../guest-network-1609-20261110/README.ko.md)  · [#1610 완료](../guest-network-1610-20261110/README.ko.md)  · [VPN 역할/LB 통합](../guest-network-1569-vpn-roles-lb-20261110/README.ko.md)  · [#1614 검증](../guest-network-1614-20261110/README.ko.md)  · [#1612 검증](../guest-network-1612-20261110/README.ko.md)  [#1617 결과](../guest-network-1617-20261110/README.ko.md)  [#1618 결과](../guest-network-1618-20261110/README.ko.md)  · [11-11 VPN/SSL/오퍼링](../guest-network-1569-vpn-ssl-20261111/README.ko.md)  [#1619 UI 결과](../guest-network-1619-20261111/README.ko.md)"
+  },
+  {
+    "id": "C07 공통",
+    "feature": "권한·공유·project",
+    "required": "Admin/DomainAdmin/User·domain hierarchy·cross-owner",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "8개 역할의 Isolated/L2/Shared API 254절차, 4개 허용 역할의 UI 설명 수정 24작업과 제한 역할·프로젝트 왕복을 확인. 이번 추가 회귀 결과는 다음과 같음. M02의 #1592 결함은 수정·배포 검증 완료. 2026-11-08 네 역할의 세 유형 UI 생성 24·NIC 연결 24, 제한 네 역할 API 거부 48·8역할 조회 32를 추가 완료했다. 생성/NIC 권한 경로는 일치하며 #1594에서 세 유형 소유 범위 UI를 개선·배포했다. 추가 UI 생성18/NIC6·8역할 UI16사례·소유 미리보기48조합으로 검증했으며 넓은 조합은 남아 있다. VNF root 프로젝트 배포는 성공하나 IP 후보 조회531(#1597), 기타 시험 역할은 해당 API432 미노출. 이전 시점 결과이며 #1597에서 호출자의 프로젝트 접근 검증 후 해당 소유자의 망 사용권한을 검사하도록 개선했다. 양쪽54개 허용/거부 API·UI 선택 IP 배포2건·미노출 owner UI·프로젝트/반응형/다크를 검증했고 false와 기존 역할/한도는 유지했다. **2026-11-09:** 7역할 ×47개 직접 API/클러스터(총94)에서 ConfigDrive L2/VPC/ACL 생성·L2/VPC 수정·projectid 생략 및 NIC 금지 경계가 기대와 일치했다. 하지만 읽기전용 ACL 편집/가져오기 UI 활성, 실제 편집 POST는 양쪽401 거부(#1601). 서버 우회 성공은 아니다. **추가 회귀** #1601의 7역할 쓰기 98건과 UI 가드를 통합했다. 읽기 전용·비회원 쓰기 0건이다. 이번 Static NAT의 읽기 전용 401·비회원 432를 추가했다.  **11-10 후속:** VPN/LB 5주체 API80기록(허용48/거부32)과 실제 역할 UI/프로젝트 왕복. 기존 network9개 제한 역할을 전역 읽기 전용으로 오인하지 않고 새32명령 제한 역할/계정을 사용했다. 기존 역할·멤버십 그대로다.  **11-11:** 명시SSLdeny/새로그인에서projectid있는API는401,생략하면같은프로젝트구성원의인증서재할당job1을양쪽재현(#1620). UI에는projectid가자동전달돼401이다. 임시권한은원복했다.  **#1620 완료:** 생략/명시 SSL 쓰기 역할 우회는 수정·배포·검증했다. 단 커스텀 역할의 서명 SSL 조회에 projectid를 주면401인 #1622가 추가돼 실패 유지.  **#1619 완료:** SSL 조회/할당/해제 가드, 503/job2 입력 보존/재시도·동일 job 재조회·프로젝트/탭 늦은 응답 취소, VM 표준/24 SSL 배치·88 JPEG·실제 UI16작업/TLS를 확인했다. 시험 권한·인증서·76규칙을 원복/보존했다.  **#1622 완료:** 서명 검증 후 실제 사용자·프로젝트에서 계정/프로젝트 및 키 검사를 모두 유지해 허용 조회 불일치를 수정했다. 31/32 API248건·68쌍 정확한 일치·변경 거부96건 작업0·실제 UI4/서명2 job1·54 JPEG/VM 표준·24배치/프로젝트 왕복을 확인했다. 기존 자원/정책을 보존하고 전용 조회 allow/deny 계정/역할만2개씩 추가했다.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md)  · [#1594 완료](../guest-network-1594-20261108/README.ko.md) · [#1597 완료](../guest-network-1597-20261108/README.ko.md) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)  · [VPN 역할/LB 통합](../guest-network-1569-vpn-roles-lb-20261110/README.ko.md)  · [11-11 VPN/SSL/오퍼링](../guest-network-1569-vpn-ssl-20261111/README.ko.md)  [#1620 결과](../guest-network-1620-20261111/README.ko.md)  [#1619 UI 결과](../guest-network-1619-20261111/README.ko.md)  [#1622 서명 조회](../guest-network-1622-20261111/README.ko.md)"
+  },
+  {
+    "id": "I01 Isolated",
+    "feature": "생성 NAT",
+    "required": "IPv4/NAT·CIDR/gateway/netmask/DNS/domain/MTU/SNAT MAC",
+    "role": "Admin/DomainAdmin/owner/member",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "양쪽 NAT 생성·NIC/IP·게이트웨이·자체 FQDN 응답·Mold HTTP. MTU/SNAT MAC 변형 미실행. 2026-11-08 Admin/owner/member/직접 멤버 아닌 DomainAdmin의 양쪽 UI 생성/NIC를 추가 확인했다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [게스트](evidence/guest-traffic.json) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md)"
+  },
+  {
+    "id": "I02 Isolated",
+    "feature": "생성 no-SourceNat",
+    "required": "specify ranges·VLAN·오퍼링/provider·서비스",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "31의 이전 no-SourceNat 결과와 함께 2026-11-07 32의 SSH·DHCP ACK·자체/상대 DNS·동일 호스트 양방향 ICMP/TCP를 확인. 외부 게이트웨이 .1은 미응답.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [게스트](evidence/guest-traffic.json) · [11-07 추가](../guest-network-1569-guest-20261107/README.ko.md)"
+  },
+  {
+    "id": "I03 Isolated",
+    "feature": "VPC tier·ACL",
+    "required": "VPC candidate·CIDR·ACL 선택/교체·중첩 IP 서비스",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "전용 stopped VPC·Tier·ACL 생성, 목록 교체/복원과 TCP 규칙 CRUD 및 UI Tier→ACL 연결 확인. 기동·ACL 실제 통신·VPC 삭제/서비스 영향 미실행. **2026-11-09:** Running VPC 두 Tier의 실제 ICMP/TCP22 허용→TierB ACL의 A→B 차단→default_allow 복구, 반대 방향과 L2 대조군을 양쪽 확인했다. 기본 NoLB 후보431/530·Tier 입력 소실(#1600), ACL 읽기전용 UI 가드(#1601) 실패가 남아 실패로 갱신한다. VPC 삭제/서비스 전체 영향은 미실행. **추가 회귀** #1600의 적합 후보·실패 재시도와 #1601의 ACL 역할/CSV/이동 결과를 통합했다. VPC 삭제와 서비스 영향은 남았다.  **11-10 후속:** 32 신규 Public/Internal Tier API에 aclid/aclname이 없는데 Tier UI가 빈 /acllist/undefined 링크를 만든다(#1613). 31 기존 지정ACL의 유효 링크 이동/복귀는 정상이다. ACL 패킷 정책 실패를 주장하지 않는다.  **11-10 #1612 검증:** 신규31 Tier에서도 ACL id 없는 빈 undefined 링크를 관측해 #1613은 양쪽 미해결이다.  **11-10 #1613 완료:** 누락/잘못된ACL은대시·유효UUID링크보존·이름없는UUID fallback·조회실패/프로젝트문맥가드·실제이동·역할/24배치 확인. 행전체 완료로 확대하지 않음.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)  · [VPN 역할/LB 통합](../guest-network-1569-vpn-roles-lb-20261110/README.ko.md)  · [#1612 검증](../guest-network-1612-20261110/README.ko.md)  · [#1613 검증](../guest-network-1613-20261110/README.ko.md)"
+  },
+  {
+    "id": "I04 Isolated",
+    "feature": "IPv6/DualStack",
+    "required": "오퍼링/protocol·IPv6 DNS/주소/경로·firewall",
+    "role": "해당 경로 실행 대기",
+    "site31": "환경 차단",
+    "site32": "환경 차단",
+    "history": "양쪽 ipv6.offering.enabled=false. 듀얼 스택 게스트 전용 검증 환경 필요.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "I05 Isolated",
+    "feature": "Static/Dynamic Routed",
+    "required": "AS 번호·BGP·routing rules·IPv4/6 경로·packet",
+    "role": "해당 경로 실행 대기",
+    "site31": "환경 차단",
+    "site32": "환경 차단",
+    "history": "양쪽 AS 번호·범위·BGP 피어 0. AS/상대 피어와 실제 라우팅 망 필요.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "I06 Isolated",
+    "feature": "수정·영향",
+    "required": "DNS/오퍼링/CIDR/domain/SNAT/MTU·서비스별 유효 인자",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "양쪽 DNS 2 변경 후 DNS 1과 쌍 유지, NAT 오퍼링 변경 및 API 확인. MTU/CIDR 변경의 영향 미실행.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [작업](evidence/vm-jobs.json)"
+  },
+  {
+    "id": "I07 Isolated",
+    "feature": "삭제·재시작",
+    "required": "router readiness·cleanup/livepatch/redundant·VPC·의존성",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "두 곳 일반 재시작 job 성공, 재시작 후 게스트 HTTP 200. 이중화/Live Patch/VPC 미실행.",
+    "evidence": "[작업](evidence/vm-jobs.json) · [게스트](evidence/guest-traffic.json)"
+  },
+  {
+    "id": "I08 Isolated",
+    "feature": "송신 방화벽",
+    "required": "TCP/UDP/ICMP/ALL·source/dest CIDR·포트/정책·실제 packet",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "TCP 8080 허용·차단·복구 실제 패킷. UDP/ICMP/ALL 및 나머지 조합 미실행.",
+    "evidence": "[게스트](evidence/guest-traffic.json)"
+  },
+  {
+    "id": "L01 L2",
+    "feature": "생성 기본",
+    "required": "VLAN/VNI·provider·specify VLAN·owner/project",
+    "role": "Admin/DomainAdmin/owner/member",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "기존 지정 VLAN L2와 새 프로젝트 자동 VLAN L2 생성. root/DomainAdmin/owner/member API 허용, owner/member 양쪽 및 root32 UI 생성 완료. VNI 변형 미실행. 2026-11-08 양쪽 네 허용 역할의 UI 자동 VLAN 생성·NIC를 모두 확인했다. **2026-11-09:** ConfigDrive 자동 VLAN의 owner31/admin32 실제 UI 생성, 4허용·3제한 역할 API 및 프로젝트 소유 결과를 확인했다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [프로젝트 권한](../guest-network-1569-project-20261107/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md)"
+  },
+  {
+    "id": "L02 L2",
+    "feature": "PVLAN",
+    "required": "community/isolated/promiscuous·primary/secondary·충돌·전환",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "양쪽 Isolated PVLAN primary/secondary 생성·관리자 상세와 API 대조, 같은 primary/secondary 거부. Community/Promiscuous 전환과 실제 격리 패킷 미실행. **2026-11-09:** Isolated/Community/Promiscuous 3종의 primary/secondary 생성 API와 UI를 양쪽 대조했다. Isolated NIC4연결 job 성공 후 같은 호스트 두 VM의 ICMP3/3·TCP22가 양방향 통과했다. 실제 bridge0/allow-all-traffic·port isolated=false로 격리 실패(#1599). Community/Promiscuous 전달·전환/호스트 간은 미실행. **추가 회귀** #1599에서 native Bridge 생성/연결을 거부하고 전용 OvS에서 I/C/P 동일 호스트 64방향을 검증했다. 호스트 간 트렁크는 남았다.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "L03 L2",
+    "feature": "중복 우회·권한",
+    "required": "bypassvlanoverlapcheck·범위/역할·서버 거부",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "PVLAN primary와 VLAN 중복 거부 및 일반 사용자 bypass 거부 확인. root bypass 허용·전체 범위/역할 조합 미실행.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md)"
+  },
+  {
+    "id": "L04 L2",
+    "feature": "ConfigDrive",
+    "required": "UserData service·VM 데이터/주소 전달·오퍼링 clone",
+    "role": "관리자/API 7역할",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "ConfigDrive 오퍼링 clone과 게스트 데이터 전달 미실행. **2026-11-09:** 새 ConfigDrive auto VLAN 망과 전용 VM4대에서 /dev/sr1 config-2 iso9660, DataSourceConfigDrive, 고유 userdata marker·계정/SSH·static MAC/IP, cloud-init errors=[]를 확인했다. IP는 외부/게스트 설정이며 ConfigDrive가 DHCP를 제공한다고 간주하지 않는다. 오퍼링 clone·userdata 수정/재기동은 남아 부분으로 갱신한다. **추가 회귀** 복제한 L2 ConfigDrive 오퍼링을 선택해 VM을 배포했다. UI 사용자 데이터 V2 저장·정지/시작, ISO V2·QGA 응답을 확인했다. 게스트 V2 재실행은 남았다. **이번 후속:** QGA 보안 설정을 유지한 채 해시 대조한 정지 디스크 사본을 읽기 전용으로 열어 양쪽 V2 실행 파일을 확인했다. 원래 NIC 유지·Running 복구. ISO만으로 실행 성공을 추정하지 않았다.",
+    "evidence": "— · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md) · [Shared 후속 검증](../guest-network-1569-followup-20261109/README.ko.md)"
+  },
+  {
+    "id": "L05 L2",
+    "feature": "VM 접속·격리",
+    "required": "VM 생성/add NIC/default NIC·VLAN 통신/PVLAN 격리",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "역할별 L2 NIC 연결/해제와 원래 기본 NIC 보존, 공유 회수 시 기존 NIC 유지 확인. 기존 SSH 계정 sudo 부재/QGA exec 비활성으로 L2 주소 설정·패킷은 미실행. 권한을 갖춘 새 전용 VM을 같은 호스트에 준비하는 후속이 필요. 2026-11-08 새 전용 VM에서 네 허용 역할 UI 연결을 추가 확인하고 최종 4 NIC의 API/호스트 MAC이 일치했다. 실제 L2 프레임 전달은 이번에도 수행하지 않았다. **2026-11-09:** 같은 호스트 ConfigDrive L2 172.30.x 및 기본 L2 172.31.x 두 VM의 양방향 ICMP/TCP22 성공과 VPC 보조 NIC, 기본 NIC 보존을 확인했다. PVLAN172.29.x의 isolated-peer 통신도 통과해 격리 조건이 실패(#1599). **추가 회귀** #1599의 native Bridge 차단과 동일 호스트 OvS 전달로 격리 실패를 해소했다. 호스트 간 전달은 남았다.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "L06 L2",
+    "feature": "상세·수정·삭제",
+    "required": "L2/PVLAN 값·무관 L3 필드·restart 제외·사용 NIC 보호",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "두 곳 L2 상세·재시작 미노출. 31 설명 저장. 현재 시험 NIC 보호·삭제 미실행. **2026-11-09:** PVLAN 세 유형 primary/secondary와 ConfigDrive 설명의 UI/API 값, 단일 상세/탭/공통 breadcrumb를 대조했다. 보관 요청에 따라 현재 시험 자원은 삭제하지 않았다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [브라우저](evidence/browser-actions.json) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md)"
+  },
+  {
+    "id": "L07 L2",
+    "feature": "제공자 조건부 탭",
+    "required": "VNF/policy/logical router/custom actions·non-L3 이유",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "양쪽 L2 5개 탭 전환. VNF 탭 조회만, 공급자별 작업 미실행.",
+    "evidence": "[탭](evidence/ui-tab-audit.json)"
+  },
+  {
+    "id": "S01 Shared",
+    "feature": "공유 범위",
+    "required": "all/domain/subdomain/account/project·역할·UI/API scope",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "all/domain-only/subdomain/account × 8개 호출 주체 × 양쪽 64조회 일치. 프로젝트 Shared 생성/수정/NIC 역할 회귀 통과. 범위별 실제 IP 할당·공유 회수 영향은 별도 후속. 2026-11-08 양쪽 네 허용 역할의 프로젝트 Shared UI 생성·NIC, 제한 네 역할의 직접 API 거부를 추가 확인했다. **11-09 VPC/Shared 후속:** 네 범위×9주체의 조회/배포후보144 API, 프로젝트 일반/관리자 각4NIC 연결·읽기 전용401, 하위 도메인/외부 개인 연결 허용·거부를 양쪽 확인. 31 일부 역할 UI 일치, 32 비관리자 UI 및 나머지 역할 UI는 남음. **11-09 UI 잔여 후속 완료:** 역할/읽기 전용 UI·프로젝트 왕복·60폭/테마 배치·동적 폭6개를 새 자원에서 확인했다. 18개 관련 API 401, 자원/권한 보존. 전체 조건부 조합 완료는 아님.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md) · [UI 잔여 완료](../guest-network-1569-ui-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "S02 Shared",
+    "feature": "물리망·연관망·오퍼링",
+    "required": "Zone/tags/physicalnetwork/specify VLAN/associatednetwork",
+    "role": "Admin/DomainAdmin/owner/member",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "지정 VLAN Shared 및 L2 연관망을 쓰는 자동 VLAN Shared를 프로젝트에 생성하고 사용. 복수 물리망·태그 조합 미실행. 2026-11-08 양쪽 네 허용 역할이 같은 QA 연관 L2를 쓰는 자동 VLAN Shared를 UI로 생성·연결했다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [프로젝트 권한](../guest-network-1569-project-20261107/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md)"
+  },
+  {
+    "id": "S03 Shared",
+    "feature": "VLAN/PVLAN",
+    "required": "VLAN/VNI·secondary·충돌/우회·실제 격리",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "VLAN792로 양쪽 생성. PVLAN 충돌/격리 미실행.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "S04 Shared",
+    "feature": "IPv4/IPv6 생성",
+    "required": "gateway/netmask/CIDR/start/end/router IP·DNS·MTU",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "IPv4 주소 범위·CIDR·게이트웨이 생성 확인. IPv6 비활성.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "S05 Shared",
+    "feature": "IP Addresses",
+    "required": "guest 주소/할당·VM/NIC·publicIP와 구분·페이지·권한",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "2026-11-07 양쪽 Shared의 게스트 IP·VM 링크와 실제 할당을 재조회. 시험 VM 두 대와 동일 호스트를 UI·API에서 대조. 반납·페이지 권한 전체 조합 미실행.",
+    "evidence": "[탭](evidence/ui-tab-audit.json) · [작업](evidence/vm-jobs.json) · [11-07 추가](../guest-network-1569-guest-20261107/README.ko.md)"
+  },
+  {
+    "id": "S06 Shared",
+    "feature": "게스트 IP 범위",
+    "required": "IPv4/6·다중 subnet·중복·사용 IP·CRUD/async",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "양쪽 범위 탭, 32 Shared IPv4 범위 추가와 API 2개. 수정·삭제·중복·IPv6 미실행.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [브라우저](evidence/browser-actions.json)"
+  },
+  {
+    "id": "S07 Shared",
+    "feature": "DHCP/DNS·router",
+    "required": "VM 실제 할당/갱신/반납·DNS 질의·router 없는 오퍼링",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "2026-11-07 양쪽 Shared의 정상 재부팅 후 SSH 복구. DHCP ACK·게스트 IP/MAC·DNS·동일 호스트 양방향 ICMP 3/3 및 TCP22 응답. 임대 갱신/반납·무라우터 오퍼링·외부 게이트웨이 경로 미완료. **11-09 VPC/Shared 후속:** 네 범위의 VM22/23 실제 DHCP16개 임대, UDP/TCP DNS 및 ICMP/SSH를 양쪽 확인. 외부 경로·무라우터/갱신 전체 조합은 남음.",
+    "evidence": "[게스트](evidence/guest-traffic.json) · [작업](evidence/vm-jobs.json) · [11-07 추가](../guest-network-1569-guest-20261107/README.ko.md) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md)"
+  },
+  {
+    "id": "S08 Shared",
+    "feature": "DNS Zone 작업",
+    "required": "zone/subdomain 후보·associate/disassociate·실제 질의",
+    "role": "해당 경로 실행 대기",
+    "site31": "환경 차단",
+    "site32": "환경 차단",
+    "history": "양쪽 DNS Zone/Server 0. 외부 DNS 시험 제공자 및 도메인 필요.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "S09 Shared",
+    "feature": "usage·수정·restart",
+    "required": "hideipaddressusage·DNS 쌍·specifyvlan 권한·서비스 영향",
+    "role": "관리자·프로젝트 멤버",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "새 ROUTING 이미지와 요소 재생성 UI/API job 완료를 양쪽 검증했다. 제품/빌드 버전 혼합 오류를 고친 파생 이미지를 사용한다. 최종 새 VR에서 일반 재시작 2회, DNS UDP/TCP 각540/540·ICMP/TCP 각135/135, 신규 DORA .54·기존 .58 갱신과 PID/NIC 보존. 요소 재생성 및 같은 호스트 이주 중 DNS 중단은 별도 기록했다. Live Patch·이중화·추가 DNS/역할 조합은 남음. **11-09 VPC/Shared 후속:** specifyvlan Shared 수정은 Root만 허용, 나머지531/읽기 전용401을 양쪽 확인. 정책 완화 없음.",
+    "evidence": "[Shared 사용량](../guest-network-1569-shared-20261109/README.ko.md) · [재시작 수정](../guest-network-1569-dnsfix-20261109/README.ko.md) · [Shared 후속 검증](../guest-network-1569-followup-20261109/README.ko.md) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md)"
+  },
+  {
+    "id": "S10 Shared",
+    "feature": "공유 철회·사용 중 삭제",
+    "required": "범위/NetworkPermissions 차이·기존 VM·신규 NIC 영향",
+    "role": "관리자·프로젝트 멤버",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "양쪽 Account Shared의 프로젝트 권한을 사용 중 철회했다. 기존 NIC·ICMP·DNS·TCP 유지, 신규 NIC 후보 없음·API 530 거부. 권한 재부여 후 멤버 UI 연결과 DHCP·양방향 통신 성공. 철회 확인 번역 키 노출, 사용 중 삭제와 다른 공유 범위는 남음. **이번 후속:** 철회 확인 한글/영문 문구, 양쪽 사용 중 삭제530 거부, 개인 계정/프로젝트 권한 초기화0·신규 후보 제외·기존 통신 유지·프로젝트 권한1 복원을 확인했다. 다른 공유 유형 전체 조합은 남음. **11-09 VPC/Shared 후속:** 새 Account Shared의 개인 부여/회수·양쪽 UI 초기화·프로젝트 신규 후보 제외/연결 거부·기존 네 NIC별 통신 유지·프로젝트1건 복원을 확인. 범위 UI와 조건부 조합은 남음. **11-09 UI 잔여 후속 완료:** 역할/읽기 전용 UI·프로젝트 왕복·60폭/테마 배치·동적 폭6개를 새 자원에서 확인했다. 18개 관련 API 401, 자원/권한 보존. 전체 조건부 조합 완료는 아님.",
+    "evidence": "[Shared 회귀](../guest-network-1569-shared-20261109/README.ko.md) · [Shared 후속 검증](../guest-network-1569-followup-20261109/README.ko.md) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md) · [UI 잔여 완료](../guest-network-1569-ui-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "P01 Public IP",
+    "feature": "상태·수명주기",
+    "required": "Free/Reserved/Allocated/SourceNat/StaticNat/system·reserve/release/SNAT 변경",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "수동 Public IP 할당 및 Source NAT 식별. 개별 해제·재할당/변경 미실행. **추가 회귀** 이번 VPC 추가 Public IP는 양쪽 Allocated다. 기존 Source NAT 행은 associatednetworkid가 없고 UI에 빈 #/guestnetwork/undefined 링크가 남아 실패했다. **수정 후** 양쪽 대시·앵커 0개, 실제 연결망 링크·상세 이동, 매핑 해제 후 대시를 확인했다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [탭](evidence/ui-tab-audit.json) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md) · [링크 수정 검증](../guest-network-1569-nat-link-20261109/README.ko.md)"
+  },
+  {
+    "id": "P02 Public IP",
+    "feature": "상세·Static NAT",
+    "required": "VM→NIC→primary/secondary IP·enable/disable·충돌",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "추가 IP의 Static NAT 활성·VM 매핑 재조회·PF 충돌 거부·해제, Source NAT IP의 Static NAT 거부를 양쪽 확인. Static NAT 실제 패킷/VM 주소 조합 미실행. **추가 회귀** 이번 VPC IP의 Tier A·VM11·실제 NIC 주소가 UI와 API에서 일치했다. 양쪽 관리자 UI 활성화·해제와 제한 역할 API 거부를 확인했다. NAT 패킷과 충돌 조합은 남았다.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "P03 Public IP",
+    "feature": "Firewall",
+    "required": "protocol/CIDR/port/ICMP·CRUD/replace·tags/bulk·packet",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "수동 IP TCP 18069 방화벽 추가·삭제·복구와 SSH 배너/timeout. ICMP·태그·일괄 미실행.",
+    "evidence": "[수신](evidence/guest-traffic.json) · [브라우저](evidence/browser-actions.json)"
+  },
+  {
+    "id": "P04 Public IP",
+    "feature": "Port Forwarding",
+    "required": "create/update/delete·public/private range·VM/NIC/IP·CIDR",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "수동 IP PF 생성 및 18069→22 교체·실제 응답·18069 원복. 삭제·다중 범위 미실행.",
+    "evidence": "[수신](evidence/guest-traffic.json) · [브라우저](evidence/browser-actions.json)"
+  },
+  {
+    "id": "P05 Public IP",
+    "feature": "LB 기본 CRUD",
+    "required": "algorithm/protocol/ports/CIDR·provider·edit/delete",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "31·32의 기존 NULL/생략 프로토콜을 TCP로 정규화하고 API·UI 수정 및 백엔드 연결 후 Active 확인. 오류 입력 보존·재시도·동일 job 복구, HTTP/SSL·backendssl/인증서 전환, 역할 API·모바일/다크를 검증(#1590). 제공자 장애 복원은 집중 테스트. 삭제/다른 제공자 등의 전체 회귀는 남음. **11-09:** 새 TCP 규칙 UI생성/알고리즘 수정, 중복537 후 입력 보존·18872 재시도와 해당 소모 규칙 삭제, 최종Active 확인. 광범위 제공자/프로토콜은 남음.  **11-10 후속:** 양쪽 Isolated LB 중복537→입력 보존/보정 생성, 일반 구성원/도메인 관리자 수정·읽기 전용/비회원 거부를 확인했다. 32 VPC Public LB 후보에 Internal 전용 Tier가 포함되어 실제431 거부(#1611). 적합 Tier 보정 후 Public/Internal UI 생성·NIC 할당이 성공했다. 31 추가VPC는 공인IP 고갈로 환경 차단이다.  **#1611 추가:** Public LbSchemes/provider UI 필터·선택/NIC 초기화·전환·실패 복구를 구현해32 실제 생성/연결을 확인하고 후보 결함을 해소했다. 광범위 protocol/provider와31 신규VPC 조건이 남아 부분이다.  **#1616 후속:**31 같은 Tier·Source IP의 다른 포트 생성537을 실제 UI로 재현(#1617).Long network ID 객체 비교를 배포 bytecode에서 확인했다.입력은 보존되며 비동기 job 미수락.32 같은 IP 미실행.  **#1617 완료:**값 비교로31/32 동일VIP 다른포트 생성/할당UI/API8job1·3listener/runtime/NIC와기존controller재사용확인.동일포트/다른network537거부유지.광범위역할/TLS조건은남아부분.  **#1618 완료:**상세/목록 규칙을공통VM표준포트/상태로렌더링.실제값/링크·통제누락/복수/503/프로젝트·40배치확인.원시JSON가독성개선해소,광범위조건은부분유지.",
+    "evidence": "[#1590 구현·검증](../guest-network-1590-20261108/README.ko.md) · [VPN/LB·AS 후속](../guest-network-1569-vpn-lb-20261109/README.ko.md)  · [VPN 역할/LB 통합](../guest-network-1569-vpn-roles-lb-20261110/README.ko.md)  · [#1611 검증](../guest-network-1611-20261110/README.ko.md)  [#1616 결과](../guest-network-1616-20261110/README.ko.md)  [#1617 결과](../guest-network-1617-20261110/README.ko.md)  [#1618 결과](../guest-network-1618-20261110/README.ko.md)"
+  },
+  {
+    "id": "P06 Public IP",
+    "feature": "LB VM 연결",
+    "required": "다중 backend/NIC/IP·나중 연결·create/assign 부분 실패·retry",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "명시 TCP LB에 백엔드 연결/조회/해제/재연결 및 UI VM/IP 표시 확인. 실패/재시도 미실행. 사용자 지시로 LB 데이터 평면은 제외. **11-09:** 새 전용 VM/NIC 연결·해제(API0/Add)·재연결(API1/Active), HAProxy 구성 복구 확인. AutoScale 실제 멤버1→2→1과 LB 매핑 확인. 부하분산 성능은 제외.  **11-10 후속:** 새 31 Isolated LB에 UI로 시험 VM NIC1개를 연결했고 32 VPC Public/Internal에도 새 VM NIC를 연결했다. 동일 호스트/게스트 NIC/방화벽 전제를 충족한 단일 SSH 응답을 각 확인했다. 분산·성능 측정은 하지 않았다.  **11-10 backend 권한 추가:** 31 Public/32 Internal의 읽기 전용 backend 해제 버튼이 활성이다. 클릭은 공통 postAPI 로컬 권한 검사에서 거부/실제 POST0, 직접API401·backend 유지. UI 버튼/핸들러 일관성 결함 #1614이며 보안 우회로 판정하지 않는다.  **#1614 완료:** 읽기 전용 해제 버튼/핸들러·단일 실패 상태를UI만 수정하고31Public/32Public·Internal 실제역할·실패 복구·프로젝트·18배치를 확인했다. 기존보안/AutoScale/62규칙매핑을 유지했다. 31Internal 양성 등 미실행 조건이 남아부분이다.  **#1612:**32신규실제할당job1/runtime Running·미할당확인규칙 보존.31저장매핑1은job0/LBVM Starting/runtime없음으로활성성공아님(#1616).warm 대조 배치530.기존65규칙연결보존.  **11-10 #1613 관찰:**31이전pending할당은17:40:15 job2/530·매핑철회.변경POST0이며runtime미완료(#1616).  **#1616 완료:**31 자원 부족·재진입·실패Shutdown 잔류를 수정.양쪽Allocated/Implemented 실제UI할당4건 job1,최종양쪽재할당job1/controller재사용,원래31 실패규칙job1/b1015 Running·NIC/HAProxy일치·실패잔류0.전체역할/다중NIC조건은남아부분유지.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [VPN/LB·AS 후속](../guest-network-1569-vpn-lb-20261109/README.ko.md)  · [VPN 역할/LB 통합](../guest-network-1569-vpn-roles-lb-20261110/README.ko.md)  · [#1614 검증](../guest-network-1614-20261110/README.ko.md)  · [#1612 검증](../guest-network-1612-20261110/README.ko.md)  · [#1613 검증](../guest-network-1613-20261110/README.ko.md)  [#1616 결과](../guest-network-1616-20261110/README.ko.md)"
+  },
+  {
+    "id": "P07 Public IP",
+    "feature": "LB stickiness·TLS",
+    "required": "policy·SSL cert assign/remove/backendssl·권한·secret",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "명시 TCP 규칙 LbCookie 생성/삭제/재생성과 UI·390px 정책/하단 버튼 확인. TLS·인증서·다른 방식과 프로토콜 전환 미실행. **11-09:** 전용 자체서명 인증서 UI선택/SSL규칙 연결·API·VR TLS handshake·LbCookie 실제구성 확인. 재암호화/교체/제거/다른 방식 등은 남음.  **11-11:** UI인증서교체/제거/복구의실제지문,단일HTTPSbackend18443/19111과backendssl해제curl56→재활성200을확인. SSLUI역할가드/401복구/모바일(#1619), projectid생략역할우회(#1620)가실패다. CA/체인/만료/다른방식은잔여다.  **#1620 완료:** SSL 쓰기 역할 우회 수정/검증, #1619 UI 및 TLS 잔여 때문에 실패 유지.  **#1621 후속:** SSL 변경 중 VPN 단절은 해결. 별도 SSL bind 건강 검사 오판정 #1624를 실제 문법0/TLS200과 대조해 등록했다.  **#1619 완료:** SSL 조회/할당/해제 가드, 503/job2 입력 보존/재시도·동일 job 재조회·프로젝트/탭 늦은 응답 취소, VM 표준/24 SSL 배치·88 JPEG·실제 UI16작업/TLS를 확인했다. 시험 권한·인증서·76규칙을 원복/보존했다.  **#1622 완료:** 서명 검증 후 실제 사용자·프로젝트에서 계정/프로젝트 및 키 검사를 모두 유지해 허용 조회 불일치를 수정했다. 31/32 API248건·68쌍 정확한 일치·변경 거부96건 작업0·실제 UI4/서명2 job1·54 JPEG/VM 표준·24배치/프로젝트 왕복을 확인했다. 기존 자원/정책을 보존하고 전용 조회 allow/deny 계정/역할만2개씩 추가했다.  **#1624 완료:** SSL bind endpoint 분리와 실제 HAProxy 문법 검증, 잘못된 설정10종 거부,31/32 새 VR 부팅·TLS200·API/UI15/15와 VM 표준 UI/프로젝트/24배치/56 JPEG를 확인했다. CA/체인/만료·다른 정책/오퍼링 조합은 잔여다.  **11-11 VPN/TLS 후속:** 역할 API64건·인증서20건·실제 서비스6사이클·소유자 UI8 job1·CA chain Root/SAN/TLS200·중간체인 누락/복구·만료 거부·SourceBased/8192 keepalive 오퍼링 적용/원복·91 JPEG를 확인했다. 동시 VPN통신은 사용자 확인대로 독립 client 부재로 조건 대기, CRL/OCSP 기본정책 검증도 남는다.  AppCookie가 폐기된 appsession을 생성해 실제 양쪽 job2/530(#1625), 정책 창의 조기 종료/초안 유실(#1626)을 재현했다. 기존 live 설정/TLS는 보존됐으며 두 결함은 미수정이다.  **#1625 완료:** upstream45944c40 병합·13 Maven 모듈/관리2·호스트6·정적UI675 배포. AppCookie 현대 stick-table/미지원13종 사전거부·UI/API job1·학습/조회/만료·TLS/CA·LbCookie/SourceBased TCP/SSL·오퍼링 왕복·VPN 통신·역할 정책과 VM 표준/12배치/프로젝트 왕복을 확인했다. 원래 인증서/오퍼링/TCP정책/방화벽 복원·자원 보관. **#1626 비동기 실패/입력 복구가 남아 P07 실패를 유지한다.**  **#1626 완료:** UI 전용 비동기 상태/실패 초안/동일 job 조회/중복·권한·범위 변경 가드와 Revoked 이력/resize 팝업을 수정했다. 양쪽 실제 job2→보정 job1·삭제·결과 불확실 복구, VM 표준/프로젝트/12배치·읽기전용·런타임/자원 보존을 확인해 P07을 부분으로 복귀한다. 다른 정책/프로토콜/제공자·역할 통합 잔여는 유지한다.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [VPN/LB·AS 후속](../guest-network-1569-vpn-lb-20261109/README.ko.md)  · [11-11 VPN/SSL/오퍼링](../guest-network-1569-vpn-ssl-20261111/README.ko.md)  [#1620 결과](../guest-network-1620-20261111/README.ko.md)  [#1621/건강 진단](../guest-network-1621-20261111/README.ko.md)  [#1619 UI 결과](../guest-network-1619-20261111/README.ko.md)  [#1622 서명 조회](../guest-network-1622-20261111/README.ko.md)  [#1624 점검/UI 결과](../guest-network-1624-20261111/README.ko.md)  [VPN/TLS91캡처](../guest-network-1569-vpn-tls-20261111/README.ko.md)  [#1625 구현/49캡처/배포](../guest-network-1625-20261111/README.ko.md)  [#1626 UI/캡처/증적](../guest-network-1626-20261111/README.ko.md)"
+  },
+  {
+    "id": "P08 Public IP",
+    "feature": "LB health·AutoScale",
+    "required": "제공자 health monitor·AutoScale 링크/소유·실제 health",
+    "role": "해당 경로 실행 대기",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "Health Monitor·AutoScale 관련 UI 변경 작업 미실행. **11-09:** VirtualRouter HealthCheckPolicy 미지원430 거부/잔여0, 정상 health는 Netscaler/TF 미구성으로 차단. AutoScale UI 우회생성/실제 CPU정책1→2→1·job431/운영탭·소유/링크 검증. 기본 추가/생성/실패 입력 결함 #1606/#1607/#1608이 미수정이므로 실패. 외부 제공자/스케줄 등은 남음. **#1606 후속:** 기본 AutoScale LB 생성 무응답 수정·양쪽 실UI/API job1·hidden 백엔드 분리·모드전환·79테스트·60배치 검증 완료. #1607 UserData 초기화와 #1608 job실패 입력 유실이 남아 실패 유지. **#1607 후속:** 숨겨진 UserData 초기화 수정·31/32 기본/저장 데이터 실제생성·503차단/복구·프로젝트초기화·160테스트/60배치/실제VM4 확인. #1608 job실패 입력 유실은 미수정이라 실패 유지. **#1608 완료:** 양쪽 실제job431 실패 창/초안/오류 유지·60수정 성공·유실응답 동일ID복구(update0)·174테스트/60배치 완료. 잔여 조건은 부분 유지. **11-10 VPN/S2S:** 실제 양쪽 RA 클라이언트 인증/통신·암호거부/복구, VPC S2S Connected/ESP·양방향 ICMP/TCP·피어 장애/자동복구 확인. UI조회503/프로젝트/60배치·본문16캡처 확인. PSK기본평문 #1609·GW성공창미종료 #1610 미수정. Health 정상/복구는 제공자 미준비로 환경 차단. **사용자 확정:** 별도 Health Monitor 제공자 없음. 정상 health/장애 복구는 환경 차단이며 제공자 구성 후 재검증.",
+    "evidence": "— · [VPN/LB·AS 후속](../guest-network-1569-vpn-lb-20261109/README.ko.md) · [#1606 완료](../guest-network-1606-20261109/README.ko.md) · [#1607 완료](../guest-network-1607-20261109/README.ko.md) · [#1608 완료](../guest-network-1608-20261110/README.ko.md) · [VPN/S2S 후속](../guest-network-1569-vpn-s2s-20261110/README.ko.md)"
+  },
+  {
+    "id": "P09 Public IP",
+    "feature": "VPN",
+    "required": "remote access/VPC gateway·사용자·activate/delete·client packet",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "수동 IP에서 VPN 숨김, Source NAT IP에서 표시·탭 전환. VPN 서비스 개설 및 패킷 미실행. **11-09:** Remote VPN UI활성/비활성/재활성Running, VPN사용자431 입력보존→수정성공, PSK마스킹·VR프로세스/리스닝 확인. 실제 외부클라이언트 패킷·VPC S2S·사용자철회 영향은 미실행. **11-10 VPN/S2S:** 실제 양쪽 RA 클라이언트 인증/통신·암호거부/복구, VPC S2S Connected/ESP·양방향 ICMP/TCP·피어 장애/자동복구 확인. UI조회503/프로젝트/60배치·본문16캡처 확인. PSK기본평문 #1609·GW성공창미종료 #1610 미수정. Health 정상/복구는 제공자 미준비로 환경 차단. **#1609 완료:** 양쪽 기본 PSK 노출·프로젝트/탭/재조회 초기화와 모바일 폼 폭을 수정/검증했다. #1610 생성 창 미해결로 실패 판정 유지.  **#1610 완료:** 양쪽 실제 GW/접속 생성 POST1/job1/자동닫힘/목록1, 통제 job2 초안 보존·수정 재시도와 실제 응답 유실의 동일ID 복구를 검증했다. API/보안 정책은 유지했다. VM 표준 대화상자24조합·프로젝트/즉시 테마·183검사·최종 단일 경고를 확인했다. VPN 역할·사용자 철회와 오퍼링 등 잔여 조건은 미완료로 부분 판정한다.  **11-10 VPN 역할/철회 후속:** 양쪽 실제 UI 철회 후 ppp69 고정 통신 차단·신규 PPP 인증 거부, UI 복구 후 ICMP5/5·TCP3/3. 31은 job1/사용자 부재를 확인한 최종 음성 시험이다. 기존 VPN키/사용자 유지. 5주체 VPN/LB API80기록·역할 UI와 구성원/도메인 관리자의 전용 사용자 삭제/복구를 확인했다. owner 전용/서비스 자체 철회의 모든 역할 조합은 남는다.  **11-11:** root UI사용자철회→기존ppp69차단/신규인증거부→owner UI복구·서비스철회/재생성후새PSK로양쪽ICMP5/5·SSH3/3. member/DomainAdmin API복구·제한역할거부와원래오퍼링복구후통신을확인했다. 모든역할/동시클라이언트/서비스조합은남는다.  **최종교차:** SSL인증서교체직후양쪽PPP소실,VR xl2tpd재시작/pppd TERM을재현했다. CsFile.empty의비교기준소실때문에같은PSK도변경으로판정된다(#1621). 인증서복구만으로세션은복귀하지않으며새접속5ICMP/3SSH는성공했다.  **#1621 완료:** 동일 PSK 재적용의 불필요한 재시작을 제거하고 양쪽212/86표본·실제 철회/복구·새 VR 부팅/SSL 재적용과 통신을 확인했다. 동시 클라이언트/역할/서비스의 넓은 조합은 남아 부분 판정한다.  **11-11 VPN/TLS 후속:** 역할 API64건·인증서20건·실제 서비스6사이클·소유자 UI8 job1·CA chain Root/SAN/TLS200·중간체인 누락/복구·만료 거부·SourceBased/8192 keepalive 오퍼링 적용/원복·91 JPEG를 확인했다. 동시 VPN통신은 사용자 확인대로 독립 client 부재로 조건 대기, CRL/OCSP 기본정책 검증도 남는다.",
+    "evidence": "[탭](evidence/ui-tab-audit.json) · [VPN/LB·AS 후속](../guest-network-1569-vpn-lb-20261109/README.ko.md) · [VPN/S2S 후속](../guest-network-1569-vpn-s2s-20261110/README.ko.md) · [#1609 완료](../guest-network-1609-20261110/README.ko.md)  · [#1610 완료](../guest-network-1610-20261110/README.ko.md)  · [VPN 역할/LB 통합](../guest-network-1569-vpn-roles-lb-20261110/README.ko.md)  · [11-11 VPN/SSL/오퍼링](../guest-network-1569-vpn-ssl-20261111/README.ko.md)  [#1621 결과](../guest-network-1621-20261111/README.ko.md)  [VPN/TLS91캡처](../guest-network-1569-vpn-tls-20261111/README.ko.md)"
+  },
+  {
+    "id": "P10 Public IP",
+    "feature": "VPC/conserve mode 분기",
+    "required": "SourceNat/StaticNat·Firewall capability·PF/LB 공존 조건",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "conserve=true Isolated의 같은 추가 IP에 FW/PF/LB를 서로 다른 포트로 공존시킴. Static NAT와 PF 충돌도 거부. VPC/conserve=false 및 나머지 충돌 조합 미실행.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md)"
+  },
+  {
+    "id": "P11 Public IP",
+    "feature": "관리 규칙 보호",
+    "required": "Kubernetes/AutoScale owner·편집/삭제/bulk/API 거부",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "양쪽 Kubernetes IP FW/PF 전후 해시 일치. 실제 운영 규칙에 쓰기·삭제 프로브를 보내지 않음. 전용 소유자 fixture 필요.",
+    "evidence": "[정리](evidence/cleanup-preservation.json)"
+  },
+  {
+    "id": "X01 조건부",
+    "feature": "BGP peers",
+    "required": "ASN/IPv4/6/peer변경/dedication/secret·실제 세션·routes",
+    "role": "해당 경로 실행 대기",
+    "site31": "환경 차단",
+    "site32": "환경 차단",
+    "history": "ASN·BGP 피어 0. 전용 이웃과 라우팅 실환경 필요.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "X02 조건부",
+    "feature": "Routing firewall",
+    "required": "route/service/VPC 조건·CRUD/정책/packet",
+    "role": "해당 경로 실행 대기",
+    "site31": "환경 차단",
+    "site32": "환경 차단",
+    "history": "시험 오퍼링에 Routed/VPC tier 조건 없음. 지원 시험 오퍼링과 라우터 필요.",
+    "evidence": "[탭](evidence/ui-tab-audit.json) · [계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "X03 조건부",
+    "feature": "IPv6 firewall",
+    "required": "IPv6/DualStack·ICMPv6·CIDR·정책/packet",
+    "role": "해당 경로 실행 대기",
+    "site31": "환경 차단",
+    "site32": "환경 차단",
+    "history": "양쪽 IPv6 오퍼링 플래그 비활성. IPv6 주소·라우터 조건 필요.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "X04 조건부",
+    "feature": "Tungsten policy",
+    "required": "tf·nonShared·apply/remove·sequence·tenant",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "적용 제외",
+    "site32": "적용 제외",
+    "history": "TF 제공자 0으로 정책 기능 적용 제외. #1591에서 정상 Zone 가용성 조회의 NPE를 수정해 31/32 UI·API 빈 결과를 확인. 등록 제공자/다른 Zone은 집중 테스트이며 실제 정책 기능은 TF 구성 후 검증. 2026-11-08 관리자 Zone 지정/미지정 정상 빈 응답 4건과 유형별 미지원 정책 탭 숨김을 재확인했다.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md)"
+  },
+  {
+    "id": "X05 조건부",
+    "feature": "Tungsten logical router",
+    "required": "network gateway↔router연결·scope·packet",
+    "role": "해당 경로 실행 대기",
+    "site31": "적용 제외",
+    "site32": "적용 제외",
+    "history": "현재 VirtualRouter VLAN 시험망에 Tungsten logical router 적용 없음. 별도 제공자 환경 필요.",
+    "evidence": "[탭](evidence/ui-tab-audit.json) · [계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "X06 조건부",
+    "feature": "VNF",
+    "required": "networkid/연관 장비·상태/IP/host/template/link·실패",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "배포 전 5역할 × 세 유형 × 양쪽 VNF 연관 조회30건은 정상 빈 결과였다. 이후 관리자 실제 UI로 프로젝트 Skudonet 템플릿 등록·배포2/보조 NIC4작업과 망별 연관6·QGA MAC3개씩·503 읽기 복구2를 확인했다. 31/32 각18개 반응형·테마 조합과 프로젝트 왕복을 완료했다. 기본 실행 가드는 #1595에서 수정·실제 UI 배포4건/선택 데이터 실패 차단을 확인했다. 링크는 #1596에서 요약/NIC 통합·권한/오류·UI 회귀를 완료했다. IP 조회는 #1597에서 수정·양쪽 API54건/선택 IP UI 배포2건·실패 복구/역할/반응형을 확인했다. 중복 창은 #1598에서 수정·양쪽 실제 UI CRUD/복구/24폭·테마를 확인했다. 배포 후 잔여 역할/실패·서비스 조건은 남아 부분 유지.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md) · [VNF UI 실배포](../guest-network-1569-vnf-20261108/README.ko.md) · [32 UI 후속](../guest-network-1569-vnf-ui32-20261108/README.ko.md) · [#1596 완료](../guest-network-1596-20261108/README.ko.md) · [#1597 완료](../guest-network-1597-20261108/README.ko.md) · [#1598 완료](../guest-network-1598-20261109/README.ko.md)"
+  },
+  {
+    "id": "X07 조건부",
+    "feature": "Custom Actions",
+    "required": "서비스/list/run API·파라미터/secret·job·실제 결과",
+    "role": "해당 경로 실행 대기",
+    "site31": "적용 제외",
+    "site32": "적용 제외",
+    "history": "현재 시험 오퍼링에 Custom Actions 서비스 없음. 해당 API/서비스가 있는 별도 구성 필요.",
+    "evidence": "[탭](evidence/ui-tab-audit.json) · [계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "M01 권한·메타데이터",
+    "feature": "Network Permissions",
+    "required": "create/remove/reset accountids/projectids·owner/domain/project·existing NIC",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "개인 L2의 계정/프로젝트 부여·회수·reset·중복·혼합 도메인 원자 거부·비소유자 거부를 양쪽 44절차로 확인. 기존 NIC 유지·신규 permission denied와 2행 재부여 UI 확인. Isolated/Shared 나머지 범위 조합 미실행. **11-09 VPC/Shared 후속:** Shared 개인 grant/revoke와 프로젝트 reset/restore, Root 전용 정책을 양쪽 API/관리자 UI로 확인. 제한 역할 UI 전체는 미완료다. **11-09 UI 잔여 후속 완료:** 역할/읽기 전용 UI·프로젝트 왕복·60폭/테마 배치·동적 폭6개를 새 자원에서 확인했다. 18개 관련 API 401, 자원/권한 보존. 전체 조건부 조합 완료는 아님.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md) · [UI 잔여 완료](../guest-network-1569-ui-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "M02 권한·메타데이터",
+    "feature": "VM selection/link",
+    "required": "domain/project/공유 범위와 VM 생성/NIC 사용권한",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "31·32 VM 요약과 NIC 표의 공유 미부여/부여/회수/재부여 링크 0/1/0/1을 일치시켰다(#1592). 역할 API 7개·UI 6개, 프로젝트/화면 왕복·직접 URL·조회 실패/재시도·모바일/다크를 확인. 기존 8개 NIC 보존, 전체 VM 생성/연결 조건 조합은 남음. 2026-11-08 네 역할의 세 유형 UI NIC 연결과 제한 역할 UI/API 거부를 추가 확인했다. 기존 VM 8 NIC·새 VM 4 NIC를 보관했다. #1594에서 기본 보기의 프로젝트 VM 내 생성도 고정 VM 소유로 유지되고 6개 NIC 연결이 성공했다.  11-08 VNF 추가 검증: 접근 가능한 VNF NIC 네트워크 링크가 숨겨진다. vmNetworkAccessScope의 /vm 전용 가드가 /vnfapp를 제외한다(#1596). 이전 시점의 실패다. #1596에서 VNF 요약/NIC 링크 통합·양쪽 공유 회수/복원·조회503 재시도·84개 역할 API·UI6세션·12폭/테마·VM/프로젝트/breadcrumb 회귀를 완료해 해당 실패를 해소했다. 넓은 생성/연결 조건은 남아 부분으로 변경한다. **11-09 VPC/Shared 후속:** 네 Shared NIC의 실제 프로젝트 일반/관리자 연결과 개인 하위/외부 역할 API 허용·거부를 확인. 31 VM 기존 연결창에서 철회된 account 후보 제외, 32 동등 역할 UI는 남음. **11-09 UI 잔여 후속 완료:** 역할/읽기 전용 UI·프로젝트 왕복·60폭/테마 배치·동적 폭6개를 새 자원에서 확인했다. 18개 관련 API 401, 자원/권한 보존. 전체 조건부 조합 완료는 아님.",
+    "evidence": "[#1592 구현·검증](../guest-network-1592-20261108/README.ko.md) · [11-08 UI 역할·조건부](../guest-network-1569-roles-20261108/README.ko.md)  · [#1594 완료](../guest-network-1594-20261108/README.ko.md)  · [VNF 추가 결과](../guest-network-1569-vnf-20261108/README.ko.md)  · [32 UI 후속](../guest-network-1569-vnf-ui32-20261108/README.ko.md) · [#1596 완료](../guest-network-1596-20261108/README.ko.md) · [VPC/Shared 후속](../guest-network-1569-vpc-shared-20261109/README.ko.md) · [UI 잔여 완료](../guest-network-1569-ui-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "M03 권한·메타데이터",
+    "feature": "Events",
+    "required": "Network/IpAddress scope/UUID·필터/페이지/읽기 실패",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "Network/IP 이벤트 API 1·2페이지 ID 분리와 비소유자 거부 확인. UI 검색 0건·복구와 현재 페이지 표시 확인. 다른 필터/역할·읽기 오류 주입 미실행.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md)"
+  },
+  {
+    "id": "M04 권한·메타데이터",
+    "feature": "Comments",
+    "required": "annotation list/add/update/delete/visibility·작성자/owner·HTML",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "Network/IP 코멘트 생성·관리자 가시성 변경·비소유자 거부·삭제 확인. UI 한글/HTML 리터럴 표시 확인. 장문·다른 작성자/역할·오류 조합 미실행.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md)"
+  },
+  {
+    "id": "M05 권한·메타데이터",
+    "feature": "Tags·관련 링크",
+    "required": "Network/IP/Firewall/PF/LB type/UUID·CRUD/search·권한",
+    "role": "이번 실행 역할/조건과 하위 표 참고",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "Network/IP/FW/PF/LB 태그 추가·필터 조회·삭제를 양쪽 API에서 확인. Network 한글 태그 UI 확인. 다른 역할·태그 일괄/페이지와 UI 쓰기 조합 미실행.",
+    "evidence": "[역할·조건부 회귀](../guest-network-1569-regression-20261107/README.ko.md)"
+  },
+  {
+    "id": "O01 오퍼링",
+    "feature": "목록/상세/상태",
+    "required": "유형/범위·order/tags/availability·사용망·default/system",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "시험 오퍼링 활성화 및 네트워크와 API ID 연결. 오퍼링 전체 목록 상태 조합 미실행.",
+    "evidence": "[계약](evidence/deployment-contract.json)"
+  },
+  {
+    "id": "O02 오퍼링",
+    "feature": "Isolated 조합",
+    "required": "NAT/noSNAT/VPC/routing/IP protocol·AS·VR/service",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "Isolated NAT/no-SourceNat 후보와 변경 후 API 확인. VPC/IPv6/BGP 조합 미실행. **2026-11-09:** 호환 VPC NoLB로 실제 기동/ACL통신을 확인했으나 기본 NoLB의 Firewall/VpcVirtualRouter 불일치를 #1600으로 분리했다. **추가 회귀** #1600에서 VPC 후보 서비스/제공자 진단과 호환 Tier 생성을 확인했다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [브라우저](evidence/browser-actions.json) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "O03 오퍼링",
+    "feature": "L2 조합",
+    "required": "ConfigDrive/UserData·VLAN/isolation·provider/security caps",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "기본 L2 오퍼링 선택과 실제 NIC 연결. ConfigDrive/security capability 미실행. **2026-11-09:** ConfigDrive/UserData ISO와 VM4대의 실제 userdata/SSH/L2 전달을 확인했다. PVLAN은 제어면 성공과 별개로 격리 실패(#1599), clone/보안 capability 전체 조합은 남음. **추가 회귀** 복제본의 ConfigDrive 서비스/접근 범위를 확인했고 UI L2 생성과 VM ISO 갱신이 성공했다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [작업](evidence/vm-jobs.json) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)"
+  },
+  {
+    "id": "O04 오퍼링",
+    "feature": "Shared 조합",
+    "required": "DHCP/DNS·IP ranges/assocNet·IPv4/6·public/stretched",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "Shared DHCP/DNS 오퍼링의 지정 VLAN과 자동 VLAN·associatednetwork 조합을 프로젝트에서 역할별 생성·수정·연결. IPv6/공용 조합 미실행.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [프로젝트 권한](../guest-network-1569-project-20261107/README.ko.md)"
+  },
+  {
+    "id": "O05 오퍼링",
+    "feature": "서비스/provider/capability",
+    "required": "SNAT type·redundant VR·LB/EIP/ELB/AutoScale·지원제공자",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "현재 사용 오퍼링의 API 서비스·제공자 계약 확인. redundancy/LB/EIP/ELB 조합 미실행. **2026-11-09:** 현재 VPC provider/서비스 계약과 기본 NoLB 후보의 부적합 사례를 확인했다(#1600). 제공자 전체 조합은 남음.  **11-10 후속:** 실제 network LbSchemes와 오퍼링 provider의 Isolated Public/VPC Public/Internal 매핑을 기록했다. API에 supportspubliclb는 없으며 supportspublicaccess는 다른 뜻이다. #1611 후보 적합성에서 이를 반영하도록 설계했다.  **11-11:** Isolated VirtualRouter NAT의9서비스/provider/capability를UI복제·API전환/복원하고VR/실제통신을확인. VPC/Internal/외부제공자전체조합은남는다.  **11-11 VPN/TLS 후속:** 역할 API64건·인증서20건·실제 서비스6사이클·소유자 UI8 job1·CA chain Root/SAN/TLS200·중간체인 누락/복구·만료 거부·SourceBased/8192 keepalive 오퍼링 적용/원복·91 JPEG를 확인했다. 동시 VPN통신은 사용자 확인대로 독립 client 부재로 조건 대기, CRL/OCSP 기본정책 검증도 남는다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [11-09 L2·ConfigDrive·PVLAN·VPC 회귀](../guest-network-1569-conditional-20261109/README.ko.md)  · [VPN 역할/LB 통합](../guest-network-1569-vpn-roles-lb-20261110/README.ko.md)  · [11-11 VPN/SSL/오퍼링](../guest-network-1569-vpn-ssl-20261111/README.ko.md)  [VPN/TLS91캡처](../guest-network-1569-vpn-tls-20261111/README.ko.md)"
+  },
+  {
+    "id": "O06 오퍼링",
+    "feature": "clone·선택 전환",
+    "required": "값/기본/false·무관 필드/provider/capability 삭제·secret",
+    "role": "관리자",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "NAT 오퍼링 변경 확인·API 결과. clone 왕복과 secret 처리 미실행. **추가 회귀** ConfigDrive 기본 복제의 L2·서비스·제공자·접근·자동 VLAN을 대조했다. 다른 유형·사용자 지정 복제는 남았다.  **11-11:** NAT기본UI복제19항목(서비스/provider/capability·접근·false포함)이원본과일치. 복제본적용→원래오퍼링복원을확인했다. 사용자지정복제/다른유형/secret조합은남는다.  **11-11 VPN/TLS 후속:** 역할 API64건·인증서20건·실제 서비스6사이클·소유자 UI8 job1·CA chain Root/SAN/TLS200·중간체인 누락/복구·만료 거부·SourceBased/8192 keepalive 오퍼링 적용/원복·91 JPEG를 확인했다. 동시 VPN통신은 사용자 확인대로 독립 client 부재로 조건 대기, CRL/OCSP 기본정책 검증도 남는다.",
+    "evidence": "[계약](evidence/deployment-contract.json) · [브라우저](evidence/browser-actions.json) · [추가 검증](../guest-network-1569-resume-20261109/README.ko.md)  · [11-11 VPN/SSL/오퍼링](../guest-network-1569-vpn-ssl-20261111/README.ko.md)  [VPN/TLS91캡처](../guest-network-1569-vpn-tls-20261111/README.ko.md)"
+  },
+  {
+    "id": "O07 오퍼링",
+    "feature": "접근 범위·사용 영향",
+    "required": "domain/Zone·역할·관리/CKS·기존망 영향/실제반영시점",
+    "role": "관리자·owner·DomainAdmin·peer·외부 사용자 중 적용 경로",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "전용 오퍼링/네트워크 범위와 기존 운영 오퍼링 전후 해시. CKS 사용 중 전환과 모든 역할 영향 미실행.",
+    "evidence": "[역할](evidence/role-scope.json) · [정리](evidence/cleanup-preservation.json)"
+  },
+  {
+    "id": "O08 오퍼링",
+    "feature": "LB 상세설정",
+    "required": "maxconnections/keepalive·지원·HAProxy 실제적용",
+    "role": "해당 경로 실행 대기",
+    "site31": "부분",
+    "site32": "부분",
+    "history": "LB 제공자 설정 maxconnections/keepalive 및 HAProxy 적용 미실행. **11-09:** 현재4096/Keepalive=false UI·API·실제HAProxy maxconn4096/httpclose 일치, 음수 인라인거부·입력보존·취소로 원본보존. 다른 값/Keepalive=true 실제적용·VPC/Internal/외부 제공자 조합은 남음.  **11-11:** 복제본8192/Keepalivetrue UI저장→API망전환→HAProxy maxconn8192/no option httpclose·단일HTTPS정상→원래4096/false복원·VPN/HTTPS정상. 음수입력은창/값보존과요청0이다. VPC/Internal/외부제공자·용량/연결재사용은잔여/제외다.  **11-11 VPN/TLS 후속:** 역할 API64건·인증서20건·실제 서비스6사이클·소유자 UI8 job1·CA chain Root/SAN/TLS200·중간체인 누락/복구·만료 거부·SourceBased/8192 keepalive 오퍼링 적용/원복·91 JPEG를 확인했다. 동시 VPN통신은 사용자 확인대로 독립 client 부재로 조건 대기, CRL/OCSP 기본정책 검증도 남는다.",
+    "evidence": "— · [VPN/LB·AS 후속](../guest-network-1569-vpn-lb-20261109/README.ko.md)  · [11-11 VPN/SSL/오퍼링](../guest-network-1569-vpn-ssl-20261111/README.ko.md)  [VPN/TLS91캡처](../guest-network-1569-vpn-tls-20261111/README.ko.md)"
+  }
+]

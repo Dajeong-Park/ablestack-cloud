@@ -1,0 +1,14 @@
+{
+  "jobid": "bc7ed4b2-ad2a-48ad-bea5-7d5957aeb343",
+  "jobstatus": 1,
+  "vpnuser": {
+    "id": "6cc4f374-92ab-4c9d-a4f1-d8377e2d89f2",
+    "username": "qa-gn1569-32-parallel-a",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "domainpath": "ROOT/qa-gn1569-32-domain",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "state": "Active"
+  }
+}

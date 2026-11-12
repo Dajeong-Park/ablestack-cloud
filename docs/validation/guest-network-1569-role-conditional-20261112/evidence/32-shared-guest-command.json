@@ -1,0 +1,5 @@
+{
+  "exit": 1,
+  "out": "",
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 3, in <module>\nAssertionError: \nerror: guest agent command failed: unable to execute QEMU agent command 'guest-exec': Command guest-exec has been disabled: the command is not allowed\n\n"
+}

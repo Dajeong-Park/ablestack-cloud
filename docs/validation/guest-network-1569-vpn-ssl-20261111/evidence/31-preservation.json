@@ -1,0 +1,15 @@
+{
+  "existingRuleCount": 37,
+  "finalRuleCount": 38,
+  "newRuleId": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+  "oldRuleDefinitionsAndBackendBindingsPreserved": true,
+  "networkVmVpcNicPublicIpAndInternalControllerIdsPreserved": true,
+  "allVmNicPowerHostPreserved": true,
+  "originalNetworkOfferingsRestored": true,
+  "originalCertificatesReattached": true,
+  "originalProjectMembersAndRolesRestored": true,
+  "originalReadonlyPermissionsRestored": true,
+  "vpnUsersActive": 4,
+  "testVpnServiceRecreatedWithNewPsk": true,
+  "ownerLoginResetExplicitlyAuthorized": true
+}

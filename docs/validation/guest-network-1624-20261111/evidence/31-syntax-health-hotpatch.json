@@ -1,0 +1,93 @@
+{
+  "version": "HAProxy version 2.6.12-1+deb12u4 2026/10/17 - https://haproxy.org/\nStatus: long-term supported branch - will stop receiving fixes around Q2 2027.\nKnown bugs: http://www.haproxy.org/bugs/bugs-2.6.12.html\nRunning on: Linux 6.1.0-54-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.190-1 (2026-10-16) x86_64",
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (334721) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (334721) : path to executable is /usr/sbin/haproxy\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18871' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18873' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18876' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18877' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18878' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18879' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18880' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18969' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18981' as it requires HTTP mode.\n[WARNING]  (334721) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18991' as it requires HTTP mode."
+  },
+  "direct": {
+    "exit": 0,
+    "out": "All checks pass"
+  },
+  "lbRows": 9,
+  "negativeCases": [
+    {
+      "case": "wrong-bind-ip",
+      "syntaxExit": 0,
+      "healthPassed": false,
+      "diagnostic": "Incorrect or missing bind endpoint for listen 10_10_31_149-19111"
+    },
+    {
+      "case": "wrong-bind-port",
+      "syntaxExit": 0,
+      "healthPassed": false,
+      "diagnostic": "Incorrect or missing bind endpoint for listen 10_10_31_149-19111"
+    },
+    {
+      "case": "missing-bind",
+      "syntaxExit": 0,
+      "healthPassed": false,
+      "diagnostic": "Incorrect or missing bind endpoint for listen 10_10_31_149-19111"
+    },
+    {
+      "case": "extra-bind",
+      "syntaxExit": 0,
+      "healthPassed": false,
+      "diagnostic": "Incorrect or missing bind endpoint for listen 10_10_31_149-19111"
+    },
+    {
+      "case": "missing-backend",
+      "syntaxExit": 0,
+      "healthPassed": false,
+      "diagnostic": "Missing load balancing for 10.234.31.6:18443. "
+    },
+    {
+      "case": "wrong-backend-ip",
+      "syntaxExit": 0,
+      "healthPassed": false,
+      "diagnostic": "Missing load balancing for 10.234.31.6:18443. "
+    },
+    {
+      "case": "wrong-backend-port",
+      "syntaxExit": 0,
+      "healthPassed": false,
+      "diagnostic": "Missing load balancing for 10.234.31.6:18443. "
+    },
+    {
+      "case": "invalid-ssl-option",
+      "syntaxExit": 1,
+      "healthPassed": false,
+      "diagnostic": "HAProxy configuration validation failed: [NOTICE]   (334789) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (334789) : path to executable is /usr/sbin/haproxy\n[ALERT]    (334789) : config : parsing [/tmp/gn1624-o4pla0nr/invalid-ssl-option.cfg:108] : 'bind 10.10.31.149:19111' in section 'listen': unknown keyword 'qa-invalid-ssl-option'.\n[ALERT]    (334789) : config : Error(s) found in configuration file : /tmp/gn1624-o4pla0nr/invalid-ssl-option.cfg\n[ALERT]    (334789) : config : Fatal errors found in configuration."
+    },
+    {
+      "case": "missing-certificate",
+      "syntaxExit": 1,
+      "healthPassed": false,
+      "diagnostic": "HAProxy configuration validation failed: [NOTICE]   (334793) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (334793) : path to executable is /usr/sbin/haproxy\n[ALERT]    (334793) : config : parsing [/tmp/gn1624-o4pla0nr/missing-certificate.cfg:108] : 'bind 10.10.31.149:19111' in section 'listen' : unable to stat SSL certificate from file '/var/tmp/gn1624-no-such-certificate.pem' : No such file or directory.\n[ALERT]    (334793) : config : Error(s) found in configuration file : /tmp/gn1624-o4pla0nr/missing-certificate.cfg\n[ALERT]    (334793) : config : Fatal errors found in configuration."
+    },
+    {
+      "case": "invalid-grammar",
+      "syntaxExit": 1,
+      "healthPassed": false,
+      "diagnostic": "HAProxy configuration validation failed: [NOTICE]   (334797) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (334797) : path to executable is /usr/sbin/haproxy\n[ALERT]    (334797) : config : parsing [/tmp/gn1624-o4pla0nr/invalid-grammar.cfg:117] : unknown keyword 'qa-invalid-section' in 'listen' section\n[ALERT]    (334797) : config : Error(s) found in configuration file : /tmp/gn1624-o4pla0nr/invalid-grammar.cfg\n[ALERT]    (334797) : config : Fatal errors found in configuration."
+    }
+  ],
+  "before": {
+    "cfg": "e53cb6ca0526931027d820fd8f0d7177dc953080e2f66b4a82fdebf790816833",
+    "pem": {
+      "/etc/cloudstack/ssl/10_10_31_149-18874.pem": "b71004df7129bbe74cdba27a2bf1cf02c7e7c0482346ebf69747ba37b5e9a079",
+      "/etc/cloudstack/ssl/10_10_31_149-19111.pem": "2eff5f009cbee5424f12e856278621f8f920f05bb20d4b6583d483daf89637d0"
+    },
+    "haproxy": "2175\n308329",
+    "xl2tpd": "9325"
+  },
+  "after": {
+    "cfg": "e53cb6ca0526931027d820fd8f0d7177dc953080e2f66b4a82fdebf790816833",
+    "pem": {
+      "/etc/cloudstack/ssl/10_10_31_149-18874.pem": "b71004df7129bbe74cdba27a2bf1cf02c7e7c0482346ebf69747ba37b5e9a079",
+      "/etc/cloudstack/ssl/10_10_31_149-19111.pem": "2eff5f009cbee5424f12e856278621f8f920f05bb20d4b6583d483daf89637d0"
+    },
+    "haproxy": "2175\n308329",
+    "xl2tpd": "9325"
+  },
+  "liveUnchanged": true
+}

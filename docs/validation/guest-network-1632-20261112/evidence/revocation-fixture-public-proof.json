@@ -1,0 +1,118 @@
+{
+  "proof": [
+    {
+      "name": "good",
+      "serial": "0x1001",
+      "fingerprint": "09270cc29797c263a7beaec41e7ae4ea0a333bb91f26da1e6d5e821665b6ac7b",
+      "ocspStatus": "GOOD"
+    },
+    {
+      "name": "revoked",
+      "serial": "0x1002",
+      "fingerprint": "a50c5140fb7f9abad7e30fda73a478e70fc06cea009402bfa7141c28a219ca4a",
+      "ocspStatus": "REVOKED"
+    },
+    {
+      "name": "crl-good",
+      "serial": "0x47202da35cdb486182d0578ea3b132637d80aba9",
+      "fingerprint": "c10f144eb8c4e4048da93c156dbb65e430b8641bd23f08d5b2089225f758632f",
+      "ocspStatus": "GOOD"
+    },
+    {
+      "name": "crl-revoked",
+      "serial": "0x63e9967f6e155af96b6bb1c1dc71a0f051843349",
+      "fingerprint": "13b28750fe040ec9e57fce23f91ecd5b04c48e688fdb2ed778f398648aaf6a57",
+      "ocspStatus": "REVOKED"
+    },
+    {
+      "name": "ocsp-good",
+      "serial": "0x5a6c13167324c9dc7942e517e7c5c2b1e977cadb",
+      "fingerprint": "eb7cd70e2d598fefd0111fa702f5d1585cd16f939b202310d8e16fe7a4ff8fbc",
+      "ocspStatus": "GOOD"
+    },
+    {
+      "name": "ocsp-revoked",
+      "serial": "0x20e49ffafed98c00e71eb61bf6f26e55fa7af5f",
+      "fingerprint": "620e919eeae2fcde5ab78e92b74c9069b6824abc19f326dcd7f06e6812599807",
+      "ocspStatus": "REVOKED"
+    },
+    {
+      "name": "unknown",
+      "serial": "0xc0d8cbc215dff1e515ca994aa04a666749e9d2a",
+      "fingerprint": "e99cc50789156aa7c892d6a802ebad3f023c455e09c750877b53069febf81507",
+      "ocspStatus": "UNKNOWN"
+    },
+    {
+      "name": "inter",
+      "serial": "0x2",
+      "fingerprint": "f790e7b31f9a9c1f8a402503a9675e5f896ffebb777a055aba41adea78abf513",
+      "ocspStatus": "GOOD"
+    },
+    {
+      "name": "inter-crl",
+      "serial": "0x3c18d14ad98563dd288f12034d9d182a678b68dd",
+      "fingerprint": "58a060bd2f7fcffb75cf661329f2253f0ef4c6fe9bf2b9ec3a8112664304edee",
+      "ocspStatus": "GOOD"
+    },
+    {
+      "name": "inter-ocsp",
+      "serial": "0x733e10b4b25e47de79afe9535176372b3059c2ad",
+      "fingerprint": "04d54895d1a4af40390fc73d27e0fdb2a2602c86c5c06b25d4fab9d36c6a7b9b",
+      "ocspStatus": "GOOD"
+    }
+  ],
+  "fileHashes": {
+    "root.pem": "7455b2a446fb3fb27fd0a4aec0004fd2fb1eae211f736e5395b4348965e41059",
+    "inter.pem": "5e6cea5039770c8382aa905799643090bf48f52708d4a01ff75b63716c24955b",
+    "inter-crl.pem": "312887ee340fabe782cb18f7a4bc1a142dda35ac6df138e04dc4e75608136b8e",
+    "inter-ocsp.pem": "e3d92c4eec1d428e0281eb6ca611a9891f14e9e403ac376b3499374350d42a0f",
+    "root.crl": "396936a4f4b1d3bd5825cf2098be29a1975a33476755a2ffbc721902fdbef795",
+    "root-stale.crl": "e20db7765175262db21c9fb4e0f8bcec55a18bf19cf3d2dd50392419d0dd805f",
+    "root-bad.crl": "61f673fbb48bb88857d6cdcc4d6ad2e085b36d16b9b59a032b5b9cd873ca4de1",
+    "inter.crl": "a78611fa519eaf5b932958b83c3f1bbfa3db64b8f4afc0108bcd701606ca45ce",
+    "inter-stale.crl": "b170f2a4a34eafeca74773b4055179d9b9bc927c1b8d226b4168aed4b062344e",
+    "inter-bad.crl": "f384ac807097f1936626f0adea7b1f95921566ab2b811f5a11fc945362ce8636",
+    "good.ocsp": "8f56c33e08b1139b5bfabec556c4fe79adf7129204e48e037ed083a5b1b7a97e",
+    "good-stale.ocsp": "5433f31d63fa0eed1320e721af5c5751dc1d2f04d1e5db64dfaf493d048495e1",
+    "good-bad.ocsp": "37361f03b3630e713d99d570bc1a4f756e22912da88c369e6b184f8bd08bd191",
+    "revoked.ocsp": "e115299deb97b5ffc681263dd2abc4cf6b09575508f84e01bda486e229d1fb83",
+    "revoked-stale.ocsp": "3bcd81d84f59298e2a315a2cb6135e72804ed49cc321c77ab7e4cae7be79189c",
+    "revoked-bad.ocsp": "d0b534b3d6402459b55ea9876ff20c4b89aa9178f9ab76718931733905689c9d",
+    "crl-good.ocsp": "a18e15735b40c5f79b3fcc94fc043c1acb75e079b807850c6c937f74b3856e42",
+    "crl-good-stale.ocsp": "7cadec18719fc8475f01f0b450c8384797753ecc6dd571db0ca8c0516b6d24af",
+    "crl-good-bad.ocsp": "4cd5d456f97af87b59ddd7ffc58874b1a0f8a80c07f51b478b2dd0071df5819c",
+    "crl-revoked.ocsp": "788a476c5bb854c6cc900096f29a0c131198cb8044a2eebb03a305727239f445",
+    "crl-revoked-stale.ocsp": "a5d8ea7a4d17a0aad71ed69f9f06da9cf7ab6520b83adde281dda2def62c2481",
+    "crl-revoked-bad.ocsp": "64b0b47cceccaad50b3ba413e1117cd81481d922456c95d0a1ebde0d3a518660",
+    "ocsp-good.ocsp": "d47ff32e85734a7120f554a41e7b21de46d5ad5aed28f6f225637db32b44efd1",
+    "ocsp-good-stale.ocsp": "bbee3d1fd6d3f6c62c72e78cb1381acb0bf349311d76fca17801280b19178e0a",
+    "ocsp-good-bad.ocsp": "12d23037e9d749eb82b30bca8e1b8abe92bd8a2a2eaaadee8e05f38bd892b9ae",
+    "ocsp-revoked.ocsp": "27f1f66bcb44ca35ab96f2f079a2c493d6cfe9833173b3edbfa0b8de9e2149bb",
+    "ocsp-revoked-stale.ocsp": "4dc398c5989dcac2d2a848beffe1f8552a6e460dd5a5827343d7c3ac41dc33b4",
+    "ocsp-revoked-bad.ocsp": "1a0253fa78617899d4b7fcac5f6e61c2b4ac40ea77f96d61cffffa917a125d38",
+    "unknown.ocsp": "1be3e219e8900e1a5dd2a09f28fa16e0d1050a525abce7514d5c1ee73eddb0c4",
+    "unknown-stale.ocsp": "ed32914db2ce55f9586ec37a15fde436a19597fdcb6e26f65ebc759fe158de01",
+    "unknown-bad.ocsp": "619817c169c2028aaa3f0f1d62fe2ac204e771168658cea58f13325ad0c3dae1",
+    "inter.ocsp": "0cfef7c826d3cefb31eadbac9444ad8633d7e4c164e4331690f4b44fcd0b852a",
+    "inter-stale.ocsp": "adbf6adfe4178d251941f6d38eacc9b2db9394548fddc4b92148cf2556137158",
+    "inter-bad.ocsp": "4ece71a293cfa2c47ca03446bfb0398e551be0c8af9e8740b783179ad245a1d8",
+    "inter-crl.ocsp": "0ca0d26948eb94b1f4f527ef0178d80b520757ee950652c60e9e417ad896a8ba",
+    "inter-crl-stale.ocsp": "277688582901b8ec84fd7f132e6922ca5b3477b74826050c6acb2038fc387285",
+    "inter-crl-bad.ocsp": "28c3fc3a29eb6fcba300265e449a9b808b0303e1e52ada093cb1a01682a8276d",
+    "inter-ocsp.ocsp": "0c737fc92942c56f3f38c92d494fa3bead67c2904f2efca403cd3352e3633e44",
+    "inter-ocsp-stale.ocsp": "fc0591fecb3f04c7df8c29c2a4dc65f5bfa89ab46cea8997a7c78c02b08cfaf9",
+    "inter-ocsp-bad.ocsp": "64d585cdf6b5c4133a3766e337b043506e883a2d96db35c9c93cf852e060f693"
+  },
+  "openssl": {
+    "good": {
+      "exit": 0,
+      "out": "/home/ablecloud/work/gn1632-revocation/pki/good.pem: OK\n"
+    },
+    "revoked": {
+      "exit": 2,
+      "out": "CN=qa-gn1569-revocation.test\nerror 23 at 0 depth lookup: certificate revoked\nerror /home/ablecloud/work/gn1632-revocation/pki/revoked.pem: verification failed\n"
+    }
+  },
+  "pythonCryptoVersion": "50.0.2",
+  "privatePath": "/home/ablecloud/work/gn1632-revocation/pki"
+}

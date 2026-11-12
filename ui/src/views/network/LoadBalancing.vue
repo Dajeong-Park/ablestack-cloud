@@ -16,20 +16,30 @@
 // under the License.
 
 <template>
-  <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <network-rules-toolbar :can-add="'createLoadBalancerRule' in $store.getters.apis && !contextLoading" :loading="loading || contextLoading || listRefreshing > 0" @add="openCreateDialog" @refresh="refreshRules"><slot name="toolbar-context" /></network-rules-toolbar>
+  <div class="lb-backend-removal" :data-list-editing="lbBackendBusy">
+    <network-rules-toolbar :can-add="'createLoadBalancerRule' in $store.getters.apis && !contextLoading" :loading="loading || contextLoading || listRefreshing > 0" @add="openCreateDialog" @refresh="refreshRules">
+      <a-button
+        v-if="(('deleteLoadBalancerRule' in $store.getters.apis) && this.selectedItems.length > 0)"
+        type="primary"
+        danger
+        @click="bulkActionConfirmation()">
+        <template #icon><delete-outlined /></template>
+        {{ $t('label.action.bulk.delete.load.balancer.rules') }}
+      </a-button>
+      <slot name="toolbar-context" />
+    </network-rules-toolbar>
+    <a-alert v-if="listRefreshFailed" class="network-rules-guidance" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
     <slot name="guidance" />
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
+    <MoldDialog
+class="network-rule-dialog"
+size="lg"
 :visible="createModalVisible"
 :title="$t('label.network.rule.add')"
-:width="920"
-:footer="null"
-:mask-closable="false"
-@cancel="createModalVisible = false">
-      <div class="mold-form-dialog"><div class="mold-form-content"><NetworkRuleContext :resource="resource" /><a-alert v-if="creationFailed" type="error" show-icon class="mold-dialog-summary" :message="$t('message.network.lb.create.failed')" /><a-alert v-if="assignmentFailed" class="mold-dialog-summary" type="error" show-icon :message="$t('message.network.lb.retry')" />
+
+:closable="!loading"
+:keyboard="!loading"
+@cancel="!loading && closeModal()">
+      <div class="mold-form-dialog"><div class="mold-form-content"><NetworkRuleContext :resource="resource" /><a-alert v-if="creationFailed" type="error" show-icon class="mold-dialog-summary" :message="$t(creationUncertain ? 'message.public.ip.lb.uncertain' : 'message.network.lb.create.failed')" /><a-alert v-if="assignmentFailed" class="mold-dialog-summary" type="error" show-icon :message="$t('message.network.lb.retry')" />
     <div @keyup.ctrl.enter="handleAddNewRule">
       <div class="form">
         <div class="form__item form__item--full" ref="newRuleName">
@@ -88,6 +98,7 @@ class="mold-dialog network-rule-dialog"
           <div class="form__label">{{ $t('label.autoscale') }}</div>
           <a-select
             v-model:value="newRule.autoscale"
+            :disabled="loading || !!creationJob || !!selectedRule"
             defaultValue="no"
             style="min-width: 100px"
             showSearch
@@ -101,7 +112,7 @@ class="mold-dialog network-rule-dialog"
         </div>
         <div class="form__item" v-if="newRule.protocol === 'ssl'" >
           <div class="form__label">{{ $t('label.sslcertificate') }}</div>
-          <a-button :disabled="!('createLoadBalancerRule' in $store.getters.apis)" type="primary" @click="handleOpenAddSslCertModal(null)">
+          <a-button :disabled="!sslSelectionAllowed" type="primary" @click="handleOpenAddSslCertModal(null)">
             {{ this.selectedSsl.id != null ? this.selectedSsl.name : $t('label.add') }}
           </a-button>
         </div>
@@ -110,42 +121,21 @@ class="mold-dialog network-rule-dialog"
           <a-switch v-model:checked="newRule.backendssl" />
         </div>
 
-        <div class="form__item" v-if="newRule.autoscale === 'yes' && ('vpcid' in this.resource && !this.associatednetworkid)">
-          <div class="form__label" style="white-space: nowrap;">{{ $t('label.select.tier') }}</div>
-          <a-button :disabled="!('createLoadBalancerRule' in $store.getters.apis)" type="primary" @click="handleOpenAddNetworkModal">
-            {{ $t('label.add') }}
-          </a-button>
-        </div>
-        <div class="form__item" v-else-if="newRule.autoscale === 'yes'">
-          <div class="form__label" style="white-space: nowrap;">{{ $t('label.add') }}</div>
-          <a-button :disabled="!('createLoadBalancerRule' in $store.getters.apis)" type="primary" @click="handleAddNewRule">
-            {{ $t('label.add') }}
-          </a-button>
-        </div>
       </div>
     </div>
-      <div v-if="newRule.autoscale !== 'yes'" class="mold-dialog-section"><div class="network-form-group-label">{{ $t('label.network.lb.targets') }}</div><a-radio-group v-model:value="targetMode" @change="targetModeChanged"><a-radio-button value="select" :disabled="!('assignToLoadBalancerRule' in $store.getters.apis)">{{ $t('label.network.lb.select') }}</a-radio-button><a-radio-button value="later">{{ $t('label.network.lb.later') }}</a-radio-button></a-radio-group><a-alert class="mold-dialog-section" type="info" show-icon :message="$t(targetMode === 'later' ? 'message.network.lb.later' : 'message.network.lb.targets')" /><div v-if="targetMode === 'select'" class="mold-dialog-section">        <span
-          v-if="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)">
-          <strong>{{ $t('label.select.tier') }} </strong>
-          <a-select
-            v-focus="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)"
-            v-model:value="selectedTier"
-            @change="() => { selectedBackends = {}; fetchVirtualMachines() }"
-            :placeholder="$t('label.select.tier')"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option
-              v-for="tier in tiers.data"
-              :loading="tiers.loading"
-              :key="tier.id"
-              :label="tier.displaytext">
-              {{ tier.displaytext }}
-            </a-select-option>
-          </a-select>
-        </span>
+      <a-alert v-if="newRule.autoscale === 'yes'" class="mold-dialog-section" type="info" show-icon :message="$t('message.network.lb.autoscale.create')" />
+      <PublicLbTierSelect
+        v-if="publicTierRequired"
+        :state="tiers"
+        :value="lbTargetNetworkId"
+        :vpc-name="vpcName || resource.vpcname || resource.vpcid"
+        :project-name="resource.project || resource.projectid"
+        :hide-select="newRule.autoscale === 'yes' && !resource.associatednetworkid"
+        :fixed="!!selectedRule || (!!resource.associatednetworkid && !vpcConserveMode)"
+        :busy="loading || contextLoading"
+        @change="selectPublicTier"
+        @refresh="fetchListTiers" />
+      <div v-if="newRule.autoscale !== 'yes'" class="mold-dialog-section"><div class="network-form-group-label">{{ $t('label.network.lb.targets') }}</div><a-radio-group v-model:value="targetMode" @change="targetModeChanged"><a-radio-button value="select" :disabled="!('assignToLoadBalancerRule' in $store.getters.apis)">{{ $t('label.network.lb.select') }}</a-radio-button><a-radio-button value="later">{{ $t('label.network.lb.later') }}</a-radio-button></a-radio-group><a-alert class="mold-dialog-section" type="info" show-icon :message="$t(targetMode === 'later' ? 'message.network.lb.later' : 'message.network.lb.targets')" /><div v-if="targetMode === 'select'" class="mold-dialog-section">
         <a-input-search
           v-focus="!('vpcid' in resource && !('associatednetworkid' in resource))"
           class="input-search"
@@ -193,7 +183,7 @@ class="mold-dialog network-rule-dialog"
             </template>
 
             <template v-if="column.key === 'actions'" style="text-align: center" :text="text">
-              <a-checkbox :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
+              <a-checkbox :disabled="loading || publicTierSubmissionBlocked" :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
             </template>
           </template>
         </a-table>
@@ -212,22 +202,19 @@ class="mold-dialog network-rule-dialog"
             <span>{{ props.value }} / {{ $t('label.page') }}</span>
           </template>
         </a-pagination>
-</div></div></div><div class="action-button"><a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button><a-button v-if="newRule.autoscale !== 'yes'" type="primary" :loading="loading" :disabled="contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || (targetMode === 'select' && !Object.keys(selectedBackends).length) || Object.values(selectedBackends).some(selection => !selection.ips.length)" @click="handleAddNewRule">{{ $t('label.network.rule.add') }}</a-button></div></div>
-    </a-modal>
-
-    <a-divider />
-    <a-button
-      v-if="(('deleteLoadBalancerRule' in $store.getters.apis) && this.selectedItems.length > 0)"
-      type="primary"
-      danger
-      style="width: 100%; margin-bottom: 15px"
-      @click="bulkActionConfirmation()">
-      <template #icon><delete-outlined /></template>
-      {{ $t('label.action.bulk.delete.load.balancer.rules') }}
-    </a-button>
+</div></div></div></div>
+      <template #footer>
+        <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :loading="loading" :disabled="ruleSubmissionBlocked || !('createLoadBalancerRule' in $store.getters.apis)" @click="handleAddNewRule">
+          {{ $t(needsAutoScaleTier ? 'label.select.tier' : 'label.network.rule.add') }}
+        </a-button>
+      </template>
+    </MoldDialog>
+    <network-mutation-status :operation="lbBackendOperation" @recheck="recheckLbBackendRemoval" />
     <a-table
       size="small"
       class="list-view"
+      v-show="!lbBackendSuspended"
       :loading="loading"
       :columns="compactColumns"
       :scroll="{ x: 1080 }"
@@ -255,19 +242,19 @@ class="mold-dialog network-rule-dialog"
         <template v-if="column.key === 'targets'"><div class="network-rule-targets"><router-link v-for="entry in (record.ruleInstances || []).slice(0, 2)" :key="entry.loadbalancerruleinstance.id" :to="'/vm/' + entry.loadbalancerruleinstance.id">{{ entry.loadbalancerruleinstance.displayname || entry.loadbalancerruleinstance.name }}</router-link><span v-if="record.ruleInstances?.length > 2">+{{ record.ruleInstances.length - 2 }}</span><span v-if="!record.ruleInstances?.length">{{ $t('label.network.lb.later') }}</span></div></template>
         <template v-if="column.key === 'actions'">
           <div class="network-rule-actions">
-            <a-dropdown :trigger="['click']" :disabled="isProtectedRule(record)">
+            <a-dropdown :trigger="['click']" :disabled="isProtectedRule(record)" :visible="settingsRuleId === record.id" @visibleChange="visible => settingsRuleId = visible ? record.id : null">
               <a-button :disabled="isProtectedRule(record)">{{ $t('label.settings') }}<down-outlined /></a-button>
-              <template #overlay><a-menu>
+              <template #overlay><a-menu @click="closeSettingsMenu">
                 <a-menu-item :disabled="!('updateLoadBalancerRule' in $store.getters.apis)" @click="openEditRuleModal(record)">{{ $t('label.edit') }}</a-menu-item>
                 <a-menu-item :disabled="!!record.autoscalevmgroup || !('assignToLoadBalancerRule' in $store.getters.apis)" @click="selectedRule = record; handleOpenAddVMModal()">{{ $t('label.add.vms') }}</a-menu-item>
-                <a-menu-item v-if="!isNetrisZone" :disabled="!('createLBStickinessPolicy' in $store.getters.apis)" @click="openStickinessModal(record.id)">{{ $t('label.action.configure.stickiness') }}</a-menu-item>
-                <a-menu-item :disabled="record.protocol !== 'ssl'" @click="selectedRule = record; handleOpenAddSslCertModal(record)">{{ $t('label.sslcertificate') }}</a-menu-item>
+                <a-menu-item v-if="!isNetrisZone" :disabled="!canConfigureStickiness(record)" @click="openStickinessModal(record.id)">{{ $t('label.action.configure.stickiness') }}</a-menu-item>
+                <a-menu-item :disabled="record.protocol !== 'ssl' || !('listSslCerts' in $store.getters.apis) || publicContextSuspended" @click="handleOpenAddSslCertModal(record)">{{ $t('label.sslcertificate') }}</a-menu-item>
                 <a-menu-item v-if="record.autoscalevmgroup"><router-link :to="'/autoscalevmgroup/' + record.autoscalevmgroup.id">{{ $t('label.autoscale') }}</router-link></a-menu-item>
                 <a-menu-item v-else-if="!record.ruleInstances?.length && 'createAutoScaleVmGroup' in $store.getters.apis"><router-link :to="{ path: '/action/createAutoScaleVmGroup', query: { networkid: record.networkid, lbruleid: record.id } }">{{ $t('label.autoscale') }}</router-link></a-menu-item>
                 <a-menu-item v-if="columns.some(column => column.key === 'healthmonitor')" @click="openHealthMonitorModal(record.id)">{{ $t('label.action.health.monitor') }}</a-menu-item>
               </a-menu></template>
             </a-dropdown>
-            <tooltip-button :tooltip="$t('label.edit.tags')" :disabled="isProtectedRule(record) || !('createTags' in $store.getters.apis)" icon="tag-outlined" @onClick="() => openTagsModal(record.id)" />
+            <tooltip-button :tooltip="$t('label.edit.tags')" :disabled="isProtectedRule(record) || !('createTags' in $store.getters.apis)" icon="tag-outlined" @onClick="() => openTagsModal(record)" />
             <a-popconfirm
               :title="$t('label.delete') + '?'"
               @confirm="handleDeleteRule(record)"
@@ -302,7 +289,8 @@ class="mold-dialog network-rule-dialog"
               </div>
               <div>{{ ip }}</div>
               <tooltip-button
-                :disabled='record.autoscalevmgroup || isProtectedRule(record)'
+                :disabled="!canRemoveRuleBackend(record, instance, ip)"
+                :loading="lbBackendBusy && lbBackendOperation.params.id === record.id && lbBackendOperation.params['vmidipmap[0].vmip'] === ip"
                 :tooltip="$t('label.remove.vm.from.lb')"
                 type="primary"
                 :danger="true"
@@ -329,205 +317,46 @@ class="mold-dialog network-rule-dialog"
       </template>
     </a-pagination>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog tags-modal"
-      v-if="tagsModalVisible"
-      :title="$t('label.edit.tags')"
-      :visible="tagsModalVisible"
-      :footer="null"
-      :closable="true"
-      :afterClose="closeModal"
-      :maskClosable="false"
+    <RuleTagsDialog
+      v-if="tagRule && tagRule.parentId === resource.id"
+      :resource="resource"
+      :rule="tagRule"
+      resource-type="LoadBalancer"
+      @cancel="tagRule = null" />
 
-      @cancel="tagsModalVisible = false">
-      <span v-show="tagsModalLoading" class="modal-loading">
-        <loading-outlined />
-      </span>
-
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        class="add-tags"
-        @finish="handleAddTag"
-        v-ctrl-enter="handleAddTag"
-       >
-        <div class="add-tags__input">
-          <p class="add-tags__label">{{ $t('label.key') }}</p>
-          <a-form-item ref="key" name="key">
-            <a-input
-              v-focus="true"
-              v-model:value="form.key" />
-          </a-form-item>
-        </div>
-        <div class="add-tags__input">
-          <p class="add-tags__label">{{ $t('label.value') }}</p>
-          <a-form-item ref="value" name="value">
-            <a-input v-model:value="form.value" />
-          </a-form-item>
-        </div>
-        <a-button :disabled="!('createTags' in $store.getters.apis)" type="primary" ref="submit" @click="handleAddTag">{{ $t('label.add') }}</a-button>
-      </a-form>
-
-      <a-divider />
-
-      <div v-show="!tagsModalLoading" class="tags-container">
-        <div class="tags" v-for="(tag, index) in tags" :key="index">
-          <a-tag :key="index" :closable="'deleteTags' in $store.getters.apis" @close="() => handleDeleteTag(tag)">
-            {{ tag.key }} = {{ tag.value }}
-          </a-tag>
-        </div>
-      </div>
-
-      <a-button class="add-tags-done" @click="tagsModalVisible = false" type="primary">{{ $t('label.done') }}</a-button>
-    </a-modal>
-
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
+    <LoadBalancerStickinessDialog
+      v-if="stickinessRule"
+      ref="stickinessDialog"
       :visible="stickinessModalVisible"
-      :footer="null"
-      :afterClose="closeModal"
-      :maskClosable="false"
-      :closable="true"
-      :okButtonProps="{ props: {htmlType: 'submit'}}"
-      @cancel="stickinessModalVisible = false">
+      :resource="{ ...resource, associatednetworkid: stickinessRule.networkid || resource.associatednetworkid }"
+      :rule="stickinessRule"
+      :protected-rule="isProtectedRule(stickinessRule)"
+      @cancel="stickinessModalVisible = false"
+      @invalidated="invalidateStickinessDialog"
+      @refresh="fetchData" />
 
-      <template #title>
-        <span>{{ $t('label.configure.sticky.policy') }}</span>
-        <a
-          style="margin-left: 5px"
-          :href="$config.docBase + '/adminguide/networking/external_firewalls_and_load_balancers.html#sticky-session-policies-for-load-balancer-rules'"
-          target="_blank">
-          <question-circle-outlined />
-        </a>
-      </template>
-
-      <span v-show="stickinessModalLoading" class="modal-loading">
-        <loading-outlined />
-      </span>
-
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        @finish="handleSubmitStickinessForm"
-        v-ctrl-enter="handleSubmitStickinessForm"
-        class="custom-ant-form"
-       >
-        <a-form-item name="methodname" ref="methodname">
-          <template #label>
-            <tooltip-label :title="$t('label.stickiness.method')" :tooltip="createLoadBalancerStickinessPolicyParams.methodname.description" :tooltip-placement="'right'"/>
-          </template>
-          <a-select
-            v-focus="true"
-            v-model:value="form.methodname"
-            @change="handleStickinessMethodSelectChange"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option value="LbCookie" :label="$t('label.lb.cookie')">{{ $t('label.lb.cookie') }}</a-select-option>
-            <a-select-option value="AppCookie" :label="$t('label.app.cookie')">{{ $t('label.app.cookie') }}</a-select-option>
-            <a-select-option value="SourceBased" :label="$t('label.source.based')">{{ $t('label.source.based') }}</a-select-option>
-            <a-select-option value="none" :label="$t('label.none')">{{ $t('label.none') }}</a-select-option>
-          </a-select>
-        </a-form-item>
-        <a-form-item
-          name="name"
-          ref="name"
-          v-show="stickinessPolicyMethod === 'LbCookie' || stickinessPolicyMethod ===
-            'AppCookie' || stickinessPolicyMethod === 'SourceBased'">
-          <a-input v-model:value="form.name" />
-          <template #label>
-            <tooltip-label :title="$t('label.sticky.name')" :tooltip="createLoadBalancerStickinessPolicyParams.name.description" :tooltip-placement="'right'"/>
-          </template>
-        </a-form-item>
-        <div v-if="stickinessPolicyMethod !== 'none'">
-          <br/>
-          {{ $t('message.loadbalancer.stickypolicy.configuration') }}
-          <br/>
-          <a-card>
-            <a-form-item
-              name="cookieName"
-              ref="cookieName"
-              :label="$t('label.sticky.cookie-name')"
-              v-show="stickinessPolicyMethod === 'LbCookie' || stickinessPolicyMethod ===
-                'AppCookie'">
-              <a-input v-model:value="form.cookieName" />
-            </a-form-item>
-            <a-form-item
-              name="mode"
-              ref="mode"
-              :label="$t('label.sticky.mode')"
-              v-show="stickinessPolicyMethod === 'LbCookie' || stickinessPolicyMethod ===
-                'AppCookie'">
-              <a-input v-model:value="form.mode" />
-            </a-form-item>
-            <a-form-item name="nocache" ref="nocache" :label="$t('label.sticky.nocache')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-checkbox v-model:checked="form.nocache"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="indirect" ref="indirect" :label="$t('label.sticky.indirect')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-checkbox v-model:checked="form.indirect"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="postonly" ref="postonly" :label="$t('label.sticky.postonly')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-checkbox v-model:checked="form.postonly"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="domain" ref="domain" :label="$t('label.domain')" v-show="stickinessPolicyMethod === 'LbCookie'">
-              <a-input v-model:value="form.domain" />
-            </a-form-item>
-            <a-form-item name="length" ref="length" :label="$t('label.sticky.length')" v-show="stickinessPolicyMethod === 'AppCookie'">
-              <a-input v-model:value="form.length" type="number" />
-            </a-form-item>
-            <a-form-item name="holdtime" ref="holdtime" :label="$t('label.sticky.holdtime')" v-show="stickinessPolicyMethod === 'AppCookie'">
-              <a-input v-model:value="form.holdtime" type="number" />
-            </a-form-item>
-            <a-form-item name="requestLearn" ref="requestLearn" :label="$t('label.sticky.request-learn')" v-show="stickinessPolicyMethod === 'AppCookie'">
-              <a-checkbox v-model:checked="form.requestLearn"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="prefix" ref="prefix" :label="$t('label.sticky.prefix')" v-show="stickinessPolicyMethod === 'AppCookie'">
-              <a-checkbox v-model:checked="form.prefix"></a-checkbox>
-            </a-form-item>
-            <a-form-item name="tablesize" ref="tablesize" :label="$t('label.sticky.tablesize')" v-show="stickinessPolicyMethod === 'SourceBased'">
-              <a-input v-model:value="form.tablesize" />
-            </a-form-item>
-            <a-form-item name="expire" ref="expire" :label="$t('label.sticky.expire')" v-show="stickinessPolicyMethod === 'SourceBased'">
-              <a-input v-model:value="form.expire" />
-            </a-form-item>
-          </a-card>
-        </div>
-        <div :span="24" class="action-button">
-          <a-button @click="stickinessModalVisible = false">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" ref="submit" @click="handleSubmitStickinessForm">{{ $t('label.ok') }}</a-button>
-        </div>
-      </a-form>
-    </a-modal>
-
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
+    <MoldDialog
+class="network-rule-dialog"
+size="md"
       :title="$t('label.edit.rule')"
       :visible="editRuleModalVisible"
-      :afterClose="closeModal"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="editRuleModalVisible = false">
-      <span v-show="editRuleModalLoading" class="modal-loading">
-        <loading-outlined />
-      </span>
+
+      :closable="!networkMutationBusy"
+
+      @cancel="closeModal">
+      <network-mutation-status :operation="networkMutation" @recheck="recheckNetworkMutation" />
 
       <div class="edit-rule" v-if="selectedRule" v-ctrl-enter="handleSubmitEditForm">
         <div class="edit-rule__item">
           <p class="edit-rule__label">{{ $t('label.name') }}</p>
-          <a-input v-focus="true" v-model:value="editRuleDetails.name" />
+          <a-input v-focus="true" v-model:value="editRuleDetails.name" :aria-label="$t('label.name')" :disabled="networkMutationBusy" />
         </div>
         <div v-if="lbProvider !== 'Netris'" class="edit-rule__item">
           <p class="edit-rule__label">{{ $t('label.algorithm') }}</p>
           <a-select
             v-model:value="editRuleDetails.algorithm"
+            :aria-label="$t('label.algorithm')"
+            :disabled="networkMutationBusy"
             showSearch
             optionFilterProp="label"
             :filterOption="(input, option) => {
@@ -542,6 +371,8 @@ class="mold-dialog network-rule-dialog"
           <p class="edit-rule__label">{{ $t('label.protocol') }}</p>
           <a-select
             v-model:value="editRuleDetails.protocol"
+            :aria-label="$t('label.protocol')"
+            :disabled="networkMutationBusy"
             showSearch
             optionFilterProp="label"
             :filterOption="(input, option) => {
@@ -567,59 +398,46 @@ class="mold-dialog network-rule-dialog"
           </p>
           <a-input
             v-model:value="editRuleDetails.cidrlist"
+            :disabled="networkMutationBusy"
             :placeholder="$t('label.sourcecidrlist')"
           />
         </div>
         <div class="edit-rule__item" v-if="editRuleDetails.protocol === 'ssl'">
           <p class="edit-rule__label">{{ $t('label.backend.ssl') }}</p>
-          <a-switch v-model:checked="editRuleDetails.backendssl" />
-        </div>
-        <div :span="24" class="action-button">
-          <a-button @click="() => editRuleModalVisible = false">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" @click="handleSubmitEditForm">{{ $t('label.ok') }}</a-button>
+          <a-switch v-model:checked="editRuleDetails.backendssl" :aria-label="$t('label.backend.ssl')" :disabled="networkMutationBusy" />
         </div>
       </div>
-    </a-modal>
+      <template #footer>
+          <a-button :disabled="networkMutationBusy" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+          <a-button type="primary" :loading="editRuleModalLoading || networkMutationBusy" :disabled="networkMutationBlocked || contextLoading || !editRuleDetails.name.trim() || !('updateLoadBalancerRule' in $store.getters.apis)" @click="handleSubmitEditForm">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
+    <MoldDialog
+class="network-rule-dialog"
+size="lg"
       :title="$t('label.add.vms')"
-      :maskClosable="false"
+
       :closable="true"
       v-if="addVmModalVisible"
       :visible="addVmModalVisible"
 
-      :width="920"
-      :footer="null"
       @cancel="closeModal"
     >
       <a-alert class="mold-dialog-summary" type="info" show-icon :message="$t('message.network.lb.targets')" />
       <a-alert v-if="creationFailed" type="error" show-icon class="mold-dialog-summary" :message="$t('message.network.lb.create.failed')" />
       <a-alert v-if="assignmentFailed" class="mold-dialog-summary" type="error" show-icon :message="$t('message.network.lb.retry')" />
       <div class="mold-form-dialog"><div class="mold-form-content" @keyup.ctrl.enter="handleAddNewRule">
-        <span
-          v-if="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)">
-          <strong>{{ $t('label.select.tier') }} </strong>
-          <a-select
-            v-focus="'vpcid' in resource && (!('associatednetworkid' in resource) || vpcConserveMode)"
-            v-model:value="selectedTier"
-            @change="() => { selectedBackends = {}; fetchVirtualMachines() }"
-            :placeholder="$t('label.select.tier')"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option
-              v-for="tier in tiers.data"
-              :loading="tiers.loading"
-              :key="tier.id"
-              :label="tier.displaytext">
-              {{ tier.displaytext }}
-            </a-select-option>
-          </a-select>
-        </span>
+<PublicLbTierSelect
+        v-if="publicTierRequired"
+        :state="tiers"
+        :value="lbTargetNetworkId"
+        :vpc-name="vpcName || resource.vpcname || resource.vpcid"
+        :project-name="resource.project || resource.projectid"
+        :fixed="!!selectedRule || (!!resource.associatednetworkid && !vpcConserveMode)"
+        :busy="loading || contextLoading"
+        @change="selectPublicTier"
+        @refresh="fetchListTiers" />
         <a-input-search
           v-focus="!('vpcid' in resource && !('associatednetworkid' in resource))"
           class="input-search"
@@ -667,7 +485,7 @@ class="mold-dialog network-rule-dialog"
             </template>
 
             <template v-if="column.key === 'actions'" style="text-align: center" :text="text">
-              <a-checkbox :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
+              <a-checkbox :disabled="loading || publicTierSubmissionBlocked" :checked="!!selectedBackends[record.id]" :value="record.id" @change="e => fetchNics(e, record.id)" />
             </template>
           </template>
         </a-table>
@@ -690,98 +508,54 @@ class="mold-dialog network-rule-dialog"
         </div>
         <div :span="24" class="action-button">
           <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button :disabled="loading || contextLoading || creationFailed || addVmModalLoading || addVmModalNicLoading || Object.values(selectedBackends).some(selection => !selection.ips.length)" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
+          <a-button :disabled="ruleSubmissionBlocked || addVmModalLoading || addVmModalNicLoading || Object.values(selectedBackends).some(selection => !selection.ips.length)" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
         </div>
       </div>
-    </a-modal>
+          <template #footer><span /></template>
+    </MoldDialog>
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog"
-      :title="$t('label.manage.ssl.cert')"
-      :maskClosable="false"
-      :closable="true"
+    <LoadBalancerSslDialog
       v-if="addSslCertModalVisible"
-      :visible="addSslCertModalVisible"
-      width="30vw"
-      @cancel="addSslCertModalVisible = false"
-      @ok="addSslCertModalVisible = false"
-      :cancelButtonProps="{ style: { display: 'none' } }"
-    >
-      <a-row v-show="showAssignedSsl && assignedSslCert !== 'None'">
-        <a-col :span="8">
-          <div class="form__label">{{ $t("label.current") + ' ' + $t('label.sslcertificate') }}</div>
-        </a-col>
-        <a-col :span="10">
-          <div>{{ assignedSslCert }}</div>
-        </a-col>
-        <a-col :span="6">
-          <a-button :disabled="!deleteSslButtonVisible" type="danger" @click="removeSslFromLbRule()">
-            <template #icon><delete-outlined /></template>
-            {{ $t('label.remove') }}
-          </a-button>
-        </a-col>
-      </a-row>
-      <a-row style="margin-top: 16px">
-        <a-col :span="8">
-          <div class="form__label">{{ $t("label.new") + ' ' + $t('label.sslcertificate') }}</div>
-        </a-col>
-        <a-col :span="10">
-          <div class="form__item">
-            <a-select v-model:value="selectedSsl.name" style="width: 80%;" @change="selectssl">
-              <a-select-option
-                v-for="sslcert in sslcerts.data"
-                :key="sslcert.id">{{ sslcert.name }}
-              </a-select-option>
-            </a-select>
-          </div>
-        </a-col>
-        <a-col :span="6">
-          <div>
-            <a-button v-show="addSslButtonVisible && assignedSslCert !== 'None'" type="primary" @click="addSslTolbRule()">
-              <template #icon><swap-outlined /></template>
-              {{ $t('label.replace') }}
-            </a-button>
-            <a-button v-show="addSslButtonVisible && assignedSslCert === 'None'" type="primary" @click="addSslTolbRule()">
-              <template #icon><plus-outlined /></template>
-              {{ $t('label.assign') }}
-            </a-button>
-          </div>
-        </a-col>
-      </a-row>
-    </a-modal>
+      :resource="resource"
+      :rule="sslRule"
+      :selected="selectedSsl"
+      @select="selectedSsl = $event"
+      @cancel="addSslCertModalVisible = false; sslRule = null"
+      @refresh="fetchData" />
 
-    <a-modal
-centered
-class="mold-dialog network-rule-dialog network-modal"
+    <MoldDialog
+      class="network-rule-dialog"
+      size="lg"
       :title="$t('label.select.tier')"
       :maskClosable="false"
-      :closable="true"
+      :closable="!loading"
+      :keyboard="!loading"
       v-if="addNetworkModalVisible"
       :visible="addNetworkModalVisible"
 
-      :width="920"
-      :footer="null"
       @cancel="closeModal"
     >
+      <PublicLbTierSelect :state="tiers" :value="selectedTierForAutoScaling" :vpc-name="vpcName || resource.vpcname || resource.vpcid" :project-name="resource.project || resource.projectid" :hide-select="true" :busy="loading || contextLoading" @refresh="fetchListTiers" />
       <div @keyup.ctrl.enter="handleAddNewRule">
         <a-input-search
           v-focus="!('vpcid' in resource && !('associatednetworkid' in resource))"
           class="input-search"
           :placeholder="$t('label.search')"
-          v-model:value="searchQuery"
+          v-model:value="networkSearchQuery"
           allowClear
           @search="onNetworkSearch" />
         <a-table
           size="small"
           class="list-view"
-          :loading="addNetworkModalLoading"
+          :loading="tiers.loading"
           :columns="networkColumns"
+          :class="'public-lb-tier-table'"
           :dataSource="networks"
           :pagination="false"
           :rowKey="record => record.id"
-          :scroll="{ y: 300 }">
+          :scroll="{ x: 800, y: 300 }">
           <template #bodyCell="{ column, record }">
+            <template v-if="column.key === 'state'"><status :text="record.state" displayText /></template>
             <template v-if="column.key === 'actions'">
               <div style="text-align: center">
                 <a-radio-group
@@ -789,7 +563,7 @@ class="mold-dialog network-rule-dialog network-modal"
                   :key="record.id"
                   v-model:value="this.selectedTierForAutoScaling"
                   @change="($event) => this.selectedTierForAutoScaling = $event.target.value">
-                  <a-radio :value="record.id" />
+                  <a-radio :value="record.id" :disabled="loading || tiers.loading || !tiers.ready" />
                 </a-radio-group>
               </div>
             </template>
@@ -811,12 +585,12 @@ class="mold-dialog network-rule-dialog network-modal"
           </template>
         </a-pagination>
 
-        <div :span="24" class="action-button">
-          <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-          <a-button :disabled="this.selectedTierForAutoScaling === null" type="primary" ref="submit" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
-        </div>
       </div>
-    </a-modal>
+      <template #footer>
+        <a-button :disabled="loading" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+        <a-button :disabled="ruleSubmissionBlocked || !selectedTierForAutoScaling" :loading="loading" type="primary" @click="handleAddNewRule">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
 
     <a-modal
 centered
@@ -918,12 +692,23 @@ class="mold-dialog network-rule-dialog"
 </template>
 
 <script>
-import { validPortRange, loadBalancerIsProtected, selectedBackendMap } from '@/utils/networkRuleForm'
+import { validPortRange, loadBalancerIsProtected, selectedBackendMap, loadBalancerSubmissionBlocked } from '@/utils/networkRuleForm'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import LoadBalancerStickinessDialog from '@/components/network/LoadBalancerStickinessDialog'
+import LoadBalancerSslDialog from '@/components/network/LoadBalancerSslDialog'
+import { networkError } from '@/utils/networkLifecycle'
+import { networkMutationMixin } from '@/utils/networkMutation'
+import { lbBackendRemovalMixin } from '@/utils/lbBackendRemoval'
+import NetworkMutationStatus from '@/components/view/NetworkMutationStatus'
 
-import { ref, reactive, toRaw, nextTick } from 'vue'
+import { ref, reactive, toRaw } from 'vue'
 import NetworkRuleContext from '@/components/view/NetworkRuleContext'
 import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
+import PublicLbTierSelect from '@/components/view/PublicLbTierSelect'
+import { fetchPublicLbTiers, validatePublicLbTier } from '@/utils/publicLbTiers'
+import RuleTagsDialog from '@/components/view/RuleTagsDialog.vue'
 import { getAPI, postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
 import Status from '@/components/widgets/Status'
@@ -934,10 +719,17 @@ import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'LoadBalancing',
-  mixins: [listRefreshMixin(['fetchLBRules']), mixinForm],
+  mixins: [listRefreshMixin(['fetchLBRules'], { scopeKey: vm => [vm.lbBackendScope, vm.lbBackendVersion, vm.lbBackendSuspended, vm.page, vm.pageSize] }), mixinForm, networkMutationMixin, lbBackendRemovalMixin],
   components: {
+    MoldDialog,
+    MoldDialogActions,
+    LoadBalancerSslDialog,
+    LoadBalancerStickinessDialog,
+    NetworkMutationStatus,
+    RuleTagsDialog,
     NetworkRuleContext,
     NetworkRulesToolbar,
+    PublicLbTierSelect,
     Status,
     TooltipButton,
     BulkActionView,
@@ -960,8 +752,14 @@ export default {
       selectedBackends: {},
       nicPending: 0,
       nicRequest: 0,
+      backendEpoch: 0,
+      vmRequest: 0,
+      tierRequest: 0,
+      publicContextSuspended: false,
+      vpcName: '',
       creationJob: null,
       creationFailed: false,
+      creationUncertain: false,
       selectedRowKeys: [],
       showGroupActionModal: false,
       selectedItems: [],
@@ -974,16 +772,13 @@ export default {
       },
       loading: true,
       lbRules: [],
-      tagsModalVisible: false,
-      tagsModalLoading: false,
-      tags: [],
+      tagRule: null,
       selectedRule: null,
+      settingsRuleId: null,
       selectedTier: null,
       stickinessModalVisible: false,
+      stickinessRule: null,
       stickinessPolicies: [],
-      stickinessModalLoading: false,
-      selectedStickinessPolicy: null,
-      stickinessPolicyMethod: 'LbCookie',
       editRuleModalVisible: false,
       editRuleModalLoading: false,
       editRuleDetails: {
@@ -994,6 +789,7 @@ export default {
         backendssl: false
       },
       newRule: {
+        autoscale: 'no',
         algorithm: 'roundrobin',
         name: '',
         privateport: '',
@@ -1014,20 +810,9 @@ export default {
       totalCount: 0,
       page: 1,
       pageSize: 10,
-      sslcerts: {
-        loading: false,
-        data: []
-      },
-      selectedSsl: {
-        name: '',
-        id: null
-      },
+      selectedSsl: { id: null, name: '' },
       addSslCertModalVisible: false,
-      showAssignedSsl: false,
-      currentAccountId: null,
-      assignedSslCert: 'None',
-      deleteSslButtonVisible: true,
-      addSslButtonVisible: true,
+      sslRule: null,
       columns: [
         {
           title: this.$t('label.name'),
@@ -1080,6 +865,8 @@ export default {
       ],
       tiers: {
         loading: false,
+        ready: false,
+        failed: false,
         data: []
       },
       vmPage: 1,
@@ -1087,7 +874,6 @@ export default {
       vmCount: 0,
       addNetworkModalVisible: false,
       addNetworkModalLoading: false,
-      networks: [],
       associatednetworkid: null,
       selectedTierForAutoScaling: null,
       networkColumns: [
@@ -1095,31 +881,35 @@ export default {
           key: 'name',
           title: this.$t('label.name'),
           dataIndex: 'name',
-          width: 220
+          width: 260
         },
         {
           key: 'state',
           title: this.$t('label.state'),
-          dataIndex: 'state'
+          dataIndex: 'state',
+          width: 100
         },
         {
           title: this.$t('label.gateway'),
-          dataIndex: 'gateway'
+          dataIndex: 'gateway',
+          width: 160
         },
         {
           title: this.$t('label.netmask'),
-          dataIndex: 'netmask'
+          dataIndex: 'netmask',
+          width: 160
         },
         {
           key: 'actions',
           title: this.$t('label.select'),
           dataIndex: 'actions',
-          width: 80
+          width: 80,
+          fixed: 'right'
         }
       ],
       networkPage: 1,
       networkPageSize: 10,
-      networkCount: 0,
+      networkSearchQuery: '',
       searchQuery: null,
       tungstenHealthMonitors: [],
       healthMonitorModal: false,
@@ -1138,6 +928,28 @@ export default {
     }
   },
   computed: {
+    sslSelectionAllowed () { return !this.publicContextSuspended && ['createLoadBalancerRule', 'listSslCerts', 'assignCertToLoadBalancer', 'queryAsyncJobResult'].every(api => api in (this.$store.getters.apis || {})) },
+    ruleSubmissionBlocked () { return this.publicContextSuspended || loadBalancerSubmissionBlocked(this) || this.publicTierSubmissionBlocked },
+    publicTierRequired () { return !!this.resource.vpcid },
+    lbTargetNetworkId () {
+      if (this.selectedRule) return this.selectedRule.networkid || this.associatednetworkid || this.resource.associatednetworkid
+      if (this.selectedTierForAutoScaling) return this.selectedTierForAutoScaling
+      return this.publicTierRequired && (!this.resource.associatednetworkid || this.vpcConserveMode) ? this.selectedTier : this.resource.associatednetworkid
+    },
+    publicTierSubmissionBlocked () {
+      if (!this.publicTierRequired || this.creationJob) return false
+      if (this.tiers.loading || this.tiers.failed || !this.tiers.ready || !this.tiers.data.length) return true
+      // A new AutoScale rule opens the explicit Tier chooser before posting anything.
+      if (this.needsAutoScaleTier) return false
+      return !this.tiers.data.some(tier => tier.id === this.lbTargetNetworkId)
+    },
+    filteredPublicTiers () {
+      const keyword = String(this.networkSearchQuery || '').trim().toLowerCase()
+      return this.tiers.data.filter(tier => [tier.name, tier.displaytext, tier.id, tier.gateway].some(value => String(value || '').toLowerCase().includes(keyword)))
+    },
+    networkCount () { return this.filteredPublicTiers.length },
+    networks () { return this.filteredPublicTiers.slice((this.networkPage - 1) * this.networkPageSize, this.networkPage * this.networkPageSize) },
+    needsAutoScaleTier () { return this.newRule.autoscale === 'yes' && !!this.resource.vpcid && !this.resource.associatednetworkid && !this.selectedTierForAutoScaling },
     vmColumns () {
       return [
         {
@@ -1188,17 +1000,49 @@ export default {
   },
   beforeCreate () {
     this.createLoadBalancerRuleParams = this.$getApiParams('createLoadBalancerRule')
-    this.createLoadBalancerStickinessPolicyParams = this.$getApiParams('createLBStickinessPolicy')
     if ('associatednetworkid' in this.resource) {
       this.associatednetworkid = this.resource.associatednetworkid
     }
   },
   created () {
+    window.addEventListener('resize', this.closeSettingsMenu)
+    eventBus.on('project-switch-start', this.onPublicProjectSwitch)
     this.initForm()
     this.initMonitorForm()
     this.fetchData()
   },
+  beforeUnmount () {
+    window.removeEventListener('resize', this.closeSettingsMenu)
+    this.tierRequest++
+    this.vmRequest++
+    eventBus.off('project-switch-start', this.onPublicProjectSwitch)
+  },
   watch: {
+    '$route.query.tab' () { this.closeSettingsMenu(); this.invalidateStickinessDialog() },
+    networkMutationScope () {
+      this.closeSettingsMenu()
+      this.invalidateStickinessDialog()
+      this.addSslCertModalVisible = false; this.sslRule = null; this.selectedSsl = { id: null, name: '' }
+      this.invalidatePublicTierContext()
+      this.createModalVisible = false
+      this.addNetworkModalVisible = false
+      this.selectedBackends = {}
+      this.creationJob = null
+      this.creationFailed = false
+      this.creationUncertain = false
+      this.loading = false
+      this.selectedRule = null
+      if (this.editRuleModalVisible) {
+        this.editRuleModalVisible = false
+        this.editRuleModalLoading = false
+        this.selectedRule = null
+      }
+    },
+    'newRule.autoscale' () {
+      this.clearBackendSelection()
+      this.selectedTierForAutoScaling = null
+    },
+    'resource.id' () { this.tagRule = null; this.publicContextSuspended = false },
     resource: {
       deep: true,
       handler (newItem) {
@@ -1211,6 +1055,46 @@ export default {
   },
   emits: ['refresh-inventory', 'selection-change'],
   methods: {
+    closeSettingsMenu () { this.settingsRuleId = null },
+    onPublicProjectSwitch () {
+      this.closeSettingsMenu()
+      this.invalidateStickinessDialog()
+      this.publicContextSuspended = true
+      this.addSslCertModalVisible = false; this.sslRule = null; this.selectedSsl = { id: null, name: '' }
+      this.invalidatePublicTierContext()
+      this.selectedRule = null
+      this.creationJob = null
+      this.loading = false
+    },
+    clearBackendSelection () {
+      this.backendEpoch++
+      this.vmRequest++
+      this.selectedBackends = {}
+      this.nicPending = 0
+      this.addVmModalNicLoading = false
+      this.addVmModalLoading = false
+      this.vms = []
+      this.vmCount = 0
+    },
+    invalidatePublicTierContext () {
+      this.networkMutationVersion++
+      this.vpcName = ''
+      this.tierRequest++
+      this.tiers = { data: [], ready: false, failed: false, loading: false }
+      this.selectedTier = null
+      this.selectedTierForAutoScaling = null
+      this.associatednetworkid = this.resource.associatednetworkid || null
+      this.createModalVisible = false
+      this.addVmModalVisible = false
+      this.addNetworkModalVisible = false
+      this.clearBackendSelection()
+    },
+    selectPublicTier (id) {
+      this.clearBackendSelection()
+      this.selectedTier = this.tiers.data.some(tier => tier.id === id) ? id : null
+      this.vmPage = 1
+      this.fetchVirtualMachines()
+    },
     refreshRules () {
       this.fetchData()
       this.$emit('refresh-inventory')
@@ -1251,33 +1135,52 @@ export default {
         return
       }
       this.vpcConserveMode = false
+      const scope = this.networkMutationScope
       getAPI('listVPCs', {
-        id: this.resource.vpcid
+        id: this.resource.vpcid, ignoreproject: true, ...(this.resource.projectid ? { projectid: this.resource.projectid } : {})
       }).then(json => {
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope) return
+        this.vpcName = json.listvpcsresponse?.vpc?.[0]?.name || this.resource.vpcname || this.resource.vpcid
         this.vpcConserveMode = json.listvpcsresponse?.vpc?.[0].vpcofferingconservemode || false
       }).catch(error => {
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope) return
         this.$notifyError(error)
       })
     },
-    fetchListTiers () {
+    async fetchListTiers () {
+      const request = ++this.tierRequest
+      const scope = this.networkMutationScope
+      const current = () => !this.networkMutationDisposed && request === this.tierRequest && scope === this.networkMutationScope
+      if (!this.publicTierRequired) {
+        this.tiers = { data: [], ready: false, failed: false, loading: false }
+        return
+      }
+      if (this.publicContextSuspended) return
       this.tiers.loading = true
-
-      getAPI('listNetworks', {
-        supportedservices: 'Lb',
-        isrecursive: true,
-        vpcid: this.resource.vpcid
-      }).then(json => {
-        this.tiers.data = json.listnetworksresponse.network || []
-        this.selectedTier = this.tiers.data?.[0]?.id ? this.tiers.data[0].id : null
-        if (this.tiers.data?.[0]?.broadcasturi === 'tf://tf') {
+      this.tiers.failed = false
+      try {
+        const data = await fetchPublicLbTiers(getAPI, this.resource.vpcid, this.resource.projectid, current)
+        if (!current()) return
+        const previous = this.lbTargetNetworkId
+        this.tiers = { data, ready: true, failed: false, loading: false }
+        this.selectedTier = data.some(tier => tier.id === this.selectedTier) ? this.selectedTier : data[0]?.id || null
+        if (!data.some(tier => tier.id === this.selectedTierForAutoScaling)) this.selectedTierForAutoScaling = null
+        if (!data.some(tier => tier.id === previous) || previous !== this.lbTargetNetworkId) this.clearBackendSelection()
+        if ((this.networkPage - 1) * this.networkPageSize >= this.networkCount) this.networkPage = 1
+        if (data.some(tier => tier.broadcasturi === 'tf://tf') && !this.columns.some(column => column.key === 'healthmonitor')) {
           this.columns.splice(8, 0, {
             title: this.$t('label.action.health.monitor'),
             key: 'healthmonitor'
           })
         }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => { this.tiers.loading = false })
+        if (this.createModalVisible || this.addVmModalVisible) this.fetchVirtualMachines()
+      } catch (error) {
+        if (!current()) return
+        this.tiers = { data: [], ready: false, failed: true, loading: false }
+        this.selectedTier = null
+        this.selectedTierForAutoScaling = null
+        this.clearBackendSelection()
+      }
     },
     async fetchLBRules () {
       const listRequest = this.listRequestToken('fetchLBRules')
@@ -1285,13 +1188,13 @@ export default {
       try {
         const response = await getAPI('listLoadBalancerRules', {
           listAll: true, publicipid: this.resource.id, page: this.page, pageSize: this.pageSize
-        })
+        }, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchLBRules', listRequest)) return
         const rules = response.listloadbalancerrulesresponse.loadbalancerrule || []
         const snapshots = await Promise.all(rules.map(async rule => {
           const apis = this.$store.getters.apis
           const [instances, stickiness, autoscale, monitor] = await Promise.all([
-            getAPI('listLoadBalancerRuleInstances', { listAll: true, lbvmips: true, id: rule.id }),
+            getAPI('listLoadBalancerRuleInstances', { listAll: true, lbvmips: true, id: rule.id }, { preserveOnFailure: true }),
             'listLBStickinessPolicies' in apis ? getAPI('listLBStickinessPolicies', { listAll: true, lbruleid: rule.id }) : null,
             'listAutoScaleVmGroups' in apis ? getAPI('listAutoScaleVmGroups', { listAll: true, lbruleid: rule.id }) : null,
             'listTungstenFabricLBHealthMonitor' in apis ? getAPI('listTungstenFabricLBHealthMonitor', { listAll: true, lbruleid: rule.id }) : null
@@ -1319,7 +1222,7 @@ export default {
     },
     fetchZone () {
       this.zoneloading = true
-      getAPI('listZones', {
+      return getAPI('listZones', {
         id: this.resource.zoneid
       }).then(response => {
         this.lbProvider = response?.listzonesresponse?.zone?.[0]?.provider || null
@@ -1328,154 +1231,30 @@ export default {
         }
       }).finally(() => {
         this.zoneloading = false
-        if (this.lbProvider !== 'Netris') {
-          this.column.push({
-            key: 'algorithm',
-            title: this.$t('label.algorithm')
-          })
-        }
       })
-    },
-    fetchSslCerts () {
-      this.sslcerts.loading = true
-      this.sslcerts.data = []
-      // First get the account id
-      getAPI('listAccounts', {
-        name: this.resource.account,
-        domainid: this.resource.domainid
-      }).then(json => {
-        const accounts = json.listaccountsresponse.account || []
-        if (accounts.length > 0) {
-          // Now fetch all the ssl certs for this account
-          this.currentAccountId = accounts[0].id
-          getAPI('listSslCerts', {
-            accountid: this.currentAccountId
-          }).then(json => {
-            json.listsslcertsresponse.sslcert.forEach(entry => this.sslcerts.data.push(entry))
-            if (json.listsslcertsresponse.sslcert && json.listsslcertsresponse.sslcert.length > 0 && this.selectedSsl.id == null) {
-              this.selectedSsl.name = json.listsslcertsresponse.sslcert[0].name
-              this.selectedSsl.id = json.listsslcertsresponse.sslcert[0].id
-            }
-          }).catch(error => {
-            this.$notifyError(error)
-          })
-        }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.sslcerts.loading = false
-      })
-      if (this.selectedRule !== null) {
-        this.getCurrentAssignedSslCert()
-      }
-    },
-    getCurrentAssignedSslCert () {
-      getAPI('listSslCerts', {
-        accountid: this.currentAccountId,
-        lbruleid: this.selectedRule.id
-      }).then(json => {
-        if (json.listsslcertsresponse.sslcert && json.listsslcertsresponse.sslcert.length > 0) {
-          this.assignedSslCert = json.listsslcertsresponse.sslcert[0].name
-          this.deleteSslButtonVisible = true
-        } else {
-          this.assignedSslCert = 'None'
-          this.deleteSslButtonVisible = false
-        }
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
-    selectssl (e) {
-      this.selectedSsl.id = e
-      const sslcert = this.sslcerts.data.find(entry => entry.id === this.selectedSsl.id)
-      if (sslcert) {
-        this.selectedSsl.name = sslcert.name
-      }
     },
     handleAddSslCert (data) {
-      this.addSslCert(data, this.selectedSsl.id)
-    },
-    addSslTolbRule () {
-      this.visible = false
-      this.addSslCert(this.selectedRule.id, this.selectedSsl.id)
-    },
-    addSslCert (lbRuleId, certId) {
-      this.disableSslAddDeleteButtons()
+      if (!this.selectedSsl.id || !this.sslSelectionAllowed) return
       getAPI('assignCertToLoadBalancer', {
-        lbruleid: lbRuleId,
-        certid: certId,
-        forced: true
-      }).then(response => {
-        this.$pollJob({
+        lbruleid: data,
+        certid: this.selectedSsl.id,
+        forced: true,
+        ignoreproject: true,
+        ...(this.resource.projectid ? { projectid: this.resource.projectid } : {})
+      }, { preserveOnFailure: true }).then(response => {
+        this.pollScopedNetworkJob({
           jobId: response.assigncerttoloadbalancerresponse.jobid,
           successMessage: this.$t('message.success.assign.sslcert'),
-          successMethod: () => {
-            if (this.selectedRule !== null) {
-              this.getCurrentAssignedSslCert()
-            }
-            this.enableSslAddDeleteButtons()
-          },
           errorMessage: this.$t('message.assign.sslcert.failed'),
-          errorMethod: () => {
-          },
           loadingMessage: this.$t('message.assign.sslcert.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: (e) => {
-            this.closeModal()
-          }
+          catchMessage: this.$t('error.fetching.async.job.result')
         })
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-      })
-    },
-    removeSslFromLbRule () {
-      this.disableSslAddDeleteButtons()
-      getAPI('removeCertFromLoadBalancer', {
-        lbruleid: this.selectedRule.id
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.removecertfromloadbalancerresponse.jobid,
-          successMessage: this.$t('message.success.remove.sslcert'),
-          successMethod: () => {
-            this.visible = true
-            this.getCurrentAssignedSslCert()
-            this.enableSslAddDeleteButtons()
-          },
-          errorMessage: this.$t('message.remove.sslcert.failed'),
-          errorMethod: () => {
-            this.visible = true
-          },
-          loadingMessage: this.$t('message.remove.sslcert.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-      })
-    },
-    enableSslAddDeleteButtons () {
-      this.deleteSslButtonVisible = true
-      this.addSslButtonVisible = true
-    },
-    disableSslAddDeleteButtons () {
-      this.addSslButtonVisible = false
-      this.deleteSslButtonVisible = false
+      }).catch(error => this.$notifyError(error))
     },
     handleOpenAddSslCertModal (record) {
+      if (this.publicContextSuspended || !('listSslCerts' in (this.$store.getters.apis || {})) || (record ? record.protocol !== 'ssl' : !this.sslSelectionAllowed)) return
+      this.sslRule = record
       this.addSslCertModalVisible = true
-      if (record) {
-        this.showAssignedSsl = true
-        this.addSslButtonVisible = true
-        this.selectedSsl = {}
-      } else {
-        this.showAssignedSsl = false
-        this.addSslButtonVisible = false
-      }
-      this.fetchSslCerts()
     },
     returnAlgorithmName (name) {
       switch (name) {
@@ -1491,9 +1270,8 @@ export default {
     },
     returnStickinessLabel (id) {
       const match = this.stickinessPolicies.filter(policy => policy.lbruleid === id)
-      if (match.length > 0 && match[0].stickinesspolicy.length > 0) {
-        return match[0].stickinesspolicy[0].methodname
-      }
+      const current = match.flatMap(group => group.stickinesspolicy || []).find(policy => String(policy.state || '').toLowerCase() !== 'revoked')
+      if (current) return current.methodname
       return 'Configure'
     },
     getCapitalise (val) {
@@ -1503,338 +1281,89 @@ export default {
       if (val === 'all') return this.$t('label.all')
       return val.toUpperCase()
     },
-    openTagsModal (id) {
-      this.initForm()
-      this.rules = {
-        key: [{ required: true, message: this.$t('message.specify.tag.key') }],
-        value: [{ required: true, message: this.$t('message.specify.tag.value') }]
-      }
-      this.tagsModalLoading = true
-      this.tagsModalVisible = true
-      this.tags = []
-      this.selectedRule = id
-      getAPI('listTags', {
-        resourceId: id,
-        resourceType: 'LoadBalancer',
-        listAll: true
-      }).then(response => {
-        this.tags = response.listtagsresponse.tag
-        this.tagsModalLoading = false
-      }).catch(error => {
-        this.$notifyError(error)
-        this.closeModal()
-      })
+    openTagsModal (rule) {
+      if (!rule.id || !this.resource.id || !('listTags' in this.$store.getters.apis)) return
+      this.tagRule = { id: rule.id, parentId: this.resource.id, canEdit: !this.isProtectedRule(rule) }
     },
-    handleAddTag (e) {
-      if (this.tagsModalLoading) return
-      this.tagsModalLoading = true
-
-      e.preventDefault()
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-
-        postAPI('createTags', {
-          'tags[0].key': values.key,
-          'tags[0].value': values.value,
-          resourceIds: this.selectedRule,
-          resourceType: 'LoadBalancer'
-        }).then(response => {
-          this.$pollJob({
-            jobId: response.createtagsresponse.jobid,
-            successMessage: this.$t('message.success.add.tag'),
-            successMethod: () => {
-              this.parentToggleLoading()
-              this.openTagsModal(this.selectedRule)
-            },
-            errorMessage: this.$t('message.add.tag.failed'),
-            errorMethod: () => {
-              this.parentToggleLoading()
-              this.closeModal()
-            },
-            loadingMessage: this.$t('message.add.tag.processing'),
-            catchMessage: this.$t('error.fetching.async.job.result'),
-            catchMethod: () => {
-              this.parentFetchData()
-              this.parentToggleLoading()
-              this.closeModal()
-            }
-          })
-        }).catch(error => {
-          this.$notifyError(error)
-        })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      }).finally(() => {
-        this.tagsModalLoading = false
-      })
-    },
-    handleDeleteTag (tag) {
-      this.tagsModalLoading = true
-      postAPI('deleteTags', {
-        'tags[0].key': tag.key,
-        'tags[0].value': tag.value,
-        resourceIds: tag.resourceid,
-        resourceType: 'LoadBalancer'
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.deletetagsresponse.jobid,
-          successMessage: this.$t('message.success.delete.tag'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.openTagsModal(this.selectedRule)
-          },
-          errorMessage: this.$t('message.delete.tag.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.delete.tag.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
+    canConfigureStickiness (rule) {
+      const apis = this.$store.getters.apis || {}
+      return !this.publicContextSuspended && !this.contextLoading && !this.isProtectedRule(rule) &&
+        ['listLoadBalancerRules', 'listLBStickinessPolicies', 'listNetworks', 'queryAsyncJobResult'].every(api => api in apis) &&
+        ['createLBStickinessPolicy', 'deleteLBStickinessPolicy'].some(api => api in apis)
     },
     openStickinessModal (id) {
-      this.initForm()
-      this.rules = {
-        methodname: [{ required: true, message: this.$t('message.error.specify.stickiness.method') }]
+      const rule = this.lbRules.find(rule => rule.id === id)
+      if (!rule || !this.canConfigureStickiness(rule)) return
+      if (this.$refs.stickinessDialog?.networkMutationBlocked && this.stickinessRule?.id !== id) {
+        this.$notification.warning({ message: this.$t('message.network.lifecycle.pending') }); return
       }
+      this.stickinessRule = { ...rule }
       this.stickinessModalVisible = true
-      this.selectedRule = id
-      const match = this.stickinessPolicies.find(policy => policy.lbruleid === id)
-
-      if (match && match.stickinesspolicy.length > 0) {
-        this.selectedStickinessPolicy = match.stickinesspolicy[0]
-        this.stickinessPolicyMethod = this.selectedStickinessPolicy.methodname
-        nextTick().then(() => {
-          this.form.methodname = this.selectedStickinessPolicy.methodname
-          this.form.name = this.selectedStickinessPolicy.name
-          this.form.cookieName = this.selectedStickinessPolicy.params['cookie-name']
-          this.form.mode = this.selectedStickinessPolicy.params.mode
-          this.form.domain = this.selectedStickinessPolicy.params.domain
-          this.form.length = this.selectedStickinessPolicy.params.length
-          this.form.holdtime = this.selectedStickinessPolicy.params.holdtime
-          this.form.tablesize = this.selectedStickinessPolicy.params.tablesize
-          this.form.expire = this.selectedStickinessPolicy.params.expire
-          this.form.nocache = !!this.selectedStickinessPolicy.params.nocache
-          this.form.indirect = !!this.selectedStickinessPolicy.params.indirect
-          this.form.postonly = !!this.selectedStickinessPolicy.params.postonly
-          this.form.requestLearn = !!this.selectedStickinessPolicy.params['request-learn']
-          this.form.prefix = !!this.selectedStickinessPolicy.params.prefix
-        })
-      }
     },
-    handleAddStickinessPolicy (data, values) {
-      postAPI('createLBStickinessPolicy', {
-        ...data,
-        lbruleid: this.selectedRule,
-        name: values.name,
-        methodname: values.methodname
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.createLBStickinessPolicy.jobid,
-          successMessage: this.$t('message.success.config.sticky.policy'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          errorMessage: this.$t('message.config.sticky.policy.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.config.sticky.policy.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.closeModal()
-      })
-    },
-    handleDeleteStickinessPolicy () {
-      this.stickinessModalLoading = true
-      postAPI('deleteLBStickinessPolicy', { id: this.selectedStickinessPolicy.id }).then(response => {
-        this.$pollJob({
-          jobId: response.deleteLBstickinessrruleresponse.jobid,
-          successMessage: this.$t('message.success.remove.sticky.policy'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          errorMessage: this.$t('message.remove.sticky.policy.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.remove.sticky.policy.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
-    handleSubmitStickinessForm (e) {
-      if (this.stickinessModalLoading) return
-      this.stickinessModalLoading = true
-      e.preventDefault()
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-        if (values.methodname === 'none') {
-          this.handleDeleteStickinessPolicy()
-          return
-        }
-
-        if (values.name === null || values.name === undefined || values.name === '') {
-          this.$notification.error({
-            message: this.$t('label.error'),
-            description: this.$t('message.error.specify.sticky.name')
-          })
-          return
-        }
-
-        values.nocache = this.form.nocache
-        values.indirect = this.form.indirect
-        values.postonly = this.form.postonly
-        values.requestLearn = this.form.requestLearn
-        values.prefix = this.form.prefix
-
-        let data = {}
-        let count = 0
-        Object.entries(values).forEach(([key, val]) => {
-          if (val && key !== 'name' && key !== 'methodname') {
-            if (key === 'cookieName') {
-              data = { ...data, ...{ [`param[${count}].name`]: 'cookie-name' } }
-            } else if (key === 'requestLearn') {
-              data = { ...data, ...{ [`param[${count}].name`]: 'request-learn' } }
-            } else {
-              data = { ...data, ...{ [`param[${count}].name`]: key } }
-            }
-            data = { ...data, ...{ [`param[${count}].value`]: val } }
-            count++
-          }
-        })
-
-        this.handleAddStickinessPolicy(data, values)
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      }).finally(() => {
-        this.stickinessModalLoading = false
-      })
-    },
-    handleStickinessMethodSelectChange (e) {
-      if (this.formRef.value) this.formRef.value.resetFields()
-      this.stickinessPolicyMethod = e
-      this.form.methodname = e
+    invalidateStickinessDialog () { this.stickinessModalVisible = false; this.stickinessRule = null },
+    refreshLbBackends () { return this.fetchLBRules() },
+    onLbBackendProjectEnd () { this.publicContextSuspended = false },
+    canRemoveRuleBackend (rule, instance, ip) {
+      const current = this.lbRules.find(item => item.id === rule?.id)
+      return !!(this.lbBackendAllowed && !this.loading && !this.contextLoading && !this.listRefreshFailed && !this.listRefreshing &&
+        !this.networkMutationBlocked && !this.publicContextSuspended && current && current.publicipid === this.resource.id &&
+        !current.autoscalevmgroup && !this.isProtectedRule(current) && current.ruleInstances?.some(item =>
+        item.loadbalancerruleinstance?.id === instance?.loadbalancerruleinstance?.id && item.lbvmipaddresses?.includes(ip)))
     },
     handleDeleteInstanceFromRule (instance, rule, ip) {
-      if (this.isProtectedRule(rule)) return
-      this.loading = true
-      postAPI('removeFromLoadBalancerRule', {
+      if (!this.canRemoveRuleBackend(rule, instance, ip)) return false
+      return this.removeLbBackend({
         id: rule.id,
         'vmidipmap[0].vmid': instance.loadbalancerruleinstance.id,
         'vmidipmap[0].vmip': ip
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.removefromloadbalancerruleresponse.jobid,
-          successMessage: this.$t('message.success.remove.instance.rule'),
-          successMethod: () => {
-            this.fetchData()
-          },
-          errorMessage: this.$t('message.remove.instance.failed'),
-          errorMethod: () => {
-            this.fetchData()
-          },
-          loadingMessage: this.$t('message.remove.instance.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.fetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.fetchData()
       })
     },
     openEditRuleModal (rule) {
       if (this.isProtectedRule(rule)) return
+      if (this.networkMutationBlocked) {
+        // Reopen the same pending receipt to recheck it; never send a duplicate update.
+        if (this.networkMutation?.api === 'updateLoadBalancerRule' && this.networkMutation.params.id === rule.id) {
+          this.selectedRule = rule
+          this.editRuleModalVisible = true
+        }
+        return
+      }
+      this.resetNetworkMutation()
       this.selectedRule = rule
       this.editRuleModalVisible = true
       this.editRuleDetails.name = this.selectedRule.name
       this.editRuleDetails.algorithm = this.lbProvider !== 'Netris' ? this.selectedRule.algorithm : undefined
-      this.editRuleDetails.protocol = this.selectedRule.protocol
+      this.editRuleDetails.protocol = this.lbProvider !== 'Netris' ? ((this.selectedRule.protocol || '').trim().toLowerCase() || 'tcp') : undefined
       // Normalize cidrlist: replace spaces with commas and clean up
       this.editRuleDetails.cidrlist = (this.selectedRule.cidrlist || '')
         .split(/[\s,]+/) // Split on spaces or commas
         .map(c => c.trim())
         .filter(c => c)
         .join(',') || ''
-      this.editRuleDetails.backendssl = this.selectedRule.protocol === 'ssl' && !!this.selectedRule.backendssl
+      this.editRuleDetails.backendssl = this.editRuleDetails.protocol === 'ssl' && !!this.selectedRule.backendssl
     },
-    handleSubmitEditForm () {
-      if (this.editRuleModalLoading) return
-      this.loading = true
+    async handleSubmitEditForm () {
+      if (this.editRuleModalLoading || this.networkMutationBlocked || !this.selectedRule || this.isProtectedRule(this.selectedRule) || !this.editRuleDetails.name.trim()) return
+      const scope = this.networkMutationScope
       this.editRuleModalLoading = true
       const payload = {
-        ...this.editRuleDetails,
         id: this.selectedRule.id,
-        backendssl: this.editRuleDetails.protocol === 'ssl' && this.editRuleDetails.backendssl,
-        ...(this.editRuleDetails.cidrlist && {
-          cidrList: (this.editRuleDetails.cidrlist || '').split(',').map(c => c.trim()).filter(c => c)
+        name: this.editRuleDetails.name,
+        ...(this.lbProvider !== 'Netris' && {
+          algorithm: this.editRuleDetails.algorithm,
+          protocol: (this.editRuleDetails.protocol || '').trim().toLowerCase() || 'tcp',
+          backendssl: this.editRuleDetails.protocol === 'ssl' && this.editRuleDetails.backendssl,
+          cidrlist: (this.editRuleDetails.cidrlist || '').split(',').map(c => c.trim()).filter(c => c).join(',')
         })
       }
-      postAPI('updateLoadBalancerRule', payload).then(response => {
-        this.$pollJob({
-          jobId: response.updateloadbalancerruleresponse.jobid,
-          successMessage: this.$t('message.success.edit.rule'),
-          successMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          errorMessage: this.$t('message.edit.rule.failed'),
-          errorMethod: () => {
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          },
-          loadingMessage: this.$t('message.edit.rule.processing'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-            this.parentToggleLoading()
-            this.fetchData()
-            this.closeModal()
-          }
+      try {
+        await this.submitNetworkMutation('updateLoadBalancerRule', payload, () => {
+          this.refreshRules()
+          this.closeModal()
         })
-      }).catch(error => {
-        this.$notifyError(error)
-        this.loading = false
-      })
+      } finally {
+        if (!this.networkMutationDisposed && this.networkMutationScope === scope) this.editRuleModalLoading = false
+      }
     },
     setSelection (selection) {
       this.selectedRowKeys = selection
@@ -1891,7 +1420,7 @@ export default {
       }).then(response => {
         const jobId = response.deleteloadbalancerruleresponse.jobid
         eventBus.emit('update-job-details', { jobId, resourceId: null })
-        this.$pollJob({
+        this.pollScopedNetworkJob({
           title: this.$t('label.action.delete.load.balancer'),
           description: rule.id,
           jobId: jobId,
@@ -1955,11 +1484,13 @@ export default {
       return true
     },
     openCreateDialog () {
+      if (this.publicContextSuspended || this.contextLoading) return
       this.closeModal(); this.createModalVisible = true
+      this.newRule.autoscale = 'no'
       this.targetMode = 'assignToLoadBalancerRule' in this.$store.getters.apis ? 'select' : 'later'
-      this.vmPage = 1; this.searchQuery = ''; this.fetchVirtualMachines()
+      this.vmPage = 1; this.searchQuery = ''; this.fetchListTiers(); this.fetchVirtualMachines()
     },
-    targetModeChanged () { this.selectedBackends = {} },
+    targetModeChanged () { this.clearBackendSelection(); this.fetchVirtualMachines() },
     handleOpenAddVMModal () {
       if (this.selectedRule && this.isProtectedRule(this.selectedRule)) return
       if (this.addVmModalLoading) return
@@ -1971,25 +1502,36 @@ export default {
       this.fetchVirtualMachines()
     },
     async fetchNics (e, id) {
+      if (this.publicTierSubmissionBlocked) return
       if (!e.target.checked) { delete this.selectedBackends[id]; return }
+      const scope = this.networkMutationScope
+      const epoch = this.backendEpoch
       const selection = { ips: [], options: [], request: ++this.nicRequest }
       this.selectedBackends[id] = selection
       this.nicPending++; this.addVmModalNicLoading = true
-      const networkid = ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
+      const networkid = this.lbTargetNetworkId
       try {
         const response = await getAPI('listNics', { virtualmachineid: id, networkid })
-        if (this.selectedBackends[id]?.request !== selection.request) return
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope || epoch !== this.backendEpoch || networkid !== this.lbTargetNetworkId || this.selectedBackends[id]?.request !== selection.request) return
         const nic = response.listnicsresponse?.nic?.find(nic => nic.networkid === networkid)
         if (!nic?.ipaddress) throw new Error(this.$t('label.nic'))
         this.selectedBackends[id] = { ips: [nic.ipaddress], options: [nic.ipaddress, ...(nic.secondaryip || []).map(ip => ip.ipaddress)] }
-      } catch (error) { this.$notifyError(error); if (this.selectedBackends[id]?.request === selection.request) delete this.selectedBackends[id] } finally { this.nicPending--; this.addVmModalNicLoading = this.nicPending > 0 }
+      } catch (error) {
+        if (this.networkMutationDisposed || scope !== this.networkMutationScope || epoch !== this.backendEpoch) return
+        this.$notifyError(error); if (this.selectedBackends[id]?.request === selection.request) delete this.selectedBackends[id]
+      } finally {
+        if (scope === this.networkMutationScope && epoch === this.backendEpoch) { this.nicPending = Math.max(0, this.nicPending - 1); this.addVmModalNicLoading = this.nicPending > 0 }
+      }
     },
     fetchVirtualMachines () {
+      const request = ++this.vmRequest
+      const scope = this.networkMutationScope
       this.vmCount = 0
       this.vms = []
       this.addVmModalLoading = true
-      const networkId = ('vpcid' in this.resource && (!('associatednetworkid' in this.resource) || this.vpcConserveMode)) ? this.selectedTier : this.resource.associatednetworkid
-      if (!networkId) {
+      const networkId = this.lbTargetNetworkId
+      const current = () => !this.networkMutationDisposed && scope === this.networkMutationScope && request === this.vmRequest && networkId === this.lbTargetNetworkId
+      if (!networkId || this.publicTierSubmissionBlocked) {
         this.addVmModalLoading = false
         return
       }
@@ -2001,11 +1543,14 @@ export default {
         pagesize: this.vmPageSize,
         networkid: networkId
       }).then(response => {
+        if (!current()) return
         this.vmCount = response.listvirtualmachinesresponse.count || 0
         this.vms = response.listvirtualmachinesresponse.virtualmachine || []
       }).catch(error => {
+        if (!current()) return
         this.$notifyError(error)
       }).finally(() => {
+        if (!current()) return
         this.addVmModalLoading = false
       })
     },
@@ -2018,48 +1563,28 @@ export default {
       this.fetchNetworks()
     },
     fetchNetworks () {
-      this.networkCount = 0
-      this.networks = []
-      this.addNetworkModalLoading = true
-      const vpcid = this.resource.vpcid
-      if (!vpcid) {
-        this.addNetworkModalLoading = false
-        return
-      }
-      getAPI('listNetworks', {
-        listAll: true,
-        keyword: this.searchQuery,
-        page: this.networkPage,
-        pagesize: this.networkPageSize,
-        supportedservices: 'Lb',
-        isrecursive: true,
-        vpcid: vpcid
-      }).then(response => {
-        this.networkCount = response.listnetworksresponse.count || 0
-        this.networks = response.listnetworksresponse.network || []
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.addNetworkModalLoading = false
-      })
       this.selectedTierForAutoScaling = null
+      this.networkPage = 1
+      return this.fetchListTiers()
     },
     onNetworkSearch (value) {
-      this.searchQuery = value
-      this.fetchNetworks()
+      this.networkSearchQuery = value
+      this.networkPage = 1
     },
     handleChangeNetworkPage (page, pageSize) {
       this.networkPage = page
       this.networkPageSize = pageSize
-      this.fetchNetworks()
     },
     handleChangeNetworkPageSize (currentPage, pageSize) {
       this.networkPage = currentPage
       this.networkPageSize = pageSize
-      this.fetchNetworks()
     },
-    handleAssignToLBRule (data) {
-      const vmIDIpMap = selectedBackendMap(this.selectedBackends, this.vpcConserveMode, this.selectedTier)
+    async handleAssignToLBRule (data) {
+      const operationScope = this.networkMutationScope
+      const operationVersion = this.networkMutationVersion
+      const networkId = this.lbTargetNetworkId
+      if (this.publicTierRequired && !await this.checkPublicTierBeforeWrite(networkId, operationScope)) return
+      const vmIDIpMap = selectedBackendMap(this.newRule.autoscale === 'yes' ? {} : this.selectedBackends, this.vpcConserveMode, networkId)
       const selectedVmCount = Object.keys(vmIDIpMap).length
       if (selectedVmCount === 0) {
         if (this.newRule.protocol === 'ssl' && this.selectedSsl.id !== null) this.handleAddSslCert(data)
@@ -2072,7 +1597,8 @@ export default {
         id: data,
         ...vmIDIpMap
       }).then(response => {
-        this.$pollJob({
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
+        this.pollScopedNetworkJob({
           jobId: response.assigntoloadbalancerruleresponse.jobid,
           successMessage: this.$t('message.success.assign.vm'),
           successMethod: () => {
@@ -2101,10 +1627,33 @@ export default {
             this.loading = false
           }
         })
-      }).catch(error => { this.$notifyError(error); this.assignmentFailed = true; this.loading = false })
+      }).catch(error => { if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return; this.$notifyError(error); this.assignmentFailed = true; this.loading = false })
     },
-    handleAddNewRule () {
-      if (this.loading || this.contextLoading || this.addVmModalNicLoading || this.creationFailed || (this.createModalVisible && this.targetMode === 'select' && !Object.keys(this.selectedBackends).length) || Object.values(this.selectedBackends).some(selection => !selection.ips.length)) return
+    async checkPublicTierBeforeWrite (networkId, scope) {
+      if (!this.publicTierRequired) return true
+      const epoch = this.backendEpoch
+      const current = () => !this.publicContextSuspended && !this.networkMutationDisposed && scope === this.networkMutationScope && networkId === this.lbTargetNetworkId && epoch === this.backendEpoch
+      try {
+        if (await validatePublicLbTier(getAPI, networkId, this.resource.vpcid, this.resource.projectid, current)) return true
+        if (!current()) { if (!this.networkMutationDisposed && scope === this.networkMutationScope) this.loading = false; return false }
+      } catch (error) {
+        if (!current()) { if (!this.networkMutationDisposed && scope === this.networkMutationScope) this.loading = false; return false }
+      }
+      this.tierRequest++
+      this.tiers = { data: [], ready: false, failed: true, loading: false }
+      this.clearBackendSelection()
+      this.loading = false
+      return false
+    },
+    async handleAddNewRule () {
+      const operationScope = this.networkMutationScope
+      const operationVersion = this.networkMutationVersion
+      if (this.ruleSubmissionBlocked) return
+      if (!this.selectedRule && !('createLoadBalancerRule' in this.$store.getters.apis)) return
+      if (this.newRule.autoscale === 'yes' && this.resource?.vpcid && !this.resource.associatednetworkid && !this.selectedTierForAutoScaling) {
+        this.handleOpenAddNetworkModal()
+        return
+      }
       this.loading = true
 
       if (this.creationJob) { this.finishRuleCreation(); return }
@@ -2116,9 +1665,11 @@ export default {
         return
       }
 
-      const networkId = this.selectedTierForAutoScaling != null ? this.selectedTierForAutoScaling
-        : ('vpcid' in this.resource && !('associatednetworkid' in this.resource)) ? this.selectedTier : this.resource.associatednetworkid
+      const networkId = this.lbTargetNetworkId
+      if (this.publicTierRequired && !await this.checkPublicTierBeforeWrite(networkId, operationScope)) return
       postAPI('createLoadBalancerRule', {
+        ignoreproject: true,
+        ...(this.resource.projectid ? { projectid: this.resource.projectid } : {}),
         openfirewall: false,
         networkid: networkId,
         publicipid: this.resource.id,
@@ -2129,36 +1680,56 @@ export default {
         publicport: this.newRule.publicport,
         cidrlist: this.newRule.cidrlist,
         backendssl: this.newRule.protocol === 'ssl' && this.newRule.backendssl
-      }).then(response => {
-        this.selectedRule = { id: response.createloadbalancerruleresponse.id }
+      }, { preserveOnFailure: true }).then(response => {
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
+        const rule = response.createloadbalancerruleresponse
+        if (!rule?.id) {
+          this.creationFailed = true
+          this.creationUncertain = true
+          this.loading = false
+          this.fetchData()
+          return
+        }
+        this.selectedRule = { id: rule.id }
         this.creationJob = response.createloadbalancerruleresponse.jobid
         this.associatednetworkid = networkId
         if (this.creationJob) this.finishRuleCreation()
         else this.handleAssignToLBRule(this.selectedRule.id)
       }).catch(error => {
-        this.$notifyError(error)
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
+        this.creationUncertain = !networkError(error).definitive
+        this.creationFailed = this.creationUncertain
+        if (this.creationUncertain) this.fetchData()
+        else this.$notifyError(error)
         this.loading = false
       })
 
       // assigntoloadbalancerruleresponse.jobid
     },
     async finishRuleCreation () {
+      const operationScope = this.networkMutationScope
+      const operationVersion = this.networkMutationVersion
       try {
-        const result = await this.$pollJob({ jobId: this.creationJob, title: this.$t('label.network.rule.add'), catchMessage: this.$t('error.fetching.async.job.result') })
+        const result = await this.pollScopedNetworkJob({ jobId: this.creationJob, title: this.$t('label.network.rule.add'), catchMessage: this.$t('error.fetching.async.job.result') })
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
         if (result.jobstatus === 1) { this.creationJob = null; this.handleAssignToLBRule(this.selectedRule.id) } else { this.loading = false; this.creationFailed = result.jobstatus === 2; this.fetchData() }
-      } catch (error) { this.$notifyError(error); this.loading = false }
+      } catch (error) {
+        if (this.networkMutationDisposed || this.networkMutationScope !== operationScope || this.networkMutationVersion !== operationVersion) return
+        this.$notifyError(error); this.loading = false
+      }
     },
     closeModal () {
+      if (this.stickinessModalVisible && this.$refs.stickinessDialog?.busy) return
+      if (this.editRuleModalVisible && this.networkMutationBusy) return
       this.selectedRule = null
+      this.clearBackendSelection()
       this.assignmentFailed = false
       this.creationJob = null
       this.creationFailed = false
+      this.creationUncertain = false
       this.createModalVisible = false
-      this.tagsModalVisible = false
+      this.tagRule = null
       this.stickinessModalVisible = false
-      this.stickinessModalLoading = false
-      this.selectedStickinessPolicy = null
-      this.stickinessPolicyMethod = 'LbCookie'
       this.editRuleModalVisible = false
       this.editRuleModalLoading = false
       this.addVmModalLoading = false
@@ -2251,7 +1822,7 @@ export default {
         this.healthMonitorLoading = true
         postAPI('updateTungstenFabricLBHealthMonitor', this.healthMonitorParams).then(json => {
           const jobId = json?.updatetungstenfabriclbhealthmonitorresponse?.jobid
-          this.$pollJob({
+          this.pollScopedNetworkJob({
             jobId: jobId,
             successMessage: this.$t('message.success.config.health.monitor'),
             successMethod: () => {
@@ -2291,6 +1862,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .public-lb-tier-table :deep(.ant-table-cell-fix-right) { background: var(--ui-bg-surface) !important; }
   .rule {
 
     &-container {
@@ -2433,45 +2005,6 @@ export default {
 
   .rule-action {
     margin-bottom: 10px;
-  }
-
-  .tags-modal {
-
-    .ant-divider {
-      margin-top: 0;
-    }
-
-  }
-
-  .tags {
-    margin-bottom: 10px;
-  }
-
-  .add-tags {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    &__input {
-      margin-right: 10px;
-    }
-
-    &__label {
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-  }
-
-  .tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-  }
-
-  .add-tags-done {
-    display: block;
-    margin-left: auto;
   }
 
   .modal-loading {

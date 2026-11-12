@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "# ipsec.conf - strongSwan IPsec configuration file\n\nconfig setup\n\ninclude /etc/ipsec.d/*.conf\n",
+  "error": ""
+}

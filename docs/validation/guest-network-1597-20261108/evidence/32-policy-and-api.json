@@ -1,0 +1,91 @@
+{
+  "policy": {
+    "count": 1,
+    "configuration": [
+      {
+        "category": "Advanced",
+        "group": "Miscellaneous",
+        "subgroup": "Others",
+        "name": "admin.is.allowed.to.deploy.anywhere",
+        "value": "false",
+        "defaultvalue": "false",
+        "description": "This will determine if the root admin is allowed to deploy in networks in subdomains.",
+        "isdynamic": true,
+        "component": "NetworkModel",
+        "displaytext": "Admin is allowed to deploy anywhere",
+        "type": "Boolean"
+      }
+    ]
+  },
+  "schema": {
+    "count": 1,
+    "api": [
+      {
+        "name": "listAvailableGuestIps",
+        "description": "Lists available guest IP addresses for a network.",
+        "isasync": false,
+        "related": "",
+        "params": [
+          {
+            "name": "pagesize",
+            "description": "",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "page",
+            "description": "",
+            "type": "integer",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "projectid",
+            "description": "the project whose deployment network permissions are used for the IP lookup",
+            "type": "uuid",
+            "length": 255,
+            "required": false,
+            "related": "activateProject,createProject,suspendProject"
+          },
+          {
+            "name": "keyword",
+            "description": "List by keyword",
+            "type": "string",
+            "length": 255,
+            "required": false
+          },
+          {
+            "name": "networkid",
+            "description": "the ID of the network",
+            "type": "uuid",
+            "length": 255,
+            "required": true,
+            "related": "createNetwork,listNetworks,createNetwork,updateNetwork,listNetworks,migrateNetwork,listPaloAltoFirewallNetworks,listBrocadeVcsDeviceNetworks"
+          }
+        ],
+        "response": [
+          {
+            "name": "jobstatus",
+            "description": "The current status of the latest async job acting on this object",
+            "type": "integer"
+          },
+          {},
+          {},
+          {
+            "name": "ipaddress",
+            "description": "the available guest IP address",
+            "type": "string"
+          },
+          {
+            "name": "jobid",
+            "description": "The UUID of the latest async job acting on this object",
+            "type": "string"
+          }
+        ],
+        "httprequesttype": "GET"
+      }
+    ]
+  },
+  "existingRolePermissionsUnchanged": true
+}

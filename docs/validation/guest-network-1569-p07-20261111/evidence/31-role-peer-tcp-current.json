@@ -1,0 +1,11 @@
+[
+  {
+    "id": "4339cd41-c924-4197-970c-958760ede757",
+    "name": "qa-gn1569-31-p07-role-peer-tcp",
+    "methodname": "SourceBased",
+    "params": {
+      "expire": "10m",
+      "tablesize": "20k"
+    }
+  }
+]

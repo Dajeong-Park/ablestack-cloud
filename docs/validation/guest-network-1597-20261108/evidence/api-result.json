@@ -1,0 +1,7 @@
+{
+  "exit": 0,
+  "commands": [
+    "mvn -pl api -DskipTests -Drat.skip=true -Dcheckstyle.skip=true install"
+  ],
+  "fullCloudBuild": false
+}

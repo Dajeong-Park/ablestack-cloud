@@ -1,0 +1,95 @@
+[
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 1280,
+    "height": 900,
+    "file": "screenshots/31-vm-nic-dark-1280.jpg"
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 768,
+    "height": 1024,
+    "file": "screenshots/31-vm-nic-dark-768.jpg"
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 390,
+    "height": 844,
+    "file": "screenshots/31-vm-nic-dark-390.jpg"
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 1280,
+    "height": 900,
+    "file": "screenshots/31-vm-nic-light-1280.jpg",
+    "verifiedDarkClass": false
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 768,
+    "height": 1024,
+    "file": "screenshots/31-vm-nic-light-768.jpg",
+    "verifiedDarkClass": false
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 390,
+    "height": 844,
+    "file": "screenshots/31-vm-nic-light-390.jpg",
+    "verifiedDarkClass": false
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 1280,
+    "height": 900,
+    "file": "screenshots/32-vm-nic-dark-1280.jpg",
+    "verifiedDarkClass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 768,
+    "height": 1024,
+    "file": "screenshots/32-vm-nic-dark-768.jpg",
+    "verifiedDarkClass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 390,
+    "height": 844,
+    "file": "screenshots/32-vm-nic-dark-390.jpg",
+    "verifiedDarkClass": true
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 1280,
+    "height": 900,
+    "file": "screenshots/32-vm-nic-light-1280.jpg",
+    "verifiedDarkClass": false
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 768,
+    "height": 1024,
+    "file": "screenshots/32-vm-nic-light-768.jpg",
+    "verifiedDarkClass": false
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 390,
+    "height": 844,
+    "file": "screenshots/32-vm-nic-light-390.jpg",
+    "verifiedDarkClass": false
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "interface": "ens10",
+  "connection": "qa1569-vpc-333e7089",
+  "addresses": [
+    {
+      "ifindex": 4,
+      "ifname": "ens10",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "altnames": [
+        "enp0s10"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.239.31.55",
+          "prefixlen": 24,
+          "broadcast": "10.239.31.255",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens10",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.239.31.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:1f:02:71:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.239.31.1\nDHCP4.OPTION[5]:                        host_name = qa-gn1569-31-shared-reg-vm24\nDHCP4.OPTION[6]:                        interface_mtu = 1500\nDHCP4.OPTION[7]:                        ip_address = 10.239.31.55\nDHCP4.OPTION[8]:                        next_server = 10.239.31.1\nDHCP4.OPTION[9]:                        requested_broadcast_address = 1\nDHCP4.OPTION[10]:                       requested_domain_name = 1\nDHCP4.OPTION[11]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[12]:                       requested_domain_search = 1\nDHCP4.OPTION[13]:                       requested_host_name = 1\nDHCP4.OPTION[14]:                       requested_interface_mtu = 1\nDHCP4.OPTION[15]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[16]:                       requested_nis_domain = 1\nDHCP4.OPTION[17]:                       requested_nis_servers = 1\nDHCP4.OPTION[18]:                       requested_ntp_servers = 1\nDHCP4.OPTION[19]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[20]:                       requested_root_path = 1\nDHCP4.OPTION[21]:                       requested_routers = 1\nDHCP4.OPTION[22]:                       requested_static_routes = 1\nDHCP4.OPTION[23]:                       requested_subnet_mask = 1\nDHCP4.OPTION[24]:                       requested_time_offset = 1\nDHCP4.OPTION[25]:                       requested_wpad = 1\nDHCP4.OPTION[26]:                       subnet_mask = 255.255.255.0",
+  "routes": [
+    {
+      "dst": "10.10.31.0/24",
+      "gateway": "10.239.31.1",
+      "dev": "ens10",
+      "protocol": "static",
+      "metric": 102,
+      "flags": []
+    },
+    {
+      "dst": "10.239.31.0/24",
+      "dev": "ens10",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.239.31.55",
+      "metric": 102,
+      "flags": []
+    },
+    {
+      "dst": "10.247.31.0/24",
+      "dev": "ens8",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.247.31.54",
+      "metric": 101,
+      "flags": []
+    },
+    {
+      "dst": "172.26.31.0/24",
+      "dev": "ens3",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "172.26.31.24",
+      "metric": 100,
+      "flags": []
+    }
+  ]
+}

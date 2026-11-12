@@ -1,0 +1,8 @@
+{
+  "command": "addVpnUser",
+  "params": {
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "username": "qa-gn1569-32-matrix-domainAdmin"
+  },
+  "jobid": "ecd27e93-5acc-408c-b895-957f1dcfacda"
+}

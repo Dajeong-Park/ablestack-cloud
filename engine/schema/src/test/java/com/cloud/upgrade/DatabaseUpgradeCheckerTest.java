@@ -120,6 +120,16 @@ public class DatabaseUpgradeCheckerTest {
     }
 
     @Test
+    public void freshAnd420UpgradePathsIncludeSharedSubnetColumnMigration() {
+        DatabaseUpgradeChecker checker = new DatabaseUpgradeChecker();
+        for (String from : new String[]{"4.0.0", "4.20.0.0", "4.20.1.0", "4.20.2.0", "4.20.3.0", "4.20.4.0"}) {
+            DbUpgrade[] path = checker.calculateUpgradePath(CloudStackVersion.parse(from), CloudStackVersion.parse("4.23.0.0"));
+            assertTrue("Shared subnet migration missing from " + from,
+                    java.util.Arrays.stream(path).anyMatch(upgrade -> upgrade instanceof Upgrade42040to42100));
+        }
+    }
+
+    @Test
     public void testCalculateUpgradePath490to4910() {
 
         final CloudStackVersion dbVersion = CloudStackVersion.parse("4.9.0");

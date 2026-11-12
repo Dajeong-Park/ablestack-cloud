@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/components/network/LoadBalancerStickinessDialog.vue src/views/network/LoadBalancing.vue src/utils/networkMutation.js tests/unit/views/network/LoadBalancerStickinessDialog.spec.js tests/unit/views/network/AppCookieCapability.spec.js tests/unit/views/network/AppCookieFormIdentity.spec.js tests/unit/views/network/KubernetesNetworkUi.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/views/network/LoadBalancerStickinessDialog.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}

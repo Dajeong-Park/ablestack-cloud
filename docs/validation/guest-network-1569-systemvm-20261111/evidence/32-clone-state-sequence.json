@@ -1,0 +1,246 @@
+[
+  {
+    "state": "Enabled",
+    "result": {
+      "httpStatus": 200,
+      "networkoffering": {
+        "id": "bef71112-3bbe-422e-91e9-f1b04dd8d1c8",
+        "name": "qa-gn1569-32-final-clone-shared",
+        "displaytext": "QA1569 final clone contract shared",
+        "created": "2026-11-11T20:08:06+0900",
+        "traffictype": "Guest",
+        "isdefault": false,
+        "specifyvlan": true,
+        "conservemode": true,
+        "specifyipranges": true,
+        "availability": "Optional",
+        "networkrate": 10000,
+        "state": "Enabled",
+        "guestiptype": "Shared",
+        "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+        "service": [
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ]
+          }
+        ],
+        "forvpc": false,
+        "fornsx": false,
+        "fortungsten": false,
+        "ispersistent": false,
+        "egressdefaultpolicy": true,
+        "keepaliveenabled": false,
+        "supportsstrechedl2subnet": false,
+        "supportspublicaccess": false,
+        "supportsinternallb": false,
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "/qa-gn1569-32-domain/",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zone": "Zone",
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "hasannotations": false
+      }
+    },
+    "live": {
+      "id": "bef71112-3bbe-422e-91e9-f1b04dd8d1c8",
+      "name": "qa-gn1569-32-final-clone-shared",
+      "displaytext": "QA1569 final clone contract shared",
+      "created": "2026-11-11T20:08:06+0900",
+      "traffictype": "Guest",
+      "isdefault": false,
+      "specifyvlan": true,
+      "conservemode": true,
+      "specifyipranges": true,
+      "availability": "Optional",
+      "networkrate": 10000,
+      "state": "Enabled",
+      "guestiptype": "Shared",
+      "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+      "service": [
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ]
+        }
+      ],
+      "forvpc": false,
+      "fornsx": false,
+      "fortungsten": false,
+      "ispersistent": false,
+      "egressdefaultpolicy": true,
+      "keepaliveenabled": false,
+      "supportsstrechedl2subnet": false,
+      "supportspublicaccess": false,
+      "supportsinternallb": false,
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "/qa-gn1569-32-domain/",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zone": "Zone",
+      "internetprotocol": "IPv4",
+      "specifyasnumber": false,
+      "hasannotations": false
+    }
+  },
+  {
+    "state": "Disabled",
+    "result": {
+      "httpStatus": 200,
+      "networkoffering": {
+        "id": "bef71112-3bbe-422e-91e9-f1b04dd8d1c8",
+        "name": "qa-gn1569-32-final-clone-shared",
+        "displaytext": "QA1569 final clone contract shared",
+        "created": "2026-11-11T20:08:06+0900",
+        "traffictype": "Guest",
+        "isdefault": false,
+        "specifyvlan": true,
+        "conservemode": true,
+        "specifyipranges": true,
+        "availability": "Optional",
+        "networkrate": 10000,
+        "state": "Disabled",
+        "guestiptype": "Shared",
+        "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+        "service": [
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VirtualRouter"
+              }
+            ]
+          }
+        ],
+        "forvpc": false,
+        "fornsx": false,
+        "fortungsten": false,
+        "ispersistent": false,
+        "egressdefaultpolicy": true,
+        "keepaliveenabled": false,
+        "supportsstrechedl2subnet": false,
+        "supportspublicaccess": false,
+        "supportsinternallb": false,
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "/qa-gn1569-32-domain/",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zone": "Zone",
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "hasannotations": false
+      }
+    },
+    "live": {
+      "id": "bef71112-3bbe-422e-91e9-f1b04dd8d1c8",
+      "name": "qa-gn1569-32-final-clone-shared",
+      "displaytext": "QA1569 final clone contract shared",
+      "created": "2026-11-11T20:08:06+0900",
+      "traffictype": "Guest",
+      "isdefault": false,
+      "specifyvlan": true,
+      "conservemode": true,
+      "specifyipranges": true,
+      "availability": "Optional",
+      "networkrate": 10000,
+      "state": "Disabled",
+      "guestiptype": "Shared",
+      "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+      "service": [
+        {
+          "name": "Dns",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "UserData",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ]
+        },
+        {
+          "name": "Dhcp",
+          "provider": [
+            {
+              "name": "VirtualRouter"
+            }
+          ]
+        }
+      ],
+      "forvpc": false,
+      "fornsx": false,
+      "fortungsten": false,
+      "ispersistent": false,
+      "egressdefaultpolicy": true,
+      "keepaliveenabled": false,
+      "supportsstrechedl2subnet": false,
+      "supportspublicaccess": false,
+      "supportsinternallb": false,
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "/qa-gn1569-32-domain/",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zone": "Zone",
+      "internetprotocol": "IPv4",
+      "specifyasnumber": false,
+      "hasannotations": false
+    }
+  }
+]

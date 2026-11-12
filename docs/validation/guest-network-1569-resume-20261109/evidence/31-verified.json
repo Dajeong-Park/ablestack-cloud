@@ -1,0 +1,39 @@
+{
+  "cluster": 31,
+  "existingPreserved": {
+    "networks": 18,
+    "vpcs": 6,
+    "pub": 1,
+    "rules": 5,
+    "vms": 2,
+    "nics": 14
+  },
+  "newNetwork": {
+    "id": "d218e1a0-2445-40f7-91a9-d364697e123c",
+    "name": "qa-gn1569-31-configdrive-clone-net",
+    "state": "Implemented",
+    "broadcasturi": "vlan://161",
+    "networkofferingid": "c9b236d6-2c61-4462-bf97-683e51d0b2df"
+  },
+  "newVm": {
+    "id": "c7f40539-4192-424d-8186-256e58b78318",
+    "name": "qa-gn1569-31-configdrive-clone-vm",
+    "state": "Running",
+    "nic": "da18f151-ffed-4d65-be36-ff614a8c7fea",
+    "isdefault": true,
+    "hostname": "ablecube31-2"
+  },
+  "newIp": {
+    "id": "fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c",
+    "ip": "10.10.31.144",
+    "state": "Allocated",
+    "isstaticnat": false
+  },
+  "runtime": {
+    "webInf": true,
+    "indexSha256": "1d0c181cd55943ee023e05a5a027b1a9c823874780a78a3d2ee638ad3d557e9d",
+    "managementJarSha256": "a8f056931835bb0b61c7dbaaa3899300b1aef8d5e9c5199f7b7a21024fe9282d",
+    "clientHttp": 200,
+    "mold": "active"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "job": {
+    "jobid": "1582cd8f-b89e-4d0b-b1f9-f6462e902235",
+    "jobstatus": 1,
+    "success": true
+  },
+  "boundCertificate": {
+    "id": "44a59880-7190-4dda-99b6-b5ab18270fe0",
+    "certificate": {
+      "pemOmitted": true,
+      "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+      "bytes": 1342
+    },
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "project": "qa-gn1569-32-shared-reg",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "certchain": {
+      "pemOmitted": true,
+      "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+      "bytes": 2445
+    },
+    "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+    "loadbalancerrulelist": [
+      "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+    ],
+    "name": "qa-gn1632-32-ui-recovery"
+  },
+  "actualUiOperationId": "1582cd8f-b89e-4d0b-b1f9-f6462e902235"
+}

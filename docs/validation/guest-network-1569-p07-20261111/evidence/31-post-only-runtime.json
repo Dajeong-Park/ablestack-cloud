@@ -1,0 +1,25 @@
+{
+  "section": "listen 10_10_31_149-19172\n\tbind 10.10.31.149:19172\n\tmode http\n\toption httpclose\n\tacl network_allowed src 10.10.0.0/16 \n\ttcp-request connection reject if !network_allowed\n\tbalance roundrobin\n\tserver 10_10_31_149-19172_0 10.234.31.6:18080 check cookie 10_234_31_6-18080\n\tcookie QA_LB_COOKIE insert postonly \n\t ",
+  "syntax": {
+    "exit": 0,
+    "out": "Warnings were found.\nConfiguration file is valid\n[NOTICE]   (100677) : haproxy version is 2.6.12-1+deb12u4\n[NOTICE]   (100677) : path to executable is /usr/sbin/haproxy\n[WARNING]  (100677) : config : parsing [/etc/haproxy/haproxy.cfg:124] : a 'tcp-request' rule placed after an 'http-request' rule will still be processed before.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18871' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18873' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18876' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18877' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18878' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18879' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18880' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18969' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18981' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-18991' as it requires HTTP mode.\n[WARNING]  (100677) : config : 'option forwardfor' ignored for proxy '10_10_31_149-19173' as it requires HTTP mode."
+  },
+  "requests": [
+    {
+      "label": "get",
+      "exit": 0,
+      "out": "HTTP/1.0 200 OK\nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 07:46:24 GMT\ncontent-length: 41\nset-cookie: QA_SESSION=qa_p07_response; Path=/; HttpOnly\n\nqa-gn1569-p07-single-backend-ok\nCookie: \n\nHTTP:200"
+    },
+    {
+      "label": "post",
+      "exit": 0,
+      "out": "HTTP/1.0 200 OK\nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 07:46:24 GMT\ncontent-length: 41\nset-cookie: QA_SESSION=qa_p07_response; Path=/; HttpOnly\nset-cookie: QA_LB_COOKIE=10_234_31_6-18080; path=/\n\nqa-gn1569-p07-single-backend-ok\nCookie: \n\nHTTP:200"
+    },
+    {
+      "label": "request-cookie",
+      "exit": 0,
+      "out": "HTTP/1.0 200 OK\nserver: BaseHTTP/0.6 Python/3.9.19\ndate: Wed, 11 Nov 2026 07:46:24 GMT\ncontent-length: 86\n\nqa-gn1569-p07-single-backend-ok\nCookie: QA_LB_COOKIE=10_234_31_6-18080~backend_cookie\n\nHTTP:200"
+    }
+  ],
+  "table": "No such table\n"
+}

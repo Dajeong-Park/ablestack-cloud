@@ -1,0 +1,1010 @@
+[
+  {
+    "cluster": 32,
+    "theme": "light",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 246,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 584.640625,
+        "left": 77,
+        "right": 323,
+        "top": 486.640625
+      },
+      "color": "rgba(0, 0, 0, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 530.640625,
+        "height": 32,
+        "left": 79.5,
+        "right": 299.5,
+        "top": 498.640625,
+        "width": 220,
+        "x": 79.5,
+        "y": 498.640625
+      }
+    },
+    "controlWidth": 220,
+    "dark": false,
+    "docWidth": 380,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 584.640625,
+        "left": 77,
+        "right": 323,
+        "top": 486.640625
+      },
+      "color": "rgb(75, 85, 99)",
+      "hit": true,
+      "rect": {
+        "bottom": 529.640625,
+        "height": 30,
+        "left": 91.5,
+        "right": 229.5,
+        "top": 499.640625,
+        "width": 138,
+        "x": 91.5,
+        "y": 499.640625
+      }
+    },
+    "ip": "10.253.32.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(255, 255, 255)",
+      "clip": {
+        "bottom": 584.640625,
+        "left": 77,
+        "right": 323,
+        "top": 486.640625
+      },
+      "color": "rgb(22, 119, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 530.640625,
+        "height": 32,
+        "left": 247.5,
+        "right": 279.5,
+        "top": 498.640625,
+        "width": 32,
+        "x": 247.5,
+        "y": 498.640625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 544,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 665.140625,
+        "left": 157,
+        "right": 701,
+        "top": 567.140625
+      },
+      "color": "rgba(0, 0, 0, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 611.140625,
+        "height": 32,
+        "left": 160.5,
+        "right": 380.5,
+        "top": 579.140625,
+        "width": 220,
+        "x": 160.5,
+        "y": 579.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": false,
+    "docWidth": 758,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 665.140625,
+        "left": 157,
+        "right": 701,
+        "top": 567.140625
+      },
+      "color": "rgb(75, 85, 99)",
+      "hit": true,
+      "rect": {
+        "bottom": 610.140625,
+        "height": 30,
+        "left": 172.5,
+        "right": 310.5,
+        "top": 580.140625,
+        "width": 138,
+        "x": 172.5,
+        "y": 580.140625
+      }
+    },
+    "ip": "10.253.32.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(255, 255, 255)",
+      "clip": {
+        "bottom": 665.140625,
+        "left": 157,
+        "right": 701,
+        "top": 567.140625
+      },
+      "color": "rgb(22, 119, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 611.140625,
+        "height": 32,
+        "left": 328.5,
+        "right": 360.5,
+        "top": 579.140625,
+        "width": 32,
+        "x": 328.5,
+        "y": 579.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 591,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 587.140625,
+        "left": 333,
+        "right": 924,
+        "top": 489.140625
+      },
+      "color": "rgba(0, 0, 0, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 533.140625,
+        "height": 32,
+        "left": 418.5,
+        "right": 638.5,
+        "top": 501.140625,
+        "width": 220,
+        "x": 418.5,
+        "y": 501.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": false,
+    "docWidth": 1270,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 587.140625,
+        "left": 333,
+        "right": 924,
+        "top": 489.140625
+      },
+      "color": "rgb(75, 85, 99)",
+      "hit": true,
+      "rect": {
+        "bottom": 532.140625,
+        "height": 30,
+        "left": 430.5,
+        "right": 568.5,
+        "top": 502.140625,
+        "width": 138,
+        "x": 430.5,
+        "y": 502.140625
+      }
+    },
+    "ip": "10.253.32.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(255, 255, 255)",
+      "clip": {
+        "bottom": 587.140625,
+        "left": 333,
+        "right": 924,
+        "top": 489.140625
+      },
+      "color": "rgb(22, 119, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 533.140625,
+        "height": 32,
+        "left": 586.5,
+        "right": 618.5,
+        "top": 501.140625,
+        "width": 32,
+        "x": 586.5,
+        "y": 501.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 591,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 587.140625,
+        "left": 333,
+        "right": 924,
+        "top": 489.140625
+      },
+      "color": "rgba(255, 255, 255, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 533.140625,
+        "height": 32,
+        "left": 418.5,
+        "right": 638.5,
+        "top": 501.140625,
+        "width": 220,
+        "x": 418.5,
+        "y": 501.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": true,
+    "docWidth": 1270,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 587.140625,
+        "left": 333,
+        "right": 924,
+        "top": 489.140625
+      },
+      "color": "rgb(197, 204, 212)",
+      "hit": true,
+      "rect": {
+        "bottom": 532.140625,
+        "height": 30,
+        "left": 430.5,
+        "right": 568.5,
+        "top": 502.140625,
+        "width": 138,
+        "x": 430.5,
+        "y": 502.140625
+      }
+    },
+    "ip": "10.253.32.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(39, 46, 54)",
+      "clip": {
+        "bottom": 587.140625,
+        "left": 333,
+        "right": 924,
+        "top": 489.140625
+      },
+      "color": "rgb(64, 150, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 533.140625,
+        "height": 32,
+        "left": 586.5,
+        "right": 618.5,
+        "top": 501.140625,
+        "width": 32,
+        "x": 586.5,
+        "y": 501.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 544,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 665.140625,
+        "left": 157,
+        "right": 701,
+        "top": 567.140625
+      },
+      "color": "rgba(255, 255, 255, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 611.140625,
+        "height": 32,
+        "left": 242.5,
+        "right": 462.5,
+        "top": 579.140625,
+        "width": 220,
+        "x": 242.5,
+        "y": 579.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": true,
+    "docWidth": 758,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 665.140625,
+        "left": 157,
+        "right": 701,
+        "top": 567.140625
+      },
+      "color": "rgb(197, 204, 212)",
+      "hit": true,
+      "rect": {
+        "bottom": 610.140625,
+        "height": 30,
+        "left": 254.5,
+        "right": 392.5,
+        "top": 580.140625,
+        "width": 138,
+        "x": 254.5,
+        "y": 580.140625
+      }
+    },
+    "ip": "10.253.32.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(39, 46, 54)",
+      "clip": {
+        "bottom": 665.140625,
+        "left": 157,
+        "right": 701,
+        "top": 567.140625
+      },
+      "color": "rgb(64, 150, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 611.140625,
+        "height": 32,
+        "left": 410.5,
+        "right": 442.5,
+        "top": 579.140625,
+        "width": 32,
+        "x": 410.5,
+        "y": 579.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 246,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 584.640625,
+        "left": 77,
+        "right": 323,
+        "top": 486.640625
+      },
+      "color": "rgba(255, 255, 255, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 530.640625,
+        "height": 32,
+        "left": 79.5,
+        "right": 299.5,
+        "top": 498.640625,
+        "width": 220,
+        "x": 79.5,
+        "y": 498.640625
+      }
+    },
+    "controlWidth": 220,
+    "dark": true,
+    "docWidth": 380,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 584.640625,
+        "left": 77,
+        "right": 323,
+        "top": 486.640625
+      },
+      "color": "rgb(197, 204, 212)",
+      "hit": true,
+      "rect": {
+        "bottom": 529.640625,
+        "height": 30,
+        "left": 91.5,
+        "right": 229.5,
+        "top": 499.640625,
+        "width": 138,
+        "x": 91.5,
+        "y": 499.640625
+      }
+    },
+    "ip": "10.253.32.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(39, 46, 54)",
+      "clip": {
+        "bottom": 584.640625,
+        "left": 77,
+        "right": 323,
+        "top": 486.640625
+      },
+      "color": "rgb(64, 150, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 530.640625,
+        "height": 32,
+        "left": 247.5,
+        "right": 279.5,
+        "top": 498.640625,
+        "width": 32,
+        "x": 247.5,
+        "y": 498.640625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 591,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 574.140625,
+        "left": 333,
+        "right": 924,
+        "top": 476.140625
+      },
+      "color": "rgba(255, 255, 255, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 520.140625,
+        "height": 32,
+        "left": 553.5,
+        "right": 773.5,
+        "top": 488.140625,
+        "width": 220,
+        "x": 553.5,
+        "y": 488.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": true,
+    "docWidth": 1270,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 574.140625,
+        "left": 333,
+        "right": 924,
+        "top": 476.140625
+      },
+      "color": "rgb(197, 204, 212)",
+      "hit": true,
+      "rect": {
+        "bottom": 519.140625,
+        "height": 30,
+        "left": 565.5,
+        "right": 703.5,
+        "top": 489.140625,
+        "width": 138,
+        "x": 565.5,
+        "y": 489.140625
+      }
+    },
+    "ip": "10.253.31.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(39, 46, 54)",
+      "clip": {
+        "bottom": 574.140625,
+        "left": 333,
+        "right": 924,
+        "top": 476.140625
+      },
+      "color": "rgb(64, 150, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 520.140625,
+        "height": 32,
+        "left": 721.5,
+        "right": 753.5,
+        "top": 488.140625,
+        "width": 32,
+        "x": 721.5,
+        "y": 488.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 544,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 636.140625,
+        "left": 157,
+        "right": 701,
+        "top": 538.140625
+      },
+      "color": "rgba(255, 255, 255, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 582.140625,
+        "height": 32,
+        "left": 377.5,
+        "right": 597.5,
+        "top": 550.140625,
+        "width": 220,
+        "x": 377.5,
+        "y": 550.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": true,
+    "docWidth": 758,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 636.140625,
+        "left": 157,
+        "right": 701,
+        "top": 538.140625
+      },
+      "color": "rgb(197, 204, 212)",
+      "hit": true,
+      "rect": {
+        "bottom": 581.140625,
+        "height": 30,
+        "left": 389.5,
+        "right": 527.5,
+        "top": 551.140625,
+        "width": 138,
+        "x": 389.5,
+        "y": 551.140625
+      }
+    },
+    "ip": "10.253.31.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(39, 46, 54)",
+      "clip": {
+        "bottom": 636.140625,
+        "left": 157,
+        "right": 701,
+        "top": 538.140625
+      },
+      "color": "rgb(64, 150, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 582.140625,
+        "height": 32,
+        "left": 545.5,
+        "right": 577.5,
+        "top": 550.140625,
+        "width": 32,
+        "x": 545.5,
+        "y": 550.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 246,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 568.140625,
+        "left": 77,
+        "right": 323,
+        "top": 470.140625
+      },
+      "color": "rgba(255, 255, 255, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 514.140625,
+        "height": 32,
+        "left": 79.5,
+        "right": 299.5,
+        "top": 482.140625,
+        "width": 220,
+        "x": 79.5,
+        "y": 482.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": true,
+    "docWidth": 380,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 568.140625,
+        "left": 77,
+        "right": 323,
+        "top": 470.140625
+      },
+      "color": "rgb(197, 204, 212)",
+      "hit": true,
+      "rect": {
+        "bottom": 513.140625,
+        "height": 30,
+        "left": 91.5,
+        "right": 229.5,
+        "top": 483.140625,
+        "width": 138,
+        "x": 91.5,
+        "y": 483.140625
+      }
+    },
+    "ip": "10.253.31.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(39, 46, 54)",
+      "clip": {
+        "bottom": 568.140625,
+        "left": 77,
+        "right": 323,
+        "top": 470.140625
+      },
+      "color": "rgb(64, 150, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 514.140625,
+        "height": 32,
+        "left": 247.5,
+        "right": 279.5,
+        "top": 482.140625,
+        "width": 32,
+        "x": 247.5,
+        "y": 482.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "requested": {
+      "width": 1280,
+      "height": 900
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 591,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 574.140625,
+        "left": 333,
+        "right": 924,
+        "top": 476.140625
+      },
+      "color": "rgba(0, 0, 0, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 520.140625,
+        "height": 32,
+        "left": 475.5,
+        "right": 695.5,
+        "top": 488.140625,
+        "width": 220,
+        "x": 475.5,
+        "y": 488.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": false,
+    "docWidth": 1270,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 574.140625,
+        "left": 333,
+        "right": 924,
+        "top": 476.140625
+      },
+      "color": "rgb(75, 85, 99)",
+      "hit": true,
+      "rect": {
+        "bottom": 519.140625,
+        "height": 30,
+        "left": 487.5,
+        "right": 625.5,
+        "top": 489.140625,
+        "width": 138,
+        "x": 487.5,
+        "y": 489.140625
+      }
+    },
+    "ip": "10.253.31.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(255, 255, 255)",
+      "clip": {
+        "bottom": 574.140625,
+        "left": 333,
+        "right": 924,
+        "top": 476.140625
+      },
+      "color": "rgb(22, 119, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 520.140625,
+        "height": 32,
+        "left": 643.5,
+        "right": 675.5,
+        "top": 488.140625,
+        "width": 32,
+        "x": 643.5,
+        "y": 488.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "requested": {
+      "width": 768,
+      "height": 1024
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 544,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 636.140625,
+        "left": 157,
+        "right": 701,
+        "top": 538.140625
+      },
+      "color": "rgba(0, 0, 0, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 582.140625,
+        "height": 32,
+        "left": 299.5,
+        "right": 519.5,
+        "top": 550.140625,
+        "width": 220,
+        "x": 299.5,
+        "y": 550.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": false,
+    "docWidth": 758,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 636.140625,
+        "left": 157,
+        "right": 701,
+        "top": 538.140625
+      },
+      "color": "rgb(75, 85, 99)",
+      "hit": true,
+      "rect": {
+        "bottom": 581.140625,
+        "height": 30,
+        "left": 311.5,
+        "right": 449.5,
+        "top": 551.140625,
+        "width": 138,
+        "x": 311.5,
+        "y": 551.140625
+      }
+    },
+    "ip": "10.253.31.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(255, 255, 255)",
+      "clip": {
+        "bottom": 636.140625,
+        "left": 157,
+        "right": 701,
+        "top": 538.140625
+      },
+      "color": "rgb(22, 119, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 582.140625,
+        "height": 32,
+        "left": 467.5,
+        "right": 499.5,
+        "top": 550.140625,
+        "width": 32,
+        "x": 467.5,
+        "y": 550.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 1024,
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "revision": "final-scroll-containment",
+    "bodyMinWidth": "0px",
+    "bodyWidth": 246,
+    "control": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 568.140625,
+        "left": 77,
+        "right": 323,
+        "top": 470.140625
+      },
+      "color": "rgba(0, 0, 0, 0.65)",
+      "hit": true,
+      "rect": {
+        "bottom": 514.140625,
+        "height": 32,
+        "left": 80.5,
+        "right": 300.5,
+        "top": 482.140625,
+        "width": 220,
+        "x": 80.5,
+        "y": 482.140625
+      }
+    },
+    "controlWidth": 220,
+    "dark": false,
+    "docWidth": 380,
+    "input": {
+      "background": "rgba(0, 0, 0, 0)",
+      "clip": {
+        "bottom": 568.140625,
+        "left": 77,
+        "right": 323,
+        "top": 470.140625
+      },
+      "color": "rgb(75, 85, 99)",
+      "hit": true,
+      "rect": {
+        "bottom": 513.140625,
+        "height": 30,
+        "left": 92.5,
+        "right": 230.5,
+        "top": 483.140625,
+        "width": 138,
+        "x": 92.5,
+        "y": 483.140625
+      }
+    },
+    "ip": "10.253.31.221",
+    "notifications": 0,
+    "refresh": {
+      "background": "rgb(255, 255, 255)",
+      "clip": {
+        "bottom": 568.140625,
+        "left": 77,
+        "right": 323,
+        "top": 470.140625
+      },
+      "color": "rgb(22, 119, 255)",
+      "hit": true,
+      "rect": {
+        "bottom": 514.140625,
+        "height": 32,
+        "left": 248.5,
+        "right": 280.5,
+        "top": 482.140625,
+        "width": 32,
+        "x": 248.5,
+        "y": 482.140625
+      }
+    },
+    "stepScrollLeft": 0,
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  }
+]

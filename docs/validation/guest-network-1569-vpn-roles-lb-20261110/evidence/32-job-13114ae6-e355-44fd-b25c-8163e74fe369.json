@@ -1,0 +1,10 @@
+{
+  "command": "updateLoadBalancerRule",
+  "params": {
+    "id": "bd8e5b52-70da-40f0-bd1e-b8ba233bf53e",
+    "algorithm": "leastconn",
+    "description": "QA1569 member write verified",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+  },
+  "jobid": "13114ae6-e355-44fd-b25c-8163e74fe369"
+}

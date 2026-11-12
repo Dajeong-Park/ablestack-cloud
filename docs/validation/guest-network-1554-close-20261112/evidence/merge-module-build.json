@@ -1,0 +1,24 @@
+{
+  "command": [
+    "mvn",
+    "-B",
+    "-pl",
+    "api,engine/schema,engine/orchestration,server",
+    "-DskipTests",
+    "-Dcheckstyle.skip=true",
+    "-Drat.skip=true",
+    "install"
+  ],
+  "exit": 0,
+  "seconds": 119.0,
+  "log": "/home/ablecloud/work/gn1554-close-20261112/merge-modules.log",
+  "testsExecuted": false,
+  "fullCloudBuild": false,
+  "summary": [
+    "[INFO] Apache CloudStack API .............................. SUCCESS [ 29.981 s]",
+    "[INFO] Apache CloudStack Cloud Engine Schema Component .... SUCCESS [ 24.267 s]",
+    "[INFO] Apache CloudStack Server ........................... SUCCESS [ 46.126 s]",
+    "[INFO] Apache CloudStack Cloud Engine Orchestration Component SUCCESS [ 14.172 s]",
+    "[INFO] BUILD SUCCESS"
+  ]
+}

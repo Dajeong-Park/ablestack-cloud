@@ -1,0 +1,68 @@
+[
+  {
+    "phase": "initial",
+    "breadcrumb": {
+      "position": "sticky",
+      "rect": {
+        "bottom": 189,
+        "height": 111,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      }
+    },
+    "main": {
+      "rect": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "scrollTop": 327
+    },
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  {
+    "phase": "reload",
+    "breadcrumb": {
+      "position": "sticky",
+      "rect": {
+        "bottom": 189,
+        "height": 111,
+        "left": 268,
+        "right": 1248,
+        "top": 78,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      }
+    },
+    "main": {
+      "rect": {
+        "bottom": 900,
+        "height": 822,
+        "left": 256,
+        "right": 1270,
+        "top": 78,
+        "width": 1014,
+        "x": 256,
+        "y": 78
+      },
+      "scrollTop": 327
+    },
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "command": "deleteFirewallRule",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "id": "29de784f-491e-4fab-ba04-d8d5db95af07"
+  },
+  "jobid": "adadc38e-8a84-4ed5-96bf-0519ed5a7a4c"
+}

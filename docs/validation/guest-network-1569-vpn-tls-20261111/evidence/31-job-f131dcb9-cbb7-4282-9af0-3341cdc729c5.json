@@ -1,0 +1,8 @@
+{
+  "command": "deleteRemoteAccessVpn",
+  "params": {
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2"
+  },
+  "jobid": "f131dcb9-cbb7-4282-9af0-3341cdc729c5"
+}

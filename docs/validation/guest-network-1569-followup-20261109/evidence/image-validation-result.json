@@ -1,0 +1,6 @@
+{
+  "exit": 0,
+  "method": "qemu-img check; bzip2 integrity and decompression hash; GuestFS read-only mounted source validation assertions (no WSL NBD module)",
+  "imageBuildSource": "28481113917edab58b387f9b76c4a8c1ba69bc26",
+  "validatorSource": "5dbcde3f2c5c3f1524aa51c8220651ef1d5b2399"
+}

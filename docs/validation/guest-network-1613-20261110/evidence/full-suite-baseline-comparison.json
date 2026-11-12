@@ -1,0 +1,33 @@
+{
+  "initialFull": {
+    "suites": 311,
+    "passedSuites": 305,
+    "failedSuites": 6,
+    "tests": 4894,
+    "passedTests": 4884,
+    "failedTests": 10,
+    "lint": "PASS"
+  },
+  "preSyncSource": "6d94bdd6039f0a6dcb4434fd0bd73e30342aee06",
+  "preexistingFailures": [
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /buckets scope",
+    "actual Autogen bucket group confirmation › actual generic popup bindings follow /vm scope",
+    "switching to a project without selecting one clears the prior account source",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccount\": null, \"selectedAccountType\": \"Account\"}",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccountType\": \"Project\", \"selectedProject\": null}",
+    "uses only the selected project when ownership changes to a project",
+    "LB VM picker excludes deleted VMs at the API before pagination while retaining stopped VMs",
+    "events server search resets the page and sends the same fixed resource and project",
+    "policy events stay scoped to the policy UUID and project rather than its source volume"
+  ],
+  "syncRegression": [
+    "snapshot existence and PCI running state are independent guards"
+  ],
+  "fix": "f9b34658514 restores pre-sync PCI stopped-only reason; final focused 13 suites/264 tests PASS",
+  "finalFocused": {
+    "suites": 13,
+    "tests": 264,
+    "exit": 0
+  },
+  "fullFinalRerun": false
+}

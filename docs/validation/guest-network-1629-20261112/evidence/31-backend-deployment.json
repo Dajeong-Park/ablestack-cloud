@@ -1,0 +1,21 @@
+{
+  "cluster": 31,
+  "source": "9301805307f5787d803d8e2a49a0f710d012260e",
+  "before_sha256": "1defb9a4f8c42e15a4957ab87175c8ab6b2cfca46c05d2d19b264442f0593b09",
+  "after_sha256": "13ae378370f1ceaa3118c72ece41f3e0aab6387c22460dab2080f27e3e2dad54",
+  "classes": {
+    "com/cloud/server/ManagementServerImpl$2.class": "1a4abaab187a872ca4a1ccdd425ce4f15db763aca303882492f1a25ca0f472e3",
+    "com/cloud/server/ManagementServerImpl$EventPurgeTask.class": "49cd0d072bc228e928f7b204fa65789911d5dfcb20290c1a33f3b527a9949d0f",
+    "com/cloud/server/ManagementServerImpl$1.class": "5c9b07105419c1ba0beaf3fbe39754b190322d9137b6bd7834a4371ca70072ca",
+    "com/cloud/server/ManagementServerImpl.class": "82f715a9c1545b3bf38e3ebfad3303d290c853e21867e0f7adeac96aa658fd0d",
+    "com/cloud/server/ManagementServerImpl$AlertPurgeTask.class": "cedbba28adf9eda81e5f822db78e1e42a7f16b787b4eb520bf00257c29cd03de",
+    "com/cloud/server/ManagementServerImpl$LicenseCheckTask.class": "451dbec02efd8e85c8bb58330abc52762445d30d274903b0aaac747a3df2c8a9"
+  },
+  "other_entries_unchanged": 204865,
+  "webapp_unchanged": true,
+  "remote_rollback_hardlink": "/var/tmp/gn1629-shared-ip-jar-20261112-021243/rollback/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "durable_wsl_backup": "/home/ablecloud/work/gn1629-shared-ip/backups/router-base-31.jar",
+  "old_pid": "1719169",
+  "new_pid": "1726529",
+  "disk_free_after": 148618985472
+}

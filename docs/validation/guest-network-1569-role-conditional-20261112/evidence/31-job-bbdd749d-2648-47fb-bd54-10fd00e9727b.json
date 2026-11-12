@@ -1,0 +1,8 @@
+{
+  "command": "deleteLoadBalancerRule",
+  "params": {
+    "id": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "bbdd749d-2648-47fb-bd54-10fd00e9727b"
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "groupId": "d3faaa7f-ba0b-428d-833a-6617aae49018",
+    "groupName": "qa-gn1607-32-saved",
+    "state": "DISABLED",
+    "ruleId": "4dca1289-7751-49ab-9a91-a26c06dbf6af",
+    "deleteResult": {
+      "jobid": "d81ecf03-b60c-44ff-baeb-cca55d3a25c7",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Cannot delete load balancer rule 99 because it is being used by 1 Autoscale VM group."
+    },
+    "ruleUnchanged": true
+  },
+  {
+    "groupId": "e9c4882a-f921-4a44-a7bc-4843fadf5cb9",
+    "groupName": "qa-gn1608-32-review",
+    "state": "DISABLED",
+    "ruleId": "d337c44d-bce7-4c6a-af70-e2ff1a06e170",
+    "deleteResult": {
+      "jobid": "9f154101-1341-446b-a3ba-475bce3c1b1d",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Cannot delete load balancer rule 98 because it is being used by 1 Autoscale VM group."
+    },
+    "ruleUnchanged": true
+  },
+  {
+    "groupId": "d3d3505b-4b5f-49c0-b4a8-cf6d99353ab8",
+    "groupName": "qa-gn1569-32-autoscale",
+    "state": "DISABLED",
+    "ruleId": "4bc43439-cfaa-4ae7-9436-7f5640ee44d7",
+    "deleteResult": {
+      "jobid": "ed284cc5-11d4-497a-be5d-caf481f4dca6",
+      "jobstatus": 2,
+      "errorcode": 530,
+      "errortext": "Cannot delete load balancer rule 95 because it is being used by 1 Autoscale VM group."
+    },
+    "ruleUnchanged": true
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "cluster": 31,
+    "originalNicsPreserved": 4,
+    "apiNics": 5,
+    "runtimeNics": 5,
+    "vmRunning": true,
+    "hostPreserved": true,
+    "originalMappingsPreserved": true,
+    "newNic": {
+      "id": "a4379aca-1fb5-494f-9441-69626217d134",
+      "networkid": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+      "networkname": "qa-gn1569-31-mtu-mac",
+      "netmask": "255.255.255.0",
+      "gateway": "10.250.31.1",
+      "ipaddress": "10.250.31.10",
+      "isolationuri": "vlan://3230",
+      "broadcasturi": "vlan://3230",
+      "traffictype": "Guest",
+      "type": "Isolated",
+      "isdefault": false,
+      "macaddress": "02:16:30:31:00:01",
+      "extradhcpoption": [],
+      "deviceid": "4",
+      "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+      "enabled": true,
+      "state": "Reserved"
+    },
+    "temporaryHostProbeRemoved": true,
+    "continuitySamples": 2027
+  },
+  {
+    "cluster": 32,
+    "originalNicsPreserved": 5,
+    "apiNics": 6,
+    "runtimeNics": 6,
+    "vmRunning": true,
+    "hostPreserved": true,
+    "originalMappingsPreserved": true,
+    "newNic": {
+      "id": "1aec0902-2a41-4fcc-a0ed-3f84cee6d52b",
+      "networkid": "1919f15c-687b-4c44-b0a0-55c9927ac3f0",
+      "networkname": "qa-gn1630-32-recovery",
+      "netmask": "255.255.255.0",
+      "gateway": "10.251.32.1",
+      "ipaddress": "10.251.32.10",
+      "isolationuri": "vlan://3231",
+      "broadcasturi": "vlan://3231",
+      "traffictype": "Guest",
+      "type": "Shared",
+      "isdefault": false,
+      "macaddress": "02:16:30:32:00:01",
+      "extradhcpoption": [],
+      "deviceid": "5",
+      "virtualmachineid": "effa8f4f-53e7-46f0-9520-d61c34a1569c",
+      "enabled": true,
+      "state": "Reserved"
+    },
+    "temporaryHostProbeRemoved": true,
+    "continuitySamples": 2027
+  }
+]

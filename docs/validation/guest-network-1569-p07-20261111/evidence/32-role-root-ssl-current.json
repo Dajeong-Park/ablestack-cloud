@@ -1,0 +1,14 @@
+[
+  {
+    "id": "72049ff1-2eae-4407-aa9e-a1532731733c",
+    "name": "qa-gn1569-32-p07-role-root-ssl",
+    "methodname": "AppCookie",
+    "fordisplay": true,
+    "params": {
+      "request-learn": "false",
+      "length": "32",
+      "cookie-name": "QA_SESSION",
+      "holdtime": "3h"
+    }
+  }
+]

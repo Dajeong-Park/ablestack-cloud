@@ -1,0 +1,345 @@
+{
+  "hostname": "qa-gn1569-32-shared-reg-vm22",
+  "addresses": [
+    {
+      "ifindex": 1,
+      "ifname": "lo",
+      "flags": [
+        "LOOPBACK",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 65536,
+      "qdisc": "noqueue",
+      "operstate": "UNKNOWN",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "loopback",
+      "address": "00:00:00:00:00:00",
+      "broadcast": "00:00:00:00:00:00",
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "127.0.0.1",
+          "prefixlen": 8,
+          "scope": "host",
+          "label": "lo",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        },
+        {
+          "family": "inet6",
+          "local": "::1",
+          "prefixlen": 128,
+          "scope": "host",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 2,
+      "ifname": "ens3",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:15:69:32:19:22",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s3"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "172.26.32.22",
+          "prefixlen": 24,
+          "broadcast": "172.26.32.255",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens3",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 3,
+      "ifname": "ens8",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:01:01:fb:00:02",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s8"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.247.32.57",
+          "prefixlen": 24,
+          "broadcast": "10.247.32.255",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens8",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 4,
+      "ifname": "ens10",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:01:01:ff:00:01",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s10"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.236.32.23",
+          "prefixlen": 26,
+          "broadcast": "10.236.32.63",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens10",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 5,
+      "ifname": "ens11",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:01:02:00:00:01",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s11"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.236.32.87",
+          "prefixlen": 26,
+          "broadcast": "10.236.32.127",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens11",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 6,
+      "ifname": "ens12",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:01:02:01:00:01",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s12"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.236.32.151",
+          "prefixlen": 26,
+          "broadcast": "10.236.32.191",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens12",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 7,
+      "ifname": "ens13",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:01:02:02:00:01",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s13"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.236.32.215",
+          "prefixlen": 26,
+          "broadcast": "10.236.32.255",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens13",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    },
+    {
+      "ifindex": 8,
+      "ifname": "ens14",
+      "flags": [
+        "BROADCAST",
+        "MULTICAST",
+        "UP",
+        "LOWER_UP"
+      ],
+      "mtu": 1500,
+      "qdisc": "fq_codel",
+      "operstate": "UP",
+      "group": "default",
+      "txqlen": 1000,
+      "link_type": "ether",
+      "address": "02:01:02:0c:00:03",
+      "broadcast": "ff:ff:ff:ff:ff:ff",
+      "altnames": [
+        "enp0s14"
+      ],
+      "addr_info": [
+        {
+          "family": "inet",
+          "local": "10.248.32.55",
+          "prefixlen": 24,
+          "broadcast": "10.248.32.255",
+          "scope": "global",
+          "noprefixroute": true,
+          "label": "ens14",
+          "valid_life_time": 4294967295,
+          "preferred_life_time": 4294967295
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "dst": "10.236.32.0/26",
+      "dev": "ens10",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.236.32.23",
+      "metric": 102,
+      "flags": []
+    },
+    {
+      "dst": "10.236.32.64/26",
+      "dev": "ens11",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.236.32.87",
+      "metric": 103,
+      "flags": []
+    },
+    {
+      "dst": "10.236.32.128/26",
+      "dev": "ens12",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.236.32.151",
+      "metric": 104,
+      "flags": []
+    },
+    {
+      "dst": "10.236.32.192/26",
+      "dev": "ens13",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.236.32.215",
+      "metric": 105,
+      "flags": []
+    },
+    {
+      "dst": "10.247.32.0/24",
+      "dev": "ens8",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.247.32.57",
+      "metric": 101,
+      "flags": []
+    },
+    {
+      "dst": "10.248.32.0/24",
+      "dev": "ens14",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "10.248.32.55",
+      "metric": 106,
+      "flags": []
+    },
+    {
+      "dst": "172.26.32.0/24",
+      "dev": "ens3",
+      "protocol": "kernel",
+      "scope": "link",
+      "prefsrc": "172.26.32.22",
+      "metric": 100,
+      "flags": []
+    }
+  ],
+  "connections": "NAME                     UUID                                  DEVICE \nqa1569-control           b2b70868-c7e1-3903-b377-c11c9860b35f  ens3   \nqa1569-full-shared       c11c0f56-820c-4c58-8dd9-1cda0b614726  ens14  \nqa1569-scope-account     57f187ab-3b1f-42b8-bbae-f97dc811ff84  ens13  \nqa1569-scope-all         c087a1ff-175b-4d25-8554-6fd961322b8a  ens10  \nqa1569-scope-domain      19887df3-cee3-4935-aa04-f5e47ab22f6d  ens11  \nqa1569-scope-subdomains  9cc352cd-51df-42be-8f38-ee9213ac9e5d  ens12  \nqa1569-shared-reg        54b5ead1-7a51-4ad3-8a3c-80d49d39ceda  ens8   \nlo                       30de8847-f1c0-4408-8ffd-808b03f71897  lo     "
+}

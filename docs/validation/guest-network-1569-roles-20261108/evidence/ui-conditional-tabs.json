@@ -1,0 +1,80 @@
+[
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "tabs": [
+      "상세",
+      "송신 규칙",
+      "Public IP 주소",
+      "가상 라우터",
+      "VNF 기기",
+      "이벤트",
+      "코멘트"
+    ],
+    "tungstenPolicyAbsent": true
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "tabs": [
+      "상세",
+      "VNF 기기",
+      "이벤트",
+      "코멘트"
+    ],
+    "tungstenPolicyAbsent": true
+  },
+  {
+    "cluster": 31,
+    "type": "Shared",
+    "tabs": [
+      "상세",
+      "IP 주소",
+      "가상 라우터",
+      "VNF 기기",
+      "게스트 IP 주소 범위",
+      "이벤트",
+      "코멘트"
+    ],
+    "tungstenPolicyAbsent": true
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "tabs": [
+      "상세",
+      "송신 규칙",
+      "Public IP 주소",
+      "가상 라우터",
+      "VNF 기기",
+      "이벤트",
+      "코멘트"
+    ],
+    "tungstenPolicyAbsent": true
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "tabs": [
+      "상세",
+      "VNF 기기",
+      "이벤트",
+      "코멘트"
+    ],
+    "tungstenPolicyAbsent": true
+  },
+  {
+    "cluster": 32,
+    "type": "Shared",
+    "tabs": [
+      "상세",
+      "IP 주소",
+      "가상 라우터",
+      "VNF 기기",
+      "게스트 IP 주소 범위",
+      "이벤트",
+      "코멘트"
+    ],
+    "tungstenPolicyAbsent": true
+  }
+]

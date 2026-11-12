@@ -1,0 +1,247 @@
+{
+  "originalVm": {
+    "id": "625141be-7145-4557-9d8f-731500c61cb0",
+    "name": "qa-gn1569-31-prj-vm",
+    "state": "Running",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+    "hostname": "ablecube31-3"
+  },
+  "originalNics": [
+    {
+      "id": "e5cafb2d-5498-4f34-9e9b-db51c7562981",
+      "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+      "ipaddress": "10.180.31.25",
+      "macaddress": "1e:1f:3d:00:02:ee",
+      "isdefault": true
+    },
+    {
+      "id": "2e9e6ead-febc-4838-a88a-cd03c622d704",
+      "networkid": "d3669d88-bfdd-4053-8ef7-a58ea34808ad",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:16:00:07",
+      "isdefault": false
+    },
+    {
+      "id": "15b9c87e-f054-488a-a6df-d1f86ca5483c",
+      "networkid": "728d66ef-7c24-4708-b5e3-33f687528456",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:24:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "4af5028e-f034-459d-a40b-5cfca887b2bd",
+      "networkid": "2e36c615-ded0-4006-84ca-d210708b6250",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:28:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "2c4f3500-e5d6-4c51-ad92-6fbcb36322e7",
+      "networkid": "3705d624-3634-4c19-b83a-6843db009a9c",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:29:00:02",
+      "isdefault": false
+    },
+    {
+      "id": "ad429ee0-f32e-40d4-b135-385aa160d9cb",
+      "networkid": "2f7a0562-3b1d-4fb5-91b0-55472d731e06",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:2d:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "33621940-93d4-4fae-8423-7a772cba96f7",
+      "networkid": "0bb7a305-e2c0-4fd6-af30-5f8aec0b720d",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:3d:00:01",
+      "isdefault": false
+    },
+    {
+      "id": "65150aeb-c630-4fc0-856f-6146680601eb",
+      "networkid": "728ab627-0aff-4d39-a63f-3f0eae3777a2",
+      "ipaddress": "10.185.31.162",
+      "macaddress": "02:1f:02:2f:00:06",
+      "isdefault": false
+    }
+  ],
+  "original8NicsUnchanged": true,
+  "existingProjectNetworksUnchanged": true,
+  "addedNetworks": [
+    {
+      "id": "e761975e-b568-497f-935b-f753004842be",
+      "name": "qa-gn1569-31-r2-domainadmin-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "cidr": "10.243.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://180"
+    },
+    {
+      "id": "185fd9d7-2716-418d-9a4a-0524eec94d40",
+      "name": "qa-gn1569-31-r2-domainadmin-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "cidr": null,
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://179"
+    },
+    {
+      "id": "19427aa6-e7f4-46ab-bb2f-1958bf2b2ac0",
+      "name": "qa-gn1569-31-r2-domainadmin-nat",
+      "type": "Isolated",
+      "state": "Implemented",
+      "cidr": "10.233.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://151"
+    },
+    {
+      "id": "9ad0cf71-adde-469b-8c2c-824627017cdf",
+      "name": "qa-gn1569-31-r2-member-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "cidr": "10.242.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://180"
+    },
+    {
+      "id": "58357944-9a13-4a0e-8848-fb7c887c73b1",
+      "name": "qa-gn1569-31-r2-member-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "cidr": null,
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://162"
+    },
+    {
+      "id": "547a372c-77c4-408d-baab-bb96bdb664db",
+      "name": "qa-gn1569-31-r2-member-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "cidr": "10.232.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": null
+    },
+    {
+      "id": "52391350-3f9b-41c7-a300-680cc2db549a",
+      "name": "qa-gn1569-31-r2-owner-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "cidr": "10.241.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://180"
+    },
+    {
+      "id": "6b39d955-ee22-4a7b-9b01-deee6ea2c117",
+      "name": "qa-gn1569-31-r2-owner-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "cidr": null,
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://194"
+    },
+    {
+      "id": "d15c503c-4f20-437e-95f7-9436aa0aed19",
+      "name": "qa-gn1569-31-r2-owner-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "cidr": "10.231.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": null
+    },
+    {
+      "id": "c1f8e61c-670e-4156-a0b0-d36485eff821",
+      "name": "qa-gn1569-31-r2-admin-shared",
+      "type": "Shared",
+      "state": "Setup",
+      "cidr": "10.240.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://180"
+    },
+    {
+      "id": "105a247c-0424-4a87-9e89-e9e5e7d3252e",
+      "name": "qa-gn1569-31-r2-admin-l2",
+      "type": "L2",
+      "state": "Implemented",
+      "cidr": null,
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": "vlan://188"
+    },
+    {
+      "id": "6aedf76e-996c-4141-b58c-9c52d2bce1cf",
+      "name": "qa-gn1569-31-r2-admin-nat",
+      "type": "Isolated",
+      "state": "Allocated",
+      "cidr": "10.230.31.0/24",
+      "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe",
+      "broadcasturi": null
+    }
+  ],
+  "projectNetworkCount": 39,
+  "projectNetworkQuotaBefore": 30,
+  "projectNetworkQuotaAfter": 50,
+  "membersRolesOtherLimitsUnchanged": true,
+  "reviewVm": {
+    "id": "3a46124e-fc10-472a-90af-1739982832e3",
+    "name": "qa-gn1569-31-r2-vm",
+    "state": "Running",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+    "hostname": "ablecube31-3",
+    "instancename": "i-428-952-VM",
+    "projectid": "4dff5213-ca2c-4ee7-8b2b-16c6a0baa6fe"
+  },
+  "reviewNics": [
+    {
+      "id": "89d7ed8a-09c0-44f0-be69-120883b1f0f5",
+      "networkid": "424a28d7-1a3a-4b1f-974a-d09126fe7e46",
+      "ipaddress": "10.180.31.11",
+      "macaddress": "1e:1f:cc:00:02:e0",
+      "isdefault": true,
+      "networkname": "qa-gn1569-31-prj-base"
+    },
+    {
+      "id": "48b4e847-a65b-41dc-8bbd-b0c3f409b62e",
+      "networkid": "19427aa6-e7f4-46ab-bb2f-1958bf2b2ac0",
+      "ipaddress": "10.233.31.15",
+      "macaddress": "02:1f:02:4d:00:01",
+      "isdefault": false,
+      "networkname": "qa-gn1569-31-r2-domainadmin-nat"
+    },
+    {
+      "id": "a2cb6ed5-3ea6-4daf-b7f2-817e7d042bf5",
+      "networkid": "185fd9d7-2716-418d-9a4a-0524eec94d40",
+      "ipaddress": null,
+      "macaddress": "02:1f:02:4e:00:01",
+      "isdefault": false,
+      "networkname": "qa-gn1569-31-r2-domainadmin-l2"
+    },
+    {
+      "id": "e5b5cf95-37a4-460e-b1c0-3b37e6d2ed35",
+      "networkid": "e761975e-b568-497f-935b-f753004842be",
+      "ipaddress": "10.243.31.50",
+      "macaddress": "02:1f:02:4f:00:01",
+      "isdefault": false,
+      "networkname": "qa-gn1569-31-r2-domainadmin-shared"
+    }
+  ],
+  "reviewNicCount": 4,
+  "operationalResources": {
+    "networks": {
+      "before": 28,
+      "after": 28,
+      "missing": 0,
+      "changed": 0
+    },
+    "userVms": {
+      "before": 121,
+      "after": 121,
+      "missing": 0,
+      "changed": 0
+    },
+    "offerings": {
+      "before": 30,
+      "after": 30,
+      "missing": 0,
+      "changed": 0
+    }
+  }
+}

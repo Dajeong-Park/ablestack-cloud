@@ -1,0 +1,441 @@
+{
+  "rows": [
+    {
+      "role": "peer",
+      "case": "ip-filter",
+      "parameters": {
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.249.31.102"
+      },
+      "result": {
+        "httpStatus": 200,
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04",
+            "ipaddress": "10.249.31.102",
+            "allocated": "2026-11-12T00:52:32+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "3cef8a3c-ed6d-4bdc-8f16-5657af41eac9",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1628-31-subnet-vm26",
+            "virtualmachinedisplayname": "qa-gn1628-31-subnet-vm26",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    {
+      "role": "peer",
+      "case": "own-id",
+      "parameters": {
+        "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04"
+      },
+      "result": {
+        "httpStatus": 200,
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04",
+            "ipaddress": "10.249.31.102",
+            "allocated": "2026-11-12T00:52:32+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "3cef8a3c-ed6d-4bdc-8f16-5657af41eac9",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1628-31-subnet-vm26",
+            "virtualmachinedisplayname": "qa-gn1628-31-subnet-vm26",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    {
+      "role": "peer",
+      "case": "other-owner-id",
+      "parameters": {
+        "id": "bcb5bca9-5310-4b31-bf4a-bc496e551f20"
+      },
+      "result": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "role": "peer",
+      "case": "free-id-policy-false",
+      "parameters": {
+        "id": "c922d028-abb1-4102-a2b8-80776cbfced6"
+      },
+      "result": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "role": "peer",
+      "case": "pagination-page2",
+      "parameters": {
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "page": 2,
+        "pagesize": 3
+      },
+      "result": {
+        "httpStatus": 200,
+        "count": 6,
+        "publicipaddress": [
+          {
+            "id": "1a37f3ca-9ea4-49e9-8fd7-9982d2eaa56e",
+            "ipaddress": "10.247.31.58",
+            "allocated": "2026-11-09T14:33:16+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "37ecb0dc-8323-48c7-ac61-3facf9b1afc5",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1569-31-shared-reg-vm21",
+            "virtualmachinedisplayname": "qa-gn1569-31-shared-reg-vm21",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          },
+          {
+            "id": "0caf6a30-1861-4b5c-9031-ec7b1a26c299",
+            "ipaddress": "10.247.31.110",
+            "allocated": "2026-11-11T20:41:41+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "2b1402fd-68bd-491a-9ad1-036fb4c2d3cf",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+            "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          },
+          {
+            "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04",
+            "ipaddress": "10.249.31.102",
+            "allocated": "2026-11-12T00:52:32+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "3cef8a3c-ed6d-4bdc-8f16-5657af41eac9",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1628-31-subnet-vm26",
+            "virtualmachinedisplayname": "qa-gn1628-31-subnet-vm26",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    {
+      "role": "readOnly",
+      "case": "ip-filter",
+      "parameters": {
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "ipaddress": "10.249.31.102"
+      },
+      "result": {
+        "httpStatus": 200,
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04",
+            "ipaddress": "10.249.31.102",
+            "allocated": "2026-11-12T00:52:32+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "3cef8a3c-ed6d-4bdc-8f16-5657af41eac9",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1628-31-subnet-vm26",
+            "virtualmachinedisplayname": "qa-gn1628-31-subnet-vm26",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    {
+      "role": "readOnly",
+      "case": "own-id",
+      "parameters": {
+        "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04"
+      },
+      "result": {
+        "httpStatus": 200,
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04",
+            "ipaddress": "10.249.31.102",
+            "allocated": "2026-11-12T00:52:32+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "3cef8a3c-ed6d-4bdc-8f16-5657af41eac9",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1628-31-subnet-vm26",
+            "virtualmachinedisplayname": "qa-gn1628-31-subnet-vm26",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        ]
+      }
+    },
+    {
+      "role": "readOnly",
+      "case": "other-owner-id",
+      "parameters": {
+        "id": "bcb5bca9-5310-4b31-bf4a-bc496e551f20"
+      },
+      "result": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "role": "readOnly",
+      "case": "free-id-policy-false",
+      "parameters": {
+        "id": "c922d028-abb1-4102-a2b8-80776cbfced6"
+      },
+      "result": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "role": "readOnly",
+      "case": "pagination-page2",
+      "parameters": {
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "page": 2,
+        "pagesize": 3
+      },
+      "result": {
+        "httpStatus": 200,
+        "count": 6,
+        "publicipaddress": [
+          {
+            "id": "1a37f3ca-9ea4-49e9-8fd7-9982d2eaa56e",
+            "ipaddress": "10.247.31.58",
+            "allocated": "2026-11-09T14:33:16+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "37ecb0dc-8323-48c7-ac61-3facf9b1afc5",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1569-31-shared-reg-vm21",
+            "virtualmachinedisplayname": "qa-gn1569-31-shared-reg-vm21",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          },
+          {
+            "id": "0caf6a30-1861-4b5c-9031-ec7b1a26c299",
+            "ipaddress": "10.247.31.110",
+            "allocated": "2026-11-11T20:41:41+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "2b1402fd-68bd-491a-9ad1-036fb4c2d3cf",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "5989ced4-0f5a-4e18-9179-46531819d602",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1569-31-systemvm-vm25",
+            "virtualmachinedisplayname": "qa-gn1569-31-systemvm-vm25",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          },
+          {
+            "id": "77fb8a2f-720a-498f-8d94-5c99675a3c04",
+            "ipaddress": "10.249.31.102",
+            "allocated": "2026-11-12T00:52:32+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "allocationgeneration": "3cef8a3c-ed6d-4bdc-8f16-5657af41eac9",
+            "forvirtualnetwork": false,
+            "isstaticnat": false,
+            "issystem": false,
+            "virtualmachineid": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+            "virtualmachinetype": "User",
+            "virtualmachinename": "qa-gn1628-31-subnet-vm26",
+            "virtualmachinedisplayname": "qa-gn1628-31-subnet-vm26",
+            "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+            "state": "Allocated",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "networkname": "qa-gn1569-31-shared-reg",
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        ]
+      }
+    }
+  ],
+  "freeIpPolicyFalse": true,
+  "onlyProjectAllocatedAddressesVisible": true,
+  "foreignOwnerAndFreeAddressIdsFiltered": true
+}

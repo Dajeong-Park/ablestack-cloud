@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "{\"commands\": [{\"enabled\": false, \"name\": \"guest-exec\", \"success-response\": true}, {\"enabled\": false, \"name\": \"guest-file-read\", \"success-response\": true}, {\"enabled\": false, \"name\": \"guest-file-close\", \"success-response\": true}, {\"enabled\": false, \"name\": \"guest-file-open\", \"success-response\": true}]}\n",
+  "error": ""
+}

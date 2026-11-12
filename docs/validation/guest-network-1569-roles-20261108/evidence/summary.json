@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-08",
+  "clusters": [
+    31,
+    32
+  ],
+  "totals": {
+    "uiCreate": 24,
+    "uiAttach": 24,
+    "apiDenied": 48,
+    "scopeReads": 32,
+    "conditionalReads": 34
+  },
+  "captures": 134,
+  "newResources": {
+    "networks": 24,
+    "vms": 2,
+    "nicsPerVm": 4
+  },
+  "findings": [
+    {
+      "key": "owner-context",
+      "classification": "UI improvement",
+      "types": [
+        "Isolated",
+        "L2",
+        "Shared"
+      ],
+      "clusters": [
+        31,
+        32
+      ]
+    },
+    {
+      "key": "dark-mobile-fixed-column",
+      "classification": "UI defect",
+      "width": 390,
+      "clusters": [
+        31,
+        32
+      ]
+    }
+  ],
+  "coverage": {
+    "failed": 1,
+    "partial": 48,
+    "notRun": 5,
+    "environmentBlocked": 6,
+    "notApplicable": 3,
+    "wholeRowPass": 0
+  },
+  "followupIssues": [
+    1593,
+    1594
+  ]
+}

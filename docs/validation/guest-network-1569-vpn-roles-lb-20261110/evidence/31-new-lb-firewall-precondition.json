@@ -1,0 +1,26 @@
+{
+  "createdOrExisting": {
+    "jobid": "28fadf31-eb52-4ef9-a539-fc7b8a82412a",
+    "jobstatus": 1,
+    "firewallrule": {
+      "id": "2be36649-1e1d-4b46-bc5e-0c91a3435f1f",
+      "protocol": "tcp",
+      "startport": 18969,
+      "endport": 18969,
+      "ipaddressid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.149",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  },
+  "reason": "LB creation explicitly uses openfirewall=false; separate dedicated TCP18969 rule required",
+  "preconditionRuntime": {
+    "haproxy18969": true,
+    "iptables18969": true
+  }
+}

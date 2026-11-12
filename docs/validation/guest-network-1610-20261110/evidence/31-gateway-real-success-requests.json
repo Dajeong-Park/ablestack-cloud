@@ -1,0 +1,79 @@
+[
+  {
+    "command": "listVPCs",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "id": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "page": "1",
+      "pagesize": "100",
+      "command": "listVPCs"
+    }
+  },
+  {
+    "command": "listVpnGateways",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "vpcid": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "page": "1",
+      "pagesize": "100",
+      "command": "listVpnGateways"
+    }
+  },
+  {
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "vpcid": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "page": "1",
+      "pagesize": "100",
+      "command": "listPublicIpAddresses"
+    }
+  },
+  {
+    "command": "createVpnGateway",
+    "method": "POST",
+    "params": {
+      "command": "createVpnGateway",
+      "vpcid": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "ipaddressid": "5d521af3-d96a-439c-a10b-1f0530751e96",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "customjobid": "b814b5bf-ec7c-4b1c-8deb-165603b1e2ce"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "b814b5bf-ec7c-4b1c-8deb-165603b1e2ce",
+      "command": "queryAsyncJobResult"
+    }
+  },
+  {
+    "command": "listVpnGateways",
+    "method": "GET",
+    "params": {
+      "vpcid": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "listall": "true",
+      "command": "listVpnGateways"
+    }
+  },
+  {
+    "command": "listVpnConnections",
+    "method": "GET",
+    "params": {
+      "vpcid": "a2b8d28d-5e89-4056-ac77-573d88b14503",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "10",
+      "command": "listVpnConnections",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  }
+]

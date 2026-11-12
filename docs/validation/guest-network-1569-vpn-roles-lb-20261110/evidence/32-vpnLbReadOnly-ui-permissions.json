@@ -1,0 +1,7 @@
+{
+  "role": "vpnLbReadOnly",
+  "vpnAdd": 0,
+  "lbAdd": 1,
+  "lbAddDisabled": true,
+  "expected": "read allowed, mutators hidden"
+}

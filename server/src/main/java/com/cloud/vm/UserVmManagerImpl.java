@@ -1864,6 +1864,8 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         DataCenterVO dc = _dcDao.findById(vmInstance.getDataCenterId());
         validateVmZoneTypeForAddNic(vmInstance, dc);
 
+        validatePvlanNetworkSupport(network, vmInstance.getHypervisorType(), vmInstance.getHostId());
+
         //ensure network belongs in zone
         if (network.getDataCenterId() != vmInstance.getDataCenterId()) {
             throw new CloudRuntimeException(String.format("%s is in zone: %s but %s is in zone: %s",
@@ -1928,6 +1930,14 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             if (original == null) { throw new CloudRuntimeException("Unable to roll back newly added NIC", cleanupError); }
             original.addSuppressed(cleanupError);
         }
+    }
+
+    protected void validatePvlanNetworkSupport(NetworkVO network, HypervisorType hypervisor, Long hostId) {
+        if (hypervisor != HypervisorType.KVM || network.getBroadcastDomainType() != com.cloud.network.Networks.BroadcastDomainType.Pvlan) {
+            return;
+        }
+        com.cloud.network.NetworkServiceImpl.validateKvmPvlanSupport(_hostDao, network.getDataCenterId(),
+                _networkModel.getNetworkTag(HypervisorType.KVM, network), hostId);
     }
 
     private void validateVmZoneTypeForAddNic(UserVmVO vmInstance, DataCenter dc) {
@@ -4918,6 +4928,13 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
                 throw new InvalidParameterValueException("Hypervisor passed to the deployVm call, is different from the hypervisor type of the Template");
             }
             hypervisorType = template.getHypervisorType();
+        }
+
+        // Reject unsupported PVLANs before allocating a VM, disk, or NIC. The
+        // selected agent repeats the check before creating an interface.
+        for (NetworkVO network : networkList) {
+            _accountMgr.checkAccess(owner, AccessType.UseEntry, false, network);
+            validatePvlanNetworkSupport(network, hypervisorType, null);
         }
 
         long accountId = owner.getId();

@@ -1,0 +1,16 @@
+{
+  "source": "b31b87d532d97b42477c11c5716a603099a08038",
+  "before_sha256": "6999ab4695027faa6dedff0ca4fe1a25f5a24a109346babb11cbe8c48adf6f97",
+  "after_sha256": "17f8a0d85acb5b0a6b28743e0c6a5fd0d681f4c101e5b218df94d6b350cbab03",
+  "classes": {
+    "org/apache/cloudstack/network/element/InternalLoadBalancerElement.class": "21760af61aa2de31f9d590ca50d4f09f3b33e3e1f7f430d3443dfe200d495c84",
+    "org/apache/cloudstack/network/lb/InternalLoadBalancerVMManagerImpl.class": "6f5425f7e11de126fb48d9a05eb64be98f2a6100830643d94fed45f76f6b6cf8"
+  },
+  "other_entries_unchanged": 204655,
+  "webapp_unchanged": true,
+  "remote_ram_backup": "/run/gn1616-jar-20261110-182434/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "durable_wsl_backup": "/home/ablecloud/work/gn1616/backups/6999ab4695027faa6dedff0ca4fe1a25f5a24a109346babb11cbe8c48adf6f97.jar",
+  "old_pid": "1575004",
+  "new_pid": "1753401",
+  "disk_free_after": 854446080
+}

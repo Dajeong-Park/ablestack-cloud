@@ -1,0 +1,22 @@
+{
+  "timestamp": 1794202788.9890475,
+  "source": "10.247.31.58",
+  "interface": "ens4",
+  "mac": "02:1f:02:6e:00:01",
+  "router": "10.247.31.51",
+  "routerPing": {
+    "exit": 0,
+    "summary": [
+      "3 packets transmitted, 3 received, 0% packet loss, time 2043ms",
+      "rtt min/avg/max/mdev = 0.230/0.238/0.246/0.006 ms"
+    ]
+  },
+  "dns": {
+    "name": "qa-gn1569-31-shared-reg-vm21.cs1a8cloud.internal",
+    "rcode": 0,
+    "answerCount": 1,
+    "matchedAddress": true,
+    "matchingQuery": true
+  },
+  "routerToVmSsh": "SSH-2.0-OpenSSH_8.7"
+}

@@ -1,0 +1,630 @@
+[
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listNics",
+    "method": "GET",
+    "params": {
+      "virtualmachineid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "command": "listNics",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "createLoadBalancerRule",
+    "method": "POST",
+    "params": {
+      "command": "createLoadBalancerRule",
+      "openfirewall": "false",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "algorithm": "roundrobin",
+      "name": "qa-gn1606-31-manual",
+      "privateport": "22",
+      "protocol": "tcp",
+      "publicport": "18878",
+      "cidrlist": "10.10.0.0/16",
+      "backendssl": "false",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "77779cbb-1d1f-4895-a832-cd2f80278af2",
+      "command": "queryAsyncJobResult",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "assignToLoadBalancerRule",
+    "method": "POST",
+    "params": {
+      "command": "assignToLoadBalancerRule",
+      "id": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "vmidipmap[0].vmid": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "vmidipmap[0].vmip": "10.234.31.6",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "81c8d32e-737a-470f-ab54-45dee5b22bd6",
+      "command": "queryAsyncJobResult",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobId": "81c8d32e-737a-470f-ab54-45dee5b22bd6",
+      "command": "queryAsyncJobResult",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listNetworks",
+    "method": "GET",
+    "params": {
+      "supportedservices": "Lb",
+      "isrecursive": "true",
+      "command": "listNetworks",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRules",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "page": "1",
+      "pageSize": "10",
+      "command": "listLoadBalancerRules",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "command": "listZones",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRules",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "publicipid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "page": "1",
+      "pageSize": "10",
+      "command": "listLoadBalancerRules",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "8f507f1d-355e-4277-b33b-30c5df082fe4",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "3a939f6e-e893-4e38-87d0-e55325725a4d",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "d7b90433-a208-40e4-a3d2-ab854a28138a",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "af2b39fa-8654-4652-a738-4ea1d899a259",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "175e86ab-42f3-4d68-ab84-ae24f50ca9ad",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLoadBalancerRuleInstances",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbvmips": "true",
+      "id": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listLoadBalancerRuleInstances",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listLBStickinessPolicies",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listLBStickinessPolicies",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listAutoScaleVmGroups",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listAutoScaleVmGroups",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "listTungstenFabricLBHealthMonitor",
+    "method": "GET",
+    "params": {
+      "listAll": "true",
+      "lbruleid": "96ac0cc4-620e-444a-add8-8d8fdf85e7c2",
+      "command": "listTungstenFabricLBHealthMonitor",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {
+      "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230",
+      "command": "readyForShutdown",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    }
+  }
+]

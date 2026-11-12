@@ -1,0 +1,21 @@
+{
+  "ui/public/locales/en.json": {
+    "jointlyChangedKeysKeptFromEpic": [],
+    "epicModifiedKeysPreserved": 359,
+    "upstreamOnlyKeysAdded": 47,
+    "mergedKeys": 10590
+  },
+  "ui/public/locales/ko_KR.json": {
+    "jointlyChangedKeysKeptFromEpic": [],
+    "epicModifiedKeysPreserved": 359,
+    "upstreamOnlyKeysAdded": 47,
+    "mergedKeys": 10555
+  },
+  "ui/src/store/modules/user.js": {
+    "epicApiMetadataImportPreserved": true,
+    "upstreamWallBannerResetImportAdded": true
+  },
+  "base": "413d1459682b6f4dea6c90773510b8342dba1ec2",
+  "upstream": "2d34af8f8a9b76eb9b143ef42e775883aaa630d0",
+  "epicBefore": "6d94bdd6039f0a6dcb4434fd0bd73e30342aee06"
+}

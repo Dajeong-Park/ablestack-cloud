@@ -1,0 +1,16 @@
+{
+  "head": "22ba7f5eab604aa4840fb7decc686d3e3192ba22",
+  "state": "OPEN",
+  "isDraft": true,
+  "url": "https://github.com/ablecloud-team/ablestack-cloud/pull/1577",
+  "checks": [
+    {
+      "workflowName": "PR Merge Conflict Check",
+      "name": "triage",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43168575121/job/131016156816"
+    }
+  ],
+  "fullCloudBuildManuallyTriggered": false
+}

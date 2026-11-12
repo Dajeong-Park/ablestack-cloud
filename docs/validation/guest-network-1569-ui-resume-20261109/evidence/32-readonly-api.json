@@ -1,0 +1,143 @@
+[
+  {
+    "command": "createNetwork",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "name": "qa-gn1569-32-readonly-never-create",
+      "displaytext": "Expected API role denial",
+      "networkofferingid": "0426e221-e598-4692-b185-c9db58c03f69",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "acltype": "Account",
+      "gateway": "10.235.32.1",
+      "netmask": "255.255.255.0",
+      "startip": "10.235.32.10",
+      "endip": "10.235.32.20",
+      "vlan": 2882
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createNetwork' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "updateNetwork",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "displaytext": "QA1569 remaining Shared account"
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'updateNetwork' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "addNicToVirtualMachine",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "virtualmachineid": "30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+      "networkid": "eb4285c4-9de2-4881-89c6-0f890e549ed5"
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'addNicToVirtualMachine' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "removeNicFromVirtualMachine",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "virtualmachineid": "30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+      "nicid": "4dceed40-9dd3-44ec-a3c1-cc82e1774c86"
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeNicFromVirtualMachine' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "createNetworkPermissions",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "networkid": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "projectids": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'createNetworkPermissions' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "removeNetworkPermissions",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "networkid": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "projectids": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'removeNetworkPermissions' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "resetNetworkPermissions",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "networkid": "eb4285c4-9de2-4881-89c6-0f890e549ed5"
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'resetNetworkPermissions' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "deleteNetwork",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "eb4285c4-9de2-4881-89c6-0f890e549ed5"
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'deleteNetwork' either does not exist, is not available for user."
+    }
+  },
+  {
+    "command": "restartNetwork",
+    "params": {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "cleanup": false
+    },
+    "httpStatus": 401,
+    "result": {
+      "uuidList": [],
+      "errorcode": 401,
+      "cserrorcode": 9999,
+      "errortext": "The given command 'restartNetwork' either does not exist, is not available for user."
+    }
+  }
+]

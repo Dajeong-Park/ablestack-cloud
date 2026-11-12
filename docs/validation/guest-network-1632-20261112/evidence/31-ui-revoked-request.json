@@ -1,0 +1,14 @@
+{
+  "command": "uploadSslCert",
+  "method": "POST",
+  "name": "qa-gn1632-31-ui-recovery",
+  "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+  "enabledrevocationcheck": "true",
+  "materialHashes": {
+    "certificate": "eaf5f0b477d74339554af6901711f8e1339e945f190e7632dab5a32132ed4d8c",
+    "certchain": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef"
+  },
+  "httpStatus": 530,
+  "errorcode": 530,
+  "errortext": "Invalid certificate chain: revocation REVOKED"
+}

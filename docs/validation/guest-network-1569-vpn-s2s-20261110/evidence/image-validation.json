@@ -1,0 +1,1412 @@
+[
+  {
+    "label": "31-vpc-vpngw-before",
+    "path": "screenshots/31-vpc-vpngw-before.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "38db1448885978871cc1e71084e3c1be25558f3e987f7d31cbfefe506854f5a4"
+  },
+  {
+    "label": "31-vpngw-create-dialog",
+    "path": "screenshots/31-vpngw-create-dialog.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "3596374d35b78c3f5d16d4eff29c59aa50dc0baad9225c1e2ad51a30b6327ea2"
+  },
+  {
+    "label": "31-vpngw-created",
+    "path": "screenshots/31-vpngw-created.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "41f9fa2caa2dc2c37729745f7c0cb9f46dc75246b519d3a282a0b884ccc335b4"
+  },
+  {
+    "label": "32-vpngw-create-dialog",
+    "path": "screenshots/32-vpngw-create-dialog.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "9d76078d3fd42ce92040ed5bbd508e9fad83b740e3acc9bea8d70f81707e1796"
+  },
+  {
+    "label": "32-vpngw-created",
+    "path": "screenshots/32-vpngw-created.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "4e9615ae10958eb4c7858d2c253bfa1eba7a64630c2192f1a0b34c7d0c3afb52"
+  },
+  {
+    "label": "31-gateway-success-dialog-still-open",
+    "path": "screenshots/31-gateway-success-dialog-still-open.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "f280af6f54d908b975de7f289e3f8e4d390a95548224d4bdada4827f44c119a5"
+  },
+  {
+    "label": "32-gateway-success-dialog-still-open",
+    "path": "screenshots/32-gateway-success-dialog-still-open.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "419865db2e8f06cb5198708b2ce62fa4443f75ce4c29dc100ab83e7096a60a48"
+  },
+  {
+    "label": "31-vpn-connection-input",
+    "path": "screenshots/31-vpn-connection-input.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "41fabd1176e88cb792e41a07ae94d18a46a47ef698781edf55169022d1ee0ebe"
+  },
+  {
+    "label": "32-vpn-connection-input",
+    "path": "screenshots/32-vpn-connection-input.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "ebd167a5d6148650cd92cb83a334b550c4c1ccdf2374e4e8bde28082e25bca53"
+  },
+  {
+    "label": "31-s2s-connected-secret-column-excluded",
+    "path": "screenshots/31-s2s-connected-secret-column-excluded.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": {
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 841,
+      "scale": 1
+    },
+    "decodedWidth": 1200,
+    "decodedHeight": 841,
+    "sha256": "4ee9a868124d93af92dfbb572bc323a357732335d4a1821407bdae13eb598879"
+  },
+  {
+    "label": "32-s2s-connected-secret-column-excluded",
+    "path": "screenshots/32-s2s-connected-secret-column-excluded.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": {
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 841,
+      "scale": 1
+    },
+    "decodedWidth": 1200,
+    "decodedHeight": 841,
+    "sha256": "114016dd83a25c88e9e2d67e46916833d277375e154fedb92b1021168751865f"
+  },
+  {
+    "label": "32-s2s-reset-confirm-dialog",
+    "path": "screenshots/32-s2s-reset-confirm-dialog.jpg",
+    "liveViewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "nativeClip": {
+      "x": 455,
+      "y": 323,
+      "width": 760,
+      "height": 196,
+      "scale": 1
+    },
+    "decodedWidth": 760,
+    "decodedHeight": 196,
+    "sha256": "4e1a52785a4d8b9fba9c66218983a034683e7471b9b61b93f936739ca95906b7"
+  },
+  {
+    "label": "32-s2s-peer-down-reset-dialog",
+    "path": "screenshots/32-s2s-peer-down-reset-dialog.jpg",
+    "liveViewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "nativeClip": {
+      "x": 1280,
+      "y": 275,
+      "width": 152,
+      "height": 39,
+      "scale": 1
+    },
+    "decodedWidth": 152,
+    "decodedHeight": 39,
+    "sha256": "f1330b57ee42f6ea377708a207411877643713ae1fd22e46992b680284283954"
+  },
+  {
+    "label": "31-s2s-peer-down-state",
+    "path": "screenshots/31-s2s-peer-down-state.jpg",
+    "liveViewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "nativeClip": {
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 841,
+      "scale": 1
+    },
+    "decodedWidth": 1200,
+    "decodedHeight": 841,
+    "sha256": "54f42e1e9731501333c47b902a7574313944ae8e76a6534d986fb5f27a8ace09"
+  },
+  {
+    "label": "31-ra-server-after-client-recovery",
+    "path": "screenshots/31-ra-server-after-client-recovery.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "8efa3cb3ecb96e883a75d44dfc016c689c0ba106c2813013b1377424d310527d"
+  },
+  {
+    "label": "32-ra-client-connected-server-ui",
+    "path": "screenshots/32-ra-client-connected-server-ui.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "dd2f9f539745473ec8222114cd4ac18e5d44f80b12f612e9f335316511760d9b"
+  },
+  {
+    "label": "31-ra-read503-preserved",
+    "path": "screenshots/31-ra-read503-preserved.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "07c2578889cbd224cef07dba264285f60cf4060983bf41cc7dc034e4f304bb85"
+  },
+  {
+    "label": "31-ra-read-recovered",
+    "path": "screenshots/31-ra-read-recovered.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "2f4bcc7496c5e23a28033b04b3afc4f70dffc96d99497ba90ccc8319eb146a56"
+  },
+  {
+    "label": "32-ra-read503-preserved",
+    "path": "screenshots/32-ra-read503-preserved.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "dda9fb42fde0d20269dfa997ad715590648ef077cc6635a1a8266f1743ac2abf"
+  },
+  {
+    "label": "32-ra-read-recovered",
+    "path": "screenshots/32-ra-read-recovered.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "20694b0ec82fca5c8d4db246b777a221a46692b0cd022da0db99a449b0570bb0"
+  },
+  {
+    "label": "31-project-default",
+    "path": "screenshots/31-project-default.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "018e382e24ad0f56ea81a96c2dae0072949fb57135b8b4c5fb269e6a5250de88"
+  },
+  {
+    "label": "31-project-default-vpn-users",
+    "path": "screenshots/31-project-default-vpn-users.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "b5312464efc423bc9ceaa37716fd06e6cadf5940ff824a743c011814ac230343"
+  },
+  {
+    "label": "31-project-return",
+    "path": "screenshots/31-project-return.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "da1ad6475717449c2c28885a6da1dd5f3ac02ca91ed044fd95ff9d4926a8772d"
+  },
+  {
+    "label": "31-project-return-vpn-users",
+    "path": "screenshots/31-project-return-vpn-users.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "e859f80f18be1e29f282fc9290395926ff6a9ee3769c1efcd91b9381adfa103f"
+  },
+  {
+    "label": "32-project-default",
+    "path": "screenshots/32-project-default.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "4c88c84cfb3a29e757d4b5a33ae7b2c2924929524c23e3204a53c82deab19292"
+  },
+  {
+    "label": "32-project-default-vpn-users",
+    "path": "screenshots/32-project-default-vpn-users.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "eddf21c5e19884cf479c9386e07022d8c43c86aae09088f210f61e018b806afe"
+  },
+  {
+    "label": "32-project-return",
+    "path": "screenshots/32-project-return.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "aa9945aac57551dd74663f834bb7bae10113be2c9ca2a350bbfe65741b3aca64"
+  },
+  {
+    "label": "32-project-return-vpn-users",
+    "path": "screenshots/32-project-return-vpn-users.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "bec722d0116d3717997092d33fb79f84dce52452d61c6146a0ffb2a6619d6e60"
+  },
+  {
+    "label": "31-light-390-remote-vpn-tab",
+    "path": "screenshots/31-light-390-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "998f5ca76f5600c294f482682c0cca9f8875d5b80bb1617876f57b6f790c106e"
+  },
+  {
+    "label": "31-light-390-vpc-gateway-tab",
+    "path": "screenshots/31-light-390-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "d435d9b5998af22243bac4c8910a581c913311d9e48d57196cf5b0d02d7cf45b"
+  },
+  {
+    "label": "31-light-390-vpn-user-list",
+    "path": "screenshots/31-light-390-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "25ababb579507e3a7e1d4e122cab1046d0f748705df85ad0f162f8bffaa58ba4"
+  },
+  {
+    "label": "31-light-390-vm-nic-standard",
+    "path": "screenshots/31-light-390-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "febb8dd0fde04d0a7df63ec2eca1a62aab407db73e245a62faa8cd19631eda39"
+  },
+  {
+    "label": "31-light-390-vm-dialog-standard",
+    "path": "screenshots/31-light-390-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "0d0ca856e084af45289182827edb6d7b7057597af21c0bedd964a1673c7559a9"
+  },
+  {
+    "label": "31-light-768-remote-vpn-tab",
+    "path": "screenshots/31-light-768-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "848082da6fd5b9bdec70f1b317039b9e0968964ff596a6ab73cc7cfc4fca9bd6"
+  },
+  {
+    "label": "31-light-768-vpc-gateway-tab",
+    "path": "screenshots/31-light-768-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "7c868ce5f73f1d85ff410a05925f92e41e65cb04c4b4d4aa41b2668f242f2a74"
+  },
+  {
+    "label": "31-light-768-vpn-user-list",
+    "path": "screenshots/31-light-768-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "936d696611ef3c3060b0f5e999a58b6f0c49a08663fccc04a411d1359af1a634"
+  },
+  {
+    "label": "31-light-768-vm-nic-standard",
+    "path": "screenshots/31-light-768-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "b2f4819b54fc10eda39ef3889cd10e49eb8c20188154e693f5988187fb917f7c"
+  },
+  {
+    "label": "31-light-768-vm-dialog-standard",
+    "path": "screenshots/31-light-768-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "83eec91089cc8cf3f2301fecfaf853dd66cce9bc94eb2f8c2e03750a0c86098d"
+  },
+  {
+    "label": "31-light-1280-remote-vpn-tab",
+    "path": "screenshots/31-light-1280-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "981a4ae1419a58b9b7364fb18a52376f7ce8ab8bb9d153ffc9691fa0faf30e5a"
+  },
+  {
+    "label": "31-light-1280-vpc-gateway-tab",
+    "path": "screenshots/31-light-1280-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "1e93d1b84ff39b2ab19af5a1c6fde9fc0b110359aa7d0691b3230bf5581871aa"
+  },
+  {
+    "label": "31-light-1280-vpn-user-list",
+    "path": "screenshots/31-light-1280-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "c0eeb0f8efa4937266cc27836a043619a6d61915987c3f46972fb9a43c2f7f68"
+  },
+  {
+    "label": "31-light-1280-vm-nic-standard",
+    "path": "screenshots/31-light-1280-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "b431fdb4b04807c66e357f8147c9381b7d2aa169a306de71f989c54bd633bba3"
+  },
+  {
+    "label": "31-light-1280-vm-dialog-standard",
+    "path": "screenshots/31-light-1280-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "ba2e201c3b76b8bd528e3c8aede151b11c0635563357a735db1be9b5d059c18e"
+  },
+  {
+    "label": "31-immediate-dark",
+    "path": "screenshots/31-immediate-dark.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "f039fb46d174a9e4de5f41e301d84d3c71c95d59504ed6061de8be1dc18b7462"
+  },
+  {
+    "label": "31-dark-390-remote-vpn-tab",
+    "path": "screenshots/31-dark-390-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "b7ed30a8da447cd4d6d5fa13d857bda21d66ea0016ee7b33748a52ddc08fff1d"
+  },
+  {
+    "label": "31-dark-390-vpc-gateway-tab",
+    "path": "screenshots/31-dark-390-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "74eb65e25b0ec49a6162c30d7f4a001a3b3d2875c1982925b4616e73042f8711"
+  },
+  {
+    "label": "31-dark-390-vpn-user-list",
+    "path": "screenshots/31-dark-390-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "404a6c3a33bd158827079fd3dd1d7fd30bb3ddad198690beff6d11d0febdf4a6"
+  },
+  {
+    "label": "31-dark-390-vm-nic-standard",
+    "path": "screenshots/31-dark-390-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "5882acfc65328b4b9eca83b5bc427ab1e7466f33cca1e785feffc83495537925"
+  },
+  {
+    "label": "31-dark-390-vm-dialog-standard",
+    "path": "screenshots/31-dark-390-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "0608fa3508b2a16286cf1f7bea3b97650eb260c4e2fdbd587ba70875db6647c2"
+  },
+  {
+    "label": "31-dark-768-remote-vpn-tab",
+    "path": "screenshots/31-dark-768-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "aa6e1ecfefdafc8c45893717211fba899cdef67615329b14f9a86bc106b393b2"
+  },
+  {
+    "label": "31-dark-768-vpc-gateway-tab",
+    "path": "screenshots/31-dark-768-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "8a321558650cafb5c11b040f6f35e7f8773563f8de136c32007e3fb57adaa914"
+  },
+  {
+    "label": "31-dark-768-vpn-user-list",
+    "path": "screenshots/31-dark-768-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "08106eb3a10e53ac7c3adf8e1b4e3b28215125e1beec9a4586dc3e0511cef691"
+  },
+  {
+    "label": "31-dark-768-vm-nic-standard",
+    "path": "screenshots/31-dark-768-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "c9494734d6e3f206490f1b3dd5991b70eab2f82531413bd169971da09230b299"
+  },
+  {
+    "label": "31-dark-768-vm-dialog-standard",
+    "path": "screenshots/31-dark-768-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "4b3a49a88d58837ad580d4f405a7313960e10edfe54637eff7a62a08d23a57f2"
+  },
+  {
+    "label": "31-dark-1280-remote-vpn-tab",
+    "path": "screenshots/31-dark-1280-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "fabc30a23cbadc31881734b789f4fa22362480a7e1d1b387de0b2f26d2da3378"
+  },
+  {
+    "label": "31-dark-1280-vpc-gateway-tab",
+    "path": "screenshots/31-dark-1280-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "2993dde5ca785192351ffd16c1af9408ff0691d023ef591e8611ac6d2403bf9f"
+  },
+  {
+    "label": "31-dark-1280-vpn-user-list",
+    "path": "screenshots/31-dark-1280-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "e614b7f14bfe2ce1b78b8f0ccce9557d819fa86a89b59ccb502037a92412af27"
+  },
+  {
+    "label": "31-dark-1280-vm-nic-standard",
+    "path": "screenshots/31-dark-1280-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "6805e9dc03d158cd62b1933fd26f1e267dc8e7ef25591ea9e2bef217797417c6"
+  },
+  {
+    "label": "31-dark-1280-vm-dialog-standard",
+    "path": "screenshots/31-dark-1280-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "27f86992d049c4ed78b36cce3118bbc142c6b768757ac73b83cd7d2c598de005"
+  },
+  {
+    "label": "32-immediate-light",
+    "path": "screenshots/32-immediate-light.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "aae27b4748746e32df7b0eebe8fd6fd33d3e52e9aeaa3ec4d8d28763832f3381"
+  },
+  {
+    "label": "32-light-390-remote-vpn-tab",
+    "path": "screenshots/32-light-390-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "5efca6129636590310c16f49994054ff2eac52c5743316553ec5b0399281c6bf"
+  },
+  {
+    "label": "32-light-390-vpc-gateway-tab",
+    "path": "screenshots/32-light-390-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "25987b2743e61529b39608850cdb9a74194bdb1cfe9320b695f144da12bdb5e6"
+  },
+  {
+    "label": "32-light-390-vpn-user-list",
+    "path": "screenshots/32-light-390-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "7e5403706dff875cad516b32cd3c6c29b65b8325241595fd421796351f748714"
+  },
+  {
+    "label": "32-light-390-vm-nic-standard",
+    "path": "screenshots/32-light-390-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "31dec23c487181be7b732eab14012fbf35ece3f85f4fc089cf2baf399da52607"
+  },
+  {
+    "label": "32-light-390-vm-dialog-standard",
+    "path": "screenshots/32-light-390-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "4abd7bd850aa276b6716189e46be73ba48928d7117228bdb362211cd410097b7"
+  },
+  {
+    "label": "32-light-768-remote-vpn-tab",
+    "path": "screenshots/32-light-768-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "85e491a5cfedf98f856a962315dc6dfc06e89664953c90334f2012dd5a53b89e"
+  },
+  {
+    "label": "32-light-768-vpc-gateway-tab",
+    "path": "screenshots/32-light-768-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "06a937d60d5603103b2dd72d2c82beda02c0a3be754bf3849974f3121739a6f1"
+  },
+  {
+    "label": "32-light-768-vpn-user-list",
+    "path": "screenshots/32-light-768-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "ad4eb6bbb2878eaa8d6b36243e90434774c458cb6a1901787bd20025f60fc35a"
+  },
+  {
+    "label": "32-light-768-vm-nic-standard",
+    "path": "screenshots/32-light-768-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "9857dad16b539aba72a98a0a5c2ea521f6dfeebbbc292910cc01c0286ddac100"
+  },
+  {
+    "label": "32-light-768-vm-dialog-standard",
+    "path": "screenshots/32-light-768-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "667bde21c8e78722466c82800ec1ac529e16def082bfef00366115c7492cae07"
+  },
+  {
+    "label": "32-light-1280-remote-vpn-tab",
+    "path": "screenshots/32-light-1280-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "692ad2f0d7b440e2602d552b7689597dea1ecccfa6b10eb594327d2b89e71bfe"
+  },
+  {
+    "label": "32-light-1280-vpc-gateway-tab",
+    "path": "screenshots/32-light-1280-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "a8fcadbd908f43f5871a55389e413eb89f76c7018d4cc91efb7fa55eeda27acf"
+  },
+  {
+    "label": "32-light-1280-vpn-user-list",
+    "path": "screenshots/32-light-1280-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "f38304d5ef46b03aaed2bc037107328a3bb3b7af6b438440d57661ef6830abce"
+  },
+  {
+    "label": "32-light-1280-vm-nic-standard",
+    "path": "screenshots/32-light-1280-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "dd3fe992372975a1013218e1afb8c7f00802e2c5298c81c524023cc5a9215dc8"
+  },
+  {
+    "label": "32-light-1280-vm-dialog-standard",
+    "path": "screenshots/32-light-1280-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "1b6be30e980753e4627617444acf9be02161bc2a4887847d5396c1c6aad79fc7"
+  },
+  {
+    "label": "32-immediate-dark",
+    "path": "screenshots/32-immediate-dark.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "a4936f66f60c07a4b3ca0f6a0ad34c838034dde7de72ff2894e13e9f250dbf5e"
+  },
+  {
+    "label": "32-dark-390-remote-vpn-tab",
+    "path": "screenshots/32-dark-390-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "130d4614bb5abead907c90a6b5cfce912ea1c56da475485810ab85ee8eb1600a"
+  },
+  {
+    "label": "32-dark-390-vpc-gateway-tab",
+    "path": "screenshots/32-dark-390-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "26bf2fdda3694278599bafa16d99fbd74b1ff2853f7172ecf4e8522800265b93"
+  },
+  {
+    "label": "32-dark-390-vpn-user-list",
+    "path": "screenshots/32-dark-390-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "7f23c0db82c40787984b0c54faf882c8f85d57f92e0d287c662cf6877a16d83f"
+  },
+  {
+    "label": "32-dark-390-vm-nic-standard",
+    "path": "screenshots/32-dark-390-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "231aabd2ddb4ce24aedd1dda3e4de6f8d081832b772121154b41c13716e13663"
+  },
+  {
+    "label": "32-dark-390-vm-dialog-standard",
+    "path": "screenshots/32-dark-390-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "ea5d0bd4b5c6a942caf50003cbc28d9879dc2034332b92ad13ee336dfe671d32"
+  },
+  {
+    "label": "32-dark-768-remote-vpn-tab",
+    "path": "screenshots/32-dark-768-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "31d6198c5db20946c0ea49a70c0bad90dbaea4b8f23c87454e106d3118e85de2"
+  },
+  {
+    "label": "32-dark-768-vpc-gateway-tab",
+    "path": "screenshots/32-dark-768-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "705aaac5ff2bed2b86c82711590466f2703d3132ba8a7e009a217d0ba290318a"
+  },
+  {
+    "label": "32-dark-768-vpn-user-list",
+    "path": "screenshots/32-dark-768-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "ed1f8772f33d4933a40e27bcfe2c436e2f08d20c6b89d4423251d9548acdb2a1"
+  },
+  {
+    "label": "32-dark-768-vm-nic-standard",
+    "path": "screenshots/32-dark-768-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "9c3d2c04525484a181f9658e260e28e8d13ec128730035d9a1a9406af33e04c3"
+  },
+  {
+    "label": "32-dark-768-vm-dialog-standard",
+    "path": "screenshots/32-dark-768-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "64f603aadd7de04c3c58a0bc8b47621cc4aeade17c3198332d39a928e160771d"
+  },
+  {
+    "label": "32-dark-1280-remote-vpn-tab",
+    "path": "screenshots/32-dark-1280-remote-vpn-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "7da5f6d3dd8bf5b3ec085e2f87143fd18cbfa464200790b273b1196c6fbe6c17"
+  },
+  {
+    "label": "32-dark-1280-vpc-gateway-tab",
+    "path": "screenshots/32-dark-1280-vpc-gateway-tab.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "a8fbaf601fbcd1708fad03b1bc0c0ebf5e32a619eda0200f2c27e59f127549e8"
+  },
+  {
+    "label": "32-dark-1280-vpn-user-list",
+    "path": "screenshots/32-dark-1280-vpn-user-list.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "df8aa4f0ba57862bb9f26c11a0aec897329f8b24e18177a160e7c8b3f7cdc2d8"
+  },
+  {
+    "label": "32-dark-1280-vm-nic-standard",
+    "path": "screenshots/32-dark-1280-vm-nic-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "dfafc856169e1dc0f9a3633e5604b66ada195e79dcac79a1708dc39d81f386eb"
+  },
+  {
+    "label": "32-dark-1280-vm-dialog-standard",
+    "path": "screenshots/32-dark-1280-vm-dialog-standard.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "5798fccb30a48ed2d4bd6ac21912a3684d524ba49bce399e38825e021abe22eb"
+  },
+  {
+    "label": "31-s2s-recovered-connected",
+    "path": "screenshots/31-s2s-recovered-connected.jpg",
+    "liveViewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "nativeClip": {
+      "x": 0,
+      "y": 0,
+      "width": 960,
+      "height": 900,
+      "scale": 1
+    },
+    "decodedWidth": 960,
+    "decodedHeight": 900,
+    "sha256": "8e93511c1d89bd648ba4c3a26fb3d86dcf5ec206d625d61dd1fdd97f04d06d1d"
+  },
+  {
+    "label": "32-s2s-recovered-connected",
+    "path": "screenshots/32-s2s-recovered-connected.jpg",
+    "liveViewport": {
+      "width": 1280,
+      "height": 900
+    },
+    "nativeClip": {
+      "x": 0,
+      "y": 0,
+      "width": 960,
+      "height": 900,
+      "scale": 1
+    },
+    "decodedWidth": 960,
+    "decodedHeight": 900,
+    "sha256": "ec13c661484b8bda6a8cff5ac2943608b0994e00a3760a80ad395868b55f7645"
+  },
+  {
+    "label": "31-health-monitor-unavailable-ui",
+    "path": "screenshots/31-health-monitor-unavailable-ui.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "63169d486154fc811cbc582d5b9f8bc7622f5f01e8260c5088d61ac3e3be5b09"
+  },
+  {
+    "label": "32-health-monitor-unavailable-ui",
+    "path": "screenshots/32-health-monitor-unavailable-ui.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "94f5a46033a709848d6733a9789f11cba625dc8d0615341d2b976624fa23efae"
+  },
+  {
+    "label": "31-immediate-light",
+    "path": "screenshots/31-immediate-light.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 1280
+    },
+    "nativeClip": null,
+    "decodedWidth": 1280,
+    "decodedHeight": 900,
+    "sha256": "814bf7a964f9f9aa4e18718196f12cd705b9e3a631befe88f43a0790d4427b04"
+  },
+  {
+    "label": "31-final-review-native",
+    "path": "screenshots/31-final-review-native.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "f0c7990a689ba47ec357356e6b871808d54cb6533aabcd9c0c13ad7aaf9135a7"
+  },
+  {
+    "label": "32-final-review-native",
+    "path": "screenshots/32-final-review-native.jpg",
+    "liveViewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "nativeClip": null,
+    "decodedWidth": 1680,
+    "decodedHeight": 841,
+    "sha256": "5ec581707d21d54e1660d07c2b556babd9087bddeaf0930d78e01857e5264d5a"
+  },
+  {
+    "label": "31-light-390-ra-active-panel",
+    "path": "screenshots/31-light-390-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "ff4e8d763a6b17be46b4cf9b02276ae5b71c1a92c837f0c4a91cd8859667bf14"
+  },
+  {
+    "label": "31-light-390-gateway-active-panel",
+    "path": "screenshots/31-light-390-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "8d6922474bf1d4bcaad1934420a09dd4673f123df269dfac5b7e3cb1b317e17b"
+  },
+  {
+    "label": "31-dark-390-ra-active-panel",
+    "path": "screenshots/31-dark-390-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "9a700277fa6ae3f6ce12fd0342ab8d0f1636cf9c989050415815b71089498cc0"
+  },
+  {
+    "label": "31-dark-390-gateway-active-panel",
+    "path": "screenshots/31-dark-390-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "7389b1a6a335a75f7328fb70bd843569ad80b094877b3055fe1edbf018f35a87"
+  },
+  {
+    "label": "32-light-390-ra-active-panel",
+    "path": "screenshots/32-light-390-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "5ebd7dd975339e3ac75c285f9f1d06a51ac0c43477402177f9945a9c0517e58d"
+  },
+  {
+    "label": "32-light-390-gateway-active-panel",
+    "path": "screenshots/32-light-390-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "a7a5d965df3219197660f61d6928e275098b03aeac09816cae14e88f39ec3474"
+  },
+  {
+    "label": "32-dark-390-ra-active-panel",
+    "path": "screenshots/32-dark-390-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "62f335aa456ac7768ae5beda1879f4caa983f9ce032dfbe604bae95d67c6658f"
+  },
+  {
+    "label": "32-dark-390-gateway-active-panel",
+    "path": "screenshots/32-dark-390-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 390
+    },
+    "nativeClip": null,
+    "decodedWidth": 390,
+    "decodedHeight": 900,
+    "sha256": "cb1914362e2edf9237cfe7cf5e276cf514635ddd0849671a53d20b676a6cd4b8"
+  },
+  {
+    "label": "31-light-768-ra-active-panel",
+    "path": "screenshots/31-light-768-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "a97143baadded0ff84b9fccb82a6befbde6a64830c07c5430c5e7e62c9ddd41b"
+  },
+  {
+    "label": "31-light-768-gateway-active-panel",
+    "path": "screenshots/31-light-768-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "dab541b154194ce73af923bdb01ebcf475da9529eefb7b9618e534a1aea0e172"
+  },
+  {
+    "label": "31-dark-768-ra-active-panel",
+    "path": "screenshots/31-dark-768-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "a2965b391f3c5cb188093a235c1f0f7a5bcfbcef2aa147b247df7481c5891784"
+  },
+  {
+    "label": "31-dark-768-gateway-active-panel",
+    "path": "screenshots/31-dark-768-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "30e1b0480f1a3f088373368789f0961d2cc55a068678380377578930853fc512"
+  },
+  {
+    "label": "32-light-768-ra-active-panel",
+    "path": "screenshots/32-light-768-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "d7d8dbce6c3caf550a823926af8038d7a0eedb90853cc79e478d84bf27d962f4"
+  },
+  {
+    "label": "32-light-768-gateway-active-panel",
+    "path": "screenshots/32-light-768-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "f0964a54aa484927fe83c9927be716a98b53a53f46d8a989eb801b1f543fe4fa"
+  },
+  {
+    "label": "32-dark-768-ra-active-panel",
+    "path": "screenshots/32-dark-768-ra-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "ca8b0447a874ea2b3bfdc106dce0ecd9fac59701edbe6630d406bf72d07024fb"
+  },
+  {
+    "label": "32-dark-768-gateway-active-panel",
+    "path": "screenshots/32-dark-768-gateway-active-panel.jpg",
+    "liveViewport": {
+      "height": 900,
+      "width": 768
+    },
+    "nativeClip": null,
+    "decodedWidth": 768,
+    "decodedHeight": 900,
+    "sha256": "409f802576bf5c826aec5df7b6876a8b13022533e89a04507661f578a473910f"
+  }
+]

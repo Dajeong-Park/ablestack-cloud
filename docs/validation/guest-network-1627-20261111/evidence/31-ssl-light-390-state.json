@@ -1,0 +1,61 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "text": "Close"
+    },
+    {
+      "disabled": false,
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "text": "확인"
+    }
+  ],
+  "fields": [
+    {
+      "disabled": false,
+      "label": "세션 고정 방식",
+      "value": ""
+    },
+    {
+      "disabled": false,
+      "label": "정책 이름",
+      "value": "qa-gn1627-31-review-ssl"
+    },
+    {
+      "disabled": false,
+      "label": "Cookie 이름",
+      "value": "QA_SESSION"
+    },
+    {
+      "disabled": false,
+      "label": "길이",
+      "value": "32"
+    },
+    {
+      "disabled": false,
+      "label": "보관 유지시간",
+      "value": "3h"
+    },
+    {
+      "checked": false,
+      "disabled": false,
+      "label": "요청에서 학습",
+      "value": "on"
+    }
+  ],
+  "focus": "ant-input",
+  "modal": {
+    "bottom": 853,
+    "height": 806,
+    "left": 12,
+    "right": 378,
+    "top": 47,
+    "width": 366,
+    "x": 12,
+    "y": 47
+  },
+  "visible": true
+}

@@ -1,0 +1,10 @@
+{
+  "exit": 1,
+  "source": "6d94bdd6039f0a6dcb4434fd0bd73e30342aee06",
+  "commands": [
+    "CreationSourceDeployment.spec.js",
+    "VmGroupOwnership.spec.js",
+    "AutogenBucketBrowser.spec.js"
+  ],
+  "preexistingScope": true
+}

@@ -1,0 +1,14 @@
+{
+  "exit": 0,
+  "command": [
+    "mvn",
+    "-pl",
+    "plugins/backup/ablestack-commvault,plugins/backup/ablestack-nas,plugins/backup/ablestack-netbackup,plugins/backup/ablestack-veeam,plugins/hypervisors/kvm,plugins/integrations/kubernetes-service,plugins/backup/veeam",
+    "-Drat.skip=true",
+    "-DskipTests",
+    "clean",
+    "install"
+  ],
+  "wslExt4": true,
+  "fullCloudBuild": false
+}

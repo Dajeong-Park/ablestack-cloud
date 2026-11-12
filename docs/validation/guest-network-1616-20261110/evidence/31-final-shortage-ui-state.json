@@ -1,0 +1,32 @@
+{
+  "elapsedMs": 3812,
+  "state": {
+    "alerts": [
+      "요청을 완료하지 못했습니다. 입력을 확인한 뒤 다시 시도하세요.530: Failed to assign load balancer rule due to: Failed to add specified loadbalancerruleid for Instances [1005]",
+      "선택한 가상머신: 1"
+    ],
+    "fields": [
+      {
+        "checked": false,
+        "disabled": false,
+        "label": "검색",
+        "value": ""
+      },
+      {
+        "checked": false,
+        "disabled": false,
+        "label": null,
+        "value": ""
+      },
+      {
+        "checked": true,
+        "disabled": false,
+        "label": "qa-gn1612-31-internal-vm 선택",
+        "value": "on"
+      }
+    ],
+    "globalNotices": 0,
+    "spinners": 0
+  },
+  "source": "a1a44f18272"
+}

@@ -1,0 +1,127 @@
+{
+  "cluster": 32,
+  "host": "10.10.32.2",
+  "instance": "i-240-439-VM",
+  "expectedMacs": [
+    "02:01:01:de:00:01",
+    "02:01:01:df:00:01",
+    "02:01:01:e0:00:01"
+  ],
+  "interfaces": [
+    {
+      "mac": {
+        "address": "02:01:01:de:00:01"
+      },
+      "target": {
+        "dev": "vnet269"
+      },
+      "source": {
+        "bridge": "brens1f0np0-191"
+      },
+      "model": {
+        "type": "e1000"
+      },
+      "link": {
+        "state": "up"
+      }
+    },
+    {
+      "mac": {
+        "address": "02:01:01:df:00:01"
+      },
+      "target": {
+        "dev": "vnet270"
+      },
+      "source": {
+        "bridge": "brens1f0np0-199"
+      },
+      "model": {
+        "type": "virtio"
+      },
+      "link": {
+        "state": "up"
+      }
+    },
+    {
+      "mac": {
+        "address": "02:01:01:e0:00:01"
+      },
+      "target": {
+        "dev": "vnet273"
+      },
+      "source": {
+        "bridge": "brens1f0np0-199"
+      },
+      "model": {
+        "type": "virtio"
+      },
+      "link": {
+        "state": "up"
+      }
+    }
+  ],
+  "apiMacsMatchLibvirt": true,
+  "guestInterfaces": [
+    {
+      "name": "lo",
+      "ip-addresses": [
+        {
+          "ip-address-type": "ipv4",
+          "ip-address": "127.0.0.1",
+          "prefix": 8
+        },
+        {
+          "ip-address-type": "ipv6",
+          "ip-address": "::1",
+          "prefix": 128
+        }
+      ],
+      "statistics": {
+        "tx-packets": 0,
+        "tx-errs": 0,
+        "rx-bytes": 0,
+        "rx-dropped": 0,
+        "rx-packets": 0,
+        "rx-errs": 0,
+        "tx-bytes": 0,
+        "tx-dropped": 0
+      },
+      "hardware-address": "00:00:00:00:00:00"
+    },
+    {
+      "name": "eth0",
+      "ip-addresses": [
+        {
+          "ip-address-type": "ipv4",
+          "ip-address": "10.251.32.38",
+          "prefix": 24
+        },
+        {
+          "ip-address-type": "ipv6",
+          "ip-address": "fe80::1:1ff:fede:1",
+          "prefix": 64
+        }
+      ],
+      "statistics": {
+        "tx-packets": 125,
+        "tx-errs": 0,
+        "rx-bytes": 10045,
+        "rx-dropped": 0,
+        "rx-packets": 80,
+        "rx-errs": 0,
+        "tx-bytes": 11331,
+        "tx-dropped": 0
+      },
+      "hardware-address": "02:01:01:de:00:01"
+    },
+    {
+      "name": "eth1",
+      "hardware-address": "02:01:01:df:00:01"
+    },
+    {
+      "name": "eth2",
+      "hardware-address": "02:01:01:e0:00:01"
+    }
+  ],
+  "allApiMacsPresentInGuest": true
+}

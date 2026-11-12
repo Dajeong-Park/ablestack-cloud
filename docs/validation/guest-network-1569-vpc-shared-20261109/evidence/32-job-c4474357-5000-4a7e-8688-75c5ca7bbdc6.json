@@ -1,0 +1,11 @@
+{
+  "command": "createTags",
+  "params": {
+    "resourceids": "fac3af21-adc9-49fa-bda8-07917668326f",
+    "resourcetype": "Network",
+    "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+    "tags[0].key": "qa1569-tier",
+    "tags[0].value": "preserve-while-connected"
+  },
+  "jobid": "c4474357-5000-4a7e-8688-75c5ca7bbdc6"
+}

@@ -1,0 +1,869 @@
+[
+  {
+    "case": "vm21-nic-added",
+    "reply": {
+      "jobid": "a4676383-af8c-4095-9145-d3cca7717d6c",
+      "jobstatus": 1,
+      "virtualmachine": {
+        "id": "30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+        "name": "qa-gn1569-32-shared-reg-vm21",
+        "displayname": "qa-gn1569-32-shared-reg-vm21",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T14:32:59+0900",
+        "lastupdated": "2026-11-09T14:34:39+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "hostname": "ablecube32-2",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "51ca037f-f3ef-4c82-b0f3-6dee732a7589",
+            "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+            "networkname": "qa-gn1569-32-shared-reg-control",
+            "ipaddress": "172.26.32.21",
+            "isolationuri": "vlan://192",
+            "broadcasturi": "vlan://192",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:19:21",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "4dceed40-9dd3-44ec-a3c1-cc82e1774c86",
+            "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+            "networkname": "qa-gn1569-32-shared-reg",
+            "netmask": "255.255.255.0",
+            "gateway": "10.247.32.1",
+            "ipaddress": "10.247.32.58",
+            "isolationuri": "vlan://2791",
+            "broadcasturi": "vlan://2791",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:01:fb:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          },
+          {
+            "id": "aacc5494-6ea4-4fb6-9933-d5ae8db73b2f",
+            "networkid": "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e",
+            "networkname": "qa-gn1569-32-systemvm-newrouter",
+            "netmask": "255.255.255.0",
+            "gateway": "10.248.32.1",
+            "ipaddress": "10.248.32.57",
+            "isolationuri": "vlan://3221",
+            "broadcasturi": "vlan://3221",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:02:0c:00:02",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "2",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "172.26.32.21",
+        "instancename": "i-252-451-VM",
+        "details": {
+          "Message.ReservedCapacityFreed.Flag": "false",
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "a4676383-af8c-4095-9145-d3cca7717d6c",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "case": "vm21-actual-dhcp-lease",
+    "nic": {
+      "id": "aacc5494-6ea4-4fb6-9933-d5ae8db73b2f",
+      "networkid": "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e",
+      "networkname": "qa-gn1569-32-systemvm-newrouter",
+      "netmask": "255.255.255.0",
+      "gateway": "10.248.32.1",
+      "ipaddress": "10.248.32.57",
+      "isolationuri": "vlan://3221",
+      "broadcasturi": "vlan://3221",
+      "traffictype": "Guest",
+      "type": "Shared",
+      "isdefault": false,
+      "macaddress": "02:01:02:0c:00:02",
+      "secondaryip": [],
+      "extradhcpoption": [],
+      "deviceid": "2",
+      "enabled": true
+    },
+    "guest": {
+      "iface": "ens10",
+      "before": {
+        "addresses": [
+          {
+            "ifindex": 4,
+            "ifname": "ens10",
+            "flags": [
+              "BROADCAST",
+              "MULTICAST",
+              "UP",
+              "LOWER_UP"
+            ],
+            "mtu": 1500,
+            "qdisc": "fq_codel",
+            "operstate": "UP",
+            "group": "default",
+            "txqlen": 1000,
+            "link_type": "ether",
+            "address": "02:01:02:0c:00:02",
+            "broadcast": "ff:ff:ff:ff:ff:ff",
+            "altnames": [
+              "enp0s10"
+            ],
+            "addr_info": []
+          }
+        ],
+        "connections": "qa1569-control:ens3\nqa1569-shared-reg:ens4\nlo:lo"
+      },
+      "after": [
+        {
+          "ifindex": 4,
+          "ifname": "ens10",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:0c:00:02",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s10"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.248.32.57",
+              "prefixlen": 24,
+              "broadcast": "10.248.32.255",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens10",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "dst": "10.247.32.0/24",
+          "dev": "ens4",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.247.32.58",
+          "metric": 101,
+          "flags": []
+        },
+        {
+          "dst": "10.248.32.0/24",
+          "dev": "ens10",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.248.32.57",
+          "metric": 102,
+          "flags": []
+        },
+        {
+          "dst": "172.26.32.0/24",
+          "dev": "ens3",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.26.32.21",
+          "metric": 100,
+          "flags": []
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.248.32.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:01:02:0c:00:02\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.248.32.51\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-32-shared-reg-vm21\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.248.32.57\nDHCP4.OPTION[9]:                        next_server = 10.248.32.51\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.0"
+    },
+    "existingNicsPreserved": true
+  },
+  {
+    "case": "vm22-nic-added",
+    "reply": {
+      "jobid": "da355fbf-451e-4b48-985a-d12487b6f891",
+      "jobstatus": 1,
+      "virtualmachine": {
+        "id": "655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+        "name": "qa-gn1569-32-shared-reg-vm22",
+        "displayname": "qa-gn1569-32-shared-reg-vm22",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "username": "admin",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "project": "qa-gn1569-32-shared-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "domainpath": "ROOT/qa-gn1569-32-domain",
+        "created": "2026-11-09T14:33:07+0900",
+        "lastupdated": "2026-11-09T14:34:50+0900",
+        "state": "Running",
+        "haenable": false,
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "hostname": "ablecube32-2",
+        "hostcontrolstate": "Enabled",
+        "volumemutationblockedreason": "",
+        "guestosid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "securitygroup": [],
+        "nic": [
+          {
+            "id": "d9c71df3-30b7-41c9-9736-b1729860462d",
+            "networkid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+            "networkname": "qa-gn1569-32-shared-reg-control",
+            "ipaddress": "172.26.32.22",
+            "isolationuri": "vlan://192",
+            "broadcasturi": "vlan://192",
+            "traffictype": "Guest",
+            "type": "L2",
+            "isdefault": true,
+            "macaddress": "02:15:69:32:19:22",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "0",
+            "enabled": true
+          },
+          {
+            "id": "d19adfa8-49b8-4bb4-832c-e5c9410cca00",
+            "networkid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+            "networkname": "qa-gn1569-32-shared-reg",
+            "netmask": "255.255.255.0",
+            "gateway": "10.247.32.1",
+            "ipaddress": "10.247.32.57",
+            "isolationuri": "vlan://2791",
+            "broadcasturi": "vlan://2791",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:01:fb:00:02",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "1",
+            "enabled": true
+          },
+          {
+            "id": "8700838f-d76d-4f93-bea5-857e31c738eb",
+            "networkid": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+            "networkname": "qa-gn1569-32-scope-all",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.32.1",
+            "ipaddress": "10.236.32.23",
+            "isolationuri": "vlan://2840",
+            "broadcasturi": "vlan://2840",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:01:ff:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "2",
+            "enabled": true
+          },
+          {
+            "id": "8c04edc4-8c29-412b-8577-0723282b68e0",
+            "networkid": "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+            "networkname": "qa-gn1569-32-scope-domain",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.32.65",
+            "ipaddress": "10.236.32.87",
+            "isolationuri": "vlan://2841",
+            "broadcasturi": "vlan://2841",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:02:00:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "3",
+            "enabled": true
+          },
+          {
+            "id": "46ad5683-9393-463b-9350-02087dd544f7",
+            "networkid": "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+            "networkname": "qa-gn1569-32-scope-subdomains",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.32.129",
+            "ipaddress": "10.236.32.151",
+            "isolationuri": "vlan://2842",
+            "broadcasturi": "vlan://2842",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:02:01:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "4",
+            "enabled": true
+          },
+          {
+            "id": "e53a781b-a846-4ec9-9ecf-6b7a244ea0bb",
+            "networkid": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+            "networkname": "qa-gn1569-32-scope-account",
+            "netmask": "255.255.255.192",
+            "gateway": "10.236.32.193",
+            "ipaddress": "10.236.32.215",
+            "isolationuri": "vlan://2843",
+            "broadcasturi": "vlan://2843",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:02:02:00:01",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "5",
+            "enabled": true
+          },
+          {
+            "id": "6800fa50-7393-47d7-8945-40a5c79a507d",
+            "networkid": "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e",
+            "networkname": "qa-gn1569-32-systemvm-newrouter",
+            "netmask": "255.255.255.0",
+            "gateway": "10.248.32.1",
+            "ipaddress": "10.248.32.55",
+            "isolationuri": "vlan://3221",
+            "broadcasturi": "vlan://3221",
+            "traffictype": "Guest",
+            "type": "Shared",
+            "isdefault": false,
+            "macaddress": "02:01:02:0c:00:03",
+            "secondaryip": [],
+            "extradhcpoption": [],
+            "deviceid": "6",
+            "enabled": true
+          }
+        ],
+        "hypervisor": "KVM",
+        "ipaddress": "172.26.32.22",
+        "instancename": "i-252-452-VM",
+        "details": {
+          "Message.ReservedCapacityFreed.Flag": "false",
+          "tpmversion": "NONE",
+          "rootDiskController": "osdefault"
+        },
+        "clonefastsourcepowerallowed": false,
+        "clonefastpowerallowed": false,
+        "affinitygroup": [],
+        "displayvm": true,
+        "isdynamicallyscalable": true,
+        "deleteprotection": false,
+        "ostypeid": "574c7ceb-b23b-11f1-990e-0024811f8935",
+        "osdisplayname": "Rocky Linux 9",
+        "pooltype": "RBD",
+        "receivedbytes": 0,
+        "sentbytes": 0,
+        "vbmcport": "None",
+        "qemuagentversion": "9.0.0",
+        "kvdoenable": false,
+        "kvdoinuse": false,
+        "arch": "x86_64",
+        "vbmcstatus": "Unallocated",
+        "tags": [],
+        "hasannotations": false,
+        "jobid": "da355fbf-451e-4b48-985a-d12487b6f891",
+        "jobstatus": 0
+      }
+    }
+  },
+  {
+    "case": "vm22-actual-dhcp-lease",
+    "nic": {
+      "id": "6800fa50-7393-47d7-8945-40a5c79a507d",
+      "networkid": "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e",
+      "networkname": "qa-gn1569-32-systemvm-newrouter",
+      "netmask": "255.255.255.0",
+      "gateway": "10.248.32.1",
+      "ipaddress": "10.248.32.55",
+      "isolationuri": "vlan://3221",
+      "broadcasturi": "vlan://3221",
+      "traffictype": "Guest",
+      "type": "Shared",
+      "isdefault": false,
+      "macaddress": "02:01:02:0c:00:03",
+      "secondaryip": [],
+      "extradhcpoption": [],
+      "deviceid": "6",
+      "enabled": true
+    },
+    "guest": {
+      "iface": "ens14",
+      "before": {
+        "addresses": [
+          {
+            "ifindex": 8,
+            "ifname": "ens14",
+            "flags": [
+              "BROADCAST",
+              "MULTICAST",
+              "UP",
+              "LOWER_UP"
+            ],
+            "mtu": 1500,
+            "qdisc": "fq_codel",
+            "operstate": "UP",
+            "group": "default",
+            "txqlen": 1000,
+            "link_type": "ether",
+            "address": "02:01:02:0c:00:03",
+            "broadcast": "ff:ff:ff:ff:ff:ff",
+            "altnames": [
+              "enp0s14"
+            ],
+            "addr_info": []
+          }
+        ],
+        "connections": "qa1569-control:ens3\nqa1569-scope-account:ens13\nqa1569-scope-all:ens10\nqa1569-scope-domain:ens11\nqa1569-scope-subdomains:ens12\nqa1569-shared-reg:ens8\nlo:lo"
+      },
+      "after": [
+        {
+          "ifindex": 8,
+          "ifname": "ens14",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:0c:00:03",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s14"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.248.32.55",
+              "prefixlen": 24,
+              "broadcast": "10.248.32.255",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens14",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "dst": "10.236.32.0/26",
+          "dev": "ens10",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.236.32.23",
+          "metric": 102,
+          "flags": []
+        },
+        {
+          "dst": "10.236.32.64/26",
+          "dev": "ens11",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.236.32.87",
+          "metric": 103,
+          "flags": []
+        },
+        {
+          "dst": "10.236.32.128/26",
+          "dev": "ens12",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.236.32.151",
+          "metric": 104,
+          "flags": []
+        },
+        {
+          "dst": "10.236.32.192/26",
+          "dev": "ens13",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.236.32.215",
+          "metric": 105,
+          "flags": []
+        },
+        {
+          "dst": "10.247.32.0/24",
+          "dev": "ens8",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.247.32.57",
+          "metric": 101,
+          "flags": []
+        },
+        {
+          "dst": "10.248.32.0/24",
+          "dev": "ens14",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.248.32.55",
+          "metric": 106,
+          "flags": []
+        },
+        {
+          "dst": "172.26.32.0/24",
+          "dev": "ens3",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.26.32.22",
+          "metric": 100,
+          "flags": []
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.248.32.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:01:02:0c:00:03\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.248.32.51\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-32-shared-reg-vm22\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.248.32.55\nDHCP4.OPTION[9]:                        next_server = 10.248.32.51\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.0"
+    },
+    "existingNicsPreserved": true
+  },
+  {
+    "case": "vm25-actual-dhcp-lease",
+    "nic": {
+      "id": "a7da7b0d-a395-4351-b9c4-c3dc6a8c200c",
+      "networkid": "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e",
+      "networkname": "qa-gn1569-32-systemvm-newrouter",
+      "netmask": "255.255.255.0",
+      "gateway": "10.248.32.1",
+      "ipaddress": "10.248.32.58",
+      "isolationuri": "vlan://3221",
+      "broadcasturi": "vlan://3221",
+      "traffictype": "Guest",
+      "type": "Shared",
+      "isdefault": false,
+      "macaddress": "02:01:02:0c:00:01",
+      "secondaryip": [],
+      "extradhcpoption": [],
+      "deviceid": "2",
+      "enabled": true
+    },
+    "guest": {
+      "iface": "ens10",
+      "before": {
+        "addresses": [
+          {
+            "ifindex": 4,
+            "ifname": "ens10",
+            "flags": [
+              "BROADCAST",
+              "MULTICAST",
+              "UP",
+              "LOWER_UP"
+            ],
+            "mtu": 1500,
+            "qdisc": "fq_codel",
+            "operstate": "UP",
+            "group": "default",
+            "txqlen": 1000,
+            "link_type": "ether",
+            "address": "02:01:02:0c:00:01",
+            "broadcast": "ff:ff:ff:ff:ff:ff",
+            "altnames": [
+              "enp0s10"
+            ],
+            "addr_info": []
+          }
+        ],
+        "connections": "qa1569-control:ens3\nqa1569-final-nat:ens8\nlo:lo"
+      },
+      "after": [
+        {
+          "ifindex": 4,
+          "ifname": "ens10",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "fq_codel",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "02:01:02:0c:00:01",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "altnames": [
+            "enp0s10"
+          ],
+          "addr_info": [
+            {
+              "family": "inet",
+              "local": "10.248.32.58",
+              "prefixlen": 24,
+              "broadcast": "10.248.32.255",
+              "scope": "global",
+              "noprefixroute": true,
+              "label": "ens10",
+              "valid_life_time": 4294967295,
+              "preferred_life_time": 4294967295
+            }
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "dst": "10.10.32.10",
+          "gateway": "10.234.32.1",
+          "dev": "ens8",
+          "prefsrc": "10.234.32.80",
+          "flags": []
+        },
+        {
+          "dst": "10.234.32.0/24",
+          "dev": "ens8",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.234.32.80",
+          "metric": 101,
+          "flags": []
+        },
+        {
+          "dst": "10.248.32.0/24",
+          "dev": "ens10",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "10.248.32.58",
+          "metric": 102,
+          "flags": []
+        },
+        {
+          "dst": "172.26.32.0/24",
+          "dev": "ens3",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.26.32.25",
+          "metric": 100,
+          "flags": []
+        }
+      ],
+      "dhcp": "DHCP4.OPTION[1]:                        broadcast_address = 10.248.32.255\nDHCP4.OPTION[2]:                        dhcp_client_identifier = 01:02:01:02:0c:00:01\nDHCP4.OPTION[3]:                        dhcp_lease_time = 4294967295\nDHCP4.OPTION[4]:                        dhcp_server_identifier = 10.248.32.51\nDHCP4.OPTION[5]:                        filename = pxelinux.0\nDHCP4.OPTION[6]:                        host_name = qa-gn1569-32-systemvm-vm25\nDHCP4.OPTION[7]:                        interface_mtu = 1500\nDHCP4.OPTION[8]:                        ip_address = 10.248.32.58\nDHCP4.OPTION[9]:                        next_server = 10.248.32.51\nDHCP4.OPTION[10]:                       requested_broadcast_address = 1\nDHCP4.OPTION[11]:                       requested_domain_name = 1\nDHCP4.OPTION[12]:                       requested_domain_name_servers = 1\nDHCP4.OPTION[13]:                       requested_domain_search = 1\nDHCP4.OPTION[14]:                       requested_host_name = 1\nDHCP4.OPTION[15]:                       requested_interface_mtu = 1\nDHCP4.OPTION[16]:                       requested_ms_classless_static_routes = 1\nDHCP4.OPTION[17]:                       requested_nis_domain = 1\nDHCP4.OPTION[18]:                       requested_nis_servers = 1\nDHCP4.OPTION[19]:                       requested_ntp_servers = 1\nDHCP4.OPTION[20]:                       requested_rfc3442_classless_static_routes = 1\nDHCP4.OPTION[21]:                       requested_root_path = 1\nDHCP4.OPTION[22]:                       requested_routers = 1\nDHCP4.OPTION[23]:                       requested_static_routes = 1\nDHCP4.OPTION[24]:                       requested_subnet_mask = 1\nDHCP4.OPTION[25]:                       requested_time_offset = 1\nDHCP4.OPTION[26]:                       requested_wpad = 1\nDHCP4.OPTION[27]:                       subnet_mask = 255.255.255.0"
+    },
+    "existingNicsPreserved": true
+  },
+  {
+    "case": "fresh-router-image-runtime-identical",
+    "router": {
+      "id": "2b46f166-c6d6-41ed-89a9-d1fba1f7c3a5",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "dns1": "8.8.8.8",
+      "networkdomain": "cseccloud.internal",
+      "name": "r-501-VM",
+      "podid": "6c4b9931-7684-4ba0-bcd6-9d8e97fd6cad",
+      "podname": "Pod",
+      "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "hostname": "ablecube32-2",
+      "hostcontrolstate": "Enabled",
+      "hypervisor": "KVM",
+      "linklocalip": "169.254.11.178",
+      "linklocalmacaddress": "0e:00:a9:fe:0b:b2",
+      "linklocalnetmask": "255.255.0.0",
+      "linklocalnetworkid": "4e4e496a-96c5-40ae-9445-2a3b1d3ecff8",
+      "guestipaddress": "10.248.32.51",
+      "guestmacaddress": "1e:01:82:00:04:29",
+      "guestnetmask": "255.255.255.0",
+      "guestnetworkid": "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e",
+      "guestnetworkname": "qa-gn1569-32-systemvm-newrouter",
+      "templateid": "bc7298e5-a2cc-4627-8c55-7e74ed6e108c",
+      "templatename": "SystemVM-gn1569-full-20261111-KVM",
+      "created": "2026-11-11T20:36:51+0900",
+      "state": "Running",
+      "account": "system",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT",
+      "serviceofferingid": "c4176ed2-9166-468e-97f7-50bfc5d33fb3",
+      "serviceofferingname": "System Offering For Software Router",
+      "isredundantrouter": false,
+      "redundantstate": "UNKNOWN",
+      "version": "4.23.0.0",
+      "scriptsversion": "8f33dcf1bab80a3cf648decc29dcea69cf54bab102c0df89087715cc5ea80a06cc4f682715dc04252a262ff2f66de0153367375cabdf64fd89b2afe6dcf83533",
+      "role": "VIRTUAL_ROUTER",
+      "nic": [
+        {
+          "id": "8ec19d03-9d51-45db-9ffd-dc1f9926f598",
+          "networkid": "a9d0586b-368e-4a2e-b5c5-86e4d7fc4a8e",
+          "networkname": "qa-gn1569-32-systemvm-newrouter",
+          "netmask": "255.255.255.0",
+          "gateway": "10.248.32.1",
+          "ipaddress": "10.248.32.51",
+          "isolationuri": "vlan://3221",
+          "broadcasturi": "vlan://3221",
+          "traffictype": "Guest",
+          "type": "Shared",
+          "isdefault": true,
+          "macaddress": "1e:01:82:00:04:29",
+          "mtu": 1500,
+          "enabled": true
+        },
+        {
+          "id": "d1c7735f-2501-4df4-b374-02a3de457ff6",
+          "networkid": "4e4e496a-96c5-40ae-9445-2a3b1d3ecff8",
+          "netmask": "255.255.0.0",
+          "gateway": "169.254.0.1",
+          "ipaddress": "169.254.11.178",
+          "traffictype": "Control",
+          "isdefault": false,
+          "macaddress": "0e:00:a9:fe:0b:b2",
+          "enabled": true
+        }
+      ],
+      "requiresupgrade": false,
+      "healthchecksfailed": false,
+      "softwareversion": "4.23.0.0",
+      "arch": "x86_64",
+      "hasannotations": false
+    },
+    "proof": {
+      "release": "Cloudstack Release 4.23.0.0 Wed Nov 11 11:24:20 AM UTC 2026",
+      "version": "2.90-4~deb12u2+ablestack1",
+      "binarySha256": "74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc",
+      "runningSha256": "74ccbca89162f04d8615484173283f62b29824671120bd2d2579bf0e36e4b9cc",
+      "pid": "2633",
+      "unit": "NRestarts=0\nActiveState=active",
+      "listeners": "Netid State  Recv-Q Send-Q  Local Address:Port Peer Address:PortProcess                                                                               \nudp   UNCONN 0      0      169.254.11.178:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=20))                                                       \nudp   UNCONN 0      0        10.248.32.51:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=19))                                                       \nudp   UNCONN 0      0           127.0.0.1:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=18))                                                       \nudp   UNCONN 0      0             0.0.0.0:123       0.0.0.0:*    users:((\"ntpd\",pid=928,fd=17))                                                       \nudp   UNCONN 0      0           127.0.0.1:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2633,fd=9))                                                    \nudp   UNCONN 0      0        10.248.32.51:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2633,fd=6))                                                    \nudp   UNCONN 0      0             0.0.0.0:67        0.0.0.0:*    users:((\"dnsmasq\",pid=2633,fd=4))                                                    \nudp   UNCONN 0      0           127.0.0.1:69        0.0.0.0:*    users:((\"dnsmasq\",pid=2633,fd=11))                                                   \nudp   UNCONN 0      0        10.248.32.51:69        0.0.0.0:*    users:((\"dnsmasq\",pid=2633,fd=8))                                                    \nudp   UNCONN 0      0             0.0.0.0:3914      0.0.0.0:*    users:((\"rsyslogd\",pid=475,fd=7))                                                    \nudp   UNCONN 0      0                [::]:123          [::]:*    users:((\"ntpd\",pid=928,fd=16))                                                       \nudp   UNCONN 0      0                [::]:3914         [::]:*    users:((\"rsyslogd\",pid=475,fd=8))                                                    \ntcp   LISTEN 0      128           0.0.0.0:3922      0.0.0.0:*    users:((\"sshd\",pid=1514,fd=3))                                                       \ntcp   LISTEN 0      32       10.248.32.51:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2633,fd=7))                                                    \ntcp   LISTEN 0      511      10.248.32.51:80        0.0.0.0:*    users:((\"apache2\",pid=1797,fd=3),(\"apache2\",pid=1796,fd=3),(\"apache2\",pid=1794,fd=3))\ntcp   LISTEN 0      511      10.248.32.51:443       0.0.0.0:*    users:((\"apache2\",pid=1797,fd=4),(\"apache2\",pid=1796,fd=4),(\"apache2\",pid=1794,fd=4))\ntcp   LISTEN 0      5        10.248.32.51:8080      0.0.0.0:*    users:((\"python\",pid=1736,fd=3))                                                     \ntcp   LISTEN 0      3           127.0.0.1:2616      0.0.0.0:*    users:((\"staticd\",pid=1943,fd=12))                                                   \ntcp   LISTEN 0      32          127.0.0.1:53        0.0.0.0:*    users:((\"dnsmasq\",pid=2633,fd=10))                                                   \ntcp   LISTEN 0      3           127.0.0.1:2605      0.0.0.0:*    users:((\"bgpd\",pid=1936,fd=18))                                                      \ntcp   LISTEN 0      3           127.0.0.1:2601      0.0.0.0:*    users:((\"zebra\",pid=1930,fd=23))                                                     \ntcp   LISTEN 0      128              [::]:3922         [::]:*    users:((\"sshd\",pid=1514,fd=4))                                                       ",
+      "leases": "0 02:01:02:0c:00:03 10.248.32.55 qa-gn1569-32-shared-reg-vm22 01:02:01:02:0c:00:03\n0 02:01:02:0c:00:02 10.248.32.57 qa-gn1569-32-shared-reg-vm21 01:02:01:02:0c:00:02\n0 02:01:02:0c:00:01 10.248.32.58 qa-gn1569-32-systemvm-vm25 01:02:01:02:0c:00:01",
+      "kernel": "-- No entries --"
+    }
+  },
+  {
+    "case": "vm21-source-bound-dns-and-peer-traffic",
+    "result": {
+      "udp": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tcp": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "icmp": {
+        "exit": 0,
+        "out": "PING 10.248.32.55 (10.248.32.55) from 10.248.32.57 : 56(84) bytes of data.\n64 bytes from 10.248.32.55: icmp_seq=1 ttl=64 time=0.357 ms\n64 bytes from 10.248.32.55: icmp_seq=2 ttl=64 time=0.218 ms\n64 bytes from 10.248.32.55: icmp_seq=3 ttl=64 time=0.258 ms\n64 bytes from 10.248.32.55: icmp_seq=4 ttl=64 time=0.221 ms\n64 bytes from 10.248.32.55: icmp_seq=5 ttl=64 time=0.283 ms\n\n--- 10.248.32.55 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4095ms\nrtt min/avg/max/mdev = 0.218/0.267/0.357/0.050 ms"
+      },
+      "ssh": true,
+      "source": "10.248.32.57",
+      "peer": "10.248.32.55",
+      "dns": "10.248.32.51",
+      "fqdn": "qa-gn1569-32-shared-reg-vm21.cseccloud.internal"
+    }
+  },
+  {
+    "case": "vm25-source-bound-dns-and-peer-traffic",
+    "result": {
+      "udp": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tcp": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "icmp": {
+        "exit": 0,
+        "out": "PING 10.248.32.55 (10.248.32.55) from 10.248.32.58 : 56(84) bytes of data.\n64 bytes from 10.248.32.55: icmp_seq=1 ttl=64 time=0.285 ms\n64 bytes from 10.248.32.55: icmp_seq=2 ttl=64 time=0.242 ms\n64 bytes from 10.248.32.55: icmp_seq=3 ttl=64 time=0.232 ms\n64 bytes from 10.248.32.55: icmp_seq=4 ttl=64 time=0.263 ms\n64 bytes from 10.248.32.55: icmp_seq=5 ttl=64 time=0.230 ms\n\n--- 10.248.32.55 ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4105ms\nrtt min/avg/max/mdev = 0.230/0.250/0.285/0.020 ms"
+      },
+      "ssh": true,
+      "source": "10.248.32.58",
+      "peer": "10.248.32.55",
+      "dns": "10.248.32.51",
+      "fqdn": "qa-gn1569-32-systemvm-vm25.cseccloud.internal"
+    }
+  }
+]

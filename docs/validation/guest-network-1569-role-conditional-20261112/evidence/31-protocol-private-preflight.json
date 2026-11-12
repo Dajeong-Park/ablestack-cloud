@@ -1,0 +1,18 @@
+{
+  "tcp19570": {
+    "ok": true,
+    "data": "GN1569-31-primary|tcp|19570|GN1569-probe"
+  },
+  "tcp19571": {
+    "ok": true,
+    "data": "GN1569-31-primary|tcp|19571|GN1569-probe"
+  },
+  "udp19570": {
+    "ok": true,
+    "data": "GN1569-31-primary|udp|19570|peer=10.234.31.254|GN1569-probe"
+  },
+  "udp19571": {
+    "ok": true,
+    "data": "GN1569-31-primary|udp|19571|peer=10.234.31.254|GN1569-probe"
+  }
+}

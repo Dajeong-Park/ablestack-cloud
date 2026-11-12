@@ -1,0 +1,46 @@
+[
+  {
+    "cluster": 31,
+    "theme": "light",
+    "bg": "rgb(255, 255, 255)",
+    "columns": "296px",
+    "label": "rgb(75, 85, 99)",
+    "top": 942.5,
+    "value": "rgb(31, 41, 55)",
+    "labelContrast": 7.557378129674007,
+    "valueContrast": 14.67911847763172
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "bg": "rgb(34, 40, 47)",
+    "columns": "296px",
+    "label": "rgb(197, 204, 212)",
+    "top": 942.5,
+    "value": "rgb(240, 243, 246)",
+    "labelContrast": 9.176047597421213,
+    "valueContrast": 13.348661188320586
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "bg": "rgb(255, 255, 255)",
+    "columns": "296px",
+    "label": "rgb(75, 85, 99)",
+    "top": 1087.5,
+    "value": "rgb(31, 41, 55)",
+    "labelContrast": 7.557378129674007,
+    "valueContrast": 14.67911847763172
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "bg": "rgb(34, 40, 47)",
+    "columns": "296px",
+    "label": "rgb(197, 204, 212)",
+    "top": 1087.5,
+    "value": "rgb(240, 243, 246)",
+    "labelContrast": 9.176047597421213,
+    "valueContrast": 13.348661188320586
+  }
+]

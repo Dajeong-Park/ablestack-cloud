@@ -1,0 +1,17 @@
+{
+  "existingLbDefinitionsBindingsAndCertificateMapsPreserved": 39,
+  "existingVmNicHostPowerNetworksVpcsIpsPreserved": true,
+  "existingVpnUsersPreserved": true,
+  "newOwnedVpnUsers": 2,
+  "newOwnedCertificates": 2,
+  "membersRolesAndReadonlyPolicyPreserved": true,
+  "originalOfferingRangeAndCertificateMappingRestored": true,
+  "serviceKeysIntentionallyRotatedAndPrivateClientsUpdated": true,
+  "routerReplacement": {
+    "old": "44ab71eb-5d2e-4cf3-9dcf-5fa2e2fb393b",
+    "new": "167ee3de-acfb-4146-a8b6-9a31ee716d3c"
+  },
+  "sameHostPlacement": true,
+  "managementJarPidServerDirectoriesAnd671UiAssetsIdentical": true,
+  "sourceChanges": 0
+}

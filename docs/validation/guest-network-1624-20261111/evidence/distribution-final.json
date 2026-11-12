@@ -1,0 +1,98 @@
+[
+  {
+    "cluster": 31,
+    "target": "management",
+    "label": "management",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea",
+    "canonicalSha256": "af6320fe79fecbe983711563da6a6e5e41226f73c7deede085fe31b2a97410f6",
+    "canonicalSha512": "630fd912606201fadc37057b13d55f23af2899de0f790783a7db743ad1f27240718d18490249c46c973c664380b1f2df6ad09459da73606b10de7e455b24acf6",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea.tgz"
+  },
+  {
+    "cluster": 31,
+    "target": "10.10.31.1",
+    "label": "host-1",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea",
+    "canonicalSha256": "af6320fe79fecbe983711563da6a6e5e41226f73c7deede085fe31b2a97410f6",
+    "canonicalSha512": "630fd912606201fadc37057b13d55f23af2899de0f790783a7db743ad1f27240718d18490249c46c973c664380b1f2df6ad09459da73606b10de7e455b24acf6",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea.tgz"
+  },
+  {
+    "cluster": 31,
+    "target": "10.10.31.2",
+    "label": "host-2",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea",
+    "canonicalSha256": "af6320fe79fecbe983711563da6a6e5e41226f73c7deede085fe31b2a97410f6",
+    "canonicalSha512": "630fd912606201fadc37057b13d55f23af2899de0f790783a7db743ad1f27240718d18490249c46c973c664380b1f2df6ad09459da73606b10de7e455b24acf6",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea.tgz"
+  },
+  {
+    "cluster": 31,
+    "target": "10.10.31.3",
+    "label": "host-3",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea",
+    "canonicalSha256": "af6320fe79fecbe983711563da6a6e5e41226f73c7deede085fe31b2a97410f6",
+    "canonicalSha512": "630fd912606201fadc37057b13d55f23af2899de0f790783a7db743ad1f27240718d18490249c46c973c664380b1f2df6ad09459da73606b10de7e455b24acf6",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/b80a160616605172a3652047c56891278f1facbbe0b659854dd3854cf54678ea.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "management",
+    "label": "management",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b",
+    "canonicalSha256": "22764afd4ebe90cb83e3d55cb4bb90607b500bd1b6e529cd025ea98cfa6fea87",
+    "canonicalSha512": "8f33dcf1bab80a3cf648decc29dcea69cf54bab102c0df89087715cc5ea80a06cc4f682715dc04252a262ff2f66de0153367375cabdf64fd89b2afe6dcf83533",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "10.10.32.1",
+    "label": "host-1",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b",
+    "canonicalSha256": "22764afd4ebe90cb83e3d55cb4bb90607b500bd1b6e529cd025ea98cfa6fea87",
+    "canonicalSha512": "8f33dcf1bab80a3cf648decc29dcea69cf54bab102c0df89087715cc5ea80a06cc4f682715dc04252a262ff2f66de0153367375cabdf64fd89b2afe6dcf83533",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "10.10.32.2",
+    "label": "host-2",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b",
+    "canonicalSha256": "22764afd4ebe90cb83e3d55cb4bb90607b500bd1b6e529cd025ea98cfa6fea87",
+    "canonicalSha512": "8f33dcf1bab80a3cf648decc29dcea69cf54bab102c0df89087715cc5ea80a06cc4f682715dc04252a262ff2f66de0153367375cabdf64fd89b2afe6dcf83533",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b.tgz"
+  },
+  {
+    "cluster": 32,
+    "target": "10.10.32.3",
+    "label": "host-3",
+    "source": "f9e4943547ba866848fb12b66a2c36693bc828f8",
+    "before": "7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b",
+    "canonicalSha256": "22764afd4ebe90cb83e3d55cb4bb90607b500bd1b6e529cd025ea98cfa6fea87",
+    "canonicalSha512": "8f33dcf1bab80a3cf648decc29dcea69cf54bab102c0df89087715cc5ea80a06cc4f682715dc04252a262ff2f66de0153367375cabdf64fd89b2afe6dcf83533",
+    "checkerSha256": "82d2841dd7b692f500421f17512f21cebb72c4257bd1570ecd304d5d04508c6e",
+    "otherEntriesPreserved": 241,
+    "durableWslBackup": "/home/ablecloud/work/gn1624-haproxy-health/backups/7ca6f50e1fecc68e64d1fa2c74956bf21a3aa8ef2764ab9a5296f4a8cabeb96b.tgz"
+  }
+]

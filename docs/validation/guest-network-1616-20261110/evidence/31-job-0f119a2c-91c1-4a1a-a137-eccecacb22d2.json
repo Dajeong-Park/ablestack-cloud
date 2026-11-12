@@ -1,0 +1,8 @@
+{
+  "command": "startVirtualMachine",
+  "params": {
+    "id": "95f9dac8-920a-475d-91ff-5bc015c15d0e",
+    "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4"
+  },
+  "jobid": "0f119a2c-91c1-4a1a-a137-eccecacb22d2"
+}

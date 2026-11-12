@@ -1,0 +1,15 @@
+{
+  "run": "43025859265",
+  "job": "130540273328",
+  "url": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43025859265/job/130540273328",
+  "logSha256": "b480bb7a0368e898c7afd5244afb4e74915cff668db545a538560ba0ea7ee7f9",
+  "summaryLines": [
+    "build\tRAT licence checks\t2026-11-11T13:05:59.7606521Z [INFO] Rat check: Summary over all files. Unapproved: 3574, unknown: 3574, generated: 0, approved: 14999 licenses.",
+    "build\tRAT licence checks\t2026-11-11T13:05:59.7611046Z [INFO] BUILD FAILURE",
+    "build\tRAT licence checks\t2026-11-11T13:05:59.7630605Z [ERROR] Failed to execute goal org.apache.rat:apache-rat-plugin:0.12:check (default-cli) on project cloudstack: Too many files with unapproved license: 3574 See RAT report in: /home/runner/work/ablestack-cloud/ablestack-cloud/target/rat.txt -> [Help 1]",
+    "build\tRat Report\t2026-11-11T13:05:59.7915055Z 3574 Unknown Licenses"
+  ],
+  "ownUnapprovedPaths": [],
+  "ownApprovedOrBinaryLines": 219,
+  "scope": "Observed first report commit CI; no claim of overall CI success."
+}

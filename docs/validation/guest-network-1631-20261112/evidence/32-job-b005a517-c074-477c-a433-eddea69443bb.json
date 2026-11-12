@@ -1,0 +1,11 @@
+{
+  "command": "addResourceDetail",
+  "params": {
+    "resourceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "resourcetype": "PublicIpAddress",
+    "details[0].key": "ROUTER.PUBLIC.NIC.MAC.V1",
+    "details[0].value": "forged",
+    "fordisplay": false
+  },
+  "jobid": "b005a517-c074-477c-a433-eddea69443bb"
+}

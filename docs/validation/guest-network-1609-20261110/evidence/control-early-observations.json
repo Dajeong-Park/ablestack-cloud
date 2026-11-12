@@ -1,0 +1,315 @@
+[
+  {
+    "label": "31-customer-explicit-default",
+    "time": "2026-11-10T00:35:49.898Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details"
+  },
+  {
+    "label": "31-customer-explicit-hidden",
+    "time": "2026-11-10T00:35:50.989Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details"
+  },
+  {
+    "label": "31-customer-explicit",
+    "time": "2026-11-10T00:35:56.400Z",
+    "cluster": 31,
+    "shown": true,
+    "copied": true,
+    "pasted": true,
+    "hiddenAfterCopy": true,
+    "probeSubmitted": false
+  },
+  {
+    "label": "31-customer-explicit-copy-masked",
+    "time": "2026-11-10T00:35:56.445Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vpncustomergateway/00e7cd48-749a-47cc-88fd-f8658c3f0779?tab=details"
+  },
+  {
+    "label": "31-connection-explicit-default",
+    "time": "2026-11-10T00:36:01.886Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details"
+  },
+  {
+    "label": "31-connection-explicit-hidden",
+    "time": "2026-11-10T00:36:02.896Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details"
+  },
+  {
+    "label": "31-connection-explicit",
+    "time": "2026-11-10T00:36:07.120Z",
+    "cluster": 31,
+    "shown": true,
+    "copied": true,
+    "pasted": true,
+    "hiddenAfterCopy": true,
+    "probeSubmitted": false
+  },
+  {
+    "label": "31-connection-explicit-copy-masked",
+    "time": "2026-11-10T00:36:07.164Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/s2svpnconn/84f5597c-c4f8-4a3d-ad60-05e2ff02b76b?tab=details"
+  },
+  {
+    "label": "31-remote-explicit-default",
+    "time": "2026-11-10T00:36:09.166Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn"
+  },
+  {
+    "label": "31-remote-explicit-hidden",
+    "time": "2026-11-10T00:36:10.425Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn"
+  },
+  {
+    "label": "31-remote-explicit",
+    "time": "2026-11-10T00:36:14.683Z",
+    "cluster": 31,
+    "shown": true,
+    "copied": true,
+    "pasted": true,
+    "hiddenAfterCopy": true,
+    "probeSubmitted": false
+  },
+  {
+    "label": "31-remote-explicit-copy-masked",
+    "time": "2026-11-10T00:36:14.728Z",
+    "cluster": 31,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/ea568ffa-ed12-4d07-b174-f12f3fe80bd2?tab=vpn"
+  },
+  {
+    "label": "32-customer-explicit-default",
+    "time": "2026-11-10T00:36:21.455Z",
+    "cluster": 32,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details"
+  },
+  {
+    "label": "32-customer-explicit-hidden",
+    "time": "2026-11-10T00:36:22.459Z",
+    "cluster": 32,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details"
+  },
+  {
+    "label": "32-customer-explicit",
+    "time": "2026-11-10T00:36:27.900Z",
+    "cluster": 32,
+    "shown": true,
+    "copied": false,
+    "pasted": false,
+    "hiddenAfterCopy": true,
+    "probeSubmitted": false
+  },
+  {
+    "label": "32-customer-explicit-default",
+    "time": "2026-11-10T00:36:40.015Z",
+    "cluster": 32,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 표시",
+        "pressed": "false"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": false,
+    "masks": [
+      "••••••••"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details"
+  },
+  {
+    "label": "32-customer-explicit-hidden",
+    "time": "2026-11-10T00:36:41.241Z",
+    "cluster": 32,
+    "attributesContainKey": false,
+    "controls": [
+      {
+        "label": "공유 키 숨기기",
+        "pressed": "true"
+      },
+      {
+        "label": "공유 키 복사",
+        "pressed": null
+      }
+    ],
+    "domTextContainsKey": true,
+    "masks": [
+      "[redacted]"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vpncustomergateway/7ef8f752-4744-4085-b016-11e159c0ff72?tab=details"
+  }
+]

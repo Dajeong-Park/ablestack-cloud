@@ -1,0 +1,66 @@
+{
+  "httpStatus": 200,
+  "count": 4,
+  "firewallrule": [
+    {
+      "id": "a81bbdc8-f65b-4844-b700-2f9400cf41fc",
+      "protocol": "tcp",
+      "startport": 19111,
+      "endport": 19111,
+      "ipaddressid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.149",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    },
+    {
+      "id": "0ad6b5e9-8ca0-45c4-82fc-75099a62b71c",
+      "protocol": "tcp",
+      "startport": 18991,
+      "endport": 18991,
+      "ipaddressid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.149",
+      "state": "Active",
+      "cidrlist": "0.0.0.0/0",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    },
+    {
+      "id": "2be36649-1e1d-4b46-bc5e-0c91a3435f1f",
+      "protocol": "tcp",
+      "startport": 18969,
+      "endport": 18969,
+      "ipaddressid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.149",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    },
+    {
+      "id": "3b53a802-566d-4794-98ad-20c4dbb89359",
+      "protocol": "tcp",
+      "startport": 18874,
+      "endport": 18874,
+      "ipaddressid": "c5e732ec-1388-47f7-8e2d-d214df9aacc0",
+      "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "ipaddress": "10.10.31.149",
+      "state": "Active",
+      "cidrlist": "10.10.0.0/16",
+      "tags": [],
+      "fordisplay": true,
+      "destcidrlist": "",
+      "traffictype": "Ingress"
+    }
+  ]
+}

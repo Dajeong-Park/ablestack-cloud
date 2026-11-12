@@ -53,4 +53,26 @@ public class DeploymentStorageMetadataTest {
         assertThrows(InvalidParameterValueException.class, () -> manager.deleteResourceMetaData("volume", ResourceObjectType.Volume, null));
         verify(details, never()).removeDetails(anyLong());
     }
+    @Test public void metadataApiCannotForgeRouterMacReceipt() {
+        ResourceMetaDataManagerImpl manager = new ResourceMetaDataManagerImpl();
+        assertThrows(InvalidParameterValueException.class, () -> manager.addResourceMetaData("ip", ResourceObjectType.PublicIpAddress,
+            Collections.singletonMap(com.cloud.network.router.RouterPublicMacManager.DETAIL.toUpperCase(), "forged"), false));
+    }
+    @Test public void metadataApiCannotRemoveRouterMacReceipt() {
+        ResourceMetaDataManagerImpl manager = new ResourceMetaDataManagerImpl();
+        assertThrows(InvalidParameterValueException.class, () -> manager.deleteResourceMetaData("ip", ResourceObjectType.PublicIpAddress,
+            com.cloud.network.router.RouterPublicMacManager.DETAIL.toUpperCase()));
+    }
+    @Test public void bulkMetadataRemovalCannotEraseRouterMacReceipt() {
+        ResourceMetaDataManagerImpl manager = new ResourceMetaDataManagerImpl();
+        ResourceManagerUtil resources = mock(ResourceManagerUtil.class);
+        org.apache.cloudstack.resourcedetail.dao.UserIpAddressDetailsDao details = mock(org.apache.cloudstack.resourcedetail.dao.UserIpAddressDetailsDao.class);
+        ReflectionTestUtils.setField(manager, "resourceManagerUtil", resources);
+        ReflectionTestUtils.setField(manager, "_userIpAddressDetailsDao", details);
+        when(resources.getResourceId("ip", ResourceObjectType.PublicIpAddress)).thenReturn(7L);
+        when(details.findDetail(7L, com.cloud.network.router.RouterPublicMacManager.DETAIL)).thenReturn(
+            new org.apache.cloudstack.resourcedetail.UserIpAddressDetailVO(7L, com.cloud.network.router.RouterPublicMacManager.DETAIL, "receipt", false));
+        assertThrows(InvalidParameterValueException.class, () -> manager.deleteResourceMetaData("ip", ResourceObjectType.PublicIpAddress, null));
+        verify(details, never()).removeDetails(anyLong());
+    }
 }

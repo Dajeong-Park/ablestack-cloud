@@ -1,0 +1,146 @@
+[
+  {
+    "cluster": 31,
+    "command": "listEvents",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "before": {
+      "notes": [],
+      "rows": [
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-31-domain\t2026. 11. 12. 오후 5:31:11"
+      ],
+      "tags": [
+        "격리형 (Isolated)",
+        "vlan://152",
+        "gn1569-20261112-review = Isolated",
+        "gn1569-ui-review = 역할·오퍼링 회귀 확인용"
+      ]
+    },
+    "recovered": true
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "preservedValues": [
+      "gn1569-20261112-review",
+      "gn1569-ui-review"
+    ],
+    "recovered": true,
+    "retry": "tag refresh"
+  },
+  {
+    "cluster": 31,
+    "command": "listAnnotations",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "before": {
+      "notes": [
+        "1697bfe3-d193-4086-a2fb-6b0d9a07136d",
+        "983cccdc-dcee-4fcb-ab3e-16209c8487fd",
+        "72174c14-267b-4df6-a143-f8ee231acf9a",
+        "2f1af486-e4c8-4e67-902c-deb88cfbf644",
+        "cf4d5ed4-efe0-4c6f-af23-14bc2b4eb107",
+        "c1b1dfe8-c857-40a1-8072-f4f996015ac4",
+        "da9f601a-4e86-47f9-829b-6153f1c39284",
+        "6deb7343-37fb-4564-8a4c-2f415ea846a0",
+        "6cb3320a-fbcf-4cc7-9c55-2f2b0624ed1b",
+        "8ea2f40a-7c72-4fb8-b51e-b9548bc44ac4"
+      ],
+      "rows": [
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11",
+        "INFOANNOTATION.CREATE완료adminqa-gn1569-31-domain2026. 11. 12. 오후 5:31:11"
+      ],
+      "tags": [
+        "격리형 (Isolated)",
+        "vlan://152",
+        "gn1569-20261112-review = Isolated",
+        "gn1569-ui-review = 역할·오퍼링 회귀 확인용"
+      ]
+    },
+    "recovered": true
+  },
+  {
+    "cluster": 32,
+    "command": "listAnnotations",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "before": {
+      "notes": [
+        "f34987ba-289e-4cba-8263-f0e4ceee77e5",
+        "444b443b-0603-40de-ad24-f1295b545ff4",
+        "ebb93f56-43ba-422c-946d-18fd3f08afc5",
+        "f57b7dbc-c89a-49f1-a28c-764320bf39af",
+        "6ddd43bc-2287-4325-a58c-bd47d666ac6b",
+        "d5b8f4d4-96b3-4a74-99fc-ca9b411c9143",
+        "e21ee365-e9af-4c14-9678-8421da290e01",
+        "20d16606-6d80-41c7-9392-2009e811df62",
+        "be8dbf48-ca23-4256-8d0e-78c9a4128798",
+        "efae6a96-7e23-4f4d-afaf-329353f77654"
+      ],
+      "rows": [],
+      "tags": [
+        "격리형 (Isolated)",
+        "vlan://179",
+        "gn1569-20261112-review = Isolated"
+      ]
+    },
+    "recovered": true
+  },
+  {
+    "cluster": 32,
+    "command": "listEvents",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "before": {
+      "notes": [],
+      "rows": [
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11",
+        "INFO\tANNOTATION.CREATE\t\n완료\n\tadmin\t\tqa-gn1569-32-domain\t2026. 11. 12. 오전 8:31:11"
+      ],
+      "tags": [
+        "격리형 (Isolated)",
+        "vlan://179",
+        "gn1569-20261112-review = Isolated"
+      ]
+    },
+    "recovered": true
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "controlledHttp": 503,
+    "backendFault": false,
+    "preservedValues": [
+      "gn1569-20261112-review"
+    ],
+    "recovered": true,
+    "retry": "tag refresh"
+  }
+]

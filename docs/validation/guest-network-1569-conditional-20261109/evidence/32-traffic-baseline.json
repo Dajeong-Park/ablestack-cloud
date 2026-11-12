@@ -1,0 +1,72 @@
+[
+  {
+    "source": 11,
+    "checks": [
+      {
+        "kind": "configdrive",
+        "target": "172.30.32.12",
+        "icmpExit": 0,
+        "icmp": "PING 172.30.32.12 (172.30.32.12) 56(84) bytes of data.\n64 bytes from 172.30.32.12: icmp_seq=1 ttl=64 time=0.326 ms\n64 bytes from 172.30.32.12: icmp_seq=2 ttl=64 time=0.263 ms\n64 bytes from 172.30.32.12: icmp_seq=3 ttl=64 time=0.274 ms\n\n--- 172.30.32.12 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2075ms\nrtt min/avg/max/mdev = 0.263/0.287/0.326/0.027 ms\n",
+        "tcp22": true,
+        "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+        "error": null,
+        "seconds": 0.01
+      },
+      {
+        "kind": "basic-l2",
+        "target": "172.31.32.12",
+        "icmpExit": 0,
+        "icmp": "PING 172.31.32.12 (172.31.32.12) 56(84) bytes of data.\n64 bytes from 172.31.32.12: icmp_seq=1 ttl=64 time=0.248 ms\n64 bytes from 172.31.32.12: icmp_seq=2 ttl=64 time=0.207 ms\n64 bytes from 172.31.32.12: icmp_seq=3 ttl=64 time=0.204 ms\n\n--- 172.31.32.12 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2032ms\nrtt min/avg/max/mdev = 0.204/0.219/0.248/0.020 ms\n",
+        "tcp22": true,
+        "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+        "error": null,
+        "seconds": 0.01
+      },
+      {
+        "kind": "vpc-cross-tier",
+        "target": "10.243.32.229",
+        "icmpExit": 0,
+        "icmp": "PING 10.243.32.229 (10.243.32.229) 56(84) bytes of data.\n64 bytes from 10.243.32.229: icmp_seq=1 ttl=63 time=0.297 ms\n64 bytes from 10.243.32.229: icmp_seq=2 ttl=63 time=0.348 ms\n64 bytes from 10.243.32.229: icmp_seq=3 ttl=63 time=0.399 ms\n\n--- 10.243.32.229 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2035ms\nrtt min/avg/max/mdev = 0.297/0.348/0.399/0.041 ms\n",
+        "tcp22": true,
+        "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+        "error": null,
+        "seconds": 0.01
+      }
+    ]
+  },
+  {
+    "source": 12,
+    "checks": [
+      {
+        "kind": "configdrive",
+        "target": "172.30.32.11",
+        "icmpExit": 0,
+        "icmp": "PING 172.30.32.11 (172.30.32.11) 56(84) bytes of data.\n64 bytes from 172.30.32.11: icmp_seq=1 ttl=64 time=0.313 ms\n64 bytes from 172.30.32.11: icmp_seq=2 ttl=64 time=0.315 ms\n64 bytes from 172.30.32.11: icmp_seq=3 ttl=64 time=0.298 ms\n\n--- 172.30.32.11 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2059ms\nrtt min/avg/max/mdev = 0.298/0.308/0.315/0.007 ms\n",
+        "tcp22": true,
+        "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+        "error": null,
+        "seconds": 0.01
+      },
+      {
+        "kind": "basic-l2",
+        "target": "172.31.32.11",
+        "icmpExit": 0,
+        "icmp": "PING 172.31.32.11 (172.31.32.11) 56(84) bytes of data.\n64 bytes from 172.31.32.11: icmp_seq=1 ttl=64 time=0.216 ms\n64 bytes from 172.31.32.11: icmp_seq=2 ttl=64 time=0.241 ms\n64 bytes from 172.31.32.11: icmp_seq=3 ttl=64 time=0.281 ms\n\n--- 172.31.32.11 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2032ms\nrtt min/avg/max/mdev = 0.216/0.246/0.281/0.026 ms\n",
+        "tcp22": true,
+        "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+        "error": null,
+        "seconds": 0.01
+      },
+      {
+        "kind": "vpc-cross-tier",
+        "target": "10.243.32.102",
+        "icmpExit": 0,
+        "icmp": "PING 10.243.32.102 (10.243.32.102) 56(84) bytes of data.\n64 bytes from 10.243.32.102: icmp_seq=1 ttl=63 time=0.323 ms\n64 bytes from 10.243.32.102: icmp_seq=2 ttl=63 time=0.388 ms\n64 bytes from 10.243.32.102: icmp_seq=3 ttl=63 time=0.380 ms\n\n--- 10.243.32.102 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 2035ms\nrtt min/avg/max/mdev = 0.323/0.363/0.388/0.028 ms\n",
+        "tcp22": true,
+        "banner": "SSH-2.0-OpenSSH_8.7\r\n",
+        "error": null,
+        "seconds": 0.01
+      }
+    ]
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "cluster": 32,
+  "server": "10.10.32.150",
+  "username": "qa-gn1569-32-vpn",
+  "serverState": "Running",
+  "guestIp": "10.234.32.227",
+  "guestCidr": "10.234.32.0/24"
+}

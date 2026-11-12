@@ -1,0 +1,9 @@
+{
+  "command": "associateIpAddress",
+  "params": {
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "vpcid": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+  },
+  "jobid": "eae12f0f-0aad-4b9f-9f63-c420b9cf18d1"
+}

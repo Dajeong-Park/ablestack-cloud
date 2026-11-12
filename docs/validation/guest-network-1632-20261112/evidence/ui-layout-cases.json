@@ -1,0 +1,254 @@
+[
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 1280,
+    "list": {
+      "url": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "width": 1280,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794465751731.1,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 280,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 768,
+    "list": {
+      "url": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "width": 768,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794465751731.1,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 24,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "width": 390,
+    "list": {
+      "url": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "width": 390,
+      "height": 844,
+      "theme": "",
+      "timeOrigin": 1794465751731.1,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 628,
+      "privateInputEmpty": true,
+      "width": 366,
+      "x": 12,
+      "y": 108
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 1280,
+    "list": {
+      "url": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794465751731.1,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 280,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 768,
+    "list": {
+      "url": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "width": 768,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794465751731.1,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 24,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "width": 390,
+    "list": {
+      "url": "http://10.10.31.10:8080/client/#/project/59614883-4085-4a76-99da-b8a1e3a78eed?tab=certificates",
+      "width": 390,
+      "height": 844,
+      "theme": "dark-mode",
+      "timeOrigin": 1794465751731.1,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 628,
+      "privateInputEmpty": true,
+      "width": 366,
+      "x": 12,
+      "y": 108
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 1280,
+    "list": {
+      "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "width": 1280,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794465611497.4,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 280,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 768,
+    "list": {
+      "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "width": 768,
+      "height": 900,
+      "theme": "",
+      "timeOrigin": 1794465611497.4,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 24,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "width": 390,
+    "list": {
+      "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "width": 390,
+      "height": 844,
+      "theme": "",
+      "timeOrigin": 1794465611497.4,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 628,
+      "privateInputEmpty": true,
+      "width": 366,
+      "x": 12,
+      "y": 108
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 1280,
+    "list": {
+      "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "width": 1280,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794465611497.4,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 280,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 768,
+    "list": {
+      "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "width": 768,
+      "height": 900,
+      "theme": "dark-mode",
+      "timeOrigin": 1794465611497.4,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 644,
+      "privateInputEmpty": true,
+      "width": 720,
+      "x": 24,
+      "y": 128
+    }
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "width": 390,
+    "list": {
+      "url": "http://10.10.32.10:8080/client/#/project/cf5ec6b5-b522-4c18-ab90-a395012607c1?tab=certificates",
+      "width": 390,
+      "height": 844,
+      "theme": "dark-mode",
+      "timeOrigin": 1794465611497.4,
+      "overflow": false
+    },
+    "dialog": {
+      "checked": true,
+      "height": 628,
+      "privateInputEmpty": true,
+      "width": 366,
+      "x": 12,
+      "y": 108
+    }
+  }
+]

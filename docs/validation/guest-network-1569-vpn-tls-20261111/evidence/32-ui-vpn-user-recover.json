@@ -1,0 +1,16 @@
+[
+  {
+    "command": "addVpnUser",
+    "params": {
+      "command": "addVpnUser",
+      "username": "qa-gn1569-32-parallel-b",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+    },
+    "response": {
+      "addvpnuserresponse": {
+        "id": "574e21cd-9105-4938-ab8e-169e8a662e33",
+        "jobid": "a3abfdd8-f580-44e0-8a46-c069217a9e62"
+      }
+    }
+  }
+]

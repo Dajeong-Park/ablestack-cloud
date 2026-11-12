@@ -1,0 +1,35 @@
+{
+  "cluster": 32,
+  "mode": "traffic",
+  "traffic": {
+    "ping": {
+      "exit": 1,
+      "out": "PING 10.234.32.227 (10.234.32.227) from 10.1.2.4 ppp85: 56(84) bytes of data.\n\n--- 10.234.32.227 ping statistics ---\n5 packets transmitted, 0 received, 100% packet loss, time 4098ms\n",
+      "error": ""
+    },
+    "tcp": [
+      {
+        "ok": false,
+        "error": "[Errno 101] Network is unreachable"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 101] Network is unreachable"
+      },
+      {
+        "ok": false,
+        "error": "[Errno 101] Network is unreachable"
+      }
+    ],
+    "route": {
+      "exit": 0,
+      "out": "10.234.32.227 dev ppp84 src 10.1.2.5 uid 0 \n    cache ",
+      "error": ""
+    }
+  },
+  "sas": {
+    "exit": 0,
+    "out": "qa-ra-32-multi-1: #27, ESTABLISHED, IKEv1, 03c06731f3791a57_i* 674d1304c5618a3e_r\n  local  'qa-gn1569-32-parallel-a' @ 172.30.150.178[4500]\n  remote '10.10.32.150' @ 10.10.32.150[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 12s ago, rekeying in 14141s\n  qa-ra-child-32-multi-1: #36, reqid 4, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 12s ago, rekeying in 3320s, expires in 3948s\n    in  cb88891f,   2021 bytes,    35 packets,     3s ago\n    out c2941bb9,   2425 bytes,    40 packets,     3s ago\n    local  172.30.150.178/32[udp/53302]\n    remote 10.10.32.150/32[udp/l2tp]\nqa-ra-31-multi-1: #26, ESTABLISHED, IKEv1, 45545bcdc77f81e2_i* a16c4377c913b658_r\n  local  'qa-gn1569-31-parallel-a' @ 172.30.150.178[4500]\n  remote '10.10.31.148' @ 10.10.31.148[4500]\n  AES_CBC-256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/MODP_2048\n  established 18s ago, rekeying in 14114s\n  qa-ra-child-31-multi-1: #35, reqid 2, INSTALLED, TRANSPORT-in-UDP, ESP:AES_CBC-256/HMAC_SHA2_256_128\n    installed 18s ago, rekeying in 3236s, expires in 3942s\n    in  c8282e19,   2145 bytes,    38 packets,     3s ago\n    out ceeb6d4f,   2477 bytes,    42 packets,     3s ago\n    local  172.30.150.178/32[udp/53203]\n    remote 10.10.31.148/32[udp/l2tp]",
+    "error": ""
+  }
+}

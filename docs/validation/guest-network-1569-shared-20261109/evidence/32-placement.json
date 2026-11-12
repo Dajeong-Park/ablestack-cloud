@@ -1,0 +1,16 @@
+{
+  "host": "ablecube32-2",
+  "router": "f936aa25-8df0-46c8-814c-db7d0ff6c761",
+  "steps": [
+    {
+      "vm": "30d3760d-98db-46a7-a5c8-cd1c7950cd60",
+      "before": "ablecube32-1",
+      "after": "ablecube32-2"
+    },
+    {
+      "vm": "655a666a-c0fa-4edc-ad2b-3f9393a7c744",
+      "before": "ablecube32-1",
+      "after": "ablecube32-2"
+    }
+  ]
+}

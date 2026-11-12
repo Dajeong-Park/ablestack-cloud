@@ -1,0 +1,44 @@
+[
+  {
+    "cluster": 31,
+    "type": "Isolated",
+    "activeProject": "qa-gn1569-31-project",
+    "dialogText": "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n이름\n설명\nZone\n Zone\n네트워크 도메인\n네트워크 오퍼링\n기본 격리 네트워크오퍼링(with SourceNat)\nVPC 네트워크 오퍼링은 VPC 안에 네트워크를 생성할 때 사용할 수 있습니다.\n서비스·제공자 확인\n요구 서비스와 제공자 설정이 일치합니다.\nPhysical Network 1 · 51cdd7ed-ab33-419d-98fc-8e7eabea1194\n구성 확인 결과입니다. 외부 장비 준비 상태와 실제 통신은 별도로 확인해야 합니다.\n서비스 제공자 (9)\n외부 아이디\n게이트웨이\n넷마스크\nDNS 1\nDNS 2\n서비스용 네트워크의 라우터에 대한 IPv4 주소\n공용 NIC의 MAC 주소 유지\n취소\n확인",
+    "containsProjectName": false
+  },
+  {
+    "cluster": 31,
+    "type": "L2",
+    "activeProject": "qa-gn1569-31-project",
+    "dialogText": "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n이름\n설명\nZone\n Zone\n네트워크 오퍼링\nThe network offering ID\n취소\n확인",
+    "containsProjectName": false
+  },
+  {
+    "cluster": 31,
+    "type": "공유형 (Shared)",
+    "activeProject": "qa-gn1569-31-project",
+    "dialogText": "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n이름\n설명\nZone\nZone\n물리 네트워크\nPhysical Network 1\n네트워크 오퍼링\nThe network offering ID\nIP 사용량 내보내기 제외\n\n이 설정으로 새로 발생하는 IP 사용량을 listUsageRecords 내보내기에서 제외합니다. IP 주소 표시나 네트워크 접근 권한은 바꾸지 않으며, 기존 할당과 과거 사용량을 소급 재계산·삭제하지 않습니다.\n\n취소\n확인",
+    "containsProjectName": false
+  },
+  {
+    "cluster": 32,
+    "type": "Isolated",
+    "activeProject": "qa-gn1569-32-project",
+    "dialogText": "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n이름\n설명\nZone\n Zone\n네트워크 도메인\n네트워크 오퍼링\n기본 격리 네트워크오퍼링(with SourceNat)\nVPC 네트워크 오퍼링은 VPC 안에 네트워크를 생성할 때 사용할 수 있습니다.\n서비스·제공자 확인\n요구 서비스와 제공자 설정이 일치합니다.\nPhysical Network 1 · f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b\n구성 확인 결과입니다. 외부 장비 준비 상태와 실제 통신은 별도로 확인해야 합니다.\n서비스 제공자 (9)\n외부 아이디\n게이트웨이\n넷마스크\nDNS 1\nDNS 2\n서비스용 네트워크의 라우터에 대한 IPv4 주소\n공용 NIC의 MAC 주소 유지\n취소\n확인",
+    "containsProjectName": false
+  },
+  {
+    "cluster": 32,
+    "type": "L2",
+    "activeProject": "qa-gn1569-32-project",
+    "dialogText": "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n이름\n설명\nZone\n Zone\n네트워크 오퍼링\nThe network offering ID\n취소\n확인",
+    "containsProjectName": false
+  },
+  {
+    "cluster": 32,
+    "type": "공유형 (Shared)",
+    "activeProject": "qa-gn1569-32-project",
+    "dialogText": "네트워크 추가\nIsolated\nL2\n공유형 (Shared)\n이름\n설명\nZone\nZone\n물리 네트워크\nPhysical Network 1\n네트워크 오퍼링\nThe network offering ID\nIP 사용량 내보내기 제외\n\n이 설정으로 새로 발생하는 IP 사용량을 listUsageRecords 내보내기에서 제외합니다. IP 주소 표시나 네트워크 접근 권한은 바꾸지 않으며, 기존 할당과 과거 사용량을 소급 재계산·삭제하지 않습니다.\n\n취소\n확인",
+    "containsProjectName": false
+  }
+]

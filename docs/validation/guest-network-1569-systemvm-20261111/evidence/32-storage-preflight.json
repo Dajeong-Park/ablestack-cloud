@@ -1,0 +1,5 @@
+{
+  "df": "Filesystem           Size  Used Avail Use% Mounted on\n/dev/mapper/rl-root   83G   82G  533M 100% /\n/dev/mapper/rl-nfs   350G  119G  232G  34% /nfs\n/dev/mapper/rl-root   83G   82G  533M 100% /",
+  "ownStaticFiles": [],
+  "secondary": "43G\t/nfs/secondary/template\n45G\t/nfs/secondary/snapshots\n0\t/nfs/secondary/volumes\n5.2M\t/nfs/secondary/configdrive\n0\t/nfs/secondary/null\n87G\t/nfs/secondary"
+}

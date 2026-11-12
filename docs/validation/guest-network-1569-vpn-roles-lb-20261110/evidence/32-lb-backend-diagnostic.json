@@ -1,0 +1,5 @@
+{
+  "exit": 0,
+  "out": "{\"ip\": \"lo               UNKNOWN        127.0.0.1/8 \\neth0             UP             169.254.176.127/16 \\neth1             UP             10.10.32.147/16 10.10.32.178/16 \\neth2             UP             10.236.32.1/26 \\neth3             UP             10.236.32.65/26 \", \"backendPrimary\": \"SSH-2.0-OpenSSH_8.7\", \"backendSecondary\": \"bash: connect: No route to host\\nbash: line 1: /dev/tcp/10.236.32.79/22: No route to host\"}",
+  "error": ""
+}

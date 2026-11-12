@@ -1,0 +1,74 @@
+{
+  "body": {
+    "bottom": 696.28125,
+    "height": 502.5625,
+    "left": 281,
+    "right": 999,
+    "top": 193.71875,
+    "width": 718,
+    "x": 281,
+    "y": 193.71875
+  },
+  "bodyOverflow": 0,
+  "dialogCount": 1,
+  "footer": {
+    "bottom": 761.28125,
+    "height": 65,
+    "left": 281,
+    "right": 999,
+    "top": 696.28125,
+    "width": 718,
+    "x": 281,
+    "y": 696.28125
+  },
+  "footerButtons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 745.28125,
+        "height": 32,
+        "left": 750.6875,
+        "right": 808.453125,
+        "top": 713.28125,
+        "width": 57.765625,
+        "x": 750.6875,
+        "y": 713.28125
+      },
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 745.28125,
+        "height": 32,
+        "left": 824.453125,
+        "right": 971,
+        "top": 713.28125,
+        "width": 146.546875,
+        "x": 824.453125,
+        "y": 713.28125
+      },
+      "text": "작업 결과 다시 조회"
+    }
+  ],
+  "form": {
+    "bottom": 666.28125,
+    "height": 62,
+    "left": 309,
+    "right": 971,
+    "top": 604.28125,
+    "width": 662,
+    "x": 309,
+    "y": 604.28125
+  },
+  "labels": [
+    {
+      "color": "rgba(255, 255, 255, 0.65)",
+      "text": "IP"
+    }
+  ],
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

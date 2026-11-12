@@ -1,0 +1,229 @@
+{
+  "cluster31": {
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788?tab=public.ip.addresses",
+    "viewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "theme": "light",
+    "pageScroll": {
+      "x": 0,
+      "y": 0,
+      "width": 1670,
+      "client": 1680
+    },
+    "main": {
+      "rect": {
+        "x": 256,
+        "y": 124,
+        "width": 1414,
+        "height": 773,
+        "top": 124,
+        "right": 1670,
+        "bottom": 897,
+        "left": 256
+      },
+      "scrollTop": 0,
+      "scrollHeight": 1065,
+      "clientHeight": 773
+    },
+    "bar": {
+      "rect": {
+        "x": 268,
+        "y": 124,
+        "width": 1380,
+        "height": 89,
+        "top": 124,
+        "right": 1648,
+        "bottom": 213,
+        "left": 268
+      },
+      "parent": {
+        "x": 268,
+        "y": 124,
+        "width": 1380,
+        "height": 1048.5,
+        "top": 124,
+        "right": 1648,
+        "bottom": 1172.5,
+        "left": 268
+      },
+      "position": "sticky",
+      "top": "0px",
+      "inline": null,
+      "card": {
+        "x": 268,
+        "y": 124,
+        "width": 1380,
+        "height": 89,
+        "top": 124,
+        "right": 1648,
+        "bottom": 213,
+        "left": 268
+      }
+    },
+    "affixCount": 0,
+    "refresh": [
+      {
+        "text": "업데이트",
+        "icon": true,
+        "disabled": false,
+        "rect": {
+          "x": 868.234375,
+          "y": 250,
+          "width": 105.53125,
+          "height": 32,
+          "top": 250,
+          "right": 973.765625,
+          "bottom": 282,
+          "left": 868.234375
+        }
+      },
+      {
+        "text": "IP 주소 범위 추가",
+        "icon": false,
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "업데이트",
+        "icon": true,
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ],
+    "project": "qa-gn1569-31-shared-reg"
+  },
+  "cluster32": {
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd?tab=guest.ip.range",
+    "viewport": {
+      "width": 1680,
+      "height": 841
+    },
+    "theme": "dark",
+    "pageScroll": {
+      "x": 0,
+      "y": 0,
+      "width": 1670,
+      "client": 1680
+    },
+    "main": {
+      "rect": {
+        "x": 256,
+        "y": 151,
+        "width": 1414,
+        "height": 690,
+        "top": 151,
+        "right": 1670,
+        "bottom": 841,
+        "left": 256
+      },
+      "scrollTop": 0,
+      "scrollHeight": 1065,
+      "clientHeight": 690
+    },
+    "bar": {
+      "rect": {
+        "x": 268,
+        "y": 151,
+        "width": 1380,
+        "height": 89,
+        "top": 151,
+        "right": 1648,
+        "bottom": 240,
+        "left": 268
+      },
+      "parent": {
+        "x": 268,
+        "y": 151,
+        "width": 1380,
+        "height": 1048.5,
+        "top": 151,
+        "right": 1648,
+        "bottom": 1199.5,
+        "left": 268
+      },
+      "position": "sticky",
+      "top": "0px",
+      "inline": null,
+      "card": {
+        "x": 268,
+        "y": 151,
+        "width": 1380,
+        "height": 89,
+        "top": 151,
+        "right": 1648,
+        "bottom": 240,
+        "left": 268
+      }
+    },
+    "affixCount": 0,
+    "refresh": [
+      {
+        "text": "업데이트",
+        "icon": true,
+        "disabled": false,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "IP 주소 범위 추가",
+        "icon": false,
+        "disabled": false,
+        "rect": {
+          "x": 868.234375,
+          "y": 277,
+          "width": 154.359375,
+          "height": 32,
+          "top": 277,
+          "right": 1022.59375,
+          "bottom": 309,
+          "left": 868.234375
+        }
+      },
+      {
+        "text": "업데이트",
+        "icon": true,
+        "disabled": false,
+        "rect": {
+          "x": 1030.59375,
+          "y": 277,
+          "width": 105.53125,
+          "height": 32,
+          "top": 277,
+          "right": 1136.125,
+          "bottom": 309,
+          "left": 1030.59375
+        }
+      }
+    ],
+    "project": "qa-gn1569-32-shared-reg"
+  },
+  "dialogsClosed": true
+}

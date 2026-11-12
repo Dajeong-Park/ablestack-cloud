@@ -1,0 +1,44 @@
+{
+  "results": [
+    {
+      "theme": "light",
+      "instant": {
+        "before": {
+          "theme": "light",
+          "origin": 1794321315270.3
+        },
+        "after": {
+          "theme": "light",
+          "origin": 1794321315270.3
+        }
+      },
+      "readOnlyInheritedTheme": true
+    },
+    {
+      "theme": "dark",
+      "instant": {
+        "before": {
+          "theme": "light",
+          "origin": 1794321315270.3
+        },
+        "after": {
+          "theme": "dark",
+          "origin": 1794321315270.3
+        }
+      },
+      "readOnlyInheritedTheme": true
+    }
+  ],
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "projectRoundTrip": true,
+  "sslGuardDefect": true,
+  "vpnWritesHidden": true
+}

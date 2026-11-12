@@ -1,0 +1,16 @@
+{
+  "samples": 1586,
+  "counts": {
+    "dnsUdp": 1586,
+    "dnsTcp": 1586,
+    "icmp": 1586,
+    "ssh": 1586
+  },
+  "first": "2026-11-11T17:12:19Z",
+  "last": "2026-11-11T17:38:46Z",
+  "failures": 0,
+  "sourceProof": {
+    "scriptSha256": "16ed6acda7c6b2bd7004709362dff09b36ffdf490ddca125a5f6e0fb69da9d06",
+    "parameters": "source='10.247.31.110';control='10.247.31.110';peer='10.247.31.58';dns='10.247.31.51';name='qa-gn1569-31-shared-reg-vm21.cs1a8cloud.internal'"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "body": {
+    "bottom": 621.5625,
+    "height": 353.140625,
+    "left": 281,
+    "right": 999,
+    "top": 268.421875,
+    "width": 718,
+    "x": 281,
+    "y": 268.421875
+  },
+  "bodyOverflow": 0,
+  "dialogCount": 1,
+  "footer": {
+    "bottom": 686.5625,
+    "height": 65,
+    "left": 281,
+    "right": 999,
+    "top": 621.5625,
+    "width": 718,
+    "x": 281,
+    "y": 621.5625
+  },
+  "footerButtons": [
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 670.5625,
+        "height": 32,
+        "left": 839.46875,
+        "right": 897.234375,
+        "top": 638.5625,
+        "width": 57.765625,
+        "x": 839.46875,
+        "y": 638.5625
+      },
+      "text": "취소"
+    },
+    {
+      "disabled": false,
+      "rect": {
+        "bottom": 670.5625,
+        "height": 32,
+        "left": 913.234375,
+        "right": 971,
+        "top": 638.5625,
+        "width": 57.765625,
+        "x": 913.234375,
+        "y": 638.5625
+      },
+      "text": "확인"
+    }
+  ],
+  "form": {
+    "bottom": 591.5625,
+    "height": 62,
+    "left": 309,
+    "right": 971,
+    "top": 529.5625,
+    "width": 662,
+    "x": 309,
+    "y": 529.5625
+  },
+  "labels": [
+    {
+      "color": "rgba(255, 255, 255, 0.65)",
+      "text": "IP"
+    }
+  ],
+  "viewport": {
+    "height": 900,
+    "width": 1280
+  }
+}

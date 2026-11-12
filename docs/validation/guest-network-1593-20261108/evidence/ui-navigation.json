@@ -1,0 +1,19 @@
+[
+  {
+    "cluster": 32,
+    "case": "L2-actions-details",
+    "text": "상세\n아이디\t2eddbc0a-1ae5-421c-a901-e2e6379d6bcc\n네트워크\tba14e62c-b442-4493-92e8-1c50e1b1bb10\n네트워크 이름\tqa-gn1569-32-r2-domainadmin-l2\n장치 ID\t2\n유형\tL2\nMAC 주소\t02:01:01:dc:00:01\nIP 주소\t—\n넷마스크\t—\n게이트웨이\t—\nIPv6 IP 주소\t—\nIPv6 게이트웨이\t—\nIPv6 CIDR\t—\n\nNIC 활성 상태: 활성화\n\n닫기"
+  },
+  {
+    "cluster": 31,
+    "case": "breadcrumb-list-detail-NIC",
+    "url": "http://10.10.31.10:8080/client/#/vm/3a46124e-fc10-472a-90af-1739982832e3?tab=nics",
+    "rows": 4
+  },
+  {
+    "cluster": 32,
+    "case": "breadcrumb-list-detail-NIC",
+    "url": "http://10.10.32.10:8080/client/#/vm/b594bcaf-bcbf-4145-83b0-0af06586ab04?tab=nics",
+    "rows": 4
+  }
+]

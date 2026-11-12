@@ -1,0 +1,1390 @@
+{
+  "network": {
+    "id": "87601b32-f211-4609-819f-6d0f4810b788",
+    "name": "qa-gn1569-31-shared-reg",
+    "displaytext": "QA1569 dedicated Shared usage/restart/revoke",
+    "broadcastdomaintype": "Vlan",
+    "traffictype": "Guest",
+    "gateway": "10.247.31.1",
+    "netmask": "255.255.255.0",
+    "cidr": "10.247.31.0/24",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "networkofferingid": "9536fc31-54ab-4c31-9200-77dddf1e1d3c",
+    "networkofferingname": "qa-gn1569-31-shared",
+    "networkofferingdisplaytext": "qa-gn1569-31-shared",
+    "networkofferingconservemode": true,
+    "networkofferingavailability": "Optional",
+    "issystem": false,
+    "state": "Setup",
+    "related": "87601b32-f211-4609-819f-6d0f4810b788",
+    "broadcasturi": "vlan://2790",
+    "dns1": "8.8.8.8",
+    "type": "Shared",
+    "vlan": "2790",
+    "acltype": "Account",
+    "account": "qa-gn1569-31-owner",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "service": [
+      {
+        "name": "UserData",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": []
+      },
+      {
+        "name": "Dhcp",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "DhcpAccrossMultipleSubnets",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      },
+      {
+        "name": "Dns",
+        "provider": [
+          {
+            "name": "VirtualRouter"
+          }
+        ],
+        "capability": [
+          {
+            "name": "AllowDnsSuffixModification",
+            "value": "true",
+            "canchooseservicecapability": false
+          }
+        ]
+      }
+    ],
+    "networkdomain": "cs1a8cloud.internal",
+    "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+    "restartrequired": false,
+    "specifyvlan": true,
+    "specifyipranges": true,
+    "canusefordeploy": true,
+    "ispersistent": false,
+    "tags": [
+      {
+        "key": "qa1569-ui-final",
+        "value": "한글 <b>리터럴</b>"
+      }
+    ],
+    "details": {
+      "hideIpAddressUsage": "false"
+    },
+    "displaynetwork": true,
+    "strechedl2subnet": false,
+    "redundantrouter": false,
+    "supportsvmautoscaling": false,
+    "created": "2026-11-09T14:32:54+0900",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "publicmtu": 1500,
+    "privatemtu": 1500,
+    "hasannotations": false
+  },
+  "router": {
+    "id": "32037dd3-3f5b-46a1-b12e-224a13233f64",
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "dns1": "8.8.8.8",
+    "networkdomain": "cs1a8cloud.internal",
+    "name": "r-1028-VM",
+    "podid": "2a9760c6-795d-48fc-bca1-77037c541279",
+    "podname": "Pod",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+    "hostname": "ablecube31-3",
+    "hostcontrolstate": "Enabled",
+    "hypervisor": "KVM",
+    "linklocalip": "169.254.49.38",
+    "linklocalmacaddress": "0e:00:a9:fe:0a:00",
+    "linklocalnetmask": "255.255.0.0",
+    "linklocalnetworkid": "9c160a81-c6f7-4c41-a683-15d7f8b5979f",
+    "guestipaddress": "10.247.31.51",
+    "guestmacaddress": "1e:1f:f7:00:03:c7",
+    "guestnetmask": "255.255.255.0",
+    "guestnetworkid": "87601b32-f211-4609-819f-6d0f4810b788",
+    "guestnetworkname": "qa-gn1569-31-shared-reg",
+    "templateid": "78f1d144-d065-4193-a169-18934f49b530",
+    "templatename": "SystemVM-gn1569-full-20261111-KVM",
+    "created": "2026-11-11T20:38:56+0900",
+    "state": "Running",
+    "account": "system",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domain": "ROOT",
+    "domainpath": "ROOT",
+    "serviceofferingid": "314ccb87-0e40-4438-9d1f-474c52e4e609",
+    "serviceofferingname": "System Offering For Software Router",
+    "isredundantrouter": false,
+    "redundantstate": "UNKNOWN",
+    "version": "4.23.0.0",
+    "scriptsversion": "630fd912606201fadc37057b13d55f23af2899de0f790783a7db743ad1f27240718d18490249c46c973c664380b1f2df6ad09459da73606b10de7e455b24acf6",
+    "role": "VIRTUAL_ROUTER",
+    "nic": [
+      {
+        "id": "96d85416-780f-4fb4-b316-50f4cb4fbae5",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "networkname": "qa-gn1569-31-shared-reg",
+        "netmask": "255.255.255.0",
+        "gateway": "10.247.31.1",
+        "ipaddress": "10.247.31.51",
+        "isolationuri": "vlan://2790",
+        "broadcasturi": "vlan://2790",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": true,
+        "macaddress": "1e:1f:f7:00:03:c7",
+        "mtu": 1500,
+        "enabled": true
+      },
+      {
+        "id": "a37b2df6-dc54-4de4-8ffc-bf4394e4fb5c",
+        "networkid": "9c160a81-c6f7-4c41-a683-15d7f8b5979f",
+        "netmask": "255.255.0.0",
+        "gateway": "169.254.0.1",
+        "ipaddress": "169.254.49.38",
+        "traffictype": "Control",
+        "isdefault": false,
+        "macaddress": "0e:00:a9:fe:0a:00",
+        "enabled": true
+      }
+    ],
+    "requiresupgrade": false,
+    "healthchecksfailed": false,
+    "softwareversion": "4.23.0.0",
+    "arch": "x86_64",
+    "hasannotations": false
+  },
+  "vm": {
+    "id": "bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+    "name": "qa-gn1569-31-shared-reg-vm21",
+    "displayname": "qa-gn1569-31-shared-reg-vm21",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "username": "admin",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "created": "2026-11-09T14:32:59+0900",
+    "lastupdated": "2026-11-09T14:34:35+0900",
+    "state": "Running",
+    "haenable": true,
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+    "hostname": "ablecube31-3",
+    "hostcontrolstate": "Enabled",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "templatetype": "USER",
+    "templateformat": "QCOW2",
+    "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "isos": [],
+    "isomaxcount": 2,
+    "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+    "serviceofferingname": "2Core 2GB",
+    "volumemutationblockedreason": "",
+    "cpunumber": 2,
+    "cpuspeed": 2000,
+    "memory": 2048,
+    "statslastsampled": 1794476161000,
+    "statscollectionstatus": "FRESH",
+    "cpuused": "0.15%",
+    "networkkbsread": 12,
+    "networkkbswrite": 0,
+    "diskkbsread": 0,
+    "diskkbswrite": 1,
+    "memorykbs": 2097152,
+    "memoryintfreekbs": 1223524,
+    "memorytargetkbs": 2097152,
+    "memoryintusablekbs": 0,
+    "diskioread": 0,
+    "diskiowrite": 2,
+    "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "rootdeviceid": 0,
+    "rootdevicetype": "ROOT",
+    "securitygroup": [],
+    "nic": [
+      {
+        "id": "7b7b1ad3-6a84-48c3-b63d-1174d0ac9548",
+        "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "networkname": "qa-gn1569-31-shared-reg-control",
+        "ipaddress": "172.26.31.21",
+        "isolationuri": "vlan://173",
+        "broadcasturi": "vlan://173",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": true,
+        "macaddress": "02:15:69:31:19:21",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "enabled": true
+      },
+      {
+        "id": "f11e8ce7-7802-4f4e-b678-53f9fbfe7bb8",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "networkname": "qa-gn1569-31-shared-reg",
+        "netmask": "255.255.255.0",
+        "gateway": "10.247.31.1",
+        "ipaddress": "10.247.31.58",
+        "isolationuri": "vlan://2790",
+        "broadcasturi": "vlan://2790",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:6e:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "1",
+        "enabled": true
+      },
+      {
+        "id": "fa6c8b1a-06eb-4e76-9b33-7600f8edafbc",
+        "networkid": "05fdfafc-9b68-404f-9018-bd9ff272b4bd",
+        "networkname": "qa-gn1569-31-systemvm-newrouter",
+        "netmask": "255.255.255.0",
+        "gateway": "10.248.31.1",
+        "ipaddress": "10.248.31.53",
+        "isolationuri": "vlan://3220",
+        "broadcasturi": "vlan://3220",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:7b:00:02",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "2",
+        "enabled": true
+      }
+    ],
+    "hypervisor": "KVM",
+    "ipaddress": "172.26.31.21",
+    "instancename": "i-440-976-VM",
+    "details": {
+      "Message.ReservedCapacityFreed.Flag": "false",
+      "tpmversion": "NONE",
+      "rootDiskController": "osdefault"
+    },
+    "clonefastsourcepowerallowed": false,
+    "clonefastpowerallowed": false,
+    "affinitygroup": [],
+    "displayvm": true,
+    "isdynamicallyscalable": true,
+    "deleteprotection": false,
+    "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "osdisplayname": "Rocky Linux 9",
+    "pooltype": "SharedMountPoint",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "vbmcport": "None",
+    "qemuagentversion": "9.0.0",
+    "kvdoenable": false,
+    "kvdoinuse": false,
+    "arch": "x86_64",
+    "guestnetwork": {
+      "status": "PARTIAL",
+      "observed": "2026-11-12T18:36:06+0900",
+      "lastsuccess": "2026-11-12T18:36:06+0900",
+      "ipv4addresses": [
+        "10.247.31.58/24",
+        "10.248.31.53/24",
+        "127.0.0.1/8",
+        "172.26.31.21/24"
+      ],
+      "ipv6addresses": [
+        "::1/128"
+      ],
+      "interfacecount": 4
+    },
+    "vbmcstatus": "Unallocated",
+    "tags": [],
+    "hasannotations": false
+  },
+  "peer": {
+    "id": "36fa510b-3746-419c-91bf-3f58f457a8ae",
+    "name": "qa-gn1569-31-shared-reg-vm22",
+    "displayname": "qa-gn1569-31-shared-reg-vm22",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "username": "admin",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "created": "2026-11-09T14:33:07+0900",
+    "lastupdated": "2026-11-09T14:34:42+0900",
+    "state": "Running",
+    "haenable": true,
+    "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+    "zonename": "Zone",
+    "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+    "hostname": "ablecube31-3",
+    "hostcontrolstate": "Enabled",
+    "templateid": "8d692729-7565-4e92-965b-ebaadc1efcb0",
+    "templatename": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "templatetype": "USER",
+    "templateformat": "QCOW2",
+    "templatedisplaytext": "Rocky-Linux-9-5-x86-64-Server-Cloud-Image.qcow2",
+    "isos": [],
+    "isomaxcount": 2,
+    "serviceofferingid": "cd928fb0-6e2b-4ec8-b02b-023aed55b2b1",
+    "serviceofferingname": "2Core 2GB",
+    "volumemutationblockedreason": "",
+    "cpunumber": 2,
+    "cpuspeed": 2000,
+    "memory": 2048,
+    "statslastsampled": 1794476161000,
+    "statscollectionstatus": "FRESH",
+    "cpuused": "0.21%",
+    "networkkbsread": 29,
+    "networkkbswrite": 0,
+    "diskkbsread": 0,
+    "diskkbswrite": 1,
+    "memorykbs": 2097152,
+    "memoryintfreekbs": 1257064,
+    "memorytargetkbs": 2097152,
+    "memoryintusablekbs": 0,
+    "diskioread": 0,
+    "diskiowrite": 2,
+    "guestosid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "rootdeviceid": 0,
+    "rootdevicetype": "ROOT",
+    "securitygroup": [],
+    "nic": [
+      {
+        "id": "f6c4ed10-0831-4e70-88f0-8c015bfb930b",
+        "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+        "networkname": "qa-gn1569-31-shared-reg-control",
+        "ipaddress": "172.26.31.22",
+        "isolationuri": "vlan://173",
+        "broadcasturi": "vlan://173",
+        "traffictype": "Guest",
+        "type": "L2",
+        "isdefault": true,
+        "macaddress": "02:15:69:31:19:22",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "0",
+        "enabled": true
+      },
+      {
+        "id": "fec07621-1a60-4fb9-acee-fa5ebe30c570",
+        "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+        "networkname": "qa-gn1569-31-shared-reg",
+        "netmask": "255.255.255.0",
+        "gateway": "10.247.31.1",
+        "ipaddress": "10.247.31.57",
+        "isolationuri": "vlan://2790",
+        "broadcasturi": "vlan://2790",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:6e:00:02",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "1",
+        "enabled": true
+      },
+      {
+        "id": "31c69722-15a6-4e39-b714-8d3be2962eb3",
+        "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+        "networkname": "qa-gn1569-31-scope-all",
+        "netmask": "255.255.255.192",
+        "gateway": "10.236.31.1",
+        "ipaddress": "10.236.31.10",
+        "isolationuri": "vlan://2830",
+        "broadcasturi": "vlan://2830",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:72:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "2",
+        "enabled": true
+      },
+      {
+        "id": "8cd12061-47b6-4d1d-b2ff-e0e1125c169f",
+        "networkid": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+        "networkname": "qa-gn1569-31-scope-domain",
+        "netmask": "255.255.255.192",
+        "gateway": "10.236.31.65",
+        "ipaddress": "10.236.31.74",
+        "isolationuri": "vlan://2831",
+        "broadcasturi": "vlan://2831",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:73:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "3",
+        "enabled": true
+      },
+      {
+        "id": "1eafe6dc-8bda-4d92-ad22-4ff1badc8c69",
+        "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+        "networkname": "qa-gn1569-31-scope-subdomains",
+        "netmask": "255.255.255.192",
+        "gateway": "10.236.31.129",
+        "ipaddress": "10.236.31.138",
+        "isolationuri": "vlan://2832",
+        "broadcasturi": "vlan://2832",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:74:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "4",
+        "enabled": true
+      },
+      {
+        "id": "01ff9448-4281-4dd3-a898-b60d0cba496a",
+        "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+        "networkname": "qa-gn1569-31-scope-account",
+        "netmask": "255.255.255.192",
+        "gateway": "10.236.31.193",
+        "ipaddress": "10.236.31.202",
+        "isolationuri": "vlan://2833",
+        "broadcasturi": "vlan://2833",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:75:00:01",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "5",
+        "enabled": true
+      },
+      {
+        "id": "18edab40-1413-43f7-90c6-78a42db7911f",
+        "networkid": "05fdfafc-9b68-404f-9018-bd9ff272b4bd",
+        "networkname": "qa-gn1569-31-systemvm-newrouter",
+        "netmask": "255.255.255.0",
+        "gateway": "10.248.31.1",
+        "ipaddress": "10.248.31.54",
+        "isolationuri": "vlan://3220",
+        "broadcasturi": "vlan://3220",
+        "traffictype": "Guest",
+        "type": "Shared",
+        "isdefault": false,
+        "macaddress": "02:1f:02:7b:00:03",
+        "secondaryip": [],
+        "extradhcpoption": [],
+        "deviceid": "6",
+        "enabled": true
+      }
+    ],
+    "hypervisor": "KVM",
+    "ipaddress": "172.26.31.22",
+    "instancename": "i-440-977-VM",
+    "details": {
+      "Message.ReservedCapacityFreed.Flag": "false",
+      "tpmversion": "NONE",
+      "rootDiskController": "osdefault"
+    },
+    "clonefastsourcepowerallowed": false,
+    "clonefastpowerallowed": false,
+    "affinitygroup": [],
+    "displayvm": true,
+    "isdynamicallyscalable": true,
+    "deleteprotection": false,
+    "ostypeid": "9708b6ac-b253-11f1-a895-0024814c313f",
+    "osdisplayname": "Rocky Linux 9",
+    "pooltype": "SharedMountPoint",
+    "receivedbytes": 0,
+    "sentbytes": 0,
+    "vbmcport": "None",
+    "qemuagentversion": "9.0.0",
+    "kvdoenable": false,
+    "kvdoinuse": false,
+    "arch": "x86_64",
+    "guestnetwork": {
+      "status": "PARTIAL",
+      "observed": "2026-11-12T18:36:06+0900",
+      "lastsuccess": "2026-11-12T18:36:06+0900",
+      "ipv4addresses": [
+        "10.236.31.10/26",
+        "10.236.31.138/26",
+        "10.236.31.202/26",
+        "10.236.31.74/26",
+        "10.247.31.57/24",
+        "10.248.31.54/24",
+        "127.0.0.1/8",
+        "172.26.31.22/24"
+      ],
+      "ipv6addresses": [
+        "::1/128"
+      ],
+      "interfacecount": 8
+    },
+    "vbmcstatus": "Unallocated",
+    "tags": [],
+    "hasannotations": false
+  },
+  "result": {
+    "rows": [
+      {
+        "utc": "2026-11-12T09:36:52Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:36:53Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:36:54Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:36:55Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:36:56Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:36:57Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:36:58Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:36:59Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:00Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:01Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:02Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:03Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:04Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:05Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:06Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:07Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:08Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:09Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:10Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:11Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:12Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:13Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:14Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:15Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:16Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:17Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:18Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:19Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:20Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:21Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:22Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:23Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:24Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:25Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:26Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:27Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:28Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:29Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:30Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:31Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:32Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:33Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:34Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:35Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:36Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:37Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:38Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:39Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:40Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:41Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:42Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:43Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:44Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:45Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:46Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:47Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:48Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:49Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:50Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:51Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:52Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:53Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:54Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:55Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:56Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:57Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:58Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:37:59Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:00Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:01Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:02Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:03Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:04Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:05Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:06Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:07Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:08Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:09Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:10Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:11Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:12Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:13Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:14Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:15Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:16Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:17Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:18Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:19Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:20Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:21Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:22Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:23Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:24Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:25Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:26Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:27Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:28Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:29Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:30Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:31Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:32Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:33Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:34Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:35Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:36Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:37Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:38Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:39Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:40Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:41Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:42Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:43Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:44Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:45Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:46Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:47Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:48Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:49Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:50Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      },
+      {
+        "utc": "2026-11-12T09:38:51Z",
+        "udp": true,
+        "tcp": true,
+        "ping": true,
+        "ssh": true
+      }
+    ],
+    "source": "10.247.31.58",
+    "peer": "10.247.31.57",
+    "dns": "10.247.31.51",
+    "fqdn": "qa-gn1569-31-shared-reg-vm21.cs1a8cloud.internal",
+    "interface": "ens4"
+  },
+  "cohost": true
+}

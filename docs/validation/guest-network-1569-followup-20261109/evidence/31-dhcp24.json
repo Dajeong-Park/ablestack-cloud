@@ -1,0 +1,50 @@
+{
+  "nic": {
+    "id": "a81e246d-e90d-40dd-8387-27815fb72169",
+    "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+    "networkname": "qa-gn1569-31-shared-reg",
+    "netmask": "255.255.255.0",
+    "gateway": "10.247.31.1",
+    "ipaddress": "10.247.31.54",
+    "isolationuri": "vlan://2790",
+    "broadcasturi": "vlan://2790",
+    "traffictype": "Guest",
+    "type": "Shared",
+    "isdefault": false,
+    "macaddress": "02:1f:02:6e:00:04",
+    "secondaryip": [],
+    "extradhcpoption": [],
+    "deviceid": "1",
+    "enabled": true
+  },
+  "before": "0 02:1f:02:6e:00:03 10.247.31.55 qa-gn1569-31-shared-reg-vm23 *\n0 02:1f:02:6e:00:02 10.247.31.57 qa-gn1569-31-shared-reg-vm22 *\n0 02:1f:02:6e:00:01 10.247.31.58 qa-gn1569-31-shared-reg-vm21 *\n",
+  "packets": {
+    "mode": "new",
+    "mac": "02:1f:02:6e:00:04",
+    "messages": [
+      {
+        "sent": 1794213336.3570395,
+        "received": 1794213336.3575218,
+        "type": 2,
+        "ip": "10.247.31.54",
+        "server": "10.247.31.51",
+        "xid": 639542625,
+        "leaseSeconds": 4294967295,
+        "requestCiaddr": "0.0.0.0",
+        "requestDestination": "255.255.255.255"
+      },
+      {
+        "sent": 1794213336.357537,
+        "received": 1794213336.3576558,
+        "type": 5,
+        "ip": "10.247.31.54",
+        "server": "10.247.31.51",
+        "xid": 639542625,
+        "leaseSeconds": 4294967295,
+        "requestCiaddr": "0.0.0.0",
+        "requestDestination": "255.255.255.255"
+      }
+    ]
+  },
+  "messages": "Nov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPDISCOVER(eth0) 02:1f:02:6e:00:04 \nNov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPOFFER(eth0) 10.247.31.54 02:1f:02:6e:00:04 \nNov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPREQUEST(eth0) 10.247.31.54 02:1f:02:6e:00:04 \nNov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPACK(eth0) 10.247.31.54 02:1f:02:6e:00:04 qa-gn1569-31-shared-reg-vm24\nNov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPDISCOVER(eth0) 02:1f:02:6e:00:04 \nNov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPOFFER(eth0) 10.247.31.54 02:1f:02:6e:00:04 \nNov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPREQUEST(eth0) 10.247.31.54 02:1f:02:6e:00:04 \nNov  9 08:35:35 dnsmasq-dhcp[2628]: DHCPACK(eth0) 10.247.31.54 02:1f:02:6e:00:04 qa-gn1569-31-shared-reg-vm24\nNov  9 08:35:36 dnsmasq-dhcp[2628]: DHCPDISCOVER(eth0) 02:1f:02:6e:00:04 \nNov  9 08:35:36 dnsmasq-dhcp[2628]: DHCPOFFER(eth0) 10.247.31.54 02:1f:02:6e:00:04 \nNov  9 08:35:36 dnsmasq-dhcp[2628]: DHCPREQUEST(eth0) 10.247.31.54 02:1f:02:6e:00:04 \nNov  9 08:35:36 dnsmasq-dhcp[2628]: DHCPACK(eth0) 10.247.31.54 02:1f:02:6e:00:04 qa-gn1569-31-shared-reg-vm24\n"
+}

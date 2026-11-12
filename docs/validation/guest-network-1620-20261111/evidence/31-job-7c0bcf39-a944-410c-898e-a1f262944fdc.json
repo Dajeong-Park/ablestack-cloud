@@ -1,0 +1,7 @@
+{
+  "command": "removeCertFromLoadBalancer",
+  "params": {
+    "lbruleid": "f4540e57-d79f-454c-8ec1-e0c77023a3a7"
+  },
+  "jobid": "7c0bcf39-a944-410c-898e-a1f262944fdc"
+}

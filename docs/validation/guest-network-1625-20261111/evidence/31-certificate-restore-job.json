@@ -1,0 +1,12 @@
+{
+  "target": {
+    "id": "ec942970-8d50-410e-8e0d-9814281061d8",
+    "name": "qa-gn1569-31-tls-rotation-20261111",
+    "fingerprint": "09:76:44:3C:27:C6:99:71:D9:62:4B:F7:B4:F8:A2:11:07:49:A8:F7:67:67:68:91:75:32:2B:13:43:ED:CD:C0"
+  },
+  "job": {
+    "jobid": "c87528eb-b1d1-48a3-a884-bf215f726ec0",
+    "jobstatus": 1,
+    "success": true
+  }
+}

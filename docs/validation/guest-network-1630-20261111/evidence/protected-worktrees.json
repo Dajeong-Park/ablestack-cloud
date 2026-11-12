@@ -1,0 +1,12 @@
+{
+  "native": {
+    "worktrees": 8,
+    "files": 13148,
+    "identical": true
+  },
+  "wsl": {
+    "protectedWorktrees": 14,
+    "protectedFiles": 107,
+    "identical": true
+  }
+}

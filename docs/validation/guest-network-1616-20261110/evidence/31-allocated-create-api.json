@@ -1,0 +1,25 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1616-31-allocated-lb",
+      "description": "1616 retained first-start validation",
+      "sourceport": "19016",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "sourceipaddressnetworkid": "ad1a8462-ed3d-46f6-894e-e630f0484c13",
+      "scheme": "Internal",
+      "account": "qa-gn1569-31-owner",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "customjobid": "29984e99-284e-42b2-a39d-009426f480e4"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "id": "6e9cde24-21d1-487e-b429-b1b5f2dbc1db",
+        "jobid": "29984e99-284e-42b2-a39d-009426f480e4"
+      }
+    }
+  }
+]

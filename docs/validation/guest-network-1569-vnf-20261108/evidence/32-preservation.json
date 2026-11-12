@@ -1,0 +1,36 @@
+{
+  "existingVmCounts": 3,
+  "existingNicCounts": 16,
+  "existingVmNicsHostStateUnchanged": true,
+  "networkCount": 46,
+  "networkIdsOwnersOfferingsUnchanged": true,
+  "targetNetworkStateChanges": [
+    {
+      "id": "15a7e449-7333-401a-a7f1-448283423553",
+      "name": "qa-gn1594-32-project-shared",
+      "state": "Setup",
+      "broadcasturi": "vlan://199"
+    },
+    {
+      "id": "dfc7f6c6-0906-48d7-abe6-4a1fe4fe11f3",
+      "name": "qa-gn1594-32-project-l2",
+      "state": "Implemented",
+      "broadcasturi": "vlan://199"
+    },
+    {
+      "id": "c50abf1a-d037-498a-b29f-bcc5ad4e2d68",
+      "name": "qa-gn1594-32-project-nat",
+      "state": "Implemented",
+      "broadcasturi": "vlan://191"
+    }
+  ],
+  "membersUnchanged": true,
+  "otherResourceLimitsUnchanged": true,
+  "primaryStorageGiB": {
+    "before": 200,
+    "after": 500
+  },
+  "newVnfId": "d4b7e358-98c8-475d-b8aa-893479539a36",
+  "newVnfNics": 3,
+  "newPrivateProjectTemplateId": "70e17a67-263d-4993-86f4-22904df772da"
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "role": "admin",
+    "projectMember": true,
+    "networkVisible": false,
+    "vmVisible": true
+  },
+  {
+    "role": "owner",
+    "projectMember": true,
+    "networkVisible": false,
+    "vmVisible": true
+  },
+  {
+    "role": "member",
+    "projectMember": true,
+    "networkVisible": false,
+    "vmVisible": true
+  },
+  {
+    "role": "readonly",
+    "projectMember": true,
+    "networkVisible": false,
+    "vmVisible": true
+  },
+  {
+    "role": "domainadmin",
+    "projectMember": true,
+    "networkVisible": false,
+    "vmVisible": true
+  },
+  {
+    "role": "peer",
+    "projectMember": false,
+    "networkVisible": false,
+    "vmVisible": false
+  },
+  {
+    "role": "outsider",
+    "projectMember": false,
+    "networkVisible": false,
+    "vmVisible": false
+  }
+]

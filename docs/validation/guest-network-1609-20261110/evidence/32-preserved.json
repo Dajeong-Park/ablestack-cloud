@@ -1,0 +1,19 @@
+{
+  "network": true,
+  "virtualmachine": true,
+  "autoscalevmgroup": true,
+  "rules": true,
+  "virtualmachineInventoryExact": true,
+  "additionalVMs": [],
+  "backends": true,
+  "backendRuntimeCountersExcluded": true,
+  "counts": {
+    "network": 98,
+    "virtualmachine": 85,
+    "autoscalevmgroup": 7,
+    "rules": 8
+  },
+  "allVpnKeysUnchanged": true,
+  "s2sConnected": true,
+  "remoteRunning": true
+}

@@ -1,0 +1,16 @@
+{
+  "jobid": "e3c12f91-c99c-4292-8b05-47d9d4a05f4b",
+  "jobstatus": 1,
+  "remoteaccessvpn": {
+    "publicipid": "ea568ffa-ed12-4d07-b174-f12f3fe80bd2",
+    "publicip": "10.10.31.148",
+    "iprange": "10.1.2.3-10.1.2.8",
+    "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+    "project": "qa-gn1569-31-shared-reg",
+    "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+    "domain": "qa-gn1569-31-domain",
+    "domainpath": "ROOT/qa-gn1569-31-domain",
+    "state": "Running",
+    "id": "274daf25-66b3-4b17-8ac6-f9cffacd41e2"
+  }
+}

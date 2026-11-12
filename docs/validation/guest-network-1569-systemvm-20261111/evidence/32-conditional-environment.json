@@ -1,0 +1,114 @@
+{
+  "dnsZones": {
+    "httpStatus": 200
+  },
+  "dnsServers": {
+    "httpStatus": 200
+  },
+  "asn": {
+    "httpStatus": 200
+  },
+  "bgp": {
+    "httpStatus": 200
+  },
+  "systemvm": {
+    "httpStatus": 200,
+    "count": 2,
+    "systemvm": [
+      {
+        "id": "59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+        "systemvmtype": "consoleproxy",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "dns1": "8.8.8.8",
+        "gateway": "10.10.0.1",
+        "name": "v-1-VM",
+        "podid": "6c4b9931-7684-4ba0-bcd6-9d8e97fd6cad",
+        "podname": "Pod",
+        "hostid": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+        "hostname": "ablecube32-2",
+        "hostcontrolstate": "Enabled",
+        "hypervisor": "KVM",
+        "privateip": "10.10.32.8",
+        "privatemacaddress": "1e:00:0f:00:00:02",
+        "privatenetmask": "255.255.0.0",
+        "linklocalip": "169.254.188.56",
+        "linklocalmacaddress": "0e:00:a9:fe:bc:38",
+        "linklocalnetmask": "255.255.0.0",
+        "publicip": "10.10.32.5",
+        "publicmacaddress": "1e:00:37:00:00:03",
+        "publicnetmask": "255.255.0.0",
+        "templateid": "f109233d-9f06-4420-b2bf-c8393d95df4f",
+        "templatename": "SystemVM Template (KVM)",
+        "created": "2026-09-17T11:13:35+0900",
+        "state": "Running",
+        "agentstate": "Up",
+        "activeviewersessions": 1,
+        "disconnected": "2026-10-31T18:40:44+0900",
+        "version": "4.21.0.0-Mold.Diplo-202609021300",
+        "isdynamicallyscalable": false,
+        "serviceofferingid": "d7bb3fdd-60ac-4bce-ac42-5c09dbd85592",
+        "serviceofferingname": "System Offering For Console Proxy",
+        "arch": "x86_64",
+        "hasannotations": false
+      },
+      {
+        "id": "eff7e920-577d-4576-8b54-933261930cc9",
+        "systemvmtype": "secondarystoragevm",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "zonename": "Zone",
+        "dns1": "8.8.8.8",
+        "gateway": "10.10.0.1",
+        "name": "s-27-VM",
+        "podid": "6c4b9931-7684-4ba0-bcd6-9d8e97fd6cad",
+        "podname": "Pod",
+        "hostid": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+        "hostname": "ablecube32-3",
+        "hostcontrolstate": "Enabled",
+        "hypervisor": "KVM",
+        "privateip": "10.10.32.7",
+        "privatemacaddress": "1e:00:17:00:00:01",
+        "privatenetmask": "255.255.0.0",
+        "linklocalip": "169.254.105.238",
+        "linklocalmacaddress": "0e:00:a9:fe:69:ee",
+        "linklocalnetmask": "255.255.0.0",
+        "publicip": "10.10.32.6",
+        "publicmacaddress": "1e:00:83:00:00:04",
+        "publicnetmask": "255.255.0.0",
+        "templateid": "fabff053-3f1d-4c10-99f4-7bf627ee75b1",
+        "templatename": "systemvmtemplate-x86_64-kvm-202610011153.qcow2.bz2",
+        "created": "2026-10-01T12:15:46+0900",
+        "state": "Running",
+        "agentstate": "Up",
+        "disconnected": "2026-10-31T18:40:44+0900",
+        "version": "4.21.0.0-Mold.Diplo-202609171036",
+        "isdynamicallyscalable": false,
+        "serviceofferingid": "5ea129d2-4950-4f0f-8869-ecdf693b71b9",
+        "serviceofferingname": "System Offering For Secondary Storage VM",
+        "arch": "x86_64",
+        "hasannotations": false
+      }
+    ]
+  },
+  "netdevices": {
+    "httpStatus": 200
+  },
+  "customactions": {
+    "httpStatus": 200,
+    "count": 1,
+    "extension": [
+      {
+        "id": "8c569406-c338-11f1-a4bf-00248162d5a9",
+        "name": "MaaS",
+        "description": "Baremetal Extension for Canonical MaaS written in Python",
+        "type": "Orchestrator",
+        "path": "/usr/share/cloudstack-management/extensions/MaaS/maas.py",
+        "pathready": true,
+        "isuserdefined": false,
+        "orchestratorrequirespreparevm": true,
+        "state": "Enabled",
+        "created": "2026-10-09T10:51:46+0900"
+      }
+    ]
+  }
+}

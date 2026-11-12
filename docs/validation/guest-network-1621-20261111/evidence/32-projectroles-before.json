@@ -1,0 +1,27 @@
+{
+  "httpStatus": 200,
+  "count": 3,
+  "projectrole": [
+    {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "9f8c4c7d-cca9-4a50-888a-85b27c9b30da",
+      "name": "qa-gn1569-32-scope-readonly",
+      "description": "Dedicated Shared regression read-only project role",
+      "ispublic": true
+    },
+    {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "a5db412e-ad60-40aa-a687-e3ef9aab0b38",
+      "name": "qa-gn1569-32-vpn-lb-readonly",
+      "description": "QA1569 VPN/LB read-only regression; existing roles unchanged",
+      "ispublic": true
+    },
+    {
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "id": "fc642104-82da-4d81-96e2-fd29b7791d09",
+      "name": "qa-gn1620-32-ssl-deny",
+      "description": "QA1620 deny SSL certificate mutation, retain original roles",
+      "ispublic": true
+    }
+  ]
+}

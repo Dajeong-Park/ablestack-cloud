@@ -1,0 +1,27 @@
+[
+  {
+    "command": "createLoadBalancer",
+    "params": {
+      "command": "createLoadBalancer",
+      "name": "qa-gn1612-32-review",
+      "description": "1612 retained draft",
+      "sourceipaddress": "10.236.32.79",
+      "sourceport": "19012",
+      "instanceport": "22",
+      "algorithm": "source",
+      "networkid": "258eda56-c559-432d-91cc-1c5224852008",
+      "sourceipaddressnetworkid": "258eda56-c559-432d-91cc-1c5224852008",
+      "scheme": "Internal",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "customjobid": "d80006c8-6efd-45a3-951d-b2a73ddc250b"
+    },
+    "response": {
+      "createloadbalancerresponse": {
+        "uuidList": [],
+        "errorcode": 533,
+        "cserrorcode": 9999,
+        "errortext": "Unable to acquire IP address for network Network {\"id\": 520, \"name\": \"qa-gn1569-32-lb-int-reg-internalTier\", \"uuid\": \"258eda56-c559-432d-91cc-1c5224852008\", \"networkofferingid\": 11}"
+      }
+    }
+  }
+]

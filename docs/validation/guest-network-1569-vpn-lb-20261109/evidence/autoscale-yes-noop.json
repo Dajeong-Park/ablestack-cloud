@@ -1,0 +1,13 @@
+{
+  "clusters": [
+    {
+      "cluster": 31,
+      "createLoadBalancerRequests": 0
+    },
+    {
+      "cluster": 32,
+      "createLoadBalancerRequests": 0
+    }
+  ],
+  "reproduction": "new LB dialog, default targetMode select, AutoScale yes, Add click or Enter: dialog unchanged; backend selector hidden; no API request"
+}

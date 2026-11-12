@@ -1,0 +1,19 @@
+{
+  "jobid": "a5257c94-d0cc-4180-b028-f278bc2a93f4",
+  "jobstatus": 1,
+  "stickinesspolicies": {
+    "lbruleid": "2c616bad-c85b-4382-8161-ecab50be7d57",
+    "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "domain": "qa-gn1569-32-domain",
+    "stickinesspolicy": [
+      {
+        "id": "43bc872f-7ff1-4189-bb5a-ecf83da0ccf1",
+        "name": "qa-gn1569-32-p07-denial-restored",
+        "methodname": "SourceBased",
+        "fordisplay": true,
+        "params": {}
+      }
+    ]
+  }
+}

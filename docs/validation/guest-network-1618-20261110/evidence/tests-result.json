@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "commands": [
+    "cd ui",
+    "npx vue-cli-service lint --no-fix src/components/network/InternalLbRules.vue src/components/view/DetailsTab.vue src/components/view/ListView.vue src/views/AutogenView.vue tests/unit/components/InternalLbRules.spec.js",
+    "CI=true NODE_OPTIONS=--openssl-legacy-provider npm run test:unit -- --runTestsByPath tests/unit/components/InternalLbRules.spec.js tests/unit/components/widgets/Status.spec.js tests/unit/components/network/VpnPsk.spec.js tests/unit/components/view/SSHKeyPairNamePresentation.spec.js tests/unit/components/offering/LinkedDiskOffering.spec.js tests/unit/components/SharedDetailTabs.spec.js tests/unit/views/network/InternalLbDialog.spec.js tests/unit/views/network/LbBackendRemoval.spec.js tests/unit/views/ProjectMenu.spec.js tests/unit/views/network/NetworkTabs.spec.js tests/unit/views/compute/AutoScaleUiStandard.spec.js --runInBand --watch=false --watchAll=false --coverage=false --forceExit"
+  ],
+  "fullCloudBuild": false,
+  "wslExt4": true
+}
