@@ -1,0 +1,9 @@
+{
+  "command": "assignCertToLoadBalancer",
+  "params": {
+    "lbruleid": "dd36a10c-b2fa-4611-a662-f20c9c4736e4",
+    "certid": "581a9d02-3868-4ee3-9d35-61133200d36c",
+    "forced": true
+  },
+  "jobid": "0a9cf67e-e4c3-42fa-8d1d-a20424bc6267"
+}

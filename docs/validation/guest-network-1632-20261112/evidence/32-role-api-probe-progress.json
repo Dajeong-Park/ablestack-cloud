@@ -1,0 +1,1694 @@
+[
+  {
+    "role": "root",
+    "scopedApiExposure": {
+      "listSslCerts": true,
+      "uploadSslCert": true,
+      "deleteSslCert": true
+    },
+    "reads": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 200,
+          "count": 12,
+          "sslcert": [
+            {
+              "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "6552aeae44fa3361161283b030cc2e99be3c643746b883fc66b12a43dae3937e",
+                "bytes": 1139
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+              "loadbalancerrulelist": [
+                "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+              ],
+              "name": "qa-gn1569-32-tls"
+            },
+            {
+              "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "10d4f5bfc84e67e9ed143691f3e5febb36910498bf0f3d301fa1ace84da119bf",
+                "bytes": 1164
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+              "name": "qa-gn1569-32-tls-rotation-20261111"
+            },
+            {
+              "id": "79a93b5d-99b1-4ba6-9da7-06b7896b6329",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "name": "qa-gn1569-32-tls-no-chain-20261111"
+            },
+            {
+              "id": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "d14c886665043661b6fe2044c47a3e7c4e25034469de1c0f1bfdbef86899613f",
+                "bytes": 2291
+              },
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "loadbalancerrulelist": [
+                "66c01dd9-10dc-47af-a8d2-9175e2eeced3"
+              ],
+              "name": "qa-gn1569-32-valid-chain-no-revocation"
+            },
+            {
+              "id": "bf0c064d-3268-46a2-ac3d-c155bed66dc7",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1569-32-revocation-good-false"
+            },
+            {
+              "id": "d2d2108f-355a-41d3-a414-5817ef33341a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-before-good-false"
+            },
+            {
+              "id": "581a9d02-3868-4ee3-9d35-61133200d36c",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "loadbalancerrulelist": [
+                "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+              ],
+              "name": "qa-gn1632-32-default-dual-good"
+            },
+            {
+              "id": "cb9d417c-99f6-4a06-af5b-e78fea1162ba",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "c0ec3868fe9f48d06c58074e210f2c7d8dddf37575d2f2d9dc5437de2ab40009",
+                "bytes": 1334
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "5f7811b42eee845ba53212e7c1e5b48551c09a808cac346730779d310714fc51",
+                "bytes": 2433
+              },
+              "fingerprint": "C1:0F:14:4E:B8:C4:E4:04:8D:A9:3C:15:6D:BB:65:E4:30:B8:64:1B:D2:3F:08:D5:B2:08:92:25:F7:58:63:2F",
+              "name": "qa-gn1632-32-default-crl-good"
+            },
+            {
+              "id": "ca0f3bc1-e3a7-496a-8b55-96f23e711b2b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-default-ocsp-good"
+            },
+            {
+              "id": "812e9a86-e6ef-4d1c-85db-ecd246e9f73b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-retry-normal"
+            },
+            {
+              "id": "dab534c7-ce93-45f2-98ca-d096bf85acc0",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-readOnly-denied"
+            },
+            {
+              "id": "9cdda9bc-db0c-417e-949a-f3110b1fedb1",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-deny-rejected"
+            }
+          ]
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 530,
+          "uuidList": [],
+          "errorcode": 530,
+          "cserrorcode": 0,
+          "errortext": "Invalid parameters either certificate ID or Account ID or Loadbalancer ID or Project ID required"
+        }
+      }
+    ]
+  },
+  {
+    "role": "owner",
+    "scopedApiExposure": {
+      "listSslCerts": true,
+      "uploadSslCert": true,
+      "deleteSslCert": true
+    },
+    "reads": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 200,
+          "count": 12,
+          "sslcert": [
+            {
+              "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "6552aeae44fa3361161283b030cc2e99be3c643746b883fc66b12a43dae3937e",
+                "bytes": 1139
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+              "loadbalancerrulelist": [
+                "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+              ],
+              "name": "qa-gn1569-32-tls"
+            },
+            {
+              "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "10d4f5bfc84e67e9ed143691f3e5febb36910498bf0f3d301fa1ace84da119bf",
+                "bytes": 1164
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+              "name": "qa-gn1569-32-tls-rotation-20261111"
+            },
+            {
+              "id": "79a93b5d-99b1-4ba6-9da7-06b7896b6329",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "name": "qa-gn1569-32-tls-no-chain-20261111"
+            },
+            {
+              "id": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "d14c886665043661b6fe2044c47a3e7c4e25034469de1c0f1bfdbef86899613f",
+                "bytes": 2291
+              },
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "loadbalancerrulelist": [
+                "66c01dd9-10dc-47af-a8d2-9175e2eeced3"
+              ],
+              "name": "qa-gn1569-32-valid-chain-no-revocation"
+            },
+            {
+              "id": "bf0c064d-3268-46a2-ac3d-c155bed66dc7",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1569-32-revocation-good-false"
+            },
+            {
+              "id": "d2d2108f-355a-41d3-a414-5817ef33341a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-before-good-false"
+            },
+            {
+              "id": "581a9d02-3868-4ee3-9d35-61133200d36c",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "loadbalancerrulelist": [
+                "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+              ],
+              "name": "qa-gn1632-32-default-dual-good"
+            },
+            {
+              "id": "cb9d417c-99f6-4a06-af5b-e78fea1162ba",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "c0ec3868fe9f48d06c58074e210f2c7d8dddf37575d2f2d9dc5437de2ab40009",
+                "bytes": 1334
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "5f7811b42eee845ba53212e7c1e5b48551c09a808cac346730779d310714fc51",
+                "bytes": 2433
+              },
+              "fingerprint": "C1:0F:14:4E:B8:C4:E4:04:8D:A9:3C:15:6D:BB:65:E4:30:B8:64:1B:D2:3F:08:D5:B2:08:92:25:F7:58:63:2F",
+              "name": "qa-gn1632-32-default-crl-good"
+            },
+            {
+              "id": "ca0f3bc1-e3a7-496a-8b55-96f23e711b2b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-default-ocsp-good"
+            },
+            {
+              "id": "812e9a86-e6ef-4d1c-85db-ecd246e9f73b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-retry-normal"
+            },
+            {
+              "id": "dab534c7-ce93-45f2-98ca-d096bf85acc0",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-readOnly-denied"
+            },
+            {
+              "id": "9cdda9bc-db0c-417e-949a-f3110b1fedb1",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-deny-rejected"
+            }
+          ]
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 530,
+          "uuidList": [],
+          "errorcode": 530,
+          "cserrorcode": 0,
+          "errortext": "Internal error executing command, please contact your system administrator"
+        }
+      }
+    ]
+  },
+  {
+    "role": "peer",
+    "scopedApiExposure": {
+      "listSslCerts": true,
+      "uploadSslCert": true,
+      "deleteSslCert": true
+    },
+    "reads": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 200,
+          "count": 12,
+          "sslcert": [
+            {
+              "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "6552aeae44fa3361161283b030cc2e99be3c643746b883fc66b12a43dae3937e",
+                "bytes": 1139
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+              "loadbalancerrulelist": [
+                "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+              ],
+              "name": "qa-gn1569-32-tls"
+            },
+            {
+              "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "10d4f5bfc84e67e9ed143691f3e5febb36910498bf0f3d301fa1ace84da119bf",
+                "bytes": 1164
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+              "name": "qa-gn1569-32-tls-rotation-20261111"
+            },
+            {
+              "id": "79a93b5d-99b1-4ba6-9da7-06b7896b6329",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "name": "qa-gn1569-32-tls-no-chain-20261111"
+            },
+            {
+              "id": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "d14c886665043661b6fe2044c47a3e7c4e25034469de1c0f1bfdbef86899613f",
+                "bytes": 2291
+              },
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "loadbalancerrulelist": [
+                "66c01dd9-10dc-47af-a8d2-9175e2eeced3"
+              ],
+              "name": "qa-gn1569-32-valid-chain-no-revocation"
+            },
+            {
+              "id": "bf0c064d-3268-46a2-ac3d-c155bed66dc7",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1569-32-revocation-good-false"
+            },
+            {
+              "id": "d2d2108f-355a-41d3-a414-5817ef33341a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-before-good-false"
+            },
+            {
+              "id": "581a9d02-3868-4ee3-9d35-61133200d36c",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "loadbalancerrulelist": [
+                "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+              ],
+              "name": "qa-gn1632-32-default-dual-good"
+            },
+            {
+              "id": "cb9d417c-99f6-4a06-af5b-e78fea1162ba",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "c0ec3868fe9f48d06c58074e210f2c7d8dddf37575d2f2d9dc5437de2ab40009",
+                "bytes": 1334
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "5f7811b42eee845ba53212e7c1e5b48551c09a808cac346730779d310714fc51",
+                "bytes": 2433
+              },
+              "fingerprint": "C1:0F:14:4E:B8:C4:E4:04:8D:A9:3C:15:6D:BB:65:E4:30:B8:64:1B:D2:3F:08:D5:B2:08:92:25:F7:58:63:2F",
+              "name": "qa-gn1632-32-default-crl-good"
+            },
+            {
+              "id": "ca0f3bc1-e3a7-496a-8b55-96f23e711b2b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-default-ocsp-good"
+            },
+            {
+              "id": "812e9a86-e6ef-4d1c-85db-ecd246e9f73b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-retry-normal"
+            },
+            {
+              "id": "dab534c7-ce93-45f2-98ca-d096bf85acc0",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-readOnly-denied"
+            },
+            {
+              "id": "9cdda9bc-db0c-417e-949a-f3110b1fedb1",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-deny-rejected"
+            }
+          ]
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 530,
+          "uuidList": [],
+          "errorcode": 530,
+          "cserrorcode": 0,
+          "errortext": "Internal error executing command, please contact your system administrator"
+        }
+      }
+    ]
+  },
+  {
+    "role": "customAllow",
+    "scopedApiExposure": {
+      "listSslCerts": true,
+      "uploadSslCert": true,
+      "deleteSslCert": true
+    },
+    "reads": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 200,
+          "count": 12,
+          "sslcert": [
+            {
+              "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "6552aeae44fa3361161283b030cc2e99be3c643746b883fc66b12a43dae3937e",
+                "bytes": 1139
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+              "loadbalancerrulelist": [
+                "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+              ],
+              "name": "qa-gn1569-32-tls"
+            },
+            {
+              "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "10d4f5bfc84e67e9ed143691f3e5febb36910498bf0f3d301fa1ace84da119bf",
+                "bytes": 1164
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+              "name": "qa-gn1569-32-tls-rotation-20261111"
+            },
+            {
+              "id": "79a93b5d-99b1-4ba6-9da7-06b7896b6329",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "name": "qa-gn1569-32-tls-no-chain-20261111"
+            },
+            {
+              "id": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "d14c886665043661b6fe2044c47a3e7c4e25034469de1c0f1bfdbef86899613f",
+                "bytes": 2291
+              },
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "loadbalancerrulelist": [
+                "66c01dd9-10dc-47af-a8d2-9175e2eeced3"
+              ],
+              "name": "qa-gn1569-32-valid-chain-no-revocation"
+            },
+            {
+              "id": "bf0c064d-3268-46a2-ac3d-c155bed66dc7",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1569-32-revocation-good-false"
+            },
+            {
+              "id": "d2d2108f-355a-41d3-a414-5817ef33341a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-before-good-false"
+            },
+            {
+              "id": "581a9d02-3868-4ee3-9d35-61133200d36c",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "loadbalancerrulelist": [
+                "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+              ],
+              "name": "qa-gn1632-32-default-dual-good"
+            },
+            {
+              "id": "cb9d417c-99f6-4a06-af5b-e78fea1162ba",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "c0ec3868fe9f48d06c58074e210f2c7d8dddf37575d2f2d9dc5437de2ab40009",
+                "bytes": 1334
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "5f7811b42eee845ba53212e7c1e5b48551c09a808cac346730779d310714fc51",
+                "bytes": 2433
+              },
+              "fingerprint": "C1:0F:14:4E:B8:C4:E4:04:8D:A9:3C:15:6D:BB:65:E4:30:B8:64:1B:D2:3F:08:D5:B2:08:92:25:F7:58:63:2F",
+              "name": "qa-gn1632-32-default-crl-good"
+            },
+            {
+              "id": "ca0f3bc1-e3a7-496a-8b55-96f23e711b2b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-default-ocsp-good"
+            },
+            {
+              "id": "812e9a86-e6ef-4d1c-85db-ecd246e9f73b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-retry-normal"
+            },
+            {
+              "id": "dab534c7-ce93-45f2-98ca-d096bf85acc0",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-readOnly-denied"
+            },
+            {
+              "id": "9cdda9bc-db0c-417e-949a-f3110b1fedb1",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-deny-rejected"
+            }
+          ]
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 530,
+          "uuidList": [],
+          "errorcode": 530,
+          "cserrorcode": 0,
+          "errortext": "Internal error executing command, please contact your system administrator"
+        }
+      }
+    ],
+    "assignmentPolicyCheck": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The command is not available for this load balancer."
+        }
+      }
+    ]
+  },
+  {
+    "role": "deny",
+    "scopedApiExposure": {
+      "listSslCerts": true,
+      "uploadSslCert": true,
+      "deleteSslCert": true
+    },
+    "reads": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 200,
+          "count": 12,
+          "sslcert": [
+            {
+              "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "6552aeae44fa3361161283b030cc2e99be3c643746b883fc66b12a43dae3937e",
+                "bytes": 1139
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+              "loadbalancerrulelist": [
+                "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+              ],
+              "name": "qa-gn1569-32-tls"
+            },
+            {
+              "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "10d4f5bfc84e67e9ed143691f3e5febb36910498bf0f3d301fa1ace84da119bf",
+                "bytes": 1164
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+              "name": "qa-gn1569-32-tls-rotation-20261111"
+            },
+            {
+              "id": "79a93b5d-99b1-4ba6-9da7-06b7896b6329",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "name": "qa-gn1569-32-tls-no-chain-20261111"
+            },
+            {
+              "id": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "d14c886665043661b6fe2044c47a3e7c4e25034469de1c0f1bfdbef86899613f",
+                "bytes": 2291
+              },
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "loadbalancerrulelist": [
+                "66c01dd9-10dc-47af-a8d2-9175e2eeced3"
+              ],
+              "name": "qa-gn1569-32-valid-chain-no-revocation"
+            },
+            {
+              "id": "bf0c064d-3268-46a2-ac3d-c155bed66dc7",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1569-32-revocation-good-false"
+            },
+            {
+              "id": "d2d2108f-355a-41d3-a414-5817ef33341a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-before-good-false"
+            },
+            {
+              "id": "581a9d02-3868-4ee3-9d35-61133200d36c",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "loadbalancerrulelist": [
+                "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+              ],
+              "name": "qa-gn1632-32-default-dual-good"
+            },
+            {
+              "id": "cb9d417c-99f6-4a06-af5b-e78fea1162ba",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "c0ec3868fe9f48d06c58074e210f2c7d8dddf37575d2f2d9dc5437de2ab40009",
+                "bytes": 1334
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "5f7811b42eee845ba53212e7c1e5b48551c09a808cac346730779d310714fc51",
+                "bytes": 2433
+              },
+              "fingerprint": "C1:0F:14:4E:B8:C4:E4:04:8D:A9:3C:15:6D:BB:65:E4:30:B8:64:1B:D2:3F:08:D5:B2:08:92:25:F7:58:63:2F",
+              "name": "qa-gn1632-32-default-crl-good"
+            },
+            {
+              "id": "ca0f3bc1-e3a7-496a-8b55-96f23e711b2b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-default-ocsp-good"
+            },
+            {
+              "id": "812e9a86-e6ef-4d1c-85db-ecd246e9f73b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-retry-normal"
+            },
+            {
+              "id": "dab534c7-ce93-45f2-98ca-d096bf85acc0",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-readOnly-denied"
+            },
+            {
+              "id": "9cdda9bc-db0c-417e-949a-f3110b1fedb1",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-deny-rejected"
+            }
+          ]
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 530,
+          "uuidList": [],
+          "errorcode": 530,
+          "cserrorcode": 0,
+          "errortext": "Internal error executing command, please contact your system administrator"
+        }
+      }
+    ],
+    "assignmentPolicyCheck": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The command is not available for this load balancer."
+        }
+      }
+    ]
+  },
+  {
+    "role": "customReadDeny",
+    "scopedApiExposure": {
+      "listSslCerts": false,
+      "uploadSslCert": true,
+      "deleteSslCert": true
+    },
+    "reads": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The given command 'listSslCerts' either does not exist, is not available for user."
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 530,
+          "uuidList": [],
+          "errorcode": 530,
+          "cserrorcode": 0,
+          "errortext": "Internal error executing command, please contact your system administrator"
+        }
+      }
+    ],
+    "assignmentPolicyCheck": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The given command 'assignCertToLoadBalancer' either does not exist, is not available for user."
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 401,
+          "uuidList": [],
+          "errorcode": 401,
+          "cserrorcode": 9999,
+          "errortext": "The command is not available for this load balancer."
+        }
+      }
+    ]
+  },
+  {
+    "role": "readOnly",
+    "scopedApiExposure": {
+      "listSslCerts": true,
+      "uploadSslCert": true,
+      "deleteSslCert": true
+    },
+    "reads": [
+      {
+        "explicitProject": true,
+        "result": {
+          "httpStatus": 200,
+          "count": 12,
+          "sslcert": [
+            {
+              "id": "90ee4288-25da-4d74-861c-aada3b5af923",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "6552aeae44fa3361161283b030cc2e99be3c643746b883fc66b12a43dae3937e",
+                "bytes": 1139
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "8E:46:04:BE:BD:80:D5:7F:09:3F:F2:83:75:6D:E2:CF:BD:43:59:C0:C4:70:DA:2C:36:47:C4:83:A0:33:75:4F",
+              "loadbalancerrulelist": [
+                "2063b0c2-f345-4f9b-9fcf-f4b515e9dd5c"
+              ],
+              "name": "qa-gn1569-32-tls"
+            },
+            {
+              "id": "da9225e9-e11e-494b-b292-57993dc2e045",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "10d4f5bfc84e67e9ed143691f3e5febb36910498bf0f3d301fa1ace84da119bf",
+                "bytes": 1164
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "2D:13:04:72:3B:3D:BF:6B:19:B0:DC:E4:B7:0D:EF:B9:7E:68:85:DF:EC:95:9F:DA:A0:9A:18:F1:71:55:C3:59",
+              "name": "qa-gn1569-32-tls-rotation-20261111"
+            },
+            {
+              "id": "79a93b5d-99b1-4ba6-9da7-06b7896b6329",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "name": "qa-gn1569-32-tls-no-chain-20261111"
+            },
+            {
+              "id": "5960b7bd-8cf5-4fa5-8d52-ad7d63e8913a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "5edd399bc9fd29ae439f97ea852b35dfe6a1e824910968f0cea4ac443bfe2025",
+                "bytes": 1249
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "d14c886665043661b6fe2044c47a3e7c4e25034469de1c0f1bfdbef86899613f",
+                "bytes": 2291
+              },
+              "fingerprint": "7F:47:A0:AB:C6:BC:B0:21:17:6A:C6:CD:A5:31:0C:BA:4B:E4:E4:EB:49:A0:0E:D0:50:8A:46:D2:94:DA:2F:20",
+              "loadbalancerrulelist": [
+                "66c01dd9-10dc-47af-a8d2-9175e2eeced3"
+              ],
+              "name": "qa-gn1569-32-valid-chain-no-revocation"
+            },
+            {
+              "id": "bf0c064d-3268-46a2-ac3d-c155bed66dc7",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1569-32-revocation-good-false"
+            },
+            {
+              "id": "d2d2108f-355a-41d3-a414-5817ef33341a",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-before-good-false"
+            },
+            {
+              "id": "581a9d02-3868-4ee3-9d35-61133200d36c",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "loadbalancerrulelist": [
+                "dd36a10c-b2fa-4611-a662-f20c9c4736e4"
+              ],
+              "name": "qa-gn1632-32-default-dual-good"
+            },
+            {
+              "id": "cb9d417c-99f6-4a06-af5b-e78fea1162ba",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "c0ec3868fe9f48d06c58074e210f2c7d8dddf37575d2f2d9dc5437de2ab40009",
+                "bytes": 1334
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "5f7811b42eee845ba53212e7c1e5b48551c09a808cac346730779d310714fc51",
+                "bytes": 2433
+              },
+              "fingerprint": "C1:0F:14:4E:B8:C4:E4:04:8D:A9:3C:15:6D:BB:65:E4:30:B8:64:1B:D2:3F:08:D5:B2:08:92:25:F7:58:63:2F",
+              "name": "qa-gn1632-32-default-crl-good"
+            },
+            {
+              "id": "ca0f3bc1-e3a7-496a-8b55-96f23e711b2b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-default-ocsp-good"
+            },
+            {
+              "id": "812e9a86-e6ef-4d1c-85db-ecd246e9f73b",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+                "bytes": 1342
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+                "bytes": 2445
+              },
+              "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+              "name": "qa-gn1632-32-retry-normal"
+            },
+            {
+              "id": "dab534c7-ce93-45f2-98ca-d096bf85acc0",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-readOnly-denied"
+            },
+            {
+              "id": "9cdda9bc-db0c-417e-949a-f3110b1fedb1",
+              "certificate": {
+                "pemOmitted": true,
+                "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+                "bytes": 1395
+              },
+              "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+              "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+              "project": "qa-gn1569-32-shared-reg",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "certchain": {
+                "pemOmitted": true,
+                "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+                "bytes": 2490
+              },
+              "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+              "name": "qa-gn1632-32-deny-rejected"
+            }
+          ]
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "httpStatus": 530,
+          "uuidList": [],
+          "errorcode": 530,
+          "cserrorcode": 0,
+          "errortext": "Internal error executing command, please contact your system administrator"
+        }
+      }
+    ],
+    "assignmentPolicyCheck": [
+      {
+        "explicitProject": true,
+        "result": {
+          "jobid": "8e3a18b1-65e8-47f3-89e7-6ec0c8bff7f0",
+          "jobstatus": 1,
+          "success": true
+        }
+      },
+      {
+        "explicitProject": false,
+        "result": {
+          "jobid": "0a9cf67e-e4c3-42fa-8d1d-a20424bc6267",
+          "jobstatus": 1,
+          "success": true
+        }
+      }
+    ]
+  }
+]

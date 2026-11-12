@@ -1,0 +1,16 @@
+{
+  "native": {
+    "worktrees": 8,
+    "files": 13389,
+    "sameHeadStatusDiffAndFileHashes": true
+  },
+  "wsl": {
+    "worktrees": 14,
+    "files": 107,
+    "sameHeadStatusDiffAndFileHashes": true
+  },
+  "excludedPrivateScratchDirectories": [
+    "guest-network-1632-20261112",
+    "guest-network-1569-p07-20261111"
+  ]
+}

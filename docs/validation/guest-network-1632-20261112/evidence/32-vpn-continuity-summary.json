@@ -1,0 +1,31 @@
+{
+  "filesUnchanged": true,
+  "exactProcessIdentityUnchanged": true,
+  "monitor": {
+    "samples": 212,
+    "pingPassed": 212,
+    "tcpPassed": 212,
+    "pids": [
+      "3206"
+    ],
+    "interfaceIndices": [
+      4
+    ],
+    "failed": [],
+    "first": {
+      "utc": "2026-11-12T06:25:32Z",
+      "interfaceIndex": 4,
+      "pppdPid": "3206",
+      "ping": true,
+      "tcp": true
+    },
+    "last": {
+      "utc": "2026-11-12T06:29:04Z",
+      "interfaceIndex": 4,
+      "pppdPid": "3206",
+      "ping": true,
+      "tcp": true
+    }
+  },
+  "transport": "one external WSL Linux client, sequential clusters, not simultaneous users"
+}

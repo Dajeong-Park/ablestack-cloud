@@ -1,0 +1,15 @@
+{
+  "clusters": {
+    "31": {
+      "accepted": 6,
+      "rejected": 13
+    },
+    "32": {
+      "accepted": 6,
+      "rejected": 13
+    }
+  },
+  "defaultParameterOmitted": true,
+  "total": 38,
+  "falseControlIsNotFix": true
+}

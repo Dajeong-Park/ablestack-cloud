@@ -1,0 +1,28 @@
+{
+  "leaf": "good",
+  "enabledRevocationParameterOmitted": true,
+  "result": {
+    "httpStatus": 200,
+    "sslcert": {
+      "id": "ba20bba4-5d2c-4206-be77-082de94904f3",
+      "certificate": {
+        "pemOmitted": true,
+        "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+        "bytes": 1395
+      },
+      "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "certchain": {
+        "pemOmitted": true,
+        "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+        "bytes": 2490
+      },
+      "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+      "name": "qa-gn1632-32-crl-fallback-on-ocsp-unavailable"
+    }
+  },
+  "seconds": 0.05359930000122404
+}

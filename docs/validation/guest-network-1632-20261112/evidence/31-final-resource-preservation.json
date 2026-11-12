@@ -1,0 +1,363 @@
+{
+  "vmCount": 10,
+  "nicCount": 30,
+  "exactVmNicShapeUnchanged": true,
+  "rolesAndMembershipUnchanged": true,
+  "rolePermissionsUnchanged": true,
+  "targetRuntimeNic": {
+    "exit": 0,
+    "out": " Interface   Type     Source           Model    MAC\n-------------------------------------------------------------------\n vnet578     bridge   breno12399-152   virtio   02:1f:02:77:00:01\n\n",
+    "error": ""
+  },
+  "projectVmShape": [
+    {
+      "id": "0aa598e6-2c1c-43d0-addd-614466c02992",
+      "name": "autoScaleVm-qa-gn1569-31-autoscale-1-ohingc",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "58416ffb-b5a6-4d7f-a6d2-54ed12552d36",
+          "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "macaddress": "02:1f:02:77:00:03",
+          "ipaddress": "10.234.31.138",
+          "isdefault": true,
+          "deviceid": "0"
+        }
+      ]
+    },
+    {
+      "id": "17c683ba-1798-44b0-a4fb-f40572a4b207",
+      "name": "qa-gn1628-31-subnet-vm26",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "771b7b45-4ce8-463e-96ed-4296da2016c7",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "macaddress": "02:16:28:31:49:26",
+          "ipaddress": "10.249.31.102",
+          "isdefault": false,
+          "deviceid": "1"
+        },
+        {
+          "id": "cc5bb654-cf9f-4ef9-83e7-dff7d1b65ee1",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "macaddress": "02:16:28:31:26:26",
+          "ipaddress": "172.26.31.26",
+          "isdefault": true,
+          "deviceid": "0"
+        }
+      ]
+    },
+    {
+      "id": "23f01208-cacd-4ac2-bdf9-39235325e923",
+      "name": "autoScaleVm-qa-gn1607-31-default-1-dsqime",
+      "state": "Running",
+      "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+      "nics": [
+        {
+          "id": "18b0cdb3-3973-4489-9b7e-29d0859e06b4",
+          "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "macaddress": "02:1f:02:77:00:06",
+          "ipaddress": "10.234.31.249",
+          "isdefault": true,
+          "deviceid": "0"
+        }
+      ]
+    },
+    {
+      "id": "36fa510b-3746-419c-91bf-3f58f457a8ae",
+      "name": "qa-gn1569-31-shared-reg-vm22",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "01ff9448-4281-4dd3-a898-b60d0cba496a",
+          "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "macaddress": "02:1f:02:75:00:01",
+          "ipaddress": "10.236.31.202",
+          "isdefault": false,
+          "deviceid": "5"
+        },
+        {
+          "id": "18edab40-1413-43f7-90c6-78a42db7911f",
+          "networkid": "05fdfafc-9b68-404f-9018-bd9ff272b4bd",
+          "macaddress": "02:1f:02:7b:00:03",
+          "ipaddress": "10.248.31.54",
+          "isdefault": false,
+          "deviceid": "6"
+        },
+        {
+          "id": "1eafe6dc-8bda-4d92-ad22-4ff1badc8c69",
+          "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+          "macaddress": "02:1f:02:74:00:01",
+          "ipaddress": "10.236.31.138",
+          "isdefault": false,
+          "deviceid": "4"
+        },
+        {
+          "id": "31c69722-15a6-4e39-b714-8d3be2962eb3",
+          "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+          "macaddress": "02:1f:02:72:00:01",
+          "ipaddress": "10.236.31.10",
+          "isdefault": false,
+          "deviceid": "2"
+        },
+        {
+          "id": "8cd12061-47b6-4d1d-b2ff-e0e1125c169f",
+          "networkid": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+          "macaddress": "02:1f:02:73:00:01",
+          "ipaddress": "10.236.31.74",
+          "isdefault": false,
+          "deviceid": "3"
+        },
+        {
+          "id": "f6c4ed10-0831-4e70-88f0-8c015bfb930b",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "macaddress": "02:15:69:31:19:22",
+          "ipaddress": "172.26.31.22",
+          "isdefault": true,
+          "deviceid": "0"
+        },
+        {
+          "id": "fec07621-1a60-4fb9-acee-fa5ebe30c570",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "macaddress": "02:1f:02:6e:00:02",
+          "ipaddress": "10.247.31.57",
+          "isdefault": false,
+          "deviceid": "1"
+        }
+      ]
+    },
+    {
+      "id": "390e0a4d-2456-485c-8415-8c6f36b8ffc9",
+      "name": "qa-gn1569-31-shared-reg-vm23",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "3fe762e4-d216-4a97-8c5c-5fbf933372e3",
+          "networkid": "b92b3567-2b70-47db-8c62-89bec746b5fd",
+          "macaddress": "02:1f:02:73:00:02",
+          "ipaddress": "10.236.31.76",
+          "isdefault": false,
+          "deviceid": "3"
+        },
+        {
+          "id": "85eb4734-7570-4b63-ad69-a15affbdc6a2",
+          "networkid": "b55e3a03-25f0-4790-b576-71d736b5995b",
+          "macaddress": "02:1f:02:72:00:02",
+          "ipaddress": "10.236.31.13",
+          "isdefault": false,
+          "deviceid": "2"
+        },
+        {
+          "id": "9468d90d-93d3-4fe7-83ca-bd718fa0f917",
+          "networkid": "6a09e40c-0585-4e08-bc3c-c5003f178cd9",
+          "macaddress": "02:1f:02:75:00:02",
+          "ipaddress": "10.236.31.204",
+          "isdefault": false,
+          "deviceid": "5"
+        },
+        {
+          "id": "9e2291e6-733c-465b-8417-e2af13f99619",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "macaddress": "02:1f:02:6e:00:03",
+          "ipaddress": "10.247.31.55",
+          "isdefault": false,
+          "deviceid": "1"
+        },
+        {
+          "id": "aecb315b-7741-45fb-9725-dc3a664440d5",
+          "networkid": "2de83b57-a297-4bae-868e-cd31d1292f12",
+          "macaddress": "02:1f:02:74:00:02",
+          "ipaddress": "10.236.31.140",
+          "isdefault": false,
+          "deviceid": "4"
+        },
+        {
+          "id": "ef43e03a-ebf4-469a-9aa1-2370f35adcff",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "macaddress": "02:15:69:31:19:23",
+          "ipaddress": "172.26.31.23",
+          "isdefault": true,
+          "deviceid": "0"
+        }
+      ]
+    },
+    {
+      "id": "4d8dc91e-db04-4d4a-b53b-0275fe680e67",
+      "name": "qa-gn1569-31-shared-reg-vm24",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "a81e246d-e90d-40dd-8387-27815fb72169",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "macaddress": "02:1f:02:6e:00:04",
+          "ipaddress": "10.247.31.54",
+          "isdefault": false,
+          "deviceid": "1"
+        },
+        {
+          "id": "c5203517-19cc-49b1-9b6d-7a5f5c42f7c2",
+          "networkid": "5a3960c8-ddca-441d-977f-0ff0fa4f6f0a",
+          "macaddress": "02:1f:02:76:00:01",
+          "ipaddress": "10.239.31.121",
+          "isdefault": false,
+          "deviceid": "2"
+        },
+        {
+          "id": "f6b78aea-ed4e-419a-9e36-d1e0f08c082f",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "macaddress": "02:15:69:31:19:24",
+          "ipaddress": "172.26.31.24",
+          "isdefault": true,
+          "deviceid": "0"
+        }
+      ]
+    },
+    {
+      "id": "551067c6-fbfb-40df-8313-037e21de78cf",
+      "name": "qa-gn1569-31-vpn-lb-vm",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "40f7075e-2430-483c-a3c9-bf5b68d9a3d2",
+          "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "macaddress": "02:1f:02:77:00:01",
+          "ipaddress": "10.234.31.6",
+          "isdefault": true,
+          "deviceid": "0"
+        }
+      ]
+    },
+    {
+      "id": "582e270c-5fbd-42fc-8c5c-f632f1212910",
+      "name": "autoScaleVm-qa-gn1607-31-saved-1-bdsotd",
+      "state": "Running",
+      "hostid": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+      "nics": [
+        {
+          "id": "a3c2ee05-b38c-449b-a2c5-46cae7f1eba6",
+          "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "macaddress": "02:1f:02:77:00:07",
+          "ipaddress": "10.234.31.239",
+          "isdefault": true,
+          "deviceid": "0"
+        }
+      ]
+    },
+    {
+      "id": "5989ced4-0f5a-4e18-9179-46531819d602",
+      "name": "qa-gn1569-31-systemvm-vm25",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "098cbe1a-ae7b-4645-9239-2c1e099e0a70",
+          "networkid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+          "macaddress": "02:1f:02:77:00:10",
+          "ipaddress": "10.234.31.146",
+          "isdefault": false,
+          "deviceid": "1"
+        },
+        {
+          "id": "68a2b645-687e-4953-96a2-a9223efcc034",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "macaddress": "02:1f:02:6e:00:05",
+          "ipaddress": "10.247.31.110",
+          "isdefault": false,
+          "deviceid": "3"
+        },
+        {
+          "id": "a4379aca-1fb5-494f-9441-69626217d134",
+          "networkid": "dad25fd1-a475-47fc-bab3-c7ee4968a3df",
+          "macaddress": "02:16:30:31:00:01",
+          "ipaddress": "10.250.31.10",
+          "isdefault": false,
+          "deviceid": "4"
+        },
+        {
+          "id": "aba48ac8-d75b-48ee-bdf0-4d5ebf010ac9",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "macaddress": "02:15:69:31:26:25",
+          "ipaddress": "172.26.31.25",
+          "isdefault": true,
+          "deviceid": "0"
+        },
+        {
+          "id": "e45ca1d2-ced8-4717-9070-d4fad1ff6bb2",
+          "networkid": "05fdfafc-9b68-404f-9018-bd9ff272b4bd",
+          "macaddress": "02:1f:02:7b:00:01",
+          "ipaddress": "10.248.31.51",
+          "isdefault": false,
+          "deviceid": "2"
+        }
+      ]
+    },
+    {
+      "id": "bc8ec9c0-6cdb-4091-afcf-1bd289019fc6",
+      "name": "qa-gn1569-31-shared-reg-vm21",
+      "state": "Running",
+      "hostid": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "nics": [
+        {
+          "id": "7b7b1ad3-6a84-48c3-b63d-1174d0ac9548",
+          "networkid": "a803353e-3992-47fd-b9d5-df789b264f73",
+          "macaddress": "02:15:69:31:19:21",
+          "ipaddress": "172.26.31.21",
+          "isdefault": true,
+          "deviceid": "0"
+        },
+        {
+          "id": "f11e8ce7-7802-4f4e-b678-53f9fbfe7bb8",
+          "networkid": "87601b32-f211-4609-819f-6d0f4810b788",
+          "macaddress": "02:1f:02:6e:00:01",
+          "ipaddress": "10.247.31.58",
+          "isdefault": false,
+          "deviceid": "1"
+        },
+        {
+          "id": "fa6c8b1a-06eb-4e76-9b33-7600f8edafbc",
+          "networkid": "05fdfafc-9b68-404f-9018-bd9ff272b4bd",
+          "macaddress": "02:1f:02:7b:00:02",
+          "ipaddress": "10.248.31.53",
+          "isdefault": false,
+          "deviceid": "2"
+        }
+      ]
+    }
+  ],
+  "boundCert": {
+    "httpStatus": 200,
+    "count": 1,
+    "sslcert": [
+      {
+        "id": "f62b72ac-6991-4aa4-8b78-4734c7b5ac66",
+        "certificate": {
+          "pemOmitted": true,
+          "sha256": "f54f0cf0610e4bf8a2a061fd90275d8c731c8200785f4ef3b9a6d9ff9250dfe0",
+          "bytes": 1395
+        },
+        "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+        "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+        "project": "qa-gn1569-31-shared-reg",
+        "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+        "domain": "qa-gn1569-31-domain",
+        "certchain": {
+          "pemOmitted": true,
+          "sha256": "8efe6a9ddfa32d8b63e4c76270bc2338fe886750625f7ede1670bb609f1747ef",
+          "bytes": 2490
+        },
+        "fingerprint": "09:27:0C:C2:97:97:C2:63:A7:BE:AE:C4:1E:7A:E4:EA:0A:33:3B:B9:1F:26:DA:1E:6D:5E:82:16:65:B6:AC:7B",
+        "loadbalancerrulelist": [
+          "9649f2d1-d4ba-42e9-8022-d764dfb45611"
+        ],
+        "name": "qa-gn1632-31-ui-recovery"
+      }
+    ]
+  }
+}

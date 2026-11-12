@@ -27,6 +27,18 @@ under the License.
 
 # Epic 63개 시나리오와 상세 탭 결과
 
+<!-- gn1632-result:start -->
+## 2026-11-12 #1632 SSL 기본 폐기 검사 복원·검증 완료
+
+전체 PEM 경로/Root 누락과 폐기 정보 부재를 수정했다. 제한된 HTTP·정확한 내부 origin 예외(기본 empty)·서명/issuer/현재성 검증 CRL/OCSP를 적용하고 전역 비활성/무검증 fallback을 사용하지 않았다.31/32 기본 true 생략 요청38회(정상6·거부13씩), CRL/OCSP·폐기/unknown/서명/CertID/오래된 응답·offline/redirect/oversize·실제3초 timeout/fallback/복구, 실제 UI 등록/실패 입력 보존·32 연속 클릭 POST1건, UI 할당 job1·실제 HAProxy 문법/점검·3인증서 TLS verify0/HTTP200을 확인했다.
+
+SSL 변경 구간 기존 VPN ICMP/SSH31 각911/911·32 각212/212·동일 PPP와 설정, UI 후 VPN 재접속도 통과했다. 기존21 VM/63 NIC·역할 규칙 보존이다. UI 기본 true·MoldDialog md·세로 폼/모바일 footer·툴바/페이지 이동을 적용하고 VM 기준·양쪽12반응형/테마 조합·즉시4전환·프로젝트 왕복·허용/거부 비관리자 UI와 원본 JPEG56개를 확인했다. 로컬 Java53·Checkstyle0·UI Jest28/ESLint/build, 정적675파일씩·HTTP200이다. 전체 Cloud 빌드/수동 Actions 없음이다.
+
+**P07 양쪽 실패→부분. 최신 양쪽 실패0/부분54/환경6/제외3·전체 완료0.** #1632만 완료, #1569/1554 OPEN·PR1577 Draft 유지. 다음은 #1569 준비된 잔여 역할/서비스·조건부 통합→63행 종료 평가다. 기존 환경 차단/분산 측정 제외를 유지하고 확인 자원을 남겼다.
+
+[설계·결과·캡처](../guest-network-1632-20261112/README.ko.md) · [실환경·한계](../guest-network-1632-20261112/test-results.ko.md) · [후속](../guest-network-1632-20261112/followups.ko.md). 아래는 이전 시점 기록이다.
+<!-- gn1632-result:end -->
+
 <!-- gn1631-result:start -->
 ## 2026-11-12 #1631 Public NIC MAC 유지 구현·검증 완료
 

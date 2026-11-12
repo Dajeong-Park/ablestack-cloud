@@ -1,0 +1,55 @@
+{
+  "doubleClick": true,
+  "pending": {
+    "fields": {
+      "name": {
+        "matches": true,
+        "bytes": 24
+      },
+      "certificate": {
+        "matches": true,
+        "bytes": 1342
+      },
+      "signingKey": {
+        "matches": true,
+        "bytes": 1704
+      },
+      "certchain": {
+        "matches": true,
+        "bytes": 2445
+      }
+    },
+    "checked": true,
+    "submitDisabled": true
+  },
+  "afterFailure": {
+    "fields": {
+      "name": {
+        "matches": true,
+        "bytes": 24
+      },
+      "certificate": {
+        "matches": true,
+        "bytes": 1342
+      },
+      "signingKey": {
+        "matches": true,
+        "bytes": 1704
+      },
+      "certchain": {
+        "matches": true,
+        "bytes": 2445
+      }
+    },
+    "checked": true,
+    "submitDisabled": false
+  },
+  "uploadRequestCount": 1,
+  "enabledrevocationcheck": true,
+  "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+  "keySha256": "0233b065c474a04299a0a1947e0ef43cc6d5544b5b4a2d41c8684dc7a08f9b30",
+  "httpStatus": 530,
+  "errorcode": 530,
+  "errortext": "Invalid certificate chain: revocation UNAVAILABLE",
+  "capturePemClearedAfterComparison": true
+}

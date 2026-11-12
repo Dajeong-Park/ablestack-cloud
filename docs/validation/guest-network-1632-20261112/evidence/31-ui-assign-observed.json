@@ -1,0 +1,9 @@
+{
+  "jobid": "368a1aca-d0a9-4738-be5b-579e37be14b4",
+  "command": "assignCertToLoadBalancer",
+  "lbruleid": "9649f2d1-d4ba-42e9-8022-d764dfb45611",
+  "selectedCertid": "f62b72ac-6991-4aa4-8b78-4734c7b5ac66",
+  "currentName": "qa-gn1632-31-ui-recovery",
+  "visibleOperationComplete": true,
+  "source": "actual UI selected certificate and operation status"
+}

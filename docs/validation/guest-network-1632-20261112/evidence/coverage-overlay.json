@@ -1,0 +1,26 @@
+{
+  "row": "P07",
+  "updates": {
+    "31": {
+      "before": "fail",
+      "after": "partial"
+    },
+    "32": {
+      "before": "fail",
+      "after": "partial"
+    }
+  },
+  "countsPerCluster": {
+    "fail": 0,
+    "partial": 54,
+    "environment": 6,
+    "excluded": 3,
+    "complete": 0
+  },
+  "closeOnly": 1632,
+  "keepOpen": [
+    1554,
+    1569
+  ],
+  "prDraft": 1577
+}

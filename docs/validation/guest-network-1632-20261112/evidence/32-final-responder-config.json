@@ -1,0 +1,19 @@
+{
+  "httpStatus": 200,
+  "count": 1,
+  "configuration": [
+    {
+      "category": "Network",
+      "group": "Miscellaneous",
+      "subgroup": "Others",
+      "name": "ssl.revocation.allowed.internal.endpoints",
+      "value": "http://10.10.31.10:20683",
+      "defaultvalue": "",
+      "description": "Exact HTTP(S) origins permitted for private-address SSL CRL/OCSP responders, separated by commas. Empty blocks private addresses. Loopback, link-local, unspecified and multicast are always blocked.",
+      "isdynamic": true,
+      "component": "CertService",
+      "displaytext": "Ssl revocation allowed internal endpoints",
+      "type": "String"
+    }
+  ]
+}

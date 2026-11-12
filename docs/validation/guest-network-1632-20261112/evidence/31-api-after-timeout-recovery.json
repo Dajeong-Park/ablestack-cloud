@@ -1,0 +1,28 @@
+{
+  "leaf": "ocsp-good",
+  "enabledRevocationParameterOmitted": true,
+  "result": {
+    "httpStatus": 200,
+    "sslcert": {
+      "id": "640a4543-c093-4c12-9c4b-19f7db85afcf",
+      "certificate": {
+        "pemOmitted": true,
+        "sha256": "3dd7ae3ea6ae871325b31008f722cfad679898b6cf64ea07bd6dd6ab0a03fb77",
+        "bytes": 1342
+      },
+      "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "certchain": {
+        "pemOmitted": true,
+        "sha256": "f4424a0261c6021c563e2aa817e17fe9dd3b93d8f24caa5c8d3dee87a7d777f2",
+        "bytes": 2445
+      },
+      "fingerprint": "EB:7C:D7:0E:2D:59:8F:EF:D0:11:1F:A7:02:F5:D1:58:5C:D1:6F:93:9B:20:23:10:D8:E1:6F:E7:A4:FF:8F:BC",
+      "name": "qa-gn1632-31-after-timeout-recovery"
+    }
+  },
+  "seconds": 0.02936520000366727
+}
