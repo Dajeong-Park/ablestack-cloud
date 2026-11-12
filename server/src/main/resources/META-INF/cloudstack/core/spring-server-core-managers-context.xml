@@ -276,6 +276,9 @@
     <bean id="networkHelper"
         class="com.cloud.network.router.NetworkHelperImpl" />
 
+    <bean id="routerPublicMacManager"
+        class="com.cloud.network.router.RouterPublicMacManager" />
+
     <bean id="vpcNetworkHelper"
         class="com.cloud.network.router.VpcNetworkHelperImpl" />
 
