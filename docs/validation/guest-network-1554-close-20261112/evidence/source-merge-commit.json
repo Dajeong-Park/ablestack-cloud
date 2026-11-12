@@ -1,0 +1,11 @@
+{
+  "sourceMergeCommit": "a2d86317cbc47cc0bd7cd66ae1e8c8f06c22f01a",
+  "parents": [
+    "8aa09ec46d02c72f0cde0adabd4fe4ddef3dc271",
+    "239d2d243f6bd2fb713e7e0cc404385209e9a086"
+  ],
+  "qualifiedTree": "91c9d76c48b7546e7e5e3c386f269ced0b52f58f",
+  "upstream": "239d2d243f6bd2fb713e7e0cc404385209e9a086",
+  "workingTreeClean": true,
+  "bundle": "/home/ablecloud/work/gn1554-close-20261112/merge-source.bundle"
+}

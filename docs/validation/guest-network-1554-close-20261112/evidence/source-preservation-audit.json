@@ -1,0 +1,28 @@
+{
+  "validatedHead": "8aa09ec46d02c72f0cde0adabd4fe4ddef3dc271",
+  "mergeBase": "45944c40dedef7ff6b377db94225cf598c82739d",
+  "integratedUpstream": "239d2d243f6bd2fb713e7e0cc404385209e9a086",
+  "remoteUpstreamNow": "239d2d243f6bd2fb713e7e0cc404385209e9a086",
+  "nonOverlappingEpicFilesPreserved": 16268,
+  "intentionalTestFixtureFiles": [
+    "ui/tests/unit/views/network/LoadBalancerEdit.spec.js",
+    "ui/tests/unit/views/AutogenBucketBrowser.spec.js",
+    "ui/tests/unit/views/network/KubernetesNetworkUi.spec.js",
+    "ui/tests/unit/views/storage/SharedFSBacking.spec.js",
+    "engine/orchestration/src/test/java/com/cloud/vm/VirtualMachineManagerImplTest.java"
+  ],
+  "unstaged": [
+    "engine/orchestration/src/test/java/com/cloud/vm/VirtualMachineManagerImplTest.java",
+    "ui/public/config.json",
+    "ui/tests/unit/views/AutogenBucketBrowser.spec.js",
+    "ui/tests/unit/views/network/KubernetesNetworkUi.spec.js",
+    "ui/tests/unit/views/network/LoadBalancerEdit.spec.js",
+    "ui/tests/unit/views/storage/SharedFSBacking.spec.js"
+  ],
+  "wslEuropa": [
+    {
+      "path": "/home/ablecloud/work/dhslove/cloud-europa-rpm31",
+      "clean": true
+    }
+  ]
+}

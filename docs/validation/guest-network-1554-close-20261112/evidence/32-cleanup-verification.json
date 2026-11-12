@@ -1,0 +1,178 @@
+{
+  "allVerified": true,
+  "nonQaPreserved": {
+    "listVirtualMachines": {
+      "count": 57,
+      "stableFieldsUnchanged": true
+    },
+    "listNetworks": {
+      "count": 12,
+      "stableFieldsUnchanged": true
+    },
+    "listVPCs": {
+      "count": 1,
+      "stableFieldsUnchanged": true
+    }
+  },
+  "removedVmCount": 16,
+  "removedNicCount": 9,
+  "removedNetworkCount": 80,
+  "removedVpcCount": 9,
+  "removedPhysicalVolumes": 41,
+  "runtime": [
+    {
+      "host": "10.10.32.1",
+      "result": {
+        "removedDomainsPresent": [],
+        "retained": [
+          {
+            "name": "qa-gn1597-32-project-vnf",
+            "instance": "i-250-445-VM",
+            "macs": [
+              "02:19:97:32:00:01"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-cond-vm11",
+            "instance": "i-251-448-VM",
+            "macs": [
+              "02:01:01:ea:00:01",
+              "02:01:01:f0:00:02",
+              "02:15:69:32:09:11"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-cond-vm12",
+            "instance": "i-251-449-VM",
+            "macs": [
+              "02:01:01:ef:00:01",
+              "02:01:01:f0:00:01",
+              "02:15:69:32:09:12"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-vpn-lb-vm",
+            "instance": "i-252-469-VM",
+            "macs": [
+              "02:01:02:04:00:01"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-lb-int-reg-vm",
+            "instance": "i-252-479-VM",
+            "macs": [
+              "02:01:02:07:00:01",
+              "02:01:02:08:00:01"
+            ],
+            "state": "running"
+          }
+        ]
+      }
+    },
+    {
+      "host": "10.10.32.2",
+      "result": {
+        "removedDomainsPresent": [],
+        "retained": [
+          {
+            "name": "qa-gn1569-32-nosnat-vm",
+            "instance": "i-236-414-VM",
+            "macs": [
+              "1e:01:90:00:02:b4"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-nosnat-peer",
+            "instance": "i-236-419-VM",
+            "macs": [
+              "1e:01:1d:00:02:b5"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-shared-reg-vm21",
+            "instance": "i-252-451-VM",
+            "macs": [
+              "02:01:01:fb:00:01",
+              "02:15:69:32:19:21"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-shared-reg-vm24",
+            "instance": "i-252-457-VM",
+            "macs": [
+              "02:01:01:fb:00:04",
+              "02:01:02:03:00:01",
+              "02:15:69:32:19:24"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-scope-owner-vm",
+            "instance": "i-254-462-VM",
+            "macs": [
+              "02:01:02:02:00:03",
+              "1e:01:01:00:03:da"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-scope-child-vm",
+            "instance": "i-258-466-VM",
+            "macs": [
+              "02:01:02:01:00:03",
+              "1e:01:97:00:03:dc"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-scope-outsider-vm",
+            "instance": "i-255-467-VM",
+            "macs": [
+              "1e:01:2b:00:03:d9"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1628-32-subnet-vm26",
+            "instance": "i-252-508-VM",
+            "macs": [
+              "02:16:28:32:26:26",
+              "02:16:28:32:49:26"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "qa-gn1569-32-final-functional-vm",
+            "instance": "i-252-525-VM",
+            "macs": [
+              "1e:01:65:00:03:ca"
+            ],
+            "state": "running"
+          },
+          {
+            "name": "autoScaleVm-qa-gn1607-32-default-1-aqmcvp",
+            "instance": "i-252-474-VM",
+            "macs": [
+              "02:01:02:04:00:06"
+            ],
+            "state": "running"
+          }
+        ]
+      }
+    },
+    {
+      "host": "10.10.32.3",
+      "result": {
+        "removedDomainsPresent": [],
+        "retained": []
+      }
+    }
+  ]
+}

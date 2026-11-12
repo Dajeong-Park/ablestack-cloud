@@ -1,0 +1,285 @@
+{
+  "pr": {
+    "baseRefName": "ablestack-europa",
+    "baseRefOid": "45944c40dedef7ff6b377db94225cf598c82739d",
+    "headRefName": "dhslove/epic-1554-guest-networks",
+    "headRefOid": "8aa09ec46d02c72f0cde0adabd4fe4ddef3dc271",
+    "isDraft": true,
+    "mergeStateStatus": "DIRTY",
+    "mergeable": "CONFLICTING",
+    "number": 1577,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-12T10:23:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43199977214/job/131120548150",
+        "name": "triage",
+        "startedAt": "2026-11-12T10:23:46Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Merge Conflict Check"
+      }
+    ],
+    "title": "[Europa][Epic #1554] 가상머신용 네트워크 API·UI·KVM 정합성 개선",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/pull/1577"
+  },
+  "issues": {
+    "1554": {
+      "number": 1554,
+      "state": "open",
+      "title": "[Europa][Epic] 가상머신용 네트워크 API·UI 정합성 및 네트워크 오퍼링 연계 개선",
+      "bodyBytes": 258888,
+      "frozenSha256": "fbd12ab5e07cfb944edcc6b88a2e282673477b42dcf68c54cd5d74adf8e23356"
+    },
+    "1569": {
+      "number": 1569,
+      "state": "open",
+      "title": "[Europa][P2] 31·32 네트워크 API·UI·실제 통신 및 권한 통합 회귀 검증",
+      "bodyBytes": 183789,
+      "frozenSha256": "58151c64c2403a7fb5efb44ddd1e27ca6b6638462befacb21f59bd9e47999c9e"
+    },
+    "1586": {
+      "number": 1586,
+      "state": "open",
+      "title": "[Europa][P2] Glue RBD 라우터 볼륨 삭제의 libvirt 파일 없음 오류와 정상 재시도 복구",
+      "bodyBytes": 4262
+    },
+    "1634": {
+      "number": 1634,
+      "state": "open",
+      "title": "[Europa][P3][UI] 태그 제출 결과 미확인(job ID 없음)의 동일 세션 복구 경로 누락",
+      "bodyBytes": 3569
+    },
+    "1635": {
+      "number": 1635,
+      "state": "open",
+      "title": "[Europa][P3][UI] 코멘트 255자 제한 사전 안내와 입력 길이 표시 누락",
+      "bodyBytes": 3153
+    },
+    "1636": {
+      "number": 1636,
+      "state": "open",
+      "title": "[Europa][검증 관리] 미구성 네트워크 환경의 조건부 검증",
+      "bodyBytes": 2190
+    }
+  },
+  "children": [
+    {
+      "number": 1555,
+      "state": "closed"
+    },
+    {
+      "number": 1556,
+      "state": "closed"
+    },
+    {
+      "number": 1557,
+      "state": "closed"
+    },
+    {
+      "number": 1558,
+      "state": "closed"
+    },
+    {
+      "number": 1559,
+      "state": "closed"
+    },
+    {
+      "number": 1560,
+      "state": "closed"
+    },
+    {
+      "number": 1561,
+      "state": "closed"
+    },
+    {
+      "number": 1562,
+      "state": "closed"
+    },
+    {
+      "number": 1563,
+      "state": "closed"
+    },
+    {
+      "number": 1564,
+      "state": "closed"
+    },
+    {
+      "number": 1565,
+      "state": "closed"
+    },
+    {
+      "number": 1566,
+      "state": "closed"
+    },
+    {
+      "number": 1567,
+      "state": "closed"
+    },
+    {
+      "number": 1568,
+      "state": "closed"
+    },
+    {
+      "number": 1569,
+      "state": "open"
+    },
+    {
+      "number": 1570,
+      "state": "closed"
+    },
+    {
+      "number": 1571,
+      "state": "closed"
+    },
+    {
+      "number": 1572,
+      "state": "closed"
+    },
+    {
+      "number": 1573,
+      "state": "closed"
+    },
+    {
+      "number": 1574,
+      "state": "closed"
+    },
+    {
+      "number": 1575,
+      "state": "closed"
+    },
+    {
+      "number": 1576,
+      "state": "closed"
+    },
+    {
+      "number": 1580,
+      "state": "closed"
+    },
+    {
+      "number": 1587,
+      "state": "closed"
+    },
+    {
+      "number": 1588,
+      "state": "closed"
+    },
+    {
+      "number": 1589,
+      "state": "closed"
+    },
+    {
+      "number": 1590,
+      "state": "closed"
+    },
+    {
+      "number": 1591,
+      "state": "closed"
+    },
+    {
+      "number": 1592,
+      "state": "closed"
+    },
+    {
+      "number": 1593,
+      "state": "closed"
+    },
+    {
+      "number": 1594,
+      "state": "closed"
+    },
+    {
+      "number": 1595,
+      "state": "closed"
+    },
+    {
+      "number": 1596,
+      "state": "closed"
+    },
+    {
+      "number": 1597,
+      "state": "closed"
+    },
+    {
+      "number": 1598,
+      "state": "closed"
+    },
+    {
+      "number": 1599,
+      "state": "closed"
+    },
+    {
+      "number": 1600,
+      "state": "closed"
+    },
+    {
+      "number": 1601,
+      "state": "closed"
+    },
+    {
+      "number": 1602,
+      "state": "closed"
+    },
+    {
+      "number": 1603,
+      "state": "closed"
+    },
+    {
+      "number": 1604,
+      "state": "closed"
+    },
+    {
+      "number": 1605,
+      "state": "closed"
+    },
+    {
+      "number": 1606,
+      "state": "closed"
+    },
+    {
+      "number": 1607,
+      "state": "closed"
+    },
+    {
+      "number": 1608,
+      "state": "closed"
+    },
+    {
+      "number": 1609,
+      "state": "closed"
+    },
+    {
+      "number": 1610,
+      "state": "closed"
+    },
+    {
+      "number": 1611,
+      "state": "closed"
+    },
+    {
+      "number": 1612,
+      "state": "closed"
+    },
+    {
+      "number": 1613,
+      "state": "closed"
+    },
+    {
+      "number": 1614,
+      "state": "closed"
+    },
+    {
+      "number": 1616,
+      "state": "closed"
+    },
+    {
+      "number": 1617,
+      "state": "closed"
+    },
+    {
+      "number": 1618,
+      "state": "closed"
+    }
+  ]
+}
