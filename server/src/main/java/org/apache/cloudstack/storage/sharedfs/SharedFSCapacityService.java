@@ -40,6 +40,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.cloudstack.api.response.SharedFSCapacityResponse;
 import org.apache.cloudstack.api.response.SharedFSResponse;
 import org.apache.cloudstack.framework.config.ConfigKey;
@@ -251,7 +252,7 @@ public class SharedFSCapacityService extends ManagerBase implements Configurable
             .append(CONNECTED.contains(String.valueOf(v.getState())) ? "CONNECTED" : v.getState()).append(':')
             .append(v.getAttached() == null ? "" : v.getAttached().getTime()).append(';');
         try {
-            return java.util.HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(value.toString().getBytes(StandardCharsets.UTF_8)));
+            return Hex.encodeHexString(MessageDigest.getInstance("SHA-256").digest(value.toString().getBytes(StandardCharsets.UTF_8)));
         } catch (java.security.NoSuchAlgorithmException e) { throw new IllegalStateException(e); }
     }
 
