@@ -1789,6 +1789,18 @@ Job 목록의 `page[limit]=1000`은 유지하며 공유 Host 정책은 cursor로
 - 숫자 Job ID가 아직 확정되지 않은 전송 요청 참조는 실제 NetBackup Job ID와 구분한다.
 - 저장된 연결 정보와 외부 카탈로그의 현재 존재 여부는 별도로 확인한다. 카탈로그 상태와 마지막 확인 시각을 함께 확인하며, 개별 이미지가 미확인인 상태를 삭제로 판단하지 않는다.
 
+Mold 논리 백업 한 건은 NetBackup 이미지 여러 건과 연결된다. 외부 UI에서 VM 복원을 시작할 때에는
+**메타데이터 이미지**의 클라이언트, NetBackup 백업 시각, 해당 VM·시점 경로를 기준으로 찾는다.
+Mold의 백업 생성 시각과 NetBackup 전송 시각은 대기·전송 시간만큼 다를 수 있다.
+
+1. NetBackup의 Regular recovery에서 정책 유형 `Standard`, 복원 유형 `Normal backups`를 선택한다.
+2. Source client는 메타데이터 이미지의 작업 호스트로 지정한다.
+3. **Edit date range → Use date picker**에서 메타데이터의 NetBackup 백업 시각이 포함되도록 범위를 지정한다.
+   **Use backup history**를 사용한다면 해당 시각과 Backup ID 열을 함께 대조한다.
+4. 파일 목록에서 저장된 VM·시점 경로의 `MOLD-RESTORE.json`을 선택한다.
+   이 파일을 복원하면 Mold가 메타데이터를 검증한 뒤 필요한 Full·증분 볼륨을 별도로 회수한다.
+   자세한 수신 경로·감시 서비스 조건은 [NetBackup 및 Veeam 서비스 운영](#netbackup-및-veeam-서비스-운영)을 참고한다.
+
 **백업 이미지 정보**는 조회 전용이다. 작업 재조회, 수동 Job 연결과 임시 파일 정리는
 관리자 조치가 필요한 백업의 **스테이징 관리**에서 수행한다.
 
@@ -2805,6 +2817,7 @@ RBD export/export-diff의 실시간 대역폭 조정은 제공하지 않으며, 
 | `PREPARING` 또는 `START_CONFIRMATION`에서 멈춤 | **백업 체인 보존 상태**, 상세 오류, 부모 백업 UUID | `NETBACKUP_RETENTION_UNCONFIRMED`라면 NetBackup에서 해당 이미지의 존재 여부·만료일을 확인한다. 인증 오류나 승인 대기라면 먼저 해당 원인을 해소한다. | 필요한 체인의 보존이 확인되어 준비 단계에서 다음 단계로 진행한다. 만료·누락된 체인을 이어갈 수 없는 경우에는 기존 작업의 종료·정리 확인 후 독립 Full 백업으로 새 체인을 시작한다. |
 | 호스트는 `FAILED`인데 Mold는 `BackingUp` | 스테이징 관리의 호스트 상태와 Mold 상태, 관리서버 로그 | **작업 상태 다시 확인**을 실행한다. 계속 다르면 상태 반영 장애로 판단하고 로그와 적용 버전을 확인한다. | Mold에 실제 실패·취소 결과가 반영되고, 필요한 정리와 예약 해제 후 후속 백업이 진행된다. |
 | NetBackup Job은 완료됐는데 Mold가 끝나지 않음 | 볼륨별 Job, 메타데이터 전송, 호스트 최종 처리·정리 상태 | 모든 전송과 호스트 처리가 끝났는지 확인한 뒤 재조회한다. 외부 Job 완료만으로 Mold 백업 전체가 완료된 것은 아니다. | Mold가 `BackedUp`으로 바뀌고 최종 처리·필수 정리와 예약 해제가 완료된다. |
+| NetBackup의 메타데이터 복원은 성공했는데 Mold 복원이 시작되지 않음 | 수신 호스트의 복원 감시 timer, `/var/log/netbackup-mold-restore-watcher.log`, `/var/log/netbackup-mold-restore.log`, 해당 Job의 `file-lists` 응답과 Mold API 오류 | 실제 선택은 `data.attributes.fileList`에서 확인한다. API 링크를 파일로 오인한 `UNKNOWN_FILES`라면 호스트 감시 프로그램을 갱신한다. `validation`·`proof`의 255자 제한 오류는 관리서버 API 수정본을 적용한다. 보류된 Job은 다음 감시 주기에 재검증되므로 중복 복원 요청 전에 접수 기록을 확인한다. 실제 파일 선택이 잘못된 경우에는 올바른 메타데이터를 새 복원 Job으로 요청한다. | 감시 로그에 Mold 복원 접수가 기록되고, Mold의 `RESTORE` 작업이 실행된다. 최종적으로 VM 복원 결과 `COMMITTED`, 필수 정리 완료와 예약 `RELEASED`를 확인한다. |
 | 보관기간이 지났는데 백업이 목록에 남음 | NetBackup 이미지 만료일, 이미지 정리 주기·대기 시간, Mold 카탈로그 상태 | 실제 이미지 정리와 Mold 동기화를 기다린다. 후속 증분 백업이 사용하는 체인인지도 확인한다. | 후속 작업에 필요한 체인은 유지된다. 더 이상 필요하지 않은 백업은 외부 이미지 정리 후 Mold에 만료 상태가 반영되고 정리 조건을 충족하면 목록에서 제거된다. |
 | 용량 부족·마운트 오류로 대기 | 스테이징 저장소와 기본 스토리지의 여유 공간, 작업 호스트의 NFS 마운트 | 용량·마운트 문제를 해소하고 작업 상태를 다시 확인한다. | 용량·마운트 오류가 해소되고 실행 조건을 충족한 작업이 대기에서 실행 단계로 넘어간다. |
 | 예약 시간이 지나도 새 백업이 없음 | Mold 스케줄·시간대, NetBackup 호스트 정책 활성 상태·실행 시간, 기존 진행 작업 | 스케줄과 정책을 확인하고, 이전 작업의 정체 여부를 먼저 점검한다. | 다음 예약 실행에서 대상 VM의 새 백업이 생성되고 정상 완료된다. |
@@ -2821,6 +2834,10 @@ NetBackup Job이 아직 생성되지 않은 준비 단계라면 Job ID는 미생
 - 관리서버: `/var/log/cloudstack/management/management-server.log`
 - 해당 호스트: `/var/lib/ablestack/backup/jobs/<백업 UUID>/job.log`
 - NetBackup: Activity Monitor의 해당 Job 상세
+- NetBackup 외부 UI 복원 연동: 수신 호스트의 `/var/log/netbackup-mold-restore-watcher.log`, `/var/log/netbackup-mold-restore.log`
+
+실패·취소로 종료된 NetBackup 백업에 보존 미확인 기록이 남아 있어도 현재 대기 중인 작업이라는 뜻은 아니다.
+백업 종료 사유와 스테이징 정리 상태, 예약 `RELEASED` 여부를 함께 확인한다.
 
 ## 복원 절차
 

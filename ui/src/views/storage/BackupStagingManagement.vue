@@ -80,10 +80,12 @@
           <a-descriptions-item :label="$t('label.backup.catalog.state')">{{ resource.catalogstate || 'UNKNOWN' }}</a-descriptions-item>
           <a-descriptions-item :label="$t('label.backup.catalog.checked')">{{ resource.catalogchecked ? $toLocaleDate(resource.catalogchecked) : $t('label.backup.staging.file.not.checked') }}</a-descriptions-item>
         </template>
+        <a-descriptions-item v-if="endedNetBackup && resource.backupjobdetails" :label="$t('label.backup.staging.end.reason')">{{ resource.backupjobdetails }}</a-descriptions-item>
         <a-descriptions-item v-if="info.retentionstate" :label="$t('label.backup.retention.protection')">
-          {{ $t(info.retentionstate === 'COMPLETED' ? 'label.backup.retention.protected' : 'label.backup.retention.pending') }}
+          {{ $t(retentionLabel) }}
           <div v-if="info.retentionuntil">{{ $t('label.backup.retention.until') }}: {{ info.retentionuntil }}</div>
-          <div v-if="info.retentionstate !== 'COMPLETED'">{{ $t('message.backup.retention.pending') }}</div>
+          <div v-if="retentionHistorical">{{ $t('message.backup.retention.historical') }}</div>
+          <div v-else-if="info.retentionstate !== 'COMPLETED'">{{ $t('message.backup.retention.pending') }}</div>
           <div v-if="info.retentionreason">{{ info.retentionreason }}</div>
         </a-descriptions-item>
         <a-descriptions-item :label="$t('label.vm')">{{ info.vmname || resource.vmname || '—' }}<span v-if="info.timestamp"> · {{ info.timestamp }}</span></a-descriptions-item>
@@ -199,6 +201,17 @@ export default {
     isExpired () {
       return String(this.resource.status || '').toLowerCase() === 'expired' || this.resource.catalogstate === 'EXPIRED'
     },
+    netBackupInspection () {
+      return this.operation === 'BACKUP' && String(this.info?.provider || this.resource.provider || '').toLowerCase() === 'ablestack-netbackup'
+    },
+    endedNetBackup () {
+      return this.netBackupInspection && ['failed', 'canceled', 'error'].includes(String(this.resource.status || '').toLowerCase())
+    },
+    retentionHistorical () { return this.netBackupInspection && (this.endedNetBackup || this.isExpired) },
+    retentionLabel () {
+      if (this.retentionHistorical) return this.info?.retentionstate === 'COMPLETED' ? 'label.backup.retention.historical.verified' : 'label.backup.retention.historical.unconfirmed'
+      return this.info?.retentionstate === 'COMPLETED' ? 'label.backup.retention.protected' : 'label.backup.retention.pending'
+    },
     cleanupReason () {
       if (!this.isExpired || this.operation !== 'BACKUP') return this.info?.cleanupreason
       if (this.info?.cleanupreason === 'External artifact absence will be reconfirmed before expiration cleanup') {
@@ -254,6 +267,8 @@ export default {
         return { type: 'warning', title: 'state.expired', description: 'message.backup.catalog.expired' }
       } else if (this.info?.historical) {
         key = 'history'
+      } else if (this.endedNetBackup) {
+        key = 'backup.ended'; type = 'warning'
       } else if (this.info?.retentionstate && this.info.retentionstate !== 'COMPLETED') {
         return { type: 'warning', title: 'label.backup.retention.pending', description: 'message.backup.retention.pending' }
       } else if (this.diagnosticErrors || this.availabilityErrors.length) {

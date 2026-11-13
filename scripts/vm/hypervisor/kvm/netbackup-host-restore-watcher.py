@@ -736,7 +736,14 @@ def fetch_restore_job_file_list(job_id_value: str) -> list[str]:
     try:
         path = f"{CONFIG.get('NETBACKUP_JOBS_PATH', '/admin/jobs').rstrip('/')}/{job_id_value}/file-lists"
         payload = netbackup_get(path)
-        return find_strings(payload)
+        # JSON:API links contain API paths, not selected files. Reading every
+        # response string rejects valid restores as paths outside backup staging.
+        data = payload.get("data") if isinstance(payload, dict) else None
+        attributes = data.get("attributes") if isinstance(data, dict) else None
+        files = attributes.get("fileList") if isinstance(attributes, dict) else None
+        if not isinstance(files, list) or any(not isinstance(value, str) or not value for value in files):
+            raise ValueError("NetBackup Job file list has an unconfirmed response format")
+        return files
     except Exception as exc:
         log(f"FAILED job file-list query jobId=[{job_id_value}] error=[{exc}]")
         return []

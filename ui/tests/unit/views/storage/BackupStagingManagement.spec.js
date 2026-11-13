@@ -121,6 +121,58 @@ test('other staging query failures keep their diagnostic message', async () => {
   wrapper.unmount()
 })
 
+test.each([
+  ['Failed', false], ['Failed', true], ['Canceled', false], ['Canceled', true], ['Error', true]
+])('ended NetBackup %s shows the failure and historical retention in readOnly=%s', async (status, readOnly) => {
+  const wrapper = await mount({
+    provider: 'ablestack-netbackup',
+    hoststate: 'FAILED',
+    cleanupstate: 'COMPLETED',
+    stagingqueue: { state: 'RELEASED' },
+    retentionstate: 'WAITING',
+    retentionreason: 'NETBACKUP_RETENTION_UNCONFIRMED: ancestor-1'
+  }, 'BACKUP', { status, backupjobdetails: 'Volume backup failed: Staging queue timeout expired' }, ko, { readOnly })
+  expect(wrapper.vm.situation.title).toBe('message.backup.staging.backup.ended.title')
+  expect(wrapper.vm.retentionHistorical).toBe(true)
+  expect(wrapper.text()).toContain('Staging queue timeout expired')
+  expect(wrapper.text()).toContain(ko['label.backup.retention.historical.unconfirmed'])
+  expect(wrapper.text()).toContain(ko['message.backup.retention.historical'])
+  expect(wrapper.text()).toContain('ancestor-1')
+  expect(wrapper.text()).not.toContain(ko['label.backup.retention.pending'])
+  expect(wrapper.text()).not.toContain(ko['message.backup.retention.pending'])
+  expect(wrapper.vm.canCleanup).toBe(false)
+  expect(postAPI).not.toHaveBeenCalled()
+  wrapper.unmount()
+})
+
+test.each(['BackingUp', 'BackedUp'])('NetBackup %s retains a current retention warning', async status => {
+  const wrapper = await mount({ provider: 'ablestack-netbackup', retentionstate: 'WAITING' }, 'BACKUP', { status }, ko)
+  expect(wrapper.vm.retentionHistorical).toBe(false)
+  expect(wrapper.vm.situation.title).toBe('label.backup.retention.pending')
+  expect(wrapper.text()).toContain(ko['message.backup.retention.pending'])
+  wrapper.unmount()
+})
+
+test.each([
+  ['ablestack-netbackup', 'RESTORE'],
+  ['ablestack-veeam', 'BACKUP']
+])('does not relabel %s %s retention using the source backup failure', async (provider, operation) => {
+  const wrapper = await mount({ provider, retentionstate: 'WAITING' }, operation, { status: 'Failed' }, ko)
+  expect(wrapper.vm.retentionHistorical).toBe(false)
+  expect(wrapper.vm.situation.title).toBe('label.backup.retention.pending')
+  expect(wrapper.text()).not.toContain(ko['message.backup.retention.historical'])
+  wrapper.unmount()
+})
+
+test('expired NetBackup retention stays historical without replacing the expiration warning', async () => {
+  const wrapper = await mount({ provider: 'ablestack-netbackup', retentionstate: 'COMPLETED' }, 'BACKUP', { status: 'Expired' }, ko)
+  expect(wrapper.vm.situation.title).toBe('state.expired')
+  expect(wrapper.vm.retentionHistorical).toBe(true)
+  expect(wrapper.text()).toContain(ko['label.backup.retention.historical.verified'])
+  expect(wrapper.text()).not.toContain(ko['message.backup.retention.pending'])
+  wrapper.unmount()
+})
+
 test('expired backup diagnostics explain expiration and hide restoration instructions', async () => {
   const wrapper = await mount({
     hoststate: 'COMPLETED',
