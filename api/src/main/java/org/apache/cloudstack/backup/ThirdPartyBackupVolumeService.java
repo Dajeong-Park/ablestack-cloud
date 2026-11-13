@@ -62,6 +62,37 @@ public interface ThirdPartyBackupVolumeService {
                 || StringUtils.isNotBlank(backup.getDetail(ThirdPartyBackupManifest.DELETE_PROGRESS_KEY));
     }
 
+    /** A failed NetBackup point stops owning ancestors only after every reader has closed. */
+    static boolean closedFailedNetBackupDependency(Backup backup) {
+        if (!java.util.Set.of(Backup.Status.Failed, Backup.Status.Error, Backup.Status.Canceled).contains(backup.getStatus())
+                || !"COMPLETED".equals(backup.getDetail(ThirdPartyBackupManifest.CLEANUP_STATE_KEY))
+                || !"COMPLETED".equals(backup.getDetail(ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY))
+                || needsBackupCleanup(backup)
+                || StringUtils.isNotBlank(backup.getDetail(ThirdPartyExternalRestore.PENDING_KEY))) { return false; }
+        String source = backup.getDetail(ThirdPartyBackupManifest.SOURCE_CLEANUP_STATE_KEY);
+        if (StringUtils.isNotBlank(source) && !java.util.Set.of("NONE", "COMPLETED").contains(source)) { return false; }
+        if ((StringUtils.isNotBlank(backup.getDetail(ThirdPartyBackupRestore.PLAN_KEY))
+                || StringUtils.isNotBlank(backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL)))
+                && !"COMPLETED".equals(backup.getDetail(ThirdPartyBackupRestore.CLEANUP_STATE_KEY))) { return false; }
+        try {
+            com.google.gson.JsonObject retention = new Gson().fromJson(
+                    backup.getDetail(ThirdPartyBackupManifest.RETENTION_PROTECTION_KEY), com.google.gson.JsonObject.class);
+            if (retention == null || !retention.has("version") || retention.get("version").getAsInt() != 2
+                    || !retention.has("backupUuid") || !backup.getUuid().equals(retention.get("backupUuid").getAsString())
+                    || !retention.has("leaseActive") || retention.get("leaseActive").getAsBoolean()
+                    || !retention.has("readersClosed") || !retention.get("readersClosed").getAsBoolean()) { return false; }
+            if (backup.getDetails() != null) {
+                for (var entry : backup.getDetails().entrySet()) {
+                    if (!entry.getKey().startsWith(ThirdPartyBackupRestore.HISTORY_PREFIX)
+                            || !entry.getKey().substring(ThirdPartyBackupRestore.HISTORY_PREFIX.length()).matches("[0-9a-fA-F-]{36}\\.operation")) { continue; }
+                    ThirdPartyBackupRestore.Operation operation = new Gson().fromJson(entry.getValue(), ThirdPartyBackupRestore.Operation.class);
+                    if (operation != null && operation.plan != null && !"COMPLETED".equals(operation.cleanupState)) { return false; }
+                }
+            }
+            return true;
+        } catch (RuntimeException e) { return false; }
+    }
+
     /** Deletion remains inspectable; only its existing coordinator may change cleanup state. */
     static boolean needsStagingManagement(Backup backup, BackupStagingInfoResponse.VmRestoreInfo restore) {
         if (!ThirdPartyBackupManifest.VOLUME_MODE.equals(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY))) {

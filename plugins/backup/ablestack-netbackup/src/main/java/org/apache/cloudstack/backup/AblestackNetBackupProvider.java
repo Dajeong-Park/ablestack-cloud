@@ -2210,6 +2210,10 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             plan = thirdPartyBackupVolumeService.prepareRestore(backup, host, sourceUuids,
                     targets.stream().map(VolumeVO::getSize).collect(Collectors.toList()), vm.getInstanceName(), BackupDataOperationTimeout.value());
         }
+        // The durable restore plan owns its images before any Host starts reading them.
+        // Renew the short lease during reconciliation, including while admission is queued.
+        loadBackupDetailsIfNeeded(backup);
+        protectVolumeRetention(backup, BackupDataOperationTimeout.value(), false);
         AblestackNetBackupRestoreBackupCommand command = new AblestackNetBackupRestoreBackupCommand();
         command.setPrimaryStorageCapacityBufferPercent(plan.getPrimaryStorageCapacityBufferPercent());
         command.setVolumeRestorePlan(plan);
@@ -2248,7 +2252,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             throw new CloudRuntimeException("NetBackup restore destination must identify the recorded Worker Host");
         }
         return new org.apache.cloudstack.backup.netbackup.AblestackNetBackupRestoreTransfer(
-                () -> getClient(backup.getZoneId()), agentManager, plan.hostId, plan.hostName);
+                () -> getClient(backup.getZoneId()), agentManager, plan.hostId, plan.hostName,
+                () -> protectVolumeRetention(backup, BackupDataOperationTimeout.value(), false));
     }
 
     @Override
@@ -2261,6 +2266,10 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         String json = getBackupDetail(backup, ThirdPartyBackupRestore.PLAN_KEY);
         if (StringUtils.isBlank(json)) { return; }
         ThirdPartyBackupRestore.Plan plan = new Gson().fromJson(json, ThirdPartyBackupRestore.Plan.class);
+        if (!"COMPLETED".equals(getBackupDetail(backup, ThirdPartyBackupRestore.CLEANUP_STATE_KEY))) {
+            try { protectVolumeRetention(backup, BackupDataOperationTimeout.value(), false); }
+            catch (RuntimeException e) { LOG.warn("NetBackup restore retention remains unconfirmed [{}]: {}", backup.getUuid(), e.getMessage()); }
+        }
         Host host = hostDao.findById(plan.hostId);
         if (host != null) { thirdPartyBackupVolumeService.trackRestore(backup, host, volumeRestoreTransfer(backup, host, plan)); }
     }
@@ -2599,7 +2608,11 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         String policy = getBackupDetail(backup, DETAIL_POLICY_NAME);
         if (artifact.externalTerminal && StringUtils.isNotBlank(artifact.externalFailure)) { return artifact; }
         if (StringUtils.isNotBlank(artifact.jobId)) {
-            return client.pollUserBackupArtifact(policy, host.getName(), host.getPrivateIpAddress(), artifact);
+            artifact = client.pollUserBackupArtifact(policy, host.getName(), host.getPrivateIpAddress(), artifact);
+            if (!StringUtils.startsWith(artifact.jobId, AblestackNetBackupClient.userBackupRequestId(artifact) + ":")) { return artifact; }
+            // Reconcile a queued Host worker after a lost response or Agent restart.
+            // The Host never repeats bpbackup once its external intent is durable.
+            recoveryOnly = true;
         }
         String baseline = null;
         if (!recoveryOnly) {

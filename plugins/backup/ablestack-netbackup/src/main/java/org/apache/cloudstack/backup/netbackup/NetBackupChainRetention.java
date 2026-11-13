@@ -308,6 +308,8 @@ public final class NetBackupChainRetention {
             State state = new Gson().fromJson(json, State.class);
             return state == null || (state.version != 1 && state.version != 2) || !backup.getUuid().equals(state.backupUuid)
                     || !"COMPLETED".equals(state.state) || state.pending == null || !state.pending.isEmpty()
+                    || (hasRestoreReaders(backup) && (!state.leaseActive || state.preparationUntil == null
+                        || !Instant.parse(state.preparationUntil).isAfter(Instant.now().plusSeconds(RENEW_BEFORE_SECONDS))))
                     || (state.nextCheckAt > 0 && state.nextCheckAt <= System.currentTimeMillis());
         } catch (RuntimeException e) { return true; }
     }
@@ -319,7 +321,7 @@ public final class NetBackupChainRetention {
             if (ThirdPartyBackupVolumeService.isDeletionPending(backup)) {
                 throw new CloudRuntimeException("NetBackup retention cannot change a backup pending deletion");
             }
-            protectLocked(backup, preparationSeconds > 0 && !finalizing, finalizing);
+            protectLocked(backup, (preparationSeconds > 0 && !finalizing) || hasRestoreReaders(backup), finalizing);
         }
     }
 
@@ -429,7 +431,7 @@ public final class NetBackupChainRetention {
             for (Point point : context.points.values()) {
                 point.state.nextCheckAt = point.state.copies.values().stream().anyMatch(copy ->
                         copy.restorable && !copy.externallyChanged && copy.managed != null && !copy.managed.equals(copy.original))
-                        ? now.plusSeconds(RECHECK_SECONDS).toEpochMilli() : 0;
+                        || hasRestoreReaders(point.backup) ? now.plusSeconds(RECHECK_SECONDS).toEpochMilli() : 0;
             }
             context.saveOwners();
         } catch (RuntimeException e) {
@@ -486,7 +488,8 @@ public final class NetBackupChainRetention {
 
     private static boolean hasRestoreReaders(Backup backup) {
         return backup.getStatus() == Backup.Status.Restoring
-                || (StringUtils.isNotBlank(backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL))
+                || ((StringUtils.isNotBlank(backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL))
+                    || StringUtils.isNotBlank(backup.getDetail(ThirdPartyBackupRestore.PLAN_KEY)))
                     && !"COMPLETED".equals(backup.getDetail(ThirdPartyBackupRestore.CLEANUP_STATE_KEY)))
                 || StringUtils.isNotBlank(backup.getDetail(ThirdPartyExternalRestore.PENDING_KEY));
     }

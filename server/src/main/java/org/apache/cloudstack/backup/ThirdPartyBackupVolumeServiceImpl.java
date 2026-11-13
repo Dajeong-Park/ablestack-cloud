@@ -1920,6 +1920,8 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                     current.getDetail(ThirdPartyBackupManifest.MODE_KEY))) { continue; }
             ThirdPartyBackupManifest other = ThirdPartyBackupManifest.fromJson(current.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
             if (!manifest.getProvider().equals(other.getProvider())) { continue; }
+            if ("ablestack-netbackup".equals(other.getProvider())
+                    && ThirdPartyBackupVolumeService.closedFailedNetBackupDependency(current)) { continue; }
             DeleteProgress otherProgress = new Gson().fromJson(current.getDetail(ThirdPartyBackupManifest.DELETE_PROGRESS_KEY), DeleteProgress.class);
             if ((otherProgress == null || !otherProgress.complete) && other.references(backup.getUuid())) {
                 throw new CloudRuntimeException("Another backup still requires this Full/incremental artifact; delete dependent recovery points first");

@@ -459,6 +459,34 @@ public class NetBackupChainRetentionTest {
         assertExpirations(full, now.plusSeconds(300));
     }
 
+    @Test public void longRunningRestoreRenewsImagesPastNativeExpiryAndReleasesOnlyAfterCleanup() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(300));
+        full.getDetails().put(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL, "restore-1");
+        full.getDetails().put(ThirdPartyBackupRestore.CLEANUP_STATE_KEY, "WAITING");
+        assertTrue(NetBackupChainRetention.needsReconciliation(full));
+        at(now).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(1800));
+        at(now.plusSeconds(1250)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(3050));
+        state(full).copies.values().forEach(copy -> assertEquals(now.plusSeconds(300).toString(), copy.original));
+        full.getDetails().put(ThirdPartyBackupRestore.CLEANUP_STATE_KEY, "COMPLETED");
+        at(now.plusSeconds(1260)).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(1560));
+        assertFalse(state(full).leaseActive);
+    }
+
+    @Test public void queuedRestorePlanProtectsImagesBeforeHostDispatchAndJobTracking() {
+        Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        BackupVO full = point(1, null, now.plusSeconds(60));
+        full.getDetails().put(ThirdPartyBackupRestore.PLAN_KEY, "{\"jobId\":\"queued-restore\"}");
+        full.getDetails().put(ThirdPartyBackupRestore.CLEANUP_STATE_KEY, "WAITING");
+        at(now).protect(full, 0, true);
+        assertExpirations(full, now.plusSeconds(1800));
+        assertTrue(state(full).leaseActive);
+        assertTrue(state(full).nextCheckAt > 0);
+    }
+
     @Test public void aRegisteredChildWithoutAConfirmedLeaseCannotAuthorizeShorteningItsParent() {
         Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
         BackupVO full = point(1, null, now.plusSeconds(300));

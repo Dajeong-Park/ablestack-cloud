@@ -723,6 +723,7 @@ Type=oneshot
 TimeoutStartSec=300
 TimeoutStopSec=30
 Environment=NETBACKUP_WATCHER_CONFIG={WATCHER_CONFIG_PATH}
+ExecStartPre=/usr/bin/python3 {SCRIPT_DIR}/netbackup_runtime.py --refresh
 ExecStart={WATCHER_OUTPUT_PATH} --once
 """
     WATCHER_SERVICE_PATH.write_text(content, encoding="utf-8")
