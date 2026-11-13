@@ -1,0 +1,11 @@
+{
+  "initialSource": "49c759f3a2180f01b7a8b7a44006942ef1b97dba",
+  "finalSource": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+  "trackingLogicUnchanged": true,
+  "componentMethodsUnchanged": true,
+  "corrections": [
+    "Use existing label.refresh translation",
+    "Use standard direct MoldDialog footer actions"
+  ],
+  "localeRenderingRegressionTests": 2
+}

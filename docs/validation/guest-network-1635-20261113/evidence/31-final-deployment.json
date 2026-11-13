@@ -1,0 +1,17 @@
+{
+  "staticFiles": 689,
+  "hashMismatches": [],
+  "http": 200,
+  "protectedFilesAndConfigAndJarAndPidUnchanged": true,
+  "indexSha256": "04a27fb4e649e210a6dc807c94b3525671da1d137f3b69c207932bb1ae867040",
+  "activeMarkers": {
+    "annotationTooLong": true,
+    "annotation-length-feedback": true,
+    "annotation-length-count": true,
+    "finishReview": true,
+    "recoveryConfirmed": true,
+    "blockingLoadingState": true,
+    "fetchSyncProgress": true,
+    "extractJobId": true
+  }
+}

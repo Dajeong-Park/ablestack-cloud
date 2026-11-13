@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "case": "ASCII256",
+      "utf16Length": 256,
+      "errorCode": 431,
+      "noJob": true
+    },
+    {
+      "case": "Korean256",
+      "utf16Length": 256,
+      "errorCode": 431,
+      "noJob": true
+    },
+    {
+      "case": "emoji256",
+      "utf16Length": 256,
+      "errorCode": 431,
+      "noJob": true
+    },
+    {
+      "case": "newline256",
+      "utf16Length": 256,
+      "errorCode": 431,
+      "noJob": true
+    },
+    {
+      "case": "nonProjectChild",
+      "errorCode": 432,
+      "noJob": true
+    }
+  ],
+  "existingListUnchanged": true,
+  "serverContract": "Parameter.length=255; Java String.length UTF-16"
+}

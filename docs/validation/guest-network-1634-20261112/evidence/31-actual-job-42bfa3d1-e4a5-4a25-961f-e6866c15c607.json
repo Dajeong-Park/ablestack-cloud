@@ -1,0 +1,12 @@
+{
+  "actualJob": {
+    "jobid": "42bfa3d1-e4a5-4a25-961f-e6866c15c607",
+    "jobstatus": 1,
+    "success": true
+  },
+  "tagKeys": [
+    "gn1634-31-delete",
+    "gn1634-31-nojob",
+    "gn1634-31-response-loss"
+  ]
+}

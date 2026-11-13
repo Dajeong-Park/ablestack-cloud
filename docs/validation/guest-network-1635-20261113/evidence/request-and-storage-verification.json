@@ -1,0 +1,136 @@
+{
+  "allPassed": true,
+  "checks": [
+    {
+      "cluster": 31,
+      "phase": "31-boundary-blocked",
+      "addPosts": 0
+    },
+    {
+      "cluster": 31,
+      "phase": "31-unicode-long-blank-blocked",
+      "addPosts": 0
+    },
+    {
+      "cluster": 31,
+      "phase": "31-capture-correction-no-write",
+      "addPosts": 0
+    },
+    {
+      "cluster": 31,
+      "phase": "31-max255-submit",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "d599785c-c3e6-43da-8b50-09263fe6bcb0",
+      "storedUtf16Length": 255,
+      "targetMatches": true
+    },
+    {
+      "cluster": 31,
+      "phase": "31-retry254-success",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "443efbdc-0b03-4f70-a04a-b5a1495d04bf",
+      "storedUtf16Length": 254,
+      "targetMatches": true
+    },
+    {
+      "cluster": 31,
+      "phase": "31-project-vm-submit",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "22363e0e-d861-4bfc-9e81-804b41b5f88e",
+      "storedUtf16Length": 255,
+      "targetMatches": true
+    },
+    {
+      "cluster": 31,
+      "phase": "31-publicip-submit",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "86ac921c-f2ca-4d5d-966c-72dea90381cb",
+      "storedUtf16Length": 255,
+      "targetMatches": true
+    },
+    {
+      "cluster": 31,
+      "phase": "31-failure503",
+      "attemptedPosts": 1,
+      "injectedBeforeServer": true,
+      "storedWrites": 0
+    },
+    {
+      "cluster": 31,
+      "phase": "31-failure432",
+      "attemptedPosts": 1,
+      "injectedBeforeServer": true,
+      "storedWrites": 0
+    },
+    {
+      "cluster": 32,
+      "phase": "32-boundary-blocked",
+      "addPosts": 0
+    },
+    {
+      "cluster": 32,
+      "phase": "32-unicode-long-blank-blocked",
+      "addPosts": 0
+    },
+    {
+      "cluster": 32,
+      "phase": "32-capture-correction-no-write",
+      "addPosts": 0
+    },
+    {
+      "cluster": 32,
+      "phase": "32-max255-submit",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "ccf8563b-d4a8-4a19-9142-dc3bf57704de",
+      "storedUtf16Length": 255,
+      "targetMatches": true
+    },
+    {
+      "cluster": 32,
+      "phase": "32-retry254-success",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "f4804c6d-dd57-463c-a398-c0185d317f74",
+      "storedUtf16Length": 254,
+      "targetMatches": true
+    },
+    {
+      "cluster": 32,
+      "phase": "32-project-vm-submit",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "de85aa28-f06a-4d45-a4f9-6008b3782eb6",
+      "storedUtf16Length": 255,
+      "targetMatches": true
+    },
+    {
+      "cluster": 32,
+      "phase": "32-publicip-submit",
+      "addPosts": 1,
+      "http": 200,
+      "annotationId": "fb59bb12-1f82-47f4-979c-a8b18ccecff8",
+      "storedUtf16Length": 255,
+      "targetMatches": true
+    },
+    {
+      "cluster": 32,
+      "phase": "32-failure503",
+      "attemptedPosts": 1,
+      "injectedBeforeServer": true,
+      "storedWrites": 0
+    },
+    {
+      "cluster": 32,
+      "phase": "32-failure432",
+      "attemptedPosts": 1,
+      "injectedBeforeServer": true,
+      "storedWrites": 0
+    }
+  ],
+  "totalStoredQaComments": 8
+}

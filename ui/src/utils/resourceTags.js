@@ -75,13 +75,13 @@ export function getResourceTagOperation ({ identity, context, getIdentity, get, 
   activeIdentity = identity
   const key = prefix + identityKey + ':' + md5(context)
   if (operations.has(key)) return operations.get(key)
-  let valid = true; let paused = true; let running; let trackingToken = 0
+  let valid = true; let paused = true; let running; let trackingToken = 0; let reviewToken = 0
   const bindings = new Map()
-  let state = { status: 'idle', command: '', params: {}, jobId: '', error: '', reason: '', sequence: 0 }
+  let state = { status: 'idle', command: '', params: {}, jobId: '', error: '', reason: '', sequence: 0, requestPending: false, review: null }
   try {
     const previous = JSON.parse(storage?.getItem(key) || 'null')
     if (previous?.version === 1 && ['createTags', 'deleteTags'].includes(previous.state?.command)) {
-      state = previous.state
+      state = { ...previous.state, requestPending: false, review: null }
       if (tagOperationBlocked(state)) state = { ...state, status: 'unknown', reason: 'restored' }
     }
   } catch (_) { state = { ...state, status: 'unknown', reason: 'storage', error: 'message.tags.storage.failed' } }
@@ -89,11 +89,13 @@ export function getResourceTagOperation ({ identity, context, getIdentity, get, 
   const alive = () => valid && getIdentity() === identity
   const current = () => alive() && !paused && [...bindings.values()].some(check => check())
   const snapshot = () => copy(state)
-  const publish = patch => {
+  const publish = (patch, requireSaved = false) => {
     if (!alive()) return false
-    state = { ...state, ...patch }
+    const next = { ...state, ...patch }
     let saved = true
-    try { if (storage) storage.setItem(key, JSON.stringify({ version: 1, state })) } catch (_) { saved = false }
+    try { if (storage) storage.setItem(key, JSON.stringify({ version: 1, state: next })) } catch (_) { saved = false }
+    if (requireSaved && !saved) return false
+    state = next
     if (current()) for (const listener of listeners) { try { listener(snapshot()) } catch (_) { console.error('[resourceTags] observer failed') } }
     return saved
   }
@@ -122,8 +124,64 @@ export function getResourceTagOperation ({ identity, context, getIdentity, get, 
     running = tracker.track(id, { token }, true).then(result => { receive(id, result, { token }); return snapshot() })
     return running
   }
+  const canReview = sequence => current() && state.sequence === sequence && state.status === 'unknown' && !state.jobId &&
+    !state.requestPending && ['createTags', 'deleteTags'].includes(state.command) &&
+    typeof state.params.resourceids === 'string' && !!state.params.resourceids && typeof state.params.resourcetype === 'string' &&
+    typeof state.params['tags[0].key'] === 'string' && typeof state.params['tags[0].value'] === 'string'
   const op = {
     snapshot,
+    cancelReview () {
+      reviewToken++
+      if (state.status === 'unknown' && state.review) publish({ review: null })
+    },
+    async review (read, sequence) {
+      if (!canReview(sequence)) return false
+      const token = ++reviewToken
+      publish({ review: { status: 'reading', sequence } })
+      try {
+        const rows = await read()
+        if (!canReview(sequence) || token !== reviewToken) return false
+        if (!Array.isArray(rows) || rows.some(row => row.resourceid !== state.params.resourceids ||
+          row.resourcetype !== state.params.resourcetype || typeof row.key !== 'string' || typeof row.value !== 'string')) {
+          throw new Error('message.tags.read.incomplete')
+        }
+        const matching = rows.filter(row => row.key === state.params['tags[0].key'])
+        const exists = matching.some(row => row.value === state.params['tags[0].value'])
+        publish({
+          review: {
+            status: 'ready',
+            sequence,
+            reviewId: token,
+            checkedAt: new Date().toISOString(),
+            desiredObserved: state.command === 'createTags' ? exists : !exists,
+            matching: matching.map(({ key, value }) => ({ key, value }))
+          }
+        })
+        return true
+      } catch (error) {
+        if (canReview(sequence) && token === reviewToken) {
+          publish({
+            review: {
+              status: 'failed',
+              sequence,
+              error: tagApiError(error) || (error.message?.startsWith('message.') ? error.message : 'message.tags.read.failed')
+            }
+          })
+        }
+        return false
+      }
+    },
+    finishReview ({ sequence, reviewId, checkedAt, confirmed }) {
+      if (!confirmed || !canReview(sequence) || state.review?.status !== 'ready' || state.review.sequence !== sequence ||
+        reviewId !== state.review.reviewId || !checkedAt || state.review.checkedAt !== checkedAt) return false
+      const resolution = { ...state.review, closedAt: new Date().toISOString() }
+      if (!publish({ status: 'acknowledged', reason: 'operator', error: '', review: null, resolution }, true)) {
+        publish({ review: { ...state.review, error: 'message.tags.review.storage.failed' } })
+        return false
+      }
+      reviewToken++
+      return true
+    },
     bind (check) {
       const id = Symbol('view')
       bindings.set(id, check); paused = false
@@ -132,12 +190,13 @@ export function getResourceTagOperation ({ identity, context, getIdentity, get, 
     subscribe (listener) { listeners.add(listener); listener(snapshot()); return () => listeners.delete(listener) },
     pause () {
       paused = true
-      trackingToken++
+      trackingToken++; reviewToken++
       tracker.clear()
+      if (state.review) publish({ review: null })
       if (state.status === 'preparing') publish({ status: 'failed', reason: 'prepare', error: 'message.tags.scope.changed' })
       else if (tagOperationBlocked(state)) publish({ status: 'unknown', reason: 'scope' })
     },
-    invalidate () { valid = false; paused = true; trackingToken++; tracker.clear(); listeners.clear(); bindings.clear() },
+    invalidate () { valid = false; paused = true; trackingToken++; reviewToken++; tracker.clear(); listeners.clear(); bindings.clear() },
     resume () {
       if (['pending', 'retrying'].includes(state.status)) return running || Promise.resolve(snapshot())
       return state.status === 'unknown' ? track() : Promise.resolve(snapshot())
@@ -145,8 +204,9 @@ export function getResourceTagOperation ({ identity, context, getIdentity, get, 
     run (command, params, prepare = async () => {}) {
       if (!current() || tagOperationBlocked(state) || !['createTags', 'deleteTags'].includes(command)) return running || Promise.resolve(snapshot())
       const frozen = copy(params)
-      if (!publish({ status: 'preparing', command, params: frozen, jobId: '', error: '', reason: '', sequence: state.sequence + 1 })) {
-        publish({ status: 'failed', error: 'message.tags.storage.failed', reason: 'storage' })
+      reviewToken++
+      if (!publish({ status: 'preparing', command, params: frozen, jobId: '', error: '', reason: '', requestPending: false, review: null, resolution: null, sequence: state.sequence + 1 })) {
+        publish({ status: 'failed', requestPending: false, error: 'message.tags.storage.failed', reason: 'storage' })
         return Promise.resolve(snapshot())
       }
       running = (async () => {
@@ -155,8 +215,9 @@ export function getResourceTagOperation ({ identity, context, getIdentity, get, 
           return snapshot()
         }
         if (!current()) return snapshot()
-        if (!publish({ status: 'submitting' })) {
-          publish({ status: 'failed', error: 'message.tags.storage.failed', reason: 'storage' })
+        const sequence = state.sequence
+        if (!publish({ status: 'submitting', requestPending: true })) {
+          publish({ status: 'failed', requestPending: false, error: 'message.tags.storage.failed', reason: 'storage' })
           return snapshot()
         }
         let result
@@ -165,17 +226,17 @@ export function getResourceTagOperation ({ identity, context, getIdentity, get, 
         } catch (error) {
           const message = tagApiError(error)
           const rejected = message && ![502, 503, 504].includes(error?.response?.status)
-          publish({ status: rejected ? 'failed' : 'unknown', error: message, reason: rejected ? 'api' : 'submission' })
+          publish({ status: rejected ? 'failed' : 'unknown', requestPending: false, error: message, reason: rejected ? 'api' : 'submission' })
           return snapshot()
         }
-        if (!alive()) return snapshot()
+        if (!alive() || state.sequence !== sequence) return snapshot()
         if (result?.jobid) {
-          publish({ jobId: String(result.jobid), status: current() ? 'pending' : 'unknown', reason: current() ? '' : 'scope' })
+          publish({ requestPending: false, jobId: String(result.jobid), status: current() ? 'pending' : 'unknown', reason: current() ? '' : 'scope' })
           return current() ? track() : snapshot()
         }
         publish(result?.success === true
-          ? { status: 'succeeded', error: '', reason: '' }
-          : { status: 'unknown', error: '', reason: 'submission' })
+          ? { status: 'succeeded', requestPending: false, error: '', reason: '' }
+          : { status: 'unknown', requestPending: false, error: '', reason: 'submission' })
         return snapshot()
       })()
       return running

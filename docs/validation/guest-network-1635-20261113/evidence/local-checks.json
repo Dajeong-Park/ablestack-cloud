@@ -1,0 +1,22 @@
+{
+  "unit": {
+    "exit": 0,
+    "seconds": 27.3,
+    "suites": 9,
+    "tests": 132,
+    "passed": 132,
+    "failed": 0,
+    "pending": 0,
+    "failures": []
+  },
+  "lint": {
+    "exit": 0,
+    "output": "\n> cloudstack-ui@4.22.0 lint\n> vue-cli-service lint --no-fix src/components/view/AnnotationsTab.vue tests/unit/components/view/AnnotationsLength.spec.js\n\nBrowserslist: caniuse-lite is outdated. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n DONE  No lint errors found!\n"
+  },
+  "sourceFiles": {
+    "ui/public/locales/en.json": "8bfa1d24286eff7eb0bf6cbf7dd2a2d8605760dd5502dbb43ec931a25fdb933f",
+    "ui/public/locales/ko_KR.json": "0c32cd94058cfc98a8a30ebe9bfb4b099b2eb3c45aacde65b42e47d8c38271ba",
+    "ui/src/components/view/AnnotationsTab.vue": "74f913be20d3de5befa829ec484af34da5e3f7a1c1dff1bee1584d2668924c6c",
+    "ui/tests/unit/components/view/AnnotationsLength.spec.js": "c3eca769540effcb29a740d543a3f390064dcfb0a5f08d09ef58cc212d5828f4"
+  }
+}

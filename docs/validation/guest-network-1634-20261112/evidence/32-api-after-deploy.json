@@ -1,0 +1,39 @@
+{
+  "apiReady": true,
+  "currentTags": [
+    {
+      "key": "gn1569-20261112-review",
+      "value": "Isolated",
+      "resourcetype": "Network",
+      "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain"
+    },
+    {
+      "key": "gn1569-ui-retry",
+      "value": "입력 보존 후 정상 재시도",
+      "resourcetype": "Network",
+      "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain"
+    },
+    {
+      "key": "gn1634-32-delete",
+      "value": "삭제 시험 원문 <i>보존</i>",
+      "resourcetype": "Network",
+      "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+      "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "project": "qa-gn1569-32-shared-reg",
+      "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+      "domain": "qa-gn1569-32-domain",
+      "domainpath": "ROOT/qa-gn1569-32-domain"
+    }
+  ],
+  "originalNoJobTagAbsent": true
+}

@@ -1,0 +1,725 @@
+[
+  {
+    "label": "32-before-unknown-no-recovery-1280-light",
+    "cluster": 32,
+    "dark": false,
+    "dialog": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "31-final-review-observed-390-light",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:08:35.260Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "31-final-confirm-390-light",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:09:42.721Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "31-final-project-other-1280-light",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:10:33.938Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1597-31-project",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "31-final-review-1280-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:12:04.552Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "31-final-review-768-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:12:04.809Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 768
+    }
+  },
+  {
+    "label": "31-final-review-390-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:12:05.078Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "31-final-confirm-390-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:12:33.526Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "label": "31-final-delete-unknown-tag-preserved-1280-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:14:52.356Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "31-final-delete-review-1280-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:15:04.576Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "31-final-explicit-delete-success-1280-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:18:19.158Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "31-final-shared-review-1280-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:18:46.525Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "31-final-shared-created-1280-dark",
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:19:05.007Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "32-final-review-read-failure-1280-light",
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:20:37.585Z",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    }
+  },
+  {
+    "label": "32-final-review-1280-light",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작업은 취소되지 않으며 나중에 반영될 수 있습니다.\n대상 자원\nqa-gn1"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:27:55.633Z"
+  },
+  {
+    "label": "32-final-project-other-1280-light",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1597-32-project",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:28:21.436Z"
+  },
+  {
+    "label": "32-final-confirm-390-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작업은 취소되지 않으며 나중에 반영될 수 있습니다.\n대상 자원\nqa-gn1"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:29:25.070Z"
+  },
+  {
+    "label": "32-final-review-768-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작업은 취소되지 않으며 나중에 반영될 수 있습니다.\n대상 자원\nqa-gn1"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 768
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:29:25.281Z"
+  },
+  {
+    "label": "32-final-review-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작업은 취소되지 않으며 나중에 반영될 수 있습니다.\n대상 자원\nqa-gn1"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:29:25.640Z"
+  },
+  {
+    "label": "32-final-explicit-create-pending-guard-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:29:43.174Z"
+  },
+  {
+    "label": "32-final-explicit-create-success-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:29:50.568Z"
+  },
+  {
+    "label": "32-final-review-observed-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작업은 취소되지 않으며 나중에 반영될 수 있습니다.\n대상 자원\nqa-gn1"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:30:22.112Z"
+  },
+  {
+    "label": "32-final-response-loss-tracking-ended-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:30:24.411Z"
+  },
+  {
+    "label": "32-final-vm-known-job-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:30:54.950Z"
+  },
+  {
+    "label": "32-final-delete-review-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [
+      "태그 작업 결과 확인\n태그 조회만으로 원래 작업의 접수·완료를 확정할 수 없습니다. 추적을 종료해도 서버 작업은 취소되지 않으며 나중에 반영될 수 있습니다.\n대상 자원\nqa-gn1"
+    ],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:31:21.726Z"
+  },
+  {
+    "label": "32-final-explicit-delete-success-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:31:43.299Z"
+  },
+  {
+    "label": "32-final-role-explicit-failure-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:32:29.459Z"
+  },
+  {
+    "label": "32-final-role-retry-success-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:32:35.043Z"
+  },
+  {
+    "label": "32-final-role-shared-readonly-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:32:42.097Z"
+  },
+  {
+    "label": "31-final-role-explicit-failure-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:33:45.404Z"
+  },
+  {
+    "label": "31-final-role-retry-success-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:34:02.702Z"
+  },
+  {
+    "label": "31-final-role-shared-readonly-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/87601b32-f211-4609-819f-6d0f4810b788",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:34:08.962Z"
+  },
+  {
+    "label": "31-final-nonproject-denied-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "기본 보기",
+    "url": "http://10.10.31.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:34:41.749Z"
+  },
+  {
+    "label": "32-final-nonproject-denied-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "기본 보기",
+    "url": "http://10.10.32.10:8080/client/#/dashboard",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:35:51.202Z"
+  },
+  {
+    "label": "32-final-vm-standard-nic-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/vm/e3ddbdd1-ccd7-4299-9461-a33d25d6b645?tab=nics",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:37:13.208Z"
+  },
+  {
+    "label": "32-final-review-resources-kept-1280-light",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-32-shared-reg",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:37:29.351Z"
+  },
+  {
+    "label": "31-final-vm-standard-nic-1280-dark",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": true,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/vm/551067c6-fbfb-40df-8313-037e21de78cf?tab=nics",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:38:31.507Z"
+  },
+  {
+    "label": "31-final-review-resources-kept-1280-light",
+    "bundles": [
+      "js/app.20077043.js"
+    ],
+    "dark": false,
+    "dialogs": [],
+    "dpr": 1,
+    "overflow": false,
+    "project": "qa-gn1569-31-shared-reg",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "viewport": {
+      "height": 800,
+      "width": 1280
+    },
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "capturedAt": "2026-11-12T15:39:01.600Z"
+  }
+]

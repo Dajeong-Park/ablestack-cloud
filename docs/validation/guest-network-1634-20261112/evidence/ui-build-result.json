@@ -1,0 +1,25 @@
+{
+  "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+  "exit": 0,
+  "seconds": 676.3,
+  "node": "v20.20.2",
+  "npm": "10.8.2",
+  "sourceClean": true,
+  "fullCloudBuild": false,
+  "staticFiles": 1027,
+  "indexSha256": "6793a81e4a6f252c7f3da42ca566b1a1c33ac57cca9eb981d90b865fc921f034",
+  "appBundles": [
+    "app.20077043.js"
+  ],
+  "markers": {
+    "finishReview": [
+      "js/app.20077043.js"
+    ],
+    "tag-recovery-target": [
+      "js/app.20077043.js"
+    ],
+    "recoveryConfirmed": [
+      "js/app.20077043.js"
+    ]
+  }
+}
