@@ -709,7 +709,7 @@ systemctl status mold-veeam-restore-agent.timer --no-pager
 ### NetBackup·Veeam 호스트 정책의 VM 대상 선택
 
 NetBackup과 ABLESTACK Veeam은 각각 Mold 글로벌 설정으로 VM별 스케줄 사용 여부를 결정한다.
-두 설정 모두 최초 기본값은 `false`이며 동적 설정이므로 운영 중 값 변경에 관리 서버 재기동은 필요하지 않다.
+최초 기본값은 NetBackup `true`, ABLESTACK Veeam `false`이며, 두 설정 모두 동적 설정이므로 운영 중 값 변경에 관리 서버 재기동은 필요하지 않다.
 각 솔루션의 모든 Host 정책/Job에 공통 적용하며, 두 솔루션의 값은 서로 독립적이다. NAS·Commvault에는 적용하지 않는다.
 
 | 솔루션 | 글로벌 설정 |
@@ -725,7 +725,7 @@ Veeam `/etc/ablestack/veeam/<job>.conf`에는 모드 값을 저장하지 않는�
 사전 구성의 입력 순서는 다음과 같다.
 
 1. VM별 스케줄 사용 여부를 먼저 선택한다. 현재 Mold 글로벌 값을 기본값으로 표시하며,
-   터미널이 없는 실행에서도 옵션을 생략하면 현재 값을 유지한다. 다른 Host를 추가하면서 기본 `false`로 덮어쓰지 않는다.
+   터미널이 없는 실행에서도 옵션을 생략하면 현재 값을 유지한다. 다른 Host를 추가하면서 제품 기본값으로 덮어쓰지 않는다.
 2. `true`이면 include/exclude 입력을 생략하고 Mold에서 대상 VM에 오퍼링과 백업 스케줄을 연결한다.
    기존 호스트 필터는 보존하며 새 정책/Job은 `VM_INCLUDE="*"`, `VM_EXCLUDE=""`를 저장한다.
    이 필터는 이후 글로벌 값을 `false`로 전환했을 때 사용한다.
@@ -2261,7 +2261,7 @@ Veeam의 기존 환경 생성·설치·설정용 셸 스크립트는 `veeam-host
 | --- | --- |
 | `--admin-apikey`, `--admin-secretkey` | Mold Admin API 인증정보. Veeam은 `--api-key`, `--api-secret` 별칭도 지원 |
 | `--mold-url URL` | Mold API 주소. NetBackup 필수, Veeam 생략 시 Agent의 `agent.properties`에서 조회 |
-| `--vm-schedule-backup true\|false` | 해당 솔루션의 Mold 글로벌 스케줄 모드 갱신. 생략 시 현재 Mold 값 유지(최초 `false`), Host conf에 모드 저장하지 않음 |
+| `--vm-schedule-backup true\|false` | 해당 솔루션의 Mold 글로벌 스케줄 모드 갱신. 생략 시 현재 Mold 값 유지(최초 NetBackup `true`, Veeam `false`), Host conf에 모드 저장하지 않음 |
 | `--vm-include LIST`, `--vm-exclude LIST` | `false`일 때 대상/제외 필터. 기본 `*`/빈 값. 터미널에서 생략 시 입력받음 |
 | `--incremental-backup true\|false` | 최초 구성할 Full/증분 정책. 기본 `true`. Mold Global 및 해당 Cluster에 반영 |
 | `--backup-chain-size N` | 증분일 때만 지정. 생략하면 기존 `kvm.backup.chain.size` 유지, 제품 기본값 `8` |

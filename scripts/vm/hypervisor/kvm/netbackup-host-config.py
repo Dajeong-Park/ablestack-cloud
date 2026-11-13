@@ -1014,7 +1014,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--kvm-ip", help="match the Mold host by its IP instead of its name")
     parser.add_argument("--vm-schedule-backup", type=parse_boolean, metavar="true|false",
                         help="Update Mold's global NetBackup VM schedule mode for all host policies. "
-                             "If omitted, use the current Mold value (initial default: false).")
+                             "If omitted, use the current Mold value (initial default: true).")
     parser.add_argument("--vm-include")
     parser.add_argument("--vm-exclude")
     parser.add_argument("--incremental-backup", type=parse_boolean, default=True, metavar="true|false",

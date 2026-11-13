@@ -111,7 +111,7 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             "The backup and recovery background sync task polling interval in seconds.", true, BackupFrameworkEnabled.key());
 
     ConfigKey<Boolean> NetBackupVmScheduleEnabled = new ConfigKey<>("Advanced", Boolean.class,
-            "backup.plugin.netbackup.vm.schedule.enabled", "false",
+            "backup.plugin.netbackup.vm.schedule.enabled", "true",
             "Use Mold per-VM schedules for all ABLESTACK NetBackup host policies. " +
                     "When false, use each host policy's VM include/exclude filters. " +
                     "When true, an empty due schedule list skips backup without falling back to host filters.",

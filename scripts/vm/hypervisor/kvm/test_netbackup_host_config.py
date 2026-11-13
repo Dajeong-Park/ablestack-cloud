@@ -42,7 +42,7 @@ class NetBackupConfigurationTest(unittest.TestCase):
         patcher = patch.object(config, "CONFIG_OUTPUT_DIR", Path(directory.name))
         patcher.start()
         self.addCleanup(patcher.stop)
-        patcher = patch.object(config, "get_configuration_value", return_value="false")
+        patcher = patch.object(config, "get_configuration_value", return_value="true")
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -282,11 +282,11 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         self.assertEqual(("*", ""), (args.vm_include, args.vm_exclude))
         self.assertEqual(1, read.call_count)
 
-    def test_noninteractive_selection_defaults_to_all_host_vms(self):
+    def test_noninteractive_selection_uses_mold_schedule_mode_by_default(self):
         args = self.arguments()
         with patch.object(sys.stdin, "isatty", return_value=False), patch("builtins.input") as read:
             config.configure_vm_selection(args)
-        self.assertFalse(args.vm_schedule_backup)
+        self.assertTrue(args.vm_schedule_backup)
         self.assertEqual(("*", ""), (args.vm_include, args.vm_exclude))
         read.assert_not_called()
 
