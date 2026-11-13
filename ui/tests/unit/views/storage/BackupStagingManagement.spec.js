@@ -22,14 +22,22 @@ import ko from '../../../../public/locales/ko_KR.json'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
-async function mount (info, operation = 'BACKUP', resource = {}, translations = {}) {
-  getAPI.mockResolvedValue({ getbackupstaginginforesponse: { backupstaginginfo: { stagingjobid: 'staging-1', ...info } } })
+async function mount (info, operation = 'BACKUP', resource = {}, translations = {}, props = {}) {
+  const responseKey = (props.inspectionApi || 'getBackupStagingInfo').toLowerCase() + 'response'
+  getAPI.mockResolvedValue({ [responseKey]: { backupstaginginfo: { stagingjobid: 'staging-1', ...info } } })
   const wrapper = shallowMount(BackupStagingManagement, {
-    props: { resource: { id: 'backup-1', status: 'Failed', stagingqueue: { operation }, ...resource } },
+    props: { resource: { id: 'backup-1', status: 'Failed', stagingqueue: { operation }, ...resource }, ...props },
     global: {
       stubs: {
         ADescriptions: { template: '<div><slot /></div>' },
-        ADescriptionsItem: { props: ['label'], template: '<div>{{ label }}<slot /></div>' }
+        ADescriptionsItem: { props: ['label'], template: '<div>{{ label }}<slot /></div>' },
+        ACollapse: { template: '<div><slot /></div>' },
+        ACollapsePanel: { template: '<div><slot /></div>' },
+        ATag: { template: '<span><slot /></span>' },
+        ATable: {
+          props: ['columns', 'dataSource'],
+          template: '<table><tbody><tr v-for="record in dataSource" :key="record.path"><td v-for="column in columns" :key="column.key"><slot name="bodyCell" :column="column" :record="record" /></td></tr></tbody></table>'
+        }
       },
       mocks: {
         $store: { getters: { apis: { reconcileBackupStagingJob: {} } } },
@@ -46,6 +54,47 @@ async function mount (info, operation = 'BACKUP', resource = {}, translations = 
 }
 
 beforeEach(() => jest.clearAllMocks())
+
+test('NetBackup image inspection retains exact owned and inherited references after Host cleanup', async () => {
+  const artifact = [
+    { path: '/stage/root', volumeid: 'root-volume', backupid: 'backup-1', owned: true, externalid: 'host_123', externaljobid: '901', completed: true },
+    { path: '/stage/data', volumeid: 'data-volume', backupid: 'backup-1', owned: true, externalid: 'host_124', externaljobid: '902', completed: true },
+    { path: '/stage/metadata', metadata: true, backupid: 'backup-1', owned: true, externalid: 'host_125', externaljobid: '903', completed: true },
+    { path: '/old/root', volumeid: 'root-volume', backupid: 'parent-backup', owned: false, externalid: 'host_100', externaljobid: '800', completed: true }
+  ]
+  const w = await mount({ id: 'backup-1', hoststate: 'COMPLETED', artifact }, 'RESTORE', {
+    provider: 'ablestack-netbackup',
+    status: 'BackedUp',
+    type: 'INCREMENTAL',
+    catalogstate: 'AVAILABLE',
+    catalogchecked: '2026-11-13T00:00:00Z',
+    volumes: JSON.stringify([{ uuid: 'root-volume', type: 'ROOT' }, { uuid: 'data-volume', type: 'DATADISK' }])
+  }, ko, { readOnly: true, inspectionApi: 'getBackupImageInfo' })
+  expect(getAPI).toHaveBeenCalledWith('getBackupImageInfo', { id: 'backup-1' })
+  expect(w.vm.operation).toBe('BACKUP')
+  for (const value of ['backup-1', 'ROOT', 'DATA', 'host_123', 'host_124', 'host_125', 'host_100', '901', '902', '903', '800', 'parent-backup', '2026-11-13T00:00:00Z']) expect(w.text()).toContain(value)
+  expect(w.text()).toContain(ko['label.backup.image.owned'])
+  expect(w.text()).toContain(ko['label.backup.image.inherited'])
+  expect(w.html()).toContain(ko['message.backup.image.saved.references'])
+  expect(w.text()).toContain(ko['label.backup.staging.file.not.checked'])
+  expect(w.vm.canManage).toBe(false)
+  expect(w.vm.canMutate).toBe(false)
+  for (const action of ['RECHECK', 'RETRY_CLEANUP', 'LINK_JOB']) await w.vm.run(action)
+  expect(postAPI).not.toHaveBeenCalled()
+  await w.vm.load()
+  expect(getAPI).toHaveBeenCalledTimes(2)
+  w.unmount()
+})
+
+test('NetBackup image lookup errors retain their message and keep mutation actions disabled', async () => {
+  const w = await mount({}, 'BACKUP', {}, ko, { readOnly: true, inspectionApi: 'getBackupImageInfo' })
+  getAPI.mockRejectedValueOnce({ response: { data: { getbackupimageinforesponse: { errortext: 'NetBackup query unavailable' } } } })
+  await w.vm.load()
+  expect(w.vm.errorMessage).toBe('NetBackup query unavailable')
+  expect(w.vm.canMutate).toBe(false)
+  expect(postAPI).not.toHaveBeenCalled()
+  w.unmount()
+})
 
 test.each(['BACKUP', 'RESTORE'])('explains a busy %s staging query in Korean without reporting a restore failure', async operation => {
   const wrapper = await mount({}, operation, {}, ko)

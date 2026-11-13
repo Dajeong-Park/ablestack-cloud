@@ -211,6 +211,27 @@ mold_backup_pre_notify host-test parent-policy default
                 self.assertEqual(0, result.returncode, result.stderr)
                 self.assertEqual(["i-2-2-VM"], result.stdout.splitlines())
 
+    def test_netbackup_configuration_csv_preserves_spaces_inside_imported_instance_names(self):
+        names = ["ERP Server", "Finance  DB", "팀 업무 VM", "Accounting 'DB' VM", "Finance DB", "ERPServer"]
+        payload = response("CONFIG", [candidate(name) for name in names])
+        result = self.run_selection("netbackup", payload,
+                                    include=" ERP Server, Finance  DB, 팀 업무 VM, Accounting 'DB' VM ")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(names[:4], result.stdout.splitlines())
+
+    def test_netbackup_configuration_exclude_preserves_repeated_spaces_in_imported_names(self):
+        payload = response("CONFIG", [candidate("Finance  DB"), candidate("Finance DB"), candidate("ERP Server")])
+        result = self.run_selection("netbackup", payload, exclude=" Finance  DB, ERP Server ")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(["Finance DB"], result.stdout.splitlines())
+
+    def test_netbackup_schedule_selection_preserves_imported_names_without_host_filtering(self):
+        names = ["ERP Server", "Finance  DB", "팀 업무 VM"]
+        payload = response("SCHEDULE", [candidate(name, scheduled=True) for name in names])
+        result = self.run_selection("netbackup", payload, include="other VM", exclude="*")
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(names, result.stdout.splitlines())
+
     def test_stopped_vm_absent_from_libvirt_is_dispatched_in_both_modes(self):
         for provider in ("netbackup", "veeam"):
             for mode, configured in (("CONFIG", "false"), ("SCHEDULE", "true")):
@@ -263,8 +284,8 @@ mold_backup_pre_notify host-test parent-policy default
                     self.assertNotEqual(0, result.returncode)
                     self.assertEqual("", result.stdout)
 
-    def run_dispatch(self, provider, mode, assigned=True, fail=False, vm_schedules=""):
-        data = response(mode, [candidate(scheduled=mode == "SCHEDULE", assigned=assigned)])
+    def run_dispatch(self, provider, mode, assigned=True, fail=False, vm_schedules="", vm_name="i-2-1-VM"):
+        data = response(mode, [candidate(vm_name, scheduled=mode == "SCHEDULE", assigned=assigned)])
         if mode == "CONFIG" and not assigned:
             data["listexternalbackupcandidatesresponse"]["externalbackupcandidates"]["candidate"][0].update(
                 backupofferingid=None, scheduleid=None)
@@ -282,13 +303,14 @@ NETBACKUP_PARENT_PAYLOAD_PATH="$BACKUP_STAGING_ROOT/bootstrap/$POLICY_SAFE"
 VM_SCHEDULE_BACKUP="$TEST_VM_SCHEDULE_BACKUP"
 log() { :; }
 invoke_mold_api() {
+  [[ "$4" == virtualmachineid && "$5" == "vm-$TEST_VM_NAME" ]] || return 1
   echo "REQUEST:$*" >> "$TEST_ROOT/requests"
   [[ "$TEST_FAIL_DISPATCH" == False ]] || return 1
   echo '{"createnetbackupresponse":{"jobid":"job-uuid"}}'
 }
 wait_for_mold_async_job() { echo '{"queryasyncjobresultresponse":{"jobstatus":1,"jobresult":{"success":true,"backupid":"backup-uuid"}}}'; }
 wait_for_vm_staging_complete() { echo "PREPARATION:$*" >> "$TEST_ROOT/requests"; echo /test/staging; }
-run_stage_vm_backup i-2-1-VM
+run_stage_vm_backup "$TEST_VM_NAME"
 '''
         else:
             library = ROOT / "veeam" / "mold-backup.lib.sh"
@@ -317,7 +339,7 @@ mold_backup_api_create_veeam_and_wait vm-i-2-1-VM i-2-1-VM
         with tempfile.TemporaryDirectory() as directory:
             env = dict(os.environ, TEST_LIBRARY=str(library), TEST_ROOT=str(Path(directory).resolve()),
                        TEST_CANDIDATES=json.dumps(data["listexternalbackupcandidatesresponse"]["externalbackupcandidates"]),
-                       TEST_FAIL_DISPATCH=str(fail))
+                       TEST_FAIL_DISPATCH=str(fail), TEST_VM_NAME=vm_name)
             env["TEST_VM_SCHEDULE_BACKUP"] = vm_schedules
             result = subprocess.run(["bash", "-c", script], capture_output=True, text=True, env=env, timeout=10)
             requests = Path(directory) / "requests"
@@ -338,6 +360,14 @@ mold_backup_api_create_veeam_and_wait vm-i-2-1-VM i-2-1-VM
         result = self.run_dispatch("netbackup", "CONFIG")
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertRegex(result.stderr, r"PREPARATION:i-2-1-VM [0-9]+ backup-uuid")
+
+    def test_netbackup_dispatch_preserves_the_selected_imported_name_and_vm_id(self):
+        for mode in ("CONFIG", "SCHEDULE"):
+            with self.subTest(mode=mode):
+                result = self.run_dispatch("netbackup", mode, vm_name="ERP  Finance VM")
+                self.assertEqual(0, result.returncode, result.stderr)
+                self.assertIn("PREPARATION:ERP  Finance VM ", result.stderr)
+                self.assertEqual(1, result.stderr.count("REQUEST:"))
 
     def test_config_dispatch_allows_server_to_assign_default_offering(self):
         for provider in ("netbackup", "veeam"):

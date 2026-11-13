@@ -18,7 +18,7 @@
 <template>
   <div class="staging-management">
     <div class="staging-toolbar">
-      <a-select v-model:value="operation" :disabled="busy || loading" style="width: 140px">
+      <a-select v-if="!readOnly" v-model:value="operation" :disabled="busy || loading" style="width: 140px">
         <a-select-option value="BACKUP">{{ $t('label.backup') }}</a-select-option>
         <a-select-option value="RESTORE">{{ $t('label.restore') }}</a-select-option>
       </a-select>
@@ -61,12 +61,25 @@
       class="staging-alert" />
     <template v-if="info">
       <a-alert
+        v-if="readOnly"
+        type="info"
+        show-icon
+        :message="$t('label.backup.image.information')"
+        :description="$t('message.backup.image.saved.references')"
+        class="staging-alert" />
+      <a-alert
         :type="situation.type"
         show-icon
         :message="$t(situation.title)"
         :description="$t(situation.description)"
         class="staging-alert" />
       <a-descriptions bordered :column="1" size="small">
+        <template v-if="readOnly">
+          <a-descriptions-item :label="$t('label.backup.image.logical.id')">{{ info.id || resource.id }}</a-descriptions-item>
+          <a-descriptions-item :label="$t('label.type')">{{ resource.type || '—' }}</a-descriptions-item>
+          <a-descriptions-item :label="$t('label.backup.catalog.state')">{{ resource.catalogstate || 'UNKNOWN' }}</a-descriptions-item>
+          <a-descriptions-item :label="$t('label.backup.catalog.checked')">{{ resource.catalogchecked ? $toLocaleDate(resource.catalogchecked) : $t('label.backup.staging.file.not.checked') }}</a-descriptions-item>
+        </template>
         <a-descriptions-item v-if="info.retentionstate" :label="$t('label.backup.retention.protection')">
           {{ $t(info.retentionstate === 'COMPLETED' ? 'label.backup.retention.protected' : 'label.backup.retention.pending') }}
           <div v-if="info.retentionuntil">{{ $t('label.backup.retention.until') }}: {{ info.retentionuntil }}</div>
@@ -99,7 +112,7 @@
         <p>{{ $t('message.backup.staging.cleanup') }}</p>
         <a-button :disabled="busy || loading" @click="run('RETRY_CLEANUP')">{{ $t('label.backup.staging.retry.cleanup') }}</a-button>
       </div>
-      <a-collapse v-if="info.artifact?.length" class="staging-details">
+      <a-collapse v-if="info.artifact?.length" :default-active-key="readOnly ? ['files'] : []" class="staging-details">
         <a-collapse-panel key="files" :header="$t('label.backup.staging.files')">
           <p>{{ $t('message.backup.staging.files') }}</p>
           <a-table
@@ -111,13 +124,18 @@
             size="small">
             <template #bodyCell="{ column, record }">
               <template v-if="column.key === 'volume'">
-                <div>{{ record.metadata ? $t('label.metadata') : record.volumeid }}</div>
+                <template v-if="readOnly">
+                  <div>{{ imageVolumeLabel(record) }}</div>
+                  <small v-if="!record.metadata">{{ record.volumeid }}</small>
+                  <a-tag :color="record.owned ? 'blue' : undefined">{{ $t(record.owned ? 'label.backup.image.owned' : 'label.backup.image.inherited') }}</a-tag>
+                </template>
+                <div v-else>{{ record.metadata ? $t('label.metadata') : record.volumeid }}</div>
                 <small>{{ record.path }}</small>
                 <small v-if="record.destination">{{ $t('label.backup.staging.destination') }}: {{ record.destination }}</small>
                 <small v-if="!record.owned">{{ $t('label.backup.staging.parent.backup') }}: {{ record.backupid }}</small>
               </template>
               <template v-else-if="column.key === 'job'">
-                <div>{{ record.externaljobid || (record.submissionpending ? 'UNCONFIRMED' : '—') }}</div>
+                <div><span v-if="readOnly">{{ $t(/^\d+$/.test(String(record.externaljobid || '')) ? 'label.backup.image.netbackup.job.id' : 'label.backup.image.transfer.reference') }}: </span>{{ record.externaljobid || (record.submissionpending ? 'UNCONFIRMED' : '—') }}</div>
                 <small v-if="record.externalid">{{ $t('label.backup.staging.catalog.reference') }}: {{ record.externalid }}</small>
                 <small v-if="record.backuptime">{{ backupTime(record.backuptime) }}</small>
               </template>
@@ -168,10 +186,14 @@ import { getAPI, postAPI } from '@/api'
 
 export default {
   name: 'BackupStagingManagement',
-  props: { resource: { type: Object, required: true } },
+  props: {
+    resource: { type: Object, required: true },
+    readOnly: { type: Boolean, default: false },
+    inspectionApi: { type: String, default: 'getBackupStagingInfo' }
+  },
   emits: ['close-action', 'refresh'],
   data () {
-    return { operation: this.resource.stagingqueue?.operation || 'BACKUP', selectedRestoreJobId: '', info: null, selectedKeys: [], externalJobId: '', loading: false, busy: false, error: '', requestToken: 0, disposed: false }
+    return { operation: this.readOnly ? 'BACKUP' : this.resource.stagingqueue?.operation || 'BACKUP', selectedRestoreJobId: '', info: null, selectedKeys: [], externalJobId: '', loading: false, busy: false, error: '', requestToken: 0, disposed: false }
   },
   computed: {
     isExpired () {
@@ -200,7 +222,7 @@ export default {
       if (engine.startsWith('RBD')) return 'label.backup.source.cleanup.state'
       return engine === 'QCOW2' ? 'label.backup.qcow2.source.cleanup.state' : 'label.backup.source.cleanup.generic.state'
     },
-    canManage () { return 'reconcileBackupStagingJob' in this.$store.getters.apis },
+    canManage () { return !this.readOnly && 'reconcileBackupStagingJob' in this.$store.getters.apis },
     deletionPending () { return this.resource.deletionpending === true || this.info?.deletionpending === true },
     canMutate () { return this.canManage && !this.deletionPending && typeof this.info?.stagingjobid === 'string' && !!this.info.stagingjobid.trim() && !this.info.historical },
     unresolvedArtifacts () {
@@ -278,7 +300,7 @@ export default {
     operation () { this.selectedRestoreJobId = ''; this.info = null; this.selectedKeys = []; this.externalJobId = ''; this.load() },
     'resource.id' () {
       this.requestToken++; this.busy = false; this.loading = false; this.selectedRestoreJobId = ''; this.info = null; this.selectedKeys = []; this.externalJobId = ''
-      const operation = this.resource.stagingqueue?.operation || 'BACKUP'
+      const operation = this.readOnly ? 'BACKUP' : this.resource.stagingqueue?.operation || 'BACKUP'
       if (operation !== this.operation) this.operation = operation
       else this.load()
     }
@@ -286,6 +308,14 @@ export default {
   mounted () { this.load() },
   beforeUnmount () { this.disposed = true; this.requestToken++ },
   methods: {
+    imageVolumeLabel (artifact) {
+      if (artifact.metadata) return this.$t('label.metadata')
+      try {
+        const volumes = typeof this.resource.volumes === 'string' ? JSON.parse(this.resource.volumes) : this.resource.volumes
+        const volume = (Array.isArray(volumes) ? volumes : []).find(item => item.uuid === artifact.volumeid)
+        return volume?.type === 'DATADISK' ? 'DATA' : volume?.type || artifact.volumeid
+      } catch (_) { return artifact.volumeid }
+    },
     availabilityLabel (artifact) {
       const key = artifact.availabilityerror ? 'query.failed'
         : artifact.availability === 'AVAILABLE' ? 'available'
@@ -314,12 +344,12 @@ export default {
       const token = ++this.requestToken
       this.loading = true; this.error = ''; this.info = null; this.selectedKeys = []; this.externalJobId = ''
       try {
-        const params = { id: this.resource.id, operation: this.operation }
+        const params = this.readOnly ? { id: this.resource.id } : { id: this.resource.id, operation: this.operation }
         if (this.operation === 'RESTORE' && this.selectedRestoreJobId) params.stagingjobid = this.selectedRestoreJobId
-        const response = await getAPI('getBackupStagingInfo', params)
-        if (this.current(token)) this.info = this.stagingInfo(response.getbackupstaginginforesponse)
+        const response = await getAPI(this.inspectionApi, params)
+        if (this.current(token)) this.info = this.stagingInfo(response[this.inspectionApi.toLowerCase() + 'response'])
       } catch (error) {
-        if (this.current(token)) this.error = error.response?.data?.getbackupstaginginforesponse?.errortext || error.message || String(error)
+        if (this.current(token)) this.error = error.response?.data?.[this.inspectionApi.toLowerCase() + 'response']?.errortext || error.message || String(error)
       } finally {
         if (this.current(token)) this.loading = false
       }

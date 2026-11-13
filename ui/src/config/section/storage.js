@@ -753,6 +753,15 @@ export default {
           }
         },
         {
+          api: 'getBackupImageInfo',
+          icon: 'info-circle-outlined',
+          label: 'label.backup.image.information',
+          dataView: true,
+          popup: true,
+          show: record => isAdmin() && String(record.provider || '').toLowerCase() === 'ablestack-netbackup' && isVolumeBackup(record),
+          component: shallowRef(defineAsyncComponent(() => import('@/views/storage/BackupImageInfo.vue')))
+        },
+        {
           api: 'getBackupStagingInfo',
           icon: 'tool-outlined',
           label: 'label.backup.staging.management',

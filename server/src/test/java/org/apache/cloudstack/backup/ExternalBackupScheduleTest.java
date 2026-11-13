@@ -526,6 +526,22 @@ public class ExternalBackupScheduleTest {
     }
 
     @Test
+    public void netbackupHostFilterPreservesSpacesInsideImportedInstanceNames() {
+        org.junit.Assume.assumeTrue(provider.endsWith("netbackup"));
+        selectMode(false);
+        when(vm.getInstanceName()).thenReturn("Finance  DB");
+        when(cmd.getVmInclude()).thenReturn(" ERP Server, Finance  DB ");
+        assertEquals(1, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        when(cmd.getVmInclude()).thenReturn("ERP Server, Finance DB");
+        assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        when(cmd.getVmInclude()).thenReturn("*");
+        when(cmd.getVmExclude()).thenReturn(" ERP Server, Finance  DB ");
+        assertEquals(0, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+        when(cmd.getVmExclude()).thenReturn("Finance DB");
+        assertEquals(1, manager.listExternalBackupCandidates(cmd).getCandidates().size());
+    }
+
+    @Test
     public void olderConfigurationHooksCannotClaimHostlessVmsWithoutFilterContext() {
         selectMode(false);
         when(cmd.getVmInclude()).thenReturn(null);

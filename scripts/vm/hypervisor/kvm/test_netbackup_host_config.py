@@ -363,6 +363,18 @@ cat "${MOLD_VM_CACHE_FILE}.request"
                 self.assertEqual(("i-2-1-VM,i-2-2-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
                 self.assertNotIn("VM_SCHEDULE_BACKUP=", path.read_text())
 
+    def test_netbackup_config_round_trip_preserves_imported_vm_name_spacing(self):
+        include = "ERP Server, Finance  DB, 팀 업무 VM, Accounting 'DB' VM"
+        exclude = "Finance  DB"
+        args = self.arguments("--vm-schedule-backup", "false", "--vm-include", include, "--vm-exclude", exclude)
+        path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
+        config.write_config_file(path, args)
+        self.assertEqual({"VM_INCLUDE": include, "VM_EXCLUDE": exclude}, config.read_vm_selection_filters(args))
+        result = subprocess.run(["bash", "-c", 'source "$1"; printf "%s\\0%s" "$VM_INCLUDE" "$VM_EXCLUDE"', "_", str(path)],
+                                capture_output=True, text=True, timeout=10)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual([include, exclude], result.stdout.split("\0"))
+
     def test_legacy_schedule_sentinel_is_removed_without_clearing_intentional_exclude_all(self):
         path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
         for legacy_mode, expected in (("true", ""), ("false", "*")):
