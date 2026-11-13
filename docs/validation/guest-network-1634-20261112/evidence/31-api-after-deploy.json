@@ -1,0 +1,72 @@
+{
+  "apiReady": true,
+  "currentTags": [
+    {
+      "key": "gn1569-20261112-review",
+      "value": "Isolated",
+      "resourcetype": "Network",
+      "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain"
+    },
+    {
+      "key": "gn1569-ui-review",
+      "value": "역할·오퍼링 회귀 확인용",
+      "resourcetype": "Network",
+      "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain"
+    },
+    {
+      "key": "gn1569-ui-retry",
+      "value": "입력 보존 후 정상 재시도",
+      "resourcetype": "Network",
+      "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain"
+    },
+    {
+      "key": "gn1634-31-delete",
+      "value": "삭제 시험 원문 <i>보존</i>",
+      "resourcetype": "Network",
+      "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain"
+    },
+    {
+      "key": "gn1634-31-nojob",
+      "value": "한글 <b>초안</b>",
+      "resourcetype": "Network",
+      "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain"
+    },
+    {
+      "key": "gn1634-31-response-loss",
+      "value": "서버 접수 후 응답 유실",
+      "resourcetype": "Network",
+      "resourceid": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "project": "qa-gn1569-31-shared-reg",
+      "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+      "domain": "qa-gn1569-31-domain",
+      "domainpath": "ROOT/qa-gn1569-31-domain"
+    }
+  ],
+  "originalNoJobTagAbsent": false
+}

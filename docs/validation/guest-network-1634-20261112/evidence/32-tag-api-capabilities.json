@@ -1,0 +1,30 @@
+[
+  {
+    "role": "root",
+    "commands": {
+      "listTags": true,
+      "createTags": true,
+      "deleteTags": true
+    }
+  },
+  {
+    "role": "peer",
+    "commands": {
+      "listTags": true,
+      "createTags": true,
+      "deleteTags": true
+    }
+  },
+  {
+    "role": "readOnly",
+    "commands": {
+      "listTags": true,
+      "createTags": true,
+      "deleteTags": true
+    }
+  },
+  {
+    "role": "child",
+    "errorcode": 432
+  }
+]

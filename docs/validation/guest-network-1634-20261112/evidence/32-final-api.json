@@ -1,0 +1,256 @@
+{
+  "inventory": [
+    {
+      "kind": "virtualmachine",
+      "before": 72,
+      "after": 72,
+      "identityStateAndNICUnchanged": true
+    },
+    {
+      "kind": "network",
+      "before": 28,
+      "after": 28,
+      "identityStateAndNICUnchanged": true
+    },
+    {
+      "kind": "vpc",
+      "before": 4,
+      "after": 4,
+      "identityStateAndNICUnchanged": true
+    }
+  ],
+  "tagTargets": [
+    {
+      "target": {
+        "type": "Network",
+        "id": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      },
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1569-20261112-review",
+          "value": "Isolated",
+          "resourcetype": "Network",
+          "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        },
+        {
+          "key": "gn1569-ui-retry",
+          "value": "입력 보존 후 정상 재시도",
+          "resourcetype": "Network",
+          "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        },
+        {
+          "key": "gn1634-32-nojob",
+          "value": "한글 <b>초안</b>",
+          "resourcetype": "Network",
+          "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        },
+        {
+          "key": "gn1634-32-response-loss",
+          "value": "서버 접수 후 응답 유실",
+          "resourcetype": "Network",
+          "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        },
+        {
+          "key": "gn1634-32-role-retry",
+          "value": "허용된 메타데이터·명시적 재시도",
+          "resourcetype": "Network",
+          "resourceid": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        }
+      ]
+    },
+    {
+      "target": {
+        "type": "UserVm",
+        "id": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      },
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1634-32-job-lookup",
+          "value": "원래 작업 ID만 재조회",
+          "resourcetype": "UserVm",
+          "resourceid": "e3ddbdd1-ccd7-4299-9461-a33d25d6b645",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        }
+      ]
+    },
+    {
+      "target": {
+        "type": "PublicIpAddress",
+        "id": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      },
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1569-20261112-review",
+          "value": "PublicIP-Isolated",
+          "resourcetype": "PublicIpAddress",
+          "resourceid": "5224658f-43e9-4fb4-92cb-a90284fe1b23",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        }
+      ]
+    }
+  ],
+  "additionalNetworkTags": [
+    {
+      "id": "eb4285c4-9de2-4881-89c6-0f890e549ed5",
+      "name": "qa-gn1569-32-scope-account",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "5200fccc-e4f2-47a8-bcff-85e81ab057dd",
+      "name": "qa-gn1569-32-scope-subdomains",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "56a62fc2-6bd4-48c4-ad94-bb3618e3d6f2",
+      "name": "qa-gn1569-32-scope-domain",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "60a1d91a-c09a-45c4-9ef1-e6d042520327",
+      "name": "qa-gn1569-32-scope-all",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+      "name": "qa-gn1569-32-shared-reg-control",
+      "type": "L2",
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "gn1569-20261112-review",
+          "value": "L2",
+          "resourcetype": "Network",
+          "resourceid": "29acfe58-8d90-46f2-906e-ba69311d9e7c",
+          "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+          "project": "qa-gn1569-32-shared-reg",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        }
+      ]
+    },
+    {
+      "id": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+      "name": "qa-gn1569-32-shared-reg",
+      "type": "Shared",
+      "originalPairsPreserved": true,
+      "tags": [
+        {
+          "key": "qa1569-ui-final",
+          "value": "한글 <b>리터럴</b>",
+          "resourcetype": "Network",
+          "resourceid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        },
+        {
+          "key": "gn1569-20261112-review",
+          "value": "Shared",
+          "resourcetype": "Network",
+          "resourceid": "a57a394e-71a6-4748-9fc3-9bcdc40ed3bd",
+          "account": "qa-gn1569-32-owner",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "domainpath": "ROOT/qa-gn1569-32-domain"
+        }
+      ]
+    },
+    {
+      "id": "83fd6736-7daf-47c5-9f60-825f7c75c7ee",
+      "name": "qa-gn1569-32-cond-basic-l2",
+      "type": "L2",
+      "originalPairsPreserved": true,
+      "tags": []
+    },
+    {
+      "id": "3fda09a1-c105-4614-82cc-2dddfcdfe2f3",
+      "name": "qa-gn1569-32-cond-configdrive",
+      "type": "L2",
+      "originalPairsPreserved": true,
+      "tags": []
+    }
+  ],
+  "actualJobs": [
+    {
+      "jobId": "11a30651-f617-4c55-a55e-033a564073c1",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "189fee3c-3b9f-4488-9684-0e0a1a5f4701",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "a2c18237-9713-4526-a7f4-a65fe68f4020",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "acae3962-3f00-4e52-a94b-526d29d97fd4",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    },
+    {
+      "jobId": "f5ccba1d-7d9a-4cdc-9410-6dd49a2861a7",
+      "jobStatus": 1,
+      "command": null,
+      "resultCode": null
+    }
+  ],
+  "qaDeleteSeedAbsent": true,
+  "resourcesKept": true
+}

@@ -1,0 +1,25 @@
+{
+  "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+  "exit": 0,
+  "seconds": 667.6,
+  "node": "v20.20.2",
+  "npm": "10.8.2",
+  "sourceClean": true,
+  "fullCloudBuild": false,
+  "staticFiles": 1027,
+  "indexSha256": "04a27fb4e649e210a6dc807c94b3525671da1d137f3b69c207932bb1ae867040",
+  "appBundles": [
+    "app.afbf5c9d.js"
+  ],
+  "markers": {
+    "annotationTooLong": [
+      "js/chunk-1cd62392.c7917130.js"
+    ],
+    "annotation-length-feedback": [
+      "js/chunk-1cd62392.c7917130.js"
+    ],
+    "annotation-length-count": [
+      "js/chunk-1cd62392.c7917130.js"
+    ]
+  }
+}

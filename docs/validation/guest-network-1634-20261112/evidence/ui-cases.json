@@ -1,0 +1,187 @@
+[
+  {
+    "cluster": 32,
+    "case": "baseline-no-job",
+    "injectedBeforeServer": true,
+    "command": "createTags",
+    "tagKey": "gn1634-32-nojob"
+  },
+  {
+    "cluster": 31,
+    "case": "before",
+    "command": "createTags",
+    "key": "gn1634-31-nojob",
+    "interceptedStage": "Request"
+  },
+  {
+    "cluster": 31,
+    "case": "baseline-screen-roundtrip",
+    "unknownRetained": true,
+    "recoveryButtons": 0
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "key": null,
+    "stage": "Request",
+    "case": "read-failure"
+  },
+  {
+    "cluster": 31,
+    "case": "initial-49c-recovery",
+    "readFailureKeptLocked": true,
+    "freshReadResetConfirmation": true,
+    "trackingEndPostCount": 0,
+    "explicitNextPostCount": 1,
+    "scope": "initial source 49c; final translation/footer verification pending"
+  },
+  {
+    "cluster": 31,
+    "command": "createTags",
+    "key": "gn1634-31-response-loss",
+    "stage": "Response",
+    "case": "response-loss",
+    "actualServerJobId": "42bfa3d1-e4a5-4a25-961f-e6866c15c607",
+    "actualServerHttp": 200
+  },
+  {
+    "cluster": 31,
+    "case": "job-query-unavailable",
+    "jobId": "7385f952-ca2e-488c-bbde-62b04f152d8e",
+    "interceptedReads": 3
+  },
+  {
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "case": "reload-discards-confirmation",
+    "dialogReopenedWithFreshRead": true,
+    "checked": false,
+    "finishEnabled": false
+  },
+  {
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "case": "project-theme-recovery",
+    "projectRoundtrip": "shared-reg > VNF project > shared-reg",
+    "oldTagsInOtherProject": 0,
+    "instantDark": true,
+    "reloadRequiresFreshConfirmation": true,
+    "readAndTrackingEndPostCount": 0
+  },
+  {
+    "cluster": 31,
+    "command": "deleteTags",
+    "key": "gn1634-31-delete",
+    "stage": "Request",
+    "case": "before"
+  },
+  {
+    "cluster": 31,
+    "command": "createTags",
+    "key": "gn1634-31-shared",
+    "stage": "Request",
+    "case": "before"
+  },
+  {
+    "cluster": 32,
+    "command": "createTags",
+    "key": "gn1634-32-nojob",
+    "stage": "Request",
+    "case": "before"
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "key": null,
+    "stage": "Request",
+    "case": "before"
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "command": "createTags",
+    "key": "gn1634-32-nojob",
+    "stage": "Request",
+    "case": "before"
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "command": "createTags",
+    "key": "gn1634-32-response-loss",
+    "stage": "Response",
+    "case": "response-loss",
+    "actualServerJobId": "11a30651-f617-4c55-a55e-033a564073c1",
+    "actualServerHttp": 200
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "case": "job-query-failures",
+    "jobId": "acae3962-3f00-4e52-a94b-526d29d97fd4",
+    "interceptedReads": 3
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "command": "deleteTags",
+    "key": "gn1634-32-delete",
+    "stage": "Request",
+    "case": "before"
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "command": "createTags",
+    "key": "gn1634-32-role-retry",
+    "stage": "Request",
+    "case": "reject"
+  },
+  {
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "command": "createTags",
+    "key": "gn1634-31-role-retry",
+    "stage": "Request",
+    "case": "reject"
+  },
+  {
+    "cluster": 31,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "case": "nonproject-ui-denied",
+    "attemptedTarget": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+    "redirectedToDashboard": true,
+    "tagControlsVisible": false
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "case": "nonproject-ui-denied",
+    "attemptedTarget": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+    "redirectedToDashboard": true,
+    "tagControlsVisible": false
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "case": "reload-project-theme-responsive",
+    "reloadDiscardsConfirmation": true,
+    "projectRoundTripScopesIsolated": true,
+    "widths": [
+      1280,
+      768,
+      390
+    ],
+    "lightAndDark": true,
+    "trackingEndPosts": 0
+  },
+  {
+    "cluster": 32,
+    "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+    "case": "pending-explicit-create-guard",
+    "confirmEnabled": false,
+    "recoveryButtonCount": 0,
+    "actualCreatePosts": 1,
+    "jobId": "f5ccba1d-7d9a-4cdc-9410-6dd49a2861a7"
+  }
+]

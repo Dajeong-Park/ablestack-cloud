@@ -1,0 +1,14 @@
+{
+  "resourceType": "Network",
+  "targetId": "b7cd0439-ed95-4e7d-8b31-eb0ebacbd711",
+  "actualJob": {
+    "jobid": "11a30651-f617-4c55-a55e-033a564073c1",
+    "jobstatus": 1,
+    "success": true
+  },
+  "tagKeys": [
+    "gn1634-32-delete",
+    "gn1634-32-nojob",
+    "gn1634-32-response-loss"
+  ]
+}

@@ -18,7 +18,7 @@
 <template>
   <div v-if="annotationType && 'listAnnotations' in $store.getters.apis" class="account-center-team" data-testid="annotations-tab">
     <div class="detail-tab-toolbar">
-      <a-button v-if="'addAnnotation' in $store.getters.apis" ref="submit" type="primary" :disabled="!annotation.trim() || !annotationReady" :loading="annotationSaving" @click="saveNote">{{ $t('label.submit') }}</a-button>
+      <a-button v-if="'addAnnotation' in $store.getters.apis" ref="submit" type="primary" :disabled="!annotation.trim() || annotationTooLong || !annotationReady" :loading="annotationSaving" @click="saveNote">{{ $t('label.submit') }}</a-button>
       <a-button :disabled="annotationSaving" :loading="loadingAnnotations || listRefreshing > 0" @click="getAnnotations"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
     </div>
     <a-alert v-if="readError" type="error" show-icon class="detail-tab-notice" :message="$t(readDenied ? 'message.detail.tab.denied' : loadedContext ? 'message.list.refresh.stale' : 'error.fetching.data')">
@@ -29,7 +29,14 @@
       <a-comment v-if="'addAnnotation' in $store.getters.apis">
         <template #avatar><a-avatar><template #icon><edit-outlined /></template></a-avatar></template>
         <template #content><div>
-          <a-textarea :rows="4" v-model:value="annotation" :placeholder="$t('label.add.note')" :aria-label="$t('label.add.note')" @keydown.ctrl.enter.prevent="saveNote" />
+          <a-textarea :rows="4" v-model:value="annotation" :placeholder="$t('label.add.note')" :aria-label="$t('label.add.note')" :aria-describedby="annotationLengthId" :aria-invalid="annotationTooLong ? 'true' : undefined" @keydown.ctrl.enter.prevent="saveNote" />
+          <div :id="annotationLengthId" class="annotation-length-feedback">
+            <div class="annotation-length-summary">
+              <span class="annotation-length-hint">{{ $t('message.annotation.length.hint', [annotationLimit]) }}</span>
+              <span class="annotation-length-count" :class="{ 'annotation-length-error': annotationTooLong }" role="status" aria-live="polite" aria-atomic="true" :aria-label="$t('label.annotation.length.count', [annotationLength, annotationLimit])">{{ annotationLength }} / {{ annotationLimit }}</span>
+            </div>
+            <div v-if="annotationTooLong" class="annotation-length-error">{{ $t('message.annotation.length.exceeded', [annotationLength - annotationLimit, annotationLimit]) }}</div>
+          </div>
           <a-checkbox v-if="$store.getters.userInfo.roletype === 'Admin'" :checked="annotationAdminsOnly" :disabled="annotationSaving" class="annotation-visibility" @change="toggleNoteVisibility">{{ $t('label.adminsonly') }}</a-checkbox>
         </div></template>
       </a-comment>
@@ -74,6 +81,8 @@ import { detailTabContext, detailTabDenied, detailTabError, detailTabProject, re
 import { getAPI, postAPI } from '@/api'
 import { Empty } from 'ant-design-vue'
 const commands = ['listAnnotations', 'addAnnotation', 'removeAnnotation', 'updateAnnotationVisibility']
+// AddAnnotationCmd uses Parameter's default length and Java String.length (UTF-16).
+const ANNOTATION_MAX_LENGTH = 255
 export default {
   mixins: [listRefreshMixin(['getAnnotations'], { routeKey: vm => vm.annotationContext, active: vm => !vm.annotationSaving })],
   name: 'AnnotationsTab',
@@ -82,6 +91,10 @@ export default {
   inject: ['parentFetchData'],
   data () { return { resourceType: '', loadingAnnotations: false, annotationSaving: false, annotationVersion: 0, notes: [], annotation: '', annotationType: '', annotationAdminsOnly: false, page: 1, pageSize: 10, itemCount: 0, loadedContext: '', readError: '', readDenied: false, mutationError: '' } },
   computed: {
+    annotationLimit () { return ANNOTATION_MAX_LENGTH },
+    annotationLength () { return this.annotation.length },
+    annotationTooLong () { return this.annotationLength > this.annotationLimit },
+    annotationLengthId () { return `annotation-length-${this.annotationType}-${this.resource.id}` },
     annotationContext () { return JSON.stringify([detailTabContext(this, commands), this.annotationType]) },
     annotationReady () { return this.loadedContext === this.annotationContext && !!this.resource.id && !this.loadingAnnotations && !this.annotationSaving && !this.listRefreshing && !this.readError && 'listAnnotations' in this.$store.getters.apis }
   },
@@ -152,7 +165,7 @@ export default {
     handleNoteChange (e) { this.annotation = e.target.value },
     toggleNoteVisibility () { this.annotationAdminsOnly = !this.annotationAdminsOnly },
     isAdminOrAnnotationOwner (item) { return this.$store.getters.userInfo.roletype === 'Admin' || this.$store.getters.userInfo.id === item.userid },
-    saveNote () { if (!this.annotationReady || !this.annotation.trim() || !('addAnnotation' in this.$store.getters.apis)) return; return this.mutateAnnotation('addAnnotation', { entityid: this.resource.id, entitytype: this.annotationType, annotation: this.annotation, adminsonly: this.annotationAdminsOnly }) },
+    saveNote () { if (!this.annotationReady || !this.annotation.trim() || this.annotation.length > ANNOTATION_MAX_LENGTH || !('addAnnotation' in this.$store.getters.apis)) return; return this.mutateAnnotation('addAnnotation', { entityid: this.resource.id, entitytype: this.annotationType, annotation: this.annotation, adminsonly: this.annotationAdminsOnly }) },
     deleteNote (item) { if (!this.annotationReady || !('removeAnnotation' in this.$store.getters.apis) || !this.isAdminOrAnnotationOwner(item) || !this.notes.some(row => row.id === item.id)) return; return this.mutateAnnotation('removeAnnotation', { id: item.id }) },
     updateVisibility (item) { if (!this.annotationReady || !('updateAnnotationVisibility' in this.$store.getters.apis) || this.$store.getters.userInfo.roletype !== 'Admin' || !this.notes.some(row => row.id === item.id)) return; return this.mutateAnnotation('updateAnnotationVisibility', { id: item.id, adminsonly: !item.adminsonly }) },
     async mutateAnnotation (command, args) {
@@ -174,6 +187,12 @@ export default {
 <style lang="scss" scoped>
 @import '@/style/components/view/DetailTab.scss';
 .annotation-visibility { margin-top: 10px; }
+.annotation-length-feedback { margin-top: 8px; overflow-wrap: anywhere; }
+.annotation-length-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+.annotation-length-hint { flex: 1 1 240px; opacity: 0.8; }
+.annotation-length-count { margin-left: auto; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.annotation-length-error { color: var(--ant-error-color, #ff4d4f); }
+.account-center-team :deep(textarea[aria-invalid='true']) { border-color: var(--ant-error-color, #ff4d4f); }
 .annotation-title { font-weight: bold; margin: 0 0 5px; color: inherit; }
 .comment { min-width: 0; width: 100%; overflow-wrap: anywhere; }
 .account-center-team :deep(.ant-list-item) { align-items: flex-start; }

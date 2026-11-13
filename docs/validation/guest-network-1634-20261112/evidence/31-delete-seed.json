@@ -1,0 +1,11 @@
+{
+  "targetId": "43c8f6f5-8893-4a1c-bfaa-a569acaf44bb",
+  "key": "gn1634-31-delete",
+  "value": "삭제 시험 원문 <i>보존</i>",
+  "apiResult": {
+    "jobid": "84a4a7fc-cabf-4ddd-8825-daca76907aab",
+    "jobstatus": 1,
+    "success": true
+  },
+  "originalTagsPreserved": true
+}

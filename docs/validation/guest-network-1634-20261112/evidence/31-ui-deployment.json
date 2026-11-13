@@ -1,0 +1,12 @@
+{
+  "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+  "static_files": 689,
+  "static_bytes": 31241996,
+  "hash_mismatches": [],
+  "index_sha256": "6793a81e4a6f252c7f3da42ca566b1a1c33ac57cca9eb981d90b865fc921f034",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 147004092416,
+  "remote_stage": "/dev/shm/gn1634-20261113-000712",
+  "backup_sha256": "51e68d8045d9084769ebbc46b35346e475e2555505fdae50cc84011daea57ea8"
+}

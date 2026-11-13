@@ -1,0 +1,13 @@
+{
+  "source": "aeb3390805d38c8e039ce6f4a6fd1677c8d3df4b",
+  "base": "0a233ad1fc5e84a2144f60c3901beaec2c31c7b7",
+  "files": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/AnnotationsTab.vue",
+    "ui/tests/unit/components/view/AnnotationsLength.spec.js"
+  ],
+  "apiOrBackendFilesChanged": 0,
+  "serverLength": 255,
+  "counting": "UTF-16 code units; untrimmed text; textarea LF line breaks"
+}

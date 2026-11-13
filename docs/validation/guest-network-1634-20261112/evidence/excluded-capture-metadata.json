@@ -1,0 +1,98 @@
+[
+  {
+    "label": "31-before-unknown-no-recovery-1280-light",
+    "actual": [
+      1280,
+      581
+    ],
+    "expected": [
+      1280,
+      800
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  },
+  {
+    "label": "31-vm-standard-detail-1280-light",
+    "actual": [
+      1280,
+      581
+    ],
+    "expected": [
+      1280,
+      800
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  },
+  {
+    "label": "31-vm-standard-nic-1280-light",
+    "actual": [
+      1280,
+      581
+    ],
+    "expected": [
+      1280,
+      800
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  },
+  {
+    "label": "31-before-screen-roundtrip-unknown-1280-light",
+    "actual": [
+      1280,
+      581
+    ],
+    "expected": [
+      1280,
+      800
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  },
+  {
+    "label": "31-final-vm-known-job-1280-light",
+    "actual": [
+      1280,
+      581
+    ],
+    "expected": [
+      1280,
+      800
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  },
+  {
+    "label": "31-final-vm-job-success-1280-light",
+    "actual": [
+      1280,
+      581
+    ],
+    "expected": [
+      1280,
+      800
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  },
+  {
+    "label": "31-final-review-observed-1280-light",
+    "actual": [
+      1280,
+      581
+    ],
+    "expected": [
+      1280,
+      800
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  },
+  {
+    "label": "32-final-review-390-light",
+    "actual": [
+      390,
+      244
+    ],
+    "expected": [
+      390,
+      844
+    ],
+    "reason": "Incomplete height; retained privately, excluded from final visual evidence"
+  }
+]

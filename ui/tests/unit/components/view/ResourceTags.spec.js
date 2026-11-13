@@ -23,15 +23,17 @@ const otherId = '22222222-2222-4222-8222-222222222222'
 const resource = { id, account: 'owner', domainid: 'domain' }
 const tag = (key = 'existing', value = 'value', resourceid = id, resourcetype = 'Snapshot') => ({ resourceid, resourcetype, key, value })
 let wrapper, store, route, rows
-function render (props = {}) {
+function render (props = {}, translator = key => key) {
   wrapper = mount(ResourceTags, {
     props: { resource: { ...resource }, resourceType: 'Snapshot', canEdit: true, ...props },
     global: {
-      mocks: { $store: store, $route: route, $t: key => key },
+      mocks: { $store: store, $route: route, $t: translator },
       stubs: {
         ASpin: { template: '<div><slot /></div>' },
         AAlert: { props: ['message', 'description'], template: '<div role="alert">{{ message }}{{ description }}<slot name="message"/><slot name="description"/></div>' },
         ADivider: true,
+        MoldDialog: { template: '<div role="dialog"><slot/><footer><slot name="footer"/></footer></div>' },
+        ACheckbox: { props: ['checked'], emits: ['update:checked'], template: '<label><input type="checkbox" :checked="checked" v-bind="$attrs" @change="$emit(\'update:checked\', $event.target.checked)"/><slot/></label>' },
         AButton: { template: '<button v-bind="$attrs"><slot/></button>' },
         AInput: { props: ['value'], emits: ['update:value'], methods: { focus () { this.$el.focus() } }, template: '<input :value="value" v-bind="$attrs" @input="$emit(\'update:value\', $event.target.value)" />' },
         ATag: {
@@ -166,4 +168,82 @@ test.each(['FirewallRule', 'PortForwardingRule', 'LoadBalancer'])('%s tags submi
   route.params.id = id
   expect(wrapper.vm.visibleTags).toEqual([])
   expect(wrapper.vm.canChange).toBe(false)
+})
+
+const button = key => wrapper.findAll('button').find(b => b.text().includes(key))
+async function unknownTag (translator) {
+  render({}, translator); await flush()
+  postAPI.mockRejectedValueOnce({ response: { status: 503 } })
+  wrapper.vm.inputVisible = true; wrapper.vm.inputKey = '<b>draft</b>'; wrapper.vm.inputValue = 'preserved'
+  await wrapper.vm.submitTag(); await flush()
+}
+test('review dialog reads actual tags and explicit acknowledgement preserves draft without POST or false success', async () => {
+  await unknownTag()
+  expect(wrapper.vm.canChange).toBe(false)
+  const reads = getAPI.mock.calls.filter(c => c[0] === 'listTags').length
+  await button('label.tags.review.open').trigger('click'); await flush()
+  expect(getAPI.mock.calls.filter(c => c[0] === 'listTags')).toHaveLength(reads + 1)
+  expect(wrapper.find('[role="dialog"]').text()).toContain('message.tags.review.limit')
+  expect(wrapper.find('[role="dialog"] b').exists()).toBe(false)
+  expect(button('label.tags.review.finish').attributes('disabled')).toBeDefined()
+  await wrapper.find('input[type="checkbox"]').setChecked(true)
+  await button('label.tags.review.finish').trigger('click'); await flush()
+  expect(wrapper.find('[role="dialog"]').exists()).toBe(false)
+  expect(wrapper.vm.operationState.status).toBe('acknowledged')
+  expect(wrapper.vm.canChange).toBe(true)
+  expect(wrapper.vm.inputKey).toBe('<b>draft</b>'); expect(wrapper.vm.inputValue).toBe('preserved')
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  await wrapper.vm.submitTag(); await flush(); expect(postAPI).toHaveBeenCalledTimes(2)
+})
+
+test('failed review keeps the lock; fresh retry clears confirmation and reads without submitting', async () => {
+  await unknownTag()
+  getAPI.mockRejectedValueOnce({ response: { status: 403 } })
+  await button('label.tags.review.open').trigger('click'); await flush()
+  expect(wrapper.vm.reviewReady).toBe(false); expect(wrapper.vm.visibleTags).toEqual([])
+  expect(button('label.tags.review.finish').attributes('disabled')).toBeDefined()
+  await wrapper.vm.reviewOperation(); await flush()
+  expect(wrapper.vm.reviewReady).toBe(true)
+  await wrapper.find('input[type="checkbox"]').setChecked(true)
+  await wrapper.vm.reviewOperation(); await flush(); expect(wrapper.vm.recoveryConfirmed).toBe(false)
+  expect(wrapper.vm.canChange).toBe(false); expect(postAPI).toHaveBeenCalledTimes(1)
+})
+
+test('cancel, navigation and project changes close recovery and reject late read/acknowledgement', async () => {
+  await unknownTag(); await wrapper.vm.openRecovery(); await flush()
+  await wrapper.find('input[type="checkbox"]').setChecked(true)
+  await button('label.cancel').trigger('click')
+  expect(wrapper.vm.operationState.status).toBe('unknown'); expect(wrapper.vm.canChange).toBe(false)
+  const gate = deferred(); getAPI.mockReturnValueOnce(gate.promise)
+  const review = wrapper.vm.openRecovery(); await flush()
+  route.fullPath = '/snapshot/' + otherId; route.params.id = otherId
+  await wrapper.setProps({ resource: { ...resource, id: otherId } }); await flush()
+  gate.resolve({ listtagsresponse: { count: 0 } }); await review; await flush()
+  expect(wrapper.vm.recoveryVisible).toBe(false)
+  wrapper.vm.finishRecovery(); expect(postAPI).toHaveBeenCalledTimes(1)
+  store.getters.project = { id: 'elsewhere' }; await flush()
+  expect(wrapper.vm.recoveryVisible).toBe(false)
+})
+
+test('local tracking acknowledgement grants no write permission to a read-only binding', async () => {
+  await unknownTag(); await wrapper.setProps({ canEdit: false }); await flush()
+  await wrapper.vm.openRecovery(); await flush()
+  await wrapper.find('input[type="checkbox"]').setChecked(true)
+  await button('label.tags.review.finish').trigger('click'); await flush()
+  expect(wrapper.vm.operationState.status).toBe('acknowledged'); expect(wrapper.vm.canChange).toBe(false)
+  expect(wrapper.find('[data-delete]').exists()).toBe(false)
+  wrapper.vm.submitTag(); expect(postAPI).toHaveBeenCalledTimes(1)
+})
+
+test.each([
+  ['ko_KR', require('@public/locales/ko_KR.json'), '업데이트', '추적 종료'],
+  ['en', require('@public/locales/en.json'), 'Refresh', 'End tracking']
+])('%s recovery shows translated actions and explanations without raw keys', async (language, locale, refresh, finish) => {
+  await unknownTag(key => locale[key] || key)
+  await wrapper.vm.openRecovery(); await flush()
+  const dialog = wrapper.find('[role="dialog"]')
+  expect(dialog.text()).toContain(refresh)
+  expect(dialog.text()).toContain(finish)
+  expect(dialog.text()).not.toMatch(/\b(?:label|message)\.tags?\./)
+  expect(dialog.findAll('button').map(b => b.text())).toContain(refresh)
 })

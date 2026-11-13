@@ -1,0 +1,33 @@
+{
+  "source": "2b7ed5386564997cf9e833f2faf7fc3b9bca2ff1",
+  "base": "8ad2d1ecd47092fd3bba8d445fd2c639c7f4be7c",
+  "files": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/ResourceTags.vue",
+    "ui/src/utils/resourceTags.js",
+    "ui/tests/unit/components/view/ResourceTags.spec.js",
+    "ui/tests/unit/utils/resourceTags.spec.js"
+  ],
+  "apiOrBackendFilesChanged": 0,
+  "localeKeys": [
+    "label.tags.review.open",
+    "label.tags.review.title",
+    "label.tags.review.target",
+    "label.tags.review.request",
+    "label.tags.review.no.job",
+    "label.tags.review.current",
+    "label.tags.review.checked",
+    "label.tags.review.finish",
+    "message.tags.status.acknowledged",
+    "message.tags.acknowledged",
+    "message.tags.review.wait",
+    "message.tags.review.limit",
+    "message.tags.review.observed",
+    "message.tags.review.not.observed",
+    "message.tags.review.key.absent",
+    "message.tags.review.confirm",
+    "message.tags.review.storage.failed"
+  ],
+  "localeParity": true
+}
