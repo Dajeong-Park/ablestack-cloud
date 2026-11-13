@@ -131,6 +131,30 @@ class NetBackupRestoreWatcherTest(unittest.TestCase):
         self.assertEqual("UNKNOWN_FILES", state["restoreValidation"]["200"]["code"])
         self.assertNotIn("200", state["processed"])
 
+    def test_mold_owned_metadata_and_volume_jobs_do_not_report_external_selection_warnings(self):
+        resolved = self.resolution()
+        resolved.update(tracked=True, artifacttype="VOLUME", restoreallowed=False)
+        for selections in ([str(self.root)], [str(self.root / "root.root-volume.qcow2")],
+                           [str(self.root), "/admin/jobs/200/file-lists"]):
+            with self.subTest(selections=selections), \
+                    patch.object(self.watcher, "resolve_restore_reference", return_value=resolved):
+                self.selections = selections
+                state, notify = self.poll(self.job(0), state={
+                    "restoreValidation": {"200": {"code": "UNKNOWN_FILES"}}})
+            notify.assert_not_called()
+            self.report.assert_not_called()
+            self.assertEqual("moldManagedRestore", state["processed"]["200"]["skipped"])
+            self.assertNotIn("200", state["restoreValidation"])
+
+    def test_unmatched_tracked_flag_cannot_bypass_file_selection_validation(self):
+        resolved = self.resolution()
+        resolved.update(matched=False, tracked=True)
+        self.selections = [str(self.root), "/outside/selection"]
+        with patch.object(self.watcher, "resolve_restore_reference", return_value=resolved):
+            state, notify = self.poll(self.job(0))
+        notify.assert_not_called()
+        self.assertEqual("UNKNOWN_FILES", state["restoreValidation"]["200"]["code"])
+
     def test_unconfirmed_file_list_format_cannot_start_vm_restore(self):
         for payload in ({"data": {"links": {"self": {"href": str(self.root)}}}},
                         {"data": {"attributes": {"fileList": [str(self.root), None]}}},

@@ -608,6 +608,12 @@ def selection_groups(selections):
 
 def normalize_restore_selection(job, selections):
     identifiers = candidate_restore_identifiers(job, job_id(job), selections)
+    if len(identifiers) == 1:
+        resolved = resolve_restore_reference(identifiers[0], job_id(job))
+        # Mold's own metadata and volume Jobs are not external restore requests.
+        # Resolve their exact recorded Job before validating user selections.
+        if resolved.get("matched") is True and resolved.get("tracked") is True:
+            return {"externalId": identifiers[0], "tracked": True}
     try:
         groups = selection_groups(selections)
     except RestoreSelectionError as error:
@@ -631,7 +637,7 @@ def normalize_restore_selection(job, selections):
             return {"externalId": identifiers[0], "legacy": True}
         raise RestoreSelectionError("CATALOG_MISMATCH", "No exact Mold metadata backup matches the selected directory", references)
     if resolved.get("tracked") is True:
-        return {"externalId": identifiers[0] if len(identifiers) == 1 else source, "legacy": True}
+        return {"externalId": identifiers[0] if len(identifiers) == 1 else source, "tracked": True}
     if resolved.get("artifacttype") != "METADATA" or not ("" in selected or NETBACKUP_ENTRY in selected or set(REQUIRED_METADATA).issubset(selected)):
         raise RestoreSelectionError("VOLUME_ONLY", "Restore MOLD-RESTORE.json or all three required metadata files", references)
     try:
@@ -973,6 +979,12 @@ def poll_once(state: dict[str, Any]) -> None:
             save_state(state)
             continue
         restore_identifier = validation["externalId"]
+        if validation.get("tracked"):
+            processed[current_job_id] = {"externalId": restore_identifier, "skipped": "moldManagedRestore",
+                                         "timestamp": int(time.time())}
+            validations.pop(current_job_id, None)
+            save_state(state)
+            continue
         if validation.get("legacy") and not local_existing_restore_identifiers([restore_identifier]):
             continue
         validation.update(status="VERIFIED", netbackupStatusCode=status_code, details=details[-50:], timestamp=int(time.time()))

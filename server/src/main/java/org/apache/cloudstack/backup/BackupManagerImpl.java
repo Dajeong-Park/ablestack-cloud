@@ -2349,6 +2349,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             try { manifest = ThirdPartyBackupManifest.fromJson(backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY)); }
             catch (RuntimeException e) { continue; }
             if (!value.provider.equals(manifest.getProvider()) || manifest.getMetadata() == null) { continue; }
+            if (isManagedArtifactRestoreJob(backup, jobId)) { continue; }
             List<String> matched = value.references.stream().filter(ref -> ref.equals(manifest.getMetadata().path)
                     || (!ref.startsWith("/") && manifest.getRequiredArtifacts().stream().anyMatch(artifact ->
                             artifactReference(value.provider, ref, artifact, artifact == manifest.getMetadata()))))
@@ -7669,7 +7670,13 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     private void populateThirdPartyCatalogResponseFields(Backup backup, BackupResponse response) {
         if (!ThirdPartyBackupManifest.VOLUME_MODE.equals(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY))) { return; }
         try {
-            response.setExternalRestoreValidation(new Gson().fromJson(backup.getDetail(ThirdPartyExternalRestore.VALIDATION_LATEST_KEY), ThirdPartyExternalRestore.Validation.class));
+            ThirdPartyExternalRestore.Validation validation = new Gson().fromJson(
+                    backup.getDetail(ThirdPartyExternalRestore.VALIDATION_LATEST_KEY), ThirdPartyExternalRestore.Validation.class);
+            // Older watchers may have reported Mold-owned file Jobs as external
+            // selection failures. Preserve that history without showing an action.
+            if (validation != null && !isManagedArtifactRestoreJob(backup, validation.jobid)) {
+                response.setExternalRestoreValidation(validation);
+            }
             ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY));
             if ("ablestack-netbackup".equals(manifest.getProvider()) && manifest.getMetadata() != null
                     && ThirdPartyExternalRestore.NETBACKUP_ENTRY.equals(manifest.getMetadata().restoreEntry)) {
@@ -7716,6 +7723,24 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         if (queue != null) { response.setStagingQueue(new BackupStagingQueueResponse(queue)); }
         populateRejectedExternalRestore(backup, response);
         populateExternalMetadataCleanup(backup, response);
+    }
+
+    private boolean isManagedArtifactRestoreJob(Backup backup, String jobId) {
+        if (StringUtils.isBlank(jobId) || backup.getDetails() == null) { return false; }
+        for (Map.Entry<String, String> detail : backup.getDetails().entrySet()) {
+            if (!detail.getKey().startsWith(ThirdPartyBackupRestore.HISTORY_PREFIX)
+                    || !StringUtils.isNumeric(StringUtils.substringAfterLast(detail.getKey(), "."))) { continue; }
+            try {
+                ThirdPartyBackupRestore.Record record = new Gson().fromJson(detail.getValue(), ThirdPartyBackupRestore.Record.class);
+                if (record == null || record.request == null || record.result == null || StringUtils.isBlank(record.request.jobId)
+                        || !detail.getKey().equals(ThirdPartyBackupRestore.recordKey(record.request.jobId, record.request.sequence))) { continue; }
+                if (jobId.equals(record.result.jobId)
+                        || (record.result.callbackJobIds != null && record.result.callbackJobIds.contains(jobId))) { return true; }
+            } catch (RuntimeException e) {
+                logger.debug("Restore Job ownership is unavailable for backup {} detail {}", backup.getUuid(), detail.getKey(), e);
+            }
+        }
+        return false;
     }
 
     private void populateExternalMetadataCleanup(Backup backup, BackupResponse response) {
