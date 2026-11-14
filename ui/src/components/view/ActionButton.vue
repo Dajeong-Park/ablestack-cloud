@@ -388,7 +388,8 @@ export default {
     },
     vmDeleteTooltip (action) {
       if (!isVmDeletion(action)) return ''
-      const rows = this.dataView ? [this.resource] : (this.selectedItems || [])
+      // The list context menu also uses dataView rendering for a bulk selection.
+      const rows = action.groupAction && this.selectedItems?.length > 1 ? this.selectedItems : this.dataView ? [this.resource] : (this.selectedItems || [])
       return rows.map(row => {
         const reason = vmDeletionReason(row, action, this.$store.getters)
         return reason ? `${row.displayname || row.name || row.id} (${row.id}): ${this.$t(reason)}` : ''
