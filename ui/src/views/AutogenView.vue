@@ -2499,11 +2499,12 @@ export default {
       const generation = this.storageActionGeneration
       const scope = this.listScope?.()
       const restoreFocus = () => {
-        if (snapshotDialog && (generation !== this.storageActionGeneration || scope !== this.listScope?.() || originPath !== this.$route?.path)) return
+        if ((snapshotDialog || this.isVpcUi) && (generation !== this.storageActionGeneration || scope !== this.listScope?.() || originPath !== this.$route?.path)) return
         let replacement = (this.isVpcUi || this.isStorageUi || snapshotDialog) && originPath === this.$route?.path
           ? (this.$refs?.detailActionsTrigger?.$el || (triggerLabel && Array.from(this.$el?.querySelectorAll('.autogen-toolbar-actions button') || []).find(button => button.getAttribute('aria-label') === triggerLabel)))
           : null
         if (policyDeleteDialog && !replacement && originPath === this.$route?.path) replacement = this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
+        if (this.isVpcUi && !replacement && originPath === this.$route?.path) replacement = this.$el?.querySelector('.ant-table-row-selected input[type="checkbox"]:not([disabled])') || this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         // A portal menu item may remain connected but hidden after its dropdown closes.
         // Snapshot dialogs return to the stable toolbar/detail button in the current route.
         const target = (this.isVpcUi || snapshotDialog) && replacement?.isConnected ? replacement : trigger?.isConnected ? trigger : replacement
@@ -2511,7 +2512,7 @@ export default {
           target.focus({ preventScroll: true })
         }
       }
-      this.actionFocusReturn = snapshotDialog ? { restore: restoreFocus } : null
+      this.actionFocusReturn = (snapshotDialog || this.isVpcUi) ? { restore: restoreFocus } : null
       this.$nextTick(restoreFocus)
     },
     restoreClosedActionFocus () {
