@@ -20,6 +20,7 @@ import { h, reactive, compile } from 'vue'
 import fs from 'fs'
 import path from 'path'
 import { Alert } from 'ant-design-vue'
+import { createI18n } from 'vue-i18n'
 import Routes from '@/views/network/StaticRoutesTab'
 import VpcTab from '@/views/network/VpcTab'
 import Breadcrumb from '@/components/widgets/Breadcrumb'
@@ -58,10 +59,12 @@ test.each(['VpcTab.vue', 'StaticRoutesTab.vue'])('actual %s retry notice renders
 test.each([{}, { api: 'deleteVPC', label: 'label.delete' }])('actual generic footer can render an inactive VPC action without an API: %j', action => {
   const source = fs.readFileSync(path.resolve(__dirname, '../../../../src/views/AutogenView.vue'), 'utf8')
   const footer = source.match(/<template #footer>\s*(<a-button[^]*?)<\/template>/)[1]
-  const w = shallowMount({ render: compile('<div>' + footer + '</div>'), data: () => ({ currentAction: action, isVpcUi: true, isSubmitDisabled: false, actionLoading: false }), methods: { handleSubmit: jest.fn(), handleCancel: jest.fn() } }, { global: { mocks: { $t: key => key || '' }, stubs: { AButton: { props: ['danger'], render () { return h('button', { 'data-danger': this.danger }, this.$slots.default?.()) } } } } })
+  const t = createI18n({ locale: 'en', messages: { en: { label: { ok: 'OK', cancel: 'Cancel', delete: 'Delete' } } } }).global.t
+  const w = shallowMount({ render: compile('<div>' + footer + '</div>'), data: () => ({ currentAction: action, isVpcUi: true, isSubmitDisabled: false, actionLoading: false }), methods: { handleSubmit: jest.fn(), handleCancel: jest.fn() } }, { global: { mocks: { $t: t }, stubs: { AButton: { props: ['danger'], render () { return h('button', { 'data-danger': this.danger }, this.$slots.default?.()) } } } } })
   wrappers.push(w)
   expect(w.findAll('button')).toHaveLength(2)
   expect(w.findAll('button')[1].attributes('data-danger')).toBe(action.api ? 'true' : undefined)
+  expect(w.findAll('button')[1].text()).toBe(action.api ? 'Delete' : 'OK')
 })
 async function open (component = Routes) {
   const w = shallowMount(component, { props: { resource }, global: { mocks: { $t: k => k, $store: { getters, state: { user: {}, app: { device: 'desktop' } } }, $route: route, $router: router, $pollJob: poll, $notifyError: jest.fn() }, stubs: { ASpin: slot, ATabs: slot, ATabPane: slot, AForm: form, AFormItem: slot, AInput: input, MoldDialog: slot, MoldDialogActions: slot, RouterLink: true } } })
