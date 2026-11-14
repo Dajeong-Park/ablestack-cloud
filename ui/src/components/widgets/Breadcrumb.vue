@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { templateListLocation } from '@/utils/templateSearch'
 import { networkListLocation } from '@/utils/guestNetworkSearch'
 import { documentationUrl } from '@/utils/cniFileImport'
 
@@ -99,7 +100,7 @@ export default {
   },
   methods: {
     documentationUrl,
-    breadcrumbLocation (item) { if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }; return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
+    breadcrumbLocation (item) { if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }; if (item.path === '/template' && this.$route.meta?.name === 'template' && this.$route.params?.id) return templateListLocation(this.$route, this.$store.getters); return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
     getBreadcrumb () {
       this.name = this.$route.name
       this.breadList = []

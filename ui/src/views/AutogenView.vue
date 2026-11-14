@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'volume-list-page': isVolumeList, 'themed-list-toolbar': isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'themed-list-toolbar': isTemplateList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -38,6 +38,7 @@
                   <template #icon><reload-outlined /></template>
                   {{ $t('label.refresh') }}
                 </a-button>
+                <label v-if="isTemplateList" :for="templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
                 <a-tooltip placement="right">
                   <template #title>
                     {{ $t('label.filterby') }}
@@ -45,6 +46,7 @@
                   <a-select
                     v-if="!dataView && filters && filters.length > 0"
                     :placeholder="$t('label.filterby')"
+                    :id="isTemplateList ? templateFilterId : undefined"
                     :value="filterValue"
                     style="min-width: 100px; margin-left: 10px; margin-bottom: 5px"
                     size=small
@@ -860,8 +862,17 @@
       <a-alert v-if="(isVpcUi || isStorageUi || isSnapshotReadView) && listRefreshError" class="storage-query-error" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
         <template #description><p v-if="isSnapshotReadView && snapshotListError">{{ snapshotListError.startsWith('message.') ? $t(snapshotListError) : snapshotListError }}</p><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
+      <a-alert v-if="isTemplateList && templateFilterError" type="error" show-icon :message="$t(templateFilterError)">
+        <template #action><a-button @click="$router.replace({ path: '/template' })">{{ $t('label.reset') }}</a-button></template>
+      </a-alert>
       <div v-if="dataView">
-        <a-spin v-if="isSshKeyPairDetail && !sshKeyPairDetailVisible" :spinning="loading">
+        <a-alert v-if="templateDetailError" type="error" show-icon :message="$t(templateDetailError)">
+          <template #description>
+            <router-link :to="templateListLocation($route, $store.getters)">{{ $t('message.template.detail.back') }}</router-link>
+            <a-button v-if="templateDetailError === 'message.template.detail.read.failed'" size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.refresh') }}</a-button>
+          </template>
+        </a-alert>
+        <a-spin v-else-if="isSshKeyPairDetail && !sshKeyPairDetailVisible" :spinning="loading">
           <a-alert show-icon :type="loading ? 'info' : 'error'" :message="$t('message.ssh.keypair.detail.' + sshKeyPairDetailStatus)">
             <template #action>
               <a-button :disabled="loading" @click="fetchData({ irefresh: true })">{{ $t('label.refresh') }}</a-button>
@@ -874,7 +885,7 @@
           v-if="$route.path.startsWith('/publicip')"
         ></slot>
         <resource-view
-          v-else-if="(!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
+          v-else-if="!templateDetailError && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
           :readFailed="(isVpcUi || $route.meta?.name === 'ilb') && listRefreshError"
@@ -885,8 +896,9 @@
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
+          @template-operation-retained="retainTemplateOperation"
           @backup-controls-change="Object.assign(resource, $event)"
-          @refresh="['buckets', 'objectstore'].includes($route.meta.name) && fetchData({ irefresh: true })"
+          @refresh="['template','buckets', 'objectstore'].includes($route.meta.name) && fetchData({ irefresh: true })"
           @change-resource="resource = $event" />
       </div>
       <div
@@ -953,6 +965,8 @@
 </template>
 
 <script>
+import { templateObservationContext } from '@/utils/templateAvailability'
+import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
 import BucketStoreFilter from '@/components/view/BucketStoreFilter'
@@ -1014,6 +1028,7 @@ import { sshKeyPairDeleteTargets } from '@/utils/sshKeyPairDeletion'
 import { isSshKeyPairDetailRoute, sshKeyPairDetailScope, sshKeyPairDetailTarget, sshKeyPairDetailParams, sshKeyPairMatchesTarget, sshKeyPairDetailResult, sshKeyPairDetailFailure, sshKeyPairVmParams } from '@/utils/sshKeyPairIdentity'
 import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErrorKey, vmGroupDeleteTargets } from '@/utils/vmGroupNames'
 
+let templateFilterSequence = 0
 export default {
   name: 'Resource',
   components: {
@@ -1056,6 +1071,7 @@ export default {
   },
   data () {
     return {
+      templateFilterId: 'template-filter-' + (++templateFilterSequence),
       storageActionGeneration: 0,
       apiName: '',
       loading: false,
@@ -1083,6 +1099,9 @@ export default {
       actionFocusReturn: null,
       showAction: false,
       dataView: false,
+      templateDetailError: '',
+      templateOperationContext: '',
+      templateFilterError: '',
       projectView: false,
       hasProjectId: false,
       selectedFilter: '',
@@ -1275,6 +1294,17 @@ export default {
     next()
   },
   watch: {
+    templateSecurityContext () {
+      if (this.$route.meta?.name !== 'template') return
+      this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null; this.items = []; this.resource = {}; this.itemCount = 0
+      this.resetSelection()
+      if (this.showAction) this.closeAction()
+      if (!this.$route.params?.id) {
+        const query = templateListQuery({}, this.pageSize)
+        if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) return this.$router.replace({ query })
+      }
+      if ('listTemplates' in this.$store.getters.apis) this.fetchData()
+    },
     snapshotOperationCompletions (next, before = []) {
       const previous = new Map(before.map(entry => [entry.id, entry.status]))
       if (next.some(entry => previous.has(entry.id) && previous.get(entry.id) !== entry.status && ['complete', 'failed'].includes(entry.status) && snapshotOperationAffectsRoute(entry, this.$route))) this.fetchData({ irefresh: true })
@@ -1358,6 +1388,8 @@ export default {
     }
   },
   computed: {
+    isTemplateList () { return this.$route.meta?.name === 'template' && !this.$route.params?.id },
+    templateSecurityContext () { return JSON.stringify([templateOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
     guestNetworkAuth () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.domainid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects, Object.keys(this.$store.getters.apis || {}).sort()]) },
     sharedFSContentLoading () {
       if (!['sharedfs', 'runtimebundle'].includes(this.$route.meta?.name) || this.listLoadedScope !== this.listScope()) return this.loading
@@ -1536,6 +1568,7 @@ export default {
     }
   },
   methods: {
+    templateListLocation,
     storageDialogSize,
     snapshotSourceVolumeRoute,
     documentationUrl,
@@ -1631,10 +1664,13 @@ export default {
         routeKey = JSON.stringify([this.$route.path, Object.entries(this.$route.query || {}).filter(([key]) => !['tab', 'browserPath'].includes(key)).sort(([a], [b]) => a.localeCompare(b))])
       } else if ((storageUiRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route)) && this.$route.params?.id) {
         routeKey = storageDetailRouteKey(this.$route)
+      } else if (this.$route.meta?.name === 'template' && this.$route.params?.id) {
+        const query = { ...this.$route.query }; delete query.tab
+        routeKey = JSON.stringify([this.$route.path, query])
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -1735,7 +1771,34 @@ export default {
         this.$router.replace({ query })
       })
     },
+    rejectTemplateDetail (message) {
+      this.templateDetailError = message
+      this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
+      this.actions = []; this.listSchemaScope = null
+      this.$emit('change-resource', this.resource)
+    },
+    retainTemplateOperation (value) {
+      if (this.$route.meta?.name === 'template' && value.context === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)) this.templateOperationContext = value.active ? value.context : ''
+    },
     fetchData (params = {}) {
+      const templateDetail = this.$route.meta?.name === 'template' && !!this.$route.params?.id
+      const templateOperationHeld = () => templateDetail && this.templateOperationContext && this.templateOperationContext === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)
+      if (templateOperationHeld()) return Promise.resolve()
+      this.templateDetailError = ''
+      this.templateFilterError = ''
+      if (this.$route.meta?.name === 'template' && !templateDetail) {
+        const query = templateListQuery(this.$route.query, this.pageSize)
+        this.dataView = false
+        if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) return this.$router.replace({ query })
+        this.templateFilterError = templateSearchError(query, this.$getApiParams('listTemplates'))
+        if (this.templateFilterError) { this.listRequestVersion++; this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRequestPending = false; this.loading = false; this.resetSelection(); return Promise.resolve() }
+      }
+      if (templateDetail && !this.$isValidUuid(this.$route.params.id)) {
+        this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false
+        this.dataView = true; this.loading = false
+        this.rejectTemplateDetail('message.template.detail.invalid')
+        return Promise.resolve()
+      }
       const policyRoute = snapshotPolicyListRoute(this.$route) || policyDetailRoute(this.$route)
       // Apply the destination view before URL/permission guards can return early.
       if (policyRoute) this.dataView = !!this.$route.params?.id
@@ -1831,7 +1894,7 @@ export default {
           : null
         this.routeName = matchedRoute?.meta?.name || this.$route?.meta?.name || this.$route?.name || ''
       }
-      const securityScope = JSON.stringify([...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
+      const securityScope = JSON.stringify([...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
       if (this.listSecurityScope !== securityScope) {
         this.items = []
         this.resource = {}
@@ -2077,6 +2140,26 @@ export default {
         })
         this.chosenColumns.splice(this.chosenColumns.length - 1, 1)
 
+        if (this.$route.meta?.name === 'template') {
+          const widths = { state: 140, format: 96, ostypename: 180, arch: 104, hypervisor: 104, size: 112, account: 120, project: 136, templatetype: 120, order: 168 }
+          this.columns.forEach(column => {
+            if (widths[column.key]) column.width = widths[column.key]
+            if (column.key === 'format') column.title = this.$t('label.template.image.format')
+            if (column.key === 'templatetype') column.title = this.$t('label.template.type')
+            if (column.key === 'name') delete column.width
+            column.ellipsis = column.key === 'order' ? false : { showTitle: false }
+            const previousCell = column.customCell
+            column.customCell = record => {
+              const attributes = typeof previousCell === 'function' ? previousCell(record) : {}
+              if (['name', 'state', 'order'].includes(column.key)) return attributes
+              let value = column.key === 'project' ? (record.projectname || record.project?.name || record.project) : record[column.key]
+              if (column.key === 'size' && value != null && this.$bytesToHumanReadableSize) value = this.$bytesToHumanReadableSize(value)
+              return { ...attributes, title: value == null ? undefined : String(value) }
+            }
+            const previousHeader = column.customHeaderCell
+            column.customHeaderCell = (...args) => ({ ...(typeof previousHeader === 'function' ? previousHeader(...args) : {}), title: typeof column.title === 'string' ? column.title : undefined })
+          })
+        }
         this.listSchemaScope = schemaScope
         this.listCustomRender = customRender
       }
@@ -2202,13 +2285,21 @@ export default {
       if (['listVirtualMachines', 'listVirtualMachinesMetrics'].includes(requestApi)) {
         params = sshKeyPairVmParams(params, this.$route.query)
       }
+      const templateQuery = this.$route.meta?.name === 'template'
+      if (templateQuery) params = templateRequestParams(params, this.dataView, this.$store.getters)
       const cniQuery = ['cniconfiguration', 'affinitygroup', 'guestnetwork'].includes(this.$route.meta?.name)
       const snapshotDetail = snapshotDetailRoute(this.$route)
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
-      const response = policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
+        if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
+        if (templateQuery && !this.dataView && templateFilterMismatch(json?.listtemplatesresponse?.template || [], params)) {
+          this.templateFilterError = 'message.template.search.ignored'
+          this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = true
+          return
+        }
         const networkPage = guestNetworkRoute(this.$route) && !this.dataView ? readNetworkPage(json, 'listNetworks', 'network', params) : null
         const groupResult = vmGroups ? vmGroupQueryRows(json) : null
         const snapshotPage = snapshotListRoute(this.$route) ? snapshotListPage(json, this.$route, this.page, this.pageSize) : null
@@ -2272,6 +2363,10 @@ export default {
           if (version !== this.listRequestVersion || scope !== this.listScope()) return
         }
         if (policyDetail) responseItems = responseItems.map(record => ({ ...record, name: (record.volumename || record.volumeid) + ' · ' + this.$t(['label.hourly', 'label.daily', 'label.weekly', 'label.monthly'][Number(record.intervaltype)] || 'label.snapshot.list.unknown') }))
+        if (templateDetail && (!Array.isArray(responseItems) || !responseItems.length || responseItems.some(row => row.id?.toLowerCase() !== params.id?.toLowerCase()))) {
+          this.rejectTemplateDetail('message.template.detail.unavailable')
+          return
+        }
         this.items = responseItems
         if (!this.items || this.items.length === 0) {
           this.items = []
@@ -2330,7 +2425,14 @@ export default {
           }
         }
       }).catch(error => {
+        if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
+        if (templateDetail) {
+          const code = Number(error?.response?.status)
+          this.rejectTemplateDetail([403, 404, 431, 432, 531].includes(code) ? 'message.template.detail.unavailable' : 'message.template.detail.read.failed')
+          if (isAutoScheduled) throw error
+          return
+        }
         if (sshDetail) { this.rejectSshKeyPairDetail(sshKeyPairDetailFailure(error)); return }
         if (cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
           if (snapshotListRoute(this.$route) || snapshotDetail || policyDetail) this.snapshotListError = Object.values(error?.response?.data || {}).find(value => value?.errortext)?.errortext || (error.message?.startsWith('message.') ? error.message : 'message.snapshot.list.read.failed')
@@ -3541,6 +3643,13 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (this.$route.meta?.name === 'template' && !this.$route.params?.id) {
+        const query = templateSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        this.searchParams = {}
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData(query)
+        else this.$router.push({ query })
+        return
+      }
       if (guestNetworkRoute(this.$route) && !this.$route.params?.id) {
         const query = networkSearchQuery(this.$route.query, opts, this.pageSize)
         this.searchParams = {}
@@ -3615,7 +3724,7 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (['template', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -3639,7 +3748,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -3872,4 +3981,14 @@ export default {
   .bucket-list-page .autogen-toolbar-actions > span:last-child { display: block !important; flex: 1 1 180px; width: auto !important; min-width: 0; }
 }
 
+</style>
+
+<style scoped lang="less">
+.template-list-page :deep(.ant-table-thead th) { white-space: nowrap; }
+.template-list-page :deep(.ant-table-cell) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.template-list-page :deep(.ant-breadcrumb) { overflow-wrap: anywhere; }
+</style>
+
+<style scoped>
+.template-filter-accessible-label { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 </style>

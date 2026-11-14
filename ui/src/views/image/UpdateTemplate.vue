@@ -43,6 +43,10 @@
             v-model:value="form.displaytext"
             :placeholder="apiParams.displaytext.description" />
         </a-form-item>
+        <a-form-item v-for="field in ['sshkeyenabled', 'requireshvm'].filter(field => apiParams[field])" :key="field" :name="field">
+          <template #label><tooltip-label :title="$t('label.' + field)" :tooltip="$t('message.template.' + field)" /></template>
+          <a-switch v-model:checked="form[field]" :aria-label="$t('label.' + field)" />
+        </a-form-item>
         <a-form-item name="passwordenabled" ref="passwordenabled">
           <template #label>
             <tooltip-label :title="$t('label.passwordenabled')" :tooltip="apiParams.passwordenabled.description"/>
@@ -156,9 +160,9 @@
           </template>
           <a-switch v-model:checked="form.forcks" />
         </a-form-item>
-        <a-form-item name="templatetype" ref="templatetype" v-if="isAdmin">
+        <a-form-item name="templatetype" ref="templatetype" v-if="isAdmin" :extra="resource.templatetype==='SHAREDFS' ? $t('message.template.type.sharedfs.immutable') : undefined">
           <template #label>
-            <tooltip-label :title="$t('label.templatetype')" :tooltip="apiParams.templatetype.description"/>
+            <tooltip-label :title="$t('label.templatetype')" :tooltip="$t('message.template.type.help')"/>
           </template>
           <span v-if="selectedTemplateType ==='SYSTEM'">
             <a-alert type="warning">
@@ -175,10 +179,11 @@
               return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }"
             v-model:value="form.templatetype"
-            :placeholder="apiParams.templatetype.description"
+            :placeholder="$t('label.template.type.select')"
+            :disabled="resource.templatetype==='SHAREDFS'"
             @change="val => { selectedTemplateType = val }">
-            <a-select-option v-for="opt in templatetypes" :key="opt.id">
-              {{ opt.name || opt.description }}
+            <a-select-option v-for="opt in permittedTemplateTypes" :key="opt.id" :label="opt.name" :disabled="opt.disabled">
+              <a-tooltip :title="opt.reason ? $t(opt.reason) : undefined"><span>{{ opt.name }}<span v-if="opt.reason"> · {{ $t(opt.reason) }}</span></span></a-tooltip>
             </a-select-option>
           </a-select>
         </a-form-item>
@@ -193,7 +198,8 @@
         </a-form-item>
         <a-form-item
           name="arch"
-          ref="arch">
+          ref="arch"
+v-if="apiParams.arch">
           <template #label>
             <tooltip-label :title="$t('label.arch')" :tooltip="apiParams.arch.description"/>
           </template>
@@ -201,11 +207,12 @@
             showSearch
             optionFilterProp="label"
             :filterOption="(input, option) => {
-              return option.children[0].children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }"
             v-model:value="form.arch"
+            :disabled="resource.templatetype==='SHAREDFS'"
             :placeholder="apiParams.arch.description">
-            <a-select-option v-for="opt in architectureTypes.opts" :key="opt.id">
+            <a-select-option v-for="opt in architectureTypes.opts" :key="opt.id" :label="opt.name || opt.description">
               {{ opt.name || opt.description }}
             </a-select-option>
           </a-select>
@@ -224,6 +231,8 @@
 
 <script>
 import { ref, reactive, toRaw } from 'vue'
+import { templateTypeOptions, templateTypeError } from '@/utils/templateTypePolicy'
+import { readTemplateResource } from '@/utils/templateSearch'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import MoldDialog from '@/components/view/MoldDialog'
@@ -242,7 +251,6 @@ export default {
   },
   data () {
     return {
-      templatetypes: [],
       emptyAllowedFields: ['templatetag'],
       rootDisk: {},
       nicAdapterType: {},
@@ -253,6 +261,7 @@ export default {
       userdata: {},
       userDataSelectionReady: false,
       submitError: '',
+      savedMetadata: '',
       userdataid: null,
       userdatapolicy: null,
       userdatapolicylist: {},
@@ -264,6 +273,8 @@ export default {
   },
   mounted () { this.$nextTick(() => { const input = this.$refs.content?.querySelector('input:not([disabled])'); if (input) input.focus() }) },
   computed: {
+    typeContext () { return { operation: 'update', sourceType: this.resource.templatetype, hypervisor: this.resource.hypervisor, user: this.$store.getters.userInfo, apis: this.$store.getters.apis, project: this.$store.getters.project } },
+    permittedTemplateTypes () { return templateTypeOptions(this.typeContext) },
     canLinkUserData () { return ['listUserData', 'linkUserDataToTemplate'].every(api => api in this.$store.getters.apis) },
     blocksNavigation () { return this.loading }
   },
@@ -274,7 +285,6 @@ export default {
   },
   created () {
     this.initForm()
-    this.templatetypes = this.$fetchTemplateTypes(this.resource.hypervisor)
     this.rootDisk.loading = false
     this.rootDisk.opts = []
     this.nicAdapterType.loading = false
@@ -294,15 +304,20 @@ export default {
         displaytext: [{ required: true, message: this.$t('message.error.required.input') }],
         ostypeid: [{ required: true, message: this.$t('message.error.select') }]
       })
-      const resourceFields = ['name', 'displaytext', 'architecture', 'passwordenabled', 'ostypeid', 'isdynamicallyscalable', 'userdataid', 'userdatapolicy', 'forcks']
+      const resourceFields = ['name', 'displaytext', 'arch', 'sshkeyenabled', 'requireshvm', 'passwordenabled', 'ostypeid', 'isdynamicallyscalable', 'userdataid', 'userdatapolicy', 'forcks']
       if (this.isAdmin) {
         resourceFields.push('templatetype')
         resourceFields.push('templatetag')
       }
       for (var field of resourceFields) {
         var fieldValue = this.resource[field]
-        if (fieldValue) {
+        if (fieldValue !== undefined && fieldValue !== null) {
           switch (field) {
+            case 'arch':
+            case 'sshkeyenabled':
+            case 'requireshvm':
+              if (this.apiParams[field]) this.form[field] = fieldValue
+              break
             case 'userdataid':
               this.userdataid = fieldValue
               break
@@ -483,9 +498,8 @@ export default {
     fetchDetails () {
       const params = {}
       params.id = this.resource.id
-      params.templatefilter = 'all'
 
-      getAPI('listTemplates', params).then(response => {
+      readTemplateResource(getAPI, params, this.$store.getters).then(response => {
         if (response?.listtemplatesresponse?.template?.length > 0) {
           this.details = response.listtemplatesresponse.template[0].details
           if (this.details) {
@@ -511,6 +525,8 @@ export default {
         this.loading = false
         return
       }
+      const policyError = templateTypeError(this.typeContext, this.form.templatetype) || (this.resource.templatetype === 'SHAREDFS' && this.form.arch && this.form.arch !== this.resource.arch ? 'message.template.type.sharedfs.immutable' : '')
+      if (policyError) { this.submitError = this.$t(policyError); this.loading = false; this.$nextTick(() => { const alert = this.$refs.error?.$el; if (alert) { alert.scrollIntoView({ block: 'nearest' }); alert.focus({ preventScroll: true }) } }); return }
       const values = toRaw(this.form)
       const params = { id: this.resource.id }
       if (this.details) Object.keys(this.details).forEach(detail => { params['details[0].' + detail] = this.details[detail] })
@@ -523,11 +539,16 @@ export default {
       const changed = this.canLinkUserData && ((this.userdataid || '') !== (this.resource.userdataid || '') || String(this.userdatapolicy || '').toUpperCase() !== String(this.resource.userdatapolicy || '').toUpperCase())
       const link = { templateid: this.resource.id, ignoreproject: true, ...(this.resource.projectid ? { projectid: this.resource.projectid } : {}), ...(this.userdataid ? { userdataid: this.userdataid, userdatapolicy: this.userdatapolicy || 'ALLOWOVERRIDE' } : {}) }
       this.loading = true
-      let updated = false
+      const metadata = JSON.stringify(params)
+      let updated = this.savedMetadata === metadata
       try {
-        await postAPI('updateTemplate', params, { preserveOnFailure: true })
-        updated = true
+        if (!updated) {
+          await postAPI('updateTemplate', params, { preserveOnFailure: true })
+          this.savedMetadata = metadata
+          updated = true
+        }
         if (changed) await postAPI('linkUserDataToTemplate', link, { preserveOnFailure: true })
+        this.savedMetadata = ''
         this.$message.success(`${this.$t('message.success.update.template')}: ${this.resource.name}`)
         this.$emit('refresh-data')
         this.$emit('close-action')
