@@ -1,0 +1,95 @@
+{
+  "source": "af129880b21c066ea19d105231288e049a6ca24c",
+  "exit": 0,
+  "seconds": 770.8,
+  "node": "v20.20.2",
+  "npm": "10.8.2",
+  "nodeOptions": "--openssl-legacy-provider --max-old-space-size=8192",
+  "sourceUiClean": true,
+  "fullCloudBuild": false,
+  "changedFiles": {
+    "ui/src/components/network/VpcActionContext.vue": "db33f83e45db54b9e03a339e04dd568fe287db15dac0f448ca76ef913365707e",
+    "ui/src/components/network/VpcDialog.vue": "06f3f7dbb05ccd272be95fe57d8a910c3b83f87042e2cdb33816636052919467",
+    "ui/src/components/view/ResourceView.vue": "0e76a43918d331944466dc678ab3e14d9966029b81f1249da95c7dff2683a3eb",
+    "ui/src/components/widgets/Breadcrumb.vue": "e917358e92615125c27beb866e345338f82b4fa29136bc9def007019f1d72189",
+    "ui/src/config/section/offering.js": "fada136b8983c1c1973566fd414431a6bac932d373a891e40badc7465e187bb1",
+    "ui/src/views/AutogenView.vue": "8673a671af76afbbe09696e71b0b3c39fdad95381a9a0703d888160296c1adf9",
+    "ui/src/views/network/CreateVpc.vue": "686edb4c77c24ffcc73b56979a79f8809802797122350deb2d3559d5b74d3dc2",
+    "ui/src/views/network/MigrateVpc.vue": "1d8b43eae0452d06475e54f1d62c5db5b3667f4d7870b84662b34dd70114920d",
+    "ui/src/views/network/PrivateGatewayCreate.vue": "970a4616fb2ac85e04046f5a8d0dd66db2b99dbc690968c153d2a1c501921b61",
+    "ui/src/views/network/RestartVpc.vue": "96fed81a80ff5903ca58239a513cfa1c6b2dc8ddcac95294401412aa937b5378",
+    "ui/src/views/network/StaticRoutesTab.vue": "383b5546ee707fc9b5166b31ef8fcdfcde849b43b1f708c91f3eeb87722d6623",
+    "ui/src/views/network/VpcTab.vue": "e460b5d3729c332be7f4c4a681b5d29b923f0d20fcb87eecd84f5355597f0eb3",
+    "ui/src/views/network/VpcTierCreateDialog.vue": "3babd379abb7d41a915f8c4d3c22facc4ac66bf471ee6e0adb3d04d0155b39e8",
+    "ui/src/views/network/VpcVpnCreate.vue": "030eefb052abac96f68abf8fde05c157e0714c0b0d2255bf02f801f11f477b1a",
+    "ui/tests/unit/components/view/VpcDialog.spec.js": "278d76deb34f30540513d989b5eba3707b45301aafb9fb2336fad60d8cd9d755",
+    "ui/tests/unit/views/AutogenActionFocus.spec.js": "9899afc0da283c83960335f5578cf4dfb9e9c032c206b1cbc1ab223e0c17973c",
+    "ui/tests/unit/views/network/VpcUiIntegration.spec.js": "3ae683e610a1cd990fc17d3ee35bdfe2a2e0202e913e1cb29e1e9fdc0e722894"
+  },
+  "lockfileSha256": "23379939285231d360907e8d7242206efd5359654b9903614788040680133ffc",
+  "indexSha256": "2642666ee6dde4ef313b3e419a5ab522f9f571841ecdd845b8801e98da17c5bf",
+  "appBundles": [
+    "js/app.f0c9596d.js"
+  ],
+  "markers": {
+    "vpc-dialog-body": [
+      "js/app.f0c9596d.js"
+    ],
+    "vpc-action-context": [
+      "js/app.f0c9596d.js"
+    ],
+    "route-toolbar": [
+      "js/chunk-339f49ae.fd3fdd7c.js",
+      "js/chunk-13679b3e.511ff4f5.js",
+      "js/chunk-6271ff24.c0d8fff8.js"
+    ],
+    "vpc-standard-dialog": [
+      "js/app.f0c9596d.js"
+    ],
+    "vpc-create-receipt:v1:": [
+      "js/chunk-f346eb56.2152d270.js"
+    ],
+    "vpc-create-dialog": [
+      "js/chunk-f346eb56.2152d270.js"
+    ],
+    "message.vpc.create.gateway.offering.policy": [
+      "js/chunk-13679b3e.511ff4f5.js"
+    ],
+    "vpc-migration:v1:": [
+      "js/chunk-70a3da4c.ece10d4b.js"
+    ],
+    "message.vpc.migration.impact": [
+      "js/chunk-70a3da4c.ece10d4b.js"
+    ],
+    "vpc-restart:v1:": [
+      "js/chunk-593c7b7f.303f9891.js"
+    ],
+    "message.vpc.restart.results": [
+      "js/chunk-593c7b7f.303f9891.js"
+    ],
+    "vpc-private-gateway:v1:": [
+      "js/chunk-13679b3e.511ff4f5.js"
+    ],
+    "message.private.gateway.no.resubmit": [
+      "js/chunk-13679b3e.511ff4f5.js"
+    ],
+    "vpc.offering.operation.v1:": [
+      "js/chunk-18c5d0ca.036fbf9b.js"
+    ],
+    "message.vpc.offering.operation.no.resubmit": [
+      "js/chunk-18c5d0ca.036fbf9b.js"
+    ],
+    "message.success.clone.vpc.offering": [
+      "js/chunk-18c5d0ca.036fbf9b.js"
+    ],
+    "blockingLoadingState": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ],
+    "fetchSyncProgress": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ],
+    "extractJobId": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ]
+  }
+}

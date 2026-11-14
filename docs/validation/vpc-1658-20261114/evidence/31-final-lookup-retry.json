@@ -1,0 +1,23 @@
+{
+  "source": "af129880b21c066ea19d105231288e049a6ca24c",
+  "api": "listPrivateGateways",
+  "injectedHttp": 503,
+  "requests": [
+    {
+      "id": "interception-job-166574.0",
+      "api": "listPrivateGateways"
+    }
+  ],
+  "beforeRetry": {
+    "retainedGateway": 1,
+    "retryButtons": [
+      {
+        "disabled": false
+      }
+    ]
+  },
+  "afterRetry": {
+    "retainedGateway": 1,
+    "retryButtons": 0
+  }
+}

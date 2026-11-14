@@ -1,0 +1,136 @@
+[
+  {
+    "command": "deleteStaticRoute",
+    "id": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+    "receipt": {
+      "jobid": "ba8d752f-072c-4be2-83a7-7f1ea2e438d5"
+    },
+    "terminalJob": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteStaticRouteCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-14T23:02:11+0900",
+      "completed": "2026-11-14T23:02:11+0900",
+      "jobid": "ba8d752f-072c-4be2-83a7-7f1ea2e438d5",
+      "jobstatus": 1
+    },
+    "result": {
+      "success": true
+    },
+    "success": true
+  },
+  {
+    "command": "deletePrivateGateway",
+    "id": "fa1d0748-a99c-48b5-ad54-62f89cee482b",
+    "alreadyAbsentAfterUi": true
+  },
+  {
+    "command": "deleteNetworkACLList",
+    "id": "b48ed33e-e60f-474e-8221-2c61efb1fbe0",
+    "receipt": {
+      "jobid": "a7ba3686-fd6e-4cd2-921a-64708fb8356c"
+    },
+    "terminalJob": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.user.network.DeleteNetworkACLListCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "NetworkAcl",
+      "created": "2026-11-14T23:02:11+0900",
+      "completed": "2026-11-14T23:02:11+0900",
+      "jobid": "a7ba3686-fd6e-4cd2-921a-64708fb8356c",
+      "jobstatus": 1
+    },
+    "result": {
+      "success": true
+    },
+    "success": true
+  },
+  {
+    "command": "deleteVPC",
+    "id": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+    "receipt": {
+      "jobid": "00806b3e-46ed-41a5-9e00-b74920076c7c"
+    },
+    "terminalJob": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "Vpc",
+      "created": "2026-11-14T23:02:13+0900",
+      "completed": "2026-11-14T23:02:13+0900",
+      "jobid": "00806b3e-46ed-41a5-9e00-b74920076c7c",
+      "jobstatus": 1
+    },
+    "result": {
+      "success": true
+    },
+    "success": true
+  },
+  {
+    "command": "deleteVPC",
+    "id": "d1b4cad9-db3f-4e4d-8998-7d456334f23a",
+    "alreadyAbsentAfterUi": true
+  },
+  {
+    "command": "deleteVPCOffering",
+    "id": "05072e03-6471-4d6e-87eb-1060f7960b96",
+    "alreadyAbsentAfterUi": true
+  },
+  {
+    "command": "deleteVPCOffering",
+    "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+    "receipt": {
+      "jobid": "bc224f97-d040-43f6-bf2a-2305ebd1ac4b"
+    },
+    "terminalJob": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.admin.vpc.DeleteVPCOfferingCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "VpcOffering",
+      "created": "2026-11-14T23:02:15+0900",
+      "completed": "2026-11-14T23:02:15+0900",
+      "jobid": "bc224f97-d040-43f6-bf2a-2305ebd1ac4b",
+      "jobstatus": 1
+    },
+    "result": {
+      "success": true
+    },
+    "success": true
+  }
+]

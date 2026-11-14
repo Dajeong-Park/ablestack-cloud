@@ -1,0 +1,43 @@
+{
+  "networkOfferingIdsEqual": true,
+  "networkOfferingCount": 24,
+  "fieldDifferences": [],
+  "bgpPeers": [],
+  "asNumbers": [],
+  "physicalProviderTrafficAndElements": [
+    {
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "kind": "traffic",
+      "equal": true
+    },
+    {
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "kind": "providers",
+      "equal": true
+    },
+    {
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "kind": "elements",
+      "equal": true
+    },
+    {
+      "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+      "kind": "traffic",
+      "equal": true
+    },
+    {
+      "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+      "kind": "providers",
+      "equal": true
+    },
+    {
+      "physicalnetworkid": "189bf0ef-2f9f-4f25-83db-ecee2db0db7d",
+      "kind": "elements",
+      "equal": true
+    }
+  ],
+  "hiddenFixtures": {
+    "listVPCs": [],
+    "listNetworks": []
+  }
+}

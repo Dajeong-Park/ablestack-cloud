@@ -1,0 +1,59 @@
+{
+  "count": 1,
+  "api": [
+    {
+      "name": "deleteTags",
+      "description": "Deleting resource tag(s)",
+      "since": "4.0.0",
+      "isasync": true,
+      "params": [
+        {
+          "name": "tags",
+          "description": "Delete tags matching key/value pairs",
+          "type": "map",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "resourceids",
+          "description": "Delete tags for resource id(s)",
+          "type": "list",
+          "length": 255,
+          "required": true
+        },
+        {
+          "name": "resourcetype",
+          "description": "Delete tag by resource type",
+          "type": "string",
+          "length": 255,
+          "required": true
+        }
+      ],
+      "response": [
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {},
+        {},
+        {
+          "name": "displaytext",
+          "description": "Any text associated with the success or failure",
+          "type": "string"
+        },
+        {
+          "name": "success",
+          "description": "True if operation is executed successfully",
+          "type": "boolean"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        }
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

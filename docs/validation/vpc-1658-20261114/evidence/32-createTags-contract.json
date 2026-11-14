@@ -1,0 +1,66 @@
+{
+  "count": 1,
+  "api": [
+    {
+      "name": "createTags",
+      "description": "Creates resource tag(s)",
+      "since": "4.0.0",
+      "isasync": true,
+      "params": [
+        {
+          "name": "resourceids",
+          "description": "List of resources to create the tags for",
+          "type": "list",
+          "length": 255,
+          "required": true
+        },
+        {
+          "name": "tags",
+          "description": "Map of tags (key/value pairs)",
+          "type": "map",
+          "length": 255,
+          "required": true
+        },
+        {
+          "name": "customer",
+          "description": "Identifies client specific tag. When the value is not null, the tag can't be used by cloudStack code internally",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "resourcetype",
+          "description": "Type of the resource",
+          "type": "string",
+          "length": 255,
+          "required": true
+        }
+      ],
+      "response": [
+        {},
+        {},
+        {
+          "name": "success",
+          "description": "True if operation is executed successfully",
+          "type": "boolean"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "displaytext",
+          "description": "Any text associated with the success or failure",
+          "type": "string"
+        }
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

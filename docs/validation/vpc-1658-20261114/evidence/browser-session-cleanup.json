@@ -1,0 +1,31 @@
+{
+  "source": "af129880b21c066ea19d105231288e049a6ca24c",
+  "uiCounts": {
+    "vpc31": 2,
+    "vpc32": 1,
+    "offering31": 7,
+    "offering32": 7
+  },
+  "prefixZeroVerified": true,
+  "fetchInterceptionRemoved": true,
+  "cacheOverrideRemoved": true,
+  "viewportOverrideRemoved": true,
+  "settings": {
+    "31": {
+      "defaultView": true,
+      "height": 841,
+      "light": true,
+      "openModals": 0,
+      "url": "http://10.10.31.10:8080/client/#/vpc",
+      "width": 1680
+    },
+    "32": {
+      "defaultView": true,
+      "height": 841,
+      "light": true,
+      "openModals": 0,
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 1680
+    }
+  }
+}

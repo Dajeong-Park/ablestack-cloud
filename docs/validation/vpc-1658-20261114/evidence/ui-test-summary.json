@@ -1,0 +1,50 @@
+{
+  "source": "af129880b21c066ea19d105231288e049a6ca24c",
+  "focused": {
+    "success": true,
+    "numPassedTestSuites": 19,
+    "numPassedTests": 455,
+    "numFailedTests": 0,
+    "numFailedTestSuites": 0
+  },
+  "fullSource": "baf250da5af6a8e3764c31f8609d55b49abd7624",
+  "lastChangesAfterFullRun": "VPC duplicate stale-message guard, context-menu focus return, inactive Footer i18n fallback and real-i18n test; focused 455 tests and changed-file lint rerun",
+  "full": {
+    "numPassedTests": 6031,
+    "numFailedTests": 13,
+    "numTotalTests": 6044,
+    "numPassedTestSuites": 389,
+    "numFailedTestSuites": 6,
+    "numTotalTestSuites": 395,
+    "exit": 1,
+    "seconds": 438.6
+  },
+  "failedTests": [
+    "events server search resets the page and sends the same fixed resource and project",
+    "policy events stay scoped to the policy UUID and project rather than its source volume",
+    "mounted SMB preflight and actual API submit contract fixed-create preview is derived from the parameters sent by the actual component",
+    "mounted SMB preflight and actual API submit contract ordinary-create preview is derived from the parameters sent by the actual component",
+    "mounted SMB preflight and actual API submit contract inherit-create preview is derived from the parameters sent by the actual component",
+    "mounted SMB preflight and actual API submit contract fixed-update preview is derived from the parameters sent by the actual component",
+    "switching to a project without selecting one clears the prior account source",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccount\": null, \"selectedAccountType\": \"Account\"}",
+    "keeps incomplete creation ownership unresolved rather than falling back to admin {\"selectedAccountType\": \"Project\", \"selectedProject\": null}",
+    "uses only the selected project when ownership changes to a project",
+    "actual coordinator DAO/API dispatch rejection guidance the real serialized no-start failure renders its preserved code and dispatch-specific guidance",
+    "actual coordinator DAO/API dispatch rejection guidance restore preflight shows the protocol and original blocking codes without an apply claim",
+    "actual manager guard through coordinator and DAO renders its first public reason without rollback ambiguity"
+  ],
+  "unchangedFailingFiles": [
+    "tests/unit/storageConfigDispatchFailure.spec.js",
+    "tests/unit/storageIscsiPreparationFailure.spec.js",
+    "tests/unit/views/compute/CreationSourceDeployment.spec.js",
+    "tests/unit/views/compute/VmGroupOwnership.spec.js",
+    "tests/unit/views/storage/SmbShareRequestContract.spec.js",
+    "tests/unit/views/storage/SnapshotTabs.spec.js"
+  ],
+  "same13FailureNamesAsPriorBaselineProof": true,
+  "baselineProofSource": "330ced29fc019185b09d25cf316f54175067adba",
+  "baselineProofReport": "../../vpc-1657-20261114/evidence/ui-test-summary.json",
+  "fullGreen": false,
+  "newFailures": []
+}
