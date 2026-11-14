@@ -16,31 +16,10 @@
 // under the License.
 
 <template>
-  <div
-    class="form-layout"
-    @keyup.ctrl.enter="handleSubmit">
-    <span v-if="uploading">
-      <loading-outlined />
-      {{ $t('message.upload.file.processing') }}
-      <a-progress :percent="uploadPercentage" />
-    </span>
-    <div v-else-if="ssvmCertUntrusted" class="ssvm-cert-warning">
-      <a-alert
-        type="warning"
-        show-icon
-        :message="$t('message.ssvm.cert.untrusted')"
-        :description="$t('message.ssvm.cert.trust.instructions')" />
-      <div :span="24" class="action-button">
-        <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-        <a-button :href="ssvmOrigin" target="_blank" rel="noopener noreferrer">
-          {{ $t('label.ssvm.open.cert.page') }}
-        </a-button>
-        <a-button type="primary" :loading="loading" @click="retryUpload">
-          {{ $t('label.retry.upload') }}
-        </a-button>
-      </div>
-    </div>
-    <a-spin :spinning="loading" v-else>
+  <MoldDialog size="md" form-actions focus-guard :title="$t(currentForm === 'Create' ? 'label.action.register.iso' : 'label.upload.iso.from.local')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
+    <div class="iso-registration-content">
+      <a-alert v-if="submitError" type="error" show-icon role="alert" :message="submitError" />
+      <template v-if="phase === 'draft'">
       <a-form
         :ref="formRef"
         :model="form"
@@ -56,6 +35,7 @@
             <tooltip-label :title="$t('label.url')" :tooltip="apiParams.url.description"/>
           </template>
           <a-input
+            :disabled="busy"
             v-focus="currentForm === 'Create'"
             v-model:value="form.url"
             :placeholder="apiParams.url.description" />
@@ -66,7 +46,9 @@
           name="file"
           :label="$t('label.templatefileupload')">
           <a-upload-dragger
+            :disabled="busy"
             :multiple="false"
+            accept=".iso,.iso.gz,.iso.bz2,.iso.zip,.iso.xz"
             :fileList="fileList"
             @remove="handleRemove"
             :beforeUpload="beforeUpload"
@@ -84,6 +66,7 @@
             <tooltip-label :title="$t('label.name')" :tooltip="apiParams.name.description"/>
           </template>
           <a-input
+            :disabled="busy"
             v-model:value="form.name"
             :placeholder="apiParams.name.description"
             v-focus="currentForm !== 'Create'" />
@@ -93,15 +76,16 @@
             <tooltip-label :title="$t('label.displaytext')" :tooltip="apiParams.displaytext.description"/>
           </template>
           <a-input
+            :disabled="busy"
             v-model:value="form.displaytext"
             :placeholder="apiParams.displaytext.description" />
         </a-form-item>
 
-        <a-form-item ref="directdownload" name="directdownload" v-if="allowed && currentForm !== 'Upload'">
+        <a-form-item ref="directdownload" name="directdownload" v-if="isAdmin && supportsParam('directdownload') && currentForm === 'Create'">
           <template #label>
             <tooltip-label :title="$t('label.directdownload')" :tooltip="apiParams.directdownload.description"/>
           </template>
-          <a-switch v-model:checked="form.directdownload" @change="handleDirectDownloadChange"/>
+          <a-switch :disabled="busy" v-model:checked="form.directdownload" @change="handleDirectDownloadChange"/>
         </a-form-item>
 
         <a-form-item ref="checksum" name="checksum">
@@ -109,6 +93,7 @@
             <tooltip-label :title="$t('label.checksum')" :tooltip="apiParams.checksum.description"/>
           </template>
           <a-input
+            :disabled="busy"
             v-model:value="form.checksum"
             :placeholder="apiParams.checksum.description" />
         </a-form-item>
@@ -118,6 +103,7 @@
             <tooltip-label :title="$t('label.zoneid')" :tooltip="apiParams.zoneid.description"/>
           </template>
           <a-select
+            :disabled="busy"
             v-model:value="form.zoneid"
             showSearch
             optionFilterProp="label"
@@ -136,11 +122,12 @@
           </a-select>
         </a-form-item>
 
-        <a-form-item name="domainid" ref="domainid" v-if="'listDomains' in $store.getters.apis">
+        <a-form-item name="domainid" ref="domainid" v-if="canChooseOwner">
           <template #label>
             <tooltip-label :title="$t('label.domainid')" :tooltip="apiParams.domainid.description"/>
           </template>
           <a-select
+            :disabled="busy"
             v-model:value="form.domainid"
             showSearch
             optionFilterProp="label"
@@ -159,11 +146,12 @@
             </a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item name="account" ref="account" v-if="domainid">
+        <a-form-item name="account" ref="account" v-if="canChooseOwner && form.domainid">
           <template #label>
             <tooltip-label :title="$t('label.account')" :tooltip="apiParams.account.description"/>
           </template>
           <a-select
+            :disabled="busy"
             v-model:value="form.account"
             showSearch
             optionFilterProp="label"
@@ -171,7 +159,7 @@
               return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }"
             :placeholder="apiParams.account.description"
-            @change="val => { handleAccountChange(val) }">
+            @change="fetchUserData">
             <a-select-option v-for="(acc, index) in accounts" :value="acc.name" :key="index">
               {{ acc.name }}
             </a-select-option>
@@ -182,7 +170,7 @@
           <template #label>
             <tooltip-label :title="$t('label.bootable')" :tooltip="apiParams.bootable.description"/>
           </template>
-          <a-switch v-model:checked="form.bootable" />
+          <a-switch :disabled="busy" v-model:checked="form.bootable" />
         </a-form-item>
 
         <a-form-item ref="ostypeid" name="ostypeid" v-if="form.bootable">
@@ -190,6 +178,7 @@
             <tooltip-label :title="$t('label.ostypeid')" :tooltip="apiParams.ostypeid.description"/>
           </template>
           <a-select
+            :disabled="busy"
             v-model:value="form.ostypeid"
             showSearch
             optionFilterProp="label"
@@ -216,522 +205,369 @@
             <tooltip-label :title="$t('label.arch')" :tooltip="apiParams.arch.description"/>
           </template>
           <a-select
+            :disabled="busy || !supportsParam('arch')"
             showSearch
             optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.children[0].children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }"
+            :filterOption="optionMatches"
             v-model:value="form.arch"
-            :disabled="!registrationCapability.parameters.arch"
             :placeholder="apiParams.arch.description">
-            <a-select-option v-for="opt in architectureTypes.opts" :key="opt.id">
+            <a-select-option v-for="opt in architectureTypes.opts" :key="opt.id" :value="opt.id" :label="opt.name || opt.description">
               {{ opt.name || opt.description }}
             </a-select-option>
           </a-select>
         </a-form-item>
 
-        <a-row v-if="canLinkUserData" :gutter="12">
-          <a-col :md="24" :lg="12">
-            <a-form-item
-              name="userdataid"
-              ref="userdataid">
-              <template #label>
-                <tooltip-label :title="$t('label.user.data')" :tooltip="linkUserDataParams.userdataid.description"/>
-              </template>
-              <a-select
-                showSearch
-                optionFilterProp="label"
-                :filterOption="(input, option) => {
-                  return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                }"
-                v-model:value="userdataid"
-                :placeholder="linkUserDataParams.userdataid.description"
-                :loading="userdata.loading">
-                <a-select-option v-for="opt in userdata.opts" :key="opt.id" :label="opt.name || opt.description">
-                  {{ opt.name || opt.description }}
-                </a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-          <a-col :md="24" :lg="12">
-            <a-form-item ref="userdatapolicy" name="userdatapolicy">
-              <template #label>
-                <tooltip-label :title="$t('label.user.data.policy')" :tooltip="linkUserDataParams.userdatapolicy.description"/>
-              </template>
-              <a-select
-                showSearch
-                v-model:value="userdatapolicy"
-                :placeholder="linkUserDataParams.userdatapolicy.description"
-                optionFilterProp="label"
-                :filterOption="(input, option) => {
-                  return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                }" >
-                <a-select-option v-for="opt in userdatapolicylist.opts" :key="opt.id" :label="opt.id || opt.description">
-                  {{ opt.id || opt.description }}
-                </a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-        </a-row>
+        <div v-if="canLinkUserData" class="iso-userdata-fields">
+          <a-form-item :label="$t('label.user.data')" name="userdataid">
+            <a-select
+v-model:value="userdataid"
+:disabled="busy"
+:loading="userDataLoading"
+allow-clear
+show-search
+option-filter-prop="label"
+:filter-option="optionMatches"
+:placeholder="$t('label.user.data')">
+              <a-select-option v-for="item in userDataOptions" :key="item.id" :value="item.id" :label="item.name">{{ item.name }}</a-select-option>
+            </a-select>
+          </a-form-item>
+          <a-form-item :label="$t('label.user.data.policy')" name="userdatapolicy">
+            <a-select v-model:value="userdatapolicy" :disabled="busy || !userdataid" :filter-option="optionMatches" show-search option-filter-prop="label">
+              <a-select-option v-for="policy in ['allowoverride', 'append', 'denyoverride']" :key="policy" :value="policy" :label="policy">{{ policy }}</a-select-option>
+            </a-select>
+          </a-form-item>
+        </div>
         <a-row :gutter="12">
           <a-col :md="24" :lg="12">
-            <a-form-item ref="isextractable" name="isextractable">
+            <a-form-item ref="isextractable" name="isextractable" v-if="supportsParam('isextractable')">
               <template #label>
                 <tooltip-label :title="$t('label.isextractable')" :tooltip="apiParams.isextractable.description"/>
               </template>
-              <a-switch v-model:checked="form.isextractable" />
+              <a-switch :disabled="busy" v-model:checked="form.isextractable" />
             </a-form-item>
           </a-col>
           <a-col :md="24" :lg="12">
             <a-form-item
               ref="ispublic"
               name="ispublic"
-              v-if="$store.getters.userInfo.roletype === 'Admin' || $store.getters.features.userpublictemplateenabled" >
+v-if="canPublish"
+              >
               <template #label>
                 <tooltip-label :title="$t('label.ispublic')" :tooltip="apiParams.ispublic.description"/>
               </template>
-              <a-switch v-model:checked="form.ispublic" />
+              <a-switch :disabled="busy" v-model:checked="form.ispublic" />
             </a-form-item>
           </a-col>
         </a-row>
         <a-row :gutter="12">
           <a-col :md="24" :lg="12">
-            <a-form-item ref="isfeatured" name="isfeatured" v-if="$store.getters.userInfo.roletype === 'Admin'">
+            <a-form-item ref="isfeatured" name="isfeatured" v-if="isAdmin && supportsParam('isfeatured')">
               <template #label>
                 <tooltip-label :title="$t('label.isfeatured')" :tooltip="apiParams.isfeatured.description"/>
               </template>
-              <a-switch v-model:checked="form.isfeatured" />
+              <a-switch :disabled="busy" v-model:checked="form.isfeatured" />
             </a-form-item>
           </a-col>
           <a-col :md="24" :lg="12">
-            <a-form-item ref="isdynamicallyscalable" name="isdynamicallyscalable" v-if="$store.getters.userInfo.roletype === 'Admin'">
+            <a-form-item ref="isdynamicallyscalable" name="isdynamicallyscalable" v-if="supportsParam('isdynamicallyscalable')">
               <template #label>
                 <tooltip-label :title="$t('label.isdynamicallyscalable')" :tooltip="apiParams.isdynamicallyscalable.description"/>
               </template>
-              <a-switch v-model:checked="form.isdynamicallyscalable" />
+              <a-switch :disabled="busy" v-model:checked="form.isdynamicallyscalable" />
             </a-form-item>
           </a-col>
         </a-row>
         <a-row :gutter="12">
           <a-col :md="24" :lg="12">
-            <a-form-item ref="passwordenabled" name="passwordenabled" v-if="currentForm === 'Create'">
+            <a-form-item ref="passwordenabled" name="passwordenabled" v-if="supportsParam('passwordenabled')">
               <template #label>
                 <tooltip-label :title="$t('label.passwordenabled')" :tooltip="apiParams.passwordenabled.description"/>
               </template>
-              <a-switch v-model:checked="form.passwordenabled" />
+              <a-switch :disabled="busy" v-model:checked="form.passwordenabled" />
             </a-form-item>
           </a-col>
           <a-col :md="24" :lg="12">
           </a-col>
         </a-row>
-        <div :span="24" class="action-button">
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        <button type="submit" hidden tabindex="-1" aria-hidden="true"></button>
       </a-form>
-    </a-spin>
-  </div>
+      </template>
+      <template v-else>
+        <div v-if="acceptedId" class="iso-registration-resource">
+          <strong class="iso-registration-name" :title="form.name">{{ form.name }}</strong>
+          <span>{{ acceptedId }}</span>
+        </div>
+        <a-steps v-if="phase !== 'contextChanged'" direction="vertical" size="small" :current="stepIndex" :status="['failed', 'transferFailed', 'expired', 'linkFailed'].includes(phase) ? 'error' : 'process'">
+          <a-step v-for="step in steps" :key="step" :title="$t(step)" />
+        </a-steps>
+        <a-progress v-if="phase === 'uploading'" :percent="uploadPercentage" />
+        <a-alert v-if="phaseMessage" :type="phase === 'done' ? 'success' : ['failed', 'contextChanged'].includes(phase) ? 'error' : 'info'" show-icon :message="$t(phaseMessage)" />
+        <a-form v-if="phase === 'linkFailed'" layout="vertical">
+        <div v-if="canLinkUserData" class="iso-userdata-fields">
+          <a-form-item :label="$t('label.user.data')" name="userdataid">
+            <a-select
+v-model:value="userdataid"
+:disabled="busy"
+:loading="userDataLoading"
+allow-clear
+show-search
+option-filter-prop="label"
+:filter-option="optionMatches"
+:placeholder="$t('label.user.data')">
+              <a-select-option v-for="item in userDataOptions" :key="item.id" :value="item.id" :label="item.name">{{ item.name }}</a-select-option>
+            </a-select>
+          </a-form-item>
+          <a-form-item :label="$t('label.user.data.policy')" name="userdatapolicy">
+            <a-select v-model:value="userdatapolicy" :disabled="busy || !userdataid" :filter-option="optionMatches" show-search option-filter-prop="label">
+              <a-select-option v-for="policy in ['allowoverride', 'append', 'denyoverride']" :key="policy" :value="policy" :label="policy">{{ policy }}</a-select-option>
+            </a-select>
+          </a-form-item>
+        </div>
+        </a-form>
+      </template>
+    </div>
+    <MoldDialogActions :busy="busy">
+      <a-button v-if="!busy" @click="closeAction">{{ $t(acceptedId || phase !== 'draft' ? 'label.close' : 'label.cancel') }}</a-button>
+      <a-button v-if="phase === 'draft'" type="primary" :loading="busy" :disabled="optionsLoading || !registrationCapability.available || !registrationCapability.schemaKnown" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+      <a-button v-if="phase === 'preflight'" type="primary" :loading="busy" @click="retryUpload">{{ $t('label.retry.upload') }}</a-button>
+      <a-button v-if="phase === 'linkFailed'" type="primary" :loading="busy" :disabled="!userdataid" @click="retryUserdataLink">{{ $t('label.template.retry.userdata') }}</a-button>
+      <a-button v-if="['pending', 'checkFailed', 'transferFailed'].includes(phase)" :loading="busy" @click="checkAccepted">{{ $t('label.iso.check.status') }}</a-button>
+      <a-button v-if="acceptedId && !busy" @click="viewAcceptedIso">{{ $t('label.iso.view.accepted') }}</a-button>
+      <a-button v-if="phase === 'uncertain' && !busy" @click="viewIsoList">{{ $t('label.isos') }}</a-button>
+    </MoldDialogActions>
+  </MoldDialog>
 </template>
 
 <script>
-import { ref, reactive, toRaw } from 'vue'
+import { ref, reactive } from 'vue'
 import { getAPI, postAPI } from '@/api'
-import { isoParameterHelp, isoRegistrationCapability } from '@/utils/isoModel'
-import store from '@/store'
-import { axios } from '../../utils/request'
-import { mixinForm } from '@/utils/mixin'
+import { axios } from '@/utils/request'
 import { probeSsvmCert } from '@/utils/ssvmProbe'
+import { isoParameterHelp, isoRegistrationCapability, isoContext, isoBoolean } from '@/utils/isoModel'
+import { acceptedIsoId, isoUploadTicket, uploadTicketExpired, isoRegistrationParams, isoReadiness, validIsoUrl } from '@/utils/isoRegistration'
+import { validTemplateChecksum, templateOptionMatches } from '@/utils/templateForm'
+import { safeTemplateReason } from '@/utils/templateAvailability'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 export default {
   name: 'RegisterIso',
-  mixins: [mixinForm],
-  props: {
-    resource: {
-      type: Object,
-      required: true
-    },
-    action: {
-      type: Object,
-      required: true
-    }
-  },
-  components: {
-    ResourceIcon,
-    TooltipLabel
-  },
+  components: { ResourceIcon, TooltipLabel, MoldDialog, MoldDialogActions },
+  props: { resource: { type: Object, default: () => ({}) }, action: { type: Object, default: () => ({}) }, currentAction: { type: Object, default: () => ({}) } },
+  emits: ['close-action', 'refresh-data'],
   data () {
     return {
+      currentForm: ['plus-outlined', 'PlusOutlined'].includes(this.action?.currentAction?.icon || this.currentAction?.icon || 'plus-outlined') ? 'Create' : 'Upload',
+      phase: 'draft',
+      busy: false,
+      submitError: '',
+      acceptedId: '',
+      acceptedParams: null,
       fileList: [],
+      uploadPercentage: 0,
+      uploadParams: null,
+      transferAttempted: false,
       zones: [],
       osTypes: [],
-      zoneLoading: false,
-      osTypeLoading: false,
-      userdata: {},
-      userdataid: null,
-      userdatapolicy: null,
-      userdatapolicylist: {},
-      loading: false,
-      uploading: false,
-      allowed: false,
-      uploadParams: null,
-      uploadPercentage: 0,
-      ssvmCertUntrusted: false,
-      ssvmOrigin: '',
-      currentForm: ['plus-outlined', 'PlusOutlined'].includes(this.action.currentAction.icon) ? 'Create' : 'Upload',
       domains: [],
       accounts: [],
+      userDataOptions: [],
+      architectureTypes: { opts: [] },
+      userdataid: undefined,
+      userdatapolicy: 'allowoverride',
+      zoneLoading: false,
+      osTypeLoading: false,
       domainLoading: false,
-      domainid: null,
-      account: null,
-      architectureTypes: {}
+      userDataLoading: false,
+      optionsLoading: false,
+      userDataRequest: 0,
+      generation: 0,
+      disposed: false,
+      lastRows: []
     }
   },
   beforeCreate () {
     const getters = this.$store.getters
     this.apiParams = isoParameterHelp({ ...isoRegistrationCapability('url', getters).parameters, ...isoRegistrationCapability('local', getters).parameters })
-    const schema = getters.apis.linkUserDataToTemplate?.params
+    const schema = getters.apis?.linkUserDataToTemplate?.params
     this.linkUserDataParams = isoParameterHelp(Object.fromEntries((Array.isArray(schema) ? schema : []).filter(param => param && typeof param.name === 'string').map(param => [param.name, param])))
   },
   created () {
-    this.initForm()
-    this.initZones()
+    this.apiParams = isoParameterHelp(this.registrationCapability.parameters)
+    this.formRef = ref()
+    this.form = reactive({ bootable: true, isextractable: false, ispublic: false, isfeatured: false, passwordenabled: false, isdynamicallyscalable: false, arch: this.supportsParam('arch') ? 'x86_64' : undefined })
+    this.rules = reactive({
+      url: [{ required: true, message: this.$t('message.error.required.input') }, { validator: async (rule, value) => { if (value && !validIsoUrl(value)) throw new Error(this.$t('message.iso.url.invalid')) } }],
+      file: [{ validator: async () => { if (this.fileList.length !== 1 || !this.fileList[0]?.size) throw new Error(this.$t('message.iso.file.required')) } }],
+      name: [{ required: true, whitespace: true, message: this.$t('message.error.required.input') }],
+      zoneid: [{ required: true, message: this.$t('message.error.select') }],
+      ostypeid: [{ required: true, message: this.$t('message.error.select') }],
+      checksum: [{ validator: async (rule, value) => { if (!validTemplateChecksum(value)) throw new Error(this.$t('message.template.checksum.invalid')) } }]
+    })
     this.fetchData()
+  },
+  mounted () {
+    this.beforeUnload = event => { if (this.busy) { event.preventDefault(); event.returnValue = '' } }
+    window.addEventListener('beforeunload', this.beforeUnload)
+  },
+  beforeUnmount () {
+    this.disposed = true; this.generation += 1; if (this.uploadAbort) this.uploadAbort.abort(); this.clearWait(); this.uploadParams = null
+    window.removeEventListener('beforeunload', this.beforeUnload)
+  },
+  watch: {
+    registrationScope () {
+      this.generation += 1; if (this.uploadAbort) this.uploadAbort.abort(); this.clearWait(); this.uploadParams = null; this.acceptedId = ''; this.acceptedParams = null; this.userDataOptions = []; this.fileList = []; this.busy = false; this.phase = 'contextChanged'; this.submitError = ''
+    }
   },
   computed: {
     registrationCapability () { return isoRegistrationCapability(this.currentForm === 'Create' ? 'url' : 'local', this.$store.getters) },
+    registrationScope () { return isoContext({}, this.$store.getters) + '|' + this.currentForm + '|' + String(this.$store.state?.user?.token || '') },
+    blocksNavigation () { return this.busy },
+    isAdmin () { return this.$store.getters.userInfo.roletype === 'Admin' },
+    canPublish () { return this.supportsParam('ispublic') && (this.isAdmin || isoBoolean(this.$store.getters.features?.userpublictemplateenabled) === true) },
+    canChooseOwner () { return !this.$store.getters.project?.id && ['Admin', 'DomainAdmin', 'ResourceAdmin'].includes(this.$store.getters.userInfo.roletype) && this.supportsParam('domainid') && 'listDomains' in this.$store.getters.apis },
     canLinkUserData () { return ['listUserData', 'linkUserDataToTemplate'].every(api => api in this.$store.getters.apis) },
-    zoneList () {
-      let filteredZones = this.zones
-      if (!this.form.directdownload) {
-        filteredZones = this.zones.filter(zone => zone.type !== 'Edge')
-      }
-      return filteredZones
-    }
+    zoneList () { return this.form?.directdownload ? this.zones : this.zones.filter(zone => zone.type !== 'Edge') },
+    steps () { return ['label.iso.stage.request', ...(this.currentForm === 'Upload' ? ['label.iso.stage.transfer'] : []), 'label.iso.stage.ready', 'label.iso.stage.userdata', 'label.iso.stage.done'] },
+    stepIndex () { const local = this.currentForm === 'Upload'; return this.phase === 'done' ? this.steps.length - 1 : ['linking', 'linkFailed'].includes(this.phase) ? (local ? 3 : 2) : ['checking', 'pending', 'checkFailed', 'failed', 'transferFailed'].includes(this.phase) ? (local ? 2 : 1) : ['preparing', 'preflight', 'uploading', 'expired'].includes(this.phase) ? 1 : 0 },
+    phaseMessage () { return ({ preflight: 'message.iso.preflight.retry', transferFailed: 'message.iso.transfer.check', pending: 'message.iso.ready.pending', checkFailed: 'message.iso.ready.check.failed', linkFailed: 'message.userdata.image.partial', done: 'message.iso.registration.done', expired: 'message.iso.ticket.expired', uncertain: 'message.iso.request.uncertain', contextChanged: 'message.iso.context.changed', failed: 'message.iso.registration.failed' })[this.phase] || '' }
   },
   methods: {
-    initForm () {
-      this.formRef = ref()
-      this.form = reactive({
-        bootable: true,
-        isextractable: false,
-        ispublic: false,
-        passwordenabled: false,
-        isdynamicallyscalable: false
-      })
-      this.rules = reactive({
-        url: [{ required: true, message: this.$t('label.upload.iso.from.local') }],
-        file: [{ required: true, message: this.$t('message.error.required.input') }],
-        name: [{ required: true, message: this.$t('message.error.required.input') }],
-        zoneid: [{ required: true, message: this.$t('message.error.select') }],
-        ostypeid: [{ required: true, message: this.$t('message.error.select') }]
-      })
+    optionMatches: templateOptionMatches,
+    supportsParam (name) { return !!this.registrationCapability.parameters[name] },
+    errorText (error) { const text = error?.response?.headers?.['x-description'] || error?.response?.data?.errorresponse?.errortext || error?.message || this.$t('message.request.failed'); return safeTemplateReason(text.startsWith('message.') ? this.$t(text) : text) },
+    current (run) { return !this.disposed && this.phase !== 'contextChanged' && run.generation === this.generation && run.scope === this.registrationScope },
+    run () { return { generation: this.generation, scope: this.registrationScope } },
+    clearWait () { if (this.pollTimer) clearTimeout(this.pollTimer); this.pollTimer = null; if (this.pollResolve) this.pollResolve(); this.pollResolve = null },
+    wait () { return new Promise(resolve => { this.pollResolve = resolve; this.pollTimer = setTimeout(() => { this.pollTimer = null; this.pollResolve = null; resolve() }, 2000) }) },
+    async fetchData () {
+      this.optionsLoading = true; this.architectureTypes.opts = this.$fetchCpuArchitectureTypes()
+      const work = [this.fetchZoneData(), this.fetchOsType(), this.fetchUserData()]
+      if (this.canChooseOwner) work.push(this.fetchDomains())
+      await Promise.allSettled(work); if (!this.disposed) this.optionsLoading = false
     },
-    initZones () {
-      this.zones = []
-      if (this.$store.getters.userInfo.roletype === 'Admin' && this.currentForm === 'Create') {
-        this.zones = [
-          {
-            id: '-1',
-            name: this.$t('label.all.zone')
-          }
-        ]
-      }
+    async fetchZoneData () {
+      if (!('listZones' in this.$store.getters.apis)) return
+      const run = this.run(); this.zoneLoading = true
+      try { const json = await getAPI('listZones', { showicon: true }); if (!this.current(run)) return; this.zones = [...(this.isAdmin && this.currentForm === 'Create' ? [{ id: '-1', name: this.$t('label.all.zone') }] : []), ...(json.listzonesresponse?.zone || [])]; if (!this.form.zoneid) this.form.zoneid = this.zoneList.find(zone => zone.id !== '-1')?.id || '' } catch (error) { if (this.current(run)) this.submitError = this.errorText(error) } finally { if (this.current(run)) this.zoneLoading = false }
     },
-    fetchData () {
-      if ('listZones' in this.$store.getters.apis) this.fetchZoneData()
-      if ('listOsTypes' in this.$store.getters.apis) this.fetchOsType()
-      this.architectureTypes.opts = this.$fetchCpuArchitectureTypes()
-      if (this.canLinkUserData) this.fetchUserData()
-      this.fetchUserdataPolicy()
-      if ('listDomains' in this.$store.getters.apis) {
-        this.fetchDomains()
-      }
+    async fetchOsType () {
+      if (!('listOsTypes' in this.$store.getters.apis)) return
+      const run = this.run(); this.osTypeLoading = true
+      try { const json = await getAPI('listOsTypes'); if (!this.current(run)) return; this.osTypes = json.listostypesresponse?.ostype || []; if (!this.form.ostypeid) this.form.ostypeid = this.osTypes[0]?.id } catch (error) { if (this.current(run)) this.submitError = this.errorText(error) } finally { if (this.current(run)) this.osTypeLoading = false }
     },
-    fetchZoneData () {
-      const params = {}
-      params.showicon = true
-
-      this.zoneLoading = true
-      if (store.getters.userInfo.roletype === 'Admin') {
-        this.allowed = true
-      }
-      getAPI('listZones', params).then(json => {
-        const listZones = json.listzonesresponse.zone
-        if (listZones) {
-          this.zones = this.zones.concat(listZones)
-        }
-      }).finally(() => {
-        this.zoneLoading = false
-        this.form.zoneid = this.zoneList?.[0]?.id || ''
-      })
+    async fetchDomains () {
+      const run = this.run(); this.domainLoading = true
+      try { const json = await getAPI('listDomains', { listall: true, details: 'min' }); if (this.current(run)) this.domains = json.listdomainsresponse?.domain || [] } catch (error) { if (this.current(run)) this.submitError = this.errorText(error) } finally { if (this.current(run)) this.domainLoading = false }
     },
-    fetchOsType () {
-      this.osTypeLoading = true
-
-      getAPI('listOsTypes').then(json => {
-        const listOsTypes = json.listostypesresponse.ostype
-        this.osTypes = this.osTypes.concat(listOsTypes)
-      }).finally(() => {
-        this.osTypeLoading = false
-        this.form.ostypeid = this.osTypes[0]?.id
-      })
+    async fetchAccounts () {
+      if (!('listAccounts' in this.$store.getters.apis) || !this.form.domainid) return
+      const domain = this.form.domainid; const run = this.run()
+      try { const json = await getAPI('listAccounts', { domainid: domain }); if (this.current(run) && this.form.domainid === domain) this.accounts = json.listaccountsresponse?.account || [] } catch (error) { if (this.current(run)) this.submitError = this.errorText(error) }
     },
-    fetchUserData () {
-      const params = {}
-      params.listAll = true
-
-      this.userdata.opts = []
-      this.userdata.loading = true
-
-      getAPI('listUserData', params).then(json => {
-        const listUserdata = json.listuserdataresponse.userdata
-        this.userdata.opts = listUserdata
-      }).finally(() => {
-        this.userdata.loading = false
-      })
+    async fetchUserData () {
+      if (!this.canLinkUserData) return
+      const token = ++this.userDataRequest; const run = this.run(); const owner = { domainid: this.form.domainid || this.$store.getters.userInfo.domainid, account: this.form.account || this.$store.getters.userInfo.account, projectid: this.$store.getters.project?.id }
+      this.userDataLoading = true
+      try { const json = await getAPI('listUserData', owner.projectid ? { projectid: owner.projectid, listall: true } : { domainid: owner.domainid, account: owner.account, listall: true }); if (this.current(run) && token === this.userDataRequest) this.userDataOptions = (json.listuserdataresponse?.userdata || []).filter(row => owner.projectid ? row.projectid === owner.projectid : !row.projectid && row.account === owner.account && row.domainid === owner.domainid) } catch (error) { if (this.current(run)) this.submitError = this.errorText(error) } finally { if (this.current(run) && token === this.userDataRequest) this.userDataLoading = false }
     },
-    fetchUserdataPolicy () {
-      const userdataPolicy = []
-      userdataPolicy.push({
-        id: 'allowoverride',
-        description: 'allowoverride'
-      })
-      userdataPolicy.push({
-        id: 'append',
-        description: 'append'
-      })
-      userdataPolicy.push({
-        id: 'denyoverride',
-        description: 'denyoverride'
-      })
-      this.userdatapolicylist.opts = userdataPolicy
-    },
-    handleRemove (file) {
-      const index = this.fileList.indexOf(file)
-      const newFileList = this.fileList.slice()
-      newFileList.splice(index, 1)
-      this.fileList = newFileList
-      this.form.file = undefined
-    },
-    handleDirectDownloadChange () {
-      if (this.form.zoneid && this.zoneList.find(entry => entry.id === this.form.zoneid)) {
-        return
-      }
-      this.form.zoneid = this.zoneList?.[0]?.id || ''
-    },
-    beforeUpload (file) {
-      this.fileList = [file]
-      this.form.file = file
-      return false
+    handleDomainChange () { this.form.account = undefined; this.accounts = []; this.userdataid = undefined; this.fetchAccounts(); this.fetchUserData() },
+    handleDirectDownloadChange () { if (!this.zoneList.some(zone => zone.id === this.form.zoneid)) this.form.zoneid = this.zoneList[0]?.id },
+    beforeUpload (file) { this.fileList = [file]; this.form.file = file; if (!this.form.name) this.form.name = file.name; return false },
+    handleRemove () { if (this.busy || this.acceptedId) return false; this.fileList = []; this.form.file = undefined; return true },
+    async handleSubmit (event) {
+      if (event && typeof event.preventDefault === 'function') event.preventDefault()
+      if (this.busy || this.optionsLoading || this.acceptedId || this.phase !== 'draft') return
+      this.busy = true; this.submitError = ''; const run = this.run()
+      try {
+        await this.formRef.value.validate()
+        if (!this.current(run)) return
+        const params = isoRegistrationParams(this.form, this.registrationCapability, this.$store.getters)
+        if (this.currentForm === 'Upload' && (this.fileList.length !== 1 || !this.fileList[0]?.size)) throw new Error(this.$t('message.iso.file.required'))
+        this.phase = 'requesting'
+        let json
+        try { json = this.currentForm === 'Create' ? await postAPI('registerIso', params, { preserveOnFailure: true }) : await getAPI('getUploadParamsForIso', params) } catch (error) { if (this.current(run)) { this.phase = 'uncertain'; this.submitError = this.errorText(error) } return }
+        if (!this.current(run)) return
+        this.acceptedId = acceptedIsoId(this.currentForm, json); this.acceptedParams = { ...params }; this.$emit('refresh-data')
+        if (this.currentForm === 'Upload') {
+          try { this.uploadParams = isoUploadTicket(json) } catch (error) { this.phase = 'checkFailed'; this.submitError = this.$t(error.message); return }
+          await this.sendFile(run)
+        } else await this.finishRegistration(run)
+      } catch (error) {
+        if (!this.current(run)) return
+        if (error?.errorFields) this.formRef.value.scrollToField(error.errorFields[0].name)
+        else { this.submitError = this.$t(error.message); if (this.phase === 'requesting') this.phase = 'uncertain' }
+      } finally { if (this.current(run)) this.busy = false }
     },
     async retryUpload () {
-      this.loading = true
-      const reachable = await probeSsvmCert(this.ssvmOrigin)
-      this.loading = false
-      if (!reachable) {
-        this.$message.warning(this.$t('message.ssvm.unreachable.retry'))
-        return
-      }
-      this.ssvmCertUntrusted = false
-      this.handleUpload()
+      if (this.busy || this.phase !== 'preflight' || !this.acceptedId || this.transferAttempted) return
+      this.busy = true; this.submitError = ''; const run = this.run()
+      try { await this.sendFile(run) } finally { if (this.current(run)) this.busy = false }
     },
-    handleUpload () {
-      const { fileList } = this
-      if (this.fileList.length > 1) {
-        this.$notification.error({
-          message: this.$t('message.upload.iso.failed'),
-          description: this.$t('message.error.upload.iso.description'),
-          duration: 0
-        })
-      }
-      const formData = new FormData()
-      fileList.forEach(file => {
-        formData.append('files[]', file)
-      })
-      this.uploading = true
-      this.uploadPercentage = 0
-      axios.post(this.uploadParams.postURL,
-        formData,
-        {
-          headers: {
-            'content-type': 'multipart/form-data',
-            'x-signature': this.uploadParams.signature,
-            'x-expires': this.uploadParams.expires,
-            'x-metadata': this.uploadParams.metadata,
-            'x-host': this.uploadParams.postURL.split('/')[2]
-          },
-          onUploadProgress: (progressEvent) => {
-            this.uploadPercentage = Number(parseFloat(100 * progressEvent.loaded / progressEvent.total).toFixed(1))
-          },
-          timeout: 86400000
-        }).then((json) => {
-        this.$notification.success({
-          message: this.$t('message.success.upload'),
-          description: this.$t('message.success.upload.description')
-        })
-        this.closeAction()
-        this.$emit('refresh-data')
-      }).catch(e => {
-        this.$notification.error({
-          message: this.$t('message.upload.failed'),
-          description: `${this.$t('message.upload.iso.failed.description')} -  ${e}`,
-          duration: 0
-        })
-      }).finally(() => {
-        this.uploading = false
-      })
+    async sendFile (run) {
+      if (!this.current(run)) return
+      if (uploadTicketExpired(this.uploadParams)) { this.phase = 'expired'; this.uploadParams = null; return }
+      this.phase = 'preparing'
+      if (!await probeSsvmCert(new URL(this.uploadParams.postURL).origin)) { if (this.current(run)) this.phase = 'preflight'; return }
+      if (!this.current(run)) return
+      if (uploadTicketExpired(this.uploadParams)) { this.phase = 'expired'; this.uploadParams = null; return }
+      const ticket = this.uploadParams; const data = new FormData(); data.append('files[]', this.fileList[0]); this.phase = 'uploading'; this.transferAttempted = true; this.uploadPercentage = 0
+      this.uploadAbort = new AbortController()
+      try {
+        await axios.post(ticket.postURL, data, { headers: { 'x-signature': ticket.signature, 'x-expires': ticket.expires, 'x-metadata': ticket.metadata, 'x-host': new URL(ticket.postURL).host }, signal: this.uploadAbort.signal, timeout: 86400000, onUploadProgress: event => { if (this.current(run) && event.total > 0) this.uploadPercentage = Math.min(100, Math.round(100 * event.loaded / event.total)) } })
+        if (this.current(run)) { this.uploadParams = null; await this.finishRegistration(run) }
+      } catch (error) { if (this.current(run)) { this.uploadParams = null; this.phase = 'transferFailed'; this.submitError = this.errorText(error); this.$emit('refresh-data') } }
     },
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.loading) return
-      if (!this.registrationCapability.available || !this.registrationCapability.schemaKnown) {
-        this.$message.error(this.$t('message.iso.metadata.unavailable'))
-        return
-      }
-      this.formRef.value.validate().then(() => {
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-        const params = {}
-        for (const key in values) {
-          const input = values[key]
-          if (input === undefined) {
-            continue
-          }
-          if (key === 'file') {
-            continue
-          }
-          if (key === 'arch' && !this.registrationCapability.parameters.arch) {
-            if (input !== '') { this.$message.error(this.$t('message.iso.arch.unsupported')); return }
-            continue
-          }
-          switch (key) {
-            case 'zoneid':
-              var zone = this.zoneList.filter(zone => zone.id === input)
-              params[key] = zone[0].id
-              break
-            case 'ostypeid':
-              params[key] = input
-              break
-            default:
-              params[key] = input
-              break
-          }
+    async readAccepted (run) {
+      const rows = []; let count; let countKnown = false; let page = 1
+      do {
+        const json = await getAPI('listIsos', { id: this.acceptedId, isofilter: this.isAdmin ? 'all' : 'self', showunique: false, listall: true, page, pagesize: 100, ...(this.acceptedParams.zoneid !== '-1' ? { zoneid: this.acceptedParams.zoneid } : {}), ...(this.$store.getters.project?.id ? { projectid: this.$store.getters.project.id } : {}) })
+        if (!this.current(run)) return null
+        const result = isoReadiness(json, this.acceptedId, this.acceptedParams.zoneid); rows.push(...result.rows); count = result.count; countKnown = result.countKnown; if (!result.rows.length || !result.countKnown) break
+        page += 1
+      } while (rows.length < count && page <= 100)
+      this.lastRows = rows
+      return isoReadiness({ listisosresponse: { iso: rows, ...(countKnown ? { count } : {}) } }, this.acceptedId, this.acceptedParams.zoneid)
+    },
+    async finishRegistration (run) {
+      this.phase = 'checking'
+      try {
+        for (let attempt = 0; attempt < 12; attempt += 1) {
+          const result = await this.readAccepted(run); if (!this.current(run) || !result) return
+          if (result.ready) { await this.completeUserdata(run); return }
+          if (result.failed) { this.phase = 'failed'; this.submitError = result.reasons.join(' · '); this.$emit('refresh-data'); return }
+          if (attempt < 11) await this.wait()
         }
-        console.log('params :>> ', params)
-        if (this.currentForm === 'Create') {
-          this.loading = true
-          postAPI('registerIso', params).then(json => {
-            if (this.userdataid !== null) {
-              this.linkUserdataToTemplate(this.userdataid, json.registerisoresponse.iso[0].id, this.userdatapolicy)
-            }
-            this.$notification.success({
-              message: this.$t('label.action.register.iso'),
-              description: `${this.$t('message.success.register.iso')} ${params.name}`
-            })
-            this.closeAction()
-            this.$emit('refresh-data')
-          }).catch(error => {
-            this.$notifyError(error)
-          }).finally(() => {
-            this.loading = false
-          })
-        } else {
-          if (this.fileList.length !== 1) {
-            return
-          }
-          params.format = 'ISO'
-          this.loading = true
-          getAPI('getUploadParamsForIso', params).then(async json => {
-            this.uploadParams = (json.postuploadisoresponse && json.postuploadisoresponse.getuploadparams) ? json.postuploadisoresponse.getuploadparams : ''
-            if (this.userdataid !== null) {
-              this.linkUserdataToTemplate(this.userdataid, json.postuploadisoresponse.iso[0].id)
-            }
-            this.ssvmOrigin = new URL(this.uploadParams.postURL).origin
-            const trusted = await probeSsvmCert(this.ssvmOrigin)
-            if (!trusted) {
-              this.ssvmCertUntrusted = true
-              return
-            }
-            this.handleUpload()
-          }).catch(error => {
-            this.$notifyError(error)
-          }).finally(() => {
-            this.loading = false
-            this.$emit('refresh-data')
-          })
-        }
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+        if (this.current(run)) this.phase = 'pending'
+      } catch (error) { if (this.current(run)) { this.phase = 'checkFailed'; this.submitError = this.errorText(error) } }
     },
-    closeAction () {
-      this.$emit('close-action')
-    },
-    linkUserdataToTemplate (userdataid, templateid, userdatapolicy) {
-      this.loading = true
-      const params = {}
-      params.userdataid = userdataid
-      params.templateid = templateid
-      if (userdatapolicy) {
-        params.userdatapolicy = userdatapolicy
+    async completeUserdata (run) {
+      if (!this.current(run)) return
+      if (this.userdataid) {
+        this.phase = 'linking'
+        try {
+          await postAPI('linkUserDataToTemplate', { userdataid: this.userdataid, templateid: this.acceptedId, userdatapolicy: this.userdatapolicy }, { preserveOnFailure: true })
+          if (!this.current(run)) return
+          const result = await this.readAccepted(run); if (!this.current(run)) return
+          if (!result?.rows.some(row => row.userdataid === this.userdataid && String(row.userdatapolicy || '').toLowerCase() === this.userdatapolicy.toLowerCase())) throw new Error(this.$t('message.iso.userdata.unconfirmed'))
+        } catch (error) { if (this.current(run)) { this.phase = 'linkFailed'; this.submitError = this.errorText(error); this.fetchUserData() } return }
       }
-      postAPI('linkUserDataToTemplate', params).then(json => {
-        this.closeAction()
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.loading = false
-      })
+      if (this.current(run)) { this.phase = 'done'; this.submitError = ''; this.$emit('refresh-data'); this.$notification.success({ message: this.$t('message.iso.registration.done'), description: this.form.name }) }
     },
-    fetchDomains () {
-      const params = {}
-      params.listAll = true
-      params.showicon = true
-      params.details = 'min'
-      this.domainLoading = true
-      getAPI('listDomains', params).then(json => {
-        this.domains = json.listdomainsresponse.domain
-      }).finally(() => {
-        this.domainLoading = false
-        this.handleDomainChange(null)
-      })
-    },
-    handleDomainChange (domain) {
-      this.domainid = domain
-      this.form.account = null
-      this.account = null
-      if ('listAccounts' in this.$store.getters.apis) {
-        this.fetchAccounts()
-      }
-    },
-    fetchAccounts () {
-      getAPI('listAccounts', {
-        domainid: this.domainid
-      }).then(response => {
-        this.accounts = response.listaccountsresponse.account || []
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
-    handleAccountChange (acc) {
-      if (acc) {
-        this.account = acc.name
-      } else {
-        this.account = acc
-      }
-    }
+    async retryUserdataLink () { if (this.busy || this.phase !== 'linkFailed' || !this.userdataid || !this.acceptedId) return; this.busy = true; this.submitError = ''; const run = this.run(); try { await this.completeUserdata(run) } finally { if (this.current(run)) this.busy = false } },
+    async checkAccepted () { if (this.busy || !this.acceptedId) return; this.busy = true; this.submitError = ''; const run = this.run(); try { await this.finishRegistration(run) } finally { if (this.current(run)) this.busy = false } },
+    viewAcceptedIso () { if (this.busy || !this.acceptedId) return; this.$emit('close-action'); this.$router.push({ path: '/iso/' + encodeURIComponent(this.acceptedId) }) },
+    viewIsoList () { if (this.busy) return; this.$emit('close-action'); this.$router.push({ path: '/iso', query: { keyword: this.form.name } }) },
+    closeAction () { if (this.busy) return; this.uploadParams = null; this.$emit('refresh-data'); this.$emit('close-action') }
   }
 }
 </script>
-
-<style scoped lang="less">
-  .form-layout {
-    width: 80vw;
-
-    @media (min-width: 700px) {
-      width: 550px;
-    }
-  }
+<style scoped>
+.iso-registration-content { min-width: 0; }
+.iso-registration-content :deep(.ant-alert) { margin-bottom: 16px; }
+.iso-registration-resource { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; overflow-wrap: anywhere; }
+.iso-registration-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.iso-userdata-fields { min-width: 0; }
 </style>

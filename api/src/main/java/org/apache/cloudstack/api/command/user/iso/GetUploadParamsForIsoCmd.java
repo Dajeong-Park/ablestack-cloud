@@ -31,6 +31,7 @@ import org.apache.cloudstack.api.response.GuestOSResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.commons.lang3.StringUtils;
 
+import com.cloud.cpu.CPU;
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.exception.InsufficientCapacityException;
 import com.cloud.exception.NetworkRuleConflictException;
@@ -81,9 +82,21 @@ public class GetUploadParamsForIsoCmd extends AbstractGetUploadParamsCmd {
             description = "true if ISO contains XS/VMWare tools in order to support dynamic scaling of VM CPU/memory")
     private Boolean isDynamicallyScalable;
 
+    @Parameter(name = ApiConstants.ARCH, type = BaseCmd.CommandType.STRING,
+            description = "The CPU architecture of the ISO. Valid options are: x86_64, aarch64, s390x. Default is x86_64")
+    private String arch;
+
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
+
+    public CPU.CPUArch getArch() {
+        return CPU.CPUArch.fromType(arch);
+    }
+
+    public void setArch(String arch) {
+        this.arch = arch;
+    }
 
     public Boolean isBootable() {
         return bootable;

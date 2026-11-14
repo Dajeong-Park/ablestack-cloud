@@ -262,6 +262,7 @@ export default {
       actions: [
         {
           api: 'registerIso',
+          selfManagedDialog: true,
           icon: 'plus-outlined',
           label: 'label.action.register.iso',
           docHelp: 'adminguide/templates.html#id10',
@@ -272,6 +273,7 @@ export default {
         },
         {
           api: 'getUploadParamsForIso',
+          selfManagedDialog: true,
           icon: 'cloud-upload-outlined',
           label: 'label.upload.iso.from.local',
           show: () => isZoneCreated() && isoRegistrationCapability('local', store.getters).available,
