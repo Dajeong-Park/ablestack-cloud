@@ -1,0 +1,169 @@
+{
+  "vpc": {
+    "receipt": {
+      "id": "9d98ae97-f3f8-4f31-8a48-b37d9902492d",
+      "jobid": "96f1dc5e-79ed-486f-b45e-ee69e056b693"
+    },
+    "job": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpc": {
+          "id": "9d98ae97-f3f8-4f31-8a48-b37d9902492d",
+          "name": "qa-vpc1650-final-32",
+          "displaytext": "Final PR review isolated tag/ACL validation",
+          "state": "Enabled",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "service": [
+            {
+              "name": "Dhcp",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            },
+            {
+              "name": "UserData",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            },
+            {
+              "name": "NetworkACL",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            },
+            {
+              "name": "Lb",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                },
+                {
+                  "name": "InternalLbVm"
+                }
+              ]
+            },
+            {
+              "name": "SourceNat",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            },
+            {
+              "name": "PortForwarding",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            },
+            {
+              "name": "Vpn",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            },
+            {
+              "name": "StaticNat",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            },
+            {
+              "name": "Dns",
+              "provider": [
+                {
+                  "name": "VpcVirtualRouter"
+                }
+              ]
+            }
+          ],
+          "cidr": "10.228.32.0/24",
+          "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+          "vpcofferingname": "Default VPC offering",
+          "vpcofferingconservemode": false,
+          "created": "2026-11-15T00:19:06+0900",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "network": [],
+          "restartrequired": false,
+          "networkdomain": "cs2cloud.internal",
+          "tags": [],
+          "fordisplay": true,
+          "distributedvpcrouter": false,
+          "regionlevelvpc": false,
+          "redundantvpcrouter": false,
+          "publicmtu": 1500,
+          "keepmacaddressonpublicnic": true,
+          "hasannotations": false
+        }
+      },
+      "jobinstancetype": "None",
+      "created": "2026-11-15T00:19:06+0900",
+      "completed": "2026-11-15T00:19:06+0900",
+      "jobid": "96f1dc5e-79ed-486f-b45e-ee69e056b693",
+      "jobstatus": 1
+    }
+  },
+  "route": {
+    "receipt": {
+      "id": "af30dffc-64f9-423d-b413-56e33b427b5d",
+      "jobid": "3b5e1aff-f987-4b47-a29d-fb17df8aaf7a"
+    },
+    "job": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateStaticRouteCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "staticroute": {
+          "id": "af30dffc-64f9-423d-b413-56e33b427b5d",
+          "state": "Active",
+          "vpcid": "9d98ae97-f3f8-4f31-8a48-b37d9902492d",
+          "nexthop": "10.228.32.2",
+          "cidr": "172.27.32.0/24",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "tags": []
+        }
+      },
+      "jobinstancetype": "StaticRoute",
+      "jobinstanceid": "af30dffc-64f9-423d-b413-56e33b427b5d",
+      "created": "2026-11-15T00:19:08+0900",
+      "completed": "2026-11-15T00:19:08+0900",
+      "jobid": "3b5e1aff-f987-4b47-a29d-fb17df8aaf7a",
+      "jobstatus": 1
+    }
+  },
+  "routerStarted": false
+}

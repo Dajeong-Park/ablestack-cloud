@@ -1,0 +1,55 @@
+{
+  "http": 200,
+  "staticFiles": 695,
+  "allManifestHashesMatch": true,
+  "webInfMetaInfConfigsJarPidAndLargeImagePreserved": true,
+  "pid": "2108521",
+  "indexSha256": "c9a486302ff2d8121d73cf68471d4b134356b5f3362b9d1e1f0e74ba46d61e40",
+  "markers": {
+    "aclContext": [
+      "js/chunk-32bb70b8.11a39070.js"
+    ],
+    "hasGatewayLink": [
+      "js/chunk-215d19cc.df406661.js",
+      "js/chunk-32bb70b8.11a39070.js"
+    ],
+    "vpc-dialog-body": [
+      "js/app.205cf31e.js"
+    ],
+    "vpc-action-context": [
+      "js/app.205cf31e.js"
+    ],
+    "vpc-standard-dialog": [
+      "js/app.205cf31e.js"
+    ],
+    "vpc-create-receipt:v1:": [
+      "js/chunk-f346eb56.2152d270.js"
+    ],
+    "message.vpc.create.gateway.offering.policy": [
+      "js/chunk-32bb70b8.11a39070.js"
+    ],
+    "vpc-migration:v1:": [
+      "js/chunk-70a3da4c.ece10d4b.js"
+    ],
+    "vpc-restart:v1:": [
+      "js/chunk-593c7b7f.303f9891.js"
+    ],
+    "vpc-private-gateway:v1:": [
+      "js/chunk-32bb70b8.11a39070.js"
+    ],
+    "vpc.offering.operation.v1:": [
+      "js/chunk-18c5d0ca.036fbf9b.js"
+    ],
+    "blockingLoadingState": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ],
+    "fetchSyncProgress": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ],
+    "extractJobId": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ]
+  },
+  "createFormVShowAnd530GuardPresent": true,
+  "webapp": "/usr/share/cloudstack-management/webapp"
+}

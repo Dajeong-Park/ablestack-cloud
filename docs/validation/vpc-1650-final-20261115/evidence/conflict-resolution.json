@@ -1,0 +1,28 @@
+{
+  "ui/public/locales/en.json": {
+    "ancestorKeys": 11508,
+    "vpcKeys": 11665,
+    "europaKeys": 11614,
+    "mergedKeys": 11771,
+    "semanticConflicts": []
+  },
+  "ui/public/locales/ko_KR.json": {
+    "ancestorKeys": 11516,
+    "vpcKeys": 11673,
+    "europaKeys": 11622,
+    "mergedKeys": 11779,
+    "semanticConflicts": []
+  },
+  "ui/src/components/view/ResourceView.vue": {
+    "resolvedBlocks": 3,
+    "keptVpcAndTemplateContracts": true
+  },
+  "ui/src/components/widgets/Breadcrumb.vue": {
+    "resolvedBlocks": 1,
+    "keptVpcAndTemplateContracts": true
+  },
+  "ui/src/views/AutogenView.vue": {
+    "resolvedBlocks": 1,
+    "keptVpcAndTemplateContracts": true
+  }
+}

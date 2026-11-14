@@ -1,0 +1,11 @@
+{
+  "static_files": 695,
+  "static_bytes": 31594670,
+  "hash_mismatches": [],
+  "index_sha256": "c9a486302ff2d8121d73cf68471d4b134356b5f3362b9d1e1f0e74ba46d61e40",
+  "protected_unchanged": true,
+  "http": 200,
+  "disk_free_after": 144976543744,
+  "remote_stage": "/var/tmp/vpc1650-final-20261115-003527",
+  "backup_sha256": "12cbe5368871c5e5d926c74c5c07282077709a32fb49a4eb97282aebcd93e121"
+}

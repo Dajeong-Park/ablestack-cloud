@@ -1,0 +1,12 @@
+{
+  "numPassedTests": 6336,
+  "numFailedTests": 13,
+  "numPassedTestSuites": 405,
+  "numFailedTestSuites": 6,
+  "numTotalTests": 6349,
+  "numTotalTestSuites": 411,
+  "sameFailureNamesAsCurrentBase": true,
+  "base": "2c4045f1606f58085188c5cb1a203429cad0bf3e",
+  "fullSeconds": 393.0,
+  "baselineSixSuiteSeconds": 107.1
+}
