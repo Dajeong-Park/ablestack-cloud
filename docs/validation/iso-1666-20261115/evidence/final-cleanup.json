@@ -1,0 +1,45 @@
+{
+  "originalIsoIdsPreserved": true,
+  "isos": 8,
+  "accounts": 3,
+  "roles": 9,
+  "userdatas": 0,
+  "qaResourcesRemaining": 0,
+  "originalCatalog": [
+    {
+      "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+      "name": "vmware-tools.iso"
+    },
+    {
+      "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+      "name": "xs-tools.iso"
+    },
+    {
+      "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+      "name": "1.35.9-Kubernetes-Binaries-ISO"
+    },
+    {
+      "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+      "name": "1.36.5-Kubernetes-Binaries-ISO"
+    },
+    {
+      "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+      "name": "Rocky-10.0-x86_64-dvd1.iso"
+    },
+    {
+      "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+      "name": "Windows Server 2025 x86_64 DVD"
+    },
+    {
+      "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "name": "VirtIO Windows Driver 0.1.302"
+    },
+    {
+      "id": "367c88cb-4947-452f-9429-54a19885adf4",
+      "name": "ABLESTACK-Diplo-v4.2.1.iso"
+    }
+  ],
+  "activeApp": [
+    "js/app.d9ca2c50.js"
+  ]
+}

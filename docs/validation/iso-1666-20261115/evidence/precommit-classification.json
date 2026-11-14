@@ -1,0 +1,16 @@
+{
+  "run": "43621194083",
+  "checkedHead": "8cb02a4dc9a",
+  "diagnosticTrackedPaths": 11180,
+  "changedProductDiagnosticPaths": [],
+  "changedDocDiagnosticPaths": [
+    "docs/validation/iso-1666-20261115/README.ko.md"
+  ],
+  "remainingDiagnosticPathsUnchangedFromBase": true,
+  "newDocLicenseRemediation": {
+    "pinnedHook": "Lucas-C/pre-commit-hooks@v1.5.6",
+    "returnCode": 0,
+    "unchanged": true
+  },
+  "fullCiPass": false
+}
