@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { mount, flushPromises } from '@vue/test-utils'
+import { Button } from 'ant-design-vue'
 import Register from '@/views/image/RegisterOrUploadIso'
 import { getAPI, postAPI } from '@/api'
 import { axios } from '@/utils/request'
@@ -112,4 +114,13 @@ test('preflight exposes only the origin and retains certificate verification nav
 test('interrupting a client transfer preserves the ISO and never issues a server cancel or another upload', () => {
   const c = context(); c.phase = 'uploading'; c.acceptedId = id; c.uploadAbort = { abort: jest.fn() }; c.interruptTransfer(); c.interruptTransfer()
   expect(c.uploadAbort.abort).toHaveBeenCalledTimes(1); expect(c.transferInterrupted).toBe(true); expect(c.acceptedId).toBe(id); expect(postAPI).not.toHaveBeenCalled()
+})
+
+test('the interrupt button remains usable while the dialog blocks navigation during a transfer', async () => {
+  const c = context()
+  const wrapper = mount(Register, { props: { action: { currentAction: { icon: 'cloud-upload-outlined' } } }, data: () => ({ phase: 'uploading', busy: true }), global: { mocks: { $store: c.$store, $t: c.$t, $notification: c.$notification, $fetchCpuArchitectureTypes: () => [] }, components: { 'a-button': Button }, stubs: { MoldDialog: { template: '<div role="dialog"><slot/><footer><slot name="footer"/></footer></div>' }, APopconfirm: { template: '<div><slot/></div>' } }, directives: { focus: {}, 'ctrl-enter': {} } } })
+  await flushPromises()
+  const interrupt = wrapper.findAll('button').find(button => button.text() === 'label.iso.transfer.stop')
+  expect(interrupt).toBeTruthy(); expect(interrupt.element.closest('fieldset[disabled]')).toBeNull(); expect(interrupt.element.disabled).toBe(false)
+  wrapper.unmount()
 })

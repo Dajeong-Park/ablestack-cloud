@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <MoldDialog size="md" form-actions focus-guard :title="$t(currentForm === 'Create' ? 'label.action.register.iso' : 'label.upload.iso.from.local')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
+  <MoldDialog size="md" focus-guard :title="$t(currentForm === 'Create' ? 'label.action.register.iso' : 'label.upload.iso.from.local')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
     <div class="iso-registration-content">
       <a-alert v-if="submitError" type="error" show-icon role="alert" :message="submitError" />
       <template v-if="phase === 'draft'">
@@ -326,7 +326,7 @@ option-filter-prop="label"
         </a-form>
       </template>
     </div>
-    <MoldDialogActions :busy="busy">
+    <template #footer>
       <a-button v-if="!busy" @click="closeAction">{{ $t(acceptedId || phase !== 'draft' ? 'label.close' : 'label.cancel') }}</a-button>
       <a-button v-if="phase === 'draft'" type="primary" :loading="busy" :disabled="optionsLoading || !registrationCapability.available || !registrationCapability.schemaKnown" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
       <a-button v-if="phase === 'preflight' && uploadOrigin" :href="uploadOrigin" target="_blank" rel="noopener noreferrer">{{ $t('label.ssvm.open.cert.page') }}</a-button>
@@ -338,7 +338,7 @@ option-filter-prop="label"
       <a-button v-if="['pending', 'checkFailed', 'transferFailed'].includes(phase)" :loading="busy" @click="checkAccepted">{{ $t('label.iso.check.status') }}</a-button>
       <a-button v-if="acceptedId && !busy" @click="viewAcceptedIso">{{ $t('label.iso.view.accepted') }}</a-button>
       <a-button v-if="phase === 'uncertain' && !busy" @click="viewIsoList">{{ $t('label.isos') }}</a-button>
-    </MoldDialogActions>
+    </template>
   </MoldDialog>
 </template>
 
@@ -354,11 +354,10 @@ import { safeTemplateReason } from '@/utils/templateAvailability'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import MoldDialog from '@/components/view/MoldDialog'
-import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 export default {
   name: 'RegisterIso',
-  components: { ResourceIcon, TooltipLabel, MoldDialog, MoldDialogActions },
+  components: { ResourceIcon, TooltipLabel, MoldDialog },
   props: { resource: { type: Object, default: () => ({}) }, action: { type: Object, default: () => ({}) }, currentAction: { type: Object, default: () => ({}) } },
   emits: ['close-action', 'refresh-data'],
   data () {
