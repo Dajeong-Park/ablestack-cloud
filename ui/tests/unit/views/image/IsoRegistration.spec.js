@@ -131,3 +131,13 @@ test('HTTP preflight does not offer a certificate page and transfer failure stay
   c.phase = 'transferFailed'; expect(c.stepIndex).toBe(1)
   c.phase = 'checking'; expect(c.stepIndex).toBe(2)
 })
+
+test('known plain text SSVM checksum diagnostics are shown instead of a generic HTTP error', () => {
+  const c = context()
+  for (const body of ['Checksum does not match the uploaded file.', 'Unsupported checksum algorithm.', 'Unable to verify uploaded file checksum.']) {
+    expect(c.errorText({ response: { data: body }, message: 'Request failed with status code 500' })).toBe(body)
+  }
+  for (const body of ['<html>proxy error</html>', 'Checksum does not match the uploaded file. x-signature=private-test-value']) {
+    expect(c.errorText({ response: { data: body }, message: 'Request failed with status code 500' })).toBe('Request failed with status code 500')
+  }
+})

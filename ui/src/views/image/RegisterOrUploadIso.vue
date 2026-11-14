@@ -442,7 +442,13 @@ export default {
   methods: {
     optionMatches: templateOptionMatches,
     supportsParam (name) { return !!this.registrationCapability.parameters[name] },
-    errorText (error) { const text = error?.response?.headers?.['x-description'] || error?.response?.data?.errorresponse?.errortext || error?.message || this.$t('message.request.failed'); return safeTemplateReason(text.startsWith('message.') ? this.$t(text) : text) },
+    errorText (error) {
+      const body = error?.response?.data
+      // The SSVM uploader returns these diagnostics as plain text, unlike the management API.
+      const uploadReason = typeof body === 'string' && /^(Checksum does not match the uploaded file\.|Unsupported checksum algorithm\.|Unable to verify uploaded file checksum\.)\s*$/.test(body) ? body.trim() : ''
+      const text = error?.response?.headers?.['x-description'] || body?.errorresponse?.errortext || uploadReason || error?.message || this.$t('message.request.failed')
+      return safeTemplateReason(text.startsWith('message.') ? this.$t(text) : text)
+    },
     current (run) { return !this.disposed && this.phase !== 'contextChanged' && run.generation === this.generation && run.scope === this.registrationScope },
     run () { return { generation: this.generation, scope: this.registrationScope } },
     clearWait () { if (this.pollTimer) clearTimeout(this.pollTimer); this.pollTimer = null; if (this.pollResolve) this.pollResolve(); this.pollResolve = null },
