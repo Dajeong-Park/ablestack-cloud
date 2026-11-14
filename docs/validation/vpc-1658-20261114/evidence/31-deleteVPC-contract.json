@@ -1,0 +1,45 @@
+{
+  "count": 1,
+  "api": [
+    {
+      "name": "deleteVPC",
+      "description": "Deletes a VPC",
+      "isasync": true,
+      "params": [
+        {
+          "name": "id",
+          "description": "The ID of the VPC",
+          "type": "uuid",
+          "length": 255,
+          "required": true,
+          "related": "createVPC,listVPCs,createVPC,listVPCs,updateVPC,migrateVPC"
+        }
+      ],
+      "response": [
+        {},
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "success",
+          "description": "True if operation is executed successfully",
+          "type": "boolean"
+        },
+        {
+          "name": "displaytext",
+          "description": "Any text associated with the success or failure",
+          "type": "string"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {}
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

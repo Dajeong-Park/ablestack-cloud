@@ -1,0 +1,97 @@
+{
+  "records": [
+    {
+      "api": "createNetworkACLList",
+      "params": {
+        "name": "qa-vpc1650-final-32-ACL",
+        "description": "Final review normal ACL submission",
+        "vpcid": "9d98ae97-f3f8-4f31-8a48-b37d9902492d"
+      },
+      "response": {
+        "createnetworkacllistresponse": {
+          "id": "3412d17d-c543-4de8-806d-111318126ba6",
+          "jobid": "af101aa9-7522-4e32-bf66-a21109097323"
+        }
+      },
+      "terminalJob": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.network.CreateNetworkACLListCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "networkacllist": {
+            "id": "3412d17d-c543-4de8-806d-111318126ba6",
+            "name": "qa-vpc1650-final-32-ACL",
+            "description": "Final review normal ACL submission",
+            "vpcid": "9d98ae97-f3f8-4f31-8a48-b37d9902492d",
+            "vpcname": "qa-vpc1650-final-32",
+            "fordisplay": true
+          }
+        },
+        "jobinstancetype": "NetworkAcl",
+        "created": "2026-11-15T00:36:21+0900",
+        "completed": "2026-11-15T00:36:21+0900",
+        "jobid": "af101aa9-7522-4e32-bf66-a21109097323",
+        "jobstatus": 1
+      }
+    },
+    {
+      "api": "createTags",
+      "params": {
+        "tags[0].key": "review",
+        "tags[0].value": "qa-vpc1650-final-32",
+        "resourceIds": "af30dffc-64f9-423d-b413-56e33b427b5d",
+        "resourceType": "StaticRoute"
+      },
+      "response": {
+        "createtagsresponse": {
+          "jobid": "a4e8b3fa-104b-4c40-9c08-123524b54b1c"
+        }
+      },
+      "terminalJob": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.tag.CreateTagsCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "success": true
+        },
+        "created": "2026-11-15T00:36:53+0900",
+        "completed": "2026-11-15T00:36:53+0900",
+        "jobid": "a4e8b3fa-104b-4c40-9c08-123524b54b1c",
+        "jobstatus": 1
+      }
+    }
+  ],
+  "acl": {
+    "id": "3412d17d-c543-4de8-806d-111318126ba6",
+    "name": "qa-vpc1650-final-32-ACL",
+    "description": "Final review normal ACL submission",
+    "vpcid": "9d98ae97-f3f8-4f31-8a48-b37d9902492d",
+    "vpcname": "qa-vpc1650-final-32",
+    "fordisplay": true
+  },
+  "tags": [
+    {
+      "key": "review",
+      "value": "qa-vpc1650-final-32",
+      "resourcetype": "StaticRoute",
+      "resourceid": "af30dffc-64f9-423d-b413-56e33b427b5d",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domain": "ROOT",
+      "domainpath": "ROOT"
+    }
+  ],
+  "ownedRouterCount": 0
+}

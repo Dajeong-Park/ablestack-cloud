@@ -1,0 +1,108 @@
+{
+  "before31": [
+    {
+      "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+      "tag": "A",
+      "text": "10.249.31.2"
+    },
+    {
+      "href": null,
+      "tag": "BUTTON",
+      "text": ""
+    },
+    {
+      "href": null,
+      "tag": "BUTTON",
+      "text": ""
+    },
+    {
+      "href": "#/privategw/undefined",
+      "tag": "A",
+      "text": ""
+    }
+  ],
+  "after": {
+    "31": [
+      {
+        "aria": null,
+        "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+        "tag": "A",
+        "text": "10.249.31.2"
+      },
+      {
+        "aria": "태그 편집",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "aria": "삭제",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "aria": "태그 편집",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "aria": "삭제",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ],
+    "32": [
+      {
+        "aria": null,
+        "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+        "tag": "A",
+        "text": "10.249.32.2"
+      },
+      {
+        "aria": "태그 편집",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "aria": "삭제",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "aria": "태그 편집",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "aria": "삭제",
+        "href": null,
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ]
+  },
+  "navigation": {
+    "31": {
+      "url": "http://10.10.31.10:8080/client/#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+      "back": {
+        "url": "http://10.10.31.10:8080/client/#/vpc/dfdaa8ad-ffec-47af-afca-dd5417b0b370?tab=staticroutes",
+        "rows": 3,
+        "selected": "true"
+      }
+    },
+    "32": {
+      "url": "http://10.10.32.10:8080/client/#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+      "back": {
+        "url": "http://10.10.32.10:8080/client/#/vpc/e9c59b00-6d4f-4ea2-b16c-4213e84e913e?tab=staticroutes",
+        "rows": 3,
+        "selected": "true"
+      }
+    }
+  }
+}

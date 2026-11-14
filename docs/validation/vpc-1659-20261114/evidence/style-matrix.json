@@ -1,0 +1,722 @@
+[
+  {
+    "cluster": 31,
+    "theme": "light",
+    "screenshot": "../screenshots/31-routes-1280-light.png",
+    "bodyWidth": 1270,
+    "dark": false,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.29.31.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 1,
+        "gateway": "10.249.31.2",
+        "id": "3982813a-985b-403c-8b15-0729d4a15ade",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+            "tabIndex": 0,
+            "text": "10.249.31.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 940.84375,
+          "y": 291
+        }
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.28.31.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "ada9397d-9852-4d03-b6ea-ec3470dce1ad",
+        "links": [],
+        "nexthop": "10.227.31.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 948.84375,
+          "y": 354
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 489,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.31.10:8080/client/#/vpc/dfdaa8ad-ffec-47af-afca-dd5417b0b370?tab=staticroutes",
+    "width": 1280
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "screenshot": "../screenshots/32-routes-1280-light.png",
+    "bodyWidth": 1270,
+    "dark": false,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.29.32.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 1,
+        "gateway": "10.249.32.2",
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "tabIndex": 0,
+            "text": "10.249.32.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 940.84375,
+          "y": 364
+        }
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.28.32.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "links": [],
+        "nexthop": "10.227.32.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 948.84375,
+          "y": 427
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 489,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.32.10:8080/client/#/vpc/e9c59b00-6d4f-4ea2-b16c-4213e84e913e?tab=staticroutes",
+    "width": 1280
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "screenshot": "../screenshots/31-routes-768-light.png",
+    "bodyWidth": 758,
+    "dark": false,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.29.31.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 1,
+        "gateway": "10.249.31.2",
+        "id": "3982813a-985b-403c-8b15-0729d4a15ade",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+            "tabIndex": 0,
+            "text": "10.249.31.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 475.515625,
+          "y": 551.5
+        }
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.28.31.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "ada9397d-9852-4d03-b6ea-ec3470dce1ad",
+        "links": [],
+        "nexthop": "10.227.31.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 483.515625,
+          "y": 614.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 443,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.31.10:8080/client/#/vpc/dfdaa8ad-ffec-47af-afca-dd5417b0b370?tab=staticroutes",
+    "width": 768
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "screenshot": "../screenshots/32-routes-768-light.png",
+    "bodyWidth": 758,
+    "dark": false,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.29.32.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 1,
+        "gateway": "10.249.32.2",
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "tabIndex": 0,
+            "text": "10.249.32.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 475.515625,
+          "y": 604.5
+        }
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.28.32.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "links": [],
+        "nexthop": "10.227.32.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 483.515625,
+          "y": 667.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 443,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.32.10:8080/client/#/vpc/e9c59b00-6d4f-4ea2-b16c-4213e84e913e?tab=staticroutes",
+    "width": 768
+  },
+  {
+    "cluster": 31,
+    "theme": "light",
+    "screenshot": "../screenshots/31-routes-390-light.png",
+    "bodyWidth": 380,
+    "dark": false,
+    "height": 844,
+    "rows": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.29.31.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 1,
+        "gateway": "10.249.31.2",
+        "id": "3982813a-985b-403c-8b15-0729d4a15ade",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+            "tabIndex": 0,
+            "text": "10.249.31.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 244.265625,
+          "y": 694.5
+        }
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.28.31.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "ada9397d-9852-4d03-b6ea-ec3470dce1ad",
+        "links": [],
+        "nexthop": "10.227.31.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 252.265625,
+          "y": 757.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 296,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.31.10:8080/client/#/vpc/dfdaa8ad-ffec-47af-afca-dd5417b0b370?tab=staticroutes",
+    "width": 390
+  },
+  {
+    "cluster": 32,
+    "theme": "light",
+    "screenshot": "../screenshots/32-routes-390-light.png",
+    "bodyWidth": 380,
+    "dark": false,
+    "height": 844,
+    "rows": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.29.32.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 1,
+        "gateway": "10.249.32.2",
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "tabIndex": 0,
+            "text": "10.249.32.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 244.265625,
+          "y": 694.5
+        }
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "cidr": "172.28.32.0/24",
+        "color": "rgb(75, 85, 99)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "links": [],
+        "nexthop": "10.227.32.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 252.265625,
+          "y": 757.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 296,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.32.10:8080/client/#/vpc/e9c59b00-6d4f-4ea2-b16c-4213e84e913e?tab=staticroutes",
+    "width": 390
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "screenshot": "../screenshots/31-routes-390-dark.png",
+    "bodyWidth": 380,
+    "dark": true,
+    "height": 844,
+    "rows": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.29.31.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 1,
+        "gateway": "10.249.31.2",
+        "id": "3982813a-985b-403c-8b15-0729d4a15ade",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+            "tabIndex": 0,
+            "text": "10.249.31.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 244.265625,
+          "y": 694.5
+        }
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.28.31.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "ada9397d-9852-4d03-b6ea-ec3470dce1ad",
+        "links": [],
+        "nexthop": "10.227.31.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 252.265625,
+          "y": 757.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 296,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.31.10:8080/client/#/vpc/dfdaa8ad-ffec-47af-afca-dd5417b0b370?tab=staticroutes",
+    "width": 390
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "screenshot": "../screenshots/32-routes-390-dark.png",
+    "bodyWidth": 380,
+    "dark": true,
+    "height": 844,
+    "rows": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.29.32.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 1,
+        "gateway": "10.249.32.2",
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "tabIndex": 0,
+            "text": "10.249.32.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 244.265625,
+          "y": 694.5
+        }
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.28.32.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "links": [],
+        "nexthop": "10.227.32.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 252.265625,
+          "y": 757.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 296,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.32.10:8080/client/#/vpc/e9c59b00-6d4f-4ea2-b16c-4213e84e913e?tab=staticroutes",
+    "width": 390
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "screenshot": "../screenshots/31-routes-768-dark.png",
+    "bodyWidth": 758,
+    "dark": true,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.29.31.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 1,
+        "gateway": "10.249.31.2",
+        "id": "3982813a-985b-403c-8b15-0729d4a15ade",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+            "tabIndex": 0,
+            "text": "10.249.31.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 475.515625,
+          "y": 551.5
+        }
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.28.31.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "ada9397d-9852-4d03-b6ea-ec3470dce1ad",
+        "links": [],
+        "nexthop": "10.227.31.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 483.515625,
+          "y": 614.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 443,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.31.10:8080/client/#/vpc/dfdaa8ad-ffec-47af-afca-dd5417b0b370?tab=staticroutes",
+    "width": 768
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "screenshot": "../screenshots/32-routes-768-dark.png",
+    "bodyWidth": 758,
+    "dark": true,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.29.32.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 1,
+        "gateway": "10.249.32.2",
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "tabIndex": 0,
+            "text": "10.249.32.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 475.515625,
+          "y": 604.5
+        }
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.28.32.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "links": [],
+        "nexthop": "10.227.32.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 483.515625,
+          "y": 667.5
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 443,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.32.10:8080/client/#/vpc/e9c59b00-6d4f-4ea2-b16c-4213e84e913e?tab=staticroutes",
+    "width": 768
+  },
+  {
+    "cluster": 31,
+    "theme": "dark",
+    "screenshot": "../screenshots/31-routes-1280-dark.png",
+    "bodyWidth": 1270,
+    "dark": true,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.29.31.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 1,
+        "gateway": "10.249.31.2",
+        "id": "3982813a-985b-403c-8b15-0729d4a15ade",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+            "tabIndex": 0,
+            "text": "10.249.31.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 940.84375,
+          "y": 291
+        }
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.28.31.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "ada9397d-9852-4d03-b6ea-ec3470dce1ad",
+        "links": [],
+        "nexthop": "10.227.31.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 948.84375,
+          "y": 354
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 489,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.31.10:8080/client/#/vpc/dfdaa8ad-ffec-47af-afca-dd5417b0b370?tab=staticroutes",
+    "width": 1280
+  },
+  {
+    "cluster": 32,
+    "theme": "dark",
+    "screenshot": "../screenshots/32-routes-1280-dark.png",
+    "bodyWidth": 1270,
+    "dark": true,
+    "height": 900,
+    "rows": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.29.32.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 1,
+        "gateway": "10.249.32.2",
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "links": [
+          {
+            "color": "rgb(24, 144, 255)",
+            "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "tabIndex": 0,
+            "text": "10.249.32.2"
+          }
+        ],
+        "nexthop": "",
+        "rect": {
+          "height": 49,
+          "width": 207.265625,
+          "x": 940.84375,
+          "y": 364
+        }
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "cidr": "172.28.32.0/24",
+        "color": "rgb(197, 204, 212)",
+        "focusable": 0,
+        "gateway": "-",
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "links": [],
+        "nexthop": "10.227.32.2",
+        "rect": {
+          "height": 19,
+          "width": 5.609375,
+          "x": 948.84375,
+          "y": 427
+        }
+      }
+    ],
+    "scripts": [
+      "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+    ],
+    "table": {
+      "clientWidth": 489,
+      "scrollLeft": 0,
+      "scrollWidth": 760
+    },
+    "undefinedLinks": 0,
+    "url": "http://10.10.32.10:8080/client/#/vpc/e9c59b00-6d4f-4ea2-b16c-4213e84e913e?tab=staticroutes",
+    "width": 1280
+  }
+]

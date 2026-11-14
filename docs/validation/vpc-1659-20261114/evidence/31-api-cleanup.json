@@ -1,0 +1,53 @@
+[
+  {
+    "api": "deletePrivateGateway",
+    "id": "2760d80d-5ab6-489d-ad48-585f38a050f5",
+    "receipt": {
+      "jobid": "c36957b1-6305-4d9b-af85-a944813a2e5d"
+    },
+    "job": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.admin.vpc.DeletePrivateGatewayCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-14T23:55:31+0900",
+      "completed": "2026-11-14T23:55:31+0900",
+      "jobid": "c36957b1-6305-4d9b-af85-a944813a2e5d",
+      "jobstatus": 1
+    }
+  },
+  {
+    "api": "deleteVPC",
+    "id": "dfdaa8ad-ffec-47af-afca-dd5417b0b370",
+    "receipt": {
+      "jobid": "1d1c4db0-94e5-48a0-92f7-41c98652e05b"
+    },
+    "job": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "Vpc",
+      "created": "2026-11-14T23:55:33+0900",
+      "completed": "2026-11-14T23:55:33+0900",
+      "jobid": "1d1c4db0-94e5-48a0-92f7-41c98652e05b",
+      "jobstatus": 1
+    }
+  }
+]

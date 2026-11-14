@@ -1,0 +1,88 @@
+{
+  "count": 1,
+  "api": [
+    {
+      "name": "createNetworkACLList",
+      "description": "Creates a Network ACL. If no VPC is given, then it creates a global ACL that can be used by everyone.",
+      "isasync": true,
+      "related": "",
+      "params": [
+        {
+          "name": "fordisplay",
+          "description": "An optional field, whether to the display the list to the end User or not",
+          "type": "boolean",
+          "length": 255,
+          "required": false,
+          "since": "4.4"
+        },
+        {
+          "name": "name",
+          "description": "Name of the Network ACL list",
+          "type": "string",
+          "length": 255,
+          "required": true
+        },
+        {
+          "name": "description",
+          "description": "Description of the Network ACL list",
+          "type": "string",
+          "length": 255,
+          "required": false
+        },
+        {
+          "name": "vpcid",
+          "description": "ID of the VPC associated with this Network ACL list",
+          "type": "uuid",
+          "length": 255,
+          "required": false,
+          "related": "createVPC,listVPCs,updateVPC"
+        }
+      ],
+      "response": [
+        {
+          "name": "name",
+          "description": "The Name of the ACL",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "vpcid",
+          "description": "Id of the VPC this ACL is associated with",
+          "type": "string"
+        },
+        {
+          "name": "vpcname",
+          "description": "Name of the VPC this ACL is associated with",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "description": "The ID of the ACL",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "description",
+          "description": "Description of the ACL",
+          "type": "string"
+        },
+        {
+          "name": "fordisplay",
+          "description": "Is ACL for display to the regular user",
+          "type": "boolean"
+        }
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

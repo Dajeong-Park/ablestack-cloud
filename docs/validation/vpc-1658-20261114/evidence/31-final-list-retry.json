@@ -1,0 +1,15 @@
+{
+  "source": "af129880b21c066ea19d105231288e049a6ca24c",
+  "injectedRequests": 1,
+  "before": {
+    "duplicateStatusParagraphs": 0,
+    "errorAlerts": 1,
+    "retainedQaLinks": 2
+  },
+  "after": {
+    "errorAlerts": 0,
+    "retainedQaLinks": 2
+  },
+  "recovery": "automatic queued refresh",
+  "manualRetryClicked": false
+}

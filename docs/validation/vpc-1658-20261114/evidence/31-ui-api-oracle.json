@@ -1,0 +1,1137 @@
+{
+  "cluster": 31,
+  "records": [
+    {
+      "flow": "route-invalid-cidr-captured",
+      "api": "createStaticRoute",
+      "method": "POST",
+      "params": {
+        "cidr": "bad-1658",
+        "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+        "nexthop": "10.225.31.2"
+      },
+      "httpStatus": 431,
+      "result": {
+        "errorcode": 431,
+        "errortext": "Invalid format for cidr bad-1658"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7"
+    },
+    {
+      "flow": "route-corrected-ctrl-enter",
+      "api": "createStaticRoute",
+      "method": "POST",
+      "params": {
+        "cidr": "172.30.31.0/24",
+        "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+        "nexthop": "10.225.31.2"
+      },
+      "httpStatus": 200,
+      "result": {
+        "id": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+        "jobid": "f3c4900e-0b00-4011-b13e-af641acf1b5b"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateStaticRouteCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "staticroute": {
+            "id": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+            "state": "Active",
+            "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+            "nexthop": "10.225.31.2",
+            "cidr": "172.30.31.0/24",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "tags": []
+          }
+        },
+        "jobinstancetype": "StaticRoute",
+        "jobinstanceid": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+        "created": "2026-11-14T20:56:35+0900",
+        "completed": "2026-11-14T20:56:35+0900",
+        "jobid": "f3c4900e-0b00-4011-b13e-af641acf1b5b",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "route-tag-create-ctrl-enter",
+      "api": "createTags",
+      "method": "POST",
+      "params": {
+        "tags[0].key": "purpose",
+        "tags[0].value": "1658-한글-긴값-대상과-소유자-맥락-보존",
+        "resourceIds": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+        "resourceType": "StaticRoute"
+      },
+      "httpStatus": 200,
+      "result": {
+        "jobid": "f7193ac3-a473-4275-9c2e-3ae37d67fdfc"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.tag.CreateTagsCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "success": true
+        },
+        "created": "2026-11-14T21:01:13+0900",
+        "completed": "2026-11-14T21:01:13+0900",
+        "jobid": "f7193ac3-a473-4275-9c2e-3ae37d67fdfc",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "vpc-edit-preserve-fields",
+      "api": "updateVPC",
+      "method": "POST",
+      "params": {
+        "id": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+        "name": "qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정",
+        "displaytext": "UI1658 긴 설명·MTU/DNS/MAC 보존",
+        "publicmtu": "1500",
+        "keepmacaddressonpublicnic": "true"
+      },
+      "httpStatus": 200,
+      "result": {
+        "jobid": "19e0227a-45b8-4853-b683-75c186989042"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.UpdateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpc": {
+            "id": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+            "name": "qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정",
+            "displaytext": "UI1658 긴 설명·MTU/DNS/MAC 보존",
+            "state": "Enabled",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "service": [
+              {
+                "name": "Dhcp",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "UserData",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Lb",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  },
+                  {
+                    "name": "InternalLbVm"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "PortForwarding",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Vpn",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "StaticNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "Dns",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "cidr": "10.225.31.0/24",
+            "vpcofferingid": "49767c4b-61bd-4535-9957-af9908e220f1",
+            "vpcofferingname": "Default VPC offering",
+            "vpcofferingconservemode": false,
+            "created": "2026-11-14T20:25:44+0900",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "network": [],
+            "restartrequired": false,
+            "networkdomain": "cs2cloud.internal",
+            "tags": [],
+            "fordisplay": true,
+            "distributedvpcrouter": false,
+            "regionlevelvpc": false,
+            "redundantvpcrouter": false,
+            "publicmtu": 1500,
+            "dns1": "8.8.8.8",
+            "keepmacaddressonpublicnic": true,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "Vpc",
+        "created": "2026-11-14T21:04:40+0900",
+        "completed": "2026-11-14T21:04:40+0900",
+        "jobid": "19e0227a-45b8-4853-b683-75c186989042",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "vpc-acl-modal-single-submit",
+      "api": "createNetworkACLList",
+      "method": "POST",
+      "params": {
+        "name": "qa-vpc1658-31-ACL-모달",
+        "description": "UI1658 전용 빈 규칙 정책",
+        "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30"
+      },
+      "httpStatus": 200,
+      "result": {
+        "id": "b48ed33e-e60f-474e-8221-2c61efb1fbe0",
+        "jobid": "38fa0384-589f-4d1d-b2ca-0c7a859d12a3"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.network.CreateNetworkACLListCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "networkacllist": {
+            "id": "b48ed33e-e60f-474e-8221-2c61efb1fbe0",
+            "name": "qa-vpc1658-31-ACL-모달",
+            "description": "UI1658 전용 빈 규칙 정책",
+            "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+            "vpcname": "qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정",
+            "fordisplay": true
+          }
+        },
+        "jobinstancetype": "NetworkAcl",
+        "created": "2026-11-14T21:05:30+0900",
+        "completed": "2026-11-14T21:05:30+0900",
+        "jobid": "38fa0384-589f-4d1d-b2ca-0c7a859d12a3",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "offering-create-enabled",
+      "api": "createVPCOffering",
+      "method": "POST",
+      "params": {
+        "name": "qa-vpc1658-31-오퍼링-UI생성",
+        "displaytext": "1658 UI 공통 프레임·서비스 보존",
+        "internetprotocol": "ipv4",
+        "supportedservices": "SourceNat,NetworkACL",
+        "serviceProviderList[0].service": "SourceNat",
+        "serviceProviderList[0].provider": "VpcVirtualRouter",
+        "serviceProviderList[1].service": "NetworkACL",
+        "serviceProviderList[1].provider": "VpcVirtualRouter",
+        "enable": "true",
+        "customjobid": "77373aa9-01dd-4800-92b1-6682a6c5e22d"
+      },
+      "httpStatus": 200,
+      "result": {
+        "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "jobid": "77373aa9-01dd-4800-92b1-6682a6c5e22d"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCOfferingCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpcoffering": {
+            "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+            "name": "qa-vpc1658-31-오퍼링-UI생성",
+            "displaytext": "1658 UI 공통 프레임·서비스 보존",
+            "created": "2026-11-14T21:13:24+0900",
+            "isdefault": false,
+            "state": "Enabled",
+            "service": [
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "distributedvpcrouter": false,
+            "redundantvpcrouter": false,
+            "supportsregionLevelvpc": false,
+            "fornsx": false,
+            "internetprotocol": "IPv4",
+            "specifyasnumber": false,
+            "conservemode": false
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-14T21:13:24+0900",
+        "completed": "2026-11-14T21:13:24+0900",
+        "jobid": "77373aa9-01dd-4800-92b1-6682a6c5e22d",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "offering-clone-preserve",
+      "api": "cloneVPCOffering",
+      "method": "POST",
+      "params": {
+        "sourceofferingid": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "name": "qa-vpc1658-31-오퍼링-복제",
+        "displaytext": "1658 UI 복제·원본 상태 유지",
+        "conservemode": "false",
+        "internetprotocol": "ipv4",
+        "enable": "true",
+        "customjobid": "8e796991-5704-4bfb-894c-322f04baa6da"
+      },
+      "httpStatus": 200,
+      "result": {
+        "id": "75",
+        "jobid": "8e796991-5704-4bfb-894c-322f04baa6da"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CloneVPCOfferingCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpcoffering": {
+            "id": "05072e03-6471-4d6e-87eb-1060f7960b96",
+            "name": "qa-vpc1658-31-오퍼링-복제",
+            "displaytext": "1658 UI 복제·원본 상태 유지",
+            "created": "2026-11-14T21:24:49+0900",
+            "isdefault": false,
+            "state": "Enabled",
+            "service": [
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "distributedvpcrouter": false,
+            "redundantvpcrouter": false,
+            "supportsregionLevelvpc": false,
+            "fornsx": false,
+            "internetprotocol": "IPv4",
+            "specifyasnumber": false,
+            "conservemode": false
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-14T21:24:49+0900",
+        "completed": "2026-11-14T21:24:49+0900",
+        "jobid": "8e796991-5704-4bfb-894c-322f04baa6da",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "offering-edit-preserve-services",
+      "api": "updateVPCOffering",
+      "method": "POST",
+      "params": {
+        "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "name": "qa-vpc1658-31-오퍼링-수정",
+        "displaytext": "1658 UI 편집·서비스와 상태 보존"
+      },
+      "httpStatus": 200,
+      "result": {
+        "jobid": "291f2bbd-4424-4e69-9229-30c502e61548"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.UpdateVPCOfferingCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpcoffering": {
+            "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+            "name": "qa-vpc1658-31-오퍼링-수정",
+            "displaytext": "1658 UI 편집·서비스와 상태 보존",
+            "created": "2026-11-14T21:13:24+0900",
+            "isdefault": false,
+            "state": "Enabled",
+            "service": [
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "distributedvpcrouter": false,
+            "redundantvpcrouter": false,
+            "supportsregionLevelvpc": false,
+            "fornsx": false,
+            "internetprotocol": "IPv4",
+            "specifyasnumber": false,
+            "conservemode": false
+          }
+        },
+        "jobinstancetype": "VpcOffering",
+        "created": "2026-11-14T21:27:34+0900",
+        "completed": "2026-11-14T21:27:34+0900",
+        "jobid": "291f2bbd-4424-4e69-9229-30c502e61548",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "offering-disable",
+      "api": "updateVPCOffering",
+      "method": "POST",
+      "params": {
+        "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "state": "Disabled"
+      },
+      "httpStatus": 200,
+      "result": {
+        "jobid": "ffc5a8e6-f43a-415d-9f72-cc794775d92a"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.UpdateVPCOfferingCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpcoffering": {
+            "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+            "name": "qa-vpc1658-31-오퍼링-수정",
+            "displaytext": "1658 UI 편집·서비스와 상태 보존",
+            "created": "2026-11-14T21:13:24+0900",
+            "isdefault": false,
+            "state": "Disabled",
+            "service": [
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "distributedvpcrouter": false,
+            "redundantvpcrouter": false,
+            "supportsregionLevelvpc": false,
+            "fornsx": false,
+            "internetprotocol": "IPv4",
+            "specifyasnumber": false,
+            "conservemode": false
+          }
+        },
+        "jobinstancetype": "VpcOffering",
+        "created": "2026-11-14T21:27:59+0900",
+        "completed": "2026-11-14T21:27:59+0900",
+        "jobid": "ffc5a8e6-f43a-415d-9f72-cc794775d92a",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "offering-enable-native-pointer",
+      "api": "updateVPCOffering",
+      "method": "POST",
+      "params": {
+        "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "state": "Enabled"
+      },
+      "httpStatus": 200,
+      "result": {
+        "jobid": "d23afedb-e06f-46a0-9039-b8f8b92e9c7b"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.UpdateVPCOfferingCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpcoffering": {
+            "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+            "name": "qa-vpc1658-31-오퍼링-수정",
+            "displaytext": "1658 UI 편집·서비스와 상태 보존",
+            "created": "2026-11-14T21:13:24+0900",
+            "isdefault": false,
+            "state": "Enabled",
+            "service": [
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "distributedvpcrouter": false,
+            "redundantvpcrouter": false,
+            "supportsregionLevelvpc": false,
+            "fornsx": false,
+            "internetprotocol": "IPv4",
+            "specifyasnumber": false,
+            "conservemode": false
+          }
+        },
+        "jobinstancetype": "VpcOffering",
+        "created": "2026-11-14T21:28:54+0900",
+        "completed": "2026-11-14T21:28:54+0900",
+        "jobid": "d23afedb-e06f-46a0-9039-b8f8b92e9c7b",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "offering-access-zone-scope",
+      "api": "updateVPCOffering",
+      "method": "POST",
+      "params": {
+        "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "domainid": "public",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      },
+      "httpStatus": 200,
+      "result": {
+        "jobid": "a86d48cd-320b-455d-be99-48c9f96e86c6"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.UpdateVPCOfferingCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpcoffering": {
+            "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+            "name": "qa-vpc1658-31-오퍼링-수정",
+            "displaytext": "1658 UI 편집·서비스와 상태 보존",
+            "created": "2026-11-14T21:13:24+0900",
+            "isdefault": false,
+            "state": "Enabled",
+            "service": [
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "distributedvpcrouter": false,
+            "redundantvpcrouter": false,
+            "supportsregionLevelvpc": false,
+            "fornsx": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zone": "Zone",
+            "internetprotocol": "IPv4",
+            "specifyasnumber": false,
+            "conservemode": false
+          }
+        },
+        "jobinstancetype": "VpcOffering",
+        "created": "2026-11-14T21:32:12+0900",
+        "completed": "2026-11-14T21:32:12+0900",
+        "jobid": "a86d48cd-320b-455d-be99-48c9f96e86c6",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "VPC UI 생성 start=false",
+      "api": "createVPC",
+      "method": "POST",
+      "params": {
+        "name": "qa-vpc1658-31-UI-생성",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "vpcofferingid": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "start": "false",
+        "displaytext": "1658 UI 생성 · 시작하지 않음",
+        "cidr": "10.226.31.0/24",
+        "keepmacaddressonpublicnic": "true",
+        "customjobid": "73f4dd10-aa7b-4cf2-8756-9690f9810e46"
+      },
+      "httpStatus": 200,
+      "result": {
+        "id": "d1b4cad9-db3f-4e4d-8998-7d456334f23a",
+        "jobid": "73f4dd10-aa7b-4cf2-8756-9690f9810e46"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.admin.vpc.CreateVPCCmdByAdmin",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpc": {
+            "id": "d1b4cad9-db3f-4e4d-8998-7d456334f23a",
+            "name": "qa-vpc1658-31-UI-생성",
+            "displaytext": "1658 UI 생성 · 시작하지 않음",
+            "state": "Enabled",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "service": [
+              {
+                "name": "NetworkACL",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              },
+              {
+                "name": "SourceNat",
+                "provider": [
+                  {
+                    "name": "VpcVirtualRouter"
+                  }
+                ]
+              }
+            ],
+            "cidr": "10.226.31.0/24",
+            "vpcofferingid": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+            "vpcofferingname": "qa-vpc1658-31-오퍼링-수정",
+            "vpcofferingconservemode": false,
+            "created": "2026-11-14T21:38:34+0900",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "network": [],
+            "restartrequired": false,
+            "networkdomain": "cs2cloud.internal",
+            "tags": [],
+            "fordisplay": true,
+            "distributedvpcrouter": false,
+            "regionlevelvpc": false,
+            "redundantvpcrouter": false,
+            "publicmtu": 1500,
+            "keepmacaddressonpublicnic": true,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-14T21:38:34+0900",
+        "completed": "2026-11-14T21:38:34+0900",
+        "jobid": "73f4dd10-aa7b-4cf2-8756-9690f9810e46",
+        "jobstatus": 1
+      }
+    },
+    {
+      "flow": "gateway ACL empty-policy replacement",
+      "api": "replaceNetworkACLList",
+      "method": "POST",
+      "params": {
+        "aclid": "b48ed33e-e60f-474e-8221-2c61efb1fbe0",
+        "gatewayid": "fa1d0748-a99c-48b5-ad54-62f89cee482b"
+      },
+      "httpStatus": 200,
+      "result": {
+        "jobid": "dd2d51ac-abea-4e4c-a937-43793bc881fe"
+      },
+      "source": "0d6c74db5c6a1d2e297f949c273394ebb38886c7",
+      "terminalJob": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.network.ReplaceNetworkACLListCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "success": true
+        },
+        "created": "2026-11-14T21:39:08+0900",
+        "completed": "2026-11-14T21:39:08+0900",
+        "jobid": "dd2d51ac-abea-4e4c-a937-43793bc881fe",
+        "jobstatus": 1
+      }
+    }
+  ],
+  "ownedResources": {
+    "listVPCs": [
+      {
+        "id": "d1b4cad9-db3f-4e4d-8998-7d456334f23a",
+        "name": "qa-vpc1658-31-UI-생성",
+        "displaytext": "1658 UI 생성 · 시작하지 않음",
+        "state": "Enabled",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.226.31.0/24",
+        "vpcofferingid": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "vpcofferingname": "qa-vpc1658-31-오퍼링-수정",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-14T21:38:34+0900",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "cs2cloud.internal",
+        "tags": [],
+        "fordisplay": true,
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "keepmacaddressonpublicnic": true,
+        "hasannotations": false
+      },
+      {
+        "id": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+        "name": "qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정",
+        "displaytext": "UI1658 긴 설명·MTU/DNS/MAC 보존",
+        "state": "Enabled",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "service": [
+          {
+            "name": "Dhcp",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "UserData",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Lb",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              },
+              {
+                "name": "InternalLbVm"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "PortForwarding",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Vpn",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "StaticNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "Dns",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "cidr": "10.225.31.0/24",
+        "vpcofferingid": "49767c4b-61bd-4535-9957-af9908e220f1",
+        "vpcofferingname": "Default VPC offering",
+        "vpcofferingconservemode": false,
+        "created": "2026-11-14T20:25:44+0900",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "network": [],
+        "restartrequired": false,
+        "networkdomain": "cs2cloud.internal",
+        "tags": [],
+        "fordisplay": true,
+        "distributedvpcrouter": false,
+        "regionlevelvpc": false,
+        "redundantvpcrouter": false,
+        "publicmtu": 1500,
+        "dns1": "8.8.8.8",
+        "keepmacaddressonpublicnic": true,
+        "hasannotations": false
+      }
+    ],
+    "listPrivateGateways": [
+      {
+        "id": "fa1d0748-a99c-48b5-ad54-62f89cee482b",
+        "gateway": "10.248.31.1",
+        "netmask": "255.255.255.0",
+        "ipaddress": "10.248.31.2",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zonename": "Zone",
+        "vlan": "vlan://3881",
+        "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+        "vpcname": "qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정",
+        "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "state": "Ready",
+        "sourcenatsupported": false,
+        "aclid": "b48ed33e-e60f-474e-8221-2c61efb1fbe0",
+        "aclname": "qa-vpc1658-31-ACL-모달"
+      }
+    ],
+    "listStaticRoutes": [
+      {
+        "id": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+        "state": "Active",
+        "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+        "nexthop": "10.225.31.2",
+        "cidr": "172.30.31.0/24",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "tags": [
+          {
+            "key": "purpose",
+            "value": "1658-한글-긴값-대상과-소유자-맥락-보존"
+          }
+        ]
+      }
+    ],
+    "listNetworks": [],
+    "listNetworkACLLists": [
+      {
+        "id": "b48ed33e-e60f-474e-8221-2c61efb1fbe0",
+        "name": "qa-vpc1658-31-ACL-모달",
+        "description": "UI1658 전용 빈 규칙 정책",
+        "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+        "vpcname": "qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정",
+        "fordisplay": true
+      }
+    ],
+    "listPhysicalNetworks": [],
+    "listZones": [],
+    "listVPCOfferings": [
+      {
+        "id": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+        "name": "qa-vpc1658-31-오퍼링-수정",
+        "displaytext": "1658 UI 편집·서비스와 상태 보존",
+        "created": "2026-11-14T21:13:24+0900",
+        "isdefault": false,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "redundantvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": false,
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "zone": "Zone",
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      },
+      {
+        "id": "05072e03-6471-4d6e-87eb-1060f7960b96",
+        "name": "qa-vpc1658-31-오퍼링-복제",
+        "displaytext": "1658 UI 복제·원본 상태 유지",
+        "created": "2026-11-14T21:24:49+0900",
+        "isdefault": false,
+        "state": "Enabled",
+        "service": [
+          {
+            "name": "NetworkACL",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          },
+          {
+            "name": "SourceNat",
+            "provider": [
+              {
+                "name": "VpcVirtualRouter"
+              }
+            ]
+          }
+        ],
+        "distributedvpcrouter": false,
+        "redundantvpcrouter": false,
+        "supportsregionLevelvpc": false,
+        "fornsx": false,
+        "internetprotocol": "IPv4",
+        "specifyasnumber": false,
+        "conservemode": false
+      }
+    ],
+    "listRouters": [],
+    "listVirtualMachines": [],
+    "listAccounts": [],
+    "listProjects": []
+  },
+  "contractChecks": [
+    {
+      "api": "createStaticRoute",
+      "id": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+      "mode": "vpcid+nexthop",
+      "requestAndResourceMatch": true
+    },
+    {
+      "api": "createTags",
+      "resourceid": "12456f44-c4bf-41aa-a467-16fa934e97fa",
+      "actualTagMatches": true
+    },
+    {
+      "api": "updateVPC",
+      "id": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+      "editedFieldsMatch": true,
+      "unchangedFields": [
+        "id",
+        "account",
+        "domainid",
+        "zoneid",
+        "vpcofferingid",
+        "cidr",
+        "dns1",
+        "dns2",
+        "networkdomain"
+      ]
+    },
+    {
+      "api": "cloneVPCOffering",
+      "sourceId": "6c3a46eb-ff89-4895-b496-2b0ee4b8f069",
+      "cloneUuid": "05072e03-6471-4d6e-87eb-1060f7960b96",
+      "fullProviderArraysAndConserveModeEqual": true,
+      "receiptId": "75"
+    }
+  ],
+  "noRouterForOwnedVpc": true,
+  "synchronousRejects": 1,
+  "successfulJobs": 12,
+  "lostResponsesRecoveredBySameId": 0
+}

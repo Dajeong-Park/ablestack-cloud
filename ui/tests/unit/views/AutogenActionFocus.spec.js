@@ -98,6 +98,28 @@ test('tab toolbar actions retain their original trigger instead of the global me
   expect(context.actionTrigger).toBe(trigger)
 })
 
+test('a closed VPC context menu returns focus to the selected row checkbox', async () => {
+  const root = document.createElement('div')
+  root.innerHTML = '<div class="ant-table-row-selected"><input type="checkbox" /></div>'
+  document.body.append(root)
+  const removedMenuItem = document.createElement('button')
+  const context = { ...view(), isVpcUi: true, $route: { path: '/vpc' }, actionOriginPath: '/vpc', actionTrigger: removedMenuItem, $refs: {}, $el: root }
+  AutogenView.methods.closeAction.call(context)
+  await Promise.resolve()
+  expect(document.activeElement).toBe(root.querySelector('input'))
+})
+
+test('a VPC context-menu focus return cannot cross a project change', async () => {
+  const trigger = document.createElement('button')
+  document.body.append(trigger)
+  let scope = 'old'
+  const context = { ...view(), isVpcUi: true, $route: { path: '/vpc' }, actionOriginPath: '/vpc', actionTrigger: trigger, listScope: () => scope }
+  AutogenView.methods.closeAction.call(context)
+  scope = 'new'
+  await Promise.resolve()
+  expect(document.activeElement).toBe(document.body)
+})
+
 test('a snapshot form closes before route reuse changes its resource context', () => {
   const order = []
   const context = { ...view(), showAction: true, $refs: {}, $route: { fullPath: '/snapshot/old' }, closeAction: () => order.push('close') }

@@ -1,0 +1,18 @@
+{
+  "source": "af129880b21c066ea19d105231288e049a6ca24c",
+  "api": "listStaticRoutes",
+  "injectedRequests": [
+    {
+      "id": "interception-job-166668.0",
+      "api": "listStaticRoutes"
+    }
+  ],
+  "retainedRoutesAndRetryObserved": true,
+  "retainedCidrs": [
+    "172.30.32.0/24",
+    "172.31.32.0/24"
+  ],
+  "recovery": "automatic after interception removal",
+  "manualRetryVerified": false,
+  "installedAlertRetryClickCoveredByFocusedUnit": true
+}

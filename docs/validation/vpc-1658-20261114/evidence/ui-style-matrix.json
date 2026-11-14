@@ -1,0 +1,4692 @@
+{
+  "productSource": "af129880b21c066ea19d105231288e049a6ca24c",
+  "coreMatrices": {
+    "route-create": [
+      {
+        "cluster": 31,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "light",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/31-route-create-390-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/31-route-create-390-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "light",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/31-route-create-768-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "dark",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/31-route-create-768-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "light",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/31-route-create-1280-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "dark",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/31-route-create-1280-dark-settled.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "light",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/32-route-create-390-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/32-route-create-390-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "light",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/32-route-create-768-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "dark",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/32-route-create-768-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "light",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/32-route-create-1280-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "dark",
+        "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+        "screenshot": "../screenshots/32-route-create-1280-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": null
+      }
+    ],
+    "offering-create": [
+      {
+        "cluster": 31,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "light",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/31-offering-create-390-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/31-offering-create-390-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "light",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/31-offering-create-768-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "dark",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/31-offering-create-768-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "light",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/31-offering-create-1280-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 31,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "dark",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/31-offering-create-1280-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "light",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/32-offering-create-390-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          390,
+          844
+        ],
+        "theme": "dark",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/32-offering-create-390-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "light",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/32-offering-create-768-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          768,
+          900
+        ],
+        "theme": "dark",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/32-offering-create-768-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "light",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/32-offering-create-1280-light.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      },
+      {
+        "cluster": 32,
+        "viewport": [
+          1280,
+          900
+        ],
+        "theme": "dark",
+        "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+        "screenshot": "../screenshots/32-offering-create-1280-dark.jpg",
+        "centeredAndWithinViewport": true,
+        "bodyHasNoHorizontalOverflow": true,
+        "supportedServicesHaveNoInnerVerticalScroll": true
+      }
+    ]
+  },
+  "acceptedScreenObservations": [
+    {
+      "label": "31-gateway-table-bottom-390-dark",
+      "file": "31-gateway-table-bottom-390-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 844,
+      "modal": null,
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 79,
+          "cw": 296,
+          "h": 89,
+          "sh": 79,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 670
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=pgw",
+      "width": 390,
+      "originalCaptureFile": "31-gateway-table-bottom-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-gateway-table-netmask-390-dark",
+      "file": "31-gateway-table-netmask-390-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 844,
+      "modal": null,
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 79,
+          "cw": 296,
+          "h": 89,
+          "sh": 79,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 670
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=pgw",
+      "width": 390,
+      "originalCaptureFile": "31-gateway-table-netmask-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-gateway-create-1280-dark",
+      "file": "31-gateway-create-1280-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 710,
+        "cw": 708,
+        "h": 710,
+        "sh": 974,
+        "sw": 708,
+        "w": 718,
+        "x": 281,
+        "y": 90
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 720,
+        "h": 832,
+        "sh": 832,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 79,
+          "cw": 489,
+          "h": 89,
+          "sh": 79,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 350
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=pgw",
+      "width": 1280,
+      "originalCaptureFile": "31-gateway-create-1280-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-gateway-create-390-dark-top",
+      "file": "31-gateway-create-390-dark-top.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1044,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 79,
+          "cw": 296,
+          "h": 89,
+          "sh": 79,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 1483
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=pgw",
+      "width": 390,
+      "originalCaptureFile": "31-gateway-create-390-dark-top.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-gateway-create-390-dark-bottom",
+      "file": "31-gateway-create-390-dark-bottom.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1044,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 79,
+          "cw": 296,
+          "h": 89,
+          "sh": 79,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 1483
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=pgw",
+      "width": 390,
+      "originalCaptureFile": "31-gateway-create-390-dark-bottom.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-gateway-acl-popup-390-dark",
+      "file": "31-gateway-acl-popup-390-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1044,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": true,
+      "focus": {
+        "id": "form_item_acl",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 79,
+          "cw": 296,
+          "h": 89,
+          "sh": 79,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 1483
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=pgw",
+      "width": 390,
+      "originalCaptureFile": "31-gateway-acl-popup-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-route-create-1280-dark-settled",
+      "file": "31-route-create-1280-dark-settled.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 288
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 232
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 489,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 274
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 1280,
+      "originalCaptureFile": "31-route-create-1280-dark-settled.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-route-create-768-dark",
+      "file": "31-route-create-768-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 288
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 232
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 443,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 442.75,
+          "x": 268.25,
+          "y": 1226.5
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 768,
+      "originalCaptureFile": "31-route-create-768-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-route-create-390-dark",
+      "file": "31-route-create-390-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 342,
+        "cw": 364,
+        "h": 342,
+        "sh": 342,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 246
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 588
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 191
+      },
+      "height": 844,
+      "modal": {
+        "ch": 464,
+        "cw": 366,
+        "h": 464,
+        "sh": 464,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 190
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 296,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 1363
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 390,
+      "originalCaptureFile": "31-route-create-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-route-create-1280-light",
+      "file": "31-route-create-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 288
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": "라우트 추가이름qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정아이디dfb32fc6-a85c-4cd1-9dae-e13f1cd"
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 232
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 489,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 274
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 1280,
+      "originalCaptureFile": "31-route-create-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-route-create-768-light",
+      "file": "31-route-create-768-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 288
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": "라우트 추가이름qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정아이디dfb32fc6-a85c-4cd1-9dae-e13f1cd"
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 232
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 443,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 442.75,
+          "x": 268.25,
+          "y": 1226.5
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 768,
+      "originalCaptureFile": "31-route-create-768-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-route-create-390-light",
+      "file": "31-route-create-390-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 342,
+        "cw": 364,
+        "h": 342,
+        "sh": 342,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 246
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": "라우트 추가이름qa-vpc1658-31-설계-긴한국어-소유자와상위VPC맥락-UI수정아이디dfb32fc6-a85c-4cd1-9dae-e13f1cd"
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 588
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 191
+      },
+      "height": 844,
+      "modal": {
+        "ch": 464,
+        "cw": 366,
+        "h": 464,
+        "sh": 464,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 190
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 296,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 1363
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 390,
+      "originalCaptureFile": "31-route-create-390-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-route-create-1280-light",
+      "file": "32-route-create-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 288
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 232
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 137,
+          "cw": 489,
+          "h": 147,
+          "sh": 137,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 347
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpc/d951c317-8769-435b-a735-bee9c472c07e?tab=staticroutes",
+      "width": 1280,
+      "originalCaptureFile": "32-route-create-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-route-create-768-light",
+      "file": "32-route-create-768-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 288
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 232
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 137,
+          "cw": 443,
+          "h": 147,
+          "sh": 137,
+          "sw": 760,
+          "w": 442.75,
+          "x": 268.25,
+          "y": 1331.5
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpc/d951c317-8769-435b-a735-bee9c472c07e?tab=staticroutes",
+      "width": 768,
+      "originalCaptureFile": "32-route-create-768-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-route-create-390-light",
+      "file": "32-route-create-390-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 342,
+        "cw": 364,
+        "h": 342,
+        "sh": 342,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 246
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 588
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 191
+      },
+      "height": 844,
+      "modal": {
+        "ch": 464,
+        "cw": 366,
+        "h": 464,
+        "sh": 464,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 190
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 137,
+          "cw": 296,
+          "h": 147,
+          "sh": 137,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 1486
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpc/d951c317-8769-435b-a735-bee9c472c07e?tab=staticroutes",
+      "width": 390,
+      "originalCaptureFile": "32-route-create-390-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-route-create-1280-dark",
+      "file": "32-route-create-1280-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 288
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 232
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 137,
+          "cw": 489,
+          "h": 147,
+          "sh": 137,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 347
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpc/d951c317-8769-435b-a735-bee9c472c07e?tab=staticroutes",
+      "width": 1280,
+      "originalCaptureFile": "32-route-create-1280-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-route-create-768-dark",
+      "file": "32-route-create-768-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 314,
+        "cw": 718,
+        "h": 314,
+        "sh": 314,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 288
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 602
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 233
+      },
+      "height": 900,
+      "modal": {
+        "ch": 436,
+        "cw": 720,
+        "h": 436,
+        "sh": 436,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 232
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 137,
+          "cw": 443,
+          "h": 147,
+          "sh": 137,
+          "sw": 760,
+          "w": 442.75,
+          "x": 268.25,
+          "y": 1331.5
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpc/d951c317-8769-435b-a735-bee9c472c07e?tab=staticroutes",
+      "width": 768,
+      "originalCaptureFile": "32-route-create-768-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-route-create-390-dark",
+      "file": "32-route-create-390-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 342,
+        "cw": 364,
+        "h": 342,
+        "sh": 342,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 246
+      },
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 588
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 191
+      },
+      "height": 844,
+      "modal": {
+        "ch": 464,
+        "cw": 366,
+        "h": 464,
+        "sh": 464,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 190
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 137,
+          "cw": 296,
+          "h": 147,
+          "sh": 137,
+          "sw": 760,
+          "w": 296,
+          "x": 37,
+          "y": 1486
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpc/d951c317-8769-435b-a735-bee9c472c07e?tab=staticroutes",
+      "width": 390,
+      "originalCaptureFile": "32-route-create-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-restart-1280-light",
+      "file": "31-restart-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 404,
+        "cw": 958,
+        "h": 404,
+        "sh": 404,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 243
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 647
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 188
+      },
+      "height": 900,
+      "modal": {
+        "ch": 526,
+        "cw": 960,
+        "h": 526,
+        "sh": 526,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 187
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 489,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 274
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 1280,
+      "originalCaptureFile": "31-restart-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-migration-1280-light",
+      "file": "31-migration-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1277,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 88,
+          "cw": 489,
+          "h": 98,
+          "sh": 88,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 274
+        },
+        {
+          "ch": 206,
+          "cw": 892,
+          "h": 206,
+          "sh": 206,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 983
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=staticroutes",
+      "width": 1280,
+      "originalCaptureFile": "31-migration-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-selection-1280-light",
+      "file": "31-vpc-list-selection-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 207,
+          "cw": 990,
+          "h": 207,
+          "sh": 207,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-vpc-list-selection-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-empty-1280-light",
+      "file": "31-vpc-list-empty-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 206,
+          "cw": 990,
+          "h": 206,
+          "sh": 206,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?page=1&pagesize=20&keyword=qa-vpc1658-NO-MATCH&q=qa-vpc1658-NO-MATCH",
+      "width": 1280,
+      "originalCaptureFile": "31-vpc-list-empty-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-503-retained-1280-light",
+      "file": "31-vpc-list-503-retained-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 207,
+          "cw": 990,
+          "h": 207,
+          "sh": 207,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 316.140625
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-vpc-list-503-retained-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-restart-bulk-two-targets-1280-light",
+      "file": "31-restart-bulk-two-targets-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": {
+        "ch": 538,
+        "cw": 958,
+        "h": 538,
+        "sh": 538,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 176
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 714
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 121
+      },
+      "height": 900,
+      "modal": {
+        "ch": 660,
+        "cw": 960,
+        "h": 660,
+        "sh": 660,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 120
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 207,
+          "cw": 990,
+          "h": 207,
+          "sh": 207,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-restart-bulk-two-targets-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-768-light",
+      "file": "31-vpc-list-768-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 273,
+          "cw": 654,
+          "h": 273,
+          "sh": 273,
+          "sw": 654,
+          "w": 654,
+          "x": 92,
+          "y": 206
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 768,
+      "originalCaptureFile": "31-vpc-list-768-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-list-1280-dark",
+      "file": "32-offering-list-1280-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 383,
+          "cw": 990,
+          "h": 383,
+          "sh": 383,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-list-1280-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-390-light",
+      "file": "31-vpc-list-390-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 844,
+      "modal": null,
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 405,
+          "cw": 356,
+          "h": 415,
+          "sh": 405,
+          "sw": 583,
+          "w": 356,
+          "x": 12,
+          "y": 244
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 390,
+      "originalCaptureFile": "31-vpc-list-390-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-list-768-dark",
+      "file": "32-offering-list-768-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 684,
+          "cw": 644,
+          "h": 684,
+          "sh": 684,
+          "sw": 644,
+          "w": 644,
+          "x": 92,
+          "y": 284
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 768,
+      "originalCaptureFile": "32-offering-list-768-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-list-390-dark",
+      "file": "32-offering-list-390-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 844,
+      "modal": null,
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 926,
+          "cw": 346,
+          "h": 936,
+          "sh": 926,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 340
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "32-offering-list-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-1280-dark",
+      "file": "31-vpc-list-1280-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BUTTON",
+        "text": ""
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 207,
+          "cw": 990,
+          "h": 207,
+          "sh": 207,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-vpc-list-1280-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-768-dark",
+      "file": "31-vpc-list-768-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 273,
+          "cw": 654,
+          "h": 273,
+          "sh": 273,
+          "sw": 654,
+          "w": 654,
+          "x": 92,
+          "y": 206
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 768,
+      "originalCaptureFile": "31-vpc-list-768-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-list-1280-light",
+      "file": "32-offering-list-1280-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "BUTTON",
+        "text": ""
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 383,
+          "cw": 990,
+          "h": 383,
+          "sh": 383,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-list-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-390-dark",
+      "file": "31-vpc-list-390-dark.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 844,
+      "modal": null,
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 405,
+          "cw": 356,
+          "h": 415,
+          "sh": 405,
+          "sw": 583,
+          "w": 356,
+          "x": 12,
+          "y": 244
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 390,
+      "originalCaptureFile": "31-vpc-list-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-list-768-light",
+      "file": "32-offering-list-768-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 684,
+          "cw": 644,
+          "h": 684,
+          "sh": 684,
+          "sw": 644,
+          "w": 644,
+          "x": 92,
+          "y": 284
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 768,
+      "originalCaptureFile": "32-offering-list-768-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-list-390-light",
+      "file": "32-offering-list-390-light.jpg",
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "body": null,
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 844,
+      "modal": null,
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 926,
+          "cw": 346,
+          "h": 936,
+          "sh": 926,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 340
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "32-offering-list-390-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-vpc-list-1280-dark-090492",
+      "file": "31-vpc-list-1280-dark-090492.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 207,
+          "cw": 990,
+          "h": 207,
+          "sh": 207,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-vpc-list-1280-dark-090492.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-create-1280-light",
+      "file": "32-offering-create-1280-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1489,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_enable",
+        "tag": "BUTTON",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 595,
+          "cw": 892,
+          "h": 595,
+          "sh": 595,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": -233
+        }
+      ],
+      "tables": [
+        {
+          "ch": 383,
+          "cw": 990,
+          "h": 383,
+          "sh": 383,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-create-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-create-768-light",
+      "file": "32-offering-create-768-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 708,
+        "h": 710,
+        "sh": 1565,
+        "sw": 708,
+        "w": 718,
+        "x": 25,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_enable",
+        "tag": "BUTTON",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 720,
+        "h": 832,
+        "sh": 832,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 34
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [
+        {
+          "ch": 649,
+          "cw": 652,
+          "h": 649,
+          "sh": 649,
+          "sw": 652,
+          "w": 652,
+          "x": 53,
+          "y": 568
+        }
+      ],
+      "tables": [
+        {
+          "ch": 684,
+          "cw": 644,
+          "h": 684,
+          "sh": 684,
+          "sw": 644,
+          "w": 644,
+          "x": 92,
+          "y": 284
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 768,
+      "originalCaptureFile": "32-offering-create-768-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-create-390-light",
+      "file": "32-offering-create-390-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1571,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_enable",
+        "tag": "BUTTON",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [
+        {
+          "ch": 649,
+          "cw": 322,
+          "h": 649,
+          "sh": 649,
+          "sw": 322,
+          "w": 322,
+          "x": 29,
+          "y": 560
+        }
+      ],
+      "tables": [
+        {
+          "ch": 926,
+          "cw": 346,
+          "h": 936,
+          "sh": 926,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 340
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "32-offering-create-390-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-provider-popup-390-light",
+      "file": "32-offering-provider-popup-390-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1571,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_provider",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [
+        {
+          "ch": 649,
+          "cw": 322,
+          "h": 649,
+          "sh": 649,
+          "sw": 322,
+          "w": 322,
+          "x": 29,
+          "y": 560
+        }
+      ],
+      "tables": [
+        {
+          "ch": 926,
+          "cw": 346,
+          "h": 936,
+          "sh": 926,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 340
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "32-offering-provider-popup-390-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-submit-pending-1280-light",
+      "file": "32-offering-submit-pending-1280-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1610,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": "VPC 오퍼링 요청을 전송하고 있습니다.이름: qa-vpc1658-32-오퍼링-UI생성요청 ID: 8aaf6852-3c16-4d40-9372-1"
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 595,
+          "cw": 892,
+          "h": 595,
+          "sh": 595,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 643.140625
+        }
+      ],
+      "tables": [
+        {
+          "ch": 383,
+          "cw": 990,
+          "h": 383,
+          "sh": 383,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-submit-pending-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-response-uncertain-1280-light",
+      "file": "32-offering-response-uncertain-1280-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1694,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "DIV",
+        "text": "최종 결과를 확인하지 못했습니다.이름: qa-vpc1658-32-오퍼링-UI생성작업 ID: 8aaf6852-3c16-4d40-9372-1f93b"
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 595,
+          "cw": 892,
+          "h": 595,
+          "sh": 595,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 727.140625
+        }
+      ],
+      "tables": [
+        {
+          "ch": 383,
+          "cw": 990,
+          "h": 383,
+          "sh": 383,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-response-uncertain-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-clone-1280-light",
+      "file": "32-offering-clone-1280-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 708,
+        "h": 710,
+        "sh": 1799,
+        "sw": 708,
+        "w": 718,
+        "x": 281,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_displaytext",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 720,
+        "h": 832,
+        "sh": 832,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 653,
+          "cw": 652,
+          "h": 653,
+          "sh": 653,
+          "sw": 652,
+          "w": 652,
+          "x": 309,
+          "y": 837.6875
+        }
+      ],
+      "tables": [],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering/a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-clone-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-access-1280-light",
+      "file": "32-offering-access-1280-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 270,
+        "cw": 718,
+        "h": 270,
+        "sh": 270,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 310
+      },
+      "dark": false,
+      "focus": {
+        "id": "zone-selection",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 580
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 255
+      },
+      "height": 900,
+      "modal": {
+        "ch": 392,
+        "cw": 720,
+        "h": 392,
+        "sh": 392,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 254
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering/883daead-5485-4a91-86d9-b25fea1159d6",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-access-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-vpc-create-1280-light",
+      "file": "32-vpc-create-1280-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 708,
+        "h": 710,
+        "sh": 1281,
+        "sw": 708,
+        "w": 718,
+        "x": 281,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "",
+        "tag": "BUTTON",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 720,
+        "h": 832,
+        "sh": 832,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 206,
+          "cw": 990,
+          "h": 206,
+          "sh": 206,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 288
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpc?vpcofferingid=883daead-5485-4a91-86d9-b25fea1159d6",
+      "width": 1280,
+      "originalCaptureFile": "32-vpc-create-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-1280-dark",
+      "file": "31-offering-create-1280-dark.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1405,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": true,
+      "focus": {
+        "id": "rc_select_6",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 579,
+          "cw": 892,
+          "h": 579,
+          "sh": 579,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 546
+        }
+      ],
+      "tables": [
+        {
+          "ch": 479,
+          "cw": 990,
+          "h": 479,
+          "sh": 479,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "31-offering-create-1280-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-768-dark",
+      "file": "31-offering-create-768-dark.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 708,
+        "h": 710,
+        "sh": 1460,
+        "sw": 708,
+        "w": 718,
+        "x": 25,
+        "y": 90
+      },
+      "dark": true,
+      "focus": {
+        "id": "rc_select_6",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 720,
+        "h": 832,
+        "sh": 832,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 34
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [
+        {
+          "ch": 612,
+          "cw": 652,
+          "h": 612,
+          "sh": 612,
+          "sw": 652,
+          "w": 652,
+          "x": 53,
+          "y": 568
+        }
+      ],
+      "tables": [
+        {
+          "ch": 822,
+          "cw": 644,
+          "h": 822,
+          "sh": 822,
+          "sw": 644,
+          "w": 644,
+          "x": 92,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 768,
+      "originalCaptureFile": "31-offering-create-768-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-390-dark",
+      "file": "31-offering-create-390-dark.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1466,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": true,
+      "focus": {
+        "id": "rc_select_6",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [
+        {
+          "ch": 612,
+          "cw": 322,
+          "h": 612,
+          "sh": 612,
+          "sw": 322,
+          "w": 322,
+          "x": 29,
+          "y": 560
+        }
+      ],
+      "tables": [
+        {
+          "ch": 1152,
+          "cw": 346,
+          "h": 1162,
+          "sh": 1152,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 217
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "31-offering-create-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-390-dark-bottom",
+      "file": "31-offering-create-390-dark-bottom.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1466,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": true,
+      "focus": {
+        "id": "rc_select_6",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [
+        {
+          "ch": 612,
+          "cw": 322,
+          "h": 612,
+          "sh": 612,
+          "sw": 322,
+          "w": 322,
+          "x": 29,
+          "y": -208
+        }
+      ],
+      "tables": [
+        {
+          "ch": 1152,
+          "cw": 346,
+          "h": 1162,
+          "sh": 1152,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 217
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "31-offering-create-390-dark-bottom.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-create-1280-dark",
+      "file": "32-offering-create-1280-dark.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1461,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": true,
+      "focus": {
+        "id": "form_item_displaytext",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 563,
+          "cw": 892,
+          "h": 563,
+          "sh": 563,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 546
+        }
+      ],
+      "tables": [
+        {
+          "ch": 479,
+          "cw": 990,
+          "h": 479,
+          "sh": 479,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "32-offering-create-1280-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-create-768-dark",
+      "file": "32-offering-create-768-dark.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 708,
+        "h": 710,
+        "sh": 1517,
+        "sw": 708,
+        "w": 718,
+        "x": 25,
+        "y": 90
+      },
+      "dark": true,
+      "focus": {
+        "id": "form_item_displaytext",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 720,
+        "h": 832,
+        "sh": 832,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 34
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [
+        {
+          "ch": 575,
+          "cw": 652,
+          "h": 575,
+          "sh": 575,
+          "sw": 652,
+          "w": 652,
+          "x": 53,
+          "y": 568
+        }
+      ],
+      "tables": [
+        {
+          "ch": 1152,
+          "cw": 468,
+          "h": 1152,
+          "sh": 1152,
+          "sw": 563,
+          "w": 468,
+          "x": 268,
+          "y": 344
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 768,
+      "originalCaptureFile": "32-offering-create-768-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-offering-create-390-dark",
+      "file": "32-offering-create-390-dark.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1567,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": true,
+      "focus": {
+        "id": "form_item_displaytext",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [
+        {
+          "ch": 575,
+          "cw": 322,
+          "h": 575,
+          "sh": 575,
+          "sw": 322,
+          "w": 322,
+          "x": 29,
+          "y": 560
+        }
+      ],
+      "tables": [
+        {
+          "ch": 1152,
+          "cw": 90,
+          "h": 1152,
+          "sh": 1152,
+          "sw": 563,
+          "w": 90,
+          "x": 268,
+          "y": 450
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "32-offering-create-390-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-1280-light",
+      "file": "31-offering-create-1280-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1461,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_displaytext",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 563,
+          "cw": 892,
+          "h": 563,
+          "sh": 563,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 546
+        }
+      ],
+      "tables": [
+        {
+          "ch": 479,
+          "cw": 990,
+          "h": 479,
+          "sh": 479,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "31-offering-create-1280-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "32-clone-multiple-providers-1280-dark",
+      "file": "32-clone-multiple-providers-1280-dark.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": null,
+      "dark": true,
+      "focus": {
+        "id": "",
+        "tag": "BODY",
+        "text": "\n          html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  co"
+      },
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering/40922971-6e3a-4a26-a7fd-b7c88383e680",
+      "width": 1280,
+      "originalCaptureFile": "32-clone-multiple-providers-1280-dark.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-768-light",
+      "file": "31-offering-create-768-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 710,
+        "cw": 708,
+        "h": 710,
+        "sh": 1517,
+        "sw": 708,
+        "w": 718,
+        "x": 25,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_displaytext",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 25,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 720,
+        "h": 832,
+        "sh": 832,
+        "sw": 720,
+        "w": 720,
+        "x": 24,
+        "y": 34
+      },
+      "page": {
+        "client": 768,
+        "scroll": 758
+      },
+      "supported": [
+        {
+          "ch": 575,
+          "cw": 652,
+          "h": 575,
+          "sh": 575,
+          "sw": 652,
+          "w": 652,
+          "x": 53,
+          "y": 568
+        }
+      ],
+      "tables": [
+        {
+          "ch": 822,
+          "cw": 644,
+          "h": 822,
+          "sh": 822,
+          "sw": 644,
+          "w": 644,
+          "x": 92,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 768,
+      "originalCaptureFile": "31-offering-create-768-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-390-light",
+      "file": "31-offering-create-390-light.jpg",
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1567,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_displaytext",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [
+        {
+          "ch": 575,
+          "cw": 322,
+          "h": 575,
+          "sh": 575,
+          "sw": 322,
+          "w": 322,
+          "x": 29,
+          "y": 560
+        }
+      ],
+      "tables": [
+        {
+          "ch": 1152,
+          "cw": 346,
+          "h": 1162,
+          "sh": 1152,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 217
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "31-offering-create-390-light.png",
+      "reviewed": true,
+      "phase": "layout/functional validation before final inactive-label guard"
+    },
+    {
+      "label": "31-offering-create-1280-light-final",
+      "file": "31-offering-create-1280-light-final.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1461,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": false,
+      "focus": {
+        "id": "form_item_name",
+        "tag": "INPUT",
+        "text": ""
+      },
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 563,
+          "cw": 892,
+          "h": 563,
+          "sh": 563,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 546
+        }
+      ],
+      "tables": [
+        {
+          "ch": 479,
+          "cw": 990,
+          "h": 479,
+          "sh": 479,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "capture": "CDP original viewport clip, scale=1",
+      "originalCaptureFile": "31-offering-create-1280-light-final.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "31-final-offering-create-1280-light",
+      "file": "31-final-offering-create-1280-light.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": {
+        "ch": 710,
+        "cw": 948,
+        "h": 710,
+        "sh": 1461,
+        "sw": 948,
+        "w": 958,
+        "x": 161,
+        "y": 90
+      },
+      "dark": false,
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 800
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 35
+      },
+      "height": 900,
+      "modal": {
+        "ch": 832,
+        "cw": 960,
+        "h": 832,
+        "sh": 832,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 34
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [
+        {
+          "ch": 563,
+          "cw": 892,
+          "h": 563,
+          "sh": 563,
+          "sw": 892,
+          "w": 892,
+          "x": 189,
+          "y": 546
+        }
+      ],
+      "tables": [
+        {
+          "ch": 479,
+          "cw": 990,
+          "h": 479,
+          "sh": 479,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpcoffering",
+      "width": 1280,
+      "originalCaptureFile": "31-final-offering-create-1280-light.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "32-final-offering-create-390-dark",
+      "file": "32-final-offering-create-390-dark.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": {
+        "ch": 698,
+        "cw": 354,
+        "h": 698,
+        "sh": 1567,
+        "sw": 354,
+        "w": 364,
+        "x": 13,
+        "y": 68
+      },
+      "dark": true,
+      "footer": {
+        "ch": 64,
+        "cw": 364,
+        "h": 65,
+        "sh": 64,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 766
+      },
+      "header": {
+        "ch": 54,
+        "cw": 364,
+        "h": 55,
+        "sh": 54,
+        "sw": 364,
+        "w": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 844,
+      "modal": {
+        "ch": 820,
+        "cw": 366,
+        "h": 820,
+        "sh": 820,
+        "sw": 366,
+        "w": 366,
+        "x": 12,
+        "y": 12
+      },
+      "page": {
+        "client": 390,
+        "scroll": 380
+      },
+      "supported": [
+        {
+          "ch": 575,
+          "cw": 322,
+          "h": 575,
+          "sh": 575,
+          "sw": 322,
+          "w": 322,
+          "x": 29,
+          "y": 560
+        }
+      ],
+      "tables": [
+        {
+          "ch": 1152,
+          "cw": 346,
+          "h": 1162,
+          "sh": 1152,
+          "sw": 563,
+          "w": 346,
+          "x": 12,
+          "y": 340
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering",
+      "width": 390,
+      "originalCaptureFile": "32-final-offering-create-390-dark.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "31-final-gateway-503-retry-1280-light",
+      "file": "31-final-gateway-503-retry-1280-light.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": null,
+      "dark": false,
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 79,
+          "cw": 489,
+          "h": 89,
+          "sh": 79,
+          "sw": 760,
+          "w": 489.40625,
+          "x": 733.578125,
+          "y": 420.28125
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc/dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30?tab=pgw",
+      "width": 1280,
+      "originalCaptureFile": "31-final-gateway-503-retry-1280-light.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "31-final-bulk-restart-targets-1280-light",
+      "file": "31-final-bulk-restart-targets-1280-light.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": {
+        "ch": 538,
+        "cw": 958,
+        "h": 538,
+        "sh": 538,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 176
+      },
+      "dark": false,
+      "footer": {
+        "ch": 64,
+        "cw": 958,
+        "h": 65,
+        "sh": 64,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 714
+      },
+      "header": {
+        "ch": 54,
+        "cw": 958,
+        "h": 55,
+        "sh": 54,
+        "sw": 958,
+        "w": 958,
+        "x": 161,
+        "y": 121
+      },
+      "height": 900,
+      "modal": {
+        "ch": 660,
+        "cw": 960,
+        "h": 660,
+        "sh": 660,
+        "sw": 960,
+        "w": 960,
+        "x": 160,
+        "y": 120
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 207,
+          "cw": 990,
+          "h": 207,
+          "sh": 207,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-final-bulk-restart-targets-1280-light.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "31-final-vpc-delete-dialog-1280-light",
+      "file": "31-final-vpc-delete-dialog-1280-light.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": {
+        "ch": 218,
+        "cw": 718,
+        "h": 218,
+        "sh": 218,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 336
+      },
+      "dark": false,
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 554
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 281
+      },
+      "height": 900,
+      "modal": {
+        "ch": 340,
+        "cw": 720,
+        "h": 340,
+        "sh": 340,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 280
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [],
+      "url": "http://10.10.31.10:8080/client/#/vpc/d1b4cad9-db3f-4e4d-8998-7d456334f23a",
+      "width": 1280,
+      "originalCaptureFile": "31-final-vpc-delete-dialog-1280-light.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "32-final-gateway-delete-dialog-1280-dark",
+      "file": "32-final-gateway-delete-dialog-1280-dark.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": {
+        "ch": 240,
+        "cw": 718,
+        "h": 240,
+        "sh": 240,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 325
+      },
+      "dark": true,
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 565
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 270
+      },
+      "height": 900,
+      "modal": {
+        "ch": 362,
+        "cw": 720,
+        "h": 362,
+        "sh": 362,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 269
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [],
+      "url": "http://10.10.32.10:8080/client/#/privategw/45a1ccd1-70c4-49b2-8dac-553bc1da32b8",
+      "width": 1280,
+      "originalCaptureFile": "32-final-gateway-delete-dialog-1280-dark.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "32-final-offering-delete-dialog-1280-dark",
+      "file": "32-final-offering-delete-dialog-1280-dark.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": {
+        "ch": 174,
+        "cw": 718,
+        "h": 174,
+        "sh": 174,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 358
+      },
+      "dark": true,
+      "footer": {
+        "ch": 64,
+        "cw": 718,
+        "h": 65,
+        "sh": 64,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 532
+      },
+      "header": {
+        "ch": 54,
+        "cw": 718,
+        "h": 55,
+        "sh": 54,
+        "sw": 718,
+        "w": 718,
+        "x": 281,
+        "y": 303
+      },
+      "height": 900,
+      "modal": {
+        "ch": 296,
+        "cw": 720,
+        "h": 296,
+        "sh": 296,
+        "sw": 720,
+        "w": 720,
+        "x": 280,
+        "y": 302
+      },
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering/40922971-6e3a-4a26-a7fd-b7c88383e680",
+      "width": 1280,
+      "originalCaptureFile": "32-final-offering-delete-dialog-1280-dark.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "31-final-cleanup-vpc-prefix-empty",
+      "file": "31-final-cleanup-vpc-prefix-empty.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": null,
+      "dark": false,
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 206,
+          "cw": 990,
+          "h": 206,
+          "sh": 206,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-final-cleanup-vpc-prefix-empty.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "32-final-cleanup-offering-prefix-empty",
+      "file": "32-final-cleanup-offering-prefix-empty.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": null,
+      "dark": true,
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 206,
+          "cw": 990,
+          "h": 206,
+          "sh": 206,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "32-final-cleanup-offering-prefix-empty.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "31-final-cleanup-vpc-prefix-empty-clean",
+      "file": "31-final-cleanup-vpc-prefix-empty-clean.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": null,
+      "dark": false,
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 206,
+          "cw": 990,
+          "h": 206,
+          "sh": 206,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 179
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/vpc?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "31-final-cleanup-vpc-prefix-empty-clean.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    },
+    {
+      "label": "32-final-cleanup-offering-prefix-empty-light",
+      "file": "32-final-cleanup-offering-prefix-empty-light.png",
+      "source": "af129880b21c066ea19d105231288e049a6ca24c",
+      "capture": "CDP original viewport clip, scale=1",
+      "body": null,
+      "dark": false,
+      "footer": null,
+      "header": null,
+      "height": 900,
+      "modal": null,
+      "page": {
+        "client": 1280,
+        "scroll": 1270
+      },
+      "supported": [],
+      "tables": [
+        {
+          "ch": 206,
+          "cw": 990,
+          "h": 206,
+          "sh": 206,
+          "sw": 990,
+          "w": 990,
+          "x": 268,
+          "y": 252
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/vpcoffering?keyword=qa-vpc1658&q=qa-vpc1658&page=1&pagesize=20",
+      "width": 1280,
+      "originalCaptureFile": "32-final-cleanup-offering-prefix-empty-light.png",
+      "reviewed": true,
+      "phase": "final confirmation"
+    }
+  ],
+  "additionalReviewedReferences": [
+    "vm-reference-list-1280.jpg",
+    "vm-reference-detail-1280.jpg",
+    "vm-reference-detail-dark-1280.jpg",
+    "vm-reference-edit-1280.jpg",
+    "baseline-staticroutes-1280.jpg",
+    "baseline-gateway-parent-1280.jpg",
+    "32-clone-detail-390-dark-raw.png"
+  ],
+  "excludedObservations": [
+    {
+      "label": "32-vpc-edit-1680-light-extra",
+      "reason": "Extra non-standard viewport reference, not part of the core matrix."
+    },
+    {
+      "label": "31-route-create-1280-dark",
+      "reason": "Opening animation captured the preceding page; replaced by settled capture."
+    },
+    {
+      "label": "32-clone-detail-390-dark",
+      "reason": "Mixed temporary viewport state compressed the background layout; excluded."
+    },
+    {
+      "label": "32-clone-detail-390-dark-final",
+      "reason": "Native capture scaling mismatch after viewport reset; excluded."
+    },
+    {
+      "label": "32-clone-detail-390-dark-final-settled",
+      "reason": "Native capture scaling mismatch; replaced by original viewport capture."
+    },
+    {
+      "label": "32-clone-detail-390-dark-final-raw",
+      "reason": "Wrapper also called native capture and changed its scale; excluded."
+    },
+    {
+      "label": "31-final-list-503-single-notice-1280-light",
+      "reason": "Recovery raced capture; use DOM before/after proof and gateway error screenshot."
+    }
+  ],
+  "scope": "Each matrix covers that named form only, not all business dialogs in every size/theme.",
+  "afterOfferingMatrixChange": "090492 to af129 changes only the inactive generic Footer translation fallback and its test; no layout/CSS change.",
+  "manualStaticRouteRetry32": false,
+  "staticRouteFailure32": "Retained both route rows and showed retry; automatic recovery after fault removal. Installed Alert retry click tested in focused suite.",
+  "manualGatewayRetry31": true
+}

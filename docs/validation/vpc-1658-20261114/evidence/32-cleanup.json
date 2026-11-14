@@ -1,0 +1,111 @@
+[
+  {
+    "command": "deleteStaticRoute",
+    "id": "3f22e339-dcef-4398-9504-3fdd04f42393",
+    "receipt": {
+      "jobid": "045a5d8f-0ca3-4747-bda8-e4e64358d07b"
+    },
+    "terminalJob": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteStaticRouteCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-14T23:02:11+0900",
+      "completed": "2026-11-14T23:02:11+0900",
+      "jobid": "045a5d8f-0ca3-4747-bda8-e4e64358d07b",
+      "jobstatus": 1
+    },
+    "result": {
+      "success": true
+    },
+    "success": true
+  },
+  {
+    "command": "deleteStaticRoute",
+    "id": "6a8c810f-9d09-4b82-96bf-cc93cdd69c63",
+    "alreadyAbsentAfterUi": true
+  },
+  {
+    "command": "deletePrivateGateway",
+    "id": "45a1ccd1-70c4-49b2-8dac-553bc1da32b8",
+    "alreadyAbsentAfterUi": true
+  },
+  {
+    "command": "deleteVPC",
+    "id": "d951c317-8769-435b-a735-bee9c472c07e",
+    "receipt": {
+      "jobid": "e86ff5b4-964b-4b16-9cdb-50e079c7f3ad"
+    },
+    "terminalJob": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "Vpc",
+      "created": "2026-11-14T23:02:41+0900",
+      "completed": "2026-11-14T23:02:41+0900",
+      "jobid": "e86ff5b4-964b-4b16-9cdb-50e079c7f3ad",
+      "jobstatus": 1
+    },
+    "result": {
+      "success": true
+    },
+    "success": true
+  },
+  {
+    "command": "deleteVPC",
+    "id": "bc53be78-c0de-47bc-a73e-ecf1c01caebf",
+    "alreadyAbsentAfterUi": true
+  },
+  {
+    "command": "deleteVPCOffering",
+    "id": "40922971-6e3a-4a26-a7fd-b7c88383e680",
+    "alreadyAbsentAfterUi": true
+  },
+  {
+    "command": "deleteVPCOffering",
+    "id": "883daead-5485-4a91-86d9-b25fea1159d6",
+    "receipt": {
+      "jobid": "bc9a1a7a-07ef-4cb9-a9de-6739ef5ecab1"
+    },
+    "terminalJob": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.admin.vpc.DeleteVPCOfferingCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "VpcOffering",
+      "created": "2026-11-14T23:02:43+0900",
+      "completed": "2026-11-14T23:02:43+0900",
+      "jobid": "bc9a1a7a-07ef-4cb9-a9de-6739ef5ecab1",
+      "jobstatus": 1
+    },
+    "result": {
+      "success": true
+    },
+    "success": true
+  }
+]

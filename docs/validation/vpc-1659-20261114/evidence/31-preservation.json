@@ -1,0 +1,110 @@
+{
+  "listVPCs": {
+    "beforeCount": 2,
+    "afterCount": 2,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listPrivateGateways": {
+    "beforeCount": 0,
+    "afterCount": 0,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listStaticRoutes": {
+    "beforeCount": 0,
+    "afterCount": 0,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listNetworks": {
+    "beforeCount": 31,
+    "afterCount": 31,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listNetworkACLLists": {
+    "beforeCount": 4,
+    "afterCount": 4,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listPhysicalNetworks": {
+    "beforeCount": 2,
+    "afterCount": 2,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listZones": {
+    "beforeCount": 1,
+    "afterCount": 1,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listVPCOfferings": {
+    "beforeCount": 7,
+    "afterCount": 7,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listRouters": {
+    "beforeCount": 20,
+    "afterCount": 20,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listVirtualMachines": {
+    "beforeCount": 132,
+    "afterCount": 132,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listAccounts": {
+    "beforeCount": 26,
+    "afterCount": 26,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  },
+  "listProjects": {
+    "beforeCount": 7,
+    "afterCount": 7,
+    "idSetsMatch": true,
+    "added": [],
+    "missing": [],
+    "fieldDifferences": [],
+    "nonSemanticArrayOrdering": []
+  }
+}

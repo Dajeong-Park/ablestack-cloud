@@ -1,0 +1,39 @@
+{
+  "provenance": "Live CUA operator observations, paired with screenshots and API oracles",
+  "popupEscape": {
+    "cluster32OfferingCreate": {
+      "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+      "visibleDialogsAfterFirstEscape": 1,
+      "openSelectsAfterEscape": 0,
+      "preservedName": "qa-vpc1658-32-오퍼링-UI생성",
+      "screenshot": "../screenshots/32-offering-provider-popup-390-light.jpg"
+    },
+    "cluster31GatewayCreate": {
+      "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+      "visibleDialogsAfterFirstEscape": 1,
+      "openSelectsAfterEscape": 0,
+      "secondEscapeClosedDialog": true,
+      "screenshot": "../screenshots/31-gateway-acl-popup-390-dark.jpg"
+    }
+  },
+  "offeringRelatedVpcFilter32": {
+    "source": "090492ebdcb8ad11f05ee9d38d69f41d1f46d4e4",
+    "offeringid": "883daead-5485-4a91-86d9-b25fea1159d6",
+    "beforeCount": 0,
+    "afterUiCreateCount": 1,
+    "vpcid": "bc53be78-c0de-47bc-a73e-ecf1c01caebf"
+  },
+  "offeringEventNavigation32": {
+    "eventsQuery": "tab=events",
+    "browserBackReturnedToDetails": true
+  },
+  "tagFocus32": {
+    "source": "370c8703b61cf225a2d41a69d2a56412c2c75083",
+    "initialField": "form_item_key",
+    "firstInvalidFieldAfterBlankSubmit": "form_item_key",
+    "emptySubmitAddedNoPost": true,
+    "ctrlEnterCreatedOneTag": true,
+    "closeReturnedToTagButton": true
+  },
+  "noExtraIssuesCreated": true
+}

@@ -1,0 +1,45 @@
+{
+  "count": 1,
+  "api": [
+    {
+      "name": "deleteNetworkACLList",
+      "description": "Deletes a network ACL",
+      "isasync": true,
+      "params": [
+        {
+          "name": "id",
+          "description": "The ID of the network ACL",
+          "type": "uuid",
+          "length": 255,
+          "required": true,
+          "related": "createNetworkACLList"
+        }
+      ],
+      "response": [
+        {},
+        {},
+        {
+          "name": "displaytext",
+          "description": "Any text associated with the success or failure",
+          "type": "string"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "success",
+          "description": "True if operation is executed successfully",
+          "type": "boolean"
+        }
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}
