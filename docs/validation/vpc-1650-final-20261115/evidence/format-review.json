@@ -1,0 +1,1603 @@
+{
+  "referenceHead": "038b5444a4a87fd1a33396c89b8f6afd589eee29",
+  "deployedProduct": "ce4b96dfdb5148a04be9dd29828e408c77fbe39a",
+  "vueHeadersChanged": [
+    "ui/src/components/network/VpcActionContext.vue",
+    "ui/src/components/network/VpcDialog.vue",
+    "ui/src/views/network/CreateVpc.vue",
+    "ui/src/views/network/MigrateVpc.vue",
+    "ui/src/views/network/PrivateGatewayCreate.vue",
+    "ui/src/views/network/RestartVpc.vue",
+    "ui/src/views/network/VpcTierCreateDialog.vue",
+    "ui/src/views/network/VpcVpnCreate.vue",
+    "ui/src/views/offering/VpcOfferingOperationStatus.vue"
+  ],
+  "vueCompilerDescriptors": [
+    {
+      "file": "ui/src/components/network/VpcActionContext.vue",
+      "descriptorBefore": "c26e7d8fac683904da3a930548976f8a33971fcb2d60a1ec97940d6078a85336",
+      "descriptorAfter": "c26e7d8fac683904da3a930548976f8a33971fcb2d60a1ec97940d6078a85336",
+      "equal": true
+    },
+    {
+      "file": "ui/src/components/network/VpcDialog.vue",
+      "descriptorBefore": "620aaea27a87d162c02a3f4f0bb30a2af5badf348568d0d098a977eb705e3415",
+      "descriptorAfter": "620aaea27a87d162c02a3f4f0bb30a2af5badf348568d0d098a977eb705e3415",
+      "equal": true
+    },
+    {
+      "file": "ui/src/views/network/CreateVpc.vue",
+      "descriptorBefore": "ef434a681247536a98f5b9b65fd79b883ab93d420f974c2a50075ff8f57e4e8e",
+      "descriptorAfter": "ef434a681247536a98f5b9b65fd79b883ab93d420f974c2a50075ff8f57e4e8e",
+      "equal": true
+    },
+    {
+      "file": "ui/src/views/network/MigrateVpc.vue",
+      "descriptorBefore": "35c4f4c0f7d7cb8e6c662476f763e9bbf41ac386ec39c6ab75064ca831e050a8",
+      "descriptorAfter": "35c4f4c0f7d7cb8e6c662476f763e9bbf41ac386ec39c6ab75064ca831e050a8",
+      "equal": true
+    },
+    {
+      "file": "ui/src/views/network/PrivateGatewayCreate.vue",
+      "descriptorBefore": "5a4786d540d9b2aa2a6171de5136d401a1e942dc01318b774e414bc446564e1c",
+      "descriptorAfter": "5a4786d540d9b2aa2a6171de5136d401a1e942dc01318b774e414bc446564e1c",
+      "equal": true
+    },
+    {
+      "file": "ui/src/views/network/RestartVpc.vue",
+      "descriptorBefore": "670b3e2691b4104412fe1413f6766374414ad2b79bb1497c4f613da43f622d26",
+      "descriptorAfter": "670b3e2691b4104412fe1413f6766374414ad2b79bb1497c4f613da43f622d26",
+      "equal": true
+    },
+    {
+      "file": "ui/src/views/network/VpcTierCreateDialog.vue",
+      "descriptorBefore": "5d0de7708b6a0c9e6cb17849bbc284a29500a58f9c8c58244175745c1ebd9154",
+      "descriptorAfter": "5d0de7708b6a0c9e6cb17849bbc284a29500a58f9c8c58244175745c1ebd9154",
+      "equal": true
+    },
+    {
+      "file": "ui/src/views/network/VpcVpnCreate.vue",
+      "descriptorBefore": "03434e15326560548cbe5a0a6e0b6d2a834908311a18f38d9ef1d45dc98ecf2a",
+      "descriptorAfter": "03434e15326560548cbe5a0a6e0b6d2a834908311a18f38d9ef1d45dc98ecf2a",
+      "equal": true
+    },
+    {
+      "file": "ui/src/views/offering/VpcOfferingOperationStatus.vue",
+      "descriptorBefore": "8b847191d3fedc2db97484c09c9602680f4c5c93955e51aacaf0e26aa69ace57",
+      "descriptorAfter": "8b847191d3fedc2db97484c09c9602680f4c5c93955e51aacaf0e26aa69ace57",
+      "equal": true
+    }
+  ],
+  "markdownHeaderChanges": [
+    "docs/validation/vpc-1651-20261113/DESIGN.ko.md",
+    "docs/validation/vpc-1651-20261113/README.ko.md",
+    "docs/validation/vpc-1652-20261113/DESIGN.ko.md",
+    "docs/validation/vpc-1652-20261113/README.ko.md",
+    "docs/validation/vpc-1656-20261114/README.ko.md",
+    "docs/validation/vpc-1658-20261114/README.ko.md"
+  ],
+  "pngFiles": 142,
+  "pngOptimizer": "oxipng 9.1.5 -o 4 --strip safe --alpha",
+  "vueLintExit": 0,
+  "licenseHookVersion": "Lucas-C/pre-commit-hooks v1.5.6",
+  "licenseHookExit": 0,
+  "markdownBodies": [
+    {
+      "file": "docs/validation/vpc-1650-final-20261115/README.ko.md",
+      "bodySha256": "2c1d71731abc94a3f94fd339546586f782188eb4eb78b2d541482c36488f4495",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/DESIGN.ko.md",
+      "bodySha256": "2e42bdd2a9c4479f0a029448635f6b173232409398b7a4b5f39782c586da10f0",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/README.ko.md",
+      "bodySha256": "ca628a4c8a4c973018fb611d3cd3f850069eac9e0c740c05f1be8869f19a07fb",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/DESIGN.ko.md",
+      "bodySha256": "61567fa3214276552ebdb50940803a1907caacd207f226a72c50e955e15aea87",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/README.ko.md",
+      "bodySha256": "cc9004a7dd7d989517cb5cde057de6f95ba44800516d5abca6056b46ed24bc2b",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/DESIGN.ko.md",
+      "bodySha256": "2895b5ebc8593db69d52604a7e842bc37c343a40ba660bf2c15872610e8e1f22",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/README.ko.md",
+      "bodySha256": "a45bc254a337d4e9ef643de0d3bcf1d282e030d69ac448369338d6d46155a2b6",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1654-20261114/DESIGN.ko.md",
+      "bodySha256": "b01b1ebb192d85a8ed5e057af77cc400a50baac5cb187789f90e9350fe542119",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1654-20261114/README.ko.md",
+      "bodySha256": "b506c79eb8fbed48bbed3a22c8f4b2de3d8a98e349a23de7021c81284b708296",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1655-20261114/DESIGN.ko.md",
+      "bodySha256": "52b654ad03a10ab64ead3392bfd65f50f3735327660995a8f8e4e09998ac02b5",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1655-20261114/README.ko.md",
+      "bodySha256": "072304bc411e9a334cbeb9f0c44fce186ab2443a376ae66dba70d866c55a9c55",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1656-20261114/DESIGN.ko.md",
+      "bodySha256": "fb34e5c2e70f1f301dff7b2118f90d2ccc4557a42ece8a5c2f6312960c44273f",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1656-20261114/README.ko.md",
+      "bodySha256": "bd212a19d4b35423d3dc5edc143540a728a2e01e4c47a8d96b8f4f411af6a913",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1657-20261114/DESIGN.ko.md",
+      "bodySha256": "adf4b46c2591ddc977e7290ce22060f9c99c8cfa03b940870a6ebd4f8e9b5584",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1657-20261114/README.ko.md",
+      "bodySha256": "3153cf90fce98397c4ada928c100d792adf89cdf6d65cb0b9f9c66fc364c550c",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/DESIGN.ko.md",
+      "bodySha256": "41d4493003dc48d24ee55d5af045903bc0003d5b33b4edf6d5083b6ef15465d5",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/README.ko.md",
+      "bodySha256": "3d44c4fe28f86b25826d3043ba523d2195370faf559b85547cb8c70883f95b4c",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/DESIGN.ko.md",
+      "bodySha256": "90c3b938131420e43ad1cfd454d1b0512caf05e16f0c2d6d85ff3d9e7c3e1749",
+      "bodyUnchanged": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/README.ko.md",
+      "bodySha256": "ee34a446b290af95f3ff05d7d5fe5a5a18a3e4fe07e07612f3df5edf4693fef2",
+      "bodyUnchanged": true
+    }
+  ],
+  "pngPixelComparison": [
+    {
+      "file": "docs/validation/vpc-1650-final-20261115/evidence/screenshots/31-tag-dialog-1280-dark.png",
+      "beforeSha256": "315aa34bd3fb9270da21edab50ca732fc364e42f2e32f523034c9ec036965453",
+      "afterSha256": "e5cee3b6fd908694b8db6bd72669b187a1a4ad941943869b66ba088c9c95834f",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1650-final-20261115/evidence/screenshots/32-acl-dialog-390-light.png",
+      "beforeSha256": "4c35fa15bec7f5dcde8fd2f1b9f2214cc93b05563bb64269f0d12626aad26605",
+      "afterSha256": "f812d1ea2ea8a989ac2a2871a095aa2d11a55e81bfc864944c3beff7696e584b",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1650-final-20261115/evidence/screenshots/32-acl-success-1280-light-final.png",
+      "beforeSha256": "7e008b02d9109f27e77404163e6e4736942048c84aaf8172e4a4d6d02eaed9bc",
+      "afterSha256": "a8d097bb6711d86f0e5011f5f6239cfa2bbe5ad70c936b5a0ec29cb532ae4862",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1650-final-20261115/evidence/screenshots/32-tag-success-390-dark.png",
+      "beforeSha256": "b74c574d3fe79e382f3d52b4a8cc03f4b918c2d39ba7882c37bc90a7fedb9762",
+      "afterSha256": "c01f8d75ceed3687a2366dac58a8c1451f290d4d7697d6fd8b756009881001e7",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1650-final-20261115/evidence/screenshots/32-vpc-create-1280-light.png",
+      "beforeSha256": "6eae052e00a7d0a7500fcadf049a9ffa0d43489e7efc6059dd506d8cf6bdbb74",
+      "afterSha256": "ed5c1a484f87c001f2bb52fc0efa99bc67d1f79b900e7edb93a393dc356f90c6",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-cdp-light-360.png",
+      "beforeSha256": "a8501dcce688cd44c5eb70916df99874910bfe48db4cc91e47208317e47dc555",
+      "afterSha256": "84757094b754987dbc69368892bf2c5fd37b1736824288373c166c82e59cdeb3",
+      "dimensions": [
+        360,
+        800
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-cleanup-empty.png",
+      "beforeSha256": "7eb37842d47f144320b55a7339b6b0b4def5675fed99b518fc61e8e452a96679",
+      "afterSha256": "dfe5a692200e2a613b4ecd9e5fdcdb098b7a3cf13cd0451cfee69379eae6364f",
+      "dimensions": [
+        1920,
+        871
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-clone-dark-1280.png",
+      "beforeSha256": "f91ec8b577e723f70c128f52bb591bbfe1f7e96f35a8e019920e4bd75b17e04b",
+      "afterSha256": "0114a5019db7cfb4dd7261f99efecfc7ee3030106aabcdb5273e37eb65af82a5",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-clone-dark-360.png",
+      "beforeSha256": "eb2c1d5b04d967604f951e4a4c4827d0f78e89f9952a3e6055388953915d9c15",
+      "afterSha256": "1259f8425a0f480d48e8a81ccc7d39e02ccd2fe4f42490173446b45b0166808d",
+      "dimensions": [
+        360,
+        800
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-clone-dark-768.png",
+      "beforeSha256": "031929238be7f5eb0dda5fb5f38728c04803974fab3b9d253df8142a176d6ee1",
+      "afterSha256": "fe2dc8039d0127907c6496b8e245056038b083ded5101eef76f406c453fac454",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-clone-light-1280.png",
+      "beforeSha256": "7d75e3762b6564b3c3d631c4931925cdfea7cf25e46fb055c5bf54f5676cf88d",
+      "afterSha256": "941e29d7bdc4e90f5d98978afeccecc63b58d8df24c3b367e10ca9b900cba8fd",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-clone-light-360.png",
+      "beforeSha256": "1d389d12ed72026bde12d63a47f545873bfa38aa6d6d45270c843709ae1cb3dc",
+      "afterSha256": "7f4ad937756e2f34accee73e05924e54fdf37a25f76e13aa7a99e6703dcefc0e",
+      "dimensions": [
+        360,
+        800
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-clone-light-768.png",
+      "beforeSha256": "04df120557bb5ab1082ed72d464368ea696880af291a4040a30f2ca7d6310787",
+      "afterSha256": "f5bca326bfc65631fc22b34edf9f5c3346cc3506a023f5192c3d691cb6e869f7",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/31-tiers-created.png",
+      "beforeSha256": "d02f3d057ba651b91269848e3968aa38875296994447a996c80174cfdf413468",
+      "afterSha256": "7abd5cf387eb0307fe3ae9d74fa9c6745489c9831260b6704da648ca611a30d5",
+      "dimensions": [
+        1920,
+        871
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-cleanup-empty.png",
+      "beforeSha256": "89ea9b9725671560a263f765ae77c6800bdc8fb0ad28f3d9dc9149f529b7c2fe",
+      "afterSha256": "eded5daa9d6d3b9766c642d09de389b91bb5bc7771ea7ca818969ecc9b946fd1",
+      "dimensions": [
+        1920,
+        871
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-clone-dark-1280.png",
+      "beforeSha256": "43f4ef17cf2da59ebc2f7f0fea71080d909bd5a3b3719d5d6997c80494be67db",
+      "afterSha256": "2bc60d5f92ba16ed8296ceec88582c0d5ae533db1ad77d557647e951e6453df3",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-clone-dark-360.png",
+      "beforeSha256": "cb9491a90d61a944e610f86491442fa49fcb5e0d305529901771be3d4d711a36",
+      "afterSha256": "5a93dddf4431fae1a70c125a70339ba4d92bd4d5e19b96f04ecd25787e6e8884",
+      "dimensions": [
+        360,
+        800
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-clone-dark-768.png",
+      "beforeSha256": "289bcd572dbe054072ff1147ccc65542938cfad1d68bec7be08d8143d9043776",
+      "afterSha256": "ce20aa4dad4d957abcb07014cf96002bcc4104db255a8744a2a5a08d9a7b74c0",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-clone-light-1280.png",
+      "beforeSha256": "9031c12a88c0a2e12cf2509819585d0337a525344a619c3307176c561848e0da",
+      "afterSha256": "9798c8b9afa800440acb712d36c80edf7c35a212838bdbe25a50af1928390755",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-clone-light-360.png",
+      "beforeSha256": "ff6169a91ed6cc0911033b9a188baf3e951150d21676b5abc4aad58a385ee27f",
+      "afterSha256": "8d44aa67942766e660d9a233e5e331c904102789442d5fbd58154d806e39a620",
+      "dimensions": [
+        360,
+        800
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-clone-light-768.png",
+      "beforeSha256": "386141bf890e20f317adb0f6091049b3ac42905781aac410aff01fba5c1ca25e",
+      "afterSha256": "db32e7f0cc84995c93ab0c6039b75c864f7acab77fe28b176f394a5055407207",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1651-20261113/screenshots/32-tiers-created.png",
+      "beforeSha256": "bea3df589fa96d6550fcc935fdc6ce395e7ef2393e9bbbc9d3fe0f406785d2d7",
+      "afterSha256": "684076389c9fbe505d952a5bcc4e7f111a1aa779991b1995d1db093a0427ed06",
+      "dimensions": [
+        1920,
+        871
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-before-form.png",
+      "beforeSha256": "f1d9b1208d21fc5251594d2dc3e16fa68dafa816b041305d41cbca17577b065a",
+      "afterSha256": "5d3588ac717d97c7138d54bcb8f689d5cbe495781e3e33897843671b5273115f",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-cleanup-empty.png",
+      "beforeSha256": "d3137ac7af70dec1640e5220bc821cfe6d18b1f81d934ddd62d7df87e35d806c",
+      "afterSha256": "317c9d90fbbc901bcce13fb1ece19b560d2f2f9a15f7a1d8729b4436097f79c7",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-dark-mobile-capabilities.png",
+      "beforeSha256": "1c86f6eac9b80301a8578a6591151700a9c6acaa4eb13a802189daccd74a07dc",
+      "afterSha256": "ccf0c1dfa5d3656cb25ee972eb48cca829c353b71fd49591d88cd5106904ab64",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-disabled-candidate.png",
+      "beforeSha256": "c33c0f01fe6ab0ddf8f4aeaf6520f5e8b58188e4714fe607829fe1d619f1bb29",
+      "afterSha256": "444b7ed7235bfcfcb58d54d277298ea3bccda32e52be3a44b7cf34c4a3c2ef43",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-inheritance-summary.png",
+      "beforeSha256": "1eb90397766dbcacb97e0b941d9557bb2739bba33d1028325a86dfa43e9a8ed4",
+      "afterSha256": "830374a022f31da96d5d7f5ebf430e42f8c2ff663142aa1711e553a299595891",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-state-dark-1280.png",
+      "beforeSha256": "fed71afd0692f0c62660c73ee7e8940432892ecfb9f2575ccabade83c7972ff2",
+      "afterSha256": "d54f88204fb681c844df9feacc56f7c9174374a6ea49316631d16122629ff872",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-state-dark-360.png",
+      "beforeSha256": "9bbaa96c467aa43ddf8d07f27edc7dd760f6ab69bd86de19a51c50b4e47b42e9",
+      "afterSha256": "3dcce773a7d43afde830bc46fcb96eafcf11fe6f407520455c7c93c6dfaf8090",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-state-dark-768.png",
+      "beforeSha256": "bc2569dbc6ac0bd901c3a5753dcc184387947a3bc0c957d86941f7c5b6ee03b5",
+      "afterSha256": "b0d337493d02a37e8e9cb0c8c4dd09f8a14c672f83943fc9ad86467bc51a06f4",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-state-light-1280.png",
+      "beforeSha256": "6369ddb1ff79dd82bcf3d686fcac9d3842dd7f848c248a3e0d1019d7b43b8c4c",
+      "afterSha256": "6f6cbaaa1509d8d8c3b5626f6432f9f3cdbabc4fc5d019f9908d0df7d9fd6a1e",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-state-light-360.png",
+      "beforeSha256": "5d72f4f281e62cd5e9b48c468ddf01d051d5c3751e43a18026ca4401c7fa8345",
+      "afterSha256": "a0832c2ce17bf1bbc850afdd085c9bf7d8d667edfb320d34149261d791287765",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/31-state-light-768.png",
+      "beforeSha256": "44e19fa6d5294ac1ad62915e96954e62dc6f8f1201692a3c0746fe156874dced",
+      "afterSha256": "a93ef2282405d58ccba6b0f1dab4d14fd6739616ede07be08dec3439fef55f48",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-before-form.png",
+      "beforeSha256": "4c7528d54fe421a6ef5b1c0ac149446e34080e708d3264c3a28ed6b7fbc39c68",
+      "afterSha256": "645289eb07ff204181443ed923c223b1469daa6db572c5d66657133df11aeda9",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-cleanup-empty.png",
+      "beforeSha256": "316ec86d1522ee7e69933f0ab553ab20ea1247aca624bdd27b272a11a58d94d8",
+      "afterSha256": "8c51213238bf45714d06b5d68d2f0a6d5c619ec2701e2f888d1feca9946c0949",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-dark-mobile-capabilities.png",
+      "beforeSha256": "9574f0be54e0ba8a90943d962a187a7d8690623590d7177b16c5ced53246b5bf",
+      "afterSha256": "eb8f54af884db8a8269acd1e8a1812109de2e85d7ce9495a2760539119c3fe40",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-disabled-candidate.png",
+      "beforeSha256": "8b309b7f374376f805cd70c3cb74172921c0c81d50e42aedf28ab834f47f3108",
+      "afterSha256": "a96cd9fcb481e4a4035ed55ddd6d3508a179024f263c346d8164a35d7d10b2b4",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-inheritance-summary.png",
+      "beforeSha256": "49c0eeebacc980f7ad3829cfd59393165a0ac15447c864e71a95f01eff60b117",
+      "afterSha256": "c4d3a1a72ed89808ffe2e4edf041ab7bbca28840c336af00c2de450597b47b9b",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-state-dark-1280.png",
+      "beforeSha256": "50263430de3f2a02ea61fd62c75a340ac5737a60a19168212b16b8b7cb5d4afb",
+      "afterSha256": "e07619463f8af455dc2d37ba2b44f2488ddcf467a37dd5f2efa552f33943c233",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-state-dark-360.png",
+      "beforeSha256": "ba707e979878da056b45e17ba33a081680ce0333cf058042d9eadafe61c0be5a",
+      "afterSha256": "6b740595d46cf63e57e9dc1084d68fe6143361d174148e3d7c861d6d54eba1a4",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-state-dark-768.png",
+      "beforeSha256": "5e26bff23133dcc5bc1cac7a4965d6e0d0b582081053c66488646068643716b4",
+      "afterSha256": "b5f66f464e064bc411dac0900809cdd9205fe9e042ec40e264e5bcb5424de062",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-state-light-1280.png",
+      "beforeSha256": "3b59ed32c86a9f16504491bf01dfdd83435ded8aae0340e8b954796dcb2d74e5",
+      "afterSha256": "5171235f250e168f88af61f99714321bf05bb4790c883e30543c2bca6fcddaa5",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-state-light-360.png",
+      "beforeSha256": "d16c48e38ed351a38ae913168679ad3ac36e05a12b05d3827ca1e2362f021518",
+      "afterSha256": "5a39f992ed55cf45f10f64f164b56590bdf8313a4df81737ac2a1a5170dd25cf",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1652-20261113/screenshots/32-state-light-768.png",
+      "beforeSha256": "4706f047f3e1f5ead7699a543f109fc8d2f715e7c9e6c2f88c5e5e4f56536a1b",
+      "afterSha256": "ade7bc9ceffe0b6fcfb3c1d737093c32e8a995bb4268bf1b753e186d7a7ad7d1",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-actual-async-failure.png",
+      "beforeSha256": "63f9578618306ea3ab0023b8b1a656266919a20900ace34c5310cce83baf5f4c",
+      "afterSha256": "bb8fee673a326b6b0d47b00a37b4e552d19f25759735a9b8146cb999c79211d3",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-add-before.png",
+      "beforeSha256": "f890d259f0dbff2f9139a44a51e854fd6c74751b694b8ddc293b31066361cf5e",
+      "afterSha256": "0b200decd1d4108f825c62fc1fa497082626b0f58bd399d8e84bd8a4e1f2ae09",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-cleanup-empty.png",
+      "beforeSha256": "acb037abd5f1adc4b10137ff34b29387ed91443134e16bedd092734311c17c5b",
+      "afterSha256": "e15e90cf815e930541b3a687bd94dbf2622b4c600e5ed1b17b8e207c8d6c084b",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-dark-1280.png",
+      "beforeSha256": "167904cb2c55292a3441e34cfbbf7574055d5e70ac5ee50539e597f8e751c567",
+      "afterSha256": "c3e76d9c47db73be7589ae9f46db068b3817365147066e19a709e6d4e239e61c",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-dark-360-lower.png",
+      "beforeSha256": "5390ced70aae2f2207f6eb461d04f2a78c1bb4efc834c068d00bfe5c08bf5c0b",
+      "afterSha256": "81bdc138d51731d0bf1ac359f54f2b55f133a2c208f600b809ece2824aa0d62e",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-dark-360.png",
+      "beforeSha256": "be8bfd48b633dee07783e897d8d4b61e73fe1cc444e59ceb1528133ccaa6f93f",
+      "afterSha256": "15fd60b175b6607415c1b04d3e1a7a19d877ebed7ab091d099219edcd836c50a",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-dark-768.png",
+      "beforeSha256": "fbcda435b938f9247f21e8181435e5b39b748f89e408b36766886cf1180c3d97",
+      "afterSha256": "7297ccf1ad5675c738212ceb397aac12de484699e9cab675d940217b35541e0b",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-final-keyboard-pending.png",
+      "beforeSha256": "8ccf8a2e841c1078f6ac3f9ee16ba714b31936eea9fbabf1fdaeb19e27f679ab",
+      "afterSha256": "1817e226e4b31d6853a0b13684742c785a0ac37a90662c04791932de36b27a5f",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-final-keyboard-success.png",
+      "beforeSha256": "e25ba816bbaa49362670fe20a6e231def55cba15b9fd0d413dab1f35d45de97d",
+      "afterSha256": "7afe881b55713034e0113f50874600355bc2d0c09ebb95b1ab8244fe87ac9c8f",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-light-1280.png",
+      "beforeSha256": "1dd0a721bbc16980dcea8fefe6015910c65f5e914a6b9a3eabf412a9aa257fc7",
+      "afterSha256": "1d6840cf98caf01e97b5212f3d23452f5fbcf73eaa19b99de4a3cc3b0e387fa6",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-light-360-lower.png",
+      "beforeSha256": "0839b228996b5afb4f4dbf1c136dd92d9944159bc3b1410df8b070eb358f7f8d",
+      "afterSha256": "961c052b775803d7d4e716ceeb729663aecd053246ebc6732ac43ce341fb8ecc",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-light-360-popup.png",
+      "beforeSha256": "75deb5591a9d70a4688b55a158b4e4edf91e871cab02cf1429e375f9a8bea508",
+      "afterSha256": "e67cc7e6c409f7d9565644a259cfbe77caff801776ceb46b378a61f424dd5a08",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-light-360.png",
+      "beforeSha256": "c9dc026b7b27e9ac4f092d00b5dab578e3234d6bf9e3853fabf4b6b7556f50f5",
+      "afterSha256": "fd47a6853f3658d5914727fb82c6b8f4301547047ac11b873dcac53f1cad1af0",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-light-768.png",
+      "beforeSha256": "eb72711509a540e88f63e5a00c2da13d18eda457829a87a964c5e349287898f4",
+      "afterSha256": "1ac9e439b57310156f5acd41bc07dea6658cbe1e68607e730efd8bfcb10ebeff",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-receipt-pending.png",
+      "beforeSha256": "93b3cc73e712927f900eb406f9dbb1c8273ed23c68c5eab982ba54b3e3e497f6",
+      "afterSha256": "bc5dfcfccc52365070fee7f6604843ba90516dbf3ed671b1887be47ca24c80c6",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-clone-success.png",
+      "beforeSha256": "c416626fa7dfea37d3ea7beee1371a4893fff281f5fc884b0a4e6963b8a972e0",
+      "afterSha256": "d336657b47c71247b8dfd7c6c05f2c36a11802ee7b700910bc1ad6e58dd2e4ee",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-dark-1280.png",
+      "beforeSha256": "c356e00ad0a469f01c7b7b5584bcd5a702f593107218eab4efd7c50a4e67fefb",
+      "afterSha256": "59279ef59a4892012e15154874e9fb949afbc9a22369f0996fe165a5394d3731",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-dark-360-lower.png",
+      "beforeSha256": "43618ded8a000337547c249454791889d68661e4a8423b51b08ec3ebdeec7c9b",
+      "afterSha256": "1ae2db870655d72394325bdce8ea063eb8637c8f09d22dfb5e46c92fcf05d992",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-dark-360.png",
+      "beforeSha256": "a653a2caa003b7a57e8f961110b4ad60a90907fb1517b9f5e21011fbc2dedf8f",
+      "afterSha256": "4a135f43fe0e105f03bdf61167d49903738e371fd05bb64fa2543c6fdaf03131",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-dark-768.png",
+      "beforeSha256": "bc20ed894bca602c38eec26b3acdd4ceb6a13ede13b7ce2dc77c7261e08711ee",
+      "afterSha256": "2946feb21cb84c7684f9fb4c815c71ae822195a99f0650cb40c56a724db9da70",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-final-keyboard-pending.png",
+      "beforeSha256": "4ae3c026718001efe67a0b016fba779143771656b12017b12ba413b68a55a6ae",
+      "afterSha256": "c233cc8e7727847fb0a1586e705b28bb5a271c6f1728fd3cec8611e1de214e2a",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-final-keyboard-success.png",
+      "beforeSha256": "b55ca4739f54308c0f803dd2583be78bde6c596003e4fab5eed9c9e1b3e37115",
+      "afterSha256": "ec4649461565fb84bf7ca9bd3889d7e26c4c1cec23ccc7cf3ba7089221b19a8b",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-light-1280.png",
+      "beforeSha256": "80b7e1dcb3d0b1cdc5be6055b7199e04658c545e7853181b67f61e5e224750b8",
+      "afterSha256": "5e7bb4b1eb98d0be07f59d442ba0470b3edaf6804879434a58a98d42051e29da",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-light-360-lower.png",
+      "beforeSha256": "9f0aa9bd2d2dc3e7195ff99305a6be2dd79a28c701937eaa4019fe6cbfc0c75b",
+      "afterSha256": "fb23214911fb117525c21839ba0450db9778c3fc65ff67fb6346f96285764940",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-light-360.png",
+      "beforeSha256": "d98125d6d063db11a1a89762813a9a11d23d8f4c40914cd4a5b700de04a9b766",
+      "afterSha256": "c6d1d1d6fb10c733adfdeb1b7f0380f3e86b33b977e7fb496137bc96b0982433",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-create-light-768.png",
+      "beforeSha256": "b34779b80ca59874b043790268da3fc70e8263d37b77b51b4ac75ba597979cc3",
+      "afterSha256": "209b79fef126dc6194cc43c6a3aaed437c9a273c6270d3d254d4163c5b4c7f17",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-http-create-rejected.png",
+      "beforeSha256": "ec8903c697102313e3e95b50f644f5d943e641c23601b0c605355a54ee81cf7b",
+      "afterSha256": "2442a752273ce9816412fa3d8a290b80636fa47f0a70fb0d12df58270886d353",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-late-failure-protected.png",
+      "beforeSha256": "e94132a16eb2b0734cf49620147e5740f28b616c4ec1a4db4e9fe882dbaa9a29",
+      "afterSha256": "efb7269e2a6b7bf88c44537d81ff83ffea915b68567965272b015d77a3cbb254",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-late-success-protected.png",
+      "beforeSha256": "d416e96c1306c64f7fa78744997aab639f90d4923ea796d508fedc0b5462d627",
+      "afterSha256": "49dbefc417f33d5151fdf2183c484812e62f031579aa51b5bc8d95b8cff53365",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-lost-receipt-restored.png",
+      "beforeSha256": "d1725ab6d1b97d515a938ec36467f8943def0d07ac6e4278c53efb12897e4f32",
+      "afterSha256": "ad09e57b860b12df45eb09ae223a52f13c5b41e7949a142b08a76e91a292cc40",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-lost-receipt-unknown.png",
+      "beforeSha256": "28bc584c49412a68c09c1dbfb3fb26fe780c2624f22ab03c9de72394940c5241",
+      "afterSha256": "8f93507244e2a3a8161e591de862a99f3af5880bacacb178127d8093f611fbe2",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-query-unknown.png",
+      "beforeSha256": "cf4a7cc471a44d8cd9283f8713f2dd449daf0ce406bc29556d21dd109a6cab31",
+      "afterSha256": "e79958ff9216294d71693b278c06cca40f72ddfeaf3ec436687d028724610829",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-result-unknown.png",
+      "beforeSha256": "218f6d4f44299fd02c9f3d12c8d6b4bea5a555897b1c61256a3f0b7b1408286a",
+      "afterSha256": "1cdcc3f5291153653ef65300fcb0838dbe7890383f6b7f3e2b814d7db418cd06",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/31-ui-results.png",
+      "beforeSha256": "83789cadf40479758b5a4fac0f249126ba1c39e4167a572a86e0718690cd25df",
+      "afterSha256": "053f672db018d55fbc7c098811233af494d0e1c7c7c9fc4d55beb95c921b3389",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-actual-async-failure.png",
+      "beforeSha256": "57d63d38d68ce49b5b81e27e8ca8e33c72950d331d6489e7b1df5d130e2a4ff0",
+      "afterSha256": "fda63c39d343fdf3f30e6bca81bed0ea7d4971ea3af38bfdf884730492fb9b6a",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-cleanup-empty.png",
+      "beforeSha256": "0c5e7ad2bcf31c7ee6608c102319b0b082cfcacc31d19904a99b24e9a3c612c6",
+      "afterSha256": "2fa08437ec8864b6bb6be7d269777da00f73e6127e5d30727f3d614f6e2036fd",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-dark-1280.png",
+      "beforeSha256": "db5c858ab173c8782b968d81584548ac739a892411add8ef372d4eba0a71d0d5",
+      "afterSha256": "ef8119c4a4cd1a02b8440fcabe9e995e0c2ae4840609929cbe27a72de516e2d1",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-dark-360-lower.png",
+      "beforeSha256": "c2aa1102444f14d90606bf493e967d87b1773c17e985f5d0625881f7cda99058",
+      "afterSha256": "5316431b38079be14a16b075da788306b05c35fdd082434efe84af142d9837f3",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-dark-360.png",
+      "beforeSha256": "dad69d4fe88eb093f6ff215c25ab950c5527a34f015e9d94c00d842880c026f4",
+      "afterSha256": "50884cc6969a728426ec1225fed5ac5b940ae7823697399cf94be2be920e47c9",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-dark-768.png",
+      "beforeSha256": "28916b3836a1faf4d7e6d7424c67959102ce78da1626a18f421f2fa6b92906d4",
+      "afterSha256": "cba50be9eb49cbaee1126c99d5412e638434a2839e7f1b94c1f8adb11208e505",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-final-keyboard-pending.png",
+      "beforeSha256": "f20c96aefee4382b6d8e2130f1d23b8ff35dfc31e43985a4955128e935612e59",
+      "afterSha256": "62956f7c46dd2b03368dee5bca672793311e30632f3ca63f080636f8b43b35c2",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-final-keyboard-success.png",
+      "beforeSha256": "dd31b69ed8b1b414ce0bad2824b43320c3df1638d527bf3049c783c75784e9a8",
+      "afterSha256": "e9c646b468792b5a4d1030b11993cefe619e1336acf939733cdf3704005747bc",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-light-1280.png",
+      "beforeSha256": "db63e7122217ed3005998cfb8f72fd7739cd39732992fc66c9c205f08ba0db16",
+      "afterSha256": "1e2b4d723a586fd5ff2549897392c77bfa0bf87796dca1fedb154245b5897044",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-light-360-lower.png",
+      "beforeSha256": "d400339199b02983af8448b39b00a0d1356033d7cba8cc7a7760fc8274b3c934",
+      "afterSha256": "ddd47de4445ac120e13688f6a7d7945466127eea926616421c6420687e40e40c",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-light-360-popup.png",
+      "beforeSha256": "6cb3d965528fc8d0092db52a6df36bc51791207ce04066d2bed00c61a5215626",
+      "afterSha256": "2d8f65741cce620002ca0cbe19110599401bf1613f3dab14cdd69a54b95c81f3",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-light-360.png",
+      "beforeSha256": "d71de92e7660b779b72e9fce841694391bb52312fef17cbc0b91db9b28c1909a",
+      "afterSha256": "ed1c0d98709d0121b2d21dfb4915214cc9aa35225ff343597fc0831f661e85a3",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-light-768.png",
+      "beforeSha256": "9a32af35eb7a89767b927589892da6e1bfa2bae82cd4890fbb6bf2f656b59d14",
+      "afterSha256": "d2362c22b7ebc604e5ed3900af2e9f9d8ff1153e99a4a7e6d6846bb8459c2e25",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-receipt-pending.png",
+      "beforeSha256": "d8c1538baefb422839ece228602905c382cdfb0b728d57e5699e5d4a6d4f1d2f",
+      "afterSha256": "4ed4bd55917464948505e60dc535465e26c98dacf735473396106f8b1d1cf276",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-clone-success.png",
+      "beforeSha256": "0af9f9261bbd4fcaad97ba11bcc59a6a8f07585301ced6bf4cbc61dcc00a8df9",
+      "afterSha256": "d9a879da1ed0ee2f055cf24c2dfd0099b3aa0dba204725841b2f99741acbb336",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-dark-1280.png",
+      "beforeSha256": "d4ec2b20ab17ce36c2a5c20201d7b2762e2099246f7f583b865f4d6ef6654f77",
+      "afterSha256": "5f27add777ee3348a1cd2c5f18a6b731516205716340684e66cd6285e2824199",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-dark-360-lower.png",
+      "beforeSha256": "6dd5190440fef6b8dea6c3b285abbab3989fec7ac7a2414c6efa3526cbfc3b07",
+      "afterSha256": "d0986e535ddf4426b1887b65ad4dc81199ca6b4819cffb4f81292c4a4c5b150d",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-dark-360.png",
+      "beforeSha256": "184dfbe5e445b4c466a73f98bad1874761ebd85dbabcc99b6338538016b3e2fc",
+      "afterSha256": "797db96c7f712875344277689fada6be7fac818381686218c5d186a7d60c9b01",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-dark-768.png",
+      "beforeSha256": "d5103e59698b448bbd18c237ee71dcba8cb00cfe6085a6baf45595c1d03eeaee",
+      "afterSha256": "343d4248e865322f0d68fc9aa168f41721fda00f418ba0033db65523c10d2e93",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-final-keyboard-pending.png",
+      "beforeSha256": "877e3607613931b6f72389d91e6d5859913d4b6659876254683230d90b79b8a1",
+      "afterSha256": "a092239448e2f4e312587b9967490278739c049798bf2d429c26efd2496cd556",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-final-keyboard-success.png",
+      "beforeSha256": "ed171addcae40976a90dd1cba6df8360916690cf884bf78506a32cdaccc5b620",
+      "afterSha256": "7c1899b45328ac5cc93850a6cef6390234b4d109ef971c59eb74c98cd638c86d",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-light-1280.png",
+      "beforeSha256": "8d83bfd1ddb1ebdea9fbf11add94251006b68bf4aedd688d594eb8b1e770cdc8",
+      "afterSha256": "f8780fe1ad7217c47245b5f88995fd79e8f34067b0dadf065458bfcbee61cfdf",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-light-360-lower.png",
+      "beforeSha256": "11b9ed20d34586773a83121decd12710f9562dd04f6f0fbd08223abdc67c1347",
+      "afterSha256": "b1f04fbf489919724ac6f620828e99dcdd8ae3bc575fb3a05c6cf4cb6a87804d",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-light-360.png",
+      "beforeSha256": "554559d2591fa230babcba6f7f2da76a8463056fed3dc6a6ea29c3048167337e",
+      "afterSha256": "d4d9eb262ec9fd0f2828b75c58b390f484a27b0866226330f8532640fdf54900",
+      "dimensions": [
+        360,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-light-768.png",
+      "beforeSha256": "370bd1366f7ddb5ea9642c5fed993b3db59d978f1970f86179922f3ad940c4e6",
+      "afterSha256": "7b43eff7412b427169b937ebc6ad45122aa90919c5e0253f25d88824f9350021",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-receipt-pending.png",
+      "beforeSha256": "5b4103fce28ff2b065b3b15a1bc2d61edc1a00dff553a5d687feea8d2c353024",
+      "afterSha256": "d3e942a2f305a3c114b76a1f38373031a3c0746692eb80c2be79214a7dda187b",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-create-success.png",
+      "beforeSha256": "7122b58f0c4613f4064ac05c2801c03ede127d12d5793bf2d7512b00dfa28bff",
+      "afterSha256": "706520499a656b420bcea8cf63cb4edb6a26a44fc323ad80f36a3cabe1a26110",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-http-create-rejected.png",
+      "beforeSha256": "f73c31a8640c872c2e4b865ad697187245a7bb36cfd917ceea8cea905335420e",
+      "afterSha256": "2d447fab58a30a62450afa0d978f372b308f907f51070f239fbefcd2178a2670",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-late-failure-protected.png",
+      "beforeSha256": "14be112b6a7691cc6d83e1bbdfce424068d66af0a0260285f6ee1c8e3cfd7c45",
+      "afterSha256": "ed94b77096f83630d5fafcf04ef49c49afd0b1e0a5e07b95e9f1c96b554b9887",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-late-success-protected.png",
+      "beforeSha256": "8cf4b98aecb4c96b6614769f3612f14712d8fe79c7c4c6b3a855689307b7e4d1",
+      "afterSha256": "5dffa8d65eb9459d852ae337311a3735b56dd1845724717b3cff4d0cc20ba1c8",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-lost-receipt-restored.png",
+      "beforeSha256": "f7bc58a3e6df83056078787a7550dfbb2ab19e78f4fb230f0f9e1252c2bd3458",
+      "afterSha256": "f213f280435b8196500fb74c81c6d9b1785de181afc7fbca8f39426a884e3d6d",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-lost-receipt-unknown.png",
+      "beforeSha256": "d6c07a7a4c8782b972eca111302202dc35f4a781118c637e5e7089db259c4cbb",
+      "afterSha256": "cc286980725ba5ec2785f06ef0424d5bb7a006e82320996472945bddbf805e01",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-query-unknown.png",
+      "beforeSha256": "b97360f3d976fb611ea758636874f8aa6b8afca65f6a1924da698fba5df45fb9",
+      "afterSha256": "fd0abd3a0d6ddbeb4a38d8872146b80317ee57ee72997e57d1915eb94a956619",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-result-unknown.png",
+      "beforeSha256": "28b66ad68e4d6313f03b3c7147e656b69c8134e1d875bad280e2b0b69b9605a3",
+      "afterSha256": "2813eb2078b59029078c5bf733155db83cb6866bb4b341e78a7664a44738b32c",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1653-20261114/screenshots/32-ui-results.png",
+      "beforeSha256": "e988a4501d550d919e56cd25ed660d8b8dbe74413ad656a2baebde14312d925b",
+      "afterSha256": "ff9ad7f1ebbd360cbf7b89182bf6e71932be71a07a1a2ec432107a7619fae758",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1654-20261114/screenshots/31-before-malformed.png",
+      "beforeSha256": "6580771d9964766900ab7cda1ee30afabd3b818738ac6cce1ba6194bc31cb44b",
+      "afterSha256": "e991d13be8abeb8f7e33045ecb4c462dbf95c3a5b6418e06708f9792b4698913",
+      "dimensions": [
+        1680,
+        897
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1654-20261114/screenshots/32-before-reopen.png",
+      "beforeSha256": "6bd1c60d4f0099a6a7a5ee1303f2bcc3e4f6297510a0e92a06f771a79f2adfbf",
+      "afterSha256": "c21efaf227c2b3c74bcd913daac42a2ad6f2fcbdf107297e5ccdedbb0ba25dc3",
+      "dimensions": [
+        1680,
+        841
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/31-final-bulk-restart-targets-1280-light.png",
+      "beforeSha256": "9e1bcff48f307e167cca730b76578409e397ae87b7a24b4ec4ec1823581e6f69",
+      "afterSha256": "720dd80128b0cc5b193cdcde517c663bfd527d5cc2b8487e0defe5bdc2455cf8",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/31-final-cleanup-vpc-prefix-empty-clean.png",
+      "beforeSha256": "32effb7b840e87b064d2519d0f2930aa59ce76a35cf8633cea82e075b94a9948",
+      "afterSha256": "3a8fbef31f9b1cb67304a3350e169161ede2e15e3a5bda52646843b30a4d1d05",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/31-final-cleanup-vpc-prefix-empty.png",
+      "beforeSha256": "8676012bf6960132ee1d57552bd9f2141c0d148c8d980c1cae3f5e1ef9dadb56",
+      "afterSha256": "96658a4ada7e8d7274ad691741f4e14f47308d200edf81debd9a39b5e981ac83",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/31-final-gateway-503-retry-1280-light.png",
+      "beforeSha256": "a02d95634675e27f0c131727f21a52e7b03578929d8528cd3e1b1082d3c24dba",
+      "afterSha256": "2e1a1bf098389a6eb05d8b4c1070b3084965ad543452a6a5894b9c72881c396e",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/31-final-offering-create-1280-light.png",
+      "beforeSha256": "9646f4e90372fff4c7a66f3cd814cfbc81c6a5afd125f68c5fc63c0bb4955a08",
+      "afterSha256": "8c197e330cb3aeb442aa5e8e35d3e59e4e5907bf9c8f09136664194a76af56ce",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/31-final-vpc-delete-dialog-1280-light.png",
+      "beforeSha256": "44fefd495e508b158fb4d193faea3db40d5303f928fd72d0bb90eb80b51469db",
+      "afterSha256": "4ea406a37a758191be9e7ecaa009eccfe685709960b8fa4a315c2188bfe26231",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/31-offering-create-1280-light-final.png",
+      "beforeSha256": "61bdd1551e25e5c065de9fa2f79ba71e3b88a65c8f738b106a7edffdc7ef3d86",
+      "afterSha256": "aa799488220c14a5e8987a03683b339a323a56cc7e6b2e06a96de958795eb10e",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/32-clone-detail-390-dark-raw.png",
+      "beforeSha256": "58b383108b6dded15693570669f77aabcf3370074c7c33baa977c8d9f208373d",
+      "afterSha256": "83a4bb4a897f59d440550300635b8202e7eb8a58238267a39e008ff93dfeb33c",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/32-final-cleanup-offering-prefix-empty-light.png",
+      "beforeSha256": "ec31032cdec23d7742ec965d2e94aa90e23ffb10e311e74ca8fd054952e7531b",
+      "afterSha256": "71b4e93e0d564a44290c571c36f4031e83b26957f2c18d4ff8e79c13e0685fcc",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/32-final-cleanup-offering-prefix-empty.png",
+      "beforeSha256": "9792c7e46a0acb0d2f08b52df2da0d5ac0a75bcaa1399cd9bd86ee101b3f082e",
+      "afterSha256": "bb7f34b64ef70317fc0f1429f39845102787c5f34744b9ba1075e37f02a6a424",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/32-final-gateway-delete-dialog-1280-dark.png",
+      "beforeSha256": "45ce1d79b677c0f55e93feee44310295332c92ceac0f8ecd4da8373afaac2b96",
+      "afterSha256": "48f4157eeca17fffb110664aaa513b5d55ede077201470092271bec0c4f45980",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/32-final-offering-create-390-dark.png",
+      "beforeSha256": "c3f9657c3ce60b5898e336c5a4d5e5074687efe2746e7bc374c7e44cf0fb160a",
+      "afterSha256": "71a2389fa57f8158b57ff610d6a439c999ebe0844c6a212e8ef2ae36500b7f9f",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1658-20261114/screenshots/32-final-offering-delete-dialog-1280-dark.png",
+      "beforeSha256": "64d5fe9ea13ed3cee691bdc1023d7d3516ae6ce54fced28d4568699e102f8488",
+      "afterSha256": "7a9d2f1b26817cbab9f388254d74f34ecf20f223d9e079234c0d3690292e5544",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/31-routes-1280-dark.png",
+      "beforeSha256": "b14e6955fbc69c76213faad1ecea05857af605688b620efac413ef07fd1f85cc",
+      "afterSha256": "0c588efaabed361b68f2d4a99b583374f201fb54ff6d527e1ef8d08bf67878bc",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/31-routes-1280-light.png",
+      "beforeSha256": "da55750e70fe86fcf7ade855c74c6a05adaae86ae13bcca57163fffb6ca7df36",
+      "afterSha256": "37ae7807455b87451271a23c82ad810a55788d8b24f26c669c785013eca39090",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/31-routes-390-dark-scrolled.png",
+      "beforeSha256": "2189464850f6afe7d0b8569ed9e16380847ddfa67c3635c74a6302877f7f041f",
+      "afterSha256": "0649c7bb0f0ec85f8e9e7c580adf6e7c272268711d80751dac6a8b3d7eeb0fef",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/31-routes-390-dark.png",
+      "beforeSha256": "07b1f7822ac1cd378ee69ff63a7e0ca9082816b5ea1f0b563e662a3a2eb2f85b",
+      "afterSha256": "50b59b22746c8cbaace4637913ae57114c1e57c85c03e2701b5f5ffe9a5cdce5",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/31-routes-390-light.png",
+      "beforeSha256": "47f61f6305892dd0bd7c56291977b21e3f0311ac4febb6a39a3847f0aa7c5871",
+      "afterSha256": "e543b5f82799f560004af5c51c99c728a77fada7bf8a7a6548dae6e0fa53f349",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/31-routes-768-dark.png",
+      "beforeSha256": "2a9051e02cacdb11c5613b286194f07ed60dab59a11edcf9b5a6400ca28112e7",
+      "afterSha256": "96fbc54017076cceb0093873f0f748b2eeba5d98f2e57e72669eb65920466bb5",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/31-routes-768-light.png",
+      "beforeSha256": "fb2b71380b247af97cee1cbbe075a3b9adcf45d9fb1fb5fbd5260702713b8547",
+      "afterSha256": "d79ab2cfa57e86ac5b6a7600c785ee07027cfb01b135ad5dbbf4b4a01f25e0c5",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/32-routes-1280-dark.png",
+      "beforeSha256": "25bc267df1bd858d29a78a78fdb746df7c6fc4de0eb422cb7022b338f6a28ca4",
+      "afterSha256": "185e45019a451d751812de43f700ba4f1ca3e4bcbc38a655da8a8712976ca646",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/32-routes-1280-light.png",
+      "beforeSha256": "80a018c01342297d5cfa4a147bd9c7b42dafffc6f1f922a466ff1ce0ee5f897b",
+      "afterSha256": "ebc444803dafee27c73a1a0d91b8d911d12d1c55b357c9fb477174b0928872cb",
+      "dimensions": [
+        1280,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/32-routes-390-dark-scrolled.png",
+      "beforeSha256": "be13bfc69a8899e23fcb13d2696fd401c2cb03f0d13c31a3fb16ac45cf810ff6",
+      "afterSha256": "7a7e304cc14f634634d5902a3ddb664b8bab220e7dad749023b820dcff829858",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/32-routes-390-dark.png",
+      "beforeSha256": "131ec4c64d9c4ef73527c4d65e5d772f1f0c82982cdea8a8f7845e0711558628",
+      "afterSha256": "27bf49dcd74ba75068fd857bb78f60dde273dbd621582952b38c3561dfadc76c",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/32-routes-390-light.png",
+      "beforeSha256": "d8d0c6bcb1eee1a42b9f1c8d618251c44f96c812e7e268af19be93f576c8b0fc",
+      "afterSha256": "8ff95d636d7770443317b0ceec3e9236167739fe73f54af770a0e82ffded9108",
+      "dimensions": [
+        390,
+        844
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/32-routes-768-dark.png",
+      "beforeSha256": "1f8cfd25a98ed826b3f8096187f4eebb425d3183e765f3fc452ebb369564f646",
+      "afterSha256": "40f3bce06224bb97719799ec2c51261452ebc017bfbbf98baf8cff87666bd0eb",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    },
+    {
+      "file": "docs/validation/vpc-1659-20261114/screenshots/32-routes-768-light.png",
+      "beforeSha256": "c13b96ee967ebdd20cebd4a09b4ef5983cb756b47f55386efc25c278972897de",
+      "afterSha256": "9f845d84cd635e6384259b8260a2fd8d9b8126cffe177d2042bc30d9d81f29e0",
+      "dimensions": [
+        768,
+        900
+      ],
+      "visiblePixelsEqualOnBlackAndWhite": true
+    }
+  ]
+}

@@ -1,21 +1,21 @@
 <!--
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+   http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
 
 # VPC Epic #1650 / PR #1660 최종 코드 리뷰·검증
 
@@ -113,3 +113,14 @@ WEB-INF/META-INF·설정·관리 JAR·Mold PID·대형 이미지 보존 및 VPC/
 GitHub 검사는 로컬 검사와 구분한다. License Check의 4,077건은 위 기준선 비교와 동일하며,
 초기 충돌 검사 실패는 충돌이 아닌 라벨 제거 권한 오류였다. [초기 검사 로그 요약](evidence/github-checks-initial.json).
 최종 head의 GitHub 검사·병합 SHA·Epic 종료 상태는 PR #1660 및 Epic #1650의 최종 보고에서 확인한다.
+
+## GitHub lint 후 PR 서식 보완
+
+제품 head의 GitHub 전체 pre-commit은 저장소 전반의 헤더·줄 끝·맞춤법·문서·symlink 오류와
+이 PR의 Vue/문서 헤더 형식 및 PNG 최적화를 함께 보고했다. PR에 포함된 파일만 정리했다.
+동일 버전 라이선스 hook은 대상 Vue 9개와 VPC Markdown 전체에서 PASS다.
+Vue compiler-sfc의 template/script/styles descriptor 해시 9쌍과 문서 본문은 정리 전후 동일하다.
+캡처 142개는 같은 oxipng 9.1.5 옵션으로 압축했으며 흑/백 배경 합성 표시 픽셀과 크기를 대조했다.
+선행 보고서의 고정 commit 링크에 있는 원본 캡처는 그대로 보존된다.
+실환경 배포는 ce4b96dfdb5148a04be9dd29828e408c77fbe39a 제품이며, 그 이후 제품 파일 변경은 이 헤더 서식뿐이다.
+[서식·descriptor·픽셀 동일성](evidence/format-review.json).
