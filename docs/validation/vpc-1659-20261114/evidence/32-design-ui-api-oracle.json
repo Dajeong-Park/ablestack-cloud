@@ -1,0 +1,125 @@
+{
+  "records": [
+    {
+      "api": "createStaticRoute",
+      "params": {
+        "cidr": "172.28.32.0/24",
+        "vpcid": "e9c59b00-6d4f-4ea2-b16c-4213e84e913e",
+        "nexthop": "10.227.32.2"
+      },
+      "method": "POST",
+      "http": 200,
+      "response": {
+        "createstaticrouteresponse": {
+          "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+          "jobid": "06c2a29d-9c79-452b-bdaf-edb58a92fa19"
+        }
+      },
+      "terminalJob": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateStaticRouteCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "staticroute": {
+            "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+            "state": "Active",
+            "vpcid": "e9c59b00-6d4f-4ea2-b16c-4213e84e913e",
+            "nexthop": "10.227.32.2",
+            "cidr": "172.28.32.0/24",
+            "account": "admin",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "tags": []
+          }
+        },
+        "jobinstancetype": "StaticRoute",
+        "jobinstanceid": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "created": "2026-11-14T23:33:22+0900",
+        "completed": "2026-11-14T23:33:22+0900",
+        "jobid": "06c2a29d-9c79-452b-bdaf-edb58a92fa19",
+        "jobstatus": 1
+      },
+      "resource": {
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c",
+        "state": "Active",
+        "vpcid": "e9c59b00-6d4f-4ea2-b16c-4213e84e913e",
+        "nexthop": "10.227.32.2",
+        "cidr": "172.28.32.0/24",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "tags": []
+      }
+    },
+    {
+      "api": "createStaticRoute",
+      "params": {
+        "cidr": "172.29.32.0/24",
+        "gatewayid": "02ef0e93-a1b0-482c-ae8c-5654142a0c81"
+      },
+      "method": "POST",
+      "http": 200,
+      "response": {
+        "createstaticrouteresponse": {
+          "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+          "jobid": "e1150f37-e950-4b72-9659-fdfc85553953"
+        }
+      },
+      "terminalJob": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.CreateStaticRouteCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "staticroute": {
+            "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+            "state": "Active",
+            "vpcid": "e9c59b00-6d4f-4ea2-b16c-4213e84e913e",
+            "vpcgatewayid": "02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "vpcgatewayip": "10.249.32.2",
+            "cidr": "172.29.32.0/24",
+            "account": "admin",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "tags": []
+          }
+        },
+        "jobinstancetype": "StaticRoute",
+        "jobinstanceid": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "created": "2026-11-14T23:33:50+0900",
+        "completed": "2026-11-14T23:33:50+0900",
+        "jobid": "e1150f37-e950-4b72-9659-fdfc85553953",
+        "jobstatus": 1
+      },
+      "resource": {
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146",
+        "state": "Active",
+        "vpcid": "e9c59b00-6d4f-4ea2-b16c-4213e84e913e",
+        "vpcgatewayid": "02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+        "vpcgatewayip": "10.249.32.2",
+        "cidr": "172.29.32.0/24",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "tags": []
+      }
+    }
+  ],
+  "ownedRouterCount": 0,
+  "bothModesMatch": true
+}

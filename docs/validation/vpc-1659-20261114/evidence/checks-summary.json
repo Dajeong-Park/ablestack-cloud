@@ -1,0 +1,17 @@
+{
+  "regression-before": {
+    "success": false,
+    "numPassedTests": 2,
+    "numFailedTests": 8,
+    "numPassedTestSuites": 0,
+    "numFailedTestSuites": 1
+  },
+  "focused-result": {
+    "success": true,
+    "numPassedTests": 465,
+    "numFailedTests": 0,
+    "numPassedTestSuites": 20,
+    "numFailedTestSuites": 0
+  },
+  "lintExit": 0
+}

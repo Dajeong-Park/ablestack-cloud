@@ -1,0 +1,80 @@
+{
+  "source": "222adb1674d90af3d4ef22098703752490033dcb",
+  "exit": 0,
+  "seconds": 714.7,
+  "node": "v20.20.2",
+  "npm": "10.8.2",
+  "nodeOptions": "--openssl-legacy-provider --max-old-space-size=8192",
+  "sourceUiClean": true,
+  "fullCloudBuild": false,
+  "changedFiles": {
+    "ui/src/views/network/StaticRoutesTab.vue": "f98a46645aa743ac85ec04ea79844563bb2a073a15ffa8bbe3005650a6e679da",
+    "ui/tests/unit/views/network/StaticRouteGatewayLink.spec.js": "a88e9b13cc3981532015d9aadb340cfeafddd4872b07cc0f796466b4b3392776"
+  },
+  "lockfileSha256": "23379939285231d360907e8d7242206efd5359654b9903614788040680133ffc",
+  "indexSha256": "89aacc3e9ca657ee1f6e82aae8d388bfaef128a5c5d386cfc139a6829fb24411",
+  "appBundles": [
+    "js/app.6f2f3c3d.js"
+  ],
+  "markers": {
+    "vpc-dialog-body": [
+      "js/app.6f2f3c3d.js"
+    ],
+    "vpc-action-context": [
+      "js/app.6f2f3c3d.js"
+    ],
+    "route-toolbar": [
+      "js/chunk-874d4052.3cfa3baa.js",
+      "js/chunk-339f49ae.fd3fdd7c.js",
+      "js/chunk-6c0299f3.57870572.js"
+    ],
+    "vpc-standard-dialog": [
+      "js/app.6f2f3c3d.js"
+    ],
+    "vpc-create-receipt:v1:": [
+      "js/chunk-f346eb56.2152d270.js"
+    ],
+    "vpc-create-dialog": [
+      "js/chunk-f346eb56.2152d270.js"
+    ],
+    "message.vpc.create.gateway.offering.policy": [
+      "js/chunk-6c0299f3.57870572.js"
+    ],
+    "vpc-migration:v1:": [
+      "js/chunk-70a3da4c.ece10d4b.js"
+    ],
+    "message.vpc.migration.impact": [
+      "js/chunk-70a3da4c.ece10d4b.js"
+    ],
+    "vpc-restart:v1:": [
+      "js/chunk-593c7b7f.303f9891.js"
+    ],
+    "message.vpc.restart.results": [
+      "js/chunk-593c7b7f.303f9891.js"
+    ],
+    "vpc-private-gateway:v1:": [
+      "js/chunk-6c0299f3.57870572.js"
+    ],
+    "message.private.gateway.no.resubmit": [
+      "js/chunk-6c0299f3.57870572.js"
+    ],
+    "vpc.offering.operation.v1:": [
+      "js/chunk-18c5d0ca.036fbf9b.js"
+    ],
+    "message.vpc.offering.operation.no.resubmit": [
+      "js/chunk-18c5d0ca.036fbf9b.js"
+    ],
+    "message.success.clone.vpc.offering": [
+      "js/chunk-18c5d0ca.036fbf9b.js"
+    ],
+    "blockingLoadingState": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ],
+    "fetchSyncProgress": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ],
+    "extractJobId": [
+      "js/chunk-339f49ae.fd3fdd7c.js"
+    ]
+  }
+}

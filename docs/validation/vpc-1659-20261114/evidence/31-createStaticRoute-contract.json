@@ -1,0 +1,187 @@
+{
+  "count": 1,
+  "api": [
+    {
+      "name": "createStaticRoute",
+      "description": "Creates a static route",
+      "isasync": true,
+      "related": "listStaticRoutes",
+      "params": [
+        {
+          "name": "nexthop",
+          "description": "the next hop of static route. Mutually exclusive with the gatewayid parameter",
+          "type": "string",
+          "length": 255,
+          "required": false,
+          "since": "4.21.0"
+        },
+        {
+          "name": "vpcid",
+          "description": "the vpc id for which the static route is created. This is required for nexthop parameter",
+          "type": "uuid",
+          "length": 255,
+          "required": false,
+          "since": "4.21.0",
+          "related": "createVPC,listVPCs,createVPC,listVPCs,updateVPC,migrateVPC"
+        },
+        {
+          "name": "cidr",
+          "description": "Static route CIDR",
+          "type": "string",
+          "length": 255,
+          "required": true
+        },
+        {
+          "name": "gatewayid",
+          "description": "the gateway id we are creating static route for. Mutually exclusive with the nexthop parameter",
+          "type": "uuid",
+          "length": 255,
+          "required": false,
+          "related": "createPrivateGateway,createPrivateGateway,listPrivateGateways"
+        }
+      ],
+      "response": [
+        {
+          "name": "nexthop",
+          "description": "Next hop of the static route",
+          "type": "string"
+        },
+        {
+          "name": "project",
+          "description": "The project name of the static route",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "tags",
+          "description": "The list of resource tags associated with static route",
+          "type": "list",
+          "response": [
+            {
+              "name": "key",
+              "description": "Tag key name",
+              "type": "string"
+            },
+            {
+              "name": "projectid",
+              "description": "The project ID the tag belongs to",
+              "type": "string"
+            },
+            {
+              "name": "domainpath",
+              "description": "Path of the Domain associated with the tag",
+              "type": "string"
+            },
+            {
+              "name": "account",
+              "description": "The Account associated with the tag",
+              "type": "string"
+            },
+            {
+              "name": "domainid",
+              "description": "The ID of the domain associated with the tag",
+              "type": "string"
+            },
+            {
+              "name": "resourcetype",
+              "description": "Resource type",
+              "type": "string"
+            },
+            {
+              "name": "domain",
+              "description": "The domain associated with the tag",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "description": "Tag value",
+              "type": "string"
+            },
+            {
+              "name": "project",
+              "description": "The project name where tag belongs to",
+              "type": "string"
+            },
+            {
+              "name": "resourceid",
+              "description": "ID of the resource",
+              "type": "string"
+            },
+            {
+              "name": "customer",
+              "description": "Customer associated with the tag",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "account",
+          "description": "The Account associated with the static route",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "vpcid",
+          "description": "VPC the static route belongs to",
+          "type": "string"
+        },
+        {
+          "name": "vpcgatewayid",
+          "description": "VPC gateway the route is created for",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "description": "The state of the static route",
+          "type": "string"
+        },
+        {
+          "name": "cidr",
+          "description": "Static route CIDR",
+          "type": "string"
+        },
+        {
+          "name": "domainid",
+          "description": "The ID of the domain associated with the static route",
+          "type": "string"
+        },
+        {
+          "name": "domainpath",
+          "description": "the domain path associated with the static route",
+          "type": "string"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "description": "The ID of static route",
+          "type": "string"
+        },
+        {
+          "name": "vpcgatewayip",
+          "description": "IP of VPC gateway the route is created for",
+          "type": "string"
+        },
+        {
+          "name": "projectid",
+          "description": "The project ID of the static route",
+          "type": "string"
+        },
+        {
+          "name": "domain",
+          "description": "The domain associated with the static route",
+          "type": "string"
+        }
+      ],
+      "httprequesttype": "POST"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "cluster": 31,
+    "before": {
+      "h": 147,
+      "left": 0,
+      "w": 296,
+      "x": 37,
+      "y": 655.5
+    },
+    "after": {
+      "client": 296,
+      "left": 340,
+      "scroll": 760
+    }
+  },
+  {
+    "cluster": 32,
+    "before": {
+      "h": 147,
+      "left": 0,
+      "w": 296,
+      "x": 37,
+      "y": 655.5
+    },
+    "after": {
+      "client": 296,
+      "left": 398,
+      "scroll": 760
+    },
+    "method": "keyboard focus into action column"
+  }
+]
