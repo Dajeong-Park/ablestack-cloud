@@ -1,0 +1,271 @@
+{
+  "accounts": [
+    {
+      "id": "ee0af4d8-bc1c-4ed6-ae69-a22a98b477f0",
+      "name": "qa-1661-a-20261114",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "role": "User",
+      "evidence": "actual UI row",
+      "cleanup": {
+        "deleted": true,
+        "disabledFirst": true,
+        "jobs": [
+          {
+            "command": "disableAccount",
+            "jobid": "f6108179-ae52-433a-8766-5fa186b925a5"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "f6108179-ae52-433a-8766-5fa186b925a5",
+            "status": 1
+          },
+          {
+            "command": "deleteAccount",
+            "jobid": "8986af66-6d99-4f29-a67c-b3e08ca70768"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "8986af66-6d99-4f29-a67c-b3e08ca70768",
+            "status": 0
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "8986af66-6d99-4f29-a67c-b3e08ca70768",
+            "status": 1,
+            "success": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "447143ee-0217-47f2-ba36-acab29adef53",
+      "name": "qa-1661-b-20261114",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "role": "Read-Only User - Default",
+      "evidence": "actual UI row",
+      "cleanup": {
+        "deleted": true,
+        "disabledFirst": true,
+        "jobs": [
+          {
+            "command": "disableAccount",
+            "jobid": "7dc5cb31-b6ab-40da-ac57-fac5320b8c75"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "7dc5cb31-b6ab-40da-ac57-fac5320b8c75",
+            "status": 1
+          },
+          {
+            "command": "deleteAccount",
+            "jobid": "03682771-a56a-4754-98bf-13132287c404"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "03682771-a56a-4754-98bf-13132287c404",
+            "status": 0
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "03682771-a56a-4754-98bf-13132287c404",
+            "status": 1,
+            "success": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "e3a1b666-700b-4825-94d0-82472ab54262",
+      "name": "qa-1662-da-20261114",
+      "domainid": "ae3c2fb2-d2bd-4cd8-baf6-5b8d87c29bac",
+      "domainpath": "/qa-1662-domain-20261114/",
+      "role": "DomainAdmin",
+      "cleanup": {
+        "deleted": true,
+        "disabledFirst": true,
+        "jobs": [
+          {
+            "command": "disableAccount",
+            "jobid": "f56a3af5-0b1c-4598-acff-c952abac8375"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "f56a3af5-0b1c-4598-acff-c952abac8375",
+            "status": 1
+          },
+          {
+            "command": "deleteAccount",
+            "jobid": "1b494545-bf72-4027-9bf9-f180229c29a4"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "1b494545-bf72-4027-9bf9-f180229c29a4",
+            "status": 0
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "1b494545-bf72-4027-9bf9-f180229c29a4",
+            "status": 1,
+            "success": true
+          }
+        ]
+      }
+    }
+  ],
+  "projects": [
+    {
+      "id": "b7a3f9e0-5c18-41d9-ae5a-a08061042acb",
+      "name": "qa-1661-project-20261114",
+      "owner": "qa-1661-a-20261114",
+      "cleanup": {
+        "deleted": true,
+        "normalDelete": true,
+        "cleanupSwitch": false,
+        "jobs": [
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "f6646419-bb17-4828-a932-de770403e3ef",
+            "status": 1,
+            "success": true
+          }
+        ]
+      }
+    }
+  ],
+  "templates": [
+    {
+      "id": "3f4fa505-b5d0-421e-a6a0-002b0fb2ff14",
+      "name": "qa-1662-sharedfs-20261114",
+      "type": "SHAREDFS",
+      "owner": "admin",
+      "source": "URL",
+      "createdOnUi": true,
+      "cleanup": {
+        "deleted": true,
+        "method": "UI normal Zone delete",
+        "jobs": [
+          {
+            "command": "deleteTemplate",
+            "jobid": "e3ac7d0b-cd39-4703-a4f9-f7648d203874"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "e3ac7d0b-cd39-4703-a4f9-f7648d203874",
+            "jobstatus": 0
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "e3ac7d0b-cd39-4703-a4f9-f7648d203874",
+            "jobstatus": 1,
+            "success": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "93dc53de-d072-4c7e-bb52-2b4c115e56d7",
+      "name": "qa-1662-user-local-20261114",
+      "type": "USER",
+      "owner": "qa-1661-a-20261114",
+      "cleanup": {
+        "deleted": true,
+        "method": "UI normal Zone delete",
+        "jobs": [
+          {
+            "command": "deleteTemplate",
+            "jobid": "7a2caa76-fcf8-49de-b782-526edca06b8a"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "7a2caa76-fcf8-49de-b782-526edca06b8a",
+            "jobstatus": 0
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "7a2caa76-fcf8-49de-b782-526edca06b8a",
+            "jobstatus": 1,
+            "success": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+      "name": "qa-1661-vnf-project-20261114",
+      "type": "VNF",
+      "projectid": "b7a3f9e0-5c18-41d9-ae5a-a08061042acb",
+      "cleanup": {
+        "deleted": true,
+        "method": "UI normal Zone delete",
+        "jobs": [
+          {
+            "command": "deleteTemplate",
+            "jobid": "da42ddfb-2aa6-49b5-a9a1-fe5f4d979b2e"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "da42ddfb-2aa6-49b5-a9a1-fe5f4d979b2e",
+            "jobstatus": 0
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "da42ddfb-2aa6-49b5-a9a1-fe5f4d979b2e",
+            "jobstatus": 1,
+            "success": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "fe15b47a-b4f9-40e3-8c7f-6c6c6d5d4ffc",
+      "name": "qa-1662-da-user-20261114",
+      "type": "USER",
+      "owner": "qa-1662-da-20261114",
+      "domainid": "ae3c2fb2-d2bd-4cd8-baf6-5b8d87c29bac",
+      "cleanup": {
+        "deleted": true,
+        "method": "UI normal Zone delete",
+        "jobs": [
+          {
+            "command": "deleteTemplate",
+            "jobid": "747e0783-ae41-4e3a-bc44-564de466dbcd"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "747e0783-ae41-4e3a-bc44-564de466dbcd",
+            "jobstatus": 0
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "747e0783-ae41-4e3a-bc44-564de466dbcd",
+            "jobstatus": 1,
+            "success": true
+          }
+        ]
+      }
+    }
+  ],
+  "domains": [
+    {
+      "id": "ae3c2fb2-d2bd-4cd8-baf6-5b8d87c29bac",
+      "name": "qa-1662-domain-20261114",
+      "path": "/qa-1662-domain-20261114/",
+      "cleanup": {
+        "deleted": true,
+        "jobs": [
+          {
+            "command": "deleteDomain",
+            "jobid": "a9fd573f-f1a1-4af1-b81c-48996aa9f5e2"
+          },
+          {
+            "command": "queryAsyncJobResult",
+            "jobid": "a9fd573f-f1a1-4af1-b81c-48996aa9f5e2",
+            "status": 1,
+            "success": true
+          }
+        ],
+        "emptyBeforeDelete": true
+      }
+    }
+  ]
+}

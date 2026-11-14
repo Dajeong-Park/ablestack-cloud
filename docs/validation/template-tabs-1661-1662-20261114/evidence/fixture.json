@@ -1,0 +1,6 @@
+{
+  "path": "/usr/share/cloudstack-management/webapp/qa-template-1661-1662-20261114/cirros.qcow2",
+  "sha256": "7d6355852aeb6dbcd191bcda7cd74f1536cfe5cbf8a10495a7283a8396e4b75b",
+  "bytes": 21692416,
+  "url": "http://10.10.13.10:8080/client/qa-template-1661-1662-20261114/cirros.qcow2"
+}

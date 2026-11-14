@@ -1,0 +1,12 @@
+{
+  "head": "4a2f5237b3d87eb6a834e813f0f406846bb787ed",
+  "eslintFiles": 19,
+  "eslintReturnCode": 0,
+  "jestReturnCode": 0,
+  "summary": [
+    "Test Suites: 29 passed, 29 total",
+    "Tests:       474 passed, 474 total",
+    "Snapshots:   0 total",
+    "Time:        25.449s"
+  ]
+}

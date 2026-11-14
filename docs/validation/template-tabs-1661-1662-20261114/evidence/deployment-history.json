@@ -1,0 +1,116 @@
+[
+  {
+    "codeHead": "7bbe9269a6d62be34793021a6e470334252b673a",
+    "root": "/usr/share/cloudstack-management/webapp",
+    "backup": "/var/tmp/template-1661-1662-ui-backup-om18w8_p",
+    "files": 25,
+    "added": 21,
+    "overwritten": [
+      "index.html",
+      "color.less",
+      "locales/ko_KR.json",
+      "locales/en.json"
+    ],
+    "indexSha256": "3cc97ad59766947a27029b3f809402c3642e577865416300272548f2c10668fa",
+    "protectedPreserved": true,
+    "moldPidPreserved": true,
+    "oldHashedAssetsRetained": true,
+    "deploymentType": "UI static delta only"
+  },
+  {
+    "codeHead": "b2d2ff1341c00fc80ef2a404cc35ccf6bd465f64",
+    "root": "/usr/share/cloudstack-management/webapp",
+    "backup": "/var/tmp/template-1661-1662-ui-backup-9y_bore4",
+    "files": 11,
+    "added": 9,
+    "overwritten": [
+      "index.html",
+      "color.less"
+    ],
+    "indexSha256": "4166a2e72a4d5ffef91fea3cd92b681022dbb9c3e9011f6661efd385143f4f13",
+    "protectedPreserved": true,
+    "moldPidPreserved": true,
+    "oldHashedAssetsRetained": true,
+    "deploymentType": "UI static delta only"
+  },
+  {
+    "codeHead": "07ff052342c866f80315268f219bf9060e79f33a",
+    "root": "/usr/share/cloudstack-management/webapp",
+    "backup": "/var/tmp/template-1661-1662-ui-backup-ktvb57oy",
+    "files": 6,
+    "added": 4,
+    "overwritten": [
+      "index.html",
+      "color.less"
+    ],
+    "indexSha256": "b2633f3afb005109b6eeb3396f118bf4033e97326d24ba874b0e93399ebb4ce9",
+    "protectedPreserved": true,
+    "moldPidPreserved": true,
+    "oldHashedAssetsRetained": true,
+    "deploymentType": "UI static delta only"
+  },
+  {
+    "codeHead": "0865dc14a4a5ee26a94488c16b761a868ae76c67",
+    "root": "/usr/share/cloudstack-management/webapp",
+    "backup": "/var/tmp/template-1661-1662-ui-backup-yc_uh9am",
+    "files": 9,
+    "added": 7,
+    "overwritten": [
+      "index.html",
+      "color.less"
+    ],
+    "indexSha256": "56635bd9ceeca98f20030487a3c4852910ebece5a730babc00f29bfa4af43ee7",
+    "protectedPreserved": true,
+    "moldPidPreserved": true,
+    "oldHashedAssetsRetained": true,
+    "deploymentType": "UI static delta only"
+  },
+  {
+    "codeHead": "95bc85bba35a728299307b0d14093bdf792575ab",
+    "root": "/usr/share/cloudstack-management/webapp",
+    "backup": "/var/tmp/template-1661-1662-ui-backup-45xrjy2s",
+    "files": 7,
+    "added": 5,
+    "overwritten": [
+      "index.html",
+      "color.less"
+    ],
+    "indexSha256": "fae10bf9e9efd5635709f6dc94a5f8917871e0f2993940a471d82749c7d0b005",
+    "protectedPreserved": true,
+    "moldPidPreserved": true,
+    "oldHashedAssetsRetained": true,
+    "deploymentType": "UI static delta only"
+  },
+  {
+    "codeHead": "bde10b16dc342c0e935fbb6c9142926cbfa46d7f",
+    "root": "/usr/share/cloudstack-management/webapp",
+    "backup": "/var/tmp/template-1661-1662-ui-backup-tj_shcii",
+    "files": 7,
+    "added": 5,
+    "overwritten": [
+      "index.html",
+      "color.less"
+    ],
+    "indexSha256": "69c94f21e116d38af5498289290050374a5e47990eaf3ee66dfa242eab71b7ed",
+    "protectedPreserved": true,
+    "moldPidPreserved": true,
+    "oldHashedAssetsRetained": true,
+    "deploymentType": "UI static delta only"
+  },
+  {
+    "codeHead": "4a2f5237b3d87eb6a834e813f0f406846bb787ed",
+    "root": "/usr/share/cloudstack-management/webapp",
+    "backup": "/var/tmp/template-1661-1662-ui-backup-5386jtho",
+    "files": 7,
+    "added": 5,
+    "overwritten": [
+      "index.html",
+      "color.less"
+    ],
+    "indexSha256": "a70a72b89234fc6d3b5592e17f0be63a7adbbe25b8fa2330aa2cf6fce57976c9",
+    "protectedPreserved": true,
+    "moldPidPreserved": true,
+    "oldHashedAssetsRetained": true,
+    "deploymentType": "UI static delta only"
+  }
+]
