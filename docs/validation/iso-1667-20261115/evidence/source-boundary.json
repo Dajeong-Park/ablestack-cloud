@@ -1,0 +1,24 @@
+{
+  "base": "1046a5dc3f21cb9cca0ab6881dd906d64b591e80",
+  "previousCode": "b8e9f242bfa38c9d5e4f0a67b677f168a418552a",
+  "productHead": "727bed1519aa97cbace8e5de14d4e986e0eecb08",
+  "runtimeInput": "/root/work/.build-iso1666-20261115/ui",
+  "buildInput": "/root/work/.build-iso1667-20261115/ui",
+  "uiPatchSha256": "f91e0081bad5f05555e246d112e8c34e2ea069b52ee590fd0f71991170c6035d",
+  "changedInputs": [
+    "ui/src/views/image/RegisterOrUploadIso.vue",
+    "ui/src/config/section/image.js",
+    "ui/src/utils/isoRegistration.js"
+  ],
+  "backendClasses": [
+    "org/apache/cloudstack/api/command/user/iso/GetUploadParamsForIsoCmd",
+    "com/cloud/storage/upload/params/UploadParamsBase",
+    "com/cloud/storage/upload/params/IsoUploadParams",
+    "com/cloud/template/TemplateAdapterBase"
+  ],
+  "inputHashes": {
+    "src/views/image/RegisterOrUploadIso.vue": "3e1ec7cf09fa5d26e5aedfc1832ea479f8f1cefa57ec9be5ca248ce54181bc96",
+    "src/config/section/image.js": "e00531af503098b3e4d058b9166bf55a07628161ca78d9f49df45f867769cfea",
+    "src/utils/isoRegistration.js": "d528875845ccd8b08fa4e8d2bd8e42721f2af2f52a1844b8773a1db216ee440d"
+  }
+}

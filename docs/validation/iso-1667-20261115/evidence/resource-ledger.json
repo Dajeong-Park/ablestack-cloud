@@ -1,0 +1,280 @@
+{
+  "isos": [
+    {
+      "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+      "name": "qa-iso1667-url421-md5",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "URL"
+    },
+    {
+      "id": "b64dd765-319d-4627-9fab-de272cdfe8b6",
+      "name": "qa-iso1667-expiry421",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "local",
+      "note": "Successful normal transfer, not expiry test",
+      "deleted": true
+    },
+    {
+      "id": "ca6bcf3d-b3b7-45a3-a12c-0f80f6c33f2c",
+      "name": "qa-iso1667-real-expiry421",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "local",
+      "deleted": true
+    },
+    {
+      "id": "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44",
+      "name": "qa-iso1667-ticket-expiry421",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "local",
+      "purpose": "unused ticket expiry",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e",
+      "name": "qa-iso1667-link-retry421",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "local",
+      "purpose": "Ready then link failure",
+      "deleted": true
+    },
+    {
+      "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa",
+      "name": "qa-iso1667-owner421-sha256",
+      "owner": "qa-iso1667-owner",
+      "series": "4.21",
+      "mode": "local"
+    },
+    {
+      "id": "82ba337d-5118-4d1e-8626-512410c59210",
+      "name": "qa-iso1667-abort421",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "local",
+      "deleted": true
+    },
+    {
+      "id": "a29994fd-d91e-483a-a08f-e0c5aa76dc7f",
+      "name": "qa-iso1667-mismatch421",
+      "owner": "qa-iso1667-owner",
+      "series": "4.21",
+      "mode": "local",
+      "deleted": true
+    },
+    {
+      "id": "a4ef44cf-059e-4a0f-a56c-af4f089f9702",
+      "name": "qa-iso1667-owner-url421-arm",
+      "owner": "qa-iso1667-owner",
+      "series": "4.21",
+      "mode": "URL",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "c607c490-c092-4602-a959-68233dcc0391",
+      "name": "qa-iso1667-preflight421-boot",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "local",
+      "deleted": true
+    },
+    {
+      "id": "14901002-5a73-4a74-88ae-35d8d442caf1",
+      "name": "qa-iso1667-admin-url421-boot",
+      "owner": "admin",
+      "series": "4.21",
+      "mode": "URL",
+      "deleted": true
+    },
+    {
+      "id": "d1d003bd-ccfc-4e25-ad07-c1f2f5b3e2ef",
+      "name": "qa-iso1667-owner-local421-arm",
+      "owner": "qa-iso1667-owner",
+      "series": "4.21",
+      "mode": "local",
+      "deleted": true
+    },
+    {
+      "id": "0b3b979a-06ad-4271-97b0-52b660789717",
+      "name": "qa-iso1667-owner-url421-boot",
+      "owner": "qa-iso1667-owner",
+      "series": "4.21",
+      "mode": "URL",
+      "deleted": true
+    },
+    {
+      "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99",
+      "name": "qa-iso1667-owner-local423-sha256",
+      "owner": "qa-iso1667-owner",
+      "series": "4.23",
+      "mode": "local"
+    },
+    {
+      "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903",
+      "name": "qa-iso1667-admin-local423-md5",
+      "owner": "admin",
+      "series": "4.23",
+      "mode": "local"
+    },
+    {
+      "id": "aaca737a-4ae6-4214-9384-9fd179efb889",
+      "name": "qa-iso1667-mismatch423-sha256",
+      "owner": "qa-iso1667-owner",
+      "series": "4.23",
+      "mode": "local",
+      "deleted": true
+    },
+    {
+      "id": "35796625-b004-4209-b396-bc28fffdcae1",
+      "name": "qa-iso1667-admin-local423-boot",
+      "owner": "admin",
+      "series": "4.23",
+      "mode": "local",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "aecdf844-c076-42a1-83cd-ccae17b78578",
+      "name": "qa-iso1667-owner-local423-s390x",
+      "owner": "qa-iso1667-owner",
+      "series": "4.23",
+      "mode": "local",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "33920848-c306-4970-a71c-974e0af89010",
+      "name": "qa-iso1667-admin-url423-data",
+      "owner": "admin",
+      "series": "4.23",
+      "mode": "URL",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "2a0fcd53-eddd-4a9b-b02b-d106cf971477",
+      "name": "qa-iso1667-owner-url423-data",
+      "owner": "qa-iso1667-owner",
+      "series": "4.23",
+      "mode": "URL",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "c6c91c1c-0177-48e4-809b-a29619cbf4b6",
+      "name": "qa-iso1667-admin-url423-boot",
+      "owner": "admin",
+      "series": "4.23",
+      "mode": "URL",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "321f9655-3566-40f0-a4a1-a0906d1e9399",
+      "name": "qa-iso1667-owner-url423-boot",
+      "owner": "qa-iso1667-owner",
+      "series": "4.23",
+      "mode": "URL",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "0728cd44-0190-4566-a9b9-cd9e92369058",
+      "name": "qa-iso1667-behalf423-long-template-name-for-ellipsis-template-name-for-ellipsis-template-name-for-ellipsis-template-name-for-ellipsis-template-name-for-ellipsis-",
+      "owner": "qa-iso1667-owner",
+      "actor": "admin",
+      "series": "4.23",
+      "mode": "URL",
+      "purpose": "latest owner-scope and long name verification",
+      "deletionRequested": true,
+      "deleted": true
+    },
+    {
+      "id": "24af0c87-4011-4bb5-85ae-8db4dea9c501",
+      "name": "qa-iso1667-final-error423-md5",
+      "owner": "qa-iso1667-owner",
+      "series": "4.23",
+      "mode": "local",
+      "deleted": true
+    },
+    {
+      "id": "d4e9bf8b-4900-4a13-8faf-c78ef5766ab9",
+      "name": "qa-iso1667-final-local423-retry",
+      "owner": "admin",
+      "series": "4.23",
+      "mode": "local",
+      "purpose": "latest local positive plus actual linkage failure",
+      "deleted": true
+    }
+  ],
+  "userdatas": [
+    {
+      "id": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+      "name": "qa-iso1667-admin-ud",
+      "owner": "admin"
+    },
+    {
+      "id": "fde8d697-1233-4c7d-93f2-0a4540db14ec",
+      "name": "qa-iso1667-retry-deleted-ud",
+      "owner": "admin",
+      "purpose": "delete after selection to cause real linkage failure",
+      "deleted": true
+    },
+    {
+      "id": "1e00e2db-3756-40d0-8684-080a7a0587c2",
+      "name": "qa-iso1667-owner-ud",
+      "owner": "qa-iso1667-owner"
+    },
+    {
+      "id": "10d03a53-cf08-49e6-ac53-aa86ee801066",
+      "name": "qa-iso1667-final-retry-ud",
+      "owner": "admin",
+      "purpose": "final real linkage failure retry",
+      "deleted": true
+    }
+  ],
+  "accounts": [
+    {
+      "id": "e49af88e-9c66-4da9-b056-a52c9cd2a07c",
+      "name": "qa-iso1667-owner"
+    }
+  ],
+  "systemvms": [
+    {
+      "id": "5b2e9347-08d9-4537-8344-941e20cf91d7",
+      "name": "s-254-VM",
+      "version": "4.21.0.0-Mold.Diplo-202609221440",
+      "host": "10.10.13.2",
+      "linklocal": "169.254.193.153",
+      "publicIp": "10.10.13.4",
+      "destroyed": true
+    },
+    {
+      "id": "ec08882e-81a5-4c20-b427-d9d2c0ffe12d",
+      "name": "s-255-VM",
+      "version": "4.23.0.0",
+      "host": "10.10.13.1",
+      "linklocal": "169.254.164.211",
+      "publicIp": "10.10.13.4"
+    }
+  ],
+  "systemImages": [
+    {
+      "id": "460c3e5f-a873-4ca1-8242-a96d92eae233",
+      "name": "Europa-SystemVM-4.21-ISO1667-Recovery-20261115",
+      "purpose": "4.21 compatibility and recovery factory",
+      "ready": true
+    },
+    {
+      "id": "1cce97d2-a4b6-49c7-871a-3f52d70ce858",
+      "name": "Europa-SystemVM-4.23-ISO1667-20261115",
+      "purpose": "operational current factory after 4.21 testing",
+      "ready": true
+    }
+  ]
+}

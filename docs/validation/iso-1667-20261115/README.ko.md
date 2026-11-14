@@ -17,46 +17,175 @@ specific language governing permissions and limitations
 under the License.
  -->
 
-# ISO-02 등록·로컬 업로드 설계 및 검증 (#1667)
+# ISO-02 등록·로컬 업로드 구현 및 검증 (#1667)
 
-상위 Epic #1664, 구현 PR #1682. #1666의 공통 계약 뒤 등록·전송·Ready·사용자 데이터 연결을 구현한다. 이 문서는 진행 기록이며 미실행 항목을 통과로 표시하지 않는다.
+상위 Epic #1664 · 구현 PR #1682 · 13번 단일 Zone/KVM · 2026-11-15 KST.
 
-## 확정 설계
+**현재 상태: 구현·필요 산출물 배포·양 계열 업로드 및 자동화 가능한 UI 회귀는 통과했다. 실제 다운로드 파일 4개의 수신 확인과 그 뒤 정리는 대기 중이다. #1667과 Epic은 열려 있으며 PR은 Draft다.**
 
-- URL 등록과 로컬 업로드는 각각 실제 API 스키마의 지원 필드만 보낸다. HTTP/HTTPS/file URL은 서버 UriUtils 계약을 따른다. 파일·이름·Zone·부팅/OS·체크섬 오류는 폼에서 검사한다. false 값과 서버 기본 아키텍처를 보존한다.
-- MoldDialog의 고정 header/footer, 본문 스크롤, busy·focus 계약을 재사용한다. 이름은 한 줄 말줄임과 전체 title을 제공한다. 상시 목록 설명 배너를 추가하지 않는다.
-- 로컬 접수 ID는 postuploadisoresponse.getuploadparams.id에서 읽는다. 서명·일회 URL·헤더는 컴포넌트 런타임에만 보관하고 전송 시도 뒤 폐기한다. 저장소나 이슈 근거에 기록하지 않는다.
-- 등록 요청 → 파일 전송 → 서버 Ready 확인 → 선택한 사용자 데이터/정책 연결 → 완료 순으로 진행한다. 전송 100% 또는 HTTP 접수만으로 성공을 표시하지 않는다. URL 등록도 Ready를 확인한 뒤 연결한다.
-- 사용자 데이터 연결 실패는 이미 준비된 ISO와 구분한다. 같은 ID로 연결만 재시도하며 새 등록이나 파일 재전송을 하지 않는다. 옵션은 소유자/프로젝트 범위를 따르고 오래된 조회를 버린다.
-- 전송 전 연결 실패는 같은 미사용 티켓으로 재시도한다. 전송을 시도한 뒤의 실패는 일회 URL을 재사용하지 않고 등록된 ISO의 상태를 확인한다. 만료 티켓은 전송 전에 차단한다.
-- 중복 클릭·유효성 검사 대기·계정/권한/프로젝트 변경·컴포넌트 해제 후 응답을 방어한다. 새로고침 뒤 자동 등록을 하지 않는다. 계정이나 프로젝트가 바뀌면 이전 ID/파일/티켓을 화면에 재사용하지 않는다.
-- 전송 전 폼 취소는 서버 개체를 만들지 않는다. ID 발급 뒤 닫기는 서버 취소로 표시하지 않는다. 기존 NotUploaded/UploadInProgress 삭제 금지와 정상 ABANDONED/실패 정리를 유지한다. 전역 timeout·DB 상태 수정을 사용하지 않는다.
+단위 테스트나 업로드 접수만으로 완료를 표시하지 않았다. 아래 등록·실패·복구·삭제는 실제 Mold UI에서 실행했고, 해당 UI가 받은 API 응답과 배포 런타임을 보조 근거로 대조했다.
 
-## 서버 변경과 호환성
+## 구현 결과
 
-checksum/arch를 GetUploadParamsForIsoCmd → IsoUploadParams → 기존 TemplateProfile/업로드 metadata 경로로 전달한다. 기존 IsoUploadParams 생성자를 보존하고 새 생성자를 추가한다. 기존 vm_template.checksum/arch를 사용하며 신규 테이블·열·migration은 없다.
+- URL/로컬 API 스키마를 분리하고 지원하는 파라미터만 전달한다. 로컬 API의 상속된 필수 값 `format=ISO`도 보존한다. URL·파일 필수·체크섬 입력 오류를 해당 필드에 표시하고 false 값을 보존한다.
+- 로컬 접수 ID는 `postuploadisoresponse.getuploadparams.id`에서 읽는다. 등록 → 파일 전송 → 서버 Ready → 사용자 데이터/정책 연결 → 완료를 분리한다. 전송 100%를 Ready로 표시하지 않는다.
+- 일회 티켓은 컴포넌트 런타임에만 보관한다. 전송 전 연결 실패는 같은 미사용 티켓으로 재시도하고, POST 시도 뒤에는 재사용하지 않는다. 만료된 티켓은 전송 전에 차단한다.
+- Ready 후 연결 실패는 ISO 성공과 구분한다. 같은 ID로 연결만 재시도하며 자동으로 ISO를 추가 생성하지 않는다.
+- 관리자 대리 등록에서 계정/도메인이 바뀌면 이전 사용자 데이터 선택과 목록을 즉시 비운다. 조회 중 제출/재시도를 막고, 갱신된 범위에 없는 선택을 제거한다.
+- SSVM의 알려진 평문 체크섬 오류를 일반 HTTP 500 대신 표시한다. 임의 HTML이나 추가 서명 문자열은 그대로 노출하지 않는다.
+- MoldDialog의 고정 Header/Footer·Body 스크롤·busy/초점 계약을 사용한다. 긴 접수 이름은 한 줄 ellipsis와 전체 title을 제공한다. 목록 설명 배너를 추가하지 않았다.
+- 전송 중단은 클라이언트 전송만 중단한다. 서버 취소로 표시하거나 NotUploaded 삭제/TTL을 우회하지 않는다.
 
-13번의 실제 관리 JAR을 기준으로 API arch 필드/접근자, checksum setter, 새 생성자, ISO prepare 메서드만 병합한다. 변경 클래스는 다음 네 개다.
+서버는 `GetUploadParamsForIsoCmd → IsoUploadParams → 기존 TemplateProfile/metadata`로 checksum/arch를 전달한다. 기존 생성자를 유지했고 x86_64 기본값을 보존했다. 기존 `vm_template.checksum/arch` 열을 사용하며 신규 스키마·migration은 없다.
 
-- org/apache/cloudstack/api/command/user/iso/GetUploadParamsForIsoCmd
-- com/cloud/storage/upload/params/UploadParamsBase
-- com/cloud/storage/upload/params/IsoUploadParams
-- com/cloud/template/TemplateAdapterBase
+## 실제 런타임과 검증 커밋
 
-무관 메서드와 JAR 엔트리는 보존하고 실제 런타임 classpath로 계약 테스트를 다시 수행한다. 관리 서비스 재시작이 필요하므로 배포 전 JAR·PID·설정을 기록하고 복구본을 만든다. 호스트 agent와 전체 Cloud 배포는 수행하지 않는다.
+| 구분 | 실제 VM / 업로드 런타임 | 이미지 릴리스 파일 | secondary JAR SHA-256 |
+| --- | --- | --- | --- |
+| 4.21 호환 | s-254-VM · 4.21.0.0-Mold.Diplo-202609221440 | Cloudstack Release 4.22.0 | `d5f6dbcf45df292dcfb1d12d84e30ee14f41cb4a9e70f0a1ff82aa62b9c78667` |
+| 4.23 재생성 | s-255-VM · 4.23.0.0 | Cloudstack Release 4.23.0.0 | `a7c075a5936b2d7bf6a9e6453fc25d247ac0a7b33cdd91046469ca1e28ff27a3` |
 
-## 단계별 수용 검증
+4.21은 실제 agent/secondary 및 Cloud JAR 전체가 4.21인 업로드 호환 런타임이다. 이미지 릴리스 표기 4.22와 구분하며, 이를 4.21 OS 이미지로 주장하지 않는다. 버전 문자열을 고쳐서 시험하지 않았다.
 
-| 단계 | 필수 확인 | 상태 |
-| --- | --- | --- |
-| 코드/빌드 | 변경 경로 Lint, UI 단계 회귀, 서버 계약·실제 런타임 계약 | 진행 중 |
-| 4.21 환경 | 이미지와 agent 버전 확인, 관리자/소유자 URL·로컬, MD5/SHA-256, 정상/불일치, 사용자 데이터 정책 | 미실행 |
-| 4.23 재생성 | 4.21 검증 후 실제 새 SSVM 생성, 이미지/agent/자산 해시, 동일 업로드·실패 회귀 | 미실행 |
-| 실패/재시도 | 취소, 전송 전 실패, 전송 후 실패, Ready 후 연결 실패와 같은 ID 재시도, 만료, 중복/재방문 | 미실행 |
-| 정리/배포 경계 | 시험 ISO/계정/사용자 데이터 정리, 원래 개체 보존, 필요한 UI/서버 자산만 배포 | 미실행 |
+원래 s-244-VM을 UI에서 재생성해 4.21 런타임을 검증한 뒤, 새 4.23 SYSTEM 이미지로 s-255-VM을 실제 생성했다. 현재 VM은 `ec08882e-81a5-4c20-b427-d9d2c0ffe12d`, 호스트 10.10.13.1, Agent Up/Running이다. 원래 콘솔 v-245-VM의 ID `147cd89a-9b5b-4bcd-a0ca-a1ac88584578`는 보존했다.
 
-현재 실제 SSVM은 s-244-VM / 4.23.0.0이다. 4.21을 먼저 검증할 환경을 구성하고, 그 뒤 4.23으로 재생성한다. 시스템 VM 이미지·bootstrap 런타임은 버전과 해시를 별도 기록하며 기존 산출물과 console proxy를 보존한다. 보호된 SYSTEM 이미지 중 재생성/복구에 필요한 운영 산출물은 임시 QA ISO와 구분해 최종 보고에 명시한다.
+4.21 주 검증 UI는 `3003887f789`, 4.23 등록 행렬은 `5ebca2ecb09`에서 확인했다. 최종 제품 `727bed1519a`에서는 소유자 변경, 오류 표시, 긴 이름, 새로고침, 실제 로컬+APPEND 연결 실패/재시도와 Esc 취소를 다시 검증했다. 임시 cb9424 빌드는 소유자 문제 보정을 포함하는 후속 빌드로 대체했으며 배포하지 않았다.
 
-## 기존 CI 부채
+[소스 동일성 근거](evidence/compatibility-source-equivalence.json): 4.21 확인 이후 전송/재시도/Ready/연결 6개 메서드, 등록 유틸리티, 서버 4개 파일은 동일하다. 마지막 변경은 공통 소유 범위 조회와 오류/단계 표시이며 4.23에서 해당 경로를 재검증했다. 4.21의 최신 전체 UI를 다시 실행한 것으로 표시하지 않는다.
 
-첫 표준 Maven 실행은 API Checkstyle 46건으로 중단됐다. 모두 변경 밖 파일이며 신규 API 파일의 지적은 0이다. server 독립 검사에서도 기존 218건과 변경 파일 지적 0을 확인했다. 기능 빌드/테스트는 이 기존 style 게이트를 구분해 수행했으며 전체 CI 성공으로 기록하지 않는다. #926·#1044와 신규 회귀를 계속 분리한다.
+- [4.21 실제 런타임](evidence/ssvm421-runtime.json)
+- [4.23 실제 런타임](evidence/ssvm423-runtime.json)
+- [최종 배포 입력과 경계](evidence/source-boundary.json)
+
+## 등록 행렬
+
+관리자·일반 소유자 × URL/로컬 × 부팅/비부팅의 8개 조합을 각 계열에서 모두 Ready까지 확인했다. 아래 checksum은 실제 UI 조회 응답의 저장 값이다. 전체 ID/이름/크기/해시는 [행렬 JSON](evidence/registration-matrix.json)에 있다.
+
+| 계열 | 소유자 | 방식 | 부팅 가능 | checksum | arch | 정책 | Ready |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 4.21 | 관리자 | URL | 아니오 | MD5 | x86_64 | APPEND | true |
+| 4.21 | 관리자 | URL | 예 | SHA-256 | x86_64 | 미선택 | true |
+| 4.21 | 관리자 | local | 아니오 | MD5 | x86_64 | APPEND | true |
+| 4.21 | 관리자 | local | 예 | MD5 | x86_64 | 미선택 | true |
+| 4.21 | 일반 사용자 | URL | 아니오 | SHA-256 | aarch64 | ALLOWOVERRIDE | true |
+| 4.21 | 일반 사용자 | URL | 예 | MD5 | x86_64 | 미선택 | true |
+| 4.21 | 일반 사용자 | local | 아니오 | SHA-256 | aarch64 | 미선택 | true |
+| 4.21 | 일반 사용자 | local | 예 | SHA-256 | x86_64 | DENYOVERRIDE | true |
+| 4.23 | 관리자 | URL | 아니오 | SHA-256 | x86_64 | 미선택 | true |
+| 4.23 | 관리자 | URL | 예 | MD5 | x86_64 | 미선택 | true |
+| 4.23 | 관리자 | local | 아니오 | MD5 | x86_64 | APPEND | true |
+| 4.23 | 관리자 | local | 예 | SHA-256 | x86_64 | 미선택 | true |
+| 4.23 | 일반 사용자 | URL | 아니오 | SHA-256 | x86_64 | ALLOWOVERRIDE | true |
+| 4.23 | 일반 사용자 | URL | 예 | SHA-256 | x86_64 | 미선택 | true |
+| 4.23 | 일반 사용자 | local | 아니오 | MD5 | s390x | 미선택 | true |
+| 4.23 | 일반 사용자 | local | 예 | SHA-256 | x86_64 | DENYOVERRIDE | true |
+
+aarch64/s390x는 비부팅 데이터 ISO의 메타데이터 저장 검증이다. ARM/IBM 게스트 부팅이나 다중 Zone·비KVM 검증을 주장하지 않는다. 부팅 ISO는 실제 부트 카탈로그를 가진 CorePure64-16.2이며, 여기서 검증한 것은 등록/Ready/부팅 플래그·OS 값이다.
+
+## 실패·복구·표준 UI 회귀
+
+| 항목 | 실제 UI 결과 |
+| --- | --- |
+| URL/파일/체크섬 필드 오류 | URL 형식·필수 파일·이름·잘못된 체크섬 입력 오류 표시, 유효성 오류 시 개체 생성 없음 |
+| MD5/SHA-256 불일치 | 전송 거절 → DOWNLOAD_ERROR/Ready=false → 정상 UI 삭제. 최종 화면에 실제 checksum mismatch 사유 표시 |
+| 전송 전 연결 실패 | 해당 업로드 origin만 일시 차단/즉시 복구. 같은 ID·미사용 티켓 재시도로 Ready, 새 할당 0건 |
+| 전송 중 중단 | 실제 전송 2%에서 UI 중단 확인, 같은 티켓 재전송 없음, 오류 상태의 정상 UI 삭제 |
+| Ready 후 연결 실패 | 선택한 임시 사용자 데이터를 다른 UI에서 삭제한 뒤 제출. Ready는 유지되고 연결만 실패 |
+| 같은 ID 연결 재시도 | 제거된 선택 비움/재시도 비활성 확인 후 유효 항목 선택. linkUserDataToTemplate만 재실행, 할당/파일 POST 0건 |
+| 이중 클릭 | 관리자 4.23 로컬 업로드의 실제 double-click에서 getUploadParamsForIso 1건 |
+| 재방문/새로고침 | 대리 등록 상세 재조회/새로고침에서 등록 쓰기 요청 0건 |
+| 전송 전 Esc | 생성되지 않고 닫힘, 초점이 ISO 등록 버튼으로 복귀 |
+| 긴 이름 | 한 줄 높이 22px, clientWidth 662/scrollWidth 1092, ellipsis와 전체 title 일치 |
+| 소유자 변경 | admin 사용자 데이터 선택 후 QA 계정으로 변경 시 즉시 초기화, QA 소유 항목만 선택 가능. 대리 등록의 실제 소유자·APPEND 저장 확인 |
+| 실제 서명 만료 | UI 설정 upload.operation.timeout=60을 변경 없이 확인. 약 61분 유지 뒤 만료 안내, 같은 ID 보존, 파일 POST/새 할당 각 0건 |
+
+만료 티켓은 4.21에서 발급하고 컴포넌트를 유지한 채 4.23 재생성 뒤 만료 시각에 확인했다. 서버 요약은 DOWNLOAD_ERROR였고 정상 삭제했다. 이를 이번에 서버 ABANDONED를 재현한 결과로 표시하지 않는다. 기존 ISO-01의 실제 ABANDONED 근거와 취소/TTL 코드는 유지한다. 전역 timeout·시계·DB 상태를 바꾸지 않았다.
+
+13번 실제 전송은 HTTP다. HTTPS 인증서 신뢰 안내는 origin만 제공하는 기존 경로를 보존하고 단위 회귀로 확인했다. 브라우저 보안 경고를 우회하지 않았다.
+
+- [UI 관찰/요청 대조 기록](evidence/ui-cases.json)
+- [최종 소유자 변경 화면](screenshots/final-owner-scope-cleared.jpg)
+- [최종 로컬 Ready/APPEND](screenshots/final-local-ready-append.jpg)
+- [체크섬 오류 사유와 전송 단계](screenshots/final-checksum-reason-and-stage.jpg)
+- [연결 실패 후 제거된 선택 비움](screenshots/final-link-failed-cleared-selection.jpg)
+- [실제 만료 차단](screenshots/real-expiry-blocked.jpg)
+- [60분 설정 보존](screenshots/upload-timeout-unchanged-60min.jpg)
+
+## 배포와 복구 경계
+
+관리 JAR의 기존 런타임을 기준으로 다음 4개 클래스만 필요한 멤버/메서드를 병합했다. 다른 JAR 엔트리와 메서드는 보존했다.
+
+- `org/apache/cloudstack/api/command/user/iso/GetUploadParamsForIsoCmd`
+- `com/cloud/storage/upload/params/UploadParamsBase`
+- `com/cloud/storage/upload/params/IsoUploadParams`
+- `com/cloud/template/TemplateAdapterBase`
+
+원본 관리 JAR은 `8fe7c6611dd1983084a3de8b5ed70b78f05a4551931022a4f1c0af5bb9f5e2c6`, 배포 JAR은 `97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224`다. 복구본은 `/var/tmp/iso1667-backend-backup-m6uv_b0z`에 있다. 관리 서비스 재시작은 1회이며 현재 PID 2545994/active다. 비인증 health probe의 정상 401을 실패로 본 배포 도구는 중단 후 실 JAR/PID/UI 로그인으로 상태를 확정했고 추가 restart/rollback은 하지 않았다.
+
+최종 UI는 기존 운영 입력에 이번 파일과 ISO 번역만 반영해 빌드했다. 마지막 정정은 정적 자산 4개만 배포했다. index SHA-256은 `b8535f1a516b4e01cf34aac77be3748d8ed09c475c3a86790dd4612d75de1a4e`, 실행 app은 `app.60966e72.js`다. 마지막 복구본은 `/var/tmp/iso1667-20261115-ui-backup-2vwnp7fu`다.
+
+7036개 원래 자산을 보존했고 기존 경로 덮어쓰기는 index/en/ko뿐이다. 누적 새 hashed 자산 15개와 이전 복구 자산을 보존했다. config.json·WEB-INF/web.xml·color.less·관리 PID 및 무관 자산의 예상 밖 변화는 0개다.
+
+4.21 재생성용 임시 bootstrap ZIP은 3개 호스트 모두 원래 4.23 SHA `fba45526bd0b4b2b0cd691a5accd9adae60f5b1de0a66e4606c0ce653ffa0aca`로 복구했다. 호스트 agent 데몬은 재시작하지 않았다.
+
+- [백엔드 병합 근거](evidence/backend-patch.json)
+- [백엔드 배포 확정](evidence/backend-deployment.json)
+- [최종 UI 배포](evidence/ui-deployment.json)
+- [최종 런타임·보존 해시](evidence/runtime-final.json)
+
+## 필수 검사와 CI 부채 분리
+
+| 검사 | 결과 |
+| --- | --- |
+| 이번 JS/Vue 5개 경로 ESLint | 통과 |
+| UI 회귀 8개 묶음 | 122개 통과, 실제 배포 입력도 동일 |
+| 기능 Maven -am 빌드 / 서버 계약 | 통과, 계약 4개. 기존 Checkstyle 게이트는 명시적으로 분리 |
+| 실제 패치 관리 런타임 classpath | 같은 계약 4개 통과 |
+| 생산 UI 빌드 | 통과, 722.1초 |
+| 변경 밖 Checkstyle | API 46/server 218, 변경 파일 지적 0 |
+| 전체 License/RAT | 실패 4077개, 기준과 파일 집합 동일, 추가/제거 0 |
+| 소스 727bed 전체 Lint | 실패 hook 16개, 실패 진단의 변경 경로 0, 매칭한 기존 11173개 경로는 기준과 동일 |
+| 검증 기록 pre-commit / 수동 hook | 두 단계 통과, CI와 같은 Python 3.11 환경 사용 |
+| 수신 파일 검증 | 미완료, 아래 4개 ISO 확인 필요 |
+
+전체 pre-commit의 통과한 identity 파일 나열을 진단으로 세지 않았다. 실제 실패 hook 부분만 분리해 변경 경로와 대조했다. 수동 hook 단계는 앞 단계 실패 때문에 건너뛰었으며 전체 CI 성공으로 표시하지 않는다.
+
+기존 Build/License/Lint는 #926, 전체 pre-commit의 기존 링크·권한·문서 오류는 #1044에서 계속 관리한다. 새 기능과 기존 부채를 한 건으로 처리하지 않는다. 이 검증 기록 커밋의 CI는 별도로 다시 실행된다.
+
+- [Lint 로그](evidence/final-lint.log)
+- [UI 테스트](evidence/final-ui-tests.log)
+- [실제 빌드 입력 테스트](evidence/runtime-input-tests.log)
+- [서버 계약 요약](evidence/server-tests.json)
+- [Checkstyle 분류](evidence/checkstyle-classification.json)
+- [RAT 기준 대조](evidence/rat-comparison.json)
+- [전체 pre-commit 분류](evidence/precommit-classification.json)
+- [검증 기록 대상 검사](evidence/focused-report-checks.json)
+
+## 다운로드 확인 대기와 남은 정리
+
+4.21 등록 MD5 ISO의 추출은 성공했다. 그러나 다운로드가 연 새 탭은 자동제어 브라우저의 URL 보안 정책 때문에 관찰할 수 없어 실제 파일 수신 성공으로 표시하지 않았다. 수신 크기/해시는 서버 저장 값이나 추출 job 성공으로 대신하지 않는다. 새 탭 제어를 다른 브라우저 표면/CDP/curl로 우회하지 않았다.
+
+관리자 `모두` 목록에서 아래 네 ISO의 `작업 → ISO 다운로드`를 실행하고 수신 파일 크기와 SHA-256을 확인해야 한다. 임시 원본 HTTP 주소는 제거했으므로 상세의 원본 URL 대신 실제 ISO 다운로드 기능을 사용한다.
+
+| 등록/입력 checksum | 확인할 ISO | 예상 크기 | 예상 SHA-256 |
+| --- | --- | --- | --- |
+| 4.21 / MD5 | `qa-iso1667-url421-md5` | 1,525,760 bytes | `171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4` |
+| 4.21 / SHA-256 | `qa-iso1667-owner421-sha256` | 24,434,688 bytes | `c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc` |
+| 4.23 / MD5 | `qa-iso1667-admin-local423-md5` | 1,525,760 bytes | `171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4` |
+| 4.23 / SHA-256 | `qa-iso1667-owner-local423-sha256` | 24,434,688 bytes | `c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc` |
+
+4.21 등록 개체는 현재 4.23에서 추출될 수 있다. 이 파일 확인을 4.21 agent가 직접 다운로드를 제공한 결과로 소급해 기록하지 않는다.
+
+UI 생성 ISO 25개 중 21개를 정상 삭제했다. 위 4개와 연결된 QA 계정 1개/사용자 데이터 2개는 수신 검증 뒤 ISO → 사용자 데이터 → 계정 순서로 UI 정리한다. 현재 원래 ISO 8개 ID와 역할 9개는 보존됐다. 현재 ISO 12개/계정 4개/사용자 데이터 2개이며 시험 자원 잔여 0으로 표시하지 않는다.
+
+운영 SYSTEM 이미지는 4.23 현재 factory `1cce97d2-a4b6-49c7-871a-3f52d70ce858`와 보호된 4.21 호환 복구 이미지 `460c3e5f-a873-4ca1-8242-a96d92eae233` 두 개를 유지한다. 두 이미지가 Ready인 것을 UI로 확인했다. QA ISO와 구분하며 SYSTEM 삭제 권한을 우회하지 않았다.
+
+임시 ISO HTTP 파일 2개와 4.21 재생성용 HTTP 이미지 1개는 해시 확인 후 제거했고 각각 404를 확인했다. 기존 4.23 원본 파일과 복구본은 보존했다.
+
+- [수신 확인 대기 목록](screenshots/pending-download-ready-four.jpg)
+- [자원 ID와 정리 상태](evidence/resource-ledger.json)
+- [남은 종료 게이트](evidence/pending-cleanup.json)
+- [HTTP 파일 정리](evidence/http-fixtures-cleanup.json)
+- [근거 안전 검사](evidence/artifact-safety.json)
+
+실수신 확인과 나머지 UI 정리 후에만 #1667을 종료하고 Epic/PR의 최종 상태를 갱신한다.

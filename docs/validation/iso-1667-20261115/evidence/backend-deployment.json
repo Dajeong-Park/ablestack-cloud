@@ -1,0 +1,20 @@
+{
+  "productHead": "8bfdcb7898ef643627fc798102805b38e27b2739",
+  "path": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "backup": "/var/tmp/iso1667-backend-backup-m6uv_b0z",
+  "beforeJarSha256": "8fe7c6611dd1983084a3de8b5ed70b78f05a4551931022a4f1c0af5bb9f5e2c6",
+  "afterJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224",
+  "changedExistingEntries": [
+    "org/apache/cloudstack/api/command/user/iso/GetUploadParamsForIsoCmd.class",
+    "com/cloud/storage/upload/params/UploadParamsBase.class",
+    "com/cloud/storage/upload/params/IsoUploadParams.class",
+    "com/cloud/template/TemplateAdapterBase.class"
+  ],
+  "otherJarEntriesPreserved": true,
+  "oldPid": "2473572",
+  "newPid": "2545994",
+  "serviceActive": "active",
+  "schemaChanged": false,
+  "hostAgentsRestarted": false,
+  "healthProbeCorrection": "The authenticated capabilities endpoint returns JSON with HTTP 401 when the servlet is ready; the completed patch was preserved without another service restart. Final UI login is required."
+}

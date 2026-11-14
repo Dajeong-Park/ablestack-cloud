@@ -1,0 +1,7 @@
+{
+  "sourceHead": "727bed1519aa97cbace8e5de14d4e986e0eecb08",
+  "stagedTree": "41a48b9203530b05d6ef2ed4ad61960d48ea8f4c",
+  "method": "exact Git index export with checkout-index; excludes ignored dependencies and local build outputs",
+  "workspace": "/root/work/.rat-iso1667-staged-2mho8km1",
+  "activeGitCheckoutUnchanged": true
+}

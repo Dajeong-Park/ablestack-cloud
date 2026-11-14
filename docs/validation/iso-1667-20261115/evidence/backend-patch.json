@@ -1,0 +1,32 @@
+{
+  "baseJarSha256": "8fe7c6611dd1983084a3de8b5ed70b78f05a4551931022a4f1c0af5bb9f5e2c6",
+  "classes": {
+    "org/apache/cloudstack/api/command/user/iso/GetUploadParamsForIsoCmd.class": {
+      "before": "071090e8070592614b03544dfa3453554b34dd9976ae6699144a347c3bfd3e1e",
+      "after": "f1a9c1108b90e391fc38552824d165fd91e4fe701488223cf5574d127012d444",
+      "major": 55
+    },
+    "com/cloud/storage/upload/params/UploadParamsBase.class": {
+      "before": "23567fd587b5471e6f0859c1e525b88f48d123bc43a66078bd7eaa0bc9a134ea",
+      "after": "3f2f3b58fd9a452fa8a0c7287e57852b523907420bb8473c00f7b33a4a1ef6aa",
+      "major": 55
+    },
+    "com/cloud/storage/upload/params/IsoUploadParams.class": {
+      "before": "2e1a4497585de24541fa994113092a8ed07e316e5ea31c0bdd57623c0ed6a946",
+      "after": "3bd3a36db34035131aa6049c8f3bbaaad92cd4bb94a91d730c99e81bbadab1dd",
+      "major": 55
+    },
+    "com/cloud/template/TemplateAdapterBase.class": {
+      "before": "4907b2bed440f8a56a41578bde41ae18e4bfa147998593e6132d25e9052b1999",
+      "after": "54988c6859d1d80996b49d043fa32d40fe97f90bf5cecfb94d2ce2636020a33f",
+      "major": 55
+    }
+  },
+  "methodChanges": [
+    "org/apache/cloudstack/api/command/user/iso/GetUploadParamsForIsoCmd targeted=[setArch(Ljava/lang/String;)V, getArch()Lcom/cloud/cpu/CPU$CPUArch;] unrelatedMethodsPreserved=18",
+    "com/cloud/storage/upload/params/UploadParamsBase targeted=[setChecksum(Ljava/lang/String;)V] unrelatedMethodsPreserved=40",
+    "com/cloud/storage/upload/params/IsoUploadParams targeted=[<init>(JLjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Boolean;JZLjava/lang/String;Lcom/cloud/cpu/CPU$CPUArch;)V] unrelatedMethodsPreserved=1",
+    "com/cloud/template/TemplateAdapterBase targeted=[prepare(Lorg/apache/cloudstack/api/command/user/iso/GetUploadParamsForIsoCmd;)Lcom/cloud/storage/TemplateProfile;] unrelatedMethodsPreserved=26"
+  ],
+  "patchedJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224"
+}

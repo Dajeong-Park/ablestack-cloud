@@ -1,0 +1,35 @@
+{
+  "productHead": "727bed1519aa97cbace8e5de14d4e986e0eecb08",
+  "indexSha256": "b8535f1a516b4e01cf34aac77be3748d8ed09c475c3a86790dd4612d75de1a4e",
+  "backendJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224",
+  "moldPid": "2545994",
+  "moldService": "active",
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "colorLessSha256": "b4828a78c5034913ce0f62a6315e0303ae63a154d2ecf8ce9e1ad0c4c170b8f0",
+  "originalAssetsPreserved": 7036,
+  "overwrittenOriginalAssets": [
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "addedAssets": 15,
+  "unexpectedAssetChanges": 0,
+  "permanent423SourcePreserved": true,
+  "hostFactories": [
+    {
+      "host": "10.10.13.1",
+      "factory423Sha256": "fba45526bd0b4b2b0cd691a5accd9adae60f5b1de0a66e4606c0ce653ffa0aca"
+    },
+    {
+      "host": "10.10.13.2",
+      "factory423Sha256": "fba45526bd0b4b2b0cd691a5accd9adae60f5b1de0a66e4606c0ce653ffa0aca"
+    },
+    {
+      "host": "10.10.13.3",
+      "factory423Sha256": "fba45526bd0b4b2b0cd691a5accd9adae60f5b1de0a66e4606c0ce653ffa0aca"
+    }
+  ]
+}
