@@ -133,7 +133,7 @@ export default {
     this.initForm()
     this.fetchData()
   },
-  computed: { routeContext () { const getters = this.$store.getters; return JSON.stringify([this.resource.id, this.resource.domainid, getters.project?.id, getters.userInfo?.id, getters.userInfo?.domainid, getters.userInfo?.roleid, getters.userInfo?.roletype]) } },
+  computed: { routeContext () { const getters = this.$store.getters; return JSON.stringify([this.$route.fullPath, this.resource.id, this.resource.domainid, this.$store.state?.user?.token, getters.project?.id, getters.userInfo?.id, getters.userInfo?.domainid, getters.userInfo?.roleid, getters.userInfo?.roletype]) } },
   watch: {
     routeContext () { this.createVisible = false; this.tagsModalVisible = false; this.routeSubmitting = false; this.tagsLoading = false; this.tagRequest++; this.tags = []; this.newRoute = null; this.nexthop = null },
     loading (newData, oldData) {
@@ -267,7 +267,8 @@ export default {
       const scope = this.routeContext
       const route = { ...this.selectedRule }
       const verb = api === 'createTags' ? 'add' : 'delete'
-      const current = () => scope === this.routeContext && this.selectedRule?.id === route.id
+      const request = this.tagRequest
+      const current = () => !this.listRefreshDisposed && scope === this.routeContext && request === this.tagRequest && this.selectedRule?.id === route.id
       this.tagError = ''
       const failed = error => { if (current()) { this.tagsLoading = false; this.tagError = error ? this.errorText(error) : this.$t('message.' + verb + '.tag.failed') } }
       return postAPI(api, {
@@ -276,6 +277,7 @@ export default {
         resourceIds: route.id,
         resourceType: 'StaticRoute'
       }).then(response => {
+        if (!current()) return
         this.$pollJob({
           jobId: response[api.toLowerCase() + 'response'].jobid,
           successMessage: this.$t('message.success.' + verb + '.tag'),
@@ -294,12 +296,18 @@ export default {
       return this.saveTag('deleteTags', tag)
     },
     async handleAddTag () {
-      if (this.tagsLoading || !('createTags' in this.$store.getters.apis)) return
+      if (this.tagsLoading || !this.selectedRule?.id || !('createTags' in this.$store.getters.apis)) return
+      const scope = this.routeContext
+      const route = this.selectedRule
+      const request = ++this.tagRequest
+      const current = () => !this.listRefreshDisposed && scope === this.routeContext && request === this.tagRequest && route === this.selectedRule
       this.tagsLoading = true
       try {
         await this.formRef.value.validate()
+        if (!current() || !('createTags' in this.$store.getters.apis)) return
         return this.saveTag('createTags', toRaw(this.form))
       } catch (error) {
+        if (!current()) return
         this.tagsLoading = false
         if (error.errorFields?.length) {
           this.formRef.value.scrollToField(error.errorFields[0].name)

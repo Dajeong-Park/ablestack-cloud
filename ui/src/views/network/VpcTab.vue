@@ -315,6 +315,7 @@ export default {
     return {
       fetchLoading: false,
       aclSubmitting: false,
+      aclRequest: 0,
       aclError: '',
       privateGateways: [],
       vpnGateways: [],
@@ -392,7 +393,15 @@ export default {
       annotations: []
     }
   },
+  computed: {
+    aclContext () {
+      const getters = this.$store.getters
+      const user = getters.userInfo || {}
+      return JSON.stringify([this.$route.fullPath, this.resource.id, this.resource.domainid, this.resource.account, this.resource.projectid, getters.project?.id, user.id, user.roleid, user.roletype, this.$store.state?.user?.token, 'createNetworkACLList' in getters.apis])
+    }
+  },
   watch: {
+    aclContext () { this.aclRequest++; this.aclSubmitting = false; this.modals.networkAcl = false; this.aclError = '' },
     loading (newData) {
       if (!newData && this.resource.id) {
         this.handleFetchData()
@@ -547,6 +556,7 @@ export default {
 
       switch (e) {
         case 'networkAcl':
+          this.aclRequest++
           this.rules = {
             name: [{ required: true, message: this.$t('label.required') }]
           }
@@ -554,18 +564,23 @@ export default {
           break
       }
     },
-    closeAcl () { if (!this.aclSubmitting) this.modals.networkAcl = false },
+    closeAcl () { if (!this.aclSubmitting) { this.aclRequest++; this.modals.networkAcl = false } },
     async handleNetworkAclFormSubmit () {
       if (this.aclSubmitting || !('createNetworkACLList' in this.$store.getters.apis)) return
+      const scope = this.aclContext
+      const request = ++this.aclRequest
+      const current = () => !this.listRefreshDisposed && scope === this.aclContext && request === this.aclRequest
       this.aclSubmitting = true
       this.aclError = ''
       let polling = false
-      const complete = () => { this.aclSubmitting = false; this.modals.networkAcl = false; this.fetchAclList() }
-      const failed = () => { this.aclSubmitting = false; this.aclError = this.$t('message.add.network.acl.failed'); this.fetchAclList() }
+      const complete = () => { if (!current()) return; this.aclSubmitting = false; this.modals.networkAcl = false; this.fetchAclList() }
+      const failed = () => { if (!current()) return; this.aclSubmitting = false; this.aclError = this.$t('message.add.network.acl.failed'); this.fetchAclList() }
       try {
         await this.formRef.value.validate()
+        if (!current()) return
         const values = toRaw(this.form)
         const response = await postAPI('createNetworkACLList', { name: values.name, description: values.description, vpcid: this.resource.id })
+        if (!current()) return
         const body = response.createnetworkacllistresponse
         if (body.jobid) {
           polling = true
@@ -574,9 +589,10 @@ export default {
         }
         complete()
       } catch (error) {
+        if (!current()) return
         if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
         else { this.aclError = error.response?.data?.createnetworkacllistresponse?.errortext || error.response?.data?.errorresponse?.errortext || error.message || this.$t('message.add.network.acl.failed'); this.$notifyError(error) }
-      } finally { if (!polling) this.aclSubmitting = false }
+      } finally { if (current() && !polling) this.aclSubmitting = false }
     },
     changePage (page, pageSize) {
       this.page = page
