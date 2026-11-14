@@ -242,3 +242,20 @@ test('a lost POST response is indeterminate and is never automatically replayed'
   expect(postAPI).toHaveBeenCalledTimes(2)
   wrapper.unmount()
 })
+
+test('closing the parent modal during preflight invalidates its frozen action even when cached props are replaced', async () => {
+  let active = true
+  const wrapper = mount({ action: { currentAction: { api: 'destroyVirtualMachine', vmDeletionCurrent: () => active } } })
+  await flushPromises()
+  const pending = []
+  getAPI.mockImplementation(() => new Promise(resolve => pending.push(resolve)))
+  wrapper.vm.handleSubmit()
+  await flushPromises()
+  active = false
+  await wrapper.setProps({ action: { currentAction: {} } })
+  pending.forEach((resolve, index) => resolve(vmResponse(selectedItems[index])))
+  await flushPromises()
+  expect(postAPI).not.toHaveBeenCalled()
+  expect(wrapper.vm.currentAction.api).toBe('destroyVirtualMachine')
+  wrapper.unmount()
+})

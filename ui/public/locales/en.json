@@ -11790,5 +11790,6 @@
   "message.vm.delete.read.failed": "Could not read the latest state. No deletion request was sent. Check again.",
   "message.vm.delete.request.failed": "The deletion request could not be confirmed. Check the latest state and notifications. This dialog will not resubmit it.",
   "message.vm.delete.job.failed": "Deletion failed. Check the latest protection state and the server error in notifications.",
-  "message.vm.delete.job.unknown": "The job result is unknown. Retry job tracking in notifications. The deletion request will not be sent again."
+  "message.vm.delete.job.unknown": "The job result is unknown. Retry job tracking in notifications. The deletion request will not be sent again.",
+  "message.vm.delete.tracking": "Closing this dialog does not cancel accepted server jobs. Follow their progress and results in notifications."
 }

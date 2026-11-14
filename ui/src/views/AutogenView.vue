@@ -196,7 +196,7 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
           :size="currentAction.standardDialogSize || (isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
@@ -229,7 +229,7 @@
             </a>
           </template>
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
-          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined">
+          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets) ? 1 : undefined">
             <component
               :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets) ? storageActionGeneration : undefined"
               :is="currentAction.component"
@@ -2705,7 +2705,8 @@ export default {
       if (isVmDeletion(action)) {
         const targets = (isGroupAction ? this.selectedItems : [action.resource || this.resource]).filter(row => row?.id)
         if (!targets.length) return
-        this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, vmDeletionTargets: Object.freeze(targets.map(row => Object.freeze({ ...row }))) }
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, vmDeletionCurrent: () => this.showAction && generation === this.storageActionGeneration, vmDeletionTargets: Object.freeze(targets.map(row => Object.freeze({ ...row }))) }
         this.resource = targets[0]; this.showAction = true
         return
       }

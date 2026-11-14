@@ -30,6 +30,7 @@
       <a-alert v-if="submissionError" type="error" show-icon :message="submissionError" />
       <a-button :loading="checking" :disabled="operationStarted || actionClosed" @click="refreshGuard">{{ $t('label.vm.delete.recheck') }}</a-button>
       <p>{{ $t('message.vm.delete.edit') }}</p>
+      <p v-if="operationStarted">{{ $t('message.vm.delete.tracking') }}</p>
     </section>
     <div v-if="operationKeys.length === 0">
       <a-alert type="warning">
@@ -84,7 +85,7 @@
               </a-alert>
           </div>
           <div :span="24" class="action-button">
-            <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
+            <a-button @click="closeAction">{{ $t(operationStarted ? 'label.close' : 'label.cancel') }}</a-button>
             <a-button :loading="loading || checking" :disabled="!canSubmit" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
           </div>
         </a-form>
@@ -97,7 +98,7 @@
             <message-outlined type="exclamation-circle" style="color: red; fontSize: 30px; display: inline-flex" />
             <template #message>
               <span style="padding-left: 5px" v-html="`<b>${operationKeys.length} ` + $t('label.items.selected') + `. </b>&nbsp`" />
-              <span v-html="$t(typeof action.currentAction.message === 'function' ? action.currentAction.message(resource) : action.currentAction.message)" />
+              <span v-html="$t(typeof currentAction.message === 'function' ? currentAction.message(resource) : currentAction.message)" />
             </template>
           </a-alert>
         </div>
@@ -145,7 +146,7 @@
         </div>
 
         <div :span="24" class="action-button">
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
+          <a-button @click="closeAction">{{ $t(operationStarted ? 'label.close' : 'label.cancel') }}</a-button>
           <a-button :loading="loading || checking" :disabled="!canSubmit" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
         </div>
       </div>
@@ -181,6 +182,7 @@ export default {
     const bulk = this.action.currentAction?.invokedAsGroupAction ?? this.selectedRowKeys.length > 0
     const targets = (this.action.currentAction?.vmDeletionTargets || (bulk ? this.selectedItems : [this.resource])).map(row => ({ ...row }))
     return {
+      deletionAction: { ...this.action.currentAction },
       operationKeys: bulk ? targets.map(row => row.id) : [],
       operationItems: targets,
       originScope: vmDeletionScope(this.$route, this.$store),
@@ -204,7 +206,7 @@ export default {
     }
   },
   computed: {
-    currentAction () { return this.action.currentAction || { api: 'destroyVirtualMachine' } },
+    currentAction () { return this.deletionAction },
     isExpunge () { return this.currentAction.api === 'expungeVirtualMachine' },
     contextKey () { return vmDeletionScope(this.$route, this.$store) },
     canSubmit () { return !this.loading && !this.checking && !this.operationStarted && !this.actionClosed && !this.optionsError && this.guardRows.length > 0 && this.guardRows.every(row => !row.reason) }
@@ -221,15 +223,16 @@ export default {
     this.fetchData()
     this.refreshGuard()
   },
+  deactivated () { this.actionClosed = true; this.checkGeneration++ },
   beforeUnmount () { this.actionClosed = true; this.checkGeneration++ },
   methods: {
     vmProtection,
-    current () { return !this.actionClosed && this.originScope === this.contextKey && this.resourceActionReady?.() !== false },
+    current () { return !this.actionClosed && this.deletionAction.vmDeletionCurrent?.() !== false && this.originScope === this.contextKey && this.resourceActionReady?.() !== false },
     async refreshGuard () {
       if (this.checking || this.operationStarted || !this.current()) return false
       if (this.optionsError) await this.fetchData()
       this.checking = true
-      this.submissionError = ''
+      if (!this.optionsError) this.submissionError = ''
       const generation = ++this.checkGeneration
       const active = () => this.current() && generation === this.checkGeneration
       try {
@@ -300,7 +303,7 @@ export default {
         const jobId = await this.destroyVM(params)
         await this.trackJob(target, jobId)
       } catch (error) {
-        if (this.current()) { this.$notifyError(error); this.submissionError = this.$t('message.vm.delete.request.failed'); await this.refreshAfterFailure(target) }
+        if (this.current()) { this.$notifyError(error); this.submissionError = this.$t('message.vm.delete.request.failed'); await this.refreshAfterFailure(target); if (this.current()) this.parentFetchData() }
       } finally { this.loading = false }
     },
     async destroyVM (params) {
@@ -356,7 +359,10 @@ export default {
           }
           if (status === 'failed' && this.current()) await this.refreshAfterFailure(target)
           if (!bulk && this.current()) {
-            if (status === 'success') { this.parentFetchData(); this.closeAction() } else this.submissionError = this.$t(status === 'failed' ? 'message.vm.delete.job.failed' : 'message.vm.delete.job.unknown')
+            if (status === 'success') { this.parentFetchData(); this.closeAction() } else {
+              this.submissionError = this.$t(status === 'failed' ? 'message.vm.delete.job.failed' : 'message.vm.delete.job.unknown')
+              if (status === 'failed') this.parentFetchData()
+            }
           }
           resolve()
         }
@@ -388,7 +394,6 @@ export default {
         const progress = this.selectedItemsProgress.find(row => row.id === target.id)
         const guard = this.guardRows.find(row => row.id === target.id)
         if (progress && progress.status !== 'unknown') progress.deletionreason = this.$t(guard?.reason || 'message.vm.delete.job.failed')
-        if (!this.operationKeys.length) this.parentFetchData()
       }
     },
     updateResourceState (id, status, jobId) {
