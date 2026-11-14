@@ -2292,7 +2292,7 @@ export default {
       const snapshotDetail = snapshotDetailRoute(this.$route)
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
-      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2435,7 +2435,7 @@ export default {
           return
         }
         if (sshDetail) { this.rejectSshKeyPairDetail(sshKeyPairDetailFailure(error)); return }
-        if (cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
+        if (cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
           if (snapshotListRoute(this.$route) || snapshotDetail || policyDetail) this.snapshotListError = Object.values(error?.response?.data || {}).find(value => value?.errortext)?.errortext || (error.message?.startsWith('message.') ? error.message : 'message.snapshot.list.read.failed')
           this.listRefreshError = true
           if (cniQuery) {
