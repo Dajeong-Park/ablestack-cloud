@@ -22,7 +22,8 @@
     <a-table size="small" :scroll="{ x: 760 }" :loading="loading" :columns="columns" :dataSource="routes" :pagination="false" :rowKey="record => record.id">
       <template #bodyCell="{ column, text, record }">
         <template v-if="column.key === 'vpcgatewayip'">
-          <router-link :to="{ path: '/privategw/' + record.vpcgatewayid }">{{ text }}</router-link>
+          <router-link v-if="hasGatewayLink(record)" :to="{ path: '/privategw/' + record.vpcgatewayid }">{{ text }}</router-link>
+          <span v-else>-</span>
         </template>
         <template v-if="column.key === 'actions'">
           <tooltip-button :tooltip="$t('label.edit.tags')" :disabled="!('listTags' in $store.getters.apis)" icon="tag-outlined" @onClick="() => openTagsModal(record)" />
@@ -142,6 +143,9 @@ export default {
     }
   },
   methods: {
+    hasGatewayLink (route) {
+      return [route.vpcgatewayid, route.vpcgatewayip].every(value => typeof value === 'string' && value.trim().length > 0)
+    },
     initForm () {
       this.formRef = ref()
       this.form = reactive({
