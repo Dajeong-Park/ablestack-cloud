@@ -124,3 +124,10 @@ test('the interrupt button remains usable while the dialog blocks navigation dur
   expect(interrupt).toBeTruthy(); expect(interrupt.element.closest('fieldset[disabled]')).toBeNull(); expect(interrupt.element.disabled).toBe(false)
   wrapper.unmount()
 })
+
+test('HTTP preflight does not offer a certificate page and transfer failure stays on the transfer step', async () => {
+  const c = context(); getAPI.mockResolvedValueOnce(ticket({ postURL: 'http://upload.invalid/upload/fixture' })); probeSsvmCert.mockResolvedValueOnce(false)
+  await c.handleSubmit(); expect(c.phase).toBe('preflight'); expect(c.uploadOrigin).toBe('')
+  c.phase = 'transferFailed'; expect(c.stepIndex).toBe(1)
+  c.phase = 'checking'; expect(c.stepIndex).toBe(2)
+})

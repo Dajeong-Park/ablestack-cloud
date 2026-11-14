@@ -428,7 +428,7 @@ export default {
   computed: {
     registrationCapability () { return isoRegistrationCapability(this.currentForm === 'Create' ? 'url' : 'local', this.$store.getters) },
     registrationScope () { return isoContext({}, this.$store.getters) + '|' + this.currentForm + '|' + String(this.$store.state?.user?.token || '') },
-    uploadOrigin () { try { return this.uploadParams ? new URL(this.uploadParams.postURL).origin : '' } catch (_) { return '' } },
+    uploadOrigin () { try { const url = this.uploadParams && new URL(this.uploadParams.postURL); return url?.protocol === 'https:' ? url.origin : '' } catch (_) { return '' } },
     blocksNavigation () { return this.busy },
     isAdmin () { return this.$store.getters.userInfo.roletype === 'Admin' },
     canPublish () { return this.supportsParam('ispublic') && (this.isAdmin || isoBoolean(this.$store.getters.features?.userpublictemplateenabled) === true) },
@@ -436,7 +436,7 @@ export default {
     canLinkUserData () { return ['listUserData', 'linkUserDataToTemplate'].every(api => api in this.$store.getters.apis) },
     zoneList () { return this.form?.directdownload ? this.zones : this.zones.filter(zone => zone.type !== 'Edge') },
     steps () { return ['label.iso.stage.request', ...(this.currentForm === 'Upload' ? ['label.iso.stage.transfer'] : []), 'label.iso.stage.ready', 'label.iso.stage.userdata', 'label.iso.stage.done'] },
-    stepIndex () { const local = this.currentForm === 'Upload'; return this.phase === 'done' ? this.steps.length - 1 : ['linking', 'linkFailed'].includes(this.phase) ? (local ? 3 : 2) : ['checking', 'pending', 'checkFailed', 'failed', 'transferFailed'].includes(this.phase) ? (local ? 2 : 1) : ['preparing', 'preflight', 'uploading', 'expired'].includes(this.phase) ? 1 : 0 },
+    stepIndex () { const local = this.currentForm === 'Upload'; return this.phase === 'done' ? this.steps.length - 1 : ['linking', 'linkFailed'].includes(this.phase) ? (local ? 3 : 2) : ['checking', 'pending', 'checkFailed', 'failed'].includes(this.phase) ? (local ? 2 : 1) : ['preparing', 'preflight', 'uploading', 'transferFailed', 'expired'].includes(this.phase) ? 1 : 0 },
     phaseMessage () { return ({ preflight: 'message.iso.preflight.retry', transferFailed: 'message.iso.transfer.check', pending: 'message.iso.ready.pending', checkFailed: 'message.iso.ready.check.failed', linkFailed: 'message.userdata.image.partial', done: 'message.iso.registration.done', expired: 'message.iso.ticket.expired', uncertain: 'message.iso.request.uncertain', contextChanged: 'message.iso.context.changed', failed: 'message.iso.registration.failed' })[this.phase] || '' }
   },
   methods: {
