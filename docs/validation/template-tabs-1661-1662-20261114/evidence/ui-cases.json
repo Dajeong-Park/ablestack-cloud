@@ -1,0 +1,3031 @@
+[
+  {
+    "id": "QA-project-members",
+    "actor": "qa-1661-a-20261114",
+    "at": "2026-11-14T10:38:51.285Z",
+    "owner": "qa-1661-a-20261114",
+    "member": "qa-1661-b-20261114",
+    "projectId": "b7a3f9e0-5c18-41d9-ae5a-a08061042acb",
+    "confirmedViaUI": true
+  },
+  {
+    "id": "1662-register-initial-type",
+    "actor": "admin",
+    "at": "2026-11-14T10:51:26.256Z",
+    "status": "PASS",
+    "sharedfsVisible": true,
+    "disabled": true,
+    "reason": "Select specific Zones first"
+  },
+  {
+    "id": "1662-URL-SHAREDFS-ready",
+    "actor": "admin",
+    "at": "2026-11-14T10:54:15.460Z",
+    "status": "PASS",
+    "templateId": "3f4fa505-b5d0-421e-a6a0-002b0fb2ff14",
+    "uiReady": true,
+    "profile": {
+      "templatetype": "SHAREDFS",
+      "hypervisor": "KVM",
+      "arch": "x86_64",
+      "format": "QCOW2",
+      "zoneids": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "ispublic": "false",
+      "isfeatured": "false",
+      "isextractable": "false",
+      "directdownload": "false",
+      "isdynamicallyscalable": "true",
+      "account": null,
+      "domainid": null,
+      "projectid": null
+    },
+    "doesNotClaimSharedFsGuestCompatibility": true
+  },
+  {
+    "id": "1661-sharedfs-tab-order",
+    "actor": "admin",
+    "at": "2026-11-14T10:55:35.221Z",
+    "status": "PASS",
+    "templateId": "3f4fa505-b5d0-421e-a6a0-002b0fb2ff14",
+    "tabs": [
+      "상세",
+      "Zone",
+      "설정",
+      "런타임 번들",
+      "이벤트",
+      "코멘트"
+    ],
+    "deepLink": "http://10.10.13.10:8080/client/#/template/3f4fa505-b5d0-421e-a6a0-002b0fb2ff14?tab=runtime.catalog"
+  },
+  {
+    "id": "1662-SHAREDFS-edit-immutable-profile",
+    "actor": "admin",
+    "at": "2026-11-14T10:56:08.831Z",
+    "status": "PASS",
+    "templateId": "3f4fa505-b5d0-421e-a6a0-002b0fb2ff14",
+    "typeDisabled": true,
+    "archDisabled": true,
+    "result": {
+      "type": "SHAREDFS",
+      "description": "UI policy validation - description updated"
+    }
+  },
+  {
+    "id": "1662-SHAREDFS-edit-final-read",
+    "actor": "admin",
+    "at": "2026-11-14T10:56:51.444Z",
+    "status": "PASS",
+    "templateId": "3f4fa505-b5d0-421e-a6a0-002b0fb2ff14",
+    "arch": "x86_64",
+    "type": "SHAREDFS",
+    "ready": true,
+    "description": "UI policy validation - description updated"
+  },
+  {
+    "id": "1662-local-SHAREDFS-disabled",
+    "actor": "admin",
+    "at": "2026-11-14T10:57:41.748Z",
+    "status": "PASS",
+    "disabled": true,
+    "reason": "Use URL registration"
+  },
+  {
+    "id": "1662-USER-to-SHAREDFS-disabled",
+    "actor": "admin",
+    "at": "2026-11-14T11:00:34.616Z",
+    "status": "PASS",
+    "sourceTemplate": "ad371aa1-504d-41ef-8de8-bc99eef9594c",
+    "disabled": true,
+    "reason": "Requires new URL registration",
+    "existingResourceChanged": false
+  },
+  {
+    "id": "local-upload-423-ready",
+    "actor": "qa-1661-a-20261114",
+    "at": "2026-11-14T11:20:43.112Z",
+    "template": "93dc53de-d072-4c7e-bb52-2b4c115e56d7",
+    "result": "PASS",
+    "type": "USER",
+    "isready": true,
+    "checksum": "7d6355852aeb6dbcd191bcda7cd74f1536cfe5cbf8a10495a7283a8396e4b75b"
+  },
+  {
+    "id": "project-vnf-url-ready",
+    "actor": "qa-1661-a-20261114",
+    "at": "2026-11-14T11:22:28.405Z",
+    "template": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+    "project": "b7a3f9e0-5c18-41d9-ae5a-a08061042acb",
+    "result": "PASS",
+    "isready": true
+  },
+  {
+    "id": "project-regular-vnf-write-secret",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T11:24:51.977Z",
+    "result": "PASS",
+    "template": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+    "versionWrite": "1661.ui.2-by-member",
+    "masked": true,
+    "secretValueSearchMatches": 0,
+    "secretNameSearchMatches": 1
+  },
+  {
+    "id": "settings-esc-focus",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T11:25:14.472Z",
+    "result": "PASS",
+    "trigger": "편집",
+    "draftDiscarded": true
+  },
+  {
+    "id": "project-regular-settings-write",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T11:25:23.673Z",
+    "result": "PASS",
+    "template": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+    "key": "rootDiskController",
+    "value": "scsi"
+  },
+  {
+    "id": "winvm-all-settings-pages",
+    "actor": "admin",
+    "at": "2026-11-14T11:26:38.035Z",
+    "result": "PASS",
+    "template": "4a0178ad-4508-4457-90f7-31a8b3e225e1",
+    "apiCount": 11,
+    "firstPage": 10,
+    "secondPage": 1,
+    "keys": [
+      "cpuNumber",
+      "memory",
+      "cpuSpeed",
+      "UEFI",
+      "Message.ReservedCapacityFreed.Flag",
+      "iothreads",
+      "volumeId",
+      "io.policy",
+      "rootdisksize",
+      "tpmversion",
+      "rootDiskController"
+    ]
+  },
+  {
+    "id": "settings-completeness-comparison",
+    "actor": "admin",
+    "at": "2026-11-14T11:27:00.415Z",
+    "result": "PASS",
+    "winvmStored": 11,
+    "winvmUiAllPages": 11,
+    "rocky9Stored": 1,
+    "rocky9Ui": 1,
+    "availableKvmOptions": 27,
+    "storedKeys": [
+      "rootDiskController"
+    ],
+    "availableKeys": [
+      "backupValidationCommandTimeout",
+      "kvm.guest.os.machine.type",
+      "sound",
+      "nic.packed.virtqueues.enabled",
+      "video.hardware",
+      "virtual.tpm.version",
+      "guest.cpu.mode",
+      "guest.cpu.model",
+      "dataDiskController",
+      "backupValidationBootTimeout",
+      "bootOrder",
+      "rootdisksize",
+      "cpu.threadspercore",
+      "keyboard",
+      "nic.multiqueue.number",
+      "skip.force.disk.controller",
+      "backupValidationCommandExpectedResult",
+      "cpu.corespersocket",
+      "UEFI",
+      "iothreads",
+      "io.policy",
+      "virtual.tpm.model",
+      "nicAdapter",
+      "backupValidationCommand",
+      "backupValidationScreenshotWait",
+      "rootDiskController",
+      "backupValidationCommandArguments"
+    ]
+  },
+  {
+    "id": "root-project-sharedfs-disabled",
+    "actor": "admin",
+    "at": "2026-11-14T11:29:13.616Z",
+    "result": "PASS",
+    "reason": "기본 보기에서 등록"
+  },
+  {
+    "id": "shared-recipient-settings-readonly",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T11:29:43.188Z",
+    "result": "PASS",
+    "template": "93dc53de-d072-4c7e-bb52-2b4c115e56d7",
+    "addButtons": 0,
+    "editButtons": 0
+  },
+  {
+    "id": "project-regular-nic-edit-and-validation",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T11:30:45.242Z",
+    "result": "PASS",
+    "template": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+    "blankDraftRejected": true,
+    "descriptionPreserved": true,
+    "savedName": "qa-nic-member"
+  },
+  {
+    "id": "zone-dark-layout-fixed",
+    "actor": "qa-1661-a-20261114",
+    "at": "2026-11-14T11:31:58.652Z",
+    "result": "PASS",
+    "before": {
+      "actions": [
+        {
+          "height": 32,
+          "text": "템플릿 일괄 삭제(0)",
+          "width": 189.578125,
+          "x": 936.53125,
+          "y": 226
+        },
+        {
+          "height": 32,
+          "text": "템플릿 복사",
+          "width": 32,
+          "x": 1490.4375,
+          "y": 325
+        },
+        {
+          "height": 32,
+          "text": "템플릿 삭제",
+          "width": 32,
+          "x": 1530.4375,
+          "y": 325
+        }
+      ],
+      "active": "Zone",
+      "borders": [
+        "rgb(62, 70, 80)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 800,
+          "rect": {
+            "height": 259,
+            "width": 800,
+            "x": 823,
+            "y": 278
+          },
+          "scroll": 800
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 844,
+            "y": 429
+          },
+          "scroll": 758
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 32,
+        "width": 800,
+        "x": 823,
+        "y": 226
+      },
+      "width": 1680
+    },
+    "selected": {
+      "actions": [
+        {
+          "height": 32,
+          "text": "템플릿 일괄 삭제(1)",
+          "width": 189.578125,
+          "x": 936.53125,
+          "y": 226
+        },
+        {
+          "height": 32,
+          "text": "템플릿 복사",
+          "width": 32,
+          "x": 1490.4375,
+          "y": 325
+        },
+        {
+          "height": 32,
+          "text": "템플릿 삭제",
+          "width": 32,
+          "x": 1530.4375,
+          "y": 325
+        }
+      ],
+      "active": "Zone",
+      "borders": [
+        "rgb(62, 70, 80)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 800,
+          "rect": {
+            "height": 259,
+            "width": 800,
+            "x": 823,
+            "y": 278
+          },
+          "scroll": 800
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 844,
+            "y": 429
+          },
+          "scroll": 758
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 32,
+        "width": 800,
+        "x": 823,
+        "y": 226
+      },
+      "width": 1680
+    },
+    "tableShiftY": 0
+  },
+  {
+    "id": "zone-responsive-dark",
+    "actor": "qa-1661-a-20261114",
+    "at": "2026-11-14T11:33:09.677Z",
+    "result": "PASS",
+    "widths": [
+      1680,
+      1024,
+      390
+    ],
+    "overflow": "contained in table",
+    "noDocumentOverflow": true
+  },
+  {
+    "id": "settings-search-and-page-boundary",
+    "actor": "qa-1661-a-20261114",
+    "at": "2026-11-14T11:39:33.000Z",
+    "searchMatch": 1,
+    "noResults": true,
+    "lastPageDeletion": "BUG_CONFIRMED_FIX_PENDING",
+    "remainingStored": 10
+  },
+  {
+    "id": "all-owner-setting-candidates",
+    "actor": "qa-1661-a-20261114",
+    "at": "2026-11-14T11:41:05.751Z",
+    "result": "PASS",
+    "apiCount": 24,
+    "checks": [
+      {
+        "key": "backupValidationCommandTimeout",
+        "shown": true
+      },
+      {
+        "key": "kvm.guest.os.machine.type",
+        "shown": true
+      },
+      {
+        "key": "sound",
+        "shown": true
+      },
+      {
+        "key": "nic.packed.virtqueues.enabled",
+        "shown": true
+      },
+      {
+        "key": "video.hardware",
+        "shown": true
+      },
+      {
+        "key": "virtual.tpm.version",
+        "shown": true
+      },
+      {
+        "key": "dataDiskController",
+        "shown": true
+      },
+      {
+        "key": "backupValidationBootTimeout",
+        "shown": true
+      },
+      {
+        "key": "bootOrder",
+        "shown": true
+      },
+      {
+        "key": "cpu.threadspercore",
+        "shown": true
+      },
+      {
+        "key": "keyboard",
+        "shown": true
+      },
+      {
+        "key": "nic.multiqueue.number",
+        "shown": true
+      },
+      {
+        "key": "skip.force.disk.controller",
+        "shown": true
+      },
+      {
+        "key": "backupValidationCommandExpectedResult",
+        "shown": true
+      },
+      {
+        "key": "cpu.corespersocket",
+        "shown": true
+      },
+      {
+        "key": "UEFI",
+        "shown": true
+      },
+      {
+        "key": "iothreads",
+        "shown": true
+      },
+      {
+        "key": "io.policy",
+        "shown": true
+      },
+      {
+        "key": "virtual.tpm.model",
+        "shown": true
+      },
+      {
+        "key": "nicAdapter",
+        "shown": true
+      },
+      {
+        "key": "backupValidationCommand",
+        "shown": true
+      },
+      {
+        "key": "backupValidationScreenshotWait",
+        "shown": true
+      },
+      {
+        "key": "rootDiskController",
+        "shown": true
+      },
+      {
+        "key": "backupValidationCommandArguments",
+        "shown": true
+      }
+    ]
+  },
+  {
+    "id": "readonly-role-project-vnf",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T11:43:29.651Z",
+    "result": "PASS",
+    "actorRole": "Read-Only User - Default",
+    "project": "b7a3f9e0-5c18-41d9-ae5a-a08061042acb",
+    "addNic": 0,
+    "addProperty": 0,
+    "edit": 0,
+    "vnfTabVisible": false,
+    "selectedTab": "상세",
+    "deepLinkFallback": "details",
+    "note": "Read-only role does not have updateVnfTemplate; existing tab visibility contract preserved"
+  },
+  {
+    "id": "readonly-project-settings",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T11:43:46.163Z",
+    "result": "PASS",
+    "rows": 1,
+    "key": "rootDiskController",
+    "value": "scsi",
+    "add": 0,
+    "edit": 0
+  },
+  {
+    "id": "zone-light-1024",
+    "actor": "admin",
+    "at": "2026-11-14T11:45:40.891Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [
+        {
+          "height": 32,
+          "text": "템플릿 일괄 삭제(0)",
+          "width": 189.578125,
+          "x": 658.515625,
+          "y": 226
+        },
+        {
+          "height": 32,
+          "text": "템플릿 복사",
+          "width": 32,
+          "x": 1212.421875,
+          "y": 325
+        },
+        {
+          "height": 32,
+          "text": "템플릿 사전 준비",
+          "width": 32,
+          "x": 1252.421875,
+          "y": 325
+        },
+        {
+          "height": 32,
+          "text": "템플릿 삭제",
+          "width": 32,
+          "x": 1292.421875,
+          "y": 325
+        }
+      ],
+      "active": "Zone",
+      "borders": [
+        "rgb(217, 223, 231)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 422,
+          "rect": {
+            "height": 415,
+            "width": 421.984375,
+            "x": 544.984375,
+            "y": 278
+          },
+          "scroll": 800
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 565.984375,
+            "y": 429
+          },
+          "scroll": 758
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 565.984375,
+            "y": 575
+          },
+          "scroll": 758
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 32,
+        "width": 421.984375,
+        "x": 544.984375,
+        "y": 226
+      },
+      "width": 1024
+    }
+  },
+  {
+    "id": "zone-light-390",
+    "actor": "admin",
+    "at": "2026-11-14T11:45:52.281Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [
+        {
+          "height": 32,
+          "text": "템플릿 일괄 삭제(0)",
+          "width": 189.578125,
+          "x": 37,
+          "y": 476.59375
+        },
+        {
+          "height": 32,
+          "text": "템플릿 복사",
+          "width": 32,
+          "x": 704.4375,
+          "y": 575.59375
+        },
+        {
+          "height": 32,
+          "text": "템플릿 사전 준비",
+          "width": 32,
+          "x": 744.4375,
+          "y": 575.59375
+        },
+        {
+          "height": 32,
+          "text": "템플릿 삭제",
+          "width": 32,
+          "x": 784.4375,
+          "y": 575.59375
+        }
+      ],
+      "active": "Zone",
+      "borders": [
+        "rgb(217, 223, 231)"
+      ],
+      "documentOverflow": false,
+      "height": 844,
+      "tables": [
+        {
+          "client": 296,
+          "rect": {
+            "height": 415,
+            "width": 296,
+            "x": 37,
+            "y": 528.59375
+          },
+          "scroll": 800
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 58,
+            "y": 679.59375
+          },
+          "scroll": 758
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 58,
+            "y": 825.59375
+          },
+          "scroll": 758
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 72,
+        "width": 296,
+        "x": 37,
+        "y": 436.59375
+      },
+      "width": 390
+    }
+  },
+  {
+    "id": "zone-root-primary-secondary-dark",
+    "actor": "admin",
+    "at": "2026-11-14T11:46:55.760Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [
+        {
+          "height": 32,
+          "text": "템플릿 일괄 삭제(0)",
+          "width": 189.578125,
+          "x": 936.53125,
+          "y": 226
+        },
+        {
+          "height": 32,
+          "text": "템플릿 복사",
+          "width": 32,
+          "x": 1490.4375,
+          "y": 325
+        },
+        {
+          "height": 32,
+          "text": "템플릿 사전 준비",
+          "width": 32,
+          "x": 1530.4375,
+          "y": 325
+        },
+        {
+          "height": 32,
+          "text": "템플릿 삭제",
+          "width": 32,
+          "x": 1570.4375,
+          "y": 325
+        }
+      ],
+      "active": "Zone",
+      "borders": [
+        "rgb(62, 70, 80)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 800,
+          "rect": {
+            "height": 405,
+            "width": 800,
+            "x": 823,
+            "y": 278
+          },
+          "scroll": 800
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 844,
+            "y": 429
+          },
+          "scroll": 758
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 844,
+            "y": 575
+          },
+          "scroll": 758
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 32,
+        "width": 800,
+        "x": 823,
+        "y": 226
+      },
+      "width": 1680
+    }
+  },
+  {
+    "id": "zone-dark-390-final",
+    "actor": "admin",
+    "at": "2026-11-14T11:47:07.250Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [
+        {
+          "height": 32,
+          "text": "템플릿 일괄 삭제(0)",
+          "width": 189.578125,
+          "x": 37,
+          "y": 599.59375
+        },
+        {
+          "height": 32,
+          "text": "템플릿 복사",
+          "width": 32,
+          "x": 704.4375,
+          "y": 698.59375
+        },
+        {
+          "height": 32,
+          "text": "템플릿 사전 준비",
+          "width": 32,
+          "x": 744.4375,
+          "y": 698.59375
+        },
+        {
+          "height": 32,
+          "text": "템플릿 삭제",
+          "width": 32,
+          "x": 784.4375,
+          "y": 698.59375
+        }
+      ],
+      "active": "Zone",
+      "borders": [
+        "rgb(62, 70, 80)"
+      ],
+      "documentOverflow": false,
+      "height": 844,
+      "tables": [
+        {
+          "client": 296,
+          "rect": {
+            "height": 415,
+            "width": 296,
+            "x": 37,
+            "y": 651.59375
+          },
+          "scroll": 800
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 58,
+            "y": 802.59375
+          },
+          "scroll": 758
+        },
+        {
+          "client": 758,
+          "rect": {
+            "height": 78,
+            "width": 758,
+            "x": 58,
+            "y": 948.59375
+          },
+          "scroll": 758
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 72,
+        "width": 296,
+        "x": 37,
+        "y": 559.59375
+      },
+      "width": 390
+    }
+  },
+  {
+    "id": "system-423-tab-order",
+    "actor": "admin",
+    "at": "2026-11-14T11:47:21.078Z",
+    "result": "PASS",
+    "template": "1feac62d-67e0-499b-94f1-eb36651ad6f8",
+    "tabs": [
+      "상세",
+      "Zone",
+      "설정",
+      "이벤트",
+      "코멘트"
+    ],
+    "mutation": false
+  },
+  {
+    "id": "sharedfs-runtime-deeplink",
+    "actor": "admin",
+    "at": "2026-11-14T11:47:36.316Z",
+    "result": "PASS",
+    "tabs": [
+      "상세",
+      "Zone",
+      "설정",
+      "런타임 번들",
+      "이벤트",
+      "코멘트"
+    ],
+    "urlTab": "runtime.catalog",
+    "scope": "global catalog compatibility unknown"
+  },
+  {
+    "id": "vm-settings-read-regression",
+    "actor": "admin",
+    "at": "2026-11-14T11:48:24.811Z",
+    "result": "PASS",
+    "vm": "9f3bf7a1-c5b2-45ba-ba06-1e466d09b364",
+    "mutation": false
+  },
+  {
+    "id": "iso-read-regression",
+    "actor": "admin",
+    "at": "2026-11-14T11:48:48.495Z",
+    "result": "PASS",
+    "iso": "367c88cb-4947-452f-9429-54a19885adf4",
+    "templateClassApplied": false,
+    "mutation": false
+  },
+  {
+    "id": "volume-read-regression",
+    "actor": "admin",
+    "at": "2026-11-14T11:49:44.022Z",
+    "result": "PASS",
+    "name": "ROOT-240",
+    "templateClassApplied": false,
+    "mutation": false
+  },
+  {
+    "id": "all-root-setting-candidates",
+    "actor": "admin",
+    "at": "2026-11-14T11:50:26.483Z",
+    "result": "PASS",
+    "apiCount": 27,
+    "checks": [
+      {
+        "key": "backupValidationCommandTimeout",
+        "shown": true
+      },
+      {
+        "key": "kvm.guest.os.machine.type",
+        "shown": true
+      },
+      {
+        "key": "sound",
+        "shown": true
+      },
+      {
+        "key": "nic.packed.virtqueues.enabled",
+        "shown": true
+      },
+      {
+        "key": "video.hardware",
+        "shown": true
+      },
+      {
+        "key": "virtual.tpm.version",
+        "shown": true
+      },
+      {
+        "key": "guest.cpu.mode",
+        "shown": true
+      },
+      {
+        "key": "guest.cpu.model",
+        "shown": true
+      },
+      {
+        "key": "dataDiskController",
+        "shown": true
+      },
+      {
+        "key": "backupValidationBootTimeout",
+        "shown": true
+      },
+      {
+        "key": "bootOrder",
+        "shown": true
+      },
+      {
+        "key": "rootdisksize",
+        "shown": true
+      },
+      {
+        "key": "cpu.threadspercore",
+        "shown": true
+      },
+      {
+        "key": "keyboard",
+        "shown": true
+      },
+      {
+        "key": "nic.multiqueue.number",
+        "shown": true
+      },
+      {
+        "key": "skip.force.disk.controller",
+        "shown": true
+      },
+      {
+        "key": "backupValidationCommandExpectedResult",
+        "shown": true
+      },
+      {
+        "key": "cpu.corespersocket",
+        "shown": true
+      },
+      {
+        "key": "UEFI",
+        "shown": true
+      },
+      {
+        "key": "iothreads",
+        "shown": true
+      },
+      {
+        "key": "io.policy",
+        "shown": true
+      },
+      {
+        "key": "virtual.tpm.model",
+        "shown": true
+      },
+      {
+        "key": "nicAdapter",
+        "shown": true
+      },
+      {
+        "key": "backupValidationCommand",
+        "shown": true
+      },
+      {
+        "key": "backupValidationScreenshotWait",
+        "shown": true
+      },
+      {
+        "key": "rootDiskController",
+        "shown": true
+      },
+      {
+        "key": "backupValidationCommandArguments",
+        "shown": true
+      }
+    ]
+  },
+  {
+    "id": "whole-tab-offline-isolation-limit",
+    "actor": "admin",
+    "at": "2026-11-14T11:52:08.795Z",
+    "result": "NOT_ISOLATED",
+    "observed": "Existing global no-response handling signed out due to concurrent unscoped requests; browser network restored in finally",
+    "componentOnlyFailure": "pending targeted request block"
+  },
+  {
+    "id": "settings-long-value-fixed",
+    "actor": "admin",
+    "at": "2026-11-14T11:53:36.313Z",
+    "result": "PASS",
+    "clientWidth": 284,
+    "contentWidth": 3696,
+    "tableWidth": 800,
+    "tableScrollWidth": 800,
+    "oneLineHeight": 22,
+    "tooltipFull": true
+  },
+  {
+    "id": "last-page-delete-fixed",
+    "actor": "admin",
+    "at": "2026-11-14T11:54:01.086Z",
+    "result": "PASS",
+    "remainingRows": 10,
+    "visibleRows": 10,
+    "page": 1
+  },
+  {
+    "id": "settings-targeted-read-failure",
+    "actor": "admin",
+    "at": "2026-11-14T11:54:10.861Z",
+    "result": "NOT_TRIGGERED",
+    "rowsPreserved": 10,
+    "mutationDisabled": false,
+    "loginPreserved": true
+  },
+  {
+    "id": "settings-targeted-read-failure-final",
+    "actor": "admin",
+    "at": "2026-11-14T11:54:35.659Z",
+    "result": "PASS",
+    "rowsPreserved": 10,
+    "mutationDisabled": true,
+    "loginPreserved": true
+  },
+  {
+    "id": "post-block-attempt",
+    "actor": "admin",
+    "at": "2026-11-14T11:55:43.546Z",
+    "result": "NOT_TRIGGERED",
+    "reason": "POST command is in body; URL filter did not block it",
+    "actualWriteCommitted": true
+  },
+  {
+    "id": "settings-save-preflight-failure",
+    "actor": "admin",
+    "at": "2026-11-14T11:55:59.030Z",
+    "result": "PASS",
+    "draftPreserved": true,
+    "modalOpen": true
+  },
+  {
+    "id": "settings-save-manual-retry",
+    "actor": "admin",
+    "at": "2026-11-14T11:56:07.704Z",
+    "result": "PASS",
+    "savedValue": "qa.ui.01\n\t\ndraft-kept-on-preflight-failure\n\t편집 가능\t\n편집"
+  },
+  {
+    "id": "multi-video-template-settings",
+    "actor": "admin",
+    "at": "2026-11-14T11:56:33.484Z",
+    "result": "PASS",
+    "hardware": [
+      "video.hardware",
+      "video.hardware2"
+    ],
+    "ram": [
+      "video.ram",
+      "video.ram2"
+    ],
+    "ramValue": "16384",
+    "unrelatedSettingsPreserved": 10
+  },
+  {
+    "id": "multi-video-replacement",
+    "actor": "admin",
+    "at": "2026-11-14T11:57:10.698Z",
+    "result": "PASS",
+    "count": 1,
+    "removedExtraPair": true,
+    "unrelatedSettingsPreserved": 10
+  },
+  {
+    "id": "settings-dark-390",
+    "actor": "admin",
+    "at": "2026-11-14T11:57:43.493Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "설정",
+      "borders": [
+        "rgb(67, 67, 67)",
+        "rgb(197, 204, 212)"
+      ],
+      "documentOverflow": false,
+      "height": 844,
+      "tables": [
+        {
+          "client": 296,
+          "rect": {
+            "height": 90,
+            "width": 296,
+            "x": 37,
+            "y": 660.59375
+          },
+          "scroll": 700
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 72,
+        "width": 296,
+        "x": 37,
+        "y": 568.59375
+      },
+      "width": 390
+    },
+    "dialogWidthFits": true,
+    "dialogButtonsVisible": true
+  },
+  {
+    "id": "settings-dark-1024",
+    "actor": "admin",
+    "at": "2026-11-14T11:57:57.815Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "설정",
+      "borders": [
+        "rgb(67, 67, 67)",
+        "rgb(197, 204, 212)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 422,
+          "rect": {
+            "height": 90,
+            "width": 421.984375,
+            "x": 544.984375,
+            "y": 413
+          },
+          "scroll": 700
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 72,
+        "width": 421.984375,
+        "x": 544.984375,
+        "y": 321
+      },
+      "width": 1024
+    }
+  },
+  {
+    "id": "vnf-required-boundary-rejection",
+    "actor": "admin",
+    "at": "2026-11-14T11:59:20.028Z",
+    "result": "PASS",
+    "deviceid": 10,
+    "draftPreserved": true,
+    "message": "필수 NIC는 선택 NIC보다 앞에 있어야 합니다."
+  },
+  {
+    "id": "vnf-nic-pagination",
+    "actor": "admin",
+    "at": "2026-11-14T11:59:33.302Z",
+    "result": "PASS",
+    "total": 11,
+    "page1": 10,
+    "page2": 1
+  },
+  {
+    "id": "vnf-move-and-filter-boundary",
+    "actor": "admin",
+    "at": "2026-11-14T12:01:07.796Z",
+    "result": "PASS",
+    "movedFrom": 10,
+    "movedTo": 9,
+    "requiredPartitionPreserved": true,
+    "filteredReorderDisabled": true
+  },
+  {
+    "id": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+    "actor": "admin",
+    "at": "2026-11-14T12:02:34.555Z",
+    "result": "PASS",
+    "nics": [
+      {
+        "deviceid": 0,
+        "name": "qa-nic-member",
+        "required": true,
+        "management": true
+      },
+      {
+        "deviceid": 1,
+        "name": "qa-nic-1",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 2,
+        "name": "qa-nic-2",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 3,
+        "name": "qa-nic-3",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 4,
+        "name": "qa-nic-4",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 5,
+        "name": "qa-nic-5",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 6,
+        "name": "qa-nic-6",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 7,
+        "name": "qa-nic-7",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 8,
+        "name": "qa-nic-8",
+        "required": true,
+        "management": false
+      },
+      {
+        "deviceid": 9,
+        "name": "qa-nic-10",
+        "required": false,
+        "management": false
+      },
+      {
+        "deviceid": 10,
+        "name": "qa-nic-9",
+        "required": false,
+        "management": false
+      }
+    ],
+    "detailKeys": [
+      "password",
+      "version"
+    ],
+    "secretPreserved": true,
+    "version": "1661.ui.2-by-member"
+  },
+  {
+    "id": "last-setting-cleanup-empty",
+    "actor": "admin",
+    "at": "2026-11-14T12:04:33.931Z",
+    "result": "PASS",
+    "writes": [
+      {
+        "id": "93dc53de-d072-4c7e-bb52-2b4c115e56d7",
+        "cleanupdetails": "true",
+        "responseId": "93dc53de-d072-4c7e-bb52-2b4c115e56d7",
+        "remainingKeys": []
+      }
+    ],
+    "emptyVisible": true
+  },
+  {
+    "id": "93dc53de-d072-4c7e-bb52-2b4c115e56d7",
+    "actor": "admin",
+    "at": "2026-11-14T12:05:07.080Z",
+    "result": "PASS",
+    "jobs": [
+      {
+        "command": "deleteTemplate",
+        "jobid": "7a2caa76-fcf8-49de-b782-526edca06b8a"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "7a2caa76-fcf8-49de-b782-526edca06b8a",
+        "jobstatus": 0
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "7a2caa76-fcf8-49de-b782-526edca06b8a",
+        "jobstatus": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "3f4fa505-b5d0-421e-a6a0-002b0fb2ff14",
+    "actor": "admin",
+    "at": "2026-11-14T12:05:54.264Z",
+    "result": "PASS",
+    "jobs": [
+      {
+        "command": "deleteTemplate",
+        "jobid": "e3ac7d0b-cd39-4703-a4f9-f7648d203874"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "e3ac7d0b-cd39-4703-a4f9-f7648d203874",
+        "jobstatus": 0
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "e3ac7d0b-cd39-4703-a4f9-f7648d203874",
+        "jobstatus": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "settings-light-1680-all-winvm",
+    "actor": "admin",
+    "at": "2026-11-14T12:06:50.503Z",
+    "result": "PASS",
+    "storedRows": 11,
+    "visibleRows": 11,
+    "measure": {
+      "actions": [],
+      "active": "설정",
+      "borders": [
+        "rgb(217, 223, 231)",
+        "rgb(75, 85, 99)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 800,
+          "rect": {
+            "height": 490,
+            "width": 800,
+            "x": 823,
+            "y": 351
+          },
+          "scroll": 800
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 32,
+        "width": 800,
+        "x": 823,
+        "y": 299
+      },
+      "width": 1680
+    }
+  },
+  {
+    "id": "settings-light-1024",
+    "actor": "admin",
+    "at": "2026-11-14T12:07:05.815Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "설정",
+      "borders": [
+        "rgb(217, 223, 231)",
+        "rgb(75, 85, 99)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 422,
+          "rect": {
+            "height": 500,
+            "width": 421.984375,
+            "x": 544.984375,
+            "y": 391
+          },
+          "scroll": 700
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 72,
+        "width": 421.984375,
+        "x": 544.984375,
+        "y": 299
+      },
+      "width": 1024
+    }
+  },
+  {
+    "id": "settings-light-390",
+    "actor": "admin",
+    "at": "2026-11-14T12:07:17.388Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "설정",
+      "borders": [
+        "rgb(217, 223, 231)",
+        "rgb(75, 85, 99)"
+      ],
+      "documentOverflow": false,
+      "height": 844,
+      "tables": [
+        {
+          "client": 296,
+          "rect": {
+            "height": 500,
+            "width": 296,
+            "x": 37,
+            "y": 590.59375
+          },
+          "scroll": 700
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 72,
+        "width": 296,
+        "x": 37,
+        "y": 498.59375
+      },
+      "width": 390
+    }
+  },
+  {
+    "id": "settings-concurrent-edit-conflict",
+    "actor": "admin",
+    "at": "2026-11-14T12:09:04.153Z",
+    "result": "PASS",
+    "message": "설정 추가\n템플릿\nqa-1661-vnf-project-20261114\n5cb2e0ca-c3cd-44d8-b117-cea8463f90b5\n설정이 다른 곳에서 변경됐습니다. 새로 조회한 뒤 다시 시도하세요.\n이름\n값\n취소\n확인",
+    "draftPreserved": true
+  },
+  {
+    "id": "host-health-preserved",
+    "actor": "admin",
+    "at": "2026-11-14T12:13:20.559Z",
+    "result": "PASS",
+    "hosts": [
+      "이름상태리소스 상태IP 주소CPU 아키텍처하이퍼바이저버전HA 활성화HA 상태클러스터Zone관리 서버",
+      "ablecube13-1실행 중정상10.10.13.1 x86_64KVM4.23.0.0정상AvailableCluster13-Zoneccvm-mngt",
+      "ablecube13-2실행 중정상10.10.13.2 x86_64KVM4.23.0.0정상AvailableCluster13-Zoneccvm-mngt",
+      "ablecube13-3실행 중정상10.10.13.3 x86_64KVM4.23.0.0비활성화DisabledCluster13-Zoneccvm-mngt"
+    ],
+    "hostChangesPerformed": false
+  },
+  {
+    "id": "systemvm-423-preserved",
+    "actor": "admin",
+    "at": "2026-11-14T12:13:41.963Z",
+    "result": "PASS",
+    "rows": [
+      "이름상태Agent 상태시스템 VM 유형Public IP 주소사설 IP 주소로컬 연결 IP 주소버전호스트CPU 아키텍처Zone",
+      "s-244-VM실행 중실행 중secondarystoragevm10.10.13.410.10.13.7169.254.2.1084.23.0.0ablecube13-1x86_6413-Zone",
+      "v-245-VM실행 중실행 중consoleproxy10.10.13.510.10.13.6169.254.243.214.23.0.0ablecube13-2x86_6413-Zone"
+    ],
+    "recreated": false
+  },
+  {
+    "id": "vnf-light-1680-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:14:29.161Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "VNF 설정",
+      "borders": [
+        "rgb(217, 223, 231)",
+        "rgb(75, 85, 99)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 800,
+          "rect": {
+            "height": 529,
+            "width": 800,
+            "x": 823,
+            "y": 358
+          },
+          "scroll": 800
+        },
+        {
+          "client": 800,
+          "rect": {
+            "height": 137,
+            "width": 800,
+            "x": 823,
+            "y": 1049
+          },
+          "scroll": 800
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 32,
+        "width": 800,
+        "x": 823,
+        "y": 306
+      },
+      "width": 1680
+    },
+    "rows": 11
+  },
+  {
+    "id": "vnf-light-1024-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:15:31.252Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "VNF 설정",
+      "borders": [
+        "rgb(217, 223, 231)",
+        "rgb(75, 85, 99)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 422,
+          "rect": {
+            "height": 147,
+            "width": 421.984375,
+            "x": 544.984375,
+            "y": 447
+          },
+          "scroll": 800
+        },
+        {
+          "client": 422,
+          "rect": {
+            "height": 147,
+            "width": 421.984375,
+            "x": 544.984375,
+            "y": 796
+          },
+          "scroll": 650
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 72,
+        "width": 421.984375,
+        "x": 544.984375,
+        "y": 355
+      },
+      "width": 1024
+    }
+  },
+  {
+    "id": "vnf-light-390-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:15:44.780Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "VNF 설정",
+      "borders": [
+        "rgb(217, 223, 231)",
+        "rgb(75, 85, 99)"
+      ],
+      "documentOverflow": false,
+      "height": 844,
+      "tables": [
+        {
+          "client": 296,
+          "rect": {
+            "height": 147,
+            "width": 296,
+            "x": 37,
+            "y": 450.59375
+          },
+          "scroll": 800
+        },
+        {
+          "client": 296,
+          "rect": {
+            "height": 147,
+            "width": 296,
+            "x": 37,
+            "y": 799.59375
+          },
+          "scroll": 650
+        }
+      ],
+      "theme": "",
+      "toolbar": {
+        "height": 72,
+        "width": 296,
+        "x": 37,
+        "y": 358.59375
+      },
+      "width": 390
+    }
+  },
+  {
+    "id": "vnf-nic-esc-focus",
+    "actor": "admin",
+    "at": "2026-11-14T12:18:10.455Z",
+    "result": "PASS",
+    "returnedToEditButton": true
+  },
+  {
+    "id": "vnf-dark-1680-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:18:40.800Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "VNF 설정",
+      "borders": [
+        "rgb(67, 67, 67)",
+        "rgb(197, 204, 212)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 800,
+          "rect": {
+            "height": 137,
+            "width": 800,
+            "x": 823,
+            "y": 385
+          },
+          "scroll": 800
+        },
+        {
+          "client": 800,
+          "rect": {
+            "height": 137,
+            "width": 800,
+            "x": 823,
+            "y": 684
+          },
+          "scroll": 800
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 32,
+        "width": 800,
+        "x": 823,
+        "y": 333
+      },
+      "width": 1680
+    }
+  },
+  {
+    "id": "vnf-dark-1024-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:18:53.186Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "VNF 설정",
+      "borders": [
+        "rgb(67, 67, 67)",
+        "rgb(197, 204, 212)"
+      ],
+      "documentOverflow": false,
+      "height": 1000,
+      "tables": [
+        {
+          "client": 422,
+          "rect": {
+            "height": 147,
+            "width": 421.984375,
+            "x": 544.984375,
+            "y": 447
+          },
+          "scroll": 800
+        },
+        {
+          "client": 422,
+          "rect": {
+            "height": 147,
+            "width": 421.984375,
+            "x": 544.984375,
+            "y": 796
+          },
+          "scroll": 650
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 72,
+        "width": 421.984375,
+        "x": 544.984375,
+        "y": 355
+      },
+      "width": 1024
+    }
+  },
+  {
+    "id": "vnf-dark-390-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:19:07.351Z",
+    "result": "PASS",
+    "measure": {
+      "actions": [],
+      "active": "VNF 설정",
+      "borders": [
+        "rgb(67, 67, 67)",
+        "rgb(197, 204, 212)"
+      ],
+      "documentOverflow": false,
+      "height": 844,
+      "tables": [
+        {
+          "client": 296,
+          "rect": {
+            "height": 147,
+            "width": 296,
+            "x": 37,
+            "y": 450.59375
+          },
+          "scroll": 800
+        },
+        {
+          "client": 296,
+          "rect": {
+            "height": 147,
+            "width": 296,
+            "x": 37,
+            "y": 799.59375
+          },
+          "scroll": 650
+        }
+      ],
+      "theme": "dark-mode",
+      "toolbar": {
+        "height": 72,
+        "width": 296,
+        "x": 37,
+        "y": 358.59375
+      },
+      "width": 390
+    }
+  },
+  {
+    "id": "vnf-last-page-delete",
+    "actor": "admin",
+    "at": "2026-11-14T12:19:55.312Z",
+    "result": "PASS",
+    "deletedDevice": 10,
+    "totalAfter": 10,
+    "page": 1
+  },
+  {
+    "id": "vnf-property-delete-preserves-secret",
+    "actor": "admin",
+    "at": "2026-11-14T12:20:09.913Z",
+    "result": "PASS",
+    "removed": "version",
+    "remainingKey": "password",
+    "masked": true
+  },
+  {
+    "id": "vnf-options-read-failure",
+    "actor": "admin",
+    "at": "2026-11-14T12:21:03.623Z",
+    "result": "PASS",
+    "propertyAddDisabled": true,
+    "propertyRows": 1,
+    "nicRows": 10
+  },
+  {
+    "id": "vnf-options-retry-recovered",
+    "actor": "admin",
+    "at": "2026-11-14T12:21:21.366Z",
+    "result": "PASS",
+    "addEnabled": true,
+    "secretMasked": true
+  },
+  {
+    "id": "post-endpoint-filter-attempt",
+    "actor": "admin",
+    "at": "2026-11-14T12:22:55.433Z",
+    "result": "NOT_TRIGGERED",
+    "resource": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+    "actualWriteCommitted": true
+  },
+  {
+    "id": "domainadmin-sharedfs-not-exposed",
+    "actor": "qa-1662-da-20261114",
+    "at": "2026-11-14T12:33:08.694Z",
+    "result": "PASS",
+    "domain": "ae3c2fb2-d2bd-4cd8-baf6-5b8d87c29bac",
+    "role": "DomainAdmin",
+    "options": [
+      "USER",
+      "VNF"
+    ],
+    "sharedfsAvailable": false
+  },
+  {
+    "id": "domainadmin-user-ready",
+    "actor": "qa-1662-da-20261114",
+    "at": "2026-11-14T12:33:56.459Z",
+    "result": "PASS",
+    "template": "fe15b47a-b4f9-40e3-8c7f-6c6c6d5d4ffc",
+    "owner": "qa-1662-da-20261114",
+    "domainid": "ae3c2fb2-d2bd-4cd8-baf6-5b8d87c29bac",
+    "isready": true
+  },
+  {
+    "id": "domainadmin-no-type-transition",
+    "actor": "qa-1662-da-20261114",
+    "at": "2026-11-14T12:34:19.766Z",
+    "result": "PASS",
+    "template": "fe15b47a-b4f9-40e3-8c7f-6c6c6d5d4ffc",
+    "typeInputs": 0,
+    "archVisible": true
+  },
+  {
+    "id": "domainadmin-own-settings-write",
+    "actor": "qa-1662-da-20261114",
+    "at": "2026-11-14T12:34:38.050Z",
+    "result": "PASS",
+    "template": "fe15b47a-b4f9-40e3-8c7f-6c6c6d5d4ffc",
+    "row": "qa.domain.setting\n\t\npermitted-owner\n\t편집 가능\t\n편집"
+  },
+  {
+    "id": "fe15b47a-b4f9-40e3-8c7f-6c6c6d5d4ffc",
+    "actor": "qa-1662-da-20261114",
+    "at": "2026-11-14T12:35:16.532Z",
+    "result": "PASS",
+    "jobs": [
+      {
+        "command": "deleteTemplate",
+        "jobid": "747e0783-ae41-4e3a-bc44-564de466dbcd"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "747e0783-ae41-4e3a-bc44-564de466dbcd",
+        "jobstatus": 0
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "747e0783-ae41-4e3a-bc44-564de466dbcd",
+        "jobstatus": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "domainadmin-foreign-private-denied",
+    "actor": "qa-1662-da-20261114",
+    "at": "2026-11-14T12:35:55.789Z",
+    "result": "PASS",
+    "resource": "e0dd091f-82ae-4a32-a19d-d7d95f0d950d",
+    "message": "템플릿이 삭제되었거나 조회 권한이 없습니다.",
+    "settingsAdd": 0
+  },
+  {
+    "id": "readonly-role-no-registration",
+    "actor": "qa-1661-b-20261114",
+    "at": "2026-11-14T12:36:26.079Z",
+    "result": "PASS",
+    "urlRegisterButtons": 0,
+    "localUploadButtons": 0
+  },
+  {
+    "id": "vnf-nic-standard-footer-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:38:23.010Z",
+    "result": "PASS",
+    "codeHead": "bde10b16dc342c0e935fbb6c9142926cbfa46d7f",
+    "footerButtons": [
+      "취소",
+      "확인"
+    ],
+    "extraCloseButtons": 0,
+    "mobileWidth": 390
+  },
+  {
+    "id": "vnf-property-standard-footer-final",
+    "actor": "admin",
+    "at": "2026-11-14T12:38:46.574Z",
+    "result": "PASS",
+    "footerButtons": [
+      "취소",
+      "확인"
+    ],
+    "extraCloseButtons": 0,
+    "mobileWidth": 390
+  },
+  {
+    "id": "final-vnf-write-preservation",
+    "actor": "admin",
+    "at": "2026-11-14T12:39:17.492Z",
+    "result": "PASS",
+    "proof": [
+      {
+        "id": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+        "ready": true,
+        "nics": 10,
+        "renamedNic": "qa-nic-1-final",
+        "version": "1661.final-ui",
+        "secretPreserved": true,
+        "unrelatedSettings": [
+          "qa.post.failure",
+          "qa.race.external",
+          "rootDiskController"
+        ]
+      }
+    ],
+    "codeHead": "bde10b16dc342c0e935fbb6c9142926cbfa46d7f"
+  },
+  {
+    "id": "vnf-nic-light-standard-footer",
+    "actor": "admin",
+    "at": "2026-11-14T12:39:55.938Z",
+    "result": "PASS",
+    "footerButtons": [
+      "취소",
+      "확인"
+    ]
+  },
+  {
+    "id": "vnf-property-light-standard-footer",
+    "actor": "admin",
+    "at": "2026-11-14T12:40:11.888Z",
+    "result": "PASS",
+    "footerButtons": [
+      "취소",
+      "확인"
+    ]
+  },
+  {
+    "id": "5cb2e0ca-c3cd-44d8-b117-cea8463f90b5",
+    "actor": "admin",
+    "at": "2026-11-14T12:41:34.203Z",
+    "result": "PASS",
+    "jobs": [
+      {
+        "command": "deleteTemplate",
+        "jobid": "da42ddfb-2aa6-49b5-a9a1-fe5f4d979b2e"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "da42ddfb-2aa6-49b5-a9a1-fe5f4d979b2e",
+        "jobstatus": 0
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "da42ddfb-2aa6-49b5-a9a1-fe5f4d979b2e",
+        "jobstatus": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "cleanup-project",
+    "actor": "admin",
+    "at": "2026-11-14T12:42:47.225Z",
+    "result": "PASS",
+    "project": "b7a3f9e0-5c18-41d9-ae5a-a08061042acb",
+    "remainingProjects": 0,
+    "jobs": [
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "f6646419-bb17-4828-a932-de770403e3ef",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "e3a1b666-700b-4825-94d0-82472ab54262",
+    "actor": "admin",
+    "at": "2026-11-14T12:44:52.048Z",
+    "result": "PASS",
+    "jobs": [
+      {
+        "command": "disableAccount",
+        "jobid": "f56a3af5-0b1c-4598-acff-c952abac8375"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "f56a3af5-0b1c-4598-acff-c952abac8375",
+        "status": 1
+      },
+      {
+        "command": "deleteAccount",
+        "jobid": "1b494545-bf72-4027-9bf9-f180229c29a4"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "1b494545-bf72-4027-9bf9-f180229c29a4",
+        "status": 0
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "1b494545-bf72-4027-9bf9-f180229c29a4",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "ee0af4d8-bc1c-4ed6-ae69-a22a98b477f0",
+    "actor": "admin",
+    "at": "2026-11-14T12:45:16.499Z",
+    "result": "PASS",
+    "name": "qa-1661-a-20261114",
+    "jobs": [
+      {
+        "command": "disableAccount",
+        "jobid": "f6108179-ae52-433a-8766-5fa186b925a5"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "f6108179-ae52-433a-8766-5fa186b925a5",
+        "status": 1
+      },
+      {
+        "command": "deleteAccount",
+        "jobid": "8986af66-6d99-4f29-a67c-b3e08ca70768"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "8986af66-6d99-4f29-a67c-b3e08ca70768",
+        "status": 0
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "8986af66-6d99-4f29-a67c-b3e08ca70768",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "447143ee-0217-47f2-ba36-acab29adef53",
+    "actor": "admin",
+    "at": "2026-11-14T12:46:21.687Z",
+    "result": "PASS",
+    "name": "qa-1661-b-20261114",
+    "jobs": [
+      {
+        "command": "disableAccount",
+        "jobid": "7dc5cb31-b6ab-40da-ac57-fac5320b8c75"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "7dc5cb31-b6ab-40da-ac57-fac5320b8c75",
+        "status": 1
+      },
+      {
+        "command": "deleteAccount",
+        "jobid": "03682771-a56a-4754-98bf-13132287c404"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "03682771-a56a-4754-98bf-13132287c404",
+        "status": 0
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "03682771-a56a-4754-98bf-13132287c404",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "cleanup-domain",
+    "actor": "admin",
+    "at": "2026-11-14T12:47:48.412Z",
+    "result": "PASS",
+    "domain": "ae3c2fb2-d2bd-4cd8-baf6-5b8d87c29bac",
+    "rootTreeOnly": true,
+    "jobs": [
+      {
+        "command": "deleteDomain",
+        "jobid": "a9fd573f-f1a1-4af1-b81c-48996aa9f5e2"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "jobid": "a9fd573f-f1a1-4af1-b81c-48996aa9f5e2",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "id": "final-cleanup-baseline",
+    "actor": "admin",
+    "at": "2026-11-14T12:48:06.286Z",
+    "result": "PASS",
+    "templates": 46,
+    "accounts": 3,
+    "projects": 0,
+    "domains": "ROOT only",
+    "qaTemplateSearch": "qa-166",
+    "qaTemplateCount": 0,
+    "createdTemplates": 4,
+    "createdAccounts": 3,
+    "createdProjects": 1,
+    "createdDomains": 1
+  },
+  {
+    "id": "winvm-final-all-settings-preserved",
+    "actor": "admin",
+    "at": "2026-11-14T12:49:00.686Z",
+    "result": "PASS",
+    "visibleRows": 11,
+    "apiStoredRows": 11,
+    "metadataEqualsInitial": true,
+    "codeHead": "bde10b16dc342c0e935fbb6c9142926cbfa46d7f"
+  },
+  {
+    "id": "final-ui-status",
+    "actor": "admin",
+    "at": "2026-11-14T12:49:23.415Z",
+    "result": "PASS",
+    "allQaObjectsDeleted": true,
+    "winvmMetadataPreserved": true,
+    "baseline": {
+      "templates": 46,
+      "accounts": 3,
+      "projects": 0,
+      "domains": "ROOT"
+    },
+    "codeHead": "bde10b16dc342c0e935fbb6c9142926cbfa46d7f"
+  },
+  {
+    "id": "register-sharedfs-dark-1680",
+    "actor": "admin",
+    "at": "2026-11-14T12:53:14.857Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 481,
+          "y": 140
+        },
+        "scroll": 1206
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1047.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1113.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 480,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1680
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "register-sharedfs-dark-disabled-label-before",
+    "actor": "admin",
+    "at": "2026-11-14T12:56:34.277Z",
+    "result": "BUG_CONFIRMED",
+    "measure": {
+      "body": {
+        "client": 698,
+        "overflowY": "auto",
+        "rect": {
+          "height": 698,
+          "width": 364,
+          "x": 13,
+          "y": 68
+        },
+        "scroll": 1302
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 783
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 783
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 820,
+        "width": 366,
+        "x": 12,
+        "y": 12
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "color": "rgba(0, 0, 0, 0.25)",
+    "submitted": false
+  },
+  {
+    "id": "edit-sharedfs-dark-1680",
+    "actor": "admin",
+    "at": "2026-11-14T12:58:34.446Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 481,
+          "y": 140
+        },
+        "scroll": 1417
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1039.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1113.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 480,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1680
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "edit-sharedfs-dark-1024",
+    "actor": "admin",
+    "at": "2026-11-14T12:58:51.534Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 153,
+          "y": 140
+        },
+        "scroll": 1417
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 711.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 785.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 152,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1024
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "edit-sharedfs-dark-390",
+    "actor": "admin",
+    "at": "2026-11-14T12:59:00.163Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 698,
+        "overflowY": "auto",
+        "rect": {
+          "height": 698,
+          "width": 364,
+          "x": 13,
+          "y": 68
+        },
+        "scroll": 1502
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 229.46875,
+            "y": 783
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 783
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 820,
+        "width": 366,
+        "x": 12,
+        "y": 12
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "edit-sharedfs-light-1680",
+    "actor": "admin",
+    "at": "2026-11-14T12:59:58.731Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 481,
+          "y": 140
+        },
+        "scroll": 1417
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1039.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1113.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 480,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1680
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "edit-sharedfs-light-1024",
+    "actor": "admin",
+    "at": "2026-11-14T13:00:06.756Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 153,
+          "y": 140
+        },
+        "scroll": 1417
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 711.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 785.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 152,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1024
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "edit-sharedfs-light-390",
+    "actor": "admin",
+    "at": "2026-11-14T13:00:14.145Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 698,
+        "overflowY": "auto",
+        "rect": {
+          "height": 698,
+          "width": 364,
+          "x": 13,
+          "y": 68
+        },
+        "scroll": 1502
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 229.46875,
+            "y": 783
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 783
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 820,
+        "width": 366,
+        "x": 12,
+        "y": 12
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "existing-sharedfs-edit-matrix-readonly",
+    "actor": "admin",
+    "at": "2026-11-14T13:00:52.560Z",
+    "result": "PASS",
+    "template": "e0dd091f-82ae-4a32-a19d-d7d95f0d950d",
+    "modes": [
+      "light",
+      "dark"
+    ],
+    "widths": [
+      1680,
+      1024,
+      390
+    ],
+    "metadataEqual": true,
+    "writeCommands": 0,
+    "fingerprint": "93ab54018a0cbf99e48f59fcc71e922582c85c8be1563193fb1ff4174c72a0eb",
+    "escReturnsToWorkButton": true
+  },
+  {
+    "id": "register-sharedfs-light-1680-final",
+    "actor": "admin",
+    "at": "2026-11-14T13:11:57.371Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 481,
+          "y": 140
+        },
+        "scroll": 1206
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1047.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1113.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 480,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1680
+      }
+    },
+    "codeHead": "4a2f5237b3d87eb6a834e813f0f406846bb787ed",
+    "submitted": false
+  },
+  {
+    "id": "register-sharedfs-light-1024-final",
+    "actor": "admin",
+    "at": "2026-11-14T13:12:07.666Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 153,
+          "y": 140
+        },
+        "scroll": 1206
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 719.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 785.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 152,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1024
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "register-sharedfs-light-390-final",
+    "actor": "admin",
+    "at": "2026-11-14T13:12:15.265Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 698,
+        "overflowY": "auto",
+        "rect": {
+          "height": 698,
+          "width": 364,
+          "x": 13,
+          "y": 68
+        },
+        "scroll": 1302
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 783
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 783
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 820,
+        "width": 366,
+        "x": 12,
+        "y": 12
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "register-sharedfs-dark-color-fixed",
+    "actor": "admin",
+    "at": "2026-11-14T13:13:18.327Z",
+    "result": "PASS",
+    "options": [
+      {
+        "checked": false,
+        "color": "rgb(197, 204, 212)",
+        "disabled": true,
+        "text": "추출 가능"
+      },
+      {
+        "checked": true,
+        "color": "rgb(197, 204, 212)",
+        "disabled": true,
+        "text": "동적으로 확장 가능"
+      },
+      {
+        "checked": false,
+        "color": "rgb(197, 204, 212)",
+        "disabled": true,
+        "text": "추천"
+      },
+      {
+        "checked": false,
+        "color": "rgb(197, 204, 212)",
+        "disabled": true,
+        "text": "공개"
+      }
+    ],
+    "codeHead": "4a2f5237b3d87eb6a834e813f0f406846bb787ed"
+  },
+  {
+    "id": "register-sharedfs-dark-1680-final",
+    "actor": "admin",
+    "at": "2026-11-14T13:13:25.176Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 481,
+          "y": 140
+        },
+        "scroll": 1206
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1047.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 1113.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 480,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1680
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "register-sharedfs-dark-1024-final",
+    "actor": "admin",
+    "at": "2026-11-14T13:13:33.746Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 710,
+        "overflowY": "auto",
+        "rect": {
+          "height": 710,
+          "width": 718,
+          "x": 153,
+          "y": 140
+        },
+        "scroll": 1206
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 719.46875,
+            "y": 867
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 785.234375,
+            "y": 867
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 832,
+        "width": 720,
+        "x": 152,
+        "y": 84
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1024
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "register-sharedfs-dark-390-final",
+    "actor": "admin",
+    "at": "2026-11-14T13:13:42.233Z",
+    "result": "PASS",
+    "measure": {
+      "body": {
+        "client": 698,
+        "overflowY": "auto",
+        "rect": {
+          "height": 698,
+          "width": 364,
+          "x": 13,
+          "y": 68
+        },
+        "scroll": 1302
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 783
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 783
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 820,
+        "width": 366,
+        "x": 12,
+        "y": 12
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "submitted": false
+  },
+  {
+    "id": "register-required-errors-no-submit",
+    "actor": "admin",
+    "at": "2026-11-14T13:13:55.525Z",
+    "result": "PASS",
+    "registerRequests": 0,
+    "errors": [
+      "입력해 주십시오.",
+      "입력해 주십시오.",
+      "옵션을 선택하세요."
+    ],
+    "footer": {
+      "body": {
+        "client": 698,
+        "overflowY": "auto",
+        "rect": {
+          "height": 698,
+          "width": 364,
+          "x": 13,
+          "y": 68
+        },
+        "scroll": 1374
+      },
+      "buttons": [
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 783
+          },
+          "text": "취소"
+        },
+        {
+          "rect": {
+            "height": 32,
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 783
+          },
+          "text": "확인"
+        }
+      ],
+      "documentOverflow": false,
+      "modal": {
+        "height": 820,
+        "width": 366,
+        "x": 12,
+        "y": 12
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    }
+  },
+  {
+    "id": "final-dialog-matrix-status",
+    "actor": "admin",
+    "at": "2026-11-14T13:15:17.377Z",
+    "result": "PASS",
+    "codeHead": "4a2f5237b3d87eb6a834e813f0f406846bb787ed",
+    "existingSharedFsUnchanged": true,
+    "invalidRegistrationPosts": 0,
+    "createEditModes": [
+      "light",
+      "dark"
+    ],
+    "createEditWidths": [
+      1680,
+      1024,
+      390
+    ],
+    "winvmRows": 11,
+    "qaObjectsRemain": 0
+  }
+]
