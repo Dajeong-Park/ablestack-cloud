@@ -186,7 +186,7 @@
     <div v-show="showAction">
       <component
         v-if="showAction && currentAction.selfManagedDialog"
-        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog) ? storageActionGeneration : undefined"
+        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets) ? storageActionGeneration : undefined"
         ref="selfManagedAction"
         :is="currentAction.component"
         :resource="resource"
@@ -231,7 +231,7 @@
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
           <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi || isObjectStorageUi) ? storageActionGeneration : undefined"
+              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -888,8 +888,8 @@
           v-else-if="!templateDetailError && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
-          :readFailed="(isVpcUi || $route.meta?.name === 'ilb') && listRefreshError"
-          :readyForActions="(isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
+          :readFailed="(isVpcUi || ['ilb', 'vm', 'vnfapp'].includes($route.meta?.name)) && listRefreshError"
+          :readyForActions="['vm', 'vnfapp'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
           :quiet-refresh="isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
@@ -965,6 +965,7 @@
 </template>
 
 <script>
+import { isVmDeletion } from '@/utils/vmDeletion'
 import { templateObservationContext } from '@/utils/templateAvailability'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
@@ -1058,7 +1059,7 @@ export default {
   provide: function () {
     return {
       parentFetchData: this.fetchData,
-      resourceActionReady: () => !(this.isStorageUi || this.isSnapshotReadView) || this.storageActionReady,
+      resourceActionReady: () => !(this.isStorageUi || this.isSnapshotReadView || ['vm', 'vnfapp'].includes(this.$route.meta?.name)) || this.storageActionReady,
       parentExecuteAction: this.handleDataViewAction,
       parentToggleLoading: this.toggleLoading,
       parentStartLoading: this.startLoading,
@@ -2701,6 +2702,13 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (isVmDeletion(action)) {
+        const targets = (isGroupAction ? this.selectedItems : [action.resource || this.resource]).filter(row => row?.id)
+        if (!targets.length) return
+        this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, vmDeletionTargets: Object.freeze(targets.map(row => Object.freeze({ ...row }))) }
+        this.resource = targets[0]; this.showAction = true
+        return
+      }
       if (action.api === 'deleteNetwork' && guestNetworkRoute(this.$route)) {
         const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
         if (!targets.length || !['deleteNetwork', 'listNetworks'].every(api => api in this.$store.getters.apis)) return

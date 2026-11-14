@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import { isVmDeletion, vmDeletionReason } from '@/utils/vmDeletion'
 import { postAPI } from '@/api'
 import ResourceActionMenu from '@/components/view/ResourceActionMenu'
 import { isDangerAction, resolveActionMenuGroup } from '@/utils/actionMenu'
@@ -382,9 +383,21 @@ export default {
     },
     isActionDisabled (action) {
       if ((this.dataView || action.groupAction) && this.resourceActionReady?.() === false) return true
+      if (this.vmDeleteTooltip(action)) return true
       return 'disabled' in action ? action.disabled(this.resource, this.$store.getters, this.selectedItems) : false
     },
+    vmDeleteTooltip (action) {
+      if (!isVmDeletion(action)) return ''
+      const rows = this.dataView ? [this.resource] : (this.selectedItems || [])
+      return rows.map(row => {
+        const reason = vmDeletionReason(row, action, this.$store.getters)
+        return reason ? `${row.displayname || row.name || row.id} (${row.id}): ${this.$t(reason)}` : ''
+      }).filter(Boolean).join(' · ')
+    },
     getActionTooltip (action) {
+      if (isVmDeletion(action) && this.resourceActionReady?.() === false) return this.$t('message.vm.delete.read.failed')
+      const reason = this.vmDeleteTooltip(action)
+      if (reason) return reason
       if (!('tooltip' in action)) {
         return ''
       }

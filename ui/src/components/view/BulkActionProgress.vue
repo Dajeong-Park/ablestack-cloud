@@ -45,6 +45,7 @@
     <a-card :bordered="false" class="bulk-action-summary">
       <div><check-circle-outlined style="color: #52c41a; margin-right: 8px"/> {{ $t('label.success') + ': ' + succeededCount }}</div>
       <div><close-circle-outlined style="color: #f5222d; margin-right: 8px"/> {{ $t('state.failed') + ': ' + failedCount }}</div>
+      <div v-if="selectedItems.some(item => item.status === 'unknown')">{{ $t('label.vm.protection.unknown') + ': ' + selectedItems.filter(item => item.status === 'unknown').length }}</div>
       <div><sync-outlined style="color: #1890ff; margin-right: 8px"/> {{ $t('state.inprogress') + ': ' + inProgressCount }}</div>
     </a-card>
     <a-divider />
@@ -62,9 +63,10 @@
         <template #bodyCell="{ column, text, record }">
           <template v-if="column.key === 'status'">
             <a-badge
-              :status="text === 'success' ? 'success' : text === 'failed' ? 'error' : 'processing'"
-              :text="$t(text === 'success' ? 'label.success' : text === 'failed' ? 'state.failed' : 'state.inprogress')" />
+              :status="text === 'success' ? 'success' : text === 'failed' ? 'error' : text === 'unknown' ? 'warning' : 'processing'"
+              :text="$t(text === 'success' ? 'label.success' : text === 'failed' ? 'state.failed' : text === 'unknown' ? 'label.vm.protection.unknown' : 'state.inprogress')" />
           </template>
+          <template v-if="['jobid', 'deletionreason'].includes(column.key)">{{ text }}</template>
           <template v-if="column.key === 'algorithm'">
             {{ returnAlgorithmName(record.algorithm) }}
           </template>
@@ -159,7 +161,7 @@ export default {
         : this.selectedItems
     },
     inProgressCount () {
-      return this.selectedItems.filter(item => !['success', 'failed'].includes(item.status)).length
+      return this.selectedItems.filter(item => !['success', 'failed', 'unknown'].includes(item.status)).length
     },
     succeededCount () {
       return this.selectedItems.filter(item => item.status === 'success').length || 0
