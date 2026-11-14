@@ -3112,7 +3112,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             return false;
         }
         try {
-
             backupManager.checkAndRemoveBackupOfferingBeforeExpunge(vm);
 
             // Keep autoscale membership until expunge and resource cleanup succeed.
@@ -7200,6 +7199,8 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             return vm;
         }
 
+        validateVmExpungeAllowed(vm);
+
         if (!(vm.getState() == State.Destroyed || vm.getState() == State.Expunging || vm.getState() == State.Error)) {
             CloudRuntimeException ex = new CloudRuntimeException("Please destroy vm with specified vmId before expunge");
             ex.addProxyObject(String.valueOf(vmId), "vmId");
@@ -7227,6 +7228,14 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             throw ex;
         }
 
+    }
+
+    private void validateVmExpungeAllowed(UserVmVO vm) {
+        if (vm.getRemoved() == null && vm.isDeleteProtection()) {
+            throw new InvalidParameterValueException(String.format(
+                    "Instance [id = %s, name = %s] has delete protection enabled and cannot be expunged.",
+                    vm.getUuid(), vm.getName()));
+        }
     }
 
     @Override
