@@ -11881,5 +11881,9 @@
   "message.vm.start.lookup.empty": "No manual placement candidates. Leave empty to request automatic placement.",
   "message.vm.start.lookup.forbidden": "Manual placement lookup is unavailable with the current permissions; automatic placement remains available.",
   "message.vm.start.unknown": "The start request outcome is unknown. Resubmission is blocked in this dialog; close it and check VM and job state.",
-  "message.vm.start.unavailable": "Check that the VM is stopped and start permission is available. Requests from a previous VM, login or project context are ignored."
+  "message.vm.start.unavailable": "Check that the VM is stopped and start permission is available. Requests from a previous VM, login or project context are ignored.",
+  "message.iso.metadata.unavailable": "Registration support information is unavailable. Refresh the page and try again.",
+  "message.iso.arch.unsupported": "This server does not support architecture selection for this registration method.",
+  "message.iso.action.unavailable": "This action is unavailable for the current state or permissions.",
+  "message.iso.bootable.required": "A bootable ISO is required to create an instance."
 }

@@ -18,6 +18,7 @@
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { templateAvailability } from '@/utils/templateAvailability'
+import { isoBoolean, isoRegistrationCapability, canIsoAction } from '@/utils/isoModel'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
 import { isZoneCreated } from '@/utils/zone'
 import kubernetesIcon from '@/assets/icons/kubernetes.svg?inline'
@@ -214,15 +215,7 @@ export default {
       resourceType: 'ISO',
       filters: ['self', 'shared', 'featured', 'community'],
       columns: () => {
-        var fields = ['name',
-          {
-            state: (record) => {
-              if (record.isready) {
-                return 'Ready'
-              }
-              return 'Not Ready'
-            }
-          }, 'ostypename', 'arch']
+        var fields = ['name', 'state', 'ostypename', 'arch']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
           fields.push('size')
           fields.push('account')
@@ -274,14 +267,14 @@ export default {
           docHelp: 'adminguide/templates.html#id10',
           listView: true,
           popup: true,
-          show: isZoneCreated,
+          show: () => isZoneCreated() && isoRegistrationCapability('url', store.getters).available,
           component: shallowRef(defineAsyncComponent(() => import('@/views/image/RegisterOrUploadIso.vue')))
         },
         {
-          api: 'registerIso',
+          api: 'getUploadParamsForIso',
           icon: 'cloud-upload-outlined',
           label: 'label.upload.iso.from.local',
-          show: () => { return isZoneCreated() && 'getUploadParamsForIso' in store.getters.apis },
+          show: () => isZoneCreated() && isoRegistrationCapability('local', store.getters).available,
           docHelp: 'adminguide/templates.html#id10',
           listView: true,
           popup: true,
@@ -293,13 +286,7 @@ export default {
           icon: 'edit-outlined',
           label: 'label.action.edit.iso',
           dataView: true,
-          show: (record, store) => {
-            return (['Admin'].includes(store.userInfo.roletype) || // If admin or owner or belongs to current project
-              (record.domainid === store.userInfo.domainid && record.account === store.userInfo.account) ||
-              (record.domainid === store.userInfo.domainid && record.projectid && store.project && store.project.id && record.projectid === store.project.id)) &&
-              !(record.account === 'system' && record.domainid === 1) &&
-              record.isready
-          },
+          show: (record, getters) => canIsoAction('edit', record, getters),
           popup: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/image/UpdateISO.vue')))
         },
@@ -309,19 +296,14 @@ export default {
           label: 'label.action.iso.share',
           dataView: true,
           args: (record, store) => {
-            const fields = ['isfeatured', 'isextractable']
-            if (['Admin'].includes(store.userInfo.roletype) || store.features.userpublictemplateenabled) {
+            const fields = ['isextractable']
+            if (store.userInfo.roletype === 'Admin') fields.unshift('isfeatured')
+            if (store.userInfo.roletype === 'Admin' || isoBoolean(store.features.userpublictemplateenabled) === true) {
               fields.unshift('ispublic')
             }
             return fields
           },
-          show: (record, store) => {
-            return (['Admin'].includes(store.userInfo.roletype) || // If admin or owner or belongs to current project
-              (record.domainid === store.userInfo.domainid && record.account === store.userInfo.account) ||
-              (record.domainid === store.userInfo.domainid && record.projectid && store.project && store.project.id && record.projectid === store.project.id)) &&
-              !(record.account === 'system' && record.domainid === 1) &&
-              record.isready
-          }
+          show: (record, getters) => canIsoAction('share', record, getters)
         },
         {
           api: 'extractIso',
@@ -330,13 +312,7 @@ export default {
           message: 'message.action.download.iso',
           docHelp: 'adminguide/templates.html#exporting-templates',
           dataView: true,
-          show: (record, store) => {
-            return (['Admin'].includes(store.userInfo.roletype) || // If admin or owner or belongs to current project
-              (record.domainid === store.userInfo.domainid && record.account === store.userInfo.account && record.isextractable) ||
-              (record.domainid === store.userInfo.domainid && record.projectid && store.project && store.project.id && record.projectid === store.project.id)) &&
-              !(record.account === 'system' && record.domainid === 1) &&
-              record.isready
-          },
+          show: (record, getters) => canIsoAction('download', record, getters),
           args: ['zoneid', 'mode'],
           mapping: {
             zoneid: {
@@ -356,13 +332,7 @@ export default {
           dataView: true,
           args: ['op', 'accounts', 'projectids'],
           popup: true,
-          show: (record, store) => {
-            return (['Admin'].includes(store.userInfo.roletype) || // If admin or owner or belongs to current project
-              (record.domainid === store.userInfo.domainid && record.account === store.userInfo.account) ||
-              (record.domainid === store.userInfo.domainid && record.projectid && store.project && store.project.id && record.projectid === store.project.id)) &&
-              !(record.account === 'system' && record.domainid === 1) &&
-              record.isready
-          },
+          show: (record, getters) => canIsoAction('permissions', record, getters),
           component: shallowRef(defineAsyncComponent(() => import('@/views/image/UpdateTemplateIsoPermissions')))
         }
       ]

@@ -11889,5 +11889,9 @@
   "message.vm.start.lookup.empty": "선택 가능한 배치 대상이 없습니다. 선택을 비워 두면 자동 배치를 요청합니다.",
   "message.vm.start.lookup.forbidden": "현재 권한에서 배치 후보를 조회할 수 없습니다. 선택을 비워 두면 자동 배치를 요청합니다.",
   "message.vm.start.unknown": "시작 요청의 접수 여부를 확인하지 못했습니다. 중복 실행을 막기 위해 이 창의 재제출을 차단했습니다. 창을 닫고 가상머신과 작업 상태를 확인하세요.",
-  "message.vm.start.unavailable": "중지 상태인 가상머신과 현재 시작 권한을 확인하세요. 대상이나 로그인·프로젝트 문맥이 바뀐 요청은 실행하지 않습니다."
+  "message.vm.start.unavailable": "중지 상태인 가상머신과 현재 시작 권한을 확인하세요. 대상이나 로그인·프로젝트 문맥이 바뀐 요청은 실행하지 않습니다.",
+  "message.iso.metadata.unavailable": "등록 지원 정보를 확인할 수 없습니다. 새로고침 후 다시 시도하세요.",
+  "message.iso.arch.unsupported": "현재 서버는 이 등록 방식의 아키텍처 선택을 지원하지 않습니다.",
+  "message.iso.action.unavailable": "현재 상태 또는 권한으로 이 작업을 수행할 수 없습니다.",
+  "message.iso.bootable.required": "가상머신 생성에는 부팅 가능한 ISO가 필요합니다."
 }

@@ -19,7 +19,7 @@
   <div>
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
     <a-button
-      v-if="(('deleteIso' in $store.getters.apis) && this.selectedItems.length > 0)"
+      v-if="canSelectIsoRows && selectedItems.length > 0"
       type="primary"
       :danger="true"
       style="width: 100%; margin-bottom: 15px"
@@ -34,7 +34,7 @@
       :columns="columns"
       :dataSource="dataSource"
       :pagination="false"
-      :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
+      :rowSelection="canSelectIsoRows ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({disabled: !isoAction('delete', record)})} : null"
       :rowKey="record => record.zoneid"
       :expandRowByClick="true"
       :rowExpandable="(record) => record.downloaddetails.length > 0">
@@ -46,8 +46,11 @@
           <global-outlined v-else style="margin-right: 5px" />
           <span> {{ record.zonename }} </span>
         </template>
+        <template v-if="column.dataIndex === 'status'">
+          <template-availability kind="iso" :record="record" compact :show-scope="false" />
+        </template>
         <template v-if="column.key === 'isready'">
-          <span v-if="record.isready">{{ $t('label.yes') }}</span>
+          <span v-if="isoBoolean(record.isready) === true">{{ $t('label.yes') }}</span>
           <span v-else>{{ $t('label.no') }}</span>
         </template>
         <template v-else-if="column.key === 'created'">
@@ -56,8 +59,9 @@
         <template v-if="column.key === 'actions'">
           <span style="margin-right: 5px" v-if="'deployVirtualMachine' in $store.getters.apis">
             <tooltip-button
-              :disabled="!record.isready"
-              :title="$t('label.vm.add')"
+              :disabled="!isoAction('deploy', record)"
+              :tooltip="isoBoolean(record.bootable) === true ? $t('label.vm.add') : $t('message.iso.bootable.required')"
+              :aria-label="$t('label.vm.add')"
               icon="rocket-outlined"
               @onClick="onAddInstance(record)"/>
           </span>
@@ -65,14 +69,14 @@
             <span style="margin-right: 5px">
               <tooltip-button
                 :tooltip="$t('label.action.copy.iso')"
-                :disabled="!('copyIso' in $store.getters.apis && record.isready)"
+                :disabled="!isoAction('copy', record)"
                 icon="copy-outlined"
                 :loading="copyLoading"
-                @click="showCopyIso(record)" />
+                @onClick="showCopyIso(record)" />
             </span>
             <span style="margin-right: 5px">
               <a-popconfirm
-                v-if="'deleteIso' in $store.getters.apis"
+                v-if="isoAction('delete', record)"
                 placement="topRight"
                 :title="$t('message.action.delete.iso')"
                 :ok-text="$t('label.yes')"
@@ -215,6 +219,8 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
+import { isoBoolean, isoOwner, canIsoAction, isoContext, isoListResponse } from '@/utils/isoModel'
+import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import OsLogo from '@/components/widgets/OsLogo'
 import ResourceIcon from '@/components/view/ResourceIcon'
@@ -225,6 +231,7 @@ export default {
   mixins: [listRefreshMixin(['fetchData'])],
   name: 'IsoZones',
   components: {
+    TemplateAvailability,
     TooltipButton,
     OsLogo,
     ResourceIcon,
@@ -244,6 +251,7 @@ export default {
     return {
       columns: [],
       dataSource: [],
+      isoDataContext: '',
       page: 1,
       pageSize: 10,
       itemCount: 0,
@@ -343,6 +351,7 @@ export default {
     this.fetchData()
   },
   watch: {
+    isoScope () { this.resetSelection(); this.dataSource = []; this.itemCount = 0; this.isoDataContext = ''; this.fetchData() },
     loading (newData, oldData) {
       if (!newData) {
         this.fetchData()
@@ -350,16 +359,23 @@ export default {
     }
   },
   computed: {
+    isoScope () { return isoContext(this.resource, this.$store.getters) },
+    canSelectIsoRows () { return this.dataSource.some(row => this.isoAction('delete', row)) },
     isActionsOnIsoPermitted () {
-      return (['Admin'].includes(this.$store.getters.userInfo.roletype) || // If admin or owner or belongs to current project
-        (this.resource.domainid === this.$store.getters.userInfo.domainid && this.resource.account === this.$store.getters.userInfo.account) ||
-        (this.resource.domainid === this.$store.getters.userInfo.domainid && this.resource.projectid && this.$store.getters.project && this.$store.getters.project.id && this.resource.projectid === this.$store.getters.project.id)) &&
-        (this.resource.isready || !this.resource.status || this.resource.status.indexOf('Downloaded') === -1) && // Iso is ready or downloaded
-        this.resource.account !== 'system'
+      return isoOwner(this.resource, this.$store.getters)
     }
   },
   emits: ['update-zones'],
   methods: {
+    isoBoolean,
+    isoAction (action, record) {
+      return !this.listRefreshFailed && this.isoDataContext === this.isoScope && record.id === this.resource.id && canIsoAction(action, { ...this.resource, ...record, account: this.resource.account, domainid: this.resource.domainid, projectid: this.resource.projectid, templatetype: this.resource.templatetype }, this.$store.getters)
+    },
+    requireIsoAction (action, record) {
+      if (record && this.isoAction(action, record)) return true
+      this.$message.error(this.$t('message.iso.action.unavailable'))
+      return false
+    },
     initForm () {
       this.formRef = ref()
       this.form = reactive({})
@@ -369,6 +385,7 @@ export default {
     },
     fetchData () {
       const listRequest = this.listRequestToken('fetchData')
+      const scope = this.isoScope
       const params = {}
       params.id = this.resource.id
       params.isofilter = 'executable'
@@ -382,20 +399,21 @@ export default {
         this.fetchOsCategoryId()
       }
       return getAPI('listIsos', params).then(json => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.dataSource = []
-        this.itemCount = 0
-        this.dataSource = json.listisosresponse.iso || []
-        this.itemCount = json.listisosresponse.count || 0
+        if (!this.isListRequestCurrent('fetchData', listRequest) || scope !== this.isoScope) return
+        const result = isoListResponse(json)
+        this.isoDataContext = scope
+        this.dataSource = result.rows
+        this.itemCount = result.count
+        this.setSelection(this.selectedRowKeys)
       }).catch(error => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
+        if (!this.isListRequestCurrent('fetchData', listRequest) || scope !== this.isoScope) return
         listRequest.failed = true
         this.listRefreshFailed = true
         if (listRequest.loaded) return
 
         this.$notifyError(error)
       }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
+        if (!this.isListRequestCurrent('fetchData', listRequest) || scope !== this.isoScope) return
 
         this.fetchLoading = false
         this.updateImageZones()
@@ -412,11 +430,9 @@ export default {
       this.fetchData()
     },
     setSelection (selection) {
-      this.selectedRowKeys = selection
+      this.selectedItems = this.dataSource.filter(item => selection.includes(item.zoneid) && this.isoAction('delete', item))
+      this.selectedRowKeys = this.selectedItems.map(item => item.zoneid)
       this.$emit('selection-change', this.selectedRowKeys)
-      this.selectedItems = (this.dataSource.filter(function (item) {
-        return selection.indexOf(item.zoneid) !== -1
-      }))
     },
     resetSelection () {
       this.setSelection([])
@@ -425,6 +441,8 @@ export default {
       this.setSelection(selectedRowKeys)
     },
     bulkActionConfirmation () {
+      this.setSelection(this.selectedRowKeys)
+      if (!this.selectedItems.length) return
       this.showConfirmationAction = true
       this.selectedColumns = this.columns.filter(column => {
         return !this.filterColumns.includes(column.title)
@@ -451,6 +469,8 @@ export default {
       }
     },
     deleteIsos (e) {
+      this.setSelection(this.selectedRowKeys)
+      if (!this.selectedItems.length) { this.showConfirmationAction = false; return }
       this.showConfirmationAction = false
       this.selectedColumns.splice(0, 0, {
         key: 'status',
@@ -470,6 +490,7 @@ export default {
       }
     },
     deleteIso (record) {
+      if (!this.requireIsoAction('delete', record)) return
       const params = {
         id: record.id,
         zoneid: record.zoneid
@@ -564,6 +585,7 @@ export default {
       })
     },
     showCopyIso (record) {
+      if (!this.requireIsoAction('copy', record)) return
       this.currentRecord = record
       this.form.zoneid = []
       this.fetchZoneData()
@@ -575,7 +597,7 @@ export default {
     },
     handleCopyIsoSubmit (e) {
       e.preventDefault()
-      if (this.copyLoading) return
+      if (this.copyLoading || !this.requireIsoAction('copy', this.currentRecord)) return
       this.formRef.value.validate().then(() => {
         const values = toRaw(this.form)
         const params = {
@@ -617,6 +639,7 @@ export default {
       this.showConfirmationAction = false
     },
     onAddInstance (record) {
+      if (!this.requireIsoAction('deploy', record)) return
       const query = { isoid: this.resource.id, zoneid: record.zoneid }
       if (this.resource.arch) {
         query.arch = this.resource.arch

@@ -31,12 +31,13 @@
 </template>
 <script>
 import { templateAvailability } from '@/utils/templateAvailability'
+import { isoAvailability } from '@/utils/isoModel'
 export default {
   name: 'TemplateAvailability',
-  props: { record: { type: Object, required: true }, observation: { type: Object, default: null }, compact: Boolean, singleLine: Boolean, inspectable: Boolean, showScope: { type: Boolean, default: true } },
+  props: { kind: { type: String, default: 'template' }, record: { type: Object, required: true }, observation: { type: Object, default: null }, compact: Boolean, singleLine: Boolean, inspectable: Boolean, showScope: { type: Boolean, default: true } },
   emits: ['show-zones'],
   computed: {
-    availability () { return templateAvailability(this.record, this.observation) },
+    availability () { return this.kind === 'iso' ? isoAvailability(this.record, this.observation) : templateAvailability(this.record, this.observation) },
     tooltipText () {
       const value = this.availability
       const scope = !this.showScope ? '' : value.complete

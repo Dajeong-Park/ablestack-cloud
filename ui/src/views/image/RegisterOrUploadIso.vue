@@ -210,7 +210,8 @@
 
         <a-form-item
           name="arch"
-          ref="arch">
+          ref="arch"
+          :help="!registrationCapability.schemaKnown ? $t('message.iso.metadata.unavailable') : !registrationCapability.parameters.arch ? $t('message.iso.arch.unsupported') : undefined">
           <template #label>
             <tooltip-label :title="$t('label.arch')" :tooltip="apiParams.arch.description"/>
           </template>
@@ -221,6 +222,7 @@
               return option.children[0].children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }"
             v-model:value="form.arch"
+            :disabled="!registrationCapability.parameters.arch"
             :placeholder="apiParams.arch.description">
             <a-select-option v-for="opt in architectureTypes.opts" :key="opt.id">
               {{ opt.name || opt.description }}
@@ -228,7 +230,7 @@
           </a-select>
         </a-form-item>
 
-        <a-row :gutter="12">
+        <a-row v-if="canLinkUserData" :gutter="12">
           <a-col :md="24" :lg="12">
             <a-form-item
               name="userdataid"
@@ -334,6 +336,7 @@
 <script>
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
+import { isoParameterHelp, isoRegistrationCapability } from '@/utils/isoModel'
 import store from '@/store'
 import { axios } from '../../utils/request'
 import { mixinForm } from '@/utils/mixin'
@@ -386,8 +389,10 @@ export default {
     }
   },
   beforeCreate () {
-    this.apiParams = this.$getApiParams('registerIso')
-    this.linkUserDataParams = this.$getApiParams('linkUserDataToTemplate')
+    const getters = this.$store.getters
+    this.apiParams = isoParameterHelp({ ...isoRegistrationCapability('url', getters).parameters, ...isoRegistrationCapability('local', getters).parameters })
+    const schema = getters.apis.linkUserDataToTemplate?.params
+    this.linkUserDataParams = isoParameterHelp(Object.fromEntries((Array.isArray(schema) ? schema : []).filter(param => param && typeof param.name === 'string').map(param => [param.name, param])))
   },
   created () {
     this.initForm()
@@ -395,6 +400,8 @@ export default {
     this.fetchData()
   },
   computed: {
+    registrationCapability () { return isoRegistrationCapability(this.currentForm === 'Create' ? 'url' : 'local', this.$store.getters) },
+    canLinkUserData () { return ['listUserData', 'linkUserDataToTemplate'].every(api => api in this.$store.getters.apis) },
     zoneList () {
       let filteredZones = this.zones
       if (!this.form.directdownload) {
@@ -433,10 +440,10 @@ export default {
       }
     },
     fetchData () {
-      this.fetchZoneData()
-      this.fetchOsType()
+      if ('listZones' in this.$store.getters.apis) this.fetchZoneData()
+      if ('listOsTypes' in this.$store.getters.apis) this.fetchOsType()
       this.architectureTypes.opts = this.$fetchCpuArchitectureTypes()
-      this.fetchUserData()
+      if (this.canLinkUserData) this.fetchUserData()
       this.fetchUserdataPolicy()
       if ('listDomains' in this.$store.getters.apis) {
         this.fetchDomains()
@@ -468,7 +475,7 @@ export default {
         this.osTypes = this.osTypes.concat(listOsTypes)
       }).finally(() => {
         this.osTypeLoading = false
-        this.form.ostypeid = this.osTypes[0].id
+        this.form.ostypeid = this.osTypes[0]?.id
       })
     },
     fetchUserData () {
@@ -579,6 +586,10 @@ export default {
     handleSubmit (e) {
       e.preventDefault()
       if (this.loading) return
+      if (!this.registrationCapability.available || !this.registrationCapability.schemaKnown) {
+        this.$message.error(this.$t('message.iso.metadata.unavailable'))
+        return
+      }
       this.formRef.value.validate().then(() => {
         const formRaw = toRaw(this.form)
         const values = this.handleRemoveFields(formRaw)
@@ -589,6 +600,10 @@ export default {
             continue
           }
           if (key === 'file') {
+            continue
+          }
+          if (key === 'arch' && !this.registrationCapability.parameters.arch) {
+            if (input !== '') { this.$message.error(this.$t('message.iso.arch.unsupported')); return }
             continue
           }
           switch (key) {
