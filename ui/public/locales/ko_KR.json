@@ -11915,5 +11915,8 @@
   "message.iso.request.uncertain": "등록 요청 결과를 확인하지 못했습니다. 다시 등록하기 전에 ISO 목록에서 같은 이름과 상태를 확인하세요.",
   "message.iso.context.changed": "계정, 권한 또는 프로젝트가 바뀌었습니다. 이 창을 닫고 현재 보기에서 다시 여세요.",
   "message.iso.registration.failed": "서버에서 ISO 준비 실패를 확인했습니다. 등록한 ISO를 열어 원인을 확인하고 정리하세요.",
-  "message.iso.userdata.unconfirmed": "ISO는 준비됐지만 선택한 사용자 데이터 연결을 확인하지 못했습니다."
+  "message.iso.userdata.unconfirmed": "ISO는 준비됐지만 선택한 사용자 데이터 연결을 확인하지 못했습니다.",
+  "label.iso.transfer.stop": "파일 전송 중단",
+  "message.iso.transfer.stop.confirm": "파일 전송을 중단하시겠습니까? 접수된 ISO는 상태를 확인한 뒤 별도로 정리해야 합니다.",
+  "message.iso.transfer.stopped": "파일 전송을 중단했습니다. 서버 등록이 취소된 것은 아닙니다. 접수된 ISO의 상태를 확인하고 정리하세요."
 }

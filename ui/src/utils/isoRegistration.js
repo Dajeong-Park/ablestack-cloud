@@ -66,6 +66,10 @@ export function isoRegistrationParams (form, capability, getters = {}) {
     if (!supported.projectid) fail('message.iso.parameter.unsupported')
     params.projectid = getters.project.id; delete params.account; delete params.domainid
   }
+  if (capability.api === 'getUploadParamsForIso') {
+    if (!supported.format) fail('message.iso.metadata.unavailable')
+    params.format = 'ISO'
+  }
   if (capability.api === 'registerIso') {
     if (!validIsoUrl(form.url)) fail('message.iso.url.invalid')
     params.url = form.url.trim()

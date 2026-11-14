@@ -27,7 +27,7 @@ const row = extra => ({ id, zoneid: zone, isready: true, ...extra })
 const ticket = extra => ({ postuploadisoresponse: { getuploadparams: { id, postURL: 'https://upload.invalid/upload/fixture', metadata: 'test-metadata', signature: 'test-only-signature', expires: '2099-01-01T00:00:00Z', ...extra } } })
 let linked
 function context (mode = 'Upload', extra = {}) {
-  const apis = Object.fromEntries(['getUploadParamsForIso', 'registerIso', 'listIsos', 'listUserData', 'linkUserDataToTemplate'].map(name => [name, { params: ['name', 'zoneid', 'bootable', 'arch', 'checksum', 'isextractable', 'ispublic', 'isfeatured', 'ostypeid', 'url'].map(name => ({ name })) }]))
+  const apis = Object.fromEntries(['getUploadParamsForIso', 'registerIso', 'listIsos', 'listUserData', 'linkUserDataToTemplate'].map(name => [name, { params: ['format', 'name', 'zoneid', 'bootable', 'arch', 'checksum', 'isextractable', 'ispublic', 'isfeatured', 'ostypeid', 'url'].map(name => ({ name })) }]))
   const c = {
     ...Register.data.call({ action: { currentAction: { icon: 'cloud-upload-outlined' } } }),
     currentForm: mode,
@@ -102,4 +102,14 @@ test('late response after owner/project changes cannot start a file transfer', a
 test('cancel before registration is local and busy close remains blocked', () => {
   const c = context(); c.closeAction(); expect(getAPI).not.toHaveBeenCalled(); expect(postAPI).not.toHaveBeenCalled(); expect(c.$emit).toHaveBeenCalledWith('close-action')
   c.$emit.mockClear(); c.busy = true; c.closeAction(); expect(c.$emit).not.toHaveBeenCalled()
+})
+
+test('preflight exposes only the origin and retains certificate verification navigation', async () => {
+  const c = context(); probeSsvmCert.mockResolvedValueOnce(false); await c.handleSubmit()
+  expect(c.phase).toBe('preflight'); expect(c.uploadOrigin).toBe('https://upload.invalid'); expect(c.uploadOrigin).not.toContain('/upload/')
+  expect(getAPI.mock.calls.find(([api]) => api === 'getUploadParamsForIso')[1].format).toBe('ISO')
+})
+test('interrupting a client transfer preserves the ISO and never issues a server cancel or another upload', () => {
+  const c = context(); c.phase = 'uploading'; c.acceptedId = id; c.uploadAbort = { abort: jest.fn() }; c.interruptTransfer(); c.interruptTransfer()
+  expect(c.uploadAbort.abort).toHaveBeenCalledTimes(1); expect(c.transferInterrupted).toBe(true); expect(c.acceptedId).toBe(id); expect(postAPI).not.toHaveBeenCalled()
 })

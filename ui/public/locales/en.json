@@ -11907,5 +11907,8 @@
   "message.iso.request.uncertain": "The registration result is uncertain. Check the ISO list before making another registration request.",
   "message.iso.context.changed": "The account, permissions or project changed. Close this form and reopen it in the current view.",
   "message.iso.registration.failed": "The ISO is not ready because the server reported a failure. Open it to review and clean up.",
-  "message.iso.userdata.unconfirmed": "The ISO is ready but the selected user data link could not be confirmed."
+  "message.iso.userdata.unconfirmed": "The ISO is ready but the selected user data link could not be confirmed.",
+  "label.iso.transfer.stop": "Stop file transfer",
+  "message.iso.transfer.stop.confirm": "Stop sending this file? The registered ISO must be checked and cleaned up separately.",
+  "message.iso.transfer.stopped": "The client stopped sending the file. Check the registered ISO status; this does not cancel the server registration."
 }

@@ -37,7 +37,7 @@ test('expiry accepts ISO timestamps and legacy seconds/milliseconds without exte
 test.each(['http://images.invalid/file.iso', 'https://images.invalid/a.iso?version=1', 'file:///images/test.iso'])('supported URL %s remains available', value => expect(validIsoUrl(value)).toBe(true))
 test.each(['', 'file.iso', 'ftp://images.invalid/test.iso', 'javascript:alert(1)', 'https:///'])('invalid URL %s does not register', value => expect(validIsoUrl(value)).toBe(false))
 test('selected API schema preserves false and checksum, rejects unsupported arch, and scopes projects', () => {
-  const params = Object.fromEntries(['name', 'zoneid', 'bootable', 'checksum', 'isextractable', 'arch', 'projectid'].map(name => [name, {}]))
+  const params = Object.fromEntries(['format', 'name', 'zoneid', 'bootable', 'checksum', 'isextractable', 'arch', 'projectid'].map(name => [name, {}]))
   const cap = { api: 'getUploadParamsForIso', available: true, schemaKnown: true, parameters: params }
   expect(isoRegistrationParams({ name: 'data', zoneid: zone, bootable: false, isextractable: false, checksum: 'a'.repeat(32), arch: 'aarch64' }, cap, {})).toMatchObject({ bootable: false, isextractable: false, checksum: 'a'.repeat(32), arch: 'aarch64' })
   expect(isoRegistrationParams({ name: 'data', zoneid: zone }, cap, { project: { id } }).projectid).toBe(id)
@@ -51,4 +51,9 @@ test('readiness never treats byte completion, failure, omitted readiness or inco
   expect(isoReadiness({ listisosresponse: { iso: [ready()], count: 2 } }, id, '-1').ready).toBe(false)
   expect(isoReadiness({ listisosresponse: { iso: [ready()] } }, id, '-1').ready).toBe(false)
   expect(() => result([ready({ id: zone })])).toThrow()
+})
+
+test('local API inherited required format is ISO even if an unrelated form value is supplied', () => {
+  const cap = { api: 'getUploadParamsForIso', available: true, schemaKnown: true, parameters: { format: { required: true }, name: {}, zoneid: {} } }
+  expect(isoRegistrationParams({ name: 'data', zoneid: zone, format: 'QCOW2' }, cap).format).toBe('ISO')
 })

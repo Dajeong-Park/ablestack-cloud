@@ -329,6 +329,10 @@ option-filter-prop="label"
     <MoldDialogActions :busy="busy">
       <a-button v-if="!busy" @click="closeAction">{{ $t(acceptedId || phase !== 'draft' ? 'label.close' : 'label.cancel') }}</a-button>
       <a-button v-if="phase === 'draft'" type="primary" :loading="busy" :disabled="optionsLoading || !registrationCapability.available || !registrationCapability.schemaKnown" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+      <a-button v-if="phase === 'preflight' && uploadOrigin" :href="uploadOrigin" target="_blank" rel="noopener noreferrer">{{ $t('label.ssvm.open.cert.page') }}</a-button>
+      <a-popconfirm v-if="phase === 'uploading'" :title="$t('message.iso.transfer.stop.confirm')" :ok-text="$t('label.yes')" :cancel-text="$t('label.no')" @confirm="interruptTransfer">
+        <a-button :disabled="transferInterrupted">{{ $t('label.iso.transfer.stop') }}</a-button>
+      </a-popconfirm>
       <a-button v-if="phase === 'preflight'" type="primary" :loading="busy" @click="retryUpload">{{ $t('label.retry.upload') }}</a-button>
       <a-button v-if="phase === 'linkFailed'" type="primary" :loading="busy" :disabled="!userdataid" @click="retryUserdataLink">{{ $t('label.template.retry.userdata') }}</a-button>
       <a-button v-if="['pending', 'checkFailed', 'transferFailed'].includes(phase)" :loading="busy" @click="checkAccepted">{{ $t('label.iso.check.status') }}</a-button>
@@ -369,6 +373,7 @@ export default {
       uploadPercentage: 0,
       uploadParams: null,
       transferAttempted: false,
+      transferInterrupted: false,
       zones: [],
       osTypes: [],
       domains: [],
@@ -400,7 +405,7 @@ export default {
     this.form = reactive({ bootable: true, isextractable: false, ispublic: false, isfeatured: false, passwordenabled: false, isdynamicallyscalable: false, arch: this.supportsParam('arch') ? 'x86_64' : undefined })
     this.rules = reactive({
       url: [{ required: true, message: this.$t('message.error.required.input') }, { validator: async (rule, value) => { if (value && !validIsoUrl(value)) throw new Error(this.$t('message.iso.url.invalid')) } }],
-      file: [{ validator: async () => { if (this.fileList.length !== 1 || !this.fileList[0]?.size) throw new Error(this.$t('message.iso.file.required')) } }],
+      file: [{ required: true, validator: async () => { if (this.fileList.length !== 1 || !this.fileList[0]?.size) throw new Error(this.$t('message.iso.file.required')) } }],
       name: [{ required: true, whitespace: true, message: this.$t('message.error.required.input') }],
       zoneid: [{ required: true, message: this.$t('message.error.select') }],
       ostypeid: [{ required: true, message: this.$t('message.error.select') }],
@@ -424,6 +429,7 @@ export default {
   computed: {
     registrationCapability () { return isoRegistrationCapability(this.currentForm === 'Create' ? 'url' : 'local', this.$store.getters) },
     registrationScope () { return isoContext({}, this.$store.getters) + '|' + this.currentForm + '|' + String(this.$store.state?.user?.token || '') },
+    uploadOrigin () { try { return this.uploadParams ? new URL(this.uploadParams.postURL).origin : '' } catch (_) { return '' } },
     blocksNavigation () { return this.busy },
     isAdmin () { return this.$store.getters.userInfo.roletype === 'Admin' },
     canPublish () { return this.supportsParam('ispublic') && (this.isAdmin || isoBoolean(this.$store.getters.features?.userpublictemplateenabled) === true) },
@@ -506,6 +512,11 @@ export default {
       this.busy = true; this.submitError = ''; const run = this.run()
       try { await this.sendFile(run) } finally { if (this.current(run)) this.busy = false }
     },
+    interruptTransfer () {
+      if (this.phase !== 'uploading' || !this.uploadAbort || this.transferInterrupted) return
+      this.transferInterrupted = true
+      this.uploadAbort.abort()
+    },
     async sendFile (run) {
       if (!this.current(run)) return
       if (uploadTicketExpired(this.uploadParams)) { this.phase = 'expired'; this.uploadParams = null; return }
@@ -513,12 +524,12 @@ export default {
       if (!await probeSsvmCert(new URL(this.uploadParams.postURL).origin)) { if (this.current(run)) this.phase = 'preflight'; return }
       if (!this.current(run)) return
       if (uploadTicketExpired(this.uploadParams)) { this.phase = 'expired'; this.uploadParams = null; return }
-      const ticket = this.uploadParams; const data = new FormData(); data.append('files[]', this.fileList[0]); this.phase = 'uploading'; this.transferAttempted = true; this.uploadPercentage = 0
+      const ticket = this.uploadParams; const data = new FormData(); data.append('files[]', this.fileList[0]); this.phase = 'uploading'; this.transferAttempted = true; this.transferInterrupted = false; this.uploadPercentage = 0
       this.uploadAbort = new AbortController()
       try {
         await axios.post(ticket.postURL, data, { headers: { 'x-signature': ticket.signature, 'x-expires': ticket.expires, 'x-metadata': ticket.metadata, 'x-host': new URL(ticket.postURL).host }, signal: this.uploadAbort.signal, timeout: 86400000, onUploadProgress: event => { if (this.current(run) && event.total > 0) this.uploadPercentage = Math.min(100, Math.round(100 * event.loaded / event.total)) } })
         if (this.current(run)) { this.uploadParams = null; await this.finishRegistration(run) }
-      } catch (error) { if (this.current(run)) { this.uploadParams = null; this.phase = 'transferFailed'; this.submitError = this.errorText(error); this.$emit('refresh-data') } }
+      } catch (error) { if (this.current(run)) { this.uploadParams = null; this.phase = 'transferFailed'; this.submitError = this.transferInterrupted ? this.$t('message.iso.transfer.stopped') : this.errorText(error); this.$emit('refresh-data') } }
     },
     async readAccepted (run) {
       const rows = []; let count; let countKnown = false; let page = 1
