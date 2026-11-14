@@ -159,7 +159,7 @@
               return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }"
             :placeholder="apiParams.account.description"
-            @change="fetchUserData">
+            @change="handleAccountChange">
             <a-select-option v-for="(acc, index) in accounts" :value="acc.name" :key="index">
               {{ acc.name }}
             </a-select-option>
@@ -221,7 +221,7 @@
           <a-form-item :label="$t('label.user.data')" name="userdataid">
             <a-select
 v-model:value="userdataid"
-:disabled="busy"
+:disabled="busy || userDataLoading"
 :loading="userDataLoading"
 allow-clear
 show-search
@@ -307,7 +307,7 @@ v-if="canPublish"
           <a-form-item :label="$t('label.user.data')" name="userdataid">
             <a-select
 v-model:value="userdataid"
-:disabled="busy"
+:disabled="busy || userDataLoading"
 :loading="userDataLoading"
 allow-clear
 show-search
@@ -328,13 +328,13 @@ option-filter-prop="label"
     </div>
     <template #footer>
       <a-button v-if="!busy" @click="closeAction">{{ $t(acceptedId || phase !== 'draft' ? 'label.close' : 'label.cancel') }}</a-button>
-      <a-button v-if="phase === 'draft'" type="primary" :loading="busy" :disabled="optionsLoading || !registrationCapability.available || !registrationCapability.schemaKnown" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+      <a-button v-if="phase === 'draft'" type="primary" :loading="busy" :disabled="optionsLoading || userDataLoading || !registrationCapability.available || !registrationCapability.schemaKnown" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
       <a-button v-if="phase === 'preflight' && uploadOrigin" :href="uploadOrigin" target="_blank" rel="noopener noreferrer">{{ $t('label.ssvm.open.cert.page') }}</a-button>
       <a-popconfirm v-if="phase === 'uploading'" :title="$t('message.iso.transfer.stop.confirm')" :ok-text="$t('label.yes')" :cancel-text="$t('label.no')" @confirm="interruptTransfer">
         <a-button :disabled="transferInterrupted">{{ $t('label.iso.transfer.stop') }}</a-button>
       </a-popconfirm>
       <a-button v-if="phase === 'preflight'" type="primary" :loading="busy" @click="retryUpload">{{ $t('label.retry.upload') }}</a-button>
-      <a-button v-if="phase === 'linkFailed'" type="primary" :loading="busy" :disabled="!userdataid" @click="retryUserdataLink">{{ $t('label.template.retry.userdata') }}</a-button>
+      <a-button v-if="phase === 'linkFailed'" type="primary" :loading="busy" :disabled="!userdataid || userDataLoading" @click="retryUserdataLink">{{ $t('label.template.retry.userdata') }}</a-button>
       <a-button v-if="['pending', 'checkFailed', 'transferFailed'].includes(phase)" :loading="busy" @click="checkAccepted">{{ $t('label.iso.check.status') }}</a-button>
       <a-button v-if="acceptedId && !busy" @click="viewAcceptedIso">{{ $t('label.iso.view.accepted') }}</a-button>
       <a-button v-if="phase === 'uncertain' && !busy" @click="viewIsoList">{{ $t('label.isos') }}</a-button>
@@ -482,15 +482,16 @@ export default {
       if (!this.canLinkUserData) return
       const token = ++this.userDataRequest; const run = this.run(); const owner = { domainid: this.form.domainid || this.$store.getters.userInfo.domainid, account: this.form.account || this.$store.getters.userInfo.account, projectid: this.$store.getters.project?.id }
       this.userDataLoading = true
-      try { const json = await getAPI('listUserData', owner.projectid ? { projectid: owner.projectid, listall: true } : { domainid: owner.domainid, account: owner.account, listall: true }); if (this.current(run) && token === this.userDataRequest) this.userDataOptions = (json.listuserdataresponse?.userdata || []).filter(row => owner.projectid ? row.projectid === owner.projectid : !row.projectid && row.account === owner.account && row.domainid === owner.domainid) } catch (error) { if (this.current(run)) this.submitError = this.errorText(error) } finally { if (this.current(run) && token === this.userDataRequest) this.userDataLoading = false }
+      try { const json = await getAPI('listUserData', owner.projectid ? { projectid: owner.projectid, listall: true } : { domainid: owner.domainid, account: owner.account, listall: true }); if (this.current(run) && token === this.userDataRequest) { this.userDataOptions = (json.listuserdataresponse?.userdata || []).filter(row => owner.projectid ? row.projectid === owner.projectid : !row.projectid && row.account === owner.account && row.domainid === owner.domainid); if (this.userdataid && !this.userDataOptions.some(row => row.id === this.userdataid)) this.userdataid = undefined } } catch (error) { if (this.current(run)) this.submitError = this.errorText(error) } finally { if (this.current(run) && token === this.userDataRequest) this.userDataLoading = false }
     },
-    handleDomainChange () { this.form.account = undefined; this.accounts = []; this.userdataid = undefined; this.fetchAccounts(); this.fetchUserData() },
+    handleDomainChange () { this.form.account = undefined; this.accounts = []; this.userdataid = undefined; this.userDataOptions = []; this.fetchAccounts(); this.fetchUserData() },
+    handleAccountChange () { this.userdataid = undefined; this.userDataOptions = []; this.fetchUserData() },
     handleDirectDownloadChange () { if (!this.zoneList.some(zone => zone.id === this.form.zoneid)) this.form.zoneid = this.zoneList[0]?.id },
     beforeUpload (file) { this.fileList = [file]; this.form.file = file; if (!this.form.name) this.form.name = file.name; return false },
     handleRemove () { if (this.busy || this.acceptedId) return false; this.fileList = []; this.form.file = undefined; return true },
     async handleSubmit (event) {
       if (event && typeof event.preventDefault === 'function') event.preventDefault()
-      if (this.busy || this.optionsLoading || this.acceptedId || this.phase !== 'draft') return
+      if (this.busy || this.optionsLoading || this.userDataLoading || this.acceptedId || this.phase !== 'draft') return
       this.busy = true; this.submitError = ''; const run = this.run()
       try {
         await this.formRef.value.validate()
@@ -572,7 +573,7 @@ export default {
       }
       if (this.current(run)) { this.phase = 'done'; this.submitError = ''; this.$emit('refresh-data'); this.$notification.success({ message: this.$t('message.iso.registration.done'), description: this.form.name }) }
     },
-    async retryUserdataLink () { if (this.busy || this.phase !== 'linkFailed' || !this.userdataid || !this.acceptedId) return; this.busy = true; this.submitError = ''; const run = this.run(); try { await this.completeUserdata(run) } finally { if (this.current(run)) this.busy = false } },
+    async retryUserdataLink () { if (this.busy || this.userDataLoading || this.phase !== 'linkFailed' || !this.userdataid || !this.acceptedId) return; this.busy = true; this.submitError = ''; const run = this.run(); try { await this.completeUserdata(run) } finally { if (this.current(run)) this.busy = false } },
     async checkAccepted () { if (this.busy || !this.acceptedId) return; this.busy = true; this.submitError = ''; const run = this.run(); try { await this.finishRegistration(run) } finally { if (this.current(run)) this.busy = false } },
     viewAcceptedIso () { if (this.busy || !this.acceptedId) return; this.$emit('close-action'); this.$router.push({ path: '/iso/' + encodeURIComponent(this.acceptedId) }) },
     viewIsoList () { if (this.busy) return; this.$emit('close-action'); this.$router.push({ path: '/iso', query: { keyword: this.form.name } }) },

@@ -49,7 +49,7 @@ function context (mode = 'Upload', extra = {}) {
 }
 beforeEach(() => {
   jest.clearAllMocks(); linked = false; probeSsvmCert.mockResolvedValue(true); axios.post.mockResolvedValue({})
-  getAPI.mockImplementation(async command => command === 'getUploadParamsForIso' ? ticket() : command === 'listUserData' ? { listuserdataresponse: { userdata: [] } } : { listisosresponse: { iso: [row(linked ? { userdataid: ud, userdatapolicy: 'APPEND' } : {})], count: 1 } })
+  getAPI.mockImplementation(async command => command === 'getUploadParamsForIso' ? ticket() : command === 'listUserData' ? { listuserdataresponse: { userdata: [{ id: ud, name: 'fixture userdata', account: 'admin', domainid: zone }] } } : { listisosresponse: { iso: [row(linked ? { userdataid: ud, userdatapolicy: 'APPEND' } : {})], count: 1 } })
   postAPI.mockImplementation(async command => { if (command === 'linkUserDataToTemplate') { linked = true; return {} } return { registerisoresponse: { iso: [row()] } } })
 })
 test('local transfer finishes server readiness before linking selected userdata and policy', async () => {
@@ -140,4 +140,20 @@ test('known plain text SSVM checksum diagnostics are shown instead of a generic 
   for (const body of ['<html>proxy error</html>', 'Checksum does not match the uploaded file. x-signature=private-test-value']) {
     expect(c.errorText({ response: { data: body }, message: 'Request failed with status code 500' })).toBe('Request failed with status code 500')
   }
+})
+
+test('changing the target owner clears previous userdata before refreshing the available scope', () => {
+  const c = context('Create', { userdataid: ud, userDataOptions: [{ id: ud }] }); c.fetchUserData = jest.fn()
+  c.handleAccountChange()
+  expect(c.userdataid).toBeUndefined(); expect(c.userDataOptions).toEqual([]); expect(c.fetchUserData).toHaveBeenCalledTimes(1)
+})
+test('a userdata reload removes a selection that is no longer in the target owner scope', async () => {
+  const c = context('Create', { userdataid: ud, userDataOptions: [{ id: ud }] })
+  c.form.account = 'new-owner'
+  getAPI.mockResolvedValueOnce({ listuserdataresponse: { userdata: [{ id: ud, account: 'admin', domainid: zone }] } })
+  await c.fetchUserData(); expect(c.userdataid).toBeUndefined(); expect(c.userDataOptions).toEqual([])
+})
+test('registration and linkage retry wait for the scoped userdata lookup to finish', async () => {
+  const c = context('Upload', { userDataLoading: true, userdataid: ud }); await c.handleSubmit(); expect(getAPI).not.toHaveBeenCalled()
+  c.phase = 'linkFailed'; c.acceptedId = id; await c.retryUserdataLink(); expect(postAPI).not.toHaveBeenCalled()
 })
