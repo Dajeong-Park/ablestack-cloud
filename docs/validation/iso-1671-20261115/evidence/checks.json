@@ -16,5 +16,13 @@
   "uiBuild": true,
   "clipboardActualPaste": "PENDING_USER_CONFIRMATION",
   "cleanup": "PARTIAL_3_OF_4_ISOS_DELETED",
-  "fullCiPass": false
+  "fullCiPass": false,
+  "finalProductLint": {
+    "run": 43707360412,
+    "existingFailedHooks": 16,
+    "existingDiagnosticPaths": 11179,
+    "addedDiagnosticPaths": 0,
+    "removedDiagnosticPaths": 0,
+    "changedPathDiagnostics": 0
+  }
 }
