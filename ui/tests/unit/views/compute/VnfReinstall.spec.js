@@ -82,7 +82,7 @@ test.each(['nic', 'template', 'state'])('fresh %s changes block POST and keep th
   await c.submit(); expect(postAPI).not.toHaveBeenCalled(); expect(c.selectedId).toBe('b'); expect(c.error).toBe('message.vnf.reinstall.changed')
 })
 test('incompatible and unavailable template rechecks cannot POST', async () => {
-  const c = await context(); c.mode = 'other'; c.selectedId = 'b'; serverTemplates[1].vnfnics.push({ deviceid: 2, required: true }); await c.submit(); expect(postAPI).not.toHaveBeenCalled(); expect(c.error).toBe('message.vnf.reinstall.nic.missing')
+  const c = await context(); c.mode = 'other'; c.selectedId = 'b'; serverTemplates[1].vnfnics.push({ deviceid: 2, required: true, management: false }); await c.submit(); expect(postAPI).not.toHaveBeenCalled(); expect(c.error).toBe('message.vnf.reinstall.nic.missing')
   serverTemplates = []; await c.submit(); expect(postAPI).not.toHaveBeenCalled(); expect(c.error).toBe('message.vnf.reinstall.template.unavailable')
 })
 test('a removed/inaccessible original blocks original mode but a compatible alternative remains selectable', async () => {
