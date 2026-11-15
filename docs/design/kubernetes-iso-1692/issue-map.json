@@ -1,0 +1,152 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "epic": 1692,
+  "items": [
+    {
+      "id": 6411019544,
+      "number": 1694,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1694",
+      "title": "[TPL-01][Europa] 우분투 템플릿 목록 이름이 말줄임만 표시되는 렌더링 오류 보정",
+      "order": 1,
+      "priority": "P1 · 가장 먼저",
+      "deps": [],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411020466,
+      "number": 1695,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1695",
+      "title": "[KISO-01][Europa] 쿠버네티스 ISO API capability·응답·전역 범위·ACL 공통 계약",
+      "order": 2,
+      "priority": "P1 · 기반",
+      "deps": [],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411021558,
+      "number": 1696,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1696",
+      "title": "[KISO-02][Europa] 쿠버네티스 ISO URL 등록·입력 경계·체크섬·직접 다운로드 개선",
+      "order": 3,
+      "priority": "P1",
+      "deps": [
+        "KISO-01"
+      ],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411022463,
+      "number": 1697,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1697",
+      "title": "[KISO-03][Europa] 쿠버네티스 ISO 로컬 업로드 수명주기·아키텍처·감사 이벤트 보정",
+      "order": 4,
+      "priority": "P1",
+      "deps": [
+        "KISO-01",
+        "KISO-02"
+      ],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411023375,
+      "number": 1698,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1698",
+      "title": "[KISO-04][Europa] 쿠버네티스 ISO 서버 필터·count/page 및 목록 복귀 정합성",
+      "order": 5,
+      "priority": "P1",
+      "deps": [
+        "KISO-01"
+      ],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411024289,
+      "number": 1699,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1699",
+      "title": "[KISO-05][Europa] 쿠버네티스 ISO 가용성·상세·Zone 탭과 연결 ISO 읽기 개선",
+      "order": 6,
+      "priority": "P1",
+      "deps": [
+        "KISO-01",
+        "KISO-02",
+        "KISO-03"
+      ],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411025258,
+      "number": 1700,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1700",
+      "title": "[KISO-06][Europa] 쿠버네티스 ISO 상태 변경·참조 보호·연쇄 삭제 UX 개선",
+      "order": 7,
+      "priority": "P1",
+      "deps": [
+        "KISO-01",
+        "KISO-05"
+      ],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411026231,
+      "number": 1701,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1701",
+      "title": "[KISO-07][Europa] 쿠버네티스 ISO 목록·breadcrumb·탭·모달의 VM 표준 스타일 정리",
+      "order": 8,
+      "priority": "P2",
+      "deps": [
+        "TPL-01",
+        "KISO-04",
+        "KISO-05",
+        "KISO-06"
+      ],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    },
+    {
+      "id": 6411027160,
+      "number": 1702,
+      "url": "https://github.com/ablecloud-team/ablestack-cloud/issues/1702",
+      "title": "[KISO-08][Europa] 쿠버네티스 ISO 실계정 ACL·양 계열 업로드·통합 UI 회귀",
+      "order": 9,
+      "priority": "P1 · 최종 완료 게이트",
+      "deps": [
+        "TPL-01",
+        "KISO-01",
+        "KISO-02",
+        "KISO-03",
+        "KISO-04",
+        "KISO-05",
+        "KISO-06",
+        "KISO-07"
+      ],
+      "parentLinked": true,
+      "dependenciesLinked": true
+    }
+  ],
+  "nativeSubissues": 9,
+  "nativeDependencyEdges": 21
+}
