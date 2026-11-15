@@ -11920,5 +11920,18 @@
   "message.image.permissions.reset.confirm": "Reset removes all account and project grants, makes the image private and clears featured status. Extractable is unchanged.",
   "message.image.permissions.reset.ack": "Remove all current account and project grants",
   "message.image.permissions.verified": "Sharing was updated and verified.",
-  "label.image.permissions.current": "Current sharing"
+  "label.image.permissions.current": "Current sharing",
+  "message.iso.edit.metadata.unavailable": "ISO edit API metadata is unavailable. Reopen after refreshing.",
+  "message.iso.edit.os.required": "Select a supported OS type for a bootable ISO.",
+  "message.iso.edit.policy.invalid": "Select a supported user data policy.",
+  "message.iso.edit.os.read.failed": "OS types could not be loaded. OS changes cannot be validated.",
+  "message.iso.edit.os.force": "Changing OS type can update the guest configuration of existing instances. Enable force only after reviewing the impact.",
+  "message.iso.edit.link.failed": "The ISO metadata is unchanged. User data linkage could not be completed.",
+  "label.iso.edit.retry.userdata": "Retry user data only",
+  "message.iso.edit.context.changed": "The image or account scope changed. Close and reopen this dialog.",
+  "message.iso.edit.read.failed": "The current ISO could not be read.",
+  "message.iso.edit.changed": "The ISO changed after this dialog opened. Close and reopen before updating.",
+  "message.iso.edit.unconfirmed": "The update result could not be confirmed. Check status before submitting again.",
+  "message.iso.edit.link.not.started": "Metadata was confirmed. Continue with user data linkage.",
+  "message.iso.edit.retry.review": "The requested change is not present. Review the current result before retrying."
 }

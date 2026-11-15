@@ -11928,5 +11928,18 @@
   "message.image.permissions.reset.confirm": "초기화하면 모든 계정·프로젝트 공유를 제거하고 공개·추천을 해제합니다. 추출 가능 설정은 유지합니다.",
   "message.image.permissions.reset.ack": "현재 모든 계정·프로젝트 공유 대상 제거 확인",
   "message.image.permissions.verified": "공유 권한 변경과 재조회를 완료했습니다.",
-  "label.image.permissions.current": "현재 공유 현황"
+  "label.image.permissions.current": "현재 공유 현황",
+  "message.iso.edit.metadata.unavailable": "ISO 수정 API 정보를 확인하지 못했습니다. 새로고침 후 다시 여세요.",
+  "message.iso.edit.os.required": "부팅 가능한 ISO에 사용할 OS 유형을 선택하세요.",
+  "message.iso.edit.policy.invalid": "지원되는 사용자 데이터 정책을 선택하세요.",
+  "message.iso.edit.os.read.failed": "OS 유형을 조회하지 못해 OS 변경을 검증할 수 없습니다.",
+  "message.iso.edit.os.force": "OS 유형을 변경하면 기존 인스턴스의 게스트 설정도 바뀔 수 있습니다. 영향을 확인한 경우에만 강제 변경을 선택하세요.",
+  "message.iso.edit.link.failed": "ISO 메타데이터는 변경하지 않았습니다. 사용자 데이터 연결을 완료하지 못했습니다.",
+  "label.iso.edit.retry.userdata": "사용자 데이터만 재시도",
+  "message.iso.edit.context.changed": "이미지 또는 계정 범위가 변경됐습니다. 창을 닫고 다시 여세요.",
+  "message.iso.edit.read.failed": "현재 ISO를 조회하지 못했습니다.",
+  "message.iso.edit.changed": "창을 연 뒤 ISO가 변경됐습니다. 닫고 다시 조회한 후 수정하세요.",
+  "message.iso.edit.unconfirmed": "변경 결과를 확인하지 못했습니다. 다시 제출하기 전에 상태를 확인하세요.",
+  "message.iso.edit.link.not.started": "메타데이터 반영을 확인했습니다. 사용자 데이터 연결을 이어서 진행하세요.",
+  "message.iso.edit.retry.review": "요청한 변경이 현재 값에 없습니다. 결과를 검토한 후 다시 시도하세요."
 }
