@@ -484,7 +484,7 @@ export default {
         }
       },
       columns: () => {
-        const fields = ['name', 'state', 'ipaddress']
+        const fields = ['displayname', 'state', 'ipaddress']
         if (store.getters.userInfo.roletype === 'Admin') {
           fields.splice(2, 0, 'instancename')
           fields.push('account')

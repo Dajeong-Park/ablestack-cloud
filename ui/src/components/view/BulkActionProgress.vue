@@ -61,6 +61,7 @@
         :scroll="$route.path === '/buckets' ? { x: 760 } : undefined"
           style="overflow-y: auto">
         <template #bodyCell="{ column, text, record }">
+          <template v-if="column.key === 'displayname' && isVmIdentityRoute($route)">{{ vmDisplayName(record) }}</template>
           <template v-if="column.key === 'status'">
             <a-badge
               :status="text === 'success' ? 'success' : text === 'failed' ? 'error' : text === 'unknown' ? 'warning' : 'processing'"
@@ -98,6 +99,8 @@
   </a-modal>
 </template>
 <script>
+
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 
 export default {
   name: 'BulkActionProgress',
@@ -171,6 +174,8 @@ export default {
     }
   },
   methods: {
+    vmDisplayName,
+    isVmIdentityRoute,
     handleTableChange (pagination, filters) {
       this.appliedFilterStatus = filters.status || []
     },

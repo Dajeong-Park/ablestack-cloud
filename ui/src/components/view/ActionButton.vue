@@ -104,6 +104,8 @@ import { postAPI } from '@/api'
 import ResourceActionMenu from '@/components/view/ResourceActionMenu'
 import { isDangerAction, resolveActionMenuGroup } from '@/utils/actionMenu'
 
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+
 export default {
   name: 'ActionButton',
   inject: { resourceActionReady: { default: () => () => true } },
@@ -242,6 +244,7 @@ export default {
       if (!this.resource) {
         return ''
       }
+      if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       return this.resource.displayname || this.resource.name || this.resource.hostname || this.resource.vmname || this.resource.annotation || this.resource.hypervisor || this.resource.type || this.resource.username || this.resource.ipaddress || this.resource.uuid || this.resource.id || ''
     },
     displayTitle () {
@@ -392,7 +395,7 @@ export default {
       const rows = action.groupAction && this.selectedItems?.length > 1 ? this.selectedItems : this.dataView ? [this.resource] : (this.selectedItems || [])
       return rows.map(row => {
         const reason = vmDeletionReason(row, action, this.$store.getters)
-        return reason ? `${row.displayname || row.name || row.id} (${row.id}): ${this.$t(reason)}` : ''
+        return reason ? `${vmDisplayName(row)} (${row.id}): ${this.$t(reason)}` : ''
       }).filter(Boolean).join(' · ')
     },
     getActionTooltip (action) {

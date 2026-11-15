@@ -21,7 +21,7 @@
       <a-alert type="info" show-icon :message="$t('message.vm.delete.preflight')" />
       <ul class="vm-delete-targets">
         <li v-for="row in guardRows" :key="row.id">
-          <strong>{{ row.displayname || row.name || row.id }}</strong> <small>{{ row.id }}</small>
+          <strong>{{ vmDisplayName(row) }}</strong> <small>{{ row.id }}</small>
           <div>{{ $t('label.deleteprotection') }}: {{ $t('label.vm.protection.' + (row.readFailed ? 'failed' : vmProtection(row.record))) }}</div>
           <div v-if="row.reason" class="vm-delete-reason">{{ $t(row.reason) }}</div>
           <a-button v-if="operationKeys.length > 1" size="small" :disabled="checking || operationStarted" @click="excludeTarget(row.id)">{{ $t('label.vm.delete.exclude') }}</a-button>
@@ -167,6 +167,8 @@ import TooltipLabel from '@/components/widgets/TooltipLabel'
 import BulkActionProgress from '@/components/view/BulkActionProgress'
 import { vmProtection, vmDeletionScope, vmDeletionReason, readVmDeletionTarget } from '@/utils/vmDeletion'
 
+import { vmDisplayName } from '@/utils/vmIdentity'
+
 export default {
   name: 'DestroyVM',
   components: { TooltipLabel, BulkActionProgress },
@@ -226,6 +228,7 @@ export default {
   deactivated () { this.actionClosed = true; this.checkGeneration++ },
   beforeUnmount () { this.actionClosed = true; this.checkGeneration++ },
   methods: {
+    vmDisplayName,
     vmProtection,
     current () { return !this.actionClosed && this.deletionAction.vmDeletionCurrent?.() !== false && this.originScope === this.contextKey && this.resourceActionReady?.() !== false },
     async refreshGuard () {
@@ -371,9 +374,9 @@ export default {
           showLoading: !bulk,
           bulkAction: false,
           title: this.$t(this.currentAction.label || 'label.action.destroy.instance'),
-          description: target.displayname || target.name,
-          loadingMessage: `${this.$t('message.deleting.vm')} ${target.displayname || target.name}`,
-          successMessage: `${this.$t('message.success.delete.vm')} ${target.displayname || target.name}`,
+          description: vmDisplayName(target),
+          loadingMessage: `${this.$t('message.deleting.vm')} ${vmDisplayName(target)}`,
+          successMessage: `${this.$t('message.success.delete.vm')} ${vmDisplayName(target)}`,
           catchMessage: this.$t('error.fetching.async.job.result'),
           successMethod: () => finish('success'),
           errorMethod: () => finish('failed'),

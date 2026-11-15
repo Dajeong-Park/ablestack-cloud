@@ -1196,6 +1196,8 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 import ActionButton from '@/components/view/ActionButton'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+
 export default {
   name: 'InfoCard',
   mixins: [vmNetworkAccessMixin()],
@@ -1338,6 +1340,7 @@ export default {
         'RemoteAccessVpn', 'User', 'SnapshotPolicy', 'VpcOffering', 'Domain']
     },
     name () {
+      if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       return this.resource.displayname || this.resource.name || this.resource.displaytext || this.resource.username ||
         this.resource.ipaddress || this.resource.virtualmachinename || this.resource.osname || this.resource.osdisplayname || this.resource.templatetype || this.resource.rbdimagesname
     },

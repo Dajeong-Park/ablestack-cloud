@@ -567,7 +567,8 @@
                 :scroll="isBucketGroupDelete ? { x: 760 } : undefined"
                 style="overflow-y: auto"
               >
-                <template #bodyCell="{ column, text }">
+                <template #bodyCell="{ column, text, record }">
+                  <template v-if="column.key === 'displayname' && isVmIdentityRoute($route)">{{ vmDisplayName(record) }}</template>
                   <template v-if="column.key === 'allocated' && ['asnumbers', 'publicip'].includes($route.meta.name)">
                     {{ $toLocaleDate(text) }}
                   </template>
@@ -1028,8 +1029,10 @@ import { vmGroupLookupStatus } from '@/utils/vmGroupLookup'
 import { sshKeyPairDeleteTargets } from '@/utils/sshKeyPairDeletion'
 import { isSshKeyPairDetailRoute, sshKeyPairDetailScope, sshKeyPairDetailTarget, sshKeyPairDetailParams, sshKeyPairMatchesTarget, sshKeyPairDetailResult, sshKeyPairDetailFailure, sshKeyPairVmParams } from '@/utils/sshKeyPairIdentity'
 import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErrorKey, vmGroupDeleteTargets } from '@/utils/vmGroupNames'
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 
 let templateFilterSequence = 0
+
 export default {
   name: 'Resource',
   components: {
@@ -1569,6 +1572,8 @@ export default {
     }
   },
   methods: {
+    vmDisplayName,
+    isVmIdentityRoute,
     templateListLocation,
     storageDialogSize,
     snapshotSourceVolumeRoute,
@@ -2078,7 +2083,7 @@ export default {
               }
               return Number(a.memory || 0) - Number(b.memory || 0)
             }
-            : (a, b) => genericCompare(a[key] || '', b[key] || '')
+            : (a, b) => genericCompare(isVmIdentityRoute(this.$route) && key === 'displayname' ? vmDisplayName(a) : a[key] || '', isVmIdentityRoute(this.$route) && key === 'displayname' ? vmDisplayName(b) : b[key] || '')
           this.columns.push({
             key: key,
             title: this.$route.name === 'sharedfs' && key === 'capacity' ? this.$t('label.storage.capacity.column') : this.$route.name === 'sharedfs' && key === 'sizegb' ? this.$t('label.storage.capacity.initial') : this.$t('label.' + String(title).toLowerCase()),
@@ -2100,6 +2105,10 @@ export default {
             this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
           } else {
             this.selectedColumns = this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] || this.selectedColumns
+            if (this.$route.meta?.name === 'vnfapp' && this.selectedColumns.includes('name')) {
+              this.selectedColumns = [...new Set(this.selectedColumns.map(key => key === 'name' ? 'displayname' : key))]
+              this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
+            }
             if (this.$route.name === 'sharedfs') {
               const oldDefaults = defaultColumnKeys.map(key => key === 'capacity' ? 'sizegb' : key)
               if (JSON.stringify(this.selectedColumns) === JSON.stringify(oldDefaults)) this.selectedColumns = [...defaultColumnKeys]
@@ -3179,7 +3188,7 @@ export default {
           const itemsNameMap = {}
           const namedItems = groupDeletion ? this.currentAction.vmGroupTargets : this.items
           namedItems.map(x => {
-            itemsNameMap[x.id] = x.name || x.displaytext || x.id
+            itemsNameMap[x.id] = isVmIdentityRoute(this.$route) ? vmDisplayName(x) : x.name || x.displaytext || x.id
           })
           const paramsList = this.currentAction.groupMap(groupDeletion ? selectedKeys : this.selectedRowKeys, values, this.items)
           for (const params of paramsList) {
@@ -3443,7 +3452,7 @@ export default {
           }
         }
 
-        const resourceName = (action.api === 'deleteInstanceGroup' ? action.vmGroupTargets[0]?.name : null) || params.displayname || params.displaytext || params.name || params.hostname || params.username ||
+        const resourceName = (isVmIdentityRoute(this.$route) && this.resource?.id && !action.listView ? vmDisplayName(this.resource) : '') || (action.api === 'deleteInstanceGroup' ? action.vmGroupTargets[0]?.name : null) || params.displayname || params.displaytext || params.name || params.hostname || params.username ||
           params.ipaddress || params.virtualmachinename || this.resource.name || this.resource.ipaddress || this.resource.id
 
         var hasJobId = false

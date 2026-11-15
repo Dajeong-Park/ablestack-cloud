@@ -40,7 +40,7 @@
           </span>
         </label>
         <label v-else>
-          {{ resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
+          {{ isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
         </label>
       </span>
       <span v-else>
@@ -71,6 +71,8 @@ import { templateListLocation } from '@/utils/templateSearch'
 import { networkListLocation } from '@/utils/guestNetworkSearch'
 import { documentationUrl } from '@/utils/cniFileImport'
 
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+
 export default {
   name: 'Breadcrumb',
   props: {
@@ -99,6 +101,8 @@ export default {
     }
   },
   methods: {
+    vmDisplayName,
+    isVmIdentityRoute,
     documentationUrl,
     breadcrumbLocation (item) { if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }; if (item.path === '/template' && this.$route.meta?.name === 'template' && this.$route.params?.id) return templateListLocation(this.$route, this.$store.getters); return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
     getBreadcrumb () {
