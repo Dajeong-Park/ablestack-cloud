@@ -3746,7 +3746,7 @@ export default {
       }
       this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
       this.$store.dispatch('SetCustomColumns', this.$store.getters.customColumns)
-      if (this.$route.meta?.name === 'iso' && name === this.$route.query.sortkey && !this.selectedColumns.includes(name)) {
+      if (this.isIsoList && name && name === this.$route.query.sortkey && !this.selectedColumns.includes(name)) {
         const query = { ...this.$route.query }; delete query.sortkey; delete query.sortorder
         this.$router.replace({ query: isoListQuery(query, this.pageSize, this.$store.getters) })
       }

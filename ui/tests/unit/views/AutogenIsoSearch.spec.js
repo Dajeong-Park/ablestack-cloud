@@ -112,3 +112,12 @@ test('API-valid legacy filter bookmarks get a dedicated translated selected opti
   expect(Autogen.computed.isoRestoredFilter.call({ isIsoList: true, filterValue: 'sharedexecutable' })).toBe('sharedexecutable')
   expect(Autogen.computed.isoRestoredFilter.call({ isIsoList: false, filterValue: 'sharedexecutable' })).toBe('')
 })
+
+test.each([false, true])('unnamed column refresh never rewrites ISO list/detail navigation (detail=%s)', detail => {
+  route(detail ? { isoreturn: '{"page":"2","sortkey":"name","sortorder":"asc"}', isoowner: isoListOwner(store.getters), tab: 'zones' } : {}, detail)
+  store.dispatch = jest.fn()
+  c.selectedColumns = ['name', 'arch']
+  c.allColumns = [{ key: 'name', dataIndex: 'name', sorter: () => 0 }, { key: 'arch', dataIndex: 'arch', sorter: () => 0 }]
+  Autogen.methods.updateSelectedColumns.call(c)
+  expect(c.$router.replace).not.toHaveBeenCalled()
+})
