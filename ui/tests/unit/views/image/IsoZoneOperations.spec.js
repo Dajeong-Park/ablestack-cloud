@@ -125,3 +125,12 @@ test('all-project ownership observation explicitly uses the actor all-project sc
   await readOwnedIsoZones(getAPI, a, { ...grants, project: {}, listAllProjects: true })
   expect(getAPI.mock.calls[0][1].projectid).toBe('-1')
 })
+
+test('restricted store rows without a role remain visible without inferring type or collapsing duplicate names', () => {
+  const stores = [{ datastore: 'Secondary Storage', downloadState: 'DOWNLOAD_ERROR', downloadPercent: 0 }, { datastore: 'Secondary Storage', downloadState: 'DOWNLOADED', downloadPercent: 100 }]
+  const row = { downloaddetails: stores }
+  expect(Zones.methods.storeRows(row, 'Unknown')).toEqual(stores)
+  expect(Zones.methods.storeRows(row, 'Primary')).toEqual([])
+  expect(Zones.methods.storeRows(row, 'Image')).toEqual([])
+  expect(stores.every(store => store.datastoreRole === undefined)).toBe(true)
+})

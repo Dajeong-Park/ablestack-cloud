@@ -48,7 +48,7 @@ size="small"
       <template #expandedRowRender="{record}">
         <section v-for="section in storeSections.filter(s=>storeRows(record,s.role).length)" :key="section.role" class="template-zone-storage">
           <h5 class="template-tab-section-title">{{ $t(section.label) }}</h5>
-          <a-table size="small" :columns="storeColumns" :data-source="storeRows(record,section.role)" :pagination="false" :scroll="{x:550}" :row-key="(row,index)=>row.datastoreId || row.datastore || index">
+          <a-table size="small" :columns="storeColumns" :data-source="storeRows(record,section.role)" :pagination="false" :scroll="{x:550}" :row-key="(row,index)=>row.datastoreId || (record.zoneid+':'+section.role+':'+index)">
             <template #bodyCell="{column,record:store}">
               <a-tooltip v-if="column.key==='datastore'" :title="store.datastore || '—'"><router-link v-if="store.datastoreId && section.api in $store.getters.apis" class="template-cell-value" :to="section.path+'/'+encodeURIComponent(store.datastoreId)">{{ store.datastore || '—' }}</router-link><span v-else class="template-cell-value">{{ store.datastore || '—' }}</span></a-tooltip>
               <template v-else-if="column.key==='downloadPercent'"><a-progress v-if="storePresentation(store).percent!==null" :percent="storePresentation(store).percent" size="small" :status="storePresentation(store).badge==='error'?'exception':undefined" /><span v-else>—</span></template>
@@ -104,7 +104,7 @@ export default {
     canSelectIsoRows () { return this.dataSource.some(row => this.isoAction('delete', row)) },
     isActionsOnIsoPermitted () { return isoOwner(this.resource, this.$store.getters) },
     columns () { return [{ key: 'zonename', dataIndex: 'zonename', title: this.$t('label.zonename'), width: 180 }, { key: 'created', dataIndex: 'created', title: this.$t('label.created'), width: 168 }, { key: 'status', dataIndex: 'status', title: this.$t('label.status'), width: 140 }, { key: 'isready', dataIndex: 'isready', title: this.$t('label.isready'), width: 64 }, { key: 'actions', dataIndex: 'actions', title: '', width: 160 }] },
-    storeSections () { return [{ role: 'Primary', label: 'label.primary.storage', path: '/storagepool', api: 'listStoragePools' }, { role: 'Image', label: 'label.secondary.storage', path: '/imagestore', api: 'listImageStores' }] },
+    storeSections () { return [{ role: 'Primary', label: 'label.primary.storage', path: '/storagepool', api: 'listStoragePools' }, { role: 'Image', label: 'label.secondary.storage', path: '/imagestore', api: 'listImageStores' }, { role: 'Unknown', label: 'label.storage', path: '', api: '' }] },
     storeColumns () { return ['datastore', 'downloadPercent', 'downloadState'].map((key, i) => ({ key, dataIndex: key, title: this.$t(['label.storage', 'label.download.percent', 'label.download.state'][i]), width: i === 0 ? 210 : 160 })) }
   },
   watch: {
@@ -114,7 +114,7 @@ export default {
   methods: {
     isoBoolean,
     storePresentation: isoStorePresentation,
-    storeRows (record, role) { return (record.downloaddetails || []).filter(r => r.datastoreRole === role) },
+    storeRows (record, role) { return (record.downloaddetails || []).filter(r => role === 'Unknown' ? !['Primary', 'Image'].includes(r.datastoreRole) : r.datastoreRole === role) },
     searchZones () { this.keyword = this.searchText.trim(); this.page = 1; this.resetSelection() },
     isoAction (action, record) { return !!record.zoneid && !this.listRefreshFailed && this.isoDataContext === this.isoScope && record.id === this.resource.id && canIsoAction(action, { ...this.resource, ...record, account: this.resource.account, domainid: this.resource.domainid, projectid: this.resource.projectid, templatetype: this.resource.templatetype }, this.$store.getters) },
     requireIsoAction (action, record) { if (record && this.isoAction(action, record)) return true; this.$message.error(this.$t('message.iso.action.unavailable')); return false },
