@@ -1,0 +1,76 @@
+{
+  "isos": [
+    {
+      "name": "qa-iso1672-url-data",
+      "id": "6d263eb9-c932-4404-ac6e-d267252192d7",
+      "source": "URL",
+      "bootable": false,
+      "bytes": 1525760,
+      "sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+      "deletedViaUi": true
+    },
+    {
+      "name": "qa-iso1672-local-boot",
+      "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+      "source": "local",
+      "bootable": true,
+      "bytes": 24434688,
+      "sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+      "deletedViaUi": true
+    }
+  ],
+  "vms": [
+    {
+      "name": "qa-iso1672-liveboot",
+      "id": "5c335d63-38a8-4dda-8534-39324845637a",
+      "sourceIsoId": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+      "networkId": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+      "deletedViaUi": true,
+      "expungedViaUi": true
+    }
+  ],
+  "accounts": [
+    {
+      "name": "qa-iso1672-user",
+      "id": "5f6db9ae-eaf0-4bba-8aa2-02983f4d557b",
+      "deletedViaUi": true
+    }
+  ],
+  "volumes": [
+    {
+      "id": "92d62392-8faa-4c3e-8efc-75c6059d636f",
+      "name": "ROOT-257",
+      "vmid": "5c335d63-38a8-4dda-8534-39324845637a",
+      "type": "ROOT",
+      "bytes": 1073741824,
+      "removedWithVmExpunge": true,
+      "verifiedAccountVolumeCount": 0
+    }
+  ],
+  "userdatas": [],
+  "networks": [
+    {
+      "id": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+      "name": "qa-iso1672-net",
+      "type": "Isolated",
+      "deletedViaUi": true
+    }
+  ],
+  "routers": [
+    {
+      "id": "a9dab72c-ad85-480a-b661-235df84a1cb0",
+      "name": "r-258-VM",
+      "networkId": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+      "version": "4.23.0.0",
+      "removedViaNetworkDelete": true
+    }
+  ],
+  "publicIps": [
+    {
+      "id": "1f4a45c6-221b-48b0-9966-e21f9b4f4072",
+      "address": "10.10.13.28",
+      "networkId": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+      "releasedViaNetworkDelete": true
+    }
+  ]
+}

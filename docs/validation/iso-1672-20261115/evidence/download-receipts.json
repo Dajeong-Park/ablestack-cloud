@@ -1,0 +1,22 @@
+[
+  {
+    "name": "qa-iso1672-local-boot.iso",
+    "path": "C:/Users/ablecloud/Downloads/qa-iso1672-local-boot.iso",
+    "bytes": 24434688,
+    "sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+    "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+    "source": "local",
+    "mtime": "2026-11-15T12:29:54.115Z",
+    "receivedBy": "user manual browser download"
+  },
+  {
+    "name": "qa-iso1672-url-data.iso",
+    "path": "C:/Users/ablecloud/Downloads/qa-iso1672-url-data.iso",
+    "bytes": 1525760,
+    "sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+    "isoid": "6d263eb9-c932-4404-ac6e-d267252192d7",
+    "source": "URL",
+    "mtime": "2026-11-15T12:29:03.853Z",
+    "receivedBy": "user manual browser download"
+  }
+]
