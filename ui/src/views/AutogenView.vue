@@ -911,7 +911,7 @@
           v-if="$route.meta.advisories && !loading"
         />
         <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
-          <template #action><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
+          <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
         <p v-else-if="listRefreshError && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <p v-if="$route.meta?.name === 'vnfapp'" class="vnf-selection-policy">{{ $t('message.vnf.search.selection') }}</p>
