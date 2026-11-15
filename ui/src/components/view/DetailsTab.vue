@@ -654,6 +654,7 @@ export default {
     getDetailTitle (detail) {
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && ['osdisplayname', 'ostypename'].includes(detail)) return 'label.ostypename'
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'name') return 'label.vm.name'
+      if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'displayname') return 'label.vm.displayname'
       if (this.$route.meta.name === 'template' && detail === 'format') return 'label.template.image.format'
       if (this.$route.meta.name === 'template' && detail === 'templatetype') return 'label.template.type'
       if (detail === 'sharedscope') return this.$t('label.shared.scope')

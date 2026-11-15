@@ -37,3 +37,10 @@ test('legacy and missing OS values stay visible after target refresh, without ex
   await w.setProps({ resource: { id: 'b', osdisplayname: null, ostypename: null } }); expect(w.text()).toContain('OS 유형'); expect(w.text()).toContain('알 수 없음'); expect(w.text()).not.toContain('Legacy OS')
   await w.setProps({ resource: { id: 'c', osdisplayname: '<img src=x onerror=alert(1)>' } }); expect(w.text()).toContain('<img src=x onerror=alert(1)>'); expect(w.find('img').exists()).toBe(false); w.unmount()
 })
+
+
+test.each(['vm', 'vnfapp'])('%s shares the same host name and display name labels', route => {
+  const c = { $route: { meta: { name: route } } }
+  expect(Details.methods.getDetailTitle.call(c, 'name')).toBe('label.vm.name')
+  expect(Details.methods.getDetailTitle.call(c, 'displayname')).toBe('label.vm.displayname')
+})

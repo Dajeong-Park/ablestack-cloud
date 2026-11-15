@@ -100,3 +100,11 @@ test('all accepted group receipts remain tracked after the first receipt closes 
   second({ stopvirtualmachineresponse: { jobid: 'second' } }); await Promise.all(pending)
   expect(c.handleResponse).toHaveBeenCalledTimes(2); expect(c.closeAction).toHaveBeenCalledTimes(1)
 })
+
+test('synchronous recovery shares the VM standard dialog and keeps its existing synchronous response contract', async () => {
+  c.currentAction = { api: 'recoverVirtualMachine', params: [{ name: 'id' }], paramFields: [] }
+  expect(c.vmStandardDialog).toBe(true)
+  c.postSnapshotAwareAction.mockResolvedValue({ recovervirtualmachineresponse: { virtualmachine: { id, state: 'Stopped' } } })
+  c.execSubmit({}); await flushPromises()
+  expect(c.vmActionUnknown).toBe(false); expect(c.handleResponse).toHaveBeenCalledTimes(1)
+})
