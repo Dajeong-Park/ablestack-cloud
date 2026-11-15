@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 import { createStore } from 'vuex'
+import { mount } from '@vue/test-utils'
 import Wizard from '@/views/compute/DeployVnfAppliance.vue'
 import VnfCredentials from '@/components/compute/VnfCredentials'
 import { vnfDeploymentNotice } from '@/utils/vnfAccess'
@@ -44,7 +45,7 @@ test('username-only notice is finite, has the actual VM identity and no secret/c
   const { c, notice, complete } = subject()
   await complete({ password: 'not-allowed', vnfdetails: { username: '<svg>user</svg>', password: 'not-allowed' } })
   const config = c.$notification.success.mock.calls[0][0]
-  expect(config.duration).toBe(10); expect(config.placement).toBe('bottomRight')
+  expect(config.duration).toBe(10); expect(config.placement).toBe('bottomLeft')
   expect(config.message).toContain('(vm)'); expect(config.description.type).toBe(VnfCredentials)
   expect(config.description.props.rows).toHaveLength(1); expect(config.description.props.rows[0].secret).toBe(false)
   jest.advanceTimersByTime(10000)
@@ -58,6 +59,15 @@ test('explicit close only closes this job notice and releases its security obser
   expect(c.$notification.close.mock.calls).toEqual([['notice']]); expect(notice.current()).toBe(false)
   jest.runOnlyPendingTimers(); expect(c.$notification.close).toHaveBeenCalledTimes(1)
   expect(c.$notification.defaultConfig.onClose).toHaveBeenCalledTimes(1)
+})
+test('notification content renders in a standalone app without global i18n and its native close works', async () => {
+  const { c, complete } = subject()
+  await complete({ vnfdetails: { username: 'portal-user' } })
+  const node = c.$notification.success.mock.calls[0][0].description
+  const wrapper = mount(node.type, { props: node.props })
+  expect(wrapper.text()).toContain('label.username'); expect(wrapper.text()).toContain('portal-user')
+  await wrapper.get('button').trigger('click'); expect(c.$notification.close).toHaveBeenCalledWith('notice')
+  wrapper.unmount()
 })
 test('frozen enabled policy displays only the completed VM response values; security switch closes it', async () => {
   const { c, store, template, notice, complete } = subject(true)

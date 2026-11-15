@@ -33,7 +33,7 @@ test('absent credential values never produce template credentials guidance', () 
 })
 test('credential values render as text and only actual secrets request a password change', async () => {
   const attack = '<svg onload=alert(1)>'
-  const w = mount(VnfCredentials, { props: { rows: [{ key: 'user', prefix: '', label: 'label.username', value: attack, secret: false }] }, global: mounting })
+  const w = mount(VnfCredentials, { props: { translate: key => key, rows: [{ key: 'user', prefix: '', label: 'label.username', value: attack, secret: false }] } })
   expect(w.text()).toContain(attack); expect(w.find('svg').exists()).toBe(false); expect(w.find('p').exists()).toBe(false)
   expect(w.find('button').attributes('type')).toBe('button')
   await w.find('button').trigger('click'); expect(w.emitted('close')).toHaveLength(1)

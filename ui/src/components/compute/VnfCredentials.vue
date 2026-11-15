@@ -19,14 +19,14 @@ under the License.
 <template>
   <div class="vnf-credentials">
     <div class="vnf-credential-values" tabindex="0" role="note">
-      <dl><template v-for="row in rows" :key="row.key"><dt>{{ row.prefix }}{{ $t(row.label) }}</dt><dd>{{ row.value }}</dd></template></dl>
+      <dl><template v-for="row in rows" :key="row.key"><dt>{{ row.prefix }}{{ translate(row.label) }}</dt><dd>{{ row.value }}</dd></template></dl>
     </div>
-    <p v-if="rows.some(row => row.secret)">{{ $t('message.vnf.credentials.change') }}</p>
-    <button type="button" class="ant-btn ant-btn-sm" @click="$emit('close')">{{ $t('label.close') }}</button>
+    <p v-if="rows.some(row => row.secret)">{{ translate('message.vnf.credentials.change') }}</p>
+    <button type="button" class="ant-btn ant-btn-sm" @click="$emit('close')">{{ translate('label.close') }}</button>
   </div>
 </template>
 <script>
-export default { name: 'VnfCredentials', props: { rows: { type: Array, required: true } }, emits: ['close'] }
+export default { name: 'VnfCredentials', props: { rows: { type: Array, required: true }, translate: { type: Function, required: true } }, emits: ['close'] }
 </script>
 <style scoped>
 .vnf-credential-values { max-height: min(30vh, 280px); overflow: auto; overflow-wrap: anywhere; }

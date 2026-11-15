@@ -1595,11 +1595,11 @@ export default {
             const vm = result.jobresult.virtualmachine
             this.$notification.success({
               key,
-              placement: 'bottomRight',
+              placement: 'bottomLeft',
               duration: 10,
               onClose: finishClose,
               message: `${this.$t('message.vnf.credentials.default')} ${vmDisplayName(vm)} (${vm.id})`,
-              description: h(VnfCredentials, { rows, onClose: close })
+              description: h(VnfCredentials, { rows, translate: key => this.$t(key), onClose: close })
             })
             shown = true
             // Notification hover pauses its own timer. Credentials have a hard lifetime.
