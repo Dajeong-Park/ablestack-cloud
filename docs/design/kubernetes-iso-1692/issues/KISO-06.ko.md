@@ -48,7 +48,7 @@ Enabled→Disabled 및 전용 버전/ISO 연쇄 삭제는 UI로 성공했습니�
 - [ ] 대상/영향/위험 버튼/로딩·오류·키보드 동작이 다크·라이트·좁은 화면에서도 일관됩니다.
 
 ## 개발 준비와 범위
-- 개발 준비: [단계별 계획](https://github.com/dhslove/ablestack-cloud/blob/dhslove/epic-1692-ui-design/docs/design/kubernetes-iso-1692/implementation-plan.ko.md), [UI 설계](https://github.com/dhslove/ablestack-cloud/blob/dhslove/epic-1692-ui-design/docs/design/kubernetes-iso-1692/ui-spec.ko.md), [실행 목업](https://github.com/dhslove/ablestack-cloud/blob/dhslove/epic-1692-ui-design/docs/design/kubernetes-iso-1692/mockup.html), [목업 QA](https://github.com/dhslove/ablestack-cloud/blob/dhslove/epic-1692-ui-design/docs/design/kubernetes-iso-1692/mockup-qa.ko.md).
+- 개발 준비: [단계별 계획](https://github.com/dhslove/ablestack-cloud/blob/73fad18d78b136f24c0d7a8c16202e4435bd3403/docs/design/kubernetes-iso-1692/implementation-plan.ko.md), [UI 설계](https://github.com/dhslove/ablestack-cloud/blob/73fad18d78b136f24c0d7a8c16202e4435bd3403/docs/design/kubernetes-iso-1692/ui-spec.ko.md), [실행 목업](https://github.com/dhslove/ablestack-cloud/blob/73fad18d78b136f24c0d7a8c16202e4435bd3403/docs/design/kubernetes-iso-1692/mockup.html), [목업 QA](https://github.com/dhslove/ablestack-cloud/blob/73fad18d78b136f24c0d7a8c16202e4435bd3403/docs/design/kubernetes-iso-1692/mockup-qa.ko.md).
 - 이번에는 이슈 분해·설계·목업·구현 준비까지만 진행합니다. 제품 구현/배포는 아직 시작하지 않습니다.
 - 실제 기능 검증은 UI로 수행하고 시험 자원 ledger 및 정리 근거를 남깁니다.
 - 기존 CI 부채 #926·#1044는 별도 OPEN으로 유지하며 이 이슈의 기능 오류와 섞지 않습니다.

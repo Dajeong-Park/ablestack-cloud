@@ -1,18 +1,18 @@
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements. See the NOTICE file
+or more contributor license agreements.  See the NOTICE file
 distributed with this work for additional information
-regarding copyright ownership. The ASF licenses this file
+regarding copyright ownership.  The ASF licenses this file
 to you under the Apache License, Version 2.0 (the
 "License"); you may not use this file except in compliance
-with the License. You may obtain a copy of the License at
+with the License.  You may obtain a copy of the License at
 
   http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied. See the License for the
+KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
@@ -60,7 +60,7 @@ flowchart LR
   S --> G
 ```
 
-#1698은 #1695 완료 후 등록/업로드와 독립적으로 개발할 수 있지만 기본 실행 순서는 표를 따릅니다. #1701은 #1694의 검증된 이름 슬롯 배치를 소비합니다. #1695는 #1694에 기능상 종속되지 않습니다.
+검색 단계 #1698은 #1695 완료 후 등록/업로드와 독립적으로 개발할 수 있지만 기본 실행 순서는 표를 따릅니다. #1701은 #1694의 검증된 이름 슬롯 배치를 소비합니다. #1695는 #1694에 기능상 종속되지 않습니다.
 
 ## 단계별 진입·완료와 변경 모듈
 
