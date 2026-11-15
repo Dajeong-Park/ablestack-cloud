@@ -1,0 +1,29 @@
+{
+  "finalProductHead": "c8992a5f49fe866fa43d2ae769df87f102e716c1",
+  "baselinePrefix": "baseline-",
+  "beforeFixDefects": {
+    "restricted-store-role-before-fix": "final-restricted-storage-visible",
+    "diagnostic-before-localization": "final-diagnostic-localized",
+    "get-recovery-stale-error-before-fix": "final-recovery-no-stale-error"
+  },
+  "toolOnlyNotPass": [
+    "clipboard-native-paste-probe"
+  ],
+  "manualClipboard": "PENDING; actual ID/checksum/URL paste required; browser managed clipboard probe is not product failure or pass",
+  "actualMultiZoneAndNonKvm": "NOT_RUN; no additional environment; preserved functionality; unit multi target/duplicate/partial/Ready delay tested",
+  "injectedCases": {
+    "bulk-delete-busy-keyboard": "one expected POST held before server, Ctrl+Enter twice and Esc; fulfilled HTTP400, not a real backend rejection",
+    "bulk-delete-real-retry-complete": "one actual POST, server job1 and valid empty scoped ISO response; omitted count not treated as malformed or explicit count0",
+    "row-delete-observation-failed": "one actual Root POST and job1, only followup GET fulfilled HTTP500; unknown result retained",
+    "get-recovery-stale-error-before-fix": "GET-only recovery had zero POST and verified business deletion, but stale error remained; NOT final UI pass",
+    "final-recovery-no-stale-error": "One actual delete POST and job1; followup GET500 injection; valid GET-only recovery had zero extra POST and stale error absent."
+  },
+  "versionScope": "10-file deployment24adad; 5-file deployment444035; final4-file deploymentc899. Final c899 GET500-after-job1 recovery on disposable14f confirmed completed1, old error absent, GET1/POST0; fixture deleted via UI.",
+  "nativeWindowFallback": "stale different page observed; no native app input used; not UI evidence",
+  "notes": [
+    "Private operation contexts include session scope only in memory and are not navigation auth. Never serialize them.",
+    "Original ISO row comparison normalizes whitespace and the existing unknown-size em dash.",
+    "QA role was only reduced from User to ReadOnly User; no rights were restored.",
+    "Normal server event history and alerts are retained; cleanup means approved disposable resources and exact HTTP fixture, not audit-log deletion."
+  ]
+}

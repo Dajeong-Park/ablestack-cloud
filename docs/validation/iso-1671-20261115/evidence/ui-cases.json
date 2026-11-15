@@ -1,0 +1,646 @@
+[
+  {
+    "name": "baseline-original-isos",
+    "at": "2026-11-15T08:55:51.577Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "baseline-detail",
+    "at": "2026-11-15T08:57:50.273Z",
+    "main": "/ISO/Rocky-10.0-x86_64-dvd1.iso업데이트\n작업\nRocky-10.0-x86_64-dvd1.iso\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n5836b8f6-9336-4766-8f77-e39218f6e826 \nOS 유형\nRocky Linux 9\n계정\nadmin\n도메인\nROOT\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nRocky-10.0-x86_64-dvd1.iso\n아이디\n\n5836b8f6-9336-4766-8f77-e39218f6e826\n설명\n\nRocky-10.0-x86_64-dvd1.iso\nOS 유형\n\nRocky Linux 9\n크기\n\n7.13 GiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n\ntrue\n준비\n\ntrue\n비밀번호 관리 사용\n\nfalse\n직접 다운로드\n\nfalse\n추출 가능\n\nfalse\n공개\n\nfalse\n추천\n\nfalse\n동적으로 확장 가능\n\nfalse\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 10. 7. 오전 10:54:31"
+  },
+  {
+    "name": "baseline-selection-layout",
+    "at": "2026-11-15T09:00:49.303Z",
+    "beforeTop": 277,
+    "afterTop": 324
+  },
+  {
+    "name": "baseline-expanded-storage",
+    "at": "2026-11-15T09:06:07.377Z",
+    "main": "\t\n\tZone\t생성일\t상태\t준비\t\n\n\t\n\t13-Zone\t2026. 10. 7. 오전 10:54:31\t\n사용 가능\n\t예\t\n\n\n2차 스토리지\t다운로드 진행률\t다운로드 상태\nSecondary Storage\t100\tDOWNLOADED\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "baseline-copy-empty",
+    "at": "2026-11-15T09:10:17.641Z",
+    "dialog": "ISO 복사\nZone\nZone 선택\n취소확인"
+  },
+  {
+    "name": "baseline-accounts",
+    "at": "2026-11-15T09:10:31.915Z",
+    "main": "/계정업데이트\n모두\n계정 추가\n\t\n\t\n이름\n\t\n상태\n\t\n역할\n\t\n역할 유형\n\t\n도메인\n\t\n\n\n\tadmin\t\n정상\n\tRoot Admin\tAdmin\tROOT\t\n\n\tbaremetal-system-account\t\n정상\n\tUser\tUser\tROOT\t\n\n\tepic898-config-denied-1791388603\t\n비활성화\n\tUser\tUser\tROOT\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "test-account-created",
+    "at": "2026-11-15T09:13:47.524Z",
+    "main": "/계정업데이트\n모두\n계정 추가\n\t\n\t\n이름\n\t\n상태\n\t\n역할\n\t\n역할 유형\n\t\n도메인\n\t\n\n\n\tadmin\t\n정상\n\tRoot Admin\tAdmin\tROOT\t\n\n\tbaremetal-system-account\t\n정상\n\tUser\tUser\tROOT\t\n\n\tepic898-config-denied-1791388603\t\n비활성화\n\tUser\tUser\tROOT\t\n\n\tqa-iso1671-user\t\n정상\n\tUser\tUser\tROOT\t\n전체 4 개 항목 중 1-4 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "small-iso-upload-submitted",
+    "at": "2026-11-15T09:17:00.912Z",
+    "dialog": "로컬에서 ISO 업로드\nqa-iso1671-small-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\nfc9d4953-dcd5-40ab-90fe-d60668a225be\nISO 등록 요청\n파일 전송\n3\n준비 상태 확인\n4\n사용자 데이터 연결\n5\n완료\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n닫기\n상태 확인\n등록한 ISO 보기"
+  },
+  {
+    "name": "failed-iso-upload",
+    "at": "2026-11-15T09:18:32.800Z",
+    "dialog": "로컬에서 ISO 업로드\nChecksum does not match the uploaded file.\nqa-iso1671-checksum-failed\nc0b1cfa4-099d-4ebb-b543-330bb11cea29\nISO 등록 요청\n파일 전송\n3\n준비 상태 확인\n4\n사용자 데이터 연결\n5\n완료\n파일 전송 결과를 확인해야 합니다. 등록한 ISO 상태를 확인하세요. 같은 업로드 링크로 파일을 다시 보내지 않습니다.\n닫기\n상태 확인\n등록한 ISO 보기"
+  },
+  {
+    "name": "baseline-user-failed-zone",
+    "at": "2026-11-15T09:19:33.557Z",
+    "main": "/ISO/qa-iso1671-checksum-failed업데이트\nqa-iso1671-checksum-failed\nx86_64\n상태\n다운로드/업로드 실패\nSecondary Storage: DOWNLOAD_ERROR\n조회 Zone: 13-Zone\nZone에서 원인 확인\n아이디\nc0b1cfa4-099d-4ebb-b543-330bb11cea29 \nOS 유형\nNone\n계정\nqa-iso1671-user\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n\t\n\t13-Zone\t2026. 11. 15. 오후 6:17:31\t\n다운로드/업로드 실패\nSecondary Storage: DOWNLOAD_ERROR\n\t아니오\t\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "baseline-failed-owner-actions",
+    "at": "2026-11-15T09:19:39.815Z",
+    "deleteEnabled": true,
+    "copyEnabled": false
+  },
+  {
+    "name": "url-iso-ready",
+    "at": "2026-11-15T09:25:37.969Z",
+    "dialog": "ISO 등록\nqa-iso1671-url-original-values\n1e740a0f-f266-4ed1-8d00-a127dc57b639\nISO 등록 요청\n준비 상태 확인\n사용자 데이터 연결\n4\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기",
+    "sourceUrl": "http://10.10.13.10:8080/client/qa-iso1671-20261115/qa-iso1671-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-.iso"
+  },
+  {
+    "name": "baseline-url-detail",
+    "at": "2026-11-15T09:25:47.204Z",
+    "main": "/ISO/qa-iso1671-url-original-values업데이트\n작업\nqa-iso1671-url-original-values\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n1e740a0f-f266-4ed1-8d00-a127dc57b639 \nOS 유형\nNone\n계정\nqa-iso1671-user\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1671-url-original-values\n아이디\n\n1e740a0f-f266-4ed1-8d00-a127dc57b639\n설명\n\nqa-iso1671-url-original-values\n체크섬\n\n171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4\nOS 유형\n\nNone\n크기\n\n0.00 GiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n\nfalse\n준비\n\ntrue\n비밀번호 관리 사용\n\nfalse\n직접 다운로드\n\nfalse\n추출 가능\n\nfalse\n공개\n\nfalse\n추천\n\nfalse\n동적으로 확장 가능\n\nfalse\n계정\n\nqa-iso1671-user\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 6:23:02\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1671-20261115/qa-iso1671-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-.iso"
+  },
+  {
+    "name": "clipboard-native-paste-probe",
+    "at": "2026-11-15T09:29:10.772Z",
+    "matchedId": false,
+    "empty": false
+  },
+  {
+    "name": "owner-keyword-uuid-contract",
+    "at": "2026-11-15T09:39:16.192Z",
+    "api": {
+      "request": {
+        "keyword": "c0b1cfa4-099d-4ebb-b543-330bb11cea29",
+        "isofilter": "self",
+        "page": "1",
+        "pagesize": "20",
+        "showunique": "true"
+      },
+      "count": 1,
+      "rows": [
+        {
+          "id": "c0b1cfa4-099d-4ebb-b543-330bb11cea29",
+          "name": "qa-iso1671-checksum-failed",
+          "format": "ISO",
+          "isready": false,
+          "bootable": false,
+          "checksum": "00000000000000000000000000000000",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "zonename": "13-Zone",
+          "account": "qa-iso1671-user"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1671-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=self&filter=self&q=c0b1cfa4-099d-4ebb-b543-330bb11cea29&keyword=c0b1cfa4-099d-4ebb-b543-330bb11cea29&page=1&pagesize=20&isoowner=[%221034e1b4-447e-4162-b6aa-c376a2f9f7fb%22,%225da37de6-bd56-11f1-b573-002481560363%22,%22User%22,%22qa-iso1671-user%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "name": "release-detail-values",
+    "at": "2026-11-15T09:42:08.559Z",
+    "text": "이름\n\nqa-iso1671-url-original-values\n아이디\n\n1e740a0f-f266-4ed1-8d00-a127dc57b639\n설명\n\nqa-iso1671-url-original-values\n체크섬\n\n171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4\nOS 유형\n\nNone\n크기\n1.46 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1671-user\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 6:23:02\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1671-20261115/qa-iso1671-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-.iso",
+    "copyButtons": [
+      "복사 아이디",
+      "복사 체크섬",
+      "복사 URL"
+    ],
+    "urlUnchanged": true
+  },
+  {
+    "name": "release-fixed-selection-toolbar",
+    "at": "2026-11-15T09:42:25.966Z",
+    "before": 278,
+    "after": 278,
+    "toolbar": "ISO 일괄 삭제(1)\n업데이트"
+  },
+  {
+    "name": "release-zone-search-empty",
+    "at": "2026-11-15T09:42:38.841Z",
+    "text": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "release-zone-search-partial",
+    "at": "2026-11-15T09:42:38.937Z",
+    "text": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 6:17:31\n\t\n다운로드/업로드 실패\n\t아니오\t\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "restricted-store-role-before-fix",
+    "at": "2026-11-15T09:48:07.886Z",
+    "text": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 6:17:31\n\t\n다운로드/업로드 실패\n\t아니오\t\n\n\n전체 1 개 항목\n1\n10 / 쪽",
+    "observedShape": {
+      "roleOmitted": true,
+      "downloadState": "DOWNLOAD_ERROR",
+      "downloadPercent": 0
+    },
+    "finalPass": false
+  },
+  {
+    "name": "release-copy-no-targets-enter",
+    "at": "2026-11-15T09:48:52.430Z",
+    "dialog": "ISO 복사\n이름\nqa-iso1671-small-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n아이디\nfc9d4953-dcd5-40ab-90fe-d60668a225be\n원본 Zone\n13-Zone\n복사할 수 있는 대상 Zone이 없습니다. 원본 Zone과 이미 복사본이 있는 Zone은 제외됩니다.\nZone 선택\nZone\t상태\n\n \n\t\n \n\n\n13-Zone\n\t\n사용 가능\n취소\n확인",
+    "confirmDisabled": true,
+    "copyRequests": 0
+  },
+  {
+    "name": "release-copy-modal-narrow-keyboard",
+    "at": "2026-11-15T09:50:29.440Z",
+    "metrics": {
+      "bodyClient": 454,
+      "bodyOverflow": "auto",
+      "bodyScroll": 512,
+      "footer": {
+        "bottom": 587,
+        "height": 65,
+        "left": 13,
+        "right": 377,
+        "top": 522,
+        "width": 364,
+        "x": 13,
+        "y": 522
+      },
+      "header": {
+        "bottom": 68,
+        "height": 55,
+        "left": 13,
+        "right": 377,
+        "top": 13,
+        "width": 364,
+        "x": 13,
+        "y": 13
+      },
+      "height": 600,
+      "width": 390
+    },
+    "dialog": "ISO 복사\n이름\nqa-iso1671-small-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n아이디\nfc9d4953-dcd5-40ab-90fe-d60668a225be\n원본 Zone\n13-Zone\n복사할 수 있는 대상 Zone이 없습니다. 원본 Zone과 이미 복사본이 있는 Zone은 제외됩니다.\nZone 선택\nZone\t상태\n\n \n\t\n \n\n\n13-Zone\n\t\n사용 가능\n취소\n확인"
+  },
+  {
+    "name": "release-copy-escape-focus",
+    "at": "2026-11-15T09:50:29.849Z",
+    "active": {
+      "label": "ISO 복사",
+      "tag": "BUTTON"
+    }
+  },
+  {
+    "name": "diagnostic-before-localization",
+    "at": "2026-11-15T09:57:23.654Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-checksum-failed\n아이디\nc0b1cfa4-099d-4ebb-b543-330bb11cea29\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t상태\n\n \n\t\n \n\n\n13-Zone\n\t\n다운로드/업로드 실패\nSecondary Storage: DOWNLOAD_ERROR\n취소\n확인",
+    "cancelOnly": true
+  },
+  {
+    "name": "vm-standard-list",
+    "at": "2026-11-15T10:04:38.280Z",
+    "total": 103,
+    "headers": [
+      "",
+      "VM 표시 명",
+      "내부 이름",
+      "상태",
+      "할당 자원",
+      "에이전트 버전",
+      "IP 주소",
+      "템플릿 유형",
+      "백업 오퍼링 이름",
+      "CPU 아키텍처",
+      "호스트",
+      "계정",
+      "Zone",
+      ""
+    ]
+  },
+  {
+    "name": "vm-common-tabs",
+    "at": "2026-11-15T10:05:52.273Z",
+    "eventsSelected": "true",
+    "tabs": [
+      "상세",
+      "IP 구성",
+      "메트릭",
+      "프로세스",
+      "스케줄",
+      "ISO",
+      "볼륨",
+      "NIC",
+      "설정",
+      "호스트 장치",
+      "VM 스냅샷",
+      "백업",
+      "이벤트",
+      "코멘트"
+    ]
+  },
+  {
+    "name": "template-common-list",
+    "at": "2026-11-15T10:05:53.266Z",
+    "total": 48,
+    "headers": [
+      "이름",
+      "상태",
+      "OS 유형",
+      "CPU 아키텍처",
+      "하이퍼바이저",
+      "크기",
+      "계정",
+      "템플릿 유형",
+      "순서",
+      ""
+    ]
+  },
+  {
+    "name": "template-common-zone",
+    "at": "2026-11-15T10:06:18.874Z",
+    "selected": "true",
+    "text": "업데이트\n템플릿 일괄 삭제(0)\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 10. 1. 오후 4:38:38\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "admin-dark-expanded-storage",
+    "at": "2026-11-15T10:07:35.403Z",
+    "text": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 6:23:02\n\t\n사용 가능\n\t예\t\n\n\n2차 스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t다운로드 완료\n전체 1 개 항목\n1\n10 / 쪽",
+    "colors": [
+      {
+        "background": "rgb(34, 40, 47)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "border": "rgb(62, 70, 80)",
+        "color": "rgb(197, 204, 212)"
+      }
+    ],
+    "progress": []
+  },
+  {
+    "name": "admin-light-selected-storage",
+    "at": "2026-11-15T10:08:56.147Z",
+    "text": "ISO 일괄 삭제(1)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 6:23:02\n\t\n사용 가능\n\t예\t\n\n\n2차 스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t다운로드 완료\n전체 1 개 항목\n1\n10 / 쪽",
+    "selectedColors": [
+      {
+        "background": "rgb(247, 250, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(247, 250, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(247, 250, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(247, 250, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(247, 250, 255)",
+        "color": "rgb(75, 85, 99)"
+      }
+    ],
+    "storageColors": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)"
+      }
+    ]
+  },
+  {
+    "name": "admin-light-copy-no-target",
+    "at": "2026-11-15T10:09:44.584Z",
+    "dialog": "ISO 복사\n이름\nqa-iso1671-url-original-values\n아이디\n1e740a0f-f266-4ed1-8d00-a127dc57b639\n원본 Zone\n13-Zone\n복사할 수 있는 대상 Zone이 없습니다. 원본 Zone과 이미 복사본이 있는 Zone은 제외됩니다.\nZone 선택\nZone\t상태\n\n \n\t\n \n\n\n13-Zone\n\t\n사용 가능\n취소\n확인",
+    "disabled": true
+  },
+  {
+    "name": "system-iso-protected",
+    "at": "2026-11-15T10:11:05.187Z",
+    "checkboxes": 0,
+    "copyButtons": 0,
+    "deleteButtons": 0,
+    "text": "업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n —\n\t\n—\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "zone-narrow-layout-selection",
+    "at": "2026-11-15T10:14:26.823Z",
+    "width": 390,
+    "height": 844,
+    "htmlWidth": 380,
+    "beforeOffset": 92,
+    "afterOffset": 92,
+    "scrollTables": [
+      {
+        "client": 296,
+        "scroll": 780
+      },
+      {
+        "client": 738,
+        "scroll": 738
+      }
+    ],
+    "selectedColors": [
+      {
+        "background": "rgb(38, 38, 39)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(38, 38, 39)",
+        "color": "rgb(197, 204, 212)"
+      },
+      {
+        "background": "rgb(38, 38, 39)",
+        "color": "rgb(197, 204, 212)"
+      }
+    ]
+  },
+  {
+    "name": "final-diagnostic-localized",
+    "at": "2026-11-15T10:25:34.948Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-checksum-failed\n아이디\nc0b1cfa4-099d-4ebb-b543-330bb11cea29\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t상태\n\n \n\t\n \n\n\n13-Zone\n\t\n다운로드/업로드 실패\nSecondary Storage: 실패\n취소\n확인",
+    "diagnostics": [
+      {
+        "raw": "Secondary Storage: DOWNLOAD_ERROR",
+        "text": "Secondary Storage: 실패"
+      }
+    ]
+  },
+  {
+    "name": "final-restricted-storage-visible",
+    "at": "2026-11-15T10:31:07.350Z",
+    "text": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 6:17:31\n\t\n다운로드/업로드 실패\n\t아니오\t\n\n\n스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t실패\n전체 1 개 항목\n1\n10 / 쪽",
+    "storageLinks": 0,
+    "rawEnumInVisibleText": false
+  },
+  {
+    "name": "final-restricted-state-keyboard-tooltip",
+    "at": "2026-11-15T10:31:07.430Z",
+    "tooltip": "DOWNLOAD_ERROR"
+  },
+  {
+    "name": "bulk-delete-busy-keyboard",
+    "at": "2026-11-15T10:34:12.933Z",
+    "visible": true,
+    "closeDisabled": true,
+    "deleteRequests": 1,
+    "duplicates": 0,
+    "unexpected": 0,
+    "seen": [
+      {
+        "command": "listisos",
+        "method": "GET",
+        "id": null,
+        "zoneid": null,
+        "keyword": "c0b1cfa4-099d-4ebb-b543-330bb11cea29"
+      },
+      {
+        "command": "deleteiso",
+        "method": "POST",
+        "id": "c0b1cfa4-099d-4ebb-b543-330bb11cea29",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "keyword": null
+      }
+    ]
+  },
+  {
+    "name": "bulk-delete-injected-rejection-retained",
+    "at": "2026-11-15T10:35:32.399Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-checksum-failed\n아이디\nc0b1cfa4-099d-4ebb-b543-330bb11cea29\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t실패\n\nRequest failed with status code 400\n\n성공 0 · 실패 1 · 알 수 없음 0 · 진행 중 0\n\n닫기\n실패 항목 재시도",
+    "retryEnabled": true,
+    "returnHref": "#/iso?isofilter=self&filter=self&q=c0b1cfa4-099d-4ebb-b543-330bb11cea29&keyword=c0b1cfa4-099d-4ebb-b543-330bb11cea29&page=1&pagesize=20&isoowner=[%221034e1b4-447e-4162-b6aa-c376a2f9f7fb%22,%225da37de6-bd56-11f1-b573-002481560363%22,%22User%22,%22qa-iso1671-user%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "name": "bulk-delete-real-retry-complete",
+    "at": "2026-11-15T10:37:34.457Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-checksum-failed\n아이디\nc0b1cfa4-099d-4ebb-b543-330bb11cea29\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기",
+    "job": {
+      "request": {
+        "jobid": "c1478cdc-9082-4d6a-a43e-c0037b79622f"
+      },
+      "jobstatus": 1
+    },
+    "iso": {
+      "request": {
+        "keyword": "c0b1cfa4-099d-4ebb-b543-330bb11cea29",
+        "isofilter": "self",
+        "page": "1",
+        "pagesize": "500",
+        "showunique": "false"
+      },
+      "rows": [],
+      "rowCount": 0,
+      "countKnown": false
+    },
+    "acknowledgement": {
+      "request": {
+        "id": "c0b1cfa4-099d-4ebb-b543-330bb11cea29",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+      },
+      "jobAccepted": true
+    },
+    "realPosts": 1
+  },
+  {
+    "name": "bulk-delete-last-zone-return",
+    "at": "2026-11-15T10:38:21.859Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=self&filter=self&q=c0b1cfa4-099d-4ebb-b543-330bb11cea29&keyword=c0b1cfa4-099d-4ebb-b543-330bb11cea29&page=1&pagesize=20&isoowner=[%221034e1b4-447e-4162-b6aa-c376a2f9f7fb%22,%225da37de6-bd56-11f1-b573-002481560363%22,%22User%22,%22qa-iso1671-user%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "returnContextPreserved": true,
+    "text": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "owner-two-ready-isos-remain",
+    "at": "2026-11-15T10:38:22.178Z",
+    "text": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1671-small-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n\nqa-iso1671-url-original-values\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "qa-readonly-role-applied",
+    "at": "2026-11-15T10:42:12.953Z",
+    "text": "이름\n\nqa-iso1671-user\n아이디\n\n5d927af7-7e6a-4b7d-bd14-6c21b179315a\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 6:12:50"
+  },
+  {
+    "name": "readonly-role-boundary-list",
+    "at": "2026-11-15T10:46:42.606Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=self&filter=self&page=1&pagesize=20&isoowner=[%221034e1b4-447e-4162-b6aa-c376a2f9f7fb%22,%2260f61c91-bd56-11f1-b573-002481560363%22,%22User%22,%22qa-iso1671-user%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "registerButtons": 0,
+    "text": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1671-small-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n\nqa-iso1671-url-original-values\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "readonly-zone-no-mutations",
+    "at": "2026-11-15T10:49:16.487Z",
+    "text": "업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 6:15:58\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 0,
+    "copyButtons": 0,
+    "deleteButtons": 0
+  },
+  {
+    "name": "readonly-restricted-store-read",
+    "at": "2026-11-15T10:50:03.986Z",
+    "text": "업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 6:15:58\n\t\n사용 가능\n\t예\t\n\n\n스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t다운로드 완료\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "row-delete-observation-failed",
+    "at": "2026-11-15T11:00:28.879Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-small-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n아이디\nfc9d4953-dcd5-40ab-90fe-d60668a225be\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t결과 미확인 · 비동기 작업 완료\n\nRequest failed with status code 500\n\n성공 0 · 실패 0 · 알 수 없음 1 · 진행 중 0\n\n닫기\n상태 다시 확인",
+    "injection": {
+      "deletePosts": 1,
+      "isoReads": 2,
+      "unexpected": 0
+    }
+  },
+  {
+    "name": "get-recovery-stale-error-before-fix",
+    "at": "2026-11-15T11:02:35.755Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-small-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n아이디\nfc9d4953-dcd5-40ab-90fe-d60668a225be\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\nRequest failed with status code 500\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기",
+    "getOnlyRequests": [
+      {
+        "command": "listisos",
+        "method": "GET",
+        "params": {
+          "keyword": "fc9d4953-dcd5-40ab-90fe-d60668a225be",
+          "isofilter": "all",
+          "page": "1",
+          "pagesize": "500",
+          "showunique": "false"
+        }
+      }
+    ],
+    "finalPass": false
+  },
+  {
+    "name": "long-iso-delete-verified",
+    "at": "2026-11-15T11:02:36.588Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "remainingClipboardTarget": "1e740a0f-f266-4ed1-8d00-a127dc57b639"
+  },
+  {
+    "name": "recovery-regression-iso-ready",
+    "at": "2026-11-15T11:07:34.356Z",
+    "dialog": "ISO 등록\nqa-iso1671-recovery-final\n14f72df7-822b-41c2-bde3-94acdda6dafd\nISO 등록 요청\n준비 상태 확인\n사용자 데이터 연결\n4\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기"
+  },
+  {
+    "name": "systemvm-health",
+    "at": "2026-11-15T11:10:28.416Z",
+    "text": "/시스템 VM업데이트\n모두\n\t\n\t\n이름\n\t\n상태\n\t\nAgent 상태\n\t\n시스템 VM 유형\n\t\nPublic IP 주소\n\t\n사설 IP 주소\n\t\n로컬 연결 IP 주소\n\t\n버전\n\t\n호스트\n\t\nCPU 아키텍처\n\t\nZone\n\t\n\n\n\tv-245-VM\t\n실행 중\n\t\n실행 중\n\tconsoleproxy\t10.10.13.5\t10.10.13.6\t169.254.243.21\t4.23.0.0\tablecube13-2\tx86_64\t13-Zone\t\n\n\ts-255-VM\t\n실행 중\n\t\n실행 중\n\tsecondarystoragevm\t10.10.13.4\t10.10.13.7\t169.254.164.211\t4.23.0.0\tablecube13-1\tx86_64\t13-Zone\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "host-health",
+    "at": "2026-11-15T11:11:35.498Z",
+    "text": "/호스트업데이트\n모두\n메트릭\n호스트 추가\n\t\n이름\n\t\n상태\n\t\n리소스 상태\n\t\nIP 주소\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n버전\n\t\nHA 활성화\n\t\nHA 상태\n\t\n클러스터\n\t\nZone\n\t\n관리 서버\n\t\n\nablecube13-1\t\n실행 중\n\t\n정상\n\t10.10.13.1 \tx86_64\tKVM\t4.23.0.0\t\n정상\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-2\t\n실행 중\n\t\n정상\n\t10.10.13.2 \tx86_64\tKVM\t4.23.0.0\t\n정상\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-3\t\n실행 중\n\t\n정상\n\t10.10.13.3 \tx86_64\tKVM\t4.23.0.0\t\n비활성화\n\tDisabled\tCluster\t13-Zone\tccvm-mngt\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-recovery-initial-unknown",
+    "at": "2026-11-15T11:20:34.560Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-recovery-final\n아이디\n14f72df7-822b-41c2-bde3-94acdda6dafd\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t결과 미확인 · 비동기 작업 완료\n\nRequest failed with status code 500\n\n성공 0 · 실패 0 · 알 수 없음 1 · 진행 중 0\n\n닫기\n상태 다시 확인",
+    "postCount": 1,
+    "injectedGetFailure": true
+  },
+  {
+    "name": "final-recovery-no-stale-error",
+    "at": "2026-11-15T11:20:55.415Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-recovery-final\n아이디\n14f72df7-822b-41c2-bde3-94acdda6dafd\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기",
+    "staleErrorPresent": false,
+    "additionalPosts": 0,
+    "getReads": 1,
+    "api": {
+      "request": {
+        "keyword": "14f72df7-822b-41c2-bde3-94acdda6dafd",
+        "isofilter": "all",
+        "page": "1",
+        "pagesize": "500",
+        "showunique": "false"
+      },
+      "rows": []
+    }
+  },
+  {
+    "name": "recovery-fixture-ui-deleted",
+    "at": "2026-11-15T11:20:56.261Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "name": "manual-clipboard-target-preserved",
+    "at": "2026-11-15T11:29:38.318Z",
+    "id": "1e740a0f-f266-4ed1-8d00-a127dc57b639",
+    "status": "PENDING_USER_CONFIRMATION",
+    "remainingIsoCount": 1,
+    "remainingQaAccountCount": 1,
+    "temporaryBrowserFaultsCleared": true
+  }
+]

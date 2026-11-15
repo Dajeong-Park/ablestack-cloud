@@ -1,0 +1,117 @@
+{
+  "head": "444035ffb1711ef2efb6369a2db7aa52d8749bc7",
+  "sourceBoundary": {
+    "previousCode": "f6756856cf9092e132a177a5a07affbad8d0bbef",
+    "runtimeInput": "/root/work/.build-iso1670-20261115/ui",
+    "buildInput": "/root/work/.build-iso1671-20261115/ui",
+    "files": [
+      "src/components/view/DetailsTab.vue",
+      "src/components/view/ResourceView.vue",
+      "src/views/AutogenView.vue",
+      "src/views/image/IsoZones.vue",
+      "src/views/image/IsoZoneOperations.vue",
+      "src/components/widgets/IsoDetailValue.vue",
+      "src/utils/isoZoneOperations.js",
+      "tests/unit/views/image/IsoZoneOperations.spec.js",
+      "tests/unit/views/image/IsoZonesReadScope.spec.js",
+      "tests/unit/views/AutogenIsoSearch.spec.js",
+      "public/locales/en.json",
+      "public/locales/ko_KR.json",
+      "src/components/widgets/TemplateAvailability.vue"
+    ],
+    "hashes": {
+      "src/components/view/DetailsTab.vue": "9d51d7c98f9c414726e642969eafe4b20b9babc1378445189e7b3d48c6c4a745",
+      "src/components/view/ResourceView.vue": "1c7f1524b52499f1cdfb652c07fea8529c6ae4adc8f845595dbbe0417d334d8c",
+      "src/views/AutogenView.vue": "48e04051626dca8cb40650d0c95308a92cc6f06463a5484f4f2737c9930b1669",
+      "src/views/image/IsoZones.vue": "427d6ba958ec0f1c6397b07ead32204f7898e0d2ee0a1ab106d088e093110c8f",
+      "src/views/image/IsoZoneOperations.vue": "c71074cba1b067ee7a03e9191d67fc3f8c06f0e14b983f258622a76f4d9d87a5",
+      "src/components/widgets/IsoDetailValue.vue": "ee940ae1aa9e7a0231184ab55fe8350909f7c4d2bab9ac977a8e402578c9dda1",
+      "src/utils/isoZoneOperations.js": "b276ea190048b129a7dfc7fe9716a4aecf00d3422ba185d4479b99c81796831f",
+      "tests/unit/views/image/IsoZoneOperations.spec.js": "d66b8b167137f277ac83dd55d90ba9de32257241c758a53d4af34e4204611f63",
+      "tests/unit/views/image/IsoZonesReadScope.spec.js": "8c7652c6824a7f62d6f1e9ad6f414c1df2633f95097fcf1cfb67b0ed7c21659c",
+      "tests/unit/views/AutogenIsoSearch.spec.js": "9371e605aba86aaba3b8e775eb737ff4b8b2994566cfaf236e901311c23ad763",
+      "public/locales/en.json": "cd48f95cff3a0f724e18207ce60fda2ea02e668810851d0b4d838abaf49e146b",
+      "public/locales/ko_KR.json": "17d347277c38ce78f09996ccdcf4b77ff95e2a49761cc27c45c7269a10820839",
+      "src/components/widgets/TemplateAvailability.vue": "916067db72cd9150c31679f15e8405bd8f3a8aa9a149477f021b70ecc6c233ec"
+    },
+    "localeKeys": {
+      "en": [
+        "label.iso.zone.state.unknown",
+        "message.iso.zone.copy.duplicate",
+        "label.iso.zone.state.failed",
+        "label.iso.zone.state.waitingReady",
+        "label.iso.zone.abandoned",
+        "label.iso.zone.search",
+        "message.iso.zone.delete",
+        "label.iso.zone.state.requesting",
+        "message.iso.zone.copy.empty",
+        "label.iso.zone.source",
+        "label.iso.zone.state.running",
+        "label.iso.zone.state.pending",
+        "label.iso.zone.job.completed",
+        "label.iso.zone.state.success"
+      ],
+      "ko_KR": [
+        "label.iso.zone.state.unknown",
+        "message.iso.zone.copy.duplicate",
+        "label.iso.zone.state.failed",
+        "label.iso.zone.state.waitingReady",
+        "label.iso.zone.abandoned",
+        "label.iso.zone.search",
+        "message.iso.zone.delete",
+        "label.iso.zone.state.requesting",
+        "message.iso.zone.copy.empty",
+        "label.iso.zone.source",
+        "label.iso.zone.state.running",
+        "label.iso.zone.state.pending",
+        "label.iso.zone.job.completed",
+        "label.iso.zone.state.success"
+      ]
+    },
+    "productHead": "444035ffb1711ef2efb6369a2db7aa52d8749bc7",
+    "unrelatedOperatingSourceFilesEqual": 1013,
+    "method": "three-way ISO-only deltas against the exact previous operating input; other VPC/runtime differences preserved",
+    "restrictedStoreCorrection": "render omitted/unknown storage roles in generic Storage section without inferring a role or ID",
+    "isoDiagnosticPresentation": "known status suffixes localized only for ISO; raw diagnostics remain in tooltip; template behavior preserved"
+  },
+  "baselineIndex": {
+    "sha256": "e25e4d695636319bb18890b7cc3956281b91bf1066446029a2265a858b8f985c",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "f582b7a42b440293f72061b2ccf65b5005fd040f634a9e5061345e215a606156",
+      "size": 39475,
+      "previous": {
+        "sha256": "e25e4d695636319bb18890b7cc3956281b91bf1066446029a2265a858b8f985c",
+        "size": 39475
+      }
+    },
+    "css/chunk-439f97bf.46063e9a.css": {
+      "sha256": "23c251e17059e93e1c05f239956b04688ea3808b925023b4e001943f3db54a62",
+      "size": 1528,
+      "previous": null
+    },
+    "css/app.3dda445b.css": {
+      "sha256": "2ada631dbbfe264886298cd27df70e36731aaf36bbedc0ea023aa284229690aa",
+      "size": 348073,
+      "previous": null
+    },
+    "js/app.2923e7a8.js": {
+      "sha256": "9d2334575f35e5f11645eb14475f1f0deb0f34f758ef26cafc821e5f36e4a674",
+      "size": 1919283,
+      "previous": null
+    },
+    "js/chunk-439f97bf.7df472b9.js": {
+      "sha256": "2dbf99e0324a180cbb94e55f70699d1baf6a60df42059eaa54e56535bd67b39d",
+      "size": 39961,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2620448",
+  "backendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443"
+}

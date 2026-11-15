@@ -1,0 +1,20 @@
+{
+  "productHead": "c8992a5f49fe866fa43d2ae769df87f102e716c1",
+  "canonical": {
+    "suites": 33,
+    "tests": 690,
+    "passed": true
+  },
+  "operating": {
+    "suites": 29,
+    "tests": 454,
+    "passed": true
+  },
+  "changedUiLint": true,
+  "focusedPreCommit": true,
+  "manualPreCommit": true,
+  "uiBuild": true,
+  "clipboardActualPaste": "PENDING_USER_CONFIRMATION",
+  "cleanup": "PARTIAL_3_OF_4_ISOS_DELETED",
+  "fullCiPass": false
+}
