@@ -36,6 +36,7 @@
         class="input-search"
         :placeholder="apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         :title="apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
+        :aria-label="apiName === 'listIsos' ? $t('label.search') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
         <template #addonBefore>

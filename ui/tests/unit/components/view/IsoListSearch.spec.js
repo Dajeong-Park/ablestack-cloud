@@ -21,6 +21,7 @@ import { Form, Input, Select } from 'ant-design-vue'
 import Search from '@/components/view/SearchView'
 import Chips from '@/components/view/SearchFilter'
 import List from '@/components/view/ListView'
+import IsoCell from '@/components/view/IsoListCell'
 import Breadcrumb from '@/components/widgets/Breadcrumb'
 import ResourceView from '@/components/view/ResourceView'
 import { isoDetailLocation, isoListQuery, isoSearchFields } from '@/utils/isoSearch'
@@ -75,4 +76,20 @@ test('ISO breadcrumb and Vue Router tabs retain return context', () => {
   const c = { $route: route, $store: { getters }, $router: { push: jest.fn() }, $emit: jest.fn() }
   expect(Breadcrumb.methods.breadcrumbLocation.call(c, { path: '/iso' }).query.keyword).toBe('part')
   ResourceView.methods.onTabChange.call(c, 'zones'); expect(c.$router.push).toHaveBeenCalledWith({ path: route.path, query: { ...route.query, tab: 'zones' } })
+})
+
+test.each([true, false])('ISO name keeps existing custom-icon preference and avoids per-row OS lookups: %s', custom => {
+  const record = { id, name: 'ISO', ostypename: 'Windows Server 2025', icon: { base64image: 'public-icon-fixture' } }
+  const w = shallowMount(IsoCell, { props: { record, field: 'name' }, global: { mocks: { $showIcon: () => custom, $route: { query: {} }, $store: { getters }, $t: k => k } } })
+  if (custom) expect(w.findComponent({ name: 'ResourceIcon' }).props('image')).toBe('public-icon-fixture')
+  else { expect(w.findComponent({ name: 'OsLogo' }).props('osName')).toBe(record.ostypename); expect(w.findComponent({ name: 'OsLogo' }).props('osId')).toBe('') }
+  w.unmount()
+})
+
+test('ISO keyword input keeps the standard search accessible name alongside optional help', async () => {
+  const w = mount(Search, { props: { apiName: 'listIsos', searchFilters: ['name'] }, global: { mocks: { $store: { getters }, $route: { path: '/iso', query: {}, meta: { name: 'iso' } }, $t: k => k }, components: { AInputSearch: Input.Search }, stubs: { APopover: { template: '<span><slot/></span>' }, AButton: { template: '<button><slot/></button>' }, Wave: true } } })
+  await flushPromises()
+  expect(w.get('input').attributes('aria-label')).toBe('label.search')
+  expect(w.get('input').attributes('title')).toBe('message.iso.search.keyword')
+  w.unmount()
 })

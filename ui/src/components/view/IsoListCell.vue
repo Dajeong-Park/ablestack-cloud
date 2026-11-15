@@ -17,7 +17,8 @@
 
 <template>
   <span v-if="field === 'name'" class="iso-primary">
-    <os-logo :osId="record.ostypeid" size="lg" />
+    <resource-icon v-if="$showIcon() && record.icon?.base64image" :image="record.icon.base64image" size="2x" />
+    <os-logo v-else-if="record.ostypename" :osName="record.ostypename" size="xl" />
     <a-tooltip :title="record.name" :trigger="['hover', 'focus']">
       <router-link class="iso-value iso-name" :to="isoDetailLocation($route, record, $store.getters)" :aria-label="record.name">{{ record.name }}</router-link>
     </a-tooltip>
@@ -34,12 +35,13 @@
 </template>
 <script>
 import OsLogo from '@/components/widgets/OsLogo'
+import ResourceIcon from '@/components/view/ResourceIcon'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import { isoDetailLocation } from '@/utils/isoSearch'
 import { isoAvailability } from '@/utils/isoModel'
 export default {
   name: 'IsoListCell',
-  components: { OsLogo, TemplateAvailability },
+  components: { OsLogo, ResourceIcon, TemplateAvailability },
   props: { record: { type: Object, required: true }, field: { type: String, required: true } },
   computed: {
     fullValue () {

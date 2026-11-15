@@ -83,3 +83,9 @@ test('name receives remaining width; auxiliary widths and controlled current-pag
   expect(isoColumn({ key: 'state' }).width).toBe(120)
   expect(isoColumn({ key: 'ostypename' }).width).toBe(148)
 })
+
+test('caller icon flag is preserved without accepting it as arbitrary list URL state', () => {
+  expect(isoRequestParams({ showicon: true }, false, getters).showicon).toBe(true)
+  expect(isoRequestParams({ id, showicon: false }, true, getters).showicon).toBe(false)
+  expect(isoListQuery({ showicon: true }, 20, getters)).not.toHaveProperty('showicon')
+})

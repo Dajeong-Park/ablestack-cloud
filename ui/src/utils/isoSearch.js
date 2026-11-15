@@ -91,8 +91,9 @@ export function isoSearchError (query, metadata = {}, getters = {}) {
 }
 export function isoRequestParams (params, detail = false, getters = {}) {
   const projectid = getters.listAllProjects ? '-1' : getters.project?.id
-  const context = { ignoreproject: true, ...(projectid ? { projectid } : {}) }
-  if (detail) return { id: params.id, listall: true, ...context, ...(params.showicon ? { showicon: params.showicon } : {}) }
+  const showicon = isoBoolean(params.showicon)
+  const context = { ignoreproject: true, ...(projectid ? { projectid } : {}), ...(showicon !== undefined ? { showicon } : {}) }
+  if (detail) return { id: params.id, listall: true, ...context }
   const result = { listall: true, showunique: 'true', ...isoListQuery(params, 20, getters), ...context }
   for (const key of ['filter', 'q', 'isoowner', 'sortkey', 'sortorder']) delete result[key]
   return result
