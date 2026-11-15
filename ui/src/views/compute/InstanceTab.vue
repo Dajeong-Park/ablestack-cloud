@@ -22,7 +22,7 @@
     <br/>
     <a-alert v-if="protectionLookupFailed" type="warning" show-icon class="protection-tab-notice">
       <template #message>{{ $t('message.vm.protection.lookup.failed') }}</template>
-      <template #action>
+      <template #description>
         <a-button size="small" :loading="protectionLookupPending" @click="refreshProtectionTabs"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
       </template>
     </a-alert>

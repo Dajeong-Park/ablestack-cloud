@@ -50,11 +50,11 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': $route.meta.name === 'template' }"
+    :class="{ 'template-details-list': $route.meta.name === 'template', 'vm-details-list': ['vm', 'vnfapp'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || (['vm', 'vnfapp'].includes($route.meta.name) && item === 'deleteprotection') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -69,6 +69,9 @@
             :field="item"
             :value="dataResource[item]"
             :label="$t(getDetailTitle(item))" />
+          <status v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['state', 'hostcontrolstate'].includes(item)" :text="String(dataResource[item] || '')" :display-label="dataResource[item] ? '' : $t('label.unknown')" display-text />
+          <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['ostypename', 'osdisplayname'].includes(item)">{{ creationVmOsName(dataResource, $t) || $t('label.unknown') }}</div>
+          <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item !== 'deleteprotection' && (vmBooleanFields.has(item) || typeof dataResource[item] === 'boolean')">{{ $t(vmBooleanLabel(dataResource[item])) }}</div>
           <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item === 'deleteprotection'">
             <a-tag :color="dataResource.deleteprotection === true ? 'warning' : dataResource.deleteprotection === false ? 'success' : 'default'">{{ $t('label.vm.protection.' + (resourceReadFailed() ? 'failed' : dataResource.deleteprotection === true ? 'protected' : dataResource.deleteprotection === false ? 'unprotected' : 'unknown')) }}</a-tag>
             <div>{{ $t('message.vm.delete.edit') }}</div>
@@ -414,7 +417,7 @@ import Status from '@/components/widgets/Status'
 import TemplateDetailValue from '@/components/widgets/TemplateDetailValue'
 import { presentedTemplateValue } from '@/utils/templateDetails'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
-import { creationVmDetails } from '@/utils/creationVmPresentation'
+import { creationVmDetails, creationVmOsName, vmBooleanLabel, vmBooleanFields } from '@/utils/creationVmPresentation'
 import { getAblestackBackupOfferingVisibleDetails } from '@/utils/ablestackBackupPolicy'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
@@ -488,6 +491,7 @@ export default {
       projectname: '',
       dataResource: {},
       detailsTitles: [],
+      vmBooleanFields,
       licenseInfo: {
         expired: false,
         expiryDate: ''
@@ -577,6 +581,7 @@ export default {
     resource: {
       deep: true,
       handler (newVal) {
+        this.projectname = ''
         this.dataResource = creationVmDetails(newVal, this.$t)
         if ('account' in this.dataResource && this.dataResource.account.startsWith('PrjAcct-')) {
           this.projectname = this.dataResource.account.substring(this.dataResource.account.indexOf('-') + 1, this.dataResource.account.lastIndexOf('-'))
@@ -592,6 +597,8 @@ export default {
     }
   },
   methods: {
+    creationVmOsName,
+    vmBooleanLabel,
     networkTypeLabel,
     networkIpUsageLabel,
     decodeUserData (userdata) {
@@ -645,6 +652,7 @@ export default {
       return detailsKeys
     },
     getDetailTitle (detail) {
+      if (['vm', 'vnfapp'].includes(this.$route.meta.name) && ['osdisplayname', 'ostypename'].includes(detail)) return 'label.ostypename'
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'name') return 'label.vm.name'
       if (this.$route.meta.name === 'template' && detail === 'format') return 'label.template.image.format'
       if (this.$route.meta.name === 'template' && detail === 'templatetype') return 'label.template.type'
@@ -892,7 +900,7 @@ export default {
   color: var(--ui-text-primary);
 }
 
-.template-details-list :deep(.ant-list-item > div) {
+.template-details-list :deep(.ant-list-item > div), .vm-details-list :deep(.ant-list-item > div) {
   min-width: 0;
   max-width: 100%;
   overflow-wrap: anywhere;

@@ -196,10 +196,10 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
-          :size="currentAction.standardDialogSize || (isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
+          :size="currentAction.standardDialogSize || (vmStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
           class="mold-dialog"
           :class="{ 'object-storage-dialog': isObjectStorageUi, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup', 'storage-standard-dialog': standardActionDialog, 'vpc-standard-dialog': isVpcUi, 'snapshot-standard-dialog': currentAction.snapshotStandardDialog, 'sharedfs-standard-dialog': $route.meta?.name === 'sharedfs' }"
           centered
@@ -211,7 +211,7 @@
           :confirmLoading="actionLoading"
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
-          :focus-guard="isVpcUi || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
+          :focus-guard="isVpcUi || vmStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -229,9 +229,9 @@
             </a>
           </template>
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
-          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent) ? 1 : undefined">
+          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent) ? storageActionGeneration : undefined"
+              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -272,7 +272,8 @@
             v-if="currentAction.docHelp || $route.meta.docHelp"
             style="margin-left: 5px"
             :href="documentationUrl($config.docBase, currentAction.docHelp || $route.meta.docHelp, $i18n.locale)"
-            target="_blank">
+            target="_blank"
+            :aria-label="$t('label.help')">
             <question-circle-outlined />
           </a>
         </template>
@@ -330,20 +331,20 @@
                 v-if="!(currentAction.mapping && field.name in currentAction.mapping && currentAction.mapping[field.name].value)"
               >
                 <template #label>
-                  <tooltip-label :title="$t('label.' + field.name)" :tooltip="field.description"/>
+                  <tooltip-label :title="$t('label.' + field.name)" :tooltip="actionFieldDescription(field)"/>
                 </template>
 
                 <a-switch
                   v-if="field.type==='boolean'"
                   v-model:checked="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-select
                   v-else-if="currentAction.mapping && field.name in currentAction.mapping && currentAction.mapping[field.name].options"
                   :loading="field.loading"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -363,7 +364,7 @@
                   optionFilterProp="label"
                   v-model:value="form[field.name]"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.children[0].children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -380,7 +381,7 @@
                   optionFilterProp="label"
                   v-model:value="form[field.name]"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -434,7 +435,7 @@
                   :loading="field.loading"
                   mode="multiple"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -451,12 +452,12 @@
                   v-focus="fieldIndex === firstIndex"
                   style="width: 100%;"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                 />
                 <a-input-password
                   v-else-if="field.name==='password' || field.name==='currentpassword' || field.name==='confirmpassword'"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   @blur="($event) => handleConfirmBlur($event, field.name)"
                   v-focus="fieldIndex === firstIndex"
                 />
@@ -464,14 +465,14 @@
                   v-else-if="field.name==='certificate' || field.name==='privatekey' || field.name==='certchain'"
                   rows="2"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-input
                   v-else
                   v-focus="fieldIndex === firstIndex"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description" />
+                  :placeholder="actionFieldDescription(field)" />
               </a-form-item>
             </div>
 
@@ -484,17 +485,17 @@
         <br />
       </component>
       <component
-        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete) ? 'MoldDialog' : 'a-modal'"
-        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete) ? 'md' : undefined"
+        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog) ? 'MoldDialog' : 'a-modal'"
+        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog) ? 'md' : undefined"
         class="mold-dialog"
-        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete, 'vpc-standard-dialog': isVpcUi, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
+        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog, 'vpc-standard-dialog': isVpcUi, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
           v-else
         :visible="showAction"
-        :closable="!isVpcUi || !actionLoading"
+        :closable="!(isVpcUi || vmStandardDialog) || !(actionLoading || vmActionValidationPending)"
         :maskClosable="false"
         :width="(isBucketGroupDelete || isGuestNetworkDelete) ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
-        :focus-guard="isVpcUi"
-        :keyboard="!isVpcUi || !actionLoading"
+        :focus-guard="isVpcUi || vmStandardDialog"
+        :keyboard="!(isVpcUi || vmStandardDialog) || !(actionLoading || vmActionValidationPending)"
         :after-close="restoreClosedActionFocus"
         :ok-button-props="getOkProps()"
         ok-text="111"
@@ -510,11 +511,13 @@
             style="margin-left: 5px"
             :href="documentationUrl($config.docBase, currentAction.docHelp || $route.meta.docHelp, $i18n.locale)"
             target="_blank"
+            :aria-label="$t('label.help')"
           >
             <question-circle-outlined />
           </a>
         </template>
         <VpcActionContext v-if="isVpcUi && !currentAction.listView" :resources="currentAction.invokedAsGroupAction ? selectedItems : [resource]" />
+        <a-alert v-if="vmStandardDialog && vmActionError" type="error" show-icon :message="vmActionError" class="vm-action-error" />
         <a-alert v-if="isVpcUi && vpcActionError" type="error" show-icon :message="vpcActionError" style="margin-bottom: 16px" />
         <a-spin
           :spinning="actionLoading"
@@ -605,31 +608,31 @@
                   <tooltip-label
                     v-if="['domain', 'guestcidraddress'].includes(field.name) && ['createZone', 'updateZone'].includes(currentAction.api)"
                     :title="$t('label.default.network.' + field.name + '.isolated.network')"
-                    :tooltip="field.description"
+                    :tooltip="actionFieldDescription(field)"
                   />
                   <tooltip-label
                     v-else-if="field.name === 'keepmacaddressonpublicnic' && currentAction.api === 'updateVPC'"
                     :title="$t('label.keep.mac.address.on.public.nic')"
-                    :tooltip="field.description"
+                    :tooltip="actionFieldDescription(field)"
                   />
                   <tooltip-label
                     v-else
                     :title="$t('label.' + field.name)"
-                    :tooltip="field.description"
+                    :tooltip="actionFieldDescription(field)"
                   />
                 </template>
 
                 <a-switch
                   v-if="field.type==='boolean'"
                   v-model:checked="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-select
                   v-else-if="currentAction.mapping && field.name in currentAction.mapping && currentAction.mapping[field.name].options"
                   :loading="field.loading"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -657,7 +660,7 @@
                   v-model:value="form[field.name]"
                   @change="val => handleSelectChange(field.name, val)"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -682,7 +685,7 @@
                   v-model:value="form[field.name]"
                   @change="val => handleSelectChange(field.name, val)"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -789,7 +792,7 @@
                   mode="multiple"
                   v-model:value="form[field.name]"
                   @change="val => handleSelectChange(field.name, val)"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -814,12 +817,12 @@
                   v-focus="fieldIndex === firstIndex"
                   style="width: 100%;"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                 />
                 <a-input-password
                   v-else-if="field.name==='password' || field.name==='currentpassword' || field.name==='confirmpassword' || field.name==='secretkey'"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   @blur="($event) => handleConfirmBlur($event, field.name)"
                   v-focus="fieldIndex === firstIndex"
                 />
@@ -827,14 +830,14 @@
                   v-else-if="field.name==='certificate' || field.name==='privatekey' || field.name==='certchain'"
                   rows="2"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-input
                   v-else
                   v-focus="fieldIndex === firstIndex"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                 />
               </a-form-item>
             </div>
@@ -842,8 +845,8 @@
           </a-form>
         </a-spin>
         <template #footer>
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" @click="handleSubmit" :disabled="isSubmitDisabled" :loading="actionLoading" :danger="isVpcUi && currentAction.api?.startsWith('delete')" ref="submit">{{ $t(isVpcUi && currentAction.label ? currentAction.label : 'label.ok') }}</a-button>
+          <a-button @click="vmStandardDialog ? cancelAction() : closeAction()" :disabled="vmStandardDialog && (actionLoading || vmActionValidationPending)">{{ $t('label.cancel') }}</a-button>
+          <a-button type="primary" @click="handleSubmit" :disabled="isSubmitDisabled || (vmStandardDialog && vmActionValidationPending)" :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)" :danger="isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'" ref="submit">{{ $t((isVpcUi || vmStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}</a-button>
         </template>
       </component>
     </div>
@@ -1031,7 +1034,7 @@ import { vmGroupLookupStatus } from '@/utils/vmGroupLookup'
 import { sshKeyPairDeleteTargets } from '@/utils/sshKeyPairDeletion'
 import { isSshKeyPairDetailRoute, sshKeyPairDetailScope, sshKeyPairDetailTarget, sshKeyPairDetailParams, sshKeyPairMatchesTarget, sshKeyPairDetailResult, sshKeyPairDetailFailure, sshKeyPairVmParams } from '@/utils/sshKeyPairIdentity'
 import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErrorKey, vmGroupDeleteTargets } from '@/utils/vmGroupNames'
-import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentity'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
 
 let templateFilterSequence = 0
@@ -1084,6 +1087,8 @@ export default {
       loading: false,
       // IntervalLoading: false,
       actionLoading: false,
+      vmActionValidationPending: false,
+      vmActionError: '',
       columnKeys: [],
       allColumns: [],
       columns: [],
@@ -1444,7 +1449,8 @@ export default {
     isSnapshotReadView () { return this.isSnapshotList || this.isSnapshotDetail || this.isPolicyDetail || snapshotPolicyListRoute(this.$route) },
     isSnapshotCopyList () { return snapshotCopyList(this.$route) },
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
-    standardActionDialog () { return this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
+    vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine'].includes(this.currentAction?.api) },
+    standardActionDialog () { return this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
       return this.isPolicyList && !this.policySearchFailure && this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)
@@ -1602,6 +1608,10 @@ export default {
   methods: {
     vmDisplayName,
     isVmIdentityRoute,
+    actionFieldDescription (field) {
+      const known = ['podid', 'clusterid', 'hostid', 'considerlasthost', 'bootintosetup', 'forced']
+      return this.vmStandardDialog && known.includes(field.name) ? this.$t('message.vm.start.' + field.name) : field.description
+    },
     templateListLocation,
     storageDialogSize,
     snapshotSourceVolumeRoute,
@@ -2698,6 +2708,7 @@ export default {
       })
     },
     cancelAction () {
+      if (this.vmStandardDialog && (this.actionLoading || this.vmActionValidationPending)) return
       if (this.isVpcUi && this.actionLoading) return
       eventBus.emit('action-closing', { action: this.currentAction })
       this.closeAction()
@@ -2766,6 +2777,7 @@ export default {
       if (vnfRoute(this.$route) && (!this.storageActionReady || !(action.api in (this.$store.getters.apis || {})) || isGroupAction && (!this.selectedRowKeys.length || this.selectedRowKeys.some(id => !this.items.some(row => row.id === id))))) return
       if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && this.storageActionReady === false && !this.canOpenPolicyCreate(action, isGroupAction)) return
       if (storageUiRoute(this.$route) && (action.dataView || isGroupAction) && !this.storageActionReady) return
+      this.vmActionValidationPending = false; this.vmActionError = ''
       this.storageActionGeneration++
       this.actionFocusReturn = null
       if (action.storageSnapshotMode) {
@@ -2800,7 +2812,7 @@ export default {
         const target = action.resource || this.resource
         if (!target?.id) return
         const generation = this.storageActionGeneration
-        this.currentAction = { ...action, invokedAsGroupAction: false, vmEditCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.currentAction = { ...action, standardDialogSize: 'md', invokedAsGroupAction: false, vmEditCurrent: () => this.showAction && generation === this.storageActionGeneration }
         this.resource = target; this.showAction = true
         return
       }
@@ -2810,6 +2822,12 @@ export default {
         const generation = this.storageActionGeneration
         this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, vmDeletionCurrent: () => this.showAction && generation === this.storageActionGeneration, vmDeletionTargets: Object.freeze(targets.map(row => Object.freeze({ ...row }))) }
         this.resource = targets[0]; this.showAction = true
+        return
+      }
+      if (isVmIdentityRoute(this.$route) && action.api === 'startVirtualMachine' && !isGroupAction) {
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, standardDialogSize: 'md', invokedAsGroupAction: false, vmStartCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = action.resource || this.resource; this.showAction = true
         return
       }
       if (action.api === 'deleteNetwork' && guestNetworkRoute(this.$route)) {
@@ -3253,7 +3271,7 @@ export default {
       this.message = {}
     },
     handleSubmit (e) {
-      if (this.actionLoading || this.isSubmitDisabled) return
+      if (this.actionLoading || this.isSubmitDisabled || (this.vmStandardDialog && this.vmActionValidationPending)) return
       this.promises = []
       const groupDeletion = this.currentAction.api === 'deleteInstanceGroup' && this.currentAction.invokedAsGroupAction
       const selectedKeys = groupDeletion ? (this.currentAction.vmGroupTargets || []).map(group => group.id) : this.selectedRowKeys
@@ -3275,7 +3293,12 @@ export default {
           this.modalInfo.title = this.currentAction.label
           this.modalInfo.docHelp = this.currentAction.docHelp
         }
+        const submittedAction = this.currentAction
+        const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
+        if (vmScope) this.vmActionValidationPending = true
         this.formRef.value.validate().then(() => {
+          if (vmScope && (!this.showAction || submittedAction !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+          if (vmScope) this.vmActionValidationPending = false
           const values = toRaw(this.form)
           this.actionLoading = true
           const itemsNameMap = {}
@@ -3299,7 +3322,9 @@ export default {
             this.fetchData()
           })
         }).catch(error => {
-          this.formRef.value.scrollToField(error.errorFields[0].name)
+          if (vmScope && submittedAction !== this.currentAction) return
+          if (vmScope) this.vmActionValidationPending = false
+          if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
         })
       } else {
         this.execSubmit(e)
@@ -3309,10 +3334,13 @@ export default {
       const selectedItems = this.selectedItems
       return new Promise((resolve, reject) => {
         const action = this.currentAction
+        const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
         postAPI(action.api, params).then(json => {
+          if (vmScope && vmScope !== vmEditScope(this.resource, this.$route, this.$store)) { resolve(false); return }
           resolve(this.handleResponse(json, resourceName, this.getDataIdentifier(params), action, false, selectedItems))
           this.closeAction()
         }).catch(error => {
+          if (vmScope && vmScope !== vmEditScope(this.resource, this.$route, this.$store)) { resolve(false); return }
           if ([401].includes(error.response?.status)) {
             resolve(false)
             return
@@ -3425,8 +3453,13 @@ export default {
       if (isSshKeyPairDetailRoute(this.$route) && !this.canExecuteSshKeyPairAction(this.currentAction)) return
       const sshActionScope = isSshKeyPairDetailRoute(this.$route) ? this.listScope() : null
       const submittedAction = this.currentAction
-      e.preventDefault()
+      const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
+      if (vmScope && this.vmActionValidationPending) return
+      if (vmScope) { this.vmActionValidationPending = true; this.vmActionError = '' }
+      if (e && typeof e.preventDefault === 'function') e.preventDefault()
       this.formRef.value.validate().then(() => {
+        if (vmScope && (!this.showAction || submittedAction !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+        if (vmScope) this.vmActionValidationPending = false
         if (sshActionScope && (sshActionScope !== this.listScope() || !this.canExecuteSshKeyPairAction(submittedAction))) return
         let values = toRaw(this.form)
         const params = {}
@@ -3552,6 +3585,7 @@ export default {
         const actionScope = this.listScope()
         this.actionLoading = true
         this.postSnapshotAwareAction(action, params).then(json => {
+          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
           var response = this.handleResponse(json, resourceName, this.getDataIdentifier(params), action)
           if (!response) {
             this.fetchData()
@@ -3571,6 +3605,8 @@ export default {
           })
           this.closeAction()
         }).catch(error => {
+          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+          if (vmScope) this.vmActionError = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext || this.$t('error.fetching.data')
           if ([401].includes(error.response?.status)) {
             return
           }
@@ -3581,9 +3617,12 @@ export default {
           if (isVmGroupAction(action.api)) this.notifyVmGroupError(error)
           else this.$notifyError(error)
         }).finally(f => {
+          if (vmScope && action !== this.currentAction) return
           this.actionLoading = false
         })
       }).catch(error => {
+        if (vmScope && submittedAction !== this.currentAction) return
+        if (vmScope) this.vmActionValidationPending = false
         if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
         else if (isVmGroupAction(this.currentAction.api)) this.notifyVmGroupError(error)
       })
@@ -4024,6 +4063,7 @@ export default {
 <style scoped src="@/style/components/view/list-toolbar.css" />
 
 <style scoped>
+.vm-action-error { overflow-wrap: anywhere; margin-bottom: 16px; }
 .runtime-catalog-screen :deep(.breadcrumb-card > .ant-card-body > .ant-row) { display:flex; flex-direction:column; gap:8px; }
 .runtime-catalog-screen :deep(.breadcrumb-card .ant-col) { width:100%; max-width:100%; float:none !important; }
 .runtime-catalog-screen :deep(.autogen-toolbar-actions) { display:flex !important; align-items:center; gap:8px; }

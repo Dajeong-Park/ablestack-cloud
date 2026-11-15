@@ -151,10 +151,10 @@
         </a-col>
       </a-row>
 
-      <div :span="24" class="action-button">
+      <mold-dialog-actions :busy="loading || submitPending">
         <a-button :loading="loading" @click="onCloseAction">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+      </mold-dialog-actions>
     </a-form>
   </a-spin>
 </template>
@@ -165,12 +165,14 @@ import { getAPI, postAPI } from '@/api'
 import { buildVmGroupUpdate, isGroupOnlyEdit } from '@/utils/vmGroupAssignment'
 import { createVmGroupLookup, vmGroupOwnerKey, vmGroupLookupReady } from '@/utils/vmGroupLookup'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { getFastClonePhase } from '@/utils/fastClone'
 import { vmDisplayName, vmEditScope } from '@/utils/vmIdentity'
 
 export default {
   name: 'EditVM',
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {
@@ -562,11 +564,9 @@ export default {
 
 <style scoped lang="less">
 .form-layout {
-  width: 80vw;
-
-  @media (min-width: 600px) {
-    width: 450px;
-  }
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 
   .action-button {
     text-align: right;

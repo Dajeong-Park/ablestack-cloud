@@ -2980,7 +2980,7 @@
   "label.vnf.nic.add": "NIC 추가",
   "label.vnf.nic.delete": "VNF nic 삭제",
   "label.vnf.nic.description": "VNF nic에 대한 설명",
-  "label.vnf.nic.deviceid": "VNF nic의 장치 ID. 0으로 시작합니다.",
+  "label.vnf.nic.deviceid": "장치 번호",
   "label.vnf.nic.edit": "VNF nic 편집",
   "label.vnf.nic.management": "관리 NIC",
   "label.vnf.nic.management.description": "VNF nic가 관리 인터페이스이면 True입니다. 그렇지 않으면 False입니다.",
@@ -11876,5 +11876,17 @@
   "message.vnf.search.candidate.unavailable": "선택한 자원을 현재 범위에서 확인하지 못했습니다. 조건을 지우거나 다시 선택하세요.",
   "message.vnf.search.selection": "선택은 현재 페이지에만 적용됩니다. 검색·페이지·프로젝트 변경 및 목록 새로고침 시 선택이 해제됩니다.",
   "message.vnf.action.monitor.loading": "모니터링 포털 설정을 확인 중입니다.",
-  "message.vnf.action.monitor.unconfigured": "사용 가능한 Wall VM 포털 주소/경로를 확인하지 못했습니다. 포털 설정을 확인하세요."
+  "message.vnf.action.monitor.unconfigured": "사용 가능한 Wall VM 포털 주소/경로를 확인하지 못했습니다. 포털 설정을 확인하세요.",
+  "message.vm.start.automatic": "선택하지 않으면 자동으로 배치합니다.",
+  "message.vm.start.podid": "시작할 Pod를 선택합니다. 비워 두면 현재 Zone 안에서 자동으로 선택합니다.",
+  "message.vm.start.clusterid": "시작할 클러스터를 선택합니다. Pod를 바꾸면 클러스터와 호스트 선택을 해제합니다.",
+  "message.vm.start.hostid": "시작할 호스트를 선택합니다. 현재 Zone·Pod·클러스터의 사용 가능한 호스트만 표시합니다.",
+  "message.vm.start.considerlasthost": "이전 실행 호스트를 우선 고려합니다. 사용할 수 없으면 배치 정책에 따라 다른 호스트를 선택합니다.",
+  "message.vm.start.bootintosetup": "VMware 가상머신을 시작한 뒤 펌웨어 설정 화면으로 진입합니다.",
+  "message.vm.start.forced": "강제 실행은 게스트의 정상 종료를 기다리지 않을 수 있습니다. 저장하지 않은 데이터가 손실될 수 있으므로 현재 상태를 확인하세요.",
+  "message.vm.start.lookup.error": "배치 대상을 조회하지 못했습니다. 기존 입력을 유지합니다. 다시 조회하세요.",
+  "message.vm.start.lookup.empty": "선택 가능한 배치 대상이 없습니다. 선택을 비워 두면 자동 배치를 요청합니다.",
+  "message.vm.start.lookup.forbidden": "현재 권한에서 배치 후보를 조회할 수 없습니다. 선택을 비워 두면 자동 배치를 요청합니다.",
+  "message.vm.start.unknown": "시작 요청의 접수 여부를 확인하지 못했습니다. 중복 실행을 막기 위해 이 창의 재제출을 차단했습니다. 창을 닫고 가상머신과 작업 상태를 확인하세요.",
+  "message.vm.start.unavailable": "중지 상태인 가상머신과 현재 시작 권한을 확인하세요. 대상이나 로그인·프로젝트 문맥이 바뀐 요청은 실행하지 않습니다."
 }

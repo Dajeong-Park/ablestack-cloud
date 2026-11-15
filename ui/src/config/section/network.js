@@ -511,7 +511,7 @@ export default {
       filters: () => ['all', ...vnfStates(store.getters).map(s => s.toLowerCase())],
       searchFilters: ['name', 'state', 'zoneid', 'domainid', 'account', 'networkid', 'templateid', 'serviceofferingid', 'groupid', 'tags'],
       details: () => {
-        var fields = ['name', 'displayname', 'id', 'state', 'ipaddress', 'ip6address', 'templatename', 'ostypename',
+        var fields = ['name', 'displayname', 'id', 'state', 'ipaddress', 'ip6address', 'templatename', 'osdisplayname',
           'serviceofferingname', 'isdynamicallyscalable', 'haenable', 'hypervisor', 'boottype', 'bootmode', 'account',
           'domain', 'zonename', 'userdataid', 'userdataname', 'userdataparams', 'userdatadetails', 'userdatapolicy', 'hostcontrolstate', 'deleteprotection']
         const listZoneHaveSGEnabled = store.getters.zones.filter(zone => zone.securitygroupsenabled === true)

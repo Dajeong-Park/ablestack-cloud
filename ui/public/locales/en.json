@@ -3012,7 +3012,7 @@
   "label.vnf.nic.add": "Add NIC",
   "label.vnf.nic.delete": "Delete VNF nic",
   "label.vnf.nic.description": "Description of VNF nic",
-  "label.vnf.nic.deviceid": "Device ID of VNF nic. It starts with 0. The NIC with deviceid as 0 for VNF appliance will be the default NIC.",
+  "label.vnf.nic.deviceid": "Device number",
   "label.vnf.nic.edit": "Edit VNF nic",
   "label.vnf.nic.management": "Management NIC",
   "label.vnf.nic.management.description": "True if the VNF nic is a management interface. False otherwise",
@@ -11868,5 +11868,17 @@
   "message.vnf.search.candidate.unavailable": "The selected resource could not be verified in the current scope. Clear it or select it again.",
   "message.vnf.search.selection": "Selection applies to this page only. Searching, changing pages or projects, and refreshing the list clear the selection.",
   "message.vnf.action.monitor.loading": "Checking monitoring portal configuration.",
-  "message.vnf.action.monitor.unconfigured": "A usable Wall VM portal address and path could not be verified. Check the portal configuration."
+  "message.vnf.action.monitor.unconfigured": "A usable Wall VM portal address and path could not be verified. Check the portal configuration.",
+  "message.vm.start.automatic": "Leave empty for automatic placement.",
+  "message.vm.start.podid": "Optionally choose a Pod in the current Zone.",
+  "message.vm.start.clusterid": "Optionally choose a cluster. Changing the Pod clears cluster and host selections.",
+  "message.vm.start.hostid": "Optionally choose an available host in the selected Zone, Pod and cluster.",
+  "message.vm.start.considerlasthost": "Prefer the last host when available; otherwise use the placement policy.",
+  "message.vm.start.bootintosetup": "Enter firmware setup after starting this VMware virtual machine.",
+  "message.vm.start.forced": "Forcing the operation may bypass a graceful guest shutdown and lose unsaved data.",
+  "message.vm.start.lookup.error": "Placement lookup failed. Inputs are retained; retry the lookup.",
+  "message.vm.start.lookup.empty": "No manual placement candidates. Leave empty to request automatic placement.",
+  "message.vm.start.lookup.forbidden": "Manual placement lookup is unavailable with the current permissions; automatic placement remains available.",
+  "message.vm.start.unknown": "The start request outcome is unknown. Resubmission is blocked in this dialog; close it and check VM and job state.",
+  "message.vm.start.unavailable": "Check that the VM is stopped and start permission is available. Requests from a previous VM, login or project context are ignored."
 }

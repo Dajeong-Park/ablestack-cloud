@@ -48,7 +48,7 @@
           <a-alert v-if="selectionReason" type="info" show-icon :message="$t(selectionReason)" />
           <p v-else-if="ready">{{ $t('message.vnf.reinstall.nic.compatible') }}</p>
           <div v-if="vm" class="vnf-reinstall-nics" tabindex="0" role="region" :aria-label="$t('label.vnf.reinstall.nics')">
-            <table><caption>{{ $t('label.vnf.reinstall.nics') }}</caption><thead><tr><th>deviceid</th><th>NIC UUID / {{ $t('label.network') }}</th><th>IP / MAC / {{ $t('label.default') }}</th></tr></thead>
+            <table><caption>{{ $t('label.vnf.reinstall.nics') }}</caption><thead><tr><th>{{ $t('label.vnf.nic.deviceid') }}</th><th>NIC UUID / {{ $t('label.network') }}</th><th>IP / MAC / {{ $t('label.default') }}</th></tr></thead>
               <tbody><tr v-for="nic in vm.nic" :key="nic.id"><td>{{ nic.deviceid }}</td><td>{{ nic.id }}<br />{{ nic.networkname || nic.networkid }}</td><td>{{ nic.ipaddress || nic.ip6address || '—' }}<br />{{ nic.macaddress }}<br />{{ nic.isdefault ? $t('label.yes') : $t('label.no') }}</td></tr></tbody>
             </table>
           </div>

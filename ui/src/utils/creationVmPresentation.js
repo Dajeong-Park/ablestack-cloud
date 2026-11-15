@@ -16,13 +16,21 @@
 // under the License.
 
 export function creationVmOsName (vm, translate) {
-  if (vm.details?.['vm.creation.source'] !== 'true') return vm.ostypename
+  const osName = [vm.osdisplayname, vm.ostypename].find(value => typeof value === 'string' && value.trim())
+  if (vm.details?.['vm.creation.source'] !== 'true') return osName
   return vm.details['vm.creation.source.osuuid']
-    ? vm.osdisplayname || vm.ostypename
+    ? osName
     : translate('label.creation.source.os.unspecified')
 }
 
 export function creationVmDetails (vm, translate) {
-  if (vm.details?.['vm.creation.source'] !== 'true') return vm
-  return { ...vm, ostypename: creationVmOsName(vm, translate) }
+  const osName = creationVmOsName(vm, translate)
+  return osName == null ? vm : { ...vm, ostypename: osName }
+}
+
+export const vmBooleanFields = new Set(['haenable', 'isdynamicallyscalable', 'displayvm', 'passwordenabled', 'dynamicallyscalingenabled'])
+export function vmBooleanLabel (value) {
+  if ([true, 'true', 1, '1'].includes(value)) return 'label.yes'
+  if ([false, 'false', 0, '0'].includes(value)) return 'label.no'
+  return 'label.unknown'
 }
