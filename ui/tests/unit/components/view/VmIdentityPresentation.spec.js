@@ -63,7 +63,7 @@ test('VM and VNF details distinguish guest host name from displayname', () => {
   for (const name of ['vm', 'vnfapp']) {
     const c = { $route: { meta: { name } }, detailsTitles: { name: 'name', displayname: 'displayname' } }
     expect(DetailsTab.methods.getDetailTitle.call(c, 'name')).toBe('label.vm.name')
-    expect(DetailsTab.methods.getDetailTitle.call(c, 'displayname')).toBe('label.displayname')
+    expect(DetailsTab.methods.getDetailTitle.call(c, 'displayname')).toBe('label.vm.displayname')
   }
 })
 
