@@ -11864,6 +11864,9 @@
   "message.vnf.action.unmanage.limits": "이 화면은 Running KVM·정상 호스트·삭제 보호 해제·HA 비활성·BMC 없음 조합만 지원합니다. 스냅샷·ISO·ConfigDrive 등의 서버 검사와 기존 보존 정책을 우회하지 않으며 hostid/forced 기본값을 보내지 않습니다.",
   "message.vnf.action.unmanage.ack": "호스트의 VM/디스크가 남고 Cloud 관리·NIC 예약 정책이 변경되는 영향을 이해했습니다.",
   "message.vnf.action.unmanage.success": "관리 해제가 완료되었고 VNF/VM 목록에서 제외된 것을 확인했습니다.",
+  "message.vnf.action.unmanage.pending": "관리 해제 작업을 확인 중입니다. 창을 닫아도 서버 작업은 계속되며 같은 대상에서 다시 열어 조회할 수 있습니다.",
+  "message.vnf.action.unmanage.failed": "관리 해제 작업이 실패했습니다. 대상 상태와 사전 조건을 다시 확인하세요.",
+  "message.vnf.action.unmanage.result.unknown": "관리 해제 결과와 호스트 ID 또는 VNF/VM 목록 제외를 확인하지 못했습니다. 같은 작업을 다시 조회하고 대상 상태를 점검하세요.",
   "message.vnf.action.unmanage.host.remains": "호스트 VM과 디스크는 보존됩니다. 이후 호스트 상태와 통신을 확인하고, 관리가 필요하면 별도 재등록 절차를 사용하세요.",
   "message.vnf.action.monitor.loading": "모니터링 포털 설정을 확인 중입니다.",
   "message.vnf.action.monitor.unconfigured": "사용 가능한 Wall VM 포털 주소/경로를 확인하지 못했습니다. 포털 설정을 확인하세요."

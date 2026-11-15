@@ -32,7 +32,7 @@ under the License.
           <a-checkbox v-model:checked="acknowledged" :disabled="loading">{{ $t('message.vnf.action.unmanage.ack') }}</a-checkbox>
         </template>
       </a-spin>
-      <p v-if="operation" role="status">{{ $t(operation.jobid ? 'message.vnf.reinstall.pending' : 'message.vnf.reinstall.unknown') }} <span v-if="operation.jobid">{{ operation.jobid }}</span></p>
+      <p v-if="operation" role="status">{{ $t(operation.jobid ? 'message.vnf.action.unmanage.pending' : 'message.vnf.reinstall.unknown') }} <span v-if="operation.jobid">{{ operation.jobid }}</span></p>
       <p v-if="succeeded">{{ $t('message.vnf.action.unmanage.host.remains') }}</p>
       <mold-dialog-actions :busy="loading || posting">
         <a-button @click="close">{{ $t(succeeded ? 'label.vnf.action.back' : 'label.close') }}</a-button>
@@ -110,14 +110,14 @@ export default {
         if (!this.current() || vnfUnmanageJobs.get(this.target.id) !== op) return
         const job = json?.queryasyncjobresultresponse
         if (Number(job?.jobstatus) === 0) { this.timer = setTimeout(() => this.query(), 2000); return }
-        if (Number(job?.jobstatus) === 2) { vnfUnmanageJobs.delete(this.target.id); this.operation = null; this.error = job.jobresult?.errortext || this.$t('message.vnf.reinstall.job.failed'); return }
+        if (Number(job?.jobstatus) === 2) { vnfUnmanageJobs.delete(this.target.id); this.operation = null; this.error = job.jobresult?.errortext || this.$t('message.vnf.action.unmanage.failed'); return }
         const result = job?.jobresult?.unmanagevirtualmachineresponse || job?.jobresult
-        if (Number(job?.jobstatus) !== 1 || result?.result !== true || result.hostid !== op.hostid || job.jobinstanceid && job.jobinstanceid !== this.target.id) throw new Error('message.vnf.reinstall.result.unknown')
+        if (Number(job?.jobstatus) !== 1 || result?.result !== true || result.hostid !== op.hostid || job.jobinstanceid && job.jobinstanceid !== this.target.id) throw new Error('message.vnf.action.unmanage.result.unknown')
         const params = { id: this.target.id, listall: true, ...(this.target.projectid ? { projectid: this.target.projectid } : {}) }
         const [vms, vnfs] = await Promise.all([getAPI('listVirtualMachines', params, { preserveOnFailure: true }), getAPI('listVnfAppliances', params, { preserveOnFailure: true })])
         if (!this.current()) return
         const bodies = [vms?.listvirtualmachinesresponse, vnfs?.listvnfappliancesresponse]
-        if (bodies.some(b => !b || b.errorcode || Number(b.count || 0) !== 0 || b.virtualmachine?.length || b.vnfappliance?.length)) throw new Error('message.vnf.reinstall.result.unknown')
+        if (bodies.some(b => !b || b.errorcode || Number(b.count || 0) !== 0 || b.virtualmachine?.length || b.vnfappliance?.length)) throw new Error('message.vnf.action.unmanage.result.unknown')
         vnfUnmanageJobs.delete(this.target.id); this.operation = null; this.succeeded = true
       } catch (e) { if (this.current()) this.error = this.message(e) } finally { this.querying = false }
     },

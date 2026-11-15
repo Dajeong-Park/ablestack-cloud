@@ -11856,6 +11856,9 @@
   "message.vnf.action.unmanage.limits": "This flow supports Running KVM, an available host, deletion protection off, HA off and no BMC endpoint. Server snapshot, ISO, ConfigDrive and preservation checks remain authoritative. No hostid or forced defaults are sent.",
   "message.vnf.action.unmanage.ack": "I understand that the host VM and disks remain and that Cloud management and NIC reservation policy apply.",
   "message.vnf.action.unmanage.success": "Unmanaging completed and the target is absent from both VNF and VM lists.",
+  "message.vnf.action.unmanage.pending": "Checking the unmanage job. Closing this dialog does not cancel the server job; reopen the same target to query it.",
+  "message.vnf.action.unmanage.failed": "The unmanage job failed. Review the target state and preconditions before retrying.",
+  "message.vnf.action.unmanage.result.unknown": "The unmanage result, host ID, or removal from both VNF and VM lists could not be confirmed. Query the same job and inspect the target state.",
   "message.vnf.action.unmanage.host.remains": "The host VM and disks remain. Verify host state and connectivity and use the separate import workflow if Cloud management is required again.",
   "message.vnf.action.monitor.loading": "Checking monitoring portal configuration.",
   "message.vnf.action.monitor.unconfigured": "A usable Wall VM portal address and path could not be verified. Check the portal configuration."
