@@ -1,0 +1,192 @@
+[
+  {
+    "file": "before-vnf-detail-dark.jpg",
+    "originalSize": [
+      1680,
+      1050
+    ],
+    "cropTop": 0,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "20a7cf7149cdc5533deef0f01972d181373b0386934cebef5b19a8cb9a588b10"
+  },
+  {
+    "file": "after-vnf-detail-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "0a65cf16beecd8bfc52ac854662d9dc1f7602bd4b53a8677784ea2b0137cfb6e"
+  },
+  {
+    "file": "vnf-distinct-identity-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "fb9674de1765dff05118eb83eeb4355b140473a582ff7a8c2d25fbd8a6ba8905"
+  },
+  {
+    "file": "vnf-protection-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "16ee26c4bbe92f9d7d41fbf7b09adc5a851ab224cada4bd2413f9dcf3f8fcfb7"
+  },
+  {
+    "file": "vnf-protection-light.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "4b1d992d2daf4408a8b9b16185ae027e552c3b423a32bcc43c604da65aaeabb9"
+  },
+  {
+    "file": "vnf-narrow-details-light.jpg",
+    "originalSize": [
+      811,
+      975
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "dbf33cd5bfd507d670eb716c53cbf5ae87ca64383da7a8edd3bcecd14d01cf48"
+  },
+  {
+    "file": "vnf-edit-dialog-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "926c09891d897df0c636801719d652ad4f09308647347afb27348ae1513f105d"
+  },
+  {
+    "file": "vnf-edit-dialog-light.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "3fa6da982f7f3de980a2d15431c32bda917af85019b2ab0aa2144b6bf2046e09"
+  },
+  {
+    "file": "vnf-iso-tab-light.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "bc0854c7f4a668346d05df250cfc1fd860a3b6e648fada39ea8907c50eee1b2a"
+  },
+  {
+    "file": "vnf-settings-light.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "7bd7f503a8f9a3872fbf6cda434d16b2ccacb4687c11e141839bf63d334311ee"
+  },
+  {
+    "file": "iso-detail-light.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "20fd7d4c562ad71569e003f912b042eb8c5ef30eff18aeb9f6b4661a9a01122a"
+  },
+  {
+    "file": "iso-edit-light.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "622610d4d5f35299741618db88bca8e494820188a977f11574feb06342192efc"
+  },
+  {
+    "file": "iso-zone-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "58db5226b4c606eeebc1b5d8edc5bd09a45e122e81fce353b3dfb6b8803dee9d"
+  },
+  {
+    "file": "iso-copy-no-target-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "bb6f179a5a2653792672e9cb4fdb9b8b90d24a3986d37beb1a2a2482d0908f40"
+  },
+  {
+    "file": "iso-search-return-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "46f34f229cd839e7d073bff174e10ac1404199ea9e513b1de36205b5f3da736f"
+  },
+  {
+    "file": "cleanup-vnf-zero-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "8f5cc4bec20e4d08421e8f7585afade57a65c10e623b38576b891fa925cc2846"
+  },
+  {
+    "file": "cleanup-root-volume-zero.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "8bc116d93c3cf2ea8fca4b19c6a0272e78f252e24ac81c4ca52c21157aaca7a6"
+  },
+  {
+    "file": "cleanup-template-zero.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "8a989f4bf06e9ba9f8c63fe39f8cbc11caa0c59029453209cec7f63bb8838a99"
+  },
+  {
+    "file": "final-iso-list-dark.jpg",
+    "originalSize": [
+      1680,
+      1018
+    ],
+    "cropTop": 88,
+    "purpose": "remove browser chrome only; Mold UI unchanged",
+    "sha256": "0e7c8256f31a1352312ad7574bfcb14120296daf5118eb2114f769429b795431"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "templates": [
+    {
+      "id": "646ee5d7-4278-40d6-b6b8-9e7d3463b8f8",
+      "name": "qa-iso-vnf-sync-20261116-template",
+      "cleanup": "zone delete success; keyword result zero"
+    }
+  ],
+  "vms": [
+    {
+      "id": "749f7be5-aa53-4991-890f-70108c4133c7",
+      "name": "qa-vnf16-host",
+      "state": "Stopped",
+      "ip": "10.143.61.59",
+      "offering": "CKS Instance",
+      "cleanup": "expunged; VNF and template-reference lists zero"
+    }
+  ],
+  "volumes": [
+    {
+      "id": "06d3318c-54a1-4bda-98c5-c6af0511fc33",
+      "name": "ROOT-261",
+      "vmId": "749f7be5-aa53-4991-890f-70108c4133c7",
+      "state": "Allocated",
+      "cleanup": "destroyed; ROOT-261 keyword result zero"
+    }
+  ]
+}

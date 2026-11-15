@@ -1,0 +1,16 @@
+{
+  "dedicatedIsoAndVmReadFilesUnchanged": 20,
+  "isoLocaleKeysUnchanged": {
+    "en": 239,
+    "ko_KR": 239
+  },
+  "originalIsoIdsMatch": true,
+  "originalIsoCount": 8,
+  "vnfRouteEqualsUpstream": true,
+  "vnfRouteAstEqualsCanonical": true,
+  "existingOperatingVpcBehaviorPreserved": true,
+  "canonicalProductHead": "ce4820ba90d4ed4ac1302585349e5fb3daf83ad5",
+  "upstreamBase": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+  "uiCaseCount": 39,
+  "additionalProductChanges": 0
+}

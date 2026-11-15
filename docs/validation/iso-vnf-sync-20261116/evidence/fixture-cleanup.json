@@ -1,0 +1,6 @@
+{
+  "fixtureRemoved": true,
+  "httpStatus": 404,
+  "guardedPath": "/usr/share/cloudstack-management/webapp/qa-iso-vnf-sync-20261116/cirros.qcow2",
+  "directoryRemoved": true
+}
