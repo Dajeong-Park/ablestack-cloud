@@ -11889,5 +11889,17 @@
   "message.vm.start.lookup.empty": "선택 가능한 배치 대상이 없습니다. 선택을 비워 두면 자동 배치를 요청합니다.",
   "message.vm.start.lookup.forbidden": "현재 권한에서 배치 후보를 조회할 수 없습니다. 선택을 비워 두면 자동 배치를 요청합니다.",
   "message.vm.start.unknown": "시작 요청의 접수 여부를 확인하지 못했습니다. 중복 실행을 막기 위해 이 창의 재제출을 차단했습니다. 창을 닫고 가상머신과 작업 상태를 확인하세요.",
-  "message.vm.start.unavailable": "중지 상태인 가상머신과 현재 시작 권한을 확인하세요. 대상이나 로그인·프로젝트 문맥이 바뀐 요청은 실행하지 않습니다."
+  "message.vm.start.unavailable": "중지 상태인 가상머신과 현재 시작 권한을 확인하세요. 대상이나 로그인·프로젝트 문맥이 바뀐 요청은 실행하지 않습니다.",
+  "label.public.ip.reserve.owner": "예약 대상 소유자",
+  "label.public.ip.reserve.observed": "현재 서버 상태",
+  "label.public.ip.reserve.check": "예약 결과 확인",
+  "label.public.ip.reserve.endtracking": "추적 종료",
+  "label.public.ip.reserve.confirm": "예약",
+  "message.public.ip.reserve.unknown": "예약 결과를 확인하지 못했습니다. 중복 예약을 막기 위해 다시 제출하지 않습니다. 현재 상태를 확인해 주세요.",
+  "message.public.ip.reserve.mismatch": "선택한 소유자와 서버 예약 결과가 다릅니다. 실제 소유자를 확인해 주세요.",
+  "message.public.ip.reserve.acknowledge": "현재 미예약 상태를 확인했습니다. 이전 요청이 뒤늦게 완료될 수 있음을 확인하고 새 시도 전에 추적을 끝냅니다.",
+  "message.public.ip.reserve.lookup": "예약 대상 목록을 불러오지 못했습니다. 다시 조회해 주세요.",
+  "message.public.ip.reserve.empty": "선택할 수 있는 대상이 없습니다.",
+  "message.public.ip.reserve.unavailable": "현재 주소 상태나 예약 대상을 확인하지 못했습니다. 선택과 권한을 확인한 뒤 다시 시도해 주세요.",
+  "message.public.ip.reserve.read": "현재 예약 상태를 불러오지 못했습니다. 입력을 유지한 채 다시 확인할 수 있습니다."
 }
