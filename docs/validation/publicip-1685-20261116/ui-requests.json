@@ -1,0 +1,1241 @@
+[
+  {
+    "case": "31-ko-account-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "account": "epic1335-user31",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "allocated": "2026-11-16T05:41:00+0900",
+              "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "account": "epic1335-user31",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "913399c6-e526-43fd-9260-ba52404b3f0f",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "state": "Reserved",
+              "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-ko-account-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-ko-project-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "projectid": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "allocated": "2026-11-16T05:41:07+0900",
+              "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "projectid": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+              "project": "E1335-Permission-31",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "68ab68d3-1ddb-4c85-8dfb-8c8acc962bb1",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "state": "Reserved",
+              "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-ko-project-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-en-account-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "account": "epic1335-user31",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "allocated": "2026-11-16T05:41:39+0900",
+              "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "account": "epic1335-user31",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "bdcc17b2-d10d-4174-bc88-3b2b2914610d",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "state": "Reserved",
+              "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-en-account-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-en-project-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "projectid": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "allocated": "2026-11-16T05:41:46+0900",
+              "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "projectid": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+              "project": "E1335-Permission-31",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "321890df-5f5b-4911-a0a9-7a1a71bfb7cb",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "state": "Reserved",
+              "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-en-project-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-ko-account-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "account": "epic1335-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+              "ipaddress": "10.10.32.103",
+              "allocated": "2026-11-16T05:43:01+0900",
+              "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "account": "epic1335-user32",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "c03da396-bb66-43c8-ade7-25cf9e4e1078",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+              "state": "Reserved",
+              "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-ko-account-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-ko-project-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "projectid": "a8c89140-8cd3-41c8-b799-ccd4f348af9d"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+              "ipaddress": "10.10.32.103",
+              "allocated": "2026-11-16T05:43:08+0900",
+              "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "projectid": "a8c89140-8cd3-41c8-b799-ccd4f348af9d",
+              "project": "E1335-Permission-32",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "aee03bb2-5652-409d-90fd-e28942df0189",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+              "state": "Reserved",
+              "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-ko-project-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-en-account-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "account": "epic1335-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+              "ipaddress": "10.10.32.103",
+              "allocated": "2026-11-16T05:43:30+0900",
+              "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "account": "epic1335-user32",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "ec2bedc5-10c7-46f5-84d2-4224dce18e19",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+              "state": "Reserved",
+              "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-en-account-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-en-project-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "projectid": "a8c89140-8cd3-41c8-b799-ccd4f348af9d"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+              "ipaddress": "10.10.32.103",
+              "allocated": "2026-11-16T05:43:37+0900",
+              "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "projectid": "a8c89140-8cd3-41c8-b799-ccd4f348af9d",
+              "project": "E1335-Permission-32",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "1103399c-94e1-48a0-9d1c-24358c3fb7cb",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+              "state": "Reserved",
+              "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "32-en-project-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-final-explicit-retry-reserve",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "account": "epic1335-user31",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "status": 200,
+        "response": {
+          "reserveipaddressresponse": {
+            "ipaddress": {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "allocated": "2026-11-16T05:47:35+0900",
+              "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "zonename": "Zone",
+              "issourcenat": false,
+              "account": "epic1335-user31",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "domainpath": "ROOT",
+              "allocationgeneration": "7bdd0788-e3cd-497c-9ea7-dab0cb8be59e",
+              "forvirtualnetwork": true,
+              "isstaticnat": false,
+              "issystem": false,
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "state": "Reserved",
+              "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+              "tags": [],
+              "isportable": false,
+              "fordisplay": true,
+              "hasrules": false,
+              "forsystemvms": false,
+              "forprovider": false,
+              "hasannotations": false
+            }
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-final-explicit-retry-release",
+    "requests": [
+      {
+        "command": "releaseIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "releaseIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+        },
+        "status": 200,
+        "response": {
+          "releaseipaddressresponse": {
+            "success": true
+          }
+        }
+      },
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "synthetic": false
+  },
+  {
+    "case": "31-final-ctrl-enter-unknown-503",
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "account": "epic1335-user31",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "status": 503,
+        "response": {
+          "synthetic": true,
+          "message": "#1685 최종 합성 503"
+        }
+      }
+    ],
+    "truncated": false,
+    "synthetic": true
+  },
+  {
+    "case": "31-final-unknown-read-end",
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false,
+    "synthetic": true
+  }
+]

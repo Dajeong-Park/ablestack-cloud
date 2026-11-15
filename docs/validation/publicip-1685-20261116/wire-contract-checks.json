@@ -1,0 +1,66 @@
+[
+  {
+    "case": "31-ko-account",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "epic1335-user31",
+    "actualOwner": "epic1335-user31"
+  },
+  {
+    "case": "31-ko-project",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+    "actualOwner": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5"
+  },
+  {
+    "case": "31-en-account",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "epic1335-user31",
+    "actualOwner": "epic1335-user31"
+  },
+  {
+    "case": "31-en-project",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+    "actualOwner": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5"
+  },
+  {
+    "case": "32-ko-account",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "epic1335-user32",
+    "actualOwner": "epic1335-user32"
+  },
+  {
+    "case": "32-ko-project",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "a8c89140-8cd3-41c8-b799-ccd4f348af9d",
+    "actualOwner": "a8c89140-8cd3-41c8-b799-ccd4f348af9d"
+  },
+  {
+    "case": "32-en-account",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "epic1335-user32",
+    "actualOwner": "epic1335-user32"
+  },
+  {
+    "case": "32-en-project",
+    "pass": true,
+    "reservePOST": 1,
+    "releasePOST": 1,
+    "expectedOwner": "a8c89140-8cd3-41c8-b799-ccd4f348af9d",
+    "actualOwner": "a8c89140-8cd3-41c8-b799-ccd4f348af9d"
+  }
+]
