@@ -85,8 +85,18 @@ test('an async response without a job identity is not treated as a successful su
 test('an old group response cannot close a later dialog even on the same VM', async () => {
   let done; postAPI.mockReturnValueOnce(new Promise(resolve => { done = resolve }))
   const pending = c.callGroupApi({ id }, '원래 대상')
-  c.currentAction = { ...c.currentAction }
+  c.currentAction = { ...c.currentAction }; c.storageActionGeneration++
   done({ stopvirtualmachineresponse: { jobid: 'old-group-job' } })
   await expect(pending).resolves.toBe(false)
   expect(c.handleResponse).not.toHaveBeenCalled(); expect(c.closeAction).not.toHaveBeenCalled()
+})
+
+test('all accepted group receipts remain tracked after the first receipt closes the dialog', async () => {
+  let first, second
+  postAPI.mockReturnValueOnce(new Promise(resolve => { first = resolve })).mockReturnValueOnce(new Promise(resolve => { second = resolve }))
+  c.closeAction = jest.fn(() => { c.showAction = false; c.currentAction = {} })
+  const pending = [c.callGroupApi({ id }, '첫 대상'), c.callGroupApi({ id: 'second' }, '둘째 대상')]
+  first({ stopvirtualmachineresponse: { jobid: 'first' } }); await flushPromises()
+  second({ stopvirtualmachineresponse: { jobid: 'second' } }); await Promise.all(pending)
+  expect(c.handleResponse).toHaveBeenCalledTimes(2); expect(c.closeAction).toHaveBeenCalledTimes(1)
 })

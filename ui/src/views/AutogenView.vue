@@ -3301,6 +3301,7 @@ export default {
         const submittedAction = this.currentAction
         const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
         const vmTargets = vmScope ? JSON.stringify(selectedKeys) : null
+        const vmGeneration = this.storageActionGeneration
         if (vmScope) this.vmActionValidationPending = true
         this.formRef.value.validate().then(() => {
           if (vmScope && (!this.showAction || submittedAction !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store) || vmTargets !== JSON.stringify(this.selectedRowKeys))) return
@@ -3324,6 +3325,7 @@ export default {
             duration: 3
           })
           Promise.all(this.promises).finally(() => {
+            if (vmScope && (vmGeneration !== this.storageActionGeneration || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
             this.actionLoading = false
             this.fetchData()
           })
@@ -3340,13 +3342,14 @@ export default {
       const selectedItems = this.selectedItems
       return new Promise((resolve, reject) => {
         const action = this.currentAction
+        const vmGeneration = this.storageActionGeneration
         const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
         postAPI(action.api, params).then(json => {
-          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
+          if (vmScope && (vmGeneration !== this.storageActionGeneration || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
           resolve(this.handleResponse(json, resourceName, this.getDataIdentifier(params), action, false, selectedItems))
-          this.closeAction()
+          if (!vmScope || this.currentAction === action) this.closeAction()
         }).catch(error => {
-          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
+          if (vmScope && (vmGeneration !== this.storageActionGeneration || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
           if ([401].includes(error.response?.status)) {
             resolve(false)
             return
