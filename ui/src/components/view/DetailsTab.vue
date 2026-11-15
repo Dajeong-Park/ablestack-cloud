@@ -50,11 +50,11 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': $route.meta.name === 'template', 'vm-details-list': ['vm', 'vnfapp'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': $route.meta.name === 'template', 'vm-details-list': ['vm', 'vnfapp', 'publicip'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -64,8 +64,9 @@
           <a-tooltip v-if="['volume', 'snapshot', 'template', 'iso'].includes($route.meta.name) && item === 'savingrate'"><template #title>{{ $t('message.savingrate') }}</template><QuestionCircleOutlined style="margin-left: 8px;"/></a-tooltip>
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
+          <public-ip-detail-value v-if="$route.meta.name === 'publicip' && publicIpDetailFields.includes(item)" :resource="dataResource" :field="item" />
           <template-detail-value
-            v-if="$route.meta.name === 'template' && presentedTemplateValue(item)"
+            v-else-if="$route.meta.name === 'template' && presentedTemplateValue(item)"
             :field="item"
             :value="dataResource[item]"
             :label="$t(getDetailTitle(item))" />
@@ -414,6 +415,8 @@ import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { l2ConfigDrive, l2PvlanDetails } from '@/utils/l2Network'
 import { sharedScopeLabel } from '@/utils/sharedNetwork'
 import Status from '@/components/widgets/Status'
+import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
+import { publicIpDetailFields, publicIpFieldLabel } from '@/utils/publicIpDetails'
 import TemplateDetailValue from '@/components/widgets/TemplateDetailValue'
 import { presentedTemplateValue } from '@/utils/templateDetails'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
@@ -443,6 +446,7 @@ import VnfAccessNotice from '@/components/compute/VnfAccessNotice'
 export default {
   name: 'DetailsTab',
   components: {
+    PublicIpDetailValue,
     VnfAccessNotice,
     InternalLbRules,
     TemplateDetailValue,
@@ -492,6 +496,7 @@ export default {
       dataResource: {},
       detailsTitles: [],
       vmBooleanFields,
+      publicIpDetailFields,
       licenseInfo: {
         expired: false,
         expiryDate: ''
@@ -652,6 +657,7 @@ export default {
       return detailsKeys
     },
     getDetailTitle (detail) {
+      if (this.$route.meta.name === 'publicip' && publicIpDetailFields.includes(detail)) return publicIpFieldLabel(detail)
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && ['osdisplayname', 'ostypename'].includes(detail)) return 'label.ostypename'
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'name') return 'label.vm.name'
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'displayname') return 'label.vm.displayname'

@@ -11893,5 +11893,14 @@
   "message.public.ip.reserve.lookup": "Reservation candidates could not be loaded. Refresh to try again.",
   "message.public.ip.reserve.empty": "No reservation candidates are available.",
   "message.public.ip.reserve.unavailable": "The current address state or reservation owner could not be verified. Check the selection and permissions before trying again.",
-  "message.public.ip.reserve.read": "The current reservation state could not be loaded. Your input is preserved; check again."
+  "message.public.ip.reserve.read": "The current reservation state could not be loaded. Your input is preserved; check again.",
+  "label.public.ip.vlan.value": "VLAN value",
+  "label.public.ip.vlan.range.id": "VLAN range UUID",
+  "label.public.ip.network.source": "Public network",
+  "label.public.ip.network.attached": "Associated guest network",
+  "label.public.ip.vlan.untagged": "Untagged",
+  "label.public.ip.value.notprovided": "Not provided in this response",
+  "label.public.ip.value.raw": "Raw value",
+  "message.public.ip.detail.read.failed": "Unable to read the public IP details.",
+  "message.public.ip.detail.unavailable": "This public IP is unavailable in the current context."
 }

@@ -885,7 +885,7 @@ export default {
         fields.push(...['domain', 'zonename'])
         return fields
       },
-      details: ['ipaddress', 'id', 'associatednetworkname', 'networkid', 'vpcname', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'vlan', 'allocated', 'account', 'domain', 'zonename'],
+      details: ['ipaddress', 'id', 'vlanname', 'vlanid', 'networkid', 'associatednetworkname', 'vpcname', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'allocated', 'account', 'domain', 'zonename'],
       filters: ['allocated', 'reserved', 'free'],
       component: shallowRef(() => import('@/views/network/PublicIpResource.vue')),
       tabs: [{

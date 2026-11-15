@@ -865,7 +865,7 @@
       <a-alert v-if="snapshotSearchFailure" class="storage-query-error" type="error" show-icon :message="$t('message.snapshot.search.' + snapshotSearchFailure)" />
       <a-alert v-if="policySearchFailure" class="storage-query-error" type="error" show-icon :message="$t('message.snapshot.policy.search.' + policySearchFailure)" />
       <a-alert v-if="isSnapshotCopyList" class="storage-query-error" type="info" show-icon :message="$t('message.snapshot.search.copy.readonly')" />
-      <a-alert v-if="(isVpcUi || isStorageUi || isSnapshotReadView) && listRefreshError" class="storage-query-error" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
+      <a-alert v-if="(isVpcUi || isStorageUi || isSnapshotReadView || publicIpDetail) && listRefreshError" class="storage-query-error" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
         <template #description><p v-if="isSnapshotReadView && snapshotListError">{{ snapshotListError.startsWith('message.') ? $t(snapshotListError) : snapshotListError }}</p><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
       <a-alert v-if="isTemplateList && templateFilterError" type="error" show-icon :message="$t(templateFilterError)">
@@ -987,6 +987,7 @@ import SharedFSFormDialog from '@/components/storage/SharedFSFormDialog'
 import { Button } from 'ant-design-vue'
 import { getAPI, postAPI, callAPI } from '@/api'
 import { freshSnapshotContext } from '@/utils/vmSnapshotList'
+import { publicIpReadAuth, validatePublicIpDetail } from '@/utils/publicIpDetails'
 import { scopedSnapshotOperations, snapshotOperationAffectsRoute } from '@/utils/storageSnapshotNotices'
 import { snapshotSecurityScope as storageSnapshotSecurityScope } from '@/utils/storageSnapshotContext'
 import { snapshotDetailRoute, snapshotDetailParams, snapshotDetailPermissions, readSnapshotDetail } from '@/utils/storageSnapshotDetail'
@@ -1310,6 +1311,18 @@ export default {
     next()
   },
   watch: {
+    publicIpAuth: {
+      flush: 'sync',
+      handler () {
+        if (!this.publicIpDetail) return
+        this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+        this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
+        this.$emit('change-resource', this.resource)
+        this.$emit('public-ip-read-state', { pending: false, failed: false })
+        if (this.showAction) this.closeAction()
+        if (this.$store.state?.user?.token && 'listPublicIpAddresses' in (this.$store.getters.apis || {})) this.fetchData()
+      }
+    },
     vmDialogScope () {
       if (this.showAction && this.vmStandardDialog) this.closeAction()
     },
@@ -1456,6 +1469,8 @@ export default {
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
+    publicIpDetail () { return this.$route.meta?.name === 'publicip' && !!this.$route.params?.id },
+    publicIpAuth () { return this.publicIpDetail ? publicIpReadAuth(this.$store) : '' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
     standardActionDialog () { return this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
@@ -1723,7 +1738,7 @@ export default {
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(this.publicIpDetail ? [this.publicIpAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -1975,13 +1990,14 @@ export default {
           : null
         this.routeName = matchedRoute?.meta?.name || this.$route?.meta?.name || this.$route?.name || ''
       }
-      const securityScope = JSON.stringify([...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
+      const securityScope = JSON.stringify([...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(this.publicIpDetail ? [this.publicIpAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
       if (this.listSecurityScope !== securityScope) {
         this.items = []
         this.resource = {}
         this.itemCount = 0
         this.listLoadedScope = null
         this.listSecurityScope = securityScope
+        if (this.publicIpDetail) this.$emit('change-resource', this.resource)
       }
       const scope = this.listScope()
       if (this.listRequestPending && this.listRequestScope === scope) {
@@ -2349,6 +2365,7 @@ export default {
 
       this.listRequestPending = true
       this.listRequestScope = scope
+      if (this.publicIpDetail) this.$emit('public-ip-read-state', { pending: true, failed: this.listRefreshError })
       const requestApi = this.apiName
       const vmGroups = this.$route.meta?.name === 'vmgroup'
       if (vmGroups) {
@@ -2377,7 +2394,7 @@ export default {
       const snapshotDetail = snapshotDetailRoute(this.$route)
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
-      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2386,6 +2403,7 @@ export default {
           this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = true
           return
         }
+        if (this.publicIpDetail) validatePublicIpDetail(json, this.$route.params.id)
         const networkPage = guestNetworkRoute(this.$route) && !this.dataView ? readNetworkPage(json, 'listNetworks', 'network', params) : null
         const vnfPage = vnfRoute(this.$route) && !this.dataView ? readVnfPage(json, params) : null
         const groupResult = vmGroups ? vmGroupQueryRows(json) : null
@@ -2521,6 +2539,16 @@ export default {
           if (isAutoScheduled) throw error
           return
         }
+        if (this.publicIpDetail) {
+          this.listRefreshError = true
+          const code = Number(Object.values(error?.response?.data || {}).find(value => value?.errorcode)?.errorcode || error?.response?.status)
+          if (!sameList || [401, 403, 404, 431, 432, 531].includes(code)) {
+            this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
+            this.$emit('change-resource', this.resource)
+          }
+          if (isAutoScheduled) throw error
+          return
+        }
         if (sshDetail) { this.rejectSshKeyPairDetail(sshKeyPairDetailFailure(error)); return }
         if (cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
           if (snapshotListRoute(this.$route) || snapshotDetail || policyDetail) this.snapshotListError = Object.values(error?.response?.data || {}).find(value => value?.errortext)?.errortext || (error.message?.startsWith('message.') ? error.message : 'message.snapshot.list.read.failed')
@@ -2588,6 +2616,7 @@ export default {
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
         this.listRequestPending = false
         this.loading = false
+        if (this.publicIpDetail) this.$emit('public-ip-read-state', { pending: false, failed: this.listRefreshError })
         this.searchParams = params
         if (this.listRefreshQueued) {
           this.listRefreshQueued = false

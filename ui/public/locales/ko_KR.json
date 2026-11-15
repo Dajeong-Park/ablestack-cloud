@@ -11901,5 +11901,14 @@
   "message.public.ip.reserve.lookup": "예약 대상 목록을 불러오지 못했습니다. 다시 조회해 주세요.",
   "message.public.ip.reserve.empty": "선택할 수 있는 대상이 없습니다.",
   "message.public.ip.reserve.unavailable": "현재 주소 상태나 예약 대상을 확인하지 못했습니다. 선택과 권한을 확인한 뒤 다시 시도해 주세요.",
-  "message.public.ip.reserve.read": "현재 예약 상태를 불러오지 못했습니다. 입력을 유지한 채 다시 확인할 수 있습니다."
+  "message.public.ip.reserve.read": "현재 예약 상태를 불러오지 못했습니다. 입력을 유지한 채 다시 확인할 수 있습니다.",
+  "label.public.ip.vlan.value": "VLAN 값",
+  "label.public.ip.vlan.range.id": "VLAN 범위 UUID",
+  "label.public.ip.network.source": "공용 네트워크",
+  "label.public.ip.network.attached": "연결된 게스트 네트워크",
+  "label.public.ip.vlan.untagged": "태그 없음 (Untagged)",
+  "label.public.ip.value.notprovided": "이 응답에서 미제공",
+  "label.public.ip.value.raw": "원문",
+  "message.public.ip.detail.read.failed": "Public IP 상세를 읽지 못했습니다.",
+  "message.public.ip.detail.unavailable": "현재 범위에서 이 Public IP를 확인할 수 없습니다."
 }
