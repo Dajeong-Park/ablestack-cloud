@@ -9,7 +9,7 @@
   "toolOnlyNotPass": [
     "clipboard-native-paste-probe"
   ],
-  "manualClipboard": "PENDING; actual ID/checksum/URL paste required; browser managed clipboard probe is not product failure or pass",
+  "manualClipboard": "PASS_USER_CONFIRMED: actual separate-browser ID/checksum/URL copy and OS paste all exactly matched; user reply: 세 값 모두 일치 확인",
   "actualMultiZoneAndNonKvm": "NOT_RUN; no additional environment; preserved functionality; unit multi target/duplicate/partial/Ready delay tested",
   "injectedCases": {
     "bulk-delete-busy-keyboard": "one expected POST held before server, Ctrl+Enter twice and Esc; fulfilled HTTP400, not a real backend rejection",
@@ -25,5 +25,6 @@
     "Original ISO row comparison normalizes whitespace and the existing unknown-size em dash.",
     "QA role was only reduced from User to ReadOnly User; no rights were restored.",
     "Normal server event history and alerts are retained; cleanup means approved disposable resources and exact HTTP fixture, not audit-log deletion."
-  ]
+  ],
+  "historicalPendingCase": "manual-clipboard-target-preserved records the earlier pending state; superseded by manual-clipboard-confirmed and final-cleanup-complete"
 }

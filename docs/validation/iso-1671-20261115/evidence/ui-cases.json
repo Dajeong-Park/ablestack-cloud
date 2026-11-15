@@ -642,5 +642,110 @@
     "remainingIsoCount": 1,
     "remainingQaAccountCount": 1,
     "temporaryBrowserFaultsCleared": true
+  },
+  {
+    "name": "manual-clipboard-confirmed",
+    "at": "2026-11-15T11:40:25.323Z",
+    "source": "user manual paste in separate browser",
+    "id": "1e740a0f-f266-4ed1-8d00-a127dc57b639",
+    "idExact": true,
+    "checksumExact": true,
+    "urlExact": true,
+    "userReply": "세 값 모두 일치 확인"
+  },
+  {
+    "name": "clipboard-target-ui-delete-complete",
+    "at": "2026-11-15T11:40:41.548Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1671-url-original-values\n아이디\n1e740a0f-f266-4ed1-8d00-a127dc57b639\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "all-test-isos-ui-deleted",
+    "at": "2026-11-15T11:40:42.195Z",
+    "testIsoCount": 4,
+    "deletedIsoCount": 4
+  },
+  {
+    "name": "final-original-isos-preserved",
+    "at": "2026-11-15T11:40:50.218Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ],
+    "sameIds": true,
+    "qaRemaining": 0
+  },
+  {
+    "name": "qa-account-empty-before-delete",
+    "at": "2026-11-15T11:41:04.260Z",
+    "id": "5d927af7-7e6a-4b7d-bd14-6c21b179315a",
+    "text": "/계정/qa-iso1671-user업데이트\n작업\nqa-iso1671-user\n상태\n정상\n아이디\n5d927af7-7e6a-4b7d-bd14-6c21b179315a \n역할\nRead-Only User - Default\n도메인\nROOT\n생성일\n2026. 11. 15. 오후 6:12:50\n사용자 보기\nVM 보기\n볼륨 보기\n네트워크 보기\nSSH 키 쌍 보기\n사용자 데이터 보기\n템플릿 보기\nISO 보기\n상세\n제한\n구성 제한\n인증서\n설정\n이벤트\n이름\n\nqa-iso1671-user\n아이디\n\n5d927af7-7e6a-4b7d-bd14-6c21b179315a\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 6:12:50"
+  },
+  {
+    "name": "final-accounts-preserved",
+    "at": "2026-11-15T11:41:26.906Z",
+    "text": "/계정업데이트\n모두\n계정 추가\n\t\n\t\n이름\n\t\n상태\n\t\n역할\n\t\n역할 유형\n\t\n도메인\n\t\n\n\n\tadmin\t\n정상\n\tRoot Admin\tAdmin\tROOT\t\n\n\tbaremetal-system-account\t\n정상\n\tUser\tUser\tROOT\t\n\n\tepic898-config-denied-1791388603\t\n비활성화\n\tUser\tUser\tROOT\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽",
+    "qaRemaining": 0
+  },
+  {
+    "name": "final-roles-preserved",
+    "at": "2026-11-15T11:41:36.708Z",
+    "text": "/역할업데이트\n역할 추가\n\t\n이름\n\t\n유형\n\t\n설명\n\t\n상태\n\t\n\nRoot Admin\tAdmin\tDefault root admin role\t\n정상\n\t\nResource Admin\tResourceAdmin\tDefault resource admin role\t\n정상\n\t\nDomain Admin\tDomainAdmin\tDefault domain admin role\t\n정상\n\t\nUser\tUser\tDefault user role\t\n정상\n\t\nRead-Only Admin - Default\tAdmin\tDefault read-only admin role\t\n정상\n\t\nRead-Only User - Default\tUser\tDefault read-only user role\t\n정상\n\t\nSupport Admin - Default\tAdmin\tDefault support admin role\t\n정상\n\t\nSupport User - Default\tUser\tDefault support user role\t\n정상\n\t\nProject Kubernetes Service Role\tUser\tProject Kubernetes Service Role\t\n정상\n\t\n전체 9 개 항목 중 1-9 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-projects-preserved",
+    "at": "2026-11-15T11:41:42.071Z",
+    "text": "/프로젝트업데이트\n새 프로젝트\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-userdata-preserved",
+    "at": "2026-11-15T11:42:34.653Z",
+    "text": "/사용자 데이터 라이브러리업데이트\n프로젝트\n사용자 데이터 등록\n\t\n\t\n이름\n\t\n아이디\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-cleanup-complete",
+    "at": "2026-11-15T11:42:35.198Z",
+    "originalIsoCount": 8,
+    "originalIsoIdsPreserved": true,
+    "originalIsoValuesPreserved": true,
+    "deletedTestIsoCount": 4,
+    "deletedQaAccountCount": 1,
+    "remainingQaIsos": 0,
+    "remainingQaAccounts": 0,
+    "httpFixtureRemoved": true,
+    "httpAfterRemoval": 404,
+    "existingAccounts": 3,
+    "existingRoles": 9,
+    "projects": 0,
+    "userdatas": 0
   }
 ]

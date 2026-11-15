@@ -15,7 +15,8 @@
     {
       "id": "1e740a0f-f266-4ed1-8d00-a127dc57b639",
       "name": "qa-iso1671-url-original-values",
-      "expected": "Ready URL SHA-256"
+      "expected": "Ready URL SHA-256",
+      "deletedViaUi": true
     },
     {
       "id": "14f72df7-822b-41c2-bde3-94acdda6dafd",
@@ -28,7 +29,8 @@
   "accounts": [
     {
       "name": "qa-iso1671-user",
-      "id": "5d927af7-7e6a-4b7d-bd14-6c21b179315a"
+      "id": "5d927af7-7e6a-4b7d-bd14-6c21b179315a",
+      "deletedViaUi": true
     }
   ],
   "projects": []

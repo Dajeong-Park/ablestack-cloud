@@ -14,8 +14,8 @@
   "focusedPreCommit": true,
   "manualPreCommit": true,
   "uiBuild": true,
-  "clipboardActualPaste": "PENDING_USER_CONFIRMATION",
-  "cleanup": "PARTIAL_3_OF_4_ISOS_DELETED",
+  "clipboardActualPaste": "PASS_USER_CONFIRMED_ALL_THREE",
+  "cleanup": "COMPLETE_4_OF_4_ISOS_AND_QA_ACCOUNT_DELETED_HTTP_FIXTURE_404",
   "fullCiPass": false,
   "finalProductLint": {
     "run": 43707360412,
@@ -24,5 +24,15 @@
     "addedDiagnosticPaths": 0,
     "removedDiagnosticPaths": 0,
     "changedPathDiagnostics": 0
+  },
+  "originalIsoIdsAndValuesPreserved": true,
+  "postCleanupRuntimeUnchanged": true,
+  "finalCloseReportFocusedHooks": true,
+  "finalCloseReportManualHooks": true,
+  "finalCloseReportRat": {
+    "baseline": 4077,
+    "current": 4077,
+    "added": 0,
+    "removed": 0
   }
 }
