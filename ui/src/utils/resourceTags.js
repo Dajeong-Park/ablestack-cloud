@@ -33,7 +33,7 @@ export function tagTargetParams (resource, type) {
 export function tagReadParams (resource, type, getters = {}) {
   if (!['ISO', 'Template'].includes(type)) return tagTargetParams(resource, type)
   const selected = getters.project?.id
-  const project = selected && String(selected) !== '0' ? (getters.allProjects || getters.listAllProjects ? '-1' : selected) : ''
+  const project = selected && String(selected) !== '0' ? selected : ''
   return { resourcetype: type, ...(project ? { projectid: project } : { ignoreproject: true }) }
 }
 export function tagApiError (error) {

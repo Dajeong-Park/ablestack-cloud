@@ -18,7 +18,7 @@ let wrapper
 beforeEach(() => { clearResourceTagOperations(sessionStorage); sessionStorage.clear(); jest.clearAllMocks(); getAPI.mockResolvedValue({ listtagsresponse: { count: 0 } }) })
 afterEach(() => { if (wrapper) wrapper.unmount(); clearResourceTagOperations(sessionStorage) })
 test.each([['ISO', {}], ['Template', {}], ['ISO', { id: 'active-project' }], ['Template', { id: 'active-project' }]])('%s read-only tag widget uses the actor view %j instead of owner membership', async (type, project) => {
-  const getters = { userInfo: { id: 'recipient', account: 'recipient', domainid: 'domain', roletype: 'User' }, project, apis: { listTags: {} } }
+  const getters = { userInfo: { id: 'recipient', account: 'recipient', domainid: 'domain', roletype: 'User' }, project, allProjects: [], apis: { listTags: {} } }
   wrapper = mount(ResourceTags, {
     props: { resource: { id, projectid: 'owner-project' }, resourceType: type, canEdit: false },
     global: {

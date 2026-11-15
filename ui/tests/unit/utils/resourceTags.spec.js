@@ -259,9 +259,10 @@ test.each(['ISO', 'Template'])('%s tag reads preserve actor scope and retain the
   expect(get.mock.calls[1][1]).toEqual(expect.objectContaining({ projectid: 'active-project' }))
   expect(tagTargetParams(resource, type)).toEqual({ resourcetype: type, projectid: 'owner-project' })
 })
-test('image tag scope handles basic and all-project views without changing non-image contracts', () => {
+test('image tag scope uses the selected project, independently of inventory and list filters', () => {
   const resource = { id: 'resource', projectid: 'owner-project' }
   expect(tagReadParams(resource, 'ISO', { project: { id: '0' } })).toEqual({ resourcetype: 'ISO', ignoreproject: true })
-  expect(tagReadParams(resource, 'ISO', { project: { id: 'p' }, listAllProjects: true })).toEqual({ resourcetype: 'ISO', projectid: '-1' })
+  expect(tagReadParams(resource, 'ISO', { project: { id: 'p' }, listAllProjects: true, allProjects: [{ id: 'owner-project' }] })).toEqual({ resourcetype: 'ISO', projectid: 'p' })
+  expect(tagReadParams(resource, 'ISO', { project: { id: '-1' }, allProjects: [] })).toEqual({ resourcetype: 'ISO', projectid: '-1' })
   for (const type of ['Snapshot', 'UserVm', 'Volume', 'VMSnapshot', 'Backup', 'Project']) expect(tagReadParams(resource, type, { project: { id: 'active' } })).toEqual(tagTargetParams(resource, type))
 })
