@@ -82,3 +82,12 @@ test('delete rejects unstarted upload but allows terminal failure; other writes 
   expect(canIsoAction('copy', record({ isready: false, state: 'ABANDONED' }), getters())).toBe(false)
   expect(isoContext(record(), getters())).not.toBe(isoContext(record(), getters({ apis: { listIsos: {} } })))
 })
+
+test.each(['DomainAdmin', 'ResourceAdmin'])('%s inventory visibility never grants modification of another owner image', roletype => {
+  const actor = getters({ userInfo: { id: 'domain-admin', account: 'owner', domainid: 'root-uuid', roletype } })
+  for (const action of ['edit', 'share', 'permissions', 'copy', 'delete', 'download']) {
+    expect(canIsoAction(action, record({ account: 'other', isextractable: true }), actor)).toBe(false)
+    expect(canIsoAction(action, record({ isextractable: true }), actor)).toBe(true)
+    expect(canIsoAction(action, record({ domainid: 'outside', isextractable: true }), actor)).toBe(false)
+  }
+})

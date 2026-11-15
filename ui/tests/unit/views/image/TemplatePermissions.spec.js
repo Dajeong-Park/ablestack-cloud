@@ -115,10 +115,15 @@ test('ownership, project context, system media and read-only APIs are checked ag
   expect(canManageImagePermissions('template', { ...resource, projectid: 'p' }, { userInfo: { id: 'a', roletype: 'User' }, project: { id: 'p' }, apis })).toBe(true)
   expect(canManageImagePermissions('template', { ...resource, projectid: 'p' }, { userInfo: { id: 'a', roletype: 'User' }, project: { id: 'other' }, apis })).toBe(false)
 })
-test('domain admin management remains bounded to an authoritative domain ID', () => {
-  const getters = { userInfo: { id: 'a', roletype: 'DomainAdmin', domainid: 'domain' }, apis }
-  expect(canManageImagePermissions('iso', { ...resource, account: 'other' }, getters)).toBe(true)
+test.each(['DomainAdmin', 'ResourceAdmin'])('%s image management requires ownership or an authorized concrete project', role => {
+  const getters = { userInfo: { id: 'a', roletype: role, domainid: 'domain', account: 'owner' }, apis }
+  expect(canManageImagePermissions('iso', { ...resource, account: 'other' }, getters)).toBe(false)
+  expect(canManageImagePermissions('template', { ...resource, account: 'other' }, getters)).toBe(false)
+  expect(canManageImagePermissions('iso', resource, getters)).toBe(true)
   expect(canManageImagePermissions('iso', { ...resource, domainid: 'outside' }, getters)).toBe(false)
+  const project = { ...resource, account: 'project-account', projectid: 'project' }
+  expect(canManageImagePermissions('iso', project, { ...getters, project: { id: 'project' } })).toBe(true)
+  expect(canManageImagePermissions('iso', project, { ...getters, project: { id: 'project' }, listAllProjects: true })).toBe(false)
 })
 test('removing an ungranted target is rejected rather than silently resetting sharing', () => {
   expect(() => expectedImagePermissions({ id, accounts: ['a'], projects: [] }, 'remove', 'Account', ['b'])).toThrow()

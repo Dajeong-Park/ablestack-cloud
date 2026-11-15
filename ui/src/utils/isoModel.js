@@ -93,7 +93,6 @@ export function isoOwner (record = {}, getters = {}) {
   const user = getters.userInfo || {}
   if (!record.id || !user.id || (record.format && record.format !== 'ISO') || isSystemIso(record)) return false
   if (user.roletype === 'Admin') return true
-  if (['DomainAdmin', 'ResourceAdmin'].includes(user.roletype) && sameId(record.domainid, user.domainid)) return true
   if (record.projectid) return !getters.listAllProjects && sameId(record.projectid, getters.project?.id)
   return !getters.project?.id && sameId(record.domainid, user.domainid) && !!record.account && record.account === user.account
 }
