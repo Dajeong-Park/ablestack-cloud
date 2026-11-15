@@ -1,0 +1,742 @@
+[
+  {
+    "name": "baseline-original-isos",
+    "at": "2026-11-15T14:34:46.278Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "baseline-accounts",
+    "at": "2026-11-15T14:35:14.566Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-owner-created",
+    "at": "2026-11-15T14:38:23.451Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-receiver-created",
+    "at": "2026-11-15T14:39:31.435Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-stranger-created",
+    "at": "2026-11-15T14:40:41.323Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-readonly-admin-created",
+    "at": "2026-11-15T14:41:32.333Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "domain-created",
+    "at": "2026-11-15T14:45:04.070Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "subdomain-created",
+    "at": "2026-11-15T14:47:06.374Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-domain-admin-created",
+    "at": "2026-11-15T14:49:16.469Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-subdomain-owner-created",
+    "at": "2026-11-15T14:50:57.292Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "owner-boot-ready",
+    "at": "2026-11-15T14:52:52.047Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "owner-detail",
+    "at": "2026-11-15T14:53:07.250Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "owner-shared-to-receiver",
+    "at": "2026-11-15T14:54:00.145Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "project-created",
+    "at": "2026-11-15T14:54:38.062Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "project-owner-and-regular-member",
+    "at": "2026-11-15T14:58:18.219Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "project-owner-iso-ready",
+    "at": "2026-11-15T15:01:02.531Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "project-owner-detail",
+    "at": "2026-11-15T15:01:13.434Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "project-owner-edit-saved",
+    "at": "2026-11-15T15:03:11.972Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "owner-network-created",
+    "at": "2026-11-15T15:05:42.512Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "owner-vm-review",
+    "at": "2026-11-15T15:06:22.097Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "owner-vm-created",
+    "at": "2026-11-15T15:07:24.058Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "owner-vm-iso-tab",
+    "at": "2026-11-15T15:08:16.965Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "owner-vm-volume",
+    "at": "2026-11-15T15:08:53.377Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "receiver-shared-list",
+    "at": "2026-11-15T15:10:00.452Z",
+    "disposition": "EXCLUDED_ROLE_MISMATCH"
+  },
+  {
+    "name": "receiver-detail",
+    "at": "2026-11-15T15:10:25.286Z",
+    "disposition": "EXCLUDED_ROLE_MISMATCH"
+  },
+  {
+    "name": "receiver-management-restricted",
+    "at": "2026-11-15T15:10:35.184Z",
+    "disposition": "EXCLUDED_ROLE_MISMATCH"
+  },
+  {
+    "name": "receiver-zone-unexpected-management-observation",
+    "at": "2026-11-15T15:11:46.472Z",
+    "disposition": "DIAGNOSTIC_ROLE_MISMATCH"
+  },
+  {
+    "name": "receiver-role-mismatch-invalidates-prior-acl",
+    "at": "2026-11-15T15:13:46.308Z",
+    "disposition": "DIAGNOSTIC"
+  },
+  {
+    "name": "account-role-b-corrected",
+    "at": "2026-11-15T15:19:15.118Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-saved-role-audit",
+    "at": "2026-11-15T15:19:37.717Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-role-c-corrected",
+    "at": "2026-11-15T15:19:58.266Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-role-roadmin-corrected",
+    "at": "2026-11-15T15:20:31.419Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-role-downer-corrected",
+    "at": "2026-11-15T15:21:00.275Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "account-roles-verified-final",
+    "at": "2026-11-15T15:21:10.634Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A04-user-shared-receiver-correct-role",
+    "at": "2026-11-15T15:21:59.968Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A04-shared-consumer-preflight",
+    "at": "2026-11-15T15:22:17.425Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "B-local-upload-submitted",
+    "at": "2026-11-15T15:23:35.839Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "B-local-upload-complete",
+    "at": "2026-11-15T15:23:55.963Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "B-own-local-ready-share-A",
+    "at": "2026-11-15T15:24:17.909Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "B-share-A-confirmed",
+    "at": "2026-11-15T15:24:25.113Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A05-unshared-private-denied",
+    "at": "2026-11-15T15:24:49.299Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A10-project-nonmember-denied",
+    "at": "2026-11-15T15:24:59.409Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "subdomain-user-registered",
+    "at": "2026-11-15T15:26:33.819Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "subdomain-iso-ready-user",
+    "at": "2026-11-15T15:26:54.801Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A06-domainadmin-subtree",
+    "at": "2026-11-15T15:27:37.088Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A07-domainadmin-outside-denied",
+    "at": "2026-11-15T15:27:42.792Z",
+    "disposition": "SUPERSEDED_BY_FINAL_RELOGIN"
+  },
+  {
+    "name": "A07-domainadmin-outside-final",
+    "at": "2026-11-15T15:27:52.829Z",
+    "disposition": "SUPERSEDED_BY_FINAL_RELOGIN"
+  },
+  {
+    "name": "A08-project-owner-reverified",
+    "at": "2026-11-15T15:28:58.359Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A09-project-regular-write-allowed",
+    "at": "2026-11-15T15:30:01.779Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A-readonly-role-saved",
+    "at": "2026-11-15T15:31:14.583Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "partial-roles-created",
+    "at": "2026-11-15T15:32:07.450Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "partial-local-account-actual-role",
+    "at": "2026-11-15T15:33:26.882Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A11-readonly-vm-list-saved-metrics-true",
+    "at": "2026-11-15T15:33:58.155Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A11-readonly-vm-iso-detail",
+    "at": "2026-11-15T15:34:14.728Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A11-readonly-history-direct-denied",
+    "at": "2026-11-15T15:34:20.617Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A11-readonly-own-iso",
+    "at": "2026-11-15T15:34:29.320Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A11-readonly-shared-iso",
+    "at": "2026-11-15T15:34:39.111Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A11-readonly-shared-list",
+    "at": "2026-11-15T15:34:59.150Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A11-vm-final",
+    "at": "2026-11-15T15:35:03.288Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A12-readonly-admin-iso",
+    "at": "2026-11-15T15:35:50.408Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A12-readonly-admin-vm-read",
+    "at": "2026-11-15T15:35:56.023Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A13-local-only-ui",
+    "at": "2026-11-15T15:36:32.225Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A13-local-only-upload-submitted",
+    "at": "2026-11-15T15:36:56.138Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A13-local-only-ready",
+    "at": "2026-11-15T15:38:12.765Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A15-A16-local-role-actions",
+    "at": "2026-11-15T15:38:31.211Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A16-copy-allowed-no-destination",
+    "at": "2026-11-15T15:38:36.433Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A16-extract-allowed-complete",
+    "at": "2026-11-15T15:39:11.734Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "partial-url-account-actual-role",
+    "at": "2026-11-15T15:40:29.518Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "project-readonly-role-rules-created",
+    "at": "2026-11-15T15:42:10.893Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "project-regular-readonly-role-saved",
+    "at": "2026-11-15T15:43:17.682Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A14-url-only-ui",
+    "at": "2026-11-15T15:43:49.775Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A14-url-only-register-submitted",
+    "at": "2026-11-15T15:44:06.313Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A15-url-permission-read-denied",
+    "at": "2026-11-15T15:44:15.262Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A15-write-allowed-read-denied-safe-share",
+    "at": "2026-11-15T15:44:33.236Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A16-delete-allowed-copy-denied",
+    "at": "2026-11-15T15:45:38.672Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A16-url-role-deploy-preflight",
+    "at": "2026-11-15T15:46:12.579Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "partial-url-create-network-added",
+    "at": "2026-11-15T15:47:18.197Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "test-role-network-provider-baseline-block",
+    "at": "2026-11-15T15:49:05.126Z",
+    "disposition": "SETUP_DIAGNOSTIC_UNRELATED_NSX"
+  },
+  {
+    "name": "partial-url-read-wildcard-removed",
+    "at": "2026-11-15T15:49:50.808Z",
+    "disposition": "SETUP_ONLY_UI_DISCOVERY_NOT_COMPLETE"
+  },
+  {
+    "name": "partial-url-effective-rules-final",
+    "at": "2026-11-15T15:52:07.205Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "partial-url-network-created",
+    "at": "2026-11-15T15:52:57.271Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A16-url-role-vm-review",
+    "at": "2026-11-15T15:53:06.912Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A16-url-role-deploy-accepted",
+    "at": "2026-11-15T15:53:16.324Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A16-url-role-deploy-complete",
+    "at": "2026-11-15T15:53:50.362Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "partial-url-vm-volume",
+    "at": "2026-11-15T15:53:57.009Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "Z02-in-use-delete-rejected",
+    "at": "2026-11-15T15:54:20.178Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A14-url-only-ready",
+    "at": "2026-11-15T15:54:27.737Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A16-delete-allowed-complete",
+    "at": "2026-11-15T15:55:06.336Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "delete-final-copy-returned-list",
+    "at": "2026-11-15T15:55:11.974Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A09-project-regular-readonly-restriction",
+    "at": "2026-11-15T15:55:56.001Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "project-readonly-list-no-write",
+    "at": "2026-11-15T15:56:01.626Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "project-to-personal-scope-restored",
+    "at": "2026-11-15T15:56:12.123Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "C01-specific-revoke-other-target-preserved",
+    "at": "2026-11-15T15:57:24.893Z",
+    "disposition": "SUPERSEDED_NO_REMOVE_POST"
+  },
+  {
+    "name": "C01-revoke-attempt-not-submitted",
+    "at": "2026-11-15T15:58:06.485Z",
+    "disposition": "INCONCLUSIVE_NO_REMOVE_POST"
+  },
+  {
+    "name": "C01-specific-revoke-final-pass",
+    "at": "2026-11-15T16:00:39.973Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "C01-revoked-readonly-direct-denied",
+    "at": "2026-11-15T16:01:09.330Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A11-readonly-relogin-vm-basic-still-readable",
+    "at": "2026-11-15T16:01:29.659Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "C01-other-receiver-preserved-access",
+    "at": "2026-11-15T16:02:00.528Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A07-domainadmin-outside-final-reverified-pass",
+    "at": "2026-11-15T16:02:55.358Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A02-root-system-iso-protected",
+    "at": "2026-11-15T16:04:30.516Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "A01-root-zone-storage-read",
+    "at": "2026-11-15T16:05:09.284Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "X01-light-zone-1440x1000",
+    "at": "2026-11-15T16:05:43.847Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "A01-root-edit-other-owner-saved",
+    "at": "2026-11-15T16:06:02.833Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "X01-light-list-1280-long-name",
+    "at": "2026-11-15T16:06:35.610Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "X01-light-edit-390x480",
+    "at": "2026-11-15T16:07:05.838Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "X01-light-edit-390x844",
+    "at": "2026-11-15T16:07:15.963Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "X02-scripted-escape-focus",
+    "at": "2026-11-15T16:07:21.159Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "common-root-vm-list",
+    "at": "2026-11-15T16:07:55.458Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "common-root-vm-history-allowed",
+    "at": "2026-11-15T16:08:01.159Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "common-template-list",
+    "at": "2026-11-15T16:08:07.477Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "common-template-settings",
+    "at": "2026-11-15T16:08:30.633Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "common-vpc-list",
+    "at": "2026-11-15T16:08:36.297Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-vm-a-expunged",
+    "at": "2026-11-15T16:09:35.647Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-vm-local-expunge-completed",
+    "at": "2026-11-15T16:10:12.338Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-vm-count-restored",
+    "at": "2026-11-15T16:10:17.450Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-test-vms-zero",
+    "at": "2026-11-15T16:10:23.728Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-volume-259-zero",
+    "at": "2026-11-15T16:10:42.004Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-volume-260-zero",
+    "at": "2026-11-15T16:10:47.152Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-network-a-publicip-zero",
+    "at": "2026-11-15T16:11:04.369Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-network-a-router-zero",
+    "at": "2026-11-15T16:11:08.968Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-network-a-normal-delete-finished",
+    "at": "2026-11-15T16:12:33.703Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-network-local-preflight",
+    "at": "2026-11-15T16:12:46.109Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-test-networks-zero",
+    "at": "2026-11-15T16:13:01.415Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:13:42.582Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:13:48.126Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:13:58.491Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:14:03.965Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:14:23.281Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "cleanup-project-member-removed",
+    "at": "2026-11-15T16:14:35.809Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-project-role-zero",
+    "at": "2026-11-15T16:14:43.132Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-projects-zero",
+    "at": "2026-11-15T16:15:56.607Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "qa-iso1673-local",
+    "at": "2026-11-15T16:17:16.352Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "qa-iso1673-a",
+    "at": "2026-11-15T16:17:34.809Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "qa-iso1673-b",
+    "at": "2026-11-15T16:17:43.452Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "qa-iso1673-c",
+    "at": "2026-11-15T16:17:56.206Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "qa-iso1673-roadmin",
+    "at": "2026-11-15T16:18:04.983Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "qa-iso1673-downer",
+    "at": "2026-11-15T16:18:19.139Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "qa-iso1673-da",
+    "at": "2026-11-15T16:18:27.793Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-account-baseline-restored",
+    "at": "2026-11-15T16:18:32.304Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-role-local-deleted",
+    "at": "2026-11-15T16:18:53.835Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-role-baseline-restored",
+    "at": "2026-11-15T16:19:12.129Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-subdomain-deleted",
+    "at": "2026-11-15T16:19:45.069Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "cleanup-domain-baseline-restored",
+    "at": "2026-11-15T16:20:04.081Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "final-original-iso-rows-preserved",
+    "at": "2026-11-15T16:20:16.587Z",
+    "disposition": "SUPERSEDED_UUID_QUERY_PARSER"
+  },
+  {
+    "name": "final-original-iso-comparison-corrected-pass",
+    "at": "2026-11-15T16:20:23.270Z",
+    "disposition": "FINAL_EVIDENCE"
+  },
+  {
+    "name": "final-systemvms-running-423",
+    "at": "2026-11-15T16:20:28.911Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "final-hosts-preserved",
+    "at": "2026-11-15T16:20:34.559Z",
+    "disposition": "SUPPORTING_OBSERVATION_NOT_AN_INDEPENDENT_PASS"
+  },
+  {
+    "name": "final-ui-complete",
+    "at": "2026-11-15T16:20:59.337Z",
+    "disposition": "FINAL_EVIDENCE"
+  }
+]

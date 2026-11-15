@@ -1,0 +1,81 @@
+[
+  {
+    "name": "final-original-iso-comparison-corrected-pass",
+    "at": "2026-11-15T16:20:23.270Z",
+    "note": "strip UI return-query from href to extract UUID; earlier comparison parser returned false",
+    "sameIdsAndValues": true,
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n\u2014\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n\u2014\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n\uc0ac\uc6a9 \uac00\ub2a5\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "final-systemvms-running-423",
+    "at": "2026-11-15T16:20:28.911Z",
+    "main": "/\uc2dc\uc2a4\ud15c VM\uc5c5\ub370\uc774\ud2b8\n\ubaa8\ub450\n\t\n\t\n\uc774\ub984\n\t\n\uc0c1\ud0dc\n\t\nAgent \uc0c1\ud0dc\n\t\n\uc2dc\uc2a4\ud15c VM \uc720\ud615\n\t\nPublic IP \uc8fc\uc18c\n\t\n\uc0ac\uc124 IP \uc8fc\uc18c\n\t\n\ub85c\uceec \uc5f0\uacb0 IP \uc8fc\uc18c\n\t\n\ubc84\uc804\n\t\n\ud638\uc2a4\ud2b8\n\t\nCPU \uc544\ud0a4\ud14d\ucc98\n\t\nZone\n\t\n\n\n\tv-245-VM\t\n\uc2e4\ud589 \uc911\n\t\n\uc2e4\ud589 \uc911\n\tconsoleproxy\t10.10.13.5\t10.10.13.6\t169.254.243.21\t4.23.0.0\tablecube13-2\tx86_64\t13-Zone\t\n\n\ts-255-VM\t\n\uc2e4\ud589 \uc911\n\t\n\uc2e4\ud589 \uc911\n\tsecondarystoragevm\t10.10.13.4\t10.10.13.7\t169.254.164.211\t4.23.0.0\tablecube13-1\tx86_64\t13-Zone\t\n\uc804\uccb4 2 \uac1c \ud56d\ubaa9 \uc911 1-2 \ud45c\uc2dc\n1\n20 / \ucabd"
+  },
+  {
+    "name": "final-hosts-preserved",
+    "at": "2026-11-15T16:20:34.559Z",
+    "main": "/\ud638\uc2a4\ud2b8\uc5c5\ub370\uc774\ud2b8\n\ubaa8\ub450\n\uba54\ud2b8\ub9ad\n\ud638\uc2a4\ud2b8 \ucd94\uac00\n\t\n\uc774\ub984\n\t\n\uc0c1\ud0dc\n\t\n\ub9ac\uc18c\uc2a4 \uc0c1\ud0dc\n\t\nIP \uc8fc\uc18c\n\t\nCPU \uc544\ud0a4\ud14d\ucc98\n\t\n\ud558\uc774\ud37c\ubc14\uc774\uc800\n\t\n\ubc84\uc804\n\t\nHA \ud65c\uc131\ud654\n\t\nHA \uc0c1\ud0dc\n\t\n\ud074\ub7ec\uc2a4\ud130\n\t\nZone\n\t\n\uad00\ub9ac \uc11c\ubc84\n\t\n\nablecube13-1\t\n\uc2e4\ud589 \uc911\n\t\n\uc815\uc0c1\n\t10.10.13.1\u00a0\tx86_64\tKVM\t4.23.0.0\t\n\uc815\uc0c1\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-2\t\n\uc2e4\ud589 \uc911\n\t\n\uc815\uc0c1\n\t10.10.13.2\u00a0\tx86_64\tKVM\t4.23.0.0\t\n\uc815\uc0c1\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-3\t\n\uc2e4\ud589 \uc911\n\t\n\uc815\uc0c1\n\t10.10.13.3\u00a0\tx86_64\tKVM\t4.23.0.0\t\n\ube44\ud65c\uc131\ud654\n\tDisabled\tCluster\t13-Zone\tccvm-mngt\t\n\uc804\uccb4 3 \uac1c \ud56d\ubaa9 \uc911 1-3 \ud45c\uc2dc\n1\n20 / \ucabd"
+  },
+  {
+    "name": "final-ui-complete",
+    "at": "2026-11-15T16:20:59.337Z",
+    "originalIsoIdsAndValuesPreserved": true,
+    "originalIsoCount": 8,
+    "originalAccountCount": 3,
+    "originalRoleCount": 9,
+    "originalVmCount": 103,
+    "originalTemplateCount": 48,
+    "projects": 0,
+    "systemVmsRunning": 2,
+    "hostsUp": 3,
+    "themeRestored": "dark",
+    "viewportOverrideReset": true,
+    "networkCacheOverrideReset": true,
+    "testResourceRemainders": {
+      "accounts": 0,
+      "domains": 0,
+      "roles": 0,
+      "projects": 0,
+      "isos": 0,
+      "vms": 0,
+      "volumes": 0,
+      "networks": 0,
+      "routers": 0,
+      "publicIps": 0,
+      "projectRoles": 0
+    }
+  }
+]
