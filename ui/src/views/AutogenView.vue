@@ -28,7 +28,7 @@
               <template #end>
                 <a-button
                   v-if="$route.meta?.name !== 'runtimebundle'"
-                  :loading="loading || (($route.meta?.name === 'vmgroup' || isSnapshotList) && listRequestPending)"
+                  :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList) && listRequestPending)"
                   :disabled="isSnapshotList && listRequestPending"
                   style="margin-bottom: 5px"
                   shape="round"
@@ -851,6 +851,7 @@
     <div
       :style="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 'margin-top: 24px; margin-bottom: 12px' : null"
     >
+      <a-alert v-if="vnfSearchFailure && $route.meta?.name === 'vnfapp'" class="vnf-search-error" type="error" show-icon :message="$t(vnfSearchFailure)"><template #description><a-button @click="onSearch({})">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <InstanceGroupQueryStatus
         v-if="$route.meta?.name === 'vmgroup'"
         :status="vmGroupQueryStatus"
@@ -909,17 +910,18 @@
         <advisories-view
           v-if="$route.meta.advisories && !loading"
         />
-        <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
+        <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
           <template #action><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
         <p v-else-if="listRefreshError && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
+        <p v-if="$route.meta?.name === 'vnfapp'" class="vnf-selection-policy">{{ $t('message.vnf.search.selection') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
           :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="columns"
           :items="items"
-          :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi) && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
-          :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi) && !storageActionReady"
+          :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
+          :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
@@ -933,7 +935,7 @@
           @table-change="handleTableChange"
         />
         <a-pagination
-          v-if="(!isSnapshotList && $route.meta?.name !== 'vmgroup') || listLoadedScope"
+          v-if="(!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope"
           class="row-element"
           style="margin-top: 10px"
           size="small"
@@ -1030,6 +1032,7 @@ import { sshKeyPairDeleteTargets } from '@/utils/sshKeyPairDeletion'
 import { isSshKeyPairDetailRoute, sshKeyPairDetailScope, sshKeyPairDetailTarget, sshKeyPairDetailParams, sshKeyPairMatchesTarget, sshKeyPairDetailResult, sshKeyPairDetailFailure, sshKeyPairVmParams } from '@/utils/sshKeyPairIdentity'
 import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErrorKey, vmGroupDeleteTargets } from '@/utils/vmGroupNames'
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
 
 let templateFilterSequence = 0
 
@@ -1130,6 +1133,8 @@ export default {
       listSecurityScope: null,
       listCustomRender: {},
       listRefreshError: false,
+      vnfSearchFailure: '',
+      vnfProjectSync: false,
       snapshotListError: '',
       snapshotSearchFailure: '',
       policySearchFailure: '',
@@ -1277,7 +1282,7 @@ export default {
     if (this.$refs.selfManagedAction?.blocksNavigation) { next(false); return }
     const leavesGuestNetworkScope = guestNetworkRoute(from) &&
       (to.path !== from.path || to.query?.projectid !== from.query?.projectid)
-    if (this.showAction && (leavesGuestNetworkScope ||
+    if (this.showAction && (vnfRoute(from) && to.fullPath !== from.fullPath || leavesGuestNetworkScope ||
       (to.path !== from.path && (storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot')))) {
       this.closeAction()
     }
@@ -1298,6 +1303,23 @@ export default {
     next()
   },
   watch: {
+    vnfSearchAuth: {
+      flush: 'sync',
+      handler (value, previous) {
+        if (!vnfRoute(this.$route)) return
+        this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+        this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listSchemaScope = null
+        this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+        if (this.showAction) this.closeAction()
+        if (this.vnfProjectSync) return
+        const projectid = vnfProject(this.$store.getters)
+        const old = previous ? JSON.parse(previous) : []
+        const next = JSON.parse(value)
+        const identityChanged = old.length && old.slice(0, 5).some((v, i) => v !== next[i])
+        if (identityChanged || this.$route.query.projectid && this.$route.query.projectid !== projectid) return this.$router.replace({ path: '/vnfapp', query: vnfListQuery({ projectid }, this.pageSize, this.$store.getters) })
+        this.fetchData()
+      }
+    },
     templateSecurityContext () {
       if (this.$route.meta?.name !== 'template') return
       this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null; this.items = []; this.resource = {}; this.itemCount = 0
@@ -1377,6 +1399,8 @@ export default {
       this.fetchData()
     },
     '$store.getters.listAllProjects' (enabled) {
+      // The synchronous VNF context watcher owns its canonical URL transition.
+      if (vnfRoute(this.$route)) return
       if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || guestNetworkRoute(this.$route)) && !this.$store.getters.project?.id) {
         const projectid = enabled ? '-1' : '0'
         if (this.$route.query.projectid !== projectid) return this.$router.push({ query: { ...this.$route.query, projectid, page: '1' } })
@@ -1392,10 +1416,12 @@ export default {
     }
   },
   computed: {
+    vnfSearchAuth () { return vnfAuth(this.$store.getters, this.$store.state?.user?.token) },
     isTemplateList () { return this.$route.meta?.name === 'template' && !this.$route.params?.id },
     templateSecurityContext () { return JSON.stringify([templateOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
     guestNetworkAuth () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.domainid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects, Object.keys(this.$store.getters.apis || {}).sort()]) },
     sharedFSContentLoading () {
+      if (vnfRoute(this.$route) && this.vnfProjectSync) return true
       if (!['sharedfs', 'runtimebundle'].includes(this.$route.meta?.name) || this.listLoadedScope !== this.listScope()) return this.loading
       if (this.dataView && (!this.resource.id || this.resource.id !== this.$route.params.id)) return this.loading
       return false
@@ -1492,6 +1518,7 @@ export default {
       }).map(String)
     },
     filterValue () {
+      if (vnfRoute(this.$route)) return String(this.$route.query.state || 'all').toLowerCase()
       if (this.$route.meta?.defaultFilter) {
         const value = String(this.$route.query.filter || this.$route.query.state || this.$route.meta.defaultFilter).toLowerCase()
         return this.filters.includes(value) ? value : this.$route.meta.defaultFilter
@@ -1539,6 +1566,7 @@ export default {
       }).map(action => policyBackgroundRead ? { ...action, disabled: () => true } : action)
     },
     visibleListActions () {
+      if (vnfRoute(this.$route) && !this.storageActionReady) return []
       if (this.isObjectStorageUi && !this.storageActionReady) return []
       if (this.isSnapshotCopyList || this.snapshotSearchFailure || this.policySearchFailure || (this.isSnapshotList && !this.storageActionReady) || (this.isPolicyList && this.listLoadedScope !== this.listScope())) return []
       if (!this.actions || this.actions.length === 0 || this.dataView) {
@@ -1638,6 +1666,7 @@ export default {
       eventBus.on(name, handler)
     },
     shouldAutoRefresh () {
+      if (vnfRoute(this.$route) && !this.$route.params?.id && this.selectedRowKeys.length) return false
       return this.autoRefreshInterval > 0 && /^(list|get|quota)/i.test(this.apiName || '')
     },
     scheduleAutoRefresh () {
@@ -1658,6 +1687,7 @@ export default {
       }
     },
     listScope () {
+      if (vnfRoute(this.$route)) return JSON.stringify([this.$route.fullPath, vnfAuth(this.$store.getters, this.$store.state?.user?.token), this.$store.getters.metrics])
       if (isSshKeyPairDetailRoute(this.$route)) return sshKeyPairDetailScope(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (this.$route.meta?.name === 'vmgroup') return vmGroupQueryScope(this.$route, this.$store.getters, this.$store.state?.user?.token)
       // Tabs and S3 folder normalization do not change the authorized resource.
@@ -1738,14 +1768,21 @@ export default {
         return { props: { type: 'default' } }
       }
     },
-    canonicalNetworkProjectRoute () { return ['guestnetwork', 'networkoffering'].includes(this.$route.meta?.name) },
+    canonicalNetworkProjectRoute () { return ['guestnetwork', 'networkoffering', 'vnfapp'].includes(this.$route.meta?.name) },
     async syncSnapshotProject (projectId) {
       // The URL retains the scope. 0 is a UI-only default-view marker, never an API project ID.
       if (typeof projectId !== 'string') return
       const globalView = ['0', '-1'].includes(projectId)
+      if (vnfRoute(this.$route) && !globalView && !('listProjects' in (this.$store.getters.apis || {}))) { this.rejectVnfSearch('message.vnf.search.permission'); return }
       if ((globalView ? !this.$store.getters.project?.id : projectId === this.$store.getters.project?.id) && !!this.$store.getters.listAllProjects === (projectId === '-1')) return
-      const scope = () => JSON.stringify([this.$route.fullPath, this.$store.getters.userInfo?.id, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects])
+      const fromVnf = vnfRoute(this.$route)
+      // Canonicalizing search predicates must not cancel a lookup for the same
+      // authorized project. A different route, owner or session still cancels it.
+      const scope = () => JSON.stringify([fromVnf ? [this.$route.path, this.$route.query.projectid, vnfAuth(this.$store.getters, this.$store.state?.user?.token)] : this.$route.fullPath, this.$store.getters.userInfo?.id, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects])
       const captured = scope()
+      let retry = false
+      if (vnfRoute(this.$route) && this.vnfProjectSync) return
+      if (vnfRoute(this.$route)) this.vnfProjectSync = true
       try {
         let project = {}
         if (!globalView) {
@@ -1753,11 +1790,12 @@ export default {
           project = json?.listprojectsresponse?.project?.find(item => item.id === projectId)
           if (!project) throw new Error(this.$t('message.snapshot.search.lookup.denied'))
         }
-        if (!(snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) || captured !== scope() || this.$route.query.projectid !== projectId) return
+        if (!(snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) || captured !== scope() || this.$route.query.projectid !== projectId) { retry = fromVnf && vnfRoute(this.$route) && !!this.$store.state?.user?.token && 'listVnfAppliances' in (this.$store.getters.apis || {}); return }
         await this.$store.dispatch('SetProject', project)
         await this.$store.dispatch('SetListAllProjects', projectId === '-1')
+        if (vnfRoute(this.$route)) this.vnfProjectSync = false
         this.fetchData({ irefresh: true })
-      } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) this.$notifyError(error) }
+      } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) { if (vnfRoute(this.$route)) this.rejectVnfSearch('message.vnf.search.permission'); this.$notifyError(error) } } finally { if (fromVnf) { this.vnfProjectSync = false; if (retry) this.fetchData() } }
     },
     switchProject (projectId) {
       if (snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) return this.syncSnapshotProject(projectId)
@@ -1786,7 +1824,27 @@ export default {
     retainTemplateOperation (value) {
       if (this.$route.meta?.name === 'template' && value.context === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)) this.templateOperationContext = value.active ? value.context : ''
     },
+    rejectVnfSearch (message) {
+      this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+      this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false; this.vnfSearchFailure = message
+      this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+    },
     fetchData (params = {}) {
+      if (vnfRoute(this.$route)) {
+        this.dataView = !!this.$route.params?.id
+        this.vnfSearchFailure = ''
+        if (!this.$store.state?.user?.token || !('listVnfAppliances' in (this.$store.getters.apis || {}))) { this.rejectVnfSearch('message.vnf.search.permission'); return Promise.resolve() }
+        if (!this.dataView) {
+          const query = vnfListQuery(this.$route.query, this.getValidPageSize(this.pageSize), this.$store.getters)
+          if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) { this.rejectVnfSearch(''); return this.$router.replace({ query }) }
+          const error = vnfSearchError(query, this.$store.getters, this.$getApiParams('listVnfAppliances'))
+          if (error) { this.rejectVnfSearch(error); return Promise.resolve() }
+        }
+        const projectid = this.$route.query.projectid
+        if (projectid && (projectid !== vnfProject(this.$store.getters) || !!this.$store.getters.listAllProjects !== (projectid === '-1'))) return this.syncSnapshotProject(projectid)
+        if (this.vnfProjectSync) return Promise.resolve()
+        if (!this.dataView) { this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection() }
+      }
       const templateDetail = this.$route.meta?.name === 'template' && !!this.$route.params?.id
       const templateOperationHeld = () => templateDetail && this.templateOperationContext && this.templateOperationContext === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)
       if (templateOperationHeld()) return Promise.resolve()
@@ -1915,7 +1973,7 @@ export default {
       }
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
-      if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route)) && !this.dataView) && !sameList) {
+      if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route)) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -2261,6 +2319,7 @@ export default {
       if (customParamHandler && typeof customParamHandler === 'function') {
         params = customParamHandler(params, this.$route.query)
       }
+      if (vnfRoute(this.$route)) params = vnfListParams(params, this.dataView)
 
       if (['listAnnotations', 'listRoles', 'listZonesMetrics', 'listPods',
         'listClustersMetrics', 'listHostsMetrics', 'listStoragePoolsMetrics',
@@ -2311,6 +2370,7 @@ export default {
           return
         }
         const networkPage = guestNetworkRoute(this.$route) && !this.dataView ? readNetworkPage(json, 'listNetworks', 'network', params) : null
+        const vnfPage = vnfRoute(this.$route) && !this.dataView ? readVnfPage(json, params) : null
         const groupResult = vmGroups ? vmGroupQueryRows(json) : null
         const snapshotPage = snapshotListRoute(this.$route) ? snapshotListPage(json, this.$route, this.page, this.pageSize) : null
         const policyPage = snapshotPolicyListRoute(this.$route) ? policyListPage(json, params) : null
@@ -2347,6 +2407,7 @@ export default {
         }
 
         if (networkPage) apiItemCount = networkPage.count
+        if (vnfPage) apiItemCount = vnfPage.count
         if (groupResult) apiItemCount = groupResult.count
         if (snapshotPage) apiItemCount = snapshotPage.count
         if (policyPage) apiItemCount = policyPage.count
@@ -2367,7 +2428,7 @@ export default {
             return
           }
         }
-        let responseItems = policyPage ? policyPage.rows : snapshotPage ? snapshotPage.rows : groupResult ? groupResult.rows : json[responseName][objectName]
+        let responseItems = vnfPage ? vnfPage.rows : policyPage ? policyPage.rows : snapshotPage ? snapshotPage.rows : groupResult ? groupResult.rows : json[responseName][objectName]
         if (this.$route.name === 'autoscalevmgroup' && !this.dataView && this.selectedColumns.includes('zonename')) {
           responseItems = await autoScaleInfrastructureRows(getAPI, responseItems || [], 'listNetworks' in this.$store.getters.apis)
           if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2447,7 +2508,7 @@ export default {
         if (cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
           if (snapshotListRoute(this.$route) || snapshotDetail || policyDetail) this.snapshotListError = Object.values(error?.response?.data || {}).find(value => value?.errortext)?.errortext || (error.message?.startsWith('message.') ? error.message : 'message.snapshot.list.read.failed')
           this.listRefreshError = true
-          if (cniQuery) {
+          if (cniQuery || vnfRoute(this.$route)) {
             this.resetSelection()
             if (this.$refs.listview) this.$refs.listview.resetSelection()
           }
@@ -2655,6 +2716,9 @@ export default {
         }
         if (guestNetworkRoute(this.$route) && filter.key === 'domainid') delete queryParams.account
         if (guestNetworkRoute(this.$route) && filter.key === 'zoneid') delete queryParams.physicalnetworkid
+        if (vnfRoute(this.$route) && filter.key === 'domainid') { delete queryParams.account; delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid; delete queryParams.groupid }
+        if (vnfRoute(this.$route) && filter.key === 'zoneid') { delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid }
+        if (vnfRoute(this.$route) && filter.key === 'account') { delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid; delete queryParams.groupid }
         if (this.$route.name === 'vmsnapshot' && filter.key === 'state') delete queryParams.filter
         if (snapshotPolicyListRoute(this.$route) && filter.key === 'domainid') delete queryParams.account
       }
@@ -2663,6 +2727,10 @@ export default {
       this.$router.push({ query: queryParams })
     },
     onRowSelectionChange (selection) {
+      if (vnfRoute(this.$route)) {
+        if (!this.storageActionReady) { this.resetSelection(); return }
+        selection = [...new Set(selection || [])].filter(id => this.items.some(row => row.id === id))
+      }
       // List refreshes must not replace the snapshot owned by active jobs.
       if (this.showGroupActionModal) return
       this.selectedRowKeys = selection
@@ -2695,6 +2763,7 @@ export default {
     },
     execAction (action, isGroupAction) {
       this.vpcActionError = ''
+      if (vnfRoute(this.$route) && (!this.storageActionReady || !(action.api in (this.$store.getters.apis || {})) || isGroupAction && (!this.selectedRowKeys.length || this.selectedRowKeys.some(id => !this.items.some(row => row.id === id))))) return
       if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && this.storageActionReady === false && !this.canOpenPolicyCreate(action, isGroupAction)) return
       if (storageUiRoute(this.$route) && (action.dataView || isGroupAction) && !this.storageActionReady) return
       this.storageActionGeneration++
@@ -3568,6 +3637,11 @@ export default {
       return this.$t(key)
     },
     changeFilter (filter) {
+      if (vnfRoute(this.$route)) {
+        const query = { ...this.$route.query }; delete query.state; delete query.filter
+        if (filter !== 'all') query.state = vnfStates(this.$store.getters).find(s => s.toLowerCase() === filter) || filter
+        this.onSearch({ ...query }); return
+      }
       const query = Object.assign({}, this.$route.query)
       delete query.templatefilter
       delete query.isofilter
@@ -3685,6 +3759,13 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (vnfRoute(this.$route) && !this.$route.params?.id) {
+        const query = vnfSearchQuery(this.$route.query, opts, this.pageSize, this.$store.getters)
+        this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData()
+        else this.$router.push({ query })
+        return
+      }
       if (this.$route.meta?.name === 'template' && !this.$route.params?.id) {
         const query = templateSearchQuery(this.$route.query, opts || {}, this.pageSize)
         this.searchParams = {}
@@ -3766,7 +3847,7 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (['template', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -3790,7 +3871,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },

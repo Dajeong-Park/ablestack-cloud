@@ -19,6 +19,7 @@ import { shallowRef, defineAsyncComponent } from 'vue'
 import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
 import { vmStoredUserDataAction, vmVbmcAction, vmUnmanageAction, vmCloneAction } from '@/config/section/vmCommonActions'
 import store from '@/store'
+import { vnfStates } from '@/utils/vnfSearch'
 import tungsten from '@/assets/icons/tungsten.svg?inline'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
@@ -506,7 +507,9 @@ export default {
         fields.push('zonename')
         return fields
       },
-      searchFilters: ['name', 'zoneid', 'domainid', 'account', 'groupid', 'tags'],
+      defaultFilter: 'all',
+      filters: () => ['all', ...vnfStates(store.getters).map(s => s.toLowerCase())],
+      searchFilters: ['name', 'state', 'zoneid', 'domainid', 'account', 'networkid', 'templateid', 'serviceofferingid', 'groupid', 'tags'],
       details: () => {
         var fields = ['name', 'displayname', 'id', 'state', 'ipaddress', 'ip6address', 'templatename', 'ostypename',
           'serviceofferingname', 'isdynamicallyscalable', 'haenable', 'hypervisor', 'boottype', 'bootmode', 'account',

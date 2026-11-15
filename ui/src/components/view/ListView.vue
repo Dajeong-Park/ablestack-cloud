@@ -333,7 +333,7 @@
           <os-logo v-else :osId="record.ostypeid" :osName="record.ostypename || record.osdisplayname" size="xl" />
         </span>
         <a-tooltip v-if="isVmIdentityRoute($route)" :title="vmDisplayName(record)">
-          <router-link class="vm-display-name" :to="{ path: $route.path + '/' + record.id }">{{ vmDisplayName(record) }}</router-link>
+          <router-link class="vm-display-name" :to="$route.meta?.name === 'vnfapp' ? vnfDetailLocation($route, record) : { path: $route.path + '/' + record.id }">{{ vmDisplayName(record) }}</router-link>
         </a-tooltip>
         <router-link v-else :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
       </template>
@@ -1274,6 +1274,7 @@ import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
   name: 'ListView',
@@ -1505,6 +1506,7 @@ export default {
     }
   },
   methods: {
+    vnfDetailLocation,
     vmDisplayName,
     isVmIdentityRoute,
     templateDetailLocation,

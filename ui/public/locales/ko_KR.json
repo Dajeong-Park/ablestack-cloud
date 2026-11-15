@@ -11868,6 +11868,13 @@
   "message.vnf.action.unmanage.failed": "관리 해제 작업이 실패했습니다. 대상 상태와 사전 조건을 다시 확인하세요.",
   "message.vnf.action.unmanage.result.unknown": "관리 해제 결과와 호스트 ID 또는 VNF/VM 목록 제외를 확인하지 못했습니다. 같은 작업을 다시 조회하고 대상 상태를 점검하세요.",
   "message.vnf.action.unmanage.host.remains": "호스트 VM과 디스크는 보존됩니다. 이후 호스트 상태와 통신을 확인하고, 관리가 필요하면 별도 재등록 절차를 사용하세요.",
+  "message.vnf.search.permission": "현재 조회 범위 또는 필터에 필요한 권한이 없습니다. 검색 조건을 초기화하거나 권한을 확인하세요.",
+  "message.vnf.search.unsupported": "현재 API가 지원하지 않는 검색 조건입니다. 검색 조건을 초기화하세요.",
+  "message.vnf.search.state": "현재 권한에서 제공하지 않는 VNF 상태 조건입니다. 상태 필터를 다시 선택하세요.",
+  "message.vnf.search.uuid": "검색 조건의 자원 ID 또는 프로젝트 ID가 올바르지 않습니다.",
+  "message.vnf.search.response": "VNF 조회 결과가 요청한 범위·상태·연관 자원과 일치하지 않습니다. 다시 조회하세요.",
+  "message.vnf.search.candidate.unavailable": "선택한 자원을 현재 범위에서 확인하지 못했습니다. 조건을 지우거나 다시 선택하세요.",
+  "message.vnf.search.selection": "선택은 현재 페이지에만 적용됩니다. 검색·페이지·프로젝트 변경 및 목록 새로고침 시 선택이 해제됩니다.",
   "message.vnf.action.monitor.loading": "모니터링 포털 설정을 확인 중입니다.",
   "message.vnf.action.monitor.unconfigured": "사용 가능한 Wall VM 포털 주소/경로를 확인하지 못했습니다. 포털 설정을 확인하세요."
 }

@@ -11860,6 +11860,13 @@
   "message.vnf.action.unmanage.failed": "The unmanage job failed. Review the target state and preconditions before retrying.",
   "message.vnf.action.unmanage.result.unknown": "The unmanage result, host ID, or removal from both VNF and VM lists could not be confirmed. Query the same job and inspect the target state.",
   "message.vnf.action.unmanage.host.remains": "The host VM and disks remain. Verify host state and connectivity and use the separate import workflow if Cloud management is required again.",
+  "message.vnf.search.permission": "The current scope or filter requires unavailable permissions. Reset the search or review your access.",
+  "message.vnf.search.unsupported": "The current API does not support this search condition. Reset the search.",
+  "message.vnf.search.state": "This VNF state filter is unavailable with the current permissions. Select another state.",
+  "message.vnf.search.uuid": "A resource or project ID in the search is invalid.",
+  "message.vnf.search.response": "The VNF response does not match the requested scope, state, or related resource. Retry the query.",
+  "message.vnf.search.candidate.unavailable": "The selected resource could not be verified in the current scope. Clear it or select it again.",
+  "message.vnf.search.selection": "Selection applies to this page only. Searching, changing pages or projects, and refreshing the list clear the selection.",
   "message.vnf.action.monitor.loading": "Checking monitoring portal configuration.",
   "message.vnf.action.monitor.unconfigured": "A usable Wall VM portal address and path could not be verified. Check the portal configuration."
 }

@@ -45,7 +45,7 @@
             <template #content v-if="visibleFilter">
               <a-form
                 style="min-width: 170px"
-                :class="{ 'storage-standard-search-form': ['listTemplates', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch, 'guest-network-search-form': isGuestNetworkSearch }"
+                :class="{ 'storage-standard-search-form': ['listTemplates', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch || isVnfSearch, 'guest-network-search-form': isGuestNetworkSearch || isVnfSearch }"
                 :ref="formRef"
                 :model="form"
                 :rules="rules"
@@ -59,8 +59,16 @@
                   :key="index"
                   :label="retrieveFieldLabel(field.name)"
                   :extra="apiName === 'listTemplates' && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
+                  <VnfSearchSelect
+                    v-if="isVnfSearch && vnfPickerKinds.includes(field.name)"
+                    :key="field.name + ':' + volumeLookupReset"
+                    v-model:value="form[field.name]"
+                    :kind="field.name"
+                    :scope="vnfScope"
+                    @update:value="onSelectFieldChange(field.name)"
+                    @blocked="vnfBlocked[field.name] = $event" />
                   <VolumeSearchSelect
-                    v-if="field.name === 'volumeid'"
+                    v-else-if="field.name === 'volumeid'"
                     :key="volumeLookupReset"
                     v-model:value="form.volumeid"
                     :scope="volumeScope"
@@ -166,7 +174,7 @@
                     type="primary"
                     size="small"
                     ref="submit"
-                    :disabled="fields.some(field => field.name === 'volumeid') && volumeLookupBlocked"
+                    :disabled="(fields.some(field => field.name === 'volumeid') && volumeLookupBlocked) || (isVnfSearch && Object.values(vnfBlocked).some(Boolean))"
                     html-type="submit">
                     <template #icon><search-outlined /></template>
                     {{ $t('label.search') }}
@@ -178,7 +186,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!['listTemplates', 'listCniConfiguration', 'listAffinityGroups'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!['listTemplates', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -201,6 +209,8 @@ import SnapshotSearch from '@/components/view/SnapshotSearch'
 import SnapshotPolicySearch from '@/components/view/SnapshotPolicySearch'
 import VolumeSearchSelect from '@/components/view/VolumeSearchSelect'
 import NetworkSearchSelect from '@/components/view/NetworkSearchSelect'
+import VnfSearchSelect from '@/components/view/VnfSearchSelect'
+import { vnfPickerKinds, vnfPickerConfig, vnfStates, vnfProject, vnfSearchError, vnfAuth } from '@/utils/vnfSearch'
 import { i18n } from '@/locales'
 import { affinityOwnerOptions, affinityTypeOptions } from '@/utils/affinityGroupCreation'
 
@@ -213,7 +223,8 @@ export default {
     SnapshotSearch,
     SnapshotPolicySearch,
     VolumeSearchSelect,
-    NetworkSearchSelect
+    NetworkSearchSelect,
+    VnfSearchSelect
   },
   props: {
     searchFilters: {
@@ -247,7 +258,9 @@ export default {
       affinityOptionsVersion: {},
       vmOptionVersion: 0,
       volumeLookupReset: 0,
-      volumeLookupBlocked: true
+      volumeLookupBlocked: true,
+      vnfPickerKinds,
+      vnfBlocked: {}
     }
   },
   created () {
@@ -256,6 +269,7 @@ export default {
     this.rules = reactive({})
   },
   watch: {
+    vnfSearchContext: { flush: 'sync', handler () { if (this.isVnfSearch) { this.visibleFilter = false; this.form = reactive({}); this.fields = []; this.vnfBlocked = {}; this.volumeLookupReset++ } } },
     volumeOwnerContext () {
       this.visibleFilter = false
       if (this.apiName === 'listTemplates') { this.form = reactive({}); this.fields = [] }
@@ -277,6 +291,7 @@ export default {
         this.fillFormFieldValues()
         this.fetchAffinityFilters(this.fields.map(field => field.name))
       }
+      if (this.isVnfSearch && this.visibleFilter) { this.fillFormFieldValues(); this.vnfBlocked = {}; this.volumeLookupReset++ }
     }
   },
   mounted () {
@@ -287,6 +302,9 @@ export default {
     this.updateIsFiltered()
   },
   computed: {
+    isVnfSearch () { return this.apiName === 'listVnfAppliances' },
+    vnfSearchContext () { return this.isVnfSearch ? vnfAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
+    vnfScope () { return { ...Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])), projectid: this.$route.query.projectid || vnfProject(this.$store.getters) } },
     isGuestNetworkSearch () { return this.apiName === 'listNetworks' && this.$route.meta?.name === 'guestnetwork' },
     networkScope () { return Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])) },
     volumeOwnerContext () {
@@ -337,6 +355,12 @@ export default {
       this.fetchDynamicFieldData(fieldname, event.target.value)
     },
     onSelectFieldChange (fieldname) {
+      if (this.isVnfSearch) {
+        if (fieldname === 'zoneid') ['networkid', 'templateid', 'serviceofferingid'].forEach(k => { this.form[k] = undefined })
+        if (fieldname === 'domainid') ['account', 'networkid', 'templateid', 'groupid', 'serviceofferingid'].forEach(k => { this.form[k] = undefined })
+        if (fieldname === 'account') ['networkid', 'templateid', 'groupid', 'serviceofferingid'].forEach(k => { this.form[k] = undefined })
+        return
+      }
       if (this.isGuestNetworkSearch && fieldname === 'zoneid') this.form.physicalnetworkid = undefined
       if (this.apiName === 'listAffinityGroups') {
         if (fieldname === 'domainid') {
@@ -365,6 +389,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.isVnfSearch && vnfPickerConfig(fieldName)) return this.$t(vnfPickerConfig(fieldName).label)
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (this.apiName === 'listTemplates' && fieldName === 'name') return this.$t('label.template.name.exact')
       if (this.isGuestNetworkSearch && fieldName === 'keyword') return this.$t('label.name')
@@ -395,6 +420,8 @@ export default {
       this.fields = []
       this.searchFilters.forEach(item => {
         let type = 'input'
+        if (this.isVnfSearch && !(item === 'tags' ? this.$getApiParams('listVnfAppliances')?.tags : this.$getApiParams('listVnfAppliances')?.[item])) return
+        if (this.isVnfSearch && ['account', 'domainid'].includes(item) && (this.$route.query.projectid || vnfProject(this.$store.getters)) !== '0') return
         if (this.apiName === 'listTemplates' && item !== 'tags' && !this.$getApiParams('listTemplates')?.[item]) return
 
         if (item === 'domainid' && !('listDomains' in this.$store.getters.apis)) {
@@ -465,6 +492,7 @@ export default {
       return arrayField
     },
     fetchStaticFieldData (arrayField) {
+      if (this.isVnfSearch) { const state = this.fields.find(field => field.name === 'state'); if (state) state.opts = vnfStates(this.$store.getters).map(id => ({ id, name: 'state.' + id.toLowerCase() })); return }
       if (this.apiName === 'listTemplates') {
         this.fields.filter(field => ['isready', 'forcks'].includes(field.name)).forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
       }
@@ -622,6 +650,7 @@ export default {
       }
     },
     async fetchDynamicFieldData (arrayField, searchKeyword) {
+      if (this.isVnfSearch) return
       if (this.apiName === 'listAffinityGroups') return this.fetchAffinityFilters(arrayField)
       if (this.apiName === 'listCniConfiguration') return this.fetchCniOwnerOptions(arrayField, searchKeyword)
       const templateLookup = this.apiName === 'listTemplates' ? this.volumeOwnerContext : null
@@ -1074,7 +1103,7 @@ export default {
     initFormFieldData () {
       const arrayField = this.initFields()
       if (this.apiName === 'listTemplates') this.rules.userdataid = [{ validator: async (rule, value) => { if (value && !this.$isValidUuid(value)) throw new Error(this.$t('message.template.search.userdataid')) } }]
-      if (this.isGuestNetworkSearch || ['listTemplates', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
+      if (this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
 
@@ -1866,6 +1895,7 @@ export default {
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isVnfSearch) { this.vnfBlocked = {}; this.form = reactive({}); this.visibleFilter = false; this.searchQuery = ''; this.$emit('search', {}); return }
       this.volumeLookupReset++
       this.formRef.value.resetFields()
       this.form = reactive({})
@@ -1897,6 +1927,11 @@ export default {
       this.$emit('search', this.paramsFilter)
     },
     handleSubmit () {
+      if (this.isVnfSearch) {
+        if (Object.values(this.vnfBlocked).some(Boolean)) return
+        const error = vnfSearchError({ ...this.form, projectid: this.vnfScope.projectid }, this.$store.getters, this.$getApiParams('listVnfAppliances'))
+        if (error) { this.$message.error(this.$t(error)); return }
+      }
       if (this.fields.some(field => field.name === 'volumeid') && this.volumeLookupBlocked) return
       if (this.apiName === 'listAffinityGroups' && this.form.account && !this.form.domainid) {
         this.$message.error(this.$t('message.affinity.search.account.domain'))
@@ -1919,6 +1954,10 @@ export default {
             this.paramsFilter['tags[0].value'] = this.inputValue
           }
         }
+        if (this.isVnfSearch) {
+          if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
+          this.visibleFilter = false
+        }
         this.$emit('search', this.paramsFilter)
       }).catch(error => {
         if (error.errorFields?.length) {
@@ -1930,7 +1969,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isGuestNetworkSearch || ['listTemplates', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true
