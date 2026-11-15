@@ -18,6 +18,7 @@
 import { mount } from '@vue/test-utils'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import Value from '@/components/widgets/PublicIpDetailValue'
+import TooltipButton from '@/components/widgets/TooltipButton'
 import DetailsTab from '@/components/view/DetailsTab'
 import { publicIpField, publicIpDetailFields, validatePublicIpDetail } from '@/utils/publicIpDetails'
 import { getAPI } from '@/api'
@@ -27,7 +28,7 @@ const other = '22222222-2222-4222-8222-222222222222'
 async function render (resource, field, apis = { listNetworks: {}, listVPCs: {} }) {
   const router = createRouter({ history: createMemoryHistory(), routes: [{ path: '/:pathMatch(.*)*', component: { template: '<div />' } }] })
   await router.push('/'); await router.isReady()
-  return mount(Value, { props: { resource, field }, global: { plugins: [router], mocks: { $store: { getters: { apis } }, $t: k => k, $message: { success: jest.fn() } }, stubs: { TooltipButton: { props: ['copyResource'], template: '<button :data-copy="copyResource" />' } } } })
+  return mount(Value, { props: { resource, field }, global: { plugins: [router], mocks: { $store: { getters: { apis } }, $t: k => k, $message: { success: jest.fn(), error: jest.fn() } }, stubs: { TooltipButton: { name: 'TooltipButton', props: ['copyResource'], template: '<button :data-copy="copyResource" />' } } } })
 }
 beforeEach(() => jest.clearAllMocks())
 test('untagged is a real VLAN value with raw source, not a missing allocation', async () => {
@@ -74,4 +75,18 @@ test('redacted responses do not reconstruct VLAN fields from any other identity'
   expect(publicIpField(ip, 'vlanname').missing).toBe(true); expect(publicIpField(ip, 'vlanid').missing).toBe(true)
   expect(() => validatePublicIpDetail({ listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id }] } }, id)).not.toThrow()
   expect(() => validatePublicIpDetail({ listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id: other }] } }, id)).toThrow()
+})
+
+test('copy messages follow browser results rather than a click', async () => {
+  const w = await render({ vlanid: id }, 'vlanid')
+  const button = w.findComponent({ name: 'TooltipButton' })
+  button.vm.$emit('onClick'); expect(w.vm.$message.success).not.toHaveBeenCalled(); expect(w.vm.$message.error).not.toHaveBeenCalled()
+  button.vm.$emit('copy-error', { text: id }); expect(w.vm.$message.error).toHaveBeenCalledWith('message.public.ip.copy.failed'); expect(w.vm.$message.success).not.toHaveBeenCalled()
+  button.vm.$emit('copy-success', { text: id }); expect(w.vm.$message.success).toHaveBeenCalledWith('label.copied.clipboard'); w.unmount()
+})
+test.each(['success', 'error'])('the shared copy button forwards the actual clipboard %s callback', async result => {
+  const handlers = {}
+  const w = mount(TooltipButton, { props: { copyResource: id }, global: { stubs: { ATooltip: { template: '<div><slot /></div>' }, AButton: { emits: ['click'], template: '<button @click="$emit(\'click\')"><slot /></button>' } }, directives: { clipboard: { mounted: (el, binding) => { handlers[binding.arg] = binding.value } } } } })
+  await w.get('button').trigger('click'); expect(w.emitted('onClick')).toHaveLength(1); expect(w.emitted('copy-' + result)).toBeUndefined()
+  const event = { text: id }; handlers[result](event); expect(w.emitted('copy-' + result)).toEqual([[event]]); w.unmount()
 })

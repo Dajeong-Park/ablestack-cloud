@@ -28,7 +28,8 @@
         icon="copy-outlined"
         type="dashed"
         size="small"
-        @onClick="$message.success($t('label.copied.clipboard'))" />
+        @copy-success="$message.success($t('label.copied.clipboard'))"
+        @copy-error="$message.error($t('message.public.ip.copy.failed'))" />
     </div>
     <div v-if="value.id && value.text !== value.id && !compact" class="public-ip-detail-value__raw">{{ value.id }}</div>
     <div v-if="value.raw" class="public-ip-detail-value__raw">{{ $t('label.public.ip.value.raw') }}: {{ value.raw }}</div>

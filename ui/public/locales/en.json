@@ -11902,5 +11902,6 @@
   "label.public.ip.value.notprovided": "Not provided in this response",
   "label.public.ip.value.raw": "Raw value",
   "message.public.ip.detail.read.failed": "Unable to read the public IP details.",
-  "message.public.ip.detail.unavailable": "This public IP is unavailable in the current context."
+  "message.public.ip.detail.unavailable": "This public IP is unavailable in the current context.",
+  "message.public.ip.copy.failed": "Copy failed. Select the displayed identifier to copy it manually, or try again."
 }
