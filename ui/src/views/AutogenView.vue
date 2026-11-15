@@ -81,7 +81,7 @@
                   </a-select>
                 </a-tooltip>
                 <a-switch
-                  v-if="!dataView && ['vm', 'volume', 'zone', 'cluster', 'host', 'storagepool', 'managementserver', 'sharedfs'].includes($route.name)"
+                  v-if="!dataView && ($route.name !== 'vm' || vmMetricsAvailable($store.getters.apis)) && ['vm', 'volume', 'zone', 'cluster', 'host', 'storagepool', 'managementserver', 'sharedfs'].includes($route.name)"
                   style="margin-left: 8px; min-height: 23px; margin-bottom: 4px"
                   :checked-children="$t('label.metrics')"
                   :un-checked-children="$t('label.metrics')"
@@ -993,6 +993,7 @@ import { createListRefresh, listRowKey, canRefreshList } from '@/utils/listRefre
 import { ref, reactive, toRaw, h, markRaw, defineAsyncComponent } from 'vue'
 import SharedFSFormDialog from '@/components/storage/SharedFSFormDialog'
 import { Button } from 'ant-design-vue'
+import { vmReadApi, vmMetricsAvailable } from '@/utils/vmRead'
 import { getAPI, postAPI, callAPI } from '@/api'
 import { freshSnapshotContext } from '@/utils/vmSnapshotList'
 import { scopedSnapshotOperations, snapshotOperationAffectsRoute } from '@/utils/storageSnapshotNotices'
@@ -1648,6 +1649,7 @@ export default {
       const known = ['podid', 'clusterid', 'hostid', 'considerlasthost', 'bootintosetup', 'forced']
       return this.vmStandardDialog && known.includes(field.name) ? this.$t('message.vm.start.' + field.name) : field.description
     },
+    vmMetricsAvailable,
     templateListLocation,
     storageDialogSize,
     snapshotSourceVolumeRoute,
@@ -1752,7 +1754,7 @@ export default {
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(['template', 'iso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -2024,13 +2026,14 @@ export default {
           : null
         this.routeName = matchedRoute?.meta?.name || this.$route?.meta?.name || this.$route?.name || ''
       }
-      const securityScope = JSON.stringify([...(['template', 'iso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
+      const securityScope = JSON.stringify([...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
       if (this.listSecurityScope !== securityScope) {
         this.items = []
         this.resource = {}
         this.itemCount = 0
         this.listLoadedScope = null
         this.listSecurityScope = securityScope
+        if (this.$route.meta?.name === 'vm') { this.resetSelection(); this.listSchemaScope = null }
       }
       const scope = this.listScope()
       if (this.listRequestPending && this.listRequestScope === scope) {
@@ -2045,7 +2048,7 @@ export default {
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
       }
-      const schemaScope = JSON.stringify([this.$route.path, this.$i18n?.locale, this.$store.getters.metrics, this.$store.getters.listAllProjects, this.$store.getters.userInfo?.id, this.isSnapshotCopyList, ...(this.isObjectStorageUi ? [this.$store.getters.project?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token] : [])])
+      const schemaScope = JSON.stringify([this.$route.path, this.$i18n?.locale, this.$store.getters.metrics, this.$store.getters.listAllProjects, this.$store.getters.userInfo?.id, this.isSnapshotCopyList, ...(this.$route.meta?.name === 'vm' ? [this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(this.isObjectStorageUi ? [this.$store.getters.project?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token] : [])])
       const rebuildSchema = this.listSchemaScope !== schemaScope
       if (rebuildSchema) {
         this.apiName = ''
@@ -2135,7 +2138,8 @@ export default {
       const customRender = rebuildSchema ? {} : this.listCustomRender
       if (rebuildSchema) {
         if (this.$route && this.$route.meta && this.$route.meta.permission) {
-          this.apiName = this.$route.meta.permission[0]
+          this.apiName = this.$route.meta?.name === 'vm' ? vmReadApi(store.getters.apis, { dataView: this.dataView, metrics: store.getters.metrics }) : this.$route.meta.permission[0]
+          if (this.$route.meta?.name === 'vm' && !this.apiName) { this.listRefreshError = true; this.listRequestPending = false; this.loading = false; return }
           if (!store.getters.metrics && !this.dataView &&
             this.apiName && this.apiName.endsWith('Metrics') &&
             store.getters.apis[this.apiName.replace(/Metrics$/, '')]) {
@@ -3896,9 +3900,9 @@ export default {
         const query = vnfSearchQuery(this.$route.query, opts, this.pageSize, this.$store.getters)
         this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData()
-          else this.$router.push({ query })
-          return
-        }
+        else this.$router.push({ query })
+        return
+      }
       if (this.isIsoList) {
         const query = isoSearchQuery(this.$route.query, opts || {}, this.pageSize, this.$store.getters)
         this.searchParams = {}
