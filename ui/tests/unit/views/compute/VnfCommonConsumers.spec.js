@@ -43,6 +43,11 @@ test('BMC role/context change during an outstanding read cancels mutation and cl
   const c = bmc(); const wait = deferred(); getAPI.mockReturnValue(wait.promise); const p = c.execute('allocateVbmcToVM'); c.$store.getters.userInfo.roletype = 'User'; Bmc.watch.context.handler.call(c); wait.resolve({ listvirtualmachinesresponse: { virtualmachine: [{ ...vm }] } }); await p; expect(runVbmc).not.toHaveBeenCalled(); expect(c.password).toBe(''); expect(c.disposed).toBe(true)
 })
 test('unverified parent context blocks all BMC mutation', async () => { const c = bmc(); c.resourceActionReady = () => false; await c.execute('removeVbmcToVM'); expect(getAPI).not.toHaveBeenCalled(); expect(runVbmc).not.toHaveBeenCalled() })
+test.each([false, true])('parent refresh preserves a completed BMC check only for the same endpoint: changed=%s', async changed => {
+  const c = bmc(); c.vm = { ...vm, vbmcstatus: 'Ready', vbmcport: '6231', vbmcaddress: '127.0.0.1', vbmcallowedcidr: '127.0.0.1/32' }; c.checked = 'just checked'
+  getAPI.mockResolvedValue({ listvirtualmachinesresponse: { virtualmachine: [{ ...c.vm, ...(changed ? { vbmcport: '6232' } : {}) }] } })
+  Bmc.watch.parentReady.call(c, false); Bmc.watch.parentReady.call(c, true); await flushPromises(); expect(c.checked).toBe(changed ? '' : 'just checked')
+})
 function wall () {
   const c = bind(Action, { resource: { ...vm }, selectedRowKeys: [], selectedItems: [], actions: [], dataView: true, $route: { name: 'vnfapp', meta: { name: 'vnfapp' } }, $store: store(), $t: k => k, resourceActionReady: () => true }); return c
 }
