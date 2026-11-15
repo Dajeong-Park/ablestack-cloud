@@ -1,3 +1,22 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+ -->
+
 # #1685 Public IP 예약 소유자 수정과 실환경 검증
 
 - 대상: Epic #1684 / PIP-01, Europa. 소스는 dhslove 저장소의 별도 작업 트리에서 변경했다.
@@ -80,6 +99,16 @@ VM의 세로 a-form, MoldDialog md(720px), MoldDialogActions의 고정 footer·b
 양쪽 UI에서 Free, 열린 창 0개와 한국어 복원을 확인했다. 라이트 테마를 복원했고 가로채기·화면 크기 임시 설정을 지운 후 시험 탭을 닫았다. 32의 기존 경보 2건 배너는 검증 시작 전부터 있었으며 이 작업의 진단 범위에 포함하지 않았다. 게시 증적은 자격 증명 필드를 재귀적으로 제거한 뒤 검사했다. 인벤토리와 후보 응답은 검증에 사용한 식별자·상태·소유자·연결 참조의 필드만 투영해 게시했으며 자격 증명을 제거한 전체 캡처는 로컬에 보존했다.
 
 최종 검증 명령: `python finalize-evidence.py`. 8개 요청 소유자 계약, 해제, 키보드 중복 차단, 18개 자원 범위, 시험 IP Free, 전 프로젝트 Reserved 0 및 자격 증명 필드 검사를 통과했다.
+
+## GitHub 검사와 라이선스 기준 비교
+
+PR #1691의 최초 License Check는 미승인 4,116개로 실패했다. 이번 소스·문서·생성 전사 기록에 표준 라이선스 헤더를 보완했고, 깨끗한 WSL ext4 작업 트리에서 같은 RAT 정적 검사 명령으로 기준/변경본을 비교했다.
+
+- 기준 `8ada44ee9d9`: 미승인 **4,077개**.
+- 변경본(헤더 보정 포함): 미승인 **4,077개**, 추가/제거 집합 모두 0개. 두 미승인 파일 집합이 동일하다.
+- `license-baseline-comparison.json`, `rat-base.log`, `rat-head.log`에 비교 근거를 보존했다. 전역 라이선스 검사는 기존 미승인 파일 때문에 여전히 실패하며 전체 CI PASS를 주장하지 않는다.
+- 변경 Vue/Markdown/Shell의 저장소 license insert hook, 변경 lint 및 집중 테스트 49개를 헤더 보정 후 다시 통과했다. 실행 코드가 배포 소스 `133e1bbe8a8`과 바이트 단위로 동일함을 확인했다. 후속 커밋은 라이선스 주석·증적 헤더만 보완한다.
+- PR의 전체 저장소 Lint는 GitHub 상태를 별도로 확인해야 한다. 전체 저장소 오류를 이 UI 수정에서 일괄 정리하지 않았다.
 
 ## 다음 작업
 
