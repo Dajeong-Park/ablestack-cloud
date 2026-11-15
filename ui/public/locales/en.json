@@ -11970,5 +11970,7 @@
   "message.iso.download.requested": "File retrieval was requested in the browser. This does not confirm file receipt.",
   "message.iso.consume.read.failed": "ISO or VM information could not be verified. Close this dialog and try again.",
   "message.iso.consume.vm.empty": "No accessible VM was found in the ISO Zone.",
-  "message.iso.consume.attached": "This ISO is already attached to the VM."
+  "message.iso.consume.attached": "This ISO is already attached to the VM.",
+  "message.iso.download.observe.failed": "The result of download preparation could not be read. Check status to observe the existing job.",
+  "message.iso.download.nojob": "No job ID was received, so the preparation result cannot be verified. Check whether the existing request was accepted before repeating it."
 }

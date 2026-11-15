@@ -20,8 +20,7 @@
     <div @keydown.ctrl.enter.stop.prevent="prepare">
       <dl class="template-dialog-context"><dt>{{ $t('label.name') }}</dt><dd>{{ resource.name }}</dd><dt>{{ $t('label.id') }}</dt><dd>{{ resource.id }}</dd></dl>
       <a-form-item :label="$t('label.zone')" :html-for="'iso-download-'+resource.id"><a-select :id="'iso-download-'+resource.id" v-model:value="zoneid" :options="zones.map(z=>({value:z.zoneid,label:z.zonename || z.zoneid}))" :disabled="busy || phase!=='confirm'" :loading="loading" /></a-form-item>
-      <a-alert v-if="error" type="error" show-icon :message="$t(error)" />
-      <a-alert v-if="phase!=='confirm'" type="info" show-icon :message="$t('message.iso.download.'+phase)" />
+      <a-alert v-if="error || phase!=='confirm'" :type="phase==='unknown'?'warning':error?'error':'info'" show-icon :message="$t(error || (phase==='unknown' && !jobid?'message.iso.download.nojob':'message.iso.download.'+phase))" />
       <a-alert v-if="requested" type="info" show-icon :message="$t('message.iso.download.requested')" />
     </div>
     <template #footer>
@@ -52,7 +51,7 @@ export default {
   created () { this.load() },
   beforeUnmount () { this.invalidate() },
   methods: {
-    invalidate () { this.epoch++; this.result = null; this.jobid = ''; this.busy = false },
+    invalidate () { this.epoch++; this.result = null; this.jobid = ''; this.requested = false; this.busy = false },
     current (epoch) { return epoch === this.epoch && this.allowed },
     close () { if (!this.busy) { this.invalidate(); this.$emit('close-action') } },
     async load () {
@@ -82,7 +81,7 @@ export default {
       } catch (e) {
         if (this.current(epoch)) {
           const d = e.response?.data; const rejected = Object.values(d || {}).some(v => v?.errorcode) || (e.response?.status >= 400 && e.response?.status < 500 && e.response.status !== 408)
-          this.phase = this.jobid ? 'unknown' : !posted || rejected ? 'failed' : 'unknown'; this.error = 'message.iso.download.failed'
+          this.phase = this.jobid ? 'unknown' : !posted || rejected ? 'failed' : 'unknown'; this.error = this.phase === 'unknown' ? (this.jobid ? 'message.iso.download.observe.failed' : '') : 'message.iso.download.failed'
         }
       } finally { if (this.current(epoch)) this.busy = false }
     },
@@ -103,7 +102,7 @@ export default {
     async check () {
       if (this.busy || !this.jobid || !this.allowed) return
       const epoch = this.epoch; this.busy = true; this.error = ''
-      try { await this.observe(epoch) } catch (_) { if (this.current(epoch)) this.phase = 'unknown' } finally { if (this.current(epoch)) this.busy = false }
+      try { await this.observe(epoch) } catch (_) { if (this.current(epoch)) { this.phase = 'unknown'; this.error = 'message.iso.download.observe.failed' } } finally { if (this.current(epoch)) this.busy = false }
     }
   }
 }

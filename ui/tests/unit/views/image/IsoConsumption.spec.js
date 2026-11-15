@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { shallowMount } from '@vue/test-utils'
+import { h } from 'vue'
 import Download from '@/views/image/IsoDownload'
 import Attach from '@/views/image/IsoVmAttach'
 import VmIsoManager from '@/views/compute/VmIsoManager'
@@ -61,7 +63,7 @@ test('busy preparation cannot duplicate POST or close its dialog', async () => {
   let finish; postAPI.mockReturnValue(new Promise(resolve => { finish = resolve })); const c = prepare(); const pending = c.prepare(); await Promise.resolve(); await Promise.resolve(); await c.prepare(); c.close(); expect(c.$emit).not.toHaveBeenCalled(); finish({ extractisoresponse: { jobid: 'job' } }); await pending; expect(postAPI).toHaveBeenCalledTimes(1)
 })
 test('accepted job observation failures stay unknown and check status only reads', async () => {
-  const c = prepare(); getAPI.mockImplementation(async command => { if (command === 'listIsos') return { listisosresponse: { iso: [row], count: 1 } }; throw Object.assign(new Error('private transport URL'), { response: { status: 403 } }) }); await c.prepare(); expect(c.phase).toBe('unknown'); expect(c.error).not.toContain('private'); getAPI.mockResolvedValue(observed({ jobstatus: 1, jobresult: { iso: { id: 'image', url: 'https://host/file.iso' } } })); await c.check(); expect(c.phase).toBe('ready'); expect(postAPI).toHaveBeenCalledTimes(1)
+  const c = prepare(); getAPI.mockImplementation(async command => { if (command === 'listIsos') return { listisosresponse: { iso: [row], count: 1 } }; throw Object.assign(new Error('private transport URL'), { response: { status: 403 } }) }); await c.prepare(); expect(c.phase).toBe('unknown'); expect(c.error).toBe('message.iso.download.observe.failed'); getAPI.mockResolvedValue(observed({ jobstatus: 1, jobresult: { iso: { id: 'image', url: 'https://host/file.iso' } } })); await c.check(); expect(c.phase).toBe('ready'); expect(postAPI).toHaveBeenCalledTimes(1)
 })
 test('missing job IDs never become download success or auto-retry', async () => {
   postAPI.mockResolvedValue({ extractisoresponse: {} }); const c = prepare(); await c.prepare(); await c.prepare(); expect(c.phase).toBe('unknown'); expect(c.result).toBeNull(); expect(postAPI).toHaveBeenCalledTimes(1)
@@ -72,7 +74,7 @@ test('job rejection can explicitly prepare again and discards old URLs', async (
 test('session invalidation discards accepted late result without exposing a link', async () => {
   let finish; postAPI.mockReturnValue(new Promise(resolve => { finish = resolve })); const c = prepare(); const pending = c.prepare(); await Promise.resolve(); await Promise.resolve(); c.invalidate(); finish({ extractisoresponse: { jobid: 'job' } }); await pending; expect(c.result).toBeNull(); expect(c.jobid).toBe('')
 })
-test('ready links are cleared when the dialog closes', () => { const c = prepare(); c.result = { url: 'https://host/file.iso' }; c.close(); expect(c.result).toBeNull(); expect(c.$emit).toHaveBeenCalledWith('close-action') })
+test('ready links are cleared when the dialog closes', () => { const c = prepare(); c.result = { url: 'https://host/file.iso' }; c.requested = true; c.close(); expect(c.result).toBeNull(); expect(c.requested).toBe(false); expect(c.$emit).toHaveBeenCalledWith('close-action') })
 test('attach permission does not require deployment or image ownership but requires VM and ISO reads', () => {
   const g = getters(); delete g.apis.extractIso; expect(canIsoAction('attach', { ...row, account: 'shared-owner' }, g)).toBe(true); delete g.apis.listVirtualMachines; expect(canIsoAction('attach', row, g)).toBe(false)
 })
@@ -98,4 +100,17 @@ test('ISO entry preselects its candidate in the shared manager without submittin
 test('an attachment race reports already attached without offering duplicate submission', async () => {
   const c = { scopeKey: 'scope', initialIso: row, capacity: 1, candidateRequest: 0, vm: { zoneid: 'zone' }, rows: [row], $nextTick: async () => {}, fetchData: jest.fn(), reason: () => '', $t: k => k }
   await VmIsoManager.methods.openAttach.call(c); expect(c.attachIds).toEqual([]); expect(c.candidateError).toBe('message.iso.consume.attached'); expect(postAPI).not.toHaveBeenCalled()
+})
+
+function renderStatus (data) {
+  return shallowMount({ ...Download, created () {} }, { props: { resource: row }, data: () => data, global: { mocks: { $t: k => k, $store: { getters: getters(), state: { user: { token: 'session' } } } }, stubs: { MoldDialog: { template: '<div><slot /><slot name="footer" /></div>' }, AAlert: { props: ['message', 'type'], render () { return h('div', { class: 'status-alert', 'data-type': this.type }, this.message) } } } } })
+}
+test('preparation rejection renders one failure alert instead of duplicate instructions', () => {
+  const w = renderStatus({ phase: 'failed', error: 'message.iso.download.failed' }); expect(w.findAll('.status-alert')).toHaveLength(1); expect(w.find('.status-alert').attributes('data-type')).toBe('error'); w.unmount()
+})
+test('accepted-job read failures render an observation warning without false preparation failure', () => {
+  const w = renderStatus({ phase: 'unknown', jobid: 'job', error: 'message.iso.download.observe.failed' }); expect(w.findAll('.status-alert')).toHaveLength(1); expect(w.text()).toContain('message.iso.download.observe.failed'); expect(w.text()).not.toContain('message.iso.download.failed'); expect(w.find('.status-alert').attributes('data-type')).toBe('warning'); w.unmount()
+})
+test('missing job IDs explain the unverified result without offering a status read', () => {
+  const w = renderStatus({ phase: 'unknown', jobid: '', error: '' }); expect(w.findAll('.status-alert')).toHaveLength(1); expect(w.text()).toContain('message.iso.download.nojob'); expect(w.text()).not.toContain('label.iso.check.status'); w.unmount()
 })
