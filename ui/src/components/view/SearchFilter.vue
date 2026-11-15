@@ -199,6 +199,8 @@ export default {
       const version = ++this.filterVersion
       const scope = this.lookupScope
       const cloned = filters.map(filter => ({ ...filter, rawValue: filter.value }))
+      // Keep the submitted UUID instead of looking up names in an unrelated owner.
+      if (this.apiName === 'listVnfAppliances') { this.searchFilters = cloned.map(f => f.key === 'state' ? { ...f, value: this.$t('state.' + String(f.value).toLowerCase()) } : f); return }
       this.searchFilters = cloned.map(filter => ({ ...filter }))
       const resolved = await Promise.all(cloned.map(async filter => {
         if (filter.key === 'tags') return { ...filter, isTag: true }
@@ -216,6 +218,7 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (this.apiName === 'listTemplates' && fieldName === 'name') return this.$t('label.template.name.exact')
       if (fieldName === 'forvpc') return this.$t('label.network.search.forvpc')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')

@@ -417,3 +417,22 @@ describe('Components > View > ActionButton.vue', () => {
     })
   })
 })
+
+test('bulk context menus apply deletion protection to every selected VM despite dataView rendering', () => {
+  const allowed = { id: 'allowed', name: 'Allowed', state: 'Stopped', deleteprotection: false }
+  const protectedVm = { ...allowed, id: 'protected', name: 'Protected', deleteprotection: true }
+  const action = { api: 'destroyVirtualMachine', groupAction: true }
+  const context = {
+    dataView: true,
+    resource: allowed,
+    selectedItems: [allowed, protectedVm],
+    $store: { getters: { apis: { listVirtualMachines: {}, destroyVirtualMachine: {} } } },
+    $t: key => key,
+    resourceActionReady: () => true
+  }
+  context.vmDeleteTooltip = a => ActionButton.methods.vmDeleteTooltip.call(context, a)
+  expect(context.vmDeleteTooltip(action)).toContain('Protected (protected)')
+  expect(ActionButton.methods.isActionDisabled.call(context, action)).toBe(true)
+  context.selectedItems = [allowed]
+  expect(ActionButton.methods.isActionDisabled.call(context, action)).toBe(false)
+})

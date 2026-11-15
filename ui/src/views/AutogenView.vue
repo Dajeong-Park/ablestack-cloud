@@ -28,7 +28,7 @@
               <template #end>
                 <a-button
                   v-if="$route.meta?.name !== 'runtimebundle'"
-                  :loading="loading || (($route.meta?.name === 'vmgroup' || isSnapshotList) && listRequestPending)"
+                  :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList) && listRequestPending)"
                   :disabled="isSnapshotList && listRequestPending"
                   style="margin-bottom: 5px"
                   shape="round"
@@ -186,7 +186,7 @@
     <div v-show="showAction">
       <component
         v-if="showAction && currentAction.selfManagedDialog"
-        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog) ? storageActionGeneration : undefined"
+        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || currentAction.vnfUnmanageCurrent) ? storageActionGeneration : undefined"
         ref="selfManagedAction"
         :is="currentAction.component"
         :resource="resource"
@@ -196,10 +196,10 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
-          :size="currentAction.standardDialogSize || (isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
+          :size="currentAction.standardDialogSize || (vmStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
           class="mold-dialog"
           :class="{ 'object-storage-dialog': isObjectStorageUi, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup', 'storage-standard-dialog': standardActionDialog, 'vpc-standard-dialog': isVpcUi, 'snapshot-standard-dialog': currentAction.snapshotStandardDialog, 'sharedfs-standard-dialog': $route.meta?.name === 'sharedfs' }"
           centered
@@ -211,7 +211,7 @@
           :confirmLoading="actionLoading"
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
-          :focus-guard="isVpcUi || !!currentAction.snapshotStandardDialog"
+          :focus-guard="isVpcUi || vmStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -229,9 +229,9 @@
             </a>
           </template>
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
-          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi) ? 1 : undefined">
+          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi || isObjectStorageUi) ? storageActionGeneration : undefined"
+              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -272,7 +272,8 @@
             v-if="currentAction.docHelp || $route.meta.docHelp"
             style="margin-left: 5px"
             :href="documentationUrl($config.docBase, currentAction.docHelp || $route.meta.docHelp, $i18n.locale)"
-            target="_blank">
+            target="_blank"
+            :aria-label="$t('label.help')">
             <question-circle-outlined />
           </a>
         </template>
@@ -330,20 +331,20 @@
                 v-if="!(currentAction.mapping && field.name in currentAction.mapping && currentAction.mapping[field.name].value)"
               >
                 <template #label>
-                  <tooltip-label :title="$t('label.' + field.name)" :tooltip="field.description"/>
+                  <tooltip-label :title="$t('label.' + field.name)" :tooltip="actionFieldDescription(field)"/>
                 </template>
 
                 <a-switch
                   v-if="field.type==='boolean'"
                   v-model:checked="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-select
                   v-else-if="currentAction.mapping && field.name in currentAction.mapping && currentAction.mapping[field.name].options"
                   :loading="field.loading"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -363,7 +364,7 @@
                   optionFilterProp="label"
                   v-model:value="form[field.name]"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.children[0].children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -380,7 +381,7 @@
                   optionFilterProp="label"
                   v-model:value="form[field.name]"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -434,7 +435,7 @@
                   :loading="field.loading"
                   mode="multiple"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -451,12 +452,12 @@
                   v-focus="fieldIndex === firstIndex"
                   style="width: 100%;"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                 />
                 <a-input-password
                   v-else-if="field.name==='password' || field.name==='currentpassword' || field.name==='confirmpassword'"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   @blur="($event) => handleConfirmBlur($event, field.name)"
                   v-focus="fieldIndex === firstIndex"
                 />
@@ -464,14 +465,14 @@
                   v-else-if="field.name==='certificate' || field.name==='privatekey' || field.name==='certchain'"
                   rows="2"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-input
                   v-else
                   v-focus="fieldIndex === firstIndex"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description" />
+                  :placeholder="actionFieldDescription(field)" />
               </a-form-item>
             </div>
 
@@ -484,17 +485,17 @@
         <br />
       </component>
       <component
-        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete) ? 'MoldDialog' : 'a-modal'"
-        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete) ? 'md' : undefined"
+        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog) ? 'MoldDialog' : 'a-modal'"
+        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog) ? 'md' : undefined"
         class="mold-dialog"
-        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete, 'vpc-standard-dialog': isVpcUi, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
+        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog, 'vpc-standard-dialog': isVpcUi, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
           v-else
         :visible="showAction"
-        :closable="!isVpcUi || !actionLoading"
+        :closable="!(isVpcUi || vmStandardDialog) || !(actionLoading || vmActionValidationPending)"
         :maskClosable="false"
         :width="(isBucketGroupDelete || isGuestNetworkDelete) ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
-        :focus-guard="isVpcUi"
-        :keyboard="!isVpcUi || !actionLoading"
+        :focus-guard="isVpcUi || vmStandardDialog"
+        :keyboard="!(isVpcUi || vmStandardDialog) || !(actionLoading || vmActionValidationPending)"
         :after-close="restoreClosedActionFocus"
         :ok-button-props="getOkProps()"
         ok-text="111"
@@ -510,15 +511,18 @@
             style="margin-left: 5px"
             :href="documentationUrl($config.docBase, currentAction.docHelp || $route.meta.docHelp, $i18n.locale)"
             target="_blank"
+            :aria-label="$t('label.help')"
           >
             <question-circle-outlined />
           </a>
         </template>
         <VpcActionContext v-if="isVpcUi && !currentAction.listView" :resources="currentAction.invokedAsGroupAction ? selectedItems : [resource]" />
+        <a-alert v-if="vmStandardDialog && vmActionError" type="error" show-icon :message="vmActionError" class="vm-action-error" />
         <a-alert v-if="isVpcUi && vpcActionError" type="error" show-icon :message="vpcActionError" style="margin-bottom: 16px" />
         <a-spin
           :spinning="actionLoading"
-          v-ctrl-enter="handleSubmit"
+          v-ctrl-enter="vmStandardDialog ? false : handleSubmit"
+          @keydown.ctrl.enter.prevent="vmStandardDialog && !$event.repeat && handleSubmit($event)"
         >
           <div v-if="isGuestNetworkDelete && !currentAction.invokedAsGroupAction" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; overflow-wrap: anywhere">
             <strong>{{ resource.name || resource.id }}</strong>
@@ -567,7 +571,8 @@
                 :scroll="isBucketGroupDelete ? { x: 760 } : undefined"
                 style="overflow-y: auto"
               >
-                <template #bodyCell="{ column, text }">
+                <template #bodyCell="{ column, text, record }">
+                  <template v-if="column.key === 'displayname' && isVmIdentityRoute($route)">{{ vmDisplayName(record) }}</template>
                   <template v-if="column.key === 'allocated' && ['asnumbers', 'publicip'].includes($route.meta.name)">
                     {{ $toLocaleDate(text) }}
                   </template>
@@ -604,31 +609,31 @@
                   <tooltip-label
                     v-if="['domain', 'guestcidraddress'].includes(field.name) && ['createZone', 'updateZone'].includes(currentAction.api)"
                     :title="$t('label.default.network.' + field.name + '.isolated.network')"
-                    :tooltip="field.description"
+                    :tooltip="actionFieldDescription(field)"
                   />
                   <tooltip-label
                     v-else-if="field.name === 'keepmacaddressonpublicnic' && currentAction.api === 'updateVPC'"
                     :title="$t('label.keep.mac.address.on.public.nic')"
-                    :tooltip="field.description"
+                    :tooltip="actionFieldDescription(field)"
                   />
                   <tooltip-label
                     v-else
                     :title="$t('label.' + field.name)"
-                    :tooltip="field.description"
+                    :tooltip="actionFieldDescription(field)"
                   />
                 </template>
 
                 <a-switch
                   v-if="field.type==='boolean'"
                   v-model:checked="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-select
                   v-else-if="currentAction.mapping && field.name in currentAction.mapping && currentAction.mapping[field.name].options"
                   :loading="field.loading"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -656,7 +661,7 @@
                   v-model:value="form[field.name]"
                   @change="val => handleSelectChange(field.name, val)"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -681,7 +686,7 @@
                   v-model:value="form[field.name]"
                   @change="val => handleSelectChange(field.name, val)"
                   :loading="field.loading"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   :filterOption="(input, option) => {
                     return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
                   }"
@@ -788,7 +793,7 @@
                   mode="multiple"
                   v-model:value="form[field.name]"
                   @change="val => handleSelectChange(field.name, val)"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                   showSearch
                   optionFilterProp="label"
@@ -813,12 +818,12 @@
                   v-focus="fieldIndex === firstIndex"
                   style="width: 100%;"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                 />
                 <a-input-password
                   v-else-if="field.name==='password' || field.name==='currentpassword' || field.name==='confirmpassword' || field.name==='secretkey'"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   @blur="($event) => handleConfirmBlur($event, field.name)"
                   v-focus="fieldIndex === firstIndex"
                 />
@@ -826,14 +831,14 @@
                   v-else-if="field.name==='certificate' || field.name==='privatekey' || field.name==='certchain'"
                   rows="2"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
                 <a-input
                   v-else
                   v-focus="fieldIndex === firstIndex"
                   v-model:value="form[field.name]"
-                  :placeholder="field.description"
+                  :placeholder="actionFieldDescription(field)"
                 />
               </a-form-item>
             </div>
@@ -841,8 +846,8 @@
           </a-form>
         </a-spin>
         <template #footer>
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" @click="handleSubmit" :disabled="isSubmitDisabled" :loading="actionLoading" :danger="isVpcUi && currentAction.api?.startsWith('delete')" ref="submit">{{ $t(isVpcUi && currentAction.label ? currentAction.label : 'label.ok') }}</a-button>
+          <a-button @click="vmStandardDialog ? cancelAction() : closeAction()" :disabled="vmStandardDialog && (actionLoading || vmActionValidationPending)">{{ $t('label.cancel') }}</a-button>
+          <a-button type="primary" @click="handleSubmit" :disabled="isSubmitDisabled || (vmStandardDialog && (vmActionValidationPending || vmActionUnknown))" :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)" :danger="isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'" ref="submit">{{ $t((isVpcUi || vmStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}</a-button>
         </template>
       </component>
     </div>
@@ -850,6 +855,7 @@
     <div
       :style="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 'margin-top: 24px; margin-bottom: 12px' : null"
     >
+      <a-alert v-if="vnfSearchFailure && $route.meta?.name === 'vnfapp'" class="vnf-search-error" type="error" show-icon :message="$t(vnfSearchFailure)"><template #description><a-button @click="onSearch({})">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <InstanceGroupQueryStatus
         v-if="$route.meta?.name === 'vmgroup'"
         :status="vmGroupQueryStatus"
@@ -888,8 +894,8 @@
           v-else-if="!templateDetailError && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
-          :readFailed="(isVpcUi || $route.meta?.name === 'ilb') && listRefreshError"
-          :readyForActions="(isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
+          :readFailed="(isVpcUi || ['ilb', 'vm', 'vnfapp'].includes($route.meta?.name)) && listRefreshError"
+          :readyForActions="['vm', 'vnfapp'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
           :quiet-refresh="isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
@@ -908,17 +914,18 @@
         <advisories-view
           v-if="$route.meta.advisories && !loading"
         />
-        <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
-          <template #action><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
+        <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
+          <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
         <p v-else-if="listRefreshError && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
+        <p v-if="$route.meta?.name === 'vnfapp'" class="vnf-selection-policy">{{ $t('message.vnf.search.selection') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
           :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="columns"
           :items="items"
-          :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi) && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
-          :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi) && !storageActionReady"
+          :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
+          :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
@@ -932,7 +939,7 @@
           @table-change="handleTableChange"
         />
         <a-pagination
-          v-if="(!isSnapshotList && $route.meta?.name !== 'vmgroup') || listLoadedScope"
+          v-if="(!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope"
           class="row-element"
           style="margin-top: 10px"
           size="small"
@@ -965,6 +972,7 @@
 </template>
 
 <script>
+import { isVmDeletion } from '@/utils/vmDeletion'
 import { templateObservationContext } from '@/utils/templateAvailability'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
@@ -974,7 +982,7 @@ import '@/style/components/view/autoscale.less'
 import '@/style/components/view/objectStorage.less'
 import { autoScaleInfrastructureRows, autoScaleVisibleColumns } from '@/utils/autoScaleUi'
 import { createListRefresh, listRowKey, canRefreshList } from '@/utils/listRefresh'
-import { ref, reactive, toRaw, h } from 'vue'
+import { ref, reactive, toRaw, h, markRaw, defineAsyncComponent } from 'vue'
 import SharedFSFormDialog from '@/components/storage/SharedFSFormDialog'
 import { Button } from 'ant-design-vue'
 import { getAPI, postAPI, callAPI } from '@/api'
@@ -1027,8 +1035,11 @@ import { vmGroupLookupStatus } from '@/utils/vmGroupLookup'
 import { sshKeyPairDeleteTargets } from '@/utils/sshKeyPairDeletion'
 import { isSshKeyPairDetailRoute, sshKeyPairDetailScope, sshKeyPairDetailTarget, sshKeyPairDetailParams, sshKeyPairMatchesTarget, sshKeyPairDetailResult, sshKeyPairDetailFailure, sshKeyPairVmParams } from '@/utils/sshKeyPairIdentity'
 import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErrorKey, vmGroupDeleteTargets } from '@/utils/vmGroupNames'
+import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentity'
+import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
 
 let templateFilterSequence = 0
+
 export default {
   name: 'Resource',
   components: {
@@ -1058,7 +1069,7 @@ export default {
   provide: function () {
     return {
       parentFetchData: this.fetchData,
-      resourceActionReady: () => !(this.isStorageUi || this.isSnapshotReadView) || this.storageActionReady,
+      resourceActionReady: () => !(this.isStorageUi || this.isSnapshotReadView || ['vm', 'vnfapp'].includes(this.$route.meta?.name)) || this.storageActionReady,
       parentExecuteAction: this.handleDataViewAction,
       parentToggleLoading: this.toggleLoading,
       parentStartLoading: this.startLoading,
@@ -1077,6 +1088,9 @@ export default {
       loading: false,
       // IntervalLoading: false,
       actionLoading: false,
+      vmActionValidationPending: false,
+      vmActionError: '',
+      vmActionUnknown: false,
       columnKeys: [],
       allColumns: [],
       columns: [],
@@ -1126,6 +1140,8 @@ export default {
       listSecurityScope: null,
       listCustomRender: {},
       listRefreshError: false,
+      vnfSearchFailure: '',
+      vnfProjectSync: false,
       snapshotListError: '',
       snapshotSearchFailure: '',
       policySearchFailure: '',
@@ -1273,7 +1289,7 @@ export default {
     if (this.$refs.selfManagedAction?.blocksNavigation) { next(false); return }
     const leavesGuestNetworkScope = guestNetworkRoute(from) &&
       (to.path !== from.path || to.query?.projectid !== from.query?.projectid)
-    if (this.showAction && (leavesGuestNetworkScope ||
+    if (this.showAction && (vnfRoute(from) && to.fullPath !== from.fullPath || leavesGuestNetworkScope ||
       (to.path !== from.path && (storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot')))) {
       this.closeAction()
     }
@@ -1294,6 +1310,26 @@ export default {
     next()
   },
   watch: {
+    vmDialogScope () {
+      if (this.showAction && this.vmStandardDialog) this.closeAction()
+    },
+    vnfSearchAuth: {
+      flush: 'sync',
+      handler (value, previous) {
+        if (!vnfRoute(this.$route)) return
+        this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+        this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listSchemaScope = null
+        this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+        if (this.showAction) this.closeAction()
+        if (this.vnfProjectSync) return
+        const projectid = vnfProject(this.$store.getters)
+        const old = previous ? JSON.parse(previous) : []
+        const next = JSON.parse(value)
+        const identityChanged = old.length && old.slice(0, 5).some((v, i) => v !== next[i])
+        if (identityChanged || this.$route.query.projectid && this.$route.query.projectid !== projectid) return this.$router.replace({ path: '/vnfapp', query: vnfListQuery({ projectid }, this.pageSize, this.$store.getters) })
+        this.fetchData()
+      }
+    },
     templateSecurityContext () {
       if (this.$route.meta?.name !== 'template') return
       this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null; this.items = []; this.resource = {}; this.itemCount = 0
@@ -1373,6 +1409,8 @@ export default {
       this.fetchData()
     },
     '$store.getters.listAllProjects' (enabled) {
+      // The synchronous VNF context watcher owns its canonical URL transition.
+      if (vnfRoute(this.$route)) return
       if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || guestNetworkRoute(this.$route)) && !this.$store.getters.project?.id) {
         const projectid = enabled ? '-1' : '0'
         if (this.$route.query.projectid !== projectid) return this.$router.push({ query: { ...this.$route.query, projectid, page: '1' } })
@@ -1388,10 +1426,12 @@ export default {
     }
   },
   computed: {
+    vnfSearchAuth () { return vnfAuth(this.$store.getters, this.$store.state?.user?.token) },
     isTemplateList () { return this.$route.meta?.name === 'template' && !this.$route.params?.id },
     templateSecurityContext () { return JSON.stringify([templateOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
     guestNetworkAuth () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.domainid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects, Object.keys(this.$store.getters.apis || {}).sort()]) },
     sharedFSContentLoading () {
+      if (vnfRoute(this.$route) && this.vnfProjectSync) return true
       if (!['sharedfs', 'runtimebundle'].includes(this.$route.meta?.name) || this.listLoadedScope !== this.listScope()) return this.loading
       if (this.dataView && (!this.resource.id || this.resource.id !== this.$route.params.id)) return this.loading
       return false
@@ -1414,7 +1454,9 @@ export default {
     isSnapshotReadView () { return this.isSnapshotList || this.isSnapshotDetail || this.isPolicyDetail || snapshotPolicyListRoute(this.$route) },
     isSnapshotCopyList () { return snapshotCopyList(this.$route) },
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
-    standardActionDialog () { return this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
+    vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
+    vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
+    standardActionDialog () { return this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
       return this.isPolicyList && !this.policySearchFailure && this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)
@@ -1488,6 +1530,7 @@ export default {
       }).map(String)
     },
     filterValue () {
+      if (vnfRoute(this.$route)) return String(this.$route.query.state || 'all').toLowerCase()
       if (this.$route.meta?.defaultFilter) {
         const value = String(this.$route.query.filter || this.$route.query.state || this.$route.meta.defaultFilter).toLowerCase()
         return this.filters.includes(value) ? value : this.$route.meta.defaultFilter
@@ -1535,6 +1578,7 @@ export default {
       }).map(action => policyBackgroundRead ? { ...action, disabled: () => true } : action)
     },
     visibleListActions () {
+      if (vnfRoute(this.$route) && !this.storageActionReady) return []
       if (this.isObjectStorageUi && !this.storageActionReady) return []
       if (this.isSnapshotCopyList || this.snapshotSearchFailure || this.policySearchFailure || (this.isSnapshotList && !this.storageActionReady) || (this.isPolicyList && this.listLoadedScope !== this.listScope())) return []
       if (!this.actions || this.actions.length === 0 || this.dataView) {
@@ -1568,6 +1612,12 @@ export default {
     }
   },
   methods: {
+    vmDisplayName,
+    isVmIdentityRoute,
+    actionFieldDescription (field) {
+      const known = ['podid', 'clusterid', 'hostid', 'considerlasthost', 'bootintosetup', 'forced']
+      return this.vmStandardDialog && known.includes(field.name) ? this.$t('message.vm.start.' + field.name) : field.description
+    },
     templateListLocation,
     storageDialogSize,
     snapshotSourceVolumeRoute,
@@ -1632,6 +1682,7 @@ export default {
       eventBus.on(name, handler)
     },
     shouldAutoRefresh () {
+      if (vnfRoute(this.$route) && !this.$route.params?.id && this.selectedRowKeys.length) return false
       return this.autoRefreshInterval > 0 && /^(list|get|quota)/i.test(this.apiName || '')
     },
     scheduleAutoRefresh () {
@@ -1652,6 +1703,7 @@ export default {
       }
     },
     listScope () {
+      if (vnfRoute(this.$route)) return JSON.stringify([this.$route.fullPath, vnfAuth(this.$store.getters, this.$store.state?.user?.token), this.$store.getters.metrics])
       if (isSshKeyPairDetailRoute(this.$route)) return sshKeyPairDetailScope(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (this.$route.meta?.name === 'vmgroup') return vmGroupQueryScope(this.$route, this.$store.getters, this.$store.state?.user?.token)
       // Tabs and S3 folder normalization do not change the authorized resource.
@@ -1732,14 +1784,21 @@ export default {
         return { props: { type: 'default' } }
       }
     },
-    canonicalNetworkProjectRoute () { return ['guestnetwork', 'networkoffering'].includes(this.$route.meta?.name) },
+    canonicalNetworkProjectRoute () { return ['guestnetwork', 'networkoffering', 'vnfapp'].includes(this.$route.meta?.name) },
     async syncSnapshotProject (projectId) {
       // The URL retains the scope. 0 is a UI-only default-view marker, never an API project ID.
       if (typeof projectId !== 'string') return
       const globalView = ['0', '-1'].includes(projectId)
+      if (vnfRoute(this.$route) && !globalView && !('listProjects' in (this.$store.getters.apis || {}))) { this.rejectVnfSearch('message.vnf.search.permission'); return }
       if ((globalView ? !this.$store.getters.project?.id : projectId === this.$store.getters.project?.id) && !!this.$store.getters.listAllProjects === (projectId === '-1')) return
-      const scope = () => JSON.stringify([this.$route.fullPath, this.$store.getters.userInfo?.id, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects])
+      const fromVnf = vnfRoute(this.$route)
+      // Canonicalizing search predicates must not cancel a lookup for the same
+      // authorized project. A different route, owner or session still cancels it.
+      const scope = () => JSON.stringify([fromVnf ? [this.$route.path, this.$route.query.projectid, vnfAuth(this.$store.getters, this.$store.state?.user?.token)] : this.$route.fullPath, this.$store.getters.userInfo?.id, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects])
       const captured = scope()
+      let retry = false
+      if (vnfRoute(this.$route) && this.vnfProjectSync) return
+      if (vnfRoute(this.$route)) this.vnfProjectSync = true
       try {
         let project = {}
         if (!globalView) {
@@ -1747,11 +1806,12 @@ export default {
           project = json?.listprojectsresponse?.project?.find(item => item.id === projectId)
           if (!project) throw new Error(this.$t('message.snapshot.search.lookup.denied'))
         }
-        if (!(snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) || captured !== scope() || this.$route.query.projectid !== projectId) return
+        if (!(snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) || captured !== scope() || this.$route.query.projectid !== projectId) { retry = fromVnf && vnfRoute(this.$route) && !!this.$store.state?.user?.token && 'listVnfAppliances' in (this.$store.getters.apis || {}); return }
         await this.$store.dispatch('SetProject', project)
         await this.$store.dispatch('SetListAllProjects', projectId === '-1')
+        if (vnfRoute(this.$route)) this.vnfProjectSync = false
         this.fetchData({ irefresh: true })
-      } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) this.$notifyError(error) }
+      } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) { if (vnfRoute(this.$route)) this.rejectVnfSearch('message.vnf.search.permission'); this.$notifyError(error) } } finally { if (fromVnf) { this.vnfProjectSync = false; if (retry) this.fetchData() } }
     },
     switchProject (projectId) {
       if (snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) return this.syncSnapshotProject(projectId)
@@ -1780,7 +1840,27 @@ export default {
     retainTemplateOperation (value) {
       if (this.$route.meta?.name === 'template' && value.context === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)) this.templateOperationContext = value.active ? value.context : ''
     },
+    rejectVnfSearch (message) {
+      this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+      this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false; this.vnfSearchFailure = message
+      this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+    },
     fetchData (params = {}) {
+      if (vnfRoute(this.$route)) {
+        this.dataView = !!this.$route.params?.id
+        this.vnfSearchFailure = ''
+        if (!this.$store.state?.user?.token || !('listVnfAppliances' in (this.$store.getters.apis || {}))) { this.rejectVnfSearch('message.vnf.search.permission'); return Promise.resolve() }
+        if (!this.dataView) {
+          const query = vnfListQuery(this.$route.query, this.getValidPageSize(this.pageSize), this.$store.getters)
+          if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) { this.rejectVnfSearch(''); return this.$router.replace({ query }) }
+          const error = vnfSearchError(query, this.$store.getters, this.$getApiParams('listVnfAppliances'))
+          if (error) { this.rejectVnfSearch(error); return Promise.resolve() }
+        }
+        const projectid = this.$route.query.projectid
+        if (projectid && (projectid !== vnfProject(this.$store.getters) || !!this.$store.getters.listAllProjects !== (projectid === '-1'))) return this.syncSnapshotProject(projectid)
+        if (this.vnfProjectSync) return Promise.resolve()
+        if (!this.dataView) { this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection() }
+      }
       const templateDetail = this.$route.meta?.name === 'template' && !!this.$route.params?.id
       const templateOperationHeld = () => templateDetail && this.templateOperationContext && this.templateOperationContext === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)
       if (templateOperationHeld()) return Promise.resolve()
@@ -1909,7 +1989,7 @@ export default {
       }
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
-      if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route)) && !this.dataView) && !sameList) {
+      if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route)) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -2077,7 +2157,7 @@ export default {
               }
               return Number(a.memory || 0) - Number(b.memory || 0)
             }
-            : (a, b) => genericCompare(a[key] || '', b[key] || '')
+            : (a, b) => genericCompare(isVmIdentityRoute(this.$route) && key === 'displayname' ? vmDisplayName(a) : a[key] || '', isVmIdentityRoute(this.$route) && key === 'displayname' ? vmDisplayName(b) : b[key] || '')
           this.columns.push({
             key: key,
             title: this.$route.name === 'sharedfs' && key === 'capacity' ? this.$t('label.storage.capacity.column') : this.$route.name === 'sharedfs' && key === 'sizegb' ? this.$t('label.storage.capacity.initial') : this.$t('label.' + String(title).toLowerCase()),
@@ -2099,6 +2179,10 @@ export default {
             this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
           } else {
             this.selectedColumns = this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] || this.selectedColumns
+            if (this.$route.meta?.name === 'vnfapp' && this.selectedColumns.includes('name')) {
+              this.selectedColumns = [...new Set(this.selectedColumns.map(key => key === 'name' ? 'displayname' : key))]
+              this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
+            }
             if (this.$route.name === 'sharedfs') {
               const oldDefaults = defaultColumnKeys.map(key => key === 'capacity' ? 'sizegb' : key)
               if (JSON.stringify(this.selectedColumns) === JSON.stringify(oldDefaults)) this.selectedColumns = [...defaultColumnKeys]
@@ -2251,6 +2335,7 @@ export default {
       if (customParamHandler && typeof customParamHandler === 'function') {
         params = customParamHandler(params, this.$route.query)
       }
+      if (vnfRoute(this.$route)) params = vnfListParams(params, this.dataView)
 
       if (['listAnnotations', 'listRoles', 'listZonesMetrics', 'listPods',
         'listClustersMetrics', 'listHostsMetrics', 'listStoragePoolsMetrics',
@@ -2291,7 +2376,7 @@ export default {
       const snapshotDetail = snapshotDetailRoute(this.$route)
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
-      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2301,6 +2386,7 @@ export default {
           return
         }
         const networkPage = guestNetworkRoute(this.$route) && !this.dataView ? readNetworkPage(json, 'listNetworks', 'network', params) : null
+        const vnfPage = vnfRoute(this.$route) && !this.dataView ? readVnfPage(json, params) : null
         const groupResult = vmGroups ? vmGroupQueryRows(json) : null
         const snapshotPage = snapshotListRoute(this.$route) ? snapshotListPage(json, this.$route, this.page, this.pageSize) : null
         const policyPage = snapshotPolicyListRoute(this.$route) ? policyListPage(json, params) : null
@@ -2337,6 +2423,7 @@ export default {
         }
 
         if (networkPage) apiItemCount = networkPage.count
+        if (vnfPage) apiItemCount = vnfPage.count
         if (groupResult) apiItemCount = groupResult.count
         if (snapshotPage) apiItemCount = snapshotPage.count
         if (policyPage) apiItemCount = policyPage.count
@@ -2357,7 +2444,7 @@ export default {
             return
           }
         }
-        let responseItems = policyPage ? policyPage.rows : snapshotPage ? snapshotPage.rows : groupResult ? groupResult.rows : json[responseName][objectName]
+        let responseItems = vnfPage ? vnfPage.rows : policyPage ? policyPage.rows : snapshotPage ? snapshotPage.rows : groupResult ? groupResult.rows : json[responseName][objectName]
         if (this.$route.name === 'autoscalevmgroup' && !this.dataView && this.selectedColumns.includes('zonename')) {
           responseItems = await autoScaleInfrastructureRows(getAPI, responseItems || [], 'listNetworks' in this.$store.getters.apis)
           if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2434,10 +2521,10 @@ export default {
           return
         }
         if (sshDetail) { this.rejectSshKeyPairDetail(sshKeyPairDetailFailure(error)); return }
-        if (cniQuery || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
+        if (cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotDetail || policyDetail || snapshotPolicyListRoute(this.$route)) {
           if (snapshotListRoute(this.$route) || snapshotDetail || policyDetail) this.snapshotListError = Object.values(error?.response?.data || {}).find(value => value?.errortext)?.errortext || (error.message?.startsWith('message.') ? error.message : 'message.snapshot.list.read.failed')
           this.listRefreshError = true
-          if (cniQuery) {
+          if (cniQuery || vnfRoute(this.$route)) {
             this.resetSelection()
             if (this.$refs.listview) this.$refs.listview.resetSelection()
           }
@@ -2548,6 +2635,7 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
+      const guardedDialog = this.vmStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -2601,20 +2689,20 @@ export default {
       const generation = this.storageActionGeneration
       const scope = this.listScope?.()
       const restoreFocus = () => {
-        if ((snapshotDialog || this.isVpcUi) && (generation !== this.storageActionGeneration || scope !== this.listScope?.() || originPath !== this.$route?.path)) return
-        let replacement = (this.isVpcUi || this.isStorageUi || snapshotDialog) && originPath === this.$route?.path
+        if ((guardedDialog || this.isVpcUi) && (generation !== this.storageActionGeneration || scope !== this.listScope?.() || originPath !== this.$route?.path)) return
+        let replacement = (this.isVpcUi || this.isStorageUi || guardedDialog) && originPath === this.$route?.path
           ? (this.$refs?.detailActionsTrigger?.$el || (triggerLabel && Array.from(this.$el?.querySelectorAll('.autogen-toolbar-actions button') || []).find(button => button.getAttribute('aria-label') === triggerLabel)))
           : null
         if (policyDeleteDialog && !replacement && originPath === this.$route?.path) replacement = this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         if (this.isVpcUi && !replacement && originPath === this.$route?.path) replacement = this.$el?.querySelector('.ant-table-row-selected input[type="checkbox"]:not([disabled])') || this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         // A portal menu item may remain connected but hidden after its dropdown closes.
         // Snapshot dialogs return to the stable toolbar/detail button in the current route.
-        const target = (this.isVpcUi || snapshotDialog) && replacement?.isConnected ? replacement : trigger?.isConnected ? trigger : replacement
+        const target = (this.isVpcUi || guardedDialog) && replacement?.isConnected ? replacement : trigger?.isConnected ? trigger : replacement
         if (!this.showAction && target?.isConnected && target !== document.body) {
           target.focus({ preventScroll: true })
         }
       }
-      this.actionFocusReturn = (snapshotDialog || this.isVpcUi) ? { restore: restoreFocus } : null
+      this.actionFocusReturn = (guardedDialog || this.isVpcUi) ? { restore: restoreFocus } : null
       this.$nextTick(restoreFocus)
     },
     restoreClosedActionFocus () {
@@ -2626,6 +2714,7 @@ export default {
       })
     },
     cancelAction () {
+      if (this.vmStandardDialog && (this.actionLoading || this.vmActionValidationPending)) return
       if (this.isVpcUi && this.actionLoading) return
       eventBus.emit('action-closing', { action: this.currentAction })
       this.closeAction()
@@ -2644,6 +2733,9 @@ export default {
         }
         if (guestNetworkRoute(this.$route) && filter.key === 'domainid') delete queryParams.account
         if (guestNetworkRoute(this.$route) && filter.key === 'zoneid') delete queryParams.physicalnetworkid
+        if (vnfRoute(this.$route) && filter.key === 'domainid') { delete queryParams.account; delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid; delete queryParams.groupid }
+        if (vnfRoute(this.$route) && filter.key === 'zoneid') { delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid }
+        if (vnfRoute(this.$route) && filter.key === 'account') { delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid; delete queryParams.groupid }
         if (this.$route.name === 'vmsnapshot' && filter.key === 'state') delete queryParams.filter
         if (snapshotPolicyListRoute(this.$route) && filter.key === 'domainid') delete queryParams.account
       }
@@ -2652,6 +2744,10 @@ export default {
       this.$router.push({ query: queryParams })
     },
     onRowSelectionChange (selection) {
+      if (vnfRoute(this.$route)) {
+        if (!this.storageActionReady) { this.resetSelection(); return }
+        selection = [...new Set(selection || [])].filter(id => this.items.some(row => row.id === id))
+      }
       // List refreshes must not replace the snapshot owned by active jobs.
       if (this.showGroupActionModal) return
       this.selectedRowKeys = selection
@@ -2684,8 +2780,10 @@ export default {
     },
     execAction (action, isGroupAction) {
       this.vpcActionError = ''
+      if (vnfRoute(this.$route) && (!this.storageActionReady || !(action.api in (this.$store.getters.apis || {})) || isGroupAction && (!this.selectedRowKeys.length || this.selectedRowKeys.some(id => !this.items.some(row => row.id === id))))) return
       if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && this.storageActionReady === false && !this.canOpenPolicyCreate(action, isGroupAction)) return
       if (storageUiRoute(this.$route) && (action.dataView || isGroupAction) && !this.storageActionReady) return
+      this.vmActionValidationPending = false; this.vmActionError = ''; this.vmActionUnknown = false
       this.storageActionGeneration++
       this.actionFocusReturn = null
       if (action.storageSnapshotMode) {
@@ -2701,6 +2799,43 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (isVmIdentityRoute(this.$route) && (action.resource || this.resource)?.templatetype === 'VNF' && action.api === 'cloneVirtualMachine') return
+      if (isVmIdentityRoute(this.$route) && action.api === 'unmanageVirtualMachine' && (action.resource || this.resource)?.templatetype === 'VNF') {
+        if (!this.storageActionReady || !this.$store.getters.apis.unmanageVirtualMachine) return
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, component: markRaw(defineAsyncComponent(() => import('@/views/compute/VnfUnmanage.vue'))), popup: true, selfManagedDialog: true, invokedAsGroupAction: false, vnfUnmanageCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = action.resource || this.resource; this.showAction = true
+        return
+      }
+      if (isVmIdentityRoute(this.$route) && action.api === 'restoreVirtualMachine' && (action.resource || this.resource)?.templatetype === 'VNF') {
+        const target = action.resource || this.resource
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, component: markRaw(defineAsyncComponent(() => import('@/views/compute/VnfReinstall.vue'))), popup: true, standardDialogSize: 'lg', invokedAsGroupAction: false, vnfReinstallCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = target; this.showAction = true
+        return
+      }
+      if (isVmIdentityRoute(this.$route) && action.api === 'updateVirtualMachine') {
+        const target = action.resource || this.resource
+        if (!target?.id) return
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, standardDialogSize: 'md', invokedAsGroupAction: false, vmEditCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = target; this.showAction = true
+        return
+      }
+      if (isVmDeletion(action)) {
+        const targets = (isGroupAction ? this.selectedItems : [action.resource || this.resource]).filter(row => row?.id)
+        if (!targets.length) return
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, vmDeletionCurrent: () => this.showAction && generation === this.storageActionGeneration, vmDeletionTargets: Object.freeze(targets.map(row => Object.freeze({ ...row }))) }
+        this.resource = targets[0]; this.showAction = true
+        return
+      }
+      if (isVmIdentityRoute(this.$route) && action.api === 'startVirtualMachine' && !isGroupAction) {
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, standardDialogSize: 'md', invokedAsGroupAction: false, vmStartCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = action.resource || this.resource; this.showAction = true
+        return
+      }
       if (action.api === 'deleteNetwork' && guestNetworkRoute(this.$route)) {
         const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
         if (!targets.length || !['deleteNetwork', 'listNetworks'].every(api => api in this.$store.getters.apis)) return
@@ -3142,7 +3277,7 @@ export default {
       this.message = {}
     },
     handleSubmit (e) {
-      if (this.actionLoading || this.isSubmitDisabled) return
+      if (this.actionLoading || this.isSubmitDisabled || (this.vmStandardDialog && (this.vmActionValidationPending || this.vmActionUnknown))) return
       this.promises = []
       const groupDeletion = this.currentAction.api === 'deleteInstanceGroup' && this.currentAction.invokedAsGroupAction
       const selectedKeys = groupDeletion ? (this.currentAction.vmGroupTargets || []).map(group => group.id) : this.selectedRowKeys
@@ -3164,13 +3299,20 @@ export default {
           this.modalInfo.title = this.currentAction.label
           this.modalInfo.docHelp = this.currentAction.docHelp
         }
+        const submittedAction = this.currentAction
+        const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
+        const vmTargets = vmScope ? JSON.stringify(selectedKeys) : null
+        const vmGeneration = this.storageActionGeneration
+        if (vmScope) this.vmActionValidationPending = true
         this.formRef.value.validate().then(() => {
+          if (vmScope && (!this.showAction || submittedAction !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store) || vmTargets !== JSON.stringify(this.selectedRowKeys))) return
+          if (vmScope) this.vmActionValidationPending = false
           const values = toRaw(this.form)
           this.actionLoading = true
           const itemsNameMap = {}
           const namedItems = groupDeletion ? this.currentAction.vmGroupTargets : this.items
           namedItems.map(x => {
-            itemsNameMap[x.id] = x.name || x.displaytext || x.id
+            itemsNameMap[x.id] = isVmIdentityRoute(this.$route) ? vmDisplayName(x) : x.name || x.displaytext || x.id
           })
           const paramsList = this.currentAction.groupMap(groupDeletion ? selectedKeys : this.selectedRowKeys, values, this.items)
           for (const params of paramsList) {
@@ -3184,11 +3326,14 @@ export default {
             duration: 3
           })
           Promise.all(this.promises).finally(() => {
+            if (vmScope && (vmGeneration !== this.storageActionGeneration || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
             this.actionLoading = false
             this.fetchData()
           })
         }).catch(error => {
-          this.formRef.value.scrollToField(error.errorFields[0].name)
+          if (vmScope && submittedAction !== this.currentAction) return
+          if (vmScope) this.vmActionValidationPending = false
+          if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
         })
       } else {
         this.execSubmit(e)
@@ -3198,10 +3343,14 @@ export default {
       const selectedItems = this.selectedItems
       return new Promise((resolve, reject) => {
         const action = this.currentAction
+        const vmGeneration = this.storageActionGeneration
+        const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
         postAPI(action.api, params).then(json => {
+          if (vmScope && (vmGeneration !== this.storageActionGeneration || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
           resolve(this.handleResponse(json, resourceName, this.getDataIdentifier(params), action, false, selectedItems))
-          this.closeAction()
+          if (!vmScope || this.currentAction === action) this.closeAction()
         }).catch(error => {
+          if (vmScope && (vmGeneration !== this.storageActionGeneration || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
           if ([401].includes(error.response?.status)) {
             resolve(false)
             return
@@ -3314,8 +3463,13 @@ export default {
       if (isSshKeyPairDetailRoute(this.$route) && !this.canExecuteSshKeyPairAction(this.currentAction)) return
       const sshActionScope = isSshKeyPairDetailRoute(this.$route) ? this.listScope() : null
       const submittedAction = this.currentAction
-      e.preventDefault()
+      const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
+      if (vmScope && (this.vmActionValidationPending || this.vmActionUnknown)) return
+      if (vmScope) { this.vmActionValidationPending = true; this.vmActionError = '' }
+      if (e && typeof e.preventDefault === 'function') e.preventDefault()
       this.formRef.value.validate().then(() => {
+        if (vmScope && (!this.showAction || submittedAction !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+        if (vmScope) this.vmActionValidationPending = false
         if (sshActionScope && (sshActionScope !== this.listScope() || !this.canExecuteSshKeyPairAction(submittedAction))) return
         let values = toRaw(this.form)
         const params = {}
@@ -3434,13 +3588,17 @@ export default {
           }
         }
 
-        const resourceName = (action.api === 'deleteInstanceGroup' ? action.vmGroupTargets[0]?.name : null) || params.displayname || params.displaytext || params.name || params.hostname || params.username ||
+        const resourceName = (isVmIdentityRoute(this.$route) && this.resource?.id && !action.listView ? vmDisplayName(this.resource) : '') || (action.api === 'deleteInstanceGroup' ? action.vmGroupTargets[0]?.name : null) || params.displayname || params.displaytext || params.name || params.hostname || params.username ||
           params.ipaddress || params.virtualmachinename || this.resource.name || this.resource.ipaddress || this.resource.id
 
         var hasJobId = false
         const actionScope = this.listScope()
         this.actionLoading = true
         this.postSnapshotAwareAction(action, params).then(json => {
+          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+          if (vmScope && ['startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine'].includes(action.api) && !Object.values(json || {}).some(value => value?.jobid)) {
+            this.vmActionUnknown = true; this.vmActionError = this.$t('message.vm.start.unknown'); return
+          }
           var response = this.handleResponse(json, resourceName, this.getDataIdentifier(params), action)
           if (!response) {
             this.fetchData()
@@ -3460,6 +3618,11 @@ export default {
           })
           this.closeAction()
         }).catch(error => {
+          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+          if (vmScope) {
+            this.vmActionUnknown = !error.response || error.response.status >= 500
+            this.vmActionError = this.vmActionUnknown ? this.$t('message.vm.start.unknown') : Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext || this.$t('error.fetching.data')
+          }
           if ([401].includes(error.response?.status)) {
             return
           }
@@ -3470,9 +3633,12 @@ export default {
           if (isVmGroupAction(action.api)) this.notifyVmGroupError(error)
           else this.$notifyError(error)
         }).finally(f => {
+          if (vmScope && action !== this.currentAction) return
           this.actionLoading = false
         })
       }).catch(error => {
+        if (vmScope && submittedAction !== this.currentAction) return
+        if (vmScope) this.vmActionValidationPending = false
         if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
         else if (isVmGroupAction(this.currentAction.api)) this.notifyVmGroupError(error)
       })
@@ -3526,6 +3692,11 @@ export default {
       return this.$t(key)
     },
     changeFilter (filter) {
+      if (vnfRoute(this.$route)) {
+        const query = { ...this.$route.query }; delete query.state; delete query.filter
+        if (filter !== 'all') query.state = vnfStates(this.$store.getters).find(s => s.toLowerCase() === filter) || filter
+        this.onSearch({ ...query }); return
+      }
       const query = Object.assign({}, this.$route.query)
       delete query.templatefilter
       delete query.isofilter
@@ -3643,6 +3814,13 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (vnfRoute(this.$route) && !this.$route.params?.id) {
+        const query = vnfSearchQuery(this.$route.query, opts, this.pageSize, this.$store.getters)
+        this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData()
+        else this.$router.push({ query })
+        return
+      }
       if (this.$route.meta?.name === 'template' && !this.$route.params?.id) {
         const query = templateSearchQuery(this.$route.query, opts || {}, this.pageSize)
         this.searchParams = {}
@@ -3724,7 +3902,7 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (['template', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -3748,7 +3926,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -3901,6 +4079,7 @@ export default {
 <style scoped src="@/style/components/view/list-toolbar.css" />
 
 <style scoped>
+.vm-action-error { overflow-wrap: anywhere; margin-bottom: 16px; }
 .runtime-catalog-screen :deep(.breadcrumb-card > .ant-card-body > .ant-row) { display:flex; flex-direction:column; gap:8px; }
 .runtime-catalog-screen :deep(.breadcrumb-card .ant-col) { width:100%; max-width:100%; float:none !important; }
 .runtime-catalog-screen :deep(.autogen-toolbar-actions) { display:flex !important; align-items:center; gap:8px; }

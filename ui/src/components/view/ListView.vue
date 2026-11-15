@@ -328,11 +328,14 @@
         <label>{{ getTimeZone(record.timezone) }}</label>
       </template>
       <template v-if="column.key === 'displayname'">
-        <span v-if="$route.path.split('/')[1] === 'vm'" style="margin-right: 5px">
+        <span v-if="isVmIdentityRoute($route)" style="margin-right: 5px">
           <resource-icon v-if="record.icon && record.icon.base64image" :image="record.icon.base64image" size="2x"/>
           <os-logo v-else :osId="record.ostypeid" :osName="record.ostypename || record.osdisplayname" size="xl" />
         </span>
-        <router-link :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
+        <a-tooltip v-if="isVmIdentityRoute($route)" :title="vmDisplayName(record)">
+          <router-link class="vm-display-name" :to="$route.meta?.name === 'vnfapp' ? vnfDetailLocation($route, record) : { path: $route.path + '/' + record.id }">{{ vmDisplayName(record) }}</router-link>
+        </a-tooltip>
+        <router-link v-else :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'username'">
         <span
@@ -1270,6 +1273,9 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue'
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vnfDetailLocation } from '@/utils/vnfSearch'
+
 export default {
   name: 'ListView',
   components: {
@@ -1492,6 +1498,7 @@ export default {
     contextMenuTitle () {
       if (this.selectedRowKeys.length > 1) {
         const first = this.getFirstSelectedItem()
+        if (isVmIdentityRoute(this.$route)) return vmDisplayName(first)
         const firstName = first?.displayname || first?.name || first?.displaytext || first?.displaytext || first?.hostname || first?.vmname || first?.annotation || first?.hypervisor || first?.type || first?.username || first?.ipaddress || first?.uuid || first?.id || ''
         return firstName
       }
@@ -1499,6 +1506,9 @@ export default {
     }
   },
   methods: {
+    vnfDetailLocation,
+    vmDisplayName,
+    isVmIdentityRoute,
     templateDetailLocation,
     networkTypeLabel,
     policyVolumePath,
@@ -2070,6 +2080,8 @@ export default {
 </script>
 
 <style>
+.vm-display-name { display: inline-block; max-width: min(320px, 60vw); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+
 :deep(.ant-table-thead) {
   background-color: #f9f9f9;
 }

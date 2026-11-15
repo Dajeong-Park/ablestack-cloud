@@ -149,6 +149,8 @@ import TooltipLabel from '@/components/widgets/TooltipLabel'
 import StoragePoolSelectView from '@/components/view/StoragePoolSelectView'
 import InstanceVolumesStoragePoolSelectListView from '@/components/view/InstanceVolumesStoragePoolSelectListView'
 
+import { vmDisplayName } from '@/utils/vmIdentity'
+
 export default {
   name: 'VMMigrateWizard',
   components: {
@@ -362,13 +364,14 @@ export default {
           params['migrateto[' + i + '].pool'] = mapping.pool
         }
       }
+      const resourceName = this.isUserVm ? vmDisplayName(this.resource) : this.resource.name
       postAPI(migrateApi, params).then(response => {
         const jobId = response[migrateApi.toLowerCase() + 'response'].jobid
         this.$pollJob({
           jobId: jobId,
-          title: `${this.$t('label.migrating')} ${this.resource.name}`,
-          description: this.resource.name,
-          successMessage: `${this.$t('message.success.migrating')} ${this.resource.name}`,
+          title: `${this.$t('label.migrating')} ${resourceName}`,
+          description: resourceName,
+          successMessage: `${this.$t('message.success.migrating')} ${resourceName}`,
           successMethod: () => {
             this.closeModal()
           },
@@ -376,7 +379,7 @@ export default {
           errorMethod: () => {
             this.closeModal()
           },
-          loadingMessage: `${this.$t('message.migrating.processing')} ${this.resource.name}`,
+          loadingMessage: `${this.$t('message.migrating.processing')} ${resourceName}`,
           catchMessage: this.$t('error.fetching.async.job.result'),
           catchMethod: () => {
             this.closeModal()

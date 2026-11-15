@@ -59,6 +59,7 @@
           :pagination="true"
           style="overflow-y: auto">
           <template #bodyCell="{ column, text, record }">
+          <template v-if="column.key === 'displayname' && isVmIdentityRoute($route)">{{ vmDisplayName(record) }}</template>
             <template v-if="column.key === 'algorithm'">
               {{ returnAlgorithmName(record.algorithm) }}
             </template>
@@ -105,6 +106,8 @@
 <script>
 import Status from '@/components/widgets/Status'
 import BulkActionProgress from '@/components/view/BulkActionProgress'
+
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 
 export default {
   name: 'BulkActionView',
@@ -163,6 +166,8 @@ export default {
     }
   },
   methods: {
+    vmDisplayName,
+    isVmIdentityRoute,
     capitalise (val) {
       if (val === 'all') return 'All'
       return val.toUpperCase()

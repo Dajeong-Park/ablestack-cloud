@@ -43,7 +43,7 @@
                       <file-text-outlined style="font-size: 36px;" />
                     </span>
                     <span v-else>
-                      <os-logo v-if="resource.ostypeid || resource.ostypename || ['guestoscategory'].includes($route.path.split('/')[1])" :osId="resource.ostypeid" :osName="resource.ostypename || resource.osdisplayname || resource.name" size="3x" />
+                      <os-logo v-if="resource.ostypeid || resource.ostypename || resource.osdisplayname || ['guestoscategory'].includes($route.path.split('/')[1])" :osId="resource.ostypeid" :osName="executionOsName || resource.name" size="3x" />
                       <render-icon v-else-if="typeof $route.meta.icon ==='string'" style="font-size: 36px" :icon="$route.meta.icon" />
                       <font-awesome-icon
                         v-else-if="$route.meta.icon && Array.isArray($route.meta.icon)"
@@ -294,14 +294,14 @@
                 </div>
               </div>
             </div>
-        <div class="resource-detail-item" v-if="executionOsName && resource.ostypeid">
+        <div class="resource-detail-item" v-if="(executionOsName && resource.ostypeid) || (['vm', 'vnfapp'].includes($route.meta.name) && resource.id)">
           <div class="resource-detail-item__label">{{ $t('label.ostypename') }}</div>
           <div class="resource-detail-item__details">
             <span v-if="resource.icon && resource.icon.base64image || images.template || images.iso">
               <resource-icon :image="getImage(images.template || images.iso)" size="1x" style="margin-right: 5px"/>
             </span>
-            <os-logo v-else :osId="resource.ostypeid" :osName="executionOsName" size="lg" style="margin-left: -1px" />
-            <span style="margin-left: 8px">{{ executionOsName }}</span>
+            <os-logo v-else-if="executionOsName && resource.ostypeid" :osId="resource.ostypeid" :osName="executionOsName" size="lg" style="margin-left: -1px" />
+            <span style="margin-left: 8px">{{ executionOsName || $t('label.unknown') }}</span>
           </div>
         </div>
         <div class="resource-detail-item" v-if="resource.ipaddress">
@@ -1196,6 +1196,8 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 import ActionButton from '@/components/view/ActionButton'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+
 export default {
   name: 'InfoCard',
   mixins: [vmNetworkAccessMixin()],
@@ -1338,6 +1340,7 @@ export default {
         'RemoteAccessVpn', 'User', 'SnapshotPolicy', 'VpcOffering', 'Domain']
     },
     name () {
+      if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       return this.resource.displayname || this.resource.name || this.resource.displaytext || this.resource.username ||
         this.resource.ipaddress || this.resource.virtualmachinename || this.resource.osname || this.resource.osdisplayname || this.resource.templatetype || this.resource.rbdimagesname
     },

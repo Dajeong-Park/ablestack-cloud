@@ -87,11 +87,13 @@ test('project scope is explicit on each metadata read', async () => {
   expect(spy.mock.calls.filter(c => c[0] === 'listVirtualMachines').every(c => c[1].projectid === value.projectid)).toBe(true)
 })
 test('VM controller retains stale body only for recoverable errors and disables export', async () => {
-  const c = { resource: vm, sourceType: 'vm', tab: 'userdata.content', $route: { path: '/vm/' + vm.id }, $store: { getters: { apis, userInfo: { id: 'u' }, project: {} }, state: { user: { token: 's' } } } }
+  const c = { resource: vm, sourceType: 'vm', tab: 'userdata.content', resourceActionReady: () => true, $route: { path: '/vm/' + vm.id }, $store: { getters: { apis, userInfo: { id: 'u' }, project: {} }, state: { user: { token: 's' } } } }
   Object.assign(c, Content.data.call(c)); Object.entries(Content.methods).forEach(([key, fn]) => { c[key] = fn.bind(c) }); Object.entries(Content.computed).forEach(([key, fn]) => { Object.defineProperty(c, key, { get: () => fn.call(c) }) })
   getAPI.mockImplementation(get); await c.fetchData(); expect(c.status).toBe('ready'); expect(c.comparison).toBe('same')
   getAPI.mockRejectedValue({ response: { status: 503 } }); await c.fetchData(); expect(c.content).not.toBeNull(); expect(c.exportable).toBe(false); expect(c.comparison).toBe('unavailable')
   getAPI.mockRejectedValue({ response: { status: 403 } }); await c.fetchData(); expect(c.content).toBeNull(); expect(c.status).toBe('forbidden'); expect(c.vm).toBeNull()
+  c.resourceActionReady = () => false; getAPI.mockClear(); await c.fetchData(); expect(getAPI).not.toHaveBeenCalled(); expect(c.exportable).toBe(false)
+  c.content = { encoded: 'old-body', text: 'old-body' }; Content.watch.parentReadReady.call(c, false); expect(c.content).toBeNull()
 })
 
 test('metadata permission denial does not block independently permitted stored body access', async () => {

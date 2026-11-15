@@ -16,277 +16,132 @@
 // under the License.
 
 <template>
-  <div class="form-layout">
-    <a-spin :spinning="loading">
-      <a-alert type="warning">
-        <template #message>{{ $t('message.action.start.instance') }}</template>
-      </a-alert>
-      <br />
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        @finish="handleSubmit"
-        layout="vertical">
-        <div v-if="$store.getters.userInfo.roletype === 'Admin'">
-          <a-form-item name="podid" ref="podid">
-            <template #label>
-              <tooltip-label :title="$t('label.podid')" :tooltip="apiParams.podid.description"/>
-            </template>
-            <a-select
-              v-model:value="form.podid"
-              showSearch
-              optionFilterProp="label"
-              :filterOption="(input, option) => {
-                return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }"
-              :loading="podsLoading"
-              :placeholder="apiParams.podid.description"
-              @change="handlePodChange"
-              v-focus="$store.getters.userInfo.roletype === 'Admin'">
-              <a-select-option v-for="pod in pods" :key="pod.id" :label="pod.name">
-                {{ pod.name }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item name="clusterid" ref="clusterid">
-            <template #label>
-              <tooltip-label :title="$t('label.clusterid')" :tooltip="apiParams.clusterid.description"/>
-            </template>
-            <a-select
-              id="cluster-selection"
-              v-model:value="form.clusterid"
-              showSearch
-              optionFilterProp="label"
-              :filterOption="(input, option) => {
-                return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }"
-              :loading="clustersLoading"
-              :placeholder="apiParams.clusterid.description"
-              @change="handleClusterChange">
-              <a-select-option v-for="cluster in clusters" :key="cluster.id" :label="cluster.name">
-                {{ cluster.name }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item name="hostid" ref="hostid">
-            <template #label>
-              <tooltip-label :title="$t('label.hostid')" :tooltip="apiParams.hostid.description"/>
-            </template>
-            <a-select
-              id="host-selection"
-              v-model:value="form.hostid"
-              showSearch
-              optionFilterProp="label"
-              :filterOption="(input, option) => {
-                return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }"
-              :loading="hostsLoading"
-              :placeholder="apiParams.hostid.description">
-              <a-select-option v-for="host in hosts" :key="host.id" :label="host.name">
-                {{ host.name }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-
-          <a-form-item name="considerlasthost" ref="considerlasthost">
-            <template #label>
-              <tooltip-label :title="$t('label.considerlasthost')" :tooltip="apiParams.considerlasthost.description"/>
-            </template>
-            <a-switch v-model:checked="form.considerlasthost" v-focus="true"/>
-          </a-form-item>
-        </div>
-
-        <a-form-item name="bootintosetup" ref="bootintosetup" v-if="resource.hypervisor === 'VMware'">
-          <template #label>
-            <tooltip-label :title="$t('label.bootintosetup')" :tooltip="apiParams.bootintosetup.description"/>
-          </template>
-          <a-switch v-model:checked="form.bootintosetup" />
+  <section class="vm-start form-layout" @keydown.ctrl.enter.prevent="!$event.repeat && handleSubmit($event)">
+    <p ref="targetHeading" tabindex="-1" class="vm-action-target"><strong>{{ vmDisplayName(resource) }}</strong><br /><code>{{ resource.id }}</code></p>
+    <a-alert type="warning" show-icon :message="$t('message.action.start.instance')" />
+    <a-alert v-if="error" class="vm-start-error" type="error" show-icon :message="error" />
+    <p v-if="unknown" role="status">{{ $t('message.vm.start.unknown') }}</p>
+    <p v-if="!canStart && !unknown" role="status">{{ $t('message.vm.start.unavailable') }}</p>
+    <a-form ref="startForm" :model="form" layout="vertical" @finish="handleSubmit">
+      <template v-if="$store.getters.userInfo?.roletype === 'Admin'">
+        <a-form-item v-for="key in ['podid', 'clusterid', 'hostid']" :key="key" :name="key" v-show="supports(key)" :label="$t('label.' + key)" :extra="$t('message.vm.start.' + key)">
+          <a-select
+            :value="form[key]"
+            allow-clear
+            show-search
+            option-filter-prop="label"
+            :loading="lookup[key] === 'loading'"
+            :disabled="busy || unknown || lookup[key] !== 'ready'"
+            :placeholder="$t('message.vm.start.automatic')"
+            :options="options[key].map(row => ({ value: row.id, label: row.name || row.id }))"
+            @change="value => select(key, value)" />
+          <div v-if="['error', 'empty', 'forbidden'].includes(lookup[key])" role="status">{{ $t('message.vm.start.lookup.' + lookup[key]) }}</div>
+          <a-button v-if="lookup[key] === 'error'" size="small" :disabled="busy || unknown" @click="fetchPlacement">{{ $t('label.retry') }}</a-button>
         </a-form-item>
-
-        <div :span="24" class="action-button">
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
-      </a-form>
-    </a-spin>
-  </div>
+        <a-form-item v-if="supports('considerlasthost')" name="considerlasthost" :label="$t('label.considerlasthost')" :extra="$t('message.vm.start.considerlasthost')">
+          <a-switch v-model:checked="form.considerlasthost" :disabled="busy || unknown" />
+        </a-form-item>
+      </template>
+      <a-form-item v-if="resource.hypervisor === 'VMware' && supports('bootintosetup')" name="bootintosetup" :label="$t('label.bootintosetup')" :extra="$t('message.vm.start.bootintosetup')">
+        <a-switch v-model:checked="form.bootintosetup" :disabled="busy || unknown" />
+      </a-form-item>
+    </a-form>
+    <mold-dialog-actions :busy="busy">
+      <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
+      <a-button type="primary" :loading="busy" :disabled="!canStart || unknown || !selectionReady" @click="handleSubmit">{{ $t('label.action.start.instance') }}</a-button>
+    </mold-dialog-actions>
+  </section>
 </template>
-
 <script>
-import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
-import TooltipLabel from '@/components/widgets/TooltipLabel'
-
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import { vmDisplayName, vmEditScope } from '@/utils/vmIdentity'
+const descriptors = { podid: ['listPods', 'listpodsresponse', 'pod'], clusterid: ['listClusters', 'listclustersresponse', 'cluster'], hostid: ['listHosts', 'listhostsresponse', 'host'] }
 export default {
   name: 'StartVirtualMachine',
-  components: {
-    TooltipLabel
+  components: { MoldDialogActions },
+  props: { resource: { type: Object, required: true }, action: { type: Object, default: () => ({}) } },
+  data () { return { form: {}, apiParams: {}, options: { podid: [], clusterid: [], hostid: [] }, lookup: {}, lookupVersion: {}, active: true, generation: 0, submitting: false, error: '', unknown: false } },
+  computed: {
+    startScope () { return JSON.stringify([vmEditScope(this.resource, this.$route, this.$store), this.resource.zoneid]) },
+    busy () { return this.submitting },
+    canStart () { return this.active && !!this.$store.state?.user?.token && !!this.resource.id && this.resource.state === 'Stopped' && 'startVirtualMachine' in (this.$store.getters.apis || {}) && (!this.action.currentAction?.vmStartCurrent || this.action.currentAction.vmStartCurrent()) },
+    selectionReady () { return Object.keys(descriptors).every(key => !this.form[key] || this.lookup[key] === 'ready' && this.options[key].some(row => row.id === this.form[key])) }
   },
-  props: {
-    resource: {
-      type: Object,
-      required: true
-    }
-  },
-  data () {
-    return {
-      pods: [],
-      clusters: [],
-      hosts: [],
-      podsLoading: false,
-      clustersLoading: false,
-      hostsLoading: false,
-      loading: false
-    }
-  },
-  beforeCreate () {
-    this.apiParams = this.$getApiParams('startVirtualMachine')
-  },
-  created () {
-    this.initForm()
-    if (this.$store.getters.userInfo.roletype === 'Admin') {
-      this.fetchPods()
-      this.fetchClusters()
-      this.fetchHosts()
-    }
-  },
-  mounted () {
-    document.addEventListener('keydown', this.handleKeyPress)
-  },
-  beforeUnmount () {
-    document.removeEventListener('keydown', this.handleKeyPress)
-  },
+  watch: { startScope () { if (this.active) this.initForm() } },
+  created () { this.initForm() },
+  mounted () { this.$nextTick(() => { if (this.active && this.$refs.targetHeading) this.$refs.targetHeading.focus() }) },
+  activated () { if (!this.active) { this.active = true; this.initForm() } },
+  deactivated () { this.invalidate() },
+  beforeUnmount () { this.invalidate() },
   methods: {
+    vmDisplayName,
+    supports (key) { return !!this.apiParams[key] },
+    invalidate () { this.active = false; this.generation++; this.submitting = false },
     initForm () {
-      this.formRef = ref()
-      this.form = reactive({
-        considerlasthost: true
-      })
-      this.rules = reactive({})
+      this.generation++; this.submitting = false; this.error = ''; this.unknown = false
+      this.apiParams = this.$getApiParams('startVirtualMachine') || {}
+      this.form = this.supports('considerlasthost') ? { considerlasthost: true } : {}
+      this.options = { podid: [], clusterid: [], hostid: [] }; this.lookupVersion = {}; this.lookup = {}
+      this.fetchPlacement()
     },
-    fetchPods () {
-      this.pods = []
-      this.podsLoading = true
-      const params = { zoneid: this.resource.zoneid }
-      getAPI('listPods', params).then(json => {
-        this.pods = json.listpodsresponse.pod || []
-        if (this.pods.length === 0) {
-          this.$notification.error({
-            message: 'No pods found',
-            duration: 0
-          })
+    fetchPlacement () { return Promise.all(Object.keys(descriptors).map(key => this.load(key))) },
+    async load (key) {
+      const [api, root, field] = descriptors[key]
+      const scope = this.startScope; const generation = this.generation; const version = (this.lookupVersion[key] || 0) + 1
+      this.lookupVersion[key] = version; this.options[key] = []
+      if (!this.active || !this.$store.state?.user?.token || this.$store.getters.userInfo?.roletype !== 'Admin' || !this.supports(key) || !(api in (this.$store.getters.apis || {}))) { this.lookup[key] = 'forbidden'; return }
+      const current = () => this.active && scope === this.startScope && generation === this.generation && version === this.lookupVersion[key]
+      this.lookup[key] = 'loading'
+      const params = { zoneid: this.resource.zoneid, page: 1, pagesize: 500, ignoreproject: true }
+      if (key !== 'podid' && this.form.podid) params.podid = this.form.podid
+      if (key === 'hostid') { Object.assign(params, { type: 'Routing', state: 'Up' }); if (this.form.clusterid) params.clusterid = this.form.clusterid }
+      try {
+        const r = (await getAPI(api, params, { preserveOnFailure: true, timeout: 20000 }))?.[root]
+        if (!current()) return
+        if (!r || r.errorcode || (r.count && !Array.isArray(r[field])) || Number(r.count || 0) > (r[field] || []).length) throw new Error('incomplete lookup')
+        this.options[key] = (r[field] || []).filter(row => row.id && (!row.zoneid || row.zoneid === params.zoneid) && (!params.podid || !row.podid || row.podid === params.podid) && (!params.clusterid || !row.clusterid || row.clusterid === params.clusterid))
+        this.lookup[key] = this.options[key].length ? 'ready' : 'empty'
+      } catch (_) { if (current()) this.lookup[key] = 'error' }
+    },
+    select (key, value) {
+      this.form[key] = value
+      if (key === 'podid') { this.form.clusterid = undefined; this.form.hostid = undefined; this.load('clusterid'); this.load('hostid') }
+      if (key === 'clusterid') { this.form.hostid = undefined; this.load('hostid') }
+    },
+    async handleSubmit (event) {
+      if (event && typeof event.preventDefault === 'function') event.preventDefault()
+      if (this.busy || this.unknown || !this.canStart || !this.selectionReady) return
+      if (typeof this.$refs.startForm?.validate !== 'function') return
+      const scope = this.startScope; const generation = this.generation
+      const current = () => this.active && scope === this.startScope && generation === this.generation && (!this.action.currentAction?.vmStartCurrent || this.action.currentAction.vmStartCurrent())
+      this.submitting = true; this.error = ''
+      try {
+        await this.$refs.startForm?.validate?.()
+        if (!current() || !this.canStart || !this.selectionReady) return
+        const params = { id: this.resource.id }
+        for (const [key, value] of Object.entries(this.form)) if (this.supports(key) && (value || value === false || value === 0)) params[key] = value
+        const name = vmDisplayName(this.resource)
+        const json = await postAPI('startVirtualMachine', params)
+        if (!current()) return
+        const jobId = json?.startvirtualmachineresponse?.jobid
+        if (!jobId) { this.unknown = true; this.error = this.$t('message.vm.start.unknown'); return }
+        this.$pollJob({ jobId, title: this.$t('label.action.start.instance'), description: name, resourceId: params.id, loadingMessage: `${this.$t('label.action.start.instance')} ${name}`, successMessage: `${this.$t('label.action.start.instance')} ${name}`, catchMessage: this.$t('error.fetching.async.job.result') })
+        this.$emit('close-action')
+      } catch (error) {
+        if (!current()) return
+        if (error.errorFields?.length) { if (this.$refs.startForm?.scrollToField) this.$refs.startForm.scrollToField(error.errorFields[0].name) } else {
+          this.unknown = !error.response || error.response.status >= 500
+          this.error = this.unknown ? this.$t('message.vm.start.unknown') : Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext || this.$t('error.fetching.data')
         }
-      }).finally(() => {
-        this.podsLoading = false
-      })
+      } finally { if (current()) this.submitting = false }
     },
-    fetchClusters (podid) {
-      this.clusters = []
-      this.clustersLoading = true
-      const params = { zoneid: this.resource.zoneid }
-      if (podid) {
-        params.podid = podid
-      }
-      getAPI('listClusters', params).then(json => {
-        this.clusters = json.listclustersresponse.cluster || []
-        if (this.clusters.length === 0) {
-          this.$notification.error({
-            message: 'No clusters found',
-            duration: 0
-          })
-        }
-      }).finally(() => {
-        this.clustersLoading = false
-      })
-    },
-    fetchHosts (podid, clusterid) {
-      this.hosts = []
-      this.hostsLoading = true
-      const params = { zoneid: this.resource.zoneid, type: 'Routing', state: 'Up' }
-      if (podid) {
-        params.podid = podid
-      }
-      if (clusterid) {
-        params.clusterid = clusterid
-      }
-      getAPI('listHosts', params).then(json => {
-        this.hosts = json.listhostsresponse.host || []
-        if (this.hosts.length === 0) {
-          this.$notification.error({
-            message: 'No hosts found',
-            duration: 0
-          })
-        }
-      }).finally(() => {
-        this.hostsLoading = false
-      })
-    },
-    handlePodChange (podid) {
-      this.form.clusterid = undefined
-      this.form.hostid = undefined
-      this.fetchClusters(podid)
-      this.fetchHosts(podid)
-    },
-    handleClusterChange (clusterid) {
-      this.form.hostid = undefined
-      this.fetchHosts('', clusterid)
-    },
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.loading) return
-      this.formRef.value.validate().then(() => {
-        const values = toRaw(this.form)
-
-        this.loading = true
-        const params = {
-          id: this.resource.id
-        }
-        for (const key in values) {
-          if (values[key] || values[key] === false) {
-            params[key] = values[key]
-          }
-        }
-        postAPI('startVirtualMachine', params).then(json => {
-          const jobId = json.startvirtualmachineresponse.jobid
-          this.$pollJob({
-            jobId,
-            title: this.$t('label.action.start.instance'),
-            description: this.resource.name,
-            loadingMessage: `${this.$t('label.action.start.instance')} ${this.resource.name}`,
-            catchMessage: this.$t('error.fetching.async.job.result'),
-            successMessage: `${this.$t('label.action.start.instance')} ${this.resource.name}`,
-            response: (result) => { return result.virtualmachine && result.virtualmachine.password ? `The password of VM <b>${result.virtualmachine.displayname}</b> is <b>${result.virtualmachine.password}</b>` : null }
-          })
-          this.closeAction()
-        }).catch(error => {
-          this.$notifyError(error)
-        }).finally(() => {
-          this.loading = false
-        })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
-    },
-    closeAction () {
-      this.$emit('close-action')
-    },
-    handleKeyPress (event) {
-      event.preventDefault()
-      if ((event.code === 'Enter' || event.code === 'NumpadEnter') && event.ctrlKey === true) {
-        this.handleSubmit(event)
-      }
-    }
+    closeAction () { if (!this.busy) { this.invalidate(); this.$emit('close-action') } }
   }
 }
 </script>
-
-<style scoped lang="less">
-  .form-layout {
-    width: 60vw;
-
-    @media (min-width: 500px) {
-      width: 450px;
-    }
-  }
+<style scoped>
+.form-layout { width: 100%; min-width: 0; max-width: 100%; }
+.vm-action-target, .vm-start-error { overflow-wrap: anywhere; margin-bottom: 12px; }
+.vm-start .ant-form { margin-top: 16px; }
 </style>

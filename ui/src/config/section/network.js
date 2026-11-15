@@ -16,7 +16,10 @@
 // under the License.
 
 import { shallowRef, defineAsyncComponent } from 'vue'
+import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
+import { vmStoredUserDataAction, vmVbmcAction, vmUnmanageAction, vmCloneAction } from '@/config/section/vmCommonActions'
 import store from '@/store'
+import { vnfStates } from '@/utils/vnfSearch'
 import tungsten from '@/assets/icons/tungsten.svg?inline'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
@@ -484,7 +487,7 @@ export default {
         }
       },
       columns: () => {
-        const fields = ['name', 'state', 'ipaddress']
+        const fields = ['displayname', 'state', 'ipaddress']
         if (store.getters.userInfo.roletype === 'Admin') {
           fields.splice(2, 0, 'instancename')
           fields.push('account')
@@ -504,11 +507,13 @@ export default {
         fields.push('zonename')
         return fields
       },
-      searchFilters: ['name', 'zoneid', 'domainid', 'account', 'groupid', 'tags'],
+      defaultFilter: 'all',
+      filters: () => ['all', ...vnfStates(store.getters).map(s => s.toLowerCase())],
+      searchFilters: ['name', 'state', 'zoneid', 'domainid', 'account', 'networkid', 'templateid', 'serviceofferingid', 'groupid', 'tags'],
       details: () => {
-        var fields = ['name', 'displayname', 'id', 'state', 'ipaddress', 'ip6address', 'templatename', 'ostypename',
+        var fields = ['name', 'displayname', 'id', 'state', 'ipaddress', 'ip6address', 'templatename', 'osdisplayname',
           'serviceofferingname', 'isdynamicallyscalable', 'haenable', 'hypervisor', 'boottype', 'bootmode', 'account',
-          'domain', 'zonename', 'userdataid', 'userdataname', 'userdataparams', 'userdatadetails', 'userdatapolicy', 'hostcontrolstate']
+          'domain', 'zonename', 'userdataid', 'userdataname', 'userdataparams', 'userdatadetails', 'userdatapolicy', 'hostcontrolstate', 'deleteprotection']
         const listZoneHaveSGEnabled = store.getters.zones.filter(zone => zone.securitygroupsenabled === true)
         if (!listZoneHaveSGEnabled || listZoneHaveSGEnabled.length === 0) {
           return fields
@@ -591,35 +596,12 @@ export default {
           api: 'restoreVirtualMachine',
           icon: 'sync-outlined',
           label: 'label.vnf.app.action.reinstall',
-          message: 'message.reinstall.vm',
           dataView: true,
-          args: ['virtualmachineid', 'templateid'],
-          filters: (record) => {
-            var filters = {}
-            var filterParams = {}
-            filterParams.hypervisortype = record.hypervisor
-            filterParams.zoneid = record.zoneid
-            filters.templateid = filterParams
-            return filters
-          },
-          show: (record) => { return ['Running', 'Stopped'].includes(record.state) },
-          mapping: {
-            virtualmachineid: {
-              value: (record) => { return record.id }
-            }
-          },
-          disabled: (record) => { return record.hostcontrolstate === 'Offline' },
-          successMethod: (obj, result) => {
-            const vm = result.jobresult.virtualmachine || {}
-            if (result.jobstatus === 1 && vm.password) {
-              const name = vm.displayname || vm.name || vm.id
-              obj.$notification.success({
-                message: `${obj.$t('label.reinstall.vm')}: ` + name,
-                description: `${obj.$t('label.password.reset.confirm')}: ` + vm.password,
-                duration: 0
-              })
-            }
-          }
+          popup: true,
+          standardDialogSize: 'lg',
+          show: (record) => hasVnfReinstallJob(record) || ['Running', 'Stopped'].includes(record.state),
+          disabled: (record) => !hasVnfReinstallJob(record) && record.hostcontrolstate === 'Offline',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/VnfReinstall.vue')))
         },
         {
           api: 'createVMSnapshot',
@@ -853,14 +835,10 @@ export default {
           dataView: true,
           show: (record, store) => { return ['Destroyed'].includes(record.state) && store.features.allowuserexpungerecovervm }
         },
-        {
-          api: 'unmanageVirtualMachine',
-          icon: 'disconnect-outlined',
-          label: 'label.action.unmanage.virtualmachine',
-          message: 'message.action.unmanage.virtualmachine',
-          dataView: true,
-          show: (record) => { return ['Running', 'Stopped'].includes(record.state) && record.hypervisor === 'VMware' }
-        },
+        vmStoredUserDataAction(),
+        vmVbmcAction(),
+        vmCloneAction(),
+        vmUnmanageAction(),
         {
           api: 'expungeVirtualMachine',
           icon: 'delete-outlined',
@@ -868,6 +846,8 @@ export default {
           message: (record) => { return record.backupofferingid ? 'message.action.expunge.instance.with.backups' : 'message.action.expunge.instance' },
           docHelp: 'adminguide/virtual_machines.html#deleting-vms',
           dataView: true,
+          popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/DestroyVM.vue'))),
           show: (record, store) => { return ['Destroyed', 'Expunging'].includes(record.state) && store.features.allowuserexpungerecovervm }
         },
         {
