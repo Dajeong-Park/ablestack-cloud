@@ -19,6 +19,7 @@ import { shallowMount } from '@vue/test-utils'
 import { h } from 'vue'
 import ListView from '@/components/view/ListView'
 import InfoCard from '@/components/view/InfoCard'
+import DetailsTab from '@/components/view/DetailsTab'
 import ActionButton from '@/components/view/ActionButton'
 import network from '@/config/section/network'
 jest.mock('@/api', () => ({ getAPI: jest.fn().mockResolvedValue({}) }))
@@ -55,4 +56,12 @@ test('non-VM consumers preserve their existing display title', () => {
 test('VNF primary column uses the VM displayname contract', () => {
   const vnf = network.children.find(c => c.name === 'vnfapp')
   expect(vnf.columns()[0]).toBe('displayname'); expect(vnf.searchFilters).toContain('name'); expect(vnf.searchFilters).not.toContain('displayname')
+})
+
+test('VM and VNF details distinguish guest host name from displayname', () => {
+  for (const name of ['vm', 'vnfapp']) {
+    const c = { $route: { meta: { name } }, detailsTitles: { name: 'name', displayname: 'displayname' } }
+    expect(DetailsTab.methods.getDetailTitle.call(c, 'name')).toBe('label.vm.name')
+    expect(DetailsTab.methods.getDetailTitle.call(c, 'displayname')).toBe('label.displayname')
+  }
 })

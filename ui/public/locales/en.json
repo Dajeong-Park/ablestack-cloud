@@ -2987,6 +2987,7 @@
   "label.vmwaredcvcenter": "VMware datacenter vCenter",
   "label.vmwarenetworklabel": "VMware traffic label",
   "label.vnf.appliance": "VNF Appliance",
+  "label.vnf.name.search": "Search display or instance host name",
   "label.vnf.appliances": "VNF appliances",
   "label.vnf.appliance.add": "Add VNF Appliance",
   "label.vnf.appliance.access.methods": "Management access information for this VNF appliance",

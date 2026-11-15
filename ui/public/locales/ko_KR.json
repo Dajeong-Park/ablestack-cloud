@@ -2955,6 +2955,7 @@
   "label.vmwaredcvcenter": "VMware 데이터 센터 vcenter",
   "label.vmwarenetworklabel": "VMware 트래픽 라벨",
   "label.vnf.appliance": "VNF 어플라이언스",
+  "label.vnf.name.search": "표시 이름 또는 VM 호스트 명 검색",
   "label.vnf.appliances": "VNF 기기",
   "label.vnf.appliance.add": "VNF 어플라이언스 추가",
   "label.vnf.appliance.access.methods": "이 VNF 어플라이언스의 관리 액세스 정보",

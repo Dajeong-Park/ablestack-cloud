@@ -738,6 +738,7 @@ export default {
       return detailsKeys
     },
     getDetailTitle (detail) {
+      if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'name') return 'label.vm.name'
       if (this.$route.meta.name === 'template' && detail === 'format') return 'label.template.image.format'
       if (this.$route.meta.name === 'template' && detail === 'templatetype') return 'label.template.type'
       if (detail === 'sharedscope') return this.$t('label.shared.scope')

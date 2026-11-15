@@ -22,7 +22,7 @@
     <span v-if="!searchFilters || searchFilters.length === 0" style="display: flex;">
       <a-input-search
         v-model:value="searchQuery"
-        :placeholder="$t('label.search')"
+        :placeholder="apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         allowClear
         @search="onSearch"
       />
@@ -34,7 +34,7 @@
       <a-input-search
         allowClear
         class="input-search"
-        :placeholder="$t('label.search')"
+        :placeholder="apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         v-model:value="searchQuery"
         @search="onSearch">
         <template #addonBefore>
