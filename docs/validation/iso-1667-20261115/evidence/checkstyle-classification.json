@@ -1,0 +1,370 @@
+{
+  "base": "1046a5dc3f21",
+  "productHead": "8bfdcb7898ef643627fc798102805b38e27b2739",
+  "apiErrors": 46,
+  "serverErrors": 218,
+  "changedFileErrors": 0,
+  "diagnostics": [
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleUsagesCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/TransitionStorageServiceRuntimeBundleCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ValidateStorageServiceRuntimeBundleCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleValidationsCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleEventsCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/GetStorageSmbServiceNameContextCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/CreateStorageDirectoryPolicyCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/DeleteStorageDirectoryPolicyCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageNfsIdentityMappingCmd.java",
+      "count": 1
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/BaseStorageSmbServiceNameCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageDirectoryPolicyCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageDirectoryPoliciesCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageSmbServiceNamesCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/BaseSharedFSDeletionCmd.java",
+      "count": 1
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionOperationCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ListSharedFSDeletionOperationsCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java",
+      "count": 5
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ResumeSharedFSDeletionCmd.java",
+      "count": 1
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java",
+      "count": 5
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionImpactCmd.java",
+      "count": 2
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/api/response/StorageSmbServiceNameResponse.java",
+      "count": 1
+    },
+    {
+      "module": "api",
+      "path": "api/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeCatalog.java",
+      "count": 2
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageDirectoryPolicies.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeCatalogManagerImpl.java",
+      "count": 5
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeUpgradeManagerImpl.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageSmbFileIdentity.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageDirectoryAclReceipts.java",
+      "count": 2
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageSmbClientAccessPolicy.java",
+      "count": 3
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageConfigSnapshot.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageFileSharePaths.java",
+      "count": 3
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageSmbServiceNames.java",
+      "count": 5
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceConfigurationCoordinator.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/sharedfs/SharedFSDeletionCoordinator.java",
+      "count": 2
+    },
+    {
+      "module": "server",
+      "path": "server/src/main/java/org/apache/cloudstack/storage/sharedfs/SharedFSCapacityService.java",
+      "count": 5
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbClientAccessPolicyTest.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbServiceNamesContractTest.java",
+      "count": 7
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageBootRecoveryTest.java",
+      "count": 6
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbParentTraversalPreflightTest.java",
+      "count": 7
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbClientAccessRequestContractTest.java",
+      "count": 9
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbCreationPolicyTest.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageProtocolDeletionIntentTest.java",
+      "count": 3
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageServiceSmbFinalizationTest.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbShareRequestContractTest.java",
+      "count": 7
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageDirectoryPolicyCoordinatorDaoTest.java",
+      "count": 2
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageDirectoryGuardPreflightTest.java",
+      "count": 6
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbClientAccessCommitTest.java",
+      "count": 5
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbServiceNameRequestContractTest.java",
+      "count": 7
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageServiceSmbEndpointTest.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbFileIdentityTest.java",
+      "count": 3
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbParentInheritanceContractTest.java",
+      "count": 5
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageFilePreparationContractTest.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageServiceIscsiEndpointTest.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageNvmeListenerUsageTest.java",
+      "count": 7
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbServiceNameCoordinatorDaoTest.java",
+      "count": 9
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageDirectoryPolicyContractTest.java",
+      "count": 5
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageBlockProtocolStateTest.java",
+      "count": 6
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageSmbServiceNamesRejoinTest.java",
+      "count": 9
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageRuntimeBaselineTest.java",
+      "count": 2
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageConfigArtifactApiErrorTest.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageAdDomainApplyContractTest.java",
+      "count": 5
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeCatalogTest.java",
+      "count": 7
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/dataservice/StorageFileSharePathsTest.java",
+      "count": 2
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/sharedfs/SharedFSDeletionPowerGuardTest.java",
+      "count": 3
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/sharedfs/SharedFSDeletionReservationDaoTest.java",
+      "count": 8
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/sharedfs/SharedFSDeletionImpactTest.java",
+      "count": 12
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/sharedfs/SharedFSCapacityServiceTest.java",
+      "count": 8
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/sharedfs/SharedFSDeletionCoordinatorTest.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/org/apache/cloudstack/storage/sharedfs/SharedFSDeletionDaoTest.java",
+      "count": 4
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/com/cloud/api/query/dao/TemplatePrimaryCacheEvidenceTest.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/com/cloud/api/response/SharedFSDeletionWireTest.java",
+      "count": 2
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/com/cloud/api/response/StorageRuntimeWireTest.java",
+      "count": 1
+    },
+    {
+      "module": "server",
+      "path": "server/src/test/java/com/cloud/template/TemplatePreparationValidationTest.java",
+      "count": 1
+    }
+  ],
+  "functionalMavenPassedWithExistingStyleGateSeparated": true
+}

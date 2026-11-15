@@ -1,0 +1,37 @@
+{
+  "originalAssetCount": 7077,
+  "currentAssetCount": 7091,
+  "changedOriginalFiles": [
+    "index.html",
+    "locales/en.json",
+    "locales/ko_KR.json"
+  ],
+  "addedHashedAssets": [
+    "css/app.3dda445b.css",
+    "css/app.db1f0130.css",
+    "css/chunk-439f97bf.46063e9a.css",
+    "css/chunk-75530cdf.36bbc024.css",
+    "css/chunk-c0e1424a.11896e36.css",
+    "js/app.2923e7a8.js",
+    "js/app.846f0a82.js",
+    "js/app.88418ef8.js",
+    "js/chunk-33ef7c82.971c8430.js",
+    "js/chunk-439f97bf.7df472b9.js",
+    "js/chunk-4bf7478e.2e5cd2b3.js",
+    "js/chunk-4e497d26.f82e78bf.js",
+    "js/chunk-75530cdf.b0f58a44.js",
+    "js/chunk-c0e1424a.a6ebd34c.js"
+  ],
+  "removedOriginalFiles": [],
+  "protectedFilesUnchanged": true,
+  "colorLessUnchanged": true,
+  "moldPid": "2620448",
+  "backendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443",
+  "currentIndexSha256": "3af095fcdd5785a6c0e6c53b13e4a907245d066540041a86eb366fbd6a4f3d8e",
+  "deploymentFileCounts": [
+    10,
+    5,
+    4
+  ],
+  "lastManifestHashesVerified": true
+}

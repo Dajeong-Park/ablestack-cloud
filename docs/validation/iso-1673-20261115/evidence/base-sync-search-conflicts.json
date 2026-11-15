@@ -1,0 +1,97 @@
+[
+  {
+    "file": "ui/src/components/view/SearchFilter.vue",
+    "hunk": 1,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 1,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 2,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 3,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 4,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 5,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 6,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 7,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 8,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/view/SearchView.vue",
+    "hunk": 9,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/components/widgets/Breadcrumb.vue",
+    "hunk": 1,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 1,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 2,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 3,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 4,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 5,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 6,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 7,
+    "strategy": "retain independent VNF and ISO behavior"
+  },
+  {
+    "file": "ui/src/views/AutogenView.vue",
+    "hunk": 8,
+    "strategy": "retain independent VNF and ISO behavior"
+  }
+]

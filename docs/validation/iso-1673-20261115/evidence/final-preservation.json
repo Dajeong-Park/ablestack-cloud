@@ -1,0 +1,28 @@
+{
+  "deployedProductHead": "f72df22acb72b396981c2088262abfc7169275af",
+  "indexSha256": "61b22e5651fc8a08f89b7623cf66c6333350158ea2750e54f0942a754be15783",
+  "oldFiles": 7109,
+  "finalFiles": 7113,
+  "oldFilesUnchangedExcludingIndex": 7108,
+  "removed": [],
+  "modified": [
+    "index.html"
+  ],
+  "added": [
+    "css/app.94b45338.css",
+    "css/chunk-13aa087c.0f783508.css",
+    "js/app.b58a1c96.js",
+    "js/chunk-13aa087c.ac75dc87.js"
+  ],
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2620448",
+  "backendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443",
+  "protectedPreserved": true,
+  "backendPreserved": true,
+  "serviceRestarted": false,
+  "baselineManifestSha256": "82e72a132c2600eb04f0fbfa52dec6c54a71c7cb7c885146679dd0d58b210881",
+  "finalManifestSha256": "736f49b984d3253df73b3db5d6a3fb7895d4b34387a05c2df28a1e44d708cd07"
+}

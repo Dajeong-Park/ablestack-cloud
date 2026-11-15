@@ -1,0 +1,1488 @@
+[
+  {
+    "name": "systemvm-before",
+    "at": "2026-11-14T18:16:38.532Z",
+    "rows": [
+      "s-244-VM / 3e69aa81-9951-403c-9145-4149e0b0cb85 / 4.23.0.0 / 10.10.13.4 / host13.1",
+      "v-245-VM / 147cd89a-9b5b-4bcd-a0ca-a1ac88584578 / 4.23.0.0 / host13.2"
+    ]
+  },
+  {
+    "name": "system421-image-candidate",
+    "at": "2026-11-14T18:36:07.011Z",
+    "rows": [
+      {
+        "id": "6a8ad0f8-ccf0-429d-a1eb-d7fa2f6ec669",
+        "name": "systemvmtemplate-x86_64-kvm-Europa-202609091134",
+        "isready": true,
+        "arch": "x86_64",
+        "templatetype": "SYSTEM",
+        "ostypeid": "a961b319-71f4-4750-9a28-e3b0b4d04f4f"
+      }
+    ]
+  },
+  {
+    "name": "backend-ui-login",
+    "at": "2026-11-14T19:03:07.468Z",
+    "result": "PASS"
+  },
+  {
+    "name": "Europa-SystemVM-4.21-ISO1667-Recovery-20261115",
+    "at": "2026-11-14T19:09:53.642Z",
+    "sourceTemplate": "6a8ad0f8-ccf0-429d-a1eb-d7fa2f6ec669",
+    "checksum": "{SHA-256}544c4f881ee7dc335f713f83ca8a91cf85d7fb0c19b7ecf1fd594ef57c1c6715",
+    "type": "SYSTEM",
+    "arch": "x86_64",
+    "hypervisor": "KVM",
+    "zones": "all"
+  },
+  {
+    "name": "system421-image-ready",
+    "at": "2026-11-14T19:18:44.037Z",
+    "id": "460c3e5f-a873-4ca1-8242-a96d92eae233",
+    "result": "PASS"
+  },
+  {
+    "name": "recreate421-requested",
+    "at": "2026-11-14T19:19:01.840Z",
+    "oldId": "3e69aa81-9951-403c-9145-4149e0b0cb85",
+    "oldName": "s-244-VM",
+    "targetImage": "460c3e5f-a873-4ca1-8242-a96d92eae233"
+  },
+  {
+    "name": "system421-running-ui",
+    "at": "2026-11-14T19:26:07.196Z",
+    "result": "PASS",
+    "id": "5b2e9347-08d9-4537-8344-941e20cf91d7",
+    "version": "4.21.0.0-Mold.Diplo-202609221440",
+    "agent": "Up",
+    "consoleProxyPreserved": "v-245-VM / 4.23.0.0"
+  },
+  {
+    "name": "local-required-inline",
+    "at": "2026-11-14T19:30:49.384Z",
+    "result": "PASS",
+    "fileInline": true,
+    "nameInline": true
+  },
+  {
+    "name": "invalid-checksum-inline",
+    "at": "2026-11-14T19:31:35.180Z",
+    "result": "PASS",
+    "allocationRequests": 0,
+    "inlineError": true
+  },
+  {
+    "name": "first-local-format-required-rejected",
+    "at": "2026-11-14T19:45:49.829Z",
+    "result": "FOUND_AND_CORRECTING",
+    "message": "required inherited format=ISO was missing",
+    "isoCreated": false,
+    "remainingIsos": 8
+  },
+  {
+    "name": "qa-owner-account-created",
+    "at": "2026-11-14T19:50:28.413Z",
+    "result": "PASS",
+    "id": "e49af88e-9c66-4da9-b056-a52c9cd2a07c"
+  },
+  {
+    "name": "admin-userdata-created",
+    "at": "2026-11-14T19:52:43.765Z",
+    "id": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+    "result": "PASS"
+  },
+  {
+    "name": "retry-userdata-created",
+    "at": "2026-11-14T19:54:03.896Z",
+    "id": "fde8d697-1233-4c7d-93f2-0a4540db14ec"
+  },
+  {
+    "name": "admin-url421-md5-ready-append",
+    "at": "2026-11-14T19:56:22.046Z",
+    "result": "PASS",
+    "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+    "requests": {
+      "listIsos": 6,
+      "readyForShutdown": 16,
+      "listHostsMetrics": 1,
+      "getWallAlertAvailability": 1,
+      "listWallAlertRules": 1,
+      "listWallAlertSilences": 1
+    },
+    "rows": [
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "isready": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "bootable": false,
+        "ispublic": false,
+        "isextractable": true,
+        "downloaddetails": [
+          {
+            "downloadState": "NOT_DOWNLOADED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "isready": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "bootable": false,
+        "ispublic": false,
+        "isextractable": true,
+        "downloaddetails": [
+          {
+            "downloadState": "NOT_DOWNLOADED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "isready": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "bootable": false,
+        "ispublic": false,
+        "isextractable": true,
+        "downloaddetails": [
+          {
+            "downloadState": "NOT_DOWNLOADED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "isready": true,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "bootable": false,
+        "ispublic": false,
+        "isextractable": true,
+        "downloaddetails": [
+          {
+            "downloadState": "DOWNLOADED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "100",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "isready": true,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "bootable": false,
+        "ispublic": false,
+        "isextractable": true,
+        "userdataid": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+        "userdatapolicy": "APPEND",
+        "downloaddetails": [
+          {
+            "downloadState": "DOWNLOADED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "100",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "isready": true,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "bootable": false,
+        "ispublic": false,
+        "isextractable": true,
+        "userdataid": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+        "userdatapolicy": "APPEND",
+        "downloaddetails": [
+          {
+            "downloadState": "DOWNLOADED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "100",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "qa-iso1667-expiry421",
+    "at": "2026-11-14T20:07:38.296Z",
+    "id": "b64dd765-319d-4627-9fab-de272cdfe8b6",
+    "note": "Preflight fault did not occur; do not classify as expiry test. File transfer accepted, waiting Ready."
+  },
+  {
+    "name": "421-local-md5-ready",
+    "at": "2026-11-14T20:07:46.061Z",
+    "id": "b64dd765-319d-4627-9fab-de272cdfe8b6",
+    "ready": true
+  },
+  {
+    "name": "421-second-local-transferred",
+    "at": "2026-11-14T20:08:24.002Z",
+    "id": "ca6bcf3d-b3b7-45a3-a12c-0f80f6c33f2c",
+    "note": "HTTPS block did not apply: actual upload origin uses HTTP. Not an expiry test."
+  },
+  {
+    "name": "421-unused-ticket-preflight-failed",
+    "at": "2026-11-14T20:09:35.713Z",
+    "id": "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44",
+    "startedAt": "2026-11-14T20:09:35.713Z",
+    "blockedOnlyOrigin": "http://10.10.13.4",
+    "restoredNetwork": true,
+    "noFilePost": true
+  },
+  {
+    "name": "owner-userdata-created",
+    "at": "2026-11-14T20:10:19.824Z",
+    "id": "1e00e2db-3756-40d0-8684-080a7a0587c2"
+  },
+  {
+    "name": "link-retry-selected-data-deleted",
+    "at": "2026-11-14T20:10:51.742Z",
+    "userdataId": "fde8d697-1233-4c7d-93f2-0a4540db14ec",
+    "uiDeletionCompleted": true
+  },
+  {
+    "name": "421-link-retry-accepted",
+    "at": "2026-11-14T20:11:10.588Z",
+    "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e"
+  },
+  {
+    "name": "421-ready-link-retry-success",
+    "at": "2026-11-14T20:12:21.788Z",
+    "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e",
+    "sameId": true,
+    "readyBeforeFailure": true,
+    "retryCommands": []
+  },
+  {
+    "name": "421-owner-local-sha256-ready",
+    "at": "2026-11-14T20:12:21.929Z",
+    "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa",
+    "bootable": true,
+    "userdataPolicy": "DENYOVERRIDE",
+    "ready": true
+  },
+  {
+    "name": "421-link-retry-request-count",
+    "at": "2026-11-14T20:12:36.021Z",
+    "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e",
+    "requests": [
+      {
+        "command": "linkUserDataToTemplate",
+        "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e"
+      },
+      {
+        "command": "listIsos",
+        "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e"
+      },
+      {
+        "command": "listIsos",
+        "id": null
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      }
+    ],
+    "registerRequests": 0
+  },
+  {
+    "name": "421-local-failure-tests",
+    "at": "2026-11-14T20:13:26.059Z",
+    "abortId": "82ba337d-5118-4d1e-8626-512410c59210",
+    "abortedAtPercent": 2,
+    "networkThrottleRestored": true,
+    "mismatchId": "a29994fd-d91e-483a-a08f-e0c5aa76dc7f",
+    "wrongMd5RejectedHttp500": true
+  },
+  {
+    "name": "421-failed-mismatch-normal-ui-deleted",
+    "at": "2026-11-14T20:14:37.809Z",
+    "id": "a29994fd-d91e-483a-a08f-e0c5aa76dc7f",
+    "ready": false,
+    "downloadError": true,
+    "deleted": true
+  },
+  {
+    "name": "421-owner-url-arm-ready",
+    "at": "2026-11-14T20:15:41.766Z",
+    "id": "a4ef44cf-059e-4a0f-a56c-af4f089f9702",
+    "mode": "URL",
+    "ready": true,
+    "arch": "aarch64",
+    "bootable": false,
+    "note": "Metadata persistence only; no ARM boot claim"
+  },
+  {
+    "name": "421-abort-normal-ui-deleted",
+    "at": "2026-11-14T20:16:05.613Z",
+    "id": "82ba337d-5118-4d1e-8626-512410c59210",
+    "deleted": true
+  },
+  {
+    "name": "423-system-image-ready",
+    "at": "2026-11-14T20:16:05.614Z",
+    "id": "1cce97d2-a4b6-49c7-871a-3f52d70ce858",
+    "ready": true,
+    "checksum": "bbe9182cb97643dae6cd4466d8463bf775cc8f25e03cbff44c0ecee6effae708"
+  },
+  {
+    "name": "421-preflight-same-ticket-retry",
+    "at": "2026-11-14T20:16:56.681Z",
+    "id": "c607c490-c092-4602-a959-68233dcc0391",
+    "retryRequests": [
+      {
+        "command": "HEAD uploader"
+      },
+      {
+        "command": "POST uploader"
+      },
+      {
+        "command": "OPTIONS uploader"
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "listIsos",
+        "id": "c607c490-c092-4602-a959-68233dcc0391"
+      },
+      {
+        "command": "listIsos",
+        "id": null
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "listHostsMetrics",
+        "id": null
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      },
+      {
+        "command": "readyForShutdown",
+        "id": null
+      }
+    ],
+    "allocationRequestsOnRetry": 0
+  },
+  {
+    "name": "421-admin-url-boot-ready",
+    "at": "2026-11-14T20:18:55.766Z",
+    "id": "14901002-5a73-4a74-88ae-35d8d442caf1",
+    "ready": true,
+    "bootable": true,
+    "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc"
+  },
+  {
+    "name": "421-owner-local-arch-ready",
+    "at": "2026-11-14T20:19:16.598Z",
+    "id": "d1d003bd-ccfc-4e25-ad07-c1f2f5b3e2ef",
+    "ready": true,
+    "arch": "aarch64",
+    "checksum": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+    "note": "Local arch metadata; no ARM guest boot claim"
+  },
+  {
+    "name": "421-owner-url-boot-ready",
+    "at": "2026-11-14T20:20:13.006Z",
+    "id": "0b3b979a-06ad-4271-97b0-52b660789717",
+    "ready": true,
+    "bootable": true,
+    "checksum": "9625854d8ac6156f89e20cfa6d69cc24"
+  },
+  {
+    "name": "draft-cancel-no-allocation",
+    "at": "2026-11-14T20:20:13.050Z",
+    "allocations": 0
+  },
+  {
+    "name": "421-ui-list-stored-metadata",
+    "at": "2026-11-14T20:20:20.613Z",
+    "rows": [
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "size": 1525760,
+        "userdataid": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+        "userdataname": "qa-iso1667-admin-ud",
+        "userdatapolicy": "APPEND",
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "b64dd765-319d-4627-9fab-de272cdfe8b6",
+        "name": "qa-iso1667-expiry421",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "size": 1525760,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "ca6bcf3d-b3b7-45a3-a12c-0f80f6c33f2c",
+        "name": "qa-iso1667-real-expiry421",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "arch": "x86_64",
+        "size": 1525760,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44",
+        "name": "qa-iso1667-ticket-expiry421",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": false,
+        "bootable": false,
+        "arch": "x86_64",
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Processing"
+      },
+      {
+        "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e",
+        "name": "qa-iso1667-link-retry421",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "size": 1525760,
+        "userdataid": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+        "userdataname": "qa-iso1667-admin-ud",
+        "userdatapolicy": "APPEND",
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa",
+        "name": "qa-iso1667-owner421-sha256",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "arch": "x86_64",
+        "size": 24434688,
+        "userdataid": "1e00e2db-3756-40d0-8684-080a7a0587c2",
+        "userdataname": "qa-iso1667-owner-ud",
+        "userdatapolicy": "DENYOVERRIDE",
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "a4ef44cf-059e-4a0f-a56c-af4f089f9702",
+        "name": "qa-iso1667-owner-url421-arm",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "arch": "aarch64",
+        "size": 1525760,
+        "userdataid": "1e00e2db-3756-40d0-8684-080a7a0587c2",
+        "userdataname": "qa-iso1667-owner-ud",
+        "userdatapolicy": "ALLOWOVERRIDE",
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "c607c490-c092-4602-a959-68233dcc0391",
+        "name": "qa-iso1667-preflight421-boot",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "9625854d8ac6156f89e20cfa6d69cc24",
+        "arch": "x86_64",
+        "size": 24434688,
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "d1d003bd-ccfc-4e25-ad07-c1f2f5b3e2ef",
+        "name": "qa-iso1667-owner-local421-arm",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "arch": "aarch64",
+        "size": 1525760,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "14901002-5a73-4a74-88ae-35d8d442caf1",
+        "name": "qa-iso1667-admin-url421-boot",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "arch": "x86_64",
+        "size": 24434688,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "0b3b979a-06ad-4271-97b0-52b660789717",
+        "name": "qa-iso1667-owner-url421-boot",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "9625854d8ac6156f89e20cfa6d69cc24",
+        "arch": "x86_64",
+        "size": 24434688,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      }
+    ]
+  },
+  {
+    "name": "qa-iso1667-owner-url421-arm",
+    "at": "2026-11-14T20:21:04.196Z",
+    "id": "a4ef44cf-059e-4a0f-a56c-af4f089f9702",
+    "finalPage": "awaiting refresh"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:21:47.223Z",
+    "id": "d1d003bd-ccfc-4e25-ad07-c1f2f5b3e2ef"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:22:12.103Z",
+    "id": "0b3b979a-06ad-4271-97b0-52b660789717"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:22:12.105Z",
+    "id": "b64dd765-319d-4627-9fab-de272cdfe8b6"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:22:44.593Z",
+    "id": "ca6bcf3d-b3b7-45a3-a12c-0f80f6c33f2c"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:23:20.320Z",
+    "id": "42aa218b-094f-4a4a-91c7-11ba9a24af5e"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:24:45.708Z",
+    "id": "c607c490-c092-4602-a959-68233dcc0391"
+  },
+  {
+    "name": "421-normal-tests-cleaned-except-download-and-expiry",
+    "at": "2026-11-14T20:25:02.705Z",
+    "remainingIds": [
+      "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+      "8d83b02c-2a26-4c22-81d0-bfb33c3731aa",
+      "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44"
+    ]
+  },
+  {
+    "name": "421-to-423-recreation-requested",
+    "at": "2026-11-14T20:25:30.408Z",
+    "destroyedId": "5b2e9347-08d9-4537-8344-941e20cf91d7",
+    "factoryImageId": "1cce97d2-a4b6-49c7-871a-3f52d70ce858",
+    "consolePreserveId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
+    "normal421MatrixReady": true,
+    "unusedTicketStillHeld": true
+  },
+  {
+    "name": "423-systemvm-actual-running",
+    "at": "2026-11-14T20:27:15.930Z",
+    "id": "ec08882e-81a5-4c20-b427-d9d2c0ffe12d",
+    "uiVersion": "4.23.0.0",
+    "agentUp": true,
+    "consoleOriginalPreserved": true
+  },
+  {
+    "name": "423-owner-local-sha256-ready",
+    "at": "2026-11-14T20:28:48.045Z",
+    "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99",
+    "ready": true,
+    "bootable": true,
+    "userdataPolicy": "DENYOVERRIDE"
+  },
+  {
+    "name": "423-double-click-single-allocation",
+    "at": "2026-11-14T20:29:30.151Z",
+    "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903",
+    "allocationRequests": 1,
+    "uiDoubleClick": true
+  },
+  {
+    "name": "423-admin-local-md5-append-ready",
+    "at": "2026-11-14T20:29:50.364Z",
+    "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903",
+    "ready": true,
+    "userdataPolicy": "APPEND"
+  },
+  {
+    "name": "423-sha256-mismatch-transfer-rejected",
+    "at": "2026-11-14T20:30:28.796Z",
+    "id": "aaca737a-4ae6-4214-9384-9fd179efb889",
+    "http500": true,
+    "success": false,
+    "transferStageShowsError": true
+  },
+  {
+    "name": "423-http-preflight-final-ui",
+    "at": "2026-11-14T20:30:34.772Z",
+    "hasCertificateLink": false,
+    "sameIdRetryOffered": true
+  },
+  {
+    "name": "423-admin-local-boot-ready",
+    "at": "2026-11-14T20:34:59.087Z",
+    "id": "35796625-b004-4209-b396-bc28fffdcae1",
+    "ready": true,
+    "bootable": true,
+    "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc"
+  },
+  {
+    "name": "423-sha256-mismatch-normal-ui-deleted",
+    "at": "2026-11-14T20:36:01.168Z",
+    "id": "aaca737a-4ae6-4214-9384-9fd179efb889",
+    "ready": false,
+    "downloadError": true
+  },
+  {
+    "name": "423-owner-local-s390x-accepted",
+    "at": "2026-11-14T20:36:07.652Z",
+    "id": "aecdf844-c076-42a1-83cd-ccae17b78578",
+    "note": "Metadata only, not IBM guest boot"
+  },
+  {
+    "name": "423-admin-url-data-ready",
+    "at": "2026-11-14T20:36:19.515Z",
+    "id": "33920848-c306-4970-a71c-974e0af89010",
+    "ready": true,
+    "bootable": false,
+    "checksum": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4"
+  },
+  {
+    "name": "423-owner-local-s390x-ready",
+    "at": "2026-11-14T20:38:54.995Z",
+    "id": "aecdf844-c076-42a1-83cd-ccae17b78578",
+    "ready": true,
+    "arch": "s390x",
+    "bootable": false,
+    "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+    "note": "Metadata only, no IBM guest boot claim"
+  },
+  {
+    "name": "actual-ui-owner-change-stale-selection-found",
+    "at": "2026-11-14T20:39:20.347Z",
+    "from": "admin",
+    "to": "qa-iso1667-owner",
+    "staleUserdata": "qa-iso1667-admin-ud",
+    "submitted": false
+  },
+  {
+    "name": "qa-iso1667-owner-url423-data",
+    "at": "2026-11-14T20:41:44.328Z",
+    "id": "2a0fcd53-eddd-4a9b-b02b-d106cf971477",
+    "owner": "qa-iso1667-owner",
+    "ready": true
+  },
+  {
+    "name": "qa-iso1667-admin-url423-boot",
+    "at": "2026-11-14T20:41:44.331Z",
+    "id": "c6c91c1c-0177-48e4-809b-a29619cbf4b6",
+    "owner": "admin",
+    "ready": true
+  },
+  {
+    "name": "423-systemvm-template-reference",
+    "at": "2026-11-14T20:42:52.132Z",
+    "id": "ec08882e-81a5-4c20-b427-d9d2c0ffe12d",
+    "imageId": "1cce97d2-a4b6-49c7-871a-3f52d70ce858",
+    "uiVersion": "4.23.0.0",
+    "agent": "Up"
+  },
+  {
+    "name": "423-owner-url-boot-ready",
+    "at": "2026-11-14T20:43:22.975Z",
+    "id": "321f9655-3566-40f0-a4a1-a0906d1e9399",
+    "ready": true,
+    "bootable": true
+  },
+  {
+    "name": "423-ui-list-stored-metadata",
+    "at": "2026-11-14T20:43:44.001Z",
+    "rows": [
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "size": 1525760,
+        "userdataid": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+        "userdataname": "qa-iso1667-admin-ud",
+        "userdatapolicy": "APPEND",
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44",
+        "name": "qa-iso1667-ticket-expiry421",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": false,
+        "bootable": false,
+        "arch": "x86_64",
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Template Template {\"format\":\"ISO\",\"id\":315,\"name\":\"qa-iso1667-ticket-expiry421\",\"uniqueName\":\"315-2-90b08e63-7b4d-39d6-bc6c-6fe26b05ca8c\",\"uuid\":\"97b9015b-85e7-4b91-8cf0-ab5d4bef6a44\"} is corrupted on secondary storage ImageStore {\"id\":1,\"name\":\"Secondary"
+      },
+      {
+        "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa",
+        "name": "qa-iso1667-owner421-sha256",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "arch": "x86_64",
+        "size": 24434688,
+        "userdataid": "1e00e2db-3756-40d0-8684-080a7a0587c2",
+        "userdataname": "qa-iso1667-owner-ud",
+        "userdatapolicy": "DENYOVERRIDE",
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903",
+        "name": "qa-iso1667-admin-local423-md5",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "x86_64",
+        "size": 1525760,
+        "userdataid": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
+        "userdataname": "qa-iso1667-admin-ud",
+        "userdatapolicy": "APPEND",
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99",
+        "name": "qa-iso1667-owner-local423-sha256",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "arch": "x86_64",
+        "size": 24434688,
+        "userdataid": "1e00e2db-3756-40d0-8684-080a7a0587c2",
+        "userdataname": "qa-iso1667-owner-ud",
+        "userdatapolicy": "DENYOVERRIDE",
+        "isextractable": true,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "35796625-b004-4209-b396-bc28fffdcae1",
+        "name": "qa-iso1667-admin-local423-boot",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "arch": "x86_64",
+        "size": 24434688,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "aecdf844-c076-42a1-83cd-ccae17b78578",
+        "name": "qa-iso1667-owner-local423-s390x",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+        "arch": "s390x",
+        "size": 1525760,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "33920848-c306-4970-a71c-974e0af89010",
+        "name": "qa-iso1667-admin-url423-data",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "arch": "x86_64",
+        "size": 1525760,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "2a0fcd53-eddd-4a9b-b02b-d106cf971477",
+        "name": "qa-iso1667-owner-url423-data",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": false,
+        "checksum": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "arch": "x86_64",
+        "size": 1525760,
+        "userdataid": "1e00e2db-3756-40d0-8684-080a7a0587c2",
+        "userdataname": "qa-iso1667-owner-ud",
+        "userdatapolicy": "ALLOWOVERRIDE",
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "c6c91c1c-0177-48e4-809b-a29619cbf4b6",
+        "name": "qa-iso1667-admin-url423-boot",
+        "account": "admin",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "9625854d8ac6156f89e20cfa6d69cc24",
+        "arch": "x86_64",
+        "size": 24434688,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      },
+      {
+        "id": "321f9655-3566-40f0-a4a1-a0906d1e9399",
+        "name": "qa-iso1667-owner-url423-boot",
+        "account": "qa-iso1667-owner",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "isready": true,
+        "bootable": true,
+        "checksum": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "arch": "x86_64",
+        "size": 24434688,
+        "isextractable": false,
+        "ispublic": false,
+        "status": "Successfully Installed"
+      }
+    ]
+  },
+  {
+    "name": "qa-iso1667-admin-local423-boot",
+    "at": "2026-11-14T20:44:18.459Z",
+    "id": "35796625-b004-4209-b396-bc28fffdcae1"
+  },
+  {
+    "name": "qa-iso1667-owner-local423-s390x",
+    "at": "2026-11-14T20:44:21.801Z",
+    "id": "aecdf844-c076-42a1-83cd-ccae17b78578"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:46:53.743Z",
+    "id": "35796625-b004-4209-b396-bc28fffdcae1"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:46:53.746Z",
+    "id": "aecdf844-c076-42a1-83cd-ccae17b78578"
+  },
+  {
+    "name": "qa-iso1667-admin-url423-data",
+    "at": "2026-11-14T20:46:57.172Z",
+    "id": "33920848-c306-4970-a71c-974e0af89010"
+  },
+  {
+    "name": "qa-iso1667-owner-url423-data",
+    "at": "2026-11-14T20:47:00.399Z",
+    "id": "2a0fcd53-eddd-4a9b-b02b-d106cf971477"
+  },
+  {
+    "name": "real-expiry-timeout-unchanged",
+    "at": "2026-11-14T20:54:17.295Z",
+    "setting": "upload.operation.timeout",
+    "minutes": 60,
+    "readOnlyUiVerification": true
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:54:17.498Z",
+    "id": "33920848-c306-4970-a71c-974e0af89010"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:54:17.500Z",
+    "id": "2a0fcd53-eddd-4a9b-b02b-d106cf971477"
+  },
+  {
+    "name": "qa-iso1667-admin-url423-boot",
+    "at": "2026-11-14T20:54:20.991Z",
+    "id": "c6c91c1c-0177-48e4-809b-a29619cbf4b6"
+  },
+  {
+    "name": "qa-iso1667-owner-url423-boot",
+    "at": "2026-11-14T20:54:24.161Z",
+    "id": "321f9655-3566-40f0-a4a1-a0906d1e9399"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:55:32.178Z",
+    "id": "c6c91c1c-0177-48e4-809b-a29619cbf4b6"
+  },
+  {
+    "name": "ui-delete-completed",
+    "at": "2026-11-14T20:55:32.180Z",
+    "id": "321f9655-3566-40f0-a4a1-a0906d1e9399"
+  },
+  {
+    "name": "final-retry-data-created",
+    "at": "2026-11-14T20:56:25.999Z",
+    "id": "10d03a53-cf08-49e6-ac53-aa86ee801066"
+  },
+  {
+    "name": "final-owner-change-selection-cleared",
+    "at": "2026-11-14T20:56:42.062Z",
+    "from": "admin",
+    "to": "qa-iso1667-owner",
+    "previousSelectionCleared": true
+  },
+  {
+    "name": "final-long-name-ellipsis",
+    "at": "2026-11-14T20:57:10.736Z",
+    "clientHeight": 22,
+    "clientWidth": 662,
+    "scrollWidth": 1092,
+    "textOverflow": "ellipsis",
+    "titleMatches": true,
+    "whiteSpace": "nowrap",
+    "id": "0728cd44-0190-4566-a9b9-cd9e92369058"
+  },
+  {
+    "name": "final-plaintext-checksum-reason-visible",
+    "at": "2026-11-14T20:57:35.188Z",
+    "id": "24af0c87-4011-4bb5-85ae-8db4dea9c501",
+    "reason": "Checksum does not match the uploaded file.",
+    "transferStageError": true,
+    "success": false
+  },
+  {
+    "name": "final-behalf-registration-ready",
+    "at": "2026-11-14T20:58:10.787Z",
+    "id": "0728cd44-0190-4566-a9b9-cd9e92369058",
+    "actor": "admin",
+    "owner": "qa-iso1667-owner",
+    "userdata": "1e00e2db-3756-40d0-8684-080a7a0587c2",
+    "policy": "APPEND",
+    "ready": true
+  },
+  {
+    "name": "final-refresh-no-registration",
+    "at": "2026-11-14T20:58:21.021Z",
+    "id": "0728cd44-0190-4566-a9b9-cd9e92369058",
+    "registrationWrites": 0
+  },
+  {
+    "name": "final-selected-userdata-deleted-before-submit",
+    "at": "2026-11-14T21:00:19.932Z",
+    "id": "10d03a53-cf08-49e6-ac53-aa86ee801066",
+    "uiCompleted": true
+  },
+  {
+    "name": "final-local-retry-accepted",
+    "at": "2026-11-14T21:01:28.535Z",
+    "id": "d4e9bf8b-4900-4a13-8faf-c78ef5766ab9"
+  },
+  {
+    "name": "qa-iso1667-behalf423-long-template-name-for-ellipsis-template-name-for-ellipsis-template-name-for-ellipsis-template-name-for-ellipsis-template-name-for-ellipsis-",
+    "at": "2026-11-14T21:01:31.658Z",
+    "id": "0728cd44-0190-4566-a9b9-cd9e92369058"
+  },
+  {
+    "name": "final-link-failure-clears-removed-selection",
+    "at": "2026-11-14T21:01:39.779Z",
+    "id": "d4e9bf8b-4900-4a13-8faf-c78ef5766ab9",
+    "readyBeforeLink": true,
+    "removedSelectionCleared": true,
+    "retryDisabledBeforeSelection": true
+  },
+  {
+    "name": "final-local-same-id-link-retry-success",
+    "at": "2026-11-14T21:03:08.896Z",
+    "id": "d4e9bf8b-4900-4a13-8faf-c78ef5766ab9",
+    "ready": true,
+    "policy": "APPEND",
+    "retryCommands": [
+      {
+        "command": "linkUserDataToTemplate",
+        "id": "d4e9bf8b-4900-4a13-8faf-c78ef5766ab9"
+      },
+      {
+        "command": "listIsos",
+        "id": "d4e9bf8b-4900-4a13-8faf-c78ef5766ab9"
+      },
+      {
+        "command": "listIsos",
+        "id": null
+      },
+      {
+        "command": "getWallAlertAvailability",
+        "id": null
+      },
+      {
+        "command": "listWallAlertRules",
+        "id": null
+      },
+      {
+        "command": "listWallAlertSilences",
+        "id": null
+      },
+      {
+        "command": "listHostsMetrics",
+        "id": null
+      },
+      {
+        "command": "getWallAlertAvailability",
+        "id": null
+      },
+      {
+        "command": "listWallAlertRules",
+        "id": null
+      },
+      {
+        "command": "listWallAlertSilences",
+        "id": null
+      }
+    ],
+    "allocationRequests": 0
+  },
+  {
+    "name": "final-behalf-test-normal-ui-deleted",
+    "at": "2026-11-14T21:04:20.897Z",
+    "id": "0728cd44-0190-4566-a9b9-cd9e92369058"
+  },
+  {
+    "name": "final-local-retry-normal-ui-deleted",
+    "at": "2026-11-14T21:08:26.212Z",
+    "id": "d4e9bf8b-4900-4a13-8faf-c78ef5766ab9"
+  },
+  {
+    "name": "final-esc-before-submit",
+    "at": "2026-11-14T21:08:49.946Z",
+    "dialogClosed": true,
+    "focus": {
+      "label": "ISO 등록",
+      "tag": "BUTTON",
+      "text": "ISO 등록"
+    },
+    "registrationRequests": 0
+  },
+  {
+    "name": "real-expiry-blocked-before-post",
+    "at": "2026-11-14T21:10:51.487Z",
+    "id": "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44",
+    "checkedAt": "2026-11-14T21:10:51.487Z",
+    "timeoutMinutes": 60,
+    "filePostRequests": 0,
+    "allocationRequests": 0,
+    "sameIdRetained": true,
+    "clockAndGlobalSettingsUnchanged": true,
+    "issuedOnSeries": "4.21",
+    "checkedAfterRecreationSeries": "4.23",
+    "transferMethodsIdenticalToFinalHead": true
+  },
+  {
+    "name": "qa-iso1667-ticket-expiry421",
+    "at": "2026-11-14T21:11:17.152Z",
+    "id": "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44"
+  },
+  {
+    "name": "expired-iso-normal-ui-deleted",
+    "at": "2026-11-14T21:16:12.533Z",
+    "id": "97b9015b-85e7-4b91-8cf0-ab5d4bef6a44",
+    "observedServerSummaryBeforeDelete": "DOWNLOAD_ERROR",
+    "notClaimingAbandoned": true
+  },
+  {
+    "name": "pending-userdata-ui-count",
+    "at": "2026-11-14T21:20:09.439Z",
+    "count": 2,
+    "reason": "Retained until four registered ISO downloads are verified"
+  },
+  {
+    "name": "original-role-count-preserved",
+    "at": "2026-11-14T21:20:22.450Z",
+    "count": 9,
+    "createdRoles": 0
+  },
+  {
+    "name": "pending-download-final-catalog",
+    "at": "2026-11-14T21:20:22.530Z",
+    "total": 12,
+    "originalIds": [
+      "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+      "98432634-54c7-485f-aa24-e6e2cea40980",
+      "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+      "192d3383-74a4-4969-8f37-5af00aa90b95",
+      "5836b8f6-9336-4766-8f77-e39218f6e826",
+      "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+      "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "367c88cb-4947-452f-9429-54a19885adf4"
+    ],
+    "originalsPreserved": true,
+    "retainedReadyIsos": [
+      {
+        "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b",
+        "name": "qa-iso1667-url421-md5"
+      },
+      {
+        "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa",
+        "name": "qa-iso1667-owner421-sha256"
+      },
+      {
+        "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99",
+        "name": "qa-iso1667-owner-local423-sha256"
+      },
+      {
+        "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903",
+        "name": "qa-iso1667-admin-local423-md5"
+      }
+    ],
+    "qaCreated": 25,
+    "qaDeleted": 21
+  },
+  {
+    "name": "pending-account-ui-count",
+    "at": "2026-11-14T21:20:29.702Z",
+    "total": 4,
+    "baseline": 3,
+    "retainedQaAccount": "e49af88e-9c66-4da9-b056-a52c9cd2a07c"
+  },
+  {
+    "name": "operational-system-images-retained",
+    "at": "2026-11-14T21:20:44.579Z",
+    "readySystemImages": 2,
+    "names": [
+      "Europa-SystemVM-4.21-ISO1667-Recovery-20261115",
+      "Europa-SystemVM-4.23-ISO1667-20261115"
+    ],
+    "qaImagesExcludedReason": "Current 4.23 factory and protected legacy recovery image"
+  },
+  {
+    "name": "final-systemvm-ui-preservation",
+    "at": "2026-11-14T21:21:04.749Z",
+    "secondaryId": "ec08882e-81a5-4c20-b427-d9d2c0ffe12d",
+    "secondaryName": "s-255-VM",
+    "version": "4.23.0.0",
+    "consoleId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
+    "consoleName": "v-245-VM",
+    "consolePreserved": true
+  },
+  {
+    "name": "actual-download-files-verified",
+    "at": "2026-11-15T00:33:05.447Z",
+    "files": [
+      {
+        "File": "qa-iso1667-admin-local423-md5.iso",
+        "Bytes": 1525760,
+        "Sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "ExpectedBytes": 1525760,
+        "ExpectedSha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:31:06.3637446Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.6318077Z"
+      },
+      {
+        "File": "qa-iso1667-owner-local423-sha256.iso",
+        "Bytes": 24434688,
+        "Sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "ExpectedBytes": 24434688,
+        "ExpectedSha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:31:22.4163065Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.7529271Z"
+      },
+      {
+        "File": "qa-iso1667-owner421-sha256.iso",
+        "Bytes": 24434688,
+        "Sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "ExpectedBytes": 24434688,
+        "ExpectedSha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:30:30.6692699Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.8700166Z"
+      },
+      {
+        "File": "qa-iso1667-url421-md5.iso",
+        "Bytes": 1525760,
+        "Sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "ExpectedBytes": 1525760,
+        "ExpectedSha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:27:40.1575022Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.8891121Z"
+      }
+    ],
+    "allMatched": true,
+    "source": "Operator downloaded through UI; local files hashed by assistant"
+  },
+  {
+    "name": "qa-iso1667-url421-md5",
+    "at": "2026-11-15T00:33:40.190Z",
+    "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:34:04.929Z",
+    "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b"
+  },
+  {
+    "name": "qa-iso1667-owner421-sha256",
+    "at": "2026-11-15T00:34:08.527Z",
+    "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:34:52.732Z",
+    "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa"
+  },
+  {
+    "name": "qa-iso1667-admin-local423-md5",
+    "at": "2026-11-15T00:34:56.341Z",
+    "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:35:15.648Z",
+    "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903"
+  },
+  {
+    "name": "qa-iso1667-owner-local423-sha256",
+    "at": "2026-11-15T00:35:19.275Z",
+    "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:35:41.440Z",
+    "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99"
+  },
+  {
+    "name": "final-userdata-two-deleted",
+    "at": "2026-11-15T00:36:20.238Z",
+    "completed": 2,
+    "failed": 0,
+    "allReferencesZero": true
+  },
+  {
+    "name": "final-qa-account-deleted",
+    "at": "2026-11-15T00:37:51.390Z",
+    "id": "e49af88e-9c66-4da9-b056-a52c9cd2a07c",
+    "disabledBeforeDeletion": true,
+    "baselineAccounts": 3,
+    "remainingQaAccounts": 0
+  },
+  {
+    "name": "final-role-baseline-preserved",
+    "at": "2026-11-15T00:37:57.397Z",
+    "roles": 9,
+    "createdRoles": 0
+  },
+  {
+    "name": "final-userdata-baseline-restored",
+    "at": "2026-11-15T00:38:04.687Z",
+    "count": 0
+  },
+  {
+    "name": "final-operational-images-preserved",
+    "at": "2026-11-15T00:38:16.862Z",
+    "readySystemImages": 2,
+    "qaResources": false
+  },
+  {
+    "name": "post-cleanup-systemvm-preserved",
+    "at": "2026-11-15T00:38:23.811Z",
+    "secondaryId": "ec08882e-81a5-4c20-b427-d9d2c0ffe12d",
+    "secondaryVersion": "4.23.0.0",
+    "consoleId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
+    "running": true,
+    "agentUp": true
+  },
+  {
+    "name": "final-cleanup-complete",
+    "at": "2026-11-15T00:39:06.295Z",
+    "verifiedAt": "2026-11-15T00:39:06.295Z",
+    "downloadFilesVerified": 4,
+    "qaIsoCreated": 25,
+    "qaIsoDeleted": 25,
+    "qaIsoRemaining": 0,
+    "qaUserdataRemaining": 0,
+    "qaAccountsRemaining": 0,
+    "originalIsoIds": [
+      "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+      "98432634-54c7-485f-aa24-e6e2cea40980",
+      "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+      "192d3383-74a4-4969-8f37-5af00aa90b95",
+      "5836b8f6-9336-4766-8f77-e39218f6e826",
+      "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+      "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "367c88cb-4947-452f-9429-54a19885adf4"
+    ],
+    "isoCount": 8,
+    "accountCount": 3,
+    "roleCount": 9,
+    "userdataCount": 0,
+    "operationalSystemImagesRetained": 2,
+    "secondaryVm": "s-255-VM",
+    "secondaryVersion": "4.23.0.0",
+    "consoleVmPreserved": "v-245-VM"
+  }
+]

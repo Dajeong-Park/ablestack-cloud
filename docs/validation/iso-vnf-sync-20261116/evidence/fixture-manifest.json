@@ -1,0 +1,11 @@
+{
+  "path": "/usr/share/cloudstack-management/webapp/qa-iso-vnf-sync-20261116/cirros.qcow2",
+  "sha256": "7d6355852aeb6dbcd191bcda7cd74f1536cfe5cbf8a10495a7283a8396e4b75b",
+  "size": 21692416,
+  "httpStatus": 200,
+  "contentLength": "21692416",
+  "source": "/tmp/epic-1638-t08/cirros-0.6.3-x86_64-disk.img",
+  "format": "qcow2",
+  "virtualSize": 117440512,
+  "url": "http://10.10.13.10:8080/client/qa-iso-vnf-sync-20261116/cirros.qcow2"
+}

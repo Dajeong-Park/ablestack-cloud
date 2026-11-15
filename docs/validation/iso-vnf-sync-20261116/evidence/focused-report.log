@@ -1,0 +1,79 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.11s
+
+docs/validation/iso-vnf-sync-20261116/evidence/screenshot-manifest.json
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-edit-dialog-light.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-protection-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/iso-edit-light.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/manual-report.log
+docs/validation/iso-vnf-sync-20261116/evidence/preservation-final.json
+docs/validation/iso-vnf-sync-20261116/evidence/report-checks.json
+docs/validation/iso-vnf-sync-20261116/evidence/cleanup-root-volume-zero.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/fixture-manifest.json
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-protection-light.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/ui-build-result.json
+docs/validation/iso-vnf-sync-20261116/evidence/iso-zone-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/cleanup-template-zero.jpg
+docs/validation/iso-vnf-sync-20261116/README.ko.md
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-edit-dialog-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/after-vnf-detail-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/runtime-conflict-decisions.json
+docs/validation/iso-vnf-sync-20261116/evidence/final-iso-list-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-settings-light.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/runtime-patch-replay.json
+docs/validation/iso-vnf-sync-20261116/evidence/runtime-lint.log
+docs/validation/iso-vnf-sync-20261116/evidence/runtime-lint-result.json
+docs/validation/iso-vnf-sync-20261116/evidence/integration-preservation.json
+docs/validation/iso-vnf-sync-20261116/evidence/runtime-vnf-forward-port.patch
+docs/validation/iso-vnf-sync-20261116/evidence/focused-report.log
+docs/validation/iso-vnf-sync-20261116/evidence/iso-copy-no-target-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/ui-deployment.json
+docs/validation/iso-vnf-sync-20261116/evidence/runtime-unit-summary.log
+docs/validation/iso-vnf-sync-20261116/evidence/before-vnf-detail-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/deploy-files.json
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-narrow-details-light.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/theme-review.json
+docs/validation/iso-vnf-sync-20261116/evidence/cleanup-vnf-zero-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/runtime-unit-result.json
+docs/validation/iso-vnf-sync-20261116/evidence/fixture-cleanup.json
+docs/validation/iso-vnf-sync-20261116/evidence/ui-cases.json
+docs/validation/iso-vnf-sync-20261116/evidence/iso-search-return-dark.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/test-selection.json
+docs/validation/iso-vnf-sync-20261116/evidence/resources.json
+docs/validation/iso-vnf-sync-20261116/evidence/report-rat-comparison.json
+docs/validation/iso-vnf-sync-20261116/evidence/iso-detail-light.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-iso-tab-light.jpg
+docs/validation/iso-vnf-sync-20261116/evidence/source-boundary.json
+docs/validation/iso-vnf-sync-20261116/evidence/vnf-distinct-identity-dark.jpg
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files........................(no files to check)Skipped
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

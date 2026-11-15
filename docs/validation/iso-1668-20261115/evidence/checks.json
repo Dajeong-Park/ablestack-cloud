@@ -1,0 +1,45 @@
+{
+  "productHead": "802fab97140116cc68f4f7700e197f3c520cb278",
+  "canonical": {
+    "suites": 16,
+    "tests": 257,
+    "returnCode": 0
+  },
+  "runtimeInput": {
+    "suites": 16,
+    "tests": 245,
+    "returnCode": 0
+  },
+  "focused": [
+    {
+      "stage": "pre-commit",
+      "returnCode": 0,
+      "files": 58
+    },
+    {
+      "stage": "manual",
+      "returnCode": 0,
+      "files": 58
+    }
+  ],
+  "logs": {
+    "final-canonical-unit.log": {
+      "sha256": "6e282167e2284cacf83a40ecc5ff330d29acd51a8664761a96331492d2645fd1"
+    },
+    "runtime-input-tests.log": {
+      "sha256": "18b127e2d3c846e5263300292740be312f1247c188a458a6222adc44c12b3973"
+    },
+    "scope-corrective-lint.log": {
+      "sha256": "899e0c141f4383d84156222cda9609bb3212708f9482d8aa234359006a8837e2"
+    },
+    "tag-context-lint.log": {
+      "sha256": "a4dfc95469e56a2c1e93376765834c14b9d73d3f69aecaa88e4cf98f268f88e9"
+    },
+    "final-focused-pre-commit.log": {
+      "sha256": "b4c61c7f53ce6094130eb25c21c20bb47dd207db6c218ffa768636aa28040017"
+    },
+    "final-focused-manual.log": {
+      "sha256": "1c98b3639a8996f9b77f6e6b03d394350871989e2c2b0bc5fbe5b61fc5b3857e"
+    }
+  }
+}

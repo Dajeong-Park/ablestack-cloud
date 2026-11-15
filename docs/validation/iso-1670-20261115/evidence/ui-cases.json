@@ -1,0 +1,2849 @@
+[
+  {
+    "name": "original-iso-baseline",
+    "at": "2026-11-15T05:39:22.664Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\t\n사용 가능\n\tCentOS 4.5 (32-bit)\tx86_64\t\tsystem\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\t\n사용 가능\n\tCentOS 4.5 (32-bit)\tx86_64\t\tsystem\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\t\n사용 가능\n\tNone\tx86_64\t0.94 GiB\tsystem\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\t\n사용 가능\n\tNone\tx86_64\t0.96 GiB\tsystem\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\t\n사용 가능\n\tRocky Linux 9\tx86_64\t7.13 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\t7.59 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\t\n사용 가능\n\tNone\tx86_64\t0.82 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\t\n사용 가능\n\tRocky Linux 9\tx86_64\t22.46 GiB\tadmin\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "baseline-breadcrumb-drops-search",
+    "at": "2026-11-15T05:39:31.983Z",
+    "before": "http://10.10.13.10:8080/client/#/iso?keyword=Rocky-10.0&q=Rocky-10.0&page=1&pagesize=20",
+    "after": "http://10.10.13.10:8080/client/#/iso"
+  },
+  {
+    "name": "long-iso-ready",
+    "at": "2026-11-15T05:50:34.884Z",
+    "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+    "bootable": false
+  },
+  {
+    "name": "failed-iso-created",
+    "at": "2026-11-15T05:53:42.636Z",
+    "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+    "reason": "Checksum does not match the uploaded file."
+  },
+  {
+    "name": "userdata-created",
+    "at": "2026-11-15T05:55:43.729Z"
+  },
+  {
+    "name": "long-iso-userdata-linked",
+    "at": "2026-11-15T05:59:57.527Z",
+    "iso": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+    "userdata": "59e65a76-5395-4404-9cd6-6c422642ed70"
+  },
+  {
+    "name": "test-user-created",
+    "at": "2026-11-15T06:06:32.918Z",
+    "role": "User",
+    "roleType": "User",
+    "originalAccounts": 3
+  },
+  {
+    "name": "long-iso-tag-created",
+    "at": "2026-11-15T06:06:45.185Z",
+    "key": "iso1670",
+    "value": "list-regression"
+  },
+  {
+    "name": "project-created",
+    "at": "2026-11-15T06:07:08.143Z"
+  },
+  {
+    "name": "test-iso-shared-to-user",
+    "at": "2026-11-15T06:09:21.495Z",
+    "isoid": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+    "current": "현재 공유 현황\n계정\nqa-iso1670-user\n프로젝트\n없음"
+  },
+  {
+    "name": "baseline-narrow-layout",
+    "at": "2026-11-15T06:10:08.138Z",
+    "dimensions": {
+      "pageWidth": 380,
+      "tableWidth": 689.265625,
+      "viewportHeight": 844,
+      "viewportWidth": 390
+    }
+  },
+  {
+    "name": "baseline-desktop-long-row",
+    "at": "2026-11-15T06:12:20.360Z",
+    "dimensions": {
+      "height": 69,
+      "whiteSpace": "normal",
+      "width": 695.640625
+    }
+  },
+  {
+    "name": "live-api-search-capabilities",
+    "at": "2026-11-15T06:15:33.558Z",
+    "api": "listIsos",
+    "fields": [
+      "name",
+      "keyword",
+      "bootable",
+      "isready",
+      "ispublic",
+      "hypervisor",
+      "userdataid",
+      "storageid",
+      "imagestoreid",
+      "tags",
+      "arch",
+      "oscategoryid",
+      "zoneid",
+      "page",
+      "pagesize"
+    ],
+    "serverSortAdvertised": false
+  },
+  {
+    "name": "baseline-vpc-list",
+    "at": "2026-11-15T06:15:48.281Z",
+    "text": "/VPC업데이트\n프로젝트\nVPC 추가\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\nCIDR\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "baseline-computeofferings",
+    "at": "2026-11-15T06:16:02.410Z",
+    "rows": [
+      {
+        "id": "#/computeoffering/4007504f-6cc3-4694-b44e-46f5a6f0baa4",
+        "text": "\tCKS Instance\tCKS Instance\t\n정상\n\t2\t1000\t2048\tCKS Instance\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/ff8d160d-7523-46a7-ab98-faf49d16554b",
+        "text": "\t2C4GB\t2C4GB\t\n정상\n\t2\t2000\t4096\t2C4GB\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/1dae1249-0b94-4db8-9317-4f60ecfdaa6a",
+        "text": "\tepic898-scale-4C8GB\tEpic898 online scaling validation 4CPU8GiB\t\n정상\n\t4\t2000\t8192\tepic898-scale-4C8GB\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/5da2d6c9-d9c4-453a-a28c-3e93274a3380",
+        "text": "\t사용자 정의 컴퓨트 오퍼링\t사용자가 자유롭게 CPU/Memory 크기 설정\t\n정상\n\t\t\t\t사용자 정의 디스크 오퍼링\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/fc808c8b-00fa-42d2-98b6-a082f12c347f",
+        "text": "\tepic898-sharedfs-sparse-2C4GB\tepic898-sharedfs-sparse-2C4GB\t\n정상\n\t2\t2000\t4096\tepic898-sharedfs-sparse-2C4GB\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/57c431e2-3330-4a1d-a0ff-11cbb5321899",
+        "text": "\tepic898-sharedfs-sparse-4C8GB\tepic898-sharedfs-sparse-4C8GB\t\n정상\n\t4\t2000\t8192\tepic898-sharedfs-sparse-4C8GB\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/de15d05b-32fb-48de-8aeb-b01b55e1594f",
+        "text": "\tepic1438-1441-fixed-20261021\tepic1438-1441-fixed-20261021\t\n정상\n\t2\t2000\t4096\tepic1438-1441-fixed-20261021\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/610b811a-6674-4f1d-a16f-55681e50a6de",
+        "text": "\tepic1438-1441-free-20261021\tepic1438-1441-free-20261021\t\n정상\n\t\t\t\tepic1438-1441-free-20261021\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/0a3cccb9-62ed-4fa6-a3e9-d3f1dcb7bd00",
+        "text": "\tepic1438-1441-range-20261021\tepic1438-1441-range-20261021\t\n정상\n\t2 - 4\t2000\t1024 - 8192\tepic1438-1441-range-20261021\t\t\t\t\n\t"
+      },
+      {
+        "id": "#/computeoffering/89e587e6-3dc6-493b-9472-756ec2073c95",
+        "text": "\t1C1GB\t1C1GB\t\n정상\n\t1\t2000\t1024\t1C1GB\t\t\t\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "baseline-offering-tab-history",
+    "at": "2026-11-15T06:16:33.155Z",
+    "detail": "89e587e6-3dc6-493b-9472-756ec2073c95",
+    "eventsAndBack": true
+  },
+  {
+    "name": "baseline-privategw-list",
+    "at": "2026-11-15T06:18:34.651Z",
+    "text": "/사설 게이트웨이업데이트\n사설 게이트웨이 추가\nIP 주소\n\t\n상태\n\t\n게이트웨이\n\t\n넷마스크\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "detailNotRun": "13번 VPC와 private gateway 0개"
+  },
+  {
+    "name": "first-page-count-and-name-width",
+    "at": "2026-11-15T06:28:49.877Z",
+    "page": {
+      "count": 10,
+      "rows": [
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "ostypename": "Windows Server 2025 (64-bit)",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 8152356864
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 877373440
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "ostypename": "Rocky Linux 9",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 24118464512
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 1525760
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin"
+        }
+      ]
+    },
+    "layout": {
+      "cellWidth": 622,
+      "clientWidth": 581,
+      "rowHeight": 47,
+      "scrollWidth": 1286,
+      "whiteSpace": "nowrap"
+    },
+    "requestRows": [
+      {
+        "command": "listProjects",
+        "method": "GET",
+        "requestId": "35220.2484",
+        "params": {
+          "page": "1",
+          "pagesize": "100",
+          "showicon": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2485",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listOsTypes",
+        "method": "GET",
+        "requestId": "35220.2488",
+        "params": {
+          "id": "3f829043-bd5d-11f1-b573-002481560363"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listOsTypes",
+        "method": "GET",
+        "requestId": "35220.2489",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listOsTypes",
+        "method": "GET",
+        "requestId": "35220.2490",
+        "params": {
+          "id": "63c9a0f4-bd56-11f1-b573-002481560363"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listOsTypes",
+        "method": "GET",
+        "requestId": "35220.2491",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listOsTypes",
+        "method": "GET",
+        "requestId": "35220.2492",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listVirtualMachines",
+        "method": "GET",
+        "requestId": "35220.2496",
+        "params": {
+          "page": "1",
+          "pagesize": "200"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2500",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2503",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2506",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2509",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2515",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2519",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2522",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2525",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2528",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2531",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2537",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2541",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2544",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2547",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2550",
+        "params": {
+          "page": "2",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      }
+    ]
+  },
+  {
+    "name": "keyword-replaces-page-two",
+    "at": "2026-11-15T06:30:43.195Z",
+    "page": null,
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&q=qa-iso1670-long&keyword=qa-iso1670-long&page=1&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "name": "keyword-zone-breadcrumb-restored",
+    "at": "2026-11-15T06:34:46.304Z",
+    "expectedUrl": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&q=qa-iso1670-long&keyword=qa-iso1670-long&page=1&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "actualUrl": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&q=qa-iso1670-long&keyword=qa-iso1670-long&page=1&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "api": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 1525760
+        }
+      ]
+    },
+    "input": "qa-iso1670-long",
+    "inconclusiveEarlierRead": "keyword-replaces-page-two captured before settled request; superseded by this read"
+  },
+  {
+    "name": "normal-empty-result",
+    "at": "2026-11-15T06:35:43.923Z",
+    "api": {
+      "count": 0,
+      "rows": []
+    },
+    "alerts": []
+  },
+  {
+    "name": "browser-back-restored-search",
+    "at": "2026-11-15T06:35:55.791Z",
+    "input": "qa-iso1670-long",
+    "api": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 1525760
+        }
+      ]
+    },
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&q=qa-iso1670-long&keyword=qa-iso1670-long&page=1&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "name": "advanced-name-partial-is-not-exact",
+    "at": "2026-11-15T06:40:35.319Z",
+    "api": {
+      "count": 0,
+      "rows": []
+    },
+    "requests": [
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2834",
+        "params": {
+          "name": "qa-iso1670-long",
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      }
+    ]
+  },
+  {
+    "name": "advanced-full-name-exact",
+    "at": "2026-11-15T06:41:01.451Z",
+    "api": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 1525760
+        }
+      ]
+    }
+  },
+  {
+    "name": "combined-filters-and-localized-chips",
+    "at": "2026-11-15T06:41:46.221Z",
+    "api": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 1525760
+        }
+      ]
+    },
+    "requests": [
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2854",
+        "params": {
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2856",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "bootable": "false",
+          "isready": "true",
+          "ispublic": "false",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "showunique": "true",
+          "tags[0].key": "iso1670",
+          "tags[0].value": "list-regression"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2859",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "bootable": "false",
+          "isready": "true",
+          "ispublic": "false",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "showunique": "true",
+          "tags[0].key": "iso1670",
+          "tags[0].value": "list-regression"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.2862",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "bootable": "false",
+          "isready": "true",
+          "ispublic": "false",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "showunique": "true",
+          "tags[0].key": "iso1670",
+          "tags[0].value": "list-regression"
+        },
+        "navigationFieldsLeaked": []
+      }
+    ],
+    "chips": [
+      "부팅 가능 : 아니오",
+      "준비 : 예",
+      "공개 : 아니오",
+      "사용자 데이터 ID : 59e65a76-5395-440...",
+      "태그: iso1670=list-regression"
+    ]
+  },
+  {
+    "name": "tag-value-mismatch-empty",
+    "at": "2026-11-15T07:02:53.519Z",
+    "api": {
+      "count": 0,
+      "rows": []
+    }
+  },
+  {
+    "name": "not-ready-false-matches-failed-fixture",
+    "at": "2026-11-15T07:09:25.160Z",
+    "api": {
+      "count": 10,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "ostypename": "CentOS 4.5 (32-bit)",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "ostypename": "CentOS 4.5 (32-bit)",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "system",
+          "size": 1013551104
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "ostypename": "None",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "system",
+          "size": 1025841152
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "ostypename": "Rocky Linux 9",
+          "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+          "account": "admin",
+          "size": 7660371968
+        }
+      ]
+    },
+    "chips": [
+      "준비 : 아니오"
+    ]
+  },
+  {
+    "name": "invalid-userdata-form-blocked",
+    "at": "2026-11-15T07:13:28.831Z",
+    "error": [
+      "연결된 사용자 데이터의 이름 대신 UUID를 입력하세요. 비우면 전체를 검색합니다."
+    ],
+    "reads": [
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3500",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3503",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3506",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3512",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3516",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3519",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3523",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3526",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3529",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3535",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3539",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3542",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3545",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3548",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3551",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3559",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3563",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3566",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3569",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3572",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3575",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3581",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "35220.3585",
+        "params": {
+          "page": "1",
+          "pagesize": "5",
+          "isofilter": "all",
+          "showunique": "true"
+        },
+        "navigationFieldsLeaked": []
+      }
+    ]
+  },
+  {
+    "name": "server-isready-false-contract-defect",
+    "at": "2026-11-15T07:31:41.959Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "5",
+        "isofilter": "all",
+        "isready": "false",
+        "showunique": "true"
+      },
+      "count": 10,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "guard": [
+      "서버 응답이 선택한 ISO 검색 조건과 일치하지 않아 결과를 표시하지 않습니다."
+    ]
+  },
+  {
+    "name": "server-public-false-contract-defect",
+    "at": "2026-11-15T07:32:52.841Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "5",
+        "isofilter": "all",
+        "ispublic": "false",
+        "showunique": "true"
+      },
+      "count": 10,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "alerts": [
+      "서버 응답이 선택한 ISO 검색 조건과 일치하지 않아 결과를 표시하지 않습니다."
+    ]
+  },
+  {
+    "name": "backend-isready-false-fixed",
+    "at": "2026-11-15T07:58:44.144Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "isready": "false",
+        "showunique": "true"
+      },
+      "count": 1,
+      "rows": [
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n준비 : 아니오\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "backend-isready-true-preserved",
+    "at": "2026-11-15T07:58:57.077Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "isready": "true",
+        "showunique": "true"
+      },
+      "count": 9,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n준비 : 예\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n전체 9 개 항목 중 1-9 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "backend-public-false-fixed",
+    "at": "2026-11-15T07:59:12.833Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "ispublic": "false",
+        "showunique": "true"
+      },
+      "count": 3,
+      "rows": [
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n공개 : 아니오\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "backend-public-true-fixed",
+    "at": "2026-11-15T07:59:31.877Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "ispublic": "true",
+        "showunique": "true"
+      },
+      "count": 7,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n공개 : 예\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n전체 7 개 항목 중 1-7 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "backend-community-private-intersection-root",
+    "at": "2026-11-15T08:00:02.794Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "community",
+        "ispublic": "false",
+        "showunique": "true"
+      },
+      "count": 0,
+      "rows": []
+    },
+    "main": "/ISO업데이트\n필터링 기준\n커뮤니티 \n프로젝트\nISO 등록\n\t\n공개 : 아니오\n필터링 기준 : 커뮤니티\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "root-to-user-old-url-reset",
+    "at": "2026-11-15T08:01:13.735Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "self",
+        "showunique": "true"
+      },
+      "count": 0,
+      "rows": []
+    },
+    "main": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\n\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=self&filter=self&page=1&pagesize=20&isoowner=[%224997cf45-8e54-450c-9d3c-c5395967f07e%22,%225da37de6-bd56-11f1-b573-002481560363%22,%22User%22,%22qa-iso1670-user%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "name": "user-shared-private-one",
+    "at": "2026-11-15T08:01:35.581Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "shared",
+        "ispublic": "false",
+        "showunique": "true"
+      },
+      "count": 1,
+      "rows": [
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n공유 \n프로젝트\nISO 등록\n\t\n공개 : 아니오\n필터링 기준 : 공유\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\n\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "noStorageFields": true
+  },
+  {
+    "name": "user-community-private-zero",
+    "at": "2026-11-15T08:01:48.457Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "community",
+        "ispublic": "false",
+        "showunique": "true"
+      },
+      "count": 0,
+      "rows": []
+    },
+    "main": "/ISO업데이트\n필터링 기준\ncommunity\n커뮤니티 \n프로젝트\nISO 등록\n\t\n공개 : 아니오\n필터링 기준 : 커뮤니티\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\n\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "qa-role-readonly-reduced",
+    "at": "2026-11-15T08:03:07.977Z",
+    "account": "qa-iso1670-user",
+    "role": "Read-Only User - Default",
+    "detail": "이름\n\nqa-iso1670-user\n아이디\n\nd6298ec4-fc31-4d90-a46f-d14938b2a63b\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 3:06:02"
+  },
+  {
+    "name": "same-account-new-role-old-url-reset",
+    "at": "2026-11-15T08:03:33.802Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "self",
+        "showunique": "true"
+      },
+      "count": 0,
+      "rows": []
+    },
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=self&filter=self&page=1&pagesize=20&isoowner=[%224997cf45-8e54-450c-9d3c-c5395967f07e%22,%2260f61c91-bd56-11f1-b573-002481560363%22,%22User%22,%22qa-iso1670-user%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "main": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\n\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "createButtons": 0
+  },
+  {
+    "name": "readonly-shared-one",
+    "at": "2026-11-15T08:03:53.960Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "shared",
+        "showunique": "true"
+      },
+      "count": 1,
+      "rows": [
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\nshared\n공유 \n프로젝트\n\t\n필터링 기준 : 공유\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\n\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "readonly-detail-no-mutations",
+    "at": "2026-11-15T08:04:26.124Z",
+    "main": "/ISO/qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-업데이트\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9 \nOS 유형\nNone\n사용자 데이터\nqa-iso1670-search-userdata\n계정\nadmin\n도메인\nROOT\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n아이디\n\n2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9\n설명\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\nOS 유형\n\nNone\n크기\n\n0.00 GiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n\nfalse\n준비\n\ntrue\n비밀번호 관리 사용\n\nfalse\n직접 다운로드\n\nfalse\n추출 가능\n\nfalse\n공개\n\nfalse\n추천\n\nfalse\n동적으로 확장 가능\n\nfalse\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 2:42:12\n사용자 데이터 정책\n\nALLOWOVERRIDE",
+    "actionButtonCount": 0
+  },
+  {
+    "name": "backend-template-list-preserved",
+    "at": "2026-11-15T08:04:54.458Z",
+    "main": "/템플릿업데이트\n필터링 기준\n모두\n프로젝트\nURL로 템플릿 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n크기\n\t\n계정\n\t\n템플릿 유형\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nsystemvmtemplate-x86_64-kvm-Europa-202609091134\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nRocky9\n\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\n\nWindows Server 2025 x86_64 Base Image\n\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\n\nEuropa-SystemVM-248653b58920-20261021\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1442-15ea52315437-20261022\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1443-b3dbcd8c3790-20261022\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1443-static-cf5351e05570-20261023\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1443-observation-3214dfed5c93-20261023\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1444-config-20261024\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1444-nvme-identity-20261024\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1445-preflight-20261024\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1448-network-20261026\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nWindows-Server-2025-x86-64-Cloud-Image.qcow2\n\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\n\nEuropa-SystemVM-1450-nfs-posix-20261027\n\t\n다운로드/업로드 실패\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1450-nfs-posix-sha256\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1450-deferred-posix-r4\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1451-nfs-idmapping-20261027\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1451-bootstrap-20261028-r4\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1452-posix-20261028-r1\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1453-inheritance-20261029-r1\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n전체 48 개 항목 중 1-20 표시\n1\n2\n3\n20 / 쪽\n이동하기"
+  },
+  {
+    "name": "template-common-tabs",
+    "at": "2026-11-15T08:05:10.308Z",
+    "url": "http://10.10.13.10:8080/client/#/template/ad371aa1-504d-41ef-8de8-bc99eef9594c?templatereturn={%22q%22:%22Rocky9%22,%22keyword%22:%22Rocky9%22,%22page%22:%221%22,%22pagesize%22:%2220%22}&templateowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%22Admin%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22%22,false]&tab=settings",
+    "settingsSelected": "true",
+    "settings": "설정 추가\n업데이트\n이름\t값\t변경 가능 여부\t작업\n\n \n\t\n \n\t\n \n\t\n \n\n\nrootDiskController\n\t\nscsi\n\t편집 가능\t\n편집\n1\n10 / 쪽"
+  },
+  {
+    "name": "template-breadcrumb-list-preserved",
+    "at": "2026-11-15T08:05:47.195Z",
+    "main": "/템플릿업데이트\n필터링 기준\n모두\n프로젝트\nURL로 템플릿 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n크기\n\t\n계정\n\t\n템플릿 유형\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nRocky9\n\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\n\nissue1436-rocky9-uefi-verified\n\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t10.00 GiB\tadmin\tUSER\t\n\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "vm-list-before-final-ui",
+    "at": "2026-11-15T08:05:56.894Z",
+    "main": "/가상머신업데이트\n모두\n메트릭\n프로젝트\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n내부 이름\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n호스트\n\t\n계정\n\t\nZone\n\t\n\n\n\tVM-9f3bf7a1-c5b2-45ba-ba06-1e466d09b364\ti-2-16-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t8.0.0\t\n10.1.1.107 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral1-control-1a0fa38f3d4\ti-2-20-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.30 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral1-node-1a0fa391956\ti-2-21-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.123 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-control-1a0fb462779\ti-2-35-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.213 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-control-1a0fb464d99\ti-2-36-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.22 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-node-1a0fb46766a\ti-2-37-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.202 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-node-1a0fb469c58\ti-2-38-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.90 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tVM-3cf3fed4-8a42-4eab-a570-948428c3d62b\ti-2-57-VM\t\n실행 중\n\t\n2 CPU\n4096 MB\n\t110.2.3\t\n10.10.254.100 \n\tUSER\t\tx86_64\tablecube13-1\tadmin\t13-Zone\t\n\n\tVM-1aa29f80-626d-45c4-8ba7-80e98b28986a\ti-2-58-VM\t\n실행 중\n\t\n2 CPU\n4096 MB\n\t110.2.3\t\n10.10.254.70 \n\tUSER\t\tx86_64\tablecube13-1\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-basic-nfs-20261021-01-1a15cfe505a\ti-2-101-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.195 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1439-nfs-20261021-01-1a15d2a1a6a\ti-2-102-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.190 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1440-nfs-20261021-01-1a15da8bc0d\ti-2-103-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.190 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tepic1438-1440-client-20261021-01\ti-2-104-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t8.0.0\t\n10.10.254.192 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1441-fixed-sfs-20261021-01-1a15e4f639c\ti-2-105-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.196 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1441-free-sfs-20261021-01-1a15e541b95\ti-2-106-VM\t\n정지된 상태\n\t\n3 CPU\n6144 MB\n\t7.2.22\t\n10.10.254.197 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1441-range-sfs-20261021-01-1a15e563e0f\ti-2-107-VM\t\n정지된 상태\n\t\n4 CPU\n8192 MB\n\t7.2.22\t\n10.10.254.198 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tepic1438-1442-client-20261021-01\ti-2-108-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t8.0.0\t\n10.10.254.200 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-0685be9d-b958-3d2a-a9ef-9e53a7c9ba07\ti-2-109-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.117 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tepic1438-1442-posix-client-20261022-01\ti-2-110-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t8.0.0\t\n10.10.254.119 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-634178d0-3d06-31ec-84d3-9ec113093025\ti-2-111-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.122 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n전체 103 개 항목 중 1-20 표시\n1\n2\n3\n4\n5\n6\n20 / 쪽\n이동하기"
+  },
+  {
+    "name": "vm-tab-before-final-ui",
+    "at": "2026-11-15T08:06:04.875Z",
+    "selected": "true",
+    "url": "http://10.10.13.10:8080/client/#/vm/9f3bf7a1-c5b2-45ba-ba06-1e466d09b364?tab=events"
+  },
+  {
+    "name": "project-old-personal-url-reset",
+    "at": "2026-11-15T08:06:43.316Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "projectid": "ed320193-5fec-4a2c-a4f1-cb32719a9948",
+        "showunique": "true"
+      },
+      "count": 10,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22ed320193-5fec-4a2c-a4f1-cb32719a9948%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "main": "/ISO업데이트\n필터링 기준\n모두\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n전체 10 개 항목 중 1-10 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "all-projects-scope-reset",
+    "at": "2026-11-15T08:07:27.894Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "projectid": "-1",
+        "showunique": "true"
+      },
+      "count": 10,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,true,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n프로젝트\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n—\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n—\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n—\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n—\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n—\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n—\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n—\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n—\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n—\n\t\n\t\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n—\n\t\n\t\n전체 10 개 항목 중 1-10 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "tag-negative-confirmed",
+    "at": "2026-11-15T08:08:42.819Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "showunique": "true",
+        "tags[0].key": "iso1670",
+        "tags[0].value": "not-this-tag"
+      },
+      "count": 0,
+      "rows": []
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n태그: iso1670=not-this-tag\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "hypervisor-kvm-negative",
+    "at": "2026-11-15T08:09:12.070Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "hypervisor": "KVM",
+        "showunique": "true"
+      },
+      "count": 0,
+      "rows": []
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n하이퍼바이저 : KVM\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "admin-imagestore-filter",
+    "at": "2026-11-15T08:09:49.725Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20",
+        "isofilter": "all",
+        "imagestoreid": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2",
+        "showunique": "true"
+      },
+      "count": 8,
+      "rows": [
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n세컨더리 스토리지 : Secondary Storage\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n전체 8 개 항목 중 1-8 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "invalid-url-uuid-blocked",
+    "at": "2026-11-15T08:10:11.529Z",
+    "requests": {
+      "cursor": 31818,
+      "rows": []
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n사용자 데이터 ID : not-a-uuid\nISO 검색 조건의 UUID, true/false, 아키텍처 또는 필터 값을 확인하세요.\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "page-size-fifty-ui",
+    "at": "2026-11-15T08:11:05.740Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "50",
+        "isofilter": "all",
+        "showunique": "true"
+      },
+      "count": 10,
+      "rows": [
+        {
+          "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "name": "vmware-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+          "name": "xs-tools.iso",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "name": "1.35.9-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "system"
+        },
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n전체 10 개 항목 중 1-10 표시\n1\n50\n50 / 쪽"
+  },
+  {
+    "name": "final-page-two-local-sort",
+    "at": "2026-11-15T08:12:32.394Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&sortkey=name&sortorder=asc&page=2&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "idsBefore": [
+      "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+      "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "367c88cb-4947-452f-9429-54a19885adf4",
+      "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+      "1c34bcdf-f837-4818-8a5e-6cc72e28f954"
+    ],
+    "idsAfter": [
+      "367c88cb-4947-452f-9429-54a19885adf4",
+      "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+      "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+      "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "7a3959a8-a533-4bd9-a009-6bce3efe61d9"
+    ],
+    "requests": {
+      "cursor": 34621,
+      "rows": [
+        {
+          "command": "listIsos",
+          "method": "GET",
+          "requestId": "35220.6086",
+          "params": {
+            "page": "2",
+            "pagesize": "5",
+            "isofilter": "all",
+            "showunique": "true"
+          },
+          "navigationFieldsLeaked": []
+        }
+      ]
+    },
+    "assets": [
+      "js/app.89f2fa4a.js"
+    ]
+  },
+  {
+    "name": "final-fast-detail-tab-investigation",
+    "at": "2026-11-15T08:13:31.735Z",
+    "url": "http://10.10.13.10:8080/client/#/iso/2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9?isofilter=all&filter=all&page=1&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]&tab=zones",
+    "main": "/ISO/qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-업데이트\n작업\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9 \nOS 유형\nNone\n사용자 데이터\nqa-iso1670-search-userdata\n계정\nadmin\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\niso1670 = list-regression\n새 태그\n상세\nZone\n이벤트\n코멘트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n\t\n\t13-Zone\t2026. 11. 15. 오후 2:42:12\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "final-long-name-keyboard-tooltip",
+    "at": "2026-11-15T08:14:41.130Z",
+    "tooltip": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+    "metrics": {
+      "client": 577,
+      "rowHeight": 47,
+      "scroll": 1286,
+      "textOverflow": "ellipsis",
+      "whiteSpace": "nowrap"
+    }
+  },
+  {
+    "name": "final-os-hover-tooltip",
+    "at": "2026-11-15T08:15:04.090Z",
+    "tooltips": [
+      "Windows Server 2025 (64-bit)"
+    ]
+  },
+  {
+    "name": "final-os-column-hidden-reload",
+    "at": "2026-11-15T08:15:58.238Z",
+    "osHeaderCount": 0,
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&sortkey=name&sortorder=asc&page=2&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "name": "final-hidden-sort-cleared",
+    "at": "2026-11-15T08:16:08.241Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&page=2&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "nameHeaderCount": 0
+  },
+  {
+    "name": "final-narrow-390-dark",
+    "at": "2026-11-15T08:17:23.290Z",
+    "metrics": {
+      "bodyWidth": 380,
+      "height": 844,
+      "htmlWidth": 380,
+      "rowHeights": [
+        47,
+        47,
+        47,
+        47,
+        47
+      ],
+      "table": [
+        {
+          "client": 356,
+          "overflow": "auto",
+          "scroll": 1188
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "name": "final-narrow-horizontal-scroll",
+    "at": "2026-11-15T08:17:35.961Z",
+    "metrics": [
+      {
+        "client": 356,
+        "left": 800,
+        "scroll": 1188
+      }
+    ]
+  },
+  {
+    "name": "final-wide-light",
+    "at": "2026-11-15T08:18:06.716Z",
+    "metrics": {
+      "headers": [
+        {
+          "text": "이름",
+          "width": 622
+        },
+        {
+          "text": "상태",
+          "width": 120
+        },
+        {
+          "text": "OS 유형",
+          "width": 148
+        },
+        {
+          "text": "CPU 아키텍처",
+          "width": 96
+        },
+        {
+          "text": "크기",
+          "width": 96
+        },
+        {
+          "text": "계정",
+          "width": 112
+        },
+        {
+          "text": "순서",
+          "width": 168
+        },
+        {
+          "text": "",
+          "width": 28
+        }
+      ],
+      "height": 897,
+      "rows": [
+        {
+          "cells": [
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            }
+          ],
+          "height": 47
+        },
+        {
+          "cells": [
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            }
+          ],
+          "height": 47
+        },
+        {
+          "cells": [
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            }
+          ],
+          "height": 47
+        },
+        {
+          "cells": [
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            }
+          ],
+          "height": 47
+        },
+        {
+          "cells": [
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            },
+            {
+              "overflow": "ellipsis",
+              "whiteSpace": "nowrap"
+            }
+          ],
+          "height": 47
+        }
+      ],
+      "width": 1680
+    }
+  },
+  {
+    "name": "final-narrow-light",
+    "at": "2026-11-15T08:18:19.991Z",
+    "metrics": {
+      "height": 844,
+      "htmlWidth": 380,
+      "table": [
+        {
+          "client": 356,
+          "scroll": 1188
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "name": "cleanup-test-account",
+    "at": "2026-11-15T08:19:59.351Z",
+    "main": "/계정업데이트\n모두\n계정 추가\n\t\n\t\n이름\n\t\n상태\n\t\n역할\n\t\n역할 유형\n\t\n도메인\n\t\n\n\n\tadmin\t\n정상\n\tRoot Admin\tAdmin\tROOT\t\n\n\tbaremetal-system-account\t\n정상\n\tUser\tUser\tROOT\t\n\n\tepic898-config-denied-1791388603\t\n비활성화\n\tUser\tUser\tROOT\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-test-project",
+    "at": "2026-11-15T08:20:30.179Z",
+    "main": "/프로젝트업데이트\n새 프로젝트\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-project-column-hide-survives-scope-return",
+    "at": "2026-11-15T08:21:26.621Z",
+    "headers": [
+      "이름",
+      "상태",
+      "OS 유형",
+      "CPU 아키텍처",
+      "크기",
+      "계정",
+      "순서",
+      ""
+    ],
+    "allProjects": "true"
+  },
+  {
+    "name": "systemvm-after-backend-restart",
+    "at": "2026-11-15T08:23:18.064Z",
+    "main": "/시스템 VM업데이트\n모두\n\t\n\t\n이름\n\t\n상태\n\t\nAgent 상태\n\t\n시스템 VM 유형\n\t\nPublic IP 주소\n\t\n사설 IP 주소\n\t\n로컬 연결 IP 주소\n\t\n버전\n\t\n호스트\n\t\nCPU 아키텍처\n\t\nZone\n\t\n\n\n\tv-245-VM\t\n실행 중\n\t\n실행 중\n\tconsoleproxy\t10.10.13.5\t10.10.13.6\t169.254.243.21\t4.23.0.0\tablecube13-2\tx86_64\t13-Zone\t\n\n\ts-255-VM\t\n실행 중\n\t\n실행 중\n\tsecondarystoragevm\t10.10.13.4\t10.10.13.7\t169.254.164.211\t4.23.0.0\tablecube13-1\tx86_64\t13-Zone\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "hosts-after-backend-restart",
+    "at": "2026-11-15T08:23:59.023Z",
+    "main": "/호스트업데이트\n모두\n메트릭\n호스트 추가\n\t\n이름\n\t\n상태\n\t\n리소스 상태\n\t\nIP 주소\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n버전\n\t\nHA 활성화\n\t\nHA 상태\n\t\n클러스터\n\t\nZone\n\t\n관리 서버\n\t\n\nablecube13-1\t\n실행 중\n\t\n정상\n\t10.10.13.1 \tx86_64\tKVM\t4.23.0.0\t\n정상\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-2\t\n실행 중\n\t\n정상\n\t10.10.13.2 \tx86_64\tKVM\t4.23.0.0\t\n정상\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-3\t\n실행 중\n\t\n정상\n\t10.10.13.3 \tx86_64\tKVM\t4.23.0.0\t\n비활성화\n\tDisabled\tCluster\t13-Zone\tccvm-mngt\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-offering-tab-history",
+    "at": "2026-11-15T08:26:55.847Z",
+    "url": "http://10.10.13.10:8080/client/#/computeoffering/89e587e6-3dc6-493b-9472-756ec2073c95",
+    "detailsSelected": "true"
+  },
+  {
+    "name": "final-vpc-empty-list",
+    "at": "2026-11-15T08:27:00.052Z",
+    "main": "/VPC업데이트\n프로젝트\nVPC 추가\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\nCIDR\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-privategw-empty-list",
+    "at": "2026-11-15T08:27:59.715Z",
+    "main": "/사설 게이트웨이업데이트\n사설 게이트웨이 추가\nIP 주소\n\t\n상태\n\t\n게이트웨이\n\t\n넷마스크\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-fixed-detail-zone-breadcrumb-page-sort",
+    "at": "2026-11-15T08:31:24.616Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&sortkey=name&sortorder=asc&page=2&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "equalsOriginalSortedUrl": true,
+    "api": {
+      "request": {
+        "page": "2",
+        "pagesize": "5",
+        "isofilter": "all",
+        "showunique": "true"
+      },
+      "count": 10,
+      "rows": [
+        {
+          "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "name": "VirtIO Windows Driver 0.1.302",
+          "isready": true,
+          "bootable": false,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "367c88cb-4947-452f-9429-54a19885adf4",
+          "name": "ABLESTACK-Diplo-v4.2.1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": true,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n전체 10 개 항목 중 6-10 표시\n1\n2\n5 / 쪽\n이동하기",
+    "requests": {
+      "cursor": 43588,
+      "rows": [
+        {
+          "command": "listIsos",
+          "method": "GET",
+          "requestId": "35220.7965",
+          "params": {
+            "page": "2",
+            "pagesize": "5",
+            "isofilter": "all",
+            "showunique": "true"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listProjects",
+          "method": "GET",
+          "requestId": "35220.7967",
+          "params": {
+            "page": "1",
+            "pagesize": "100",
+            "showicon": "true"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listVirtualMachines",
+          "method": "GET",
+          "requestId": "35220.7978",
+          "params": {
+            "page": "1",
+            "pagesize": "200"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listIsos",
+          "method": "GET",
+          "requestId": "35220.7981",
+          "params": {
+            "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+            "isofilter": "all",
+            "showunique": "false"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listOsTypes",
+          "method": "GET",
+          "requestId": "35220.7984",
+          "params": {
+            "id": "47403c11-bd56-11f1-b573-002481560363"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listIsos",
+          "method": "GET",
+          "requestId": "35220.7992",
+          "params": {
+            "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+            "isofilter": "all",
+            "showunique": "false"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listOsTypes",
+          "method": "GET",
+          "requestId": "35220.7997",
+          "params": {
+            "id": "47403c11-bd56-11f1-b573-002481560363"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listIsos",
+          "method": "GET",
+          "requestId": "35220.7998",
+          "params": {
+            "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+            "page": "1",
+            "pagesize": "10",
+            "isofilter": "all",
+            "showunique": "false"
+          },
+          "navigationFieldsLeaked": []
+        },
+        {
+          "command": "listIsos",
+          "method": "GET",
+          "requestId": "35220.8002",
+          "params": {
+            "page": "2",
+            "pagesize": "5",
+            "isofilter": "all",
+            "showunique": "true"
+          },
+          "navigationFieldsLeaked": []
+        }
+      ]
+    }
+  },
+  {
+    "name": "final-keyword-comments-breadcrumb",
+    "at": "2026-11-15T08:31:49.164Z",
+    "sameUrl": true,
+    "api": {
+      "request": {
+        "keyword": "qa-iso1670-long",
+        "page": "1",
+        "pagesize": "5",
+        "isofilter": "all",
+        "showunique": "true"
+      },
+      "count": 1,
+      "rows": [
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n전체 1 개 항목 중 1-1 표시\n1\n5 / 쪽"
+  },
+  {
+    "name": "final-normal-empty",
+    "at": "2026-11-15T08:31:54.810Z",
+    "api": {
+      "request": {
+        "keyword": "qa-iso1670-no-such-value",
+        "page": "1",
+        "pagesize": "5",
+        "isofilter": "all",
+        "showunique": "true"
+      },
+      "count": 0,
+      "rows": []
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n5 / 쪽"
+  },
+  {
+    "name": "final-browser-back-restored",
+    "at": "2026-11-15T08:32:12.169Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&q=qa-iso1670-long&keyword=qa-iso1670-long&sortkey=name&sortorder=asc&page=1&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "sameUrl": true,
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n전체 1 개 항목 중 1-1 표시\n1\n5 / 쪽"
+  },
+  {
+    "name": "final-open-form-route-hydrated-public",
+    "at": "2026-11-15T08:32:27.138Z",
+    "form": {
+      "ready": ""
+    },
+    "public": "아니오",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "5",
+        "isofilter": "all",
+        "ispublic": "false",
+        "showunique": "true"
+      },
+      "count": 3,
+      "rows": [
+        {
+          "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "name": "Rocky-10.0-x86_64-dvd1.iso",
+          "isready": true,
+          "bootable": true,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        },
+        {
+          "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+          "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+          "isready": true,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "userdataid": "59e65a76-5395-4404-9cd6-6c422642ed70",
+          "account": "admin"
+        },
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n공개 : 아니오\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.00 GiB\n\t\nadmin\n\t\n\t\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n전체 3 개 항목 중 1-3 표시\n1\n5 / 쪽"
+  },
+  {
+    "name": "final-open-form-back-ready",
+    "at": "2026-11-15T08:32:35.554Z",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "5",
+        "isofilter": "all",
+        "isready": "false",
+        "showunique": "true"
+      },
+      "count": 1,
+      "rows": [
+        {
+          "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+          "name": "qa-iso1670-checksum-failed",
+          "isready": false,
+          "bootable": false,
+          "ispublic": false,
+          "arch": "x86_64",
+          "account": "admin"
+        }
+      ]
+    },
+    "ready": "아니오",
+    "public": "",
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n준비 : 아니오\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1670-checksum-failed\n\t\n다운로드/업로드 실패\n\t\nNone\n\t\nx86_64\n\t\n—\n\t\nadmin\n\t\n\t\n전체 1 개 항목 중 1-1 표시\n1\n5 / 쪽"
+  },
+  {
+    "name": "cleanup-failed-iso-zone",
+    "at": "2026-11-15T08:33:22.285Z",
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n전체 9 개 항목 중 1-5 표시\n1\n2\n5 / 쪽\n이동하기"
+  },
+  {
+    "name": "cleanup-long-iso",
+    "at": "2026-11-15T08:33:55.391Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&isready=false&page=1&pagesize=5&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n준비 : 아니오\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n5 / 쪽"
+  },
+  {
+    "name": "cleanup-userdata-result",
+    "at": "2026-11-15T08:34:27.743Z",
+    "dialog": "사용자 데이터 제거\n선택한 사용자 데이터 라이브러리 항목을 삭제합니다. 사용 중인 항목은 서버가 삭제를 거절합니다. 항목별 결과를 확인하세요.\n\n삭제 대상 1개\n\n완료 1개 · 실패/차단 0개 · 결과 미확인 0개 · 진행/대기 0개\n\n이름\t계정\t작업 상태\t사유\n\n \n\t\n \n\t\n \n\t\n \n\nqa-iso1670-search-userdata\n59e65a76-5395-4404-9cd6-6c422642ed70\n\tadmin\nROOT\n\t삭제 완료\t\n사용 가상머신: 0\n연결 템플릿: 0\n연결 ISO: 0\n1\n참조 정보 새로고침\n닫기"
+  },
+  {
+    "name": "cleanup-userdata-empty",
+    "at": "2026-11-15T08:34:37.758Z",
+    "main": "/사용자 데이터 라이브러리업데이트\n프로젝트\n사용자 데이터 등록\n\t\n\t\n이름\n\t\n아이디\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n5 / 쪽"
+  },
+  {
+    "name": "final-clean-isos-original-eight",
+    "at": "2026-11-15T08:34:53.716Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ],
+    "idsMatch": true,
+    "semanticRowsMatch": true,
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n전체 8 개 항목 중 1-8 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-template-count-48",
+    "at": "2026-11-15T08:35:12.902Z",
+    "main": "/템플릿업데이트\n필터링 기준\n모두\n프로젝트\nURL로 템플릿 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n크기\n\t\n계정\n\t\n템플릿 유형\n\t\n순서\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nsystemvmtemplate-x86_64-kvm-Europa-202609091134\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nRocky9\n\t\n사용 가능\n\tRocky Linux 9\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\n\nWindows Server 2025 x86_64 Base Image\n\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\n\nEuropa-SystemVM-248653b58920-20261021\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1442-15ea52315437-20261022\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1443-b3dbcd8c3790-20261022\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1443-static-cf5351e05570-20261023\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1443-observation-3214dfed5c93-20261023\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1444-config-20261024\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1444-nvme-identity-20261024\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1445-preflight-20261024\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1448-network-20261026\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nWindows-Server-2025-x86-64-Cloud-Image.qcow2\n\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\tKVM\t100.00 GiB\tadmin\tUSER\t\n\t\n\nEuropa-SystemVM-1450-nfs-posix-20261027\n\t\n다운로드/업로드 실패\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1450-nfs-posix-sha256\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1450-deferred-posix-r4\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1451-nfs-idmapping-20261027\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1451-bootstrap-20261028-r4\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1452-posix-20261028-r1\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1453-inheritance-20261029-r1\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n전체 48 개 항목 중 1-20 표시\n1\n2\n3\n20 / 쪽\n이동하기"
+  },
+  {
+    "name": "final-vm-count-103",
+    "at": "2026-11-15T08:35:18.457Z",
+    "main": "/가상머신업데이트\n모두\n메트릭\n프로젝트\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n내부 이름\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n호스트\n\t\n계정\n\t\nZone\n\t\n\n\n\tVM-9f3bf7a1-c5b2-45ba-ba06-1e466d09b364\ti-2-16-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t8.0.0\t\n10.1.1.107 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral1-control-1a0fa38f3d4\ti-2-20-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.30 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral1-node-1a0fa391956\ti-2-21-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.123 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-control-1a0fb462779\ti-2-35-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.213 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-control-1a0fb464d99\ti-2-36-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.22 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-node-1a0fb46766a\ti-2-37-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.202 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tkoral3-node-1a0fb469c58\ti-2-38-VM\t\n정지된 상태\n\t\n2 CPU\n2048 MB\n\t7.2.22\t\n10.1.1.90 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tVM-3cf3fed4-8a42-4eab-a570-948428c3d62b\ti-2-57-VM\t\n실행 중\n\t\n2 CPU\n4096 MB\n\t110.2.3\t\n10.10.254.100 \n\tUSER\t\tx86_64\tablecube13-1\tadmin\t13-Zone\t\n\n\tVM-1aa29f80-626d-45c4-8ba7-80e98b28986a\ti-2-58-VM\t\n실행 중\n\t\n2 CPU\n4096 MB\n\t110.2.3\t\n10.10.254.70 \n\tUSER\t\tx86_64\tablecube13-1\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-basic-nfs-20261021-01-1a15cfe505a\ti-2-101-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.195 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1439-nfs-20261021-01-1a15d2a1a6a\ti-2-102-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.190 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1440-nfs-20261021-01-1a15da8bc0d\ti-2-103-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.190 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tepic1438-1440-client-20261021-01\ti-2-104-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t8.0.0\t\n10.10.254.192 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1441-fixed-sfs-20261021-01-1a15e4f639c\ti-2-105-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.196 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1441-free-sfs-20261021-01-1a15e541b95\ti-2-106-VM\t\n정지된 상태\n\t\n3 CPU\n6144 MB\n\t7.2.22\t\n10.10.254.197 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-epic1438-1441-range-sfs-20261021-01-1a15e563e0f\ti-2-107-VM\t\n정지된 상태\n\t\n4 CPU\n8192 MB\n\t7.2.22\t\n10.10.254.198 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tepic1438-1442-client-20261021-01\ti-2-108-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t8.0.0\t\n10.10.254.200 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-0685be9d-b958-3d2a-a9ef-9e53a7c9ba07\ti-2-109-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.117 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tepic1438-1442-posix-client-20261022-01\ti-2-110-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t8.0.0\t\n10.10.254.119 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-634178d0-3d06-31ec-84d3-9ec113093025\ti-2-111-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.122 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n전체 103 개 항목 중 1-20 표시\n1\n2\n3\n4\n5\n6\n20 / 쪽\n이동하기"
+  },
+  {
+    "name": "final-original-roles-nine",
+    "at": "2026-11-15T08:35:53.803Z",
+    "main": "/역할업데이트\n역할 추가\n\t\n이름\n\t\n유형\n\t\n설명\n\t\n상태\n\t\n\nRoot Admin\tAdmin\tDefault root admin role\t\n정상\n\t\nResource Admin\tResourceAdmin\tDefault resource admin role\t\n정상\n\t\nDomain Admin\tDomainAdmin\tDefault domain admin role\t\n정상\n\t\nUser\tUser\tDefault user role\t\n정상\n\t\nRead-Only Admin - Default\tAdmin\tDefault read-only admin role\t\n정상\n\t\nRead-Only User - Default\tUser\tDefault read-only user role\t\n정상\n\t\nSupport Admin - Default\tAdmin\tDefault support admin role\t\n정상\n\t\nSupport User - Default\tUser\tDefault support user role\t\n정상\n\t\nProject Kubernetes Service Role\tUser\tProject Kubernetes Service Role\t\n정상\n\t\n전체 9 개 항목 중 1-9 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-browser-and-cleanup-summary",
+    "at": "2026-11-15T08:36:16.252Z",
+    "allCreatedResourcesDeleted": true,
+    "state": {
+      "assets": [
+        "js/vendors.510a9505.js",
+        "js/app.2e62dc44.js"
+      ],
+      "height": 897,
+      "mainBackground": "rgba(0, 0, 0, 0)",
+      "width": 1680
+    },
+    "main": "/ISO업데이트\n필터링 기준\n모두\n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nvmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\nxs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t\n\n1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t\n\n1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t\n\nRocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t\n\nWindows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t\n\nVirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t\n\nABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t\n전체 8 개 항목 중 1-8 표시\n1\n20 / 쪽"
+  }
+]

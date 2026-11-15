@@ -1,0 +1,6 @@
+{
+  "sourceFiles": 35,
+  "returnCode": 0,
+  "command": "npx eslint --no-fix <35 changed source files>",
+  "phase": "before successful production build"
+}

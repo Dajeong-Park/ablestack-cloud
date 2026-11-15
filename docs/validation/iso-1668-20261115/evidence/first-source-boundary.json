@@ -1,0 +1,50 @@
+{
+  "previousCode": "822385d9fcf90febbf7dca1044f0846b5518e41a",
+  "runtimeInput": "/root/work/.build-iso1667-20261115/ui",
+  "buildInput": "/root/work/.build-iso1668-20261115/ui",
+  "files": [
+    "src/config/section/image.js",
+    "src/utils/isoModel.js",
+    "src/utils/imagePermissions.js",
+    "src/views/image/IsoZones.vue",
+    "src/views/image/UpdateTemplateIsoPermissions.vue",
+    "tests/unit/views/image/TemplatePermissions.spec.js",
+    "tests/unit/utils/isoResource.spec.js"
+  ],
+  "localeKeys": {
+    "en": [
+      "message.image.permissions.invalid",
+      "message.image.permissions.scope.changed",
+      "message.image.permissions.changed",
+      "message.image.permissions.result.unconfirmed",
+      "message.image.permissions.inventory.failed",
+      "message.image.permissions.project.ids",
+      "message.image.permissions.reset.confirm",
+      "message.image.permissions.reset.ack",
+      "message.image.permissions.verified",
+      "label.image.permissions.current"
+    ],
+    "ko_KR": [
+      "message.image.permissions.invalid",
+      "message.image.permissions.scope.changed",
+      "message.image.permissions.changed",
+      "message.image.permissions.result.unconfirmed",
+      "message.image.permissions.inventory.failed",
+      "message.image.permissions.project.ids",
+      "message.image.permissions.reset.confirm",
+      "message.image.permissions.reset.ack",
+      "message.image.permissions.verified",
+      "label.image.permissions.current"
+    ]
+  },
+  "hashes": {
+    "src/config/section/image.js": "32683352ea3b9340ca8f5ffa7ed761576997469154f27a27145131b7b97609a6",
+    "src/utils/isoModel.js": "4b8694ddda5cfe655edca78617aa97b838687d86e2fa6c4f945237b094ab6196",
+    "src/utils/imagePermissions.js": "1f391a8f114c2a5acb3094b446760aad9182d5cf486a17142c97321ef1f77243",
+    "src/views/image/IsoZones.vue": "8c88580d6bed60ae607ee01f6a5357997d7890e1fefe9f3e2b77728db4369b1b",
+    "src/views/image/UpdateTemplateIsoPermissions.vue": "2756bb9af8b1dd2a395a6d8891433044439861ec5bce1ecf4746879bf5317e45",
+    "tests/unit/views/image/TemplatePermissions.spec.js": "33a48dfed6d6bc275f7ecce2a89e15af6366714ba7d8dc64f0d11b92bad7c2c7",
+    "tests/unit/utils/isoResource.spec.js": "8cf3277fd65f7dcd3daca5219d874399c2c6e2a31713c6b87315f3405fae8493"
+  },
+  "productHead": "d29095f30128fb3dd412cd602a2957c1a19c986f"
+}

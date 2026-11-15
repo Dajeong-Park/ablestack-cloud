@@ -1,0 +1,58 @@
+{
+  "productHead": "c8992a5f49fe866fa43d2ae769df87f102e716c1",
+  "otherOperatingSourceFilesEqual": 1013,
+  "onlyAddedSources": [
+    "src/components/widgets/IsoDetailValue.vue",
+    "src/utils/isoZoneOperations.js",
+    "src/views/image/IsoZoneOperations.vue"
+  ],
+  "localeChanges": [
+    {
+      "locale": "en",
+      "changedKeys": [
+        "label.iso.zone.abandoned",
+        "label.iso.zone.job.completed",
+        "label.iso.zone.search",
+        "label.iso.zone.source",
+        "label.iso.zone.state.failed",
+        "label.iso.zone.state.pending",
+        "label.iso.zone.state.requesting",
+        "label.iso.zone.state.running",
+        "label.iso.zone.state.success",
+        "label.iso.zone.state.unknown",
+        "label.iso.zone.state.waitingReady",
+        "message.iso.zone.copy.duplicate",
+        "message.iso.zone.copy.empty",
+        "message.iso.zone.delete"
+      ]
+    },
+    {
+      "locale": "ko_KR",
+      "changedKeys": [
+        "label.iso.zone.abandoned",
+        "label.iso.zone.job.completed",
+        "label.iso.zone.search",
+        "label.iso.zone.source",
+        "label.iso.zone.state.failed",
+        "label.iso.zone.state.pending",
+        "label.iso.zone.state.requesting",
+        "label.iso.zone.state.running",
+        "label.iso.zone.state.success",
+        "label.iso.zone.state.unknown",
+        "label.iso.zone.state.waitingReady",
+        "message.iso.zone.copy.duplicate",
+        "message.iso.zone.copy.empty",
+        "message.iso.zone.delete"
+      ]
+    }
+  ],
+  "dependencyBuildConfigFilesEqual": [
+    "package.json",
+    "package-lock.json",
+    "babel.config.js",
+    "vue.config.js",
+    "jest.config.js"
+  ],
+  "inputHashesMatch": true,
+  "operatingVpcDifferencesPreserved": true
+}

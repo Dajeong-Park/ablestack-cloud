@@ -1,0 +1,10 @@
+{
+  "results": {
+    "focused-report": 0,
+    "manual-report": 0
+  },
+  "paths": 44,
+  "runtimePatchApplyCheck": true,
+  "runtimePatchReplaySha256Matches": 37,
+  "sourceHashFindings": "resolved using explicit file/sha256 records; no scanner exemption"
+}

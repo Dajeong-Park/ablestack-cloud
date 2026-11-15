@@ -1,0 +1,41 @@
+{
+  "isos": [
+    {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-data",
+      "deleted": true
+    },
+    {
+      "id": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+      "name": "qa-iso1669-os-force",
+      "deleted": true
+    }
+  ],
+  "userdatas": [
+    {
+      "id": "5d7ed21b-b954-4850-8986-b1007fae36e2",
+      "name": "qa-iso1669-userdata-a",
+      "deleted": true
+    },
+    {
+      "id": "467ab30b-beea-4c38-a814-354fb7345202",
+      "name": "qa-iso1669-userdata-b",
+      "deleted": true
+    }
+  ],
+  "vms": [
+    {
+      "id": "fc24e4e3-b726-4455-921f-313aed8b9ceb",
+      "name": "qa-iso1669-os-vm",
+      "deleted": true
+    }
+  ],
+  "volumes": [
+    {
+      "id": "c067d0aa-666a-42f6-9f0b-eeee6d92e4c4",
+      "name": "ROOT-256",
+      "deleted": true
+    }
+  ],
+  "accounts": []
+}

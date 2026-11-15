@@ -1,0 +1,42 @@
+{
+  "osRelease": "Cloudstack Release 4.22.0 Wed Sep  9 02:46:52 AM UTC 2026",
+  "agentJar": "cloud-agent-4.21.0.0-Mold.Diplo-202609221440.jar",
+  "secondaryJar": "cloud-secondary-storage-4.21.0.0-Mold.Diplo-202609221440.jar",
+  "secondarySha256": "d5f6dbcf45df292dcfb1d12d84e30ee14f41cb4a9e70f0a1ff82aa62b9c78667",
+  "classes": {
+    "org/apache/cloudstack/storage/resource/NfsSecondaryStorageResource.class": "2f3da2edcb5073973771795ef8582c34d5b49a1197cd91bfad64cd9b8e405fc0",
+    "org/apache/cloudstack/storage/resource/PostUploadChecksum.class": "762bdb555e949ffb09d1d20141238a71153656479dcea19bb56b61dd17492290"
+  },
+  "cloudService": "active",
+  "cloudJarVersions": [
+    "cloud-framework-ipc-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-agent-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-events-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-core-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-managed-context-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-engine-schema-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-api-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-console-proxy-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-engine-storage-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-cluster-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-db-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-plugin-hypervisor-vmware-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-agent-lb-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-jobs-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-vmware-base-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-rest-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-plugin-shutdown-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-utils-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-security-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-engine-api-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-engine-storage-configdrive-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-server-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-engine-orchestration-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-ca-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-engine-components-api-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-direct-download-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-framework-config-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-engine-storage-object-4.21.0.0-Mold.Diplo-202609221440.jar",
+    "cloud-secondary-storage-4.21.0.0-Mold.Diplo-202609221440.jar"
+  ]
+}

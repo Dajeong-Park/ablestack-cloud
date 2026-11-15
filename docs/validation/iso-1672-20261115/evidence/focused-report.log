@@ -1,0 +1,81 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.13s
+
+docs/validation/iso-1672-20261115/evidence/runtime-source-preservation.json
+docs/validation/iso-1672-20261115/evidence/final-ci-lint-classification.json
+docs/validation/iso-1672-20261115/evidence/focused-correction-unit.log
+docs/validation/iso-1672-20261115/screenshots/final-clean-list.jpg
+docs/validation/iso-1672-20261115/evidence/resource-ledger.json
+docs/validation/iso-1672-20261115/screenshots/multi-detach-complete.jpg
+docs/validation/iso-1672-20261115/evidence/lint-final.log
+docs/validation/iso-1672-20261115/evidence/first-ci-lint-classification.json
+docs/validation/iso-1672-20261115/screenshots/iso-to-vm-prefilled.jpg
+docs/validation/iso-1672-20261115/evidence/ci-license-classification.json
+docs/validation/iso-1672-20261115/screenshots/vm-detach-dark-390x440.jpg
+docs/validation/iso-1672-20261115/README.ko.md
+docs/validation/iso-1672-20261115/evidence/ui-cases.json
+docs/validation/iso-1672-20261115/evidence/focused-precommit.log
+docs/validation/iso-1672-20261115/evidence/deploy-files.json
+docs/validation/iso-1672-20261115/evidence/http-fixtures-cleanup.json
+docs/validation/iso-1672-20261115/evidence/lint-correction.log
+docs/validation/iso-1672-20261115/evidence/canonical-unit.log
+docs/validation/iso-1672-20261115/evidence/runtime-unit.log
+docs/validation/iso-1672-20261115/evidence/final-preservation.json
+docs/validation/iso-1672-20261115/screenshots/guest-tinycore-boot.jpg
+docs/validation/iso-1672-20261115/evidence/ui-deployment.json
+docs/validation/iso-1672-20261115/screenshots/final-download-no-job.jpg
+docs/validation/iso-1672-20261115/evidence/source-boundary.json
+docs/validation/iso-1672-20261115/evidence/first-ui-build-result.json
+docs/validation/iso-1672-20261115/screenshots/vm-detach-light.jpg
+docs/validation/iso-1672-20261115/evidence/first-deploy-files.json
+docs/validation/iso-1672-20261115/evidence/first-ui-deployment.json
+docs/validation/iso-1672-20261115/screenshots/vm-two-media-full.jpg
+docs/validation/iso-1672-20261115/screenshots/download-duplicate-error-before-fix.jpg
+docs/validation/iso-1672-20261115/evidence/checks.json
+docs/validation/iso-1672-20261115/screenshots/readonly-iso-zone.jpg
+docs/validation/iso-1672-20261115/evidence/ui-case-disposition.json
+docs/validation/iso-1672-20261115/screenshots/final-download-unknown-light-390.jpg
+docs/validation/iso-1672-20261115/evidence/download-receipts.json
+docs/validation/iso-1672-20261115/evidence/ui-build-result.json
+docs/validation/iso-1672-20261115/evidence/first-ci-license-classification.json
+docs/validation/iso-1672-20261115/screenshots/final-download-get-recovery.jpg
+docs/validation/iso-1672-20261115/evidence/focused-correction.log
+docs/validation/iso-1672-20261115/screenshots/already-attached-blocked.jpg
+docs/validation/iso-1672-20261115/evidence/manual-precommit.log
+docs/validation/iso-1672-20261115/evidence/manual-correction.log
+docs/validation/iso-1672-20261115/evidence/fixture-manifest.json
+docs/validation/iso-1672-20261115/screenshots/guest-two-media-boot.jpg
+docs/validation/iso-1672-20261115/screenshots/after-url-download-ready.jpg
+docs/validation/iso-1672-20261115/screenshots/final-download-one-error.jpg
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files........................(no files to check)Skipped
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

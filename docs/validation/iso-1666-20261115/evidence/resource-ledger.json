@@ -1,0 +1,42 @@
+{
+  "isos": [
+    {
+      "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+      "name": "qa-iso1666-expiry",
+      "purpose": "normal expiry",
+      "state": "NotUploaded",
+      "deleted": true
+    },
+    {
+      "id": "3bd6ff40-673b-43dc-87cc-a5fbf40926c3",
+      "name": "qa-iso1666-owner-ready",
+      "deleted": true
+    },
+    {
+      "id": "eb92700e-fe90-4495-884c-85ad7a5df23d",
+      "name": "qa-iso1666-checksum-failure",
+      "deleted": true
+    }
+  ],
+  "userdatas": [
+    {
+      "id": "e5b651ed-b216-4e52-a090-3636fb469b53",
+      "name": "qa-iso1666-expiry-ud",
+      "deleted": true
+    }
+  ],
+  "accounts": [
+    {
+      "id": "a1b863d4-9dc1-4dd5-a622-fc98904fb8f5",
+      "name": "qa-iso1666-owner",
+      "deleted": true
+    }
+  ],
+  "roles": [
+    {
+      "id": "e2ea35cf-e908-4b87-bfc9-be3e60338cce",
+      "name": "qa-iso1666-local-only",
+      "deleted": true
+    }
+  ]
+}

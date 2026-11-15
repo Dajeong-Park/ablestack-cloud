@@ -127,10 +127,10 @@
 
             <a-divider/>
 
-            <div class="resource-detail-item" v-if="(resource.state || resource.status || ($route.meta.name === 'template' && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
+            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'iso'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
           <div class="resource-detail-item__label">{{ $t('label.status') }}</div>
           <div class="resource-detail-item__details">
-            <template-availability v-if="$route.meta.name === 'template'" :record="resource" :observation="templateObservation" inspectable @show-zones="$emit('show-template-zones')" />
+            <template-availability v-if="['template', 'iso'].includes($route.meta.name)" :kind="$route.meta.name" :record="resource" :observation="$route.meta.name === 'template' ? templateObservation : null" inspectable @show-zones="$emit('show-template-zones')" />
             <backup-progress
               v-else-if="$route.meta.name === 'backup'"
               :record="resource"

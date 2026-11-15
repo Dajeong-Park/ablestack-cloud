@@ -1,0 +1,8 @@
+{
+  "fixture": "qa-iso1671-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-original-values-.iso",
+  "sha256BeforeRemoval": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+  "removed": true,
+  "folderRemoved": true,
+  "httpAfterRemoval": 404,
+  "otherFilesTouched": false
+}

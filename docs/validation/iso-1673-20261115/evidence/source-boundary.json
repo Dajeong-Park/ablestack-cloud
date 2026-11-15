@@ -1,0 +1,31 @@
+{
+  "previousCode": "301d6872b9af482d47c407e78af42f2790791da6",
+  "runtimeInput": "/root/work/.build-iso1672-20261115/ui",
+  "buildInput": "/root/work/.build-iso1673-20261115/ui",
+  "files": [
+    "src/config/router.js",
+    "src/config/section/compute.js",
+    "src/store/modules/permission.js",
+    "src/utils/vmRead.js",
+    "src/views/AutogenView.vue",
+    "src/views/compute/InstanceTab.vue",
+    "tests/unit/views/AutogenVmRead.spec.js"
+  ],
+  "hashes": {
+    "src/config/router.js": "27475febcc0c70b329e94133f716ddded3c932fdf8f66ae941313743fc135a43",
+    "src/config/section/compute.js": "589d99eb0254c5a496158ba92727835f7f7bac3b3555f1549e43d83218374d0e",
+    "src/store/modules/permission.js": "4c1973d6bbf44ffb633f550901f6b4d82410b72b04b951e2498d3842d5d5136b",
+    "src/utils/vmRead.js": "02009c4fb0918f0ac9276b64a2dc0961c351f0b308a1ba72bf9ddd547b84bcda",
+    "src/views/AutogenView.vue": "d047bc4b5ad46ff04f52028666d5891af0f24bdc2626b7fe404f47a18bf149a5",
+    "src/views/compute/InstanceTab.vue": "8dfecb88002e6ccd2eda08a5ff6fd37a4de9cc4abc276b0b5fe103b2a34c11f7",
+    "tests/unit/views/AutogenVmRead.spec.js": "1890c147d99766aeb7535b84e60fac3f65e947b7519092b745678b82ec6cf686"
+  },
+  "localeKeys": {},
+  "productHead": "f72df22acb72b396981c2088262abfc7169275af",
+  "unrelatedOperatingSourceFilesEqual": 1019,
+  "addedFiles": [
+    "src/utils/vmRead.js",
+    "tests/unit/views/AutogenVmRead.spec.js"
+  ],
+  "method": "three-way VM/ISO read capability deltas on exact operating input; no role grants/backend changes"
+}

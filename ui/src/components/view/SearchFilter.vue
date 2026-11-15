@@ -219,7 +219,8 @@ export default {
     },
     retrieveFieldLabel (fieldName) {
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
-      if (this.apiName === 'listTemplates' && fieldName === 'name') return this.$t('label.template.name.exact')
+      if (this.apiName === 'listIsos' && fieldName === 'isofilter') return this.$t('label.filterby')
+      if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
       if (fieldName === 'forvpc') return this.$t('label.network.search.forvpc')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')
       if (fieldName === 'physicalnetworkid') return this.$t('label.physical.network')
@@ -253,6 +254,8 @@ export default {
       }
     },
     getStaticFieldValue (key, value) {
+      if (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(key)) return this.$t(String(value) === 'true' ? 'label.yes' : 'label.no')
+      if (this.apiName === 'listIsos' && key === 'isofilter') return this.$t(this.$route?.meta?.filterLabels?.[value] || ('label.' + value))
       if (this.apiName === 'listNetworks' && key === 'forvpc') return this.$t(String(value) === 'true' ? 'label.yes' : 'label.no')
       if (this.apiName === 'listSnapshotPolicies' && key === 'fordisplay') return this.$t(value === 'true' ? 'label.snapshot.policy.schedule.enabled' : 'label.snapshot.policy.schedule.paused')
       if (this.apiName === 'listSnapshots') {

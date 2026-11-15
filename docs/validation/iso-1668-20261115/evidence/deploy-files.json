@@ -1,0 +1,124 @@
+{
+  "head": "802fab97140116cc68f4f7700e197f3c520cb278",
+  "sourceBoundary": {
+    "previousCode": "822385d9fcf90febbf7dca1044f0846b5518e41a",
+    "runtimeInput": "/root/work/.build-iso1667-20261115/ui",
+    "buildInput": "/root/work/.build-iso1668-20261115/ui",
+    "files": [
+      "src/config/section/image.js",
+      "src/utils/isoModel.js",
+      "src/utils/imagePermissions.js",
+      "src/views/image/IsoZones.vue",
+      "src/views/image/UpdateTemplateIsoPermissions.vue",
+      "tests/unit/views/image/TemplatePermissions.spec.js",
+      "tests/unit/utils/isoResource.spec.js",
+      "src/views/image/TemplateZones.vue",
+      "tests/unit/views/image/TemplateAvailabilityRead.spec.js",
+      "tests/unit/views/image/TemplateZoneSelection.spec.js",
+      "tests/unit/utils/isoModel.spec.js",
+      "tests/unit/views/image/IsoZonesReadScope.spec.js",
+      "tests/unit/components/view/ImageTagReadScope.spec.js",
+      "tests/unit/views/image/IsoActionPolicy.spec.js",
+      "src/utils/resourceTags.js",
+      "src/components/view/ResourceTags.vue",
+      "tests/unit/utils/resourceTags.spec.js"
+    ],
+    "localeKeys": {
+      "en": [
+        "message.image.permissions.invalid",
+        "message.image.permissions.scope.changed",
+        "message.image.permissions.changed",
+        "message.image.permissions.result.unconfirmed",
+        "message.image.permissions.inventory.failed",
+        "message.image.permissions.project.ids",
+        "message.image.permissions.reset.confirm",
+        "message.image.permissions.reset.ack",
+        "message.image.permissions.verified",
+        "label.image.permissions.current"
+      ],
+      "ko_KR": [
+        "message.image.permissions.invalid",
+        "message.image.permissions.scope.changed",
+        "message.image.permissions.changed",
+        "message.image.permissions.result.unconfirmed",
+        "message.image.permissions.inventory.failed",
+        "message.image.permissions.project.ids",
+        "message.image.permissions.reset.confirm",
+        "message.image.permissions.reset.ack",
+        "message.image.permissions.verified",
+        "label.image.permissions.current"
+      ]
+    },
+    "hashes": {
+      "src/config/section/image.js": "3be8e34d0d6a231a9e0e3d5a992bd1a09e004bf5a157f974bb1374b0f807f48a",
+      "src/utils/isoModel.js": "c42d72345c07ac48099203ac2d1d9f25c0644e85a99a3bf53eff83db49e5a6fc",
+      "src/utils/imagePermissions.js": "ae08ee1f473c103fa86eae1303a3e4a278568961c9af9a27a18d53d4acc213ba",
+      "src/views/image/IsoZones.vue": "91ffafe7da6156bdf0861c009b2fbeb300f34e120fefc45430a61ab6ab4ca890",
+      "src/views/image/UpdateTemplateIsoPermissions.vue": "2756bb9af8b1dd2a395a6d8891433044439861ec5bce1ecf4746879bf5317e45",
+      "tests/unit/views/image/TemplatePermissions.spec.js": "6b6cd5ba06f8d9b7f4d46eb2ec7ddaed7399755e3bc4b67ac72979cb0fcb27a8",
+      "tests/unit/utils/isoResource.spec.js": "8cf3277fd65f7dcd3daca5219d874399c2c6e2a31713c6b87315f3405fae8493",
+      "src/views/image/TemplateZones.vue": "2396bc6ae21c91bab477fa8bb38d2014763666111702d1063ea046c14a0faea0",
+      "tests/unit/views/image/TemplateAvailabilityRead.spec.js": "1a5eeffdabf53b53fe31b479991ef0a86e2a479025c847650df5da52062c5b76",
+      "tests/unit/views/image/TemplateZoneSelection.spec.js": "2c7bc9dfea99ce53ab7cfcaa78dfc145237d5fdd4aad0672c796effb878f7b9c",
+      "tests/unit/utils/isoModel.spec.js": "a34479e1cf1a591bb1b8000936f9e6b652ef70b7767186c4a9558e5a42f68a42",
+      "tests/unit/views/image/IsoZonesReadScope.spec.js": "af1093062436f71f7b70d4ad50da7912b41d8ed0a7130c6e152e89c17a4e7406",
+      "tests/unit/components/view/ImageTagReadScope.spec.js": "08d4240df93bf8e316524e147bccc1c848a22f9dbfafb4e0faac6c1a8fa0015e",
+      "tests/unit/views/image/IsoActionPolicy.spec.js": "8f456afafb7c00e4476b93d11f87be83c7ad0a442062b3c36640a3f8794c2acd",
+      "src/utils/resourceTags.js": "9f16200865b2bbe25b36099d4b16add6d384ca79b13275b95e33cddc0f068ad9",
+      "src/components/view/ResourceTags.vue": "e2c7d75d496ba476121289e2373fb84698803b7686a6659b0320d9a7737fae15",
+      "tests/unit/utils/resourceTags.spec.js": "081a9cd9cc6f0944c3f9c2583fa333fc10009997e8993e7a5991f1398d20e3f4"
+    },
+    "productHead": "802fab97140116cc68f4f7700e197f3c520cb278",
+    "previousProductHead": "f66f3799be02b7fd97447d370d0af0b170145884",
+    "correctiveRuntimeBaselineEqual": true,
+    "correctiveFiles": [
+      "src/views/image/TemplateZones.vue",
+      "tests/unit/views/image/TemplateAvailabilityRead.spec.js",
+      "tests/unit/views/image/TemplateZoneSelection.spec.js"
+    ],
+    "supersededBuildHead": "adb5455834296d01686279ef0cad449cdb1f7ea6",
+    "aclCorrection": "Root Admin, owner, authorized concrete project; same domain alone is not mutation authority",
+    "runtimeCompatibility": "tag-read-runtime-compatibility.json",
+    "canonicalOnlySourceHeaderNormalization": "ui/src/components/view/ResourceTags.vue"
+  },
+  "baselineIndex": {
+    "sha256": "7e67412582bc27ee843466f7bbee81244ee6f6ca1e948b1d8e602bf9764e5c29",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "1170070d18c24110fca7cdfdfc264f95c9db3dfb690252a231ba42eee5966650",
+      "size": 39475,
+      "previous": {
+        "sha256": "7e67412582bc27ee843466f7bbee81244ee6f6ca1e948b1d8e602bf9764e5c29",
+        "size": 39475
+      }
+    },
+    "css/chunk-45971d03.a807fef1.css": {
+      "sha256": "2396e511199447e32489cbf40c6e64b55d748c44f15923412306d9f331ed16c6",
+      "size": 65,
+      "previous": null
+    },
+    "css/app.f338fc1c.css": {
+      "sha256": "5ac99647d8990581f4856a566f065e019a6479e6bee5e86e2d74893c49a4226c",
+      "size": 347045,
+      "previous": null
+    },
+    "js/chunk-45971d03.05464712.js": {
+      "sha256": "fe571318e7817d35d0524ecaaa89b99af8148312daedde4ce2371336aa44d773",
+      "size": 29576,
+      "previous": null
+    },
+    "js/app.8f9be75f.js": {
+      "sha256": "dd7e6338ec46efa23cc6170579e9e9422b2a72028515f5b9c2a9703adacf1435",
+      "size": 1889038,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2545994",
+  "backendJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224"
+}

@@ -5155,7 +5155,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
                 null, cmd.getPageSizeVal(), cmd.getStartIndex(), cmd.getZoneId(), cmd.getStoragePoolId(),
                 cmd.getImageStoreId(), hypervisorType, showDomr, cmd.listInReadyState(), permittedAccounts, caller,
                 listProjectResourcesCriteria, tags, showRemovedTmpl, cmd.getIds(), parentTemplateId, cmd.getShowUnique(),
-                templateType, isVnf, domainId, isRecursive, cmd.getArch(), cmd.getOsCategoryId(), forCks, cmd.getKvdoEnable(), cmd.getExtensionId(), cmd.getUserDataId(), cmd.isReady());
+                templateType, isVnf, domainId, isRecursive, cmd.getArch(), cmd.getOsCategoryId(), forCks, cmd.getKvdoEnable(), cmd.getExtensionId(), cmd.getUserDataId(), cmd.isReady(), null);
     }
 
     private Pair<List<TemplateJoinVO>, Integer> searchForTemplatesInternal(Long templateId, String name, String keyword,
@@ -5164,7 +5164,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             boolean showDomr, boolean onlyReady, List<Account> permittedAccounts, Account caller,
             ListProjectResourcesCriteria listProjectResourcesCriteria, Map<String, String> tags,
             boolean showRemovedTmpl, List<Long> ids, Long parentTemplateId, Boolean showUnique, String templateType,
-            Boolean isVnf, Long domainId, boolean isRecursive, CPU.CPUArch arch, Long osCategoryId, Boolean forCks, Boolean kvdoEnable, Long extensionId, Long userDataId, Boolean readiness) {
+            Boolean isVnf, Long domainId, boolean isRecursive, CPU.CPUArch arch, Long osCategoryId, Boolean forCks, Boolean kvdoEnable, Long extensionId, Long userDataId, Boolean readiness, Boolean isoPublicFilter) {
 
         // check if zone is configured, if not, just return empty list
         List<HypervisorType> hypers = null;
@@ -5201,7 +5201,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             sb.and("extensionId", sb.entity().getExtensionId(), Op.IN);
         }
 
-        SearchCriteria<TemplateJoinVO> sc = sb.create();
+        SearchCriteria<TemplateJoinVO> sc = isIso ? isoSearchCriteria(sb, isoPublicFilter, readiness) : sb.create();
 
         // Keep UUID association filtering inside the ACL-scoped SQL query, before count/pagination.
         if (userDataId != null) {
@@ -5652,7 +5652,33 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
                 cmd.getPageSizeVal(), cmd.getStartIndex(), cmd.getZoneId(), cmd.getStoragePoolId(), cmd.getImageStoreId(),
                 hypervisorType, true, cmd.listInReadyState(), permittedAccounts, caller, listProjectResourcesCriteria,
                 tags, showRemovedISO, null, null, cmd.getShowUnique(), null, null,
-                domainId, isRecursive, cmd.getArch(), cmd.getOsCategoryId(), null, null, null, cmd.getUserDataId(), null);
+                domainId, isRecursive, cmd.getArch(), cmd.getOsCategoryId(), null, null, null, cmd.getUserDataId(), isoReadinessFilter(cmd.isReady()), cmd.isPublic());
+    }
+
+    // Preserve legacy ready/executable handling for true/omitted. Explicit false
+    // must remain distinct from the old "only ready" flag being disabled.
+    static Boolean isoReadinessFilter(Boolean ready) {
+        return Boolean.FALSE.equals(ready) ? Boolean.FALSE : null;
+    }
+
+    static SearchCriteria<TemplateJoinVO> isoSearchCriteria(SearchBuilder<TemplateJoinVO> builder, Boolean publicFilter, Boolean readiness) {
+        // Separate condition names keep public/private narrowing independent of
+        // the sharing filter's publicTemplate ACL predicate.
+        if (publicFilter != null) {
+            builder.and("isoPublicFilter", builder.entity().isPublicTemplate(), Op.EQ);
+        }
+        if (Boolean.FALSE.equals(readiness)) {
+            // PERHOST tools ISOs are ready without a secondary-store row.
+            builder.and("isoNotPerHost", builder.entity().getTemplateType(), Op.NEQ);
+        }
+        SearchCriteria<TemplateJoinVO> criteria = builder.create();
+        if (publicFilter != null) {
+            criteria.setParameters("isoPublicFilter", publicFilter);
+        }
+        if (Boolean.FALSE.equals(readiness)) {
+            criteria.setParameters("isoNotPerHost", Storage.TemplateType.PERHOST);
+        }
+        return criteria;
     }
 
     @Override

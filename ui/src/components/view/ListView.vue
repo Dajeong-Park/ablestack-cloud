@@ -23,7 +23,8 @@
       :locale="emptyText ? { emptyText } : undefined"
       :columns="isOrderUpdatable() ? columns : columns.filter(x => x.dataIndex !== 'order')"
       :dataSource="items"
-      :scroll="tableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
+      :tableLayout="isIsoMainList ? 'fixed' : undefined"
+      :scroll="tableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
       :rowSelection="explicitlyAllowRowSelection || enableGroupAction() || $route.name === 'event' ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({ disabled: selectionDisabled(record) }), columnWidth: 30} : null"
@@ -53,7 +54,13 @@
         </a-menu>
       </div>
     </template>
+    <template v-if="isIsoMainList" #headerCell="{ column }">
+      <a-tooltip v-if="column.sorter" :title="$t('message.iso.search.sort.page')" :trigger="['hover', 'focus']"><span tabindex="0">{{ column.title }}</span></a-tooltip>
+      <span v-else>{{ column.title }}</span>
+    </template>
     <template #bodyCell="{ column, text, record }">
+      <IsoListCell v-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
+      <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
       <SharedFSBootRecoverySummary v-else-if="$route.name === 'sharedfs' && column.key === 'bootrecovery'" :resource="record" mode="list" />
@@ -539,7 +546,7 @@
       </template>
       <template v-if="column.key === 'state'">
         <span class="list-state-with-flatten">
-          <template-availability v-if="$route.meta?.name === 'template'" :record="record" compact single-line />
+          <template-availability v-if="['template', 'iso'].includes($route.meta?.name)" :kind="$route.meta.name" :record="record" compact single-line />
           <status v-else-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
           <status v-else :text="text ? text : ''" :displayLabel="column.stateLabel ? column.stateLabel(record) : ''" displayText />
           <clone-flatten-control :record="record" @refresh="$emit('refresh')" />
@@ -1211,6 +1218,7 @@
       <template v-if="column.key === 'threshold' && $route.path.split('/')[1] === 'alertRules'">
         <span>{{ formatThresholdLabelSafe(record) }}</span>
       </template>
+      </template>
     </template>
     <template #footer>
       <span v-if="hasSelected">
@@ -1235,6 +1243,7 @@
 <script>
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { templateDetailLocation } from '@/utils/templateSearch'
+import IsoListCell from '@/components/view/IsoListCell'
 import { networkDetailLocation } from '@/utils/guestNetworkSearch'
 import { policyInterval, policySchedule, policyScheduling } from '@/utils/snapshotPolicyPresentation'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
@@ -1291,6 +1300,7 @@ export default {
     AutoScaleListCell,
     InstanceGroupSummary,
     OsLogo,
+    IsoListCell,
     Status,
     CloneFlattenControl,
     ResourceContextMenu,
@@ -1436,6 +1446,12 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isIsoMainList () { return this.$route.meta?.name === 'iso' && !this.resourcePath },
+    isoTableScroll () {
+      if (!this.isIsoMainList) return null
+      const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(c => c.key !== 'order')
+      return { x: Math.max(720, columns.filter(c => c.key !== 'name').reduce((sum, c) => sum + (Number(c.width) || 120), 0) + (columns.some(c => c.key === 'name') ? 420 : 0)) }
+    },
     templateTableScroll () {
       if (this.$route.meta?.name !== 'template' || this.resourcePath) return null
       const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.key !== 'order')

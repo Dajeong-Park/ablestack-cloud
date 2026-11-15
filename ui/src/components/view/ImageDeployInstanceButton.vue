@@ -46,6 +46,8 @@
 <script>
 import { getAPI } from '@/api'
 import { readTemplateResource } from '@/utils/templateSearch'
+import { canIsoAction } from '@/utils/isoModel'
+import { bootIsoZones } from '@/utils/isoConsumption'
 import ResourceIcon from '@/components/view/ResourceIcon'
 
 export default {
@@ -90,7 +92,7 @@ export default {
     },
     allowed () {
       return 'deployVirtualMachine' in (this.$store.getters.apis || {}) &&
-        (this.$route.meta.name === 'template' || (this.$route.meta.name === 'iso' && this.resource?.bootable)) && !!this.resource?.isready
+        (this.$route.meta.name === 'iso' ? canIsoAction('deploy', this.resource, this.$store.getters) : this.$route.meta.name === 'template' && !!this.resource?.isready)
     }
   },
   methods: {
@@ -110,7 +112,7 @@ export default {
           : await getAPI(this.imageApi, { ...params, isofilter: 'executable' })
         if (!current()) return
         const rows = json?.[this.imageApi.toLowerCase() + 'response']?.[this.$route.meta.name] || []
-        this.zones = [...new Map(rows.filter(i => i.zoneid && i.isready !== false).map(i => [i.zoneid, { id: i.zoneid, name: i.zonename }])).values()]
+        this.zones = this.$route.meta.name === 'iso' ? bootIsoZones(rows) : [...new Map(rows.filter(i => i.zoneid && i.isready !== false).map(i => [i.zoneid, { id: i.zoneid, name: i.zonename }])).values()]
         if (!this.zones.length) return
         this.$emit('update-zones', this.zones)
         const icons = await getAPI('listZones', { showicon: true, ids: this.zones.map(z => z.id).join(',') })

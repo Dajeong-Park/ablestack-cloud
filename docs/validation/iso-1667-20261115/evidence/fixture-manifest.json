@@ -1,0 +1,18 @@
+[
+  {
+    "name": "data-fixture.iso",
+    "bytes": 1525760,
+    "sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+    "md5": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+    "path": "/usr/share/cloudstack-management/webapp/qa-iso1667-20261115/data-fixture.iso",
+    "url": "http://10.10.13.10:8080/client/qa-iso1667-20261115/data-fixture.iso"
+  },
+  {
+    "name": "CorePure64-16.2.iso",
+    "bytes": 24434688,
+    "sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+    "md5": "9625854d8ac6156f89e20cfa6d69cc24",
+    "path": "/usr/share/cloudstack-management/webapp/qa-iso1667-20261115/CorePure64-16.2.iso",
+    "url": "http://10.10.13.10:8080/client/qa-iso1667-20261115/CorePure64-16.2.iso"
+  }
+]

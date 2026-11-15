@@ -1,0 +1,167 @@
+{
+  "matrix": [
+    {
+      "id": "A01",
+      "scope": "Root Admin / ordinary ISO",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A01-root-zone-storage-read",
+        "A01-root-edit-other-owner-saved",
+        "cleanup-iso-deleted"
+      ]
+    },
+    {
+      "id": "A02",
+      "scope": "Root Admin / system ISO protection",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A02-root-system-iso-protected"
+      ]
+    },
+    {
+      "id": "A03",
+      "scope": "User / owned ISO",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "owner-boot-ready",
+        "owner-shared-to-receiver",
+        "owner-vm-created",
+        "B-local-upload-complete",
+        "B-share-A-confirmed"
+      ]
+    },
+    {
+      "id": "A04",
+      "scope": "User / shared receiver",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A04-user-shared-receiver-correct-role",
+        "A04-shared-consumer-preflight"
+      ]
+    },
+    {
+      "id": "A05",
+      "scope": "User / unshared private",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A05-unshared-private-denied"
+      ]
+    },
+    {
+      "id": "A06",
+      "scope": "Domain Admin / subtree",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A06-domainadmin-subtree"
+      ]
+    },
+    {
+      "id": "A07",
+      "scope": "Domain Admin / outside domain",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A07-domainadmin-outside-final-reverified-pass"
+      ]
+    },
+    {
+      "id": "A08",
+      "scope": "User / project owner",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A08-project-owner-reverified",
+        "project-owner-edit-saved"
+      ]
+    },
+    {
+      "id": "A09",
+      "scope": "User / Regular default and restricted project role",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A09-project-regular-write-allowed",
+        "A09-project-regular-readonly-restriction",
+        "project-to-personal-scope-restored"
+      ]
+    },
+    {
+      "id": "A10",
+      "scope": "User / project nonmember",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A10-project-nonmember-denied"
+      ]
+    },
+    {
+      "id": "A11",
+      "scope": "Read-Only User / owned/shared/VM/Metrics",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A11-readonly-vm-list-saved-metrics-true",
+        "A11-readonly-vm-iso-detail",
+        "A11-readonly-history-direct-denied",
+        "A11-readonly-own-iso",
+        "A11-readonly-shared-list",
+        "A11-readonly-relogin-vm-basic-still-readable"
+      ]
+    },
+    {
+      "id": "A12",
+      "scope": "Read-Only Admin",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A12-readonly-admin-iso",
+        "A12-readonly-admin-vm-read"
+      ]
+    },
+    {
+      "id": "A13",
+      "scope": "local allow and URL deny",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A13-local-only-ui",
+        "A13-local-only-ready"
+      ]
+    },
+    {
+      "id": "A14",
+      "scope": "URL allow and local deny",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A14-url-only-ui",
+        "A14-url-only-ready"
+      ]
+    },
+    {
+      "id": "A15",
+      "scope": "permission read/write separately denied",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A15-A16-local-role-actions",
+        "A15-url-permission-read-denied",
+        "A15-write-allowed-read-denied-safe-share"
+      ]
+    },
+    {
+      "id": "A16",
+      "scope": "delete/copy/deploy/extract complementary grants",
+      "result": "PASS_WITHIN_13_SINGLE_ZONE_KVM_SCOPE",
+      "evidence": [
+        "A16-copy-allowed-no-destination",
+        "A16-extract-allowed-complete",
+        "A16-delete-allowed-copy-denied",
+        "A16-url-role-deploy-complete",
+        "Z02-in-use-delete-rejected",
+        "A16-delete-allowed-complete"
+      ]
+    }
+  ],
+  "notRun": [
+    "positive multi-Zone copy",
+    "positive non-KVM",
+    "dedicated ConfigDrive VM in this run"
+  ],
+  "sharedRevocation": [
+    "C01-specific-revoke-final-pass",
+    "C01-revoked-readonly-direct-denied",
+    "C01-other-receiver-preserved-access"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "productHead": "c8992a5f49fe866fa43d2ae769df87f102e716c1",
+  "canonical": {
+    "suites": 33,
+    "tests": 690,
+    "passed": true
+  },
+  "operating": {
+    "suites": 29,
+    "tests": 454,
+    "passed": true
+  },
+  "changedUiLint": true,
+  "focusedPreCommit": true,
+  "manualPreCommit": true,
+  "uiBuild": true,
+  "clipboardActualPaste": "PASS_USER_CONFIRMED_ALL_THREE",
+  "cleanup": "COMPLETE_4_OF_4_ISOS_AND_QA_ACCOUNT_DELETED_HTTP_FIXTURE_404",
+  "fullCiPass": false,
+  "finalProductLint": {
+    "run": 43707360412,
+    "existingFailedHooks": 16,
+    "existingDiagnosticPaths": 11179,
+    "addedDiagnosticPaths": 0,
+    "removedDiagnosticPaths": 0,
+    "changedPathDiagnostics": 0
+  },
+  "originalIsoIdsAndValuesPreserved": true,
+  "postCleanupRuntimeUnchanged": true,
+  "finalCloseReportFocusedHooks": true,
+  "finalCloseReportManualHooks": true,
+  "finalCloseReportRat": {
+    "baseline": 4077,
+    "current": 4077,
+    "added": 0,
+    "removed": 0
+  }
+}

@@ -1,0 +1,585 @@
+[
+  {
+    "name": "expiry-userdata-created",
+    "at": "2026-11-14T16:53:36.084Z"
+  },
+  {
+    "name": "qa-iso1666-expiry",
+    "at": "2026-11-14T16:56:09.620Z",
+    "purpose": "normal ABANDONED status verification; ISO-02 registration bug remains outside this change"
+  },
+  {
+    "name": "expiry-iso-created",
+    "at": "2026-11-14T16:56:10.206Z"
+  },
+  {
+    "name": "normal-owner-account-created",
+    "at": "2026-11-14T17:15:32.598Z"
+  },
+  {
+    "name": "owner-url-iso-ready-before-deployment",
+    "at": "2026-11-14T17:19:44.169Z"
+  },
+  {
+    "name": "checksum-failure-old-ui-pending",
+    "at": "2026-11-14T17:20:36.869Z"
+  },
+  {
+    "name": "checksum-failure-api-before",
+    "at": "2026-11-14T17:21:00.953Z",
+    "rows": [
+      {
+        "id": "eb92700e-fe90-4495-884c-85ad7a5df23d",
+        "name": "qa-iso1666-checksum-failure",
+        "account": "qa-iso1666-owner",
+        "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+        "isready": false,
+        "bootable": false,
+        "isextractable": false,
+        "status": "Failed post download script: checksum \"{MD5}d1cfa4ad592ccaa06f1b733142ce1fdf\" didn't match the given value, \"{MD5}00000000000000000000000000000000\"",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": [
+          {
+            "downloadState": "DOWNLOAD_ERROR",
+            "datastore": "Secondary Storage",
+            "downloadPercent": "100"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "local-only-role-created",
+    "at": "2026-11-14T17:22:59.360Z"
+  },
+  {
+    "name": "restricted-role-before-ui",
+    "at": "2026-11-14T17:25:41.899Z",
+    "urlRegisterVisible": 0,
+    "localUploadVisible": 0,
+    "apiMetadata": []
+  },
+  {
+    "name": "restricted-role-api-docs",
+    "at": "2026-11-14T17:27:59.906Z",
+    "registerIso": false,
+    "getUploadParamsForIso": true,
+    "allowedApiCount": 514
+  },
+  {
+    "name": "deployed-failure-detail-zone",
+    "at": "2026-11-14T17:35:48.955Z",
+    "result": "PASS",
+    "stateLabel": "다운로드/업로드 실패",
+    "vmEnabled": false,
+    "copyEnabled": false,
+    "deleteEnabled": true
+  },
+  {
+    "name": "restricted-local-menu-after",
+    "at": "2026-11-14T17:36:01.112Z",
+    "result": "PASS",
+    "urlRegisterVisible": 0,
+    "localUploadVisible": 1
+  },
+  {
+    "name": "local-only-form-metadata",
+    "at": "2026-11-14T17:36:09.927Z",
+    "result": "PASS",
+    "archEnabled": false,
+    "unsupportedArchNotice": true
+  },
+  {
+    "name": "owner-ready-actions",
+    "at": "2026-11-14T17:36:18.352Z",
+    "result": "PASS",
+    "downloadVisible": 0,
+    "editVisible": 1,
+    "shareVisible": 1
+  },
+  {
+    "name": "owner-share-fields",
+    "at": "2026-11-14T17:36:31.451Z",
+    "result": "PASS",
+    "featuredVisible": 0
+  },
+  {
+    "name": "owner-download-after-extractable",
+    "at": "2026-11-14T17:36:51.077Z",
+    "result": "PASS",
+    "downloadVisible": 1
+  },
+  {
+    "name": "owner-edit-persisted",
+    "at": "2026-11-14T17:37:14.883Z",
+    "result": "PASS",
+    "rows": [
+      {
+        "id": "3bd6ff40-673b-43dc-87cc-a5fbf40926c3",
+        "name": "qa-iso1666-owner-ready",
+        "displaytext": "ISO-01 common policy verified",
+        "checksum": "dffbe7de95af7b3334cdcf850d84de7705111d93c31bc748694fc711fd3925c8ff8e82889bed0ce385f0fc1f7721be5cac9569c6dd7879ded82dc943d824a7ba",
+        "account": "qa-iso1666-owner",
+        "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+        "isready": true,
+        "bootable": false,
+        "isextractable": true,
+        "ispublic": false,
+        "isfeatured": false,
+        "status": "Successfully Installed",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": [
+          {
+            "downloadState": "DOWNLOADED",
+            "datastore": "Secondary Storage",
+            "downloadPercent": "100"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "owner-ready-zone-actions",
+    "at": "2026-11-14T17:37:38.437Z",
+    "result": "PASS",
+    "copyEnabled": true,
+    "vmEnabled": false,
+    "deleteEnabled": true,
+    "copyExecution": "NOT_RUN_SINGLE_ZONE"
+  },
+  {
+    "name": "owner-ready-selection",
+    "at": "2026-11-14T17:37:52.510Z",
+    "result": "PASS",
+    "bulkVisible": 1
+  },
+  {
+    "name": "owner-failure-bulk-delete",
+    "at": "2026-11-14T17:38:36.262Z",
+    "result": "PASS",
+    "id": "eb92700e-fe90-4495-884c-85ad7a5df23d",
+    "failureIsoLinkCount": 0,
+    "remainingOwnedIso": "qa-iso1666-owner-ready",
+    "navigationObservation": "Existing completion navigation reached dashboard; follow-up ISO-03"
+  },
+  {
+    "name": "owner-role-changed-readonly",
+    "at": "2026-11-14T17:39:53.188Z",
+    "role": "Read-Only User - Default",
+    "roleid": "60f61c91-bd56-11f1-b573-002481560363"
+  },
+  {
+    "name": "readonly-owned-list",
+    "at": "2026-11-14T17:40:48.638Z",
+    "result": "PASS",
+    "registerVisible": 0,
+    "uploadVisible": 0
+  },
+  {
+    "name": "readonly-owned-detail-zone",
+    "at": "2026-11-14T17:41:14.323Z",
+    "result": "PASS",
+    "detailActions": 0,
+    "vmButtons": 0,
+    "deleteButtons": 0,
+    "checkboxes": 0,
+    "copyEnabled": false
+  },
+  {
+    "name": "admin-system-iso-guards",
+    "at": "2026-11-14T17:42:45.259Z",
+    "result": "PASS",
+    "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+    "detailActions": 0,
+    "copyButtons": 0,
+    "deleteButtons": 0,
+    "checkboxes": 0
+  },
+  {
+    "name": "ready-bootable-vm-wizard",
+    "at": "2026-11-14T17:43:31.869Z",
+    "result": "PASS",
+    "url": "http://10.10.13.10:8080/client/#/action/deployVirtualMachine?isoid=7a3959a8-a533-4bd9-a009-6bce3efe61d9&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&oscategoryid=471cf348-bd56-11f1-b573-002481560363",
+    "selectedIso": "Windows Server 2025 x86_64 DVD",
+    "vmCreated": false
+  },
+  {
+    "name": "ready-without-store-details-list",
+    "at": "2026-11-14T17:46:07.925Z",
+    "result": "PASS",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "name": "vmware-tools.iso",
+        "isready": true,
+        "status": "Processing",
+        "downloaddetails": []
+      }
+    ]
+  },
+  {
+    "name": "existing-system-tools-detail-read",
+    "at": "2026-11-14T17:46:15.629Z",
+    "result": "NOT_RUN",
+    "responses": [
+      {
+        "request": {
+          "id": null,
+          "showunique": "true",
+          "isofilter": "all"
+        },
+        "count": 10,
+        "ids": [
+          "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+          "98432634-54c7-485f-aa24-e6e2cea40980",
+          "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+          "192d3383-74a4-4969-8f37-5af00aa90b95",
+          "5836b8f6-9336-4766-8f77-e39218f6e826",
+          "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+          "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+          "367c88cb-4947-452f-9429-54a19885adf4",
+          "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+          "3bd6ff40-673b-43dc-87cc-a5fbf40926c3"
+        ]
+      }
+    ],
+    "url": "http://10.10.13.10:8080/client/#/iso",
+    "note": "No detail API request was observed after the click; no backend defect inferred."
+  },
+  {
+    "name": "optional-fields-ui-scope",
+    "at": "2026-11-14T17:47:20.431Z",
+    "result": "PASS_LIST_ONLY",
+    "note": "vmware-tools Ready=true with empty stores is correctly Ready in the actual list; detail fallback is covered by the common model test."
+  },
+  {
+    "name": "uuid-root-admin-owned-other",
+    "at": "2026-11-14T17:47:57.568Z",
+    "result": "PASS",
+    "rootDomain": "47178e2f-bd56-11f1-b573-002481560363",
+    "targetOwner": "qa-iso1666-owner",
+    "extractable": false,
+    "downloadVisible": 1
+  },
+  {
+    "name": "admin-ready-iso-deleted",
+    "at": "2026-11-14T17:48:53.506Z",
+    "result": "PASS",
+    "remainingQaIso": "qa-iso1666-expiry"
+  },
+  {
+    "name": "expiry-before-timeout-raw",
+    "at": "2026-11-14T17:48:54.235Z",
+    "rows": [
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": []
+      }
+    ]
+  },
+  {
+    "name": "account-cleanup",
+    "at": "2026-11-14T17:50:32.364Z",
+    "result": "PASS",
+    "accounts": [
+      {
+        "id": "6fb7f5cb-bd56-11f1-b573-002481560363",
+        "name": "admin"
+      },
+      {
+        "id": "030e6e48-30c3-4b2e-b926-20ed7a275e97",
+        "name": "baremetal-system-account"
+      },
+      {
+        "id": "8762c972-0820-4967-aabd-1c0ac719c7dc",
+        "name": "epic898-config-denied-1791388603"
+      }
+    ]
+  },
+  {
+    "name": "role-cleanup",
+    "at": "2026-11-14T17:51:01.276Z",
+    "result": "PASS",
+    "roles": [
+      {
+        "id": "5da3668a-bd56-11f1-b573-002481560363",
+        "name": "Root Admin"
+      },
+      {
+        "id": "5da3706e-bd56-11f1-b573-002481560363",
+        "name": "Resource Admin"
+      },
+      {
+        "id": "5da377cd-bd56-11f1-b573-002481560363",
+        "name": "Domain Admin"
+      },
+      {
+        "id": "5da37de6-bd56-11f1-b573-002481560363",
+        "name": "User"
+      },
+      {
+        "id": "60f6159f-bd56-11f1-b573-002481560363",
+        "name": "Read-Only Admin - Default"
+      },
+      {
+        "id": "60f61c91-bd56-11f1-b573-002481560363",
+        "name": "Read-Only User - Default"
+      },
+      {
+        "id": "60f623a9-bd56-11f1-b573-002481560363",
+        "name": "Support Admin - Default"
+      },
+      {
+        "id": "60f62932-bd56-11f1-b573-002481560363",
+        "name": "Support User - Default"
+      },
+      {
+        "id": "ed343b96-45d7-44be-aeea-59087fe25d1b",
+        "name": "Project Kubernetes Service Role"
+      }
+    ]
+  },
+  {
+    "name": "userdata-cleanup",
+    "at": "2026-11-14T17:53:05.120Z",
+    "result": "PASS",
+    "remaining": 0
+  },
+  {
+    "name": "normal-expiry-abandoned-list",
+    "at": "2026-11-14T17:56:55.613Z",
+    "result": "PASS",
+    "rows": [
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": []
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": []
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": []
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": []
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": []
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": [
+          {
+            "downloadState": "ABANDONED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": [
+          {
+            "downloadState": "ABANDONED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": [
+          {
+            "downloadState": "ABANDONED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": [
+          {
+            "downloadState": "ABANDONED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      },
+      {
+        "id": "2a87d32b-1343-47bd-b4ab-1777a5084ed8",
+        "name": "qa-iso1666-expiry",
+        "isready": false,
+        "status": "Processing",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "downloaddetails": [
+          {
+            "downloadState": "ABANDONED",
+            "datastore": "Secondary Storage",
+            "datastoreRole": "Image",
+            "downloadPercent": "0",
+            "datastoreId": "b1de4e9b-1e3b-4b54-950c-27ea5f2740c2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "normal-expiry-abandoned-detail-zone",
+    "at": "2026-11-14T17:57:11.689Z",
+    "result": "PASS",
+    "detailActions": 0,
+    "deleteEnabled": true,
+    "copyEnabled": false,
+    "vmEnabled": false,
+    "inspectButton": "Zone selected"
+  },
+  {
+    "name": "final-ui-cleanup",
+    "at": "2026-11-14T17:58:30.306Z",
+    "result": "PASS",
+    "catalog": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "name": "vmware-tools.iso"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "name": "xs-tools.iso"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "name": "1.35.9-Kubernetes-Binaries-ISO"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "name": "1.36.5-Kubernetes-Binaries-ISO"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "name": "Rocky-10.0-x86_64-dvd1.iso"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "name": "Windows Server 2025 x86_64 DVD"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "name": "VirtIO Windows Driver 0.1.302"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "name": "ABLESTACK-Diplo-v4.2.1.iso"
+      }
+    ],
+    "accounts": [
+      {
+        "id": "6fb7f5cb-bd56-11f1-b573-002481560363",
+        "name": "admin"
+      },
+      {
+        "id": "030e6e48-30c3-4b2e-b926-20ed7a275e97",
+        "name": "baremetal-system-account"
+      },
+      {
+        "id": "8762c972-0820-4967-aabd-1c0ac719c7dc",
+        "name": "epic898-config-denied-1791388603"
+      }
+    ],
+    "roles": [
+      {
+        "id": "5da3668a-bd56-11f1-b573-002481560363",
+        "name": "Root Admin"
+      },
+      {
+        "id": "5da3706e-bd56-11f1-b573-002481560363",
+        "name": "Resource Admin"
+      },
+      {
+        "id": "5da377cd-bd56-11f1-b573-002481560363",
+        "name": "Domain Admin"
+      },
+      {
+        "id": "5da37de6-bd56-11f1-b573-002481560363",
+        "name": "User"
+      },
+      {
+        "id": "60f6159f-bd56-11f1-b573-002481560363",
+        "name": "Read-Only Admin - Default"
+      },
+      {
+        "id": "60f61c91-bd56-11f1-b573-002481560363",
+        "name": "Read-Only User - Default"
+      },
+      {
+        "id": "60f623a9-bd56-11f1-b573-002481560363",
+        "name": "Support Admin - Default"
+      },
+      {
+        "id": "60f62932-bd56-11f1-b573-002481560363",
+        "name": "Support User - Default"
+      },
+      {
+        "id": "ed343b96-45d7-44be-aeea-59087fe25d1b",
+        "name": "Project Kubernetes Service Role"
+      }
+    ],
+    "userdataCount": 0,
+    "qaResourcesRemaining": 0,
+    "activeApp": [
+      "js/app.d9ca2c50.js"
+    ]
+  }
+]

@@ -1,0 +1,382 @@
+[
+  {
+    "name": "baseline-vnf-list",
+    "at": "2026-11-15T20:05:56.009Z",
+    "count": 0
+  },
+  {
+    "name": "baseline-template-count",
+    "at": "2026-11-15T20:11:33.024Z",
+    "count": 48
+  },
+  {
+    "name": "qa-iso-vnf-sync-20261116-template",
+    "at": "2026-11-15T20:28:33.567Z",
+    "zone": "13-Zone",
+    "hypervisor": "KVM",
+    "format": "QCOW2",
+    "type": "VNF",
+    "os": "Other Linux (64-bit)",
+    "arch": "x86_64",
+    "passwordEnabled": false
+  },
+  {
+    "name": "fixture-template-ready",
+    "at": "2026-11-15T20:30:43.539Z",
+    "id": "646ee5d7-4278-40d6-b6b8-9e7d3463b8f8",
+    "type": "VNF",
+    "os": "Other Linux (64-bit)",
+    "hypervisor": "KVM",
+    "arch": "x86_64"
+  },
+  {
+    "name": "mgmt0",
+    "at": "2026-11-15T20:34:20.543Z",
+    "templateId": "646ee5d7-4278-40d6-b6b8-9e7d3463b8f8",
+    "deviceid": 0,
+    "required": true,
+    "management": true
+  },
+  {
+    "name": "fixture-access-methods-saved",
+    "at": "2026-11-15T20:37:45.831Z",
+    "methods": [
+      "console",
+      "http",
+      "https"
+    ]
+  },
+  {
+    "name": "baseline-vm-count",
+    "at": "2026-11-15T20:38:14.207Z",
+    "count": 103
+  },
+  {
+    "name": "qa-vnf16-host",
+    "at": "2026-11-15T20:44:40.499Z",
+    "startVm": false,
+    "configureManagementRules": false,
+    "compute": "1C1GB",
+    "network": "i1436-nic2-1111",
+    "managementNic": "mgmt0",
+    "boot": "BIOS/LEGACY"
+  },
+  {
+    "name": "minimal-offering-rejected",
+    "at": "2026-11-15T20:45:17.479Z",
+    "code": 431,
+    "message": "ALLOCATION_AGENT_UNAVAILABLE: no matching qualified pool and Agent; no legacy fallback is allowed",
+    "offering": "1C1GB"
+  },
+  {
+    "name": "fixture-vnf-created",
+    "at": "2026-11-15T20:45:58.718Z",
+    "id": "749f7be5-aa53-4991-890f-70108c4133c7",
+    "state": "Stopped",
+    "offering": "CKS Instance",
+    "cpu": 2,
+    "memoryMb": 2048
+  },
+  {
+    "name": "before-vnf-details",
+    "at": "2026-11-15T20:46:09.961Z",
+    "rawState": "Stopped",
+    "rawFalse": true,
+    "osTypeRowAbsent": true,
+    "deleteProtectionRowAbsent": true,
+    "bootRowsAbsent": true,
+    "layout": "label above value",
+    "notice": "old webpage list",
+    "vm": "749f7be5-aa53-4991-890f-70108c4133c7"
+  },
+  {
+    "name": "after-vnf-details",
+    "at": "2026-11-15T20:50:35.554Z",
+    "os": "Other Linux (64-bit)",
+    "hostname": "qa-vnf16-host",
+    "displayName": "qa-vnf16-host",
+    "state": "정지된 상태",
+    "dynamicScalable": "아니오",
+    "ha": "아니오",
+    "deleteProtection": "사용 안 함",
+    "accessConsole": "stopped notice",
+    "managementIp": "10.143.61.59",
+    "guestServicesTested": false
+  },
+  {
+    "name": "vnf-display-name-save",
+    "at": "2026-11-15T20:51:15.387Z",
+    "hostname": "qa-vnf16-host",
+    "displayName": "qa-vnf16-표시명-긴이름-상세항목과스타일보존검증-20261116",
+    "deleteProtection": true
+  },
+  {
+    "name": "theme-style",
+    "at": "2026-11-15T20:52:06.985Z",
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "labelsReadable": true,
+    "statusReadable": true,
+    "noticeReadable": true,
+    "longDisplayNameContained": true,
+    "sharedVmDetailsLayout": true
+  },
+  {
+    "name": "narrow-layout",
+    "at": "2026-11-15T20:52:27.839Z",
+    "windowWidth": 810,
+    "windowHeight": 975,
+    "stackedInfoCard": true,
+    "fullDisplayNameVisible": true,
+    "uuidContained": true,
+    "accessNoticeContained": true
+  },
+  {
+    "name": "vnf-iso-tab",
+    "at": "2026-11-15T20:52:44.846Z",
+    "emptyState": "이 가상머신에 연결된 ISO가 없습니다.",
+    "columns": [
+      "이름",
+      "장치 슬롯",
+      "미디어 속성",
+      "상태",
+      "작업"
+    ],
+    "protectedVm": true
+  },
+  {
+    "name": "vnf-metrics",
+    "at": "2026-11-15T20:52:50.371Z",
+    "stoppedVm": true,
+    "message": "선택된 기간에 표시할 데이터가 없습니다.",
+    "noPermissionError": true
+  },
+  {
+    "name": "vnf-nic",
+    "at": "2026-11-15T20:53:01.023Z",
+    "deviceId": 0,
+    "network": "i1436-nic2-1111",
+    "ip": "10.143.61.59",
+    "mac": "02:0d:00:d5:00:04",
+    "allocation": "할당됨",
+    "enabled": "사용 허용"
+  },
+  {
+    "name": "ROOT-261",
+    "at": "2026-11-15T20:53:11.251Z",
+    "id": "06d3318c-54a1-4bda-98c5-c6af0511fc33"
+  },
+  {
+    "name": "vnf-settings",
+    "at": "2026-11-15T20:53:35.215Z",
+    "rows": {
+      "deployvm": "true",
+      "rootDiskController": "osdefault",
+      "tpmversion": "NONE"
+    },
+    "readOnlyTpm": true
+  },
+  {
+    "name": "vm-standard-comparison",
+    "at": "2026-11-15T20:53:53.715Z",
+    "sameVm": "749f7be5-aa53-4991-890f-70108c4133c7",
+    "sharedInfoCard": true,
+    "sharedTabLayout": true,
+    "sharedValueTypography": true,
+    "hostAndDisplayLabelsMatch": true,
+    "protectionDisabledDestructionInVnfMenu": true
+  },
+  {
+    "name": "vnf-protection-roundtrip",
+    "at": "2026-11-15T20:54:32.420Z",
+    "enabledLabel": "사용 (삭제 차단)",
+    "disabledLabel": "사용 안 함",
+    "destroyDisabledWhileProtected": true
+  },
+  {
+    "name": "vm-cleanup-server-success",
+    "at": "2026-11-15T20:55:16.186Z",
+    "vm": "749f7be5-aa53-4991-890f-70108c4133c7",
+    "volume": "06d3318c-54a1-4bda-98c5-c6af0511fc33",
+    "expunge": true,
+    "event": "VM.DESTROY success and VOLUME.DESTROY success",
+    "vmTotal": 103
+  },
+  {
+    "name": "template-vm-references-after-expunge",
+    "at": "2026-11-15T20:56:06.231Z",
+    "count": 0,
+    "templateId": "646ee5d7-4278-40d6-b6b8-9e7d3463b8f8"
+  },
+  {
+    "name": "template-cleanup-server-success",
+    "at": "2026-11-15T20:57:11.390Z",
+    "id": "646ee5d7-4278-40d6-b6b8-9e7d3463b8f8",
+    "zone": "13-Zone",
+    "force": false,
+    "success": 1,
+    "failed": 0,
+    "unknown": 0
+  },
+  {
+    "name": "template-cleanup-list-zero",
+    "at": "2026-11-15T20:57:34.876Z",
+    "query": "qa-iso-vnf-sync-20261116",
+    "count": 0
+  },
+  {
+    "name": "template-total-restored",
+    "at": "2026-11-15T20:57:54.630Z",
+    "count": 48
+  },
+  {
+    "name": "iso-list-preserved",
+    "at": "2026-11-15T20:58:15.900Z",
+    "count": 8,
+    "items": [
+      {
+        "name": "vmware-tools.iso",
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a"
+      },
+      {
+        "name": "xs-tools.iso",
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980"
+      },
+      {
+        "name": "1.35.9-Kubernetes-Binaries-ISO",
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0"
+      },
+      {
+        "name": "1.36.5-Kubernetes-Binaries-ISO",
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95"
+      },
+      {
+        "name": "Rocky-10.0-x86_64-dvd1.iso",
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826"
+      },
+      {
+        "name": "Windows Server 2025 x86_64 DVD",
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9"
+      },
+      {
+        "name": "VirtIO Windows Driver 0.1.302",
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4"
+      },
+      {
+        "name": "ABLESTACK-Diplo-v4.2.1.iso",
+        "id": "367c88cb-4947-452f-9429-54a19885adf4"
+      }
+    ],
+    "namePrimaryWidth": true,
+    "secondaryEllipsis": true,
+    "unrequestedExplanationAbsent": true
+  },
+  {
+    "name": "Rocky-10.0-x86_64-dvd1.iso",
+    "at": "2026-11-15T20:58:39.721Z",
+    "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+    "os": "Rocky Linux 9",
+    "size": "7.13 GiB",
+    "arch": "x86_64",
+    "bootable": "예",
+    "public": "아니오",
+    "idCopyVisible": true,
+    "tabs": [
+      "상세",
+      "Zone",
+      "이벤트",
+      "코멘트"
+    ]
+  },
+  {
+    "name": "iso-edit-dialog-preserved",
+    "at": "2026-11-15T20:58:51.369Z",
+    "bootable": true,
+    "passwordEnabled": false,
+    "dynamicallyScalable": false,
+    "arch": "Intel/AMD 64 bits (x86_64)",
+    "os": "Rocky Linux 9",
+    "userData": "설정 안함",
+    "saved": false
+  },
+  {
+    "name": "iso-zone-preserved",
+    "at": "2026-11-15T21:00:00.735Z",
+    "zone": "13-Zone",
+    "ready": "예",
+    "state": "사용 가능",
+    "storage": "Secondary Storage",
+    "download": "다운로드 완료",
+    "darkContrastReadable": true
+  },
+  {
+    "name": "iso-copy-dialog-preserved",
+    "at": "2026-11-15T21:00:08.578Z",
+    "source": "13-Zone",
+    "noDestination": true,
+    "submitDisabled": true,
+    "multiZoneKept": true,
+    "submitted": false
+  },
+  {
+    "name": "iso-search-breadcrumb",
+    "at": "2026-11-15T21:00:26.722Z",
+    "keyword": "Rocky",
+    "count": 1,
+    "page": 1,
+    "pageSize": 20,
+    "restored": true
+  },
+  {
+    "name": "network-preserved",
+    "at": "2026-11-15T21:00:51.716Z",
+    "networkCount": 8,
+    "usedNetwork": "i1436-nic2-1111",
+    "state": "구현 완료",
+    "cidr": "10.143.61.0/24",
+    "networkDeleted": false
+  },
+  {
+    "name": "vnf-cleanup-list-zero",
+    "at": "2026-11-15T21:00:59.409Z",
+    "count": 0
+  },
+  {
+    "name": "ROOT-261",
+    "at": "2026-11-15T21:01:35.324Z",
+    "id": "06d3318c-54a1-4bda-98c5-c6af0511fc33",
+    "count": 0
+  },
+  {
+    "name": "cleanup-complete",
+    "at": "2026-11-15T21:02:11.189Z",
+    "vnfCount": 0,
+    "vmCount": 103,
+    "templateCount": 48,
+    "isoCount": 8,
+    "networkCount": 8,
+    "fixtureHttpStatus": 404,
+    "remainingTestVms": 0,
+    "remainingTestVolumes": 0,
+    "remainingTestTemplates": 0
+  },
+  {
+    "name": "final-ui",
+    "at": "2026-11-15T21:02:47.575Z",
+    "theme": "dark",
+    "isoCount": 8,
+    "dialogsClosed": true,
+    "remainingTestResources": 0
+  },
+  {
+    "name": "browser-restored",
+    "at": "2026-11-15T21:03:06.426Z",
+    "darkTheme": true,
+    "bookmarksRestored": true,
+    "windowRestored": true,
+    "screen": "ISO list",
+    "testResourcesRemoved": true
+  }
+]

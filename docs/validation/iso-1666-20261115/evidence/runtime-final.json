@@ -1,0 +1,13 @@
+{
+  "uiAssetsVerified": 11,
+  "unrelatedAssetsPreserved": 7028,
+  "indexSha256": "a7e5f8fb51b197fdbaf596e13c36f59933f43649f42989b854d783d0f7f7ac72",
+  "moldPid": "2473572",
+  "moldPidPreserved": true,
+  "backendJarPreserved": true,
+  "protectedConfigPreserved": true,
+  "colorLessPreserved": true,
+  "fixtureHttpStatus": 404,
+  "fixtureRemoved": true,
+  "rollbackBackup": "/var/tmp/iso1666-20261115-ui-backup-g4d1deri"
+}

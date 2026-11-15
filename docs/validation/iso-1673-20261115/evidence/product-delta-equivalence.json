@@ -1,0 +1,17 @@
+{
+  "deployedProductHead": "f72df22acb72b396981c2088262abfc7169275af",
+  "rebasedProductHead": "6079c143872c93496418a33883589fe9c0370566",
+  "base": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+  "comparison": "net added/removed source lines, whitespace normalized; not complete-file or complete-runtime equality",
+  "runtimeProductFiles": {
+    "ui/src/config/router.js": true,
+    "ui/src/config/section/compute.js": true,
+    "ui/src/store/modules/permission.js": true,
+    "ui/src/utils/vmRead.js": true,
+    "ui/src/views/AutogenView.vue": true,
+    "ui/src/views/compute/InstanceTab.vue": true
+  },
+  "runtimeProductDeltaEquivalent": true,
+  "testOnlyAdaptation": "read-wrapper independent command, payload and no-forbidden-call assertions",
+  "redeployRequiredByRebase": false
+}
