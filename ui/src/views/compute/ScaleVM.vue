@@ -86,6 +86,8 @@ import ComputeSelection from '@views/compute/wizard/ComputeSelection'
 import DiskSizeSelection from '@views/compute/wizard/DiskSizeSelection'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
+import { vmDisplayName } from '@/utils/vmIdentity'
+
 export default {
   name: 'ScaleVM',
   components: {
@@ -260,13 +262,14 @@ export default {
         delete this.params[this.cpuSpeedKey]
       }
 
+      const resourceName = vmDisplayName(this.resource)
       postAPI('scaleVirtualMachine', this.params).then(response => {
         const jobId = response.scalevirtualmachineresponse.jobid
         if (jobId) {
           this.$pollJob({
             jobId,
             title: this.$t('label.scale.vm'),
-            description: this.resource.name,
+            description: resourceName,
             successMethod: result => {
               this.$notification.success({
                 message: this.$t('message.success.change.offering')

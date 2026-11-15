@@ -118,6 +118,8 @@ import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
+import { vmDisplayName } from '@/utils/vmIdentity'
+
 export default {
   name: 'StartVirtualMachine',
   components: {
@@ -247,15 +249,16 @@ export default {
             params[key] = values[key]
           }
         }
+        const resourceName = vmDisplayName(this.resource)
         postAPI('startVirtualMachine', params).then(json => {
           const jobId = json.startvirtualmachineresponse.jobid
           this.$pollJob({
             jobId,
             title: this.$t('label.action.start.instance'),
-            description: this.resource.name,
-            loadingMessage: `${this.$t('label.action.start.instance')} ${this.resource.name}`,
+            description: resourceName,
+            loadingMessage: `${this.$t('label.action.start.instance')} ${resourceName}`,
             catchMessage: this.$t('error.fetching.async.job.result'),
-            successMessage: `${this.$t('label.action.start.instance')} ${this.resource.name}`,
+            successMessage: `${this.$t('label.action.start.instance')} ${resourceName}`,
             response: (result) => { return result.virtualmachine && result.virtualmachine.password ? `The password of VM <b>${result.virtualmachine.displayname}</b> is <b>${result.virtualmachine.password}</b>` : null }
           })
           this.closeAction()
