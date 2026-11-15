@@ -148,3 +148,14 @@ test.each(['iso', 'template'])('availability renders diagnostics under its own p
   if (kind === 'iso') { expect(wrapper.text()).not.toContain('DOWNLOAD_ERROR'); expect(wrapper.text()).toContain('label.template.store.failed'); expect(wrapper.find('.template-availability__reason').attributes('title')).toContain('DOWNLOAD_ERROR') } else expect(wrapper.text()).toContain('DOWNLOAD_ERROR')
   wrapper.unmount()
 })
+
+test('GET-only recovery clears stale observation errors without repeating deletion', async () => {
+  const normalGet = getAPI.getMockImplementation(); const normalPost = postAPI.getMockImplementation(); let mutated = false; let failOnce = true
+  getAPI.mockImplementation(async (...args) => { if (mutated && args[0] === 'listIsos' && failOnce) { failOnce = false; throw new Error('old observation error') } return normalGet(...args) })
+  postAPI.mockImplementation(async (...args) => { mutated = true; return normalPost(...args) })
+  await c.open('delete', [a]); await c.submit()
+  expect(c.rows[0]).toMatchObject({ operationState: 'unknown', jobComplete: true, error: 'old observation error' })
+  await c.observeUnknown()
+  expect(c.rows[0]).toMatchObject({ operationState: 'success', verifiedGone: true, error: '' })
+  expect(postAPI).toHaveBeenCalledTimes(1)
+})

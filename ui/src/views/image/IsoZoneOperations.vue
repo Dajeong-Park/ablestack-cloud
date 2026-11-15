@@ -149,6 +149,7 @@ export default {
         while (this.current(epoch)) {
           const d = (await getAPI('queryAsyncJobResult', { jobid: row.jobid }, { preserveOnFailure: true, timeout: 10000 })).queryasyncjobresultresponse
           if (!this.current(epoch)) return
+          if ([0, 1, 2].includes(d?.jobstatus)) row.error = ''
           if (d?.jobstatus === 2) { row.operationState = 'failed'; row.jobComplete = true; row.retryable = true; row.error = this.errorText({ message: d.jobresult?.errortext }); return }
           if (d?.jobstatus === 1) { row.jobComplete = true; await this.observeResult(row, epoch); return }
           if (!d || ![0, 1, 2].includes(d.jobstatus)) throw new Error(this.$t('error.fetching.data'))
@@ -163,6 +164,7 @@ export default {
       try {
         while (this.current(epoch)) {
           const fresh = await this.read(epoch); if (!this.current(epoch)) return
+          row.error = ''
           if (this.kind === 'delete') { if (!fresh.some(r => r.zoneid === row.zoneid)) { row.operationState = 'success'; row.verifiedGone = true; return } row.operationState = 'unknown' } else {
             row.operationState = isoCopyResult(fresh, row.id, row.zoneid)
             if (['success', 'failed'].includes(row.operationState)) return
