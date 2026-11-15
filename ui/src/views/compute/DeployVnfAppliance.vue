@@ -1574,6 +1574,17 @@ export default {
   methods: {
     pollVnfDeployment (jobId, title, description, notice, key) {
       let shown = false
+      let closed = false
+      let timer
+      const finishClose = () => {
+        if (closed) return
+        closed = true
+        clearTimeout(timer)
+        this.$notification.defaultConfig.onClose()
+        notice.release()
+      }
+      const close = () => { if (shown && !closed) { this.$notification.close(key); finishClose() } }
+      notice.close = close
       return Promise.resolve(this.$pollJob({
         jobId,
         title,
@@ -1586,11 +1597,13 @@ export default {
               key,
               placement: 'bottomRight',
               duration: 10,
+              onClose: finishClose,
               message: `${this.$t('message.vnf.credentials.default')} ${vmDisplayName(vm)} (${vm.id})`,
-              description: h(VnfCredentials, { rows })
+              description: h(VnfCredentials, { rows, onClose: close })
             })
             shown = true
-            setTimeout(() => notice.release(), 11000)
+            // Notification hover pauses its own timer. Credentials have a hard lifetime.
+            timer = setTimeout(close, 10000)
           }
           if (notice.current()) eventBus.emit('vm-refresh-data')
         },
@@ -2406,15 +2419,12 @@ export default {
         }
         idx = this.addVnfDetailsToDeployParams(createVnfAppData, idx, userdataDetailNames)
 
-        let credentialKey
-        const notice = vnfDeploymentNotice(this.$store, this.template, createVnfAppData, () => {
-          if (credentialKey) this.$notification.close(credentialKey)
-        })
+        const notice = vnfDeploymentNotice(this.$store, this.template, createVnfAppData, () => notice.close?.())
         postAPI('deployVnfAppliance', createVnfAppData).then(response => {
           if (!notice.current()) { notice.release(); return }
           const jobId = response.deployvirtualmachineresponse.jobid
           if (jobId) {
-            credentialKey = `vnf-credentials-${jobId}`
+            const credentialKey = `vnf-credentials-${jobId}`
             this.pollVnfDeployment(jobId, title, description, notice, credentialKey)
           } else notice.release()
           // Sending a refresh in case it hasn't picked up the new VM

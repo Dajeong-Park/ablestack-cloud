@@ -24,9 +24,9 @@ jest.mock('@/store', () => ({ getters: { apis: {}, userInfo: {}, project: {} } }
 function subject (passwordenabled = false) {
   const store = createStore({ state: { user: { token: 'old' }, project: {}, info: { id: 'actor', roleid: 'admin' } }, getters: { userInfo: s => s.info, project: s => s.project, apis: () => ({ deployVnfAppliance: {} }) } })
   let finish
-  const c = { $route: { path: '/vnfapp' }, form: { templateid: 'a' }, $t: key => key, $notification: { success: jest.fn(), close: jest.fn() }, $pollJob: jest.fn(options => { c.job = options; return new Promise(resolve => { finish = resolve }) }) }
+  const c = { $route: { path: '/vnfapp' }, form: { templateid: 'a' }, $t: key => key, $notification: { defaultConfig: { onClose: jest.fn() }, success: jest.fn(), close: jest.fn() }, $pollJob: jest.fn(options => { c.job = options; return new Promise(resolve => { finish = resolve }) }) }
   const template = { id: 'a', passwordenabled }
-  const notice = vnfDeploymentNotice(store, template, { templateid: 'a' }, () => c.$notification.close('notice'))
+  const notice = vnfDeploymentNotice(store, template, { templateid: 'a' }, () => notice.close?.())
   const pending = Wizard.methods.pollVnfDeployment.call(c, 'job', 'Deploy VNF', 'displayname', notice, 'notice')
   const complete = vm => { const result = { jobstatus: 1, jobinstanceid: 'vm', jobresult: { virtualmachine: { id: 'vm', templateid: 'a', displayname: '<b>label</b>', passwordenabled, ...vm } } }; c.job.successMethod(result); finish(result); return pending }
   return { c, store, template, notice, complete }
@@ -41,12 +41,23 @@ test('accepted job uses common completion tracking and empty credentials never c
   expect(c.$notification.success).not.toHaveBeenCalled(); expect(notice.current()).toBe(false)
 })
 test('username-only notice is finite, has the actual VM identity and no secret/change hint', async () => {
-  const { c, complete } = subject()
+  const { c, notice, complete } = subject()
   await complete({ password: 'not-allowed', vnfdetails: { username: '<svg>user</svg>', password: 'not-allowed' } })
   const config = c.$notification.success.mock.calls[0][0]
   expect(config.duration).toBe(10); expect(config.placement).toBe('bottomRight')
   expect(config.message).toContain('(vm)'); expect(config.description.type).toBe(VnfCredentials)
   expect(config.description.props.rows).toHaveLength(1); expect(config.description.props.rows[0].secret).toBe(false)
+  jest.advanceTimersByTime(10000)
+  expect(c.$notification.close).toHaveBeenCalledWith('notice'); expect(notice.current()).toBe(false)
+  config.onClose(); expect(c.$notification.defaultConfig.onClose).toHaveBeenCalledTimes(1)
+})
+test('explicit close only closes this job notice and releases its security observer', async () => {
+  const { c, notice, complete } = subject()
+  await complete({ vnfdetails: { username: 'user' } })
+  c.$notification.success.mock.calls[0][0].description.props.onClose()
+  expect(c.$notification.close.mock.calls).toEqual([['notice']]); expect(notice.current()).toBe(false)
+  jest.runOnlyPendingTimers(); expect(c.$notification.close).toHaveBeenCalledTimes(1)
+  expect(c.$notification.defaultConfig.onClose).toHaveBeenCalledTimes(1)
 })
 test('frozen enabled policy displays only the completed VM response values; security switch closes it', async () => {
   const { c, store, template, notice, complete } = subject(true)

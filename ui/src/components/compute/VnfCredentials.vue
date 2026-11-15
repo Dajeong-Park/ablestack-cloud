@@ -17,16 +17,19 @@ specific language governing permissions and limitations
 under the License.
 -->
 <template>
-  <div class="vnf-credentials" tabindex="0" role="note">
-    <dl><template v-for="row in rows" :key="row.key"><dt>{{ row.prefix }}{{ $t(row.label) }}</dt><dd>{{ row.value }}</dd></template></dl>
+  <div class="vnf-credentials">
+    <div class="vnf-credential-values" tabindex="0" role="note">
+      <dl><template v-for="row in rows" :key="row.key"><dt>{{ row.prefix }}{{ $t(row.label) }}</dt><dd>{{ row.value }}</dd></template></dl>
+    </div>
     <p v-if="rows.some(row => row.secret)">{{ $t('message.vnf.credentials.change') }}</p>
+    <button type="button" class="ant-btn ant-btn-sm" @click="$emit('close')">{{ $t('label.close') }}</button>
   </div>
 </template>
 <script>
-export default { name: 'VnfCredentials', props: { rows: { type: Array, required: true } } }
+export default { name: 'VnfCredentials', props: { rows: { type: Array, required: true } }, emits: ['close'] }
 </script>
 <style scoped>
-.vnf-credentials { max-height: min(40vh, 320px); overflow: auto; overflow-wrap: anywhere; }
+.vnf-credential-values { max-height: min(30vh, 280px); overflow: auto; overflow-wrap: anywhere; }
 .vnf-credentials dt { font-weight: 600; }
 .vnf-credentials dd { margin: 0 0 8px; }
 </style>

@@ -35,6 +35,8 @@ test('credential values render as text and only actual secrets request a passwor
   const attack = '<svg onload=alert(1)>'
   const w = mount(VnfCredentials, { props: { rows: [{ key: 'user', prefix: '', label: 'label.username', value: attack, secret: false }] }, global: mounting })
   expect(w.text()).toContain(attack); expect(w.find('svg').exists()).toBe(false); expect(w.find('p').exists()).toBe(false)
+  expect(w.find('button').attributes('type')).toBe('button')
+  await w.find('button').trigger('click'); expect(w.emitted('close')).toHaveLength(1)
   await w.setProps({ rows: [{ key: 'password', prefix: '', label: 'label.password', value: attack, secret: true }] })
   expect(w.find('p').text()).toContain('message.vnf.credentials.change'); expect(w.find('svg').exists()).toBe(false)
 })
