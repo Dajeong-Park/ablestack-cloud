@@ -16,12 +16,14 @@
 // under the License.
 
 import { getAPI } from '@/api'
-import { vnfReinstallReason, vnfReinstallTemplateReason, vnfNicIdentity, vnfReinstallPayload, readVnfReinstallTarget, readVnfReinstallTemplates, readVnfReinstallRoot, readVnfReinstallJobs } from '@/utils/vnfReinstall'
+import compute from '@/config/section/compute'
+import network from '@/config/section/network'
+import { vnfReinstallJobs, vnfReinstallReason, vnfReinstallTemplateReason, vnfNicIdentity, vnfReinstallPayload, readVnfReinstallTarget, readVnfReinstallTemplates, readVnfReinstallRoot, readVnfReinstallJobs } from '@/utils/vnfReinstall'
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
 const apis = Object.fromEntries(['restoreVirtualMachine', 'listVirtualMachines', 'listVnfTemplates', 'listVolumes', 'listAsyncJobs', 'queryAsyncJobResult'].map(k => [k, {}]))
 const vm = () => ({ id: 'vm', templateid: 'a', templatetype: 'VNF', state: 'Stopped', zoneid: 'zone', hypervisor: 'KVM', arch: 'x86_64', account: 'owner', domainid: 'domain', nic: [0, 1].map(n => ({ id: 'nic' + n, deviceid: n, networkid: 'net' + n, isdefault: n === 0, macaddress: 'mac' + n, ipaddress: '10.0.0.' + (n + 2) })) })
 const template = () => ({ id: 'a', templatetype: 'VNF', format: 'QCOW2', isready: true, zoneid: 'zone', hypervisor: 'KVM', arch: 'x86_64', vnfnics: [0, 1].map(n => ({ deviceid: n, required: true, management: n === 0 })) })
-beforeEach(() => getAPI.mockReset())
+beforeEach(() => { getAPI.mockReset(); vnfReinstallJobs.clear() })
 test.each(Object.keys(apis))('missing %s permission blocks the workflow', name => { const a = { ...apis }; delete a[name]; expect(vnfReinstallReason(vm(), a)).toBe('message.vnf.reinstall.permission') })
 test.each([{ state: 'Destroyed' }, { hostcontrolstate: 'Offline' }, { clonefastphase: 'source_preparing' }, { activebackupstatus: 'BackingUp' }])('busy target is blocked: %j', patch => expect(vnfReinstallReason({ ...vm(), ...patch }, apis)).toBe('message.vnf.reinstall.vm.busy'))
 test.each(['USER', 'SYSTEM', 'ROUTING'])('non-VNF %s target cannot use this workflow', templatetype => expect(vnfReinstallReason({ ...vm(), templatetype }, apis)).toBeTruthy())
@@ -70,4 +72,25 @@ test('one current root is required; mismatched/deleted/unknown roots are not gue
 test('job reconciliation is scoped to the exact VM and records incomplete coverage', async () => {
   getAPI.mockResolvedValue({ listasyncjobsresponse: { count: 501, asyncjobs: [{ jobid: 'old', jobstatus: 1 }] } }); expect((await readVnfReinstallJobs(vm())).complete).toBe(false)
   expect(getAPI.mock.calls[0][1]).toMatchObject({ resourceid: 'vm', resourcetype: 'VirtualMachine', includecompleted: true })
+})
+
+test.each([['vm', compute, 'vm'], ['vnfapp', network, 'vnfapp']])('%s retains a tracking entry through VM intermediate states without changing ordinary VM action rules', (name, section, child) => {
+  const action = section.children.find(c => c.name === child).actions.find(a => a.api === 'restoreVirtualMachine')
+  for (const state of ['Stopping', 'Starting', 'Error']) {
+    const v = { ...vm(), state, hostcontrolstate: 'Offline' }
+    expect(action.show(v)).toBe(false)
+    vnfReinstallJobs.set(v.id, { phase: 'accepted', jobid: 'existing-job' })
+    expect(action.show(v)).toBe(true); expect(action.disabled(v, { apis: {} }, [])).toBe(false)
+    expect(vnfReinstallReason(v, apis)).toBe('message.vnf.reinstall.vm.busy')
+    const ordinary = { ...v, templatetype: 'USER' }
+    if (name === 'vm') {
+      expect(action.show(ordinary)).toBe(false)
+      ordinary.state = 'Running'; expect(action.show(ordinary)).toBe(true); expect(action.disabled(ordinary, { apis: {} }, [])).toBe(true)
+    }
+    vnfReinstallJobs.clear()
+  }
+})
+
+test.each([undefined, []])('missing NIC definitions %j are not treated as compatible', vnfnics => {
+  expect(vnfReinstallTemplateReason({ ...template(), vnfnics }, vm())).toBe('message.vnf.reinstall.nic.unknown')
 })

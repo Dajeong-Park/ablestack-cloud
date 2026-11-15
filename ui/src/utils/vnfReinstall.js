@@ -20,6 +20,7 @@ import { getFastClonePhase } from '@/utils/fastClone'
 
 // Only operation identity is retained across dialog/route changes, never credentials.
 export const vnfReinstallJobs = new Map()
+export const hasVnfReinstallJob = vm => vm?.templatetype === 'VNF' && vnfReinstallJobs.has(vm.id)
 const on = v => v === true || v === 'true'
 const enabled = v => v !== false && v !== 'false'
 const id = v => /^\d+$/.test(String(v)) && Number(v) <= 2147483647 ? Number(v) : null
@@ -39,8 +40,8 @@ export function vnfReinstallTemplateReason (template, vm) {
   if (template.zoneid !== vm.zoneid || template.hypervisor?.toLowerCase() !== vm.hypervisor?.toLowerCase() || template.arch !== vm.arch) return 'message.vnf.reinstall.template.platform'
   const nics = vm.nic
   if (!Array.isArray(nics) || !nics.length || nics.some(n => !n.id || !n.networkid || id(n.deviceid) === null) || new Set(nics.map(n => id(n.deviceid))).size !== nics.length) return 'message.vnf.reinstall.nic.unknown'
-  const definitions = template.vnfnics || []
-  if (!Array.isArray(definitions) || definitions.some(n => id(n.deviceid) === null) || new Set(definitions.map(n => id(n.deviceid))).size !== definitions.length) return 'message.vnf.reinstall.nic.unknown'
+  const definitions = template.vnfnics
+  if (!Array.isArray(definitions) || !definitions.length || definitions.some(n => id(n.deviceid) === null || ![true, false, 'true', 'false'].includes(n.required) || ![true, false, 'true', 'false'].includes(n.management)) || new Set(definitions.map(n => id(n.deviceid))).size !== definitions.length) return 'message.vnf.reinstall.nic.unknown'
   if (definitions.some(n => (on(n.required) || on(n.management)) && !nics.some(x => id(x.deviceid) === id(n.deviceid) && enabled(x.enabled)))) return 'message.vnf.reinstall.nic.missing'
   if (definitions.length && nics.some(n => !definitions.some(d => id(d.deviceid) === id(n.deviceid)))) return 'message.vnf.reinstall.nic.unmapped'
   return ''

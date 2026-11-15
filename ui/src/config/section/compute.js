@@ -16,6 +16,7 @@
 // under the License.
 
 import { shallowRef, defineAsyncComponent } from 'vue'
+import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
 import store from '@/store'
 import { getAblestackBackupOfferingRemovalMessage, isAblestackBackupProvider } from '@/utils/ablestackBackupPolicy'
 import { snapshotBusy, snapshotActionReason } from '@/utils/vmSnapshotActions'
@@ -314,8 +315,8 @@ export default {
           message: 'message.reinstall.vm',
           dataView: true,
           popup: true,
-          show: (record) => { return record.hypervisor !== 'External' && ['Running', 'Stopped'].includes(record.state) && record.vmtype !== 'sharedfsvm' },
-          disabled: (record, store, selectedItems) => { return record.hostcontrolstate === 'Offline' || disableDuringFastCloneFlatten(record, store, selectedItems) },
+          show: (record) => { return hasVnfReinstallJob(record) || (record.hypervisor !== 'External' && ['Running', 'Stopped'].includes(record.state) && record.vmtype !== 'sharedfsvm') },
+          disabled: (record, store, selectedItems) => { return !hasVnfReinstallJob(record) && (record.hostcontrolstate === 'Offline' || disableDuringFastCloneFlatten(record, store, selectedItems)) },
           tooltip: (record, store, selectedItems) => getFastCloneOperationTooltip(record, store, selectedItems, 'label.reinstall.vm'),
           component: shallowRef(defineAsyncComponent(() => import('@/views/compute/ReinstallVm.vue')))
         },

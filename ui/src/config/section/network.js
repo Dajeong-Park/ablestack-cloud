@@ -16,6 +16,7 @@
 // under the License.
 
 import { shallowRef, defineAsyncComponent } from 'vue'
+import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
 import store from '@/store'
 import tungsten from '@/assets/icons/tungsten.svg?inline'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
@@ -594,8 +595,8 @@ export default {
           dataView: true,
           popup: true,
           standardDialogSize: 'lg',
-          show: (record) => ['Running', 'Stopped'].includes(record.state),
-          disabled: (record) => record.hostcontrolstate === 'Offline',
+          show: (record) => hasVnfReinstallJob(record) || ['Running', 'Stopped'].includes(record.state),
+          disabled: (record) => !hasVnfReinstallJob(record) && record.hostcontrolstate === 'Offline',
           component: shallowRef(defineAsyncComponent(() => import('@/views/compute/VnfReinstall.vue')))
         },
         {
