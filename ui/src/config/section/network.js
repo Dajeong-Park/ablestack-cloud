@@ -591,35 +591,12 @@ export default {
           api: 'restoreVirtualMachine',
           icon: 'sync-outlined',
           label: 'label.vnf.app.action.reinstall',
-          message: 'message.reinstall.vm',
           dataView: true,
-          args: ['virtualmachineid', 'templateid'],
-          filters: (record) => {
-            var filters = {}
-            var filterParams = {}
-            filterParams.hypervisortype = record.hypervisor
-            filterParams.zoneid = record.zoneid
-            filters.templateid = filterParams
-            return filters
-          },
-          show: (record) => { return ['Running', 'Stopped'].includes(record.state) },
-          mapping: {
-            virtualmachineid: {
-              value: (record) => { return record.id }
-            }
-          },
-          disabled: (record) => { return record.hostcontrolstate === 'Offline' },
-          successMethod: (obj, result) => {
-            const vm = result.jobresult.virtualmachine || {}
-            if (result.jobstatus === 1 && vm.password) {
-              const name = vm.displayname || vm.name || vm.id
-              obj.$notification.success({
-                message: `${obj.$t('label.reinstall.vm')}: ` + name,
-                description: `${obj.$t('label.password.reset.confirm')}: ` + vm.password,
-                duration: 0
-              })
-            }
-          }
+          popup: true,
+          standardDialogSize: 'lg',
+          show: (record) => ['Running', 'Stopped'].includes(record.state),
+          disabled: (record) => record.hostcontrolstate === 'Offline',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/VnfReinstall.vue')))
         },
         {
           api: 'createVMSnapshot',
