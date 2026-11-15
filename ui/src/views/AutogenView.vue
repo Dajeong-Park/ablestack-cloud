@@ -196,7 +196,7 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || publicIpReservationDialog) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || publicIpStandardDialog) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
           :size="currentAction.standardDialogSize || (vmStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
@@ -211,7 +211,7 @@
           :confirmLoading="actionLoading"
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
-          :focus-guard="isVpcUi || vmStandardDialog || publicIpReservationDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
+          :focus-guard="isVpcUi || vmStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -229,9 +229,9 @@
             </a>
           </template>
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
-          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || publicIpReservationDialog) ? 1 : undefined">
+          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || publicIpStandardDialog) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || publicIpReservationDialog) ? storageActionGeneration : undefined"
+              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || publicIpStandardDialog) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -987,6 +987,7 @@ import SharedFSFormDialog from '@/components/storage/SharedFSFormDialog'
 import { Button } from 'ant-design-vue'
 import { getAPI, postAPI, callAPI } from '@/api'
 import { freshSnapshotContext } from '@/utils/vmSnapshotList'
+import { displayEditable, readPublicIpDetail } from '@/utils/publicIpDisplay'
 import { publicIpReadAuth, validatePublicIpDetail } from '@/utils/publicIpDetails'
 import { scopedSnapshotOperations, snapshotOperationAffectsRoute } from '@/utils/storageSnapshotNotices'
 import { snapshotSecurityScope as storageSnapshotSecurityScope } from '@/utils/storageSnapshotContext'
@@ -1472,6 +1473,7 @@ export default {
     publicIpDetail () { return this.$route.meta?.name === 'publicip' && !!this.$route.params?.id },
     publicIpAuth () { return this.publicIpDetail ? publicIpReadAuth(this.$store) : '' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
+    publicIpStandardDialog () { return this.$route.meta?.name === 'publicip' && ['reserveIpAddress', 'updateIpAddress'].includes(this.currentAction?.api) },
     standardActionDialog () { return this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
@@ -2394,7 +2396,7 @@ export default {
       const snapshotDetail = snapshotDetailRoute(this.$route)
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
-      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2665,7 +2667,7 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
-      const guardedDialog = this.vmStandardDialog || this.publicIpReservationDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -2841,6 +2843,14 @@ export default {
         const target = action.resource || this.resource
         const generation = this.storageActionGeneration
         this.currentAction = { ...action, component: markRaw(defineAsyncComponent(() => import('@/views/compute/VnfReinstall.vue'))), popup: true, standardDialogSize: 'lg', invokedAsGroupAction: false, vnfReinstallCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = target; this.showAction = true
+        return
+      }
+      if (this.$route.meta?.name === 'publicip' && action.api === 'updateIpAddress') {
+        const target = action.resource || this.resource
+        if (isGroupAction || !displayEditable(target, this.$store.getters)) return
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, standardDialogSize: 'md', invokedAsGroupAction: false, displayCurrent: () => this.showAction && generation === this.storageActionGeneration }
         this.resource = target; this.showAction = true
         return
       }

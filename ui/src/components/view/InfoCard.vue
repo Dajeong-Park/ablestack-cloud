@@ -750,7 +750,7 @@
               </div>
             </div>
             <template v-if="$route.meta.name === 'publicip'">
-              <div v-for="field in ['networkid', 'associatednetworkname', 'vpcname']" :key="field" class="resource-detail-item">
+              <div v-for="field in ['networkid', 'associatednetworkname', 'vpcname', 'fordisplay']" :key="field" class="resource-detail-item">
                 <div class="resource-detail-item__label">{{ $t(publicIpFieldLabel(field)) }}</div>
                 <div class="resource-detail-item__details"><PublicIpDetailValue :resource="resource" :field="field" compact /></div>
               </div>

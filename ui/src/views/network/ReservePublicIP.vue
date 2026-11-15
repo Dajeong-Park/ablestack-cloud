@@ -89,6 +89,13 @@
       </a-select>
     </a-form-item>
     <div v-if="candidatesReady && ((form.ownerType === 'project' && !projects.length) || (selectors && form.ownerType === 'account' && !accounts.length))" role="status">{{ $t('message.public.ip.reserve.empty') }}</div>
+    <a-collapse v-if="displaySupported" ghost class="reservation-notice">
+      <a-collapse-panel key="display" :header="$t('label.public.ip.display.options')">
+        <a-form-item name="fordisplay" :label="$t('label.public.ip.display')" :extra="$t('message.public.ip.display.help')">
+          <a-switch v-model:checked="form.fordisplay" :aria-label="$t('label.public.ip.display')" :disabled="locked" />
+        </a-form-item>
+      </a-collapse-panel>
+    </a-collapse>
     <mold-dialog-actions :busy="pending" @keydown.ctrl.enter.prevent="!$event.repeat && submitData()">
       <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
       <a-button type="primary" :loading="pending" :disabled="!canSubmit" @click="submitData">{{ $t('label.public.ip.reserve.confirm') }}</a-button>
@@ -100,6 +107,7 @@
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { networkCollection, networkError } from '@/utils/networkLifecycle'
+import { displayWriteSupported, displayBoolean } from '@/utils/publicIpDisplay'
 import { reservationScope, reservationParams, reservationMatches, reservationOperation, rememberReservation, forgetReservation } from '@/utils/publicIpReservation'
 
 export default {
@@ -109,7 +117,7 @@ export default {
   emits: ['close-action', 'refresh-data'],
   data () {
     return {
-      form: { ownerType: 'account', domainId: null, account: null, projectId: null },
+      form: { ownerType: 'account', domainId: null, account: null, projectId: null, fordisplay: true },
       domains: [],
       accounts: [],
       projects: [],
@@ -128,6 +136,7 @@ export default {
     }
   },
   computed: {
+    displaySupported () { return displayWriteSupported(this.$store.getters, 'reserveIpAddress') },
     user () { return this.$store.getters.userInfo || {} },
     selectors () { return ['Admin', 'DomainAdmin'].includes(this.user.roletype) },
     pinnedProject () { const id = this.$store.getters.project?.id; return id && id !== '-1' ? id : '' },
@@ -163,7 +172,7 @@ export default {
       this.domains = []; this.accounts = []; this.projects = []; this.candidatesReady = false
       this.operation = reservationOperation(scope)
       const previous = this.operation
-      this.form = { ownerType: previous?.params.projectid || this.pinnedProject ? 'project' : 'account', domainId: previous?.domainId || this.user.domainid || null, account: previous?.params.account || null, projectId: previous?.params.projectid || this.pinnedProject || null }
+      this.form = { ownerType: previous?.params.projectid || this.pinnedProject ? 'project' : 'account', domainId: previous?.domainId || this.user.domainid || null, account: previous?.params.account || null, projectId: previous?.params.projectid || this.pinnedProject || null, fordisplay: previous?.params.fordisplay ?? true }
       this.domainsLoading = false
       if (this.selectors && !this.pinnedProject) {
         this.domainsLoading = true
@@ -219,7 +228,15 @@ export default {
       if (!this.current(scope, version)) return null
       const body = json?.listpublicipaddressesresponse
       if (!body || body.errorcode) throw new Error('read')
-      return body.publicipaddress?.find(ip => ip.id === this.resource.id) || null
+      const address = body.publicipaddress?.find(ip => ip.id === this.resource.id) || null
+      if (!address && this.displaySupported) {
+        const hidden = await getAPI('listPublicIpAddresses', { id: this.resource.id, state: 'Free,Reserved,Allocated,Allocating,Releasing', allocatedonly: false, listall: true, fordisplay: false, ignoreproject: true, ...(this.pinnedProject ? { projectid: this.pinnedProject } : {}) }, { preserveOnFailure: true })
+        if (!this.current(scope, version)) return null
+        const result = hidden?.listpublicipaddressesresponse
+        if (!result || result.errorcode) throw new Error('read')
+        return result.publicipaddress?.find(ip => ip.id === this.resource.id) || null
+      }
+      return address
     },
     async submitData () {
       if (!this.canSubmit) return
@@ -230,6 +247,10 @@ export default {
         await this.$refs.form.validate()
         if (!this.current(scope, version)) return
         const params = reservationParams(this.resource.id, this.form, this.user, this.selectors, this.accounts, this.projects, this.pinnedProject)
+        if (this.displaySupported) {
+          if (!displayBoolean(this.form.fordisplay)) throw new Error('display')
+          params.fordisplay = this.form.fordisplay
+        }
         const current = await this.readAddress(scope, version)
         if (!this.current(scope, version)) return
         if (current?.state !== 'Free') { this.error = this.$t('message.public.ip.reserve.unavailable'); return }
@@ -237,7 +258,7 @@ export default {
         rememberReservation(scope, operation)
         const json = await postAPI('reserveIpAddress', { ...params, ignoreproject: true }, { preserveOnFailure: true })
         const ip = json?.reserveipaddressresponse?.ipaddress
-        operation.actual = ip || null; operation.receipt = reservationMatches(ip, params)
+        operation.actual = ip || null; operation.receipt = reservationMatches(ip, { ...params, fordisplay: undefined })
         operation.status = operation.receipt ? 'verify' : ip ? 'mismatch' : 'unknown'
         if (!this.current(scope, version)) return
         this.operation = operation

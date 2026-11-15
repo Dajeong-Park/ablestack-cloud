@@ -158,3 +158,13 @@ test('actor, project, permission, and token changes are distinct reservation sco
   c.$store.getters.project = { id: 'project' }; expect(c.contextKey).not.toBe(first)
   c.$store.getters.project = {}; c.$store.state.user.token = 'new-session'; expect(c.contextKey).not.toBe(first)
 })
+
+test.each([true, false])('root reservation explicitly sends and verifies display=%s with the original owner', async fordisplay => {
+  const c = context(); c.$store.getters.apis.reserveIpAddress.params = [{ name: 'fordisplay' }]; c.$store.getters.apis.listPublicIpAddresses.params = [{ name: 'fordisplay' }]; c.form.fordisplay = fordisplay
+  postAPI.mockImplementationOnce(async (api, params) => { serverIp = { id: params.id, state: 'Reserved', account: params.account, domainid: params.domainid, fordisplay: params.fordisplay }; return { reserveipaddressresponse: { ipaddress: { ...serverIp } } } })
+  await c.submitData(); expect(postAPI.mock.calls[0][1]).toEqual({ id: 'ip', account: 'owner', domainid: 'root', fordisplay, ignoreproject: true }); expect(c.$notification.success).toHaveBeenCalledTimes(1)
+})
+test('a mismatched display flag is never accepted as reservation success', async () => {
+  const c = context(); c.$store.getters.apis.reserveIpAddress.params = [{ name: 'fordisplay' }]; c.$store.getters.apis.listPublicIpAddresses.params = [{ name: 'fordisplay' }]; c.form.fordisplay = false
+  await c.submitData(); expect(c.operation.status).toBe('mismatch'); expect(c.$notification.success).not.toHaveBeenCalled()
+})

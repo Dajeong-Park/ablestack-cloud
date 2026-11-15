@@ -22,7 +22,7 @@ export function reservationScope (resource, route, store) {
   const g = store.getters || {}; const user = g.userInfo || {}
   return JSON.stringify([resource?.id, route?.path, g.project?.id, g.listAllProjects,
     user.id, user.account, user.domainid, user.roletype, user.roleid,
-    store.state?.user?.token, Object.keys(g.apis || {}).sort()])
+    store.state?.user?.token, Object.keys(g.apis || {}).sort(), (g.apis?.reserveIpAddress?.params || []).map(p => p.name).sort()])
 }
 
 export function reservationParams (id, form, user, selectors, accounts, projects, pinnedProject) {
@@ -41,6 +41,7 @@ export function reservationParams (id, form, user, selectors, accounts, projects
 
 export function reservationMatches (ip, expected) {
   if (!ip || ip.id !== expected.id || ip.state !== 'Reserved') return false
+  if (typeof expected.fordisplay === 'boolean' && ip.fordisplay !== expected.fordisplay) return false
   return expected.projectid ? ip.projectid === expected.projectid : !ip.projectid && ip.account === expected.account && ip.domainid === expected.domainid
 }
 
