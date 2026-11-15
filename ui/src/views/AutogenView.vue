@@ -186,7 +186,7 @@
     <div v-show="showAction">
       <component
         v-if="showAction && currentAction.selfManagedDialog"
-        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets) ? storageActionGeneration : undefined"
+        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets || currentAction.vmEditCurrent) ? storageActionGeneration : undefined"
         ref="selfManagedAction"
         :is="currentAction.component"
         :resource="resource"
@@ -196,7 +196,7 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
           :size="currentAction.standardDialogSize || (isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
@@ -229,9 +229,9 @@
             </a>
           </template>
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
-          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets) ? 1 : undefined">
+          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets) ? storageActionGeneration : undefined"
+              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -2711,6 +2711,14 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (isVmIdentityRoute(this.$route) && action.api === 'updateVirtualMachine') {
+        const target = action.resource || this.resource
+        if (!target?.id) return
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, invokedAsGroupAction: false, vmEditCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = target; this.showAction = true
+        return
+      }
       if (isVmDeletion(action)) {
         const targets = (isGroupAction ? this.selectedItems : [action.resource || this.resource]).filter(row => row?.id)
         if (!targets.length) return

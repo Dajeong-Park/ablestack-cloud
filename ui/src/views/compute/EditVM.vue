@@ -448,7 +448,8 @@ export default {
       if (!this.editActive || this.submitPending || this.loading || !('updateVirtualMachine' in (this.$store.getters.apis || {}))) return
       const generation = ++this.editGeneration
       const context = this.resourceContextKey
-      const current = () => this.editActive && generation === this.editGeneration && context === this.resourceContextKey
+      const actionCurrent = this.action?.currentAction?.vmEditCurrent
+      const current = () => this.editActive && generation === this.editGeneration && context === this.resourceContextKey && actionCurrent?.() !== false
       this.submitPending = true
       return this.formRef.value.validate().then(() => {
         if (!current()) return

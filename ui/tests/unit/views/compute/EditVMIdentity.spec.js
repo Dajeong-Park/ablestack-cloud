@@ -46,6 +46,8 @@ function context () {
     $notifyError: jest.fn()
   }
   Object.defineProperty(c, 'resourceContextKey', { get: () => vmEditScope(c.resource, c.$route, c.$store) })
+  c.parentIsOpen = true
+  c.action = { currentAction: { vmEditCurrent: () => c.parentIsOpen } }
   c.initialResourceContextKey = c.resourceContextKey
   c.invalidateEdit = () => EditVM.methods.invalidateEdit.call(c)
   c.onCloseAction = () => EditVM.methods.onCloseAction.call(c)
@@ -65,9 +67,10 @@ test('validation and POST are locked against rapid repeated submits', async () =
   const first = EditVM.methods.handleSubmit.call(c); EditVM.methods.handleSubmit.call(c)
   pending.resolve(); await first; expect(postAPI).toHaveBeenCalledTimes(1)
 })
-test.each(['route', 'target', 'project', 'token', 'actor', 'permission'])('does not POST after %s changes during validation', async change => {
+test.each(['route', 'target', 'project', 'token', 'actor', 'permission', 'parent-close'])('does not POST after %s changes during validation', async change => {
   const c = context(); const pending = deferred(); c.formRef.value.validate.mockReturnValue(pending.promise)
   const result = EditVM.methods.handleSubmit.call(c)
+  if (change === 'parent-close') c.parentIsOpen = false
   if (change === 'route') c.$route.fullPath = '/vnfapp/b'
   if (change === 'target') c.resource.id = 'b'
   if (change === 'project') c.$store.getters.project = { id: 'other' }
@@ -76,9 +79,10 @@ test.each(['route', 'target', 'project', 'token', 'actor', 'permission'])('does 
   if (change === 'permission') c.$store.getters.apis = {}
   pending.resolve(); await result; expect(postAPI).not.toHaveBeenCalled(); expect(c.$emit).not.toHaveBeenCalled()
 })
-test.each(['route', 'close', 'deactivate'])('late accepted edit after %s cannot close/refresh a new screen', async change => {
+test.each(['route', 'close', 'deactivate', 'parent-close'])('late accepted edit after %s cannot close/refresh a new screen', async change => {
   const c = context(); const pending = deferred(); postAPI.mockReturnValue(pending.promise)
   const result = EditVM.methods.handleSubmit.call(c); await flushPromises(); expect(postAPI).toHaveBeenCalledTimes(1)
+  if (change === 'parent-close') c.parentIsOpen = false
   if (change === 'route') c.$route.fullPath = '/vnfapp/b'
   if (change === 'close') c.onCloseAction()
   if (change === 'deactivate') EditVM.deactivated.call(c)
