@@ -53,7 +53,6 @@ test('an old accepted response cannot close or update the next target dialog', a
   expect(c.handleResponse).not.toHaveBeenCalled(); expect(c.closeAction).not.toHaveBeenCalled()
 })
 
-
 test('target or authentication context invalidates the open common dialog', () => {
   Autogen.watch.vmDialogScope.call(c)
   expect(c.closeAction).toHaveBeenCalledTimes(1)
