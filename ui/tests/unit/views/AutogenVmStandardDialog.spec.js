@@ -52,3 +52,32 @@ test('an old accepted response cannot close or update the next target dialog', a
   c.resource = { ...c.resource, id: 'other' }; c.currentAction = { ...c.currentAction }; done({ stopvirtualmachineresponse: { jobid: 'old' } }); await flushPromises()
   expect(c.handleResponse).not.toHaveBeenCalled(); expect(c.closeAction).not.toHaveBeenCalled()
 })
+
+
+test('target or authentication context invalidates the open common dialog', () => {
+  Autogen.watch.vmDialogScope.call(c)
+  expect(c.closeAction).toHaveBeenCalledTimes(1)
+  c.showAction = false; Autogen.watch.vmDialogScope.call(c)
+  expect(c.closeAction).toHaveBeenCalledTimes(1)
+})
+
+test.each([undefined, 503])('an ambiguous HTTP result (%s) retains the dialog and blocks another submission', async status => {
+  c.postSnapshotAwareAction.mockRejectedValue(status ? { response: { status } } : new Error('connection lost'))
+  c.execSubmit({}); await flushPromises()
+  expect(c.vmActionUnknown).toBe(true); expect(c.vmActionError).toBe('message.vm.start.unknown')
+  c.execSubmit({}); await flushPromises(); expect(c.postSnapshotAwareAction).toHaveBeenCalledTimes(1)
+  expect(c.closeAction).not.toHaveBeenCalled()
+})
+
+test('a known rejection keeps false/form values and permits an explicit retry', async () => {
+  c.postSnapshotAwareAction.mockRejectedValueOnce({ response: { status: 431, data: { errorresponse: { errortext: '정책 거절' } } } })
+  c.execSubmit({}); await flushPromises()
+  expect(c.vmActionUnknown).toBe(false); expect(c.vmActionError).toBe('정책 거절'); expect(c.form.forced).toBe(false)
+  c.execSubmit({}); await flushPromises(); expect(c.postSnapshotAwareAction).toHaveBeenCalledTimes(2)
+})
+
+test('an async response without a job identity is not treated as a successful submission', async () => {
+  c.postSnapshotAwareAction.mockResolvedValue({ stopvirtualmachineresponse: {} })
+  c.execSubmit({}); await flushPromises()
+  expect(c.vmActionUnknown).toBe(true); expect(c.handleResponse).not.toHaveBeenCalled(); expect(c.closeAction).not.toHaveBeenCalled()
+})

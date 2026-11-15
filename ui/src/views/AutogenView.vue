@@ -846,7 +846,7 @@
         </a-spin>
         <template #footer>
           <a-button @click="vmStandardDialog ? cancelAction() : closeAction()" :disabled="vmStandardDialog && (actionLoading || vmActionValidationPending)">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" @click="handleSubmit" :disabled="isSubmitDisabled || (vmStandardDialog && vmActionValidationPending)" :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)" :danger="isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'" ref="submit">{{ $t((isVpcUi || vmStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}</a-button>
+          <a-button type="primary" @click="handleSubmit" :disabled="isSubmitDisabled || (vmStandardDialog && (vmActionValidationPending || vmActionUnknown))" :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)" :danger="isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'" ref="submit">{{ $t((isVpcUi || vmStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}</a-button>
         </template>
       </component>
     </div>
@@ -1089,6 +1089,7 @@ export default {
       actionLoading: false,
       vmActionValidationPending: false,
       vmActionError: '',
+      vmActionUnknown: false,
       columnKeys: [],
       allColumns: [],
       columns: [],
@@ -1308,6 +1309,9 @@ export default {
     next()
   },
   watch: {
+    vmDialogScope () {
+      if (this.showAction && this.vmStandardDialog) this.closeAction()
+    },
     vnfSearchAuth: {
       flush: 'sync',
       handler (value, previous) {
@@ -1449,6 +1453,7 @@ export default {
     isSnapshotReadView () { return this.isSnapshotList || this.isSnapshotDetail || this.isPolicyDetail || snapshotPolicyListRoute(this.$route) },
     isSnapshotCopyList () { return snapshotCopyList(this.$route) },
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
+    vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine'].includes(this.currentAction?.api) },
     standardActionDialog () { return this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
@@ -2629,7 +2634,7 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
-      const guardedDialog = snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.vmStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -2777,7 +2782,7 @@ export default {
       if (vnfRoute(this.$route) && (!this.storageActionReady || !(action.api in (this.$store.getters.apis || {})) || isGroupAction && (!this.selectedRowKeys.length || this.selectedRowKeys.some(id => !this.items.some(row => row.id === id))))) return
       if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && this.storageActionReady === false && !this.canOpenPolicyCreate(action, isGroupAction)) return
       if (storageUiRoute(this.$route) && (action.dataView || isGroupAction) && !this.storageActionReady) return
-      this.vmActionValidationPending = false; this.vmActionError = ''
+      this.vmActionValidationPending = false; this.vmActionError = ''; this.vmActionUnknown = false
       this.storageActionGeneration++
       this.actionFocusReturn = null
       if (action.storageSnapshotMode) {
@@ -3271,7 +3276,7 @@ export default {
       this.message = {}
     },
     handleSubmit (e) {
-      if (this.actionLoading || this.isSubmitDisabled || (this.vmStandardDialog && this.vmActionValidationPending)) return
+      if (this.actionLoading || this.isSubmitDisabled || (this.vmStandardDialog && (this.vmActionValidationPending || this.vmActionUnknown))) return
       this.promises = []
       const groupDeletion = this.currentAction.api === 'deleteInstanceGroup' && this.currentAction.invokedAsGroupAction
       const selectedKeys = groupDeletion ? (this.currentAction.vmGroupTargets || []).map(group => group.id) : this.selectedRowKeys
@@ -3454,7 +3459,7 @@ export default {
       const sshActionScope = isSshKeyPairDetailRoute(this.$route) ? this.listScope() : null
       const submittedAction = this.currentAction
       const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
-      if (vmScope && this.vmActionValidationPending) return
+      if (vmScope && (this.vmActionValidationPending || this.vmActionUnknown)) return
       if (vmScope) { this.vmActionValidationPending = true; this.vmActionError = '' }
       if (e && typeof e.preventDefault === 'function') e.preventDefault()
       this.formRef.value.validate().then(() => {
@@ -3586,6 +3591,9 @@ export default {
         this.actionLoading = true
         this.postSnapshotAwareAction(action, params).then(json => {
           if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+          if (vmScope && ['startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine'].includes(action.api) && !Object.values(json || {}).some(value => value?.jobid)) {
+            this.vmActionUnknown = true; this.vmActionError = this.$t('message.vm.start.unknown'); return
+          }
           var response = this.handleResponse(json, resourceName, this.getDataIdentifier(params), action)
           if (!response) {
             this.fetchData()
@@ -3606,7 +3614,10 @@ export default {
           this.closeAction()
         }).catch(error => {
           if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
-          if (vmScope) this.vmActionError = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext || this.$t('error.fetching.data')
+          if (vmScope) {
+            this.vmActionUnknown = !error.response || error.response.status >= 500
+            this.vmActionError = this.vmActionUnknown ? this.$t('message.vm.start.unknown') : Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext || this.$t('error.fetching.data')
+          }
           if ([401].includes(error.response?.status)) {
             return
           }
