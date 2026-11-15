@@ -53,6 +53,7 @@ under the License.
 | 시험 정리 후 Free·소유자 잔상 제거 | PASS | PASS | `ui-cleanup.json`, 최종 Free 화면 |
 
 - 실제 API와 대조한 Allocated 표본은 클러스터별 일반 연결망, VPC, 프로젝트 VM IP 각 1개다. 공용망은 ID만 반환한 실제 계약대로 표시하며 조회로 이름을 덧붙이지 않았다.
+- `*-Reserved-Admin.json`은 시험 준비의 `reserveIpAddress` 동기 응답 투영이다. 상세의 `listPublicIpAddresses` 읽기와 같은 필드 집합으로 취급하지 않는다. 실제 Reserved 상세는 서버 조회 화면으로 확인했고, 합성 응답은 이 최소 표본에 시험 필드를 명시해 구성했다. 합성 표본에 범위 UUID가 없으면 정상적으로 미제공을 표시한다.
 - VM 기준의 상세/요약·breadcrumb·업데이트·작업 메뉴·탭과 테마 토큰을 재사용한다. 반응형 12개 조합에서 페이지/새 필드의 가로 넘침이 없고 UUID 및 복사 버튼이 표시됐다. 390px에서 세로 스크롤로 상세에 접근했다.
 - 실제 Root Admin 응답의 VLAN 원문/UUID와 달리 User/DomainAdmin의 4개 서버 응답은 두 필드를 생략한다. 실제 UI는 “이 응답에서 미제공”이며 숨겨진 UUID의 복사 버튼이나 이전 관리자 값이 남지 않았다 (`role-checks.json`). 역할별 시험은 이 읽기 계약의 변경 경계이며 기존 전체 서비스/권한 행렬을 반복하지 않았다.
 - 503은 상세 GET에만 주입했다. 양쪽 모두 마지막 값과 실패 안내를 보존하고 재시도로 복구됐다. 이전 Allocated IP의 GET를 중지한 뒤 다른 Reserved IP를 열고 이전 GET를 재개했을 때도 새 IP와 빈 연결망이 유지됐다. 실제 서버 장애나 NAT/네트워크 변경 시험은 아니다.
