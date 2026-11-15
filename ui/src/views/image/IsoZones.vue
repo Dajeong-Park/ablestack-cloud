@@ -195,7 +195,6 @@ export default {
         if (scope !== this.isoScope) return
         const zones = json.listzonesresponse.zone || []
         this.zones = zones
-        this.copyZones = [...zones.filter((zone) => this.currentRecord.zoneid !== zone.id)]
       }).catch(() => {}).finally(() => {
         if (scope !== this.isoScope) return
         this.zoneLoading = false
