@@ -20,6 +20,7 @@ import { h } from 'vue'
 import ListView from '@/components/view/ListView'
 import InfoCard from '@/components/view/InfoCard'
 import DetailsTab from '@/components/view/DetailsTab'
+import SearchView from '@/components/view/SearchView'
 import ActionButton from '@/components/view/ActionButton'
 import network from '@/config/section/network'
 jest.mock('@/api', () => ({ getAPI: jest.fn().mockResolvedValue({}) }))
@@ -64,4 +65,9 @@ test('VM and VNF details distinguish guest host name from displayname', () => {
     expect(DetailsTab.methods.getDetailTitle.call(c, 'name')).toBe('label.vm.name')
     expect(DetailsTab.methods.getDetailTitle.call(c, 'displayname')).toBe('label.displayname')
   }
+})
+
+test('VNF advanced name filter explicitly means the API host name', () => {
+  const c = { apiName: 'listVnfAppliances', $t: k => k }
+  expect(SearchView.methods.retrieveFieldLabel.call(c, 'name')).toBe('label.vm.name')
 })

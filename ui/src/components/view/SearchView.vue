@@ -365,6 +365,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (this.apiName === 'listTemplates' && fieldName === 'name') return this.$t('label.template.name.exact')
       if (this.isGuestNetworkSearch && fieldName === 'keyword') return this.$t('label.name')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')
