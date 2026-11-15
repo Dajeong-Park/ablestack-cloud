@@ -9908,6 +9908,16 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         return restoreVMInternal(caller, vm, null, null, false, null);
     }
 
+    // A removed source image cannot be reinstalled, but its metadata is still needed
+    // to validate/account a replacement before any root disk is detached.
+    protected VMTemplateVO getCurrentTemplateForRestore(UserVmVO vm) {
+        VMTemplateVO template = _templateDao.findByIdIncludingRemoved(vm.getTemplateId());
+        if (template == null) {
+            throw new InvalidParameterValueException("Cannot restore VM because original template metadata is unavailable");
+        }
+        return template;
+    }
+
     private VMTemplateVO getRestoreVirtualMachineTemplate(Account caller, Long newTemplateId, List<VolumeVO> rootVols, UserVmVO vm) {
         VMTemplateVO template = null;
         if (CollectionUtils.isNotEmpty(rootVols)) {
@@ -9980,7 +9990,7 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         if (rootDiskOfferingId != null) {
             com.cloud.storage.VolumeAllocationPolicy.requireLegacyExecution(allocationDetailsDao.listDetailsKeyPairs(rootDiskOfferingId));
         }
-        VMTemplateVO currentTemplate = _templateDao.findById(vm.getTemplateId());
+        VMTemplateVO currentTemplate = getCurrentTemplateForRestore(vm);
         List<VolumeVO> rootVols = _volsDao.findByInstanceAndType(vmId, Volume.Type.ROOT);
         if (rootVols.isEmpty()) {
             InvalidParameterValueException ex = new InvalidParameterValueException("Can not find root volume for VM " + vm.getUuid());

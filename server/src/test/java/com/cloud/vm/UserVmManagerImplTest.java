@@ -1574,6 +1574,38 @@ public class UserVmManagerImplTest {
         userVmManagerImpl.restoreVM(cmd);
     }
 
+    @Test
+    public void testVnfReinstallRemovedSourceMetadataIsRetainedForReplacement() {
+        VMTemplateVO original = Mockito.mock(VMTemplateVO.class);
+        when(userVmVoMock.getTemplateId()).thenReturn(101L);
+        when(templateDao.findByIdIncludingRemoved(101L)).thenReturn(original);
+        Assert.assertSame(original, userVmManagerImpl.getCurrentTemplateForRestore(userVmVoMock));
+        Mockito.verify(templateDao, Mockito.never()).findById(101L);
+    }
+
+    @Test
+    public void testVnfReinstallMissingSourceMetadataFailsBeforeRootReadsOrWrites() throws Exception {
+        when(accountMock.getId()).thenReturn(1L);
+        when(userVmDao.findById(vmId)).thenReturn(userVmVoMock);
+        when(userVmVoMock.getAccountId()).thenReturn(2L);
+        when(accountDao.findById(2L)).thenReturn(callerAccount);
+        when(userVmVoMock.getState()).thenReturn(VirtualMachine.State.Running);
+        when(userVmVoMock.getTemplateId()).thenReturn(101L);
+        Assert.assertThrows(InvalidParameterValueException.class,
+                () -> userVmManagerImpl.restoreVirtualMachine(accountMock, vmId, 102L, null, false, null));
+        Mockito.verify(volumeDaoMock, Mockito.never()).findByInstanceAndType(vmId, Volume.Type.ROOT);
+        Mockito.verify(volumeDaoMock, Mockito.never()).detachVolume(Mockito.anyLong());
+    }
+
+    @Test
+    public void testVnfReinstallMetadataReadDoesNotRestrictOrdinaryVmTemplateTypes() {
+        VMTemplateVO original = Mockito.mock(VMTemplateVO.class);
+        when(userVmVoMock.getTemplateId()).thenReturn(103L);
+        when(templateDao.findByIdIncludingRemoved(103L)).thenReturn(original);
+        Assert.assertSame(original, userVmManagerImpl.getCurrentTemplateForRestore(userVmVoMock));
+        Mockito.verify(original, Mockito.never()).getTemplateType();
+    }
+
     @Test(expected = InvalidParameterValueException.class)
     public void testRestoreVirtualMachineNoOwner() throws ResourceUnavailableException, InsufficientCapacityException {
         long userId = 1L;
@@ -1631,7 +1663,7 @@ public class UserVmManagerImplTest {
         when(userVmVoMock.getTemplateId()).thenReturn(currentTemplateId);
 
         VMTemplateVO currentTemplate = Mockito.mock(VMTemplateVO.class);
-        when(templateDao.findById(currentTemplateId)).thenReturn(currentTemplate);
+        when(templateDao.findByIdIncludingRemoved(currentTemplateId)).thenReturn(currentTemplate);
         when(volumeDaoMock.findByInstanceAndType(vmId, Volume.Type.ROOT)).thenReturn(new ArrayList<>());
 
         userVmManagerImpl.restoreVirtualMachine(accountMock, vmId, newTemplateId, null, false, null);
@@ -1653,7 +1685,7 @@ public class UserVmManagerImplTest {
 
         VMTemplateVO currentTemplate = Mockito.mock(VMTemplateVO.class);
         when(currentTemplate.isDeployAsIs()).thenReturn(false);
-        when(templateDao.findById(currentTemplateId)).thenReturn(currentTemplate);
+        when(templateDao.findByIdIncludingRemoved(currentTemplateId)).thenReturn(currentTemplate);
         List<VolumeVO> volumes = new ArrayList<>();
         VolumeVO rootVolume1 = Mockito.mock(VolumeVO.class);
         volumes.add(rootVolume1);
@@ -1678,7 +1710,7 @@ public class UserVmManagerImplTest {
         when(userVmVoMock.getTemplateId()).thenReturn(currentTemplateId);
 
         VMTemplateVO currentTemplate = Mockito.mock(VMTemplateVO.class);
-        when(templateDao.findById(currentTemplateId)).thenReturn(currentTemplate);
+        when(templateDao.findByIdIncludingRemoved(currentTemplateId)).thenReturn(currentTemplate);
         List<VolumeVO> volumes = new ArrayList<>();
         VolumeVO rootVolumeOfVm = Mockito.mock(VolumeVO.class);
         volumes.add(rootVolumeOfVm);
