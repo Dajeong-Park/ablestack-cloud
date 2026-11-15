@@ -64,3 +64,10 @@ export async function readOwnedIsoZones (request, resource, getters, current = (
   }
   throw new Error('Incomplete ISO Zone observation')
 }
+
+// Localize known state suffixes without changing a storage name or the raw model.
+export function isoStoreReason (reason, translate) {
+  const text = String(reason || '')
+  const match = text.match(/(^|: )(DOWNLOADED|DOWNLOAD_IN_PROGRESS|NOT_DOWNLOADED|DOWNLOAD_ERROR|UPLOAD_ERROR|UPLOAD_IN_PROGRESS|NOT_UPLOADED|UPLOADING|ABANDONED|LIMIT_REACHED)$/)
+  return match ? text.slice(0, match.index) + match[1] + translate(isoStorePresentation({ downloadState: match[2] }).label) : text
+}

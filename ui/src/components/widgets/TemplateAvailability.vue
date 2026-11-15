@@ -19,7 +19,7 @@
   <div class="template-availability" :class="{ 'template-availability--compact': compact, 'template-availability--single-line': singleLine }" :title="singleLine ? tooltipText : undefined">
     <a-badge :status="availability.badge" :text="$t(availability.labelKey)" />
     <template v-if="!singleLine">
-    <div v-for="reason in shownReasons" :key="reason" class="template-availability__reason">{{ reason }}</div>
+    <div v-for="reason in shownReasons" :key="reason" class="template-availability__reason" :title="kind === 'iso' ? reason : undefined">{{ kind === 'iso' ? isoStoreReason(reason, $t) : reason }}</div>
     <div v-if="showScope" class="template-availability__scope">
       <span v-if="availability.complete">{{ $t('label.template.availability.zones', { ready: availability.readyCount, total: availability.zoneCount }) }}</span>
       <span v-else-if="availability.zoneName">{{ $t('label.template.availability.zone', { zone: availability.zoneName }) }}</span>
@@ -32,10 +32,12 @@
 <script>
 import { templateAvailability } from '@/utils/templateAvailability'
 import { isoAvailability } from '@/utils/isoModel'
+import { isoStoreReason } from '@/utils/isoZoneOperations'
 export default {
   name: 'TemplateAvailability',
   props: { kind: { type: String, default: 'template' }, record: { type: Object, required: true }, observation: { type: Object, default: null }, compact: Boolean, singleLine: Boolean, inspectable: Boolean, showScope: { type: Boolean, default: true } },
   emits: ['show-zones'],
+  methods: { isoStoreReason },
   computed: {
     availability () { return this.kind === 'iso' ? isoAvailability(this.record, this.observation) : templateAvailability(this.record, this.observation) },
     tooltipText () {

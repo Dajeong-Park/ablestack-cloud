@@ -15,11 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { mount } from '@vue/test-utils'
+import { h } from 'vue'
+import Availability from '@/components/widgets/TemplateAvailability'
 import Ops from '@/views/image/IsoZoneOperations'
 import Zones from '@/views/image/IsoZones'
 import Detail from '@/components/widgets/IsoDetailValue'
 import { canIsoAction } from '@/utils/isoModel'
-import { isoSize, isoStorePresentation, isoCopyDestinations, isoCopyResult, readOwnedIsoZones, presentedIsoValue } from '@/utils/isoZoneOperations'
+import { isoStoreReason, isoSize, isoStorePresentation, isoCopyDestinations, isoCopyResult, readOwnedIsoZones, presentedIsoValue } from '@/utils/isoZoneOperations'
 import { getAPI, postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const a = { id: 'iso', format: 'ISO', account: 'admin', domainid: 'root', name: 'image', zoneid: 'a', zonename: 'A', isready: true, bootable: false }
@@ -133,4 +136,15 @@ test('restricted store rows without a role remain visible without inferring type
   expect(Zones.methods.storeRows(row, 'Primary')).toEqual([])
   expect(Zones.methods.storeRows(row, 'Image')).toEqual([])
   expect(stores.every(store => store.datastoreRole === undefined)).toBe(true)
+})
+
+test('state reason localization preserves storage names and unknown diagnostic text', () => {
+  expect(isoStoreReason('Secondary Storage: DOWNLOAD_ERROR', key => key)).toBe('Secondary Storage: label.template.store.failed')
+  expect(isoStoreReason('DOWNLOAD_ERROR Store: DOWNLOADED', key => key)).toBe('DOWNLOAD_ERROR Store: label.template.store.ready')
+  expect(isoStoreReason('Checksum does not match', key => key)).toBe('Checksum does not match')
+})
+test.each(['iso', 'template'])('availability renders diagnostics under its own presentation contract (%s)', kind => {
+  const wrapper = mount(Availability, { props: { kind, record: { ...a, isready: false, downloaddetails: [{ datastore: 'Secondary Storage', downloadState: 'DOWNLOAD_ERROR' }] }, compact: true, showScope: false }, global: { mocks: { $t: key => key }, stubs: { ABadge: { props: ['text'], render () { return h('span', this.text) } } } } })
+  if (kind === 'iso') { expect(wrapper.text()).not.toContain('DOWNLOAD_ERROR'); expect(wrapper.text()).toContain('label.template.store.failed'); expect(wrapper.find('.template-availability__reason').attributes('title')).toContain('DOWNLOAD_ERROR') } else expect(wrapper.text()).toContain('DOWNLOAD_ERROR')
+  wrapper.unmount()
 })
