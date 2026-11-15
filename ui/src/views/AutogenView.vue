@@ -907,6 +907,7 @@
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
           @template-operation-retained="retainTemplateOperation"
+          @iso-operation-retained="retainIsoOperation"
           @backup-controls-change="Object.assign(resource, $event)"
           @refresh="['template','buckets', 'objectstore'].includes($route.meta.name) && fetchData({ irefresh: true })"
           @change-resource="resource = $event" />
@@ -978,6 +979,7 @@
 <script>
 import { isVmDeletion } from '@/utils/vmDeletion'
 import { templateObservationContext } from '@/utils/templateAvailability'
+import { isoZoneContext } from '@/utils/isoZoneOperations'
 import { isoListQuery, isoSearchQuery, isoSearchError, isoRequestParams, isoListOwner, isoFilterMismatch, isoFilterChips, isoColumn } from '@/utils/isoSearch'
 import { isoListResponse, readIsoResource } from '@/utils/isoModel'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
@@ -1122,6 +1124,8 @@ export default {
       templateDetailError: '',
       isoListError: '',
       templateOperationContext: '',
+      isoOperationContext: '',
+      isoOperationBusy: false,
       templateFilterError: '',
       projectView: false,
       hasProjectId: false,
@@ -1293,7 +1297,7 @@ export default {
     this.scheduleAutoRefresh()
   },
   beforeRouteUpdate (to, from, next) {
-    if (this.$refs.selfManagedAction?.blocksNavigation) { next(false); return }
+    if (this.$refs.selfManagedAction?.blocksNavigation || this.isoOperationBusy) { next(false); return }
     const leavesGuestNetworkScope = guestNetworkRoute(from) &&
       (to.path !== from.path || to.query?.projectid !== from.query?.projectid)
     if (this.showAction && (vnfRoute(from) && to.fullPath !== from.fullPath || leavesGuestNetworkScope ||
@@ -1304,7 +1308,7 @@ export default {
     next()
   },
   beforeRouteLeave (to, from, next) {
-    if (this.$refs.selfManagedAction?.blocksNavigation) { next(false); return }
+    if (this.$refs.selfManagedAction?.blocksNavigation || this.isoOperationBusy) { next(false); return }
     if ((guestNetworkRoute(from) || storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot') && this.showAction) this.closeAction()
     console.log('DEBUG - Due to route change, ignoring results for any on-going API request', this.apiName)
     sourceToken.cancel()
@@ -1339,6 +1343,7 @@ export default {
     },
     isoSecurityContext () {
       if (this.$route.meta?.name !== 'iso') return
+      this.isoOperationContext = ''; this.isoOperationBusy = false
       this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null; this.listSchemaScope = null
       this.items = []; this.resource = {}; this.itemCount = 0; this.resetSelection()
       if (this.showAction) this.closeAction()
@@ -1862,6 +1867,10 @@ export default {
       this.actions = []; this.listSchemaScope = null
       this.$emit('change-resource', this.resource)
     },
+    retainIsoOperation (value) {
+      if (this.$route.meta?.name !== 'iso' || value.context !== isoZoneContext(this.resource, this.$store.getters, this.$store.state?.user?.token)) return
+      this.isoOperationContext = value.active ? value.context : ''; this.isoOperationBusy = !!value.busy && !!value.active
+    },
     retainTemplateOperation (value) {
       if (this.$route.meta?.name === 'template' && value.context === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)) this.templateOperationContext = value.active ? value.context : ''
     },
@@ -1887,6 +1896,7 @@ export default {
         if (!this.dataView) { this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection() }
       }
       const isoQuery = this.$route.meta?.name === 'iso'
+      if (isoQuery && this.$route.params?.id && this.isoOperationContext && this.isoOperationContext === isoZoneContext(this.resource, this.$store.getters, this.$store.state?.user?.token)) return Promise.resolve()
       if (isoQuery) {
         this.isoListError = ''
         if (!this.$route.params?.id) {

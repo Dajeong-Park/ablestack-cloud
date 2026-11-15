@@ -24,6 +24,7 @@ function context (project = {}) {
   const token = { loaded: false }
   const vm = { resource: Object.freeze({ ...resource }), $store: { getters: { userInfo: { id: 'recipient', roletype: 'User' }, project, apis: { listIsos: {} } } }, page: 1, pageSize: 10, dataSource: [], itemCount: 0, selectedRowKeys: [], $emit: jest.fn(), $notifyError: jest.fn(), fetchZoneData: jest.fn(), fetchOsCategoryId: jest.fn(), updateImageZones: jest.fn(), setSelection: jest.fn(), listRequestToken: () => token, isListRequestCurrent: (_, value) => value === token }
   Object.defineProperty(vm, 'isoScope', { get: () => isoContext(vm.resource, vm.$store.getters) })
+  vm.readAllRows = Zones.methods.readAllRows.bind(vm)
   return vm
 }
 beforeEach(() => { jest.clearAllMocks(); getAPI.mockResolvedValue({ listisosresponse: { iso: [resource], count: 1 } }) })

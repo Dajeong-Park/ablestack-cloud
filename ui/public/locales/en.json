@@ -11942,5 +11942,19 @@
   "message.iso.search.sort.page": "Column sorting applies to the current page.",
   "label.iso.filter.executable": "Deployable images",
   "label.iso.filter.selfexecutable": "My deployable images",
-  "label.iso.filter.sharedexecutable": "Shared deployable images"
+  "label.iso.filter.sharedexecutable": "Shared deployable images",
+  "label.iso.zone.search": "Search Zones",
+  "label.iso.zone.source": "Source Zone",
+  "label.iso.zone.abandoned": "Expired",
+  "message.iso.zone.delete": "Delete only the selected Zone copies. Deleting the last copy removes the ISO. Check the individual results before closing.",
+  "message.iso.zone.copy.empty": "No eligible destination Zone. The source and Zones with an existing copy are excluded.",
+  "message.iso.zone.copy.duplicate": "The destination already has a copy. Check its current state.",
+  "label.iso.zone.job.completed": "Job completed",
+  "label.iso.zone.state.pending": "Pending",
+  "label.iso.zone.state.requesting": "Submitting",
+  "label.iso.zone.state.running": "Running",
+  "label.iso.zone.state.waitingReady": "Waiting for Zone Ready",
+  "label.iso.zone.state.success": "Completed and verified",
+  "label.iso.zone.state.failed": "Failed",
+  "label.iso.zone.state.unknown": "Result unconfirmed"
 }

@@ -11950,5 +11950,19 @@
   "message.iso.search.sort.page": "열 정렬은 현재 페이지에만 적용됩니다.",
   "label.iso.filter.executable": "배포 가능한 이미지",
   "label.iso.filter.selfexecutable": "배포 가능한 내 이미지",
-  "label.iso.filter.sharedexecutable": "배포 가능한 공유 이미지"
+  "label.iso.filter.sharedexecutable": "배포 가능한 공유 이미지",
+  "label.iso.zone.search": "Zone 검색",
+  "label.iso.zone.source": "원본 Zone",
+  "label.iso.zone.abandoned": "만료됨",
+  "message.iso.zone.delete": "선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.",
+  "message.iso.zone.copy.empty": "복사할 수 있는 대상 Zone이 없습니다. 원본 Zone과 이미 복사본이 있는 Zone은 제외됩니다.",
+  "message.iso.zone.copy.duplicate": "대상 Zone에 이미 복사본이 있습니다. 현재 상태를 확인하세요.",
+  "label.iso.zone.job.completed": "비동기 작업 완료",
+  "label.iso.zone.state.pending": "대기",
+  "label.iso.zone.state.requesting": "요청 중",
+  "label.iso.zone.state.running": "처리 중",
+  "label.iso.zone.state.waitingReady": "Zone 준비 확인 중",
+  "label.iso.zone.state.success": "완료 확인",
+  "label.iso.zone.state.failed": "실패",
+  "label.iso.zone.state.unknown": "결과 미확인"
 }

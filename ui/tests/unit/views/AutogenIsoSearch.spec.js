@@ -121,3 +121,17 @@ test.each([false, true])('unnamed column refresh never rewrites ISO list/detail 
   Autogen.methods.updateSelectedColumns.call(c)
   expect(c.$router.replace).not.toHaveBeenCalled()
 })
+
+test('ISO operation holds detail polling and blocks navigation only while busy', async () => {
+  route({}, true); await c.fetchData()
+  const { isoZoneContext } = require('@/utils/isoZoneOperations')
+  const context = isoZoneContext(c.resource, store.getters, store.state.user.token)
+  c.retainIsoOperation({ context, active: true, busy: true }); getAPI.mockClear(); await c.fetchData(); expect(getAPI).not.toHaveBeenCalled()
+  const next = jest.fn(); Autogen.beforeRouteLeave.call(c, {}, {}, next); expect(next).toHaveBeenCalledWith(false)
+  c.retainIsoOperation({ context, active: false, busy: false }); expect(c.isoOperationBusy).toBe(false)
+})
+test('actor context changes clear the ISO operation navigation hold', () => {
+  c.isoOperationContext = 'old'; c.isoOperationBusy = true
+  store.getters.userInfo.id = 'new'; Autogen.watch.isoSecurityContext.call(c)
+  expect(c.isoOperationBusy).toBe(false); expect(c.isoOperationContext).toBe('')
+})
