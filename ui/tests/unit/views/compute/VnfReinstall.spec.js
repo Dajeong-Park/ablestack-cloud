@@ -126,3 +126,13 @@ test('template labels are text, non-VNF/foreign/unready candidates are removed a
   const wrapper = mount(Reinstall, { props: { resource: clone(base) }, global: { plugins: [store], mocks: { $t: k => k, $route: { fullPath: '/vnfapp/vm' } }, stubs: { AAlert: true, ASpin: { template: '<div><slot /></div>' }, AForm: { template: '<form><slot /></form>' }, AFormItem: { template: '<div><slot /></div>' }, ARadioGroup: { template: '<div><slot /></div>' }, ARadio: { template: '<label><slot /></label>' }, ACheckbox: true, AInputSearch: { inheritAttrs: false, template: '<input />' }, APagination: true, AButton: true, MoldDialogActions: { template: '<div><slot /></div>' } } } })
   await flushPromises(); await wrapper.setData({ mode: 'other' }); expect(wrapper.text()).toContain('<img src=x onerror=alert(1)>'); expect(wrapper.find('img').exists()).toBe(false); expect(wrapper.text()).toContain('message.vnf.reinstall.nic.missing'); expect(wrapper.vm.candidates.map(t => t.id)).toEqual(['a', 'b', 'bad']); wrapper.unmount()
 })
+
+test('reopening during Stopping resumes the accepted job without reading an intermediate root or submitting again', async () => {
+  const c = await context(); c.mode = 'other'; c.selectedId = 'b'; await c.submit(); await flushPromises(); c.close()
+  serverVm.state = 'Stopping'; getAPI.mockClear()
+  const reopened = await context(); await flushPromises()
+  expect(reopened.operation.jobid).toBe('job'); expect(reopened.mode).toBe('other'); expect(reopened.selectedId).toBe('b')
+  expect(getAPI.mock.calls.some(([cmd]) => cmd === 'listVolumes')).toBe(false)
+  expect(getAPI.mock.calls.some(([cmd]) => cmd === 'queryAsyncJobResult')).toBe(true)
+  await reopened.submit(); expect(postAPI).toHaveBeenCalledTimes(1)
+})

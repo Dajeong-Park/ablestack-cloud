@@ -138,6 +138,13 @@ export default {
       try {
         const vm = await readVnfReinstallTarget(this.target)
         const reason = vnfReinstallReason(vm, this.$store.getters.apis)
+        const pending = vnfReinstallJobs.get(vm.id)
+        if (pending && (!reason || reason === 'message.vnf.reinstall.vm.busy')) {
+          if (!this.current() || generation !== this.generation) return
+          this.vm = vm; this.operation = pending; this.mode = pending.mode || 'original'; this.selectedId = pending.templateid || ''
+          if (pending.jobid) this.queryResult()
+          return
+        }
         if (reason) throw new Error(reason)
         await readVnfReinstallRoot(vm)
         let original
@@ -178,7 +185,7 @@ export default {
         const params = vnfReinstallPayload(vm, template, mode)
         if (jobs.jobs.some(j => Number(j.jobstatus) === 0)) throw new Error('message.vnf.reinstall.vm.busy')
         if (!this.current() || generation !== this.generation || this.resourceActionReady?.() === false) return
-        Object.assign(operation, { phase: 'sending', templateid, nicIdentity: vnfNicIdentity(vm), allowPasswords: template.passwordenabled === true, beforeJobs: jobs.jobs.map(j => j.jobid || j.id), beforeJobsComplete: jobs.complete })
+        Object.assign(operation, { phase: 'sending', mode, templateid, nicIdentity: vnfNicIdentity(vm), allowPasswords: template.passwordenabled === true, beforeJobs: jobs.jobs.map(j => j.jobid || j.id), beforeJobsComplete: jobs.complete })
         this.posting = true
         const response = await postAPI('restoreVirtualMachine', params, { preserveOnFailure: true, timeout: 30000 })
         const jobid = response?.restorevmresponse?.jobid
