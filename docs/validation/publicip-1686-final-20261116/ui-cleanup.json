@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "cluster": 31,
+      "freeVisible": true,
+      "fixtureOwnerAbsent": true,
+      "theme": "light",
+      "koreanCopyLabelVisible": true
+    },
+    {
+      "cluster": 32,
+      "freeVisible": true,
+      "fixtureOwnerAbsent": true,
+      "theme": "light",
+      "koreanCopyLabelVisible": true
+    }
+  ],
+  "transientCopyProbesRestored": true,
+  "interceptionsCleared": true,
+  "viewportReset": true,
+  "agentTabsClosed": true
+}

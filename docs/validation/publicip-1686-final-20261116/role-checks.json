@@ -1,0 +1,22 @@
+[
+  {
+    "cluster": 31,
+    "role": "User",
+    "missingVlan": true
+  },
+  {
+    "cluster": 31,
+    "role": "DomainAdmin",
+    "missingVlan": true
+  },
+  {
+    "cluster": 32,
+    "role": "User",
+    "missingVlan": true
+  },
+  {
+    "cluster": 32,
+    "role": "DomainAdmin",
+    "missingVlan": true
+  }
+]
