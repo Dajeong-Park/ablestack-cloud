@@ -21,11 +21,10 @@ import Scale from '@/views/compute/ScaleVM'
 import Migrate from '@/views/compute/MigrateWizard'
 import { postAPI } from '@/api'
 jest.mock('@/api', () => ({ postAPI: jest.fn(), getAPI: jest.fn() }))
-test.each(['start', 'scale', 'migrate'])('%s keeps the submitted display label after the resource pointer changes', async kind => {
+test.each(['scale', 'migrate'])('%s keeps the submitted display label after the resource pointer changes', async kind => {
   let finish
   postAPI.mockReset(); postAPI.mockReturnValue(new Promise(resolve => { finish = resolve }))
   const c = { resource: { id: 'a', name: 'guest-host', displayname: '보낸 대상' }, loading: false, form: {}, formRef: { value: { validate: () => Promise.resolve() } }, $t: k => k, $pollJob: jest.fn(), closeAction: jest.fn(), closeModal: jest.fn(), $emit: jest.fn(), parentFetchData: jest.fn(), $notifyError: jest.fn(), selectedOffering: {}, params: { id: 'a' }, isUserVm: true, selectedHost: { id: 'host' }, requiresStorageMigration: () => false }
-  if (kind === 'start') Start.methods.handleSubmit.call(c, { preventDefault: jest.fn() })
   if (kind === 'scale') Scale.methods.handleSubmit.call(c)
   if (kind === 'migrate') Migrate.methods.submitForm.call(c)
   await flushPromises(); expect(postAPI).toHaveBeenCalledTimes(1)
@@ -34,4 +33,36 @@ test.each(['start', 'scale', 'migrate'])('%s keeps the submitted display label a
   finish({ [api.toLowerCase() + 'response']: { jobid: 'job-a' } }); await flushPromises()
   expect(c.$pollJob.mock.calls[0][0].description).toBe('보낸 대상')
   expect(JSON.stringify(c.$pollJob.mock.calls[0][0])).not.toContain('다른 대상')
+})
+
+test.each(['refresh', 'target'])('start keeps its submitted identity on %s without leaking an old receipt to a new target', async change => {
+  let finish
+  postAPI.mockReset(); postAPI.mockReturnValue(new Promise(resolve => { finish = resolve }))
+  const c = {
+    resource: { id: 'a', name: 'guest-host', displayname: '보낸 대상', state: 'Stopped', zoneid: 'zone' },
+    action: {},
+    $route: { fullPath: '/vm/a', meta: { name: 'vm' } },
+    $store: { state: { user: { token: 'session' } }, getters: { userInfo: { id: 'actor', roletype: 'User' }, apis: { startVirtualMachine: {} } } },
+    $getApiParams: () => ({}),
+    $refs: { startForm: { validate: () => Promise.resolve() } },
+    $t: k => k,
+    $pollJob: jest.fn(),
+    $emit: jest.fn()
+  }
+  Object.assign(c, Start.data.call(c))
+  Object.entries(Start.methods).forEach(([key, fn]) => { c[key] = fn.bind(c) })
+  Object.entries(Start.computed).forEach(([key, fn]) => Object.defineProperty(c, key, { get: () => fn.call(c) }))
+  c.fetchPlacement = jest.fn(); c.initForm()
+  const pending = c.handleSubmit({ preventDefault: jest.fn() })
+  await flushPromises()
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(postAPI).toHaveBeenCalledWith('startVirtualMachine', { id: 'a' })
+  c.resource = { ...c.resource, id: change === 'target' ? 'b' : 'a', displayname: '다른 대상' }
+  finish({ startvirtualmachineresponse: { jobid: 'job-a' } }); await pending
+  if (change === 'target') {
+    expect(c.$pollJob).not.toHaveBeenCalled(); expect(c.$emit).not.toHaveBeenCalled()
+  } else {
+    expect(c.$pollJob).toHaveBeenCalledWith(expect.objectContaining({ jobId: 'job-a', resourceId: 'a', description: '보낸 대상' }))
+    expect(JSON.stringify(c.$pollJob.mock.calls[0][0])).not.toContain('다른 대상')
+  }
 })
