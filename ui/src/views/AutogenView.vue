@@ -3300,9 +3300,10 @@ export default {
         }
         const submittedAction = this.currentAction
         const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
+        const vmTargets = vmScope ? JSON.stringify(selectedKeys) : null
         if (vmScope) this.vmActionValidationPending = true
         this.formRef.value.validate().then(() => {
-          if (vmScope && (!this.showAction || submittedAction !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) return
+          if (vmScope && (!this.showAction || submittedAction !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store) || vmTargets !== JSON.stringify(this.selectedRowKeys))) return
           if (vmScope) this.vmActionValidationPending = false
           const values = toRaw(this.form)
           this.actionLoading = true
@@ -3341,11 +3342,11 @@ export default {
         const action = this.currentAction
         const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
         postAPI(action.api, params).then(json => {
-          if (vmScope && vmScope !== vmEditScope(this.resource, this.$route, this.$store)) { resolve(false); return }
+          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
           resolve(this.handleResponse(json, resourceName, this.getDataIdentifier(params), action, false, selectedItems))
           this.closeAction()
         }).catch(error => {
-          if (vmScope && vmScope !== vmEditScope(this.resource, this.$route, this.$store)) { resolve(false); return }
+          if (vmScope && (action !== this.currentAction || vmScope !== vmEditScope(this.resource, this.$route, this.$store))) { resolve(false); return }
           if ([401].includes(error.response?.status)) {
             resolve(false)
             return

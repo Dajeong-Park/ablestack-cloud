@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 import Autogen from '@/views/AutogenView'
+import { postAPI } from '@/api'
 import { flushPromises } from '@vue/test-utils'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), callAPI: jest.fn(), postAPI: jest.fn() }))
 jest.mock('@/store', () => ({ getters: {}, state: { user: { token: 'session' } } }))
@@ -79,4 +80,13 @@ test('an async response without a job identity is not treated as a successful su
   c.postSnapshotAwareAction.mockResolvedValue({ stopvirtualmachineresponse: {} })
   c.execSubmit({}); await flushPromises()
   expect(c.vmActionUnknown).toBe(true); expect(c.handleResponse).not.toHaveBeenCalled(); expect(c.closeAction).not.toHaveBeenCalled()
+})
+
+test('an old group response cannot close a later dialog even on the same VM', async () => {
+  let done; postAPI.mockReturnValueOnce(new Promise(resolve => { done = resolve }))
+  const pending = c.callGroupApi({ id }, '원래 대상')
+  c.currentAction = { ...c.currentAction }
+  done({ stopvirtualmachineresponse: { jobid: 'old-group-job' } })
+  await expect(pending).resolves.toBe(false)
+  expect(c.handleResponse).not.toHaveBeenCalled(); expect(c.closeAction).not.toHaveBeenCalled()
 })
