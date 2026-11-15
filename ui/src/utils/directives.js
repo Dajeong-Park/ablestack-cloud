@@ -17,34 +17,41 @@
 
 const ENTER_KEY_CODE = 13
 let lastFocusElm = null
+const ctrlEnterBindings = new WeakMap()
 
 export default {
   install: (app) => {
     app.directive('ctrlEnter', {
       mounted: (el, binding, vnode) => {
+        ctrlEnterBindings.set(el, binding)
+        const currentBinding = () => ctrlEnterBindings.get(el)
         el.addEventListener('keydown', (e) => {
+          if (currentBinding().value === false) return
           if (e.ctrlKey && e.keyCode === ENTER_KEY_CODE) {
             e.preventDefault()
             lastFocusElm = e.target
-            const vm = binding.instance
+            const vm = currentBinding().instance
             vm.$refs.submit.$el.focus()
           }
         })
 
         el.addEventListener('keyup', (e) => {
+          if (currentBinding().value === false) return
           if (!e.ctrlKey || e.keyCode !== ENTER_KEY_CODE) {
             e.preventDefault()
             return
           }
 
           e.preventDefault()
+          const binding = currentBinding()
           if (typeof binding.value === 'function') {
             if (lastFocusElm) lastFocusElm.focus()
             const argument = binding.arg || e
             binding.value(argument)
           }
         })
-      }
+      },
+      updated: (el, binding) => { ctrlEnterBindings.set(el, binding) }
     })
 
     app.directive('focus', {

@@ -23,7 +23,7 @@
       :ref="formRef"
       :model="form"
       :rules="rules"
-      v-ctrl-enter="handleSubmit"
+      @keydown.ctrl.enter.prevent="!$event.repeat && handleSubmit($event)"
       @finish="handleSubmit">
       <a-alert v-if="!cloneEditRestricted" style="margin-bottom: 5px" type="warning" show-icon>
         <template #message>

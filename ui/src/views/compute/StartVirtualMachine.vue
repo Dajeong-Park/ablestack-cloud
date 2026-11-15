@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <section class="vm-start form-layout" v-ctrl-enter="handleSubmit">
+  <section class="vm-start form-layout" @keydown.ctrl.enter.prevent="!$event.repeat && handleSubmit($event)">
     <p ref="targetHeading" tabindex="-1" class="vm-action-target"><strong>{{ vmDisplayName(resource) }}</strong><br /><code>{{ resource.id }}</code></p>
     <a-alert type="warning" show-icon :message="$t('message.action.start.instance')" />
     <a-alert v-if="error" class="vm-start-error" type="error" show-icon :message="error" />

@@ -521,7 +521,8 @@
         <a-alert v-if="isVpcUi && vpcActionError" type="error" show-icon :message="vpcActionError" style="margin-bottom: 16px" />
         <a-spin
           :spinning="actionLoading"
-          v-ctrl-enter="handleSubmit"
+          v-ctrl-enter="vmStandardDialog ? false : handleSubmit"
+          @keydown.ctrl.enter.prevent="vmStandardDialog && !$event.repeat && handleSubmit($event)"
         >
           <div v-if="isGuestNetworkDelete && !currentAction.invokedAsGroupAction" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; overflow-wrap: anywhere">
             <strong>{{ resource.name || resource.id }}</strong>
