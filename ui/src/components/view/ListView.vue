@@ -704,7 +704,8 @@
         </template>
       </template>
       <template v-if="column.key === 'associatednetworkname' && $route.name !== 'autoscalevmgroup'">
-        <router-link :to="{ path: '/guestnetwork/' + record.associatednetworkid }">{{ text }}</router-link>
+        <public-ip-network-link v-if="$route.name === 'publicip' || $route.meta?.name === 'publicip'" :record="record" />
+        <router-link v-else :to="{ path: '/guestnetwork/' + record.associatednetworkid }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'vpcname'">
         <a v-if="record.vpcid">
@@ -1264,6 +1265,7 @@ import { createPathBasedOnVmType } from '@/utils/plugins'
 import { validateLinks } from '@/utils/links'
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
+import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
 import cronstrue from 'cronstrue/i18n'
@@ -1283,6 +1285,7 @@ export default {
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
+    PublicIpNetworkLink,
     BackupProgress,
     SharedFSCapacitySummary,
     SharedFSBootRecoverySummary,
