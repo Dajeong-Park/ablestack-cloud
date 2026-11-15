@@ -242,7 +242,7 @@ export default {
           else operation.status = 'unknown'
           if (this.current(scope, version)) {
             this.operation = failure.definitive ? null : operation
-            this.error = failure.definitive ? failure.text : this.$t('message.public.ip.reserve.unknown')
+            this.error = failure.definitive ? failure.text : ''
           }
         } else if (this.current(scope, version) && !error?.errorFields) this.error = this.$t('message.public.ip.reserve.unavailable')
       } finally { if (this.current(scope, version)) this.pending = false }

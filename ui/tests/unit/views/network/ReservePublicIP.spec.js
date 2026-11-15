@@ -95,7 +95,7 @@ test('server owner mismatch preserves the actual owner and blocks duplicate writ
 
 test('uncertain response survives reopen; reads and ending acknowledged tracking never resend', async () => {
   postAPI.mockRejectedValue(new Error('connection lost'))
-  const c = context(); await c.submitData(); c.closeAction()
+  const c = context(); await c.submitData(); expect(c.error).toBe(''); c.closeAction()
   const reopened = context(); await reopened.initialize(); await reopened.submitData(); await reopened.recheck()
   expect(reopened.operation.status).toBe('unknown'); expect(reopened.operation.lastRead.state).toBe('Free')
   reopened.endTracking(); expect(reopened.operation).not.toBeNull()
