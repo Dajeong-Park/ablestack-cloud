@@ -1,0 +1,184 @@
+{
+  "source": "40e05f046985f3017afd9a8f94cb761c92aef323",
+  "focusedTests": {
+    "suites": 6,
+    "tests": 164,
+    "status": "PASS"
+  },
+  "lint": "PASS",
+  "localProductionBuild": "PASS",
+  "actualUpdateJobs": [
+    {
+      "cluster": 31,
+      "case": "Reserved-job0-close-resume",
+      "jobid": "f3e7d24d-af82-42a6-81fd-54ebf7a0bc73",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": true,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 32,
+      "case": "Reserved-false-to-true",
+      "jobid": "d2b1d15a-7780-4ea6-8b15-983a5c42f403",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": true,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 32,
+      "case": "Allocated-project-true-to-false",
+      "jobid": "77642500-4031-4ee7-8078-10e402f1ef21",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": false,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 32,
+      "case": "Allocated-project-false-to-true",
+      "jobid": "e4115401-4552-40b9-b83c-d8b38ae33104",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": true,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 31,
+      "case": "Allocated-project-true-to-false",
+      "jobid": "853f5601-1e87-4ab6-b1c0-585f74fa6d90",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": false,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 31,
+      "case": "Allocated-project-scope-change-resume",
+      "jobid": "a0d29b08-9422-4a50-925f-6fea82818313",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": true,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 32,
+      "case": "Reserved-true-to-false",
+      "jobid": "11830a61-b7d9-491e-af91-e559594dfff3",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": false,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 32,
+      "case": "Reserved-restore-before-final-release",
+      "jobid": "c93d46e1-3ace-4bba-9781-cf0480ae4935",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": true,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 31,
+      "case": "Reserved-true-to-false",
+      "jobid": "f0bd52bf-1593-4c73-b351-c8b31dc60496",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": false,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    },
+    {
+      "cluster": 31,
+      "case": "Reserved-restore-before-final-release",
+      "jobid": "6be14078-08fa-451e-8abc-ccd7b5817af2",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": true,
+      "job1": true,
+      "freshReadMatched": true,
+      "updatePostCount": 1
+    }
+  ],
+  "allocatedFingerprintComparisons": [
+    {
+      "cluster": 31,
+      "label": "allocated-mid",
+      "fieldsExceptDisplayUnchanged": true
+    },
+    {
+      "cluster": 31,
+      "label": "allocated-restored",
+      "fieldsExceptDisplayUnchanged": true
+    },
+    {
+      "cluster": 32,
+      "label": "allocated-mid",
+      "fieldsExceptDisplayUnchanged": true
+    },
+    {
+      "cluster": 32,
+      "label": "allocated-restored",
+      "fieldsExceptDisplayUnchanged": true
+    }
+  ],
+  "roleVisibilityUiCases": 8,
+  "editResponsiveCombinations": 12,
+  "reserveAdvanced390Combinations": 4,
+  "unchangedUpdatePostCount": 0,
+  "faultInjection": [
+    {
+      "cluster": 31,
+      "case": "HTTP403 error431",
+      "effect": "Definite rejection retained false input and enabled explicit retry; POST intercepted without forwarding",
+      "file": "31-Reserved-injected-403.txt"
+    },
+    {
+      "cluster": 32,
+      "case": "jobstatus2",
+      "effect": "Synthetic job retained false input and failure; explicit retry enabled; no backend write",
+      "file": "32-Reserved-injected-job2.txt"
+    },
+    {
+      "cluster": 31,
+      "case": "HTTP503 error530",
+      "effect": "Unknown receipt remained locked after close/reopen/recheck; no replay; POST intercepted without forwarding",
+      "file": "31-Reserved-injected-503.txt"
+    },
+    {
+      "cluster": 32,
+      "case": "missing job receipt",
+      "effect": "Unknown receipt remained locked after close/reopen/recheck; no replay; POST intercepted without forwarding",
+      "file": "32-Reserved-injected-missing-receipt.txt"
+    },
+    {
+      "cluster": 31,
+      "case": "job0 with actual backend job",
+      "effect": "Injected pending status for actual job; close/reopen and project switch returned to same job; no duplicate POST",
+      "files": [
+        "31-Reserved-job0-pending.txt",
+        "31-Allocated-project-job0.txt"
+      ]
+    }
+  ],
+  "cleanup": {
+    "IPs": 2,
+    "accounts": 4,
+    "domains": 2,
+    "finalState": "Free",
+    "originalDisplay": true,
+    "inventoriesEqual": 16,
+    "protectedFtctlFiles": 3
+  },
+  "fullCloudBuildDispatched": false,
+  "serverSourceChanged": false
+}
