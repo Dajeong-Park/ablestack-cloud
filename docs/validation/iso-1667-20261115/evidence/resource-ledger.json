@@ -5,7 +5,9 @@
       "name": "qa-iso1667-url421-md5",
       "owner": "admin",
       "series": "4.21",
-      "mode": "URL"
+      "mode": "URL",
+      "deletionRequested": true,
+      "deleted": true
     },
     {
       "id": "b64dd765-319d-4627-9fab-de272cdfe8b6",
@@ -48,7 +50,9 @@
       "name": "qa-iso1667-owner421-sha256",
       "owner": "qa-iso1667-owner",
       "series": "4.21",
-      "mode": "local"
+      "mode": "local",
+      "deletionRequested": true,
+      "deleted": true
     },
     {
       "id": "82ba337d-5118-4d1e-8626-512410c59210",
@@ -112,14 +116,18 @@
       "name": "qa-iso1667-owner-local423-sha256",
       "owner": "qa-iso1667-owner",
       "series": "4.23",
-      "mode": "local"
+      "mode": "local",
+      "deletionRequested": true,
+      "deleted": true
     },
     {
       "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903",
       "name": "qa-iso1667-admin-local423-md5",
       "owner": "admin",
       "series": "4.23",
-      "mode": "local"
+      "mode": "local",
+      "deletionRequested": true,
+      "deleted": true
     },
     {
       "id": "aaca737a-4ae6-4214-9384-9fd179efb889",
@@ -216,7 +224,8 @@
     {
       "id": "5044c1ca-93f3-4fee-a40c-cfdd9f46cca1",
       "name": "qa-iso1667-admin-ud",
-      "owner": "admin"
+      "owner": "admin",
+      "deleted": true
     },
     {
       "id": "fde8d697-1233-4c7d-93f2-0a4540db14ec",
@@ -228,7 +237,8 @@
     {
       "id": "1e00e2db-3756-40d0-8684-080a7a0587c2",
       "name": "qa-iso1667-owner-ud",
-      "owner": "qa-iso1667-owner"
+      "owner": "qa-iso1667-owner",
+      "deleted": true
     },
     {
       "id": "10d03a53-cf08-49e6-ac53-aa86ee801066",
@@ -241,7 +251,8 @@
   "accounts": [
     {
       "id": "e49af88e-9c66-4da9-b056-a52c9cd2a07c",
-      "name": "qa-iso1667-owner"
+      "name": "qa-iso1667-owner",
+      "deleted": true
     }
   ],
   "systemvms": [

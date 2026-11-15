@@ -1322,5 +1322,167 @@
     "consoleId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
     "consoleName": "v-245-VM",
     "consolePreserved": true
+  },
+  {
+    "name": "actual-download-files-verified",
+    "at": "2026-11-15T00:33:05.447Z",
+    "files": [
+      {
+        "File": "qa-iso1667-admin-local423-md5.iso",
+        "Bytes": 1525760,
+        "Sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "ExpectedBytes": 1525760,
+        "ExpectedSha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:31:06.3637446Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.6318077Z"
+      },
+      {
+        "File": "qa-iso1667-owner-local423-sha256.iso",
+        "Bytes": 24434688,
+        "Sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "ExpectedBytes": 24434688,
+        "ExpectedSha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:31:22.4163065Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.7529271Z"
+      },
+      {
+        "File": "qa-iso1667-owner421-sha256.iso",
+        "Bytes": 24434688,
+        "Sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "ExpectedBytes": 24434688,
+        "ExpectedSha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:30:30.6692699Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.8700166Z"
+      },
+      {
+        "File": "qa-iso1667-url421-md5.iso",
+        "Bytes": 1525760,
+        "Sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "ExpectedBytes": 1525760,
+        "ExpectedSha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "Matched": true,
+        "DownloadedBy": "operator through Mold UI",
+        "LastWriteTimeUtc": "2026-11-15T00:27:40.1575022Z",
+        "VerifiedAtUtc": "2026-11-15T00:32:43.8891121Z"
+      }
+    ],
+    "allMatched": true,
+    "source": "Operator downloaded through UI; local files hashed by assistant"
+  },
+  {
+    "name": "qa-iso1667-url421-md5",
+    "at": "2026-11-15T00:33:40.190Z",
+    "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:34:04.929Z",
+    "id": "463952e4-fd4d-4475-9564-fbb233b8cb8b"
+  },
+  {
+    "name": "qa-iso1667-owner421-sha256",
+    "at": "2026-11-15T00:34:08.527Z",
+    "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:34:52.732Z",
+    "id": "8d83b02c-2a26-4c22-81d0-bfb33c3731aa"
+  },
+  {
+    "name": "qa-iso1667-admin-local423-md5",
+    "at": "2026-11-15T00:34:56.341Z",
+    "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:35:15.648Z",
+    "id": "5ac78863-725b-4bc9-83e9-8ea2755ac903"
+  },
+  {
+    "name": "qa-iso1667-owner-local423-sha256",
+    "at": "2026-11-15T00:35:19.275Z",
+    "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99"
+  },
+  {
+    "name": "received-iso-normal-ui-deleted",
+    "at": "2026-11-15T00:35:41.440Z",
+    "id": "bc3f7e79-60cd-4d6e-9ace-136506718c99"
+  },
+  {
+    "name": "final-userdata-two-deleted",
+    "at": "2026-11-15T00:36:20.238Z",
+    "completed": 2,
+    "failed": 0,
+    "allReferencesZero": true
+  },
+  {
+    "name": "final-qa-account-deleted",
+    "at": "2026-11-15T00:37:51.390Z",
+    "id": "e49af88e-9c66-4da9-b056-a52c9cd2a07c",
+    "disabledBeforeDeletion": true,
+    "baselineAccounts": 3,
+    "remainingQaAccounts": 0
+  },
+  {
+    "name": "final-role-baseline-preserved",
+    "at": "2026-11-15T00:37:57.397Z",
+    "roles": 9,
+    "createdRoles": 0
+  },
+  {
+    "name": "final-userdata-baseline-restored",
+    "at": "2026-11-15T00:38:04.687Z",
+    "count": 0
+  },
+  {
+    "name": "final-operational-images-preserved",
+    "at": "2026-11-15T00:38:16.862Z",
+    "readySystemImages": 2,
+    "qaResources": false
+  },
+  {
+    "name": "post-cleanup-systemvm-preserved",
+    "at": "2026-11-15T00:38:23.811Z",
+    "secondaryId": "ec08882e-81a5-4c20-b427-d9d2c0ffe12d",
+    "secondaryVersion": "4.23.0.0",
+    "consoleId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
+    "running": true,
+    "agentUp": true
+  },
+  {
+    "name": "final-cleanup-complete",
+    "at": "2026-11-15T00:39:06.295Z",
+    "verifiedAt": "2026-11-15T00:39:06.295Z",
+    "downloadFilesVerified": 4,
+    "qaIsoCreated": 25,
+    "qaIsoDeleted": 25,
+    "qaIsoRemaining": 0,
+    "qaUserdataRemaining": 0,
+    "qaAccountsRemaining": 0,
+    "originalIsoIds": [
+      "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+      "98432634-54c7-485f-aa24-e6e2cea40980",
+      "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+      "192d3383-74a4-4969-8f37-5af00aa90b95",
+      "5836b8f6-9336-4766-8f77-e39218f6e826",
+      "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+      "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "367c88cb-4947-452f-9429-54a19885adf4"
+    ],
+    "isoCount": 8,
+    "accountCount": 3,
+    "roleCount": 9,
+    "userdataCount": 0,
+    "operationalSystemImagesRetained": 2,
+    "secondaryVm": "s-255-VM",
+    "secondaryVersion": "4.23.0.0",
+    "consoleVmPreserved": "v-245-VM"
   }
 ]

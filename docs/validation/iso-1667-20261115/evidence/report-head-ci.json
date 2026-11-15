@@ -1,0 +1,11 @@
+{
+  "head": "3db8e028ee0d7d58c0f0e900aaf76b0c76ea9d27",
+  "run": "43646306006",
+  "unapproved": 4077,
+  "added": 0,
+  "removed": 0,
+  "pathsSha256": "82ab7d896c1ab96105174e210578bdb17a588e1aad831741c4b6847536b12fe8",
+  "latestLintRun": "43646306057",
+  "latestLintStatus": "completed_failure",
+  "changedDiagnosticPaths": []
+}

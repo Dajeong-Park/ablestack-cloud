@@ -21,7 +21,7 @@ under the License.
 
 상위 Epic #1664 · 구현 PR #1682 · 13번 단일 Zone/KVM · 2026-11-15 KST.
 
-**현재 상태: 구현·필요 산출물 배포·양 계열 업로드 및 자동화 가능한 UI 회귀는 통과했다. 실제 다운로드 파일 4개의 수신 확인과 그 뒤 정리는 대기 중이다. #1667과 Epic은 열려 있으며 PR은 Draft다.**
+**최종 상태: 구현·필요 산출물 배포·양 계열 업로드/UI 회귀·다운로드 4파일 검증·시험 자원 정리를 완료했다. #1667의 종료 조건을 충족했으며 Epic의 나머지 하위 이슈는 별도 진행한다.**
 
 단위 테스트나 업로드 접수만으로 완료를 표시하지 않았다. 아래 등록·실패·복구·삭제는 실제 Mold UI에서 실행했고, 해당 UI가 받은 API 응답과 배포 런타임을 보조 근거로 대조했다.
 
@@ -146,7 +146,7 @@ aarch64/s390x는 비부팅 데이터 ISO의 메타데이터 저장 검증이다.
 | 전체 License/RAT | 실패 4077개, 기준과 파일 집합 동일, 추가/제거 0 |
 | 소스 727bed 전체 Lint | 실패 hook 16개, 실패 진단의 변경 경로 0, 매칭한 기존 11173개 경로는 기준과 동일 |
 | 검증 기록 pre-commit / 수동 hook | 두 단계 통과, CI와 같은 Python 3.11 환경 사용 |
-| 수신 파일 검증 | 미완료, 아래 4개 ISO 확인 필요 |
+| 수신 파일 검증 | 4개 모두 실제 크기·SHA-256 일치 |
 
 전체 pre-commit의 통과한 identity 파일 나열을 진단으로 세지 않았다. 실제 실패 hook 부분만 분리해 변경 경로와 대조했다. 수동 hook 단계는 앞 단계 실패 때문에 건너뛰었으며 전체 CI 성공으로 표시하지 않는다.
 
@@ -161,31 +161,44 @@ aarch64/s390x는 비부팅 데이터 ISO의 메타데이터 저장 검증이다.
 - [전체 pre-commit 분류](evidence/precommit-classification.json)
 - [검증 기록 대상 검사](evidence/focused-report-checks.json)
 
-## 다운로드 확인 대기와 남은 정리
+## 수신 파일 검증과 최종 정리
 
-4.21 등록 MD5 ISO의 추출은 성공했다. 그러나 다운로드가 연 새 탭은 자동제어 브라우저의 URL 보안 정책 때문에 관찰할 수 없어 실제 파일 수신 성공으로 표시하지 않았다. 수신 크기/해시는 서버 저장 값이나 추출 job 성공으로 대신하지 않는다. 새 탭 제어를 다른 브라우저 표면/CDP/curl로 우회하지 않았다.
+사용자가 Mold UI에서 4개 ISO를 직접 다운로드한 뒤, 실제 수신 파일을 로컬에서 읽어 크기와 SHA-256을 계산했다. 2026-11-15 09:32 KST에 원본 기대값과 4건 모두 정확히 일치함을 확인했다. 추출 job이나 서버 저장 checksum으로 실수신 검증을 대신하지 않았다.
 
-관리자 `모두` 목록에서 아래 네 ISO의 `작업 → ISO 다운로드`를 실행하고 수신 파일 크기와 SHA-256을 확인해야 한다. 임시 원본 HTTP 주소는 제거했으므로 상세의 원본 URL 대신 실제 ISO 다운로드 기능을 사용한다.
+| 등록/입력 checksum | 수신 ISO 파일 | 실제 크기 | 실제 SHA-256 | 기대값 대조 |
+| --- | --- | --- | --- | --- |
+| 4.21 / MD5 | `qa-iso1667-url421-md5.iso` | 1,525,760 bytes | `171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4` | 일치 |
+| 4.21 / SHA-256 | `qa-iso1667-owner421-sha256.iso` | 24,434,688 bytes | `c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc` | 일치 |
+| 4.23 / MD5 | `qa-iso1667-admin-local423-md5.iso` | 1,525,760 bytes | `171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4` | 일치 |
+| 4.23 / SHA-256 | `qa-iso1667-owner-local423-sha256.iso` | 24,434,688 bytes | `c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc` | 일치 |
 
-| 등록/입력 checksum | 확인할 ISO | 예상 크기 | 예상 SHA-256 |
-| --- | --- | --- | --- |
-| 4.21 / MD5 | `qa-iso1667-url421-md5` | 1,525,760 bytes | `171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4` |
-| 4.21 / SHA-256 | `qa-iso1667-owner421-sha256` | 24,434,688 bytes | `c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc` |
-| 4.23 / MD5 | `qa-iso1667-admin-local423-md5` | 1,525,760 bytes | `171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4` |
-| 4.23 / SHA-256 | `qa-iso1667-owner-local423-sha256` | 24,434,688 bytes | `c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc` |
+4.21 등록 개체도 현재 4.23 SSVM에서 수신했다. 이 파일 확인을 4.21 agent가 직접 다운로드를 제공한 결과로 소급하지 않는다. 4.21 업로드 런타임 검증과 수신 파일 검증의 시점을 구분했다.
 
-4.21 등록 개체는 현재 4.23에서 추출될 수 있다. 이 파일 확인을 4.21 agent가 직접 다운로드를 제공한 결과로 소급해 기록하지 않는다.
+파일 일치 확인 후 남은 ISO 4개 → 사용자 데이터 2개 → 시험 계정 1개 순서로 실제 UI에서 정리했다. 사용자 데이터의 VM/템플릿/ISO 참조가 모두 0인 것을 확인한 뒤 삭제했다. 시험 계정은 인스턴스/볼륨/IP 0을 확인하고 제품 절차대로 비활성화한 후 이름을 입력해 삭제했다.
 
-UI 생성 ISO 25개 중 21개를 정상 삭제했다. 위 4개와 연결된 QA 계정 1개/사용자 데이터 2개는 수신 검증 뒤 ISO → 사용자 데이터 → 계정 순서로 UI 정리한다. 현재 원래 ISO 8개 ID와 역할 9개는 보존됐다. 현재 ISO 12개/계정 4개/사용자 데이터 2개이며 시험 자원 잔여 0으로 표시하지 않는다.
+- 시험 ISO 25개 전부 정상 UI 삭제, 남은 시험 ISO 0개
+- 시험 사용자 데이터 4개 전부 삭제(앞 단계 임시 항목 2개 포함), 잔여 0개
+- 시험 계정 1개 삭제, 잔여 0개
+- 원래 ISO 8개 ID 집합 일치, 계정 3개·역할 9개·사용자 데이터 0개 확인
+- 현재 s-255-VM/4.23 및 원래 console v-245-VM 모두 실행 중/Agent Up 보존
 
-운영 SYSTEM 이미지는 4.23 현재 factory `1cce97d2-a4b6-49c7-871a-3f52d70ce858`와 보호된 4.21 호환 복구 이미지 `460c3e5f-a873-4ca1-8242-a96d92eae233` 두 개를 유지한다. 두 이미지가 Ready인 것을 UI로 확인했다. QA ISO와 구분하며 SYSTEM 삭제 권한을 우회하지 않았다.
+운영 SYSTEM 이미지는 4.23 현재 factory `1cce97d2-a4b6-49c7-871a-3f52d70ce858`와 보호된 4.21 호환 복구 이미지 `460c3e5f-a873-4ca1-8242-a96d92eae233` 두 개를 유지한다. 두 이미지가 Ready인 것을 최종 UI로 확인했다. QA 자원과 구분하며 SYSTEM 삭제 권한을 우회하지 않았다.
 
-임시 ISO HTTP 파일 2개와 4.21 재생성용 HTTP 이미지 1개는 해시 확인 후 제거했고 각각 404를 확인했다. 기존 4.23 원본 파일과 복구본은 보존했다.
+임시 ISO HTTP 파일 2개와 4.21 재생성용 HTTP 이미지 1개는 해시 확인 후 제거했고 각각 404를 확인했다. 기존 4.23 원본 파일과 복구본은 보존했다. 이번 마감 단계에서는 제품 코드 변경이나 추가 배포가 없다.
 
-- [수신 확인 대기 목록](screenshots/pending-download-ready-four.jpg)
-- [자원 ID와 정리 상태](evidence/resource-ledger.json)
-- [남은 종료 게이트](evidence/pending-cleanup.json)
+검증 기록 커밋 `3db8e028ee0`의 실제 CI도 확인했다. License run43646306006은 기준과 동일한 4077개 집합이며 추가/제거 0개다. 전체 Lint run43646306057은 기존 실패 hook 16개, 변경 경로 진단 0개다. #926·#1044는 해결/종료로 표시하지 않고 별도 관리한다.
+
+- [실제 수신 파일 크기·SHA-256](evidence/download-receipts.json)
+- [마감 변경의 pre-commit·수동 검사](evidence/final-cleanup-checks.json)
+- [최종 정리 및 원래 ISO ID 대조](evidence/final-cleanup.json)
+- [자원별 삭제 기록](evidence/resource-ledger.json)
+- [전체 UI 관찰 기록](evidence/ui-cases.json)
+- [최종 ISO 8개 목록](screenshots/final-cleanup-catalog.jpg)
+- [계정 3개 보존](screenshots/final-cleanup-accounts.jpg)
+- [사용자 데이터 0개](screenshots/final-cleanup-userdata.jpg)
+- [직전 보고서 커밋의 Lint 대조](evidence/report-head-precommit-classification.json)
+- [직전 보고서 커밋의 License 대조](evidence/report-head-ci.json)
 - [HTTP 파일 정리](evidence/http-fixtures-cleanup.json)
 - [근거 안전 검사](evidence/artifact-safety.json)
 
-실수신 확인과 나머지 UI 정리 후에만 #1667을 종료하고 Epic/PR의 최종 상태를 갱신한다.
+이슈 #1667의 기능 검증과 시험 자원 정리 종료 조건을 모두 충족했다. 최종 결과는 Epic #1664와 PR #1682에 갱신하며, Epic 전체 종료와 PR 병합은 이번 단계의 작업이 아니다.
