@@ -1,0 +1,12 @@
+[
+  {
+    "stage": "pre-commit",
+    "returnCode": 0,
+    "files": 58
+  },
+  {
+    "stage": "manual",
+    "returnCode": 0,
+    "files": 58
+  }
+]

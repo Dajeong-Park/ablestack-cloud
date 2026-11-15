@@ -1,0 +1,93 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.17s
+
+docs/validation/iso-1668-20261115/screenshots/final-original-iso-list.jpg
+docs/validation/iso-1668-20261115/evidence/rat-boundary.json
+docs/validation/iso-1668-20261115/evidence/rat-comparison.json
+docs/validation/iso-1668-20261115/evidence/second-ui-build-result.json
+docs/validation/iso-1668-20261115/screenshots/project-template-personal-receiver-after.jpg
+ui/tests/unit/views/image/TemplateZoneSelection.spec.js
+docs/validation/iso-1668-20261115/evidence/second-deploy-files.json
+ui/src/views/image/UpdateTemplateIsoPermissions.vue
+docs/validation/iso-1668-20261115/screenshots/permission-dialog-dark-default.jpg
+docs/validation/iso-1668-20261115/evidence/ui-case-disposition.json
+docs/validation/iso-1668-20261115/evidence/final-rat-comparison.json
+ui/tests/unit/views/image/TemplatePermissions.spec.js
+docs/validation/iso-1668-20261115/screenshots/project-personal-receiver-scope-before.jpg
+ui/tests/unit/utils/isoResource.spec.js
+docs/validation/iso-1668-20261115/evidence/final-precommit-classification.json
+ui/tests/unit/components/view/ImageTagReadScope.spec.js
+docs/validation/iso-1668-20261115/evidence/ui-build-result.json
+ui/tests/unit/views/image/TemplateAvailabilityRead.spec.js
+docs/validation/iso-1668-20261115/evidence/first-source-boundary.json
+docs/validation/iso-1668-20261115/screenshots/after-user-zone.jpg
+docs/validation/iso-1668-20261115/README.ko.md
+docs/validation/iso-1668-20261115/evidence/tag-read-runtime-compatibility.json
+docs/validation/iso-1668-20261115/screenshots/account-selective-removal.jpg
+ui/src/views/image/TemplateZones.vue
+ui/src/utils/resourceTags.js
+ui/src/config/section/image.js
+docs/validation/iso-1668-20261115/evidence/deploy-files.json
+docs/validation/iso-1668-20261115/evidence/resource-ledger.json
+docs/validation/iso-1668-20261115/evidence/first-ui-build-result.json
+docs/validation/iso-1668-20261115/screenshots/readonly-template-selection-before.jpg
+docs/validation/iso-1668-20261115/screenshots/project-personal-receiver-scope-after.jpg
+ui/tests/unit/utils/isoModel.spec.js
+docs/validation/iso-1668-20261115/screenshots/template-authorized-delete-result.jpg
+ui/tests/unit/views/image/IsoActionPolicy.spec.js
+ui/src/views/image/IsoZones.vue
+docs/validation/iso-1668-20261115/screenshots/after-remove-targets.jpg
+docs/validation/iso-1668-20261115/evidence/final-runtime.json
+ui/tests/unit/utils/resourceTags.spec.js
+docs/validation/iso-1668-20261115/screenshots/before-remove-targets-empty.jpg
+docs/validation/iso-1668-20261115/evidence/source-boundary.json
+ui/src/utils/imagePermissions.js
+ui/tests/unit/views/image/IsoZonesReadScope.spec.js
+docs/validation/iso-1668-20261115/screenshots/domain-nonowner-actions-after.jpg
+ui/src/utils/isoModel.js
+docs/validation/iso-1668-20261115/evidence/first-deploy-files.json
+docs/validation/iso-1668-20261115/screenshots/before-user-zone.jpg
+ui/public/locales/ko_KR.json
+docs/validation/iso-1668-20261115/evidence/first-ui-deployment.json
+docs/validation/iso-1668-20261115/screenshots/project-selective-removal.jpg
+docs/validation/iso-1668-20261115/evidence/second-ui-deployment.json
+docs/validation/iso-1668-20261115/screenshots/permission-read-error.jpg
+ui/src/components/view/ResourceTags.vue
+docs/validation/iso-1668-20261115/evidence/ui-deployment.json
+docs/validation/iso-1668-20261115/evidence/ui-cases.json
+docs/validation/iso-1668-20261115/evidence/second-source-boundary.json
+ui/public/locales/en.json
+docs/validation/iso-1668-20261115/screenshots/permission-dialog-light.jpg
+docs/validation/iso-1668-20261115/screenshots/readonly-template-selection-after.jpg
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files............................................Passed
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

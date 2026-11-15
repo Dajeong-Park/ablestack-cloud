@@ -1,0 +1,7 @@
+{
+  "canonicalAndRuntimeReadHelpersEqual": true,
+  "runtimeTagMutationAndRecoveryTailUnchanged": true,
+  "runtimeTagWidgetOnlyReadCallChanged": true,
+  "runtimeTagTests": "prior runtime baseline plus image read-scope tests; unrelated canonical recovery tests are not imported",
+  "canonicalHead": "802fab97140116cc68f4f7700e197f3c520cb278"
+}

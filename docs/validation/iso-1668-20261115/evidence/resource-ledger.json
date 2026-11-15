@@ -1,0 +1,119 @@
+{
+  "isos": [
+    {
+      "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+      "name": "qa-iso1668-root-data",
+      "owner": "admin",
+      "deleted": true
+    },
+    {
+      "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+      "name": "qa-iso1668-owner-data",
+      "owner": "qa-iso1668-owner",
+      "deleted": true
+    },
+    {
+      "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71",
+      "name": "qa-iso1668-domain-data",
+      "owner": "qa-iso1668-domain-admin",
+      "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+      "deleted": true
+    },
+    {
+      "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+      "name": "qa-iso1668-domain-member-data",
+      "owner": "qa-iso1668-domain-owner",
+      "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+      "deleted": true
+    },
+    {
+      "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+      "name": "qa-iso1668-project-owned-data",
+      "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+      "owner": "project-one",
+      "deleted": true
+    }
+  ],
+  "templates": [
+    {
+      "id": "13693a6c-4b52-4d2a-8061-5f913caa08a3",
+      "name": "qa-iso1668-template",
+      "owner": "admin",
+      "deleted": true
+    },
+    {
+      "id": "6b8baff3-e328-4225-9f38-4437dac0dfb0",
+      "name": "qa-iso1668-owner-template",
+      "owner": "qa-iso1668-owner",
+      "deleted": true
+    },
+    {
+      "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+      "name": "qa-iso1668-project-owned-template",
+      "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+      "owner": "project-one",
+      "deleted": true
+    }
+  ],
+  "accounts": [
+    {
+      "id": "63bdc64f-fe90-4b76-a4e7-cd23b0a2db64",
+      "name": "qa-iso1668-owner",
+      "role": "User",
+      "deleted": true
+    },
+    {
+      "id": "cc76492e-24db-4d97-91e4-4cfa59c887a8",
+      "name": "qa-iso1668-recipient-b",
+      "role": "User",
+      "deleted": true
+    },
+    {
+      "id": "570b2358-7006-4940-bfb3-160e21cac6ef",
+      "name": "qa-iso1668-recipient-c",
+      "role": "User",
+      "deleted": true
+    },
+    {
+      "id": "3eb252a8-96bb-45bf-b2a4-161aab3be32e",
+      "name": "qa-iso1668-domain-admin",
+      "role": "DomainAdmin",
+      "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+      "deleted": true
+    },
+    {
+      "id": "837e0d69-d4de-4e68-beb8-bcb2d63d7bb9",
+      "name": "qa-iso1668-domain-owner",
+      "role": "User",
+      "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+      "deleted": true
+    }
+  ],
+  "roles": [
+    {
+      "id": "ce07b762-dc3a-4a96-b405-0e8da3e0ff57",
+      "name": "qa-iso1668-partial-api",
+      "deleted": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+      "name": "qa-iso1668-project-one",
+      "deleted": true
+    },
+    {
+      "id": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394",
+      "name": "qa-iso1668-project-two",
+      "deleted": true
+    }
+  ],
+  "domains": [
+    {
+      "id": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+      "name": "qa-iso1668-domain",
+      "deleted": true
+    }
+  ],
+  "userdatas": []
+}

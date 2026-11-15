@@ -1,0 +1,15 @@
+{
+  "case": "permission-dialog-narrow-dark",
+  "requestedViewport": {
+    "width": 900,
+    "height": 600
+  },
+  "observedViewport": {
+    "width": 1680,
+    "height": 897
+  },
+  "status": "NOT_RUN_EXPLICIT_VIEWPORT_NOT_APPLIED",
+  "countAsResponsivePass": false,
+  "evidenceScreenshot": "permission-dialog-dark-default.jpg",
+  "followup": "#1673 ISO-08 integrated responsive regression"
+}
