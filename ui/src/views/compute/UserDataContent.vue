@@ -63,19 +63,19 @@ export default {
     isCni () { return this.sourceType === 'cni' },
     contentLabel () { return this.isCni ? 'label.cni.content' : 'label.userdata.content' },
     parentReadPending () { return this.previewEncoded == null && this.isCni && (this.loading || this.resourceReadPending()) },
-    parentReadReady () { return this.previewEncoded != null || !this.isCni || (!this.parentReadPending && this.resourceActionReady()) },
+    parentReadReady () { return this.previewEncoded != null || !(this.isCni || this.sourceType === 'vm') || (!this.parentReadPending && this.resourceActionReady()) },
     statusMessage () { return 'message.' + (this.isCni && ['missing', 'mismatch', 'unsupported'].includes(this.status) ? 'cni' : 'userdata') + '.content.' + this.status },
     active () { return this.previewEncoded != null || this.tab === (this.isCni ? 'cni.content' : 'userdata.content') && (!this.isCni || this.$route.path.toLowerCase() === '/cniconfiguration/' + (this.resource.id || '').toLowerCase()) },
     canRead () { return this.previewEncoded != null || (this.isCni ? !!this.$store.getters.apis?.listCniConfiguration : this.sourceType === 'vm' ? vmUserDataSupported(this.$store.getters.apis) : !!this.$store.getters.apis?.listUserData) },
-    scope () { return JSON.stringify([this.sourceType, !!this.$store.getters.apis?.listUserData, !!this.$store.getters.apis?.listVirtualMachines, this.resource.userdataid, this.resource.userdatadetails, this.resource.userdatapolicy, this.resource.state, this.resource.id, this.resource.name, this.resource.account, this.resource.domainid, this.resource.projectid, this.$route.path, this.$store.getters.project?.id, this.$store.getters.listAllProjects, this.$store.getters.userInfo?.id, this.$store.state?.user?.token, this.canRead]) },
+    scope () { return JSON.stringify([this.sourceType, !!this.$store.getters.apis?.listUserData, !!this.$store.getters.apis?.listVirtualMachines, this.resource.userdataid, this.resource.userdatadetails, this.resource.userdatapolicy, this.resource.state, this.resource.id, this.resource.name, this.resource.account, this.resource.domainid, this.resource.projectid, this.$route.path, this.$store.getters.project?.id, this.$store.getters.listAllProjects, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.canRead]) },
     display () { return this.mode === 'base64' ? this.content?.encoded : this.content?.text },
     exportable () { return this.active && this.canRead && this.publishedScope === this.scope && this.parentReadReady && this.status === 'ready' && !this.pending && this.content && !this.content.empty }
   },
   watch: {
     previewEncoded () { this.reset(); this.fetchData() },
-    scope () { this.reset(); this.fetchData() },
+    scope: { flush: 'sync', handler () { this.reset(); this.fetchData() } },
     active (value) { this.version++; this.pending = false; this.feedback = ''; if (value) this.fetchData() },
-    parentReadReady (value) { if (this.isCni) { this.version++; this.pending = false; this.feedback = ''; if (value) this.fetchData() } },
+    parentReadReady (value) { if (this.sourceType === 'vm') this.reset(); if (this.isCni || this.sourceType === 'vm') { this.version++; this.pending = false; this.feedback = ''; if (value) this.fetchData() } },
     loading (value) { if (!value) this.fetchData() }
   },
   created () { this.fetchData() },

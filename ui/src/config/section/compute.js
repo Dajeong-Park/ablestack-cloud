@@ -27,7 +27,7 @@ import { getAPI, postAPI, getBaseUrl } from '@/api'
 import { getLatestKubernetesIsoParams } from '@/utils/acsrepo'
 import { isFastClonePowerOperationBlocked, getFastClonePowerBlockedLabel, getFastClonePhase } from '@/utils/fastClone'
 import { isCloneBlockedByExtraConfigDisk } from '@/utils/vmClone'
-import { vmUserDataSupported } from '@/utils/vmUserData'
+import { vmStoredUserDataAction, vmVbmcAction, vmUnmanageAction, vmCloneAction } from '@/config/section/vmCommonActions'
 import { userDataLibraryParams, cniLibraryParams } from '@/utils/userDataContent'
 import { affinityGroupListParams } from '@/utils/affinityGroupCreation'
 import { affinityMemberCount } from '@/utils/affinityGroupMembers'
@@ -290,24 +290,12 @@ export default {
           popup: true,
           groupMap: (selection, values) => { return selection.map(x => { return { id: x, forced: values.forced } }) }
         },
-        {
-          api: 'cloneVirtualMachine',
-          icon: 'file-add-outlined',
-          label: 'label.action.clone.vm',
-          message: 'message.action.clone.instance',
-          docHelp: 'adminguide/virtual_machines.html#cloning-vms',
-          dataView: true,
-          popup: true,
-          show: (record) => { return ['Running', 'Stopped'].includes(record.state) && record.vmtype !== 'sharedfsvm' },
-          disabled: (record, store, selectedItems) => {
-            return isCloneBlockedByExtraConfigDisk(record, selectedItems) ||
-              (record.hostcontrolstate === 'Offline' && record.hypervisor === 'KVM') ||
-              disableDuringFastCloneFlatten(record, store, selectedItems) ||
-              disableDuringBackup(record, store, selectedItems)
-          },
-          tooltip: (record, store, selectedItems) => getCloneOperationTooltip(record, store, selectedItems),
-          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/CloneVM.vue')))
-        },
+        vmCloneAction({
+          disabled: (record, store, selectedItems) => isCloneBlockedByExtraConfigDisk(record, selectedItems) ||
+            (record.hostcontrolstate === 'Offline' && record.hypervisor === 'KVM') ||
+            disableDuringFastCloneFlatten(record, store, selectedItems) || disableDuringBackup(record, store, selectedItems),
+          tooltip: (record, store, selectedItems) => getCloneOperationTooltip(record, store, selectedItems)
+        }),
         {
           api: 'restoreVirtualMachine',
           icon: 'sync-outlined',
@@ -577,16 +565,7 @@ export default {
           popup: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/compute/ResetSshKeyPair')))
         },
-        {
-          api: 'getVirtualMachineUserData',
-          show: (_, store) => vmUserDataSupported(store.apis),
-          selfManagedDialog: true,
-          icon: 'file-search-outlined',
-          label: 'label.userdata.vm.stored',
-          dataView: true,
-          popup: true,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/ViewVmUserData')))
-        },
+        vmStoredUserDataAction(),
         {
           api: 'resetUserDataForVirtualMachine',
           selfManagedDialog: true,
@@ -625,14 +604,7 @@ export default {
           popup: true,
           show: (record) => { return ['External'].includes(record.hypervisor) }
         },
-        {
-          api: 'unmanageVirtualMachine',
-          icon: 'disconnect-outlined',
-          label: 'label.action.unmanage.virtualmachine',
-          message: 'message.action.unmanage.virtualmachine',
-          dataView: true,
-          show: (record) => { return record.hypervisor !== 'External' && ['Running', 'Stopped'].includes(record.state) && ['VMware', 'KVM'].includes(record.hypervisor) && record.vmtype !== 'sharedfsvm' }
-        },
+        vmUnmanageAction(),
         {
           api: 'expungeVirtualMachine',
           icon: 'delete-outlined',
@@ -644,16 +616,7 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/views/compute/DestroyVM.vue'))),
           show: (record, store) => { return ['Destroyed', 'Expunging'].includes(record.state) && store.features.allowuserexpungerecovervm && record.vmtype !== 'sharedfsvm' }
         },
-        {
-          api: 'listVirtualMachines',
-          icon: 'heart-filled',
-          label: 'label.vbmc.manage',
-          dataView: true,
-          popup: true,
-          selfManagedDialog: true,
-          show: record => record.vmtype !== 'sharedfsvm',
-          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/VmVbmcManager.vue')))
-        },
+        vmVbmcAction(),
         {
           api: 'destroyVirtualMachine',
           icon: 'delete-outlined',

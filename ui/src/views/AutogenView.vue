@@ -2712,6 +2712,14 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (isVmIdentityRoute(this.$route) && (action.resource || this.resource)?.templatetype === 'VNF' && action.api === 'cloneVirtualMachine') return
+      if (isVmIdentityRoute(this.$route) && action.api === 'unmanageVirtualMachine' && (action.resource || this.resource)?.templatetype === 'VNF') {
+        if (!this.storageActionReady || !this.$store.getters.apis.unmanageVirtualMachine) return
+        const generation = this.storageActionGeneration
+        this.currentAction = { ...action, component: markRaw(defineAsyncComponent(() => import('@/views/compute/VnfUnmanage.vue'))), popup: true, standardDialogSize: 'lg', invokedAsGroupAction: false, vnfUnmanageCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.resource = action.resource || this.resource; this.showAction = true
+        return
+      }
       if (isVmIdentityRoute(this.$route) && action.api === 'restoreVirtualMachine' && (action.resource || this.resource)?.templatetype === 'VNF') {
         const target = action.resource || this.resource
         const generation = this.storageActionGeneration

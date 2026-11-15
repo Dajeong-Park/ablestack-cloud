@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
+import { vmStoredUserDataAction, vmVbmcAction, vmUnmanageAction, vmCloneAction } from '@/config/section/vmCommonActions'
 import store from '@/store'
 import tungsten from '@/assets/icons/tungsten.svg?inline'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
@@ -831,14 +832,10 @@ export default {
           dataView: true,
           show: (record, store) => { return ['Destroyed'].includes(record.state) && store.features.allowuserexpungerecovervm }
         },
-        {
-          api: 'unmanageVirtualMachine',
-          icon: 'disconnect-outlined',
-          label: 'label.action.unmanage.virtualmachine',
-          message: 'message.action.unmanage.virtualmachine',
-          dataView: true,
-          show: (record) => { return ['Running', 'Stopped'].includes(record.state) && record.hypervisor === 'VMware' }
-        },
+        vmStoredUserDataAction(),
+        vmVbmcAction(),
+        vmCloneAction(),
+        vmUnmanageAction(),
         {
           api: 'expungeVirtualMachine',
           icon: 'delete-outlined',
