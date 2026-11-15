@@ -305,6 +305,16 @@ export default {
           show: (record, getters) => canIsoAction('share', record, getters)
         },
         {
+          api: 'attachIso',
+          selfManagedDialog: true,
+          popup: true,
+          icon: 'link-outlined',
+          label: 'label.iso.attach.vm',
+          dataView: true,
+          show: (record, getters) => canIsoAction('attach', record, getters),
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/IsoVmAttach.vue')))
+        },
+        {
           api: 'extractIso',
           icon: 'cloud-download-outlined',
           label: 'label.action.download.iso',
@@ -312,16 +322,9 @@ export default {
           docHelp: 'adminguide/templates.html#exporting-templates',
           dataView: true,
           show: (record, getters) => canIsoAction('download', record, getters),
-          args: ['zoneid', 'mode'],
-          mapping: {
-            zoneid: {
-              value: (record) => { return record.zoneid }
-            },
-            mode: {
-              value: (record) => { return 'HTTP_DOWNLOAD' }
-            }
-          },
-          response: (result) => { return `Please click <a href="${result.iso.url}" target="_blank">${result.iso.url}</a> to download.` }
+          selfManagedDialog: true,
+          popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/IsoDownload.vue')))
         },
         {
           api: 'updateIsoPermissions',

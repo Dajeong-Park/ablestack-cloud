@@ -41,6 +41,7 @@ size="small"
         <a-tooltip v-else-if="column.key==='created'" :title="record.created ? $toLocaleDate(record.created) : '—'"><span class="template-cell-value">{{ record.created ? $toLocaleDate(record.created) : '—' }}</span></a-tooltip>
         <div v-else-if="column.key==='actions'" class="template-row-actions" @click.stop>
           <tooltip-button v-if="'deployVirtualMachine' in $store.getters.apis" :disabled="operationActive || !isoAction('deploy',record)" :tooltip="isoBoolean(record.bootable)===true?$t('label.vm.add'):$t('message.iso.bootable.required')" :aria-label="$t('label.vm.add')" icon="rocket-outlined" @onClick="onAddInstance(record)" />
+          <tooltip-button v-if="'attachIso' in $store.getters.apis" :disabled="operationActive || !isoAction('attach',record)" :tooltip="$t('label.iso.attach.vm')" :aria-label="$t('label.iso.attach.vm')" icon="link-outlined" @onClick="attachRecord=record" />
           <tooltip-button v-if="'copyIso' in $store.getters.apis && isActionsOnIsoPermitted" :disabled="operationActive || !isoAction('copy',record)" :tooltip="$t('label.action.copy.iso')" icon="copy-outlined" @onClick="showCopyIso(record)" />
           <tooltip-button v-if="'deleteIso' in $store.getters.apis && isActionsOnIsoPermitted" :disabled="operationActive || !isoAction('delete',record)" :tooltip="$t('label.action.delete.iso')" :danger="true" icon="delete-outlined" @onClick="deleteIso(record)" />
         </div>
@@ -68,6 +69,7 @@ size="small"
 show-size-changer
 @change="handleChangePage"
 @showSizeChange="handleChangePageSize"><template #buildOptionText="props"><span>{{ props.value }} / {{ $t('label.page') }}</span></template></a-pagination></div>
+    <iso-vm-attach v-if="attachRecord" :resource="{...resource,...attachRecord}" @close-action="attachRecord=null" />
     <iso-zone-operations
 ref="zoneOps"
 :resource="resource"
@@ -88,14 +90,15 @@ import { isoZoneContext, isoStorePresentation, readOwnedIsoZones } from '@/utils
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import ResourceIcon from '@/components/view/ResourceIcon'
+import IsoVmAttach from '@/views/image/IsoVmAttach'
 import IsoZoneOperations from '@/views/image/IsoZoneOperations'
 export default {
   name: 'IsoZones',
   mixins: [listRefreshMixin(['fetchData'], { scopeKey: vm => vm.isoScope })],
-  components: { TemplateAvailability, TooltipButton, ResourceIcon, IsoZoneOperations },
+  components: { TemplateAvailability, TooltipButton, ResourceIcon, IsoZoneOperations, IsoVmAttach },
   props: { resource: { type: Object, required: true }, loading: { type: Boolean, default: false } },
   emits: ['update-zones', 'selection-change', 'operation-retained', 'refresh-parent'],
-  data () { return { dataSource: [], itemCount: 0, isoDataContext: '', page: 1, pageSize: 10, fetchLoading: false, fetchLoadingRequest: null, zones: [], zoneLoading: false, selectedItems: [], selectedRowKeys: [], osCategoryId: null, operationActive: false, searchText: '', keyword: '' } },
+  data () { return { dataSource: [], itemCount: 0, isoDataContext: '', page: 1, pageSize: 10, fetchLoading: false, fetchLoadingRequest: null, zones: [], zoneLoading: false, selectedItems: [], selectedRowKeys: [], osCategoryId: null, operationActive: false, attachRecord: null, searchText: '', keyword: '' } },
   created () { this.fetchData() },
   computed: {
     isoScope () { return isoZoneContext(this.resource, this.$store.getters, this.$store.state?.user?.token) },
@@ -108,7 +111,7 @@ export default {
     storeColumns () { return ['datastore', 'downloadPercent', 'downloadState'].map((key, i) => ({ key, dataIndex: key, title: this.$t(['label.storage', 'label.download.percent', 'label.download.state'][i]), width: i === 0 ? 210 : 160 })) }
   },
   watch: {
-    isoScope () { this.operationActive = false; this.$emit('operation-retained', { active: false, context: this.isoDataContext, busy: false }); this.resetSelection(); this.dataSource = []; this.itemCount = 0; this.isoDataContext = ''; this.keyword = ''; this.searchText = ''; this.page = 1; this.fetchData() },
+    isoScope () { this.attachRecord = null; this.operationActive = false; this.$emit('operation-retained', { active: false, context: this.isoDataContext, busy: false }); this.resetSelection(); this.dataSource = []; this.itemCount = 0; this.isoDataContext = ''; this.keyword = ''; this.searchText = ''; this.page = 1; this.fetchData() },
     loading (value) { if (!value) this.fetchData() }
   },
   methods: {

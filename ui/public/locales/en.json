@@ -11956,5 +11956,19 @@
   "label.iso.zone.state.waitingReady": "Waiting for Zone Ready",
   "label.iso.zone.state.success": "Completed and verified",
   "label.iso.zone.state.failed": "Failed",
-  "label.iso.zone.state.unknown": "Result unconfirmed"
+  "label.iso.zone.state.unknown": "Result unconfirmed",
+  "label.iso.download.prepare": "Prepare download",
+  "label.iso.download.reprepare": "Prepare again",
+  "label.iso.download.receive": "Get file",
+  "label.iso.attach.vm": "Attach ISO to existing VM",
+  "message.iso.download.preparing": "Preparing the download. Get the file after preparation finishes.",
+  "message.iso.download.ready": "The download is prepared. Confirm file receipt in your browser downloads.",
+  "message.iso.download.unknown": "The request result is not yet known. Check status observes the existing job without repeating preparation.",
+  "message.iso.download.failed": "Download preparation failed. Review the result before preparing again.",
+  "message.iso.download.invalid": "A safe download link could not be verified. Prepare again.",
+  "message.iso.download.read.failed": "ISO and Zone information could not be verified. Close this dialog and try again.",
+  "message.iso.download.requested": "File retrieval was requested in the browser. This does not confirm file receipt.",
+  "message.iso.consume.read.failed": "ISO or VM information could not be verified. Close this dialog and try again.",
+  "message.iso.consume.vm.empty": "No accessible VM was found in the ISO Zone.",
+  "message.iso.consume.attached": "This ISO is already attached to the VM."
 }

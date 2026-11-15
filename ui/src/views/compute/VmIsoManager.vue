@@ -67,7 +67,7 @@ size="small"
           <a-checkbox-group v-model:value="attachIds" class="iso-candidates">
             <label v-for="iso in filteredCandidates" :key="iso.id" class="iso-choice">
               <a-checkbox :value="iso.id" :disabled="attachIds.length >= capacity && !attachIds.includes(iso.id)" />
-              <span><strong>{{ name(iso) }}</strong><span class="iso-note">{{ iso.name }}</span><span class="iso-note">{{ iso.zonename || vm.zonename }} · {{ $t(iso.bootable ? 'label.bootable' : 'label.vmiso.data') }}</span></span>
+              <span><strong>{{ name(iso) }}</strong><span class="iso-note">{{ iso.name }}</span><span class="iso-note">{{ iso.zonename || vm.zonename }} · {{ $t(mediaLabel(iso)) }}</span></span>
             </label>
           </a-checkbox-group>
         </a-spin>
@@ -116,17 +116,19 @@ size="small"
 import { getAPI, postAPI } from '@/api'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { attachedIsos, isoCapacity, isoActionReason, isoSlot, isoOperations, startIsoOperation } from '@/utils/vmIsoActions'
+import { readVmIsoCandidates } from '@/utils/isoConsumption'
+import { isoBoolean } from '@/utils/isoModel'
 import eventBus from '@/config/eventBus'
 
 export default {
   name: 'VmIsoManager',
-  props: { resource: { type: Object, required: true }, dialogOnly: Boolean, currentAction: { type: Object, default: () => ({}) } },
+  props: { resource: { type: Object, required: true }, initialIso: { type: Object, default: null }, dialogOnly: Boolean, currentAction: { type: Object, default: () => ({}) } },
   mixins: [listRefreshMixin(['fetchData'], { active: vm => !!vm.resource.id })],
   data () { return { vm: this.resource, mediaById: {}, loading: false, selected: [], search: '', form: '', candidates: [], candidatesLoading: false, candidateError: '', candidateSearch: '', attachIds: [], detachIds: [], detail: null, forced: false, candidateRequest: 0 } },
   computed: {
-    security () { return JSON.stringify([this.$store.getters.project?.id, this.$store.getters.userInfo?.id, this.$store.state.user.token]) },
+    security () { return JSON.stringify([this.$store.getters.project?.id, this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.roletype, Object.keys(this.$store.getters.apis || {}).sort(), this.$store.state.user.token]) },
     scopeKey () { return this.security + ':' + this.resource.id },
-    rows () { return attachedIsos(this.vm).map(iso => ({ ...iso, bootable: this.mediaById[iso.id]?.bootable })) },
+    rows () { return attachedIsos(this.vm).map(iso => ({ ...iso, bootable: isoBoolean(this.mediaById[iso.id]?.bootable) })) },
     targets () { return this.rows.filter(iso => this.detachIds.includes(iso.id)) },
     capacity () { return isoCapacity(this.vm) },
     operation () { return isoOperations[this.scopeKey] },
@@ -152,6 +154,7 @@ export default {
       if (this.currentAction.api === 'attachIso') await this.openAttach()
       else { this.openDetach([]); await this.fetchData() }
     },
+    mediaLabel (iso) { return isoBoolean(iso.bootable) === true ? 'label.bootable' : isoBoolean(iso.bootable) === false ? 'label.vmiso.data' : 'label.vmiso.unspecified' },
     name (iso) { return iso.displaytext || iso.name || iso.id },
     slot (iso) { return isoSlot(iso, this.vm) },
     allowed (api) { return api in this.$store.getters.apis },
@@ -184,18 +187,15 @@ export default {
         await this.fetchData()
         if (request !== this.candidateRequest || scope !== this.scopeKey || this.listRefreshDisposed) return
         if (this.listRefreshFailed) throw new Error('VM unavailable')
-        const found = []
-        for (const filter of ['featured', 'community', 'selfexecutable']) {
-          let page = 1; let count = 0
-          while (true) {
-            const response = await getAPI('listIsos', { zoneid: this.vm.zoneid, isofilter: filter, isready: true, listall: true, page, pagesize: 100 })
-            if (request !== this.candidateRequest || scope !== this.scopeKey || this.listRefreshDisposed) return
-            const data = response.listisosresponse; const rows = data.iso || []; found.push(...rows); count += rows.length
-            if (!rows.length || count >= (data.count || count)) break
-            page++
-          }
+        const found = await readVmIsoCandidates(getAPI, this.vm, () => request === this.candidateRequest && scope === this.scopeKey && !this.listRefreshDisposed)
+        if (!found || request !== this.candidateRequest || scope !== this.scopeKey || this.listRefreshDisposed) return
+        this.candidates = found.filter(i => !this.rows.some(r => r.id === i.id))
+        if (this.initialIso) {
+          if (this.rows.some(i => i.id === this.initialIso.id)) { this.candidateError = this.$t('message.iso.consume.attached'); return }
+          if (!this.candidates.some(i => i.id === this.initialIso.id)) { this.candidateError = this.$t('message.iso.action.unavailable'); return }
+          if (this.reason(true)) { this.candidateError = this.reason(true); return }
+          this.attachIds = [this.initialIso.id]
         }
-        this.candidates = [...new Map(found.filter(i => !this.rows.some(r => r.id === i.id)).map(i => [i.id, i])).values()]
       } catch (_) { if (scope === this.scopeKey && request === this.candidateRequest) this.candidateError = this.$t('message.list.refresh.stale') } finally { if (scope === this.scopeKey && request === this.candidateRequest) this.candidatesLoading = false }
     },
     openDetach (items) { this.detachIds = items.map(i => i.id); this.forced = false; this.form = 'detach' },

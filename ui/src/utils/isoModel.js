@@ -18,7 +18,7 @@
 import { templateAvailability } from '@/utils/templateAvailability'
 
 const commands = { url: 'registerIso', local: 'getUploadParamsForIso' }
-const actionApis = { edit: 'updateIso', share: 'updateIsoPermissions', permissions: 'updateIsoPermissions', copy: 'copyIso', delete: 'deleteIso', deploy: 'deployVirtualMachine', download: 'extractIso' }
+const actionApis = { edit: 'updateIso', share: 'updateIsoPermissions', permissions: 'updateIsoPermissions', copy: 'copyIso', delete: 'deleteIso', deploy: 'deployVirtualMachine', download: 'extractIso', attach: 'attachIso' }
 const booleans = ['isready', 'bootable', 'ispublic', 'isfeatured', 'isextractable', 'directdownload', 'passwordenabled', 'isdynamicallyscalable', 'crosszones']
 const own = (object, key) => !!object && Object.prototype.hasOwnProperty.call(object, key)
 const object = value => value && typeof value === 'object' && !Array.isArray(value)
@@ -101,6 +101,7 @@ export function canIsoAction (action, record = {}, getters = {}) {
   const api = actionApis[action]
   if (!api || !hasApi(getters, api) || !record.id || (record.format && record.format !== 'ISO')) return false
   const ready = isoBoolean(record.isready) === true
+  if (action === 'attach') return hasApi(getters, 'listVirtualMachines') && hasApi(getters, 'listIsos') && ready
   if (action === 'deploy') return hasApi(getters, 'listIsos') && ready && isoBoolean(record.bootable) === true
   if (!isoOwner(record, getters)) return false
   if (['share', 'permissions'].includes(action) && record.projectid && !['Admin', 'DomainAdmin', 'ResourceAdmin'].includes(getters.userInfo?.roletype)) return false
