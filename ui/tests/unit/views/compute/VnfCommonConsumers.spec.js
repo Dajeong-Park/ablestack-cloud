@@ -57,3 +57,7 @@ test('late Wall settings from an old target never replace the current target lin
 test('old Wall menu callbacks cannot open another project or a stale target', async () => {
   const c = wall(); postAPI.mockResolvedValue({ listconfigurationsresponse: { configuration: portal } }); c.updateWallLinkUrl(); await flushPromises(); const entry = c.dataViewMenuEntries.find(e => e.key === 'built-in-wall'); const open = jest.spyOn(window, 'open').mockImplementation(() => null); c.$store.getters.project = { id: 'new-project' }; entry.handler(); expect(open).not.toHaveBeenCalled(); open.mockRestore()
 })
+test('the common VM link is UUID-bound and refuses old project callbacks', () => {
+  const c = wall(); c.$router = { push: jest.fn() }; const entry = c.dataViewMenuEntries.find(e => e.key === 'built-in-vm-management'); entry.handler(); expect(c.$router.push).toHaveBeenCalledWith('/vm/' + vm.id)
+  c.$router.push.mockClear(); c.$store.getters.project = { id: 'another' }; entry.handler(); expect(c.$router.push).not.toHaveBeenCalled()
+})

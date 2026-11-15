@@ -186,7 +186,7 @@
     <div v-show="showAction">
       <component
         v-if="showAction && currentAction.selfManagedDialog"
-        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent) ? storageActionGeneration : undefined"
+        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || currentAction.vnfUnmanageCurrent) ? storageActionGeneration : undefined"
         ref="selfManagedAction"
         :is="currentAction.component"
         :resource="resource"
@@ -2558,7 +2558,7 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
-      const guardedDialog = snapshotDialog || !!this.currentAction?.vnfReinstallCurrent
+      const guardedDialog = snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -2716,7 +2716,7 @@ export default {
       if (isVmIdentityRoute(this.$route) && action.api === 'unmanageVirtualMachine' && (action.resource || this.resource)?.templatetype === 'VNF') {
         if (!this.storageActionReady || !this.$store.getters.apis.unmanageVirtualMachine) return
         const generation = this.storageActionGeneration
-        this.currentAction = { ...action, component: markRaw(defineAsyncComponent(() => import('@/views/compute/VnfUnmanage.vue'))), popup: true, standardDialogSize: 'lg', invokedAsGroupAction: false, vnfUnmanageCurrent: () => this.showAction && generation === this.storageActionGeneration }
+        this.currentAction = { ...action, component: markRaw(defineAsyncComponent(() => import('@/views/compute/VnfUnmanage.vue'))), popup: true, selfManagedDialog: true, invokedAsGroupAction: false, vnfUnmanageCurrent: () => this.showAction && generation === this.storageActionGeneration }
         this.resource = action.resource || this.resource; this.showAction = true
         return
       }

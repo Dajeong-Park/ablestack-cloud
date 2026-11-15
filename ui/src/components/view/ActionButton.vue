@@ -197,6 +197,14 @@ export default {
     wallScope () { return JSON.stringify([this.routeName, this.resource?.id, this.resource?.ipaddress, vnfNoticeScope(this.$store)]) },
     dataViewMenuEntries () {
       const entries = []
+      if (this.routeName === 'vnfapp' && this.resource?.templatetype === 'VNF') {
+        const scope = this.wallScope; const id = this.resource.id
+        entries.push(this.createBuiltInMenuEntry('vm-management', 'label.vnf.action.vm.management', 'DesktopOutlined', {
+          disabled: !this.resourceActionReady() || !this.$store.getters.apis?.listVirtualMachines,
+          tooltip: this.$t(this.resourceActionReady() ? 'message.vnf.action.permission' : 'message.vnf.action.lookup.failed'),
+          handler: () => { if (scope === this.wallScope && this.resourceActionReady() && this.$store.getters.apis?.listVirtualMachines) this.$router.push('/vm/' + encodeURIComponent(id)) }
+        }))
+      }
       if (this.showConsoleButtons) {
         entries.push(this.createBuiltInMenuEntry('console', 'label.view.console', 'CodeOutlined', {
           disabled: this.consoleButtonDisabled,

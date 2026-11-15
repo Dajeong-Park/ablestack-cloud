@@ -11837,6 +11837,7 @@
   "message.vnf.reinstall.pending": "Checking the reinstallation job. Closing this dialog does not stop the server job; reopen it for this VM to check again.",
   "message.vnf.reinstall.success": "Reinstallation completed and the VNF type, template and NIC mapping were verified. Check guest settings and management connectivity.",
   "label.vnf.action.back": "Back to VNF appliances",
+  "label.vnf.action.vm.management": "View in VM management",
   "message.vnf.action.unavailable": "The VNF appliance or its ownership context could not be verified. Refresh and retry.",
   "message.vnf.action.permission": "Required API permissions are unavailable.",
   "message.vnf.action.host": "The current host could not be verified as available and enabled.",

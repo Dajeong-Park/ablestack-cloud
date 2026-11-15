@@ -17,40 +17,43 @@ specific language governing permissions and limitations
 under the License.
 -->
 <template>
-  <section class="vnf-unmanage" v-ctrl-enter="submit">
-    <p><strong>{{ vmDisplayName(resource) }}</strong> <small>{{ resource.id }}</small></p>
-    <a-alert type="warning" show-icon :message="$t('message.vnf.action.unmanage.warning')" />
-    <a-alert v-if="error" type="error" show-icon :message="error" />
-    <a-alert v-if="succeeded" type="success" show-icon :message="$t('message.vnf.action.unmanage.success')" />
-    <a-spin :spinning="loading">
-      <template v-if="preview && !operation && !succeeded">
-        <dl><dt>{{ $t('label.host') }}</dt><dd>{{ preview.host.name }} / {{ preview.host.id }}</dd>
-          <dt>{{ $t('label.volumes') }}</dt><dd v-for="volume in preview.volumes" :key="volume.id">{{ volume.name }} / {{ volume.id }}</dd></dl>
-        <p>{{ $t(preview.preserveNics ? 'message.vnf.action.unmanage.nics.preserve' : 'message.vnf.action.unmanage.nics.release') }}</p>
-        <p>{{ $t('message.vnf.action.unmanage.limits') }}</p>
-        <a-checkbox v-model:checked="acknowledged" :disabled="loading">{{ $t('message.vnf.action.unmanage.ack') }}</a-checkbox>
-      </template>
-    </a-spin>
-    <p v-if="operation" role="status">{{ $t(operation.jobid ? 'message.vnf.reinstall.pending' : 'message.vnf.reinstall.unknown') }} <span v-if="operation.jobid">{{ operation.jobid }}</span></p>
-    <p v-if="succeeded">{{ $t('message.vnf.action.unmanage.host.remains') }}</p>
-    <mold-dialog-actions :busy="loading || posting">
-      <a-button @click="close">{{ $t(succeeded ? 'label.vnf.action.back' : 'label.close') }}</a-button>
-      <a-button v-if="!succeeded" :loading="loading || querying" :disabled="posting" @click="recheck">{{ $t(operation ? 'label.vnf.reinstall.track' : 'label.refresh') }}</a-button>
-      <a-button v-if="!succeeded" type="primary" danger :disabled="!canSubmit" @click="submit">{{ $t('label.action.unmanage.virtualmachine') }}</a-button>
-    </mold-dialog-actions>
-  </section>
+  <mold-dialog size="lg" form-actions focus-guard :title="$t('label.action.unmanage.virtualmachine')" @cancel="close">
+    <section class="vnf-unmanage" v-ctrl-enter="submit">
+      <p><strong>{{ vmDisplayName(resource) }}</strong> <small>{{ resource.id }}</small></p>
+      <a-alert type="warning" show-icon :message="$t('message.vnf.action.unmanage.warning')" />
+      <a-alert v-if="error" type="error" show-icon :message="error" />
+      <a-alert v-if="succeeded" type="success" show-icon :message="$t('message.vnf.action.unmanage.success')" />
+      <a-spin :spinning="loading">
+        <template v-if="preview && !operation && !succeeded">
+          <dl><dt>{{ $t('label.host') }}</dt><dd>{{ preview.host.name }} / {{ preview.host.id }}</dd>
+            <dt>{{ $t('label.volumes') }}</dt><dd v-for="volume in preview.volumes" :key="volume.id">{{ volume.name }} / {{ volume.id }}</dd></dl>
+          <p>{{ $t(preview.preserveNics ? 'message.vnf.action.unmanage.nics.preserve' : 'message.vnf.action.unmanage.nics.release') }}</p>
+          <p>{{ $t('message.vnf.action.unmanage.limits') }}</p>
+          <a-checkbox v-model:checked="acknowledged" :disabled="loading">{{ $t('message.vnf.action.unmanage.ack') }}</a-checkbox>
+        </template>
+      </a-spin>
+      <p v-if="operation" role="status">{{ $t(operation.jobid ? 'message.vnf.reinstall.pending' : 'message.vnf.reinstall.unknown') }} <span v-if="operation.jobid">{{ operation.jobid }}</span></p>
+      <p v-if="succeeded">{{ $t('message.vnf.action.unmanage.host.remains') }}</p>
+      <mold-dialog-actions :busy="loading || posting">
+        <a-button @click="close">{{ $t(succeeded ? 'label.vnf.action.back' : 'label.close') }}</a-button>
+        <a-button v-if="!succeeded" :loading="loading || querying" :disabled="posting" @click="recheck">{{ $t(operation ? 'label.vnf.reinstall.track' : 'label.refresh') }}</a-button>
+        <a-button v-if="!succeeded" type="primary" danger :disabled="!canSubmit" @click="submit">{{ $t('label.action.unmanage.virtualmachine') }}</a-button>
+      </mold-dialog-actions>
+    </section>
+  </mold-dialog>
 </template>
 <script>
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import MoldDialog from '@/components/view/MoldDialog'
 import { vmDisplayName } from '@/utils/vmIdentity'
 import { vnfNoticeScope } from '@/utils/vnfAccess'
 import { vnfUnmanageApis, vnfUnmanageJobs, vnfOwner, vnfUnmanageReason, readVnfUnmanagePreview, readVnfUnmanageJobs, vnfUnmanageRevision } from '@/utils/vnfVmActions'
 
 export default {
   name: 'VnfUnmanage',
-  components: { MoldDialogActions },
-  props: { resource: { type: Object, required: true }, action: { type: Object, default: () => ({}) } },
+  components: { MoldDialog, MoldDialogActions },
+  props: { resource: { type: Object, required: true }, action: { type: Object, default: () => ({}) }, currentAction: { type: Object, default: () => ({}) } },
   inject: { resourceActionReady: { default: () => () => true } },
   data () { return { target: { id: this.resource.id, account: this.resource.account, domainid: this.resource.domainid, projectid: this.resource.projectid }, origin: '', disposed: false, generation: 0, preview: null, acknowledged: false, loading: false, posting: false, querying: false, operation: null, error: '', succeeded: false } },
   computed: {
@@ -64,9 +67,9 @@ export default {
   deactivated () { this.invalidate() },
   methods: {
     vmDisplayName,
-    current () { return !this.disposed && this.origin === this.context && this.action.currentAction?.vnfUnmanageCurrent?.() !== false },
+    current () { return !this.disposed && this.origin === this.context && (this.action.currentAction || this.currentAction)?.vnfUnmanageCurrent?.() !== false },
     invalidate () { this.disposed = true; this.generation++; clearTimeout(this.timer); this.preview = null; this.acknowledged = false },
-    close () { const done = this.succeeded; this.invalidate(); this.$emit('close-action'); if (done) this.$router.replace('/vnfapp') },
+    close () { const done = this.succeeded && this.current(); this.invalidate(); this.$emit('close-action'); if (done) this.$router.replace('/vnfapp') },
     message (e) { return e?.message?.startsWith('message.') ? this.$t(e.message) : e?.response?.data?.errorresponse?.errortext || e?.response?.data?.unmanagevirtualmachineresponse?.errortext || this.$t('message.vnf.action.lookup.failed') },
     async load () {
       if (!this.current() || this.loading || this.posting) return
