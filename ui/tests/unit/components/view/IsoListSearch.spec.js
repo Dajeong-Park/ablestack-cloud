@@ -93,3 +93,12 @@ test('ISO keyword input keeps the standard search accessible name alongside opti
   expect(w.get('input').attributes('title')).toBe('message.iso.search.keyword')
   w.unmount()
 })
+
+test('Back/Forward rehydrates an already open ISO form from the applied URL', () => {
+  const c = search(); c.visibleFilter = true; c.fields = [{ name: 'isready', type: 'list' }, { name: 'ispublic', type: 'list' }]
+  c.form.isready = 'false'
+  const from = c.$route
+  c.$route = { ...from, query: { ispublic: 'false', 'tags[0].key': 'next', 'tags[0].value': 'value' } }
+  Search.watch.$route.call(c, c.$route, from)
+  expect(c.form.isready).toBeUndefined(); expect(c.form.ispublic).toBe('false'); expect(c.inputKey).toBe('next')
+})

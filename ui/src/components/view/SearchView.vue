@@ -289,6 +289,7 @@ export default {
         this.searchQuery = to.query.q
       }
       this.updateIsFiltered()
+      if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
       if (this.apiName === 'listAffinityGroups' && to?.meta?.name === 'affinitygroup' && this.visibleFilter) {
         this.fillFormFieldValues()
         this.fetchAffinityFilters(this.fields.map(field => field.name))
