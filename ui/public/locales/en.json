@@ -11933,5 +11933,11 @@
   "message.iso.edit.changed": "The ISO changed after this dialog opened. Close and reopen before updating.",
   "message.iso.edit.unconfirmed": "The update result could not be confirmed. Check status before submitting again.",
   "message.iso.edit.link.not.started": "Metadata was confirmed. Continue with user data linkage.",
-  "message.iso.edit.retry.review": "The requested change is not present. Review the current result before retrying."
+  "message.iso.edit.retry.review": "The requested change is not present. Review the current result before retrying.",
+  "message.iso.search.unsupported": "This server does not support a selected ISO search parameter. Reset the filters.",
+  "message.iso.search.invalid": "Check the ISO search UUID, boolean, architecture or filter value.",
+  "message.iso.search.failed": "The ISO list could not be read. Retry or reset the filters.",
+  "message.iso.search.ignored": "The server response does not match the selected ISO filters. Results are not displayed.",
+  "message.iso.search.keyword": "Search within the ISO name, description or UUID.",
+  "message.iso.search.sort.page": "Column sorting applies to the current page."
 }

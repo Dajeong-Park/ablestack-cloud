@@ -11941,5 +11941,11 @@
   "message.iso.edit.changed": "창을 연 뒤 ISO가 변경됐습니다. 닫고 다시 조회한 후 수정하세요.",
   "message.iso.edit.unconfirmed": "변경 결과를 확인하지 못했습니다. 다시 제출하기 전에 상태를 확인하세요.",
   "message.iso.edit.link.not.started": "메타데이터 반영을 확인했습니다. 사용자 데이터 연결을 이어서 진행하세요.",
-  "message.iso.edit.retry.review": "요청한 변경이 현재 값에 없습니다. 결과를 검토한 후 다시 시도하세요."
+  "message.iso.edit.retry.review": "요청한 변경이 현재 값에 없습니다. 결과를 검토한 후 다시 시도하세요.",
+  "message.iso.search.unsupported": "현재 서버가 선택한 ISO 검색 조건 일부를 지원하지 않습니다. 검색 조건을 초기화하세요.",
+  "message.iso.search.invalid": "ISO 검색 조건의 UUID, true/false, 아키텍처 또는 필터 값을 확인하세요.",
+  "message.iso.search.failed": "ISO 목록을 조회하지 못했습니다. 다시 시도하거나 검색 조건을 초기화하세요.",
+  "message.iso.search.ignored": "서버 응답이 선택한 ISO 검색 조건과 일치하지 않아 결과를 표시하지 않습니다.",
+  "message.iso.search.keyword": "ISO 이름·설명·UUID에서 키워드를 부분 검색합니다.",
+  "message.iso.search.sort.page": "열 정렬은 현재 페이지에만 적용됩니다."
 }

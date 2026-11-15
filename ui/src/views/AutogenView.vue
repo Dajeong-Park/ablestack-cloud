@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'themed-list-toolbar': isTemplateList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'themed-list-toolbar': isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -38,7 +38,7 @@
                   <template #icon><reload-outlined /></template>
                   {{ $t('label.refresh') }}
                 </a-button>
-                <label v-if="isTemplateList" :for="templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
+                <label v-if="isTemplateList || isIsoList" :for="templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
                 <a-tooltip placement="right">
                   <template #title>
                     {{ $t('label.filterby') }}
@@ -46,7 +46,7 @@
                   <a-select
                     v-if="!dataView && filters && filters.length > 0"
                     :placeholder="$t('label.filterby')"
-                    :id="isTemplateList ? templateFilterId : undefined"
+                    :id="isTemplateList || isIsoList ? templateFilterId : undefined"
                     :value="filterValue"
                     style="min-width: 100px; margin-left: 10px; margin-bottom: 5px"
                     size=small
@@ -868,6 +868,9 @@
       <a-alert v-if="(isVpcUi || isStorageUi || isSnapshotReadView) && listRefreshError" class="storage-query-error" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
         <template #description><p v-if="isSnapshotReadView && snapshotListError">{{ snapshotListError.startsWith('message.') ? $t(snapshotListError) : snapshotListError }}</p><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
+      <a-alert v-if="isIsoList && isoListError" type="error" show-icon :message="$t(isoListError)">
+        <template #action><a-button @click="$router.replace({ path: '/iso' })">{{ $t('label.reset') }}</a-button><a-button :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
+      </a-alert>
       <a-alert v-if="isTemplateList && templateFilterError" type="error" show-icon :message="$t(templateFilterError)">
         <template #action><a-button @click="$router.replace({ path: '/template' })">{{ $t('label.reset') }}</a-button></template>
       </a-alert>
@@ -974,6 +977,8 @@
 <script>
 import { isVmDeletion } from '@/utils/vmDeletion'
 import { templateObservationContext } from '@/utils/templateAvailability'
+import { isoListQuery, isoSearchQuery, isoSearchError, isoRequestParams, isoListOwner, isoFilterMismatch, isoFilterChips, isoColumn } from '@/utils/isoSearch'
+import { isoListResponse, readIsoResource } from '@/utils/isoModel'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
@@ -1114,6 +1119,7 @@ export default {
       showAction: false,
       dataView: false,
       templateDetailError: '',
+      isoListError: '',
       templateOperationContext: '',
       templateFilterError: '',
       projectView: false,
@@ -1330,6 +1336,20 @@ export default {
         this.fetchData()
       }
     },
+    isoSecurityContext () {
+      if (this.$route.meta?.name !== 'iso') return
+      this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null; this.listSchemaScope = null
+      this.items = []; this.resource = {}; this.itemCount = 0; this.resetSelection()
+      if (this.showAction) this.closeAction()
+      if (!this.$route.params?.id) {
+        const query = isoListQuery({}, this.$store.getters.defaultListViewPageSize, this.$store.getters)
+        if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) return this.$router.replace({ query })
+      } else if (this.$route.query.isoreturn || this.$route.query.isoowner) {
+        const query = { ...this.$route.query }; delete query.isoreturn; delete query.isoowner
+        return this.$router.replace({ query })
+      }
+      if ('listIsos' in this.$store.getters.apis) this.fetchData()
+    },
     templateSecurityContext () {
       if (this.$route.meta?.name !== 'template') return
       this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null; this.items = []; this.resource = {}; this.itemCount = 0
@@ -1427,6 +1447,8 @@ export default {
   },
   computed: {
     vnfSearchAuth () { return vnfAuth(this.$store.getters, this.$store.state?.user?.token) },
+    isIsoList () { return this.$route.meta?.name === 'iso' && !this.$route.params?.id },
+    isoSecurityContext () { return JSON.stringify([isoListOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
     isTemplateList () { return this.$route.meta?.name === 'template' && !this.$route.params?.id },
     templateSecurityContext () { return JSON.stringify([templateOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
     guestNetworkAuth () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.domainid, this.$store.state?.user?.token, this.$store.getters.project?.id, this.$store.getters.listAllProjects, Object.keys(this.$store.getters.apis || {}).sort()]) },
@@ -1483,6 +1505,7 @@ export default {
     },
     snapshotSecurityScope () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$store.state?.user?.token, this.$store.getters.userInfo?.roletype, ...(snapshotDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])]) },
     activeFiltersList () {
+      if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
       for (const filter in queryParams) {
@@ -1716,13 +1739,13 @@ export default {
         routeKey = JSON.stringify([this.$route.path, Object.entries(this.$route.query || {}).filter(([key]) => !['tab', 'browserPath'].includes(key)).sort(([a], [b]) => a.localeCompare(b))])
       } else if ((storageUiRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route)) && this.$route.params?.id) {
         routeKey = storageDetailRouteKey(this.$route)
-      } else if (this.$route.meta?.name === 'template' && this.$route.params?.id) {
+      } else if (['template', 'iso'].includes(this.$route.meta?.name) && this.$route.params?.id) {
         const query = { ...this.$route.query }; delete query.tab
         routeKey = JSON.stringify([this.$route.path, query])
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(['template', 'iso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -1861,6 +1884,21 @@ export default {
         if (this.vnfProjectSync) return Promise.resolve()
         if (!this.dataView) { this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection() }
       }
+      const isoQuery = this.$route.meta?.name === 'iso'
+      if (isoQuery) {
+        this.isoListError = ''
+        if (!this.$route.params?.id) {
+          this.dataView = false
+          const query = isoListQuery(this.$route.query, this.pageSize, this.$store.getters)
+          if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) return this.$router.replace({ query })
+          this.isoListError = isoSearchError(query, this.$getApiParams('listIsos'), this.$store.getters)
+          if (this.isoListError) {
+            this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null
+            this.items = []; this.resource = {}; this.itemCount = 0; this.resetSelection()
+            return Promise.resolve()
+          }
+        }
+      }
       const templateDetail = this.$route.meta?.name === 'template' && !!this.$route.params?.id
       const templateOperationHeld = () => templateDetail && this.templateOperationContext && this.templateOperationContext === templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token)
       if (templateOperationHeld()) return Promise.resolve()
@@ -1974,7 +2012,7 @@ export default {
           : null
         this.routeName = matchedRoute?.meta?.name || this.$route?.meta?.name || this.$route?.name || ''
       }
-      const securityScope = JSON.stringify([...(this.$route.meta?.name === 'template' ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
+      const securityScope = JSON.stringify([...(['template', 'iso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
       if (this.listSecurityScope !== securityScope) {
         this.items = []
         this.resource = {}
@@ -2041,7 +2079,7 @@ export default {
         }
         Object.assign(params, this.$route.query)
       }
-      if ((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name)) && !rebuildSchema) {
+      if ((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'iso'].includes(this.$route.meta?.name)) && !rebuildSchema) {
         this.columns.forEach(column => { column.sortOrder = (params.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === column.key ? (params.sortorder === 'asc' ? 'ascend' : 'descend') : null })
       }
       if (this.$route.name === 'snapshot' && !this.dataView && !rebuildSchema) {
@@ -2173,7 +2211,7 @@ export default {
         if (['autoscalevmgroup', 'sharedfs'].includes(this.$route.name)) this.columns = this.allColumns.filter(column => this.selectedColumns.includes(column.dataIndex))
 
         const requiredCopyColumns = this.isSnapshotCopyList ? this.columns.filter(column => ['copy', 'datastorename'].includes(column.key)) : []
-        if (!store.getters.metrics) {
+        if (!store.getters.metrics || (isoQuery && !this.dataView)) {
           if (!this.$store.getters.customColumns[this.$store.getters.userInfo.id]) {
             this.$store.getters.customColumns[this.$store.getters.userInfo.id] = {}
             this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
@@ -2331,6 +2369,10 @@ export default {
         params.showIcon = true
       }
 
+      if (isoQuery) {
+        this.columns = this.columns.map(column => isoColumn(column, this.$route.query, this.$t))
+        this.allColumns = this.allColumns.map(column => isoColumn(column, this.$route.query, this.$t))
+      }
       const customParamHandler = this.$route.meta.customParamHandler
       if (customParamHandler && typeof customParamHandler === 'function') {
         params = customParamHandler(params, this.$route.query)
@@ -2376,10 +2418,17 @@ export default {
       const snapshotDetail = snapshotDetailRoute(this.$route)
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
-      const response = templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
+      const response = isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : vmGroups || sshDetail || templateQuery || isoQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
+        if (isoQuery && !this.dataView) {
+          const page = isoListResponse(json)
+          if (!page.countKnown && page.rows.length) throw new Error('invalid ISO count')
+          json = { ...json, listisosresponse: { ...json.listisosresponse, count: page.count, iso: page.rows } }
+          if (isoFilterMismatch(page.rows, params)) throw new Error('message.iso.search.ignored')
+        }
         if (templateQuery && !this.dataView && templateFilterMismatch(json?.listtemplatesresponse?.template || [], params)) {
           this.templateFilterError = 'message.template.search.ignored'
           this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = true
@@ -2512,6 +2561,13 @@ export default {
           }
         }
       }).catch(error => {
+        if (isoQuery && !this.dataView) {
+          if (version !== this.listRequestVersion || scope !== this.listScope()) return
+          this.isoListError = error?.message === 'message.iso.search.ignored' ? error.message : 'message.iso.search.failed'
+          this.listRefreshError = true
+          this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
+          return
+        }
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
         if (templateDetail) {
@@ -2720,6 +2776,7 @@ export default {
       this.closeAction()
     },
     removeFilter (filter) {
+      if (this.isIsoList && filter.key === 'isofilter') { this.changeFilter(['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo?.roletype) ? 'all' : 'self'); return }
       const queryParams = Object.assign({}, this.$route.query)
       if (filter.isTag) {
         delete queryParams[`tags[${filter.tagIdx}].key`]
@@ -3681,6 +3738,7 @@ export default {
         filterColumn.width = 'auto'
       }
       this.columns.push(filterColumn)
+      if (this.$route.meta?.name === 'iso') this.columns = this.columns.map(column => isoColumn(column, this.$route.query, this.$t))
       if (!this.$store.getters.customColumns[this.$store.getters.userInfo.id]) {
         this.$store.getters.customColumns[this.$store.getters.userInfo.id] = {}
       }
@@ -3696,6 +3754,10 @@ export default {
         const query = { ...this.$route.query }; delete query.state; delete query.filter
         if (filter !== 'all') query.state = vnfStates(this.$store.getters).find(s => s.toLowerCase() === filter) || filter
         this.onSearch({ ...query }); return
+      }
+      if (this.isIsoList) {
+        this.$router.push({ query: isoListQuery({ ...this.$route.query, filter, isofilter: filter, page: '1' }, this.pageSize, this.$store.getters) })
+        return
       }
       const query = Object.assign({}, this.$route.query)
       delete query.templatefilter
@@ -3818,6 +3880,13 @@ export default {
         const query = vnfSearchQuery(this.$route.query, opts, this.pageSize, this.$store.getters)
         this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData()
+          else this.$router.push({ query })
+          return
+        }
+      if (this.isIsoList) {
+        const query = isoSearchQuery(this.$route.query, opts || {}, this.pageSize, this.$store.getters)
+        this.searchParams = {}
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData(query)
         else this.$router.push({ query })
         return
       }
@@ -3902,11 +3971,17 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query })
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.isIsoList) {
+        const query = { ...this.$route.query }; delete query.sortkey; delete query.sortorder
+        if (sorter?.order) { query.sortkey = sorter.field; query.sortorder = sorter.order === 'ascend' ? 'asc' : 'desc' }
+        this.$router.replace({ query: isoListQuery(query, this.pageSize, this.$store.getters) })
+        return
+      }
       if (snapshotPolicyListRoute(this.$route)) {
         this.$router.push({ query: snapshotPolicySortQuery(this.$route.query, sorter, this.pageSize) })
         return
@@ -3926,7 +4001,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -4170,4 +4245,11 @@ export default {
 
 <style scoped>
 .template-filter-accessible-label { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+</style>
+
+<style scoped lang="less">
+.iso-list-page { min-width: 0; max-width: 100%; }
+.iso-list-page :deep(.ant-table-cell) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.iso-list-page :deep(.ant-table-thead th) { white-space: nowrap; }
+.iso-list-page :deep(.ant-breadcrumb) { overflow-wrap: anywhere; }
 </style>

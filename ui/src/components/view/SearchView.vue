@@ -35,6 +35,7 @@
         allowClear
         class="input-search"
         :placeholder="apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :title="apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
         <template #addonBefore>
@@ -45,7 +46,7 @@
             <template #content v-if="visibleFilter">
               <a-form
                 style="min-width: 170px"
-                :class="{ 'storage-standard-search-form': ['listTemplates', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch || isVnfSearch, 'guest-network-search-form': isGuestNetworkSearch || isVnfSearch }"
+                :class="{ 'storage-standard-search-form': ['listTemplates', 'listIsos', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch || isVnfSearch, 'guest-network-search-form': isGuestNetworkSearch || isVnfSearch }"
                 :ref="formRef"
                 :model="form"
                 :rules="rules"
@@ -58,7 +59,7 @@
                   :name="field.name"
                   :key="index"
                   :label="retrieveFieldLabel(field.name)"
-                  :extra="apiName === 'listTemplates' && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
+                  :extra="['listTemplates', 'listIsos'].includes(apiName) && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
                   <VnfSearchSelect
                     v-if="isVnfSearch && vnfPickerKinds.includes(field.name)"
                     :key="field.name + ':' + volumeLookupReset"
@@ -186,7 +187,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!['listTemplates', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -272,7 +273,7 @@ export default {
     vnfSearchContext: { flush: 'sync', handler () { if (this.isVnfSearch) { this.visibleFilter = false; this.form = reactive({}); this.fields = []; this.vnfBlocked = {}; this.volumeLookupReset++ } } },
     volumeOwnerContext () {
       this.visibleFilter = false
-      if (this.apiName === 'listTemplates') { this.form = reactive({}); this.fields = [] }
+      if (['listTemplates', 'listIsos'].includes(this.apiName)) { this.form = reactive({}); this.fields = [] }
       this.form.volumeid = undefined
       this.volumeLookupReset++
     },
@@ -391,7 +392,7 @@ export default {
     retrieveFieldLabel (fieldName) {
       if (this.isVnfSearch && vnfPickerConfig(fieldName)) return this.$t(vnfPickerConfig(fieldName).label)
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
-      if (this.apiName === 'listTemplates' && fieldName === 'name') return this.$t('label.template.name.exact')
+      if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
       if (this.isGuestNetworkSearch && fieldName === 'keyword') return this.$t('label.name')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')
       if (fieldName === 'physicalnetworkid') return this.$t('label.physical.network')
@@ -422,7 +423,7 @@ export default {
         let type = 'input'
         if (this.isVnfSearch && !(item === 'tags' ? this.$getApiParams('listVnfAppliances')?.tags : this.$getApiParams('listVnfAppliances')?.[item])) return
         if (this.isVnfSearch && ['account', 'domainid'].includes(item) && (this.$route.query.projectid || vnfProject(this.$store.getters)) !== '0') return
-        if (this.apiName === 'listTemplates' && item !== 'tags' && !this.$getApiParams('listTemplates')?.[item]) return
+        if (['listTemplates', 'listIsos'].includes(this.apiName) && item !== 'tags' && !this.$getApiParams(this.apiName)?.[item]) return
 
         if (item === 'domainid' && !('listDomains' in this.$store.getters.apis)) {
           return true
@@ -480,7 +481,7 @@ export default {
           if (!('listProjects' in this.$store.getters.apis)) return
           type = 'list'
         }
-        if (this.apiName === 'listTemplates' && ['isready', 'forcks'].includes(item)) type = 'list'
+        if ((this.apiName === 'listTemplates' && ['isready', 'forcks'].includes(item)) || (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(item))) type = 'list'
         this.fields.push({
           type: type,
           name: item,
@@ -493,6 +494,7 @@ export default {
     },
     fetchStaticFieldData (arrayField) {
       if (this.isVnfSearch) { const state = this.fields.find(field => field.name === 'state'); if (state) state.opts = vnfStates(this.$store.getters).map(id => ({ id, name: 'state.' + id.toLowerCase() })); return }
+      if (this.apiName === 'listIsos') this.fields.filter(field => ['bootable', 'isready', 'ispublic'].includes(field.name)).forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
       if (this.apiName === 'listTemplates') {
         this.fields.filter(field => ['isready', 'forcks'].includes(field.name)).forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
       }
@@ -653,10 +655,10 @@ export default {
       if (this.isVnfSearch) return
       if (this.apiName === 'listAffinityGroups') return this.fetchAffinityFilters(arrayField)
       if (this.apiName === 'listCniConfiguration') return this.fetchCniOwnerOptions(arrayField, searchKeyword)
-      const templateLookup = this.apiName === 'listTemplates' ? this.volumeOwnerContext : null
+      const templateLookup = ['listTemplates', 'listIsos'].includes(this.apiName) ? this.volumeOwnerContext : null
       const templateFields = this.fields
       const templateLookupPath = this.$route.path
-      const templateLookupStale = () => templateLookup && (this.apiName !== 'listTemplates' || templateLookup !== this.volumeOwnerContext || templateLookupPath !== this.$route.path || templateFields !== this.fields)
+      const templateLookupStale = () => templateLookup && (!['listTemplates', 'listIsos'].includes(this.apiName) || templateLookup !== this.volumeOwnerContext || templateLookupPath !== this.$route.path || templateFields !== this.fields)
       const guestLookup = this.isGuestNetworkSearch
       const promises = []
       let typeIndex = -1
@@ -1056,7 +1058,7 @@ export default {
         if (kmsKeyIndex > -1) {
           this.fields[kmsKeyIndex].loading = false
         }
-        if (this.apiName !== 'listTemplates' && !this.isGuestNetworkSearch && Array.isArray(arrayField) && !arrayField.includes('volumeid')) {
+        if (!['listTemplates', 'listIsos'].includes(this.apiName) && !this.isGuestNetworkSearch && Array.isArray(arrayField) && !arrayField.includes('volumeid')) {
           this.fillFormFieldValues()
         }
       })
@@ -1102,8 +1104,8 @@ export default {
     },
     initFormFieldData () {
       const arrayField = this.initFields()
-      if (this.apiName === 'listTemplates') this.rules.userdataid = [{ validator: async (rule, value) => { if (value && !this.$isValidUuid(value)) throw new Error(this.$t('message.template.search.userdataid')) } }]
-      if (this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
+      if (['listTemplates', 'listIsos'].includes(this.apiName)) this.rules.userdataid = [{ validator: async (rule, value) => { if (value && !this.$isValidUuid(value)) throw new Error(this.$t('message.template.search.userdataid')) } }]
+      if (this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
 
@@ -1969,7 +1971,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true
