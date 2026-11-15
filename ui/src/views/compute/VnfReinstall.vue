@@ -20,13 +20,13 @@ under the License.
   <section class="vnf-reinstall" v-ctrl-enter="submit">
     <p><strong>{{ vmDisplayName(resource) }}</strong> <small>{{ resource.id }}</small></p>
     <a-alert type="warning" show-icon :message="$t('message.vnf.reinstall.warning')" />
-    <p v-if="vm">{{ $t(vm?.state === 'Running' ? 'message.vnf.reinstall.running' : 'message.vnf.reinstall.stopped') }}</p>
+    <p v-if="vm && ['Running', 'Stopped'].includes(vm.state)">{{ $t(vm.state === 'Running' ? 'message.vnf.reinstall.running' : 'message.vnf.reinstall.stopped') }}</p>
     <p>{{ $t('message.vnf.reinstall.preservation') }}</p>
     <a-alert v-if="error" class="vnf-reinstall-error" type="error" show-icon :message="error" />
     <a-alert v-if="succeeded" type="success" show-icon :message="$t('message.vnf.reinstall.success')" />
     <a-spin :spinning="working">
       <template v-if="!succeeded">
-        <a-form layout="vertical">
+        <a-form v-if="!operation" layout="vertical">
           <a-form-item :label="$t('label.vnf.reinstall.mode')">
             <a-radio-group v-model:value="mode" :disabled="locked" @change="acknowledged = false">
               <a-radio value="original">{{ $t('label.vnf.reinstall.original') }}</a-radio>
