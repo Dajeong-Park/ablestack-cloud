@@ -38,7 +38,6 @@ test('legacy and missing OS values stay visible after target refresh, without ex
   await w.setProps({ resource: { id: 'c', osdisplayname: '<img src=x onerror=alert(1)>' } }); expect(w.text()).toContain('<img src=x onerror=alert(1)>'); expect(w.find('img').exists()).toBe(false); w.unmount()
 })
 
-
 test.each(['vm', 'vnfapp'])('%s shares the same host name and display name labels', route => {
   const c = { $route: { meta: { name: route } } }
   expect(Details.methods.getDetailTitle.call(c, 'name')).toBe('label.vm.name')
