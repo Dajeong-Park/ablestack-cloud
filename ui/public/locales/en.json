@@ -11808,7 +11808,7 @@
   "message.vnf.reinstall.warning": "Reinstallation replaces root disk data and does not create a backup. Check required backups first.",
   "message.vnf.reinstall.running": "The server stops and restarts a running VNF. A failed operation may leave it stopped.",
   "message.vnf.reinstall.stopped": "A stopped VNF remains stopped after reinstallation and uses the new root disk on its next start.",
-  "message.vnf.reinstall.preservation": "NIC identity, networks, IP, MAC and the default NIC are preserved. Management metadata and default credentials follow the selected template; stored VM user data is retained. Verify guest configuration and connectivity afterward.",
+  "message.vnf.reinstall.preservation": "NIC identity, networks, IP, MAC and the default NIC are preserved. Management metadata and default credentials follow the selected template; stored VM user data is retained. Existing firewall and port forwarding rules are not changed automatically. Verify guest configuration and connectivity to the new management ports afterward.",
   "message.vnf.reinstall.original": "The current template association is retained. If the original was removed or its access or Zone readiness cannot be confirmed, choose another VNF template.",
   "message.vnf.reinstall.acknowledge": "I understand root disk replacement and stop/restart effects and have checked the required backups.",
   "message.vnf.reinstall.permission": "Reinstallation and VM, template, volume and job read permissions are required.",

@@ -11816,7 +11816,7 @@
   "message.vnf.reinstall.warning": "재설치는 루트 디스크의 데이터를 교체합니다. 백업을 자동으로 만들지 않습니다. 필요한 백업을 먼저 확인하세요.",
   "message.vnf.reinstall.running": "실행 중인 VNF는 서버가 정지 후 재시작합니다. 작업이 실패하면 정지 상태로 남을 수 있습니다.",
   "message.vnf.reinstall.stopped": "정지된 VNF는 재설치 후에도 정지 상태를 유지합니다. 다음 시작 시 새 루트 디스크를 사용합니다.",
-  "message.vnf.reinstall.preservation": "NIC 식별자·네트워크·IP·MAC·기본 NIC는 변경하지 않습니다. 관리 접속 정보와 기본 자격 증명은 선택한 템플릿을 따르며 VM에 저장된 사용자 데이터는 유지됩니다. 게스트 내부 설정과 실제 접속은 재설치 후 확인하세요.",
+  "message.vnf.reinstall.preservation": "NIC 식별자·네트워크·IP·MAC·기본 NIC는 변경하지 않습니다. 관리 접속 정보와 기본 자격 증명은 선택한 템플릿을 따르며 VM에 저장된 사용자 데이터는 유지됩니다. 기존 방화벽·포트 포워딩 규칙은 자동 변경하지 않습니다. 게스트 내부 설정과 새 관리 포트의 실제 접속은 재설치 후 확인하세요.",
   "message.vnf.reinstall.original": "현재 템플릿 연결을 유지합니다. 원본이 삭제되었거나 사용 권한·Zone 준비 상태를 확인할 수 없으면 다른 VNF 템플릿을 선택하세요.",
   "message.vnf.reinstall.acknowledge": "루트 디스크 데이터 교체와 정지·재시작 영향을 이해하고 필요한 백업을 확인했습니다.",
   "message.vnf.reinstall.permission": "재설치와 대상·이미지·볼륨·작업 조회에 필요한 권한이 없습니다.",
