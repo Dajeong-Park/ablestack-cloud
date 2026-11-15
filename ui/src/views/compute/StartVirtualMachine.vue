@@ -26,7 +26,6 @@
       <template v-if="$store.getters.userInfo?.roletype === 'Admin'">
         <a-form-item v-for="key in ['podid', 'clusterid', 'hostid']" :key="key" :name="key" v-show="supports(key)" :label="$t('label.' + key)" :extra="$t('message.vm.start.' + key)">
           <a-select
-            :id="'vm-start-' + key"
             :value="form[key]"
             allow-clear
             show-search
