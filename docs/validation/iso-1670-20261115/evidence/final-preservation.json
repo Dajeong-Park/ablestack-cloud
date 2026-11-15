@@ -1,0 +1,30 @@
+{
+  "originalFiles": 7070,
+  "finalFiles": 7077,
+  "changedExistingStatic": [
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "addedHashedAssets": [
+    "css/app.003f14e0.css",
+    "css/app.0fd7f9ab.css",
+    "css/app.73f880b2.css",
+    "js/app.2e62dc44.js",
+    "js/app.89f2fa4a.js",
+    "js/app.ce3dfacb.js",
+    "js/vendors.510a9505.js"
+  ],
+  "otherOriginalStaticFilesPreserved": true,
+  "protectedPreserved": true,
+  "moldRestartCount": 1,
+  "oldMoldPid": "2545994",
+  "finalMoldPid": "2620448",
+  "originalBackendJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224",
+  "finalBackendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443",
+  "backendEntryOnly": [
+    "com/cloud/api/query/QueryManagerImpl.class"
+  ],
+  "finalIndexSha256": "53f7863ba284da0ce8890514ad274374e376049fb455de23b0eb2b8de39f5299",
+  "schemaAgentSystemVmChanges": false
+}

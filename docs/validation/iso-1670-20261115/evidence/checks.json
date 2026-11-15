@@ -1,0 +1,22 @@
+{
+  "productHead": "2e1f33a9b163a894ac811bba508d424121010e00",
+  "canonicalUiSuites": 32,
+  "canonicalUiTests": 661,
+  "runtimeUiSuites": 28,
+  "runtimeUiTests": 425,
+  "runtimeJvmTests": 7,
+  "changedUiLint": "pass",
+  "focusedProductHooks": "pass",
+  "focusedReportHooks": "pass",
+  "uiBuild": "pass",
+  "functionalUi": "pass",
+  "cleanup": "pass",
+  "existingCiDebt": [
+    926,
+    1044
+  ],
+  "productLintRun": 43693744615,
+  "fullCiPass": false,
+  "ratUnknown": 4077,
+  "newCiDiagnosticPaths": 0
+}

@@ -1,0 +1,127 @@
+{
+  "head": "2e1f33a9b163a894ac811bba508d424121010e00",
+  "sourceBoundary": {
+    "previousCode": "04aa57b16c4bd253ada62eed65b31e2d0a122d85",
+    "runtimeInput": "/root/work/.build-iso1669-20261115/ui",
+    "buildInput": "/root/work/.build-iso1670-20261115/ui",
+    "files": [
+      "src/components/view/ListView.vue",
+      "src/components/view/ResourceView.vue",
+      "src/components/view/SearchFilter.vue",
+      "src/components/view/SearchView.vue",
+      "src/components/widgets/Breadcrumb.vue",
+      "src/config/section/image.js",
+      "src/views/AutogenView.vue",
+      "src/components/view/IsoListCell.vue",
+      "src/utils/isoSearch.js",
+      "tests/unit/components/view/IsoListSearch.spec.js",
+      "tests/unit/utils/isoSearch.spec.js",
+      "tests/unit/views/AutogenIsoSearch.spec.js"
+    ],
+    "localeKeys": {
+      "en": [
+        "message.iso.search.unsupported",
+        "message.iso.search.invalid",
+        "message.iso.search.failed",
+        "message.iso.search.ignored",
+        "message.iso.search.keyword",
+        "message.iso.search.sort.page",
+        "label.iso.filter.executable",
+        "label.iso.filter.selfexecutable",
+        "label.iso.filter.sharedexecutable"
+      ],
+      "ko_KR": [
+        "message.iso.search.unsupported",
+        "message.iso.search.invalid",
+        "message.iso.search.failed",
+        "message.iso.search.ignored",
+        "message.iso.search.keyword",
+        "message.iso.search.sort.page",
+        "label.iso.filter.executable",
+        "label.iso.filter.selfexecutable",
+        "label.iso.filter.sharedexecutable"
+      ]
+    },
+    "hashes": {
+      "src/components/view/ListView.vue": "540c80e777fab351ef81781053d48d04229c739fa4388160ab10ff14fb9aff73",
+      "src/components/view/ResourceView.vue": "57a2f670ae0955d559a389e0f97c1633c9b5d6992a5873ef7dd5ef535575b5d5",
+      "src/components/view/SearchFilter.vue": "b24e029bcbad67db11caeb7793b269a9d8498382336d877d529bc0c48bbdc647",
+      "src/components/view/SearchView.vue": "d6f5bd41854b34d30f0c5c7965c67fc84fa3af0652095331682dab34ab8b1a7a",
+      "src/components/widgets/Breadcrumb.vue": "cebe72e8b8954c89d4c9852addc557c09aa14ec40792ce6a3f67bd3219aa068c",
+      "src/config/section/image.js": "00fa82b6efd550d11dd1fe2de6df961f0584bc3539cc17cf6cf2b08fa761ba80",
+      "src/views/AutogenView.vue": "edefc5c4173ecb22af91e90c547eb36a55022cfc6c512d0bfbbec78ee9ea66af",
+      "src/components/view/IsoListCell.vue": "f615ed720b8fbf2381482de70a24f53dec19f30be9b1014673b26b33bdf40f4f",
+      "src/utils/isoSearch.js": "c3ee6b1657826441cfe0a5f1da8ad061eb1aa8d99eabf5b15b316cfce49d8f58",
+      "tests/unit/components/view/IsoListSearch.spec.js": "db42ae1044db25b8bb50984d40c46d9e6468686a758bc35ce14b1a4cdefd2da4",
+      "tests/unit/utils/isoSearch.spec.js": "2df826e0f6db3d78c17e5a78364e1f047897f5cf6ff98a63c61291b890d90277",
+      "tests/unit/views/AutogenIsoSearch.spec.js": "24ff735faa9976d85904adec23c3409c007e59d3b20060cf3375ef742bd4abb9"
+    },
+    "productHead": "2e1f33a9b163a894ac811bba508d424121010e00",
+    "method": "3-way merge ISO-05 against canonical base and operating source; conflict resolutions insert ISO-only conditions into original operating lines",
+    "manualResolutions": {
+      "src/components/view/ResourceView.vue": "operating line retained; inserted ISO condition only; canonical-only VPC differences preserved",
+      "src/components/widgets/Breadcrumb.vue": "operating line retained; inserted ISO condition only; canonical-only VPC differences preserved",
+      "src/views/AutogenView.vue": "operating line retained; inserted ISO condition only; canonical-only VPC differences preserved"
+    },
+    "inputIndexMatchesLive": true,
+    "unrelatedSourceDifferencesPreserved": true,
+    "operatingSourceFilesCompared": 1035,
+    "changedOperatingSourceFiles": [
+      "public/locales/en.json",
+      "public/locales/ko_KR.json",
+      "src/components/view/IsoListCell.vue",
+      "src/components/view/ListView.vue",
+      "src/components/view/ResourceView.vue",
+      "src/components/view/SearchFilter.vue",
+      "src/components/view/SearchView.vue",
+      "src/components/widgets/Breadcrumb.vue",
+      "src/config/section/image.js",
+      "src/utils/isoSearch.js",
+      "src/views/AutogenView.vue"
+    ],
+    "allOtherOperatingSourceFilesEqual": true,
+    "previousProductHead": "3581b369a85d489a4ff73efd4963289d84a8b19c",
+    "iconCorrection": "preserve custom icon preference; reuse existing OS label instead of extra per-row OS lookup; preserve explicit icon API flag",
+    "accessibilityCorrection": "explicit standard search aria-label alongside optional keyword title",
+    "columnCorrection": "honor all-project ISO column preferences; clear sort when hiding sorted column; disable manual order column sorting; translate restored API filters",
+    "legacyFilterLabels": "ISO-specific translated option only for a selected executable/selfexecutable/sharedexecutable bookmark; default choices preserved",
+    "initialOperatingSourceIndexSha256": "739b1e4956a1f9cd47d8ab20a919c9a2bce8d4397eb849031d35e8614b3d7f8e",
+    "preCorrectiveLiveIndexSha256": "45002b124330ba43474b58726d86c6e9955b61ca866bc6f85cf77c5839ad27f7",
+    "additionalUiCorrections": "open ISO form follows applied Back/Forward query; suppress duplicate stale-data status when ISO error clears rows"
+  },
+  "baselineIndex": {
+    "sha256": "dd7d36fc2d68d347ac70f781e90f9c6c7b7a7ae186165a80cb2c7669c04b26a0",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "53f7863ba284da0ce8890514ad274374e376049fb455de23b0eb2b8de39f5299",
+      "size": 39475,
+      "previous": {
+        "sha256": "dd7d36fc2d68d347ac70f781e90f9c6c7b7a7ae186165a80cb2c7669c04b26a0",
+        "size": 39475
+      }
+    },
+    "css/app.003f14e0.css": {
+      "sha256": "888c7a3e7433a9dc13f4892ca4010844103ea24eca6cc8a84fe35489b1979eb7",
+      "size": 347916,
+      "previous": null
+    },
+    "js/vendors.510a9505.js": {
+      "sha256": "857e4c25b6a74a4258a02d168c8c2fc8618ce071776bf0845336e844bda64c34",
+      "size": 6051843,
+      "previous": null
+    },
+    "js/app.2e62dc44.js": {
+      "sha256": "0746f08cc40d22804e8ef0411b312a178b2342dc305612cb679c16420214173f",
+      "size": 1910058,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2620448",
+  "backendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443"
+}

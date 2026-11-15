@@ -1,0 +1,11 @@
+{
+  "productHead": "2e1f33a9b163a894ac811bba508d424121010e00",
+  "indexTree": "6696fac85c5de8dc36a19c4d1953c20c5d511736",
+  "method": "exact staged Git index export, ignored dependencies and build output excluded",
+  "baselineUnknown": 4077,
+  "currentUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "workspace": "/root/work/.rat-iso1670-report-qvn2h2vv",
+  "returnCode": 1
+}

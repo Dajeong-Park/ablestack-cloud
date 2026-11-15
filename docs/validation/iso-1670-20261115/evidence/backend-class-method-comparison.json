@@ -1,0 +1,28 @@
+{
+  "originalJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224",
+  "originalClassSha256": "3e317ca2d2a3599a4cf4f9708bb88e7f2b93ab8bbfcc5564381c46411e0ae36f",
+  "newClassSha256": "e1cd0c59aa91673346273a5c42378e08d092c83b2b80dc1207a9aa7def1c8b40",
+  "originalMethods": 163,
+  "newMethods": 165,
+  "changedMethods": [
+    "private com.cloud.utils.Pair<java.util.List<com.cloud.api.query.vo.TemplateJoinVO>, java.lang.Integer> searchForIsosInternal(org.apache.cloudstack.api.command.user.iso.ListIsosCmd);",
+    "private com.cloud.utils.Pair<java.util.List<com.cloud.api.query.vo.TemplateJoinVO>, java.lang.Integer> searchForTemplatesInternal(org.apache.cloudstack.api.command.user.template.ListTemplatesCmd);"
+  ],
+  "removedSignatures": [
+    "private com.cloud.utils.Pair<java.util.List<com.cloud.api.query.vo.TemplateJoinVO>, java.lang.Integer> searchForTemplatesInternal(java.lang.Long, java.lang.String, java.lang.String, com.cloud.template.VirtualMachineTemplate$TemplateFilter, boolean, java.lang.Boolean, java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, com.cloud.hypervisor.Hypervisor$HypervisorType, boolean, boolean, java.util.List<com.cloud.user.Account>, com.cloud.user.Account, com.cloud.projects.Project$ListProjectResourcesCriteria, java.util.Map<java.lang.String, java.lang.String>, boolean, java.util.List<java.lang.Long>, java.lang.Long, java.lang.Boolean, java.lang.String, java.lang.Boolean, java.lang.Long, boolean, com.cloud.cpu.CPU$CPUArch, java.lang.Long, java.lang.Boolean, java.lang.Boolean, java.lang.Long, java.lang.Long, java.lang.Boolean);"
+  ],
+  "addedSignatures": [
+    "private com.cloud.utils.Pair<java.util.List<com.cloud.api.query.vo.TemplateJoinVO>, java.lang.Integer> searchForTemplatesInternal(java.lang.Long, java.lang.String, java.lang.String, com.cloud.template.VirtualMachineTemplate$TemplateFilter, boolean, java.lang.Boolean, java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, java.lang.Long, com.cloud.hypervisor.Hypervisor$HypervisorType, boolean, boolean, java.util.List<com.cloud.user.Account>, com.cloud.user.Account, com.cloud.projects.Project$ListProjectResourcesCriteria, java.util.Map<java.lang.String, java.lang.String>, boolean, java.util.List<java.lang.Long>, java.lang.Long, java.lang.Boolean, java.lang.String, java.lang.Boolean, java.lang.Long, boolean, com.cloud.cpu.CPU$CPUArch, java.lang.Long, java.lang.Boolean, java.lang.Boolean, java.lang.Long, java.lang.Long, java.lang.Boolean, java.lang.Boolean);",
+    "static com.cloud.utils.db.SearchCriteria<com.cloud.api.query.vo.TemplateJoinVO> isoSearchCriteria(com.cloud.utils.db.SearchBuilder<com.cloud.api.query.vo.TemplateJoinVO>, java.lang.Boolean, java.lang.Boolean);",
+    "static java.lang.Boolean isoReadinessFilter(java.lang.Boolean);"
+  ],
+  "unchangedMethods": 160,
+  "classMajorVersion": 61,
+  "runtimeDependencyClasspath": "deployed original Mold JAR",
+  "jvmVerification": "-Xverify:all",
+  "unitTests": 7,
+  "unitStatus": "pass",
+  "signedJar": false,
+  "schemaChanges": false,
+  "comparisonMethod": "javap instructions/resolved comments, constant pool indices normalized, debug excluded"
+}
