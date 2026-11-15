@@ -59,7 +59,7 @@
                   >
                     <template #suffixIcon><filter-outlined class="ant-select-suffix" /></template>
                     <a-select-option
-                      v-if="['Admin', 'DomainAdmin'].includes($store.getters.userInfo.roletype) &&
+                      v-if="(['Admin', 'DomainAdmin'].includes($store.getters.userInfo.roletype) || (isIsoList && $store.getters.userInfo.roletype === 'ResourceAdmin')) &&
                       ['vm', 'iso', 'template', 'pod', 'cluster', 'host', 'systemvm', 'router', 'storagepool', 'kubernetes', 'computeoffering', 'systemoffering', 'diskoffering', 'sharedfs', 'extension', 'alertRules'].includes($route.name) ||
                       ['account'].includes($route.name)"
                       key="all"
@@ -67,6 +67,7 @@
                     >
                       {{ $t('label.all') }}
                     </a-select-option>
+                    <a-select-option v-if="isoRestoredFilter" :key="isoRestoredFilter" :label="getFilterLabel(isoRestoredFilter)">{{ getFilterLabel(isoRestoredFilter) }}</a-select-option>
                     <a-select-option
                       v-for="filter in filters"
                       :key="filter"
@@ -1448,6 +1449,7 @@ export default {
   computed: {
     vnfSearchAuth () { return vnfAuth(this.$store.getters, this.$store.state?.user?.token) },
     isIsoList () { return this.$route.meta?.name === 'iso' && !this.$route.params?.id },
+    isoRestoredFilter () { return this.isIsoList && ['executable', 'selfexecutable', 'sharedexecutable'].includes(this.filterValue) ? this.filterValue : '' },
     isoSecurityContext () { return JSON.stringify([isoListOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
     isTemplateList () { return this.$route.meta?.name === 'template' && !this.$route.params?.id },
     templateSecurityContext () { return JSON.stringify([templateOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
@@ -2235,7 +2237,7 @@ export default {
               // Replace the former default domain column in saved selections as well.
               this.selectedColumns = [...new Set(this.selectedColumns.map(key => key === 'domain' ? 'zonename' : key))]
             }
-            if (this.$store.getters.listAllProjects && !this.projectView) {
+            if (this.$store.getters.listAllProjects && !this.projectView && !isoQuery) {
               this.selectedColumns.push('project')
             }
             this.updateSelectedColumns()
@@ -3744,6 +3746,10 @@ export default {
       }
       this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
       this.$store.dispatch('SetCustomColumns', this.$store.getters.customColumns)
+      if (this.$route.meta?.name === 'iso' && name === this.$route.query.sortkey && !this.selectedColumns.includes(name)) {
+        const query = { ...this.$route.query }; delete query.sortkey; delete query.sortorder
+        this.$router.replace({ query: isoListQuery(query, this.pageSize, this.$store.getters) })
+      }
     },
     getFilterLabel (filter) {
       const key = this.$route.meta?.filterLabels?.[filter] || ('label.' + (this.$route.name === 'comment' ? 'filter.annotations.' : '') + filter)

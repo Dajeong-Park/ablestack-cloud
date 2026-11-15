@@ -89,3 +89,11 @@ test('caller icon flag is preserved without accepting it as arbitrary list URL s
   expect(isoRequestParams({ id, showicon: false }, true, getters).showicon).toBe(false)
   expect(isoListQuery({ showicon: true }, 20, getters)).not.toHaveProperty('showicon')
 })
+
+test('manual order controls are not advertised as a sortable data column', () => {
+  expect(isoColumn({ key: 'order', sorter: () => 0 }).sorter).toBe(false)
+})
+
+test('non-column sort fields are not restored as a working table sort', () => {
+  expect(isoListQuery({ sortkey: 'id', sortorder: 'asc' }, 20, getters)).not.toHaveProperty('sortkey')
+})

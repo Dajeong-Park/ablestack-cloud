@@ -210,6 +210,7 @@ export default {
       params: { isofilter: 'self', showunique: 'true' },
       resourceType: 'ISO',
       filters: ['self', 'shared', 'featured', 'community'],
+      filterLabels: { executable: 'label.iso.filter.executable', selfexecutable: 'label.iso.filter.selfexecutable', sharedexecutable: 'label.iso.filter.sharedexecutable' },
       columns: () => {
         var fields = ['name', 'state', 'ostypename', 'arch']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {

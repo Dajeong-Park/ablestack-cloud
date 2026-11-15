@@ -90,3 +90,25 @@ test('ISO saved columns are restored even after another resource enabled metrics
   expect(c.selectedColumns).toEqual(['name', 'arch'])
   expect(c.allColumns.find(column => column.key === 'ostypename').width).toBe(148)
 })
+
+test('explicit ISO columns remain selected after returning to an all-project list', async () => {
+  store.getters.listAllProjects = true
+  store.getters.customColumns.actor = { '/iso': ['name', 'state'] }
+  route(); c.$route.meta.columns.push('project')
+  getAPI.mockResolvedValue(reply([]))
+  await c.fetchData()
+  expect(c.selectedColumns).toEqual(['name', 'state'])
+})
+test('hiding the sorted ISO column clears its local sort state', () => {
+  route({ sortkey: 'name', sortorder: 'asc' })
+  store.dispatch = jest.fn()
+  c.selectedColumns = ['name', 'arch']
+  c.allColumns = [{ key: 'name', dataIndex: 'name', sorter: () => 0 }, { key: 'arch', dataIndex: 'arch', sorter: () => 0 }]
+  Autogen.methods.updateSelectedColumns.call(c, 'name')
+  expect(c.$router.replace).toHaveBeenCalledWith({ query: expect.not.objectContaining({ sortkey: expect.anything() }) })
+})
+
+test('API-valid legacy filter bookmarks get a dedicated translated selected option', () => {
+  expect(Autogen.computed.isoRestoredFilter.call({ isIsoList: true, filterValue: 'sharedexecutable' })).toBe('sharedexecutable')
+  expect(Autogen.computed.isoRestoredFilter.call({ isIsoList: false, filterValue: 'sharedexecutable' })).toBe('')
+})

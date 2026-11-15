@@ -18,7 +18,7 @@
 import { isoBoolean, isoAvailability } from './isoModel'
 
 export const isoSearchFields = ['name', 'zoneid', 'tags', 'arch', 'oscategoryid', 'storageid', 'imagestoreid', 'bootable', 'isready', 'ispublic', 'hypervisor', 'userdataid']
-export const isoSortFields = ['name', 'state', 'ostypename', 'arch', 'size', 'account', 'project', 'id', 'created', 'bootable', 'isready', 'ispublic', 'hypervisor']
+export const isoSortFields = ['name', 'state', 'ostypename', 'arch', 'size', 'account', 'project']
 const booleans = ['bootable', 'isready', 'ispublic']
 const ids = ['zoneid', 'oscategoryid', 'storageid', 'imagestoreid', 'userdataid']
 const filters = ['all', 'self', 'shared', 'featured', 'community', 'executable', 'selfexecutable', 'sharedexecutable']
@@ -123,5 +123,7 @@ export function isoFilterChips (query, getters = {}) {
 }
 export function isoColumn (column, query = {}, t = v => v) {
   const widths = { state: 120, ostypename: 148, arch: 96, size: 96, account: 112, project: 120, order: 168, filtercolumn: 28 }
-  return { ...column, ...(column.key === 'state' ? { sorter: (a, b) => String(t(isoAvailability(a).labelKey)).localeCompare(String(t(isoAvailability(b).labelKey))) } : {}), ...(column.key === 'name' ? { width: undefined } : { width: widths[column.key] || 120 }), ellipsis: column.key === 'order' ? false : { showTitle: false }, ...(column.sorter ? { sortOrder: query.sortkey === column.key ? (query.sortorder === 'asc' ? 'ascend' : 'descend') : null } : {}) }
+  const sortable = isoSortFields.includes(column.key) && !!column.sorter
+  const sorter = !sortable ? false : column.key === 'state' ? (a, b) => String(t(isoAvailability(a).labelKey)).localeCompare(String(t(isoAvailability(b).labelKey))) : column.sorter
+  return { ...column, ...(column.key === 'name' ? { width: undefined } : { width: widths[column.key] || 120 }), ellipsis: column.key === 'order' ? false : { showTitle: false }, sorter, sortOrder: sortable && query.sortkey === column.key ? (query.sortorder === 'asc' ? 'ascend' : 'descend') : null }
 }

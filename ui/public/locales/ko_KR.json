@@ -11947,5 +11947,8 @@
   "message.iso.search.failed": "ISO 목록을 조회하지 못했습니다. 다시 시도하거나 검색 조건을 초기화하세요.",
   "message.iso.search.ignored": "서버 응답이 선택한 ISO 검색 조건과 일치하지 않아 결과를 표시하지 않습니다.",
   "message.iso.search.keyword": "ISO 이름·설명·UUID에서 키워드를 부분 검색합니다.",
-  "message.iso.search.sort.page": "열 정렬은 현재 페이지에만 적용됩니다."
+  "message.iso.search.sort.page": "열 정렬은 현재 페이지에만 적용됩니다.",
+  "label.iso.filter.executable": "배포 가능한 이미지",
+  "label.iso.filter.selfexecutable": "배포 가능한 내 이미지",
+  "label.iso.filter.sharedexecutable": "배포 가능한 공유 이미지"
 }

@@ -11939,5 +11939,8 @@
   "message.iso.search.failed": "The ISO list could not be read. Retry or reset the filters.",
   "message.iso.search.ignored": "The server response does not match the selected ISO filters. Results are not displayed.",
   "message.iso.search.keyword": "Search within the ISO name, description or UUID.",
-  "message.iso.search.sort.page": "Column sorting applies to the current page."
+  "message.iso.search.sort.page": "Column sorting applies to the current page.",
+  "label.iso.filter.executable": "Deployable images",
+  "label.iso.filter.selfexecutable": "My deployable images",
+  "label.iso.filter.sharedexecutable": "Shared deployable images"
 }

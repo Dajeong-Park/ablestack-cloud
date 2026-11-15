@@ -255,7 +255,7 @@ export default {
     },
     getStaticFieldValue (key, value) {
       if (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(key)) return this.$t(String(value) === 'true' ? 'label.yes' : 'label.no')
-      if (this.apiName === 'listIsos' && key === 'isofilter') return this.$t('label.' + value)
+      if (this.apiName === 'listIsos' && key === 'isofilter') return this.$t(this.$route?.meta?.filterLabels?.[value] || ('label.' + value))
       if (this.apiName === 'listNetworks' && key === 'forvpc') return this.$t(String(value) === 'true' ? 'label.yes' : 'label.no')
       if (this.apiName === 'listSnapshotPolicies' && key === 'fordisplay') return this.$t(value === 'true' ? 'label.snapshot.policy.schedule.enabled' : 'label.snapshot.policy.schedule.paused')
       if (this.apiName === 'listSnapshots') {
