@@ -385,7 +385,6 @@ export default {
       const scope = this.isoScope
       const params = {}
       params.id = this.resource.id
-      if (this.resource.projectid) params.projectid = this.resource.projectid
       params.listall = true
       params.page = this.page
       params.pagesize = this.pageSize

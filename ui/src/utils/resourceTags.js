@@ -29,17 +29,24 @@ export function tagTargetParams (resource, type) {
   const projectId = type === 'Project' ? resource.id : resource.projectid
   return { resourcetype: type, ...(projectId ? { projectid: projectId } : { ignoreproject: true }) }
 }
+// Image ownership does not grant access to the owner project namespace.
+export function tagReadParams (resource, type, getters = {}) {
+  if (!['ISO', 'Template'].includes(type)) return tagTargetParams(resource, type)
+  const selected = getters.project?.id
+  const project = selected && String(selected) !== '0' ? (getters.allProjects || getters.listAllProjects ? '-1' : selected) : ''
+  return { resourcetype: type, ...(project ? { projectid: project } : { ignoreproject: true }) }
+}
 export function tagApiError (error) {
   return Object.values(error?.response?.data || {}).find(value => value?.errorcode)?.errortext || ''
 }
 export function tagAccessError (error) {
   return [401, 403].includes(error?.response?.status) || /permission|access denied|not authorized|session expired/i.test(tagApiError(error))
 }
-export async function readResourceTags (get, resource, type, current = () => true) {
+export async function readResourceTags (get, resource, type, current = () => true, getters = {}) {
   const all = []; const seen = new Set(); let total
   for (let page = 1; page <= 100; page++) {
     if (!current()) throw new Error('message.tags.scope.changed')
-    const data = (await get('listTags', { ...tagTargetParams(resource, type), resourceid: resource.id, listall: true, page, pagesize: 100 }, { preserveOnFailure: true, timeout: 15000 })).listtagsresponse
+    const data = (await get('listTags', { ...tagReadParams(resource, type, getters), resourceid: resource.id, listall: true, page, pagesize: 100 }, { preserveOnFailure: true, timeout: 15000 })).listtagsresponse
     if (!current()) throw new Error('message.tags.scope.changed')
     const rows = data?.tag || []
     const count = Number(data?.count ?? (rows.length ? NaN : 0))

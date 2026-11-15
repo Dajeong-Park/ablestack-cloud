@@ -43,7 +43,7 @@ export function canManageImagePermissions (kind, record = {}, getters = {}) {
   const user = getters.userInfo || {}
   if (!user.id) return false
   if (user.roletype === 'Admin') return true
-  if (record.projectid) return !getters.listAllProjects && same(record.projectid, getters.project?.id)
+  if (record.projectid) return ['DomainAdmin', 'ResourceAdmin'].includes(user.roletype) && !getters.listAllProjects && same(record.projectid, getters.project?.id)
   return !getters.project?.id && same(user.domainid, record.domainid) && record.account === user.account
 }
 export function permissionFingerprint (value) {

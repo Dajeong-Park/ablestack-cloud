@@ -112,7 +112,7 @@ test('simultaneous submits issue only one mutation', async () => {
 test('ownership, project context, system media and read-only APIs are checked again at submit time', async () => {
   const c = context({ manualTargets: 'a' }); c.$store.getters.apis = { listTemplatePermissions: {} }; await c.submitData(); expect(postAPI).not.toHaveBeenCalled()
   expect(canManageImagePermissions('iso', { ...resource, account: 'system' }, { userInfo: { id: 'a', roletype: 'Admin' }, apis })).toBe(false)
-  expect(canManageImagePermissions('template', { ...resource, projectid: 'p' }, { userInfo: { id: 'a', roletype: 'User' }, project: { id: 'p' }, apis })).toBe(true)
+  expect(canManageImagePermissions('template', { ...resource, projectid: 'p' }, { userInfo: { id: 'a', roletype: 'User' }, project: { id: 'p' }, apis })).toBe(false)
   expect(canManageImagePermissions('template', { ...resource, projectid: 'p' }, { userInfo: { id: 'a', roletype: 'User' }, project: { id: 'other' }, apis })).toBe(false)
 })
 test.each(['DomainAdmin', 'ResourceAdmin'])('%s image management requires ownership or an authorized concrete project', role => {

@@ -103,6 +103,7 @@ export function canIsoAction (action, record = {}, getters = {}) {
   const ready = isoBoolean(record.isready) === true
   if (action === 'deploy') return hasApi(getters, 'listIsos') && ready && isoBoolean(record.bootable) === true
   if (!isoOwner(record, getters)) return false
+  if (['share', 'permissions'].includes(action) && record.projectid && !['Admin', 'DomainAdmin', 'ResourceAdmin'].includes(getters.userInfo?.roletype)) return false
   if (action === 'delete') {
     // Uploads waiting to start cannot be deleted until failure/normal expiry.
     const failed = isoAvailability(record).key === 'failed'

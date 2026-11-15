@@ -74,3 +74,19 @@ test('registration form tolerates unavailable APIs and malformed metadata before
   expect(c.apiParams.arch.description).toBe('')
   expect(c.linkUserDataParams.userdataid.description).toBe('')
 })
+
+test('project members retain normal image operations but cannot delegate permissions rejected by the server', () => {
+  const project = { ...row, projectid: 'p', account: 'project-account', templatetype: 'USER' }
+  const getters = { ...grants, project: { id: 'p' }, apis: { ...grants.apis, updateIso: {}, updateIsoPermissions: {}, listIsoPermissions: {} } }
+  const { canIsoAction } = require('@/utils/isoModel')
+  for (const action of ['edit', 'copy', 'delete']) expect(canIsoAction(action, project, getters)).toBe(true)
+  for (const action of ['share', 'permissions']) expect(canIsoAction(action, project, getters)).toBe(false)
+  const template = image.children.find(section => section.name === 'template')
+  const share = template.actions.find(action => action.label === 'label.action.template.share')
+  expect(share.show(project, getters)).toBe(false)
+  for (const roletype of ['DomainAdmin', 'ResourceAdmin']) {
+    const cloudAdmin = { ...getters, userInfo: { ...getters.userInfo, roletype } }
+    expect(canIsoAction('permissions', project, cloudAdmin)).toBe(true)
+    expect(share.show(project, cloudAdmin)).toBe(true)
+  }
+})

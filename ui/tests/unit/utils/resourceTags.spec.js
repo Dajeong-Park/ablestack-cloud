@@ -8,7 +8,7 @@
 // distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 // WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 // License for the specific language governing permissions and limitations.
-import { clearResourceTagOperations, getResourceTagOperation, readResourceTags, tagAccessError, tagContext, tagIdentity, tagOperationBlocked, tagTargetParams } from '@/utils/resourceTags'
+import { clearResourceTagOperations, getResourceTagOperation, readResourceTags, tagAccessError, tagContext, tagIdentity, tagOperationBlocked, tagTargetParams, tagReadParams } from '@/utils/resourceTags'
 
 const flush = async () => { for (let i = 0; i < 20; i++) await Promise.resolve() }
 const deferred = () => { let finish; const promise = new Promise(resolve => { finish = resolve }); return { promise, resolve: finish } }
@@ -247,4 +247,21 @@ test('failure to persist acknowledgement keeps the unknown lock and original req
   expect(finishReview(f.op)).toBe(false)
   expect(f.op.snapshot()).toMatchObject({ status: 'unknown', review: { error: 'message.tags.review.storage.failed' } })
   expect(tagOperationBlocked(f.op.snapshot())).toBe(true); expect(f.post).toHaveBeenCalledTimes(1)
+})
+
+test.each(['ISO', 'Template'])('%s tag reads preserve actor scope and retain the owner project only for mutations', async type => {
+  const resource = { id: 'shared-image', projectid: 'owner-project' }
+  const get = jest.fn().mockResolvedValue({ listtagsresponse: {} })
+  await readResourceTags(get, resource, type)
+  expect(get.mock.calls[0][1]).toEqual(expect.objectContaining({ resourcetype: type, resourceid: 'shared-image', ignoreproject: true }))
+  expect(get.mock.calls[0][1]).not.toHaveProperty('projectid')
+  await readResourceTags(get, resource, type, () => true, { project: { id: 'active-project' } })
+  expect(get.mock.calls[1][1]).toEqual(expect.objectContaining({ projectid: 'active-project' }))
+  expect(tagTargetParams(resource, type)).toEqual({ resourcetype: type, projectid: 'owner-project' })
+})
+test('image tag scope handles basic and all-project views without changing non-image contracts', () => {
+  const resource = { id: 'resource', projectid: 'owner-project' }
+  expect(tagReadParams(resource, 'ISO', { project: { id: '0' } })).toEqual({ resourcetype: 'ISO', ignoreproject: true })
+  expect(tagReadParams(resource, 'ISO', { project: { id: 'p' }, listAllProjects: true })).toEqual({ resourcetype: 'ISO', projectid: '-1' })
+  for (const type of ['Snapshot', 'UserVm', 'Volume', 'VMSnapshot', 'Backup', 'Project']) expect(tagReadParams(resource, type, { project: { id: 'active' } })).toEqual(tagTargetParams(resource, type))
 })
