@@ -37,7 +37,7 @@
       :rowSelection="canSelectIsoRows ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({disabled: !isoAction('delete', record)})} : null"
       :rowKey="record => record.zoneid"
       :expandRowByClick="true"
-      :rowExpandable="(record) => record.downloaddetails.length > 0">
+      :rowExpandable="(record) => (record.downloaddetails || []).length > 0">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'zonename'">
           <span v-if="record.zoneicon && record.zoneicon.base64image">
@@ -98,8 +98,8 @@
         <a-table
           style="margin: 0;"
           :columns="storagePoolInnerColumns"
-          v-if="record.downloaddetails.filter((row) => row.datastoreRole === 'Primary').length > 0"
-          :data-source="record.downloaddetails.filter((row) => row.datastoreRole === 'Primary')"
+          v-if="(record.downloaddetails || []).filter((row) => row.datastoreRole === 'Primary').length > 0"
+          :data-source="(record.downloaddetails || []).filter((row) => row.datastoreRole === 'Primary')"
           :pagination="false"
           :bordered="true"
           :rowKey="record => record.zoneid">
@@ -114,8 +114,8 @@
         <a-table
           style="margin: 0;"
           :columns="imageStoreInnerColumns"
-          v-if="record.downloaddetails.filter((row) => row.datastoreRole === 'Image').length > 0"
-          :data-source="record.downloaddetails.filter((row) => row.datastoreRole === 'Image')"
+          v-if="(record.downloaddetails || []).filter((row) => row.datastoreRole === 'Image').length > 0"
+          :data-source="(record.downloaddetails || []).filter((row) => row.datastoreRole === 'Image')"
           :pagination="false"
           :bordered="true"
           :rowKey="record => record.zoneid">
@@ -219,7 +219,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
-import { isoBoolean, isoOwner, canIsoAction, isoContext, isoListResponse } from '@/utils/isoModel'
+import { isoBoolean, isoOwner, canIsoAction, isoContext, isoListResponse, readIsoResource } from '@/utils/isoModel'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import OsLogo from '@/components/widgets/OsLogo'
@@ -228,7 +228,7 @@ import BulkActionView from '@/components/view/BulkActionView'
 import eventBus from '@/config/eventBus'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], { scopeKey: vm => [vm.isoScope, vm.page, vm.pageSize] })],
   name: 'IsoZones',
   components: {
     TemplateAvailability,
@@ -256,6 +256,7 @@ export default {
       pageSize: 10,
       itemCount: 0,
       fetchLoading: false,
+      fetchLoadingRequest: null,
       showCopyActionForm: false,
       currentRecord: {},
       zones: [],
@@ -343,11 +344,6 @@ export default {
       }
     ]
 
-    const userInfo = this.$store.getters.userInfo
-    if (!['Admin'].includes(userInfo.roletype) &&
-      (userInfo.account !== this.resource.account || userInfo.domain !== this.resource.domain)) {
-      this.columns = this.columns.filter(col => { return col.dataIndex !== 'status' })
-    }
     this.fetchData()
   },
   watch: {
@@ -369,7 +365,7 @@ export default {
   methods: {
     isoBoolean,
     isoAction (action, record) {
-      return !this.listRefreshFailed && this.isoDataContext === this.isoScope && record.id === this.resource.id && canIsoAction(action, { ...this.resource, ...record, account: this.resource.account, domainid: this.resource.domainid, projectid: this.resource.projectid, templatetype: this.resource.templatetype }, this.$store.getters)
+      return !!record.zoneid && !this.listRefreshFailed && this.isoDataContext === this.isoScope && record.id === this.resource.id && canIsoAction(action, { ...this.resource, ...record, account: this.resource.account, domainid: this.resource.domainid, projectid: this.resource.projectid, templatetype: this.resource.templatetype }, this.$store.getters)
     },
     requireIsoAction (action, record) {
       if (record && this.isoAction(action, record)) return true
@@ -384,24 +380,27 @@ export default {
       })
     },
     fetchData () {
+      if (!this.resource.id) { this.dataSource = []; this.itemCount = 0; this.fetchLoading = false; return Promise.resolve() }
       const listRequest = this.listRequestToken('fetchData')
       const scope = this.isoScope
       const params = {}
       params.id = this.resource.id
-      params.isofilter = 'executable'
+      if (this.resource.projectid) params.projectid = this.resource.projectid
       params.listall = true
       params.page = this.page
       params.pagesize = this.pageSize
 
+      this.fetchLoadingRequest = listRequest
       this.fetchLoading = !listRequest.loaded
       if (!listRequest.loaded) {
         this.fetchZoneData()
         this.fetchOsCategoryId()
       }
-      return getAPI('listIsos', params).then(json => {
+      return readIsoResource(getAPI, params, this.$store.getters, () => this.isListRequestCurrent('fetchData', listRequest) && scope === this.isoScope).then(json => {
         if (!this.isListRequestCurrent('fetchData', listRequest) || scope !== this.isoScope) return
         const result = isoListResponse(json)
         this.isoDataContext = scope
+        if (result.rows.some(row => row.id !== this.resource.id)) throw new Error('invalid ISO record')
         this.dataSource = result.rows
         this.itemCount = result.count
         this.setSelection(this.selectedRowKeys)
@@ -413,6 +412,7 @@ export default {
 
         this.$notifyError(error)
       }).finally(() => {
+        if (this.fetchLoadingRequest === listRequest) { this.fetchLoading = false; this.fetchLoadingRequest = null }
         if (!this.isListRequestCurrent('fetchData', listRequest) || scope !== this.isoScope) return
 
         this.fetchLoading = false
@@ -565,7 +565,7 @@ export default {
         if (zone && zone.icon) {
           item.zoneicon = zone.icon
         }
-        imageZones.push(zone)
+        if (zone) imageZones.push(zone)
       })
       if (imageZones.length !== 0) {
         this.$emit('update-zones', imageZones)

@@ -11918,5 +11918,15 @@
   "message.iso.userdata.unconfirmed": "ISO는 준비됐지만 선택한 사용자 데이터 연결을 확인하지 못했습니다.",
   "label.iso.transfer.stop": "파일 전송 중단",
   "message.iso.transfer.stop.confirm": "파일 전송을 중단하시겠습니까? 접수된 ISO는 상태를 확인한 뒤 별도로 정리해야 합니다.",
-  "message.iso.transfer.stopped": "파일 전송을 중단했습니다. 서버 등록이 취소된 것은 아닙니다. 접수된 ISO의 상태를 확인하고 정리하세요."
+  "message.iso.transfer.stopped": "파일 전송을 중단했습니다. 서버 등록이 취소된 것은 아닙니다. 접수된 ISO의 상태를 확인하고 정리하세요.",
+  "message.image.permissions.invalid": "공유 권한 응답을 확인하지 못했습니다. 다시 조회한 뒤 변경하세요.",
+  "message.image.permissions.scope.changed": "리소스 또는 계정 범위가 변경됐습니다. 창을 닫고 다시 여세요.",
+  "message.image.permissions.changed": "조회 후 공유 현황이 변경됐습니다. 현재 대상을 검토한 뒤 적용하세요.",
+  "message.image.permissions.result.unconfirmed": "공유 변경 결과를 확인하지 못했습니다. 다시 제출하기 전에 결과를 조회하세요.",
+  "message.image.permissions.inventory.failed": "일부 대상 이름을 조회하지 못했습니다. 현재 공유는 유지해 표시하며 추가 시 계정 이름 또는 프로젝트 ID를 입력하세요.",
+  "message.image.permissions.project.ids": "쉼표로 구분한 프로젝트 UUID",
+  "message.image.permissions.reset.confirm": "초기화하면 모든 계정·프로젝트 공유를 제거하고 공개·추천을 해제합니다. 추출 가능 설정은 유지합니다.",
+  "message.image.permissions.reset.ack": "현재 모든 계정·프로젝트 공유 대상 제거 확인",
+  "message.image.permissions.verified": "공유 권한 변경과 재조회를 완료했습니다.",
+  "label.image.permissions.current": "현재 공유 현황"
 }

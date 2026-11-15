@@ -93,7 +93,8 @@ export function isoOwner (record = {}, getters = {}) {
   const user = getters.userInfo || {}
   if (!record.id || !user.id || (record.format && record.format !== 'ISO') || isSystemIso(record)) return false
   if (user.roletype === 'Admin') return true
-  if (record.projectid) return sameId(record.projectid, getters.project?.id)
+  if (['DomainAdmin', 'ResourceAdmin'].includes(user.roletype) && sameId(record.domainid, user.domainid)) return true
+  if (record.projectid) return !getters.listAllProjects && sameId(record.projectid, getters.project?.id)
   return !getters.project?.id && sameId(record.domainid, user.domainid) && !!record.account && record.account === user.account
 }
 
@@ -118,4 +119,17 @@ export function canIsoAction (action, record = {}, getters = {}) {
 export function isoContext (record = {}, getters = {}) {
   const user = getters.userInfo || {}
   return JSON.stringify([record.id, user.id, user.roleid, user.roletype, getters.project?.id, !!getters.listAllProjects, Object.keys(getters.apis || {}).sort()])
+}
+
+export async function readIsoResource (request, params, getters = {}, current = () => true) {
+  const projectid = params.projectid || (getters.project?.id ? (getters.listAllProjects ? '-1' : getters.project.id) : '')
+  const admin = ['Admin', 'DomainAdmin', 'ResourceAdmin'].includes(getters.userInfo?.roletype)
+  const scoped = { ...params, showunique: false, ...(projectid ? { projectid } : {}), isofilter: admin ? 'all' : 'executable' }
+  const options = { preserveOnFailure: true, timeout: 20000 }
+  const json = await request('listIsos', scoped, options)
+  if (!current()) return null
+  const root = json?.listisosresponse
+  if (!root || root.errorcode !== undefined || (root.iso !== undefined && !Array.isArray(root.iso))) throw new Error('invalid ISO response')
+  if (admin || root.iso?.length) return json
+  return request('listIsos', { ...scoped, isofilter: 'shared' }, options)
 }

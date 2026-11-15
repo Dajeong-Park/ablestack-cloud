@@ -11910,5 +11910,15 @@
   "message.iso.userdata.unconfirmed": "The ISO is ready but the selected user data link could not be confirmed.",
   "label.iso.transfer.stop": "Stop file transfer",
   "message.iso.transfer.stop.confirm": "Stop sending this file? The registered ISO must be checked and cleaned up separately.",
-  "message.iso.transfer.stopped": "The client stopped sending the file. Check the registered ISO status; this does not cancel the server registration."
+  "message.iso.transfer.stopped": "The client stopped sending the file. Check the registered ISO status; this does not cancel the server registration.",
+  "message.image.permissions.invalid": "Permission response could not be verified. Reload before changing access.",
+  "message.image.permissions.scope.changed": "The resource or account scope changed. Close and reopen this dialog.",
+  "message.image.permissions.changed": "Sharing changed since it was loaded. Review the current targets before applying.",
+  "message.image.permissions.result.unconfirmed": "The updated sharing could not be confirmed. Check the result before submitting again.",
+  "message.image.permissions.inventory.failed": "Some target names could not be loaded. Existing grants remain visible; enter names or project IDs when adding.",
+  "message.image.permissions.project.ids": "Project UUIDs separated by commas",
+  "message.image.permissions.reset.confirm": "Reset removes all account and project grants, makes the image private and clears featured status. Extractable is unchanged.",
+  "message.image.permissions.reset.ack": "Remove all current account and project grants",
+  "message.image.permissions.verified": "Sharing was updated and verified.",
+  "label.image.permissions.current": "Current sharing"
 }

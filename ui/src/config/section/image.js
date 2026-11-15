@@ -19,6 +19,7 @@ import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { templateAvailability } from '@/utils/templateAvailability'
 import { isoBoolean, isoRegistrationCapability, canIsoAction } from '@/utils/isoModel'
+import { canManageImagePermissions } from '@/utils/imagePermissions'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
 import { isZoneCreated } from '@/utils/zone'
 import kubernetesIcon from '@/assets/icons/kubernetes.svg?inline'
@@ -189,18 +190,13 @@ export default {
         },
         {
           api: 'updateTemplatePermissions',
+          selfManagedDialog: true,
           icon: 'reconciliation-outlined',
           label: 'label.action.template.permission',
           docHelp: 'adminguide/templates.html#sharing-templates-with-other-accounts-projects',
           dataView: true,
           popup: true,
-          show: (record, store) => {
-            return (['Admin'].includes(store.userInfo.roletype) || // If admin or owner or belongs to current project
-              (record.domainid === store.userInfo.domainid && record.account === store.userInfo.account) ||
-              (record.domainid === store.userInfo.domainid && record.projectid && store.project && store.project.id && record.projectid === store.project.id)) &&
-              record.templatetype !== 'SYSTEM' &&
-              record.isready
-          },
+          show: (record, getters) => canManageImagePermissions('template', record, getters),
           component: shallowRef(defineAsyncComponent(() => import('@/views/image/UpdateTemplateIsoPermissions')))
         }
       ]
@@ -328,6 +324,7 @@ export default {
         },
         {
           api: 'updateIsoPermissions',
+          selfManagedDialog: true,
           icon: 'reconciliation-outlined',
           label: 'label.action.iso.permission',
           docHelp: 'adminguide/templates.html#sharing-templates-with-other-accounts-projects',
