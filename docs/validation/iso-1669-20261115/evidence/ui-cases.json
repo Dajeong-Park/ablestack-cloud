@@ -1,0 +1,714 @@
+[
+  {
+    "name": "edit-fixture-ready",
+    "at": "2026-11-15T04:42:17.382Z",
+    "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+    "ready": true
+  },
+  {
+    "name": "baseline-edit-missing-arch-bootable",
+    "at": "2026-11-15T04:44:09.003Z",
+    "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+    "bootableInput": 0,
+    "archSelected": "the CPU arch of the template/ISO. Valid options are: x86_64, aarch64, s390x"
+  },
+  {
+    "name": "userdata-a-created",
+    "at": "2026-11-15T04:49:58.359Z"
+  },
+  {
+    "name": "userdata-b-created",
+    "at": "2026-11-15T04:50:13.369Z"
+  },
+  {
+    "name": "iso-settings-contract-reviewed",
+    "at": "2026-11-15T04:50:37.109Z",
+    "uiDocumentation": "listDetailOptions describes Instance/Template; no ISO settings editor",
+    "sourceDecision": "ISO metadataSupport=false; listDetailOptions switch and ResourceMetaDataManager DAO map omit ISO; no Settings tab adopted; generic updateIso details/cleanup omitted to preserve stored map"
+  },
+  {
+    "name": "os-force-fixture-created",
+    "at": "2026-11-15T04:53:52.111Z"
+  },
+  {
+    "name": "os-force-fixture-ready",
+    "at": "2026-11-15T04:54:50.011Z",
+    "id": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+    "bootable": true,
+    "ostypename": "Other Linux (64-bit)"
+  },
+  {
+    "name": "os-vm-created-stopped",
+    "at": "2026-11-15T04:56:46.866Z",
+    "startvm": false
+  },
+  {
+    "name": "os-vm-baseline",
+    "at": "2026-11-15T04:57:05.761Z",
+    "vm": null
+  },
+  {
+    "name": "os-vm-baseline-confirmed",
+    "at": "2026-11-15T04:57:19.838Z",
+    "vm": [
+      {
+        "id": "fc24e4e3-b726-4455-921f-313aed8b9ceb",
+        "name": "qa-iso1669-os-vm",
+        "state": "Stopped",
+        "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+        "templateid": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+        "details": {
+          "deployvm": "true",
+          "UEFI": "LEGACY",
+          "rootdisksize": "5",
+          "tpmversion": "NONE"
+        },
+        "isoid": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301"
+      }
+    ],
+    "rootVolumeState": "Allocated",
+    "sizeGiB": 5
+  },
+  {
+    "name": "original-iso-list-baseline",
+    "at": "2026-11-15T04:57:56.934Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "name": "vmware-tools.iso",
+        "text": "vmware-tools.iso\t\n사용 가능\n\tCentOS 4.5 (32-bit)\tx86_64\t\tsystem\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "name": "xs-tools.iso",
+        "text": "xs-tools.iso\t\n사용 가능\n\tCentOS 4.5 (32-bit)\tx86_64\t\tsystem\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "name": "1.35.9-Kubernetes-Binaries-ISO",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\t\n사용 가능\n\tNone\tx86_64\t0.94 GiB\tsystem\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "name": "1.36.5-Kubernetes-Binaries-ISO",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\t\n사용 가능\n\tNone\tx86_64\t0.96 GiB\tsystem\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "name": "Rocky-10.0-x86_64-dvd1.iso",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\t\n사용 가능\n\tRocky Linux 9\tx86_64\t7.13 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "name": "Windows Server 2025 x86_64 DVD",
+        "text": "Windows Server 2025 x86_64 DVD\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\t7.59 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "name": "VirtIO Windows Driver 0.1.302",
+        "text": "VirtIO Windows Driver 0.1.302\t\n사용 가능\n\tNone\tx86_64\t0.82 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "name": "ABLESTACK-Diplo-v4.2.1.iso",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\t\n사용 가능\n\tRocky Linux 9\tx86_64\t22.46 GiB\tadmin\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "edit-initial-values",
+    "at": "2026-11-15T05:08:35.394Z",
+    "arch": "x86_64",
+    "bootable": false,
+    "passwordenabled": false,
+    "isdynamicallyscalable": false
+  },
+  {
+    "name": "unchanged-save",
+    "at": "2026-11-15T05:08:41.222Z",
+    "mutations": []
+  },
+  {
+    "name": "arch-aarch64-saved",
+    "at": "2026-11-15T05:09:10.247Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29004.2080",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "arch": "aarch64"
+        }
+      }
+    ]
+  },
+  {
+    "name": "arch-s390x-saved",
+    "at": "2026-11-15T05:09:52.839Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29004.2105",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "arch": "s390x"
+        }
+      }
+    ]
+  },
+  {
+    "name": "arch-s390x-readback",
+    "at": "2026-11-15T05:10:02.152Z",
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-data",
+      "displaytext": "qa-iso1669-edit-data",
+      "bootable": false,
+      "arch": "s390x",
+      "ostypeid": "47403c11-bd56-11f1-b573-002481560363",
+      "ostypename": "None",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "isready": true,
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "isextractable": false,
+      "ispublic": false,
+      "isfeatured": false
+    }
+  },
+  {
+    "name": "data-to-boot-none-blocked",
+    "at": "2026-11-15T05:10:17.661Z",
+    "text": "ISO 편집\n이름\n설명\n부팅 가능\n비밀번호 관리 사용\n동적으로 확장 가능\nCPU 아키텍처\nIntel/AMD 64 bits (x86_64)\nOS 유형\nNone\n사용자 데이터\n설정 안함\n\t 사용자 데이터\t 계정\t 도메인",
+    "mutations": []
+  },
+  {
+    "name": "data-to-boot-none-blocked-confirmed",
+    "at": "2026-11-15T05:10:36.393Z",
+    "error": "부팅 가능한 ISO에 사용할 OS 유형을 선택하세요.",
+    "mutations": []
+  },
+  {
+    "name": "data-to-boot-real-os-and-flags",
+    "at": "2026-11-15T05:10:52.978Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29004.2134",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "displaytext": "ISO-04 metadata and false preservation",
+          "bootable": "true",
+          "arch": "x86_64",
+          "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+          "forceupdateostype": "false",
+          "passwordenabled": "true",
+          "isdynamicallyscalable": "true"
+        }
+      }
+    ],
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-data",
+      "displaytext": "ISO-04 metadata and false preservation",
+      "bootable": true,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": true,
+      "isdynamicallyscalable": true,
+      "isready": true,
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "isextractable": false,
+      "ispublic": false,
+      "isfeatured": false
+    }
+  },
+  {
+    "name": "false-and-empty-description-saved",
+    "at": "2026-11-15T05:11:23.954Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29004.2159",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "displaytext": "",
+          "bootable": "false",
+          "passwordenabled": "false",
+          "isdynamicallyscalable": "false"
+        }
+      }
+    ],
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-data",
+      "displaytext": "",
+      "bootable": false,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "isready": true,
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "isextractable": false,
+      "ispublic": false,
+      "isfeatured": false
+    }
+  },
+  {
+    "name": "metadata-saved-link-failed",
+    "at": "2026-11-15T05:12:05.397Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29004.2178",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "name": "qa-iso1669-edit-renamed"
+        }
+      },
+      {
+        "command": "linkUserDataToTemplate",
+        "method": "POST",
+        "requestId": "29004.2187",
+        "params": {
+          "templateid": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "userdataid": "5d7ed21b-b954-4850-8986-b1007fae36e2",
+          "userdatapolicy": "APPEND"
+        }
+      }
+    ],
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-renamed",
+      "displaytext": "",
+      "bootable": false,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "isready": true,
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "isextractable": false,
+      "ispublic": false,
+      "isfeatured": false
+    }
+  },
+  {
+    "name": "userdata-unknown-get-only-check",
+    "at": "2026-11-15T05:12:42.603Z",
+    "requests": [
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "requestId": "29004.2202",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d"
+        }
+      },
+      {
+        "command": "readyForShutdown",
+        "method": "GET",
+        "requestId": "29004.2203",
+        "params": {}
+      },
+      {
+        "command": "readyForShutdown",
+        "method": "GET",
+        "requestId": "29004.2204",
+        "params": {}
+      }
+    ]
+  },
+  {
+    "name": "userdata-retry-only-completed",
+    "at": "2026-11-15T05:12:43.146Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29004.2178",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "name": "qa-iso1669-edit-renamed"
+        }
+      },
+      {
+        "command": "linkUserDataToTemplate",
+        "method": "POST",
+        "requestId": "29004.2187",
+        "params": {
+          "templateid": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "userdataid": "5d7ed21b-b954-4850-8986-b1007fae36e2",
+          "userdatapolicy": "APPEND"
+        }
+      },
+      {
+        "command": "linkUserDataToTemplate",
+        "method": "POST",
+        "requestId": "29004.2206",
+        "params": {
+          "templateid": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "userdataid": "5d7ed21b-b954-4850-8986-b1007fae36e2",
+          "userdatapolicy": "APPEND"
+        }
+      }
+    ],
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-renamed",
+      "displaytext": "",
+      "bootable": false,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "userdataid": "5d7ed21b-b954-4850-8986-b1007fae36e2",
+      "userdataname": "qa-iso1669-userdata-a",
+      "userdatapolicy": "APPEND",
+      "isready": true,
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "isextractable": false,
+      "ispublic": false,
+      "isfeatured": false
+    }
+  },
+  {
+    "name": "same-userdata-policy-only-deny",
+    "at": "2026-11-15T05:13:21.193Z",
+    "requests": [
+      {
+        "command": "linkUserDataToTemplate",
+        "method": "POST",
+        "requestId": "29004.2232",
+        "params": {
+          "templateid": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "userdataid": "5d7ed21b-b954-4850-8986-b1007fae36e2",
+          "userdatapolicy": "DENYOVERRIDE"
+        }
+      }
+    ],
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-renamed",
+      "displaytext": "",
+      "bootable": false,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "userdataid": "5d7ed21b-b954-4850-8986-b1007fae36e2",
+      "userdataname": "qa-iso1669-userdata-a",
+      "userdatapolicy": "DENYOVERRIDE",
+      "isready": true,
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "isextractable": false,
+      "ispublic": false,
+      "isfeatured": false
+    }
+  },
+  {
+    "name": "browser-control-recovered",
+    "at": "2026-11-15T05:15:33.021Z",
+    "newTab": "1588265178",
+    "lastFaultAttempt": "not submitted; fresh UI unchanged"
+  },
+  {
+    "name": "userdata-target-change-allowoverride",
+    "at": "2026-11-15T05:15:54.256Z",
+    "requests": [
+      {
+        "command": "linkUserDataToTemplate",
+        "method": "POST",
+        "requestId": "29428.716",
+        "params": {
+          "templateid": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "userdataid": "467ab30b-beea-4c38-a814-354fb7345202",
+          "userdatapolicy": "ALLOWOVERRIDE"
+        }
+      }
+    ],
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-renamed",
+      "displaytext": "",
+      "bootable": false,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "userdataid": "467ab30b-beea-4c38-a814-354fb7345202",
+      "userdataname": "qa-iso1669-userdata-b",
+      "userdatapolicy": "ALLOWOVERRIDE",
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "ispublic": false,
+      "isfeatured": false,
+      "isextractable": false
+    }
+  },
+  {
+    "name": "userdata-detached-no-metadata-write",
+    "at": "2026-11-15T05:16:28.964Z",
+    "requests": [
+      {
+        "command": "linkUserDataToTemplate",
+        "method": "POST",
+        "requestId": "29428.739",
+        "params": {
+          "templateid": "7f6d42ae-d427-43ac-adff-e1c72b33216d"
+        }
+      }
+    ],
+    "actual": {
+      "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+      "name": "qa-iso1669-edit-renamed",
+      "displaytext": "",
+      "bootable": false,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "checksum": "d1cfa4ad592ccaa06f1b733142ce1fdf",
+      "ispublic": false,
+      "isfeatured": false,
+      "isextractable": false
+    }
+  },
+  {
+    "name": "force-false-refused-existing-vm",
+    "at": "2026-11-15T05:17:18.623Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29428.775",
+        "params": {
+          "id": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+          "ostypeid": "473529bd-bd56-11f1-b573-002481560363",
+          "forceupdateostype": "false"
+        }
+      }
+    ],
+    "iso": {
+      "id": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+      "name": "qa-iso1669-os-force",
+      "displaytext": "qa-iso1669-os-force",
+      "bootable": true,
+      "arch": "x86_64",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (64-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "ispublic": false,
+      "isfeatured": false,
+      "isextractable": false
+    },
+    "vm": {
+      "id": "fc24e4e3-b726-4455-921f-313aed8b9ceb",
+      "name": "qa-iso1669-os-vm",
+      "state": "Stopped",
+      "ostypeid": "473557e5-bd56-11f1-b573-002481560363",
+      "templateid": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+      "details": {
+        "deployvm": "true",
+        "UEFI": "LEGACY",
+        "rootdisksize": "5",
+        "tpmversion": "NONE"
+      },
+      "isoid": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301"
+    }
+  },
+  {
+    "name": "force-true-explicit-updated-iso-and-vm",
+    "at": "2026-11-15T05:17:32.503Z",
+    "requests": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29428.782",
+        "params": {
+          "id": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+          "ostypeid": "473529bd-bd56-11f1-b573-002481560363",
+          "forceupdateostype": "true"
+        }
+      }
+    ],
+    "iso": {
+      "id": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+      "name": "qa-iso1669-os-force",
+      "displaytext": "qa-iso1669-os-force",
+      "bootable": true,
+      "arch": "x86_64",
+      "ostypeid": "473529bd-bd56-11f1-b573-002481560363",
+      "ostypename": "Other Linux (32-bit)",
+      "passwordenabled": false,
+      "isdynamicallyscalable": false,
+      "ispublic": false,
+      "isfeatured": false,
+      "isextractable": false
+    },
+    "vm": {
+      "id": "fc24e4e3-b726-4455-921f-313aed8b9ceb",
+      "name": "qa-iso1669-os-vm",
+      "state": "Stopped",
+      "ostypeid": "473529bd-bd56-11f1-b573-002481560363",
+      "templateid": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+      "details": {
+        "deployvm": "true",
+        "UEFI": "LEGACY",
+        "rootdisksize": "5",
+        "tpmversion": "NONE"
+      },
+      "isoid": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301"
+    }
+  },
+  {
+    "name": "concurrent-edit-blocked",
+    "at": "2026-11-15T05:19:00.633Z",
+    "message": "ISO 편집\n창을 연 뒤 ISO가 변경됐습니다. 닫고 다시 조회한 후 수정하세요.\n이름\n설명\n부팅 가능\n비밀번호 관리 사용\n동적으로 확장 가능\nCPU 아키텍처\nIntel/AMD 64 bits (x86_64)\nOS 유형\nOther Linux (32-bit)\n사용자 데이터",
+    "staleMutations": [],
+    "otherEditor": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "28056.782",
+        "params": {
+          "id": "c7ff5e0f-bceb-485f-8aa4-4471cbd43301",
+          "displaytext": "ISO-04 concurrent description only"
+        }
+      }
+    ]
+  },
+  {
+    "name": "light-dialog-keyboard",
+    "at": "2026-11-15T05:21:01.832Z",
+    "actualViewport": {
+      "width": 1680,
+      "height": 897
+    },
+    "contentWidth": 720,
+    "bodyClientHeight": 710,
+    "bodyScrollHeight": 881,
+    "tab": "name to description",
+    "escapeClosed": true,
+    "focus": {
+      "tag": "BUTTON",
+      "text": "작업"
+    }
+  },
+  {
+    "name": "original-dark-theme-restored",
+    "at": "2026-11-15T05:21:40.357Z"
+  },
+  {
+    "name": "dark-keyboard-unchanged-enter",
+    "at": "2026-11-15T05:21:55.200Z",
+    "tab": "name to description",
+    "enterClosed": true,
+    "mutations": []
+  },
+  {
+    "name": "busy-keyboard-duplicate-guard",
+    "at": "2026-11-15T05:22:31.395Z",
+    "ctrlEnter": 2,
+    "escapeWhileBusyBlocked": true,
+    "mutations": [
+      {
+        "command": "updateIso",
+        "method": "POST",
+        "requestId": "29428.913",
+        "params": {
+          "id": "7f6d42ae-d427-43ac-adff-e1c72b33216d",
+          "displaytext": "ISO-04 duplicate-submit guard"
+        }
+      }
+    ]
+  },
+  {
+    "name": "userdata-cleanup-completed",
+    "at": "2026-11-15T05:24:23.155Z",
+    "remaining": 0,
+    "deleted": 2,
+    "vmTemplateIsoReferences": 0
+  },
+  {
+    "name": "iso-and-vm-cleanup-final",
+    "at": "2026-11-15T05:24:33.725Z",
+    "originalIsosPreserved": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "name": "vmware-tools.iso",
+        "text": "vmware-tools.iso\t\n사용 가능\n\tCentOS 4.5 (32-bit)\tx86_64\t\tsystem\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "name": "xs-tools.iso",
+        "text": "xs-tools.iso\t\n사용 가능\n\tCentOS 4.5 (32-bit)\tx86_64\t\tsystem\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "name": "1.35.9-Kubernetes-Binaries-ISO",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\t\n사용 가능\n\tNone\tx86_64\t0.94 GiB\tsystem\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "name": "1.36.5-Kubernetes-Binaries-ISO",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\t\n사용 가능\n\tNone\tx86_64\t0.96 GiB\tsystem\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "name": "Rocky-10.0-x86_64-dvd1.iso",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\t\n사용 가능\n\tRocky Linux 9\tx86_64\t7.13 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "name": "Windows Server 2025 x86_64 DVD",
+        "text": "Windows Server 2025 x86_64 DVD\t\n사용 가능\n\tWindows Server 2025 (64-bit)\tx86_64\t7.59 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "name": "VirtIO Windows Driver 0.1.302",
+        "text": "VirtIO Windows Driver 0.1.302\t\n사용 가능\n\tNone\tx86_64\t0.82 GiB\tadmin\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "name": "ABLESTACK-Diplo-v4.2.1.iso",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\t\n사용 가능\n\tRocky Linux 9\tx86_64\t22.46 GiB\tadmin\t\n\t"
+      }
+    ],
+    "originalIsoValuesEqual": true,
+    "qaVmList": "/가상머신업데이트\n모두\n메트릭\n프로젝트\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n내부 이름\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n호스트\n\t\n계정\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "root-volume-cleanup-final",
+    "at": "2026-11-15T05:24:55.051Z",
+    "search": "ROOT-256",
+    "remaining": 0,
+    "table": "\t\n이름\n\t\n상태\n\t\n크기\n\t\n유형\n\t\nVM 이름\n\t\nVM 상태\n\t\n스토리지\n\t\n계정\n\t\nZone\n\t\n디스크 파일시스템 사용량\n\t\n압축/중복제거\n\t\n\n\n\n데이터 없음"
+  },
+  {
+    "name": "all-test-resources-cleaned",
+    "at": "2026-11-15T05:24:55.053Z",
+    "counts": {
+      "isos": 2,
+      "userdatas": 2,
+      "vms": 1,
+      "volumes": 1
+    },
+    "remaining": 0,
+    "diagnosticsRestored": true,
+    "originalTheme": "dark"
+  }
+]

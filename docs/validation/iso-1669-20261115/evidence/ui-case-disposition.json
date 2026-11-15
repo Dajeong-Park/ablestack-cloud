@@ -1,0 +1,18 @@
+{
+  "baselineEarlyNullVmRead": "os-vm-baseline was early/null; replaced by os-vm-baseline-confirmed",
+  "earlySyntheticBootSubmit": "data-to-boot-none-blocked was inconclusive; data-to-boot-none-blocked-confirmed is authoritative",
+  "partialFailure": "UI link failure plus delayed post-link read failure; GET-only status verification then explicit link-only retry; one updateIso total",
+  "secondFaultAttempt": "browser-control-recovered: second fault attempt never submitted and no metadata/userdata changed; excluded; fresh UI confirmed",
+  "lightDarkEvidence": "Live DOM and keyboard assertions; 720px content, body scroll, fixed footer; dark screenshot after-edit-dark.jpg",
+  "excludedModalScreenshots": [
+    "after-edit-light.jpg",
+    "after-edit-dark-final.jpg"
+  ],
+  "excludedModalScreenshotReason": "Capture caught menu during transition; excluded from modal visual proof",
+  "limits": [
+    "Architecture metadata read/write only; no ARM or s390x boot validation",
+    "Single Zone KVM; multi-Zone/non-KVM and explicit narrow viewport remain #1673",
+    "No actual OS boot claimed: disposable VM created with startvm=false"
+  ],
+  "mutations": "All business resource operations used Mold UI; CDP only observed requests or delayed/failed UI XHRs; no direct business API/DB updates"
+}

@@ -1,0 +1,105 @@
+{
+  "head": "d27ade742cc7f4b3e192785c887f4af858f0b413",
+  "sourceBoundary": {
+    "previousCode": "371c289f15c2c5722ab300da1a7e9178d00e68e2",
+    "runtimeInput": "/root/work/.build-iso1668-20261115/ui",
+    "buildInput": "/root/work/.build-iso1669-20261115/ui",
+    "files": [
+      "src/utils/isoEdit.js",
+      "src/views/image/UpdateISO.vue",
+      "tests/unit/views/image/UpdateISO.spec.js",
+      "tests/unit/views/compute/ImageUserDataDialog.spec.js"
+    ],
+    "localeKeys": {
+      "en": [
+        "message.iso.edit.metadata.unavailable",
+        "message.iso.edit.os.required",
+        "message.iso.edit.policy.invalid",
+        "message.iso.edit.os.read.failed",
+        "message.iso.edit.os.force",
+        "message.iso.edit.link.failed",
+        "label.iso.edit.retry.userdata",
+        "message.iso.edit.context.changed",
+        "message.iso.edit.read.failed",
+        "message.iso.edit.changed",
+        "message.iso.edit.unconfirmed",
+        "message.iso.edit.link.not.started",
+        "message.iso.edit.retry.review"
+      ],
+      "ko_KR": [
+        "message.iso.edit.metadata.unavailable",
+        "message.iso.edit.os.required",
+        "message.iso.edit.policy.invalid",
+        "message.iso.edit.os.read.failed",
+        "message.iso.edit.os.force",
+        "message.iso.edit.link.failed",
+        "label.iso.edit.retry.userdata",
+        "message.iso.edit.context.changed",
+        "message.iso.edit.read.failed",
+        "message.iso.edit.changed",
+        "message.iso.edit.unconfirmed",
+        "message.iso.edit.link.not.started",
+        "message.iso.edit.retry.review"
+      ]
+    },
+    "hashes": {
+      "src/utils/isoEdit.js": "b499e0bb5a796ebb111e61db312cc39cd020e3eb88b0a211d135149ddf21d174",
+      "src/views/image/UpdateISO.vue": "b96e61679790f75e133f141297ac68ed8f7e9bf346b38b851eddc59a2406656b",
+      "tests/unit/views/image/UpdateISO.spec.js": "79eec0ccaed59f87d503823d42a8a165f3e6f328f67b53d66c6088349b813f45",
+      "tests/unit/views/compute/ImageUserDataDialog.spec.js": "0734639e4df1f914e179f02e43f9dc2faa9c930eead69590136b44eceaf62490"
+    },
+    "productHead": "d27ade742cc7f4b3e192785c887f4af858f0b413",
+    "unrelatedRuntimeSourcePreserved": true
+  },
+  "baselineIndex": {
+    "sha256": "1170070d18c24110fca7cdfdfc264f95c9db3dfb690252a231ba42eee5966650",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "739b1e4956a1f9cd47d8ab20a919c9a2bce8d4397eb849031d35e8614b3d7f8e",
+      "size": 39475,
+      "previous": {
+        "sha256": "1170070d18c24110fca7cdfdfc264f95c9db3dfb690252a231ba42eee5966650",
+        "size": 39475
+      }
+    },
+    "locales/ko_KR.json": {
+      "sha256": "5478aba832556af519ba54160bf8758e0e64af93690f780d9b2f4ab91351be60",
+      "size": 1017878,
+      "previous": {
+        "sha256": "2aa94417e0c914d9c4d98c3a1ea170657cce067cfad73dd3323147ea4116b0df",
+        "size": 1016266
+      }
+    },
+    "locales/en.json": {
+      "sha256": "901caac48cf02b4c8c20f4ae5df97aed7e7d8c5b2d4e95a2400f180373af5070",
+      "size": 909609,
+      "previous": {
+        "sha256": "88558f8cac0d2a9ed4d58320157c453913bcfed031c8195c35fa7c4b59deb260",
+        "size": 908291
+      }
+    },
+    "css/chunk-4e497d26.566b5adf.css": {
+      "sha256": "bc02778852dbb1ee35273b2b2fb61d2421e1c27439682e4f349aba568eec038e",
+      "size": 930,
+      "previous": null
+    },
+    "js/chunk-4e497d26.269166ad.js": {
+      "sha256": "716c9868b2e3fe5b18646c8561e9241436c771279fba8dabe40a1f1b43bf0172",
+      "size": 34284,
+      "previous": null
+    },
+    "js/app.ebd29f55.js": {
+      "sha256": "7bec7229e6dfeb794482fcbeb09b4b783db5fd6658e8b058c369f02082fd3549",
+      "size": 1889038,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2545994",
+  "backendJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224"
+}

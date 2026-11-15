@@ -1,0 +1,5 @@
+set file permissions.....................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+detect destroyed symlinks................................................Passed
+fix end of files.........................................................Passed
+trim trailing whitespace.................................................Passed
