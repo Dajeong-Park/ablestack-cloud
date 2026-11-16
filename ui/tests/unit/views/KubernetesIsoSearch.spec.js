@@ -68,7 +68,7 @@ test('combined catalog filters and global sort reach the real read without owner
 })
 test.each([{ minimumsemanticversion: '1.30' }, { minimumsemanticversion: '1.30.0', minimumkubernetesversionid: id }, { minimumkubernetesversionid: 'bad' }])('invalid advanced criteria does not make a broad request', query => {
   route(query)
-  return ctx.fetchData().then(() => { expect(getAPI).not.toHaveBeenCalled(); expect(ctx.kubernetesIsoReadError).toBe('invalid') })
+  return ctx.fetchData().then(() => { expect(getAPI).not.toHaveBeenCalled(); expect(ctx.kubernetesIsoReadError).toBe('searchInvalid') })
 })
 test('known zero results succeed and out-of-range last page is corrected using filtered count', async () => {
   getAPI.mockResolvedValueOnce(response([])); await ctx.fetchData()

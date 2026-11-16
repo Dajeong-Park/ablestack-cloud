@@ -881,7 +881,7 @@
       <a-alert v-if="isTemplateList && templateFilterError" type="error" show-icon :message="$t(templateFilterError)">
         <template #action><a-button @click="$router.replace({ path: '/template' })">{{ $t('label.reset') }}</a-button></template>
       </a-alert>
-      <a-alert v-if="$route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t((kubernetesIsoReadError === 'unsupported' ? 'message.kubernetes.iso.search.unsupported' : 'message.kubernetes.iso.read.' + kubernetesIsoReadError))">
+      <a-alert v-if="$route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t((kubernetesIsoReadError === 'unsupported' ? 'message.kubernetes.iso.search.unsupported' : kubernetesIsoReadError === 'searchInvalid' ? 'message.kubernetes.iso.search.invalid' : 'message.kubernetes.iso.read.' + kubernetesIsoReadError))">
         <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
       <div v-if="dataView">
@@ -2039,7 +2039,7 @@ export default {
           const query = kubernetesIsoListQuery(this.$route.query, this.pageSize, this.$store.getters, this.$store.state?.user?.token)
           if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) return this.$router.replace({ query })
           const error = kubernetesIsoSearchError(query, this.$store.getters)
-          if (error) { reject(error === 'message.kubernetes.iso.search.unsupported' ? 'unsupported' : 'invalid'); return Promise.resolve() }
+          if (error) { reject(error === 'message.kubernetes.iso.search.unsupported' ? 'unsupported' : 'searchInvalid'); return Promise.resolve() }
         } else if (this.$route.query.kisoowner && this.$route.query.kisoowner !== kubernetesIsoListOwner(this.$store.getters, this.$store.state?.user?.token)) {
           const query = { ...this.$route.query }; delete query.kisoowner; delete query.kisoreturn
           return this.$router.replace({ query })

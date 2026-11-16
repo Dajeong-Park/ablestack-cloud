@@ -12150,5 +12150,6 @@
   "label.kubernetes.iso.minimum.version": "Registered version",
   "message.kubernetes.iso.search.minimum": "Enter a numeric version with at least three parts, for example 1.30.0.",
   "message.kubernetes.iso.search.lookup": "Could not read the permitted minimum-version choices. Retry the lookup.",
-  "message.kubernetes.iso.search.unsupported": "The current API does not support this search condition. Reset the filters or refresh."
+  "message.kubernetes.iso.search.unsupported": "The current API does not support this search condition. Reset the filters or refresh.",
+  "message.kubernetes.iso.search.invalid": "Check the search criteria. Select one minimum-version criterion and valid version, identifier and sort values."
 }
