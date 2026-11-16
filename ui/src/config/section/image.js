@@ -365,13 +365,13 @@ export default {
       actions: [
         {
           api: 'addKubernetesSupportedVersion',
-          dialogWidth: 1000,
+          selfManagedDialog: true,
           icon: 'plus-outlined',
           label: 'label.kubernetes.version.add',
           listView: true,
           popup: true,
-          show: (record, getters) => isZoneCreated() && canKubernetesIsoAction('url', record, getters),
-          component: shallowRef(defineAsyncComponent(() => import('@/views/image/AddKubernetesSupportedVersion.vue')))
+          show: (record, getters) => canKubernetesIsoAction('url', record, getters),
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/RegisterKubernetesIso.vue')))
         },
         {
           api: 'getUploadParamsForKubernetesSupportedVersion',
