@@ -11867,7 +11867,6 @@
   "message.vnf.search.uuid": "A resource or project ID in the search is invalid.",
   "message.vnf.search.response": "The VNF response does not match the requested scope, state, or related resource. Retry the query.",
   "message.vnf.search.candidate.unavailable": "The selected resource could not be verified in the current scope. Clear it or select it again.",
-  "message.vnf.search.selection": "Selection applies to this page only. Searching, changing pages or projects, and refreshing the list clear the selection.",
   "message.vnf.action.monitor.loading": "Checking monitoring portal configuration.",
   "message.vnf.action.monitor.unconfigured": "A usable Wall VM portal address and path could not be verified. Check the portal configuration.",
   "message.vm.start.automatic": "Leave empty for automatic placement.",

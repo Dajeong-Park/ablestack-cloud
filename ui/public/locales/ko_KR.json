@@ -11875,7 +11875,6 @@
   "message.vnf.search.uuid": "검색 조건의 자원 ID 또는 프로젝트 ID가 올바르지 않습니다.",
   "message.vnf.search.response": "VNF 조회 결과가 요청한 범위·상태·연관 자원과 일치하지 않습니다. 다시 조회하세요.",
   "message.vnf.search.candidate.unavailable": "선택한 자원을 현재 범위에서 확인하지 못했습니다. 조건을 지우거나 다시 선택하세요.",
-  "message.vnf.search.selection": "선택은 현재 페이지에만 적용됩니다. 검색·페이지·프로젝트 변경 및 목록 새로고침 시 선택이 해제됩니다.",
   "message.vnf.action.monitor.loading": "모니터링 포털 설정을 확인 중입니다.",
   "message.vnf.action.monitor.unconfigured": "사용 가능한 Wall VM 포털 주소/경로를 확인하지 못했습니다. 포털 설정을 확인하세요.",
   "message.vm.start.automatic": "선택하지 않으면 자동으로 배치합니다.",
