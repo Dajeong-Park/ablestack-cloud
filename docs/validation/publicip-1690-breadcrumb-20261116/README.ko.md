@@ -1,3 +1,22 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+ -->
+
 # Public IP breadcrumb VM 표준 스타일 보완
 
 2026-11-16 KST. 사용자 지적에 따라 #1690의 breadcrumb 스타일 검증을 별도로 보완한다. 앞선 보고는 공통 Breadcrumb 사용 여부를 스타일 동등성의 근거로 삼아 부족했다. 이 후속은 UI 스타일과 탐색 경계에 한정하며 예약·NAT·VPC·VNF 전체 기능 시험을 반복하지 않는다.
