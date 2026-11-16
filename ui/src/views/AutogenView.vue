@@ -926,7 +926,6 @@
           <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
         <p v-else-if="listRefreshError && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
-        <p v-if="$route.meta?.name === 'vnfapp'" class="vnf-selection-policy">{{ $t('message.vnf.search.selection') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
           :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
