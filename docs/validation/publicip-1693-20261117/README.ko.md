@@ -62,7 +62,7 @@ Maven과 UI 테스트는 WSL ext4에서 실행했다. API package는 저장소 `
 
 ## 배포와 보존
 
-31·32의 활성 `/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar`에서 `UpdateIPAddrCmd.class` 1개만 교체하고 Mold를 재시작했다. 서버마다 나머지 198,632개 JAR 항목과 FTCTL 클래스 95개의 내용이 동일하다. 원본 JAR 백업을 보관했고 WEB-INF/META-INF(존재 시), 정적 index·설정, HTTP 200, 서비스 active 및 최종 배포 class/JAR 해시를 확인했다. 원본 JAR 항목 전체 해시 목록은 로컬 raw 증거로 보관하고, 저장소에는 개수·원본 manifest SHA와 FTCTL 해시·배포 비교 결과를 기록했다.
+31·32의 활성 `/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar`에서 `UpdateIPAddrCmd.class` 1개만 교체하고 Mold를 재시작했다. 서버마다 나머지 198,632개 JAR 항목과 FTCTL 클래스 95개의 내용이 동일하다. 원본 JAR 백업을 보관했고 WEB-INF/META-INF(존재 시), 정적 index, HTTP 200, 서비스 active 및 최종 배포 class/JAR 해시를 확인했다. 원본 JAR 항목 전체 해시 목록은 로컬 raw 증거로 보관하고, 저장소에는 개수·원본 manifest SHA와 FTCTL 해시·배포 비교 결과를 기록했다.
 
 - class SHA256: `ffaef41792c538bc4554a8dbdcb54b5dddc86deb86d972567a49f42274ba0792`
 - 31 백업: `/root/publicip1693-backend-20261116-213157` (UTC), 새 PID `2487789`
