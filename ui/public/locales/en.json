@@ -11935,5 +11935,6 @@
   "message.public.ip.search.vlan": "Search by the IP range resource UUID, not the numeric VLAN tag.",
   "label.allocating": "Allocating",
   "label.releasing": "Releasing",
-  "label.public.ip.search.display.default": "Default: displayed addresses"
+  "label.public.ip.search.display.default": "Default: displayed addresses",
+  "message.public.ip.search.pool": "Free addresses are the unowned public pool available to the selected owner, VPC or network. They are distinct from attached addresses."
 }

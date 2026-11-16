@@ -11943,5 +11943,6 @@
   "message.public.ip.search.vlan": "VLAN 숫자 태그가 아닌 IP 범위 자원의 UUID로 검색합니다.",
   "label.allocating": "할당 중",
   "label.releasing": "해제 중",
-  "label.public.ip.search.display.default": "기본: 표시 주소"
+  "label.public.ip.search.display.default": "기본: 표시 주소",
+  "message.public.ip.search.pool": "가용 주소는 선택한 소유자·VPC·연결망에서 사용할 수 있는 미소유 공용 풀입니다. 연결된 주소와 구분해서 표시합니다."
 }

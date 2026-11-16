@@ -62,3 +62,9 @@ test('display all requires new metadata and maps to the explicit API flag', () =
   expect(publicIpSearchError(q, getters, { ...supported, displayall: {} })).toBe('')
   const params = publicIpParams(q, getters, { ...supported, displayall: {} }); expect(params.displayall).toBe(true); expect(params.fordisplay).toBeUndefined()
 })
+
+test('all preserves the server available-pool semantics without treating Free as attached or owned', () => {
+ const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Free' }] } }
+ expect(readPublicIpPage(data, { projectid: other, account: 'owner', vpcid: id, associatednetworkid: id }).count).toBe(1)
+ expect(() => readPublicIpPage(data, { networkid: id })).toThrow()
+})
