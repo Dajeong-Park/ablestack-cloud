@@ -18,6 +18,7 @@
   <a-spin :spinning="loading">
     <a-card
       class="spin-content"
+      :class="{ 'template-info-card': $route.meta.name === 'template' }"
       :bordered="bordered"
       :title="title"
       @contextmenu="handleContextMenu">
@@ -42,7 +43,7 @@
                       <file-text-outlined style="font-size: 36px;" />
                     </span>
                     <span v-else>
-                      <os-logo v-if="resource.ostypeid || resource.ostypename || ['guestoscategory'].includes($route.path.split('/')[1])" :osId="resource.ostypeid" :osName="resource.ostypename || resource.osdisplayname || resource.name" size="3x" />
+                      <os-logo v-if="resource.ostypeid || resource.ostypename || resource.osdisplayname || ['guestoscategory'].includes($route.path.split('/')[1])" :osId="resource.ostypeid" :osName="executionOsName || resource.name" size="3x" />
                       <render-icon v-else-if="typeof $route.meta.icon ==='string'" style="font-size: 36px" :icon="$route.meta.icon" />
                       <font-awesome-icon
                         v-else-if="$route.meta.icon && Array.isArray($route.meta.icon)"
@@ -126,11 +127,12 @@
 
             <a-divider/>
 
-            <div class="resource-detail-item" v-if="(resource.state || resource.status) && !['zone', 'keypair'].includes($route.meta.name)">
+            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'iso'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
           <div class="resource-detail-item__label">{{ $t('label.status') }}</div>
           <div class="resource-detail-item__details">
+            <template-availability v-if="['template', 'iso'].includes($route.meta.name)" :kind="$route.meta.name" :record="resource" :observation="$route.meta.name === 'template' ? templateObservation : null" inspectable @show-zones="$emit('show-template-zones')" />
             <backup-progress
-              v-if="$route.meta.name === 'backup'"
+              v-else-if="$route.meta.name === 'backup'"
               :record="resource"
               :statusText="resource.status"
               @capabilities-change="resource.capabilities !== $event && $emit('backup-controls-change', { capabilities: $event })"
@@ -239,6 +241,9 @@
             <status class="status" :text="resource.mirroringagentstatus" displayText/>
           </div>
         </div>
+        <div class="resource-detail-item" v-if="$route.meta.name === 'template' && templateRuntimeToolVisible">
+          <router-link to="/runtimebundle">{{ $t('label.runtime.catalog') }}</router-link>
+        </div>
         <div class="resource-detail-item" v-if="resource.id">
           <div class="resource-detail-item__label">{{ $t('label.id') }}</div>
           <div class="resource-detail-item__details">
@@ -289,14 +294,14 @@
                 </div>
               </div>
             </div>
-        <div class="resource-detail-item" v-if="executionOsName && resource.ostypeid">
+        <div class="resource-detail-item" v-if="(executionOsName && resource.ostypeid) || (['vm', 'vnfapp'].includes($route.meta.name) && resource.id)">
           <div class="resource-detail-item__label">{{ $t('label.ostypename') }}</div>
           <div class="resource-detail-item__details">
             <span v-if="resource.icon && resource.icon.base64image || images.template || images.iso">
               <resource-icon :image="getImage(images.template || images.iso)" size="1x" style="margin-right: 5px"/>
             </span>
-            <os-logo v-else :osId="resource.ostypeid" :osName="executionOsName" size="lg" style="margin-left: -1px" />
-            <span style="margin-left: 8px">{{ executionOsName }}</span>
+            <os-logo v-else-if="executionOsName && resource.ostypeid" :osId="resource.ostypeid" :osName="executionOsName" size="lg" style="margin-left: -1px" />
+            <span style="margin-left: 8px">{{ executionOsName || $t('label.unknown') }}</span>
           </div>
         </div>
         <div class="resource-detail-item" v-if="resource.ipaddress">
@@ -1154,6 +1159,7 @@
 </template>
 
 <script>
+import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
 import { offeringNetworkQuery } from '@/utils/guestNetworkSearch'
@@ -1175,6 +1181,7 @@ import { validateLinksAsync } from '@/utils/links'
 import Console from '@/components/widgets/Console'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
+import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import BackupProgress from '@/components/view/BackupProgress'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
 import { getFastClonePhaseLabel, getFastClonePhaseDescription, isFastCloneFlattenStatusVisible } from '@/utils/fastClone'
@@ -1189,10 +1196,13 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 import ActionButton from '@/components/view/ActionButton'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+
 export default {
   name: 'InfoCard',
   mixins: [vmNetworkAccessMixin()],
   components: {
+    TemplateAvailability,
     NetworkIpVmLink,
     SharedFSCapacitySummary,
     SharedFSBootRecoverySummary,
@@ -1215,6 +1225,7 @@ export default {
     ResourceTags
   },
   props: {
+    templateObservation: { type: Object, default: null },
     resource: {
       type: Object,
       required: true
@@ -1310,6 +1321,7 @@ export default {
   },
   beforeUnmount () { this.iconActive = false },
   computed: {
+    templateRuntimeToolVisible () { return canReadTemplateRuntimeCatalog(this.$store.getters) && !isStorageServiceTemplate(this.resource) },
     executionOsName () { return creationVmOsName(this.resource, this.$t) },
     kubernetesNodeTemplates () {
       if (this.$route.meta.name !== 'kubernetes') return []
@@ -1328,6 +1340,7 @@ export default {
         'RemoteAccessVpn', 'User', 'SnapshotPolicy', 'VpcOffering', 'Domain']
     },
     name () {
+      if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       return this.resource.displayname || this.resource.name || this.resource.displaytext || this.resource.username ||
         this.resource.ipaddress || this.resource.virtualmachinename || this.resource.osname || this.resource.osdisplayname || this.resource.templatetype || this.resource.rbdimagesname
     },
@@ -1662,6 +1675,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.template-info-card .card-content { min-width: 0; }
+.template-info-card .resource-details__name > div:last-child { min-width: 0; }
+.template-info-card .resource-detail-item__details { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.template-info-card .resource-detail-item__details a { white-space: normal; overflow-wrap: anywhere; }
 .vm-network-access-error {
   margin-top: 8px;
   overflow-wrap: anywhere;

@@ -1,0 +1,11 @@
+{
+  "base": "1046a5dc3f21cb9cca0ab6881dd906d64b591e80",
+  "sourceHead": "727bed1519aa97cbace8e5de14d4e986e0eecb08",
+  "checkedStagedTree": "41a48b9203530b05d6ef2ed4ad61960d48ea8f4c",
+  "baseUnknown": 4077,
+  "reportWorktreeUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "basePathsSha256": "82ab7d896c1ab96105174e210578bdb17a588e1aad831741c4b6847536b12fe8",
+  "reportPathsSha256": "82ab7d896c1ab96105174e210578bdb17a588e1aad831741c4b6847536b12fe8"
+}

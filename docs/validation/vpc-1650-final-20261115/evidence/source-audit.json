@@ -1,0 +1,18 @@
+{
+  "head": "ce4b96dfdb5148a04be9dd29828e408c77fbe39a",
+  "base": "2c4045f1606f58085188c5cb1a203429cad0bf3e",
+  "totalPrFilesScanned": 1096,
+  "nonDocsFiles": 50,
+  "codeSpellFiles": 48,
+  "knownCredentialLiteralMatches": [],
+  "codespellExit": 0,
+  "reviewedAreas": [
+    "offering clone provider/capability inheritance",
+    "durable async receipts and owner/context guards",
+    "private gateway candidates",
+    "VPC restart/migration preflight and result verification",
+    "create VPC conditional parameter boundary",
+    "shared dialogs/tabs/breadcrumbs and template conflict integration",
+    "route fallback, tag/ACL validation lifecycle"
+  ]
+}

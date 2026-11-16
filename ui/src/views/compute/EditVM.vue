@@ -23,7 +23,7 @@
       :ref="formRef"
       :model="form"
       :rules="rules"
-      v-ctrl-enter="handleSubmit"
+      @keydown.ctrl.enter.prevent="!$event.repeat && handleSubmit($event)"
       @finish="handleSubmit">
       <a-alert v-if="!cloneEditRestricted" style="margin-bottom: 5px" type="warning" show-icon>
         <template #message>
@@ -151,10 +151,10 @@
         </a-col>
       </a-row>
 
-      <div :span="24" class="action-button">
+      <mold-dialog-actions :busy="loading || submitPending">
         <a-button :loading="loading" @click="onCloseAction">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+      </mold-dialog-actions>
     </a-form>
   </a-spin>
 </template>
@@ -165,11 +165,14 @@ import { getAPI, postAPI } from '@/api'
 import { buildVmGroupUpdate, isGroupOnlyEdit } from '@/utils/vmGroupAssignment'
 import { createVmGroupLookup, vmGroupOwnerKey, vmGroupLookupReady } from '@/utils/vmGroupLookup'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { getFastClonePhase } from '@/utils/fastClone'
+import { vmDisplayName, vmEditScope } from '@/utils/vmIdentity'
 
 export default {
   name: 'EditVM',
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {
@@ -192,6 +195,9 @@ export default {
       userDataEnabled: false,
       securityGroupsEnabled: false,
       loading: false,
+      editActive: true,
+      editGeneration: 0,
+      submitPending: false,
       initialForm: {},
       initialResourceContextKey: '',
       securitygroups: {
@@ -221,7 +227,7 @@ export default {
   },
   computed: {
     resourceContextKey () {
-      return JSON.stringify([this.resource.id, vmGroupOwnerKey(this.resource), this.resource.templateid, this.resource.serviceofferingid, this.resource.zoneid])
+      return JSON.stringify([vmEditScope(this.resource, this.$route, this.$store), vmGroupOwnerKey(this.resource), this.resource.templateid, this.resource.serviceofferingid, this.resource.zoneid])
     },
     groupLookupReady () { return this.initialResourceContextKey === this.resourceContextKey && vmGroupLookupReady(this.groups, this.resource) },
     metadataReady () { return this.templateStatus === 'ready' && this.offeringStatus === 'ready' },
@@ -253,11 +259,16 @@ export default {
     this.fetchData()
   },
   watch: {
-    resourceContextKey () { this.initForm(); this.fetchData() },
+    resourceContextKey () { this.editGeneration++; this.loading = false; this.submitPending = false; this.initForm(); this.fetchData() },
     '$store.getters.apis.listInstanceGroups' () { this.fetchInstanceGroups() }
   },
-  beforeUnmount () { this.groupLookup.dispose(); this.metadataGeneration++ },
+  activated () {
+    if (!this.editActive) { this.editActive = true; this.initForm(); this.fetchData() }
+  },
+  deactivated () { this.invalidateEdit() },
+  beforeUnmount () { this.invalidateEdit(); this.groupLookup.dispose(); this.metadataGeneration++ },
   methods: {
+    invalidateEdit () { this.editActive = false; this.editGeneration++; this.loading = false; this.submitPending = false; this.metadataGeneration++ },
     initForm () {
       this.initialResourceContextKey = this.resourceContextKey
       this.formRef = ref()
@@ -436,8 +447,15 @@ export default {
       }).catch(() => { if (generation === this.metadataGeneration) this.userDataEnabled = false })
     },
     handleSubmit () {
-      this.formRef.value.validate().then(() => {
-        const values = toRaw(this.form)
+      if (!this.editActive || this.submitPending || this.loading || !('updateVirtualMachine' in (this.$store.getters.apis || {}))) return
+      const generation = ++this.editGeneration
+      const context = this.resourceContextKey
+      const actionCurrent = this.action?.currentAction?.vmEditCurrent
+      const current = () => this.editActive && generation === this.editGeneration && context === this.resourceContextKey && actionCurrent?.() !== false
+      this.submitPending = true
+      return this.formRef.value.validate().then(() => {
+        if (!current()) return
+        const values = { ...toRaw(this.form) }
         if (this.initialResourceContextKey !== this.resourceContextKey) {
           this.$message.error(this.$t('message.vm.group.lookup.blocked'))
           return
@@ -504,21 +522,25 @@ export default {
         }
         this.loading = true
 
-        postAPI('updateVirtualMachine', params).then(json => {
+        return postAPI('updateVirtualMachine', params).then(json => {
+          if (!current()) return
+          const vm = json?.updatevirtualmachineresponse?.virtualmachine
+          const label = vmDisplayName(vm?.id === params.id ? vm : { id: params.id, name: values.name, displayname: values.displayname })
           this.$message.success({
-            content: `${this.$t('label.action.edit.instance')} - ${values.name}`,
+            content: `${this.$t('label.action.edit.instance')} - ${label}`,
             duration: 2
           })
           this.$emit('refresh-data')
           this.onCloseAction()
         }).catch(error => {
-          this.$notifyError(error)
-        }).finally(() => { this.loading = false })
+          if (current()) this.$notifyError(error)
+        }).finally(() => { if (generation === this.editGeneration) this.loading = false })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+        if (current() && error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+      }).finally(() => { if (generation === this.editGeneration) this.submitPending = false })
     },
     onCloseAction () {
+      this.invalidateEdit()
       this.$emit('close-action')
     },
     onToggleLeaseData () {
@@ -542,11 +564,9 @@ export default {
 
 <style scoped lang="less">
 .form-layout {
-  width: 80vw;
-
-  @media (min-width: 600px) {
-    width: 450px;
-  }
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 
   .action-button {
     text-align: right;

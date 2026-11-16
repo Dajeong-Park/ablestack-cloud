@@ -1,0 +1,119 @@
+{
+  "head": "d29095f30128fb3dd412cd602a2957c1a19c986f",
+  "sourceBoundary": {
+    "previousCode": "822385d9fcf90febbf7dca1044f0846b5518e41a",
+    "runtimeInput": "/root/work/.build-iso1667-20261115/ui",
+    "buildInput": "/root/work/.build-iso1668-20261115/ui",
+    "files": [
+      "src/config/section/image.js",
+      "src/utils/isoModel.js",
+      "src/utils/imagePermissions.js",
+      "src/views/image/IsoZones.vue",
+      "src/views/image/UpdateTemplateIsoPermissions.vue",
+      "tests/unit/views/image/TemplatePermissions.spec.js",
+      "tests/unit/utils/isoResource.spec.js"
+    ],
+    "localeKeys": {
+      "en": [
+        "message.image.permissions.invalid",
+        "message.image.permissions.scope.changed",
+        "message.image.permissions.changed",
+        "message.image.permissions.result.unconfirmed",
+        "message.image.permissions.inventory.failed",
+        "message.image.permissions.project.ids",
+        "message.image.permissions.reset.confirm",
+        "message.image.permissions.reset.ack",
+        "message.image.permissions.verified",
+        "label.image.permissions.current"
+      ],
+      "ko_KR": [
+        "message.image.permissions.invalid",
+        "message.image.permissions.scope.changed",
+        "message.image.permissions.changed",
+        "message.image.permissions.result.unconfirmed",
+        "message.image.permissions.inventory.failed",
+        "message.image.permissions.project.ids",
+        "message.image.permissions.reset.confirm",
+        "message.image.permissions.reset.ack",
+        "message.image.permissions.verified",
+        "label.image.permissions.current"
+      ]
+    },
+    "hashes": {
+      "src/config/section/image.js": "32683352ea3b9340ca8f5ffa7ed761576997469154f27a27145131b7b97609a6",
+      "src/utils/isoModel.js": "4b8694ddda5cfe655edca78617aa97b838687d86e2fa6c4f945237b094ab6196",
+      "src/utils/imagePermissions.js": "1f391a8f114c2a5acb3094b446760aad9182d5cf486a17142c97321ef1f77243",
+      "src/views/image/IsoZones.vue": "8c88580d6bed60ae607ee01f6a5357997d7890e1fefe9f3e2b77728db4369b1b",
+      "src/views/image/UpdateTemplateIsoPermissions.vue": "2756bb9af8b1dd2a395a6d8891433044439861ec5bce1ecf4746879bf5317e45",
+      "tests/unit/views/image/TemplatePermissions.spec.js": "33a48dfed6d6bc275f7ecce2a89e15af6366714ba7d8dc64f0d11b92bad7c2c7",
+      "tests/unit/utils/isoResource.spec.js": "8cf3277fd65f7dcd3daca5219d874399c2c6e2a31713c6b87315f3405fae8493"
+    },
+    "productHead": "d29095f30128fb3dd412cd602a2957c1a19c986f"
+  },
+  "baselineIndex": {
+    "sha256": "b8535f1a516b4e01cf34aac77be3748d8ed09c475c3a86790dd4612d75de1a4e",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "2330b986cf26fb30492ec50480ef8a869b683acf6742dc9e6f49f75a36776391",
+      "size": 39475,
+      "previous": {
+        "sha256": "b8535f1a516b4e01cf34aac77be3748d8ed09c475c3a86790dd4612d75de1a4e",
+        "size": 39475
+      }
+    },
+    "locales/ko_KR.json": {
+      "sha256": "2aa94417e0c914d9c4d98c3a1ea170657cce067cfad73dd3323147ea4116b0df",
+      "size": 1016266,
+      "previous": {
+        "sha256": "a5b3b089d6ca7565c97176f924650ac6f770f65073176d2d21372271aa38ccb5",
+        "size": 1014943
+      }
+    },
+    "locales/en.json": {
+      "sha256": "88558f8cac0d2a9ed4d58320157c453913bcfed031c8195c35fa7c4b59deb260",
+      "size": 908291,
+      "previous": {
+        "sha256": "c4e2f8dfca84f3b4a09d84a4977be17da75c30e2e36b23f37d90c3932fef139f",
+        "size": 907159
+      }
+    },
+    "css/chunk-3ccc8b10.eca216b9.css": {
+      "sha256": "b99f3d89be2a44df872054bbdfc78d5cec165e349c7cb4f7b8d4d9279cad79f1",
+      "size": 473,
+      "previous": null
+    },
+    "css/chunk-fc390ba4.925b2c41.css": {
+      "sha256": "78c51e01e9d4efbfd4645a349c063d1c3d0bb6d135347788b0d02c8e03f22ebb",
+      "size": 65,
+      "previous": null
+    },
+    "js/chunk-3ccc8b10.e2a30f45.js": {
+      "sha256": "31aab46b7ec375345e8821613b4a423a3c30d0c294b1903156fb600ab034533b",
+      "size": 18537,
+      "previous": null
+    },
+    "js/app.c7cd1ca3.js": {
+      "sha256": "6d958b3018dc3b41262e6b59e234fd3464db7ec0f004a5169f42b4ee60d0aebe",
+      "size": 1888558,
+      "previous": null
+    },
+    "js/chunk-fc390ba4.f219d954.js": {
+      "sha256": "0247e0b30a8b094b2c228161ef4d53f0aa2fd0b77a9c0d218d4a7c089fa2bb56",
+      "size": 29641,
+      "previous": null
+    },
+    "js/chunk-33ef7c82.b41dc7fa.js": {
+      "sha256": "8244a9224ee900f24bd0d66dfcded1169529a3999847f58b43ceddd734dba7e9",
+      "size": 54800,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2545994",
+  "backendJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224"
+}

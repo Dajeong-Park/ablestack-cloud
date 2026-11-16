@@ -1,0 +1,19 @@
+{
+  "base": "1046a5dc3f21cb9cca0ab6881dd906d64b591e80",
+  "head": "8cb02a4dc9ad21a4746b5277e8215f1f297775d2",
+  "method": "tracked base git archive plus exact changed tracked files; excludes local dependencies and build outputs",
+  "overlay": [
+    "docs/validation/iso-1666-20261115/README.ko.md",
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/InfoCard.vue",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/components/widgets/TemplateAvailability.vue",
+    "ui/src/config/section/image.js",
+    "ui/src/utils/isoModel.js",
+    "ui/src/views/image/IsoZones.vue",
+    "ui/src/views/image/RegisterOrUploadIso.vue",
+    "ui/tests/unit/utils/isoModel.spec.js",
+    "ui/tests/unit/views/image/IsoActionPolicy.spec.js"
+  ]
+}

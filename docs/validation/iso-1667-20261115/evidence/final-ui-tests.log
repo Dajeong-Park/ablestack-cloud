@@ -1,0 +1,21 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runInBand --silent --coverage=false --forceExit --runTestsByPath tests/unit/utils/isoRegistration.spec.js tests/unit/views/image/IsoRegistration.spec.js tests/unit/utils/isoModel.spec.js tests/unit/views/image/IsoActionPolicy.spec.js tests/unit/views/image/TemplateForms.spec.js tests/unit/views/image/TemplatePermissions.spec.js tests/unit/utils/templateFormMessages.spec.js tests/unit/utils/vmIsoActions.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS tests/unit/views/image/IsoRegistration.spec.js
+PASS tests/unit/views/image/TemplateForms.spec.js
+PASS tests/unit/views/image/TemplatePermissions.spec.js
+PASS tests/unit/utils/isoModel.spec.js
+PASS tests/unit/views/image/IsoActionPolicy.spec.js
+PASS tests/unit/utils/templateFormMessages.spec.js
+PASS tests/unit/utils/isoRegistration.spec.js
+PASS tests/unit/utils/vmIsoActions.spec.js
+
+Test Suites: 8 passed, 8 total
+Tests:       122 passed, 122 total
+Snapshots:   0 total
+Time:        10.819s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

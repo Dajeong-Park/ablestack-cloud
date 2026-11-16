@@ -107,10 +107,10 @@ export default {
           return
         }
         for (const filter of this.filterOpts) {
-          if (this.preFillContent.templateid) {
-            if (items[filter.id]?.[key]?.some(item => item.id === this.preFillContent.templateid)) {
+          if (this.preFillContent[this.inputDecorator]) {
+            if (items[filter.id]?.[key]?.some(item => item.id === this.preFillContent[this.inputDecorator])) {
               this.filterType = filter.id
-              this.checkedValue = items[filter.id][key][0].id
+              this.checkedValue = this.preFillContent[this.inputDecorator]
               break
             }
           } else if (items[filter.id]?.[key]?.length > 0) {

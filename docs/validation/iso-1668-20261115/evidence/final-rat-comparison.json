@@ -1,0 +1,10 @@
+{
+  "head": "802fab97140116cc68f4f7700e197f3c520cb278",
+  "workspace": "/root/work/.rat-iso1668-final-qzw8f6rv",
+  "method": "exact Git index export excluding ignored dependencies and build outputs",
+  "baseUnknown": 4077,
+  "headUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "commandReturnCode": 1
+}

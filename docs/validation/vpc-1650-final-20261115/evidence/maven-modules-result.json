@@ -1,0 +1,20 @@
+{
+  "command": [
+    "mvn",
+    "-pl",
+    "api,server",
+    "-Dtest=VpcOfferingJoinDaoImplTest",
+    "-Dsurefire.failIfNoSpecifiedTests=false",
+    "-DfailIfNoTests=false",
+    "-Dcheckstyle.skip=true",
+    "-Drat.skip=true",
+    "test"
+  ],
+  "exit": 0,
+  "seconds": 82.7,
+  "modules": [
+    "api",
+    "server"
+  ],
+  "fullCloudBuild": false
+}

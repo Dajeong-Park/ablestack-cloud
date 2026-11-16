@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "qa-iso1667-20261115/data-fixture.iso",
+      "sha256BeforeRemoval": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+      "removed": true,
+      "httpStatusAfterRemoval": 404
+    },
+    {
+      "path": "qa-iso1667-20261115/CorePure64-16.2.iso",
+      "sha256BeforeRemoval": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+      "removed": true,
+      "httpStatusAfterRemoval": 404
+    },
+    {
+      "path": "iso1667-systemvm-media-20261115/systemvm421.qcow2",
+      "sha256BeforeRemoval": "544c4f881ee7dc335f713f83ca8a91cf85d7fb0c19b7ecf1fd594ef57c1c6715",
+      "removed": true,
+      "httpStatusAfterRemoval": 404
+    }
+  ],
+  "permanent423SourcePreserved": true,
+  "protectedSystemTemplatesRetained": 2
+}

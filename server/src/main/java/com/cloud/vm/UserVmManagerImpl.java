@@ -3112,7 +3112,6 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             return false;
         }
         try {
-
             backupManager.checkAndRemoveBackupOfferingBeforeExpunge(vm);
 
             // Keep autoscale membership until expunge and resource cleanup succeed.
@@ -7200,6 +7199,8 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             return vm;
         }
 
+        validateVmExpungeAllowed(vm);
+
         if (!(vm.getState() == State.Destroyed || vm.getState() == State.Expunging || vm.getState() == State.Error)) {
             CloudRuntimeException ex = new CloudRuntimeException("Please destroy vm with specified vmId before expunge");
             ex.addProxyObject(String.valueOf(vmId), "vmId");
@@ -7227,6 +7228,14 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
             throw ex;
         }
 
+    }
+
+    private void validateVmExpungeAllowed(UserVmVO vm) {
+        if (vm.getRemoved() == null && vm.isDeleteProtection()) {
+            throw new InvalidParameterValueException(String.format(
+                    "Instance [id = %s, name = %s] has delete protection enabled and cannot be expunged.",
+                    vm.getUuid(), vm.getName()));
+        }
     }
 
     @Override
@@ -9899,6 +9908,16 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         return restoreVMInternal(caller, vm, null, null, false, null);
     }
 
+    // A removed source image cannot be reinstalled, but its metadata is still needed
+    // to validate/account a replacement before any root disk is detached.
+    protected VMTemplateVO getCurrentTemplateForRestore(UserVmVO vm) {
+        VMTemplateVO template = _templateDao.findByIdIncludingRemoved(vm.getTemplateId());
+        if (template == null) {
+            throw new InvalidParameterValueException("Cannot restore VM because original template metadata is unavailable");
+        }
+        return template;
+    }
+
     private VMTemplateVO getRestoreVirtualMachineTemplate(Account caller, Long newTemplateId, List<VolumeVO> rootVols, UserVmVO vm) {
         VMTemplateVO template = null;
         if (CollectionUtils.isNotEmpty(rootVols)) {
@@ -9971,7 +9990,7 @@ public class UserVmManagerImpl extends ManagerBase implements UserVmManager, Vir
         if (rootDiskOfferingId != null) {
             com.cloud.storage.VolumeAllocationPolicy.requireLegacyExecution(allocationDetailsDao.listDetailsKeyPairs(rootDiskOfferingId));
         }
-        VMTemplateVO currentTemplate = _templateDao.findById(vm.getTemplateId());
+        VMTemplateVO currentTemplate = getCurrentTemplateForRestore(vm);
         List<VolumeVO> rootVols = _volsDao.findByInstanceAndType(vmId, Volume.Type.ROOT);
         if (rootVols.isEmpty()) {
             InvalidParameterValueException ex = new InvalidParameterValueException("Can not find root volume for VM " + vm.getUuid());

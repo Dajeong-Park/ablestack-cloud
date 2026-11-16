@@ -221,6 +221,9 @@ public class UserVmManagerImplTest {
     @Mock
     private com.cloud.storage.VmStorageSelectionService storageSelectionService;
 
+    @Mock
+    private VmCreationSourceService creationSourceService;
+
     @Spy
     @InjectMocks
     private UserVmManagerImpl userVmManagerImpl = new UserVmManagerImpl();
@@ -1092,6 +1095,7 @@ public class UserVmManagerImplTest {
         ResetVMUserDataCmd cmd = Mockito.mock(ResetVMUserDataCmd.class);
         when(cmd.getId()).thenReturn(1L);
         when(userVmDao.findById(1L)).thenReturn(userVmVoMock);
+        when(userVmDao.acquireInLockTable(1L, 1)).thenReturn(userVmVoMock);
 
         VMTemplateVO template = Mockito.mock(VMTemplateVO.class);
         when(userVmVoMock.getTemplateId()).thenReturn(2L);
@@ -1115,6 +1119,7 @@ public class UserVmManagerImplTest {
         ResetVMUserDataCmd cmd = Mockito.mock(ResetVMUserDataCmd.class);
         when(cmd.getId()).thenReturn(1L);
         when(userVmDao.findById(1L)).thenReturn(userVmVoMock);
+        when(userVmDao.acquireInLockTable(1L, 1)).thenReturn(userVmVoMock);
 
         VMTemplateVO template = Mockito.mock(VMTemplateVO.class);
         when(userVmVoMock.getTemplateId()).thenReturn(2L);
@@ -1138,6 +1143,7 @@ public class UserVmManagerImplTest {
         Mockito.lenient().doReturn(accountMock).when(callContextMock).getCallingAccount();
 
         UserVmVO userVmVO = new UserVmVO();
+        ReflectionTestUtils.setField(userVmVO, "id", 1L);
         userVmVO.setTemplateId(2L);
         userVmVO.setState(VirtualMachine.State.Stopped);
         userVmVO.setUserDataId(100L);
@@ -1146,6 +1152,7 @@ public class UserVmManagerImplTest {
         ResetVMUserDataCmd cmd = Mockito.mock(ResetVMUserDataCmd.class);
         when(cmd.getId()).thenReturn(1L);
         when(userVmDao.findById(1L)).thenReturn(userVmVO);
+        when(userVmDao.acquireInLockTable(1L, 1)).thenReturn(userVmVO);
 
         VMTemplateVO template = Mockito.mock(VMTemplateVO.class);
         when(templateDao.findByIdIncludingRemoved(2L)).thenReturn(template);
@@ -1159,7 +1166,7 @@ public class UserVmManagerImplTest {
         when(userDataManager.validateUserData(testUserData, HTTPMethod.GET)).thenReturn(testUserData);
 
         try {
-            doNothing().when(userVmManagerImpl).updateUserData(userVmVO);
+            prepareUserDataResetProvider(userVmVO);
             userVmManagerImpl.resetVMUserData(cmd);
         } catch (ResourceUnavailableException | InsufficientCapacityException e) {
             throw new RuntimeException(e);
@@ -1167,6 +1174,8 @@ public class UserVmManagerImplTest {
 
         Assert.assertEquals("testUserdata", userVmVO.getUserData());
         Assert.assertNull(userVmVO.getUserDataId());
+        verify(userVmDao).update(eq(1L), any(UserVmVO.class));
+        verify(userVmDao).releaseFromLockTable(1L);
     }
 
     @Test
@@ -1175,6 +1184,7 @@ public class UserVmManagerImplTest {
         Mockito.lenient().doReturn(accountMock).when(callContextMock).getCallingAccount();
 
         UserVmVO userVmVO = new UserVmVO();
+        ReflectionTestUtils.setField(userVmVO, "id", 1L);
         userVmVO.setTemplateId(2L);
         userVmVO.setState(VirtualMachine.State.Stopped);
         userVmVO.setUserDataId(100L);
@@ -1183,6 +1193,7 @@ public class UserVmManagerImplTest {
         ResetVMUserDataCmd cmd = Mockito.mock(ResetVMUserDataCmd.class);
         when(cmd.getId()).thenReturn(1L);
         when(userVmDao.findById(1L)).thenReturn(userVmVO);
+        when(userVmDao.acquireInLockTable(1L, 1)).thenReturn(userVmVO);
 
         VMTemplateVO template = Mockito.mock(VMTemplateVO.class);
         when(templateDao.findByIdIncludingRemoved(2L)).thenReturn(template);
@@ -1198,7 +1209,7 @@ public class UserVmManagerImplTest {
         when(userDataManager.validateUserData(testUserData, HTTPMethod.GET)).thenReturn(testUserData);
 
         try {
-            doNothing().when(userVmManagerImpl).updateUserData(userVmVO);
+            prepareUserDataResetProvider(userVmVO);
             userVmManagerImpl.resetVMUserData(cmd);
         } catch (ResourceUnavailableException | InsufficientCapacityException e) {
             throw new RuntimeException(e);
@@ -1206,6 +1217,16 @@ public class UserVmManagerImplTest {
 
         Assert.assertEquals("testUserdata", userVmVO.getUserData());
         Assert.assertEquals(1L, (long)userVmVO.getUserDataId());
+        verify(userVmDao).update(eq(1L), any(UserVmVO.class));
+        verify(userVmDao).releaseFromLockTable(1L);
+    }
+
+    private void prepareUserDataResetProvider(UserVmVO vm) throws ResourceUnavailableException, InsufficientCapacityException {
+        vm.setHypervisorType(HypervisorType.KVM);
+        doReturn(Collections.singletonList(nicMock)).when(userVmManagerImpl).userDataResetTargets(vm);
+        doReturn(true).when(userVmManagerImpl).applyUserData(HypervisorType.KVM, vm, nicMock, true);
+        when(userVmDao.createForUpdate(1L)).thenReturn(new UserVmVO());
+        when(userVmDao.update(eq(1L), any(UserVmVO.class))).thenReturn(true);
     }
 
     @Test
@@ -1574,6 +1595,38 @@ public class UserVmManagerImplTest {
         userVmManagerImpl.restoreVM(cmd);
     }
 
+    @Test
+    public void testVnfReinstallRemovedSourceMetadataIsRetainedForReplacement() {
+        VMTemplateVO original = Mockito.mock(VMTemplateVO.class);
+        when(userVmVoMock.getTemplateId()).thenReturn(101L);
+        when(templateDao.findByIdIncludingRemoved(101L)).thenReturn(original);
+        Assert.assertSame(original, userVmManagerImpl.getCurrentTemplateForRestore(userVmVoMock));
+        Mockito.verify(templateDao, Mockito.never()).findById(101L);
+    }
+
+    @Test
+    public void testVnfReinstallMissingSourceMetadataFailsBeforeRootReadsOrWrites() throws Exception {
+        when(accountMock.getId()).thenReturn(1L);
+        when(userVmDao.findById(vmId)).thenReturn(userVmVoMock);
+        when(userVmVoMock.getAccountId()).thenReturn(2L);
+        when(accountDao.findById(2L)).thenReturn(callerAccount);
+        when(userVmVoMock.getState()).thenReturn(VirtualMachine.State.Running);
+        when(userVmVoMock.getTemplateId()).thenReturn(101L);
+        Assert.assertThrows(InvalidParameterValueException.class,
+                () -> userVmManagerImpl.restoreVirtualMachine(accountMock, vmId, 102L, null, false, null));
+        Mockito.verify(volumeDaoMock, Mockito.never()).findByInstanceAndType(vmId, Volume.Type.ROOT);
+        Mockito.verify(volumeDaoMock, Mockito.never()).detachVolume(Mockito.anyLong());
+    }
+
+    @Test
+    public void testVnfReinstallMetadataReadDoesNotRestrictOrdinaryVmTemplateTypes() {
+        VMTemplateVO original = Mockito.mock(VMTemplateVO.class);
+        when(userVmVoMock.getTemplateId()).thenReturn(103L);
+        when(templateDao.findByIdIncludingRemoved(103L)).thenReturn(original);
+        Assert.assertSame(original, userVmManagerImpl.getCurrentTemplateForRestore(userVmVoMock));
+        Mockito.verify(original, Mockito.never()).getTemplateType();
+    }
+
     @Test(expected = InvalidParameterValueException.class)
     public void testRestoreVirtualMachineNoOwner() throws ResourceUnavailableException, InsufficientCapacityException {
         long userId = 1L;
@@ -1631,7 +1684,7 @@ public class UserVmManagerImplTest {
         when(userVmVoMock.getTemplateId()).thenReturn(currentTemplateId);
 
         VMTemplateVO currentTemplate = Mockito.mock(VMTemplateVO.class);
-        when(templateDao.findById(currentTemplateId)).thenReturn(currentTemplate);
+        when(templateDao.findByIdIncludingRemoved(currentTemplateId)).thenReturn(currentTemplate);
         when(volumeDaoMock.findByInstanceAndType(vmId, Volume.Type.ROOT)).thenReturn(new ArrayList<>());
 
         userVmManagerImpl.restoreVirtualMachine(accountMock, vmId, newTemplateId, null, false, null);
@@ -1653,7 +1706,7 @@ public class UserVmManagerImplTest {
 
         VMTemplateVO currentTemplate = Mockito.mock(VMTemplateVO.class);
         when(currentTemplate.isDeployAsIs()).thenReturn(false);
-        when(templateDao.findById(currentTemplateId)).thenReturn(currentTemplate);
+        when(templateDao.findByIdIncludingRemoved(currentTemplateId)).thenReturn(currentTemplate);
         List<VolumeVO> volumes = new ArrayList<>();
         VolumeVO rootVolume1 = Mockito.mock(VolumeVO.class);
         volumes.add(rootVolume1);
@@ -1678,7 +1731,7 @@ public class UserVmManagerImplTest {
         when(userVmVoMock.getTemplateId()).thenReturn(currentTemplateId);
 
         VMTemplateVO currentTemplate = Mockito.mock(VMTemplateVO.class);
-        when(templateDao.findById(currentTemplateId)).thenReturn(currentTemplate);
+        when(templateDao.findByIdIncludingRemoved(currentTemplateId)).thenReturn(currentTemplate);
         List<VolumeVO> volumes = new ArrayList<>();
         VolumeVO rootVolumeOfVm = Mockito.mock(VolumeVO.class);
         volumes.add(rootVolumeOfVm);
@@ -4149,9 +4202,21 @@ public class UserVmManagerImplTest {
         return buildDeployVMCmd(volumeId, null);
     }
 
+    private void prepareValidatedCreationSource(DeployVMCmd cmd) {
+        org.apache.cloudstack.api.response.VmCreationSourceResponse source =
+                new org.apache.cloudstack.api.response.VmCreationSourceResponse();
+        source.templateid = "source-template";
+        source.allowed = true;
+        VMTemplateVO sourceTemplate = mock(VMTemplateVO.class);
+        when(sourceTemplate.getId()).thenReturn(templateId);
+        when(templateDao.findByUuidIncludingRemoved(source.templateid)).thenReturn(sourceTemplate);
+        when(creationSourceService.validateDeployment(cmd)).thenReturn(source);
+    }
+
     @Test
     public void createVirtualMachineWithExistingVolume() throws ResourceUnavailableException, InsufficientCapacityException, ResourceAllocationException {
         DeployVMCmd deployVMCmd = getDeployVMCmdFromVolume();
+        prepareValidatedCreationSource(deployVMCmd);
 
         when(accountService.getActiveAccountById(accountId)).thenReturn(account);
         when(entityManager.findById(DataCenter.class, zoneId)).thenReturn(_dcMock);
@@ -4159,16 +4224,9 @@ public class UserVmManagerImplTest {
         when(entityManager.findById(DiskOffering.class, serviceOffering.getId())).thenReturn(smallerDisdkOffering);
         when(entityManager.findByIdIncludingRemoved(VirtualMachineTemplate.class, templateId)).thenReturn(templateMock);
         when(volumeDataFactory.getVolume(volumeId)).thenReturn(volumeInfo);
-        when(volumeInfo.getTemplateId()).thenReturn(templateId);
-        when(volumeInfo.getInstanceId()).thenReturn(null);
-        when(volumeInfo.getDataStore()).thenReturn(primaryDataStore);
-        when(primaryDataStore.getScope()).thenReturn(scopeMock);
-        when(primaryDataStore.getScope().getScopeType()).thenReturn(ScopeType.ZONE);
         when(templateMock.getTemplateType()).thenReturn(Storage.TemplateType.VNF);
-        when(templateMock.getHypervisorType()).thenReturn(Hypervisor.HypervisorType.KVM);
         when(templateMock.isDeployAsIs()).thenReturn(false);
         when(templateMock.getFormat()).thenReturn(Storage.ImageFormat.QCOW2);
-        when(templateMock.getUserDataId()).thenReturn(null);
         Mockito.doNothing().when(vnfTemplateManager).validateVnfApplianceNics(any(), nullable(List.class), nullable(Map.class));
         when(_dcMock.isLocalStorageEnabled()).thenReturn(false);
         when(_dcMock.getNetworkType()).thenReturn(DataCenter.NetworkType.Basic);
@@ -4184,6 +4242,7 @@ public class UserVmManagerImplTest {
     public void createVirtualMachineWithExistingSnapshot()
             throws ResourceUnavailableException, InsufficientCapacityException, ResourceAllocationException {
         DeployVMCmd deployVMCmd = getDeployVMCmdFromSnapshot();                                    // mock, no field hacks
+        prepareValidatedCreationSource(deployVMCmd);
 
         when(accountService.getActiveAccountById(accountId)).thenReturn(account);
         when(entityManager.findById(DataCenter.class, zoneId)).thenReturn(_dcMock);
@@ -4191,15 +4250,9 @@ public class UserVmManagerImplTest {
         when(entityManager.findById(DiskOffering.class, serviceOffering.getId())).thenReturn(smallerDisdkOffering);
         when(snapshotDaoMock.findById(snashotId)).thenReturn(snapshotMock);
         when(entityManager.findByIdIncludingRemoved(VirtualMachineTemplate.class, templateId)).thenReturn(templateMock);
-        when(volumeDataFactory.getVolume(volumeId)).thenReturn(volumeInfo);
-        when(snapshotMock.getVolumeId()).thenReturn(volumeId);
-        when(volumeInfo.getTemplateId()).thenReturn(templateId);
-        when(volumeInfo.getInstanceId()).thenReturn(null);
         when(templateMock.getTemplateType()).thenReturn(Storage.TemplateType.VNF);
-        when(templateMock.getHypervisorType()).thenReturn(Hypervisor.HypervisorType.KVM);
         when(templateMock.isDeployAsIs()).thenReturn(false);
         when(templateMock.getFormat()).thenReturn(Storage.ImageFormat.QCOW2);
-        when(templateMock.getUserDataId()).thenReturn(null);
         Mockito.doNothing().when(vnfTemplateManager).validateVnfApplianceNics(any(), nullable(List.class), nullable(Map.class));
         when(_dcMock.isLocalStorageEnabled()).thenReturn(false);
         when(_dcMock.getNetworkType()).thenReturn(DataCenter.NetworkType.Basic);
@@ -4214,21 +4267,16 @@ public class UserVmManagerImplTest {
     public void createVirtualMachineWithSnapshotFromExpungedLocalStorageVolumeSucceeds()
             throws ResourceUnavailableException, InsufficientCapacityException, ResourceAllocationException {
         DeployVMCmd deployVMCmd = getDeployVMCmdFromSnapshot();                                    // mock, no field hacks
+        prepareValidatedCreationSource(deployVMCmd);
 
         when(accountService.getActiveAccountById(accountId)).thenReturn(account);
         when(entityManager.findById(DataCenter.class, zoneId)).thenReturn(_dcMock);
         when(entityManager.findById(ServiceOffering.class, serviceOfferingId)).thenReturn(serviceOffering);
         when(snapshotDaoMock.findById(snashotId)).thenReturn(snapshotMock);
-        when(snapshotMock.getVolumeId()).thenReturn(volumeId);
-        when(volumeDataFactory.getVolume(volumeId)).thenReturn(volumeInfo);
-        when(volumeInfo.getTemplateId()).thenReturn(templateId);
-        when(volumeInfo.getInstanceId()).thenReturn(null);
         when(entityManager.findByIdIncludingRemoved(VirtualMachineTemplate.class, templateId)).thenReturn(templateMock);
         when(templateMock.getTemplateType()).thenReturn(Storage.TemplateType.VNF);
-        when(templateMock.getHypervisorType()).thenReturn(Hypervisor.HypervisorType.KVM);
         when(templateMock.isDeployAsIs()).thenReturn(false);
         when(templateMock.getFormat()).thenReturn(Storage.ImageFormat.QCOW2);
-        when(templateMock.getUserDataId()).thenReturn(null);
         Mockito.doNothing().when(vnfTemplateManager).validateVnfApplianceNics(any(), nullable(List.class), any());
         when(_dcMock.isLocalStorageEnabled()).thenReturn(true);
         when(_dcMock.getNetworkType()).thenReturn(DataCenter.NetworkType.Basic);
@@ -4244,21 +4292,16 @@ public class UserVmManagerImplTest {
     public void createVirtualMachineWithSnapshotFromVolumeWithNullDataStoreSucceeds()
             throws ResourceUnavailableException, InsufficientCapacityException, ResourceAllocationException {
         DeployVMCmd deployVMCmd = getDeployVMCmdFromSnapshot();                                    // mock, no field hacks
+        prepareValidatedCreationSource(deployVMCmd);
 
         when(accountService.getActiveAccountById(accountId)).thenReturn(account);
         when(entityManager.findById(DataCenter.class, zoneId)).thenReturn(_dcMock);
         when(entityManager.findById(ServiceOffering.class, serviceOfferingId)).thenReturn(serviceOffering);
         when(snapshotDaoMock.findById(snashotId)).thenReturn(snapshotMock);
-        when(snapshotMock.getVolumeId()).thenReturn(volumeId);
-        when(volumeDataFactory.getVolume(volumeId)).thenReturn(volumeInfo);
-        when(volumeInfo.getTemplateId()).thenReturn(templateId);
-        when(volumeInfo.getInstanceId()).thenReturn(null);
         when(entityManager.findByIdIncludingRemoved(VirtualMachineTemplate.class, templateId)).thenReturn(templateMock);
         when(templateMock.getTemplateType()).thenReturn(Storage.TemplateType.VNF);
-        when(templateMock.getHypervisorType()).thenReturn(Hypervisor.HypervisorType.KVM);
         when(templateMock.isDeployAsIs()).thenReturn(false);
         when(templateMock.getFormat()).thenReturn(Storage.ImageFormat.QCOW2);
-        when(templateMock.getUserDataId()).thenReturn(null);
         Mockito.doNothing().when(vnfTemplateManager).validateVnfApplianceNics(any(), nullable(List.class), any());
         when(_dcMock.isLocalStorageEnabled()).thenReturn(true);
         when(_dcMock.getNetworkType()).thenReturn(DataCenter.NetworkType.Basic);
@@ -4271,37 +4314,33 @@ public class UserVmManagerImplTest {
     }
 
     @Test
-    public void createVirtualMachineWithVolumeFromNonZoneScopedStorageFails() {
+    public void createVirtualMachinePropagatesSourceValidationFailureBeforeReadingVolume() {
         DeployVMCmd deployVMCmd = getDeployVMCmdFromVolume();
-
         when(accountService.getActiveAccountById(accountId)).thenReturn(account);
         when(entityManager.findById(DataCenter.class, zoneId)).thenReturn(_dcMock);
         when(entityManager.findById(ServiceOffering.class, serviceOfferingId)).thenReturn(serviceOffering);
-        when(volumeDataFactory.getVolume(volumeId)).thenReturn(volumeInfo);
-        // Volume lives on HOST-scoped (local) storage
-        when(volumeInfo.getDataStore()).thenReturn(primaryDataStore);
-        when(primaryDataStore.getScope()).thenReturn(scopeMock);
-        when(scopeMock.getScopeType()).thenReturn(ScopeType.HOST);
+        InvalidParameterValueException rejection = new InvalidParameterValueException("SOURCE_RUNTIME_UNKNOWN");
+        when(creationSourceService.validateDeployment(deployVMCmd)).thenThrow(rejection);
 
-        InvalidParameterValueException ex = assertThrows(InvalidParameterValueException.class,
-                () -> userVmManagerImpl.createVirtualMachine(deployVMCmd));
-        assertEquals("Deployment of virtual machine is supported only for Zone-wide storage pools", ex.getMessage());
+        Assert.assertSame(rejection, assertThrows(InvalidParameterValueException.class,
+                () -> userVmManagerImpl.createVirtualMachine(deployVMCmd)));
+        verify(volumeDataFactory, never()).getVolume(volumeId);
+        verify(storageSelectionService, never()).prepare(any(), any(), any(), any(), any());
     }
 
     @Test
-    public void createVirtualMachineWithVolumeWithNullDataStoreFails() {
+    public void createVirtualMachineDoesNotProceedWhenSourceStorageIsUnavailable() {
         DeployVMCmd deployVMCmd = getDeployVMCmdFromVolume();
-
         when(accountService.getActiveAccountById(accountId)).thenReturn(account);
         when(entityManager.findById(DataCenter.class, zoneId)).thenReturn(_dcMock);
         when(entityManager.findById(ServiceOffering.class, serviceOfferingId)).thenReturn(serviceOffering);
-        when(volumeDataFactory.getVolume(volumeId)).thenReturn(volumeInfo);
-        // Volume's data store is null (pool was deleted)
-        when(volumeInfo.getDataStore()).thenReturn(null);
+        InvalidParameterValueException rejection = new InvalidParameterValueException("STORAGE_UNAVAILABLE");
+        when(creationSourceService.validateDeployment(deployVMCmd)).thenThrow(rejection);
 
-        InvalidParameterValueException ex = assertThrows(InvalidParameterValueException.class,
-                () -> userVmManagerImpl.createVirtualMachine(deployVMCmd));
-        assertEquals("Deployment of virtual machine is supported only for Zone-wide storage pools", ex.getMessage());
+        Assert.assertSame(rejection, assertThrows(InvalidParameterValueException.class,
+                () -> userVmManagerImpl.createVirtualMachine(deployVMCmd)));
+        verify(volumeDataFactory, never()).getVolume(volumeId);
+        verify(storageSelectionService, never()).prepare(any(), any(), any(), any(), any());
     }
 
     @Test

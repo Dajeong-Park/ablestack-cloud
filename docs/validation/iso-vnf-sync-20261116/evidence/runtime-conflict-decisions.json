@@ -1,0 +1,192 @@
+[
+  {
+    "file": "src/components/view/DetailsTab.vue",
+    "hunk": 1,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchFilter.vue",
+    "hunk": 1,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 1,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 2,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 3,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 4,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 5,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 6,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 7,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 8,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/view/SearchView.vue",
+    "hunk": 9,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/components/widgets/Breadcrumb.vue",
+    "hunk": 1,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 1,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 2,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 3,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 4,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 5,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 6,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 7,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 8,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 9,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 10,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 11,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 12,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 13,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 14,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 15,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 16,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 17,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 18,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 19,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 20,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 21,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 22,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 23,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 24,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 25,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  },
+  {
+    "file": "src/views/AutogenView.vue",
+    "hunk": 26,
+    "decision": "preserve ISO and VNF; preserve existing operating VPC behavior"
+  }
+]

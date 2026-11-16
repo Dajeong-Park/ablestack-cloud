@@ -1,0 +1,42 @@
+{
+  "productHead": "75a0681bd8e64da6c2a6ce34dd69d361de5d9207",
+  "canonical": {
+    "suites": 38,
+    "tests": 735,
+    "passed": true
+  },
+  "operating": {
+    "suites": 34,
+    "tests": 499,
+    "passed": true
+  },
+  "changedUiLint": true,
+  "focusedPreCommit": true,
+  "manualPreCommit": true,
+  "uiBuild": true,
+  "actualFiles": {
+    "count": 2,
+    "sizes": [
+      1525760,
+      24434688
+    ],
+    "sha256Matched": true,
+    "receivedByUserManualDownload": true
+  },
+  "guestLiveBoot": true,
+  "diskInstallation": false,
+  "vmRunningAndStoppedMediaOperations": true,
+  "multiDetach": 2,
+  "readOnlyIsoNoWrites": true,
+  "readOnlyVmIsoTab": "NOT_RUN_CONFIGURED_METRICS_CAPABILITY_BOUNDARY",
+  "cleanupComplete": true,
+  "fullCiPass": false,
+  "finalReportFocusedHooks": true,
+  "finalReportManualHooks": true,
+  "finalReportRat": {
+    "baseline": 4077,
+    "current": 4077,
+    "added": 0,
+    "removed": 0
+  }
+}

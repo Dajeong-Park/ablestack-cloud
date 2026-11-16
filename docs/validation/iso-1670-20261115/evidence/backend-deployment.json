@@ -1,0 +1,19 @@
+{
+  "deploymentType": "one management JAR class entry replaced; one Mold restart",
+  "entry": "com/cloud/api/query/QueryManagerImpl.class",
+  "changedEntries": [
+    "com/cloud/api/query/QueryManagerImpl.class"
+  ],
+  "totalEntriesCompared": 92937,
+  "originalJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224",
+  "newJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443",
+  "newClassSha256": "e1cd0c59aa91673346273a5c42378e08d092c83b2b80dc1207a9aa7def1c8b40",
+  "oldMoldPid": "2545994",
+  "newMoldPid": "2620448",
+  "backup": "/var/tmp/iso1670-backend-backup-s1qnsqf8",
+  "httpUiReady": true,
+  "otherJarEntryBytesPreserved": true,
+  "schemaChanges": false,
+  "agentOrSystemVmChanges": false,
+  "functionalUiVerificationPending": true
+}

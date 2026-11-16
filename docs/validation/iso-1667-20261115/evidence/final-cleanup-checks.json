@@ -1,0 +1,19 @@
+{
+  "changedInputFiles": 11,
+  "results": [
+    {
+      "stage": "pre-commit",
+      "returnCode": 0,
+      "files": 11,
+      "log": "focused-report-pre-commit.log"
+    },
+    {
+      "stage": "manual",
+      "returnCode": 0,
+      "files": 11,
+      "log": "focused-report-manual.log"
+    }
+  ],
+  "productCodeChanged": false,
+  "additionalDeployment": false
+}

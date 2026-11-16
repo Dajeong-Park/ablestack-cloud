@@ -1,0 +1,115 @@
+[
+  {
+    "api": "deleteTags",
+    "params": {
+      "resourceIds": "af30dffc-64f9-423d-b413-56e33b427b5d",
+      "resourceType": "StaticRoute",
+      "tags[0].key": "review",
+      "tags[0].value": "qa-vpc1650-final-32"
+    },
+    "receipt": {
+      "jobid": "ec3f93a1-bfc0-4e19-9dce-6848c86ec5ed"
+    },
+    "terminalJob": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.tag.DeleteTagsCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-15T00:38:39+0900",
+      "completed": "2026-11-15T00:38:39+0900",
+      "jobid": "ec3f93a1-bfc0-4e19-9dce-6848c86ec5ed",
+      "jobstatus": 1
+    }
+  },
+  {
+    "api": "deleteStaticRoute",
+    "params": {
+      "id": "af30dffc-64f9-423d-b413-56e33b427b5d"
+    },
+    "receipt": {
+      "jobid": "c633aef4-2831-4484-9b8b-a35d83d77939"
+    },
+    "terminalJob": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteStaticRouteCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-15T00:38:41+0900",
+      "completed": "2026-11-15T00:38:41+0900",
+      "jobid": "c633aef4-2831-4484-9b8b-a35d83d77939",
+      "jobstatus": 1
+    }
+  },
+  {
+    "api": "deleteNetworkACLList",
+    "params": {
+      "id": "3412d17d-c543-4de8-806d-111318126ba6"
+    },
+    "receipt": {
+      "jobid": "2b74f670-5f88-4fef-ac0d-196daec74621"
+    },
+    "terminalJob": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.network.DeleteNetworkACLListCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "NetworkAcl",
+      "created": "2026-11-15T00:38:43+0900",
+      "completed": "2026-11-15T00:38:43+0900",
+      "jobid": "2b74f670-5f88-4fef-ac0d-196daec74621",
+      "jobstatus": 1
+    }
+  },
+  {
+    "api": "deleteVPC",
+    "params": {
+      "id": "9d98ae97-f3f8-4f31-8a48-b37d9902492d"
+    },
+    "receipt": {
+      "jobid": "75450115-7ef4-4c77-a843-f902078ec90f"
+    },
+    "terminalJob": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "jobinstancetype": "Vpc",
+      "created": "2026-11-15T00:38:45+0900",
+      "completed": "2026-11-15T00:38:45+0900",
+      "jobid": "75450115-7ef4-4c77-a843-f902078ec90f",
+      "jobstatus": 1
+    }
+  }
+]

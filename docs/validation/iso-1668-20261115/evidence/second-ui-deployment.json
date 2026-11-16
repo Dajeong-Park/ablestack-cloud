@@ -1,0 +1,15 @@
+{
+  "codeHead": "f66f3799be02b7fd97447d370d0af0b170145884",
+  "root": "/usr/share/cloudstack-management/webapp",
+  "backup": "/var/tmp/iso1668-20261115-ui-backup-pvpkusne",
+  "files": 4,
+  "added": 3,
+  "overwritten": [
+    "index.html"
+  ],
+  "indexSha256": "7e67412582bc27ee843466f7bbee81244ee6f6ca1e948b1d8e602bf9764e5c29",
+  "protectedPreserved": true,
+  "moldPidPreserved": true,
+  "oldHashedAssetsRetained": true,
+  "deploymentType": "UI static delta only"
+}

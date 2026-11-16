@@ -1,0 +1,41 @@
+{
+  "productHead": "d27ade742cc7f4b3e192785c887f4af858f0b413",
+  "indexSha256": "739b1e4956a1f9cd47d8ab20a919c9a2bce8d4397eb849031d35e8614b3d7f8e",
+  "baselineAssets": 7067,
+  "finalAssets": 7070,
+  "changedExistingFiles": [
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "addedFiles": [
+    "css/chunk-4e497d26.566b5adf.css",
+    "js/app.ebd29f55.js",
+    "js/chunk-4e497d26.269166ad.js"
+  ],
+  "removedFiles": [],
+  "allOtherExistingStaticFilesPreserved": true,
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2545994",
+  "backendJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224",
+  "colorLessSha256": "b4828a78c5034913ce0f62a6315e0303ae63a154d2ecf8ce9e1ad0c4c170b8f0",
+  "colorLessPreserved": true,
+  "systemVmUi": [
+    {
+      "name": "v-245-VM",
+      "state": "Running",
+      "agent": "Up",
+      "version": "4.23.0.0"
+    },
+    {
+      "name": "s-255-VM",
+      "state": "Running",
+      "agent": "Up",
+      "version": "4.23.0.0"
+    }
+  ],
+  "systemVmEvidence": "Observed final UI table; no SystemVM recreation in ISO-04"
+}

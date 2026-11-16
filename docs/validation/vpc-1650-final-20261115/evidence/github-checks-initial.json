@@ -1,0 +1,11 @@
+{
+  "43609359828": [
+    "triage\tConflict Check\t2026-11-14T15:17:24.5746364Z ##[error]Error: error removing \"status:has-conflicts\": HttpError: Resource not accessible by integration",
+    "triage\tConflict Check\t2026-11-14T15:17:24.5756406Z ##[error]error removing \"status:has-conflicts\": HttpError: Resource not accessible by integration"
+  ],
+  "43609359890": [
+    "build\tRAT licence checks\t2026-11-14T15:18:54.1388974Z [INFO] Rat check: Summary over all files. Unapproved: 4077, unknown: 4077, generated: 0, approved: 15502 licenses.",
+    "build\tRAT licence checks\t2026-11-14T15:18:54.1415919Z [ERROR] Failed to execute goal org.apache.rat:apache-rat-plugin:0.12:check (default-cli) on project cloudstack: Too many files with unapproved license: 4077 See RAT report in: /home/runner/work/ablestack-cloud/ablestack-cloud/target/rat.txt -> [Help 1]",
+    "build\tRAT licence checks\t2026-11-14T15:18:54.1957307Z ##[error]Process completed with exit code 1."
+  ]
+}

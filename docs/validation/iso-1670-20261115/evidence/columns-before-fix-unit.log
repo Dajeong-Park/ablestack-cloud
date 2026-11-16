@@ -1,0 +1,70 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runInBand --silent --coverage=false --forceExit --runTestsByPath tests/unit/views/AutogenIsoSearch.spec.js tests/unit/utils/isoSearch.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+FAIL tests/unit/views/AutogenIsoSearch.spec.js
+  ● explicit ISO columns remain selected after returning to an all-project list
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected
+    + Received
+
+      Array [
+        "name",
+        "state",
+    +   "project",
+      ]
+
+       98 |   getAPI.mockResolvedValue(reply([]))
+       99 |   await c.fetchData()
+    > 100 |   expect(c.selectedColumns).toEqual(['name', 'state'])
+          |                             ^
+      101 | })
+      102 | test('hiding the sorted ISO column clears its local sort state', () => {
+      103 |   route({ sortkey: 'name', sortorder: 'asc' })
+
+      at Object.<anonymous> (tests/unit/views/AutogenIsoSearch.spec.js:100:29)
+
+  ● hiding the sorted ISO column clears its local sort state
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: {"query": ObjectNotContaining {"sortkey": Anything}}
+
+    Number of calls: 0
+
+      106 |   c.allColumns = [{ key: 'name', dataIndex: 'name', sorter: () => 0 }, { key: 'arch', dataIndex: 'arch', sorter: () => 0 }]
+      107 |   Autogen.methods.updateSelectedColumns.call(c, 'name')
+    > 108 |   expect(c.$router.replace).toHaveBeenCalledWith({ query: expect.not.objectContaining({ sortkey: expect.anything() }) })
+          |                             ^
+      109 | })
+      110 |
+
+      at Object.<anonymous> (tests/unit/views/AutogenIsoSearch.spec.js:108:29)
+
+FAIL tests/unit/utils/isoSearch.spec.js
+  ● manual order controls are not advertised as a sortable data column
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: [Function sorter]
+
+      92 |
+      93 | test('manual order controls are not advertised as a sortable data column', () => {
+    > 94 |   expect(isoColumn({ key: 'order', sorter: () => 0 }).sorter).toBe(false)
+         |                                                               ^
+      95 | })
+      96 |
+
+      at Object.<anonymous> (tests/unit/utils/isoSearch.spec.js:94:63)
+
+Test Suites: 2 failed, 2 total
+Tests:       3 failed, 40 passed, 43 total
+Snapshots:   0 total
+Time:        10.085s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

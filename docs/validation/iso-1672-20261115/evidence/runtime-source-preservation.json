@@ -1,0 +1,54 @@
+{
+  "unrelatedOperatingSourceFilesEqual": 1015,
+  "configFilesEqual": [
+    "package.json",
+    "package-lock.json",
+    "babel.config.js",
+    "vue.config.js",
+    "jest.config.js"
+  ],
+  "localeKeys": {
+    "en": [
+      "label.iso.attach.vm",
+      "label.iso.download.prepare",
+      "label.iso.download.receive",
+      "label.iso.download.reprepare",
+      "message.iso.consume.attached",
+      "message.iso.consume.read.failed",
+      "message.iso.consume.vm.empty",
+      "message.iso.download.failed",
+      "message.iso.download.invalid",
+      "message.iso.download.nojob",
+      "message.iso.download.observe.failed",
+      "message.iso.download.preparing",
+      "message.iso.download.read.failed",
+      "message.iso.download.ready",
+      "message.iso.download.requested",
+      "message.iso.download.unknown"
+    ],
+    "ko_KR": [
+      "label.iso.attach.vm",
+      "label.iso.download.prepare",
+      "label.iso.download.receive",
+      "label.iso.download.reprepare",
+      "message.iso.consume.attached",
+      "message.iso.consume.read.failed",
+      "message.iso.consume.vm.empty",
+      "message.iso.download.failed",
+      "message.iso.download.invalid",
+      "message.iso.download.nojob",
+      "message.iso.download.observe.failed",
+      "message.iso.download.preparing",
+      "message.iso.download.read.failed",
+      "message.iso.download.ready",
+      "message.iso.download.requested",
+      "message.iso.download.unknown"
+    ]
+  },
+  "addedFiles": [
+    "src/utils/isoConsumption.js",
+    "src/views/image/IsoDownload.vue",
+    "src/views/image/IsoVmAttach.vue",
+    "tests/unit/views/image/IsoConsumption.spec.js"
+  ]
+}

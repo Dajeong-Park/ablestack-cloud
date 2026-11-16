@@ -1,0 +1,43 @@
+{
+  "codeHead": "4a2f5237b3d87eb6a834e813f0f406846bb787ed",
+  "changedFiles": 22,
+  "license": {
+    "run": 43597344077,
+    "conclusion": "FAILURE",
+    "ratUnapproved": 4077,
+    "changedUnapprovedPaths": []
+  },
+  "lint": {
+    "run": 43597344068,
+    "job": 132454582700,
+    "conclusion": "FAILURE",
+    "diagnosticsStart": "run oxipng (identity inventory excluded)",
+    "failedHooks": [
+      "run oxipng...............................................................Failed",
+      "add license for all Markdown files.......................................Failed",
+      "add license for all properties files.....................................Failed",
+      "add license for all Shell files..........................................Failed",
+      "add license for all SQL files............................................Failed",
+      "add license for all Vue files............................................Failed",
+      "add license for all YAML files...........................................Failed",
+      "check that scripts with shebangs are executable..........................Failed",
+      "check for broken symlinks................................................Failed",
+      "fix end of files.........................................................Failed",
+      "fix utf-8 byte order marker..............................................Failed",
+      "mixed line ending........................................................Failed",
+      "trim trailing whitespace.................................................Failed",
+      "run codespell............................................................Failed",
+      "flake8...................................................................Failed",
+      "run markdownlint.........................................................Failed"
+    ],
+    "changedPathDiagnostics": {}
+  },
+  "mergeConflict": {
+    "run": 43597344055,
+    "conclusion": "SUCCESS"
+  },
+  "separateDebtIssues": [
+    926,
+    1044
+  ]
+}

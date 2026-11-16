@@ -79,19 +79,24 @@
 import { getAPI } from '@/api'
 import { allocated, allocationReason, validCidr, validPassword, vbmcOperations, runVbmc, pollVbmc } from '@/utils/vbmc'
 import eventBus from '@/config/eventBus'
+import { isVnfVm, readVnfActionTarget, vnfOwner } from '@/utils/vnfVmActions'
+const endpointIdentity = vm => JSON.stringify(['id', 'hostid', 'state', 'haenable', 'vbmcaddress', 'vbmcport', 'vbmcallowedcidr'].map(k => vm?.[k] ?? ''))
 export default {
   name: 'VmVbmcManager',
   props: { resource: { type: Object, required: true } },
+  inject: { resourceActionReady: { default: () => () => true } },
   emits: ['close-action'],
   data () { return { vm: {}, loading: false, stale: true, error: false, mode: 'overview', password: '', cidr: '', external: false, ack: false, checked: '', request: 0, disposed: false, submitting: false } },
   computed: {
     scope () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.state.user.token, this.$store.getters.project?.id, this.resource.id]) },
+    context () { return JSON.stringify([this.scope, vnfOwner(this.resource), this.$route?.fullPath, this.$store.getters.userInfo?.roletype, ['listVirtualMachines', 'allocateVbmcToVM', 'checkVbmcToVM', 'removeVbmcToVM'].map(api => this.allowed(api))]) },
+    parentReady () { return this.resourceActionReady() },
     operation () { return vbmcOperations[this.scope] },
     hasEndpoint () { return allocated(this.vm) },
     reason () { return allocationReason(this.vm) },
     validSecret () { return validPassword(this.password) },
     validRange () { return !this.external || validCidr(this.cidr) },
-    blocked () { return this.loading || this.stale || ['pending', 'unknown'].includes(this.operation?.state) || ['Allocating', 'Removing'].includes(this.vm.vbmcstatus) },
+    blocked () { return this.disposed || !this.parentReady || this.submitting || this.loading || this.stale || ['pending', 'unknown'].includes(this.operation?.state) || ['Allocating', 'Removing'].includes(this.vm.vbmcstatus) },
     status () {
       if (this.stale || this.operation?.state === 'unknown') return 'unknown'
       if (this.operation?.state === 'pending') return 'pending'
@@ -104,29 +109,43 @@ export default {
   },
   watch: {
     'operation.state' (value) { if (['success', 'failed'].includes(value) && !this.loading && !this.submitting) this.refresh() },
-    scope () { this.password = ''; this.checked = ''; this.request++; this.close() }
+    context: { flush: 'sync', handler () { this.password = ''; this.checked = ''; this.request++; this.close() } },
+    parentReady (value) { if (!value) { this.request++; this.loading = false; this.stale = true; this.password = '' } else this.refresh({ preserveCheck: true }) }
   },
   created () { this.refresh() },
   beforeUnmount () { this.disposed = true; this.request++; this.password = '' },
   methods: {
     allowed (api) { return api in this.$store.getters.apis },
     cancel () { this.mode = 'overview'; this.password = ''; this.ack = false },
-    close () { this.password = ''; this.$emit('close-action') },
-    async refresh () {
-      if (this.loading) return
+    close () { this.disposed = true; this.request++; this.password = ''; this.$emit('close-action') },
+    async refresh (options = {}) {
+      if (this.loading || this.disposed || !this.parentReady) return
       const ticket = ++this.request; const scope = this.scope
-      this.loading = true; this.checked = ''
+      const checked = options?.preserveCheck === true ? this.checked : ''
+      const endpoint = endpointIdentity(this.vm)
+      this.loading = true; if (!checked) this.checked = ''
       try {
         if (this.operation?.state === 'unknown' && this.operation.jobId) await pollVbmc(scope)
-        const result = await getAPI('listVirtualMachines', { id: this.resource.id })
+        const result = isVnfVm(this.resource) ? { listvirtualmachinesresponse: { virtualmachine: [await readVnfActionTarget(this.resource)] } } : await getAPI('listVirtualMachines', { id: this.resource.id }, { preserveOnFailure: true, timeout: 20000 })
         if (this.disposed || ticket !== this.request || scope !== this.scope) return
         const vm = result.listvirtualmachinesresponse.virtualmachine?.find(v => v.id === this.resource.id)
         if (!vm) throw new Error('Unavailable')
         this.vm = vm; this.stale = false
+        this.checked = vm.vbmcstatus === 'Ready' && endpoint === endpointIdentity(vm) ? checked : ''
       } catch (_) { if (!this.disposed && ticket === this.request) this.stale = true } finally { if (!this.disposed && ticket === this.request) this.loading = false }
     },
     async execute (api) {
       if (this.blocked || !this.allowed(api)) return
+      const context = this.context
+      if (isVnfVm(this.resource)) {
+        this.submitting = true
+        try {
+          const vm = await readVnfActionTarget(this.resource)
+          if (this.disposed || context !== this.context || !this.parentReady || !this.allowed(api)) return
+          this.vm = vm; this.stale = false
+        } catch (_) { if (!this.disposed) { this.stale = true; this.error = true }; return } finally { this.submitting = false }
+      }
+      if (this.blocked || this.disposed || context !== this.context) return
       if (api === 'allocateVbmcToVM' && (this.reason || !this.validSecret || !this.validRange || this.hasEndpoint)) return
       const scope = this.scope; const replace = this.mode === 'replace'
       const params = { virtualmachineid: this.resource.id }

@@ -1,0 +1,7 @@
+{
+  "initialAttempt": "cluster31 backup helper rejected its new stage prefix before protected snapshot/archive/apply",
+  "cause": "Copied helper still allowed only vpc1658 stage prefixes",
+  "correction": "Changed private deployment helper guard and temporary suffix to vpc1659; same allowlists/path/server preservation checks retained",
+  "productSourceChanged": false,
+  "initialStaticApplyExecuted": false
+}

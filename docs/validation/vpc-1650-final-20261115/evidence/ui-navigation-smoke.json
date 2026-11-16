@@ -1,0 +1,29 @@
+{
+  "templateReturn": {
+    "keyword": [
+      {
+        "placeholder": "",
+        "value": ""
+      },
+      {
+        "placeholder": "검색",
+        "value": "rocky-9-4-minimal.qcow22"
+      },
+      {
+        "placeholder": "",
+        "value": ""
+      }
+    ],
+    "rows": [
+      "rocky-9-4-minimal.qcow22사용 가능QCOW2Rocky Linux 9x86_64KVM100.00 GiB adminUSER"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/template?q=rocky-9-4-minimal.qcow22&keyword=rocky-9-4-minimal.qcow22&page=1&pagesize=20"
+  },
+  "offeringRelatedVpc": {
+    "rows": [
+      "qa-vpc1650-final-32정상Final PR review isolated tag/ACL validation10.228.32.0/24adminROOTZone",
+      "AS-PROD-32-AS01-VPC정상AS01 VPC UI 검증172.30.32.0/16epic1346-as01-user32ROOTZone"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vpc?vpcofferingid=a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+  }
+}

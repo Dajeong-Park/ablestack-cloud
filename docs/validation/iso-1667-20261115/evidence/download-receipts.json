@@ -1,0 +1,46 @@
+[
+  {
+    "File": "qa-iso1667-admin-local423-md5.iso",
+    "Bytes": 1525760,
+    "Sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+    "ExpectedBytes": 1525760,
+    "ExpectedSha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+    "Matched": true,
+    "DownloadedBy": "operator through Mold UI",
+    "LastWriteTimeUtc": "2026-11-15T00:31:06.3637446Z",
+    "VerifiedAtUtc": "2026-11-15T00:32:43.6318077Z"
+  },
+  {
+    "File": "qa-iso1667-owner-local423-sha256.iso",
+    "Bytes": 24434688,
+    "Sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+    "ExpectedBytes": 24434688,
+    "ExpectedSha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+    "Matched": true,
+    "DownloadedBy": "operator through Mold UI",
+    "LastWriteTimeUtc": "2026-11-15T00:31:22.4163065Z",
+    "VerifiedAtUtc": "2026-11-15T00:32:43.7529271Z"
+  },
+  {
+    "File": "qa-iso1667-owner421-sha256.iso",
+    "Bytes": 24434688,
+    "Sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+    "ExpectedBytes": 24434688,
+    "ExpectedSha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+    "Matched": true,
+    "DownloadedBy": "operator through Mold UI",
+    "LastWriteTimeUtc": "2026-11-15T00:30:30.6692699Z",
+    "VerifiedAtUtc": "2026-11-15T00:32:43.8700166Z"
+  },
+  {
+    "File": "qa-iso1667-url421-md5.iso",
+    "Bytes": 1525760,
+    "Sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+    "ExpectedBytes": 1525760,
+    "ExpectedSha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+    "Matched": true,
+    "DownloadedBy": "operator through Mold UI",
+    "LastWriteTimeUtc": "2026-11-15T00:27:40.1575022Z",
+    "VerifiedAtUtc": "2026-11-15T00:32:43.8891121Z"
+  }
+]

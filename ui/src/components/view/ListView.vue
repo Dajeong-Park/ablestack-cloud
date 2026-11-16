@@ -23,7 +23,8 @@
       :locale="emptyText ? { emptyText } : undefined"
       :columns="isOrderUpdatable() ? columns : columns.filter(x => x.dataIndex !== 'order')"
       :dataSource="items"
-      :scroll="tableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
+      :tableLayout="isIsoMainList ? 'fixed' : undefined"
+      :scroll="tableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
       :rowSelection="explicitlyAllowRowSelection || enableGroupAction() || $route.name === 'event' ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({ disabled: selectionDisabled(record) }), columnWidth: 30} : null"
@@ -53,7 +54,13 @@
         </a-menu>
       </div>
     </template>
+    <template v-if="isIsoMainList" #headerCell="{ column }">
+      <a-tooltip v-if="column.sorter" :title="$t('message.iso.search.sort.page')" :trigger="['hover', 'focus']"><span tabindex="0">{{ column.title }}</span></a-tooltip>
+      <span v-else>{{ column.title }}</span>
+    </template>
     <template #bodyCell="{ column, text, record }">
+      <IsoListCell v-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
+      <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
       <SharedFSBootRecoverySummary v-else-if="$route.name === 'sharedfs' && column.key === 'bootrecovery'" :resource="record" mode="list" />
@@ -118,7 +125,13 @@
               size="xl"
             />
           </span>
-          <span v-if="isSshKeyPairList">
+          <span v-if="$route.meta?.name === 'template' && !resourcePath && record.id" class="template-primary-name">
+            <a-tooltip :title="text" :trigger="['hover', 'focus']" placement="topLeft">
+              <router-link class="template-name-link" :to="templateDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
+            </a-tooltip>
+            <router-link v-if="record.hasannotations" :to="templateDetailLocation($route, record, $store.getters, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
+          </span>
+          <span v-else-if="isSshKeyPairList">
             <router-link :to="sshKeyPairLink(record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="sshKeyPairLink(record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
@@ -236,7 +249,7 @@
         </span>
       </template>
       <template v-if="column.key === 'templatetype'">
-        <router-link :to="{ path: $route.path + '/' + record.templatetype }">{{ text }}</router-link>
+        <a-tag>{{ text || record.templatetype }}</a-tag>
       </template>
       <template v-if="$route.path.startsWith('/dnsserver') && !['name', 'provider', 'state', 'ispublic'].includes(column.key)">
         <span>{{ text }}</span>
@@ -322,11 +335,14 @@
         <label>{{ getTimeZone(record.timezone) }}</label>
       </template>
       <template v-if="column.key === 'displayname'">
-        <span v-if="$route.path.split('/')[1] === 'vm'" style="margin-right: 5px">
+        <span v-if="isVmIdentityRoute($route)" style="margin-right: 5px">
           <resource-icon v-if="record.icon && record.icon.base64image" :image="record.icon.base64image" size="2x"/>
           <os-logo v-else :osId="record.ostypeid" :osName="record.ostypename || record.osdisplayname" size="xl" />
         </span>
-        <router-link :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
+        <a-tooltip v-if="isVmIdentityRoute($route)" :title="vmDisplayName(record)">
+          <router-link class="vm-display-name" :to="$route.meta?.name === 'vnfapp' ? vnfDetailLocation($route, record) : { path: $route.path + '/' + record.id }">{{ vmDisplayName(record) }}</router-link>
+        </a-tooltip>
+        <router-link v-else :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'username'">
         <span
@@ -530,7 +546,8 @@
       </template>
       <template v-if="column.key === 'state'">
         <span class="list-state-with-flatten">
-          <status v-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
+          <template-availability v-if="['template', 'iso'].includes($route.meta?.name)" :kind="$route.meta.name" :record="record" compact single-line />
+          <status v-else-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
           <status v-else :text="text ? text : ''" :displayLabel="column.stateLabel ? column.stateLabel(record) : ''" displayText />
           <clone-flatten-control :record="record" @refresh="$emit('refresh')" />
         </span>
@@ -1201,6 +1218,7 @@
       <template v-if="column.key === 'threshold' && $route.path.split('/')[1] === 'alertRules'">
         <span>{{ formatThresholdLabelSafe(record) }}</span>
       </template>
+      </template>
     </template>
     <template #footer>
       <span v-if="hasSelected">
@@ -1224,6 +1242,8 @@
 
 <script>
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { templateDetailLocation } from '@/utils/templateSearch'
+import IsoListCell from '@/components/view/IsoListCell'
 import { networkDetailLocation } from '@/utils/guestNetworkSearch'
 import { policyInterval, policySchedule, policyScheduling } from '@/utils/snapshotPolicyPresentation'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
@@ -1237,6 +1257,7 @@ import { getAPI, postAPI } from '@/api'
 import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
+import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
 import { getFastClonePhase, getFastClonePhaseLabel, getFastClonePhaseColor } from '@/utils/fastClone'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
@@ -1261,9 +1282,13 @@ import { FileTextOutlined } from '@ant-design/icons-vue'
 import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue'
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vnfDetailLocation } from '@/utils/vnfSearch'
+
 export default {
   name: 'ListView',
   components: {
+    TemplateAvailability,
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
@@ -1275,6 +1300,7 @@ export default {
     AutoScaleListCell,
     InstanceGroupSummary,
     OsLogo,
+    IsoListCell,
     Status,
     CloneFlattenControl,
     ResourceContextMenu,
@@ -1420,6 +1446,18 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isIsoMainList () { return this.$route.meta?.name === 'iso' && !this.resourcePath },
+    isoTableScroll () {
+      if (!this.isIsoMainList) return null
+      const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(c => c.key !== 'order')
+      return { x: Math.max(720, columns.filter(c => c.key !== 'name').reduce((sum, c) => sum + (Number(c.width) || 120), 0) + (columns.some(c => c.key === 'name') ? 420 : 0)) }
+    },
+    templateTableScroll () {
+      if (this.$route.meta?.name !== 'template' || this.resourcePath) return null
+      const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.key !== 'order')
+      const auxiliaryWidth = columns.filter(column => column.key !== 'name').reduce((sum, column) => sum + (Number(column.width) || 64), 0)
+      return { x: Math.max(720, auxiliaryWidth + 400) }
+    },
     isSshKeyPairList () { return this.resourcePath ? this.resourcePath === '/ssh' : /^\/ssh(?:\/|$)/.test(this.$route.path) },
     selectedItems () {
       return this.selectionList
@@ -1476,6 +1514,7 @@ export default {
     contextMenuTitle () {
       if (this.selectedRowKeys.length > 1) {
         const first = this.getFirstSelectedItem()
+        if (isVmIdentityRoute(this.$route)) return vmDisplayName(first)
         const firstName = first?.displayname || first?.name || first?.displaytext || first?.displaytext || first?.hostname || first?.vmname || first?.annotation || first?.hypervisor || first?.type || first?.username || first?.ipaddress || first?.uuid || first?.id || ''
         return firstName
       }
@@ -1483,6 +1522,10 @@ export default {
     }
   },
   methods: {
+    vnfDetailLocation,
+    vmDisplayName,
+    isVmIdentityRoute,
+    templateDetailLocation,
     networkTypeLabel,
     policyVolumePath,
     policyInterval,
@@ -2053,6 +2096,8 @@ export default {
 </script>
 
 <style>
+.vm-display-name { display: inline-block; max-width: min(320px, 60vw); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+
 :deep(.ant-table-thead) {
   background-color: #f9f9f9;
 }
@@ -2186,4 +2231,10 @@ export default {
 .snapshot-list-table :deep(th) { white-space: nowrap; }
 .snapshot-list-table :deep(.ant-table-container) { overflow-x: auto; }
 .snapshot-list-table :deep(tr:focus-visible) { outline: 2px solid var(--ui-link, #1890ff); outline-offset: -2px; }
+</style>
+
+<style scoped>
+.template-primary-name { display: inline-flex; align-items: center; width: calc(100% - 32px); min-width: 0; vertical-align: middle; }
+.template-primary-name :deep(.template-name-link) { display: block; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.template-primary-name > a:not(.template-name-link) { flex: none; }
 </style>

@@ -1,0 +1,56 @@
+{
+  "before": {
+    "31": {
+      "dark": true,
+      "height": 816,
+      "modals": 0,
+      "width": 859
+    },
+    "32": {
+      "dark": true,
+      "height": 720,
+      "modals": 0,
+      "width": 1280
+    }
+  },
+  "prefix": {
+    "31": {
+      "dataRows": 0,
+      "pagination": "전체 0 개 항목 중 0-0 표시",
+      "search": "qa-vpc1659"
+    },
+    "32": {
+      "dataRows": 0,
+      "pagination": "전체 0 개 항목 중 0-0 표시",
+      "search": "qa-vpc1659"
+    }
+  },
+  "after": {
+    "31": {
+      "dark": true,
+      "dataRows": 2,
+      "height": 816,
+      "modals": 0,
+      "scripts": [
+        "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+      ],
+      "search": "",
+      "url": "http://10.10.31.10:8080/client/#/vpc?page=1&pagesize=20",
+      "width": 859
+    },
+    "32": {
+      "dark": true,
+      "dataRows": 1,
+      "height": 720,
+      "modals": 0,
+      "scripts": [
+        "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+      ],
+      "search": "",
+      "url": "http://10.10.32.10:8080/client/#/vpc?page=1&pagesize=20",
+      "width": 1280
+    }
+  },
+  "cacheOverrideRemoved": true,
+  "viewportOverrideRemoved": true
+}

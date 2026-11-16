@@ -1,0 +1,67 @@
+{
+  "records": [
+    {
+      "api": "deleteStaticRoute",
+      "params": {
+        "id": "10efd2a8-9683-4399-998e-2bd5d59c583c"
+      },
+      "method": "POST",
+      "http": 200,
+      "response": {
+        "deletestaticrouteresponse": {
+          "jobid": "c8c1a09f-80a3-4362-90ed-fbc3bab3f06d"
+        }
+      },
+      "terminalJob": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteStaticRouteCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "success": true
+        },
+        "created": "2026-11-14T23:55:12+0900",
+        "completed": "2026-11-14T23:55:12+0900",
+        "jobid": "c8c1a09f-80a3-4362-90ed-fbc3bab3f06d",
+        "jobstatus": 1
+      }
+    },
+    {
+      "api": "deleteStaticRoute",
+      "params": {
+        "id": "e8367192-e89d-4f5c-9602-e1f01ab6b146"
+      },
+      "method": "POST",
+      "http": 200,
+      "response": {
+        "deletestaticrouteresponse": {
+          "jobid": "b396f8ad-3b6a-461d-8057-5bac63961bed"
+        }
+      },
+      "terminalJob": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteStaticRouteCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "success": true
+        },
+        "created": "2026-11-14T23:55:16+0900",
+        "completed": "2026-11-14T23:55:16+0900",
+        "jobid": "b396f8ad-3b6a-461d-8057-5bac63961bed",
+        "jobstatus": 1
+      }
+    }
+  ],
+  "remainingOwnedRoutes": []
+}

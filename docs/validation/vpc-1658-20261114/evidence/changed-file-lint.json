@@ -1,0 +1,23 @@
+{
+  "source": "af129880b21c066ea19d105231288e049a6ca24c",
+  "files": [
+    "src/components/network/VpcActionContext.vue",
+    "src/components/network/VpcDialog.vue",
+    "src/components/view/ResourceView.vue",
+    "src/components/widgets/Breadcrumb.vue",
+    "src/config/section/offering.js",
+    "src/views/AutogenView.vue",
+    "src/views/network/CreateVpc.vue",
+    "src/views/network/MigrateVpc.vue",
+    "src/views/network/PrivateGatewayCreate.vue",
+    "src/views/network/RestartVpc.vue",
+    "src/views/network/StaticRoutesTab.vue",
+    "src/views/network/VpcTab.vue",
+    "src/views/network/VpcTierCreateDialog.vue",
+    "src/views/network/VpcVpnCreate.vue",
+    "tests/unit/components/view/VpcDialog.spec.js",
+    "tests/unit/views/AutogenActionFocus.spec.js",
+    "tests/unit/views/network/VpcUiIntegration.spec.js"
+  ],
+  "exit": 0
+}

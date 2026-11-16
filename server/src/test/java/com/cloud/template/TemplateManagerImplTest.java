@@ -55,6 +55,8 @@ import com.cloud.storage.VolumeVO;
 import com.cloud.storage.dao.GuestOSDao;
 import com.cloud.storage.dao.LaunchPermissionDao;
 import com.cloud.storage.dao.SnapshotDao;
+import com.cloud.storage.dao.SnapshotDetailsDao;
+import com.cloud.storage.dao.VolumeDetailsDao;
 import com.cloud.storage.dao.StoragePoolHostDao;
 import com.cloud.storage.dao.VMTemplateDao;
 import com.cloud.storage.dao.VMTemplateDetailsDao;
@@ -440,6 +442,7 @@ public class TemplateManagerImplTest {
         when(mockPrimaryDataStore.getId()).thenReturn(2l);
         when(mockPool.getId()).thenReturn(2l);
         when(mockPool.getStatus()).thenReturn(StoragePoolStatus.Up);
+        when(mockPool.getPoolType()).thenReturn(com.cloud.storage.Storage.StoragePoolType.NetworkFilesystem);
         when(mockPool.getDataCenterId()).thenReturn(1l);
         when(mockTemplate.getId()).thenReturn(202l);
         when(mockTemplateStore.getDownloadState()).thenReturn(VMTemplateStorageResourceAssoc.Status.DOWNLOADED);
@@ -459,7 +462,7 @@ public class TemplateManagerImplTest {
         assertTrue("Test template is scheduled for seeding to on pool", ((CustomThreadPoolExecutor)preloadExecutor).getCount() == 1);
     }
 
-    @Test
+    @Test(expected = com.cloud.exception.InvalidParameterValueException.class)
     public void testTemplateScheduledForDownloadInDisabledPool() {
         VMTemplateVO mockTemplate = mock(VMTemplateVO.class);
         StoragePoolVO mockPool = mock(StoragePoolVO.class);
@@ -1273,6 +1276,16 @@ public class TemplateManagerImplTest {
         @Bean
         public SnapshotDao snapshotDao() {
             return Mockito.mock(SnapshotDao.class);
+        }
+
+        @Bean
+        public SnapshotDetailsDao snapshotDetailsDao() {
+            return Mockito.mock(SnapshotDetailsDao.class);
+        }
+
+        @Bean
+        public VolumeDetailsDao volumeDetailsDao() {
+            return Mockito.mock(VolumeDetailsDao.class);
         }
 
         @Bean

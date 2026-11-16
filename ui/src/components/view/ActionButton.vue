@@ -99,9 +99,14 @@
 </template>
 
 <script>
+import { isVmDeletion, vmDeletionReason } from '@/utils/vmDeletion'
 import { postAPI } from '@/api'
 import ResourceActionMenu from '@/components/view/ResourceActionMenu'
 import { isDangerAction, resolveActionMenuGroup } from '@/utils/actionMenu'
+
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vmWallUrl } from '@/utils/vnfVmActions'
+import { vnfNoticeScope } from '@/utils/vnfAccess'
 
 export default {
   name: 'ActionButton',
@@ -113,12 +118,15 @@ export default {
       cubePortalPort: '9090',
       cubePortalPortLoaded: false,
       wallLinkUrl: '',
-      wallLinkReady: false
+      wallLinkReady: false,
+      wallLinkReason: 'message.vnf.action.monitor.loading',
+      wallRequestVersion: 0
     }
   },
   created () {
     this.onResourceChange(this.resource)
   },
+  beforeUnmount () { this.wallRequestVersion++ },
   props: {
     actions: {
       type: Array,
@@ -179,14 +187,24 @@ export default {
     routeName () {
       this.updateWallLinkUrl()
       this.updateCubePortalPort()
-    }
+    },
+    wallScope () { this.updateWallLinkUrl() }
   },
   computed: {
     routeName () {
       return this.$route?.meta?.name || this.$route?.name || ''
     },
+    wallScope () { return JSON.stringify([this.routeName, this.resource?.id, this.resource?.ipaddress, vnfNoticeScope(this.$store)]) },
     dataViewMenuEntries () {
       const entries = []
+      if (this.routeName === 'vnfapp' && this.resource?.templatetype === 'VNF') {
+        const scope = this.wallScope; const id = this.resource.id
+        entries.push(this.createBuiltInMenuEntry('vm-management', 'label.vnf.action.vm.management', 'DesktopOutlined', {
+          disabled: !this.resourceActionReady() || !this.$store.getters.apis?.listVirtualMachines,
+          tooltip: this.$t(this.resourceActionReady() ? 'message.vnf.action.permission' : 'message.vnf.action.lookup.failed'),
+          handler: () => { if (scope === this.wallScope && this.resourceActionReady() && this.$store.getters.apis?.listVirtualMachines) this.$router.push('/vm/' + encodeURIComponent(id)) }
+        }))
+      }
       if (this.showConsoleButtons) {
         entries.push(this.createBuiltInMenuEntry('console', 'label.view.console', 'CodeOutlined', {
           disabled: this.consoleButtonDisabled,
@@ -200,7 +218,14 @@ export default {
       if (this.showWorksButton) {
         entries.push(this.createExternalLinkEntry('works', 'label.works.portal.url', 'LaptopOutlined', this.worksUrl))
       }
-      if (this.wallLinkReady) {
+      if (this.routeName === 'vnfapp' && this.shouldShowWallLink) {
+        const scope = this.wallScope; const url = this.wallLinkUrl
+        entries.push(this.createBuiltInMenuEntry('wall', 'label.wall.portal.vm.url', 'AreaChartOutlined', {
+          disabled: !this.wallLinkReady || !this.resourceActionReady(),
+          tooltip: this.$t(this.resourceActionReady() ? this.wallLinkReason : 'message.vnf.action.lookup.failed'),
+          handler: () => { if (scope === this.wallScope && url === this.wallLinkUrl && this.wallLinkReady && this.resourceActionReady()) window.open(url, '_blank', 'noopener,noreferrer') }
+        }))
+      } else if (this.wallLinkReady) {
         entries.push(this.createExternalLinkEntry('wall', `label.wall.portal.${this.routeName}.url`, 'AreaChartOutlined', this.wallLinkUrl))
       }
       if (this.showGenieButton) {
@@ -241,6 +266,7 @@ export default {
       if (!this.resource) {
         return ''
       }
+      if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       return this.resource.displayname || this.resource.name || this.resource.hostname || this.resource.vmname || this.resource.annotation || this.resource.hypervisor || this.resource.type || this.resource.username || this.resource.ipaddress || this.resource.uuid || this.resource.id || ''
     },
     displayTitle () {
@@ -278,7 +304,7 @@ export default {
       if (this.selectedRowKeys && this.selectedRowKeys.length > 1) {
         return false
       }
-      return this.resource && this.resource.id && ['vm', 'host', 'cluster'].includes(this.routeName)
+      return this.resource && this.resource.id && ['vm', 'vnfapp', 'host', 'cluster'].includes(this.routeName)
     },
     showGenieButton () {
       return this.resource && this.resource.id &&
@@ -382,9 +408,22 @@ export default {
     },
     isActionDisabled (action) {
       if ((this.dataView || action.groupAction) && this.resourceActionReady?.() === false) return true
+      if (this.vmDeleteTooltip(action)) return true
       return 'disabled' in action ? action.disabled(this.resource, this.$store.getters, this.selectedItems) : false
     },
+    vmDeleteTooltip (action) {
+      if (!isVmDeletion(action)) return ''
+      // The list context menu also uses dataView rendering for a bulk selection.
+      const rows = action.groupAction && this.selectedItems?.length > 1 ? this.selectedItems : this.dataView ? [this.resource] : (this.selectedItems || [])
+      return rows.map(row => {
+        const reason = vmDeletionReason(row, action, this.$store.getters)
+        return reason ? `${vmDisplayName(row)} (${row.id}): ${this.$t(reason)}` : ''
+      }).filter(Boolean).join(' · ')
+    },
     getActionTooltip (action) {
+      if (isVmDeletion(action) && this.resourceActionReady?.() === false) return this.$t('message.vm.delete.read.failed')
+      const reason = this.vmDeleteTooltip(action)
+      if (reason) return reason
       if (!('tooltip' in action)) {
         return ''
       }
@@ -426,13 +465,21 @@ export default {
       }
     },
     updateWallLinkUrl () {
+      const version = ++this.wallRequestVersion; const scope = this.wallScope
+      this.wallLinkReady = false; this.wallLinkUrl = ''; this.wallLinkReason = 'message.vnf.action.monitor.loading'
       if (!this.shouldShowWallLink) {
-        this.wallLinkReady = false
-        this.wallLinkUrl = ''
         return
       }
+      if (this.routeName === 'vnfapp' && !this.$store.getters.apis?.listConfigurations) { this.wallLinkReason = 'message.vnf.action.permission'; return }
       postAPI('listConfigurations', { keyword: 'monitoring.wall.portal' }).then(json => {
+        if (version !== this.wallRequestVersion || scope !== this.wallScope) return
         const items = json?.listconfigurationsresponse?.configuration || []
+        if (this.routeName === 'vnfapp') {
+          this.wallLinkUrl = vmWallUrl(items, this.$store.getters.features.host, this.resource.id)
+          this.wallLinkReady = !!this.wallLinkUrl
+          this.wallLinkReason = this.wallLinkReady ? '' : 'message.vnf.action.monitor.unconfigured'
+          return
+        }
         const getValue = (name) => {
           const config = items.find(item => item.name === name)
           return config ? config.value : ''
@@ -463,7 +510,8 @@ export default {
         this.wallLinkUrl = finalUrl
         this.wallLinkReady = !!finalUrl
       }).catch(() => {
-        this.wallLinkReady = false
+        if (version !== this.wallRequestVersion || scope !== this.wallScope) return
+        this.wallLinkReady = false; this.wallLinkUrl = ''; this.wallLinkReason = 'message.vnf.action.lookup.failed'
       })
     },
     updateCubePortalPort () {

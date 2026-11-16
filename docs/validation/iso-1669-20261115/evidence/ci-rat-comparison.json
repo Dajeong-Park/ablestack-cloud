@@ -1,0 +1,12 @@
+{
+  "productHead": "d27ade742cc7f4b3e192785c887f4af858f0b413",
+  "runId": 43678648051,
+  "ciUnknown": 4077,
+  "baselineUnknown": 4077,
+  "currentUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "method": "exact Git index export excludes ignored dependencies and build outputs",
+  "workspace": "/root/work/.rat-iso1669-whop05ao",
+  "debtIssue": 926
+}

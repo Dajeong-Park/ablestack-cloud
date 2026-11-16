@@ -1,0 +1,73 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.11s
+
+docs/validation/iso-1670-20261115/evidence/backend-class-method-comparison.json
+docs/validation/iso-1670-20261115/evidence/report-focused-precommit.log
+docs/validation/iso-1670-20261115/evidence/first-ui-deployment.json
+docs/validation/iso-1670-20261115/evidence/second-deploy-files.json
+docs/validation/iso-1670-20261115/evidence/ui-deployment.json
+docs/validation/iso-1670-20261115/evidence/unnamed-columns-precommit.log
+docs/validation/iso-1670-20261115/evidence/ui-cases.json
+docs/validation/iso-1670-20261115/evidence/deploy-files.json
+docs/validation/iso-1670-20261115/README.ko.md
+docs/validation/iso-1670-20261115/evidence/final-runtime-source-preservation.json
+docs/validation/iso-1670-20261115/evidence/backend-focused-precommit.log
+docs/validation/iso-1670-20261115/evidence/report-focused-manual.log
+docs/validation/iso-1670-20261115/evidence/ci-precommit-classification.json
+docs/validation/iso-1670-20261115/evidence/ui-build-result.json
+docs/validation/iso-1670-20261115/evidence/canonical-unit.log
+docs/validation/iso-1670-20261115/screenshots/final-clean-list.jpg
+docs/validation/iso-1670-20261115/evidence/final-preservation.json
+docs/validation/iso-1670-20261115/screenshots/after-desktop-light.jpg
+docs/validation/iso-1670-20261115/evidence/final-all-ui-lint.log
+docs/validation/iso-1670-20261115/evidence/final-product-manual.log
+docs/validation/iso-1670-20261115/evidence/columns-before-fix-unit.log
+docs/validation/iso-1670-20261115/evidence/second-ui-deployment.json
+docs/validation/iso-1670-20261115/evidence/checks.json
+docs/validation/iso-1670-20261115/evidence/ui-case-disposition.json
+docs/validation/iso-1670-20261115/evidence/source-boundary.json
+docs/validation/iso-1670-20261115/evidence/backend-deployment.json
+docs/validation/iso-1670-20261115/evidence/runtime-unit.log
+docs/validation/iso-1670-20261115/screenshots/after-narrow-light.jpg
+docs/validation/iso-1670-20261115/screenshots/after-narrow-dark.jpg
+docs/validation/iso-1670-20261115/evidence/backend-test.log
+docs/validation/iso-1670-20261115/evidence/prior-head-ci-lint-classification.json
+docs/validation/iso-1670-20261115/evidence/first-deploy-files.json
+docs/validation/iso-1670-20261115/evidence/unnamed-columns-lint.log
+docs/validation/iso-1670-20261115/evidence/resource-ledger.json
+docs/validation/iso-1670-20261115/evidence/report-rat-comparison.json
+docs/validation/iso-1670-20261115/evidence/final-product-precommit.log
+docs/validation/iso-1670-20261115/evidence/unnamed-columns-before-fix.log
+docs/validation/iso-1670-20261115/screenshots/before-desktop-long-name.jpg
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files........................(no files to check)Skipped
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

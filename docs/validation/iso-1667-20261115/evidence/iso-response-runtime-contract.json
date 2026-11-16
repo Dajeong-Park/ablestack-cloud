@@ -1,0 +1,10 @@
+{
+  "class": "com.cloud.api.query.dao.TemplateJoinDaoImpl",
+  "method": "newIsoResponse",
+  "userDataSetters": [
+    "setUserDataId",
+    "setUserDataName",
+    "setUserDataParams",
+    "setUserDataPolicy"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "unrelatedOperatingSourceFilesEqual": 1019,
+  "allLocaleFilesUnchanged": true,
+  "configFilesEqual": [
+    "package.json",
+    "package-lock.json",
+    "babel.config.js",
+    "vue.config.js",
+    "jest.config.js"
+  ],
+  "addedFiles": [
+    "src/utils/vmRead.js",
+    "tests/unit/views/AutogenVmRead.spec.js"
+  ]
+}

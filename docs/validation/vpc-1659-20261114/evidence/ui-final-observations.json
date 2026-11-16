@@ -1,0 +1,52 @@
+{
+  "31": {
+    "rows": [
+      {
+        "links": [],
+        "text": " \n\t\n \n\t\n \n\t\n "
+      },
+      {
+        "links": [
+          {
+            "href": "#/privategw/2760d80d-5ab6-489d-ad48-585f38a050f5",
+            "tabIndex": 0,
+            "text": "10.249.31.2"
+          }
+        ],
+        "text": "172.29.31.0/24\t10.249.31.2\t\t"
+      },
+      {
+        "links": [],
+        "text": "172.28.31.0/24\t-\t10.227.31.2\t"
+      }
+    ],
+    "scripts": [
+      "http://10.10.31.10:8080/client/js/app.6f2f3c3d.js"
+    ]
+  },
+  "32": {
+    "rows": [
+      {
+        "links": [],
+        "text": " \n\t\n \n\t\n \n\t\n "
+      },
+      {
+        "links": [
+          {
+            "href": "#/privategw/02ef0e93-a1b0-482c-ae8c-5654142a0c81",
+            "tabIndex": 0,
+            "text": "10.249.32.2"
+          }
+        ],
+        "text": "172.29.32.0/24\t10.249.32.2\t\t"
+      },
+      {
+        "links": [],
+        "text": "172.28.32.0/24\t-\t10.227.32.2\t"
+      }
+    ],
+    "scripts": [
+      "http://10.10.32.10:8080/client/js/app.6f2f3c3d.js"
+    ]
+  }
+}

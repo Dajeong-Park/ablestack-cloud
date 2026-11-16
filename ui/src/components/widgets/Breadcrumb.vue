@@ -23,7 +23,7 @@
         :to="breadcrumbLocation(item)"
       >
         <render-icon v-if="index == 0" :icon="item.meta.icon" style="font-size: 16px" @click="resetToMainView" />
-        <span v-if="item.meta.title">{{ $t(item.meta.title) }}</span>
+        <span v-if="item.meta.title">{{ item.vpcParent ? $t('label.vpc') + ' · ' + (resource.vpcname || resource.vpcid) : $t(item.meta.title) }}</span>
       </router-link>
       <router-link
         v-else-if="tungstenPaths.includes(item.path)"
@@ -40,7 +40,7 @@
           </span>
         </label>
         <label v-else>
-          {{ resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
+          {{ isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
         </label>
       </span>
       <span v-else>
@@ -67,8 +67,13 @@
 </template>
 
 <script>
+import { templateListLocation } from '@/utils/templateSearch'
+import { isoListLocation } from '@/utils/isoSearch'
 import { networkListLocation } from '@/utils/guestNetworkSearch'
 import { documentationUrl } from '@/utils/cniFileImport'
+
+import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vnfListLocation } from '@/utils/vnfSearch'
 
 export default {
   name: 'Breadcrumb',
@@ -92,13 +97,16 @@ export default {
     this.getBreadcrumb()
   },
   watch: {
+    'resource.vpcid' () { this.getBreadcrumb() },
     '$route.fullPath' () {
       this.getBreadcrumb()
     }
   },
   methods: {
+    vmDisplayName,
+    isVmIdentityRoute,
     documentationUrl,
-    breadcrumbLocation (item) { return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
+    breadcrumbLocation (item) { if (item.path === '/vnfapp' && this.$route.meta?.name === 'vnfapp' && this.$route.params?.id) return vnfListLocation(this.$route, this.$store.getters); if (item.path === '/iso' && this.$route.meta?.name === 'iso' && this.$route.params?.id) return isoListLocation(this.$route, this.$store.getters); if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }; if (item.path === '/template' && this.$route.meta?.name === 'template' && this.$route.params?.id) return templateListLocation(this.$route, this.$store.getters); return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
     getBreadcrumb () {
       this.name = this.$route.name
       this.breadList = []
@@ -109,6 +117,10 @@ export default {
         }
         this.breadList.push(item)
       })
+      if (this.$route.meta?.name === 'privategw' && this.resource.vpcid) {
+        this.breadList = this.breadList.filter(item => item.path !== '/privategw')
+        this.breadList.splice(this.breadList.length - 1, 0, { name: 'vpc-parent', path: '/vpc/' + this.resource.vpcid, vpcParent: true, meta: { title: 'label.vpc' } })
+      }
     },
     resetToMainView () {
       this.$store.dispatch('SetProject', {})

@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "path": "qa-iso1673-20261115/data-fixture.iso",
+      "sha256BeforeRemoval": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+      "removed": true,
+      "httpStatusAfterRemoval": 404
+    },
+    {
+      "path": "qa-iso1673-20261115/CorePure64-16.2.iso",
+      "sha256BeforeRemoval": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+      "removed": true,
+      "httpStatusAfterRemoval": 404
+    }
+  ],
+  "otherFilesTouched": false
+}

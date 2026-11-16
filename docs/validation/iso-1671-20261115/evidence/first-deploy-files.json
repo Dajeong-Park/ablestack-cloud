@@ -1,0 +1,144 @@
+{
+  "head": "24adad09caa9de4e4777c411a1a8b1e03db83107",
+  "sourceBoundary": {
+    "previousCode": "f6756856cf9092e132a177a5a07affbad8d0bbef",
+    "runtimeInput": "/root/work/.build-iso1670-20261115/ui",
+    "buildInput": "/root/work/.build-iso1671-20261115/ui",
+    "files": [
+      "src/components/view/DetailsTab.vue",
+      "src/components/view/ResourceView.vue",
+      "src/views/AutogenView.vue",
+      "src/views/image/IsoZones.vue",
+      "src/views/image/IsoZoneOperations.vue",
+      "src/components/widgets/IsoDetailValue.vue",
+      "src/utils/isoZoneOperations.js",
+      "tests/unit/views/image/IsoZoneOperations.spec.js",
+      "tests/unit/views/image/IsoZonesReadScope.spec.js",
+      "tests/unit/views/AutogenIsoSearch.spec.js",
+      "public/locales/en.json",
+      "public/locales/ko_KR.json"
+    ],
+    "hashes": {
+      "src/components/view/DetailsTab.vue": "9d51d7c98f9c414726e642969eafe4b20b9babc1378445189e7b3d48c6c4a745",
+      "src/components/view/ResourceView.vue": "1c7f1524b52499f1cdfb652c07fea8529c6ae4adc8f845595dbbe0417d334d8c",
+      "src/views/AutogenView.vue": "48e04051626dca8cb40650d0c95308a92cc6f06463a5484f4f2737c9930b1669",
+      "src/views/image/IsoZones.vue": "2f74f3631e088fbba2541d5f6743e37e5214706c163386e1ab84dcf3c5b887a9",
+      "src/views/image/IsoZoneOperations.vue": "c71074cba1b067ee7a03e9191d67fc3f8c06f0e14b983f258622a76f4d9d87a5",
+      "src/components/widgets/IsoDetailValue.vue": "ee940ae1aa9e7a0231184ab55fe8350909f7c4d2bab9ac977a8e402578c9dda1",
+      "src/utils/isoZoneOperations.js": "bdfe45d1e2d1c4990c95fbe18164da8209360d09d7328453a32c86ebdc4c24e7",
+      "tests/unit/views/image/IsoZoneOperations.spec.js": "9b3680b7a2678a9b820a93dc2a6098d0294fc5c7289837892d9fbec3a1dcab4a",
+      "tests/unit/views/image/IsoZonesReadScope.spec.js": "8c7652c6824a7f62d6f1e9ad6f414c1df2633f95097fcf1cfb67b0ed7c21659c",
+      "tests/unit/views/AutogenIsoSearch.spec.js": "9371e605aba86aaba3b8e775eb737ff4b8b2994566cfaf236e901311c23ad763",
+      "public/locales/en.json": "cd48f95cff3a0f724e18207ce60fda2ea02e668810851d0b4d838abaf49e146b",
+      "public/locales/ko_KR.json": "17d347277c38ce78f09996ccdcf4b77ff95e2a49761cc27c45c7269a10820839"
+    },
+    "localeKeys": {
+      "en": [
+        "label.iso.zone.state.unknown",
+        "message.iso.zone.copy.duplicate",
+        "label.iso.zone.state.failed",
+        "label.iso.zone.state.waitingReady",
+        "label.iso.zone.abandoned",
+        "label.iso.zone.search",
+        "message.iso.zone.delete",
+        "label.iso.zone.state.requesting",
+        "message.iso.zone.copy.empty",
+        "label.iso.zone.source",
+        "label.iso.zone.state.running",
+        "label.iso.zone.state.pending",
+        "label.iso.zone.job.completed",
+        "label.iso.zone.state.success"
+      ],
+      "ko_KR": [
+        "label.iso.zone.state.unknown",
+        "message.iso.zone.copy.duplicate",
+        "label.iso.zone.state.failed",
+        "label.iso.zone.state.waitingReady",
+        "label.iso.zone.abandoned",
+        "label.iso.zone.search",
+        "message.iso.zone.delete",
+        "label.iso.zone.state.requesting",
+        "message.iso.zone.copy.empty",
+        "label.iso.zone.source",
+        "label.iso.zone.state.running",
+        "label.iso.zone.state.pending",
+        "label.iso.zone.job.completed",
+        "label.iso.zone.state.success"
+      ]
+    },
+    "productHead": "24adad09caa9de4e4777c411a1a8b1e03db83107",
+    "unrelatedOperatingSourceFilesEqual": 1014,
+    "method": "three-way ISO-only deltas against the exact previous operating input; other VPC/runtime differences preserved"
+  },
+  "baselineIndex": {
+    "sha256": "53f7863ba284da0ce8890514ad274374e376049fb455de23b0eb2b8de39f5299",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "e25e4d695636319bb18890b7cc3956281b91bf1066446029a2265a858b8f985c",
+      "size": 39475,
+      "previous": {
+        "sha256": "53f7863ba284da0ce8890514ad274374e376049fb455de23b0eb2b8de39f5299",
+        "size": 39475
+      }
+    },
+    "locales/ko_KR.json": {
+      "sha256": "17d347277c38ce78f09996ccdcf4b77ff95e2a49761cc27c45c7269a10820839",
+      "size": 1019844,
+      "previous": {
+        "sha256": "c8da942ddee1c8745b79bc5eb0c8a75d43ab76df5d2673f05ff7994b07d709ce",
+        "size": 1018843
+      }
+    },
+    "locales/en.json": {
+      "sha256": "cd48f95cff3a0f724e18207ce60fda2ea02e668810851d0b4d838abaf49e146b",
+      "size": 911315,
+      "previous": {
+        "sha256": "90e0a5c73fd92844ca22b9829342c75f3caab91db71f7fb83b405759c3d6229e",
+        "size": 910394
+      }
+    },
+    "css/app.db1f0130.css": {
+      "sha256": "794c0fddde98e925bff24cc9b1f5e3def48661c6d52df0ae89692354cbd0ceea",
+      "size": 348073,
+      "previous": null
+    },
+    "css/chunk-c0e1424a.11896e36.css": {
+      "sha256": "7f33f2d0d5313a741c10d20286e0b5a223a94d47bec64d2f92e80dad990d0ea1",
+      "size": 1528,
+      "previous": null
+    },
+    "js/app.846f0a82.js": {
+      "sha256": "f77b6fe8e4ef996064ab310a7b51706b466ee695a2ab56c9293fa8a6b84e7aa3",
+      "size": 1918836,
+      "previous": null
+    },
+    "js/chunk-33ef7c82.971c8430.js": {
+      "sha256": "4c0fea21a275263f4c56b74777ce0f83dc348f308d1cd57e1e19d05be9f7d4fe",
+      "size": 54800,
+      "previous": null
+    },
+    "js/chunk-4e497d26.f82e78bf.js": {
+      "sha256": "21b861046e5c59950e9fc8f36b2fc86a8f6b240013c4c014f89ad27c0eb213c3",
+      "size": 34284,
+      "previous": null
+    },
+    "js/chunk-4bf7478e.2e5cd2b3.js": {
+      "sha256": "c64bc2b34b1030ded92347267e1d62a4026f362bbbe1bcfe9abd1e0811aed5b2",
+      "size": 37991,
+      "previous": null
+    },
+    "js/chunk-c0e1424a.a6ebd34c.js": {
+      "sha256": "db784b86237d711ab06af3ea2b747b523a5d392ad9a05baf8427bba37938cd97",
+      "size": 39834,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2620448",
+  "backendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443"
+}

@@ -1,0 +1,10 @@
+JUnit version 4.13.2
+...OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+.
+Time: 3.639
+
+OK (4 tests)

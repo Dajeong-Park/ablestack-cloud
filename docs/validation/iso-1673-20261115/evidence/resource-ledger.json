@@ -1,0 +1,218 @@
+{
+  "accounts": [
+    {
+      "name": "qa-iso1673-a",
+      "id": "6e0e99b0-b328-4ca0-abe2-898dffd450e9",
+      "role": "User",
+      "persona": "owner/project owner/read-only later",
+      "domain": "ROOT",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-b",
+      "id": "eb6554cb-57ee-4249-bd7e-4fb110deefc9",
+      "role": "User",
+      "persona": "shared receiver/project member",
+      "domain": "ROOT",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-c",
+      "id": "1e300920-35a8-414c-a188-16b2a735112a",
+      "role": "User",
+      "persona": "unshared/project nonmember",
+      "domain": "ROOT",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-roadmin",
+      "id": "3c138c28-5ff5-42db-b909-fe8d3f0fa70d",
+      "role": "Read-Only Admin - Default",
+      "persona": "read-only Admin",
+      "domain": "ROOT",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-da",
+      "id": "10e8eb4e-25bd-4cc4-b5ce-4b329d1b82fb",
+      "role": "Domain Admin",
+      "persona": "domain admin/subtree/outside",
+      "domain": "qa-iso1673-domain",
+      "domainid": "14e08ea0-c664-4545-af0a-5e601401cc39",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-downer",
+      "id": "e88914a7-3b70-4aeb-bf4c-a2561b630c41",
+      "role": "User",
+      "persona": "subdomain owner",
+      "domain": "qa-iso1673-sub",
+      "domainid": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-local",
+      "id": "4ed8b237-149b-4bc0-97dc-b656730c5413",
+      "role": "qa-iso1673-local-only",
+      "domain": "ROOT",
+      "persona": "local only partial APIs",
+      "deleted": true
+    }
+  ],
+  "domains": [
+    {
+      "id": "14e08ea0-c664-4545-af0a-5e601401cc39",
+      "name": "qa-iso1673-domain",
+      "parent": "47178e2f-bd56-11f1-b573-002481560363",
+      "path": "/qa-iso1673-domain",
+      "deleted": true
+    },
+    {
+      "id": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+      "name": "qa-iso1673-sub",
+      "parent": "14e08ea0-c664-4545-af0a-5e601401cc39",
+      "path": "/qa-iso1673-domain/qa-iso1673-sub",
+      "deleted": true
+    }
+  ],
+  "roles": [
+    {
+      "name": "qa-iso1673-local-only",
+      "id": "5e8ad74f-bdc2-4d66-8261-8abe3d128993",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-url-only",
+      "id": "b5b1d35c-f03e-4b9f-92a0-15ceb2569215",
+      "deleted": true
+    }
+  ],
+  "projects": [
+    {
+      "name": "qa-iso1673-project",
+      "id": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+      "owner": "qa-iso1673-a",
+      "deleted": true
+    }
+  ],
+  "isos": [
+    {
+      "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+      "name": "qa-iso1673-owner-boot",
+      "account": "qa-iso1673-a",
+      "domain": "ROOT",
+      "source": "URL",
+      "bootable": true,
+      "bytes": 24434688,
+      "sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+      "deleted": true
+    },
+    {
+      "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+      "name": "qa-iso1673-project-data",
+      "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+      "account": "PrjAcct-qa-iso1673-project-1",
+      "source": "URL",
+      "bootable": false,
+      "bytes": 1525760,
+      "sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-b-local-data",
+      "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+      "owner": "qa-iso1673-b",
+      "source": "local",
+      "bytes": 1525760,
+      "sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-sub-data",
+      "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+      "owner": "qa-iso1673-downer",
+      "domainid": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+      "source": "url",
+      "bytes": 1525760,
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-local-only-boot",
+      "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+      "owner": "qa-iso1673-local",
+      "source": "local",
+      "bytes": 24434688,
+      "sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-url-data-abcdefghijklmnopqrstuvwxyz-0123456789",
+      "id": "01f71f24-36d5-4257-950e-7c6663c6ece8",
+      "owner": "qa-iso1673-local",
+      "source": "url",
+      "bytes": 1525760,
+      "sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+      "deleted": true
+    }
+  ],
+  "vms": [
+    {
+      "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+      "name": "qa-iso1673-ro-vm",
+      "account": "qa-iso1673-a",
+      "sourceIsoId": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+      "networkId": "4c49f8c9-eeff-49ee-af6d-d732920d713a",
+      "state": "Stopped",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-url-vm",
+      "id": "a4519547-b271-44a9-8a3c-0fc33a42b020",
+      "owner": "qa-iso1673-local",
+      "startvm": false,
+      "deleted": true
+    }
+  ],
+  "volumes": [
+    {
+      "id": "80ba73b8-18e9-4bbc-9aa6-9a9688880870",
+      "name": "ROOT-259",
+      "vmid": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+      "type": "ROOT",
+      "state": "Allocated",
+      "bytes": 1073741824,
+      "deleted": true
+    },
+    {
+      "name": "ROOT-260",
+      "id": "7f10adf0-707c-4f77-9092-ff0ae5953b47",
+      "vmid": "a4519547-b271-44a9-8a3c-0fc33a42b020",
+      "deleted": true
+    }
+  ],
+  "networks": [
+    {
+      "id": "4c49f8c9-eeff-49ee-af6d-d732920d713a",
+      "name": "qa-iso1673-net",
+      "account": "qa-iso1673-a",
+      "cidr": "172.31.173.0/24",
+      "deleted": true
+    },
+    {
+      "name": "qa-iso1673-url-net",
+      "id": "785c939f-ae29-44c4-a46b-2ee28e6c18fa",
+      "owner": "qa-iso1673-local",
+      "cidr": "172.31.174.0/24",
+      "deleted": true
+    }
+  ],
+  "routers": [],
+  "publicIps": [],
+  "projectRoles": [
+    {
+      "name": "qa-iso1673-project-readonly",
+      "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+      "deleted": true
+    }
+  ]
+}

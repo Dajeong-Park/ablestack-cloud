@@ -16,10 +16,20 @@
 // under the License.
 package com.cloud.storage.upload.params;
 
+import com.cloud.cpu.CPU;
 import com.cloud.hypervisor.Hypervisor;
 import com.cloud.storage.Storage;
 
 public class IsoUploadParams extends UploadParamsBase {
+
+    // Retain the original constructor for callers using the existing upload ABI.
+    public IsoUploadParams(long userId, String name, String displayText, Boolean isPublic, Boolean isFeatured,
+                           Boolean isExtractable, Long osTypeId, Long zoneId, Boolean bootable, long ownerId,
+                           boolean dynamicallyScalable, String checksum, CPU.CPUArch arch) {
+        this(userId, name, displayText, isPublic, isFeatured, isExtractable, osTypeId, zoneId, bootable, ownerId, dynamicallyScalable);
+        setChecksum(checksum);
+        setArch(arch);
+    }
 
     public IsoUploadParams(long userId, String name, String displayText, Boolean isPublic, Boolean isFeatured,
                            Boolean isExtractable, Long osTypeId, Long zoneId, Boolean bootable, long ownerId, boolean dynamicallyScalable) {

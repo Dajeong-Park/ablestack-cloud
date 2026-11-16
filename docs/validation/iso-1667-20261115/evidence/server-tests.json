@@ -1,0 +1,13 @@
+{
+  "testClass": "com.cloud.template.IsoUploadContractTest",
+  "sourceContractTests": 4,
+  "sourceFailures": 0,
+  "sourceErrors": 0,
+  "functionalReactorPassed": true,
+  "existingCheckstyleGateExplicitlySeparated": true,
+  "actualPatchedManagementClasspathTests": 4,
+  "actualRuntimeFailures": 0,
+  "mavenLogSha256": "218c5d93e2160801e9af6551b9bed7c0b6b1cb2ee2cc7d96ed2fdc1970522ceb",
+  "rawRuntimeLogSha256": "9e57a392d86c3b71d434c65c24ed251bc74a7878871b69706ce2ec42047806fe",
+  "publishedRuntimeLogSha256": "6b6e070d855e8cd33c1fcf189421afe5954667d21fc66d40f4b634c617884427"
+}

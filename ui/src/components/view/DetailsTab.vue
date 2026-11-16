@@ -40,11 +40,7 @@
       <p v-html="ip6routes" />
     </template>
   </a-alert>
-  <a-alert v-if="vnfAccessMethods" type="info" :showIcon="true" :message="$t('label.vnf.appliance.access.methods')">
-    <template #description>
-      <p v-html="vnfAccessMethods" />
-    </template>
-  </a-alert>
+  <VnfAccessNotice v-if="['vm', 'vnfapp'].includes($route.meta.name)" :resource="resource" />
   <PvlanSupportNotice v-if="guestPvlan" :zone-id="dataResource.zoneid" :physical-network-id="dataResource.physicalnetworkid || ''" />
   <a-alert
     v-if="l2Network"
@@ -54,10 +50,11 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 'vm-details-list': ['vm', 'vnfapp'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name === 'publicip' && item === 'virtualmachinename') || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -67,7 +64,20 @@
           <a-tooltip v-if="['volume', 'snapshot', 'template', 'iso'].includes($route.meta.name) && item === 'savingrate'"><template #title>{{ $t('message.savingrate') }}</template><QuestionCircleOutlined style="margin-left: 8px;"/></a-tooltip>
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
-          <network-ip-vm-link v-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
+          <iso-detail-value v-if="$route.meta.name === 'iso' && presentedIsoValue(item)" :field="item" :value="dataResource[item]" :label="$t(getDetailTitle(item))" />
+          <template-detail-value
+            v-else-if="$route.meta.name === 'template' && presentedTemplateValue(item)"
+            :field="item"
+            :value="dataResource[item]"
+            :label="$t(getDetailTitle(item))" />
+          <status v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['state', 'hostcontrolstate'].includes(item)" :text="String(dataResource[item] || '')" :display-label="dataResource[item] ? '' : $t('label.unknown')" display-text />
+          <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['ostypename', 'osdisplayname'].includes(item)">{{ creationVmOsName(dataResource, $t) || $t('label.unknown') }}</div>
+          <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item !== 'deleteprotection' && (vmBooleanFields.has(item) || typeof dataResource[item] === 'boolean')">{{ $t(vmBooleanLabel(dataResource[item])) }}</div>
+          <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item === 'deleteprotection'">
+            <a-tag :color="dataResource.deleteprotection === true ? 'warning' : dataResource.deleteprotection === false ? 'success' : 'default'">{{ $t('label.vm.protection.' + (resourceReadFailed() ? 'failed' : dataResource.deleteprotection === true ? 'protected' : dataResource.deleteprotection === false ? 'unprotected' : 'unknown')) }}</a-tag>
+            <div>{{ $t('message.vm.delete.edit') }}</div>
+          </div>
+          <network-ip-vm-link v-else-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
           <InternalLbRules v-else-if="$route.meta.name === 'ilb' && item === 'loadbalancerrule'" :record="dataResource" :loading="loading" />
           <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
           <div v-else-if="item === 'vlan' && guestPvlan">
@@ -405,8 +415,12 @@ import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { l2ConfigDrive, l2PvlanDetails } from '@/utils/l2Network'
 import { sharedScopeLabel } from '@/utils/sharedNetwork'
 import Status from '@/components/widgets/Status'
+import TemplateDetailValue from '@/components/widgets/TemplateDetailValue'
+import IsoDetailValue from '@/components/widgets/IsoDetailValue'
+import { presentedIsoValue } from '@/utils/isoZoneOperations'
+import { presentedTemplateValue } from '@/utils/templateDetails'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
-import { creationVmDetails } from '@/utils/creationVmPresentation'
+import { creationVmDetails, creationVmOsName, vmBooleanLabel, vmBooleanFields } from '@/utils/creationVmPresentation'
 import { getAblestackBackupOfferingVisibleDetails } from '@/utils/ablestackBackupPolicy'
 import AffinityGroupPolicy from '@/views/compute/AffinityGroupPolicy'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
@@ -427,11 +441,15 @@ import { allocationDetailFields } from '@/utils/volumeAllocation'
 import PvlanSupportNotice from '@/components/network/PvlanSupportNotice'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
+import VnfAccessNotice from '@/components/compute/VnfAccessNotice'
 
 export default {
   name: 'DetailsTab',
   components: {
+    VnfAccessNotice,
     InternalLbRules,
+    TemplateDetailValue,
+    IsoDetailValue,
     VpnPsk,
     PvlanSupportNotice,
     NetworkIpVmLink,
@@ -447,6 +465,7 @@ export default {
     TooltipButton,
     CodeHighlight
   },
+  inject: { resourceReadFailed: { default: () => () => false } },
   props: {
     resource: {
       type: Object,
@@ -476,6 +495,7 @@ export default {
       projectname: '',
       dataResource: {},
       detailsTitles: [],
+      vmBooleanFields,
       licenseInfo: {
         expired: false,
         expiryDate: ''
@@ -521,97 +541,6 @@ export default {
       }
       return items
     },
-    vnfAccessMethods () {
-      if (this.resource.templatetype === 'VNF' && ['vm', 'vnfapp'].includes(this.$route.meta.name)) {
-        const accessMethodsDescription = []
-        const accessMethods = this.resource.vnfdetails?.access_methods || null
-        const username = this.resource.vnfdetails?.username || null
-        const password = this.resource.vnfdetails?.password || null
-        const sshPort = this.resource.vnfdetails?.ssh_port || 22
-        const sshUsername = this.resource.vnfdetails?.ssh_user || null
-        const sshPassword = this.resource.vnfdetails?.ssh_password || null
-        let httpPath = this.resource.vnfdetails?.http_path || ''
-        if (!httpPath.startsWith('/')) {
-          httpPath = '/' + httpPath
-        }
-        const httpPort = this.resource.vnfdetails?.http_port || null
-        let httpsPath = this.resource.vnfdetails?.https_path || ''
-        if (!httpsPath.startsWith('/')) {
-          httpsPath = '/' + httpsPath
-        }
-        const httpsPort = this.resource.vnfdetails?.https_port || null
-        const webUsername = this.resource.vnfdetails?.web_user || null
-        const webPassword = this.resource.vnfdetails?.web_password || null
-
-        const credentials = []
-        if (username) {
-          credentials.push(this.$t('label.username') + ' : ' + username)
-        }
-        if (password) {
-          credentials.push(this.$t('label.password.default') + ' : ' + password)
-        }
-        if (webUsername) {
-          credentials.push('Web ' + this.$t('label.username') + ' : ' + webUsername)
-        }
-        if (webPassword) {
-          credentials.push('Web ' + this.$t('label.password.default') + ' : ' + webPassword)
-        }
-        if (sshUsername) {
-          credentials.push('SSH ' + this.$t('label.username') + ' : ' + sshUsername)
-        }
-        if (sshPassword) {
-          credentials.push('SSH ' + this.$t('label.password.default') + ' : ' + sshPassword)
-        }
-
-        const managementDeviceIds = []
-        if (this.resource.vnfnics) {
-          for (const vnfnic of this.resource.vnfnics) {
-            if (vnfnic.management) {
-              managementDeviceIds.push(vnfnic.deviceid)
-            }
-          }
-        }
-        const managementIps = []
-        for (const nic of this.resource.nic) {
-          if (managementDeviceIds.includes(parseInt(nic.deviceid)) && nic.enabled !== false && nic.ipaddress) {
-            managementIps.push(nic.ipaddress)
-            if (nic.publicip) {
-              managementIps.push(nic.publicip)
-            }
-          }
-        }
-
-        if (accessMethods) {
-          const accessMethodsArray = accessMethods.split(',')
-          for (const accessMethod of accessMethodsArray) {
-            if (accessMethod === 'console') {
-              accessMethodsDescription.push('- VM Console.')
-            } else if (accessMethod === 'ssh-password') {
-              accessMethodsDescription.push('- SSH with password' + (sshPort ? ' (SSH port is ' + sshPort + ').' : '.'))
-            } else if (accessMethod === 'ssh-key') {
-              accessMethodsDescription.push('- SSH with key' + (sshPort ? ' (SSH port is ' + sshPort + ').' : '.'))
-            } else if (accessMethod === 'http') {
-              for (const managementIp of managementIps) {
-                const url = 'http://' + managementIp + (httpPort ? ':' + httpPort : '') + httpPath
-                accessMethodsDescription.push('- Webpage: <a href="' + url + '" target="_blank>">' + url + '</a>')
-              }
-            } else if (accessMethod === 'https') {
-              for (const managementIp of managementIps) {
-                const url = 'https://' + managementIp + (httpsPort ? ':' + httpsPort : '') + httpsPath
-                accessMethodsDescription.push('- Webpage: <a href="' + url + '" target="_blank">' + url + '</a>')
-              }
-            }
-          }
-        } else {
-          accessMethodsDescription.push('- VM Console.')
-        }
-        if (credentials) {
-          accessMethodsDescription.push('<br>' + this.$t('message.vnf.credentials.in.template.vnf.details'))
-        }
-        return accessMethodsDescription.join('<br>')
-      }
-      return null
-    },
     offeringDetails () {
       return ['maxcpunumber', 'mincpunumber', 'minmemory', 'maxmemory']
     },
@@ -656,6 +585,7 @@ export default {
     resource: {
       deep: true,
       handler (newVal) {
+        this.projectname = ''
         this.dataResource = creationVmDetails(newVal, this.$t)
         if ('account' in this.dataResource && this.dataResource.account.startsWith('PrjAcct-')) {
           this.projectname = this.dataResource.account.substring(this.dataResource.account.indexOf('-') + 1, this.dataResource.account.lastIndexOf('-'))
@@ -671,6 +601,8 @@ export default {
     }
   },
   methods: {
+    creationVmOsName,
+    vmBooleanLabel,
     networkTypeLabel,
     networkIpUsageLabel,
     decodeUserData (userdata) {
@@ -688,6 +620,8 @@ export default {
       }
       this.dataResource.account = projectAdmins.join()
     },
+    presentedTemplateValue,
+    presentedIsoValue,
     fetchDetails () {
       let details = this.$route.meta.details
 
@@ -723,6 +657,11 @@ export default {
       return detailsKeys
     },
     getDetailTitle (detail) {
+      if (['vm', 'vnfapp'].includes(this.$route.meta.name) && ['osdisplayname', 'ostypename'].includes(detail)) return 'label.ostypename'
+      if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'name') return 'label.vm.name'
+      if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'displayname') return 'label.vm.displayname'
+      if (this.$route.meta.name === 'template' && detail === 'format') return 'label.template.image.format'
+      if (this.$route.meta.name === 'template' && detail === 'templatetype') return 'label.template.type'
       if (detail === 'sharedscope') return this.$t('label.shared.scope')
       return `label.${String(this.detailsTitles[detail]).toLowerCase()}`
     },
@@ -967,6 +906,11 @@ export default {
   color: var(--ui-text-primary);
 }
 
+.template-details-list :deep(.ant-list-item > div), .vm-details-list :deep(.ant-list-item > div) {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
 .preline {
   white-space: pre-line;
   word-break: break-word;

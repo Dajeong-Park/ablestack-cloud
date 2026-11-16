@@ -1,0 +1,11 @@
+{
+  "productHead": "c8992a5f49fe866fa43d2ae769df87f102e716c1",
+  "indexTree": "9daa2903192651e55100d2942ceef0f85bbb4b33",
+  "method": "exact staged Git index export; ignored dependencies/build output excluded",
+  "baselineUnknown": 4077,
+  "currentUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "returnCode": 1,
+  "workspace": "/root/work/.rat-iso1671-report-ozp3ljy2"
+}

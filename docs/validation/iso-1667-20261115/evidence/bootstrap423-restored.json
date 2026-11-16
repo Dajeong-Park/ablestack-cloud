@@ -1,0 +1,20 @@
+[
+  {
+    "hostFactoryRestored": true,
+    "sha256": "fba45526bd0b4b2b0cd691a5accd9adae60f5b1de0a66e4606c0ce653ffa0aca",
+    "hostAgentRestarted": false,
+    "host": "10.10.13.1"
+  },
+  {
+    "hostFactoryRestored": true,
+    "sha256": "fba45526bd0b4b2b0cd691a5accd9adae60f5b1de0a66e4606c0ce653ffa0aca",
+    "hostAgentRestarted": false,
+    "host": "10.10.13.2"
+  },
+  {
+    "hostFactoryRestored": true,
+    "sha256": "fba45526bd0b4b2b0cd691a5accd9adae60f5b1de0a66e4606c0ce653ffa0aca",
+    "hostAgentRestarted": false,
+    "host": "10.10.13.3"
+  }
+]

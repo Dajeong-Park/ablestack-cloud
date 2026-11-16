@@ -1,0 +1,83 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.13s
+
+docs/validation/iso-1667-20261115/evidence/final-lint.log
+docs/validation/iso-1667-20261115/evidence/resource-ledger.json
+docs/validation/iso-1667-20261115/evidence/backend-runtime-tests.log
+docs/validation/iso-1667-20261115/screenshots/final-dialog-ready-long-name.jpg
+docs/validation/iso-1667-20261115/evidence/checkstyle-classification.json
+docs/validation/iso-1667-20261115/evidence/focused-report-manual.log
+docs/validation/iso-1667-20261115/evidence/http-fixtures-cleanup.json
+docs/validation/iso-1667-20261115/screenshots/final-owner-scope-cleared.jpg
+docs/validation/iso-1667-20261115/evidence/registration-matrix.json
+docs/validation/iso-1667-20261115/evidence/ui-build-result.json
+docs/validation/iso-1667-20261115/evidence/backend-patch.json
+docs/validation/iso-1667-20261115/evidence/rat-comparison.json
+docs/validation/iso-1667-20261115/README.ko.md
+docs/validation/iso-1667-20261115/screenshots/final-local-ready-append.jpg
+docs/validation/iso-1667-20261115/evidence/iso-response-runtime-contract.json
+docs/validation/iso-1667-20261115/evidence/ssvm421-runtime.json
+docs/validation/iso-1667-20261115/evidence/license-hook-check.json
+docs/validation/iso-1667-20261115/evidence/markdownlint.log
+docs/validation/iso-1667-20261115/evidence/artifact-safety.json
+docs/validation/iso-1667-20261115/evidence/runtime-final.json
+docs/validation/iso-1667-20261115/evidence/compatibility-source-equivalence.json
+docs/validation/iso-1667-20261115/screenshots/real-expiry-blocked.jpg
+docs/validation/iso-1667-20261115/evidence/source-boundary.json
+docs/validation/iso-1667-20261115/screenshots/systemvm421-running.jpg
+docs/validation/iso-1667-20261115/screenshots/upload-timeout-unchanged-60min.jpg
+docs/validation/iso-1667-20261115/evidence/fixture-manifest.json
+docs/validation/iso-1667-20261115/evidence/backend-deployment.json
+docs/validation/iso-1667-20261115/evidence/final-ui-tests.log
+docs/validation/iso-1667-20261115/evidence/focused-report-checks.json
+docs/validation/iso-1667-20261115/screenshots/423-owner-sha256-detail.jpg
+docs/validation/iso-1667-20261115/evidence/ui-cases.json
+docs/validation/iso-1667-20261115/screenshots/423-systemvm-detail-version.jpg
+docs/validation/iso-1667-20261115/screenshots/pending-download-ready-four.jpg
+docs/validation/iso-1667-20261115/evidence/server-tests.json
+docs/validation/iso-1667-20261115/screenshots/421-owner-sha256-detail.jpg
+docs/validation/iso-1667-20261115/evidence/bootstrap423-restored.json
+docs/validation/iso-1667-20261115/evidence/runtime-input-tests.log
+docs/validation/iso-1667-20261115/evidence/deploy-files.json
+docs/validation/iso-1667-20261115/evidence/ui-deployment.json
+docs/validation/iso-1667-20261115/evidence/focused-report-pre-commit.log
+docs/validation/iso-1667-20261115/evidence/theme-review.json
+docs/validation/iso-1667-20261115/screenshots/final-link-failed-cleared-selection.jpg
+docs/validation/iso-1667-20261115/evidence/precommit-classification.json
+docs/validation/iso-1667-20261115/evidence/pending-cleanup.json
+docs/validation/iso-1667-20261115/evidence/focused-report-environment.json
+docs/validation/iso-1667-20261115/screenshots/final-checksum-reason-and-stage.jpg
+docs/validation/iso-1667-20261115/evidence/ssvm423-runtime.json
+docs/validation/iso-1667-20261115/screenshots/423-before-owner-change-stale-userdata.jpg
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files........................(no files to check)Skipped
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

@@ -1,0 +1,32 @@
+{
+  "recordCount": 81,
+  "finalProductHead": "75a0681bd8e64da6c2a6ce34dd69d361de5d9207",
+  "baselinePrefix": "baseline-",
+  "beforeFixDefects": {
+    "download-failure-duplicate-before-fix": "final-download-rejection-one-alert"
+  },
+  "manualReceipt": "PASS: user downloaded two files; local filesystem byte count and SHA-256 both exactly matched after receipt; preparation/job completion alone not receipt",
+  "toolOnlyNotProductPass": [
+    "guest-console-optional-key-input",
+    "url-download-requested-not-received"
+  ],
+  "actualGuestBoot": "PASS: real noVNC TinyCore banner and tc@box prompt, both initial boot and boot with two media. No disk installation or guest command output claimed.",
+  "readonlyVmIsoTab": "NOT_RUN: configured Read-Only User - Default exposes basic VM read but lacks Metrics route and attach/detach/extract commands. ISO read and no-write UI passed. UI API docs75 verified. Followup1673 https://github.com/ablecloud-team/ablestack-cloud/issues/1673#issuecomment-6894754513",
+  "actualMultiZoneNonKvm": "NOT_RUN per existing environment scope; no feature removal",
+  "configDriveScenario": "no dedicated ConfigDrive VM created; existing server-provided isomaxcount/cap contract preserved and unit scenarios cover effective capacities; actual KVM VM reported2 slots",
+  "injectedCases": {
+    "release-download-busy-keyboard": "one expected extract POST held before server; CtrlEnter twice/Esc, duplicates0; then allowed real preparation",
+    "release-injected-attach-rejection": "HTTP400/431 before server; no actual backend rejection. Explicit retry real POST/job1 on Stopped VM.",
+    "download-failure-duplicate-before-fix": "HTTP400 before server exposed duplicate failure alert, not final pass",
+    "final-download-rejection-one-alert": "same HTTP400 before server, final one alert and reprepare",
+    "final-download-observation-unknown": "one real extract POST then only that accepted job GET fulfilled500; unknown warning, no false failure",
+    "final-download-get-only-recovery": "same real job GET-only check, no extra prepare POST, job1/ready and old warning gone",
+    "final-download-no-job-warning": "fakeHTTP200 empty extract response before server; no backend preparation. Warning only, no status/prepare/file CTA."
+  },
+  "cleanupNotes": [
+    "VM destroy reached Destroyed; definitive cleanup used the separate explicit expunge UI action and account VM/volume0 verification. Initial expunge flag in review denotes intended setting, not proof of permanent removal.",
+    "Network normal delete verified no VM/NIC refs, own router/IP identified and removed, account IP0/router-name search0.",
+    "Normal event/audit history and user-downloaded receipt files retained.",
+    "Temporary Fetch patterns cleared, cache override cleared, viewport reset1680x841 and originaldark restored."
+  ]
+}

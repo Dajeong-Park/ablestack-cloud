@@ -1,0 +1,1574 @@
+[
+  {
+    "name": "baseline-iso-upload-accepted",
+    "at": "2026-11-15T01:01:22.246Z",
+    "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+  },
+  {
+    "name": "baseline-root-iso-ready",
+    "at": "2026-11-15T01:03:55.544Z",
+    "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+    "ready": true
+  },
+  {
+    "name": "actual-flat-iso-permission-response",
+    "at": "2026-11-15T01:05:29.076Z",
+    "response": {
+      "listtemplatepermissionsresponse": {
+        "templatepermission": {
+          "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+          "ispublic": false,
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "account": [
+            "admin"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "account-created",
+    "at": "2026-11-15T01:10:35.600Z",
+    "id": "63bdc64f-fe90-4b76-a4e7-cd23b0a2db64",
+    "account": "qa-iso1668-owner"
+  },
+  {
+    "name": "recipient-b-created",
+    "at": "2026-11-15T01:12:20.818Z"
+  },
+  {
+    "name": "recipient-c-created",
+    "at": "2026-11-15T01:12:43.251Z"
+  },
+  {
+    "name": "baseline-two-private-test-grants",
+    "at": "2026-11-15T01:14:33.319Z",
+    "requests": [
+      {
+        "command": "updateIsoPermissions",
+        "accounts": "qa-iso1668-recipient-b,qa-iso1668-recipient-c",
+        "op": "add",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ]
+  },
+  {
+    "name": "before-specific-revoke-options-missing",
+    "at": "2026-11-15T01:20:56.844Z",
+    "isoId": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+    "expectedAccounts": [
+      "qa-iso1668-recipient-b",
+      "qa-iso1668-recipient-c"
+    ],
+    "removeOptions": []
+  },
+  {
+    "name": "test-account-role-correction",
+    "at": "2026-11-15T01:25:41.288Z",
+    "ownerRole": "User",
+    "recipientBRole": "User",
+    "recipientCRole": "User",
+    "correctedAccounts": [
+      "qa-iso1668-recipient-b",
+      "qa-iso1668-recipient-c"
+    ],
+    "earlierAdminSessionObservationsExcluded": true
+  },
+  {
+    "name": "project-one-created",
+    "at": "2026-11-15T01:31:11.654Z",
+    "id": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+  },
+  {
+    "name": "project-two-created",
+    "at": "2026-11-15T01:31:24.781Z",
+    "id": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+  },
+  {
+    "name": "project-one-member",
+    "at": "2026-11-15T01:32:36.072Z",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "account": "qa-iso1668-recipient-b",
+    "role": "Regular"
+  },
+  {
+    "name": "owner-iso-created",
+    "at": "2026-11-15T01:33:43.538Z",
+    "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+  },
+  {
+    "name": "project-two-member",
+    "at": "2026-11-15T01:34:05.076Z",
+    "projectid": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394",
+    "account": "qa-iso1668-recipient-c",
+    "role": "Regular"
+  },
+  {
+    "name": "owner-iso-ready",
+    "at": "2026-11-15T01:34:52.081Z",
+    "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+    "ready": true
+  },
+  {
+    "name": "isolated-domain-created",
+    "at": "2026-11-15T01:35:07.892Z",
+    "id": "6b918ea1-9135-4f12-9005-5daaf5d5cccf"
+  },
+  {
+    "name": "isolated-domain-admin-created",
+    "at": "2026-11-15T01:36:21.344Z",
+    "id": "3eb252a8-96bb-45bf-b2a4-161aab3be32e",
+    "role": "DomainAdmin",
+    "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf"
+  },
+  {
+    "name": "template-regression-fixture-ready",
+    "at": "2026-11-15T01:37:37.685Z",
+    "id": "13693a6c-4b52-4d2a-8061-5f913caa08a3",
+    "ready": true
+  },
+  {
+    "name": "partial-role-created",
+    "at": "2026-11-15T01:38:16.384Z",
+    "id": "ce07b762-dc3a-4a96-b405-0e8da3e0ff57",
+    "type": "User"
+  },
+  {
+    "name": "partial-api-role-configured",
+    "at": "2026-11-15T01:38:57.052Z",
+    "id": "ce07b762-dc3a-4a96-b405-0e8da3e0ff57",
+    "denied": [
+      "listIsoPermissions",
+      "listTemplatePermissions"
+    ],
+    "base": "User"
+  },
+  {
+    "name": "domain-iso-created",
+    "at": "2026-11-15T01:41:11.474Z",
+    "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71",
+    "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf"
+  },
+  {
+    "name": "owner-template-created",
+    "at": "2026-11-15T01:47:15.536Z",
+    "id": "6b8baff3-e328-4225-9f38-4437dac0dfb0"
+  },
+  {
+    "name": "owner-template-ready",
+    "at": "2026-11-15T01:47:51.642Z",
+    "id": "6b8baff3-e328-4225-9f38-4437dac0dfb0",
+    "zoneRows": 1,
+    "ready": true
+  },
+  {
+    "name": "remove-targets-fixed",
+    "at": "2026-11-15T01:52:22.487Z",
+    "targets": [
+      "qa-iso1668-recipient-b",
+      "qa-iso1668-recipient-c"
+    ],
+    "ownerExcluded": true
+  },
+  {
+    "name": "user-shared-zone-after-deploy",
+    "at": "2026-11-15T01:52:37.654Z",
+    "actor": "qa-iso1668-recipient-b",
+    "role": "User",
+    "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 9:58:00사용 가능예"
+    ],
+    "selection": 0,
+    "storageExpand": 0
+  },
+  {
+    "name": "account-selective-removal",
+    "at": "2026-11-15T01:53:03.449Z",
+    "removed": "qa-iso1668-recipient-b",
+    "preserved": [
+      "qa-iso1668-recipient-c"
+    ],
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+        "op": "remove",
+        "accounts": "qa-iso1668-recipient-b"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ]
+  },
+  {
+    "name": "recipient-b-direct-denied",
+    "at": "2026-11-15T01:53:13.880Z",
+    "actor": "qa-iso1668-recipient-b",
+    "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+    "serverCode": 531,
+    "detailHeading": 0
+  },
+  {
+    "name": "recipient-b-shared-list-empty",
+    "at": "2026-11-15T01:53:51.133Z",
+    "actor": "qa-iso1668-recipient-b",
+    "rows": [
+      "이름상태OS 유형CPU 아키텍처",
+      "데이터 없음"
+    ],
+    "isoLinks": 0
+  },
+  {
+    "name": "recipient-c-preserved-after-account-remove",
+    "at": "2026-11-15T01:54:59.761Z",
+    "actor": "qa-iso1668-recipient-c",
+    "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+    "heading": 1,
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 9:58:00사용 가능예"
+    ]
+  },
+  {
+    "name": "iso-add-projects",
+    "at": "2026-11-15T01:55:43.901Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+        "op": "add",
+        "projectids": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde,0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ],
+    "preservedAccount": "qa-iso1668-recipient-c"
+  },
+  {
+    "name": "iso-project-only-grants",
+    "at": "2026-11-15T01:57:40.254Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+        "op": "remove",
+        "accounts": "qa-iso1668-recipient-c"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ],
+    "projects": [
+      "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+      "0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+    ],
+    "accounts": []
+  },
+  {
+    "name": "project-two-receiver-before-removal",
+    "at": "2026-11-15T01:58:13.951Z",
+    "actor": "qa-iso1668-recipient-c",
+    "projectid": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394",
+    "heading": 1,
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 9:58:00사용 가능예"
+    ]
+  },
+  {
+    "name": "project-one-receiver-before-removal",
+    "at": "2026-11-15T01:59:08.843Z",
+    "actor": "qa-iso1668-recipient-b",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "heading": 1,
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 9:58:00사용 가능예"
+    ]
+  },
+  {
+    "name": "project-selective-removal",
+    "at": "2026-11-15T01:59:16.792Z",
+    "removed": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "preserved": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+        "op": "remove",
+        "projectids": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ]
+  },
+  {
+    "name": "project-one-direct-denied",
+    "at": "2026-11-15T01:59:22.382Z",
+    "actor": "qa-iso1668-recipient-b",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "heading": 0
+  },
+  {
+    "name": "project-one-shared-list-empty",
+    "at": "2026-11-15T02:00:00.129Z",
+    "actor": "qa-iso1668-recipient-b",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "filter": "shared",
+    "rows": [
+      "이름상태OS 유형CPU 아키텍처",
+      "데이터 없음"
+    ]
+  },
+  {
+    "name": "concurrent-grant-preflight-blocked",
+    "at": "2026-11-15T02:00:33.561Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ],
+    "postCount": 0,
+    "currentAccounts": [
+      "qa-iso1668-owner"
+    ],
+    "preservedProject": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+  },
+  {
+    "name": "permission-read-failure-closed",
+    "at": "2026-11-15T02:01:11.296Z",
+    "error": [
+      "Network Error"
+    ],
+    "confirmEnabled": false,
+    "grantsDefinitions": 0,
+    "retry": true
+  },
+  {
+    "name": "permission-read-retry-restored",
+    "at": "2026-11-15T02:01:28.203Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ],
+    "grants": "현재 공유 현황\n계정\nqa-iso1668-owner\n프로젝트\nqa-iso1668-project-two"
+  },
+  {
+    "name": "project-two-preserved-after-project-one-removal",
+    "at": "2026-11-15T02:01:28.490Z",
+    "actor": "qa-iso1668-recipient-c",
+    "projectid": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394",
+    "heading": 1,
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 9:58:00사용 가능예"
+    ]
+  },
+  {
+    "name": "post-write-read-failure-pending",
+    "at": "2026-11-15T02:02:51.517Z",
+    "error": [
+      "Network Error"
+    ],
+    "confirmButtonCount": 0,
+    "resultCheck": 1,
+    "controlsDisabled": true
+  },
+  {
+    "name": "uncertain-write-get-only-recovery",
+    "at": "2026-11-15T02:02:52.794Z",
+    "resultCheckRequests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69"
+      }
+    ],
+    "totalUpdatePostCount": 1,
+    "remainingProjects": [
+      "0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+    ],
+    "remainingAccounts": []
+  },
+  {
+    "name": "diagnostic-session-invalidated",
+    "at": "2026-11-15T02:03:34.309Z",
+    "method": "UI logout",
+    "loginScreenConfirmed": true,
+    "credentialsPersisted": false
+  },
+  {
+    "name": "iso-reset-verified",
+    "at": "2026-11-15T02:05:31.456Z",
+    "requests": [],
+    "ackRequired": true,
+    "accounts": [],
+    "projects": []
+  },
+  {
+    "name": "iso-reset-flags",
+    "at": "2026-11-15T02:05:44.966Z",
+    "public": false,
+    "featured": false,
+    "extractable": true,
+    "details": "이름\n\nqa-iso1668-root-data\n아이디\n\n2a859dc1-0cce-49f5-b231-24f5dbc72b69\n설명\n\nqa-iso1668-root-data\n체크섬\n\nd1cfa4ad592ccaa06f1b733142ce1fdf\nOS 유형\n\nNone\n크기\n\n0.00 GiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n\nfalse\n준비\n\ntrue\n비밀번호 관리 사용\n\nfalse\n직접 다운로드\n\nfalse\n추출 가능\n\ntrue\n공개\n\nfalse\n추천\n\nfalse\n동적으로 확장 가능\n\nfalse\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오전 9:58:00"
+  },
+  {
+    "name": "project-two-reset-denied",
+    "at": "2026-11-15T02:05:45.275Z",
+    "actor": "qa-iso1668-recipient-c",
+    "projectid": "0e01bcce-b6ef-4087-b0c9-92be2e9e6394",
+    "heading": 0,
+    "reset": true
+  },
+  {
+    "name": "domain-member-created",
+    "at": "2026-11-15T02:07:22.304Z",
+    "id": "837e0d69-d4de-4e68-beb8-bcb2d63d7bb9",
+    "role": "User",
+    "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf"
+  },
+  {
+    "name": "normal-owner-extractable-enable",
+    "at": "2026-11-15T02:07:56.617Z",
+    "actor": "qa-iso1668-owner",
+    "role": "User",
+    "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+    "downloadMenu": 1,
+    "featuredControlAbsent": true
+  },
+  {
+    "name": "template-add-accounts",
+    "at": "2026-11-15T02:08:09.509Z",
+    "requests": []
+  },
+  {
+    "name": "normal-owner-extractable-disable",
+    "at": "2026-11-15T02:08:32.490Z",
+    "actor": "qa-iso1668-owner",
+    "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+    "downloadMenu": 0
+  },
+  {
+    "name": "template-add-projects",
+    "at": "2026-11-15T02:08:36.516Z",
+    "requests": []
+  },
+  {
+    "name": "domain-member-iso-ready",
+    "at": "2026-11-15T02:09:05.684Z",
+    "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+    "ready": true,
+    "owner": "qa-iso1668-domain-owner"
+  },
+  {
+    "name": "template-selective-account-remove",
+    "at": "2026-11-15T02:09:19.495Z",
+    "requests": [],
+    "preserved": [
+      "qa-iso1668-recipient-c",
+      "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+      "0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+    ]
+  },
+  {
+    "name": "normal-owner-server-rejection",
+    "at": "2026-11-15T02:09:28.151Z",
+    "error": [
+      "Unable to grant a launch permission to Account qa-iso1668-no-such-account in domain id=47178e2f-bd56-11f1-b573-002481560363, Account not found.  No permissions updated, please verify the Account names and retry."
+    ],
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+        "op": "add",
+        "accounts": "qa-iso1668-no-such-account"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      }
+    ],
+    "successCount": 0
+  },
+  {
+    "name": "normal-owner-add-accounts-without-inventory",
+    "at": "2026-11-15T02:12:30.286Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+        "op": "add",
+        "accounts": "qa-iso1668-recipient-b,qa-iso1668-recipient-c"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      }
+    ],
+    "ownerExcluded": true
+  },
+  {
+    "name": "template-selective-project-remove",
+    "at": "2026-11-15T02:12:33.130Z",
+    "requests": [],
+    "preserved": [
+      "qa-iso1668-recipient-c",
+      "0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+    ]
+  },
+  {
+    "name": "normal-owner-specific-remove-without-inventory",
+    "at": "2026-11-15T02:12:51.324Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+        "op": "remove",
+        "accounts": "qa-iso1668-recipient-b"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      }
+    ],
+    "preserved": [
+      "qa-iso1668-recipient-c"
+    ]
+  },
+  {
+    "name": "normal-owner-reset-verified",
+    "at": "2026-11-15T02:13:15.076Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+        "op": "reset"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9"
+      }
+    ],
+    "grants": "현재 공유 현황\n계정\n없음\n프로젝트\n없음"
+  },
+  {
+    "name": "owner-account-readonly-role-confirmed",
+    "at": "2026-11-15T02:13:59.192Z",
+    "id": "63bdc64f-fe90-4b76-a4e7-cd23b0a2db64",
+    "role": "Read-Only User - Default",
+    "roleid": "60f61c91-bd56-11f1-b573-002481560363"
+  },
+  {
+    "name": "readonly-live-role-server-reject",
+    "at": "2026-11-15T02:14:11.402Z",
+    "error": [
+      "The API [updateTemplatePermissions] does not exist or is not available for the account qa-iso1668-owner."
+    ],
+    "requests": [
+      {
+        "command": "listTemplatePermissions",
+        "method": "GET",
+        "id": "6b8baff3-e328-4225-9f38-4437dac0dfb0"
+      },
+      {
+        "command": "updateTemplatePermissions",
+        "method": "POST",
+        "id": "6b8baff3-e328-4225-9f38-4437dac0dfb0",
+        "op": "add",
+        "accounts": "qa-iso1668-recipient-b"
+      },
+      {
+        "command": "listTemplatePermissions",
+        "method": "GET",
+        "id": "6b8baff3-e328-4225-9f38-4437dac0dfb0"
+      }
+    ],
+    "successCount": 0,
+    "grants": "현재 공유 현황\n계정\n없음\n프로젝트\n없음"
+  },
+  {
+    "name": "readonly-owner-template-zone",
+    "at": "2026-11-15T02:14:47.806Z",
+    "actor": "qa-iso1668-owner",
+    "role": "Read-Only User - Default",
+    "rows": [
+      "Zone생성일상태준비",
+      " 13-Zone2026. 11. 15. 오전 10:46:49사용 가능예"
+    ],
+    "checkboxes": 2,
+    "copyButtons": 1,
+    "deleteButtons": 1,
+    "actionMenu": 0
+  },
+  {
+    "name": "permission-dialog-narrow-dark",
+    "at": "2026-11-15T02:15:40.746Z",
+    "size": "900x600",
+    "geometry": {
+      "dialog": {
+        "bottom": 897,
+        "height": 897,
+        "left": 0,
+        "right": 1680,
+        "top": 0,
+        "width": 1680,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "bottom": 704.5,
+        "height": 65,
+        "left": 481,
+        "right": 1199,
+        "top": 639.5,
+        "width": 718,
+        "x": 481,
+        "y": 639.5
+      },
+      "horizontalOverflow": false,
+      "viewport": {
+        "height": 897,
+        "width": 1680
+      }
+    }
+  },
+  {
+    "name": "readonly-template-selection-defect-before-fix",
+    "at": "2026-11-15T02:15:41.286Z",
+    "checked": [
+      {
+        "checked": true,
+        "disabled": false
+      },
+      {
+        "checked": true,
+        "disabled": false
+      }
+    ],
+    "bulkDeleteCount": 0
+  },
+  {
+    "name": "readonly-owner-iso-zone",
+    "at": "2026-11-15T02:22:21.187Z",
+    "actor": "qa-iso1668-owner",
+    "role": "Read-Only User - Default",
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 10:33:39사용 가능예"
+    ],
+    "checkboxes": 0,
+    "visibleActions": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "actionMenu": 0
+  },
+  {
+    "name": "template-recipient-access-before-reset",
+    "at": "2026-11-15T02:28:54.802Z",
+    "actor": "qa-iso1668-recipient-c",
+    "id": "13693a6c-4b52-4d2a-8061-5f913caa08a3",
+    "heading": 1,
+    "rows": [
+      "Zone생성일준비",
+      " 13-Zone2026. 11. 15. 오전 10:37:16예"
+    ],
+    "actionMenu": 0,
+    "selectionBeforeCorrection": 2
+  },
+  {
+    "name": "template-reset-verified",
+    "at": "2026-11-15T02:28:57.403Z",
+    "requests": [],
+    "grants": "현재 공유 현황\n계정\n없음\n프로젝트\n없음"
+  },
+  {
+    "name": "template-reset-recipient-direct-denied",
+    "at": "2026-11-15T02:29:15.583Z",
+    "actor": "qa-iso1668-recipient-c",
+    "id": "13693a6c-4b52-4d2a-8061-5f913caa08a3",
+    "heading": 0
+  },
+  {
+    "name": "domain-admin-other-owner-zone",
+    "at": "2026-11-15T02:31:00.006Z",
+    "actor": "qa-iso1668-domain-admin",
+    "role": "DomainAdmin",
+    "owner": "qa-iso1668-domain-owner",
+    "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+    "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 11:08:20사용 가능예"
+    ],
+    "checkboxes": 2
+  },
+  {
+    "name": "permission-dialog-light",
+    "at": "2026-11-15T02:31:12.627Z",
+    "colors": {
+      "background": "rgb(255, 255, 255)",
+      "text": "rgb(31, 41, 55)"
+    },
+    "readable": true
+  },
+  {
+    "name": "domain-admin-other-owner-permissions-denied-before-correction",
+    "at": "2026-11-15T02:34:46.889Z",
+    "actor": "qa-iso1668-domain-admin",
+    "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+    "error": [
+      "Account Account [{\"accountName\":\"qa-iso1668-domain-admin\",\"id\":31,\"uuid\":\"3eb252a8-96bb-45bf-b2a4-161aab3be32e\"}] does not have permission to launch instances from template Template {\"format\":\"ISO\",\"id\":343,\"name\":\"qa-iso1668-domain-member-data\",\"uniqueName\":\"343-32-686109d6-bfb7-3269-935b-93611384bbfb\",\"uuid\":\"883bae93-c619-4ee2-9a35-73f6fa957951\"}"
+    ],
+    "confirmEnabled": false,
+    "uiPolicyCorrectionRequired": true
+  },
+  {
+    "name": "domain-admin-nonowner-delete-server-rejected",
+    "at": "2026-11-15T02:41:02.021Z",
+    "actor": "qa-iso1668-domain-admin",
+    "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+    "reason": "Only the owner, Root Admin, or an authorized project member can modify this template",
+    "requests": [
+      {
+        "command": "deleteIso",
+        "method": "POST",
+        "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET"
+      }
+    ],
+    "resourceHeading": 1
+  },
+  {
+    "name": "domain-owner-account-inventory-scoped",
+    "at": "2026-11-15T02:42:54.128Z",
+    "actor": "qa-iso1668-domain-admin",
+    "domainid": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+    "ownerExcluded": true,
+    "candidates": [
+      "qa-iso1668-domain-owner"
+    ]
+  },
+  {
+    "name": "domain-owner-add-verified",
+    "at": "2026-11-15T02:42:54.791Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71",
+        "op": "add",
+        "accounts": "qa-iso1668-domain-owner"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71"
+      }
+    ]
+  },
+  {
+    "name": "project-owned-iso-created",
+    "at": "2026-11-15T02:44:11.780Z",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+  },
+  {
+    "name": "domain-owner-remove-verified",
+    "at": "2026-11-15T02:44:12.548Z",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71",
+        "op": "remove",
+        "accounts": "qa-iso1668-domain-owner"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71"
+      }
+    ]
+  },
+  {
+    "name": "domain-admin-foreign-domain-direct-denied",
+    "at": "2026-11-15T02:45:17.663Z",
+    "actor": "qa-iso1668-domain-admin",
+    "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+    "heading": 0
+  },
+  {
+    "name": "project-owned-iso-ready",
+    "at": "2026-11-15T02:49:49.581Z",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "ready": true,
+    "projectLink": "#/project/3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+  },
+  {
+    "name": "project-owned-image-shared-to-personal-recipient",
+    "at": "2026-11-15T02:53:20.432Z",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "ownerProject": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "recipient": "qa-iso1668-recipient-c",
+    "requests": []
+  },
+  {
+    "name": "project-owned-personal-receiver-scope-defect",
+    "at": "2026-11-15T02:59:25.170Z",
+    "actor": "qa-iso1668-recipient-c",
+    "ownerProject": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "activeProject": "default",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "detailVisible": 1,
+    "rows": [
+      "Zone생성일상태준비",
+      "데이터 없음"
+    ],
+    "tagError": 1,
+    "correctionRequired": true
+  },
+  {
+    "name": "project-member-owned-image-view",
+    "at": "2026-11-15T03:07:40.405Z",
+    "actor": "qa-iso1668-recipient-b",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 11:42:55사용 가능예"
+    ]
+  },
+  {
+    "name": "project-member-permission-delegation-server-denied",
+    "at": "2026-11-15T03:09:13.713Z",
+    "actor": "qa-iso1668-recipient-b",
+    "role": "User / project Regular",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "error": [
+      "Unable to grant permission to Account qa-iso1668-recipient-b as it is neither admin nor owner or the Template"
+    ],
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+        "op": "add",
+        "accounts": "qa-iso1668-owner",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      }
+    ],
+    "grants": "현재 공유 현황\n계정\nqa-iso1668-recipient-c\n프로젝트\n없음",
+    "successCount": 0
+  },
+  {
+    "name": "readonly-template-selection-corrected",
+    "at": "2026-11-15T03:17:02.282Z",
+    "deployment": "f66f3799be02b7fd97447d370d0af0b170145884",
+    "actor": "qa-iso1668-owner",
+    "role": "Read-Only User - Default",
+    "rows": [
+      "Zone생성일상태준비",
+      " 13-Zone2026. 11. 15. 오전 10:46:49사용 가능예"
+    ],
+    "checkboxes": 0,
+    "bulkDelete": 0,
+    "actionMenu": 0
+  },
+  {
+    "name": "owner-partial-api-role-confirmed",
+    "at": "2026-11-15T03:24:17.885Z",
+    "accountid": "63bdc64f-fe90-4b76-a4e7-cd23b0a2db64",
+    "roleid": "ce07b762-dc3a-4a96-b405-0e8da3e0ff57",
+    "role": "qa-iso1668-partial-api"
+  },
+  {
+    "name": "partial-api-discovery-from-ui",
+    "at": "2026-11-15T03:29:38.646Z",
+    "role": "qa-iso1668-partial-api",
+    "flags": [
+      {
+        "listIsoPermissions": false,
+        "updateIsoPermissions": true,
+        "listTemplatePermissions": false,
+        "updateTemplatePermissions": true,
+        "updateIso": true,
+        "deleteIso": true,
+        "deleteTemplate": true
+      }
+    ]
+  },
+  {
+    "name": "partial-api-iso-actions",
+    "at": "2026-11-15T03:30:27.842Z",
+    "actor": "qa-iso1668-owner",
+    "role": "qa-iso1668-partial-api",
+    "menu": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "계정",
+      "Zone",
+      "API 문서",
+      "공유 ISO 업데이트",
+      "ISO 편집"
+    ],
+    "customPermissionAction": 0,
+    "zoneSelection": 2
+  },
+  {
+    "name": "partial-api-template-actions",
+    "at": "2026-11-15T03:33:05.359Z",
+    "actor": "qa-iso1668-owner",
+    "role": "qa-iso1668-partial-api",
+    "menu": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "계정",
+      "Zone",
+      "API 문서"
+    ],
+    "customPermissionAction": 0,
+    "zoneSelection": 2
+  },
+  {
+    "name": "domain-nonowner-ui-corrected",
+    "at": "2026-11-15T03:34:49.905Z",
+    "deployment": "f66f3799be02b7fd97447d370d0af0b170145884",
+    "actor": "qa-iso1668-domain-admin",
+    "owner": "qa-iso1668-domain-owner",
+    "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+    "checkboxes": 0,
+    "copyDeleteButtons": 0,
+    "actionMenu": 0,
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 11:08:20사용 가능예"
+    ]
+  },
+  {
+    "name": "domain-owner-iso-ui-deleted",
+    "at": "2026-11-15T03:37:16.685Z",
+    "id": "bde2a53d-dcc2-43ce-828d-b03982b8cb71",
+    "jobs": [
+      {
+        "jobid": "fb78330e-8ece-4cba-a5cc-6b76858572eb",
+        "status": 0
+      },
+      {
+        "jobid": "fb78330e-8ece-4cba-a5cc-6b76858572eb",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "name": "domain-member-iso-admin-absence-confirmed",
+    "at": "2026-11-15T03:40:26.543Z",
+    "id": "883bae93-c619-4ee2-9a35-73f6fa957951",
+    "administratorDirectLookup": "resource absent; returned to dashboard",
+    "headingCount": 0
+  },
+  {
+    "name": "domain-user-account-ui-deleted",
+    "at": "2026-11-15T03:41:56.750Z",
+    "id": "837e0d69-d4de-4e68-beb8-bcb2d63d7bb9",
+    "nameConfirmed": "qa-iso1668-domain-owner",
+    "disabledFirst": true,
+    "vm": 0,
+    "volumes": 0,
+    "ips": 0,
+    "absentFromAllAccounts": true
+  },
+  {
+    "name": "domain-admin-account-ui-deleted",
+    "at": "2026-11-15T03:42:46.396Z",
+    "id": "3eb252a8-96bb-45bf-b2a4-161aab3be32e",
+    "disabledFirst": true,
+    "loggedOutFirst": true,
+    "vm": 0,
+    "volumes": 0,
+    "ips": 0,
+    "absentFromAllAccounts": true
+  },
+  {
+    "name": "isolated-domain-ui-deleted",
+    "at": "2026-11-15T03:43:43.080Z",
+    "id": "6b918ea1-9135-4f12-9005-5daaf5d5cccf",
+    "nameConfirmed": "qa-iso1668-domain",
+    "accounts": 0,
+    "vms": 0,
+    "postDeleteLookup": "Domain id=7 does not exist"
+  },
+  {
+    "name": "project-owned-template-ready",
+    "at": "2026-11-15T03:48:52.005Z",
+    "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "ready": true
+  },
+  {
+    "name": "project-owned-template-shared-to-personal-recipient",
+    "at": "2026-11-15T03:49:14.563Z",
+    "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+    "recipient": "qa-iso1668-recipient-c",
+    "requests": [
+      {
+        "command": "listTemplatePermissions",
+        "method": "GET",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "updateTemplatePermissions",
+        "method": "POST",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+        "op": "add",
+        "accounts": "qa-iso1668-recipient-c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "listTemplatePermissions",
+        "method": "GET",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      }
+    ]
+  },
+  {
+    "name": "final-project-owned-iso-personal-recipient-pass",
+    "at": "2026-11-15T03:51:14.045Z",
+    "head": "802fab97140116cc68f4f7700e197f3c520cb278",
+    "actor": "qa-iso1668-recipient-c",
+    "activeProject": "default",
+    "ownerProject": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "rows": [
+      "Zone생성일상태준비",
+      "13-Zone2026. 11. 15. 오전 11:42:55사용 가능예"
+    ],
+    "checkboxes": 0,
+    "tagReadErrors": 0,
+    "requests": [
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737"
+      },
+      {
+        "command": "listTags",
+        "method": "GET"
+      },
+      {
+        "command": "listIsos",
+        "method": "GET",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737"
+      }
+    ]
+  },
+  {
+    "name": "final-project-owned-template-personal-recipient-pass",
+    "at": "2026-11-15T03:51:31.374Z",
+    "head": "802fab97140116cc68f4f7700e197f3c520cb278",
+    "actor": "qa-iso1668-recipient-c",
+    "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+    "rows": [
+      "Zone생성일준비",
+      " 13-Zone2026. 11. 15. 오후 12:47:20예"
+    ],
+    "checkboxes": 0,
+    "tagReadErrors": 0,
+    "actionMenu": 0,
+    "requests": [
+      {
+        "command": "listTags",
+        "method": "GET"
+      },
+      {
+        "command": "listTemplates",
+        "method": "GET",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c"
+      },
+      {
+        "command": "listTemplates",
+        "method": "GET",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c"
+      },
+      {
+        "command": "listTags",
+        "method": "GET"
+      },
+      {
+        "command": "listTemplates",
+        "method": "GET",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c"
+      }
+    ]
+  },
+  {
+    "name": "final-project-template-personal-grant-revoked",
+    "at": "2026-11-15T03:53:14.681Z",
+    "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+    "requests": [
+      {
+        "command": "listTemplatePermissions",
+        "method": "GET",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "updateTemplatePermissions",
+        "method": "POST",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+        "op": "remove",
+        "accounts": "qa-iso1668-recipient-c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "listTemplatePermissions",
+        "method": "GET",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      }
+    ]
+  },
+  {
+    "name": "final-project-template-personal-recipient-denied-after-revoke",
+    "at": "2026-11-15T03:53:22.722Z",
+    "actor": "qa-iso1668-recipient-c",
+    "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+    "heading": 0,
+    "resourceStillVisibleToOwner": 1
+  },
+  {
+    "name": "final-project-iso-personal-grant-revoked",
+    "at": "2026-11-15T03:53:50.846Z",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "requests": [
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "updateIsoPermissions",
+        "method": "POST",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+        "op": "remove",
+        "accounts": "qa-iso1668-recipient-c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      },
+      {
+        "command": "listIsoPermissions",
+        "method": "GET",
+        "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde"
+      }
+    ]
+  },
+  {
+    "name": "final-project-iso-personal-recipient-denied-after-revoke",
+    "at": "2026-11-15T03:54:00.036Z",
+    "actor": "qa-iso1668-recipient-c",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "heading": 0,
+    "ownerHeading": 1
+  },
+  {
+    "name": "final-project-member-iso-delegation-hidden",
+    "at": "2026-11-15T03:55:07.666Z",
+    "head": "802fab97140116cc68f4f7700e197f3c520cb278",
+    "actor": "qa-iso1668-recipient-b",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "menu": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "계정",
+      "Zone",
+      "API 문서",
+      "ISO 편집"
+    ],
+    "shareFlags": 0,
+    "permissionManagement": 0,
+    "selection": 2
+  },
+  {
+    "name": "final-project-member-template-delegation-hidden",
+    "at": "2026-11-15T03:55:20.323Z",
+    "head": "802fab97140116cc68f4f7700e197f3c520cb278",
+    "actor": "qa-iso1668-recipient-b",
+    "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "menu": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "계정",
+      "Zone",
+      "API 문서"
+    ],
+    "shareFlags": 0,
+    "permissionManagement": 0,
+    "selection": 2
+  },
+  {
+    "name": "project-template-ui-bulk-delete-pass",
+    "at": "2026-11-15T03:56:17.715Z",
+    "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+    "force": false,
+    "result": "템플릿 Zone 삭제\n\nqa-iso1668-project-owned-template\n2b400d1a-189c-42c4-8706-ccf15cfbd01c\n\n표시된 템플릿을 선택한 Zone에서 삭제합니다. 원본 준비 상태와 작업 결과를 각각 표시합니다.\nZone\t생성일\t상태\t준비\t작업 상태\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n13-Zone\t2026. 11. 15. 오후 12:47:20\t\n사용 가능\n\t예\t작업 성공\n\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기",
+    "requests": [
+      {
+        "command": "deleteTemplate",
+        "method": "POST",
+        "id": "2b400d1a-189c-42c4-8706-ccf15cfbd01c",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+        "jobid": "28c614a2-1f66-4ebd-91fc-5e2dc43d5063"
+      },
+      {
+        "command": "queryAsyncJobResult",
+        "method": "GET",
+        "projectid": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+        "jobid": "28c614a2-1f66-4ebd-91fc-5e2dc43d5063"
+      }
+    ]
+  },
+  {
+    "name": "project-owned-iso-ui-deleted",
+    "at": "2026-11-15T03:57:25.070Z",
+    "id": "f11b6e88-cbb7-428b-827a-54866a634737",
+    "jobs": [
+      {
+        "jobid": "2eb628b6-49d9-4cc5-a0f0-3188d7922c0e",
+        "status": 0
+      },
+      {
+        "jobid": "2eb628b6-49d9-4cc5-a0f0-3188d7922c0e",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "name": "project-one-ui-deleted",
+    "at": "2026-11-15T03:59:18.777Z",
+    "id": "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+    "nameConfirmed": true,
+    "ownedIsoAndTemplateDeletedFirst": true
+  },
+  {
+    "name": "projects-ui-cleanup-complete",
+    "at": "2026-11-15T04:00:50.966Z",
+    "projectids": [
+      "3c04ec59-092f-4ee9-9451-d8c8c8e92bde",
+      "0e01bcce-b6ef-4087-b0c9-92be2e9e6394"
+    ],
+    "remainingProjects": 0
+  },
+  {
+    "name": "owner-template-ui-deleted",
+    "at": "2026-11-15T04:01:00.990Z",
+    "id": "6b8baff3-e328-4225-9f38-4437dac0dfb0",
+    "result": "템플릿 Zone 삭제\n\nqa-iso1668-owner-template\n6b8baff3-e328-4225-9f38-4437dac0dfb0\n\n표시된 템플릿을 선택한 Zone에서 삭제합니다. 원본 준비 상태와 작업 결과를 각각 표시합니다.\nZone\t생성일\t상태\t준비\t작업 상태\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n13-Zone\t2026. 11. 15. 오전 10:46:49\t\n사용 가능\n\t예\t작업 성공\n\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기",
+    "force": false
+  },
+  {
+    "name": "all-test-templates-ui-deleted",
+    "at": "2026-11-15T04:01:51.114Z",
+    "ids": [
+      "13693a6c-4b52-4d2a-8061-5f913caa08a3",
+      "6b8baff3-e328-4225-9f38-4437dac0dfb0",
+      "2b400d1a-189c-42c4-8706-ccf15cfbd01c"
+    ],
+    "lastResult": "템플릿 Zone 삭제\n\nqa-iso1668-template\n13693a6c-4b52-4d2a-8061-5f913caa08a3\n\n표시된 템플릿을 선택한 Zone에서 삭제합니다. 원본 준비 상태와 작업 결과를 각각 표시합니다.\nZone\t생성일\t상태\t준비\t작업 상태\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n13-Zone\t2026. 11. 15. 오전 10:37:16\t\n사용 가능\n\t예\t작업 성공\n\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "owner-iso-ui-deleted",
+    "at": "2026-11-15T04:02:56.863Z",
+    "id": "805d7ad2-3a49-45ad-9a4b-9979d4e69ac9",
+    "jobs": [
+      {
+        "jobid": "6d27276a-e6ad-4fbe-a501-5e24ab816572",
+        "status": 0
+      },
+      {
+        "jobid": "6d27276a-e6ad-4fbe-a501-5e24ab816572",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "name": "owner-account-ui-deleted",
+    "at": "2026-11-15T04:04:21.239Z",
+    "id": "63bdc64f-fe90-4b76-a4e7-cd23b0a2db64",
+    "disabledFirst": true,
+    "vm": 0,
+    "volumes": 0,
+    "ips": 0,
+    "associatedIsoAndTemplateDeleted": true
+  },
+  {
+    "name": "root-fixture-iso-ui-deleted",
+    "at": "2026-11-15T04:04:21.294Z",
+    "id": "2a859dc1-0cce-49f5-b231-24f5dbc72b69",
+    "jobs": [
+      {
+        "jobid": "80693390-49b4-46f1-b9ea-54ee9fcaa15b",
+        "status": 0
+      },
+      {
+        "jobid": "80693390-49b4-46f1-b9ea-54ee9fcaa15b",
+        "status": 1,
+        "success": true
+      }
+    ]
+  },
+  {
+    "name": "recipient-b-account-ui-deleted",
+    "at": "2026-11-15T04:05:07.804Z",
+    "id": "cc76492e-24db-4d97-91e4-4cfa59c887a8",
+    "disabledFirst": true,
+    "vm": 0,
+    "volumes": 0,
+    "ips": 0,
+    "projectMembershipRemovedByProjectDeletion": true
+  },
+  {
+    "name": "all-test-accounts-ui-deleted",
+    "at": "2026-11-15T04:05:57.133Z",
+    "ids": [
+      "63bdc64f-fe90-4b76-a4e7-cd23b0a2db64",
+      "cc76492e-24db-4d97-91e4-4cfa59c887a8",
+      "570b2358-7006-4940-bfb3-160e21cac6ef",
+      "3eb252a8-96bb-45bf-b2a4-161aab3be32e",
+      "837e0d69-d4de-4e68-beb8-bcb2d63d7bb9"
+    ],
+    "remainingAccounts": [
+      "admin",
+      "baremetal-system-account",
+      "epic898-config-denied-1791388603"
+    ],
+    "vmVolumesIpsCheckedZero": true
+  },
+  {
+    "name": "roles-ui-cleanup-complete",
+    "at": "2026-11-15T04:06:28.698Z",
+    "roles": [
+      "이름유형설명상태",
+      "Root AdminAdminDefault root admin role정상",
+      "Resource AdminResourceAdminDefault resource admin role정상",
+      "Domain AdminDomainAdminDefault domain admin role정상",
+      "UserUserDefault user role정상",
+      "Read-Only Admin - DefaultAdminDefault read-only admin role정상",
+      "Read-Only User - DefaultUserDefault read-only user role정상",
+      "Support Admin - DefaultAdminDefault support admin role정상",
+      "Support User - DefaultUserDefault support user role정상",
+      "Project Kubernetes Service RoleUserProject Kubernetes Service Role정상"
+    ],
+    "qaRolePresent": false
+  },
+  {
+    "name": "final-original-isos-preserved",
+    "at": "2026-11-15T04:06:58.931Z",
+    "ids": [
+      "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+      "98432634-54c7-485f-aa24-e6e2cea40980",
+      "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+      "192d3383-74a4-4969-8f37-5af00aa90b95",
+      "5836b8f6-9336-4766-8f77-e39218f6e826",
+      "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+      "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "367c88cb-4947-452f-9429-54a19885adf4"
+    ],
+    "originalIdsEqual": true,
+    "qaRemaining": 0
+  },
+  {
+    "name": "final-template-qa-search-empty",
+    "at": "2026-11-15T04:08:20.987Z",
+    "totalBeforeSearch": 48,
+    "query": "qa-iso1668",
+    "rows": [
+      "이름상태OS 유형CPU 아키텍처하이퍼바이저크기계정템플릿 유형순서",
+      "데이터 없음"
+    ]
+  },
+  {
+    "name": "final-original-templates-preserved",
+    "at": "2026-11-15T04:08:54.131Z",
+    "total": 48,
+    "qaRemaining": 0
+  },
+  {
+    "name": "final-system-vms-preserved",
+    "at": "2026-11-15T04:09:01.389Z",
+    "rows": [
+      "이름상태Agent 상태시스템 VM 유형Public IP 주소사설 IP 주소로컬 연결 IP 주소버전호스트CPU 아키텍처Zone",
+      "v-245-VM실행 중실행 중consoleproxy10.10.13.510.10.13.6169.254.243.214.23.0.0ablecube13-2x86_6413-Zone",
+      "s-255-VM실행 중실행 중secondarystoragevm10.10.13.410.10.13.7169.254.164.2114.23.0.0ablecube13-1x86_6413-Zone"
+    ]
+  },
+  {
+    "name": "final-userdata-preserved",
+    "at": "2026-11-15T04:09:52.430Z",
+    "count": 0,
+    "rows": [
+      "이름아이디계정도메인",
+      "데이터 없음"
+    ]
+  },
+  {
+    "name": "final-domain-root-preserved",
+    "at": "2026-11-15T04:09:58.897Z",
+    "tree": "ROOT",
+    "qaDomainPresent": 0
+  },
+  {
+    "name": "final-ui-verification-and-cleanup-complete",
+    "at": "2026-11-15T04:11:04.485Z",
+    "remaining": {
+      "isos": 0,
+      "templates": 0,
+      "accounts": 0,
+      "roles": 0,
+      "projects": 0,
+      "domains": 0,
+      "userdatas": 0
+    },
+    "originalIsoCount": 8,
+    "originalIsoIdsEqual": true,
+    "originalTemplateCount": 48,
+    "originalAccountCount": 3,
+    "originalRoleCount": 9,
+    "projectCount": 0,
+    "domainTree": "ROOT",
+    "userdataCount": 0,
+    "ssvm": "s-255-VM/4.23/Running/Agent Up",
+    "consoleProxy": "v-245-VM/Running/Agent Up",
+    "adminLoggedOut": true,
+    "testActorLoggedOut": true,
+    "viewportRestored": true,
+    "darkThemeRestored": true,
+    "networkFaultInjectionCleared": true
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "stagedTree": "e91588cd85d59d78da6b4f932fb7c21c06c5d551",
+  "baselineUnknown": 4077,
+  "currentUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "method": "exact Git index export excludes ignored dependencies and build outputs",
+  "workspace": "/root/work/.rat-iso1669-final-r0vwhld8"
+}

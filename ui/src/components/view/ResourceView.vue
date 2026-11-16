@@ -16,11 +16,13 @@
 // under the License.
 
 <template>
-  <resource-layout :wide="wideLayout" :class="{ 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup' }">
+  <resource-layout :wide="wideLayout" :class="{ 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'template-resource': ['template', 'iso'].includes($route.meta?.name) }">
     <template #left>
       <slot name="info-card">
         <info-card
           :resource="resource"
+          :template-observation="templateZoneObservation"
+          @show-template-zones="onTabChange('zones')"
           :loading="loading && !(quietRefresh && resource.id && resource.id === $route.params?.id)"
           :actions="actions"
           @backup-controls-change="$emit('backup-controls-change', $event)"
@@ -50,11 +52,13 @@
             :resource="resource"
             :loading="loading"
             :tab="tabs[0].name"
-            @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"
+            @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tabs[0].name))) && $emit('refresh')"
+            v-on="$route.meta?.name === 'template' && tabs[0].name === 'zones' ? { 'availability-observed': acceptTemplateObservation, 'operation-retained': value => $emit('template-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : $route.meta?.name === 'iso' && tabs[0].name === 'zones' ? { 'operation-retained': value => $emit('iso-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : {}"
             @wide-layout-change="onWideLayoutChange" />
         </keep-alive>
         <a-tabs
           v-else
+          :class="{'template-main-tabs':['template','iso'].includes($route.meta?.name)}"
           :style="{ width: '100%', marginTop: resourceTabPosition === 'top' ? '-12px' : '0' }"
           :tabPosition="resourceTabPosition"
           :animated="false"
@@ -74,8 +78,9 @@
                   :loading="loading && !(quietRefresh && tab.name === 'details' && resource.id && resource.id === $route.params?.id)"
                   :tab="activeTab"
                   @change-resource="$emit('change-resource', $event)"
-                  @refresh="['buckets', 'objectstore'].includes($route.meta.name) && $emit('refresh')"
-                  @wide-layout-change="onWideLayoutChange" />
+                  @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tab.name))) && $emit('refresh')"
+                  v-on="$route.meta?.name === 'template' && tab.name === 'zones' ? { 'availability-observed': acceptTemplateObservation, 'operation-retained': value => $emit('template-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : $route.meta?.name === 'iso' && tab.name === 'zones' ? { 'operation-retained': value => $emit('iso-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : {}"
+            @wide-layout-change="onWideLayoutChange" />
               </keep-alive>
             </a-tab-pane>
           </template>
@@ -86,6 +91,7 @@
 </template>
 
 <script>
+import '@/style/components/view/template-tabs.less'
 import { networkTabRoute, uniqueTabs, selectedNetworkTab } from '@/utils/networkTabs'
 import { conditionalGuestTab, guestFeatureStatus } from '@/utils/conditionalGuestNetwork'
 import DetailsTab from '@/components/view/DetailsTab'
@@ -96,6 +102,7 @@ import StorageSnapshotSummary from '@/views/storage/StorageSnapshotSummary'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
 import ResourceLayout from '@/layouts/ResourceLayout'
 import { getAPI } from '@/api'
+import { templateObservationContext } from '@/utils/templateAvailability'
 import { mixinDevice } from '@/utils/mixin.js'
 
 export default {
@@ -147,6 +154,7 @@ export default {
   data () {
     return {
       activeTab: '',
+      templateZoneObservation: null,
       conditionalTabNotice: '',
       networkService: null,
       projectAccount: null,
@@ -154,6 +162,9 @@ export default {
     }
   },
   computed: {
+    templateTabsReady () { return this.$route.meta?.name === 'template' && !!this.resource.id && (!this.$route.params?.id || this.$route.params.id === this.resource.id) },
+    templateTabScope () { return this.$route.meta?.name === 'template' ? JSON.stringify([this.templateContext, this.resource.templatetype, Object.keys(this.$store.getters.apis || {}).sort()]) : '' },
+    templateContext () { return templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token) },
     isNetworkTabs () { return networkTabRoute(this.$route) },
     networkTabsReady () { return !!this.resource.id && (!this.$route.params?.id || this.$route.params.id === this.resource.id) && !this.loading && (this.managedNetworkContext || !this.resource.associatednetworkid || this.networkService !== null) },
     renderedTabs () {
@@ -167,6 +178,8 @@ export default {
     }
   },
   watch: {
+    templateTabScope () { if (this.templateTabsReady) this.setActiveTab() },
+    templateContext () { this.templateZoneObservation = null },
     renderedTabs () { if (this.isNetworkTabs) this.setActiveTab() },
     networkTabScope () { if (this.isNetworkTabs) this.setActiveTab() },
     resource: {
@@ -197,6 +210,9 @@ export default {
     window.removeEventListener('popstate', this.setActiveTab)
   },
   methods: {
+    acceptTemplateObservation (observation) {
+      if (this.$route.meta?.name === 'template' && observation?.context === this.templateContext && observation.templateid === this.resource.id) this.templateZoneObservation = observation
+    },
     fetchData () {
       const resourceId = this.resource.id
       const networkId = this.resource.associatednetworkid
@@ -223,7 +239,7 @@ export default {
       this.wideLayout = false
       const query = Object.assign({}, this.$route.query)
       query.tab = key
-      if (networkTabRoute(this.$route) || ['ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) {
+      if (networkTabRoute(this.$route) || ['template', 'iso', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name)) {
         this.$router.push({ path: this.$route.path, query })
         this.$emit('onTabChange', key)
         return
@@ -266,7 +282,7 @@ export default {
     setActiveTab () {
       const requestedTab = this.$route.query.tab || this.historyTab
       const network = networkTabRoute(this.$route)
-      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : ['ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
+      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : ['template', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
       const selected = network ? selectedNetworkTab(available, requestedTab) : available.find(tab => tab.name === requestedTab) || available[0]
       this.activeTab = selected ? selected.name : ''
       // Invalid library deep links use the visible fallback tab in the URL too.
@@ -275,7 +291,7 @@ export default {
       // canonicalize its URL.
       const routeTabs = this.$route.meta?.tabs
       const ownsRouteTabs = (this.$route.meta?.name === 'publicip' || !routeTabs) || (routeTabs.length === this.tabs.length && routeTabs.every((tab, index) => tab.name === this.tabs[index].name))
-      if (ownsRouteTabs && ((network && this.networkTabsReady) || ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
+      if (ownsRouteTabs && ((network && this.networkTabsReady) || this.templateTabsReady || ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
         if (this.$route.meta?.name === 'guestnetwork' && conditionalGuestTab(requestedTab)) {
           this.conditionalTabNotice = guestFeatureStatus(requestedTab, this.resource, this.$store.getters)
         } else if (this.$route.meta?.name === 'guestnetwork' && this.resource.type === 'L2' &&
@@ -292,6 +308,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.template-resource :deep(.resource-content-card .ant-tabs-content-holder) { min-width: 0; }
+.template-resource :deep(.resource-content-card .ant-tabs-tabpane) { min-width: 0; }
 .guest-feature-notice {
   margin-bottom: 16px;
 }

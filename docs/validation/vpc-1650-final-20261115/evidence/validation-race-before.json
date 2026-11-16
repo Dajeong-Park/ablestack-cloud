@@ -1,0 +1,130 @@
+{
+  "numFailedTestSuites": 1,
+  "numFailedTests": 7,
+  "numPassedTestSuites": 0,
+  "numPassedTests": 2,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 1,
+  "numTotalTests": 9,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1794669191296,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "failureMessages": [
+            "Error: expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: \"createTags\", {\"resourceIds\": \"original-route\", \"resourceType\": \"StaticRoute\", \"tags[0].key\": \"original-key\", \"tags[0].value\": \"original-value\"}\n    at /home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23"
+          ],
+          "fullName": "tag validation cannot submit after project changes",
+          "location": null,
+          "status": "failed",
+          "title": "tag validation cannot submit after project changes"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [
+            "Error: expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: \"createTags\", {\"resourceIds\": \"original-route\", \"resourceType\": \"StaticRoute\", \"tags[0].key\": \"original-key\", \"tags[0].value\": \"original-value\"}\n    at /home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23"
+          ],
+          "fullName": "tag validation cannot submit after resource changes",
+          "location": null,
+          "status": "failed",
+          "title": "tag validation cannot submit after resource changes"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [
+            "Error: expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: \"createTags\", {\"resourceIds\": \"original-route\", \"resourceType\": \"StaticRoute\", \"tags[0].key\": \"original-key\", \"tags[0].value\": \"original-value\"}\n    at /home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23"
+          ],
+          "fullName": "tag validation cannot submit after unmount changes",
+          "location": null,
+          "status": "failed",
+          "title": "tag validation cannot submit after unmount changes"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [
+            "Error: expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: \"createNetworkACLList\", {\"description\": \"original\", \"name\": \"original-draft\", \"vpcid\": \"original\"}\n    at /home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23"
+          ],
+          "fullName": "acl validation cannot submit after project changes",
+          "location": null,
+          "status": "failed",
+          "title": "acl validation cannot submit after project changes"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [
+            "Error: expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: \"createNetworkACLList\", {\"description\": \"original\", \"name\": \"original-draft\", \"vpcid\": \"other-vpc\"}\n    at /home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23"
+          ],
+          "fullName": "acl validation cannot submit after resource changes",
+          "location": null,
+          "status": "failed",
+          "title": "acl validation cannot submit after resource changes"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [
+            "Error: expect(jest.fn()).not.toHaveBeenCalled()\n\nExpected number of calls: 0\nReceived number of calls: 1\n\n1: \"createNetworkACLList\", {\"description\": \"original\", \"name\": \"original-draft\", \"vpcid\": \"original\"}\n    at /home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23"
+          ],
+          "fullName": "acl validation cannot submit after unmount changes",
+          "location": null,
+          "status": "failed",
+          "title": "acl validation cannot submit after unmount changes"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [
+            "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n    at Object.<anonymous> (/home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js:76:34)"
+          ],
+          "fullName": "late ACL job callbacks cannot close a new project dialog or issue a refresh there",
+          "location": null,
+          "status": "failed",
+          "title": "late ACL job callbacks cannot close a new project dialog or issue a refresh there"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [],
+          "fullName": "tag submits exactly once when validation completes in the same context",
+          "location": null,
+          "status": "passed",
+          "title": "tag submits exactly once when validation completes in the same context"
+        },
+        {
+          "ancestorTitles": [],
+          "failureMessages": [],
+          "fullName": "acl submits exactly once when validation completes in the same context",
+          "location": null,
+          "status": "passed",
+          "title": "acl submits exactly once when validation completes in the same context"
+        }
+      ],
+      "endTime": 1794669203297,
+      "message": "  ● tag validation cannot submit after project changes\n\n    expect(jest.fn()).not.toHaveBeenCalled()\n\n    Expected number of calls: 0\n    Received number of calls: 1\n\n    1: \"createTags\", {\"resourceIds\": \"original-route\", \"resourceType\": \"StaticRoute\", \"tags[0].key\": \"original-key\", \"tags[0].value\": \"original-value\"}\n\n      59 |   finish()\n      60 |   await submit\n    > 61 |   expect(postAPI).not.toHaveBeenCalled()\n         |                       ^\n      62 | })\n      63 | test('late ACL job callbacks cannot close a new project dialog or issue a refresh there', async () => {\n      64 |   const w = await open('acl')\n\n      at tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23\n\n  ● tag validation cannot submit after resource changes\n\n    expect(jest.fn()).not.toHaveBeenCalled()\n\n    Expected number of calls: 0\n    Received number of calls: 1\n\n    1: \"createTags\", {\"resourceIds\": \"original-route\", \"resourceType\": \"StaticRoute\", \"tags[0].key\": \"original-key\", \"tags[0].value\": \"original-value\"}\n\n      59 |   finish()\n      60 |   await submit\n    > 61 |   expect(postAPI).not.toHaveBeenCalled()\n         |                       ^\n      62 | })\n      63 | test('late ACL job callbacks cannot close a new project dialog or issue a refresh there', async () => {\n      64 |   const w = await open('acl')\n\n      at tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23\n\n  ● tag validation cannot submit after unmount changes\n\n    expect(jest.fn()).not.toHaveBeenCalled()\n\n    Expected number of calls: 0\n    Received number of calls: 1\n\n    1: \"createTags\", {\"resourceIds\": \"original-route\", \"resourceType\": \"StaticRoute\", \"tags[0].key\": \"original-key\", \"tags[0].value\": \"original-value\"}\n\n      59 |   finish()\n      60 |   await submit\n    > 61 |   expect(postAPI).not.toHaveBeenCalled()\n         |                       ^\n      62 | })\n      63 | test('late ACL job callbacks cannot close a new project dialog or issue a refresh there', async () => {\n      64 |   const w = await open('acl')\n\n      at tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23\n\n  ● acl validation cannot submit after project changes\n\n    expect(jest.fn()).not.toHaveBeenCalled()\n\n    Expected number of calls: 0\n    Received number of calls: 1\n\n    1: \"createNetworkACLList\", {\"description\": \"original\", \"name\": \"original-draft\", \"vpcid\": \"original\"}\n\n      59 |   finish()\n      60 |   await submit\n    > 61 |   expect(postAPI).not.toHaveBeenCalled()\n         |                       ^\n      62 | })\n      63 | test('late ACL job callbacks cannot close a new project dialog or issue a refresh there', async () => {\n      64 |   const w = await open('acl')\n\n      at tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23\n\n  ● acl validation cannot submit after resource changes\n\n    expect(jest.fn()).not.toHaveBeenCalled()\n\n    Expected number of calls: 0\n    Received number of calls: 1\n\n    1: \"createNetworkACLList\", {\"description\": \"original\", \"name\": \"original-draft\", \"vpcid\": \"other-vpc\"}\n\n      59 |   finish()\n      60 |   await submit\n    > 61 |   expect(postAPI).not.toHaveBeenCalled()\n         |                       ^\n      62 | })\n      63 | test('late ACL job callbacks cannot close a new project dialog or issue a refresh there', async () => {\n      64 |   const w = await open('acl')\n\n      at tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23\n\n  ● acl validation cannot submit after unmount changes\n\n    expect(jest.fn()).not.toHaveBeenCalled()\n\n    Expected number of calls: 0\n    Received number of calls: 1\n\n    1: \"createNetworkACLList\", {\"description\": \"original\", \"name\": \"original-draft\", \"vpcid\": \"original\"}\n\n      59 |   finish()\n      60 |   await submit\n    > 61 |   expect(postAPI).not.toHaveBeenCalled()\n         |                       ^\n      62 | })\n      63 | test('late ACL job callbacks cannot close a new project dialog or issue a refresh there', async () => {\n      64 |   const w = await open('acl')\n\n      at tests/unit/views/network/VpcMutationValidationScope.spec.js:61:23\n\n  ● late ACL job callbacks cannot close a new project dialog or issue a refresh there\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: true\n    Received: false\n\n      74 |   job.successMethod()\n      75 |   job.errorMethod()\n    > 76 |   expect(w.vm.modals.networkAcl).toBe(true)\n         |                                  ^\n      77 |   expect(w.vm.aclError).toBe('')\n      78 |   expect(refresh).not.toHaveBeenCalled()\n      79 | })\n\n      at Object.<anonymous> (tests/unit/views/network/VpcMutationValidationScope.spec.js:76:34)\n",
+      "name": "/home/ablecloud/work/dhslove/cloud-epic-1650/ui/tests/unit/views/network/VpcMutationValidationScope.spec.js",
+      "startTime": 1794669199173,
+      "status": "failed",
+      "summary": ""
+    }
+  ],
+  "wasInterrupted": false
+}

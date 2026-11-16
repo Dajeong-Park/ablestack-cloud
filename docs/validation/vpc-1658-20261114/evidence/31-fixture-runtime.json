@@ -1,0 +1,9 @@
+{
+  "vpcid": "dfb32fc6-a85c-4cd1-9dae-e13f1cd27f30",
+  "gatewayid": "fa1d0748-a99c-48b5-ad54-62f89cee482b",
+  "gatewayState": "Ready",
+  "routersForFixture": 0,
+  "routerStarted": false,
+  "privateGatewayHasParentVpc": true,
+  "gatewayAcl": "8cc93567-b253-11f1-a895-0024814c313f"
+}
