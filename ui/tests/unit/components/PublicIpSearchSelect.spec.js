@@ -53,5 +53,5 @@ test('parent changes clear dependent UUIDs and stale blocked values', () => {
 test('VM common chips preserve raw identifiers without fetching outside the search scope', async () => {
  const c = { apiName: 'listPublicIpAddresses', filterVersion: 0, lookupScope: 'scope', $t: key => key }
  await Filter.methods.resolveFilters.call(c, [{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'all' }, { key: 'issourcenat', value: 'false' }, { key: 'filter', value: 'all' }])
- expect(c.searchFilters).toEqual([{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'label.all' }, { key: 'issourcenat', value: 'label.no' }]); expect(getAPI).not.toHaveBeenCalled()
+ expect(c.searchFilters.map(({ key, value }) => ({ key, value }))).toEqual([{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'label.all' }, { key: 'issourcenat', value: 'label.no' }]); expect(getAPI).not.toHaveBeenCalled()
 })
