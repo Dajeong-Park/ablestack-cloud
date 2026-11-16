@@ -1,0 +1,559 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - list:
+      - menuitem "apartment 가상머신용 네트워크":
+        - link "apartment 가상머신용 네트워크":
+          - /url: "#/guestnetwork"
+          - img "apartment":
+          - text: 가상머신용 네트워크
+      - menuitem "deployment-unit VPC":
+        - link "deployment-unit VPC":
+          - /url: "#/vpc"
+          - img "deployment-unit":
+          - text: VPC
+      - menuitem "gateway VNF 기기":
+        - link "gateway VNF 기기":
+          - /url: "#/vnfapp"
+          - img "gateway":
+          - text: VNF 기기
+      - menuitem "environment Public IP 주소":
+        - link "environment Public IP 주소":
+          - /url: "#/publicip"
+          - img "environment":
+          - text: Public IP 주소
+      - menuitem "partition AS Numbers":
+        - link "partition AS Numbers":
+          - /url: "#/asnumbers"
+          - img "partition":
+          - text: AS Numbers
+      - menuitem "lock 사이트간 사설네트워크(VPN)":
+        - link "lock 사이트간 사설네트워크(VPN)":
+          - /url: "#/s2svpn"
+          - img "lock":
+          - text: 사이트간 사설네트워크(VPN)
+      - menuitem "sync 사이트 간 VPN 연결":
+        - link "sync 사이트 간 VPN 연결":
+          - /url: "#/s2svpnconn"
+          - img "sync":
+          - text: 사이트 간 VPN 연결
+      - menuitem "bars 네트워크 ACL":
+        - link "bars 네트워크 ACL":
+          - /url: "#/acllist"
+          - img "bars":
+          - text: 네트워크 ACL
+      - menuitem "user-switch VPN 사용자":
+        - link "user-switch VPN 사용자":
+          - /url: "#/vpnuser"
+          - img "user-switch":
+          - text: VPN 사용자
+      - menuitem "lock VPN 고객 게이트웨이":
+        - link "lock VPN 고객 게이트웨이":
+          - /url: "#/vpncustomergateway"
+          - img "lock":
+          - text: VPN 고객 게이트웨이
+      - menuitem "folder 게스트 VLAN":
+        - link "folder 게스트 VLAN":
+          - /url: "#/guestvlans"
+          - img "folder":
+          - text: 게스트 VLAN
+      - menuitem "pic-center IPv4 서브넷":
+        - link "pic-center IPv4 서브넷":
+          - /url: "#/ipv4subnets"
+          - img "pic-center":
+          - text: IPv4 서브넷
+      - menuitem "apartment DNS 영역":
+        - link "apartment DNS 영역":
+          - /url: "#/dnszone"
+          - img "apartment":
+          - text: DNS 영역
+      - menuitem "cloud-server DNS 서버":
+        - link "cloud-server DNS 서버":
+          - /url: "#/dnsserver"
+          - img "cloud-server":
+          - text: DNS 서버
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - generic: /
+  - link "Public IP 주소":
+    - /url: "#/publicip"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - generic: 필터링 기준
+  - combobox "필터링 기준"
+  - generic: 할당됨
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - text: "상태 : 할당됨"
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "IP 주소 caret-up caret-down 상태 caret-up caret-down 연결된 게스트 네트워크 caret-up caret-down VPC caret-up caret-down VM 이름 caret-up caret-down 할당 일시 caret-up caret-down 계정 caret-up caret-down 도메인 caret-up caret-down Zone caret-up caret-down filter":
+        - columnheader:
+          - checkbox
+        - columnheader "IP 주소 caret-up caret-down":
+          - generic: IP 주소
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "연결된 게스트 네트워크 caret-up caret-down":
+          - generic: 연결된 게스트 네트워크
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VM 이름 caret-up caret-down":
+          - generic: VM 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "할당 일시 caret-up caret-down":
+          - generic: 할당 일시
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "도메인 caret-up caret-down":
+          - generic: 도메인
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "10.10.32.5 system 할당됨 — v-1-VM 2026. 9. 17. 오전 2:13:35 system ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.5 system":
+          - link "10.10.32.5":
+            - /url: "#/publicip/7c65bf2e-fbda-4ad1-a044-9d38e61c03a2?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: system
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "v-1-VM":
+          - link "v-1-VM":
+            - /url: "#/systemvm/59e31d5b-2a18-4e21-84f3-0a2a7fa77162"
+        - cell "2026. 9. 17. 오전 2:13:35":
+          - generic: 2026. 9. 17. 오전 2:13:35
+        - cell "system":
+          - link "system":
+            - /url: "#/account?name=system&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.6 system 할당됨 — s-27-VM 2026. 10. 1. 오전 3:15:46 system ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.6 system":
+          - link "10.10.32.6":
+            - /url: "#/publicip/9064a919-9683-41ea-bfe5-ef3732e07eb2?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: system
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "s-27-VM":
+          - link "s-27-VM":
+            - /url: "#/systemvm/eff7e920-577d-4576-8b54-933261930cc9"
+        - cell "2026. 10. 1. 오전 3:15:46":
+          - generic: 2026. 10. 1. 오전 3:15:46
+        - cell "system":
+          - link "system":
+            - /url: "#/account?name=system&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.101 source-nat 할당됨 — AS-PROD-32-AS01-VPC — 2026. 10. 10. 오후 4:17:25 epic1346-as01-user32 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.101 source-nat":
+          - link "10.10.32.101":
+            - /url: "#/publicip/d035d9a6-cb42-438f-893b-3353d20423e9?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "—":
+          - generic: —
+        - cell "AS-PROD-32-AS01-VPC":
+          - link "AS-PROD-32-AS01-VPC":
+            - /url: "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721"
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 10. 오후 4:17:25":
+          - generic: 2026. 10. 10. 오후 4:17:25
+        - cell "epic1346-as01-user32":
+          - link "epic1346-as01-user32":
+            - /url: "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.102 할당됨 AS-PROD-32-AS01-VPC-Tier AS-PROD-32-AS01-VPC — 2026. 10. 10. 오후 4:18:05 epic1346-as01-user32 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.102":
+          - link "10.10.32.102":
+            - /url: "#/publicip/7f24ac97-2e82-40f9-8e8a-6264a1144038?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "AS-PROD-32-AS01-VPC-Tier":
+          - link "AS-PROD-32-AS01-VPC-Tier":
+            - /url: "#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4"
+        - cell "AS-PROD-32-AS01-VPC":
+          - link "AS-PROD-32-AS01-VPC":
+            - /url: "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721"
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 10. 오후 4:18:05":
+          - generic: 2026. 10. 10. 오후 4:18:05
+        - cell "epic1346-as01-user32":
+          - link "epic1346-as01-user32":
+            - /url: "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.143 source-nat 할당됨 asdsad — 2026. 11. 12. 오전 12:52:20 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.143 source-nat":
+          - link "10.10.32.143":
+            - /url: "#/publicip/c7e46392-cbcd-4503-a810-606b5afaa884?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "asdsad":
+          - link "asdsad":
+            - /url: "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 12. 오전 12:52:20":
+          - generic: 2026. 11. 12. 오전 12:52:20
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.144 source-nat 할당됨 tj-isolated-net — 2026. 11. 11. 오전 5:17:57 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.144 source-nat":
+          - link "10.10.32.144":
+            - /url: "#/publicip/078a87ba-8a96-4292-8f33-03163f599ef9?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "tj-isolated-net":
+          - link "tj-isolated-net":
+            - /url: "#/guestnetwork/5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 11. 오전 5:17:57":
+          - generic: 2026. 11. 11. 오전 5:17:57
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.166 source-nat 할당됨 test — 2026. 11. 16. 오전 12:57:51 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.166 source-nat":
+          - link "10.10.32.166":
+            - /url: "#/publicip/04de4618-4265-4bfc-9b4c-95bc88ac1c2c?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "test":
+          - link "test":
+            - /url: "#/guestnetwork/4681828f-494e-4847-ad39-7ba064ca76cd"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 16. 오전 12:57:51":
+          - generic: 2026. 11. 16. 오전 12:57:51
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.167 할당됨 AS-PROD-32-AS01-net — 2026. 10. 10. 오후 3:03:33 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.167":
+          - link "10.10.32.167":
+            - /url: "#/publicip/9715ee32-e444-47ca-aa5c-bf7e8633dbd3?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "AS-PROD-32-AS01-net":
+          - link "AS-PROD-32-AS01-net":
+            - /url: "#/guestnetwork/5f206f2c-afcd-4291-8c77-1b7eaf387fde"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 10. 오후 3:03:33":
+          - generic: 2026. 10. 10. 오후 3:03:33
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.168 source-nat 할당됨 AS-PROD-32-AS01-net — 2026. 10. 10. 오후 3:03:03 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.168 source-nat":
+          - link "10.10.32.168":
+            - /url: "#/publicip/282aad30-4938-4de3-8412-d3098f4f4caf?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "AS-PROD-32-AS01-net":
+          - link "AS-PROD-32-AS01-net":
+            - /url: "#/guestnetwork/5f206f2c-afcd-4291-8c77-1b7eaf387fde"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 10. 오후 3:03:03":
+          - generic: 2026. 10. 10. 오후 3:03:03
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.169 source-nat 할당됨 AS-PROD-32-AS01-userNetwork — 2026. 10. 10. 오후 3:20:50 epic1346-as01-user32 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.169 source-nat":
+          - link "10.10.32.169":
+            - /url: "#/publicip/d82e3f23-29e2-4b44-a85c-6c8821f2a4f6?pipreturn={%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22projectid%22:%220%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "할당됨":
+          - generic: 할당됨
+        - cell "AS-PROD-32-AS01-userNetwork":
+          - link "AS-PROD-32-AS01-userNetwork":
+            - /url: "#/guestnetwork/f889cc7d-02c5-490b-b256-a289b73ff824"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 10. 오후 3:20:50":
+          - generic: 2026. 10. 10. 오후 3:20:50
+        - cell "epic1346-as01-user32":
+          - link "epic1346-as01-user32":
+            - /url: "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+  - list:
+    - listitem: 전체 10 개 항목 중 1-10 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":

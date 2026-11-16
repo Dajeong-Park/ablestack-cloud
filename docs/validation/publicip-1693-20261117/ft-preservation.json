@@ -1,0 +1,20 @@
+[
+  {
+    "platform": "windows",
+    "head": "8c0a6d9a0a947311abb0ee6d2604fdcb855906d1",
+    "branch": "feature/ftctl-cloud-integration",
+    "paths": 14541,
+    "identical": true,
+    "beforeSha256": "7a702e96a507b00b1dce37cf30d287aab5422888f6a7f552d22d99ae84986179",
+    "afterSha256": "7a702e96a507b00b1dce37cf30d287aab5422888f6a7f552d22d99ae84986179"
+  },
+  {
+    "platform": "wsl",
+    "head": "084d43aa0b37c46a94256fff6fcd966696d9f1b0",
+    "branch": "feature/ftctl-cloud-integration",
+    "paths": 12,
+    "identical": true,
+    "beforeSha256": "15060e785c563526cc62fa194e48a8a9a7bfdbf11d93e0c43c321e18573c0f84",
+    "afterSha256": "15060e785c563526cc62fa194e48a8a9a7bfdbf11d93e0c43c321e18573c0f84"
+  }
+]
