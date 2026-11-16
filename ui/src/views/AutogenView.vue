@@ -1839,6 +1839,9 @@ export default {
       } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) { if (vnfRoute(this.$route)) this.rejectVnfSearch('message.vnf.search.permission'); this.$notifyError(error) } } finally { if (fromVnf) { this.vnfProjectSync = false; if (retry) this.fetchData() } }
     },
     switchProject (projectId) {
+      // Public IP URLs are validated against the selected scope; the legacy
+      // switcher removes projectid and would fight canonical query restoration.
+      if (publicIpRoute(this.$route)) return
       if (snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) return this.syncSnapshotProject(projectId)
       if (!projectId || !projectId.length || projectId.length !== 36) {
         return

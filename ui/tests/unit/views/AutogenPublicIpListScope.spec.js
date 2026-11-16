@@ -58,3 +58,11 @@ test('failed destination-scope read never restores the previous network referenc
   getAPI.mockRejectedValueOnce(error); await c.fetchData()
   expect(c.items).toEqual([]); expect(c.itemCount).toBe(0)
 })
+
+test('canonical project URL never invokes the legacy project switch/removal loop', async () => {
+ store.getters.project = { id: '22222222-2222-4222-8222-222222222222' }; route({})
+ c.switchProject(store.getters.project.id)
+ expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
+ getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
+ expect(getAPI).toHaveBeenCalledTimes(1); expect(c.items).toMatchObject([linked]); expect(c.$router.replace).not.toHaveBeenCalled()
+})
