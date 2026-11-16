@@ -91,7 +91,9 @@
           </span>
           <os-logo v-else :osId="record.ostypeid" :osName="record.osdisplayname" size="xl" />
         </span>
-        <span style="min-width: 120px">
+        <span
+          :class="{ 'template-name-cell': isTemplateMainList && record.id }"
+          :style="{ minWidth: isTemplateMainList && record.id ? 0 : '120px' }">
           <QuickView
             style="margin-left: 5px"
             :actions="actions"
@@ -110,7 +112,10 @@
               @onClick="changeProject(record)"
             />
           </span>
-          <span v-if="($route.name === 'kubernetes' || $showIcon()) && !['vm', 'vnfapp'].includes($route.path.split('/')[1])" style="margin-right: 5px">
+          <span
+            v-if="($route.name === 'kubernetes' || $showIcon()) && !['vm', 'vnfapp'].includes($route.path.split('/')[1])"
+            :class="{ 'template-name-icon': isTemplateMainList && record.id }"
+            style="margin-right: 5px">
             <resource-icon v-if="$showIcon() && record.icon && record.icon.base64image" :image="record.icon.base64image" size="2x"/>
             <os-logo v-else-if="record.ostypename || ['guestoscategory'].includes($route.path.split('/')[1])" :osName="record.ostypename || record.name" size="xl" />
             <render-icon v-else-if="typeof $route.meta.icon ==='string'" style="font-size: 16px;" :icon="$route.meta.icon"/>
@@ -118,6 +123,7 @@
           </span>
           <span
             v-else
+            :class="{ 'template-name-icon': isTemplateMainList && record.id }"
             :style="{ 'margin-right': record.ostypename ? '5px' : '0' }"
           >
             <os-logo
@@ -126,11 +132,11 @@
               size="xl"
             />
           </span>
-          <span v-if="$route.meta?.name === 'template' && !resourcePath && record.id" class="template-primary-name">
+          <span v-if="isTemplateMainList && record.id" class="template-primary-name">
             <a-tooltip :title="text" :trigger="['hover', 'focus']" placement="topLeft">
               <router-link class="template-name-link" :to="templateDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
             </a-tooltip>
-            <router-link v-if="record.hasannotations" :to="templateDetailLocation($route, record, $store.getters, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
+            <router-link v-if="record.hasannotations" class="template-name-comment" :aria-label="$t('label.comments')" :to="templateDetailLocation($route, record, $store.getters, 'comments')"><message-filled size="small" /></router-link>
           </span>
           <span v-else-if="isSshKeyPairList">
             <router-link :to="sshKeyPairLink(record)">{{ text }}</router-link>
@@ -1459,6 +1465,7 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isTemplateMainList () { return this.$route.meta?.name === 'template' && !this.resourcePath },
     isIsoMainList () { return this.$route.meta?.name === 'iso' && !this.resourcePath },
     isoTableScroll () {
       if (!this.isIsoMainList) return null
@@ -2249,7 +2256,10 @@ export default {
 </style>
 
 <style scoped>
-.template-primary-name { display: inline-flex; align-items: center; width: calc(100% - 32px); min-width: 0; vertical-align: middle; }
-.template-primary-name :deep(.template-name-link) { display: block; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.template-primary-name > a:not(.template-name-link) { flex: none; }
+.template-name-cell { display: flex; align-items: center; width: 100%; }
+.template-name-icon { display: inline-flex; flex: 0 0 24px; align-items: center; justify-content: center; width: 24px; }
+.template-name-icon :deep(svg), .template-name-icon :deep(img), .template-name-icon :deep(.ant-avatar) { max-width: 24px; max-height: 24px; }
+.template-primary-name { display: flex; flex: 1 1 0; align-items: center; min-width: 0; }
+.template-primary-name :deep(.template-name-link) { display: block; flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.template-name-comment { display: inline-flex; flex: 0 0 22px; align-items: center; justify-content: flex-end; width: 22px; }
 </style>
