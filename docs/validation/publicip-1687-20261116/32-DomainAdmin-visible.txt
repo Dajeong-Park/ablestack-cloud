@@ -1,0 +1,183 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - menuitem "global Zone":
+      - link "global Zone":
+        - /url: "#/zones"
+        - img "global":
+        - generic: Zone
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: PD
+- generic: PIP1686 DomainAdmin
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP 주소":
+    - /url: "#/publicip"
+  - text: /
+  - generic: 10.10.32.103
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업" [active]:
+    - img "down":
+    - generic: 작업
+  - img "environment":
+  - heading "10.10.32.103" [level=4]
+  - separator
+  - generic: 상태
+  - generic: Reserved
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "77def528-fb75-42e3-a90f-46a6e9c5b90b":
+    - /url: javascript:;
+  - generic: IP
+  - img "environment":
+  - link "10.10.32.103":
+    - /url: javascript:;
+  - generic: VM 이름
+  - generic: —
+  - generic: 공용 네트워크
+  - generic: 4216b0b3-d054-46ab-88dd-9d025a1f3eb5
+  - button "복사 공용 네트워크":
+    - img "copy":
+  - generic: 연결된 게스트 네트워크
+  - generic: —
+  - generic: VPC
+  - generic: —
+  - generic: 사용자 표시
+  - generic: 이 응답에서 미제공
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+  - generic: 계정
+  - img "user":
+  - link "qa-pip1687-32-20261116-074721-user":
+    - /url: "#/account?name=qa-pip1687-32-20261116-074721-user&domainid=2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+  - generic: 도메인
+  - img "block":
+  - link "qa-pip1687-32-20261116-074721":
+    - /url: "#/domain/2e2ad0e1-11e1-4e45-908d-6f68f1439476?tab=details"
+  - separator
+  - strong: 태그
+  - button "reload 태그 새로고침":
+    - img "reload":
+    - generic: 태그 새로고침
+  - generic: 태그가 없습니다.
+  - tablist:
+    - tab "상세" [selected]
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "상세":
+    - list:
+      - strong: IP 주소
+      - generic: 10.10.32.103
+      - strong: 아이디
+      - generic: 77def528-fb75-42e3-a90f-46a6e9c5b90b
+      - strong: VLAN 값
+      - generic: 이 응답에서 미제공
+      - strong: VLAN 범위 UUID
+      - generic: 이 응답에서 미제공
+      - strong: 공용 네트워크
+      - generic: 4216b0b3-d054-46ab-88dd-9d025a1f3eb5
+      - button "복사 공용 네트워크":
+        - img "copy":
+      - strong: 연결된 게스트 네트워크
+      - generic: —
+      - strong: VPC
+      - generic: —
+      - strong: 사용자 표시
+      - generic: 이 응답에서 미제공
+      - strong: 시스템
+      - generic: "false"
+      - strong: Source NAT
+      - generic: "false"
+      - strong: Static NAT
+      - generic: "false"
+      - strong: VM 이름
+      - generic: —
+      - strong: 할당됨
+      - generic: 2026-11-16T07:58:38+0900
+      - strong: 계정
+      - generic: qa-pip1687-32-20261116-074721-user
+      - strong: 도메인
+      - generic: qa-pip1687-32-20261116-074721
+      - strong: Zone
+      - generic: Zone
+- menu:
+  - generic: 삭제
+  - list:
+    - menuitem "예약된 IP 해제":
+      - generic: 예약된 IP 해제

@@ -1,0 +1,1298 @@
+[
+  {
+    "cluster": 31,
+    "name": "light-1280",
+    "fields": [
+      {
+        "client": 215,
+        "field": "networkid",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 546,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "networkid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      }
+    ],
+    "pageWidth": 1270,
+    "theme": "light",
+    "width": 1280
+  },
+  {
+    "cluster": 31,
+    "name": "light-768",
+    "fields": [
+      {
+        "client": 582,
+        "field": "networkid",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 499,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "networkid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      }
+    ],
+    "pageWidth": 758,
+    "theme": "light",
+    "width": 768
+  },
+  {
+    "cluster": 31,
+    "name": "light-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "light",
+    "width": 390
+  },
+  {
+    "cluster": 31,
+    "name": "dark-1280",
+    "fields": [
+      {
+        "client": 215,
+        "field": "networkid",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 546,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "networkid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      }
+    ],
+    "pageWidth": 1270,
+    "theme": "dark",
+    "width": 1280
+  },
+  {
+    "cluster": 31,
+    "name": "dark-768",
+    "fields": [
+      {
+        "client": 582,
+        "field": "networkid",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 499,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "networkid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      }
+    ],
+    "pageWidth": 758,
+    "theme": "dark",
+    "width": 768
+  },
+  {
+    "cluster": 31,
+    "name": "dark-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "dark",
+    "width": 390
+  },
+  {
+    "cluster": 32,
+    "name": "light-768",
+    "fields": [
+      {
+        "client": 582,
+        "field": "networkid",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 499,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "networkid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      }
+    ],
+    "pageWidth": 758,
+    "theme": "light",
+    "width": 768
+  },
+  {
+    "cluster": 32,
+    "name": "light-1280",
+    "fields": [
+      {
+        "client": 215,
+        "field": "networkid",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 546,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "networkid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      }
+    ],
+    "pageWidth": 1270,
+    "theme": "light",
+    "width": 1280
+  },
+  {
+    "cluster": 32,
+    "name": "light-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "light",
+    "width": 390
+  },
+  {
+    "cluster": 32,
+    "name": "dark-1280",
+    "fields": [
+      {
+        "client": 215,
+        "field": "networkid",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 215,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 514.328125,
+        "scroll": 215,
+        "width": 215.328125,
+        "x": 299
+      },
+      {
+        "client": 546,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "networkid",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      },
+      {
+        "client": 546,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 1222.984375,
+        "scroll": 546,
+        "width": 546.015625,
+        "x": 676.96875
+      }
+    ],
+    "pageWidth": 1270,
+    "theme": "dark",
+    "width": 1280
+  },
+  {
+    "cluster": 32,
+    "name": "dark-768",
+    "fields": [
+      {
+        "client": 582,
+        "field": "networkid",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 582,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 705,
+        "scroll": 582,
+        "width": 582,
+        "x": 123
+      },
+      {
+        "client": 499,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "networkid",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      },
+      {
+        "client": 499,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 711,
+        "scroll": 499,
+        "width": 499.359375,
+        "x": 211.640625
+      }
+    ],
+    "pageWidth": 758,
+    "theme": "dark",
+    "width": 768
+  },
+  {
+    "cluster": 32,
+    "name": "dark-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "dark",
+    "width": 390
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-long-name-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "light",
+    "width": 390
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-long-name-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "dark",
+    "width": 390
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-unknown-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "light",
+    "width": 390
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-unknown-390",
+    "fields": [
+      {
+        "client": 284,
+        "field": "networkid",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 284,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 327,
+        "scroll": 284,
+        "width": 284,
+        "x": 43
+      },
+      {
+        "client": 296,
+        "field": "vlanname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vlanid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "networkid",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "associatednetworkname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      },
+      {
+        "client": 296,
+        "field": "vpcname",
+        "overflow": false,
+        "right": 333,
+        "scroll": 296,
+        "width": 296,
+        "x": 37
+      }
+    ],
+    "pageWidth": 380,
+    "theme": "dark",
+    "width": 390
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "ipaddress": "10.10.32.103",
+    "state": "Reserved",
+    "account": "qa-pip1686-32-20261116-063653-user",
+    "domainid": "02e654cf-e6fc-4b87-9e34-d24df3aad2c5",
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "issourcenat": false,
+    "isstaticnat": false,
+    "hasrules": false
+  }
+]

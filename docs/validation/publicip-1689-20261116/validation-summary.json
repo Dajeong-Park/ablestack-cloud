@@ -1,0 +1,47 @@
+{
+  "issue": 1689,
+  "status": "complete",
+  "source": "0f6d1497c2b0f58e6320d157829188cb00612152",
+  "previousCheckpoint": "d882f93f5d58d269100add787df027b2b67ee3cd",
+  "local": {
+    "uiSuites": 8,
+    "uiTests": 147,
+    "apiTests": 5,
+    "changedMavenModules": [
+      "api"
+    ],
+    "lint": "PASS",
+    "productionUiBuild": "PASS",
+    "fullCloudBuild": false,
+    "actionsDispatch": false
+  },
+  "live": {
+    "clusters": [
+      31,
+      32
+    ],
+    "finalRootSearchCases": 36,
+    "responsiveCases": 12,
+    "mobileInteractiveCases": 2,
+    "actualUiDisplayWrites": 8,
+    "distinctSuccessfulJobs": 8,
+    "finalSourceUiDisplayWrites": 6,
+    "rootScopeHistoryRoleFaultEvidence": "retained in prior checkpoint; CSS-only final change; Root18 each and responsive/mobile/display requalified",
+    "transitionStates": "actual query0; read-only synthetic action guards, not real transition jobs"
+  },
+  "pending": [],
+  "blockerResolved": "Windows unlocked and browser runtime reset; CUA validation completed",
+  "cleanup": {
+    "resumeReservedIpsRestored": 2,
+    "resumeNewAccounts": 0,
+    "resumeNewDomains": 0,
+    "previousReservedIpsRestored": 6,
+    "previousAccountsDeleted": 4,
+    "previousDomainsDeleted": 2,
+    "inventoryGroupsEqual": 16,
+    "protectedFilesIdentical": 14541,
+    "uiDefaultsRestored": true,
+    "currentTurnTabsClosed": 2
+  },
+  "nextIssue": 1690
+}

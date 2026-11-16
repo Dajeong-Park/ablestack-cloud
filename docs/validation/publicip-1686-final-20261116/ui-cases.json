@@ -1,0 +1,2276 @@
+[
+  {
+    "cluster": 31,
+    "name": "Reserved-Admin",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-Admin",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Allocated-guest",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+            "text": "rt1230-v13412-ha-gfs2-r17-net"
+          }
+        ],
+        "text": "rt1230-v13412-ha-gfs2-r17-net"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+            "text": "rt1230-v13412-ha-gfs2-r17-net"
+          }
+        ],
+        "text": "rt1230-v13412-ha-gfs2-r17-netb3e7c062-c074-43cf-8374-0a3f74368874"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.100",
+    "refs": [
+      {
+        "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+        "text": "rt1230-v13412-ha-gfs2-r17-net"
+      },
+      {
+        "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+        "text": "rt1230-v13412-ha-gfs2-r17-net"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/0a089eba-061a-419d-93cd-02e9f3b4a164"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-guest",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+            "text": "asdsad"
+          }
+        ],
+        "text": "asdsad"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+            "text": "asdsad"
+          }
+        ],
+        "text": "asdsad3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.143",
+    "refs": [
+      {
+        "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "text": "asdsad"
+      },
+      {
+        "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "text": "asdsad"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/c7e46392-cbcd-4503-a810-606b5afaa884"
+  },
+  {
+    "cluster": 31,
+    "name": "Allocated-VPC",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+            "text": "qa-gn1569-31-reg-vpc"
+          }
+        ],
+        "text": "qa-gn1569-31-reg-vpc"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [
+          "복사 VPC"
+        ],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+            "text": "qa-gn1569-31-reg-vpc"
+          }
+        ],
+        "text": "qa-gn1569-31-reg-vpc876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+      }
+    ],
+    "heading": "10.10.31.106",
+    "refs": [
+      {
+        "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "text": "qa-gn1569-31-reg-vpc"
+      },
+      {
+        "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "text": "qa-gn1569-31-reg-vpc"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/e6978afb-a4ee-4512-8fb5-a06fe6477a83"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-VPC",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+            "text": "AS-PROD-32-AS01-VPC"
+          }
+        ],
+        "text": "AS-PROD-32-AS01-VPC"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [
+          "복사 VPC"
+        ],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+            "text": "AS-PROD-32-AS01-VPC"
+          }
+        ],
+        "text": "AS-PROD-32-AS01-VPCb8d2a843-3310-46c3-9d64-aed4d5684721"
+      }
+    ],
+    "heading": "10.10.32.101",
+    "refs": [
+      {
+        "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "text": "AS-PROD-32-AS01-VPC"
+      },
+      {
+        "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "text": "AS-PROD-32-AS01-VPC"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/d035d9a6-cb42-438f-893b-3353d20423e9"
+  },
+  {
+    "cluster": 31,
+    "name": "Allocated-project-VM",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+            "text": "qa-gn1597-31-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+            "text": "qa-gn1597-31-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-31-project-nate186f3a9-a763-400b-b936-4fa4d1e5e7ca"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.125",
+    "refs": [
+      {
+        "href": "#/vm/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+        "text": "qa-gn1597-31-project-vnf"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/vm/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+        "text": "qa-gn1597-31-project-vnf"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/0086a433-fe4f-474a-b0e8-d04ad1ab7a52"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-project-VM",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+            "text": "qa-gn1597-32-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+            "text": "qa-gn1597-32-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-32-project-nat0b5ac89f-cddc-4cf3-9934-b13dc2bd4446"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.154",
+    "refs": [
+      {
+        "href": "#/vm/812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+        "text": "qa-gn1597-32-project-vnf"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/vm/812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+        "text": "qa-gn1597-32-project-vnf"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/91b10ee8-92ab-45e7-80e6-05092bd5b838"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-after-project-reset",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-after-project-reset",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-503-retained",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-503-retained",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "late-old-IP-discarded",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "late-old-IP-discarded",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-User",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-DomainAdmin",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-User",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-DomainAdmin",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-tagged-long-name-only",
+    "fields": [
+      {
+        "copies": [],
+        "field": "networkid",
+        "links": [],
+        "text": "공용 네트워크 이름만 구분 확인 LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "이름만 있는 연결 게스트망 Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "이름만 있는 VPC Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "123원문: vlan://123"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "공용 네트워크 이름만 구분 확인 LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "이름만 있는 연결 게스트망 Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "이름만 있는 VPC Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-tagged-long-name-only",
+    "fields": [
+      {
+        "copies": [],
+        "field": "networkid",
+        "links": [],
+        "text": "공용 네트워크 이름만 구분 확인 LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "이름만 있는 연결 게스트망 Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "이름만 있는 VPC Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "123원문: vlan://123"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "공용 네트워크 이름만 구분 확인 LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_LongPublicName_4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "이름만 있는 연결 게스트망 Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_Guest_"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "이름만 있는 VPC Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_Vpc_"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-null-and-id-only",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+            "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+          }
+        ],
+        "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+      },
+      {
+        "copies": [
+          "복사 VPC"
+        ],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+            "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+          }
+        ],
+        "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+            "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+          }
+        ],
+        "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+      },
+      {
+        "copies": [
+          "복사 VPC"
+        ],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+            "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+          }
+        ],
+        "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+        "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+      },
+      {
+        "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+      },
+      {
+        "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+        "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+      },
+      {
+        "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-unknown-provider",
+    "fields": [
+      {
+        "copies": [],
+        "field": "networkid",
+        "links": [],
+        "text": "Public name only"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "Guest name only"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "VPC name only"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "vxlan://vendor/Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_<not-html>"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [],
+        "field": "networkid",
+        "links": [],
+        "text": "Public name only"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "Guest name only"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "VPC name only"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-real-response-restored",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-null-and-id-only",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+            "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+          }
+        ],
+        "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+      },
+      {
+        "copies": [
+          "복사 VPC"
+        ],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+            "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+          }
+        ],
+        "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+            "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+          }
+        ],
+        "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+      },
+      {
+        "copies": [
+          "복사 VPC"
+        ],
+        "field": "vpcname",
+        "links": [
+          {
+            "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+            "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+          }
+        ],
+        "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+      },
+      {
+        "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+      },
+      {
+        "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+      },
+      {
+        "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-unknown-provider",
+    "fields": [
+      {
+        "copies": [],
+        "field": "networkid",
+        "links": [],
+        "text": "Public name only"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "Guest name only"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "VPC name only"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "vxlan://vendor/Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_<not-html>"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "copies": [],
+        "field": "networkid",
+        "links": [],
+        "text": "Public name only"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "Guest name only"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "VPC name only"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-real-response-restored",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Allocated-project-VM-settled",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+            "text": "qa-gn1597-31-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+            "text": "qa-gn1597-31-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-31-project-nate186f3a9-a763-400b-b936-4fa4d1e5e7ca"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.125",
+    "refs": [
+      {
+        "href": "#/vm/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+        "text": "qa-gn1597-31-project-vnf"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/vm/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+        "text": "qa-gn1597-31-project-vnf"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/0086a433-fe4f-474a-b0e8-d04ad1ab7a52"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-after-settled-project-reset",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-project-VM-settled",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+            "text": "qa-gn1597-32-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [
+          "복사 연결된 게스트 네트워크"
+        ],
+        "field": "associatednetworkname",
+        "links": [
+          {
+            "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+            "text": "qa-gn1597-32-project-nat"
+          }
+        ],
+        "text": "qa-gn1597-32-project-nat0b5ac89f-cddc-4cf3-9934-b13dc2bd4446"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.154",
+    "refs": [
+      {
+        "href": "#/vm/812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+        "text": "qa-gn1597-32-project-vnf"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/vm/812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+        "text": "qa-gn1597-32-project-vnf"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/91b10ee8-92ab-45e7-80e6-05092bd5b838"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-after-settled-project-reset",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Free-final-clean",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Free-final-clean",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  }
+]

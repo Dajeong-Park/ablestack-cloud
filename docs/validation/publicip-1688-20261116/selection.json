@@ -1,0 +1,59 @@
+[
+  {
+    "cluster": 31,
+    "phase": "selected",
+    "checked": [
+      "0a089eba-061a-419d-93cd-02e9f3b4a164"
+    ],
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "phase": "page2-cleared",
+    "checked": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip?page=2&pagesize=20&filter=allocated&state=allocated",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "phase": "selected-before-project",
+    "checked": [
+      "7f24ac97-2e82-40f9-8e8a-6264a1144038"
+    ],
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "phase": "project-cleared",
+    "checked": [],
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "phase": "final-reserved-selected",
+    "checked": [
+      "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+    ]
+  },
+  {
+    "cluster": 31,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "phase": "final-filter-cleared",
+    "checked": []
+  },
+  {
+    "cluster": 32,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "phase": "final-before-project",
+    "checked": [
+      "e54be08a-1e21-4f44-8351-f1ea42aaea4d"
+    ]
+  },
+  {
+    "cluster": 32,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "phase": "final-project-cleared",
+    "checked": []
+  }
+]

@@ -1,0 +1,176 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: Default view
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP 주소":
+    - /url: "#/publicip"
+  - text: /
+  - generic: 10.10.32.103
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "environment":
+  - heading "10.10.32.103" [level=4]
+  - separator
+  - generic: 상태
+  - generic: 가능
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "77def528-fb75-42e3-a90f-46a6e9c5b90b":
+    - /url: javascript:;
+  - generic: IP
+  - img "environment":
+  - link "10.10.32.103":
+    - /url: javascript:;
+  - generic: VM 이름
+  - generic: —
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+  - separator
+  - strong: 태그
+  - button "reload 태그 새로고침":
+    - img "reload":
+    - generic: 태그 새로고침
+  - generic: 태그가 없습니다.
+  - button "plus 새 태그":
+    - img "plus":
+    - generic: 새 태그
+  - tablist:
+    - tab "상세" [selected]
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "상세":
+    - list:
+      - strong: IP 주소
+      - generic: 10.10.32.103
+      - strong: 아이디
+      - generic: 77def528-fb75-42e3-a90f-46a6e9c5b90b
+      - strong: 네트워크
+      - generic: 4216b0b3-d054-46ab-88dd-9d025a1f3eb5
+      - strong: 시스템
+      - generic: "false"
+      - strong: Source NAT
+      - generic: "false"
+      - strong: Static NAT
+      - generic: "false"
+      - strong: VM 이름
+      - generic: —
+      - strong: Zone
+      - generic: Zone
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "Public IP 예약도움말":
+  - document:
+    - button "Close":
+      - img "close":
+    - text: Public IP 예약
+    - link "도움말":
+      - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+      - img "question-circle":
+    - table:
+      - rowgroup:
+        - 'row "IP 주소 : 10.10.32.103"':
+          - 'cell "IP 주소 : 10.10.32.103"':
+            - generic: "IP 주소 :"
+            - generic: 10.10.32.103
+        - 'row "계정 유형 : 계정"':
+          - 'cell "계정 유형 : 계정"':
+            - generic: "계정 유형 :"
+            - generic: 계정
+        - 'row "예약 대상 소유자 : epic1335-user32 / ROOT"':
+          - 'cell "예약 대상 소유자 : epic1335-user32 / ROOT"':
+            - generic: "예약 대상 소유자 :"
+            - generic: epic1335-user32 / ROOT
+    - generic "계정 유형": "* 계정 유형"
+    - combobox "* 계정 유형"
+    - generic: 계정
+    - generic "도메인": "* 도메인"
+    - combobox "* 도메인"
+    - generic: ROOT
+    - generic "계정": "* 계정"
+    - combobox "* 계정"
+    - generic: epic1335-user32
+    - button "취소" [active]:
+      - generic: 취소
+    - button "예약":
+      - generic: 예약

@@ -1,0 +1,80 @@
+[
+  {
+    "case": "31-final-keyboard-first-submit",
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "response": null
+      }
+    ],
+    "truncated": false
+  },
+  {
+    "case": "31-final-ctrl-enter-unknown-503",
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      },
+      {
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "command": "reserveIpAddress",
+          "response": "json",
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "account": "epic1335-user31",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+        },
+        "status": 503,
+        "response": {
+          "synthetic": true,
+          "message": "#1685 최종 합성 503"
+        }
+      }
+    ],
+    "truncated": false
+  },
+  {
+    "case": "31-final-unknown-read-end",
+    "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+    "requests": [
+      {
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "command": "listPublicIpAddresses",
+          "response": "json"
+        },
+        "status": 200,
+        "response": null
+      }
+    ],
+    "truncated": false
+  }
+]

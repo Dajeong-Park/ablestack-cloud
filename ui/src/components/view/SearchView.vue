@@ -16,7 +16,8 @@
 // under the License.
 
 <template>
-  <SnapshotSearch v-if="apiName === 'listSnapshots'" @search="$emit('search', $event)" />
+  <PublicIpSearch v-if="apiName === 'listPublicIpAddresses'" @search="$emit('search', $event)" />
+  <SnapshotSearch v-else-if="apiName === 'listSnapshots'" @search="$emit('search', $event)" />
   <SnapshotPolicySearch v-else-if="apiName === 'listSnapshotPolicies'" @search="$emit('search', $event)" />
   <span v-else :style="styleSearch">
     <span v-if="!searchFilters || searchFilters.length === 0" style="display: flex;">
@@ -207,6 +208,7 @@ import { isAdmin } from '@/role'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import Status from '@/components/widgets/Status'
+import PublicIpSearch from '@/components/view/PublicIpSearch'
 import SnapshotSearch from '@/components/view/SnapshotSearch'
 import SnapshotPolicySearch from '@/components/view/SnapshotPolicySearch'
 import VolumeSearchSelect from '@/components/view/VolumeSearchSelect'
@@ -223,6 +225,7 @@ export default {
     ResourceIcon,
     Status,
     SnapshotSearch,
+    PublicIpSearch,
     SnapshotPolicySearch,
     VolumeSearchSelect,
     NetworkSearchSelect,

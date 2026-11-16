@@ -1,0 +1,14 @@
+[
+  {
+    "cluster": 31,
+    "backup": "/root/publicip1691-merge-ui-20261116-132349",
+    "checksPassed": true,
+    "pid": "2375963"
+  },
+  {
+    "cluster": 32,
+    "backup": "/root/publicip1691-merge-ui-20261116-132452",
+    "checksPassed": true,
+    "pid": "2698517"
+  }
+]

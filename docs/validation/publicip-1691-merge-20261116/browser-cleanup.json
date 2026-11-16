@@ -1,0 +1,15 @@
+{
+  "locale": "ko",
+  "theme": "light",
+  "publicIp": {
+    "projectid": "0",
+    "state": "Allocated",
+    "page": 1,
+    "pagesize": 20
+  },
+  "viewportOverride": "cleared",
+  "cacheDisabled": false,
+  "ownedTabs": 0,
+  "testUsersDeleted": 2,
+  "testDomainsDeleted": 2
+}

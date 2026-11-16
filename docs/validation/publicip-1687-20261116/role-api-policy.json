@@ -1,0 +1,330 @@
+[
+  {
+    "cluster": 31,
+    "case": "Root direct API Free same-value current policy",
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 530,
+        "cserrorcode": 4250,
+        "errortext": "Unable to persist on DB, due to: Data truncation: Out of range value for column 'account_id' at row 1"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "User direct update fordisplay false",
+    "metadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ],
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "47e04d58-d407-4869-9138-3a884d7f4a2d",
+        "account": "qa-pip1687-31-20261116-074721-user",
+        "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "domainpath": "ROOT/qa-pip1687-31-20261116-074721",
+        "userid": "065a4f9e-4360-41f0-82a7-364a7f50f9d3",
+        "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "ipaddress": {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "allocated": "2026-11-16T08:13:20+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "account": "qa-pip1687-31-20261116-074721-user",
+            "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+            "domain": "qa-pip1687-31-20261116-074721",
+            "domainpath": "ROOT/qa-pip1687-31-20261116-074721",
+            "allocationgeneration": "3d73cb0f-0358-4310-ab18-6af86e494775",
+            "forvirtualnetwork": true,
+            "isstaticnat": false,
+            "issystem": false,
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "state": "Reserved",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "IpAddress",
+        "jobinstanceid": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "created": "2026-11-16T08:13:20+0900",
+        "completed": "2026-11-16T08:13:20+0900",
+        "jobid": "fdaa39e1-a1c5-482b-afd4-369dcaa8f3b4",
+        "jobstatus": 1
+      }
+    },
+    "rootVerified": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Reserved",
+      "account": "qa-pip1687-31-20261116-074721-user",
+      "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone"
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "DomainAdmin direct update fordisplay false",
+    "metadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ],
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "35e6b874-0125-4b82-a0eb-f38a73df805b",
+        "account": "qa-pip1687-31-20261116-074721-da",
+        "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "domainpath": "ROOT/qa-pip1687-31-20261116-074721",
+        "userid": "9e518b4f-96a9-483e-87a6-f7237488bcd9",
+        "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "ipaddress": {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "allocated": "2026-11-16T08:13:20+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "account": "qa-pip1687-31-20261116-074721-user",
+            "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+            "domain": "qa-pip1687-31-20261116-074721",
+            "domainpath": "ROOT/qa-pip1687-31-20261116-074721",
+            "allocationgeneration": "3d73cb0f-0358-4310-ab18-6af86e494775",
+            "forvirtualnetwork": true,
+            "isstaticnat": false,
+            "issystem": false,
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "state": "Reserved",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "IpAddress",
+        "jobinstanceid": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "created": "2026-11-16T08:13:21+0900",
+        "completed": "2026-11-16T08:13:21+0900",
+        "jobid": "617f0508-afd3-40c9-9c97-20b70bb2d1dc",
+        "jobstatus": 1
+      }
+    },
+    "rootVerified": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Reserved",
+      "account": "qa-pip1687-31-20261116-074721-user",
+      "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Root direct API Free same-value current policy",
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 530,
+        "cserrorcode": 4250,
+        "errortext": "Unable to persist on DB, due to: Data truncation: Out of range value for column 'account_id' at row 1"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "User direct update fordisplay false",
+    "metadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ],
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "29a69920-fdbf-4473-9afd-f76af8ee247e",
+        "account": "qa-pip1687-32-20261116-074721-user",
+        "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+        "domainpath": "ROOT/qa-pip1687-32-20261116-074721",
+        "userid": "1665e806-30b3-498b-ab92-c5e49952a282",
+        "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "ipaddress": {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "allocated": "2026-11-16T08:13:22+0900",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "account": "qa-pip1687-32-20261116-074721-user",
+            "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+            "domain": "qa-pip1687-32-20261116-074721",
+            "domainpath": "ROOT/qa-pip1687-32-20261116-074721",
+            "allocationgeneration": "1c7f23de-8f13-4d5d-9d22-24f13dc01801",
+            "forvirtualnetwork": true,
+            "isstaticnat": false,
+            "issystem": false,
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "state": "Reserved",
+            "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+            "tags": [],
+            "isportable": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "IpAddress",
+        "jobinstanceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "created": "2026-11-16T08:13:22+0900",
+        "completed": "2026-11-16T08:13:22+0900",
+        "jobid": "65fe7fd8-d62e-4fef-91bc-253d2b271d9f",
+        "jobstatus": 1
+      }
+    },
+    "rootVerified": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Reserved",
+      "account": "qa-pip1687-32-20261116-074721-user",
+      "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "DomainAdmin direct update fordisplay false",
+    "metadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ],
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "ec2eac97-b641-48e2-959b-68010191cd41",
+        "account": "qa-pip1687-32-20261116-074721-da",
+        "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+        "domainpath": "ROOT/qa-pip1687-32-20261116-074721",
+        "userid": "49f1122e-d669-436a-95e4-199b978667b1",
+        "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "ipaddress": {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "allocated": "2026-11-16T08:13:22+0900",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "account": "qa-pip1687-32-20261116-074721-user",
+            "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+            "domain": "qa-pip1687-32-20261116-074721",
+            "domainpath": "ROOT/qa-pip1687-32-20261116-074721",
+            "allocationgeneration": "1c7f23de-8f13-4d5d-9d22-24f13dc01801",
+            "forvirtualnetwork": true,
+            "isstaticnat": false,
+            "issystem": false,
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "state": "Reserved",
+            "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+            "tags": [],
+            "isportable": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "IpAddress",
+        "jobinstanceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "created": "2026-11-16T08:13:23+0900",
+        "completed": "2026-11-16T08:13:23+0900",
+        "jobid": "efb78577-74e4-409d-bd02-8b3cc9dd550c",
+        "jobstatus": 1
+      }
+    },
+    "rootVerified": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Reserved",
+      "account": "qa-pip1687-32-20261116-074721-user",
+      "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone"
+    }
+  }
+]

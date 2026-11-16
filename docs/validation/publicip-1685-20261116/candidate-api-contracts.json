@@ -1,0 +1,186 @@
+[
+  {
+    "cluster": 31,
+    "command": "listAccounts",
+    "params": {
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "state": "Enabled",
+      "isrecursive": "false",
+      "page": 1,
+      "pagesize": 500
+    },
+    "response": {
+      "listaccountsresponse": {
+        "count": 7,
+        "account": [
+          {
+            "id": "a75c97c6-b253-11f1-a895-0024814c313f",
+            "name": "admin",
+            "state": "enabled",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "acb967d5-f3ee-4672-8194-9422fd572430",
+            "name": "baremetal-system-account",
+            "state": "enabled",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "71e4d54f-4559-4f98-90da-6ed66bbe1a1a",
+            "name": "k1230-20261006",
+            "state": "enabled",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "81d568da-c5a9-413d-a69a-efe7e4a9ce11",
+            "name": "kubeadmin-d629aa4e",
+            "state": "enabled",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "91b9c1d8-7f34-4c28-ace3-85fc25d6e4c6",
+            "name": "epic1335-user31",
+            "state": "enabled",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "8da32d5a-e7fd-4309-9ef8-b2f97b02fee4",
+            "name": "epic1346-as01-user31",
+            "state": "enabled",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "f0271d26-aac4-49ca-95a4-c82a3bf016da",
+            "name": "epic1346-as01-limited31",
+            "state": "enabled",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listProjects",
+    "params": {
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "state": "Active",
+      "listall": "true",
+      "details": "min",
+      "isrecursive": "false",
+      "page": 1,
+      "pagesize": 500
+    },
+    "response": {
+      "listprojectsresponse": {
+        "count": 3,
+        "project": [
+          {
+            "id": "d629aa4e-eb4a-43fb-abf6-45ad86cae21c",
+            "name": "rt1230-vpc-project-r26",
+            "state": "Active",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+            "name": "E1335-Permission-31",
+            "state": "Active",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          },
+          {
+            "id": "fb318714-bc01-4be5-9e33-0f49a7013127",
+            "name": "AS-PROD-31-AS01-project",
+            "state": "Active",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listAccounts",
+    "params": {
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "state": "Enabled",
+      "isrecursive": "false",
+      "page": 1,
+      "pagesize": 500
+    },
+    "response": {
+      "listaccountsresponse": {
+        "count": 6,
+        "account": [
+          {
+            "id": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+            "name": "admin",
+            "state": "enabled",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          },
+          {
+            "id": "cefc42bc-560e-4d4e-aef9-9edfb78eacfb",
+            "name": "baremetal-system-account",
+            "state": "enabled",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          },
+          {
+            "id": "6dd8872d-fe59-419d-90ea-38a4a0eac9f4",
+            "name": "epic1335-user32",
+            "state": "enabled",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          },
+          {
+            "id": "6af17fe6-212a-4c7f-8115-be2845f67153",
+            "name": "epic1346-as01-user32",
+            "state": "enabled",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          },
+          {
+            "id": "22fd952e-7267-4f2e-aac8-e47796b20740",
+            "name": "epic1346-as01-limited32",
+            "state": "enabled",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          },
+          {
+            "id": "6af1b9e3-6326-43aa-945f-a442871f6960",
+            "name": "qa-bkt-1540-32",
+            "state": "enabled",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listProjects",
+    "params": {
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "state": "Active",
+      "listall": "true",
+      "details": "min",
+      "isrecursive": "false",
+      "page": 1,
+      "pagesize": 500
+    },
+    "response": {
+      "listprojectsresponse": {
+        "count": 2,
+        "project": [
+          {
+            "id": "a8c89140-8cd3-41c8-b799-ccd4f348af9d",
+            "name": "E1335-Permission-32",
+            "state": "Active",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          },
+          {
+            "id": "5481b3bb-b5cb-4999-a1d8-fde5fcf64241",
+            "name": "AS-PROD-32-AS01-project",
+            "state": "Active",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+          }
+        ]
+      }
+    }
+  }
+]

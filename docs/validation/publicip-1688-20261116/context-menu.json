@@ -1,0 +1,24 @@
+[
+  {
+    "cluster": 31,
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d",
+    "kind": "right-click-network-cell",
+    "menu": "네트워크\n사용자 표시 설정"
+  },
+  {
+    "cluster": 31,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "right-click-network-cell-then-browser-back",
+    "menu": "네트워크\n사용자 표시 설정",
+    "afterUrl": "http://10.10.31.10:8080/client/#/publicip?state=reserved&filter=reserved&page=1&pagesize=20",
+    "remainingMenuItems": 0
+  },
+  {
+    "cluster": 32,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "right-click-network-cell-then-browser-back",
+    "menu": "네트워크\n사용자 표시 설정\n관리\nStatic NAT 활성화\n삭제\nIP 주소 해제",
+    "afterUrl": "http://10.10.32.10:8080/client/#/publicip?state=reserved&filter=reserved&page=1&pagesize=20",
+    "remainingMenuItems": 0
+  }
+]

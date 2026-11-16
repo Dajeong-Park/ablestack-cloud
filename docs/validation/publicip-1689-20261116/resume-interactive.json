@@ -1,0 +1,60 @@
+[
+  {
+    "cluster": 31,
+    "width": 390,
+    "count": 9,
+    "source": "0f6d1497c2b0f58e6320d157829188cb00612152",
+    "params": {
+      "issourcenat": false,
+      "isstaticnat": false
+    },
+    "footer": [
+      {
+        "bottom": 821.6875,
+        "hit": true,
+        "right": 124.640625,
+        "text": "재설정",
+        "x": 48,
+        "y": 797.6875
+      },
+      {
+        "bottom": 821.6875,
+        "hit": true,
+        "right": 364,
+        "text": "검색",
+        "x": 300.234375,
+        "y": 797.6875
+      }
+    ],
+    "resetUrl": "http://10.10.31.10:8080/client/#/publicip?projectid=0&filter=allocated&state=Allocated&page=1&pagesize=20"
+  },
+  {
+    "cluster": 32,
+    "width": 390,
+    "count": 4,
+    "source": "0f6d1497c2b0f58e6320d157829188cb00612152",
+    "params": {
+      "issourcenat": false,
+      "isstaticnat": false
+    },
+    "footer": [
+      {
+        "bottom": 606.6875,
+        "hit": true,
+        "right": 124.640625,
+        "text": "재설정",
+        "x": 48,
+        "y": 582.6875
+      },
+      {
+        "bottom": 606.6875,
+        "hit": true,
+        "right": 364,
+        "text": "검색",
+        "x": 300.234375,
+        "y": 582.6875
+      }
+    ],
+    "resetUrl": "http://10.10.32.10:8080/client/#/publicip?projectid=0&filter=allocated&state=Allocated&page=1&pagesize=20"
+  }
+]

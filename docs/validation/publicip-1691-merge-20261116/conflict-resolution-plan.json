@@ -1,0 +1,84 @@
+{
+  "pins": {
+    "base": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+    "pr": "9a6d2994b2e5a4336f11d97b9ea090a86c4d9b3a",
+    "europa": "b777311a708e0e652f05025fecb2660dfa90f74d"
+  },
+  "resolutions": [
+    {
+      "file": "ui/public/locales/en.json",
+      "resolution": "union of independent Public IP and ISO keys; no conflicting values",
+      "publicIpChanges": 64
+    },
+    {
+      "file": "ui/public/locales/ko_KR.json",
+      "resolution": "union of independent Public IP and ISO keys; no conflicting values",
+      "publicIpChanges": 64
+    },
+    {
+      "file": "ui/src/components/view/DetailsTab.vue",
+      "blockLine": 53,
+      "resolution": "Keep ISO/template layout plus Public IP VM details layout"
+    },
+    {
+      "file": "ui/src/components/view/DetailsTab.vue",
+      "blockLine": 73,
+      "resolution": "Keep mutually exclusive Public IP and ISO field formatters"
+    },
+    {
+      "file": "ui/src/components/view/InfoCard.vue",
+      "blockLine": 130,
+      "resolution": "Retain missing-state summaries for both ISO and Public IP"
+    },
+    {
+      "file": "ui/src/components/view/InfoCard.vue",
+      "blockLine": 139,
+      "resolution": "Public IP status then current ISO/template availability contract"
+    },
+    {
+      "file": "ui/src/components/view/ListView.vue",
+      "blockLine": 549,
+      "resolution": "Keep Public IP translated status and ISO/template state contract"
+    },
+    {
+      "file": "ui/src/components/widgets/Breadcrumb.vue",
+      "blockLine": 110,
+      "resolution": "Preserve independent Public IP/ISO/VNF/template/network list-return routes"
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "blockLine": 19,
+      "resolution": "Opt in ISO and Public IP toolbar styles separately"
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "blockLine": 47,
+      "resolution": "Preserve labelled filters for ISO/template and Public IP list only"
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "blockLine": 61,
+      "resolution": "Preserve each menu filter input/label binding"
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "blockLine": 1812,
+      "resolution": "Keep latest image/VM permissions and Public IP auth in read scope"
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "blockLine": 2139,
+      "resolution": "Clear both Public IP and latest VM/image old security scope"
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "blockLine": 2152,
+      "resolution": "Retain Public IP resource reset event and VM selection/schema reset"
+    },
+    {
+      "file": "ui/src/views/AutogenView.vue",
+      "blockLine": 2563,
+      "resolution": "Normalize ISO request then dispatch independent ISO and Public IP detail readers; retain list guards"
+    }
+  ]
+}

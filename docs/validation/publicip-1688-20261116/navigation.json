@@ -1,0 +1,114 @@
+[
+  {
+    "cluster": 32,
+    "kind": "network",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4",
+    "heading": "AS-PROD-32-AS01-VPC-Tier",
+    "method": "keyboard Enter",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "kind": "vpc",
+    "url": "http://10.10.32.10:8080/client/#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+    "heading": "AS-PROD-32-AS01-VPC",
+    "method": "keyboard Enter",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "kind": "vm",
+    "url": "http://10.10.32.10:8080/client/#/systemvm/59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+    "heading": "v-1-VM",
+    "method": "keyboard Enter",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "kind": "network",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+    "heading": "rt1230-v13412-ha-gfs2-r17-net",
+    "method": "keyboard Enter",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "kind": "vpc",
+    "url": "http://10.10.31.10:8080/client/#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "heading": "qa-gn1569-31-reg-vpc",
+    "method": "keyboard Enter",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "kind": "vm",
+    "url": "http://10.10.31.10:8080/client/#/systemvm/355bd581-e0f2-43a7-8b27-95e8b46d5ed1",
+    "heading": "v-174-VM",
+    "method": "keyboard Enter",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "network",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+    "heading": "rt1230-v13412-ha-gfs2-r17-net",
+    "method": "keyboard Enter"
+  },
+  {
+    "cluster": 31,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "vpc",
+    "url": "http://10.10.31.10:8080/client/#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "heading": "qa-gn1569-31-reg-vpc",
+    "method": "keyboard Enter"
+  },
+  {
+    "cluster": 31,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "vm",
+    "url": "http://10.10.31.10:8080/client/#/systemvm/355bd581-e0f2-43a7-8b27-95e8b46d5ed1",
+    "heading": "v-174-VM",
+    "method": "keyboard Enter"
+  },
+  {
+    "cluster": 32,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "network",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4",
+    "heading": "AS-PROD-32-AS01-VPC-Tier",
+    "method": "keyboard Enter"
+  },
+  {
+    "cluster": 32,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "vpc",
+    "url": "http://10.10.32.10:8080/client/#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+    "heading": "AS-PROD-32-AS01-VPC",
+    "method": "keyboard Enter"
+  },
+  {
+    "cluster": 32,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "vm",
+    "url": "http://10.10.32.10:8080/client/#/systemvm/59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+    "heading": "v-1-VM",
+    "method": "keyboard Enter"
+  },
+  {
+    "cluster": 32,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "network",
+    "method": "mouse on visible text fragment",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4",
+    "heading": "AS-PROD-32-AS01-VPC-Tier"
+  },
+  {
+    "cluster": 31,
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+    "kind": "network",
+    "method": "mouse on visible text fragment",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+    "heading": "rt1230-v13412-ha-gfs2-r17-net"
+  }
+]

@@ -1,0 +1,2794 @@
+[
+  {
+    "cluster": 31,
+    "name": "root-allocated",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Allocated",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "true",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "isrecursive": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 24,
+      "rows": [
+        {
+          "id": "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+          "ipaddress": "10.10.31.5",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "945b26a3-7555-40d7-8fb4-95a96a410576",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": true,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T10:53:29+0900",
+          "allocationgeneration": "1e306bbf-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "e970e6b5-ded8-4a0b-b482-5b5d974677e8",
+          "ipaddress": "10.10.31.6",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "945b26a3-7555-40d7-8fb4-95a96a410576",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": true,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T10:53:29+0900",
+          "allocationgeneration": "1e306eeb-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "0a089eba-061a-419d-93cd-02e9f3b4a164",
+          "ipaddress": "10.10.31.100",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "b3e7c062-c074-43cf-8374-0a3f74368874",
+          "associatednetworkname": "rt1230-v13412-ha-gfs2-r17-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-07T02:07:11+0900",
+          "allocationgeneration": "1e306fbc-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6",
+          "ipaddress": "10.10.31.101",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "b18b4600-6f42-4827-bbba-253a2cfed320",
+          "associatednetworkname": "k8s-ui1330-gfs2-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-08T14:51:31+0900",
+          "allocationgeneration": "2afda355-a736-4437-af11-c0cdb38d79b5"
+        },
+        {
+          "id": "2c2091e2-5140-44e9-89ef-63861af57e81",
+          "ipaddress": "10.10.31.102",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "957281d8-692d-4761-9adb-a3f5567b40d7",
+          "associatednetworkname": "rt1230-v13412-external-etcd-gfs2-r18-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-07T02:47:47+0900",
+          "allocationgeneration": "1e307129-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "3719cabd-6eb8-40ea-a4e5-714e2b9544bb",
+          "ipaddress": "10.10.31.103",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "2bc57a4a-89ed-46c0-afb4-5d1c2faee549",
+          "associatednetworkname": "AS-PROD-31-AS01-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-10T23:57:25+0900",
+          "allocationgeneration": "a787e092-a985-4787-a783-65228eabfa87"
+        },
+        {
+          "id": "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+          "ipaddress": "10.10.31.106",
+          "state": "Allocated",
+          "account": "qa-gn1569-31-owner",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vpcid": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+          "vpcname": "qa-gn1569-31-reg-vpc",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-11-10T18:31:08+0900",
+          "allocationgeneration": "0175273b-6372-4352-963b-ce42e9189a06"
+        },
+        {
+          "id": "19abe419-0c0f-49fd-ba98-9faf4ddd38e4",
+          "ipaddress": "10.10.31.111",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vpcid": "2c41c280-c915-4952-ab59-a527bf248c94",
+          "vpcname": "rt1230-offline-custom-cni-r29-vpc",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-07T14:43:49+0900",
+          "allocationgeneration": "4fb4cc01-0f54-4c10-b536-b7d74374c4b8"
+        },
+        {
+          "id": "5420484d-25ba-440d-b645-668ccd46f29d",
+          "ipaddress": "10.10.31.126",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "ea344bee-6633-41df-861e-c2eaf66fa5c9",
+          "associatednetworkname": "rt1230-v1342-gfs2-r16-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-07T01:18:48+0900",
+          "allocationgeneration": "1e3074d3-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "4d465d47-9e09-4b92-a97c-2fa3efb55fe4",
+          "ipaddress": "10.10.31.127",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "ba4d479d-304a-4adf-8a80-aa042ebb2a93",
+          "associatednetworkname": "rt1230-v1371-gfs2-r15-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T23:23:48+0900",
+          "allocationgeneration": "1e307573-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd",
+          "ipaddress": "10.10.31.128",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "0fa6be3d-2c14-437c-9e88-bb3bacae74e6",
+          "associatednetworkname": "rt1230-v1365-gfs2-r14-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T23:01:02+0900",
+          "allocationgeneration": "1e307613-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "fa236274-78c4-41cc-8f5d-e71ba30f4f86",
+          "ipaddress": "10.10.31.129",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "4734b8f0-06e5-43c3-8263-fe2ab9f493bd",
+          "associatednetworkname": "rt1230-v1359-gfs2-r13-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T22:06:56+0900",
+          "allocationgeneration": "1e3076b1-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "40a1ca72-21ba-443c-a8d8-658849b06a4f",
+          "ipaddress": "10.10.31.130",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "41f095bf-79b7-422e-9eb3-29946b948467",
+          "associatednetworkname": "rt1230-gfs2-v13412-r5-net",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T21:24:17+0900",
+          "allocationgeneration": "1e30774a-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "5a26bd05-9f8d-41c2-a412-955c528087a6",
+          "ipaddress": "10.10.31.131",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "baed64d8-dc13-4868-a53c-f86b2d663297",
+          "associatednetworkname": "rt1230-v1365-gfs2-r9-net",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T20:32:31+0900",
+          "allocationgeneration": "1e3077ec-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc",
+          "ipaddress": "10.10.31.132",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "aab34179-3277-4948-8409-8e32b658ecc4",
+          "associatednetworkname": "rt1230-gfs2-v13412-r3-net",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T18:11:19+0900",
+          "allocationgeneration": "1e307886-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "7b40411f-0835-4daf-ba78-830e2afb0d86",
+          "ipaddress": "10.10.31.133",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "a037eecd-629e-446b-b0c4-f56674d99e0c",
+          "associatednetworkname": "Admin-Isoloated-Net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-01T10:22:50+0900",
+          "allocationgeneration": "1e307921-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "b44f2d1f-42e1-4265-9b70-9afa7f4c2841",
+          "ipaddress": "10.10.31.134",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "aab34179-3277-4948-8409-8e32b658ecc4",
+          "associatednetworkname": "rt1230-gfs2-v13412-r3-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T07:43:17+0900",
+          "allocationgeneration": "1e3079bd-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "30826d80-6e62-4a5c-9510-0a7dd14379ae",
+          "ipaddress": "10.10.31.135",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "41f095bf-79b7-422e-9eb3-29946b948467",
+          "associatednetworkname": "rt1230-gfs2-v13412-r5-net",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T17:30:52+0900",
+          "allocationgeneration": "1e307a56-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "bcb6793a-241c-46dc-96c6-91b149ca37ff",
+          "ipaddress": "10.10.31.136",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "41f095bf-79b7-422e-9eb3-29946b948467",
+          "associatednetworkname": "rt1230-gfs2-v13412-r5-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T11:07:24+0900",
+          "allocationgeneration": "1e307af2-c1c3-11f1-a599-0024814c313f"
+        },
+        {
+          "id": "f37ea048-904e-469d-9007-7336ac4bf212",
+          "ipaddress": "10.10.31.137",
+          "state": "Allocated",
+          "account": "k1230-20261006",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "baed64d8-dc13-4868-a53c-f86b2d663297",
+          "associatednetworkname": "rt1230-v1365-gfs2-r9-net",
+          "issystem": false,
+          "issourcenat": true,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-10-06T14:24:53+0900",
+          "allocationgeneration": "1e307b99-c1c3-11f1-a599-0024814c313f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "reserveIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "account": "qa-pip1691-31-222246-user",
+      "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "ipaddress": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "ipaddress": "10.10.31.105",
+        "state": "Reserved",
+        "account": "qa-pip1691-31-222246-user",
+        "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+        "domain": "qa-pip1691-31-222246",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true,
+        "allocated": "2026-11-16T22:26:40+0900",
+        "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1691-31-222246-user",
+          "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+          "domain": "qa-pip1691-31-222246",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-11-16T22:26:40+0900",
+          "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Free",
+      "page": "1",
+      "pagesize": "20",
+      "ipaddress": "10.10.31.105",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "isrecursive": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "reserveIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "ipaddress": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "ipaddress": "10.10.32.103",
+        "state": "Reserved",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true,
+        "allocated": "2026-11-16T22:27:13+0900",
+        "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-11-16T22:27:13+0900",
+          "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reservation-actual",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "state": "Free",
+      "page": "1",
+      "pagesize": "20",
+      "ipaddress": "10.10.32.103",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "isrecursive": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1691-31-222246-user",
+          "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+          "domain": "qa-pip1691-31-222246",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-11-16T22:26:40+0900",
+          "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "1e842bc6-d766-429b-96a6-8f387df56f18"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "1e842bc6-d766-429b-96a6-8f387df56f18"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "1e842bc6-d766-429b-96a6-8f387df56f18",
+      "jobstatus": 1,
+      "jobresult": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "ipaddress": "10.10.31.105",
+        "state": "Reserved",
+        "account": "qa-pip1691-31-222246-user",
+        "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+        "domain": "qa-pip1691-31-222246",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": false,
+        "allocated": "2026-11-16T22:26:40+0900",
+        "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1691-31-222246-user",
+          "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+          "domain": "qa-pip1691-31-222246",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": false,
+          "allocated": "2026-11-16T22:26:40+0900",
+          "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "isrecursive": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1691-31-222246-user",
+          "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+          "domain": "qa-pip1691-31-222246",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": false,
+          "allocated": "2026-11-16T22:26:40+0900",
+          "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "db3bdb64-e24c-49ca-aba1-f63c84551786"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "db3bdb64-e24c-49ca-aba1-f63c84551786"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "db3bdb64-e24c-49ca-aba1-f63c84551786",
+      "jobstatus": 1,
+      "jobresult": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "ipaddress": "10.10.31.105",
+        "state": "Reserved",
+        "account": "qa-pip1691-31-222246-user",
+        "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+        "domain": "qa-pip1691-31-222246",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true,
+        "allocated": "2026-11-16T22:26:40+0900",
+        "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1691-31-222246-user",
+          "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+          "domain": "qa-pip1691-31-222246",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-11-16T22:26:40+0900",
+          "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "isrecursive": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-11-16T22:27:13+0900",
+          "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "75df16e8-c324-480b-bd61-2af489516ed5"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "75df16e8-c324-480b-bd61-2af489516ed5"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "75df16e8-c324-480b-bd61-2af489516ed5",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "75df16e8-c324-480b-bd61-2af489516ed5"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "75df16e8-c324-480b-bd61-2af489516ed5",
+      "jobstatus": 1,
+      "jobresult": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "ipaddress": "10.10.32.103",
+        "state": "Reserved",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": false,
+        "allocated": "2026-11-16T22:27:13+0900",
+        "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": false,
+          "allocated": "2026-11-16T22:27:13+0900",
+          "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "isrecursive": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": false,
+          "allocated": "2026-11-16T22:27:13+0900",
+          "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "c976fd56-df8e-4e2e-a9eb-6c0e7830ac78"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "c976fd56-df8e-4e2e-a9eb-6c0e7830ac78"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "c976fd56-df8e-4e2e-a9eb-6c0e7830ac78",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "c976fd56-df8e-4e2e-a9eb-6c0e7830ac78"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "c976fd56-df8e-4e2e-a9eb-6c0e7830ac78",
+      "jobstatus": 1,
+      "jobresult": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "ipaddress": "10.10.32.103",
+        "state": "Reserved",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true,
+        "allocated": "2026-11-16T22:27:13+0900",
+        "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "allocated": "2026-11-16T22:27:13+0900",
+          "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "isrecursive": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "iso-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listIsos",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "showunique": "true",
+      "isofilter": "all",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 30,
+      "rows": [
+        {
+          "id": "bfab5660-b9ac-4189-bb92-7c693fff2c86",
+          "name": "vmware-tools.iso",
+          "status": "Processing",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "18f2f6bb-a067-4e23-a59a-4c74ca320454",
+          "name": "xs-tools.iso",
+          "status": "Processing",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "3f79047a-7f0b-48fb-a71b-3fea8fd51dc0",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "117c982b-187c-484d-b5af-a60df4de5bcb",
+          "name": "Windows 11 Korean x64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "9ba4cfde-6a3a-409b-a01c-ea8f22b3561f",
+          "name": "Virtio Windows Driver 0.1.302",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "367b2ca1-ae7c-467c-8f42-eac7162ee148",
+          "name": "Rocky Linux 10.2 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "3b5703ae-681e-4fa1-8191-7222cd2f6a5b",
+          "name": "Rocky Linux 9.8 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "e0755bca-b649-415f-9dcc-1df2eff086f1",
+          "name": "1.34.2-Kubernetes-Binaries-ISO",
+          "status": "Successfully Installed",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "b89174bd-15a3-40ff-8151-214af435b97e",
+          "name": "Ubuntu 26.04 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "23a7eb77-6f31-4419-850d-1a45d58e8fec",
+          "name": "Windows Server 2022 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "1e412e42-ac14-4a12-81dd-72245c496494",
+          "name": "Windows Server 2019 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "f6218264-03c0-400f-8e33-bdf9fb12e91a",
+          "name": "Rocky Linux 8.10 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "95b3b23b-a982-4b71-81cb-d27d12ef7115",
+          "name": "Ubuntu 22.04.5 Server x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "d6fcefc8-35fc-4092-9a60-6132ce976a53",
+          "name": "Ubuntu 24.04.4 Server x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "bc45845b-1dca-40b1-b05a-ba189458c7e7",
+          "name": "Debian 11.11 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "d4d7e0b1-effe-4190-a935-c332eee77cfe",
+          "name": "Debian 12.15 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "351ed450-0083-4482-8805-28ba4bbf6f38",
+          "name": "Debian 13.7 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "dcdeb196-47f8-4c69-8ce5-3fac121b65e8",
+          "name": "ABLESTACK-Tools-Process-rocky-c439f93",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "1c0e894a-f880-4b9f-8a55-48f9c472861c",
+          "name": "ABLESTACK-Tools-Process-ubuntu-c439f93",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "0369f6c4-9eac-48d6-8f4d-0f2e18d69355",
+          "name": "ABLESTACK-Tools-Process-debian-c439f93",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "iso-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listIsos",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "showunique": "true",
+      "isofilter": "all",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 30,
+      "rows": [
+        {
+          "id": "bfab5660-b9ac-4189-bb92-7c693fff2c86",
+          "name": "vmware-tools.iso",
+          "status": "Processing",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "18f2f6bb-a067-4e23-a59a-4c74ca320454",
+          "name": "xs-tools.iso",
+          "status": "Processing",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "3f79047a-7f0b-48fb-a71b-3fea8fd51dc0",
+          "name": "Windows Server 2025 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "117c982b-187c-484d-b5af-a60df4de5bcb",
+          "name": "Windows 11 Korean x64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "9ba4cfde-6a3a-409b-a01c-ea8f22b3561f",
+          "name": "Virtio Windows Driver 0.1.302",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "367b2ca1-ae7c-467c-8f42-eac7162ee148",
+          "name": "Rocky Linux 10.2 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "3b5703ae-681e-4fa1-8191-7222cd2f6a5b",
+          "name": "Rocky Linux 9.8 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "e0755bca-b649-415f-9dcc-1df2eff086f1",
+          "name": "1.34.2-Kubernetes-Binaries-ISO",
+          "status": "Successfully Installed",
+          "account": "system",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "b89174bd-15a3-40ff-8151-214af435b97e",
+          "name": "Ubuntu 26.04 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "23a7eb77-6f31-4419-850d-1a45d58e8fec",
+          "name": "Windows Server 2022 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "1e412e42-ac14-4a12-81dd-72245c496494",
+          "name": "Windows Server 2019 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "f6218264-03c0-400f-8e33-bdf9fb12e91a",
+          "name": "Rocky Linux 8.10 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "95b3b23b-a982-4b71-81cb-d27d12ef7115",
+          "name": "Ubuntu 22.04.5 Server x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "d6fcefc8-35fc-4092-9a60-6132ce976a53",
+          "name": "Ubuntu 24.04.4 Server x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "bc45845b-1dca-40b1-b05a-ba189458c7e7",
+          "name": "Debian 11.11 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "d4d7e0b1-effe-4190-a935-c332eee77cfe",
+          "name": "Debian 12.15 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "351ed450-0083-4482-8805-28ba4bbf6f38",
+          "name": "Debian 13.7 x86_64 DVD",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "dcdeb196-47f8-4c69-8ce5-3fac121b65e8",
+          "name": "ABLESTACK-Tools-Process-rocky-c439f93",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "1c0e894a-f880-4b9f-8a55-48f9c472861c",
+          "name": "ABLESTACK-Tools-Process-ubuntu-c439f93",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "0369f6c4-9eac-48d6-8f4d-0f2e18d69355",
+          "name": "ABLESTACK-Tools-Process-debian-c439f93",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "vm-initial-read",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "projectid": "0",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 431,
+    "result": {
+      "errorcode": 431
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "vm-initial-read",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "projectid": "0",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 431,
+    "result": {
+      "errorcode": 431
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "vm-list-official-refreshed",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 132,
+      "rows": [
+        {
+          "id": "05f940bb-5ca7-4f58-8e41-ed8440758f0b",
+          "name": "GFS-TEST-VM",
+          "ipaddress": "10.10.254.105",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "36d5333d-670a-4644-8c68-1f1dc154ba3a",
+          "name": "W2025-GFS2-Sparse",
+          "ipaddress": "10.10.254.210",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "2f35ea9a-7ff2-494f-a857-6527e0fb1976",
+          "name": "R10-Sparse",
+          "ipaddress": "10.10.254.209",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "708d87cd-1d8a-4911-b22a-4211cdf1634f",
+          "name": "R10-Sparse-Clone1",
+          "ipaddress": "10.10.254.114",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "dbdefe41-64a0-4ab1-a596-5d5f5131517c",
+          "name": "R10-Sparse-Clone2",
+          "ipaddress": "10.10.254.237",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "1fdd690d-b0ca-45bf-9088-8534e409b866",
+          "name": "R10-Sparse-Clone3",
+          "ipaddress": "10.10.254.116",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "3f135c5e-a3cf-4eec-9e90-51f3148c406d",
+          "name": "R10-Sparse-Clone4",
+          "ipaddress": "10.10.254.144",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "c475abf7-2346-4015-9cef-001a78472c25",
+          "name": "R10-Sparse-Clone5",
+          "ipaddress": "10.10.254.115",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "630888e1-bcef-4b40-9952-b3409a664bae",
+          "name": "VM-630888e1-bcef-4b40-9952-b3409a664bae",
+          "ipaddress": "10.10.254.204",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "f4be8cb2-f649-47ef-bcd2-7b59b71d5471",
+          "name": "W2025-Sparse-Clone1",
+          "ipaddress": "10.10.254.121",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "06c6d7a7-f4da-4c2f-9a9b-c43cd015f6d9",
+          "name": "W2025-Sparse-Clone2",
+          "ipaddress": "10.10.254.118",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "9a2a9ac1-088e-40d5-b753-197a559b06e3",
+          "name": "W2025-Sparse-Clone3",
+          "ipaddress": "10.10.254.120",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "4cb71960-fc75-43e1-9830-8f4ee198def7",
+          "name": "U26-Sparse",
+          "ipaddress": "10.10.254.71",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "e7f843af-f39f-4a3e-b5fc-bcc458d40fe9",
+          "name": "ccccc",
+          "ipaddress": "10.10.254.7",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "d3cd2c68-78e3-42dd-a944-7c5ce731e658",
+          "name": "Ubuntu22-Sparse",
+          "ipaddress": "10.10.254.1",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "04125c04-cfa5-4f43-be41-39e3c7d536d3",
+          "name": "Ubuntu24-Sparse",
+          "ipaddress": "10.10.254.129",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "40f046e8-7433-4cc8-a0f0-1bc60513d222",
+          "name": "Debian12-Sparse",
+          "ipaddress": "10.10.254.133",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "b51c954a-45fc-4fdd-a395-e1b3b5b5d367",
+          "name": "Debian13-Sparse",
+          "ipaddress": "10.10.254.135",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "c5ac0d8b-c004-4040-8334-d57586eee4c7",
+          "name": "Rocky9-Sparse",
+          "ipaddress": "10.10.254.136",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        },
+        {
+          "id": "2785322f-54d0-4a5d-bf42-59bef03635d4",
+          "name": "Rocky8-Sparse",
+          "ipaddress": "10.10.254.137",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "vnf-list-initial",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVnfAppliances",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "vnf-list-initial",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVnfAppliances",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "iso-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listIsos",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "showunique": "true",
+      "isofilter": "all",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 6,
+      "rows": [
+        {
+          "id": "f866a178-5f59-403b-9ba4-741b42e3c6e9",
+          "name": "vmware-tools.iso",
+          "status": "Processing",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "56989eeb-b41b-48a6-91e4-9a56829f6963",
+          "name": "xs-tools.iso",
+          "status": "Processing",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "c07e05de-d2c7-4866-9ca1-528b649bb80a",
+          "name": "E1335-Rocky-9.8-ISO32",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": true
+        },
+        {
+          "id": "31598d2d-5bd4-473c-a6b6-b52c54fbafd7",
+          "name": "E1335-Virtio-Driver-ISO32",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "9ca52eda-7038-4f17-9a00-18cd46155928",
+          "name": "virtio-win-0.1.302.iso",
+          "status": "Successfully Installed",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        },
+        {
+          "id": "afcaf05c-599c-4751-a5a0-9edd01058e06",
+          "name": "1.36.5-Kubernetes-Binaries-ISO",
+          "status": "Successfully Installed",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "isready": true,
+          "bootable": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "vm-list-official-route",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 59,
+      "rows": [
+        {
+          "id": "d76c74bc-c7cc-4793-9401-fb889e7b227b",
+          "name": "ShareVolume-VM-1",
+          "ipaddress": "10.10.254.234",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "814b573c-4713-4a21-82d6-b6990d6b6c80",
+          "name": "ShareVolume-VM-2",
+          "ipaddress": "10.10.254.83",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "efc95839-7394-402d-b6fb-951ba269499c",
+          "name": "HA-VM-13",
+          "ipaddress": "10.10.254.117",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "af949062-c901-4897-ba65-f69c0655979c",
+          "name": "HA-VM-14",
+          "ipaddress": "10.10.254.70",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "24358070-daf3-4396-b764-1427ebb18e9b",
+          "name": "HA-VM-15",
+          "ipaddress": "10.10.254.119",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "6090c295-1bef-4704-9c36-53aa003cf5ab",
+          "name": "HA-VM-16",
+          "ipaddress": "10.10.254.121",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "6e2adaa9-9a85-4c72-b4b2-c7ddab924fbe",
+          "name": "HA-VM-17",
+          "ipaddress": "10.10.254.118",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "d04fbf24-5094-42aa-91d2-fcc819cb3063",
+          "name": "HA-VM-18",
+          "ipaddress": "10.10.254.120",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "d77e1d17-2804-4d50-83bd-f6f0fecb85d0",
+          "name": "HA-VM-19",
+          "ipaddress": "10.10.254.122",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "8f892268-89dd-4294-899a-d91e6bcfc95d",
+          "name": "HA-VM-20",
+          "ipaddress": "10.10.254.7",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "cfc29141-8164-42f8-ac31-d0abe61edfe9",
+          "name": "test",
+          "ipaddress": "10.10.254.185",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "8185dc8f-757c-4fa2-b6f5-36ff991a894d",
+          "name": "test2",
+          "ipaddress": "10.10.254.179",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "7db80258-f535-4669-b7aa-7f1b4fdc1322",
+          "name": "jsjs2",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "5b77d90b-070b-4087-9f14-5f6a31238d70",
+          "name": "E1335-32-L-BIOS-seed-r2",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "83231e10-63f3-412a-94d0-55b0fe51d83f",
+          "name": "E1335-32-W-UEFI-seed",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "97307bee-992f-47c8-b6ab-4b399d8bfaa4",
+          "name": "E1335-32-L-BIOS-volume-off",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "4502b429-5662-4d95-a02b-61d65a3c95d7",
+          "name": "E1335-32-L-BIOS-volume-off-r2",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "ed3fe1e8-215d-4e67-877b-6ef6118c3133",
+          "name": "E1335-32-L-BIOS-snapshot-off-r2",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "d1a1337e-1da2-4fc8-bd50-226b5db1d47a",
+          "name": "E1335-32-L-BIOS-volume-on",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "e400c8ba-123a-4f2c-92f1-6f1f2a1ec6af",
+          "name": "E1335-32-L-BIOS-snapshot-on",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "vm-list-official-route",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 59,
+      "rows": [
+        {
+          "id": "d76c74bc-c7cc-4793-9401-fb889e7b227b",
+          "name": "ShareVolume-VM-1",
+          "ipaddress": "10.10.254.234",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "814b573c-4713-4a21-82d6-b6990d6b6c80",
+          "name": "ShareVolume-VM-2",
+          "ipaddress": "10.10.254.83",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "efc95839-7394-402d-b6fb-951ba269499c",
+          "name": "HA-VM-13",
+          "ipaddress": "10.10.254.117",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "af949062-c901-4897-ba65-f69c0655979c",
+          "name": "HA-VM-14",
+          "ipaddress": "10.10.254.70",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "24358070-daf3-4396-b764-1427ebb18e9b",
+          "name": "HA-VM-15",
+          "ipaddress": "10.10.254.119",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "6090c295-1bef-4704-9c36-53aa003cf5ab",
+          "name": "HA-VM-16",
+          "ipaddress": "10.10.254.121",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "6e2adaa9-9a85-4c72-b4b2-c7ddab924fbe",
+          "name": "HA-VM-17",
+          "ipaddress": "10.10.254.118",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "d04fbf24-5094-42aa-91d2-fcc819cb3063",
+          "name": "HA-VM-18",
+          "ipaddress": "10.10.254.120",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "d77e1d17-2804-4d50-83bd-f6f0fecb85d0",
+          "name": "HA-VM-19",
+          "ipaddress": "10.10.254.122",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "8f892268-89dd-4294-899a-d91e6bcfc95d",
+          "name": "HA-VM-20",
+          "ipaddress": "10.10.254.7",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "cfc29141-8164-42f8-ac31-d0abe61edfe9",
+          "name": "test",
+          "ipaddress": "10.10.254.185",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "8185dc8f-757c-4fa2-b6f5-36ff991a894d",
+          "name": "test2",
+          "ipaddress": "10.10.254.179",
+          "state": "Running",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "7db80258-f535-4669-b7aa-7f1b4fdc1322",
+          "name": "jsjs2",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "5b77d90b-070b-4087-9f14-5f6a31238d70",
+          "name": "E1335-32-L-BIOS-seed-r2",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "83231e10-63f3-412a-94d0-55b0fe51d83f",
+          "name": "E1335-32-W-UEFI-seed",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "97307bee-992f-47c8-b6ab-4b399d8bfaa4",
+          "name": "E1335-32-L-BIOS-volume-off",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "4502b429-5662-4d95-a02b-61d65a3c95d7",
+          "name": "E1335-32-L-BIOS-volume-off-r2",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "ed3fe1e8-215d-4e67-877b-6ef6118c3133",
+          "name": "E1335-32-L-BIOS-snapshot-off-r2",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "d1a1337e-1da2-4fc8-bd50-226b5db1d47a",
+          "name": "E1335-32-L-BIOS-volume-on",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        },
+        {
+          "id": "e400c8ba-123a-4f2c-92f1-6f1f2a1ec6af",
+          "name": "E1335-32-L-BIOS-snapshot-on",
+          "ipaddress": "172.31.235.32",
+          "state": "Stopped",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "vnf-empty-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVnfAppliances",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "vnf-empty-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVnfAppliances",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "vnf-empty-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVnfAppliances",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+      "isvnf": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "user-reserved-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1691-31-222246-user",
+          "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+          "domain": "qa-pip1691-31-222246",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "allocated": "2026-11-16T22:26:40+0900",
+          "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "user-reserved-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1691-31-222246-user",
+          "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+          "domain": "qa-pip1691-31-222246",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "allocated": "2026-11-16T22:26:40+0900",
+          "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "user-vm-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "user-vm-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "user-reserved-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "user-reserved-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "user-reserved-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "user-vm-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "user-vm-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+      "page": "1",
+      "pagesize": "20",
+      "showIcon": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "release-result",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "releaseIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+    },
+    "status": 200,
+    "result": {
+      "success": true
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "release-result",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "release-result",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "releaseIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "success": true
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "release-result",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issystem": false,
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true
+        }
+      ]
+    }
+  }
+]

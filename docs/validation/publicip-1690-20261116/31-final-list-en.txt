@@ -1,0 +1,228 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard Dashboard":
+      - link "dashboard Dashboard":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: Dashboard
+    - img "cloud":
+    - generic: Compute
+    - img "hdd":
+    - generic: Storage
+    - img "wifi":
+    - generic: Network
+    - img "picture":
+    - generic: Images
+    - img "lock":
+    - generic: Key Management
+    - img "safety-certificate":
+    - generic: Disaster Recovery
+    - menuitem "schedule Events":
+      - link "schedule Events":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: Events
+    - menuitem "project Projects":
+      - link "project Projects":
+        - /url: "#/project"
+        - img "project":
+        - generic: Projects
+    - menuitem "idcard Roles":
+      - link "idcard Roles":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: Roles
+    - menuitem "team Accounts":
+      - link "team Accounts":
+        - /url: "#/account"
+        - img "team":
+        - generic: Accounts
+    - menuitem "block Domains":
+      - link "block Domains":
+        - /url: "#/domain"
+        - img "block":
+        - generic: Domains
+    - img "bank":
+    - generic: Infrastructure
+    - img "shopping":
+    - generic: Service offerings
+    - img "setting":
+    - generic: Configuration
+    - menuitem "appstore-add Extensions":
+      - link "appstore-add Extensions":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: Extensions
+    - img "tool":
+    - generic: Tools
+    - menuitem "read API Docs":
+      - link "read API Docs":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API Docs
+- generic: Page style setting
+- button "Close":
+  - img "close":
+- heading "Page style setting" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "Theme color" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "Navigation setting" [level=3]
+- generic: Background color
+- textbox: "#ffffff"
+- generic: Text color
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "The setting is only visible to the current browser. To apply the setting, please download the JSON file and replace its content in the `theme` section of the `config.json` file under the path: `/public/config.json`"
+- button "download Download setting":
+  - img "download":
+  - generic: Download setting
+- button "undo Reset to default":
+  - img "undo":
+  - generic: Reset to default
+- img "menu-unfold":
+- generic: Project
+- combobox "Project"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "Notifications":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP addresses":
+    - /url: "#/publicip"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload Refresh":
+    - img "reload":
+    - generic: Refresh
+  - combobox
+  - generic: Reserved
+  - switch "Projects":
+    - generic: Projects
+  - button "Advanced search":
+    - img "filter":
+  - textbox "Search"
+  - button "search":
+    - img "search":
+  - text: "State : Reserved"
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "IP Address caret-up caret-down State caret-up caret-down Associated guest network caret-up caret-down VPC caret-up caret-down Instance name caret-up caret-down Allocated at caret-up caret-down Account caret-up caret-down Domain caret-up caret-down Zone caret-up caret-down filter":
+        - columnheader:
+          - checkbox
+        - columnheader "IP Address caret-up caret-down":
+          - generic: IP Address
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "State caret-up caret-down":
+          - generic: State
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Associated guest network caret-up caret-down":
+          - generic: Associated guest network
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Instance name caret-up caret-down":
+          - generic: Instance name
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Allocated at caret-up caret-down":
+          - generic: Allocated at
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Account caret-up caret-down":
+          - generic: Account
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Domain caret-up caret-down":
+          - generic: Domain
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "10.10.31.105 Reserved — — 16 Nov 2026 19:27:55 qa-pip1690-31-190449-user qa-pip1690-31-190449 Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.105":
+          - link "10.10.31.105":
+            - /url: "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}"
+        - cell "Reserved":
+          - generic: Reserved
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "16 Nov 2026 19:27:55":
+          - generic: 16 Nov 2026 19:27:55
+        - cell "qa-pip1690-31-190449-user":
+          - link "qa-pip1690-31-190449-user":
+            - /url: "#/account?name=qa-pip1690-31-190449-user&domainid=3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23&dataView=true"
+        - cell "qa-pip1690-31-190449":
+          - link "qa-pip1690-31-190449":
+            - /url: "#/domain/3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+  - list:
+    - listitem: Showing 1-1 of 1 items
+    - listitem "Previous Page":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "Next Page":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / page

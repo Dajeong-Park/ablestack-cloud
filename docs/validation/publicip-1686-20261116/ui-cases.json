@@ -1,0 +1,138 @@
+[
+  {
+    "name": "32-before-vlan-missing",
+    "snapshot": "- complementary:\n  - menu:\n    - menuitem \"dashboard 대시보드\":\n      - link \"dashboard 대시보드\":\n        - /url: \"#/dashboard\"\n        - img \"dashboard\":\n        - text: 대시보드\n    - img \"cloud\":\n    - text: 컴퓨트\n    - img \"hdd\":\n    - text: 스토리지\n    - img \"wifi\":\n    - text: 네트워크\n    - list:\n      - menuitem \"apartment 가상머신용 네트워크\":\n        - link \"apartment 가상머신용 네트워크\":\n          - /url: \"#/guestnetwork\"\n          - img \"apartment\":\n          - text: 가상머신용 네트워크\n      - menuitem \"deployment-unit VPC\":\n        - link \"deployment-unit VPC\":\n          - /url: \"#/vpc\"\n          - img \"deployment-unit\":\n          - text: VPC\n      - menuitem \"gateway VNF 기기\":\n        - link \"gateway VNF 기기\":\n          - /url: \"#/vnfapp\"\n          - img \"gateway\":\n          - text: VNF 기기\n      - menuitem \"environment Public IP 주소\":\n        - link \"environment Public IP 주소\":\n          - /url: \"#/publicip\"\n          - img \"environment\":\n          - text: Public IP 주소\n      - menuitem \"partition AS Numbers\":\n        - link \"partition AS Numbers\":\n          - /url: \"#/asnumbers\"\n          - img \"partition\":\n          - text: AS Numbers\n      - menuitem \"lock 사이트간 사설네트워크(VPN)\":\n        - link \"lock 사이트간 사설네트워크(VPN)\":\n          - /url: \"#/s2svpn\"\n          - img \"lock\":\n          - text: 사이트간 사설네트워크(VPN)\n      - menuitem \"sync 사이트 간 VPN 연결\":\n        - link \"sync 사이트 간 VPN 연결\":\n          - /url: \"#/s2svpnconn\"\n          - img \"sync\":\n          - text: 사이트 간 VPN 연결\n      - menuitem \"bars 네트워크 ACL\":\n        - link \"bars 네트워크 ACL\":\n          - /url: \"#/acllist\"\n          - img \"bars\":\n          - text: 네트워크 ACL\n      - menuitem \"user-switch VPN 사용자\":\n        - link \"user-switch VPN 사용자\":\n          - /url: \"#/vpnuser\"\n          - img \"user-switch\":\n          - text: VPN 사용자\n      - menuitem \"lock VPN 고객 게이트웨이\":\n        - link \"lock VPN 고객 게이트웨이\":\n          - /url: \"#/vpncustomergateway\"\n          - img \"lock\":\n          - text: VPN 고객 게이트웨이\n      - menuitem \"folder 게스트 VLAN\":\n        - link \"folder 게스트 VLAN\":\n          - /url: \"#/guestvlans\"\n          - img \"folder\":\n          - text: 게스트 VLAN\n      - menuitem \"pic-center IPv4 서브넷\":\n        - link \"pic-center IPv4 서브넷\":\n          - /url: \"#/ipv4subnets\"\n          - img \"pic-center\":\n          - text: IPv4 서브넷\n      - menuitem \"apartment DNS 영역\":\n        - link \"apartment DNS 영역\":\n          - /url: \"#/dnszone\"\n          - img \"apartment\":\n          - text: DNS 영역\n      - menuitem \"cloud-server DNS 서버\":\n        - link \"cloud-server DNS 서버\":\n          - /url: \"#/dnsserver\"\n          - img \"cloud-server\":\n          - text: DNS 서버\n    - img \"picture\":\n    - text: 이미지\n    - img \"lock\":\n    - text: 키 관리\n    - menuitem \"schedule 이벤트\":\n      - link \"schedule 이벤트\":\n        - /url: \"#/event\"\n        - img \"schedule\":\n        - text: 이벤트\n    - menuitem \"project 프로젝트\":\n      - link \"project 프로젝트\":\n        - /url: \"#/project\"\n        - img \"project\":\n        - text: 프로젝트\n    - menuitem \"idcard 역할\":\n      - link \"idcard 역할\":\n        - /url: \"#/role\"\n        - img \"idcard\":\n        - text: 역할\n    - menuitem \"team 계정\":\n      - link \"team 계정\":\n        - /url: \"#/account\"\n        - img \"team\":\n        - text: 계정\n    - menuitem \"block 도메인\":\n      - link \"block 도메인\":\n        - /url: \"#/domain\"\n        - img \"block\":\n        - text: 도메인\n    - img \"bank\":\n    - text: 인프라스트럭쳐\n    - img \"shopping\":\n    - text: 서비스 오퍼링\n    - img \"setting\":\n    - text: 구성\n    - menuitem \"appstore-add 확장\":\n      - link \"appstore-add 확장\":\n        - /url: \"#/extension\"\n        - img \"appstore-add\":\n        - text: 확장\n    - img \"tool\":\n    - text: 도구\n    - menuitem \"read API 문서\":\n      - link \"read API 문서\":\n        - /url: \"#/apidocs/\"\n        - img \"read\":\n        - text: API 문서\n- generic: 페이지 스타일 설정\n- button \"닫기\":\n  - img \"close\":\n- heading \"페이지 스타일 설정\" [level=3]\n- radio [checked]\n- img \"check\":\n- radio\n- heading \"테마 색상\" [level=3]\n- radio\n- img \"check\"\n- radio\n- radio\n- radio\n- radio\n- radio\n- radio\n- radio\n- separator\n- heading \"네비게이션 설정\" [level=3]\n- generic: 배경색\n- textbox: \"#ffffff\"\n- generic: 텍스트 색상\n- textbox: \"#000000\"\n- separator\n- alert:\n  - img \"exclamation-circle\":\n  - generic: \"설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.\"\n- button \"download 세팅값 다운로드(json)\":\n  - img \"download\":\n  - generic: 세팅값 다운로드(json)\n- button \"undo 기본값으로 재설정\":\n  - img \"undo\":\n  - generic: 기본값으로 재설정\n- img \"menu-fold\":\n- generic: 프로젝트\n- combobox \"프로젝트\"\n- img \"project\":\n- text: 기본 보기\n- button \"생성 down\":\n  - generic: 생성\n  - img \"down\":\n- img \"translation\":\n- button \"알림\":\n  - img \"bell\":\n- generic: AC\n- generic: admin cloud\n- main:\n  - link \"home\":\n    - /url: \"#/\"\n    - img \"home\":\n  - text: /\n  - link \"Public IP 주소\":\n    - /url: \"#/publicip\"\n  - text: /\n  - generic: 10.10.32.103\n  - link \"question-circle\":\n    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts\n    - img \"question-circle\":\n  - button \"reload 업데이트\":\n    - img \"reload\":\n    - generic: 업데이트\n  - button \"down 작업\":\n    - img \"down\":\n    - generic: 작업\n  - img \"environment\":\n  - heading \"10.10.32.103\" [level=4]\n  - separator\n  - generic: 상태\n  - generic: 가능\n  - generic: 아이디\n  - button \"아이디 복사\":\n    - img \"barcode\":\n  - link \"77def528-fb75-42e3-a90f-46a6e9c5b90b\":\n    - /url: javascript:;\n  - generic: IP\n  - img \"environment\":\n  - link \"10.10.32.103\":\n    - /url: javascript:;\n  - generic: VM 이름\n  - generic: —\n  - generic: Zone\n  - img \"global\":\n  - link \"Zone\":\n    - /url: \"#/zone/991d2f57-0f37-4445-b956-09773d064816\"\n  - separator\n  - strong: 태그\n  - button \"reload 태그 새로고침\":\n    - img \"reload\":\n    - generic: 태그 새로고침\n  - generic: 태그가 없습니다.\n  - button \"plus 새 태그\":\n    - img \"plus\":\n    - generic: 새 태그\n  - tablist:\n    - tab \"상세\" [selected]\n    - tab \"이벤트\"\n    - tab \"코멘트\"\n  - tabpanel \"상세\":\n    - list:\n      - strong: IP 주소\n      - generic: 10.10.32.103\n      - strong: 아이디\n      - generic: 77def528-fb75-42e3-a90f-46a6e9c5b90b\n      - strong: 네트워크\n      - generic: 4216b0b3-d054-46ab-88dd-9d025a1f3eb5\n      - strong: 시스템\n      - generic: \"false\"\n      - strong: Source NAT\n      - generic: \"false\"\n      - strong: Static NAT\n      - generic: \"false\"\n      - strong: VM 이름\n      - generic: —\n      - strong: Zone\n      - generic: Zone\n- alert:\n  - img \"exclamation-circle\":\n  - generic: 조치가 필요한 경보\n  - generic: (2건)\n  - generic: \"-\"\n  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.\n  - button \"세부 경보 내용 확인\":\n    - generic: 세부 경보 내용 확인\n  - button \"경보 규칙으로 이동\":\n    - generic: 경보 규칙으로 이동\n  - button \"닫기\":\n    - img \"close\":"
+  },
+  {
+    "name": "31-Free-admin",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "pageWidth": 1270,
+    "tabPanelWidth": 570,
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625",
+    "width": 1280
+  },
+  {
+    "name": "31-Free-admin",
+    "snapshot": "- complementary:\n  - menu:\n    - menuitem \"dashboard 대시보드\":\n      - link \"dashboard 대시보드\":\n        - /url: \"#/dashboard\"\n        - img \"dashboard\":\n        - text: 대시보드\n    - img \"cloud\":\n    - text: 컴퓨트\n    - img \"hdd\":\n    - text: 스토리지\n    - img \"wifi\":\n    - text: 네트워크\n    - list:\n      - menuitem \"apartment 가상머신용 네트워크\":\n        - link \"apartment 가상머신용 네트워크\":\n          - /url: \"#/guestnetwork\"\n          - img \"apartment\":\n          - text: 가상머신용 네트워크\n      - menuitem \"deployment-unit VPC\":\n        - link \"deployment-unit VPC\":\n          - /url: \"#/vpc\"\n          - img \"deployment-unit\":\n          - text: VPC\n      - menuitem \"gateway VNF 기기\":\n        - link \"gateway VNF 기기\":\n          - /url: \"#/vnfapp\"\n          - img \"gateway\":\n          - text: VNF 기기\n      - menuitem \"environment Public IP 주소\":\n        - link \"environment Public IP 주소\":\n          - /url: \"#/publicip\"\n          - img \"environment\":\n          - text: Public IP 주소\n      - menuitem \"partition AS Numbers\":\n        - link \"partition AS Numbers\":\n          - /url: \"#/asnumbers\"\n          - img \"partition\":\n          - text: AS Numbers\n      - menuitem \"lock 사이트간 사설네트워크(VPN)\":\n        - link \"lock 사이트간 사설네트워크(VPN)\":\n          - /url: \"#/s2svpn\"\n          - img \"lock\":\n          - text: 사이트간 사설네트워크(VPN)\n      - menuitem \"sync 사이트 간 VPN 연결\":\n        - link \"sync 사이트 간 VPN 연결\":\n          - /url: \"#/s2svpnconn\"\n          - img \"sync\":\n          - text: 사이트 간 VPN 연결\n      - menuitem \"bars 네트워크 ACL\":\n        - link \"bars 네트워크 ACL\":\n          - /url: \"#/acllist\"\n          - img \"bars\":\n          - text: 네트워크 ACL\n      - menuitem \"user-switch VPN 사용자\":\n        - link \"user-switch VPN 사용자\":\n          - /url: \"#/vpnuser\"\n          - img \"user-switch\":\n          - text: VPN 사용자\n      - menuitem \"lock VPN 고객 게이트웨이\":\n        - link \"lock VPN 고객 게이트웨이\":\n          - /url: \"#/vpncustomergateway\"\n          - img \"lock\":\n          - text: VPN 고객 게이트웨이\n      - menuitem \"folder 게스트 VLAN\":\n        - link \"folder 게스트 VLAN\":\n          - /url: \"#/guestvlans\"\n          - img \"folder\":\n          - text: 게스트 VLAN\n      - menuitem \"pic-center IPv4 서브넷\":\n        - link \"pic-center IPv4 서브넷\":\n          - /url: \"#/ipv4subnets\"\n          - img \"pic-center\":\n          - text: IPv4 서브넷\n      - menuitem \"apartment DNS 영역\":\n        - link \"apartment DNS 영역\":\n          - /url: \"#/dnszone\"\n          - img \"apartment\":\n          - text: DNS 영역\n      - menuitem \"cloud-server DNS 서버\":\n        - link \"cloud-server DNS 서버\":\n          - /url: \"#/dnsserver\"\n          - img \"cloud-server\":\n          - text: DNS 서버\n    - img \"picture\":\n    - text: 이미지\n    - img \"lock\":\n    - text: 키 관리\n    - img \"safety-certificate\":\n    - text: 재해복구\n    - menuitem \"schedule 이벤트\":\n      - link \"schedule 이벤트\":\n        - /url: \"#/event\"\n        - img \"schedule\":\n        - text: 이벤트\n    - menuitem \"project 프로젝트\":\n      - link \"project 프로젝트\":\n        - /url: \"#/project\"\n        - img \"project\":\n        - text: 프로젝트\n    - menuitem \"idcard 역할\":\n      - link \"idcard 역할\":\n        - /url: \"#/role\"\n        - img \"idcard\":\n        - text: 역할\n    - menuitem \"team 계정\":\n      - link \"team 계정\":\n        - /url: \"#/account\"\n        - img \"team\":\n        - text: 계정\n    - menuitem \"block 도메인\":\n      - link \"block 도메인\":\n        - /url: \"#/domain\"\n        - img \"block\":\n        - text: 도메인\n    - img \"bank\":\n    - text: 인프라스트럭쳐\n    - img \"shopping\":\n    - text: 서비스 오퍼링\n    - img \"setting\":\n    - text: 구성\n    - menuitem \"appstore-add 확장\":\n      - link \"appstore-add 확장\":\n        - /url: \"#/extension\"\n        - img \"appstore-add\":\n        - text: 확장\n    - img \"tool\":\n    - text: 도구\n    - menuitem \"read API 문서\":\n      - link \"read API 문서\":\n        - /url: \"#/apidocs/\"\n        - img \"read\":\n        - text: API 문서\n- generic: 페이지 스타일 설정\n- button \"닫기\":\n  - img \"close\":\n- heading \"페이지 스타일 설정\" [level=3]\n- radio [checked]\n- img \"check\":\n- radio\n- heading \"테마 색상\" [level=3]\n- radio\n- img \"check\"\n- radio\n- radio\n- radio\n- radio\n- radio\n- radio\n- radio\n- separator\n- heading \"네비게이션 설정\" [level=3]\n- generic: 배경색\n- textbox: \"#ffffff\"\n- generic: 텍스트 색상\n- textbox: \"#000000\"\n- separator\n- alert:\n  - img \"exclamation-circle\":\n  - generic: \"설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.\"\n- button \"download 세팅값 다운로드(json)\":\n  - img \"download\":\n  - generic: 세팅값 다운로드(json)\n- button \"undo 기본값으로 재설정\":\n  - img \"undo\":\n  - generic: 기본값으로 재설정\n- img \"menu-fold\":\n- generic: 프로젝트\n- combobox \"프로젝트\"\n- img \"project\":\n- text: 기본 보기\n- button \"생성 down\":\n  - generic: 생성\n  - img \"down\":\n- img \"translation\":\n- button \"알림\":\n  - img \"bell\":\n- generic: AC\n- generic: admin cloud\n- main:\n  - link \"home\":\n    - /url: \"#/\"\n    - img \"home\":\n  - text: /\n  - link \"Public IP 주소\":\n    - /url: \"#/publicip\"\n  - text: /\n  - generic: 10.10.31.105\n  - link \"question-circle\":\n    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts\n    - img \"question-circle\":\n  - button \"reload 업데이트\":\n    - img \"reload\":\n    - generic: 업데이트\n  - button \"down 작업\":\n    - img \"down\":\n    - generic: 작업\n  - img \"environment\":\n  - heading \"10.10.31.105\" [level=4]\n  - separator\n  - generic: 상태\n  - generic: 가능\n  - generic: 아이디\n  - button \"아이디 복사\":\n    - img \"barcode\":\n  - link \"956b6cb3-4bf8-41e4-b6df-12911f30e625\":\n    - /url: javascript:;\n  - generic: IP\n  - img \"environment\":\n  - link \"10.10.31.105\":\n    - /url: javascript:;\n  - generic: VM 이름\n  - generic: —\n  - generic: 공용 네트워크\n  - generic: 8689dcfa-5d81-40d3-8db3-103be4a01d71\n  - button \"복사 공용 네트워크\":\n    - img \"copy\":\n  - generic: 연결된 게스트 네트워크\n  - generic: —\n  - generic: VPC\n  - generic: —\n  - generic: Zone\n  - img \"global\":\n  - link \"Zone\":\n    - /url: \"#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c\"\n  - separator\n  - strong: 태그\n  - button \"reload 태그 새로고침\":\n    - img \"reload\":\n    - generic: 태그 새로고침\n  - generic: 태그가 없습니다.\n  - button \"plus 새 태그\":\n    - img \"plus\":\n    - generic: 새 태그\n  - tablist:\n    - tab \"상세\" [selected]\n    - tab \"이벤트\"\n    - tab \"코멘트\"\n  - tabpanel \"상세\":\n    - list:\n      - strong: IP 주소\n      - generic: 10.10.31.105\n      - strong: 아이디\n      - generic: 956b6cb3-4bf8-41e4-b6df-12911f30e625\n      - strong: VLAN 값\n      - generic: 태그 없음 (Untagged)\n      - generic: \"원문: vlan://untagged\"\n      - strong: VLAN 범위 UUID\n      - generic: 6ce0457c-4b8f-46c5-8115-b85a08efaa63\n      - button \"복사 VLAN 범위 UUID\":\n        - img \"copy\":\n        - textbox [active]: 6ce0457c-4b8f-46c5-8115-b85a08efaa63\n      - strong: 공용 네트워크\n      - generic: 8689dcfa-5d81-40d3-8db3-103be4a01d71\n      - button \"복사 공용 네트워크\":\n        - img \"copy\":\n      - strong: 연결된 게스트 네트워크\n      - generic: —\n      - strong: VPC\n      - generic: —\n      - strong: 시스템\n      - generic: \"false\"\n      - strong: Source NAT\n      - generic: \"false\"\n      - strong: Static NAT\n      - generic: \"false\"\n      - strong: VM 이름\n      - generic: —\n      - strong: Zone\n      - generic: Zone\n- tooltip \"복사 VLAN 범위 UUID\""
+  },
+  {
+    "name": "32-Free-admin",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "pageWidth": 1270,
+    "tabPanelWidth": 570,
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "width": 1280
+  }
+]

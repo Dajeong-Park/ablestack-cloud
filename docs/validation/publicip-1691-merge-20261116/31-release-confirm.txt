@@ -1,0 +1,274 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - img "safety-certificate":
+    - generic: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - generic: /
+  - link "Public IP 주소":
+    - /url: "#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+  - generic: /
+  - generic: 10.10.31.105
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "environment":
+  - heading "10.10.31.105" [level=4]
+  - separator
+  - generic: 상태
+  - generic: 예약
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "956b6cb3-4bf8-41e4-b6df-12911f30e625":
+    - /url: javascript:;
+  - generic: IP
+  - img "environment":
+  - link "10.10.31.105":
+    - /url: javascript:;
+  - generic: VM 이름
+  - generic: —
+  - generic: 공용 네트워크
+  - generic: 8689dcfa-5d81-40d3-8db3-103be4a01d71
+  - button "복사 공용 네트워크":
+    - img "copy":
+  - generic: 연결된 게스트 네트워크
+  - generic: —
+  - generic: VPC
+  - generic: —
+  - generic: 사용자 표시
+  - generic: 표시
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+  - generic: 계정
+  - img "user":
+  - link "qa-pip1691-31-222246-user":
+    - /url: "#/account?name=qa-pip1691-31-222246-user&domainid=11397ba2-b661-4678-ad49-fa841e0345d5"
+  - generic: 도메인
+  - img "block":
+  - link "qa-pip1691-31-222246":
+    - /url: "#/domain/11397ba2-b661-4678-ad49-fa841e0345d5?tab=details"
+  - separator
+  - strong: 태그
+  - button "reload 태그 새로고침":
+    - img "reload":
+    - generic: 태그 새로고침
+  - generic: 태그가 없습니다.
+  - button "plus 새 태그":
+    - img "plus":
+    - generic: 새 태그
+  - tablist:
+    - tab "상세" [selected]
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "상세":
+    - list:
+      - strong: IP 주소
+      - generic: 10.10.31.105
+      - strong: 아이디
+      - generic: 956b6cb3-4bf8-41e4-b6df-12911f30e625
+      - strong: 상태
+      - generic: 예약
+      - strong: VLAN 값
+      - generic: 태그 없음 (Untagged)
+      - generic: "원문: vlan://untagged"
+      - strong: VLAN 범위 UUID
+      - generic: 6ce0457c-4b8f-46c5-8115-b85a08efaa63
+      - button "복사 VLAN 범위 UUID":
+        - img "copy":
+      - strong: 공용 네트워크
+      - generic: 8689dcfa-5d81-40d3-8db3-103be4a01d71
+      - button "복사 공용 네트워크":
+        - img "copy":
+      - strong: 연결된 게스트 네트워크
+      - generic: —
+      - strong: VPC
+      - generic: —
+      - strong: 사용자 표시
+      - generic: 표시
+      - strong: 시스템
+      - generic: 아니오
+      - strong: Source NAT
+      - generic: 아니오
+      - strong: Static NAT
+      - generic: 아니오
+      - strong: VM 이름
+      - generic: —
+      - strong: 할당 일시
+      - generic: 2026. 11. 16. 오후 1:26:40
+      - strong: 계정
+      - generic: qa-pip1691-31-222246-user
+      - strong: 도메인
+      - generic: qa-pip1691-31-222246
+      - strong: Zone
+      - generic: Zone
+- menu:
+  - generic: 네트워크
+  - list:
+    - menuitem "사용자 표시 설정":
+      - generic: 사용자 표시 설정
+  - generic: 삭제
+  - list:
+    - menuitem "예약된 IP 해제" [active]:
+      - generic: 예약된 IP 해제
+- dialog "예약된 IP 해제도움말":
+  - document:
+    - button "Close":
+      - img "close":
+    - text: 예약된 IP 해제
+    - link "도움말":
+      - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+      - img "question-circle":
+    - table:
+      - rowgroup:
+        - 'row "IP 주소 : 10.10.31.105 956b6cb3-4bf8-41e4-b6df-12911f30e625"':
+          - 'cell "IP 주소 : 10.10.31.105 956b6cb3-4bf8-41e4-b6df-12911f30e625"':
+            - generic: "IP 주소 :"
+            - text: 10.10.31.105
+            - generic: 956b6cb3-4bf8-41e4-b6df-12911f30e625
+        - 'row "상태 : 예약"':
+          - 'cell "상태 : 예약"':
+            - generic: "상태 :"
+            - generic: 예약
+        - 'row "계정 : qa-pip1691-31-222246-user"':
+          - 'cell "계정 : qa-pip1691-31-222246-user"':
+            - generic: "계정 :"
+            - generic: qa-pip1691-31-222246-user
+        - 'row "도메인 : qa-pip1691-31-222246"':
+          - 'cell "도메인 : qa-pip1691-31-222246"':
+            - generic: "도메인 :"
+            - generic: qa-pip1691-31-222246
+    - alert:
+      - generic: 이 예약된 IP를 해제할 것인지 확인하십시오.
+    - button "취소":
+      - generic: 취소
+    - button "해제":
+      - generic: 해제

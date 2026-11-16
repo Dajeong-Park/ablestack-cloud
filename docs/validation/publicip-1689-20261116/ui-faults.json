@@ -1,0 +1,234 @@
+[
+  {
+    "cluster": 31,
+    "kind": "controlled-503-same-scope",
+    "before": [
+      "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+      "e970e6b5-ded8-4a0b-b482-5b5d974677e8",
+      "0a089eba-061a-419d-93cd-02e9f3b4a164",
+      "3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6",
+      "2c2091e2-5140-44e9-89ef-63861af57e81",
+      "3719cabd-6eb8-40ea-a4e5-714e2b9544bb",
+      "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+      "19abe419-0c0f-49fd-ba98-9faf4ddd38e4",
+      "5420484d-25ba-440d-b645-668ccd46f29d",
+      "4d465d47-9e09-4b92-a97c-2fa3efb55fe4",
+      "dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd",
+      "fa236274-78c4-41cc-8f5d-e71ba30f4f86",
+      "40a1ca72-21ba-443c-a8d8-658849b06a4f",
+      "5a26bd05-9f8d-41c2-a412-955c528087a6",
+      "54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc",
+      "7b40411f-0835-4daf-ba78-830e2afb0d86",
+      "b44f2d1f-42e1-4265-9b70-9afa7f4c2841",
+      "30826d80-6e62-4a5c-9510-0a7dd14379ae",
+      "bcb6793a-241c-46dc-96c6-91b149ca37ff",
+      "f37ea048-904e-469d-9007-7336ac4bf212"
+    ],
+    "pending": [
+      "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+      "e970e6b5-ded8-4a0b-b482-5b5d974677e8",
+      "0a089eba-061a-419d-93cd-02e9f3b4a164",
+      "3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6",
+      "2c2091e2-5140-44e9-89ef-63861af57e81",
+      "3719cabd-6eb8-40ea-a4e5-714e2b9544bb",
+      "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+      "19abe419-0c0f-49fd-ba98-9faf4ddd38e4",
+      "5420484d-25ba-440d-b645-668ccd46f29d",
+      "4d465d47-9e09-4b92-a97c-2fa3efb55fe4",
+      "dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd",
+      "fa236274-78c4-41cc-8f5d-e71ba30f4f86",
+      "40a1ca72-21ba-443c-a8d8-658849b06a4f",
+      "5a26bd05-9f8d-41c2-a412-955c528087a6",
+      "54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc",
+      "7b40411f-0835-4daf-ba78-830e2afb0d86",
+      "b44f2d1f-42e1-4265-9b70-9afa7f4c2841",
+      "30826d80-6e62-4a5c-9510-0a7dd14379ae",
+      "bcb6793a-241c-46dc-96c6-91b149ca37ff",
+      "f37ea048-904e-469d-9007-7336ac4bf212"
+    ],
+    "failed": [
+      "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+      "e970e6b5-ded8-4a0b-b482-5b5d974677e8",
+      "0a089eba-061a-419d-93cd-02e9f3b4a164",
+      "3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6",
+      "2c2091e2-5140-44e9-89ef-63861af57e81",
+      "3719cabd-6eb8-40ea-a4e5-714e2b9544bb",
+      "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+      "19abe419-0c0f-49fd-ba98-9faf4ddd38e4",
+      "5420484d-25ba-440d-b645-668ccd46f29d",
+      "4d465d47-9e09-4b92-a97c-2fa3efb55fe4",
+      "dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd",
+      "fa236274-78c4-41cc-8f5d-e71ba30f4f86",
+      "40a1ca72-21ba-443c-a8d8-658849b06a4f",
+      "5a26bd05-9f8d-41c2-a412-955c528087a6",
+      "54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc",
+      "7b40411f-0835-4daf-ba78-830e2afb0d86",
+      "b44f2d1f-42e1-4265-9b70-9afa7f4c2841",
+      "30826d80-6e62-4a5c-9510-0a7dd14379ae",
+      "bcb6793a-241c-46dc-96c6-91b149ca37ff",
+      "f37ea048-904e-469d-9007-7336ac4bf212"
+    ]
+  },
+  {
+    "cluster": 31,
+    "kind": "controlled-response-order",
+    "sameScopeRetained": 20,
+    "pendingRows": 0,
+    "pendingSelected": 0,
+    "oldResult": "fulfilled",
+    "afterIds": [
+      "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+      "f9eda3b4-2655-453b-837a-28e46eb9c3f5"
+    ],
+    "sentinelPresent": false
+  },
+  {
+    "cluster": 31,
+    "kind": "controlled-new-scope-503-and-zero-retry",
+    "pendingRows": 0,
+    "failedRows": 0,
+    "retryRows": 0
+  },
+  {
+    "cluster": 31,
+    "kind": "read-only-synthetic-transition",
+    "state": "Allocating",
+    "id": "0a089eba-061a-419d-93cd-02e9f3b4a164",
+    "unsafeActions": [],
+    "menus": [
+      "대시보드",
+      "이벤트",
+      "프로젝트",
+      "역할",
+      "계정",
+      "도메인",
+      "확장",
+      "API 문서"
+    ]
+  },
+  {
+    "cluster": 31,
+    "kind": "read-only-synthetic-transition",
+    "state": "Releasing",
+    "id": "0a089eba-061a-419d-93cd-02e9f3b4a164",
+    "unsafeActions": [],
+    "menus": [
+      "대시보드",
+      "이벤트",
+      "프로젝트",
+      "역할",
+      "계정",
+      "도메인",
+      "확장",
+      "API 문서"
+    ]
+  },
+  {
+    "cluster": 32,
+    "kind": "controlled-503-same-scope",
+    "before": [
+      "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+      "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+      "d035d9a6-cb42-438f-893b-3353d20423e9",
+      "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+      "c7e46392-cbcd-4503-a810-606b5afaa884",
+      "078a87ba-8a96-4292-8f33-03163f599ef9",
+      "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+      "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+      "282aad30-4938-4de3-8412-d3098f4f4caf",
+      "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6"
+    ],
+    "pending": [
+      "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+      "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+      "d035d9a6-cb42-438f-893b-3353d20423e9",
+      "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+      "c7e46392-cbcd-4503-a810-606b5afaa884",
+      "078a87ba-8a96-4292-8f33-03163f599ef9",
+      "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+      "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+      "282aad30-4938-4de3-8412-d3098f4f4caf",
+      "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6"
+    ],
+    "failed": [
+      "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+      "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+      "d035d9a6-cb42-438f-893b-3353d20423e9",
+      "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+      "c7e46392-cbcd-4503-a810-606b5afaa884",
+      "078a87ba-8a96-4292-8f33-03163f599ef9",
+      "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+      "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+      "282aad30-4938-4de3-8412-d3098f4f4caf",
+      "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6"
+    ]
+  },
+  {
+    "cluster": 32,
+    "kind": "controlled-response-order",
+    "sameScopeRetained": 10,
+    "pendingRows": 0,
+    "pendingSelected": 0,
+    "oldResult": "fulfilled",
+    "afterIds": [
+      "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+      "ef4ffbf6-9054-469e-a275-831b93136ce7"
+    ],
+    "sentinelPresent": false
+  },
+  {
+    "cluster": 32,
+    "kind": "controlled-new-scope-503-and-zero-retry",
+    "pendingRows": 0,
+    "failedRows": 0,
+    "retryRows": 0
+  },
+  {
+    "cluster": 32,
+    "kind": "read-only-synthetic-transition",
+    "state": "Allocating",
+    "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+    "unsafeActions": [],
+    "menus": [
+      "대시보드",
+      "이벤트",
+      "프로젝트",
+      "역할",
+      "계정",
+      "도메인",
+      "확장",
+      "API 문서"
+    ]
+  },
+  {
+    "cluster": 32,
+    "kind": "read-only-synthetic-transition",
+    "state": "Releasing",
+    "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+    "unsafeActions": [],
+    "menus": [
+      "대시보드",
+      "이벤트",
+      "프로젝트",
+      "역할",
+      "계정",
+      "도메인",
+      "확장",
+      "API 문서"
+    ]
+  },
+  {
+    "cluster": 32,
+    "kind": "controlled-candidate-order-zero-503-retry",
+    "zoneGate": true,
+    "lateCandidateVisible": false,
+    "errorAndZeroDistinct": true
+  },
+  {
+    "cluster": 31,
+    "kind": "controlled-candidate-order-zero-503-retry",
+    "zoneGate": true,
+    "lateCandidateVisible": false,
+    "errorAndZeroDistinct": true
+  }
+]

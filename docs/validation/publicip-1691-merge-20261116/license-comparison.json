@@ -1,0 +1,10 @@
+{
+  "base": "b777311a708e0e652f05025fecb2660dfa90f74d",
+  "head": "c934170b6a1f7f82717218f47ae481bc3ff4835d",
+  "baseUnknown": 4077,
+  "headUnknown": 4077,
+  "addedUnknown": [],
+  "removedUnknown": [],
+  "sameUnknownSet": true,
+  "scan": "clean tracked worktree without build dependencies"
+}

@@ -1,0 +1,52 @@
+{
+  "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+  "readOnlyOpenCancel": true,
+  "contentBounds": {
+    "height": 408.5983276367187,
+    "width": 702.1259765625,
+    "x": 199.93698120117188,
+    "y": 37.200836181640625
+  },
+  "footer": [
+    "취소",
+    "확인"
+  ],
+  "labels": [
+    {
+      "connected": true,
+      "for": "form_item_displayname",
+      "text": "VM 표시 명"
+    },
+    {
+      "connected": true,
+      "for": "form_item_ostypeid",
+      "text": "OS 유형"
+    },
+    {
+      "connected": true,
+      "for": "form_item_isdynamicallyscalable",
+      "text": "동적으로 확장 가능"
+    },
+    {
+      "connected": true,
+      "for": "form_item_haenable",
+      "text": "HA 활성화"
+    },
+    {
+      "connected": true,
+      "for": "form_item_group",
+      "text": "그룹"
+    },
+    {
+      "connected": true,
+      "for": "",
+      "text": "추가 설정"
+    },
+    {
+      "connected": true,
+      "for": "form_item_deleteprotection",
+      "text": "삭제 보호"
+    }
+  ],
+  "measurementNote": "Content bounds sampled during opening animation. Nominal md width720 comes from common MoldDialog source; final Public IP stable layout assertions are responsive.json."
+}

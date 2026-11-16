@@ -1,0 +1,13 @@
+{
+  "closedCurrentTurn": [
+    "51377858",
+    "51377861"
+  ],
+  "currentControlledValidationTabsRemaining": 0,
+  "priorTurnTabIds": [
+    "51377850",
+    "51377854"
+  ],
+  "priorTurnTabDisposition": "unavailable to current runtime; excluded from closed-current-turn count",
+  "otherTabsPreserved": true
+}

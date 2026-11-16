@@ -1,0 +1,139 @@
+[
+  {
+    "params": {
+      "listall": "true",
+      "pagesize": 500,
+      "page": 1,
+      "allocatedonly": "false"
+    },
+    "count": 102,
+    "error": null,
+    "states": {
+      "Free": 83,
+      "Reserved": 0,
+      "Allocated": 19
+    },
+    "projects": [
+      "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "None",
+      "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    ]
+  },
+  {
+    "params": {
+      "listall": "true",
+      "pagesize": 500,
+      "page": 1,
+      "allocatedonly": "false",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "count": 102,
+    "error": null,
+    "states": {
+      "Free": 83,
+      "Reserved": 0,
+      "Allocated": 19
+    },
+    "projects": [
+      "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "None",
+      "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+      "f794c1da-2d1a-4918-92ca-ed192dcdb5df"
+    ]
+  },
+  {
+    "params": {
+      "listall": "true",
+      "pagesize": 500,
+      "page": 1,
+      "allocatedonly": "false",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+    },
+    "count": 93,
+    "error": null,
+    "states": {
+      "Free": 83,
+      "Reserved": 0,
+      "Allocated": 10
+    },
+    "projects": [
+      "None"
+    ]
+  },
+  {
+    "params": {
+      "listall": "true",
+      "pagesize": 500,
+      "page": 1,
+      "allocatedonly": "false",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "count": 85,
+    "error": null,
+    "states": {
+      "Free": 83,
+      "Reserved": 0,
+      "Allocated": 2
+    },
+    "projects": [
+      "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "None"
+    ]
+  },
+  {
+    "params": {
+      "listall": "true",
+      "pagesize": 500,
+      "page": 1,
+      "allocatedonly": "false",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "isrecursive": "true"
+    },
+    "count": 93,
+    "error": null,
+    "states": {
+      "Free": 83,
+      "Reserved": 0,
+      "Allocated": 10
+    },
+    "projects": [
+      "None"
+    ]
+  },
+  {
+    "params": {
+      "listall": "true",
+      "pagesize": 500,
+      "page": 1,
+      "state": "Allocating",
+      "allocatedonly": "true"
+    },
+    "count": 0,
+    "error": null,
+    "states": {
+      "Free": 0,
+      "Reserved": 0,
+      "Allocated": 0
+    },
+    "projects": []
+  },
+  {
+    "params": {
+      "listall": "true",
+      "pagesize": 500,
+      "page": 1,
+      "state": "Releasing",
+      "allocatedonly": "true"
+    },
+    "count": 0,
+    "error": null,
+    "states": {
+      "Free": 0,
+      "Reserved": 0,
+      "Allocated": 0
+    },
+    "projects": []
+  }
+]

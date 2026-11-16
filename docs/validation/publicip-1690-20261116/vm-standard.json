@@ -1,0 +1,20 @@
+{
+  "footer": [
+    "취소",
+    "확인"
+  ],
+  "labels": [
+    "VM 표시 명",
+    "OS 유형",
+    "동적으로 확장 가능",
+    "HA 활성화",
+    "그룹",
+    "추가 설정",
+    "삭제 보호"
+  ],
+  "outerRoleBounds": {
+    "height": 483,
+    "width": 1102
+  },
+  "measurementNote": "The original role=dialog measurement is the outer viewport overlay, not modal content width. See vm-standard-final.json for content/labels/footer; that bounds sample is during opening animation, not an exact width assertion."
+}

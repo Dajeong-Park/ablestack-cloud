@@ -1,0 +1,2537 @@
+[
+  {
+    "cluster": 31,
+    "label": "reserve false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "reserve false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "reserve false",
+    "method": "POST",
+    "command": "reserveIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "account": "qa-pip1687-31-20261116-074721-user",
+      "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+      "fordisplay": "false"
+    },
+    "http": 200,
+    "result": {
+      "ipId": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": false
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "reserve false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "label": "reserve false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "reserve false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "label": "reserve false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false outcome",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false outcome",
+    "method": "POST",
+    "command": "reserveIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "account": "qa-pip1687-32-20261116-074721-user",
+      "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+      "fordisplay": "true"
+    },
+    "http": 200,
+    "result": {
+      "ipId": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": true
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false outcome",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false outcome",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false confirmed",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false confirmed",
+    "method": "POST",
+    "command": "reserveIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "account": "qa-pip1687-32-20261116-074721-user",
+      "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+      "fordisplay": "false"
+    },
+    "http": 200,
+    "result": {
+      "ipId": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": false
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false confirmed",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false confirmed",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false confirmed",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "label": "reserve false confirmed",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "http": 200,
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "label": "User hidden",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "label": "DomainAdmin hidden",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "label": "User hidden",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "label": "DomainAdmin hidden",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "http": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "true"
+    },
+    "result": {
+      "jobid": "f3e7d24d-af82-42a6-81fd-54ebf7a0bc73"
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "f3e7d24d-af82-42a6-81fd-54ebf7a0bc73"
+    },
+    "result": {
+      "jobid": "f3e7d24d-af82-42a6-81fd-54ebf7a0bc73",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "f3e7d24d-af82-42a6-81fd-54ebf7a0bc73"
+    },
+    "result": {
+      "jobid": "f3e7d24d-af82-42a6-81fd-54ebf7a0bc73",
+      "jobstatus": 1,
+      "ip": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "state": "Reserved",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-job0-close-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-false-to-true",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "true"
+    },
+    "result": {
+      "jobid": "d2b1d15a-7780-4ea6-8b15-983a5c42f403"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-false-to-true",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "d2b1d15a-7780-4ea6-8b15-983a5c42f403"
+    },
+    "result": {
+      "jobid": "d2b1d15a-7780-4ea6-8b15-983a5c42f403",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-false-to-true",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "d2b1d15a-7780-4ea6-8b15-983a5c42f403"
+    },
+    "result": {
+      "jobid": "d2b1d15a-7780-4ea6-8b15-983a5c42f403",
+      "jobstatus": 1,
+      "ip": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "state": "Reserved",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "injected-job2-no-backend-write",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "injected-job2-no-backend-write",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "false"
+    },
+    "result": {
+      "jobid": "00000000-1687-4000-8000-000000000002"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "injected-job2-no-backend-write",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "00000000-1687-4000-8000-000000000002"
+    },
+    "result": {
+      "jobid": "00000000-1687-4000-8000-000000000002",
+      "jobstatus": 2
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "injected-job2-no-backend-write",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "missing-receipt-reopen-read-only",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "missing-receipt-reopen-read-only",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "false"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "missing-receipt-reopen-read-only",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "missing-receipt-reopen-read-only",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "missing-receipt-reopen-read-only",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "release-before-allocated",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "release-before-allocated",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "release-before-allocated",
+    "method": "POST",
+    "command": "releaseIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "release-before-allocated",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "release-before-allocated",
+    "method": "POST",
+    "command": "releaseIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "release-before-allocated",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "false"
+    },
+    "result": {
+      "jobid": "77642500-4031-4ee7-8078-10e402f1ef21"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "77642500-4031-4ee7-8078-10e402f1ef21"
+    },
+    "result": {
+      "jobid": "77642500-4031-4ee7-8078-10e402f1ef21",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "77642500-4031-4ee7-8078-10e402f1ef21"
+    },
+    "result": {
+      "jobid": "77642500-4031-4ee7-8078-10e402f1ef21",
+      "jobstatus": 1,
+      "ip": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "state": "Allocated",
+        "fordisplay": false
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Allocated",
+          "fordisplay": false,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Allocated",
+          "fordisplay": false,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Allocated",
+          "fordisplay": false,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-false-to-true",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "true"
+    },
+    "result": {
+      "jobid": "e4115401-4552-40b9-b83c-d8b38ae33104"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-false-to-true",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "e4115401-4552-40b9-b83c-d8b38ae33104"
+    },
+    "result": {
+      "jobid": "e4115401-4552-40b9-b83c-d8b38ae33104",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-false-to-true",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "e4115401-4552-40b9-b83c-d8b38ae33104"
+    },
+    "result": {
+      "jobid": "e4115401-4552-40b9-b83c-d8b38ae33104",
+      "jobstatus": 1,
+      "ip": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "state": "Allocated",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Allocated-project-false-to-true",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "false"
+    },
+    "result": {
+      "jobid": "853f5601-1e87-4ab6-b1c0-585f74fa6d90"
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "853f5601-1e87-4ab6-b1c0-585f74fa6d90"
+    },
+    "result": {
+      "jobid": "853f5601-1e87-4ab6-b1c0-585f74fa6d90",
+      "jobstatus": 1,
+      "ip": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "state": "Allocated",
+        "fordisplay": false
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": false,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": false,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": false,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "true"
+    },
+    "result": {
+      "jobid": "a0d29b08-9422-4a50-925f-6fea82818313"
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "a0d29b08-9422-4a50-925f-6fea82818313"
+    },
+    "result": {
+      "jobid": "a0d29b08-9422-4a50-925f-6fea82818313",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 3,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "a0d29b08-9422-4a50-925f-6fea82818313"
+    },
+    "result": {
+      "jobid": "a0d29b08-9422-4a50-925f-6fea82818313",
+      "jobstatus": 1,
+      "ip": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "state": "Allocated",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Allocated-project-scope-change-resume",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "release-Allocated-ui",
+    "method": "POST",
+    "command": "disassociateIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "jobid": "62182d77-3d1b-4a8c-aa24-afcef427a4e9"
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "release-Allocated-ui",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "62182d77-3d1b-4a8c-aa24-afcef427a4e9",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "jobid": "62182d77-3d1b-4a8c-aa24-afcef427a4e9",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "release-Allocated-ui",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "62182d77-3d1b-4a8c-aa24-afcef427a4e9",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "jobid": "62182d77-3d1b-4a8c-aa24-afcef427a4e9",
+      "jobstatus": 1
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "release-Allocated-ui",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "result": {
+      "count": 2,
+      "addresses": [
+        {
+          "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "release-Allocated-ui",
+    "method": "POST",
+    "command": "disassociateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "jobid": "2038d855-60ff-479b-aead-12f1d4bc589e"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "release-Allocated-ui",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "2038d855-60ff-479b-aead-12f1d4bc589e",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "jobid": "2038d855-60ff-479b-aead-12f1d4bc589e",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "release-Allocated-ui",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobId": "2038d855-60ff-479b-aead-12f1d4bc589e",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "jobid": "2038d855-60ff-479b-aead-12f1d4bc589e",
+      "jobstatus": 1
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "release-Allocated-ui",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "result": {
+      "count": 2,
+      "addresses": [
+        {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "state": "Allocated",
+          "fordisplay": true,
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "false"
+    },
+    "result": {
+      "jobid": "11830a61-b7d9-491e-af91-e559594dfff3"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "11830a61-b7d9-491e-af91-e559594dfff3"
+    },
+    "result": {
+      "jobid": "11830a61-b7d9-491e-af91-e559594dfff3",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "11830a61-b7d9-491e-af91-e559594dfff3"
+    },
+    "result": {
+      "jobid": "11830a61-b7d9-491e-af91-e559594dfff3",
+      "jobstatus": 1,
+      "ip": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "state": "Reserved",
+        "fordisplay": false
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-restore-before-final-release",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "true"
+    },
+    "result": {
+      "jobid": "c93d46e1-3ace-4bba-9781-cf0480ae4935"
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "c93d46e1-3ace-4bba-9781-cf0480ae4935"
+    },
+    "result": {
+      "jobid": "c93d46e1-3ace-4bba-9781-cf0480ae4935",
+      "jobstatus": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "c93d46e1-3ace-4bba-9781-cf0480ae4935"
+    },
+    "result": {
+      "jobid": "c93d46e1-3ace-4bba-9781-cf0480ae4935",
+      "jobstatus": 1,
+      "ip": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "state": "Reserved",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-32-20261116-074721-user",
+          "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "false"
+    },
+    "result": {
+      "jobid": "f0bd52bf-1593-4c73-b351-c8b31dc60496"
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "f0bd52bf-1593-4c73-b351-c8b31dc60496"
+    },
+    "result": {
+      "jobid": "f0bd52bf-1593-4c73-b351-c8b31dc60496",
+      "jobstatus": 1,
+      "ip": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "state": "Reserved",
+        "fordisplay": false
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-true-to-false",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": false,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-restore-before-final-release",
+    "method": "POST",
+    "command": "updateIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "true"
+    },
+    "result": {
+      "jobid": "6be14078-08fa-451e-8abc-ccd7b5817af2"
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "6be14078-08fa-451e-8abc-ccd7b5817af2"
+    },
+    "result": {
+      "jobid": "6be14078-08fa-451e-8abc-ccd7b5817af2",
+      "jobstatus": 1,
+      "ip": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "state": "Reserved",
+        "fordisplay": true
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "Reserved-restore-before-final-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Reserved",
+          "fordisplay": true,
+          "account": "qa-pip1687-31-20261116-074721-user",
+          "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "case": "final-reserved-ui-release",
+    "method": "POST",
+    "command": "releaseIpAddress",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "case": "final-reserved-ui-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "case": "final-reserved-ui-release",
+    "method": "POST",
+    "command": "releaseIpAddress",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+    },
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "case": "final-reserved-ui-release",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "addresses": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free",
+          "fordisplay": true
+        }
+      ]
+    }
+  }
+]

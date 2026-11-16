@@ -1,0 +1,20 @@
+[
+  {
+    "cluster": 31,
+    "freeBefore": 18,
+    "freeAfter": 18,
+    "reservedAllBefore": 0,
+    "reservedAllAfter": 0,
+    "testAddress": "10.10.31.105",
+    "finalState": "Free"
+  },
+  {
+    "cluster": 32,
+    "freeBefore": 84,
+    "freeAfter": 84,
+    "reservedAllBefore": 0,
+    "reservedAllAfter": 0,
+    "testAddress": "10.10.32.103",
+    "finalState": "Free"
+  }
+]

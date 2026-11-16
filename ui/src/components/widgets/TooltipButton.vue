@@ -32,7 +32,9 @@
         :loading="loading"
         :aria-label="$attrs['aria-label'] || tooltip"
         @click="handleClicked()"
-        v-clipboard:copy="copyResource" >
+        v-clipboard:copy="copyResource"
+        v-clipboard:success="event => $emit('copy-success', event)"
+        v-clipboard:error="event => $emit('copy-error', event)" >
         <template #icon v-if="icon"><render-icon :icon="icon" /></template>
         <template v-if="iconType && iconTwoToneColor">
           <render-icon :icon="iconType" :props="{ theme: 'twoTone', twoToneColor: iconTwoToneColor }" />

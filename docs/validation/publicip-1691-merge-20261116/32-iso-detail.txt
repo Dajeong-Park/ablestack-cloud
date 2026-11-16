@@ -1,0 +1,245 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - list:
+      - menuitem "save 템플릿":
+        - link "save 템플릿":
+          - /url: "#/template"
+          - img "save":
+          - text: 템플릿
+      - menuitem "usb ISO":
+        - link "usb ISO":
+          - /url: "#/iso"
+          - img "usb":
+          - text: ISO
+      - menuitem "쿠버네티스 ISO":
+        - link "쿠버네티스 ISO":
+          - /url: "#/kubernetesiso"
+          - text: 쿠버네티스 ISO
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "ISO":
+    - /url: "#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226d3f209b-b23b-11f1-990e-0024811f8935%22,%2249e68247-b23b-11f1-990e-0024811f8935%22,%22Admin%22,%22admin%22,%222246448b-b23b-11f1-990e-0024811f8935%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  - text: /
+  - generic: vmware-tools.iso
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/templates.html#working-with-isos
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "edit":
+  - heading "vmware-tools.iso" [level=4]
+  - generic: x86_64
+  - separator
+  - generic: 상태
+  - generic: 사용 가능
+  - generic: 조회된 정보 기준
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "f866a178-5f59-403b-9ba4-741b42e3c6e9":
+    - /url: javascript:;
+  - generic: OS 유형
+  - generic: CentOS 4.5 (32-bit)
+  - generic: 계정
+  - img "user":
+  - link "system":
+    - /url: "#/account?name=system&domainid=2246448b-b23b-11f1-990e-0024811f8935"
+  - generic: 도메인
+  - img "block":
+  - link "ROOT":
+    - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+  - separator
+  - link "cloud-server 가상머신 보기":
+    - /url: "#/vm?isoid=f866a178-5f59-403b-9ba4-741b42e3c6e9"
+    - button "cloud-server 가상머신 보기":
+      - img "cloud-server":
+      - generic: 가상머신 보기
+  - separator
+  - strong: 태그
+  - button "loading reload 태그 새로고침":
+    - img "loading"
+    - img "reload":
+    - generic: 태그 새로고침
+  - generic: 태그가 없습니다.
+  - button "plus 새 태그":
+    - img "plus":
+    - generic: 새 태그
+  - tablist:
+    - tab "상세" [selected]
+    - tab "Zone"
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "상세":
+    - list:
+      - strong: 이름
+      - generic: vmware-tools.iso
+      - strong: 아이디
+      - generic: f866a178-5f59-403b-9ba4-741b42e3c6e9
+      - button "복사 아이디":
+        - img "copy":
+      - strong: 설명
+      - generic: VMware Tools Installer ISO
+      - strong: OS 유형
+      - generic: CentOS 4.5 (32-bit)
+      - strong: CPU 아키텍처
+      - generic: x86_64
+      - strong: 부팅 가능
+      - text: 아니오
+      - strong: 준비
+      - text: 예
+      - strong: 비밀번호 관리 사용
+      - text: 아니오
+      - strong: 직접 다운로드
+      - text: 아니오
+      - strong: 추출 가능
+      - text: 아니오
+      - strong: 공개
+      - text: 예
+      - strong: 추천
+      - text: 예
+      - strong: 동적으로 확장 가능
+      - text: 아니오
+      - strong: 계정
+      - generic: system
+      - strong: 도메인
+      - generic: ROOT
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":

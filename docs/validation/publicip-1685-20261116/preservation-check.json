@@ -1,0 +1,182 @@
+[
+  {
+    "cluster": 31,
+    "scope": "allprojects",
+    "before": 35,
+    "after": 35,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "Free",
+    "before": 18,
+    "after": 18,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "Reserved",
+    "before": 0,
+    "after": 0,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "listNetworks",
+    "before": 31,
+    "after": 31,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "listVPCs",
+    "before": 2,
+    "after": 2,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "listVirtualMachines",
+    "before": 132,
+    "after": 132,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "listProjects",
+    "before": 7,
+    "after": 7,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "listAccounts",
+    "before": 26,
+    "after": 26,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 31,
+    "scope": "listStoragePools",
+    "before": 1,
+    "after": 1,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "allprojects",
+    "before": 18,
+    "after": 18,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "Free",
+    "before": 84,
+    "after": 84,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "Reserved",
+    "before": 0,
+    "after": 0,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "listNetworks",
+    "before": 16,
+    "after": 16,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "listVPCs",
+    "before": 1,
+    "after": 1,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "listVirtualMachines",
+    "before": 58,
+    "after": 58,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "listProjects",
+    "before": 5,
+    "after": 5,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "listAccounts",
+    "before": 22,
+    "after": 22,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  },
+  {
+    "cluster": 32,
+    "scope": "listStoragePools",
+    "before": 1,
+    "after": 1,
+    "equal": true,
+    "added": [],
+    "missing": [],
+    "changed": []
+  }
+]
