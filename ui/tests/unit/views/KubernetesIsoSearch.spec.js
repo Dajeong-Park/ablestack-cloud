@@ -116,11 +116,16 @@ function picker () {
 }
 test('registered minimum picker uses only the catalog read and ignores an old lookup after owner change', async () => {
   const c = picker(); let finish
+  c.lookupKeyword = 'old-scope-search'; c.minimumMode = 'version'; c.hasMore = true; c.page = 3
   getAPI.mockImplementationOnce(() => new Promise(resolve => { finish = resolve }))
-  const pending = c.fetchVersions(true); store.getters.userInfo.id = 'next'
+  const pending = c.fetchVersions(false); store.getters.userInfo.id = 'next'
   Search.watch.owner.handler.call(c); finish(response([row])); await pending
   expect(c.versions).toEqual([]); expect(c.$emit).not.toHaveBeenCalled()
+  expect(c).toMatchObject({ lookupKeyword: '', minimumMode: 'none', hasMore: false, page: 1, loading: false, lookupError: false })
   expect(getAPI.mock.calls.map(call => call[0])).toEqual(['listKubernetesSupportedVersions'])
+  getAPI.mockResolvedValueOnce(response([row])); await c.fetchVersions(true)
+  expect(getAPI.mock.calls[1][1]).toEqual({ page: 1, pagesize: 50 })
+  expect(c.loading).toBe(false)
 })
 test('minimum mode emits exactly one criterion and a revoked lookup is not an empty successful choice', async () => {
   const c = picker(); c.minimumMode = 'version'; c.form = { minimumsemanticversion: '1.30.0', minimumkubernetesversionid: id }

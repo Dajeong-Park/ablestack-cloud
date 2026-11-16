@@ -78,7 +78,13 @@ export default {
   },
   watch: {
     '$route.fullPath' () { this.restore() },
-    owner: { flush: 'sync', handler () { this.generation++; this.zones = []; this.versions = []; this.visible = false; this.form = {}; this.keyword = '' } },
+    owner: {
+      flush: 'sync',
+      handler () {
+        this.generation++; this.zones = []; this.versions = []; this.visible = false; this.form = {}; this.keyword = ''
+        this.minimumMode = 'none'; this.loading = false; this.lookupError = false; this.hasMore = false; this.page = 1; this.lookupKeyword = ''
+      }
+    },
     visible (value) { if (value) { this.restore(); this.fetchZones(); if (this.minimumMode === 'version') this.fetchVersions(true) } }
   },
   created () { this.restore() },
