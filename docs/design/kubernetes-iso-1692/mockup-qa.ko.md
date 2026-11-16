@@ -49,9 +49,13 @@ under the License.
 | 템플릿 이름 | 다크·라이트·390 | [다크](evidence/template-names-dark.png), [라이트](evidence/template-names-light.png), [390](evidence/template-names-390.png) |
 | 권한 예시 | 일반 읽기 전용·local-only | [읽기 전용](evidence/kiso-readonly.png), [local-only](evidence/kiso-local-only.png) |
 
+## 후속 키보드 검증
+
+[키보드 검토 기록](keyboard-review.ko.md): Tab/Shift+Tab·Enter·Esc·상태 선택 방향키·닫기/취소/저장 후 초점 복귀를 내장 브라우저에서 확인했습니다.
+
 ## 이번에 통과로 합산하지 않은 항목
 
 - 실제 Mold 제품의 #1694 수정/배포나 KISO 구현은 없음. 실제 Ubuntu 결함은 수정 전 상태임.
 - 실계정 ACL 전체 행렬·4.21/4.23 실제 업로드·실제 파일 수신/해시·참조 중 실제 클러스터 삭제 차단·소비/부팅은 구현 단계의 게이트.
 - OS 클립보드와 실제 파일 선택·전송은 목업에서 수행하지 않음.
-- 네이티브 Windows Enter/Tab/Esc·초점 복귀의 최종 수동 확인은 미실행. Chrome 제어 복구 시도에서 `GetCursorPos: 0x80070005` 접근 거부가 발생해 native 입력을 중단했고, 보안/잠금 화면 우회는 하지 않음. 로컬 렌더 검증으로 키보드 통과를 주장하지 않음.
+- 초기 Windows Chrome 제어의 접근 거부/URL 확인 중단 이후, 사용자가 연 내장 브라우저의 기존 탭에서 [키보드·초점 복귀20개 그룹 검증](keyboard-review.ko.md)을 완료했습니다. 모달 순환/선택 탭 초점2건을 목업에서 보정하고 재검증했습니다. 별도 Windows/Sky 네이티브 OS 경로 검증과 혼동하지 않습니다.

@@ -130,7 +130,7 @@ under the License.
     if(el.id==='search'){state.keyword=$('keyword').value;render();return}
     if(el.id==='sort-version'){state.ascending=!state.ascending;render();return}
     if(el.dataset.open){event.preventDefault();state.selected=(state.mode==='template'?templates:rows).find(r=>r.id===el.dataset.open);state.view='detail';state.tab='details';if(state.mode==='kiso'){state.scenario=state.selected.availability;$('scenario').value=state.scenario}render();return}
-    if(el.dataset.tab){state.tab=el.dataset.tab;render();return}
+    if(el.dataset.tab){state.tab=el.dataset.tab;render();$('tab-'+state.tab)?.focus();return}
     if(el.dataset.modal){openModal(el.dataset.modal,el);return}
     if(el.id==='modal-close'||el.id==='modal-cancel'){closeModal();return}
     if(el.id==='choose-sample'){state.mockFile=true;$('file-label').textContent='kubernetes-binaries.iso · 샘플 파일';$('error-file').textContent='';return}
@@ -141,6 +141,14 @@ under the License.
     if(el.id==='nav-toggle'){document.querySelector('.sidebar').hidden=!document.querySelector('.sidebar').hidden;document.querySelector('.shell').style.gridTemplateColumns=document.querySelector('.sidebar').hidden?'minmax(0,1fr)':''}
   })
   document.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.target.id==='keyword'){event.preventDefault();state.keyword=event.target.value;render()}})
+  $('modal').addEventListener('keydown',event=>{
+    if(event.key!=='Tab')return
+    const controls=[...$('modal').querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')].filter(el=>el.getClientRects().length>0)
+    const first=controls[0],last=controls[controls.length-1]
+    if(!first)return
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+  })
   $('modal').addEventListener('cancel',()=>{state.modal=null})
   $('modal-form').addEventListener('submit',event=>{
     event.preventDefault()

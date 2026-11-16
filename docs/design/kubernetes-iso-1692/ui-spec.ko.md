@@ -74,3 +74,7 @@ under the License.
 KubernetesSupportedVersion 설정 API와 코멘트 entity 계약이 없으므로 설정/코멘트/메트릭 탭을 VM과 이름만 맞춰 추가하지 않습니다. KISO 탭은 `상세 → Zone → 이벤트`입니다. 일반 템플릿의 탭 구성을 바꾸는 작업이 아닙니다.
 
 Font Awesome 아이콘 저작권: Fonticons, Inc. (https://fontawesome.com). Ubuntu 아이콘은 현재 `OsLogo.vue`가 소비하는 Font Awesome Free Brands의 `faUbuntu` 경로를 목업에 사용했습니다. 아이콘은 Font Awesome Free의 CC BY 4.0 적용 대상이며 저작권/라이선스는 [Font Awesome Free](https://fontawesome.com/license/free)를 따릅니다. 로고는 저장소의 기존 ABLESTACK 이미지를 상대 경로로 읽고 변경하지 않습니다.
+
+## 키보드 검증 반영
+
+[내장 브라우저 키보드 검토](keyboard-review.ko.md)를 반영해 모달의 Tab/Shift+Tab 순환은 표시·활성 컨트롤로 제한하고, 탭을 선택해 콘텐츠를 다시 그린 뒤에도 선택 탭의 초점을 유지합니다. disabled 작업은 Tab 순서에서 제외합니다.
