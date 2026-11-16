@@ -15,15 +15,18 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { publicIpBoolean, publicIpAllocated } from '@/utils/publicIpPresentation'
+
 const text = value => typeof value === 'string' && !/^(undefined|null|nan|none)$/i.test(value.trim()) ? value.trim() : ''
 const identity = value => /^[a-z0-9][a-z0-9_-]*$/i.test(text(value)) ? text(value) : ''
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key)
-export const publicIpDetailFields = ['vlanname', 'vlanid', 'networkid', 'associatednetworkname', 'vpcname', 'fordisplay']
-export const publicIpFieldLabel = field => ({ vlanname: 'label.public.ip.vlan.value', vlanid: 'label.public.ip.vlan.range.id', networkid: 'label.public.ip.network.source', associatednetworkname: 'label.public.ip.network.attached', vpcname: 'label.vpc', fordisplay: 'label.public.ip.display' }[field])
+export const publicIpDetailFields = ['state', 'vlanname', 'vlanid', 'networkid', 'associatednetworkname', 'vpcname', 'fordisplay', 'issystem', 'issourcenat', 'isstaticnat', 'allocated']
+export const publicIpFieldLabel = field => ({ state: 'label.state', allocated: 'label.public.ip.allocated', issystem: 'label.issystem', issourcenat: 'label.issourcenat', isstaticnat: 'label.isstaticnat', vlanname: 'label.public.ip.vlan.value', vlanid: 'label.public.ip.vlan.range.id', networkid: 'label.public.ip.network.source', associatednetworkname: 'label.public.ip.network.attached', vpcname: 'label.vpc', fordisplay: 'label.public.ip.display' }[field])
 
 // Consume the IP response only. Never recover hidden VLAN fields through another API.
 export function publicIpField (resource = {}, field, apis = {}) {
-  if (field === 'fordisplay') return !own(resource, field) ? { missing: true } : { label: typeof resource.fordisplay !== 'boolean' ? 'label.unknown' : resource.fordisplay ? 'label.public.ip.display.visible' : 'label.public.ip.display.hidden' }
+  if (['fordisplay', 'issystem', 'issourcenat', 'isstaticnat'].includes(field)) return publicIpBoolean(resource, field)
+  if (field === 'allocated') return publicIpAllocated(resource[field])
   if (['vlanname', 'vlanid'].includes(field)) {
     if (!own(resource, field)) return { text: '', missing: true }
     const raw = text(resource[field])

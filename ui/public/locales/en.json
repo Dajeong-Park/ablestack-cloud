@@ -11937,5 +11937,12 @@
   "label.releasing": "Releasing",
   "label.public.ip.search.display.default": "Default: displayed addresses",
   "message.public.ip.search.pool": "Free addresses are the unowned public pool available to the selected owner, VPC or network. They are distinct from attached addresses.",
-  "message.public.ip.search.zone": "Select a Zone before looking up public networks."
+  "message.public.ip.search.zone": "Select a Zone before looking up public networks.",
+  "label.public.ip.state.free": "Free",
+  "label.public.ip.state.reserved": "Reserved",
+  "label.public.ip.state.allocated": "Allocated",
+  "label.public.ip.state.allocating": "Allocating",
+  "label.public.ip.state.releasing": "Releasing",
+  "label.public.ip.allocated": "Allocated at",
+  "label.public.ip.release.confirm": "Release"
 }

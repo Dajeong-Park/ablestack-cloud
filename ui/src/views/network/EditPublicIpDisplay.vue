@@ -19,7 +19,7 @@
   <a-form class="form-layout public-ip-display" layout="vertical" :model="form" @finish="submitData" @keydown.ctrl.enter.prevent="!$event.repeat && submitData()">
     <a-descriptions class="mold-dialog-summary" :column="1" size="small">
       <a-descriptions-item :label="$t('label.ipaddress')">{{ resource.ipaddress || resource.id }}</a-descriptions-item>
-      <a-descriptions-item :label="$t('label.state')">{{ row?.state || resource.state || '—' }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.state')"><public-ip-status :value="row?.state || resource.state" /></a-descriptions-item>
       <a-descriptions-item :label="$t('label.public.ip.display.current')">{{ currentLabel }}</a-descriptions-item>
     </a-descriptions>
     <a-alert v-if="error" class="display-notice" type="error" show-icon :message="translated(error)">
@@ -47,11 +47,12 @@
 <script>
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import { networkError } from '@/utils/networkLifecycle'
 import { displayBoolean, displayWriteSupported, displayEditable, displayFingerprint, displayScope, displayBlocked, readDisplayAddress, validDisplayJob, displayReceipt, saveDisplayReceipt, forgetDisplayReceipt } from '@/utils/publicIpDisplay'
 export default {
   name: 'EditPublicIpDisplay',
-  components: { MoldDialogActions },
+  components: { MoldDialogActions, PublicIpStatus },
   props: { resource: { type: Object, required: true }, action: { type: Object, default: () => ({}) } },
   emits: ['close-action', 'refresh-data'],
   data: () => ({ row: null, form: { fordisplay: null }, operation: null, operationScope: '', loading: false, sending: false, checking: false, error: '', active: true, version: 0 }),

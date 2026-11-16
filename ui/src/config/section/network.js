@@ -25,6 +25,7 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
+import { publicIpFilterLabels } from '@/utils/publicIpPresentation'
 import { displayEditable } from '@/utils/publicIpDisplay'
 import { usablePublicIp } from '@/utils/publicIpRules'
 import { hasVpc } from '@/utils/networkTabs'
@@ -879,15 +880,16 @@ export default {
       searchFilters: ['ipaddress', 'zoneid', 'account', 'domainid', 'vlanid', 'tags'],
       resourceType: 'PublicIpAddress',
       columns: () => {
-        var fields = ['ipaddress', 'state', 'associatednetworkname', 'vpcname', 'virtualmachinename', 'allocated', 'account']
+        var fields = ['ipaddress', 'state', 'associatednetworkname', 'vpcname', 'virtualmachinename', { field: 'allocated', customTitle: 'public.ip.allocated' }, 'account']
         if (store.getters.listAllProjects) {
           fields.push('project')
         }
         fields.push(...['domain', 'zonename'])
         return fields
       },
-      details: ['ipaddress', 'id', 'vlanname', 'vlanid', 'networkid', 'associatednetworkname', 'vpcname', 'fordisplay', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'allocated', 'account', 'domain', 'zonename'],
+      details: ['ipaddress', 'id', 'state', 'vlanname', 'vlanid', 'networkid', 'associatednetworkname', 'vpcname', 'fordisplay', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'allocated', 'account', 'domain', 'zonename'],
       filters: () => ['allocated', 'reserved', ...(store.getters.userInfo.roletype === 'Admin' ? ['free', 'all'] : []), 'allocating', 'releasing'],
+      filterLabels: publicIpFilterLabels,
       component: shallowRef(() => import('@/views/network/PublicIpResource.vue')),
       tabs: [{
         name: 'details',

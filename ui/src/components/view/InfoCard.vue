@@ -127,10 +127,11 @@
 
             <a-divider/>
 
-            <div class="resource-detail-item" v-if="(resource.state || resource.status || ($route.meta.name === 'template' && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
+            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'publicip'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
           <div class="resource-detail-item__label">{{ $t('label.status') }}</div>
           <div class="resource-detail-item__details">
-            <template-availability v-if="$route.meta.name === 'template'" :record="resource" :observation="templateObservation" inspectable @show-zones="$emit('show-template-zones')" />
+            <public-ip-status v-if="$route.meta.name === 'publicip'" :value="resource.state" />
+            <template-availability v-else-if="$route.meta.name === 'template'" :record="resource" :observation="templateObservation" inspectable @show-zones="$emit('show-template-zones')" />
             <backup-progress
               v-else-if="$route.meta.name === 'backup'"
               :record="resource"
@@ -1176,6 +1177,7 @@ import { volumeVmPath } from '@/utils/storageUi'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import { publicIpFieldLabel } from '@/utils/publicIpDetails'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
 import { creationVmOsName } from '@/utils/creationVmPresentation'
 import BucketUsageStatus from '@/components/view/BucketUsageStatus'
@@ -1213,6 +1215,7 @@ export default {
     PublicIpDetailValue,
     TemplateAvailability,
     NetworkIpVmLink,
+    PublicIpStatus,
     SharedFSCapacitySummary,
     SharedFSBootRecoverySummary,
     BucketUsageStatus,

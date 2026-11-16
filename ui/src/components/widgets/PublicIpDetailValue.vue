@@ -17,9 +17,11 @@
 
 <template>
   <div class="public-ip-detail-value" :data-public-ip-field="field">
+    <public-ip-status v-if="field === 'state'" :value="resource.state" />
+    <template v-else>
     <div class="public-ip-detail-value__line">
       <router-link v-if="value.path" :to="value.path" class="public-ip-detail-value__text">{{ value.text }}</router-link>
-      <span v-else class="public-ip-detail-value__text">{{ value.missing ? $t('label.public.ip.value.notprovided') : value.label ? $t(value.label) : value.text || '—' }}</span>
+      <span v-else class="public-ip-detail-value__text">{{ value.date ? $toLocaleDate(value.date) : value.missing ? $t('label.public.ip.value.notprovided') : value.label ? $t(value.label) : value.text || '—' }}</span>
       <tooltip-button
         v-if="value.id && (!compact || value.text === value.id)"
         :tooltip="copyLabel"
@@ -33,14 +35,16 @@
     </div>
     <div v-if="value.id && value.text !== value.id && !compact" class="public-ip-detail-value__raw">{{ value.id }}</div>
     <div v-if="value.raw" class="public-ip-detail-value__raw">{{ $t('label.public.ip.value.raw') }}: {{ value.raw }}</div>
+    </template>
   </div>
 </template>
 <script>
 import TooltipButton from '@/components/widgets/TooltipButton'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import { publicIpField, publicIpFieldLabel } from '@/utils/publicIpDetails'
 export default {
   name: 'PublicIpDetailValue',
-  components: { TooltipButton },
+  components: { TooltipButton, PublicIpStatus },
   props: { resource: { type: Object, required: true }, field: { type: String, required: true }, compact: { type: Boolean, default: false } },
   computed: {
     value () { return publicIpField(this.resource, this.field, this.$store.getters.apis || {}) },

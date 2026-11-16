@@ -539,7 +539,8 @@
       </template>
       <template v-if="column.key === 'state'">
         <span class="list-state-with-flatten">
-          <template-availability v-if="$route.meta?.name === 'template'" :record="record" compact single-line />
+          <public-ip-status v-if="$route.meta?.name === 'publicip'" :value="text" />
+          <template-availability v-else-if="$route.meta?.name === 'template'" :record="record" compact single-line />
           <status v-else-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
           <status v-else :text="text ? text : ''" :displayLabel="column.stateLabel ? column.stateLabel(record) : ''" displayText />
           <clone-flatten-control :record="record" @refresh="$emit('refresh')" />
@@ -932,8 +933,9 @@
         <status :text="record.enabled ? record.enabled.toString() : 'false'" />
         {{ record.enabled ? 'Enabled' : 'Disabled' }}
       </template>
+      <template v-if="$route.meta?.name === 'publicip' && column.key === 'allocated'"><public-ip-detail-value :resource="record" field="allocated" compact /></template>
       <template
-        v-if="['created', 'sent', 'removed', 'effectiveDate', 'endDate', 'allocated', 'startdate', 'enddate'].includes(column.key) && !(['startdate', 'enddate'].includes(column.key) && ['vm', 'vnfapp', 'autoscalevmgroup'].includes($route.path.split('/')[1])) || (['startdate'].includes(column.key) && ['webhook'].includes($route.path.split('/')[1])) || (column.key === 'allocated' && ['asnumbers', 'publicip', 'ipv4subnets'].includes($route.meta.name) && text)"
+        v-if="!($route.meta?.name === 'publicip' && column.key === 'allocated') && (['created', 'sent', 'removed', 'effectiveDate', 'endDate', 'allocated', 'startdate', 'enddate'].includes(column.key) && !(['startdate', 'enddate'].includes(column.key) && ['vm', 'vnfapp', 'autoscalevmgroup'].includes($route.path.split('/')[1])) || (['startdate'].includes(column.key) && ['webhook'].includes($route.path.split('/')[1])) || (column.key === 'allocated' && ['asnumbers', 'publicip', 'ipv4subnets'].includes($route.meta.name) && text))"
       >
         {{ text && $toLocaleDate(text) }}
       </template>
@@ -1265,6 +1267,8 @@ import { createPathBasedOnVmType } from '@/utils/plugins'
 import { validateLinks } from '@/utils/links'
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
+import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
@@ -1286,6 +1290,8 @@ export default {
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
+    PublicIpStatus,
+    PublicIpDetailValue,
     PublicIpNetworkLink,
     BackupProgress,
     SharedFSCapacitySummary,
@@ -1953,6 +1959,7 @@ export default {
       return name.field ?? name.customTitle ?? Object.keys(name)[0]
     },
     getColumnTitle (name) {
+      if (this.$route.meta?.name === 'publicip' && this.getColumnKey(name) === 'allocated') return 'public.ip.allocated'
       if (typeof name !== 'object' || name === null) {
         return name
       }

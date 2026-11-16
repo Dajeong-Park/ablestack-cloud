@@ -11945,5 +11945,12 @@
   "label.releasing": "해제 중",
   "label.public.ip.search.display.default": "기본: 표시 주소",
   "message.public.ip.search.pool": "가용 주소는 선택한 소유자·VPC·연결망에서 사용할 수 있는 미소유 공용 풀입니다. 연결된 주소와 구분해서 표시합니다.",
-  "message.public.ip.search.zone": "공용 네트워크 후보는 Zone을 먼저 선택하세요."
+  "message.public.ip.search.zone": "공용 네트워크 후보는 Zone을 먼저 선택하세요.",
+  "label.public.ip.state.free": "가용",
+  "label.public.ip.state.reserved": "예약",
+  "label.public.ip.state.allocated": "할당됨",
+  "label.public.ip.state.allocating": "할당 중",
+  "label.public.ip.state.releasing": "해제 중",
+  "label.public.ip.allocated": "할당 일시",
+  "label.public.ip.release.confirm": "해제"
 }

@@ -57,6 +57,7 @@
 <script>
 
 import { getAPI } from '@/api'
+import { publicIpState } from '@/utils/publicIpPresentation'
 import { publicIpPickerConfig } from '@/utils/publicIpSearch'
 import { affinityPolicy } from '@/utils/affinityGroupPresentation'
 import { snapshotSearchLabel, snapshotSearchValue, snapshotPickerScope } from '@/utils/storageSnapshotSearch'
@@ -202,7 +203,7 @@ export default {
       const cloned = filters.map(filter => ({ ...filter, rawValue: filter.value }))
       // Keep the submitted UUID instead of looking up names in an unrelated owner.
       if (this.apiName === 'listPublicIpAddresses') {
-        this.searchFilters = cloned.filter(f => f.key !== 'filter').map(f => ({ ...f, value: f.key === 'state' ? this.$t('label.' + String(f.value).toLowerCase()) : ['true', 'false', 'all'].includes(String(f.value)) ? this.$t(String(f.value) === 'all' ? 'label.all' : String(f.value) === 'true' ? 'label.yes' : 'label.no') : f.value }))
+        this.searchFilters = cloned.filter(f => f.key !== 'filter').map(f => ({ ...f, value: f.key === 'state' ? this.$t(publicIpState(f.value).key) : ['true', 'false', 'all'].includes(String(f.value)) ? this.$t(String(f.value) === 'all' ? 'label.all' : String(f.value) === 'true' ? 'label.yes' : 'label.no') : f.value }))
         return
       }
       if (this.apiName === 'listVnfAppliances') { this.searchFilters = cloned.map(f => f.key === 'state' ? { ...f, value: this.$t('state.' + String(f.value).toLowerCase()) } : f); return }

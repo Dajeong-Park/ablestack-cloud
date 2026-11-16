@@ -26,6 +26,7 @@
     @finish="submitData">
     <a-descriptions class="mold-dialog-summary" :column="1" size="small">
       <a-descriptions-item :label="$t('label.ipaddress')">{{ resource.ipaddress || resource.id }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.state')"><public-ip-status :value="resource.state" /></a-descriptions-item>
       <a-descriptions-item :label="$t('label.accounttype')">{{ $t(form.ownerType === 'project' ? 'label.project' : 'label.account') }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.public.ip.reserve.owner')">{{ ownerPreview }}</a-descriptions-item>
     </a-descriptions>
@@ -106,13 +107,14 @@
 <script>
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import { networkCollection, networkError } from '@/utils/networkLifecycle'
 import { displayWriteSupported, displayBoolean } from '@/utils/publicIpDisplay'
 import { reservationScope, reservationParams, reservationMatches, reservationOperation, rememberReservation, forgetReservation } from '@/utils/publicIpReservation'
 
 export default {
   name: 'ReservePublicIP',
-  components: { MoldDialogActions },
+  components: { MoldDialogActions, PublicIpStatus },
   props: { resource: { type: Object, required: true }, action: { type: Object, default: () => ({}) } },
   emits: ['close-action', 'refresh-data'],
   data () {
