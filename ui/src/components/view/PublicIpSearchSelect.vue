@@ -18,6 +18,7 @@
 <template>
   <div class="public-ip-search-select">
     <a-select
+:id="'pip-search-candidate-' + kind"
 :value="value ? { value, label: selected?.displaytext || selected?.path || selected?.name || value } : undefined"
 :options="options"
 :loading="loading"

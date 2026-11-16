@@ -26,7 +26,7 @@
                 <a-alert v-if="root && ['all', 'free'].includes($route.query.filter)" type="info" show-icon :message="$t('message.public.ip.search.pool')" />
                 <a-alert v-if="error" type="error" show-icon :message="$t(error)" />
                 <a-form-item v-if="supported.ipaddress" :label="$t('label.ipaddress')" html-for="pip-search-ipaddress"><a-input id="pip-search-ipaddress" v-model:value="form.ipaddress" /></a-form-item>
-                <a-form-item v-for="field in pickers" :key="field" :label="$t(config(field).label)">
+                <a-form-item v-for="field in pickers" :key="field" :label="$t(config(field).label)" :html-for="'pip-search-candidate-' + field">
                   <PublicIpSearchSelect :key="field + ':' + generation" v-model:value="form[field]" :kind="field" :scope="scope" @update:value="changed(field)" @blocked="blocked[field] = $event" />
                   <template v-if="field === 'vlanid'" #extra>{{ $t('message.public.ip.search.vlan') }}</template>
                 </a-form-item>

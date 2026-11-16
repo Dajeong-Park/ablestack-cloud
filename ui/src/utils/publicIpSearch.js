@@ -104,7 +104,7 @@ export function publicIpPickerParams (kind, scope, supported) {
   if (kind === 'domainid') { delete p.domainid; delete p.account; delete p.projectid }
   if (kind === 'account') { delete p.account; delete p.projectid; p.isrecursive = false }
   if (kind === 'associatednetworkid') { p.traffictype = 'Guest'; p.issystem = false; if (scope.vpcid) p.vpcid = scope.vpcid }
-  if (kind === 'networkid') { p.traffictype = 'Public'; delete p.account; delete p.domainid; delete p.projectid }
+  if (kind === 'networkid') { p.traffictype = 'Public'; p.issystem = true; delete p.account; delete p.domainid; delete p.projectid }
   if (kind === 'physicalnetworkid') { delete p.account; delete p.domainid; delete p.projectid }
   if (kind === 'vlanid') { if (scope.networkid) p.networkid = scope.networkid; if (scope.physicalnetworkid) p.physicalnetworkid = scope.physicalnetworkid }
   if (p.projectid === '0') delete p.projectid

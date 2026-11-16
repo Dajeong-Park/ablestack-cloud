@@ -50,7 +50,7 @@ test('candidate requests preserve scope, page server-side, and distinguish publi
   const scope = { projectid: other, zoneid: id, vpcid: id, account: 'owner', domainid: id }
   const candidateSupported = { ...supported, traffictype: true, issystem: true }
   expect(publicIpPickerParams('associatednetworkid', scope, candidateSupported)).toMatchObject({ projectid: other, zoneid: id, vpcid: id, traffictype: 'Guest', account: 'owner' })
-  expect(publicIpPickerParams('networkid', scope, candidateSupported)).toMatchObject({ traffictype: 'Public', ignoreproject: true, zoneid: id })
+  expect(publicIpPickerParams('networkid', scope, candidateSupported)).toMatchObject({ traffictype: 'Public', issystem: true, ignoreproject: true, zoneid: id })
   expect(publicIpPickerParams('networkid', scope, candidateSupported)).not.toHaveProperty('projectid')
   const read = readPublicIpCandidates({ listnetworksresponse: { count: 2, network: [{ id, projectid: other, traffictype: 'Guest' }, { id: other, projectid: id, traffictype: 'Guest' }] } }, 'associatednetworkid', { projectid: other, traffictype: 'Guest' })
   expect(read.rows.map(r => r.id)).toEqual([id]); expect(read.received).toBe(2)
