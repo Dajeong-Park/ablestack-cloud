@@ -46,7 +46,7 @@ function hasSessionKey () {
   return !!getSessionKey()
 }
 
-export function getAPI (command, args = {}, { optionalDiscovery = false, timeout, backgroundJob = false, preserveOnFailure = false, signal } = {}) {
+export function getAPI (command, args = {}, { optionalDiscovery = false, timeout, backgroundJob = false, preserveOnFailure = false, signal, readScope } = {}) {
   args.command = command
   args.response = 'json'
 
@@ -64,6 +64,7 @@ export function getAPI (command, args = {}, { optionalDiscovery = false, timeout
     ...(optionalDiscovery ? { optionalDiscovery: true, timeout: 15000 } : {}),
     ...(timeout ? { timeout } : {}),
     ...(signal ? { signal } : {}),
+    ...(readScope ? { readScope } : {}),
     ...(backgroundJob ? { backgroundJob: true } : {}),
     ...(preserveOnFailure || command === 'listVMSnapshot' ? { preserveOnFailure: true } : {})
   })
@@ -78,7 +79,7 @@ export function appendApiData (params, data = {}) {
   return params
 }
 
-export function postAPI (command, data = {}, { preserveOnFailure = false, timeout, backgroundJob = false } = {}) {
+export function postAPI (command, data = {}, { preserveOnFailure = false, timeout, backgroundJob = false, readScope } = {}) {
   const params = new URLSearchParams()
   params.append('command', command)
   params.append('response', 'json')
@@ -91,6 +92,7 @@ export function postAPI (command, data = {}, { preserveOnFailure = false, timeou
   return axios({
     url: '/',
     method: 'POST',
+    ...(readScope ? { readScope } : {}),
     ...(timeout ? { timeout } : {}),
     ...(backgroundJob ? { backgroundJob: true } : {}),
     ...((preserveOnFailure || ['createVMSnapshot', 'revertToVMSnapshot', 'deleteVMSnapshot', 'createSnapshotFromVMSnapshot'].includes(command) ||

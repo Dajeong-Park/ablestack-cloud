@@ -12109,5 +12109,12 @@
   "message.asn.release.uncertain": "The request outcome is uncertain. It will not be resent automatically. Recheck the state.",
   "message.asn.release.acknowledge": "I verified the current allocation. Ending tracking will not resend the request automatically.",
   "message.asn.release.rejected": "The ASN release request was rejected.",
-  "message.asn.release.completed": "The ASN was verified as available."
+  "message.asn.release.completed": "The ASN was verified as available.",
+  "message.kubernetes.iso.read.forbidden": "You do not have permission to read Kubernetes ISOs or perform this operation.",
+  "message.kubernetes.iso.read.expired": "Your session has expired. Sign in again.",
+  "message.kubernetes.iso.read.missing": "The Kubernetes ISO is unavailable. Refresh the list.",
+  "message.kubernetes.iso.read.invalid": "The Kubernetes ISO response is incomplete or invalid. Retry the read.",
+  "message.kubernetes.iso.read.network": "Could not read Kubernetes ISOs. Check the connection and retry.",
+  "message.kubernetes.iso.read.failed": "Could not read Kubernetes ISOs. Retry the read.",
+  "message.kubernetes.iso.read.cancelled": "The Kubernetes ISO read was cancelled. Retry the read."
 }

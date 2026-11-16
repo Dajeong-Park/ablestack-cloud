@@ -881,6 +881,9 @@
       <a-alert v-if="isTemplateList && templateFilterError" type="error" show-icon :message="$t(templateFilterError)">
         <template #action><a-button @click="$router.replace({ path: '/template' })">{{ $t('label.reset') }}</a-button></template>
       </a-alert>
+      <a-alert v-if="$route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t('message.kubernetes.iso.read.' + kubernetesIsoReadError)">
+        <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
+      </a-alert>
       <div v-if="dataView">
         <a-alert v-if="templateDetailError" type="error" show-icon :message="$t(templateDetailError)">
           <template #description>
@@ -901,11 +904,11 @@
           v-if="$route.path.startsWith('/publicip')"
         ></slot>
         <resource-view
-          v-else-if="!templateDetailError && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
+          v-else-if="!templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
           :readFailed="(isVpcUi || ['ilb', 'vm', 'vnfapp'].includes($route.meta?.name)) && listRefreshError"
-          :readyForActions="['vm', 'vnfapp'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
+          :readyForActions="$route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
           :quiet-refresh="isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
@@ -988,6 +991,8 @@ import { templateObservationContext } from '@/utils/templateAvailability'
 import { isoZoneContext } from '@/utils/isoZoneOperations'
 import { isoListQuery, isoSearchQuery, isoSearchError, isoRequestParams, isoListOwner, isoFilterMismatch, isoFilterChips, isoColumn } from '@/utils/isoSearch'
 import { isoListResponse, readIsoResource } from '@/utils/isoModel'
+import { kubernetesIsoApis, kubernetesIsoCapability, canKubernetesIsoAction, kubernetesIsoContext } from '@/utils/kubernetesIsoCapabilities'
+import { kubernetesIsoListResponse, kubernetesIsoReadParams, kubernetesIsoFailure } from '@/utils/kubernetesIsoModel'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
@@ -1110,6 +1115,7 @@ export default {
       templateFilterId: 'template-filter-' + (++templateFilterSequence),
       storageActionGeneration: 0,
       apiName: '',
+      kubernetesIsoReadError: '',
       loading: false,
       // IntervalLoading: false,
       actionLoading: false,
@@ -1357,6 +1363,17 @@ export default {
         if (!this.publicIpProjectApplying && this.$store.state?.user?.token && 'listPublicIpAddresses' in (this.$store.getters.apis || {})) this.fetchData()
       }
     },
+    kubernetesIsoSecurityContext: {
+      flush: 'sync',
+      handler () {
+        if (this.$route.meta?.name !== 'kubernetesiso') return
+        this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+        this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listSchemaScope = null; this.kubernetesIsoReadError = ''
+        this.resetSelection(); this.$emit('change-resource', this.resource)
+        if (this.showAction) this.closeAction()
+        this.fetchData()
+      }
+    },
     vmDialogScope () {
       if (this.showAction && this.vmStandardDialog) this.closeAction()
     },
@@ -1488,6 +1505,7 @@ export default {
     }
   },
   computed: {
+    kubernetesIsoSecurityContext () { return kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token) },
     vnfSearchAuth () { return vnfAuth(this.$store.getters, this.$store.state?.user?.token) },
     isIsoList () { return this.$route.meta?.name === 'iso' && !this.$route.params?.id },
     isoRestoredFilter () { return this.isIsoList && ['executable', 'selfexecutable', 'sharedexecutable'].includes(this.filterValue) ? this.filterValue : '' },
@@ -1789,6 +1807,7 @@ export default {
       }
     },
     listScope () {
+      if (this.$route.meta?.name === 'kubernetesiso') return JSON.stringify([this.$route.fullPath, kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token)])
       if (vnfRoute(this.$route)) return JSON.stringify([this.$route.fullPath, vnfAuth(this.$store.getters, this.$store.state?.user?.token), this.$store.getters.metrics])
       if (isSshKeyPairDetailRoute(this.$route)) return sshKeyPairDetailScope(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (this.$route.meta?.name === 'vmgroup') return vmGroupQueryScope(this.$route, this.$store.getters, this.$store.state?.user?.token)
@@ -1808,7 +1827,7 @@ export default {
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm', 'kubernetesiso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -1997,6 +2016,18 @@ export default {
         }
         if (query.projectid !== publicIpProject(this.$store.getters)) return this.restorePublicIpProject(query.projectid)
       }
+      const kubernetesIsoQuery = this.$route.meta?.name === 'kubernetesiso'
+      if (kubernetesIsoQuery) {
+        this.dataView = !!this.$route.params?.id
+        this.kubernetesIsoReadError = ''
+        const reject = reason => {
+          this.listRequestVersion++; this.listRequestPending = false; this.loading = false; this.listLoadedScope = null
+          this.items = []; this.resource = {}; this.itemCount = 0; this.listRefreshError = true; this.kubernetesIsoReadError = reason
+          this.resetSelection(); this.$emit('change-resource', this.resource)
+        }
+        if (!this.$store.state?.user?.token || !kubernetesIsoCapability('read', this.$store.getters).available) { reject('forbidden'); return Promise.resolve() }
+        try { kubernetesIsoReadParams({}, this.$route.params?.id) } catch (_) { reject('invalid'); return Promise.resolve() }
+      }
       if (vnfRoute(this.$route)) {
         this.dataView = !!this.$route.params?.id
         this.vnfSearchFailure = ''
@@ -2141,7 +2172,7 @@ export default {
           : null
         this.routeName = matchedRoute?.meta?.name || this.$route?.meta?.name || this.$route?.name || ''
       }
-      const securityScope = JSON.stringify([...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
+      const securityScope = JSON.stringify([...(['template', 'iso', 'vm', 'kubernetesiso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
       if (this.listSecurityScope !== securityScope) {
         this.items = []
         this.resource = {}
@@ -2166,7 +2197,7 @@ export default {
         if (this.$refs.listview) this.$refs.listview.resetSelection()
         if (publicIpList && typeof this.$refs.listview?.closeContextQuickView === 'function') this.$refs.listview.closeContextQuickView()
       }
-      const schemaScope = JSON.stringify([this.$route.path, this.$i18n?.locale, this.$store.getters.metrics, this.$store.getters.listAllProjects, this.$store.getters.userInfo?.id, this.isSnapshotCopyList, ...(this.$route.meta?.name === 'vm' ? [this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(this.isObjectStorageUi ? [this.$store.getters.project?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token] : [])])
+      const schemaScope = JSON.stringify([this.$route.path, this.$i18n?.locale, this.$store.getters.metrics, this.$store.getters.listAllProjects, this.$store.getters.userInfo?.id, this.isSnapshotCopyList, ...(['vm', 'kubernetesiso'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roleid, this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(this.isObjectStorageUi ? [this.$store.getters.project?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token] : [])])
       const rebuildSchema = this.listSchemaScope !== schemaScope
       if (rebuildSchema) {
         this.apiName = ''
@@ -2561,10 +2592,21 @@ export default {
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
-      const response = asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      if (kubernetesIsoQuery) params = kubernetesIsoReadParams(params, this.$route.params?.id)
+      const response = asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
+        if (kubernetesIsoQuery) {
+          const page = kubernetesIsoListResponse(json, this.$store.getters, this.$route.params?.id)
+          if (!this.dataView && !page.countKnown && page.rows.length) throw new Error('message.kubernetes.iso.read.invalid')
+          if (page.status === 'missing') {
+            this.kubernetesIsoReadError = 'missing'; this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
+            this.$emit('change-resource', this.resource)
+            return
+          }
+          json = { listkubernetessupportedversionsresponse: { count: page.count, kubernetessupportedversion: page.rows } }
+        }
         if (isoQuery && !this.dataView) {
           const page = isoListResponse(json)
           if (!page.countKnown && page.rows.length) throw new Error('invalid ISO count')
@@ -2705,6 +2747,14 @@ export default {
           }
         }
       }).catch(error => {
+        if (kubernetesIsoQuery) {
+          if (version !== this.listRequestVersion || scope !== this.listScope()) return
+          this.kubernetesIsoReadError = kubernetesIsoFailure(error)
+          this.listRefreshError = true; this.listLoadedScope = null
+          this.items = []; this.resource = {}; this.itemCount = 0; this.resetSelection(); this.$emit('change-resource', this.resource)
+          if (isAutoScheduled) throw error
+          return
+        }
         if (isoQuery && !this.dataView) {
           if (version !== this.listRequestVersion || scope !== this.listScope()) return
           this.isoListError = error?.message === 'message.iso.search.ignored' ? error.message : 'message.iso.search.failed'
@@ -3009,6 +3059,10 @@ export default {
         ['listSnapshotPolicies', 'listVolumes', 'createSnapshotPolicy'].every(api => api in (this.$store.getters.apis || {}))
     },
     execAction (action, isGroupAction) {
+      if (this.$route.meta?.name === 'kubernetesiso') {
+        const operation = Object.keys(kubernetesIsoApis).find(key => kubernetesIsoApis[key] === action.api)
+        if (!canKubernetesIsoAction(operation, action.resource || this.resource, this.$store.getters) || this.kubernetesIsoReadError || this.listRequestPending || this.listLoadedScope !== this.listScope()) return
+      }
       this.vpcActionError = ''
       if (vnfRoute(this.$route) && (!this.storageActionReady || !(action.api in (this.$store.getters.apis || {})) || isGroupAction && (!this.selectedRowKeys.length || this.selectedRowKeys.some(id => !this.items.some(row => row.id === id))))) return
       if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route)) && this.storageActionReady === false && !this.canOpenPolicyCreate(action, isGroupAction)) return
@@ -3523,6 +3577,7 @@ export default {
       this.message = {}
     },
     handleSubmit (e) {
+      if (this.$route.meta?.name === 'kubernetesiso' && !canKubernetesIsoAction(Object.keys(kubernetesIsoApis).find(key => kubernetesIsoApis[key] === this.currentAction?.api), this.resource, this.$store.getters)) return
       if (this.actionLoading || this.isSubmitDisabled || (this.vmStandardDialog && (this.vmActionValidationPending || this.vmActionUnknown))) return
       this.promises = []
       const groupDeletion = this.currentAction.api === 'deleteInstanceGroup' && this.currentAction.invokedAsGroupAction

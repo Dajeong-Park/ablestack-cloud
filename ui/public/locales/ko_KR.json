@@ -12117,5 +12117,12 @@
   "message.asn.release.uncertain": "요청 결과가 불명확합니다. 자동 재전송하지 않습니다. 상태 확인을 실행하세요.",
   "message.asn.release.acknowledge": "현재 할당 상태를 확인했습니다. 이 추적을 종료해도 요청이 자동 재전송되지 않음을 확인합니다.",
   "message.asn.release.rejected": "ASN 할당 해제 요청이 거부됐습니다.",
-  "message.asn.release.completed": "ASN이 가용 상태로 반환된 것을 확인했습니다."
+  "message.asn.release.completed": "ASN이 가용 상태로 반환된 것을 확인했습니다.",
+  "message.kubernetes.iso.read.forbidden": "쿠버네티스 ISO를 조회하거나 이 작업을 실행할 권한이 없습니다.",
+  "message.kubernetes.iso.read.expired": "로그인 세션이 만료되었습니다. 다시 로그인해 주세요.",
+  "message.kubernetes.iso.read.missing": "쿠버네티스 ISO를 찾을 수 없습니다. 목록을 새로고침해 주세요.",
+  "message.kubernetes.iso.read.invalid": "쿠버네티스 ISO 응답을 확인할 수 없습니다. 다시 조회해 주세요.",
+  "message.kubernetes.iso.read.network": "쿠버네티스 ISO를 조회하지 못했습니다. 연결을 확인하고 다시 시도해 주세요.",
+  "message.kubernetes.iso.read.failed": "쿠버네티스 ISO 조회에 실패했습니다. 다시 시도해 주세요.",
+  "message.kubernetes.iso.read.cancelled": "쿠버네티스 ISO 조회가 취소되었습니다. 다시 조회해 주세요."
 }

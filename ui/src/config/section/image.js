@@ -22,6 +22,7 @@ import { isoBoolean, isoRegistrationCapability, canIsoAction } from '@/utils/iso
 import { canManageImagePermissions } from '@/utils/imagePermissions'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
 import { isZoneCreated } from '@/utils/zone'
+import { canKubernetesIsoAction } from '@/utils/kubernetesIsoCapabilities'
 import kubernetesIcon from '@/assets/icons/kubernetes.svg?inline'
 
 export default {
@@ -348,7 +349,7 @@ export default {
       permission: ['listKubernetesSupportedVersions'],
       searchFilters: ['zoneid', 'minimumsemanticversion', 'arch'],
       columns: ['name', 'state', 'semanticversion', 'isostate', 'mincpunumber', 'minmemory', 'arch', 'zonename'],
-      details: ['name', 'semanticversion', 'supportsautoscaling', 'zoneid', 'zonename', 'isoid', 'isoname', 'isostate', 'arch', 'mincpunumber', 'minmemory', 'supportsha', 'state', 'created', 'isourl'],
+      details: () => ['name', 'semanticversion', 'supportsautoscaling', 'zoneid', 'zonename', 'isoid', 'isoname', 'isostate', 'arch', 'mincpunumber', 'minmemory', 'supportsha', 'state', 'created', ...(store.getters.userInfo?.roletype === 'Admin' ? ['isourl'] : [])],
       tabs: [
         {
           name: 'details',
@@ -369,7 +370,7 @@ export default {
           label: 'label.kubernetes.version.add',
           listView: true,
           popup: true,
-          show: isZoneCreated,
+          show: (record, getters) => isZoneCreated() && canKubernetesIsoAction('url', record, getters),
           component: shallowRef(defineAsyncComponent(() => import('@/views/image/AddKubernetesSupportedVersion.vue')))
         },
         {
@@ -379,11 +380,12 @@ export default {
           label: 'label.kubernetes.version.from.local',
           listView: true,
           popup: true,
-          show: isZoneCreated,
+          show: (record, getters) => isZoneCreated() && canKubernetesIsoAction('local', record, getters),
           component: shallowRef(defineAsyncComponent(() => import('@/views/image/AddKubernetesSupportedVersion.vue')))
         },
         {
           api: 'updateKubernetesSupportedVersion',
+          show: (record, getters) => canKubernetesIsoAction('update', record, getters),
           dialogWidth: 1000,
           icon: 'edit-outlined',
           label: 'label.kubernetes.version.update',
@@ -393,6 +395,7 @@ export default {
         },
         {
           api: 'deleteKubernetesSupportedVersion',
+          show: (record, getters) => canKubernetesIsoAction('delete', record, getters),
           icon: 'delete-outlined',
           label: 'label.kubernetes.version.delete',
           message: 'message.kubernetes.version.delete',

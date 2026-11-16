@@ -56,6 +56,8 @@ class="mold-form-dialog">
 <script>
 import { ref, reactive, toRaw } from 'vue'
 import { postAPI } from '@/api'
+import { canKubernetesIsoAction, kubernetesIsoContext } from '@/utils/kubernetesIsoCapabilities'
+import { kubernetesIsoWriteResponse } from '@/utils/kubernetesIsoModel'
 
 export default {
   name: 'UpdateKubernetesSupportedVersion',
@@ -120,8 +122,11 @@ export default {
     },
     handleSubmit (e) {
       e.preventDefault()
-      if (this.loading) return
-      this.formRef.value.validate().then(() => {
+      if (this.loading || !canKubernetesIsoAction('update', this.resource, this.$store.getters)) return
+      const context = kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token, this.resource.id)
+      const current = () => context === kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token, this.resource.id) && canKubernetesIsoAction('update', this.resource, this.$store.getters)
+      return this.formRef.value.validate().then(() => {
+        if (!current()) return
         const values = toRaw(this.form)
         this.loading = true
         const params = {
@@ -130,17 +135,22 @@ export default {
         if (this.isValidValueForKey(values, 'state') && this.arrayHasItems(this.states)) {
           params.state = this.states[values.state].id
         }
-        postAPI('updateKubernetesSupportedVersion', params).then(json => {
+        return postAPI('updateKubernetesSupportedVersion', params, { preserveOnFailure: true, readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) }).then(json => {
+          if (!current()) return
+          kubernetesIsoWriteResponse(json, 'update', this.$store.getters)
           this.$message.success(`${this.$t('message.success.update.kubeversion')}: ${this.resource.name}`)
           this.$emit('refresh-data')
           this.closeAction()
         }).catch(error => {
+          if (!current()) return
           this.$notifyError(error)
         }).finally(() => {
+          if (!current()) return
           this.loading = false
         })
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+        else if (current()) this.$notifyError(error)
       })
     },
     closeAction () {
