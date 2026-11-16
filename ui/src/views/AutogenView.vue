@@ -573,9 +573,9 @@
                 style="overflow-y: auto"
               >
                 <template #bodyCell="{ column, text, record }">
-                  <public-ip-status v-if="$route.meta?.name === 'publicip' && column.key === 'state'" :value="record.state" />
+                  <public-ip-detail-value v-if="$route.meta?.name === 'publicip' && ['state', 'allocated', 'issystem', 'issourcenat', 'isstaticnat', 'fordisplay'].includes(column.key)" :resource="record" :field="column.key" compact />
                   <template v-if="column.key === 'displayname' && isVmIdentityRoute($route)">{{ vmDisplayName(record) }}</template>
-                  <template v-if="column.key === 'allocated' && ['asnumbers', 'publicip'].includes($route.meta.name)">
+                  <template v-if="column.key === 'allocated' && $route.meta.name === 'asnumbers'">
                     {{ $toLocaleDate(text) }}
                   </template>
                 </template>
@@ -991,7 +991,7 @@ import { Button } from 'ant-design-vue'
 import { getAPI, postAPI, callAPI } from '@/api'
 import { freshSnapshotContext } from '@/utils/vmSnapshotList'
 import { displayEditable, readPublicIpDetail } from '@/utils/publicIpDisplay'
-import { publicIpReadAuth, validatePublicIpDetail } from '@/utils/publicIpDetails'
+import { publicIpReadAuth, validatePublicIpDetail, publicIpFieldLabel } from '@/utils/publicIpDetails'
 import { scopedSnapshotOperations, snapshotOperationAffectsRoute } from '@/utils/storageSnapshotNotices'
 import { snapshotSecurityScope as storageSnapshotSecurityScope } from '@/utils/storageSnapshotContext'
 import { snapshotDetailRoute, snapshotDetailParams, snapshotDetailPermissions, readSnapshotDetail } from '@/utils/storageSnapshotDetail'
@@ -1042,7 +1042,7 @@ import { isSshKeyPairDetailRoute, sshKeyPairDetailScope, sshKeyPairDetailTarget,
 import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErrorKey, vmGroupDeleteTargets } from '@/utils/vmGroupNames'
 import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentity'
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
-import PublicIpStatus from '@/components/widgets/PublicIpStatus'
+import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
 
@@ -1056,7 +1056,7 @@ export default {
     Breadcrumb,
     MoldDialog,
     PublicIpReleaseSummary,
-    PublicIpStatus,
+    PublicIpDetailValue,
     VpcActionContext,
     VpcDialog,
     ResourceView,
@@ -3815,7 +3815,7 @@ export default {
     },
     localizePublicIpColumns (columns) {
       if (!publicIpRoute(this.$route)) return columns
-      return (columns || []).map(column => column.dataIndex && column.title && typeof column.title === 'string' ? { ...column, title: this.$t(column.key === 'allocated' ? 'label.public.ip.allocated' : 'label.' + String(column.key).toLowerCase()) } : column)
+      return (columns || []).map(column => column.dataIndex && column.title && typeof column.title === 'string' ? { ...column, title: this.$t(publicIpFieldLabel(column.key) || 'label.' + String(column.key).toLowerCase()) } : column)
     },
     getFilterLabel (filter) {
       const key = this.$route.meta?.filterLabels?.[filter] || ('label.' + (this.$route.name === 'comment' ? 'filter.annotations.' : '') + filter)

@@ -94,3 +94,8 @@ test('the unresolved reservation summary localizes the observed state and retain
   expect(ReservePublicIP.computed.observedOwner.call(context)).toBe('192.0.2.10 / 가용 / owner / D')
   context.operation.actual.state = 'ProviderFuture'; const value = ReservePublicIP.computed.observedOwner.call(context); expect(value).toContain('확인 불가'); expect(value).toContain('ProviderFuture')
 })
+
+test('optional display columns reuse the same field label instead of exposing an API field name', () => {
+  const columns = [{ key: 'fordisplay', dataIndex: 'fordisplay', title: 'old title' }]; const context = { $route: { meta: { name: 'publicip' } }, $t: key => ko[key] || key }
+  expect(AutogenView.methods.localizePublicIpColumns.call(context, columns)[0].title).toBe('사용자 표시')
+})

@@ -933,7 +933,7 @@
         <status :text="record.enabled ? record.enabled.toString() : 'false'" />
         {{ record.enabled ? 'Enabled' : 'Disabled' }}
       </template>
-      <template v-if="$route.meta?.name === 'publicip' && column.key === 'allocated'"><public-ip-detail-value :resource="record" field="allocated" compact /></template>
+      <template v-if="$route.meta?.name === 'publicip' && ['allocated', 'issystem', 'issourcenat', 'isstaticnat', 'fordisplay'].includes(column.key)"><public-ip-detail-value :resource="record" :field="column.key" compact /></template>
       <template
         v-if="!($route.meta?.name === 'publicip' && column.key === 'allocated') && (['created', 'sent', 'removed', 'effectiveDate', 'endDate', 'allocated', 'startdate', 'enddate'].includes(column.key) && !(['startdate', 'enddate'].includes(column.key) && ['vm', 'vnfapp', 'autoscalevmgroup'].includes($route.path.split('/')[1])) || (['startdate'].includes(column.key) && ['webhook'].includes($route.path.split('/')[1])) || (column.key === 'allocated' && ['asnumbers', 'publicip', 'ipv4subnets'].includes($route.meta.name) && text))"
       >
