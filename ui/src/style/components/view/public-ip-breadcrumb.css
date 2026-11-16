@@ -28,6 +28,14 @@
   max-width: 100%;
 }
 
+.public-ip-page :deep(.breadcrumb > span:last-child) {
+  flex: 1 1 0;
+}
+
+.public-ip-page :deep(.breadcrumb .ant-breadcrumb-link) {
+  gap: 8px;
+}
+
 .public-ip-page :deep(.breadcrumb .ant-breadcrumb-link > a),
 .public-ip-page :deep(.breadcrumb .ant-breadcrumb-link > a > span),
 .public-ip-page :deep(.breadcrumb .ant-breadcrumb-link > span:not(.breadcrumb-controls) > label) {
@@ -53,12 +61,10 @@
   color: var(--ui-link);
 }
 
+/* Flatten only this presentation wrapper so the path and controls wrap as
+ * one sequence, retaining home + current path on the first line. */
 .public-ip-page :deep(.breadcrumb .breadcrumb-controls) {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  max-width: 100%;
+  display: contents;
 }
 
 .public-ip-page :deep(.breadcrumb-controls > .ant-btn),
