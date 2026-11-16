@@ -49,7 +49,7 @@ test('catalog-only read uses its own API and never ISO ownership, project, or VM
   expect(callAPI).not.toHaveBeenCalled()
   expect(ctx.resource.directdownload).toBe(false)
 })
-test.each([{}, { listkubernetessupportedversionsresponse: { errorcode: 531 } }])('malformed/denied resolved response is an inline read error', async json => {
+test.each([{}])('malformed/denied resolved response is an inline read error', async json => {
   getAPI.mockResolvedValue(json); await ctx.fetchData()
   expect(ctx.kubernetesIsoReadError).toBe('invalid'); expect(ctx.items).toEqual([]); expect(ctx.$router.push).not.toHaveBeenCalled()
 })
@@ -117,4 +117,10 @@ test('the actual local-only form renders from its own metadata without requiring
 test('a denied standalone form never validates or submits a mutation', () => {
   const validate = jest.fn(); Add.methods.handleSubmit.call({ loading: false, registrationCapability: { available: false }, formRef: { value: { validate } } }, { preventDefault () {} })
   expect(validate).not.toHaveBeenCalled(); expect(postAPI).not.toHaveBeenCalled()
+})
+
+test('API531 carried by a resolved envelope still produces a forbidden read state', async () => {
+  getAPI.mockResolvedValue({ listkubernetessupportedversionsresponse: { errorcode: 531 } })
+  await ctx.fetchData()
+  expect(ctx.kubernetesIsoReadError).toBe('forbidden'); expect(ctx.items).toEqual([])
 })

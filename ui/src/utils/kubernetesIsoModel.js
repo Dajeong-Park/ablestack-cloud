@@ -20,6 +20,12 @@ const object = value => !!value && typeof value === 'object' && !Array.isArray(v
 const own = (value, key) => !!value && Object.prototype.hasOwnProperty.call(value, key)
 const uuid = value => typeof value === 'string' && /^[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}$/i.test(value)
 const fail = () => { throw new Error('message.kubernetes.iso.read.invalid') }
+const rejectApiError = value => {
+  if (!object(value) || !own(value, 'errorcode')) return
+  const error = new Error(typeof value.errortext === 'string' ? value.errortext : 'API command failed')
+  error.errorcode = Number(value.errorcode)
+  throw error
+}
 const versionKey = state => state === 'Enabled' ? 'enabled' : state === 'Disabled' ? 'disabled' : 'unknown'
 
 export function kubernetesIsoZone (record = {}, catalogResponse = false) {
@@ -43,7 +49,8 @@ export function normalizeKubernetesIso (record, getters = {}, catalogResponse = 
 
 export function kubernetesIsoListResponse (json, getters = {}, target = '') {
   const root = json?.listkubernetessupportedversionsresponse
-  if (!object(root) || own(root, 'errorcode') || own(json, 'errorresponse')) return fail()
+  rejectApiError(json?.errorresponse); rejectApiError(root)
+  if (!object(root) || own(json, 'errorresponse')) return fail()
   if (own(root, 'kubernetessupportedversion') && !Array.isArray(root.kubernetessupportedversion)) return fail()
   const rows = (root.kubernetessupportedversion || []).map(row => normalizeKubernetesIso(row, getters, true))
   const known = own(root, 'count')
@@ -72,6 +79,7 @@ export function kubernetesIsoFailure (error) {
   if (status === 404 || code === 404) return 'missing'
   if (error?.message === 'message.kubernetes.iso.read.invalid') return 'invalid'
   if (error?.__CANCEL__ || error?.code === 'ERR_CANCELED') return 'cancelled'
+  if (code > 0) return 'failed'
   if (!error?.response) return 'network'
   return 'failed'
 }
@@ -91,7 +99,8 @@ export function kubernetesIsoAvailability (record = {}, observation = null) {
 
 export function kubernetesIsoUploadResponse (json) {
   const root = json?.getuploadparamsforkubernetessupportedversionresponse
-  if (!object(root) || own(root, 'errorcode')) return fail()
+  rejectApiError(json?.errorresponse); rejectApiError(root)
+  if (!object(root)) return fail()
   const value = root.getuploadparams === undefined ? root : root.getuploadparams
   if (!object(value) || ['id', 'postURL', 'signature', 'expires', 'metadata'].some(k => typeof value[k] !== 'string' || !value[k])) return fail()
   if (!/^https?:\/\//.test(value.postURL)) return fail()
@@ -101,6 +110,7 @@ export function kubernetesIsoUploadResponse (json) {
 export function kubernetesIsoWriteResponse (json, operation, getters = {}) {
   const key = operation === 'url' ? 'addkubernetessupportedversionresponse' : operation === 'update' ? 'updatekubernetessupportedversionresponse' : ''
   const root = key && json?.[key]
-  if (!object(root) || own(root, 'errorcode') || !object(root.kubernetessupportedversion)) return fail()
+  rejectApiError(json?.errorresponse); rejectApiError(root)
+  if (!object(root) || !object(root.kubernetessupportedversion)) return fail()
   return normalizeKubernetesIso(root.kubernetessupportedversion, getters, true)
 }

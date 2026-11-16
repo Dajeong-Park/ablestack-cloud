@@ -44,7 +44,8 @@ export function canKubernetesIsoAction (operation, record = {}, getters = {}) {
 }
 
 export function kubernetesIsoMode (action = {}) {
-  return (action.currentAction?.api || action.api) === kubernetesIsoApis.local ? 'local' : 'url'
+  const api = action.currentAction?.api || action.api
+  return api === kubernetesIsoApis.local ? 'local' : api === kubernetesIsoApis.url ? 'url' : ''
 }
 
 export function kubernetesIsoParameterHelp (parameters = {}) {
@@ -72,5 +73,5 @@ export function kubernetesIsoRegistrationParams (mode, values, getters = {}) {
 export function kubernetesIsoContext (getters = {}, session, target = '') {
   const user = getters.userInfo || {}
   return JSON.stringify([target, session, user.id, user.account, user.domainid, user.roleid, user.roletype, getters.project?.id, !!getters.listAllProjects,
-    Object.entries(getters.apis || {}).map(([name, value]) => [name, Array.isArray(value?.params) ? value.params.map(p => p.name).sort() : null]).sort(([a], [b]) => a.localeCompare(b))])
+    Object.entries(getters.apis || {}).map(([name, value]) => [name, Array.isArray(value?.params) ? value.params.filter(p => object(p) && typeof p.name === 'string').map(p => p.name).sort() : null]).sort(([a], [b]) => a.localeCompare(b))])
 }

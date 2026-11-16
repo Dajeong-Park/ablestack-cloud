@@ -54,7 +54,7 @@ test('Zone links require a valid UUID; intentional global omission differs from 
   expect(kubernetesIsoZone({ zoneid: '-1', zonename: 'All' }).kind).toBe('unknown')
   expect(kubernetesIsoZone({ zoneid: id, zonename: 'Zone13' })).toEqual({ kind: 'zone', id, name: 'Zone13' })
 })
-test.each([{}, { listkubernetessupportedversionsresponse: null }, { listkubernetessupportedversionsresponse: { errorcode: 531 } }, response(null, 0), response([{ id }], 0), response([], 3), response([{ id: 'broken' }], 1), response([], false)])('malformed payload is never silently a successful empty list: %j', json => {
+test.each([{}, { listkubernetessupportedversionsresponse: null }, response(null, 0), response([{ id }], 0), response([], 3), response([{ id: 'broken' }], 1), response([], false)])('malformed payload is never silently a successful empty list: %j', json => {
   expect(() => page(json)).toThrow('message.kubernetes.iso.read.invalid')
 })
 test('known empty list, missing detail, minimal detail and mismatched UUID have different outcomes', () => {
@@ -98,4 +98,14 @@ test.each(['account', 'role', 'apis', 'project', 'session', 'target'])('runtime 
   if (change === 'apis') delete g.apis[apis.local]
   if (change === 'project') g.project = { id: other }
   expect(kubernetesIsoContext(g, change === 'session' ? 'new' : 'session', change === 'target' ? other : id)).not.toBe(original)
+})
+
+test.each([531, 403, 401, 530])('HTTP200 with API errorcode%s retains the API failure rather than becoming empty data', code => {
+  let error
+  try { page({ listkubernetessupportedversionsresponse: { errorcode: code } }) } catch (failure) { error = failure }
+  expect(kubernetesIsoFailure(error)).toBe([531, 403].includes(code) ? 'forbidden' : code === 401 ? 'expired' : 'failed')
+})
+test('partial capability metadata cannot crash runtime ownership tracking', () => {
+  const g = getters(); g.apis[apis.read].params = [null, {}, { name: 'id' }]
+  expect(() => kubernetesIsoContext(g, 'session', id)).not.toThrow()
 })
