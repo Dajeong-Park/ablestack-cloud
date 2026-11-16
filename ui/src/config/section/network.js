@@ -887,7 +887,7 @@ export default {
         return fields
       },
       details: ['ipaddress', 'id', 'vlanname', 'vlanid', 'networkid', 'associatednetworkname', 'vpcname', 'fordisplay', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'allocated', 'account', 'domain', 'zonename'],
-      filters: ['allocated', 'reserved', 'free'],
+      filters: () => ['allocated', 'reserved', ...(store.getters.userInfo.roletype === 'Admin' ? ['free', 'all'] : []), 'allocating', 'releasing'],
       component: shallowRef(() => import('@/views/network/PublicIpResource.vue')),
       tabs: [{
         name: 'details',

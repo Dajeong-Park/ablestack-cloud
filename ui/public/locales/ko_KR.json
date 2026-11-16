@@ -11933,5 +11933,15 @@
   "message.public.ip.display.verify": "완료된 작업과 재조회한 표시 설정 또는 주소 정보가 일치하지 않습니다. 같은 작업의 결과를 다시 확인하세요.",
   "message.public.ip.display.storage": "작업 추적 정보를 보관하지 못했습니다. 중복 요청을 막기 위해 추가 변경을 잠갔습니다.",
   "message.public.ip.display.saved.visible": "사용자 표시 설정을 표시로 저장하고 재조회했습니다.",
-  "message.public.ip.display.saved.hidden": "사용자 표시 설정을 표시하지 않음으로 저장하고 재조회했습니다. 표시 조건에 따라 목록에서 제외될 수 있으며 관리자는 이 주소의 상세에서 다시 설정할 수 있습니다."
+  "message.public.ip.display.saved.hidden": "사용자 표시 설정을 표시하지 않음으로 저장하고 재조회했습니다. 표시 조건에 따라 목록에서 제외될 수 있으며 관리자는 이 주소의 상세에서 다시 설정할 수 있습니다.",
+  "message.public.ip.search.permission": "현재 권한으로 사용할 수 없는 Public IP 검색 조건입니다.",
+  "message.public.ip.search.scope": "URL의 프로젝트와 현재 보기가 다릅니다. 프로젝트를 선택하거나 검색을 초기화하세요.",
+  "message.public.ip.search.invalid": "잘못된 검색 URL입니다. 상태·UUID·예/아니오 값을 확인하거나 초기화하세요.",
+  "message.public.ip.search.unsupported": "현재 API에서 지원하지 않는 검색 조건입니다. 검색을 초기화하세요.",
+  "message.public.ip.search.failed": "Public IP 조회에 실패했습니다. 같은 범위의 기존 결과는 유지됩니다. 조건을 확인하고 재시도하세요.",
+  "message.public.ip.search.candidate": "선택한 자원이 현재 범위에서 확인되지 않습니다. 조건을 지우거나 다시 선택하세요.",
+  "message.public.ip.search.vlan": "VLAN 숫자 태그가 아닌 IP 범위 자원의 UUID로 검색합니다.",
+  "label.allocating": "할당 중",
+  "label.releasing": "해제 중",
+  "label.public.ip.search.display.default": "기본: 표시 주소"
 }

@@ -394,7 +394,7 @@
         <template v-else>
           <router-link
             v-if="['/publicip', '/privategw'].includes($route.path)"
-            :to="{ path: $route.path + '/' + record.id }"
+            :to="$route.path === '/publicip' ? publicIpDetailLocation($route, record) : { path: $route.path + '/' + record.id }"
           >{{ ipAddress(text, record) }}</router-link>
           <span v-else>
             <copy-label v-if="ipAddress(text, record)" :label="ipAddress(text, record)" />
@@ -1276,6 +1276,7 @@ import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { publicIpDetailLocation } from '@/utils/publicIpSearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -1510,6 +1511,7 @@ export default {
   },
   methods: {
     vnfDetailLocation,
+    publicIpDetailLocation,
     vmDisplayName,
     isVmIdentityRoute,
     templateDetailLocation,

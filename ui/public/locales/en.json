@@ -11925,5 +11925,15 @@
   "message.public.ip.display.verify": "The completed job and the refreshed display setting or address identity do not match. Check the same operation again.",
   "message.public.ip.display.storage": "Could not retain the operation receipt. Further changes are locked to prevent duplicate requests.",
   "message.public.ip.display.saved.visible": "Saved and verified the displayed setting.",
-  "message.public.ip.display.saved.hidden": "Saved and verified the not-displayed setting. List filters may exclude this address; administrators can change it again from this address detail."
+  "message.public.ip.display.saved.hidden": "Saved and verified the not-displayed setting. List filters may exclude this address; administrators can change it again from this address detail.",
+  "message.public.ip.search.permission": "This Public IP search is unavailable with your permissions.",
+  "message.public.ip.search.scope": "The URL project differs from the current view. Select the project or reset the search.",
+  "message.public.ip.search.invalid": "Invalid search URL. Check state, UUID and yes/no values, or reset.",
+  "message.public.ip.search.unsupported": "The current API does not support these filters. Reset the search.",
+  "message.public.ip.search.failed": "Public IP lookup failed. Confirmed results in the same scope are retained. Check filters and retry.",
+  "message.public.ip.search.candidate": "The selected resource is unavailable in this scope. Clear or select it again.",
+  "message.public.ip.search.vlan": "Search by the IP range resource UUID, not the numeric VLAN tag.",
+  "label.allocating": "Allocating",
+  "label.releasing": "Releasing",
+  "label.public.ip.search.display.default": "Default: displayed addresses"
 }

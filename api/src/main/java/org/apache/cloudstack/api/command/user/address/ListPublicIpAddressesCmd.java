@@ -105,6 +105,10 @@ public class ListPublicIpAddressesCmd extends BaseListRetrieveOnlyResourceCountC
     @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "List resources by display flag; only ROOT admin is eligible to pass this parameter", since = "4.4", authorized = {RoleType.Admin})
     private Boolean display;
 
+    @Parameter(name = "displayall", type = CommandType.BOOLEAN,
+            description = "Include both display flag values. Mutually exclusive with fordisplay; ROOT admin only.", authorized = {RoleType.Admin})
+    private Boolean displayAll;
+
     @Parameter(name = ApiConstants.FOR_SYSTEM_VMS, type = CommandType.BOOLEAN, description = "true if range is dedicated for system VMs", since = "4.20.0")
     private Boolean forSystemVMs;
 
@@ -164,6 +168,12 @@ public class ListPublicIpAddressesCmd extends BaseListRetrieveOnlyResourceCountC
 
     @Override
     public Boolean getDisplay() {
+        if (Boolean.TRUE.equals(displayAll)) {
+            if (display != null) {
+                throw new com.cloud.exception.InvalidParameterValueException("displayall and fordisplay are mutually exclusive");
+            }
+            return null;
+        }
         if (display != null) {
             return display;
         }
