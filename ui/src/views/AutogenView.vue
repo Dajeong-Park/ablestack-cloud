@@ -1146,6 +1146,8 @@ export default {
       listRefreshError: false,
       vnfSearchFailure: '',
       publicIpSearchFailure: '',
+      publicIpProjectSync: false,
+      publicIpProjectApplying: false,
       vnfProjectSync: false,
       snapshotListError: '',
       snapshotSearchFailure: '',
@@ -1320,13 +1322,13 @@ export default {
       handler () {
         if (!publicIpRoute(this.$route)) return
         this.resetSelection(); if (this.$refs.listview) { this.$refs.listview.resetSelection(); if (typeof this.$refs.listview.closeContextQuickView === 'function') this.$refs.listview.closeContextQuickView() }
-        if (!this.publicIpDetail) { this.searchParams = {}; this.publicIpSearchFailure = ''; this.listSchemaScope = null; this.$router.replace({ path: '/publicip', query: publicIpQuery({}, this.pageSize, this.$store.getters) }) }
+        if (!this.publicIpDetail) { this.searchParams = {}; this.publicIpSearchFailure = ''; this.listSchemaScope = null; if (!this.publicIpProjectApplying) this.$router.replace({ path: '/publicip', query: publicIpQuery({}, this.pageSize, this.$store.getters) }) }
         this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
         this.$emit('change-resource', this.resource)
         this.$emit('public-ip-read-state', { pending: false, failed: false })
         if (this.showAction) this.closeAction()
-        if (this.$store.state?.user?.token && 'listPublicIpAddresses' in (this.$store.getters.apis || {})) this.fetchData()
+        if (!this.publicIpProjectApplying && this.$store.state?.user?.token && 'listPublicIpAddresses' in (this.$store.getters.apis || {})) this.fetchData()
       }
     },
     vmDialogScope () {
@@ -1429,7 +1431,7 @@ export default {
     },
     '$store.getters.listAllProjects' (enabled) {
       // The synchronous VNF context watcher owns its canonical URL transition.
-      if (vnfRoute(this.$route)) return
+      if (vnfRoute(this.$route) || publicIpRoute(this.$route)) return
       if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || guestNetworkRoute(this.$route)) && !this.$store.getters.project?.id) {
         const projectid = enabled ? '-1' : '0'
         if (this.$route.query.projectid !== projectid) return this.$router.push({ query: { ...this.$route.query, projectid, page: '1' } })
@@ -1873,11 +1875,44 @@ export default {
       this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false; this.vnfSearchFailure = message
       this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
     },
+    async restorePublicIpProject (projectid) {
+      if (this.publicIpProjectSync) return
+      const route = this.$route.fullPath; const auth = this.publicIpAuth
+      const current = () => publicIpRoute(this.$route) && !this.$route.params?.id && route === this.$route.fullPath && auth === this.publicIpAuth
+      this.publicIpProjectSync = true; this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+      this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
+      this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+      if (typeof this.$refs.listview?.closeContextQuickView === 'function') this.$refs.listview.closeContextQuickView()
+      if (this.showAction) this.closeAction()
+      let retry = true
+      try {
+        if (!('listProjects' in (this.$store.getters.apis || {}))) throw Error('scope')
+        let project = {}
+        if (!['0', '-1'].includes(projectid)) {
+          const json = await getAPI('listProjects', { id: projectid, listall: true, details: 'min', ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
+          project = json?.listprojectsresponse?.project?.find(row => row.id === projectid)
+          if (current() && !project) throw Error('scope')
+        }
+        if (current()) {
+          this.publicIpProjectApplying = true
+          await this.$store.dispatch('SetProject', project)
+          await this.$store.dispatch('SetListAllProjects', projectid === '-1')
+        }
+      } catch (_) {
+        if (current()) { this.publicIpSearchFailure = 'message.public.ip.search.scope'; this.listRefreshError = true }
+        retry = false
+      } finally {
+        this.publicIpProjectApplying = false; this.publicIpProjectSync = false
+      }
+      if (retry && publicIpRoute(this.$route) && !this.$route.params?.id && this.$store.state?.user?.token) return this.fetchData()
+    },
     fetchData (params = {}) {
       if (publicIpRoute(this.$route) && !this.$route.params?.id) {
+        if (this.publicIpProjectSync) return Promise.resolve()
         this.dataView = false; this.publicIpSearchFailure = ''
         const query = publicIpQuery(this.$route.query, this.getValidPageSize(this.pageSize), this.$store.getters)
-        const error = !this.$store.state?.user?.token ? 'message.public.ip.search.permission' : publicIpSearchError(query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
+        const target = { ...this.$store.getters, project: ['0', '-1'].includes(query.projectid) ? {} : { id: query.projectid }, listAllProjects: query.projectid === '-1' }
+        const error = !this.$store.state?.user?.token ? 'message.public.ip.search.permission' : publicIpSearchError(query, target, this.$getApiParams('listPublicIpAddresses'))
         if (error || JSON.stringify(query) !== JSON.stringify(this.$route.query)) {
           this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
           this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
@@ -1885,6 +1920,7 @@ export default {
           if (error) { this.publicIpSearchFailure = error; return Promise.resolve() }
           return this.$router.replace({ query })
         }
+        if (query.projectid !== publicIpProject(this.$store.getters)) return this.restorePublicIpProject(query.projectid)
       }
       if (vnfRoute(this.$route)) {
         this.dataView = !!this.$route.params?.id

@@ -55,6 +55,8 @@ export function publicIpSearchError (query, getters, supported = {}) {
   if (Object.keys(query).some(k => (publicIpKeys.includes(k) || tag(k) || k === 'state') && !(tag(k) ? supported.tags : supported[k]))) return 'message.public.ip.search.unsupported'
   if (['issourcenat', 'isstaticnat', 'fordisplay'].some(k => present(query[k]) && !(k === 'fordisplay' ? ['true', 'false', 'all'] : ['true', 'false']).includes(query[k]))) return 'message.public.ip.search.invalid'
   if (['zoneid', 'domainid', 'vlanid', 'vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid'].some(k => query[k] && !uuid(query[k])) || !['0', '-1'].includes(query.projectid) && !uuid(query.projectid)) return 'message.public.ip.search.invalid'
+  if (query.projectid !== '0' && !supported.projectid) return 'message.public.ip.search.unsupported'
+  if (query.account && query.projectid !== '0') return 'message.public.ip.search.invalid'
   if (query.account && !query.domainid) return 'message.affinity.search.account.domain'
   if (['networkid', 'physicalnetworkid', 'fordisplay'].some(k => present(query[k])) && !publicIpRoot(getters)) return 'message.public.ip.search.permission'
   if (query.fordisplay === 'all' && !supported.displayall) return 'message.public.ip.search.unsupported'
