@@ -24,7 +24,7 @@ const present = v => v !== undefined && v !== null && v !== ''
 const tag = k => /^tags\[\d+\]\.(key|value)$/.test(k)
 const uuid = v => typeof v === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(v)
 export function publicIpQuery (raw = {}, size = 20, getters = {}) {
-  const query = Object.fromEntries(Object.entries(raw).filter(([, v]) => present(v)).map(([k, v]) => [k, typeof v === 'string' ? v.trim() : v]))
+  const query = Object.fromEntries(Object.entries(raw).filter(([k, v]) => present(v) || tag(k) && k.endsWith('.value') && v === '').map(([k, v]) => [k, typeof v === 'string' ? v.trim() : v]))
   const state = String(query.state || query.filter || 'Allocated')
   query.filter = state.toLowerCase()
   query.state = publicIpStates.find(s => s.toLowerCase() === state.toLowerCase()) || state

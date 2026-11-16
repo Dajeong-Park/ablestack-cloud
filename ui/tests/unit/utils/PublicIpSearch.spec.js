@@ -77,3 +77,9 @@ test('keyword and exact-address input never leave an API-ignored predicate in th
  expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
  expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
 })
+
+test('allowed User VLAN UUID and explicit empty tag value are retained as server predicates', () => {
+ const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, getters)
+ expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
+ expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
+})
