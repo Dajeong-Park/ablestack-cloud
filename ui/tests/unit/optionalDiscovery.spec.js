@@ -226,3 +226,29 @@ test('discovery reset alone preserves dismissal during domain switches', () => {
   context().commit('RESET_DISCOVERY')
   expect(dismissal.dismissed).toBe(true)
 })
+
+test('catalog-only login does not require Zone, network, VPC or VM Metrics access', async () => {
+  const apis = ['listApis', 'listUsers', 'listCapabilities', 'listKubernetesSupportedVersions']
+  getAPI.mockImplementation(reply(apis))
+  const ctx = context(); ctx.state.zones = [{ id: 'old-zone' }]
+  await expect(user.actions.GetInfo(ctx)).resolves.toHaveProperty('listKubernetesSupportedVersions')
+  await flush()
+  expect(ctx.state.zones).toEqual([])
+  for (const api of ['listZones', 'listNetworks', 'listVPCs', 'listVirtualMachinesMetrics']) expect(getAPI.mock.calls.some(call => call[0] === api)).toBe(false)
+})
+test('an advertised Zone outage cannot reject authentication or preserve another owner zone', async () => {
+  const apis = [...baseApis, 'listNetworks', 'listVPCs']
+  getAPI.mockImplementation(name => ['listZones', 'listNetworks', 'listVPCs'].includes(name) ? Promise.reject(Object.assign(new Error('Zone outage'), { response: { status: 503 } })) : reply(apis)(name))
+  const ctx = context(); ctx.state.zones = [{ id: 'old-zone' }]
+  await expect(user.actions.GetInfo(ctx)).resolves.toHaveProperty('listUsers'); await flush()
+  expect(ctx.state.zones).toEqual([])
+  expect(getAPI).toHaveBeenCalledWith('listZones', {}, { optionalDiscovery: true })
+})
+test('a delayed optional Zone read cannot populate the next login generation', async () => {
+  let deliver
+  getAPI.mockImplementation(name => name === 'listZones' ? new Promise(resolve => { deliver = resolve }) : reply(baseApis)(name))
+  const ctx = context(); await user.actions.GetInfo(ctx); await flush()
+  ctx.state.discoveryGeneration++; ctx.state.zones = [{ id: 'current-zone' }]
+  deliver({ listzonesresponse: { zone: [{ id: 'old-zone' }] } }); await flush()
+  expect(ctx.state.zones).toEqual([{ id: 'current-zone' }])
+})
