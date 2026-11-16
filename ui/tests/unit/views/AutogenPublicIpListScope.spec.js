@@ -60,32 +60,32 @@ test('failed destination-scope read never restores the previous network referenc
 })
 
 test('canonical project URL never invokes the legacy project switch/removal loop', async () => {
- store.getters.project = { id: '22222222-2222-4222-8222-222222222222' }; route({})
- c.switchProject(store.getters.project.id)
- expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
- getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
- expect(getAPI).toHaveBeenCalledTimes(1); expect(c.items).toMatchObject([linked]); expect(c.$router.replace).not.toHaveBeenCalled()
+  store.getters.project = { id: '22222222-2222-4222-8222-222222222222' }; route({})
+  c.switchProject(store.getters.project.id)
+  expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
+  getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
+  expect(getAPI).toHaveBeenCalledTimes(1); expect(c.items).toMatchObject([linked]); expect(c.$router.replace).not.toHaveBeenCalled()
 })
 
 test('URL reload restores explicit all-project scope without dropping filters or looping', async () => {
- store.getters.apis.listProjects = {}
- store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
- route({ projectid: '-1', filter: 'all' }); await c.fetchData()
- expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
- expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][1]).toMatchObject({ projectid: '-1', allocatedonly: false })
- expect(c.items).toMatchObject([linked]); expect(c.$router.push).not.toHaveBeenCalled()
+  store.getters.apis.listProjects = {}
+  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+  route({ projectid: '-1', filter: 'all' }); await c.fetchData()
+  expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
+  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][1]).toMatchObject({ projectid: '-1', allocatedonly: false })
+  expect(c.items).toMatchObject([linked]); expect(c.$router.push).not.toHaveBeenCalled()
 })
 test('a named URL project is checked with the same login; denied lookup never lists addresses', async () => {
- store.getters.apis.listProjects = {}; route({ projectid: '22222222-2222-4222-8222-222222222222' })
- getAPI.mockResolvedValueOnce({ listprojectsresponse: {} }); await c.fetchData()
- expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][0]).toBe('listProjects'); expect(getAPI.mock.calls[0][1]).toMatchObject({ id: '22222222-2222-4222-8222-222222222222', ignoreproject: true })
- expect(c.items).toEqual([]); expect(c.publicIpSearchFailure).toBe('message.public.ip.search.scope')
+  store.getters.apis.listProjects = {}; route({ projectid: '22222222-2222-4222-8222-222222222222' })
+  getAPI.mockResolvedValueOnce({ listprojectsresponse: {} }); await c.fetchData()
+  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][0]).toBe('listProjects'); expect(getAPI.mock.calls[0][1]).toMatchObject({ id: '22222222-2222-4222-8222-222222222222', ignoreproject: true })
+  expect(c.items).toEqual([]); expect(c.publicIpSearchFailure).toBe('message.public.ip.search.scope')
 })
 
 test('an authorized named URL project is restored with its query intact and one address read', async () => {
- const project = { id: '22222222-2222-4222-8222-222222222222', name: 'Allowed' }; store.getters.apis.listProjects = {}
- store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
- route({ projectid: project.id, state: 'Reserved' })
- getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
- await c.fetchData(); expect(store.getters.project.id).toBe(project.id); expect(c.$route.query.state).toBe('Reserved'); expect(getAPI).toHaveBeenCalledTimes(2); expect(c.items).toHaveLength(1)
+  const project = { id: '22222222-2222-4222-8222-222222222222', name: 'Allowed' }; store.getters.apis.listProjects = {}
+  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+  route({ projectid: project.id, state: 'Reserved' })
+  getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
+  await c.fetchData(); expect(store.getters.project.id).toBe(project.id); expect(c.$route.query.state).toBe('Reserved'); expect(getAPI).toHaveBeenCalledTimes(2); expect(c.items).toHaveLength(1)
 })

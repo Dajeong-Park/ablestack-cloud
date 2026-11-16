@@ -64,35 +64,35 @@ test('display all requires new metadata and maps to the explicit API flag', () =
 })
 
 test('all preserves the server available-pool semantics without treating Free as attached or owned', () => {
- const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Free' }] } }
- expect(readPublicIpPage(data, { projectid: other, account: 'owner', vpcid: id, associatednetworkid: id }).count).toBe(1)
- expect(() => readPublicIpPage(data, { networkid: id })).toThrow()
+  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Free' }] } }
+  expect(readPublicIpPage(data, { projectid: other, account: 'owner', vpcid: id, associatednetworkid: id }).count).toBe(1)
+  expect(() => readPublicIpPage(data, { networkid: id })).toThrow()
 })
 
 test('keyword and exact-address input never leave an API-ignored predicate in the URL', () => {
- const current = publicIpQuery({ ipaddress: '192.0.2.1', state: 'Allocated' }, 20, getters)
- const keyword = publicIpSearchQuery(current, { searchQuery: '192.0.2' }, 20, getters)
- expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
- const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
- expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
- expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
+  const current = publicIpQuery({ ipaddress: '192.0.2.1', state: 'Allocated' }, 20, getters)
+  const keyword = publicIpSearchQuery(current, { searchQuery: '192.0.2' }, 20, getters)
+  expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
+  const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+  expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
+  expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
 })
 
 test('allowed User VLAN UUID and explicit empty tag value are retained as server predicates', () => {
- const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, getters)
- expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
- expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
+  const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, getters)
+  expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
+  expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
 })
 
 test('a permitted VLAN filter respects restricted DTO fields without recovering hidden identifiers', () => {
- const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Reserved' }] } }
- const user = { userInfo: { roletype: 'User' } }
- expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
- expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
- data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
- expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
+  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Reserved' }] } }
+  const user = { userInfo: { roletype: 'User' } }
+  expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
+  expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+  data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
+  expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
 })
 
 test.each([{ account: ['owner', 'other'], domainid: id }, { keyword: ['one', 'two'] }])('repeated URL predicates cannot serialize as ignored API array arguments: %j', values => {
- expect(publicIpSearchError(publicIpQuery(values, 20, getters), getters, supported)).toBe('message.public.ip.search.invalid')
+  expect(publicIpSearchError(publicIpQuery(values, 20, getters), getters, supported)).toBe('message.public.ip.search.invalid')
 })

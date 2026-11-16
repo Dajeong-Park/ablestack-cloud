@@ -16,7 +16,8 @@
 // under the License.
 package org.apache.cloudstack.api.command.user.address;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import org.junit.Test;
