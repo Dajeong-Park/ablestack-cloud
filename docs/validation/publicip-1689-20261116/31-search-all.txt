@@ -1,0 +1,648 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - img "safety-certificate":
+    - generic: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP 주소":
+    - /url: "#/publicip"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - combobox
+  - generic: 모두
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "IP 주소 caret-up caret-down 상태 caret-up caret-down 연결된 네트워크 이름 caret-up caret-down VPC caret-up caret-down VM 이름 caret-up caret-down 할당됨 caret-up caret-down 계정 caret-up caret-down 도메인 caret-up caret-down Zone caret-up caret-down filter":
+        - columnheader:
+          - checkbox
+        - columnheader "IP 주소 caret-up caret-down":
+          - generic: IP 주소
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "연결된 네트워크 이름 caret-up caret-down":
+          - generic: 연결된 네트워크 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VM 이름 caret-up caret-down":
+          - generic: VM 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "할당됨 caret-up caret-down":
+          - generic: 할당됨
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "도메인 caret-up caret-down":
+          - generic: 도메인
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "10.10.31.5 system 할당 됨 — v-174-VM 2026. 10. 6. 오전 10:53:29 system ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.5 system":
+          - link "10.10.31.5":
+            - /url: "#/publicip/6ff792aa-9967-4939-9b9f-e9485c7c804b?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: system
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "v-174-VM":
+          - link "v-174-VM":
+            - /url: "#/systemvm/355bd581-e0f2-43a7-8b27-95e8b46d5ed1"
+        - cell "2026. 10. 6. 오전 10:53:29"
+        - cell "system":
+          - link "system":
+            - /url: "#/account?name=system&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.6 system 할당 됨 — s-173-VM 2026. 10. 6. 오전 10:53:29 system ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.6 system":
+          - link "10.10.31.6":
+            - /url: "#/publicip/e970e6b5-ded8-4a0b-b482-5b5d974677e8?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: system
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "s-173-VM":
+          - link "s-173-VM":
+            - /url: "#/systemvm/1b8d7588-1dfa-490b-a8dd-53f647852403"
+        - cell "2026. 10. 6. 오전 10:53:29"
+        - cell "system":
+          - link "system":
+            - /url: "#/account?name=system&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.100 source-nat 할당 됨 rt1230-v13412-ha-gfs2-r17-net — 2026. 10. 7. 오전 2:07:11 k1230-20261006 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.100 source-nat":
+          - link "10.10.31.100":
+            - /url: "#/publicip/0a089eba-061a-419d-93cd-02e9f3b4a164?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: source-nat
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "rt1230-v13412-ha-gfs2-r17-net":
+          - link "rt1230-v13412-ha-gfs2-r17-net":
+            - /url: "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 7. 오전 2:07:11"
+        - cell "k1230-20261006":
+          - link "k1230-20261006":
+            - /url: "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.101 source-nat 할당 됨 k8s-ui1330-gfs2-net — 2026. 10. 8. 오후 2:51:31 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.101 source-nat":
+          - link "10.10.31.101":
+            - /url: "#/publicip/3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: source-nat
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "k8s-ui1330-gfs2-net":
+          - link "k8s-ui1330-gfs2-net":
+            - /url: "#/guestnetwork/b18b4600-6f42-4827-bbba-253a2cfed320"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 8. 오후 2:51:31"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.102 source-nat 할당 됨 rt1230-v13412-external-etcd-gfs2-r18-net — 2026. 10. 7. 오전 2:47:47 k1230-20261006 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.102 source-nat":
+          - link "10.10.31.102":
+            - /url: "#/publicip/2c2091e2-5140-44e9-89ef-63861af57e81?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: source-nat
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "rt1230-v13412-external-etcd-gfs2-r18-net":
+          - link "rt1230-v13412-external-etcd-gfs2-r18-net":
+            - /url: "#/guestnetwork/957281d8-692d-4761-9adb-a3f5567b40d7"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 7. 오전 2:47:47"
+        - cell "k1230-20261006":
+          - link "k1230-20261006":
+            - /url: "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.103 source-nat 할당 됨 AS-PROD-31-AS01-net — 2026. 10. 10. 오후 11:57:25 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.103 source-nat":
+          - link "10.10.31.103":
+            - /url: "#/publicip/3719cabd-6eb8-40ea-a4e5-714e2b9544bb?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: source-nat
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "AS-PROD-31-AS01-net":
+          - link "AS-PROD-31-AS01-net":
+            - /url: "#/guestnetwork/2bc57a4a-89ed-46c0-afb4-5d1c2faee549"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 10. 오후 11:57:25"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.106 source-nat 할당 됨 — qa-gn1569-31-reg-vpc — 2026. 11. 10. 오후 6:31:08 qa-gn1569-31-owner qa-gn1569-31-domain Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.106 source-nat":
+          - link "10.10.31.106":
+            - /url: "#/publicip/e6978afb-a4ee-4512-8fb5-a06fe6477a83?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: source-nat
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "—":
+          - generic: —
+        - cell "qa-gn1569-31-reg-vpc":
+          - link "qa-gn1569-31-reg-vpc":
+            - /url: "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 10. 오후 6:31:08"
+        - cell "qa-gn1569-31-owner":
+          - link "qa-gn1569-31-owner":
+            - /url: "#/account?name=qa-gn1569-31-owner&domainid=f3772036-4b8f-41fd-83f2-b71751950364&dataView=true"
+        - cell "qa-gn1569-31-domain":
+          - link "qa-gn1569-31-domain":
+            - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.107 Reserved — — 2026. 11. 16. 오후 12:22:58 qa-pip1689-31-122255-user qa-pip1689-31-122255 Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.107":
+          - link "10.10.31.107":
+            - /url: "#/publicip/15759fa1-ca4c-4054-82b2-47dfb03c3afb?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "Reserved":
+          - generic: Reserved
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 16. 오후 12:22:58"
+        - cell "qa-pip1689-31-122255-user":
+          - link "qa-pip1689-31-122255-user":
+            - /url: "#/account?name=qa-pip1689-31-122255-user&domainid=6acc51a8-df4d-43bc-8bbc-b1b97a1d30c5&dataView=true"
+        - cell "qa-pip1689-31-122255":
+          - link "qa-pip1689-31-122255":
+            - /url: "#/domain/6acc51a8-df4d-43bc-8bbc-b1b97a1d30c5?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.110 Reserved — — 2026. 11. 16. 오후 12:22:59 qa-pip1689-31-122255-domainadmin qa-pip1689-31-122255 Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.110":
+          - link "10.10.31.110":
+            - /url: "#/publicip/f9eda3b4-2655-453b-837a-28e46eb9c3f5?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "Reserved":
+          - generic: Reserved
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 16. 오후 12:22:59"
+        - cell "qa-pip1689-31-122255-domainadmin":
+          - link "qa-pip1689-31-122255-domainadmin":
+            - /url: "#/account?name=qa-pip1689-31-122255-domainadmin&domainid=6acc51a8-df4d-43bc-8bbc-b1b97a1d30c5&dataView=true"
+        - cell "qa-pip1689-31-122255":
+          - link "qa-pip1689-31-122255":
+            - /url: "#/domain/6acc51a8-df4d-43bc-8bbc-b1b97a1d30c5?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.111 source-nat 할당 됨 — rt1230-offline-custom-cni-r29-vpc — 2026. 10. 7. 오후 2:43:49 k1230-20261006 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.111 source-nat":
+          - link "10.10.31.111":
+            - /url: "#/publicip/19abe419-0c0f-49fd-ba98-9faf4ddd38e4?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+          - generic: source-nat
+        - cell "할당 됨":
+          - generic: 할당 됨
+        - cell "—":
+          - generic: —
+        - cell "rt1230-offline-custom-cni-r29-vpc":
+          - link "rt1230-offline-custom-cni-r29-vpc":
+            - /url: "#/vpc/2c41c280-c915-4952-ab59-a527bf248c94"
+        - cell "—":
+          - generic: —
+        - cell "2026. 10. 7. 오후 2:43:49"
+        - cell "k1230-20261006":
+          - link "k1230-20261006":
+            - /url: "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.113 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.113":
+          - link "10.10.31.113":
+            - /url: "#/publicip/3aab3764-2ead-49a8-9289-b758bb2490ec?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.114 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.114":
+          - link "10.10.31.114":
+            - /url: "#/publicip/68e29c72-552b-45e2-a073-96b55d2b7274?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.115 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.115":
+          - link "10.10.31.115":
+            - /url: "#/publicip/5e89cd1f-89ff-4ac0-88ca-4597e0410530?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.116 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.116":
+          - link "10.10.31.116":
+            - /url: "#/publicip/b13209e2-ffa6-4640-9906-3561f4fde22e?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.117 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.117":
+          - link "10.10.31.117":
+            - /url: "#/publicip/8dab4110-29c4-4350-9888-82932d99ba26?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.118 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.118":
+          - link "10.10.31.118":
+            - /url: "#/publicip/a0f92b87-b6c4-4f71-ae4d-58c569386686?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.119 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.119":
+          - link "10.10.31.119":
+            - /url: "#/publicip/c0db2142-27bb-4fa0-a078-2ada1a3c3f0d?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.120 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.120":
+          - link "10.10.31.120":
+            - /url: "#/publicip/4c3fd2bd-b121-45be-b761-d5e920292ad3?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.121 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.121":
+          - link "10.10.31.121":
+            - /url: "#/publicip/6713569e-a1e2-4b58-b1e4-2b444bae6904?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.122 가능 — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.122":
+          - link "10.10.31.122":
+            - /url: "#/publicip/db6ca8d9-db86-407e-8a89-15a37e48f9de?pipreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22projectid%22:%220%22,%22filter%22:%22all%22}"
+        - cell "가능":
+          - generic: 가능
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+  - list:
+    - listitem: 전체 41 개 항목 중 1-20 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "2":
+      - generic: "2"
+    - listitem "3":
+      - generic: "3"
+    - listitem "다음 페이지":
+      - button "right":
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+    - text: 이동하기
+    - textbox

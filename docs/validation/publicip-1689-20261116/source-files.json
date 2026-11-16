@@ -1,0 +1,21 @@
+{
+  "source": "f8c8c7d3e8cf3bffca70d971242f5d1c18c29206",
+  "files": {
+    "api/src/main/java/org/apache/cloudstack/api/command/user/address/ListPublicIpAddressesCmd.java": "4bb88281635be0d658ea5a01a9014555cdc1500f35828a0177290149f67332b1",
+    "api/src/test/java/org/apache/cloudstack/api/command/user/address/ListPublicIpDisplaySearchTest.java": "6aee64ea6ad3c9689191a8a1f00df4fccfa8ba64be31c4bbf9d1198869751c04",
+    "ui/public/locales/en.json": "c6d509114be81ae427ce86c5dbd9899e3012746af896baaacf4cd117feb68dec",
+    "ui/public/locales/ko_KR.json": "7c1c098bd49008c0ec8f3a0bf30fb198bbe7ee5eb66dda5ea3dedac492d049c3",
+    "ui/src/components/view/ListView.vue": "989aae21688073692041f36c7311f0e8f772027ae71af078129fd0d81616c6f3",
+    "ui/src/components/view/PublicIpSearch.vue": "3374a3722d5501b9923933401d600e2f333ef3e094b21f87c01c243a81af4063",
+    "ui/src/components/view/PublicIpSearchSelect.vue": "20b9207870890779f3c4b57cca8c01e2347e883ffad756a3825cd78597d90543",
+    "ui/src/components/view/SearchFilter.vue": "6dc6d33934b819e2b554a6f3550383be144ddd787bcec2cea61a2734970ea7de",
+    "ui/src/components/view/SearchView.vue": "e3daba789b831c126ee0ff05d8b6adec8459cc8ded78d7b5483b7be1195521b5",
+    "ui/src/components/widgets/Breadcrumb.vue": "f8b6383bf43d34c7146c71b8fdf87c1e3e8ac2842ac6b4d86f8b43c2c1a7ab99",
+    "ui/src/config/section/network.js": "89f412f448fd58e3f65b08e06a09efd69e561541b7bcbc5360f10e8333b56450",
+    "ui/src/utils/publicIpSearch.js": "fb8160de7b4d8ddbd275340fecfe823ac3b910ed05ee4343c6a98c403eb5d62a",
+    "ui/src/views/AutogenView.vue": "19c33e5f2105b6d0f31780f40124f97053eddd77475cb443cbe6002836967b4a",
+    "ui/tests/unit/components/PublicIpSearchSelect.spec.js": "7a48320e848133490ca936db8ba7a729777a484e1b023cfc6d7cad44935b38bb",
+    "ui/tests/unit/utils/PublicIpSearch.spec.js": "83ab02a8901dc5301fbee7303d0a88c61973ccb6e5077d51f8941af83e4d7ea8",
+    "ui/tests/unit/views/AutogenPublicIpListScope.spec.js": "62504c1fbbfd722192a4a64293cfb7cdf586aa4c24c68179a8a9ea3068ad58bf"
+  }
+}
