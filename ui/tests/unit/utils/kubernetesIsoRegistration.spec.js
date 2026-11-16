@@ -115,3 +115,11 @@ test('a changed login scope discards the previous unresolved journal without all
   synchronizeKubernetesUrlScope('new-login')
   expect(JSON.parse(sessionStorage.getItem('mold.kubernetesIso.url.unresolved.v1')).entries).toEqual([])
 })
+
+test.each([{ zoneid: zone }, { arch: 'aarch64' }, { directdownload: true }, { mincpunumber: 4 }, { directdownload: undefined }])('stored scope/options mismatch can never be promoted to Ready: %j', change => {
+  const request = jest.fn().mockResolvedValue(parents([parent(change)]))
+  const params = kubernetesUrlParams(form(), zones, getters())
+  return observeKubernetesUrl(request, { id }, 'all', getters(), {}, () => true, params).then(result => {
+    expect(result.key).toBe('invalid'); expect(request).toHaveBeenCalledTimes(1)
+  })
+})

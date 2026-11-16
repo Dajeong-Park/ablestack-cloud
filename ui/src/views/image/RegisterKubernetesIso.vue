@@ -17,7 +17,7 @@
 
 <template>
   <MoldDialog size="md" focus-guard :title="$t('label.kubernetes.version.add')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
-    <a-alert v-if="submitError" type="error" show-icon :message="$t(submitError)" class="registration-notice" />
+    <a-alert v-if="showSubmitError" type="error" show-icon :message="$t(submitError)" class="registration-notice" />
     <a-form
 :id="formId"
 v-if="phase === 'draft' || phase === 'submitting'"
@@ -69,7 +69,7 @@ v-ctrl-enter="handleSubmit">
         <a-descriptions-item :label="$t('label.arch')">{{ receipt.arch || $t('label.none') }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.directdownload')">{{ receipt.directdownload === true ? $t('label.yes') : receipt.directdownload === false ? $t('label.no') : $t('label.none') }}</a-descriptions-item>
       </a-descriptions>
-      <a-alert class="registration-notice" show-icon :type="availability === 'ready' ? 'success' : availability === 'failed' ? 'error' : 'info'" :message="$t(availabilityLabel)" />
+      <a-alert class="registration-notice" show-icon :type="availabilityType" :message="$t(availabilityLabel)" />
       <ul v-if="reasons.length"><li v-for="reason in reasons" :key="reason">{{ reason }}</li></ul>
     </template>
     <template v-else-if="phase === 'uncertain'">
@@ -131,9 +131,14 @@ export default {
     capability () { return kubernetesIsoCapability('url', this.$store.getters) },
     registrationScope () { return kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token) },
     availabilityLabel () { return ['ready', 'progress', 'failed', 'unqueried'].includes(this.availability) ? 'message.kubernetes.iso.registration.' + this.availability : 'message.kubernetes.iso.read.' + this.availability },
+    availabilityType () { return this.availability === 'ready' ? 'success' : ['failed', 'forbidden', 'expired', 'network', 'invalid', 'missing'].includes(this.availability) ? 'error' : 'info' },
+    showSubmitError () { return !!this.submitError && this.submitError !== this.availabilityLabel && !(this.phase === 'uncertain' && this.submitError === 'message.kubernetes.iso.request.uncertain') },
     blocksNavigation () { return this.busy },
     forcedDirect () { return kubernetesDirectDownloadForced(this.form.zoneid, this.zones) },
-    selectedScopeName () { return this.form.zoneid === this.allZones ? this.$t('label.all.zone') : this.zones.find(z => z.id === this.form.zoneid)?.name || this.form.zoneid },
+    selectedScopeName () {
+      const scope = this.receipt.catalog?.zone
+      return scope?.kind === 'all' ? this.$t('label.all.zone') : scope?.kind === 'zone' ? scope.name || scope.id : this.$t('label.unknown')
+    },
     architectureOptions () {
       const options = this.$fetchCpuArchitectureTypes?.() || []
       return ['x86_64', 'aarch64', 's390x'].map(id => options.find(row => row.id === id) || { id, name: id })
@@ -229,7 +234,7 @@ export default {
           }
           return
         }
-        const result = await observeKubernetesUrl(getAPI, this.receipt, this.form.zoneid, this.$store.getters, this.options(), () => this.isCurrent(scope))
+        const result = await observeKubernetesUrl(getAPI, this.receipt, this.form.zoneid, this.$store.getters, this.options(), () => this.isCurrent(scope), this.pendingParams)
         if (!this.isCurrent(scope) || result.key === 'stale') return
         this.receipt = result.record; this.availability = result.key; this.reasons = result.reasons || []
         this.submitError = ''

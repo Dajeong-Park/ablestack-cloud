@@ -160,7 +160,7 @@ export async function reconcileKubernetesUrl (request, params, zones, getters, o
   return { status: page.countKnown && page.count === page.rows.length && rows.length === 1 ? 'found' : 'uncertain', rows }
 }
 
-export async function observeKubernetesUrl (request, accepted, zoneid, getters, options, current = () => true) {
+export async function observeKubernetesUrl (request, accepted, zoneid, getters, options, current = () => true, expected = null) {
   if (!kubernetesIsoCapability('read', getters).available) return { key: 'forbidden', record: accepted }
   const json = await request('listKubernetesSupportedVersions', { id: accepted.id }, options)
   if (!current()) return { key: 'stale' }
@@ -168,6 +168,11 @@ export async function observeKubernetesUrl (request, accepted, zoneid, getters, 
   if (!parent.rows.length) return { key: 'missing', record: accepted }
   const record = parent.rows[0]
   if (!uuid(record.isoid) || accepted.isoid && record.isoid !== accepted.isoid) return { key: 'invalid', record }
+  const scope = record.catalog.zone
+  if (zoneid === ALL_KUBERNETES_ZONES ? scope.kind !== 'all' : scope.kind !== 'zone' || scope.id !== zoneid) return { key: 'invalid', record }
+  if (expected && (record.arch !== (expected.arch || 'x86_64') || record.directdownload !== (expected.directdownload ?? false) ||
+      Number(record.mincpunumber) !== expected.mincpunumber || Number(record.minmemory) !== expected.minmemory)) return { key: 'invalid', record }
+
   if (!getters.apis?.listIsos) return { key: 'forbidden', record }
   let rows = []; let count; let page = 1
   do {

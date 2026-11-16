@@ -143,3 +143,17 @@ test('URL registration remains visible without a Zone-list grant, and uses its o
   const action = image.children.find(section => section.name === 'kubernetesiso').actions.find(item => item.api === 'addKubernetesSupportedVersion')
   expect(action.show({}, store.getters)).toBe(true); expect(action.selfManagedDialog).toBe(true)
 })
+
+test('receipt scope uses the observed record and never the requested Zone as a substitute', () => {
+  const c = context(); c.form.zoneid = zone
+  expect(c.selectedScopeName).toBe('label.unknown')
+  c.receipt = { catalog: { zone: { kind: 'all' } } }; expect(c.selectedScopeName).toBe('label.all.zone')
+  c.receipt = { catalog: { zone: { kind: 'zone', id: iso, name: 'Other observed Zone' } } }; expect(c.selectedScopeName).toBe('Other observed Zone')
+})
+
+test('request uncertainty and read errors have one meaningful alert instead of duplicate explanations', () => {
+  const c = context(); c.phase = 'uncertain'; c.submitError = 'message.kubernetes.iso.request.uncertain'
+  expect(c.showSubmitError).toBe(false)
+  c.phase = 'accepted'; c.availability = 'network'; c.submitError = 'message.kubernetes.iso.read.network'
+  expect(c.showSubmitError).toBe(false); expect(c.availabilityType).toBe('error')
+})
