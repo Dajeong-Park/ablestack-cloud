@@ -347,7 +347,7 @@ export default {
       icon: kubernetesIcon,
       docHelp: 'plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions',
       permission: ['listKubernetesSupportedVersions'],
-      searchFilters: ['zoneid', 'minimumsemanticversion', 'arch'],
+      searchFilters: ['zoneid', 'minimumsemanticversion', 'minimumkubernetesversionid', 'arch'],
       columns: ['name', 'state', 'semanticversion', 'isostate', 'mincpunumber', 'minmemory', 'arch', 'zonename'],
       details: () => ['name', 'semanticversion', 'supportsautoscaling', 'zoneid', 'zonename', 'isoid', 'isoname', 'isostate', 'arch', 'mincpunumber', 'minmemory', 'supportsha', 'state', 'created', ...(store.getters.userInfo?.roletype === 'Admin' ? ['isourl'] : [])],
       tabs: [

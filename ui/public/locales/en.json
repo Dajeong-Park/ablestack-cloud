@@ -12145,5 +12145,10 @@
   "message.kubernetes.iso.local.checking": "Checking the transfer result and linked ISO readiness.",
   "message.kubernetes.iso.local.done": "The transfer and linked ISO readiness are confirmed. Review the registration audit in the version events.",
   "message.kubernetes.iso.local.certificate": "Verify uploader certificate",
-  "message.kubernetes.iso.local.stop": "Stop transfer"
+  "message.kubernetes.iso.local.stop": "Stop transfer",
+  "label.kubernetes.iso.minimum.mode": "Minimum version criterion",
+  "label.kubernetes.iso.minimum.version": "Registered version",
+  "message.kubernetes.iso.search.minimum": "Enter a numeric version with at least three parts, for example 1.30.0.",
+  "message.kubernetes.iso.search.lookup": "Could not read the permitted minimum-version choices. Retry the lookup.",
+  "message.kubernetes.iso.search.unsupported": "The current API does not support this search condition. Reset the filters or refresh."
 }

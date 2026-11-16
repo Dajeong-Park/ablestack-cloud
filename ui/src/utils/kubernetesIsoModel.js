@@ -47,7 +47,7 @@ export function normalizeKubernetesIso (record, getters = {}, catalogResponse = 
   return { ...row, catalog: { versionState: versionKey(record.state), zone: kubernetesIsoZone(record, catalogResponse), directDownload: row.directdownload } }
 }
 
-export function kubernetesIsoListResponse (json, getters = {}, target = '') {
+export function kubernetesIsoListResponse (json, getters = {}, target = '', options = {}) {
   const root = json?.listkubernetessupportedversionsresponse
   rejectApiError(json?.errorresponse); rejectApiError(root)
   if (!object(root) || own(json, 'errorresponse')) return fail()
@@ -55,7 +55,7 @@ export function kubernetesIsoListResponse (json, getters = {}, target = '') {
   const rows = (root.kubernetessupportedversion || []).map(row => normalizeKubernetesIso(row, getters, true))
   const known = own(root, 'count')
   const count = known ? Number(root.count) : rows.length
-  if ((known && (root.count === null || root.count === '' || typeof root.count === 'boolean')) || !Number.isSafeInteger(count) || count < rows.length || (!rows.length && count !== 0)) return fail()
+  if ((known && (root.count === null || root.count === '' || typeof root.count === 'boolean')) || !Number.isSafeInteger(count) || count < rows.length || (!rows.length && count !== 0 && !options.allowEmptyPage)) return fail()
   if (target && (rows.some(r => r.id.toLowerCase() !== target.toLowerCase()) || rows.length > 1)) return fail()
   return { rows, count, countKnown: known, status: rows.length ? 'ready' : target ? 'missing' : 'empty' }
 }
@@ -65,7 +65,7 @@ export function kubernetesIsoReadParams (values = {}, target = '') {
     if (!uuid(target)) return fail()
     return { id: target }
   }
-  const fields = ['id', 'keyword', 'zoneid', 'minimumsemanticversion', 'minimumkubernetesversionid', 'arch', 'page', 'pagesize']
+  const fields = ['id', 'keyword', 'zoneid', 'minimumsemanticversion', 'minimumkubernetesversionid', 'arch', 'page', 'pagesize', 'sortkey', 'sortorder']
   return Object.fromEntries(fields.filter(k => values[k] !== undefined && values[k] !== null && values[k] !== '').map(k => [k, values[k]]))
 }
 

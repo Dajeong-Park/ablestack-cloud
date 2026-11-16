@@ -881,7 +881,7 @@
       <a-alert v-if="isTemplateList && templateFilterError" type="error" show-icon :message="$t(templateFilterError)">
         <template #action><a-button @click="$router.replace({ path: '/template' })">{{ $t('label.reset') }}</a-button></template>
       </a-alert>
-      <a-alert v-if="$route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t('message.kubernetes.iso.read.' + kubernetesIsoReadError)">
+      <a-alert v-if="$route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t((kubernetesIsoReadError === 'unsupported' ? 'message.kubernetes.iso.search.unsupported' : 'message.kubernetes.iso.read.' + kubernetesIsoReadError))">
         <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
       <div v-if="dataView">
@@ -993,6 +993,7 @@ import { isoListQuery, isoSearchQuery, isoSearchError, isoRequestParams, isoList
 import { isoListResponse, readIsoResource } from '@/utils/isoModel'
 import { kubernetesIsoApis, kubernetesIsoCapability, canKubernetesIsoAction, kubernetesIsoContext } from '@/utils/kubernetesIsoCapabilities'
 import { kubernetesIsoListResponse, kubernetesIsoReadParams, kubernetesIsoFailure } from '@/utils/kubernetesIsoModel'
+import { kubernetesIsoListQuery, kubernetesIsoListOwner, kubernetesIsoSearchError, kubernetesIsoSearchQuery, kubernetesIsoSortFields, kubernetesIsoFilterMismatch } from '@/utils/kubernetesIsoSearch'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
@@ -1371,6 +1372,13 @@ export default {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listSchemaScope = null; this.kubernetesIsoReadError = ''
         this.resetSelection(); this.$emit('change-resource', this.resource)
         if (this.showAction) this.closeAction()
+        if (!this.$route.params?.id) {
+          const query = kubernetesIsoListQuery({}, this.$store.getters.defaultListViewPageSize, this.$store.getters, this.$store.state?.user?.token)
+          if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) return this.$router.replace({ query })
+        } else if (this.$route.query.kisoreturn || this.$route.query.kisoowner) {
+          const query = { ...this.$route.query }; delete query.kisoreturn; delete query.kisoowner
+          return this.$router.replace({ query })
+        }
         this.fetchData()
       }
     },
@@ -1586,7 +1594,7 @@ export default {
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
       for (const filter in queryParams) {
-        if (['sortkey', 'sortorder'].includes(filter) || publicIpRoute(this.$route) && filter === 'filter') continue
+        if (['sortkey', 'sortorder', 'kisoowner', 'kisoreturn'].includes(filter) || publicIpRoute(this.$route) && filter === 'filter') continue
         if (this.$route.name === 'vmsnapshot' && filter === 'filter') {
           continue
         }
@@ -2027,6 +2035,15 @@ export default {
         }
         if (!this.$store.state?.user?.token || !kubernetesIsoCapability('read', this.$store.getters).available) { reject('forbidden'); return Promise.resolve() }
         try { kubernetesIsoReadParams({}, this.$route.params?.id) } catch (_) { reject('invalid'); return Promise.resolve() }
+        if (!this.dataView) {
+          const query = kubernetesIsoListQuery(this.$route.query, this.pageSize, this.$store.getters, this.$store.state?.user?.token)
+          if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) return this.$router.replace({ query })
+          const error = kubernetesIsoSearchError(query, this.$store.getters)
+          if (error) { reject(error === 'message.kubernetes.iso.search.unsupported' ? 'unsupported' : 'invalid'); return Promise.resolve() }
+        } else if (this.$route.query.kisoowner && this.$route.query.kisoowner !== kubernetesIsoListOwner(this.$store.getters, this.$store.state?.user?.token)) {
+          const query = { ...this.$route.query }; delete query.kisoowner; delete query.kisoreturn
+          return this.$router.replace({ query })
+        }
       }
       if (vnfRoute(this.$route)) {
         this.dataView = !!this.$route.params?.id
@@ -2190,6 +2207,9 @@ export default {
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
       const publicIpList = this.$route.meta?.name === 'publicip' && !this.$route.params?.id && !this.$route.query?.dataView
+      if (kubernetesIsoQuery && !sameList) {
+        this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
+      }
       if ((publicIpList || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route)) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
@@ -2243,7 +2263,7 @@ export default {
         }
         Object.assign(params, this.$route.query)
       }
-      if ((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'iso'].includes(this.$route.meta?.name)) && !rebuildSchema) {
+      if ((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'iso', 'kubernetesiso'].includes(this.$route.meta?.name)) && !rebuildSchema) {
         this.columns.forEach(column => { column.sortOrder = (params.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === column.key ? (params.sortorder === 'asc' ? 'ascend' : 'descend') : null })
       }
       if (this.$route.name === 'snapshot' && !this.dataView && !rebuildSchema) {
@@ -2366,8 +2386,8 @@ export default {
             key: key,
             title: publicIpRoute(this.$route) && key === 'allocated' ? this.$t('label.public.ip.allocated') : this.$route.name === 'sharedfs' && key === 'capacity' ? this.$t('label.storage.capacity.column') : this.$route.name === 'sharedfs' && key === 'sizegb' ? this.$t('label.storage.capacity.initial') : this.$t('label.' + String(title).toLowerCase()),
             dataIndex: key,
-            sorter: this.$route.name === 'sharedfs' && ['capacity', 'bootrecovery'].includes(key) ? false : this.$route.name === 'vmsnapshot' ? ['displayname', 'state', 'type', 'current', 'created'].includes(key) : sorter,
-            ...((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork'].includes(this.$route.meta?.name)) ? { sortOrder: (this.$route.query.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === key ? (this.$route.query.sortorder === 'asc' ? 'ascend' : 'descend') : null } : {}),
+            sorter: kubernetesIsoQuery ? kubernetesIsoSortFields.includes(key) && !!kubernetesIsoCapability('read', this.$store.getters).parameters.sortkey && !!kubernetesIsoCapability('read', this.$store.getters).parameters.sortorder : this.$route.name === 'sharedfs' && ['capacity', 'bootrecovery'].includes(key) ? false : this.$route.name === 'vmsnapshot' ? ['displayname', 'state', 'type', 'current', 'created'].includes(key) : sorter,
+            ...((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'kubernetesiso'].includes(this.$route.meta?.name)) ? { sortOrder: (this.$route.query.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === key ? (this.$route.query.sortorder === 'asc' ? 'ascend' : 'descend') : null } : {}),
             ...(this.$route.name === 'snapshot' ? storageSnapshotSortColumn(key, this.$route.query) : {}),
             ...(snapshotPolicyListRoute(this.$route) ? snapshotPolicySortColumn(key, this.$route.query, this.$t) : {})
           })
@@ -2598,7 +2618,8 @@ export default {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
         if (kubernetesIsoQuery) {
-          const page = kubernetesIsoListResponse(json, this.$store.getters, this.$route.params?.id)
+          const page = kubernetesIsoListResponse(json, this.$store.getters, this.$route.params?.id, { allowEmptyPage: !this.dataView && Number(params.page) > 1 })
+          if (!this.dataView && kubernetesIsoFilterMismatch(page.rows, params)) throw new Error('message.kubernetes.iso.read.invalid')
           if (!this.dataView && !page.countKnown && page.rows.length) throw new Error('message.kubernetes.iso.read.invalid')
           if (page.status === 'missing') {
             this.kubernetesIsoReadError = 'missing'; this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
@@ -4148,6 +4169,12 @@ export default {
         else this.$router.push({ query })
         return
       }
+      if (this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id) {
+        const query = kubernetesIsoSearchQuery(this.$route.query, opts || {}, this.pageSize, this.$store.getters, this.$store.state?.user?.token)
+        this.searchParams = {}; this.resetSelection()
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData()
+        return this.$router.push({ query })
+      }
       if (vnfRoute(this.$route) && !this.$route.params?.id) {
         const query = vnfSearchQuery(this.$route.query, opts, this.pageSize, this.$store.getters)
         this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -4243,11 +4270,16 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query })
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id) {
+        const query = { ...this.$route.query, page: '1' }; delete query.sortkey; delete query.sortorder
+        if (sorter?.order && kubernetesIsoSortFields.includes(sorter.field)) { query.sortkey = sorter.field; query.sortorder = sorter.order === 'ascend' ? 'asc' : 'desc' }
+        return this.$router.push({ query: kubernetesIsoListQuery(query, this.pageSize, this.$store.getters, this.$store.state?.user?.token) })
+      }
       if (this.isIsoList) {
         const query = { ...this.$route.query }; delete query.sortkey; delete query.sortorder
         if (sorter?.order) { query.sortkey = sorter.field; query.sortorder = sorter.order === 'ascend' ? 'asc' : 'desc' }
@@ -4273,7 +4305,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },

@@ -138,6 +138,9 @@
             </a-tooltip>
             <router-link v-if="record.hasannotations" class="template-name-comment" :aria-label="$t('label.comments')" :to="templateDetailLocation($route, record, $store.getters, 'comments')"><message-filled size="small" /></router-link>
           </span>
+          <span v-else-if="$route.meta?.name === 'kubernetesiso' && !resourcePath && record.id">
+            <router-link :to="kubernetesIsoDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          </span>
           <span v-else-if="isSshKeyPairList">
             <router-link :to="sshKeyPairLink(record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="sshKeyPairLink(record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
@@ -1252,6 +1255,7 @@
 
 <script>
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { kubernetesIsoDetailLocation } from '@/utils/kubernetesIsoSearch'
 import { templateDetailLocation } from '@/utils/templateSearch'
 import IsoListCell from '@/components/view/IsoListCell'
 import { networkDetailLocation } from '@/utils/guestNetworkSearch'
@@ -1547,6 +1551,7 @@ export default {
     vmDisplayName,
     isVmIdentityRoute,
     templateDetailLocation,
+    kubernetesIsoDetailLocation,
     networkTypeLabel,
     policyVolumePath,
     policyInterval,

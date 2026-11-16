@@ -18,6 +18,7 @@
 import { shallowMount } from '@vue/test-utils'
 import { h } from 'vue'
 import Autogen from '@/views/AutogenView'
+import { kubernetesIsoListQuery } from '@/utils/kubernetesIsoSearch'
 import Add from '@/views/image/AddKubernetesSupportedVersion'
 import image from '@/config/section/image'
 import store from '@/store'
@@ -33,6 +34,11 @@ beforeEach(() => {
   store.state.user.token = 'session'
   store.getters = { defaultListViewPageSize: 20, userInfo: { id: 'actor', roletype: 'Admin', roleid: 'role' }, project: {}, apis: { listKubernetesSupportedVersions: {} }, zones: [{ id }], customColumns: {}, metrics: false, listAllProjects: false }
   ctx = { $store: store, $route: { name: 'kubernetesiso', path: '/kubernetesiso', fullPath: '/kubernetesiso', params: {}, query: {}, meta: { name: 'kubernetesiso', permission: ['listKubernetesSupportedVersions'], columns: ['name', 'state'], actions: [] } }, $router: { replace: jest.fn(), push: jest.fn() }, $refs: {}, $emit: jest.fn(), $t: key => key, $showIcon: () => false, $i18n: { locale: 'ko_KR' }, $message: { info: jest.fn(), error: jest.fn() }, $notifyError: jest.fn(), $nextTick: fn => fn() }
+  ctx.$route.query = kubernetesIsoListQuery({}, 20, store.getters, store.state.user.token)
+  ctx.$router.replace.mockImplementation(({ query }) => {
+    ctx.$route.query = query; ctx.$route.fullPath = ctx.$route.path + '?' + new URLSearchParams(query)
+    return ctx.fetchData()
+  })
   Object.assign(ctx, Autogen.data.call(ctx))
   Object.entries(Autogen.methods).forEach(([key, fn]) => { ctx[key] = fn.bind(ctx) })
   ctx.updateSelectedColumns = jest.fn()

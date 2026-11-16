@@ -332,10 +332,10 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
             }
             minimumSemanticVersion = minVersion.getSemanticVersion();
         }
-        Filter searchFilter = new Filter(KubernetesSupportedVersionVO.class, "id", true, cmd.getStartIndex(), cmd.getPageSizeVal());
+        // Fetch the eligible catalog before numeric filtering, global sorting and paging.
+        Filter searchFilter = new Filter(KubernetesSupportedVersionVO.class, "id", true, null, null);
         SearchBuilder<KubernetesSupportedVersionVO> sb = kubernetesSupportedVersionDao.createSearchBuilder();
         sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
-        sb.and("keyword", sb.entity().getName(), SearchCriteria.Op.LIKE);
         if (StringUtils.isNotBlank(arch)) {
             SearchBuilder<VMTemplateVO> isoSearch = templateDao.createSearchBuilder();
             isoSearch.and("arch", isoSearch.entity().getArch(), SearchCriteria.Op.EQ);
@@ -354,19 +354,20 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
             scc.addOr("zoneId", SearchCriteria.Op.NULL);
             sc.addAnd("zoneId", SearchCriteria.Op.SC, scc);
         }
-        if(keyword != null){
-            sc.addOr("uuid", SearchCriteria.Op.LIKE, "%" + keyword + "%");
-            sc.setParameters("keyword", "%" + keyword + "%");
+        if (keyword != null) {
+            SearchCriteria<KubernetesSupportedVersionVO> names = kubernetesSupportedVersionDao.createSearchCriteria();
+            names.addOr("name", SearchCriteria.Op.LIKE, "%" + keyword + "%");
+            names.addOr("uuid", SearchCriteria.Op.LIKE, "%" + keyword + "%");
+            sc.addAnd("name", SearchCriteria.Op.SC, names);
         }
         if (StringUtils.isNotBlank(arch)) {
             sc.setJoinParameters("isoSearch", "arch", arch);
         }
         Pair<List<KubernetesSupportedVersionVO>, Integer> versionsAndCount =
                 kubernetesSupportedVersionDao.searchAndCount(sc, searchFilter);
-        List<KubernetesSupportedVersionVO> versions =
-                filterKubernetesSupportedVersions(versionsAndCount.first(), minimumSemanticVersion);
-
-        return createKubernetesSupportedVersionListResponse(versions, versionsAndCount.second());
+        Pair<List<KubernetesSupportedVersionVO>, Integer> page = KubernetesVersionCatalog.page(versionsAndCount.first(),
+                minimumSemanticVersion, cmd.getStartIndex(), cmd.getPageSizeVal(), cmd.getSortKey(), cmd.getSortOrder());
+        return createKubernetesSupportedVersionListResponse(page.first(), page.second());
     }
 
     private void validateKubernetesSupportedVersion(Long zoneId, String semanticVersion, Integer minimumCpu,
