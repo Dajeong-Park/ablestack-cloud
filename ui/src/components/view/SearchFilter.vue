@@ -31,10 +31,10 @@
           @close="() => $emit('removeFilter', filter)"
         >
           <a-tooltip
-            :title="retrieveFieldLabel(filter.key) + ': ' + filter.value + (['affinitygroupid', 'volumeid', 'networkofferingid', 'physicalnetworkid'].includes(filter.key) && filter.rawValue !== filter.value ? ' (' + filter.rawValue + ')' : '')"
+            :title="retrieveFieldLabel(filter.key) + ': ' + publicIpFilterValue(filter) + (['affinitygroupid', 'volumeid', 'networkofferingid', 'physicalnetworkid'].includes(filter.key) && filter.rawValue !== filter.value ? ' (' + filter.rawValue + ')' : '')"
             placement="bottom"
           >
-            {{ retrieveFieldLabel(filter.key) }} : {{ getTrimmedText(filter.value, 20) }}
+            {{ retrieveFieldLabel(filter.key) }} : {{ getTrimmedText(publicIpFilterValue(filter), 20) }}
           </a-tooltip>
         </a-tag>
         <a-tag
@@ -197,6 +197,13 @@ export default {
     lookupScope () { this.resolveFilters(this.filters) }
   },
   methods: {
+    publicIpFilterValue (filter) {
+      if (this.apiName !== 'listPublicIpAddresses') return filter.value
+      const value = filter.rawValue ?? filter.value
+      if (filter.key === 'state') return this.$t(publicIpState(value).key)
+      if (['true', 'false', 'all'].includes(String(value))) return this.$t(String(value) === 'all' ? 'label.all' : String(value) === 'true' ? 'label.yes' : 'label.no')
+      return filter.value
+    },
     async resolveFilters (filters) {
       const version = ++this.filterVersion
       const scope = this.lookupScope

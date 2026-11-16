@@ -15,12 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { reactive, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
 import { publicIpState, publicIpBoolean, publicIpAllocated, publicIpFilterLabels } from '@/utils/publicIpPresentation'
 import { publicIpField, publicIpDetailFields } from '@/utils/publicIpDetails'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
+import SearchFilter from '@/components/view/SearchFilter'
 import Status from '@/components/widgets/Status'
 import DetailsTab from '@/components/view/DetailsTab'
 import AutogenView from '@/views/AutogenView'
@@ -65,4 +67,17 @@ test('release summary binds an account or project and domain to the exact addres
 })
 test('the release dialog extension is scoped to Reserved Public IP release, not disassociation or other menus', () => {
   const check = (name, api) => AutogenView.computed.publicIpReleaseDialog.call({ $route: { meta: { name } }, currentAction: { api } }); expect(check('publicip', 'releaseIpAddress')).toBe(true); expect(check('vm', 'releaseIpAddress')).toBe(false); expect(check('publicip', 'disassociateIpAddress')).toBe(false); expect(check('publicip', 'updateIpAddress')).toBe(false)
+})
+
+test('language changes translate Public IP chips and column titles from raw keys without altering the request or other menus', () => {
+  let locale = 'ko'; const t = k => (locale === 'ko' ? ko : en)[k] || k
+  const context = { apiName: 'listPublicIpAddresses', $t: t }; const chip = { key: 'state', value: 'old text', rawValue: 'Reserved' }; const columns = [{ key: 'allocated', title: 'old title', dataIndex: 'allocated' }, { key: 'state', title: 'old state' }]
+  const columnContext = { $route: { meta: { name: 'publicip' } }, $t: t }
+  expect(SearchFilter.methods.publicIpFilterValue.call(context, chip)).toBe('예약'); expect(AutogenView.methods.localizePublicIpColumns.call(columnContext, columns)[0].title).toBe('할당 일시')
+  locale = 'en'; expect(SearchFilter.methods.publicIpFilterValue.call(context, chip)).toBe('Reserved'); expect(AutogenView.methods.localizePublicIpColumns.call(columnContext, columns)[0].title).toBe('Allocated at'); expect(columns[0].title).toBe('old title'); expect(chip.rawValue).toBe('Reserved')
+  expect(AutogenView.methods.localizePublicIpColumns.call({ $route: { meta: { name: 'vm' } } }, columns)).toBe(columns)
+})
+test('an existing Public IP date rerenders for a locale change even though the common formatter reads local storage', async () => {
+  const locale = reactive({ locale: 'ko_KR' }); let storedLocale = 'ko_KR'; const global = options(); global.mocks.$i18n = locale; global.mocks.$toLocaleDate = date => storedLocale + ':' + date
+  const w = mount(PublicIpDetailValue, { props: { resource: { allocated: '2026-11-16T07:17:03Z' }, field: 'allocated' }, global }); expect(w.attributes('lang')).toBe('ko-KR'); storedLocale = 'en'; locale.locale = 'en'; await nextTick(); expect(w.attributes('lang')).toBe('en'); expect(w.text()).toBe('en:2026-11-16T07:17:03Z'); w.unmount()
 })

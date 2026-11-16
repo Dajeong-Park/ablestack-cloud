@@ -238,7 +238,7 @@
               :action="{currentAction}"
               :selectedRowKeys="selectedRowKeys"
               :selectedItems="selectedItems"
-              :chosenColumns="chosenColumns"
+              :chosenColumns="presentedChosenColumns"
               v-bind="{currentAction}"
               @refresh-data="fetchData"
               @poll-action="pollActionCompletion"
@@ -308,7 +308,7 @@
               <a-table
                 v-if="selectedRowKeys.length > 0"
                 size="middle"
-                :columns="chosenColumns"
+                :columns="presentedChosenColumns"
                 :dataSource="selectedItems"
                 :rowKey="(record, idx) => record.id || record.name || record.usageType || idx + '-' + Math.random()"
                 :pagination="true"
@@ -565,7 +565,7 @@
               <a-table
                 v-if="selectedRowKeys.length > 0 && currentAction.api !== 'deleteInstanceGroup'"
                 size="middle"
-                :columns="chosenColumns"
+                :columns="presentedChosenColumns"
                 :dataSource="selectedItems"
                 :rowKey="(record, idx) => record.id || record.name || record.usageType || idx + '-' + Math.random()"
                 :pagination="true"
@@ -924,7 +924,7 @@
         <list-view
           :loading="sharedFSContentLoading"
           :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
-          :columns="columns"
+          :columns="presentedColumns"
           :items="items"
           :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
@@ -1482,6 +1482,8 @@ export default {
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
     publicIpDetail () { return this.$route.meta?.name === 'publicip' && !!this.$route.params?.id },
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
+    presentedColumns () { return this.localizePublicIpColumns(this.columns) },
+    presentedChosenColumns () { return this.localizePublicIpColumns(this.chosenColumns) },
     publicIpReleaseDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'releaseIpAddress' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
     publicIpStandardDialog () { return this.$route.meta?.name === 'publicip' && ['reserveIpAddress', 'updateIpAddress'].includes(this.currentAction?.api) },
@@ -3807,6 +3809,10 @@ export default {
       }
       this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
       this.$store.dispatch('SetCustomColumns', this.$store.getters.customColumns)
+    },
+    localizePublicIpColumns (columns) {
+      if (!publicIpRoute(this.$route)) return columns
+      return (columns || []).map(column => typeof column.title === 'string' ? { ...column, title: this.$t(column.key === 'allocated' ? 'label.public.ip.allocated' : 'label.' + String(column.key).toLowerCase()) } : column)
     },
     getFilterLabel (filter) {
       const key = this.$route.meta?.filterLabels?.[filter] || ('label.' + (this.$route.name === 'comment' ? 'filter.annotations.' : '') + filter)

@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div class="public-ip-detail-value" :data-public-ip-field="field">
+  <div class="public-ip-detail-value" :data-public-ip-field="field" :lang="$i18n?.locale?.replace('_', '-')">
     <public-ip-status v-if="field === 'state'" :value="resource.state" />
     <template v-else>
     <div class="public-ip-detail-value__line">
