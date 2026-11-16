@@ -1,0 +1,59 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "files": {
+    "js/app.6b9677f6.js": {
+      "sha256": "f9eb45b315866631c7a5f32798973320ae63debe9abc43080f54ef6cf6240c7f",
+      "size": 2004720
+    },
+    "js/chunk-fbd5521c.d538dbcd.js": {
+      "sha256": "50e503b3e19d8d00478ddfeba241644d524d8ee707186bd283aed50ca5f8e94f",
+      "size": 5554
+    },
+    "js/chunk-7b26d508.f8e15f63.js": {
+      "sha256": "17eb9d63b9b44e280b573a8dc9b5e38e5772c323ea3d076385c0478fbef50049",
+      "size": 34791
+    },
+    "js/chunk-70013a9c.2f76d849.js": {
+      "sha256": "933bb94659d06005fd13a66db98573e3c198dbba9cffdbe1bef485b0b8ffcf03",
+      "size": 40863
+    },
+    "css/chunk-70013a9c.2d59f032.css": {
+      "sha256": "f8c7a9ae9c15c0d9e7c418a70f20c16716ce1e5c1f819ef96108b8b6c54377d7",
+      "size": 46
+    },
+    "css/chunk-7b26d508.0d75bf84.css": {
+      "sha256": "444256bf00dbeb92ee278aa95492dbbe68775dacc9147d6b1f460e6506f9b796",
+      "size": 52
+    },
+    "locales/ko_KR.json": {
+      "sha256": "9abb24d924c8934047999756e707de421372c41516356833aee4457244b1205e",
+      "size": 1042453
+    },
+    "locales/en.json": {
+      "sha256": "9c53bc702e554e45336cff7f7475f7ed57d09d1726f8fa0f26dbfcb865343de7",
+      "size": 930303
+    },
+    "index.html": {
+      "sha256": "dffa1a6a3709e29dd3063661455631c095e359e26ed18d4441f6ccf6fed9a0e8",
+      "size": 40065
+    }
+  },
+  "count": 9
+}

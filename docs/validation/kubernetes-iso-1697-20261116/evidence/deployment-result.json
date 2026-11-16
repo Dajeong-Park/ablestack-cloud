@@ -1,0 +1,45 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "head": "722613a3c8c875b3706a5ed9fa4436cb13e0c09e",
+  "backup": "/var/tmp/kiso1697-backup-c69ofl7e",
+  "files": [
+    "js/app.6b9677f6.js",
+    "js/chunk-fbd5521c.d538dbcd.js",
+    "js/chunk-7b26d508.f8e15f63.js",
+    "js/chunk-70013a9c.2f76d849.js",
+    "css/chunk-70013a9c.2d59f032.css",
+    "css/chunk-7b26d508.0d75bf84.css",
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "count": 9,
+  "overwritten": [
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "preservedOldFiles": 7160,
+  "indexSha256": "dffa1a6a3709e29dd3063661455631c095e359e26ed18d4441f6ccf6fed9a0e8",
+  "protectedPreserved": true,
+  "backendAndPidPreserved": true,
+  "staticHttpHashesVerified": true,
+  "deploymentType": "UI static delta only"
+}
