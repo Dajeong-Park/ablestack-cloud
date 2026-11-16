@@ -61,6 +61,7 @@
     <template #bodyCell="{ column, text, record }">
       <AsnListCell v-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
+      <KubernetesIsoListCell v-else-if="$route.meta?.name === 'kubernetesiso' && ['state', 'isostate', 'zonename'].includes(column.key)" :resource="record" :field="column.key" />
       <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
@@ -1272,6 +1273,7 @@ import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
+import KubernetesIsoListCell from '@/components/widgets/KubernetesIsoListCell'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
 import { getFastClonePhase, getFastClonePhaseLabel, getFastClonePhaseColor } from '@/utils/fastClone'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
@@ -1308,6 +1310,7 @@ export default {
   name: 'ListView',
   components: {
     TemplateAvailability,
+    KubernetesIsoListCell,
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,

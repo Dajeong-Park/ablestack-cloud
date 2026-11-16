@@ -349,11 +349,15 @@ export default {
       permission: ['listKubernetesSupportedVersions'],
       searchFilters: ['zoneid', 'minimumsemanticversion', 'minimumkubernetesversionid', 'arch'],
       columns: ['name', 'state', 'semanticversion', 'isostate', 'mincpunumber', 'minmemory', 'arch', 'zonename'],
-      details: () => ['name', 'semanticversion', 'supportsautoscaling', 'zoneid', 'zonename', 'isoid', 'isoname', 'isostate', 'arch', 'mincpunumber', 'minmemory', 'supportsha', 'state', 'created', ...(store.getters.userInfo?.roletype === 'Admin' ? ['isourl'] : [])],
+      details: () => ['name', 'id', 'semanticversion', 'state', 'zoneid', 'zonename', 'isoname', 'isoid', 'isostate', 'arch', 'mincpunumber', 'minmemory', 'supportsha', 'supportsautoscaling', 'directdownload', 'created', ...(store.getters.userInfo?.roletype === 'Admin' ? ['isourl'] : [])],
       tabs: [
         {
           name: 'details',
-          component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/KubernetesIsoDetails.vue')))
+        },
+        {
+          name: 'zones',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/KubernetesIsoZones.vue')))
         },
         {
           name: 'events',

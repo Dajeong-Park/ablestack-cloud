@@ -127,10 +127,11 @@
 
             <a-divider/>
 
-            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'iso', 'publicip'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
-          <div class="resource-detail-item__label">{{ $t('label.status') }}</div>
+            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'iso', 'publicip', 'kubernetesiso'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
+          <div class="resource-detail-item__label">{{ $t($route.meta.name === 'kubernetesiso' ? 'label.kubernetes.iso.version.state' : 'label.status') }}</div>
           <div class="resource-detail-item__details">
-            <public-ip-status v-if="$route.meta.name === 'publicip'" :value="resource.state" />
+            <kubernetes-iso-status v-if="$route.meta.name === 'kubernetesiso'" :resource="resource" mode="version" />
+            <public-ip-status v-else-if="$route.meta.name === 'publicip'" :value="resource.state" />
             <template-availability v-else-if="['template', 'iso'].includes($route.meta.name)" :kind="$route.meta.name" :record="resource" :observation="$route.meta.name === 'template' ? templateObservation : null" inspectable @show-zones="$emit('show-template-zones')" />
             <backup-progress
               v-else-if="$route.meta.name === 'backup'"
@@ -836,7 +837,7 @@
                 <span v-else>{{ template.name || template.id }}</span>
               </div>
             </div>
-            <div class="resource-detail-item" v-if="attachedIsoRows.length">
+            <div class="resource-detail-item" v-if="attachedIsoRows.length && $route.meta.name !== 'kubernetesiso'">
               <div class="resource-detail-item__label">{{ $t('label.isoname') }}</div>
               <div class="resource-detail-item__details" v-for="iso in attachedIsoRows" :key="iso.id">
                 <router-link v-if="'listIsos' in $store.getters.apis" :to="{ path: '/iso/' + iso.id }">{{ iso.displaytext || iso.name || iso.id }}</router-link>
@@ -963,7 +964,7 @@
                 <span v-else>{{ resource.podname || resource.pod || resource.podid }}</span>
               </div>
             </div>
-            <div class="resource-detail-item" v-if="resource.zoneid && !['template', 'iso', 'snapshot'].includes($route.path.split('/')[1])">
+            <div class="resource-detail-item" v-if="resource.zoneid && !['template', 'iso', 'snapshot', 'kubernetesiso'].includes($route.path.split('/')[1])">
               <div class="resource-detail-item__label">{{ $t('label.zone') }}</div>
               <div class="resource-detail-item__details">
                 <span v-if="images.zone">
@@ -1192,6 +1193,7 @@ import Console from '@/components/widgets/Console'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
+import KubernetesIsoStatus from '@/components/widgets/KubernetesIsoStatus'
 import BackupProgress from '@/components/view/BackupProgress'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
 import { getFastClonePhaseLabel, getFastClonePhaseDescription, isFastCloneFlattenStatusVisible } from '@/utils/fastClone'
@@ -1214,6 +1216,7 @@ export default {
   components: {
     PublicIpDetailValue,
     TemplateAvailability,
+    KubernetesIsoStatus,
     NetworkIpVmLink,
     PublicIpStatus,
     SharedFSCapacitySummary,
@@ -1315,7 +1318,7 @@ export default {
         this.newResource = newData
         this.showKeys = false
         this.setData()
-        this.validLinks = await validateLinksAsync(this.$router, this.isStatic, this.resource)
+        this.validLinks = this.$route.meta?.name === 'kubernetesiso' ? {} : await validateLinksAsync(this.$router, this.isStatic, this.resource)
 
         if (this.$route.meta.name === 'accountuser' && 'apikey' in this.resource) {
           this.getUserKeys()

@@ -74,7 +74,7 @@ export function kubernetesIsoFailure (error) {
   const text = body?.errortext || error?.message || ''
   const status = Number(error?.response?.status)
   const code = Number(body?.errorcode || error?.errorcode || status)
-  if (/not available for user/i.test(text) || [403, 531].includes(code) || status === 403) return 'forbidden'
+  if (/not available for user/i.test(text) || [403, 432, 531].includes(code) || status === 403) return 'forbidden'
   if (status === 401 || code === 401) return 'expired'
   if (status === 404 || code === 404) return 'missing'
   if (error?.message === 'message.kubernetes.iso.read.invalid') return 'invalid'
@@ -90,7 +90,7 @@ export function kubernetesIsoAvailability (record = {}, observation = null) {
   const reportedState = record.isostate
   const versionState = versionKey(record.state)
   if (!observation || observation.isoid !== record.isoid) return { key: 'unqueried', versionState, reportedState }
-  if (observation.status !== 'ready') return { key: ['loading', 'forbidden', 'expired', 'failed', 'network', 'missing', 'invalid'].includes(observation.status) ? observation.status : 'unqueried', versionState, reportedState }
+  if (observation.status !== 'ready') return { key: ['loading', 'forbidden', 'expired', 'failed', 'network', 'missing', 'invalid', 'empty'].includes(observation.status) ? observation.status : 'unqueried', versionState, reportedState }
   if (!Array.isArray(observation.rows) || observation.rows.some(row => !object(row) || row.id !== record.isoid || !uuid(row.zoneid))) return { key: 'invalid', versionState, reportedState }
   if (!observation.rows.length) return { key: 'missing', versionState, reportedState }
   const availability = isoAvailability({ id: record.isoid }, { ...observation, isoid: record.isoid })

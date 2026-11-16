@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <resource-layout :wide="wideLayout" :class="{ 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'template-resource': ['template', 'iso'].includes($route.meta?.name) }">
+  <resource-layout :wide="wideLayout" :class="{ 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
     <template #left>
       <slot name="info-card">
         <info-card
@@ -27,7 +27,7 @@
           :actions="actions"
           @backup-controls-change="$emit('backup-controls-change', $event)"
           @exec-action="$emit('exec-action', $event)">
-          <template #details><auto-scale-info-summary v-if="$route.meta?.name === 'autoscalevmgroup'" :resource="resource" /><AffinityGroupSummary v-if="$route.meta?.name === 'affinitygroup'" :resource="resource" /><StorageSnapshotSummary v-if="$route.meta?.name === 'snapshot'" :resource="resource" /><GuestNetworkDescription v-if="$route.meta?.name === 'guestnetwork'" :value="resource.displaytext" summary /></template>
+          <template #details><KubernetesIsoSummary v-if="$route.meta?.name === 'kubernetesiso' && resource.id" ref="kubernetesIsoSummary" :resource="resource" :loading="loading && !(quietRefresh && resource.id && resource.id === $route.params?.id)" @observed="acceptKubernetesIsoObservation" @show-zones="onTabChange('zones')" /><auto-scale-info-summary v-if="$route.meta?.name === 'autoscalevmgroup'" :resource="resource" /><AffinityGroupSummary v-if="$route.meta?.name === 'affinitygroup'" :resource="resource" /><StorageSnapshotSummary v-if="$route.meta?.name === 'snapshot'" :resource="resource" /><GuestNetworkDescription v-if="$route.meta?.name === 'guestnetwork'" :value="resource.displaytext" summary /></template>
         </info-card>
       </slot>
     </template>
@@ -52,6 +52,9 @@
             :resource="resource"
             :loading="loading"
             :tab="tabs[0].name"
+            v-bind="$route.meta?.name === 'kubernetesiso' && ['details','zones'].includes(tabs[0].name) ? { observation: kubernetesIsoObservation } : {}"
+            @show-zones="$route.meta?.name === 'kubernetesiso' && onTabChange('zones')"
+            @refresh-availability="refreshKubernetesIsoAvailability"
             @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tabs[0].name))) && $emit('refresh')"
             v-on="$route.meta?.name === 'template' && tabs[0].name === 'zones' ? { 'availability-observed': acceptTemplateObservation, 'operation-retained': value => $emit('template-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : $route.meta?.name === 'iso' && tabs[0].name === 'zones' ? { 'operation-retained': value => $emit('iso-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : {}"
             @wide-layout-change="onWideLayoutChange" />
@@ -77,6 +80,9 @@
                   :resourceType="tab.resourceType"
                   :loading="loading && !(quietRefresh && tab.name === 'details' && resource.id && resource.id === $route.params?.id)"
                   :tab="activeTab"
+                  v-bind="$route.meta?.name === 'kubernetesiso' && ['details','zones'].includes(tab.name) ? { observation: kubernetesIsoObservation } : {}"
+                  @show-zones="$route.meta?.name === 'kubernetesiso' && onTabChange('zones')"
+                  @refresh-availability="refreshKubernetesIsoAvailability"
                   @change-resource="$emit('change-resource', $event)"
                   @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tab.name))) && $emit('refresh')"
                   v-on="$route.meta?.name === 'template' && tab.name === 'zones' ? { 'availability-observed': acceptTemplateObservation, 'operation-retained': value => $emit('template-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : $route.meta?.name === 'iso' && tab.name === 'zones' ? { 'operation-retained': value => $emit('iso-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : {}"
@@ -96,6 +102,8 @@ import { networkTabRoute, uniqueTabs, selectedNetworkTab } from '@/utils/network
 import { conditionalGuestTab, guestFeatureStatus } from '@/utils/conditionalGuestNetwork'
 import DetailsTab from '@/components/view/DetailsTab'
 import InfoCard from '@/components/view/InfoCard'
+import KubernetesIsoSummary from '@/components/view/KubernetesIsoSummary'
+import { kubernetesIsoDetailContext } from '@/utils/kubernetesIsoDetails'
 import AutoScaleInfoSummary from '@/views/compute/AutoScaleInfoSummary'
 import AffinityGroupSummary from '@/views/compute/AffinityGroupSummary'
 import StorageSnapshotSummary from '@/views/storage/StorageSnapshotSummary'
@@ -109,6 +117,7 @@ export default {
   name: 'ResourceView',
   components: {
     InfoCard,
+    KubernetesIsoSummary,
     AutoScaleInfoSummary,
     AffinityGroupSummary,
     StorageSnapshotSummary,
@@ -158,10 +167,12 @@ export default {
       conditionalTabNotice: '',
       networkService: null,
       projectAccount: null,
+      kubernetesIsoObservation: null,
       wideLayout: false
     }
   },
   computed: {
+    kubernetesIsoContext () { return this.$route.meta?.name === 'kubernetesiso' ? kubernetesIsoDetailContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token) : '' },
     templateTabsReady () { return this.$route.meta?.name === 'template' && !!this.resource.id && (!this.$route.params?.id || this.$route.params.id === this.resource.id) },
     templateTabScope () { return this.$route.meta?.name === 'template' ? JSON.stringify([this.templateContext, this.resource.templatetype, Object.keys(this.$store.getters.apis || {}).sort()]) : '' },
     templateContext () { return templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token) },
@@ -178,6 +189,7 @@ export default {
     }
   },
   watch: {
+    kubernetesIsoContext: { flush: 'sync', handler () { this.kubernetesIsoObservation = null } },
     templateTabScope () { if (this.templateTabsReady) this.setActiveTab() },
     templateContext () { this.templateZoneObservation = null },
     renderedTabs () { if (this.isNetworkTabs) this.setActiveTab() },
@@ -210,6 +222,10 @@ export default {
     window.removeEventListener('popstate', this.setActiveTab)
   },
   methods: {
+    refreshKubernetesIsoAvailability () { return this.$refs.kubernetesIsoSummary?.refresh() },
+    acceptKubernetesIsoObservation (value) {
+      if (this.$route.meta?.name === 'kubernetesiso' && value?.versionid === this.resource.id && value?.isoid === this.resource.isoid && value.context === this.kubernetesIsoContext) this.kubernetesIsoObservation = value
+    },
     acceptTemplateObservation (observation) {
       if (this.$route.meta?.name === 'template' && observation?.context === this.templateContext && observation.templateid === this.resource.id) this.templateZoneObservation = observation
     },
@@ -232,7 +248,7 @@ export default {
         })
       }
     },
-    tabInstanceKey (tab) { return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
+    tabInstanceKey (tab) { if (this.$route.meta?.name === 'kubernetesiso') return this.kubernetesIsoContext + ':' + tab.name; return this.isNetworkTabs ? this.networkTabScope + ':' + tab.name : tab.name },
     onTabChange (key) {
       this.conditionalTabNotice = ''
       this.activeTab = key
@@ -282,7 +298,7 @@ export default {
     setActiveTab () {
       const requestedTab = this.$route.query.tab || this.historyTab
       const network = networkTabRoute(this.$route)
-      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : ['template', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
+      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : ['kubernetesiso', 'template', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
       const selected = network ? selectedNetworkTab(available, requestedTab) : available.find(tab => tab.name === requestedTab) || available[0]
       this.activeTab = selected ? selected.name : ''
       // Invalid library deep links use the visible fallback tab in the URL too.
@@ -291,7 +307,7 @@ export default {
       // canonicalize its URL.
       const routeTabs = this.$route.meta?.tabs
       const ownsRouteTabs = (this.$route.meta?.name === 'publicip' || !routeTabs) || (routeTabs.length === this.tabs.length && routeTabs.every((tab, index) => tab.name === this.tabs[index].name))
-      if (ownsRouteTabs && ((network && this.networkTabsReady) || this.templateTabsReady || ['userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
+      if (ownsRouteTabs && ((network && this.networkTabsReady) || this.templateTabsReady || ['kubernetesiso', 'userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
         if (this.$route.meta?.name === 'guestnetwork' && conditionalGuestTab(requestedTab)) {
           this.conditionalTabNotice = guestFeatureStatus(requestedTab, this.resource, this.$store.getters)
         } else if (this.$route.meta?.name === 'guestnetwork' && this.resource.type === 'L2' &&
