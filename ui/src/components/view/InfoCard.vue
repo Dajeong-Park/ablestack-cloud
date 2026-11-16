@@ -1433,6 +1433,9 @@ export default {
   },
   methods: {
     publicIpFieldLabel,
+    getImage (image) {
+      return image || this.resource?.icon?.base64image || this.resource?.resourceIcon?.base64image || null
+    },
     networkTypeLabel,
     policyVolumePath,
     volumeVmPath,
