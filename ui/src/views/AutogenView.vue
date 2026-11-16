@@ -2008,11 +2008,13 @@ export default {
       }
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
-      if ((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route)) && !this.dataView) && !sameList) {
+      const publicIpList = this.$route.meta?.name === 'publicip' && !this.$route.params?.id && !this.$route.query?.dataView
+      if ((publicIpList || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route)) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
+        if (publicIpList && typeof this.$refs.listview?.closeContextQuickView === 'function') this.$refs.listview.closeContextQuickView()
       }
       const schemaScope = JSON.stringify([this.$route.path, this.$i18n?.locale, this.$store.getters.metrics, this.$store.getters.listAllProjects, this.$store.getters.userInfo?.id, this.isSnapshotCopyList, ...(this.isObjectStorageUi ? [this.$store.getters.project?.id, this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token] : [])])
       const rebuildSchema = this.listSchemaScope !== schemaScope
