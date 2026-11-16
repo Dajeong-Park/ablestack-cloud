@@ -97,5 +97,8 @@ export default {
 .public-ip-search-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 .public-ip-search-chips :deep(.ant-tag) { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
 .public-ip-search-tag { display: flex; gap: 4px; margin-bottom: 4px; }
-.public-ip-search-form { max-height: 65vh; overflow-y: auto; width: min(340px, calc(100vw - 64px)); }
+.public-ip-search-form { max-height: 65vh; overflow-y: auto; width: min(340px, calc(100vw - 64px)); scroll-padding-bottom: 48px; }
+.public-ip-search-form :deep(.ant-form-item-extra) { color: var(--ui-text-secondary); overflow-wrap: anywhere; }
+.public-ip-search-form .filter-group-button { position: sticky; bottom: 0; z-index: 1; display: flex; justify-content: space-between; gap: 8px; padding-top: 8px; background: var(--ui-bg-elevated); border-top: 1px solid var(--ui-border); }
+.public-ip-search-form .filter-group-button :deep(.ant-btn) { position: static; }
 </style>
