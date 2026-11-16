@@ -12156,6 +12156,7 @@
   "message.kubernetes.iso.local.stop": "전송 중단",
   "label.kubernetes.iso.minimum.mode": "최소 버전 기준",
   "label.kubernetes.iso.minimum.version": "등록 버전 선택",
+  "label.minimumkubernetesversionid": "최소 등록 버전",
   "message.kubernetes.iso.search.minimum": "숫자로 된 세 부분 이상의 버전을 입력하세요. 예: 1.30.0",
   "message.kubernetes.iso.search.lookup": "허용된 기준 버전 목록을 확인하지 못했습니다. 다시 조회하세요.",
   "message.kubernetes.iso.search.unsupported": "현재 API가 지원하지 않는 검색 조건입니다. 조건을 초기화하거나 새로고침하세요.",

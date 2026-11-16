@@ -12148,6 +12148,7 @@
   "message.kubernetes.iso.local.stop": "Stop transfer",
   "label.kubernetes.iso.minimum.mode": "Minimum version criterion",
   "label.kubernetes.iso.minimum.version": "Registered version",
+  "label.minimumkubernetesversionid": "Minimum registered version",
   "message.kubernetes.iso.search.minimum": "Enter a numeric version with at least three parts, for example 1.30.0.",
   "message.kubernetes.iso.search.lookup": "Could not read the permitted minimum-version choices. Retry the lookup.",
   "message.kubernetes.iso.search.unsupported": "The current API does not support this search condition. Reset the filters or refresh.",
