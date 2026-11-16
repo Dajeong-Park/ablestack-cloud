@@ -46,7 +46,7 @@
       <span v-else>
         {{ $t(item.meta.title) }}
       </span>
-      <span v-if="index === (breadList.length - 1)" style="margin-left: 8px">
+      <span v-if="index === (breadList.length - 1)" class="breadcrumb-controls" style="margin-left: 8px">
         <a-tooltip placement="bottom">
           <template #title>
             {{ $t('label.open.documentation') }}
