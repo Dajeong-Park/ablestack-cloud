@@ -1,0 +1,34 @@
+{
+  "status": "complete",
+  "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+  "pr": 1691,
+  "scope": "Public IP breadcrumb and toolbar styles only",
+  "local": {
+    "suites": 11,
+    "tests": 250,
+    "lint": "PASS",
+    "productionUiBuild": "PASS",
+    "fullCloudBuild": false,
+    "actionsDispatch": false
+  },
+  "live": {
+    "clusters": [
+      31,
+      32
+    ],
+    "finalSourceMatrixCases": 24,
+    "page2FilterReturnCases": 2,
+    "hoverCases": 2,
+    "keyboardFocusCases": 2,
+    "actualStickyScrollCases": 2,
+    "labelledStateFilterCases": 2,
+    "vmBoundary": "unchanged14px VM breadcrumb verified"
+  },
+  "cleanup": {
+    "objectsCreated": 0,
+    "tabsClosed": 2,
+    "defaultsRestored": true,
+    "temporaryPreviewCleared": true
+  },
+  "pending": []
+}

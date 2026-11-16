@@ -1,0 +1,18 @@
+{
+  "base": "4f2b769afb5c33ebb8b6e8042c1d73f47826ab50",
+  "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+  "files": [
+    {
+      "path": "ui/src/components/widgets/Breadcrumb.vue",
+      "sha256": "ba6e5bd35c1c5a73da3d1c082bf215fc2c21f79aad510a38147af2a810a44611"
+    },
+    {
+      "path": "ui/src/style/components/view/public-ip-breadcrumb.css",
+      "sha256": "f6a1360d68e5a0385e7ad2214de6499e0b28618040d12e813358c4bae54bb599"
+    },
+    {
+      "path": "ui/src/views/AutogenView.vue",
+      "sha256": "c4758812719ea08da36669a62b8d1436538a0abf26acdd3f119c77b4a14c8838"
+    }
+  ]
+}
