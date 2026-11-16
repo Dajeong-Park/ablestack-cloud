@@ -25,7 +25,7 @@ URL 전용 RegisterKubernetesIso를 현재 운영 MoldDialog(md)로 분리합니
 
 - 서버 최소 버전은 KubernetesVersionService.MIN_KUBERNETES_VERSION=1.11.0입니다. 현재 Java 파서는 점으로 구분한 숫자3개 이상을 허용하며 각 부분은32비트 정수입니다. UI도 같은 범위를 사용합니다. prerelease/v 접두사/NaN은 허용하지 않습니다.
 - CPU≥2, RAM≥2048MB, 정수·최대2147483647을 검증합니다.0/소수/NaN/오버플로를 누락 값으로 바꾸지 않고 해당 필드에서 거절합니다.
-- URL 이름은 선택 사항입니다. 공백을 제거한 이름이 없으면 서버가 전역 v<version>, 특정 Zone v<version>-<zonename>으로 생성합니다. 로컬 이름 필수 조건은 유지합니다.
+- URL 이름은 선택 사항입니다. 공백을 제거한 이름이 없으면 서버가 전역 `v<version>`, 특정 Zone `v<version>-<zonename>`으로 생성합니다. 로컬 이름 필수 조건은 유지합니다.
 - URL은 기존 ISO URL 구문 검증을 재사용하고 서버 UriUtils의 .iso/압축 ISO/.metalink 경로를 확인합니다. http/https/file 구문을 유지하며 DNS/IP·접근 가능성·리다이렉트·인증서·호스트 정책의 최종 판정은 서버에 둡니다.
 - validTemplateChecksum을 재사용하되 DigestHelper.validateChecksumString의6개 알고리즘·정확한 길이를 추가로 제한합니다. 빈 값, 기본 MD5 32hex, {MD5}/{SHA-1}/{SHA-224}/{SHA-256}/{SHA-384}/{SHA-512} 및32/40/56/64/96/128hex를 지원합니다. bare64와 sha256:<hex> 및 알 수 없는 알고리즘은 해당 필드에서 거절합니다.
 - CPU 아키텍처는 카탈로그 API가 명시한 x86_64/aarch64/s390x입니다. 기본은 서버와 같은 x86_64입니다. 새 아키텍처 선택이 실제 부팅/CKS 설치 통과를 뜻하지 않습니다.

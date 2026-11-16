@@ -1,0 +1,25 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "size": 1421312,
+  "sha256": "60c79acb32d39da837de5db98ca37cf19901c9f1d7bbff93ba586b195f9e73fe",
+  "url": "http://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso",
+  "md5": "d69f7a4a251dcc299db705d6a9ebbcdf",
+  "sha512": "a6292e2ea8f5f952a8f8e41578de126b8b23becfdbd3aabc056203a495f36196f469eda92badef8e1bfa109f9e3f685a606a6ef379e58a6ffd75d4e6e3854dc0"
+}

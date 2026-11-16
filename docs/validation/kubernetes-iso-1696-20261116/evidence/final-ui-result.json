@@ -1,0 +1,70 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "catalog": [
+    {
+      "id": "b5fabc77-be13-448e-8643-625e9ff8d1e0",
+      "text": "1.35.9정상1.35.9Ready22048x86_6413-Zone"
+    },
+    {
+      "id": "441b3f20-0a40-48dd-becb-1573c6059867",
+      "text": "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+    }
+  ],
+  "catalogRestored": true,
+  "isoRestored": true,
+  "templatesRestored": true,
+  "vmRestored": true,
+  "vnfEmpty": true,
+  "fieldCases": 18,
+  "invalidInputPosts": 0,
+  "transportFault": "2 targeted UI-generated POST failures before the server; raw interception cleared with Fetch.enable patterns=[]",
+  "reloadReplay": {
+    "case": "fresh capture after reload",
+    "uncertainVisible": true,
+    "registrationPosts": 0,
+    "truncated": false
+  },
+  "acceptedReplay": {
+    "sameParentId": true,
+    "registrationPosts": 0,
+    "truncated": false
+  },
+  "resourceCount": 5,
+  "resourceCleanup": "all5 parent/ISO IDs absent",
+  "keyboard": {
+    "enterValidation": true,
+    "messages": [
+      "1.11.0 이상인 숫자 버전을 입력하세요. 각 숫자는 2147483647 이하여야 합니다.",
+      "http, https 또는 file 주소와 .iso·압축 ISO·.metalink 경로를 입력하세요. 공백이나 잘못된 인코딩은 사용할 수 없습니다."
+    ],
+    "focus": {
+      "label": "쿠버네티스 버전 추가",
+      "tag": "BUTTON",
+      "text": "쿠버네티스 버전 추가"
+    }
+  },
+  "notRun": [
+    "actual Edge/multiple Zones/non-KVM",
+    "ARM/s390x boot or CKS deployment",
+    "primary-storage consumption of direct-download ISO",
+    "local4.21/4.23 upload: #1697"
+  ],
+  "browserRenderExceptions": []
+}
