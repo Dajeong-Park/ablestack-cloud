@@ -77,12 +77,12 @@ export function publicIpParams (query, getters, supported) {
   if (publicIpRoot(getters) && !params.domainid && getters.userInfo?.domainid) { params.domainid = getters.userInfo.domainid; params.isrecursive = true }
   return Object.fromEntries(Object.entries(params).filter(([k]) => k === 'ignoreproject' || tag(k) && supported.tags || supported[k]))
 }
-export function readPublicIpPage (json, params) {
+export function readPublicIpPage (json, params, getters = {}) {
   const body = json?.listpublicipaddressesresponse
   if (!body || body.errorcode || body.publicipaddress !== undefined && !Array.isArray(body.publicipaddress)) throw Error('Invalid Public IP response')
   const rows = body.publicipaddress || []; const count = body.count === undefined && !rows.length ? 0 : Number(body.count)
   if (!Number.isSafeInteger(count) || count < rows.length || count < 0 || new Set(rows.map(r => r.id)).size !== rows.length || rows.some(r => !r.id)) throw Error('Invalid Public IP page')
-  if (rows.some(r => params.state && r.state !== params.state || ['zoneid', 'vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid', 'vlanid', 'account'].some(k => params[k] && r[k] !== params[k] && !(r.state === 'Free' && ['vpcid', 'associatednetworkid', 'account'].includes(k))) || ['issourcenat', 'isstaticnat', 'fordisplay'].some(k => params[k] !== undefined && r[k] !== undefined && String(r[k]) !== String(params[k])) || params.projectid && params.projectid !== '-1' && r.state !== 'Free' && r.projectid !== params.projectid || params.ignoreproject && r.projectid)) throw Error('Public IP scope mismatch')
+  if (rows.some(r => params.state && r.state !== params.state || ['zoneid', 'vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid', 'vlanid', 'account'].some(k => params[k] && r[k] !== params[k] && !(k === 'vlanid' && r[k] === undefined && !publicIpRoot(getters)) && !(r.state === 'Free' && ['vpcid', 'associatednetworkid', 'account'].includes(k))) || ['issourcenat', 'isstaticnat', 'fordisplay'].some(k => params[k] !== undefined && r[k] !== undefined && String(r[k]) !== String(params[k])) || params.projectid && params.projectid !== '-1' && r.state !== 'Free' && r.projectid !== params.projectid || params.ignoreproject && r.projectid)) throw Error('Public IP scope mismatch')
   return { rows, count }
 }
 export function publicIpDetailLocation (route, row) { return { path: '/publicip/' + row.id, query: { pipreturn: JSON.stringify(route.query) } } }

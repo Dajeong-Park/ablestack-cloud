@@ -83,3 +83,12 @@ test('allowed User VLAN UUID and explicit empty tag value are retained as server
  expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
  expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
 })
+
+test('a permitted VLAN filter respects restricted DTO fields without recovering hidden identifiers', () => {
+ const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Reserved' }] } }
+ const user = { userInfo: { roletype: 'User' } }
+ expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
+ expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+ data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
+ expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
+})

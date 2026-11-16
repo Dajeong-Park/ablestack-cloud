@@ -2467,7 +2467,7 @@ export default {
           this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = true
           return
         }
-        if (publicIpList) readPublicIpPage(json, params)
+        if (publicIpList) readPublicIpPage(json, params, this.$store.getters)
         if (this.publicIpDetail) validatePublicIpDetail(json, this.$route.params.id)
         const networkPage = guestNetworkRoute(this.$route) && !this.dataView ? readNetworkPage(json, 'listNetworks', 'network', params) : null
         const vnfPage = vnfRoute(this.$route) && !this.dataView ? readVnfPage(json, params) : null
