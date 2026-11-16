@@ -1,0 +1,25 @@
+[
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "50"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "minimumkubernetesversionid": "edbe46a0-67a7-438b-a935-89ad06533a36",
+      "page": "1",
+      "pagesize": "10"
+    }
+  }
+]

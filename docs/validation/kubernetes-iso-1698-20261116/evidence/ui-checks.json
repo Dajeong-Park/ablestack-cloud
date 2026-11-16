@@ -1,0 +1,382 @@
+[
+  {
+    "label": "keyword-12",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&page=1&pagesize=20&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64",
+      "qa-kiso1698-page-high-arm정상1.36.1Ready22048aarch6413-Zone",
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 1-12 표시"
+    ],
+    "expected": "12 rows/count12"
+  },
+  {
+    "label": "page-size-10-url",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 1-10 표시"
+    ],
+    "expected": "10 rows,count12,page1"
+  },
+  {
+    "label": "last-page",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&page=2&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-arm정상1.36.1Ready22048aarch6413-Zone",
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 11-12 표시"
+    ],
+    "expected": "high ARM/global 2 rows,count12,page2"
+  },
+  {
+    "label": "minimum-after-page-boundary",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&minimumsemanticversion=1.36.0&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-arm정상1.36.1Ready22048aarch6413-Zone",
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 2 개 항목 중 1-2 표시"
+    ],
+    "expected": "2 matching rows,count2,page reset1"
+  },
+  {
+    "label": "combined-zone-arch-min-keyword",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumsemanticversion=1.36.0&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 1 개 항목 중 1-1 표시"
+    ],
+    "expected": "global x86 row1,count1"
+  },
+  {
+    "label": "uuid-or-and-arch",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=12a075b0-490a-4217-9229-6199c82b00b7&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumsemanticversion=1.36.0&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [],
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "expected": "ARM UUID with x86 filter returns0,count0"
+  },
+  {
+    "label": "numeric-sort-asc",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&sortkey=semanticversion&sortorder=asc&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 1-10 표시"
+    ],
+    "expected": "first .9,.10,.11"
+  },
+  {
+    "label": "global-sort-desc-page1",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&sortkey=semanticversion&sortorder=desc&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64",
+      "qa-kiso1698-page-high-arm정상1.36.1Ready22048aarch6413-Zone",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 1-10 표시"
+    ],
+    "expected": "high-global first,.11 last"
+  },
+  {
+    "label": "global-sort-desc-page2",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&sortkey=semanticversion&sortorder=desc&page=2&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 11-12 표시"
+    ],
+    "expected": ".10,.9 at end of full sorted catalog"
+  },
+  {
+    "label": "return-context-before",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumsemanticversion=1.29.0&sortkey=semanticversion&sortorder=desc&page=2&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 11 개 항목 중 11-11 표시"
+    ],
+    "expected": "all criteria,desc,page2,size10"
+  },
+  {
+    "label": "breadcrumb-restore",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumsemanticversion=1.29.0&sortkey=semanticversion&sortorder=desc&page=2&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 11 개 항목 중 11-11 표시"
+    ],
+    "expected": "exact query restored"
+  },
+  {
+    "label": "page-size-dropdown-reset",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumsemanticversion=1.29.0&sortkey=semanticversion&sortorder=desc&page=1&pagesize=20&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 11 개 항목 중 1-11 표시"
+    ],
+    "expected": "actual size20 selection resets page1"
+  },
+  {
+    "label": "minimum-version-id",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumkubernetesversionid=71ee2178-afa4-4ccd-a595-fa258f40d73c&sortkey=semanticversion&sortorder=desc&page=1&pagesize=20&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 10 개 항목 중 1-10 표시"
+    ],
+    "expected": "10 x86 matches; semantic criterion absent"
+  },
+  {
+    "label": "search-below-register-minimum",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumsemanticversion=1.10.0&sortkey=semanticversion&sortorder=desc&page=1&pagesize=20&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 11 개 항목 중 1-11 표시"
+    ],
+    "expected": "valid numeric1.10 search allowed,count11"
+  },
+  {
+    "label": "valid-zero-result",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&arch=x86_64&minimumsemanticversion=2.0.0&sortkey=semanticversion&sortorder=desc&page=1&pagesize=20&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [],
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "expected": "0 rows/count0"
+  },
+  {
+    "label": "out-of-range-page-recovery",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&page=2&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-page-high-arm정상1.36.1Ready22048aarch6413-Zone",
+      "qa-kiso1698-page-high-global정상1.36.2Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 11-12 표시"
+    ],
+    "expected": "page99 becomes page2"
+  },
+  {
+    "label": "new-search-before-old-response",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=1.36&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 1 개 항목 중 1-1 표시"
+    ],
+    "expected": "keyword1.36 returns named1.36.5 only"
+  },
+  {
+    "label": "delayed-old-200-discarded",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=1.36&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 1 개 항목 중 1-1 표시"
+    ],
+    "expected": "old1.35 response released after new1.36 result; remains1.36.5"
+  },
+  {
+    "label": "last-page-shrink",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&page=1&pagesize=10&kisoowner=33507c0049e2222d86c14d1847014bf13eeda0e4f653be803b12fe1c2c0f280e",
+    "rows": [
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 10 개 항목 중 1-10 표시"
+    ],
+    "expected": "after UI delete2,count10,page2 recovers page1"
+  },
+  {
+    "label": "read-only-old-detail-breadcrumb",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=eb876028f060ff45c330c131966fc9d349ae70168f14d3de925c53ce5bcf9370",
+    "rows": [
+      "1.35.9정상1.35.9Ready22048x86_6413-Zone",
+      "1.36.5정상1.36.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 1-12 표시"
+    ],
+    "expected": "Root return discarded,unfiltered12,page1,size20,newowner"
+  },
+  {
+    "label": "read-only-old-list",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=10&kisoowner=eb876028f060ff45c330c131966fc9d349ae70168f14d3de925c53ce5bcf9370",
+    "rows": [
+      "1.35.9정상1.35.9Ready22048x86_6413-Zone",
+      "1.36.5정상1.36.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-9정상1.29.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 12 개 항목 중 1-10 표시"
+    ],
+    "expected": "old Root criteria discarded; page1,newowner"
+  },
+  {
+    "label": "read-only-registered-minimum",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1698&minimumkubernetesversionid=71ee2178-afa4-4ccd-a595-fa258f40d73c&page=1&pagesize=10&kisoowner=eb876028f060ff45c330c131966fc9d349ae70168f14d3de925c53ce5bcf9370",
+    "rows": [
+      "qa-kiso1698-sort-10정상1.29.10Ready22048x86_6413-Zone",
+      "qa-kiso1698-sort-11정상1.29.11Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-04정상1.30.4Ready22048x86_64",
+      "qa-kiso1698-page-low-05정상1.30.5Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-06정상1.30.6Ready22048x86_64",
+      "qa-kiso1698-page-low-07정상1.30.7Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-08정상1.30.8Ready22048x86_64",
+      "qa-kiso1698-page-low-09정상1.30.9Ready22048x86_6413-Zone",
+      "qa-kiso1698-page-low-10정상1.30.10Ready22048x86_64"
+    ],
+    "pagination": [
+      "전체 9 개 항목 중 1-9 표시"
+    ],
+    "expected": "catalog+Zone only;9/count9,writebuttons absent"
+  },
+  {
+    "label": "catalog-restored",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=0c9857c8310c4265466c870a12c3468fac24c19a9dd3e193b1ac74dac4cb5965",
+    "rows": [
+      "1.35.9정상1.35.9Ready22048x86_6413-Zone",
+      "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 2 개 항목 중 1-2 표시"
+    ],
+    "expected": "original2 IDs only"
+  },
+  {
+    "label": "final-original-regression",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?minimumsemanticversion=1.36.0&page=1&pagesize=20&kisoowner=0c9857c8310c4265466c870a12c3468fac24c19a9dd3e193b1ac74dac4cb5965",
+    "rows": [
+      "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 1 개 항목 중 1-1 표시"
+    ],
+    "expected": "original1.36.5 only,row1/count1"
+  },
+  {
+    "label": "post-owner-deployment-final",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?minimumsemanticversion=1.36.0&page=1&pagesize=20&kisoowner=0c9857c8310c4265466c870a12c3468fac24c19a9dd3e193b1ac74dac4cb5965",
+    "rows": [
+      "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+    ],
+    "pagination": [
+      "전체 1 개 항목 중 1-1 표시"
+    ],
+    "expected": "final build and project cleanup;1.36.5 row1/count1"
+  }
+]
