@@ -375,13 +375,13 @@ export default {
         },
         {
           api: 'getUploadParamsForKubernetesSupportedVersion',
-          dialogWidth: 1000,
+          selfManagedDialog: true,
           icon: 'cloud-upload-outlined',
           label: 'label.kubernetes.version.from.local',
           listView: true,
           popup: true,
           show: (record, getters) => isZoneCreated() && canKubernetesIsoAction('local', record, getters),
-          component: shallowRef(defineAsyncComponent(() => import('@/views/image/AddKubernetesSupportedVersion.vue')))
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/UploadKubernetesIso.vue')))
         },
         {
           api: 'updateKubernetesSupportedVersion',

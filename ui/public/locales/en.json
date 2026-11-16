@@ -12138,5 +12138,12 @@
   "message.kubernetes.iso.registration.failed": "The linked ISO failed to prepare. Review and clean up the existing resource.",
   "message.kubernetes.iso.registration.unqueried": "The linked ISO readiness has not been checked yet.",
   "message.kubernetes.iso.registration.candidates": "Possible matching registrations. Open each item to verify the actual result.",
-  "message.kubernetes.iso.registration.context": "The identity, permissions or project changed. Close the dialog and start again."
+  "message.kubernetes.iso.registration.context": "The identity, permissions or project changed. Close the dialog and start again.",
+  "message.kubernetes.iso.local.file": "Select exactly one nonempty ISO file.",
+  "message.kubernetes.iso.local.requesting": "Requesting a local registration ticket.",
+  "message.kubernetes.iso.local.preparing": "Checking the uploader connection.",
+  "message.kubernetes.iso.local.checking": "Checking the transfer result and linked ISO readiness.",
+  "message.kubernetes.iso.local.done": "The transfer and linked ISO readiness are confirmed. Review the registration audit in the version events.",
+  "message.kubernetes.iso.local.certificate": "Verify uploader certificate",
+  "message.kubernetes.iso.local.stop": "Stop transfer"
 }

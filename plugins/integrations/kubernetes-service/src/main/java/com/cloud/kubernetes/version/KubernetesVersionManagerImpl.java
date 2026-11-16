@@ -186,7 +186,7 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
         return versions;
     }
 
-    private GetUploadParamsResponse registerKubernetesVersionIsoForUpload(final Long zoneId, final String versionName, final String isoChecksum) {
+    private GetUploadParamsResponse registerKubernetesVersionIsoForUpload(final Long zoneId, final String versionName, final String isoChecksum, CPU.CPUArch arch) {
         CallContext.register(CallContext.current(), ApiCommandResourceType.Iso);
         String isoName = String.format("%s-Kubernetes-Binaries-ISO", versionName);
         GetUploadParamsForIsoCmd uploadIso = new GetUploadParamsForIsoCmd();
@@ -197,6 +197,7 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
             uploadIso.setZoneId(zoneId);
         }
         uploadIso.setDisplayText(isoName);
+        uploadIso.setArch(arch.getType());
         uploadIso.setBootable(false);
         if (StringUtils.isNotEmpty(isoChecksum)) {
             uploadIso.setChecksum(isoChecksum);
@@ -464,6 +465,8 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
     }
 
     @Override
+    @ActionEvent(eventType = KubernetesVersionEventTypes.EVENT_KUBERNETES_VERSION_ADD,
+            eventDescription = "Registering Kubernetes supported version for local upload")
     public GetUploadParamsResponse registerKubernetesSupportedVersionForPostUpload(GetUploadParamsForKubernetesSupportedVersionCmd cmd) {
         if (!KubernetesClusterService.KubernetesServiceEnabled.value()) {
             throw new CloudRuntimeException("Kubernetes Service plugin is disabled");
@@ -477,7 +480,8 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
 
         validateKubernetesSupportedVersion(zoneId, semanticVersion, minimumCpu, minimumRamSize, false);
 
-        GetUploadParamsResponse response = registerKubernetesVersionIsoForUpload(zoneId, name, isoChecksum);
+        CPU.CPUArch arch = cmd.getArch();
+        GetUploadParamsResponse response = registerKubernetesVersionIsoForUpload(zoneId, name, isoChecksum, arch);
 
         VMTemplateVO template = templateDao.findByUuid(response.getId().toString());
         KubernetesSupportedVersionVO supportedVersionVO = new KubernetesSupportedVersionVO(name, semanticVersion, template.getId(), zoneId, minimumCpu, minimumRamSize);
