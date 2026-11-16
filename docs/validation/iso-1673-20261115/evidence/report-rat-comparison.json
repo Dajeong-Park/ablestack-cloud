@@ -1,0 +1,17 @@
+{
+  "productHead": "6079c143872c93496418a33883589fe9c0370566",
+  "base": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+  "indexTree": "6dfd7a6cd942d98bdc9a3c83ea3e291b1449d844",
+  "method": "exact staged Git index export excluding ignored build/dependency files",
+  "baselineUnknown": 4077,
+  "currentUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "returnCode": 1,
+  "workspace": "/root/work/.rat-iso1673-report-c8fk_615",
+  "focusedAndManual": {
+    "focused-report": 0,
+    "manual-report": 0
+  },
+  "artifactNote": "This comparison describes the immutable index export before this comparison file was added. Final PR CI covers the committed report itself."
+}

@@ -17,7 +17,8 @@
 
 import { asyncRouterMap, constantRouterMap } from '@/config/router'
 
-function hasAccessToRoute (apis, route) {
+export function hasAccessToRoute (apis, route) {
+  if (Array.isArray(route.meta?.permissionAny)) return route.meta.permissionAny.some(api => apis.includes(api))
   if (!route.meta || !route.meta.permission) {
     return true
   }

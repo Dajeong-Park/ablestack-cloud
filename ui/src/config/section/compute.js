@@ -130,10 +130,11 @@ export default {
       icon: 'cloud-server-outlined',
       docHelp: 'adminguide/virtual_machines.html',
       permission: ['listVirtualMachinesMetrics'],
+      permissionAny: ['listVirtualMachinesMetrics', 'listVirtualMachines'],
       resourceType: 'UserVm',
       params: () => {
         var params = { details: 'group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork' }
-        if (store.getters.metrics) {
+        if (store.getters.metrics && store.getters.apis?.listVirtualMachinesMetrics) {
           params = { details: 'all,stats' }
         }
         return params
@@ -171,7 +172,7 @@ export default {
           })
         }
 
-        if (store.getters.metrics) {
+        if (store.getters.metrics && store.getters.apis?.listVirtualMachinesMetrics) {
           fields.push(...metricsFields)
         }
         fields.push('arch')

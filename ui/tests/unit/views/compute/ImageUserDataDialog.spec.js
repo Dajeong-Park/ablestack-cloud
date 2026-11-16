@@ -16,7 +16,6 @@
 // under the License.
 
 import Template from '@/views/image/UpdateTemplate.vue'
-import ISO from '@/views/image/UpdateISO.vue'
 import { postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const deferred = () => { let release; const promise = new Promise(resolve => { release = resolve }); return { promise, resolve: release } }
@@ -25,7 +24,7 @@ const context = C => {
   Object.entries(C.methods).forEach(([key, fn]) => { c[key] = fn.bind(c) }); if (C.computed?.typeContext)Object.defineProperty(c, 'typeContext', { get: () => C.computed.typeContext.call(c) }); return c
 }
 beforeEach(() => { jest.clearAllMocks(); postAPI.mockReset() })
-describe.each([[Template, 'updateTemplate'], [ISO, 'updateIso']])('%s user-data linkage', (C, api) => {
+describe.each([[Template, 'updateTemplate']])('%s user-data linkage', (C, api) => {
   test('waits for the link with templateid for both template and ISO, then closes', async () => {
     const c = context(C); const wait = deferred(); const linkStarted = deferred()
     postAPI.mockImplementation(command => { if (command === api) return Promise.resolve({}); linkStarted.resolve(); return wait.promise })

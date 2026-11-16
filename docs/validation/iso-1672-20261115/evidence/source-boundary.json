@@ -1,0 +1,83 @@
+{
+  "previousCode": "764d1ec4635e26ac91b0f9951a2aa67f2aaa4e19",
+  "runtimeInput": "/root/work/.build-iso1671-20261115/ui",
+  "buildInput": "/root/work/.build-iso1672-20261115/ui",
+  "files": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/components/view/ImageDeployInstanceButton.vue",
+    "src/config/section/image.js",
+    "src/utils/isoConsumption.js",
+    "src/utils/isoModel.js",
+    "src/views/compute/VmIsoManager.vue",
+    "src/views/compute/wizard/TemplateIsoSelection.vue",
+    "src/views/image/IsoDownload.vue",
+    "src/views/image/IsoVmAttach.vue",
+    "src/views/image/IsoZones.vue",
+    "tests/unit/views/compute/VmIsoManager.spec.js",
+    "tests/unit/views/image/IsoConsumption.spec.js"
+  ],
+  "hashes": {
+    "public/locales/en.json": "46575350f97715f75b44a57b5f9425ad973afbd936a2ae0f78ea9a6af5c29901",
+    "public/locales/ko_KR.json": "c77a78a9c65ea9f6f98e32219daeacff9c7cbffee8c387d4283a4fba28734f26",
+    "src/components/view/ImageDeployInstanceButton.vue": "a4f7f9f83207946dec6a87e5fe2ea3aff2c6a77fd90bc9a649bb53b30129c8ff",
+    "src/config/section/image.js": "e5855b2992c06264819dbdaeef1fd4ed4896edc8bcfb12ecadb05475afbdca4b",
+    "src/utils/isoConsumption.js": "38a7acfc709cb8edcef2f56adc229bc1485abb49cf58167c850590009fc8f46d",
+    "src/utils/isoModel.js": "df5c6551c2ddc70baff38d670babebc6bd465e3cd14789e322eb940557d3dfa1",
+    "src/views/compute/VmIsoManager.vue": "4a46d76b3ea3ce22668a5bc22b4142f1b66eb1765394470a0f27ae46ca7ce8dc",
+    "src/views/compute/wizard/TemplateIsoSelection.vue": "bdd24715c799c1e243cef56414944891713c312a898e41ed2b746de66ddebbea",
+    "src/views/image/IsoDownload.vue": "3e59739359e97ea0a0c5fe57380f5be53620f0d691e9e51bcb7d8153a7f47224",
+    "src/views/image/IsoVmAttach.vue": "026e30f07cca1d50d17b7c70c8fb146aa89cd6f4c77493f3cb73d04fb5459662",
+    "src/views/image/IsoZones.vue": "dffb2484766110706ddd123f914cbca3c2e203d4f4c28f2c851f9715c1742260",
+    "tests/unit/views/compute/VmIsoManager.spec.js": "925ceee32d2234a68c62ef9400b8267be35935ec58593a407567060e23539a0e",
+    "tests/unit/views/image/IsoConsumption.spec.js": "dbefb7bc6242a8442f8321c948dae1e9b0f1590cc73915d570c8652f929954db"
+  },
+  "localeKeys": {
+    "en": [
+      "label.iso.attach.vm",
+      "label.iso.download.prepare",
+      "label.iso.download.receive",
+      "label.iso.download.reprepare",
+      "message.iso.consume.attached",
+      "message.iso.consume.read.failed",
+      "message.iso.consume.vm.empty",
+      "message.iso.download.failed",
+      "message.iso.download.invalid",
+      "message.iso.download.nojob",
+      "message.iso.download.observe.failed",
+      "message.iso.download.preparing",
+      "message.iso.download.read.failed",
+      "message.iso.download.ready",
+      "message.iso.download.requested",
+      "message.iso.download.unknown"
+    ],
+    "ko_KR": [
+      "label.iso.attach.vm",
+      "label.iso.download.prepare",
+      "label.iso.download.receive",
+      "label.iso.download.reprepare",
+      "message.iso.consume.attached",
+      "message.iso.consume.read.failed",
+      "message.iso.consume.vm.empty",
+      "message.iso.download.failed",
+      "message.iso.download.invalid",
+      "message.iso.download.nojob",
+      "message.iso.download.observe.failed",
+      "message.iso.download.preparing",
+      "message.iso.download.read.failed",
+      "message.iso.download.ready",
+      "message.iso.download.requested",
+      "message.iso.download.unknown"
+    ]
+  },
+  "productHead": "75a0681bd8e64da6c2a6ce34dd69d361de5d9207",
+  "method": "three-way ISO-only delta on exact prior operating input; unrelated source and locale/configuration preserved",
+  "unrelatedOperatingSourceFilesEqual": 1015,
+  "addedFiles": [
+    "src/utils/isoConsumption.js",
+    "src/views/image/IsoDownload.vue",
+    "src/views/image/IsoVmAttach.vue",
+    "tests/unit/views/image/IsoConsumption.spec.js"
+  ],
+  "downloadStatusCorrection": "one status alert; preparation failure versus observation unknown/no job ID; clear requested receipt flag on disposal"
+}

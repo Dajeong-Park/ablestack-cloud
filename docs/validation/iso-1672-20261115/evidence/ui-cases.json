@@ -1,0 +1,1096 @@
+[
+  {
+    "name": "baseline-original-isos",
+    "at": "2026-11-15T11:56:58.433Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "VirtIO Windows Driver 0.1.302",
+    "at": "2026-11-15T12:02:43.562Z",
+    "createVmButtons": 0,
+    "attachEntry": 0,
+    "downloadEntry": 1
+  },
+  {
+    "name": "baseline-data-zone",
+    "at": "2026-11-15T12:05:34.546Z",
+    "text": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 10. 7. 오후 1:47:19\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "attachButtons": 0
+  },
+  {
+    "name": "qa-account-created",
+    "at": "2026-11-15T12:08:10.826Z",
+    "href": "#/account/5f6db9ae-eaf0-4bba-8aa2-02983f4d557b",
+    "role": "User"
+  },
+  {
+    "name": "url-data-iso-ready",
+    "at": "2026-11-15T12:10:24.492Z",
+    "dialog": "ISO 등록\nqa-iso1672-url-data\n6d263eb9-c932-4404-ac6e-d267252192d7\nISO 등록 요청\n준비 상태 확인\n사용자 데이터 연결\n4\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기"
+  },
+  {
+    "name": "local-boot-iso-uploaded",
+    "at": "2026-11-15T12:11:46.239Z",
+    "dialog": "로컬에서 ISO 업로드\nqa-iso1672-local-boot\nf1f65764-b8e3-4d5a-8639-08bf9e1ef7c3\nISO 등록 요청\n파일 전송\n3\n준비 상태 확인\n4\n사용자 데이터 연결\n5\n완료\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n닫기\n상태 확인\n등록한 ISO 보기",
+    "ready": false
+  },
+  {
+    "name": "local-boot-iso-ready",
+    "at": "2026-11-15T12:12:31.779Z",
+    "dialog": "로컬에서 ISO 업로드\nqa-iso1672-local-boot\nf1f65764-b8e3-4d5a-8639-08bf9e1ef7c3\nISO 등록 요청\n파일 전송\n준비 상태 확인\n사용자 데이터 연결\n5\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기",
+    "ready": true
+  },
+  {
+    "name": "baseline-local-boot-detail",
+    "at": "2026-11-15T12:12:44.818Z",
+    "text": "/ISO/qa-iso1672-local-boot업데이트\n작업\nqa-iso1672-local-boot\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\nf1f65764-b8e3-4d5a-8639-08bf9e1ef7c3 \nOS 유형\nOther Linux (64-bit)\n계정\nqa-iso1672-user\n도메인\nROOT\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1672-local-boot\n아이디\n\nf1f65764-b8e3-4d5a-8639-08bf9e1ef7c3\n설명\n\nqa-iso1672-local-boot\n체크섬\n\nc954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc\nOS 유형\n\nOther Linux (64-bit)\n크기\n23.30 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n예\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n예\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1672-user\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 9:10:56"
+  },
+  {
+    "name": "baseline-boot-wizard",
+    "at": "2026-11-15T12:13:29.798Z",
+    "url": "http://10.10.13.10:8080/client/#/action/deployVirtualMachine?zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&isoid=f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3&arch=x86_64&oscategoryid=471d30c6-bd56-11f1-b573-002481560363",
+    "sourceSelected": true,
+    "availableNetworkCount": 0,
+    "submitted": false
+  },
+  {
+    "name": "qa-network-created",
+    "at": "2026-11-15T12:15:07.885Z",
+    "rows": [
+      {
+        "id": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+        "text": "\t\n\t qa-iso1672-net\tIsolated\t\tYes"
+      },
+      {
+        "id": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+        "text": "\t\nqa-iso1672-net\nCIDR: 172.31.167.0/24\t\n자동 할당\n비우면 자동 할당합니다. 허용 범위의 IP를 직접 입력할 수도 있습니다.\n이 역할은 IP 후보 조회를 지원하지 않습니다. 자동 할당 또는 직접 입력을 사용할 수 있습니다.\n\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "qa-network-ledger-deduplicated",
+    "at": "2026-11-15T12:15:51.684Z",
+    "count": 1,
+    "id": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb"
+  },
+  {
+    "name": "baseline-data-detail",
+    "at": "2026-11-15T12:15:53.061Z",
+    "text": "/ISO/qa-iso1672-url-data업데이트\n작업\nqa-iso1672-url-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7 \nOS 유형\nNone\n계정\nqa-iso1672-user\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1672-url-data\n아이디\n\n6d263eb9-c932-4404-ac6e-d267252192d7\n설명\n\nqa-iso1672-url-data\n체크섬\n\n171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4\nOS 유형\n\nNone\n크기\n1.46 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n예\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1672-user\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 9:09:31\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1672-20261115/data-fixture.iso"
+  },
+  {
+    "name": "test-catalog-ready",
+    "at": "2026-11-15T12:18:18.264Z",
+    "text": "/ISO/qa-iso1672-url-data업데이트\n작업\nqa-iso1672-url-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7 \nOS 유형\nNone\n계정\nqa-iso1672-user\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1672-url-data\n아이디\n\n6d263eb9-c932-4404-ac6e-d267252192d7\n설명\n\nqa-iso1672-url-data\n체크섬\n\n171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4\nOS 유형\n\nNone\n크기\n1.46 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n예\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1672-user\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 9:09:31\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1672-20261115/data-fixture.iso",
+    "isoCount": 2,
+    "networkCount": 1,
+    "vmCount": 0
+  },
+  {
+    "name": "release-data-attach-no-vm",
+    "at": "2026-11-15T12:24:55.051Z",
+    "dialog": "기존 VM에 ISO 연결\nISO 이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nVM\n이 ISO의 Zone에서 조회 가능한 VM이 없습니다.\n취소\n다음",
+    "nextDisabled": true
+  },
+  {
+    "name": "release-download-busy-keyboard",
+    "at": "2026-11-15T12:26:24.348Z",
+    "posts": 1,
+    "duplicates": 0,
+    "unexpected": 0,
+    "dialogVisible": 1,
+    "closeDisabled": true,
+    "injection": "first expected extractIso POST held before server; no synthetic job result"
+  },
+  {
+    "name": "release-url-download-prepared",
+    "at": "2026-11-15T12:27:31.547Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n다운로드 준비가 완료되었습니다. 실제 파일 수신 여부는 브라우저의 다운로드 목록에서 확인하세요.\n닫기\n다시 준비\n파일 받기",
+    "link": {
+      "protocol": "http:",
+      "rel": "noopener noreferrer",
+      "tag": "A",
+      "target": "_blank"
+    },
+    "receiptConfirmed": false
+  },
+  {
+    "name": "url-download-requested-not-received",
+    "at": "2026-11-15T12:29:04.191Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n다운로드 준비가 완료되었습니다. 실제 파일 수신 여부는 브라우저의 다운로드 목록에서 확인하세요.\n브라우저에 파일 받기를 요청했습니다. 파일 수신 완료를 뜻하지 않습니다.\n닫기\n다시 준비\n파일 받기",
+    "downloadEvent": false,
+    "newMatchingDefaultFolderFiles": 0,
+    "manualRequested": true
+  },
+  {
+    "name": "actual-file-receipts",
+    "at": "2026-11-15T12:30:17.963Z",
+    "userReply": "두 파일 다운로드 완료",
+    "files": [
+      {
+        "name": "qa-iso1672-local-boot.iso",
+        "path": "C:/Users/ablecloud/Downloads/qa-iso1672-local-boot.iso",
+        "bytes": 24434688,
+        "sha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+        "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+        "source": "local",
+        "mtime": "2026-11-15T12:29:54.115Z",
+        "receivedBy": "user manual browser download"
+      },
+      {
+        "name": "qa-iso1672-url-data.iso",
+        "path": "C:/Users/ablecloud/Downloads/qa-iso1672-url-data.iso",
+        "bytes": 1525760,
+        "sha256": "171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4",
+        "isoid": "6d263eb9-c932-4404-ac6e-d267252192d7",
+        "source": "URL",
+        "mtime": "2026-11-15T12:29:03.853Z",
+        "receivedBy": "user manual browser download"
+      }
+    ],
+    "allExpectedMatched": true
+  },
+  {
+    "name": "local-download-job-and-manual-receipt",
+    "at": "2026-11-15T12:32:40.487Z",
+    "api": {
+      "request": {
+        "jobid": "8a3a26a3-26e7-4503-b2e7-83fa59aa7ab4"
+      },
+      "jobstatus": 1,
+      "hasPreparedUrl": true
+    },
+    "actualBytes": 24434688,
+    "actualSha256": "c954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc",
+    "manualSource": "user confirmed two files; filesystem verification passed",
+    "manualDialogClosed": true
+  },
+  {
+    "name": "release-boot-wizard-review",
+    "at": "2026-11-15T12:36:49.284Z",
+    "url": "http://10.10.13.10:8080/client/#/action/deployVirtualMachine?zoneid=f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f&isoid=f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3&arch=x86_64&oscategoryid=471d30c6-bd56-11f1-b573-002481560363",
+    "summary": "스케줄을 할당하면 자동 및 예약 백업을 통해 데이터를 보호할 수 있습니다.\nSelect backup offering\n9\n확장 모드\n고급 설정 표시 \n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nFT 호환성\n일반 호환성\nTPM 활성화\n템플릿 설정 사용 (미지정 시 사용 안 함)\n사용자 데이터\n\n\n\nUser Data 덮어쓰기 \n추가 설정\nAffinity 그룹\n이 VM이 속할 Affinity 그룹을 선택하십시오. \n전체 선택: 0\n모든 페이지 선택 해제\n\n표 머리글의 체크박스는 현재 페이지에만 적용됩니다. 검색·페이지를 바꿔도 전체 선택은 유지되며, 아래 항목에서 개별 해제할 수 있습니다.\n\n\tAffinity 그룹\t유형\t설명\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽\nNIC multiqueue 수\nNIC 압축 virtqueues 활성화\nIOThreads\nIO 드라이버 정책\n10\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n대상 소유 범위에 그룹이 없습니다. 새 이름을 입력하면 해당 소유 범위에 생성합니다.\n업데이트\n키보드 언어\n생성할 가상머신 수\n가상머신 생성 후 바로 시작\n\n요청한 모든 디스크의 생성·연결이 완료되면 가상머신을 시작합니다.\n\n귀하의 가상머신\nqa-iso1672-liveboot\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n디스크 크기(GB 단위)\n1 GB (Root)\n네트워크\n qa-iso1672-net (기본)\n루트 디스크의 기본 스토리지\n자동 선택 · 1 GB\n설치 원본 ISO\nqa-iso1672-local-boot\n연결된 ISO\nqa-iso1672-local-boot\n컴퓨트 오퍼링\n1C1GB\n디스크 오퍼링\ncustom (Root)\nZone\n13-Zone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\nVM 시작",
+    "sourceIsoId": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+    "compute": "1C1GB",
+    "rootGiB": 1,
+    "networkId": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+    "bootType": "BIOS",
+    "startAfterCreate": true
+  },
+  {
+    "name": "release-vm-create-accepted",
+    "at": "2026-11-15T12:38:10.278Z",
+    "api": {
+      "request": {
+        "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+        "templateid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+        "serviceofferingid": "89e587e6-3dc6-493b-9472-756ec2073c95",
+        "diskofferingid": "b42a2abc-11e8-411e-a666-375aff87065c",
+        "bootmode": "LEGACY",
+        "boottype": "BIOS"
+      },
+      "accepted": true,
+      "httpStatus": 200
+    },
+    "vmName": "qa-iso1672-liveboot"
+  },
+  {
+    "name": "release-vm-running",
+    "at": "2026-11-15T12:38:32.332Z",
+    "text": "/가상머신업데이트\n소유 \n메트릭\n프로젝트\n가상머신 추가\n\t\nISO : f1f65764-b8e3-4d5...\n\t\nVM 표시 명\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n컴퓨트 오퍼링\n\t\nZone\n\t\n\n\n\tqa-iso1672-liveboot\t\n실행 중\n\t\n1 CPU\n1024 MB\n\t\t\n172.31.167.97 \n\tUSER\t\t\t1C1GB\t13-Zone\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "api": {
+      "request": {
+        "page": "1",
+        "pagesize": "20"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Running",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+          "isos": [
+            {
+              "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+              "name": "qa-iso1672-local-boot",
+              "deviceseq": 3,
+              "bootable": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "guest-live-iso-boot-confirmed",
+    "at": "2026-11-15T12:40:11.174Z",
+    "vmid": "5c335d63-38a8-4dda-8534-39324845637a",
+    "sourceIsoId": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+    "observed": "TinyCore Linux banner and tc@box:~$ shell prompt in actual noVNC console",
+    "method": "Mold UI console; no host SSH or direct VM API",
+    "installationClaimed": false
+  },
+  {
+    "name": "guest-console-optional-key-input",
+    "at": "2026-11-15T12:42:05.037Z",
+    "typingSupported": false,
+    "reason": "documented canvas text entry and raw CDP key method unavailable; no command output claimed",
+    "bootPromptScreenshot": "guest-tinycore-boot.jpg"
+  },
+  {
+    "name": "release-vm-primary-media",
+    "at": "2026-11-15T12:42:42.307Z",
+    "text": "ISO 연결\n선택 연결 해제\n업데이트\n\t이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-iso1672-local-boot\t3\t부팅 가능\t연결됨\t\n연결 해제",
+    "api": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Running",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+          "isos": [
+            {
+              "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+              "name": "qa-iso1672-local-boot",
+              "deviceseq": 3,
+              "bootable": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "release-iso-to-vm-prefill",
+    "at": "2026-11-15T12:43:40.569Z",
+    "dialog": "ISO 연결\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n추가로 연결할 수 있는 ISO: 1개\nVMware Tools Installer ISO\nvmware-tools.iso\n13-Zone · 데이터 미디어\nXenServer Tools Installer ISO (xen-pv-drv-iso)\nxs-tools.iso\n13-Zone · 데이터 미디어\nWindows Server 2025 x86_64 DVD\nWindows Server 2025 x86_64 DVD\n13-Zone · 부팅 가능\nWindows 용 ABLESTACK 드라이버\nVirtIO Windows Driver 0.1.302\n13-Zone · 데이터 미디어\nABLESTACK-Diplo-v4.2.1.iso\nABLESTACK-Diplo-v4.2.1.iso\n13-Zone · 부팅 가능\n1.35.9-Kubernetes-Binaries-ISO\n1.35.9-Kubernetes-Binaries-ISO\n13-Zone · 데이터 미디어\n1.36.5-Kubernetes-Binaries-ISO\n1.36.5-Kubernetes-Binaries-ISO\n13-Zone · 데이터 미디어\nqa-iso1672-url-data\nqa-iso1672-url-data\n13-Zone · 데이터 미디어\n\nISO별 완료를 확인한 후 다음 ISO를 연결합니다. 부팅 가능 속성은 현재 VM의 부팅 순서를 의미하지 않습니다.\n\n취소\n1개 ISO 연결",
+    "selectedCheckboxes": 1,
+    "postBeforeConfirm": 0
+  },
+  {
+    "name": "release-running-data-attach-complete",
+    "at": "2026-11-15T12:44:16.660Z",
+    "dialog": "ISO 작업 결과\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n성공 1 · 실패 0 · 결과 미확인 0 · 미제출 0 · 진행 중 0\nqa-iso1672-url-data\n\n작업 ID: f3d4c61b-fb7b-4f43-b618-b770e6e4eb96\n\n성공\n\n명시적으로 실패한 ISO만 재시도합니다. 결과 미확인 작업은 다시 제출하지 않고 상태를 조회합니다. 작업 ID가 없는 경우 관리자에게 실제 연결 상태 확인을 요청해 주세요.\n\n닫기",
+    "api": {
+      "request": {
+        "id": "6d263eb9-c932-4404-ac6e-d267252192d7",
+        "virtualmachineid": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "accepted": true,
+      "httpStatus": 200
+    }
+  },
+  {
+    "name": "release-already-attached-blocked",
+    "at": "2026-11-15T12:44:44.250Z",
+    "option": "qa-iso1672-liveboot · 13-Zone · 이 ISO는 이미 해당 VM에 연결되어 있습니다.",
+    "optionDisabled": true,
+    "nextDisabled": true,
+    "attachPostsSinceFirstConfirm": 1
+  },
+  {
+    "name": "release-full-two-media",
+    "at": "2026-11-15T12:45:35.511Z",
+    "text": "ISO 연결\n선택 연결 해제\n업데이트\nISO 작업 결과: 성공 1 · 실패 0 · 결과 미확인 0 · 미제출 0 · 진행 중 0\n\t이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-iso1672-local-boot\t3\t부팅 가능\t연결됨\t\n연결 해제\n\n\n\tqa-iso1672-url-data\t4\t데이터 미디어\t연결됨\t\n연결 해제",
+    "api": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Running",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+          "isos": [
+            {
+              "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+              "name": "qa-iso1672-local-boot",
+              "deviceseq": 3,
+              "bootable": true
+            },
+            {
+              "id": "6d263eb9-c932-4404-ac6e-d267252192d7",
+              "name": "qa-iso1672-url-data",
+              "deviceseq": 4,
+              "bootable": false
+            }
+          ]
+        }
+      ]
+    },
+    "attachDisabled": true,
+    "tooltip": []
+  },
+  {
+    "name": "release-full-tooltip",
+    "at": "2026-11-15T12:46:10.802Z",
+    "text": "추가로 연결할 수 있는 ISO 슬롯이 없습니다."
+  },
+  {
+    "name": "release-single-detach-preview",
+    "at": "2026-11-15T12:46:22.771Z",
+    "dialog": "연결 해제\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n선택한 ISO를 VM에서 연결 해제합니다. ISO 파일은 삭제하지 않습니다. 설치나 드라이버 로딩에 사용 중인지 확인해 주세요.\nqa-iso1672-local-boot\n장치 슬롯: 3\nqa-iso1672-url-data\n장치 슬롯: 4\n취소\n1개 연결 해제",
+    "selection": [
+      {
+        "checked": false,
+        "text": "qa-iso1672-local-boot\n장치 슬롯: 3"
+      },
+      {
+        "checked": true,
+        "text": "qa-iso1672-url-data\n장치 슬롯: 4"
+      }
+    ]
+  },
+  {
+    "name": "release-single-detach-complete",
+    "at": "2026-11-15T12:46:58.450Z",
+    "dialog": "ISO 작업 결과\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n성공 1 · 실패 0 · 결과 미확인 0 · 미제출 0 · 진행 중 0\nqa-iso1672-url-data\n\n작업 ID: e34902c6-5e7f-4ad5-b6d1-70b9909213b5\n\n성공\n\n명시적으로 실패한 ISO만 재시도합니다. 결과 미확인 작업은 다시 제출하지 않고 상태를 조회합니다. 작업 ID가 없는 경우 관리자에게 실제 연결 상태 확인을 요청해 주세요.\n\n닫기",
+    "api": {
+      "request": {
+        "id": "6d263eb9-c932-4404-ac6e-d267252192d7",
+        "virtualmachineid": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "accepted": true,
+      "httpStatus": 200
+    }
+  },
+  {
+    "name": "vm-root-volume",
+    "at": "2026-11-15T12:47:14.668Z",
+    "text": "생성 및 연결\n기존 볼륨 연결\n업데이트\n이름\t상태\t유형\t볼륨 번호 (Device ID)\t크기\t스토리지\tKMS 키\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nROOT-257\n기존 호환 값: thin\n\t\n Ready\tROOT\t0\t1.00 GB\t\t\t\n디스크 분리"
+  },
+  {
+    "name": "release-stopping-state-guard",
+    "at": "2026-11-15T12:49:23.863Z",
+    "api": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Stopping",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+          "isos": [
+            {
+              "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+              "name": "qa-iso1672-local-boot",
+              "deviceseq": 3,
+              "bootable": true
+            }
+          ]
+        }
+      ]
+    },
+    "attachDisabled": true,
+    "detachDisabled": true
+  },
+  {
+    "name": "release-vm-stopped",
+    "at": "2026-11-15T12:51:35.136Z",
+    "state": "/가상머신/qa-iso1672-liveboot업데이트\n작업\nqa-iso1672-liveboot\nKVM\n상태\n정지된 상태\n아이디\n5c335d63-38a8-4dda-8534-39324845637a \nIP\n172.31.167.97 \n클라우드 · 주 IP\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n네트워",
+    "api": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Stopped",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+          "isos": [
+            {
+              "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+              "name": "qa-iso1672-local-boot",
+              "deviceseq": 3,
+              "bootable": true
+            }
+          ]
+        }
+      ]
+    },
+    "job": {
+      "request": {},
+      "jobstatus": 1,
+      "hasPreparedUrl": false
+    },
+    "attachEnabled": true
+  },
+  {
+    "name": "release-vm-menu-attach-empty-selection",
+    "at": "2026-11-15T12:52:32.694Z",
+    "dialog": "ISO 연결\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n추가로 연결할 수 있는 ISO: 1개\nVMware Tools Installer ISO\nvmware-tools.iso\n13-Zone · 데이터 미디어\nXenServer Tools Installer ISO (xen-pv-drv-iso)\nxs-tools.iso\n13-Zone · 데이터 미디어\nWindows Server 2025 x86_64 DVD\nWindows Server 2025 x86_64 DVD\n13-Zone · 부팅 가능\nWindows 용 ABLESTACK 드라이버\nVirtIO Windows Driver 0.1.302\n13-Zone · 데이터 미디어\nABLESTACK-Diplo-v4.2.1.iso\nABLESTACK-Diplo-v4.2.1.iso\n13-Zone · 부팅 가능\n1.35.9-Kubernetes-Binaries-ISO\n1.35.9-Kubernetes-Binaries-ISO\n13-Zone · 데이터 미디어\n1.36.5-Kubernetes-Binaries-ISO\n1.36.5-Kubernetes-Binaries-ISO\n13-Zone · 데이터 미디어\nqa-iso1672-url-data\nqa-iso1672-url-data\n13-Zone · 데이터 미디어\n\nISO별 완료를 확인한 후 다음 ISO를 연결합니다. 부팅 가능 속성은 현재 VM의 부팅 순서를 의미하지 않습니다.\n\n취소\n0개 ISO 연결",
+    "checked": 0,
+    "vmState": "Stopped"
+  },
+  {
+    "name": "release-injected-attach-rejection",
+    "at": "2026-11-15T12:53:22.373Z",
+    "dialog": "ISO 작업 결과\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n성공 0 · 실패 1 · 결과 미확인 0 · 미제출 0 · 진행 중 0\nqa-iso1672-url-data\n\nQA 의도적 ISO 연결 거절\n\n실패\n\n명시적으로 실패한 ISO만 재시도합니다. 결과 미확인 작업은 다시 제출하지 않고 상태를 조회합니다. 작업 ID가 없는 경우 관리자에게 실제 연결 상태 확인을 요청해 주세요.\n\n닫기\n실패한 ISO만 재시도",
+    "injectedBeforeServer": true,
+    "httpStatus": 400,
+    "errorcode": 431,
+    "rejectedRequests": 1,
+    "unexpectedPosts": 0,
+    "actualBackendFailure": false
+  },
+  {
+    "name": "release-stopped-data-attach-retry-complete",
+    "at": "2026-11-15T12:55:48.050Z",
+    "dialog": "ISO 작업 결과\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n성공 1 · 실패 0 · 결과 미확인 0 · 미제출 0 · 진행 중 0\nqa-iso1672-url-data\n\n작업 ID: 91fd861b-c819-4182-8990-578a2d06aaaf\n\n성공\n\n명시적으로 실패한 ISO만 재시도합니다. 결과 미확인 작업은 다시 제출하지 않고 상태를 조회합니다. 작업 ID가 없는 경우 관리자에게 실제 연결 상태 확인을 요청해 주세요.\n\n닫기",
+    "api": {
+      "request": {
+        "id": "6d263eb9-c932-4404-ac6e-d267252192d7",
+        "virtualmachineid": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "accepted": true,
+      "httpStatus": 200
+    },
+    "vm": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Stopped",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+          "isos": [
+            {
+              "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+              "name": "qa-iso1672-local-boot",
+              "deviceseq": 3,
+              "bootable": true
+            },
+            {
+              "id": "6d263eb9-c932-4404-ac6e-d267252192d7",
+              "name": "qa-iso1672-url-data",
+              "deviceseq": 4,
+              "bootable": false
+            }
+          ]
+        }
+      ]
+    },
+    "injectedFailureCleared": true
+  },
+  {
+    "name": "qa-role-reduced-readonly",
+    "at": "2026-11-15T12:57:58.473Z",
+    "text": "/계정/qa-iso1672-user업데이트\n작업\nqa-iso1672-user\n상태\n정상\n아이디\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b \nCPU\n1\n메모리\n1024 메모리\n역할\nRead-Only User - Default\n도메인\nROOT\n생성일\n2026. 11. 15. 오후 9:07:45\n사용자 보기\nVM 보기\n볼륨 보기\n네트워크 보기\nSSH 키 쌍 보기\n사용자 데이터 보기\n템플릿 보기\nISO 보기\n상세\n제한\n구성 제한\n인증서\n설정\n이벤트\n이름\n\nqa-iso1672-user\n아이디\n\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n1\nVM 합계\n\n1\n볼륨\n\n1\n수신 바이트\n\n0\n전송 바이트\n\n0\n생성일\n\n2026. 11. 15. 오후 9:07:45",
+    "targetId": "5f6db9ae-eaf0-4bba-8aa2-02983f4d557b",
+    "restoredOrExpanded": false
+  },
+  {
+    "name": "readonly-iso-entry-and-zone",
+    "at": "2026-11-15T12:58:59.523Z",
+    "detailActions": 0,
+    "createVmButtons": 0,
+    "text": "업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 9:09:31\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "zoneAttachButtons": 0,
+    "zoneCheckboxes": 0
+  },
+  {
+    "name": "readonly-vm-route-observation",
+    "at": "2026-11-15T13:02:43.501Z",
+    "requested": "http://10.10.13.10:8080/client/#/vm/5c335d63-38a8-4dda-8534-39324845637a?tab=cdrom",
+    "current": "http://10.10.13.10:8080/client/#/vm/5c335d63-38a8-4dda-8534-39324845637a?tab=cdrom",
+    "vmHeadingCount": 0,
+    "isoTabCount": 0,
+    "interpretation": "VM route appears unavailable; verify actual API capability in UI before classifying"
+  },
+  {
+    "name": "readonly-capability-boundary",
+    "at": "2026-11-15T13:04:24.261Z",
+    "availableApiCount": 75,
+    "listVirtualMachines": true,
+    "listVirtualMachinesMetrics": false,
+    "attachIso": false,
+    "detachIso": false,
+    "extractIso": false,
+    "vmRouteResult": "dashboard redirect; VM page requires listVirtualMachinesMetrics",
+    "vmReadonlyTabE2e": "NOT_RUN under this configured role; do not count as VM ISO tab read pass",
+    "followup": "Record the basic-VM-read versus Metrics-route boundary under #1673 integration ACL; do not change shared role permissions"
+  },
+  {
+    "name": "admin-two-media-restart",
+    "at": "2026-11-15T13:09:10.821Z",
+    "vm": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Running",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isoid": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+          "isos": [
+            {
+              "id": "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+              "name": "qa-iso1672-local-boot",
+              "deviceseq": 3,
+              "bootable": true
+            },
+            {
+              "id": "6d263eb9-c932-4404-ac6e-d267252192d7",
+              "name": "qa-iso1672-url-data",
+              "deviceseq": 4,
+              "bootable": false
+            }
+          ]
+        }
+      ]
+    },
+    "start": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "accepted": true,
+      "httpStatus": 200
+    }
+  },
+  {
+    "name": "download-failure-duplicate-before-fix",
+    "at": "2026-11-15T13:09:45.796Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n다운로드 준비에 실패했습니다. 요청 결과를 확인하고 다시 준비해 주세요.\n다운로드 준비에 실패했습니다. 요청 결과를 확인하고 다시 준비해 주세요.\n닫기\n다시 준비",
+    "messageCount": 2,
+    "injectedHttp400BeforeServer": true,
+    "unexpectedPosts": 0,
+    "finalPass": false
+  },
+  {
+    "name": "guest-two-media-boot-confirmed",
+    "at": "2026-11-15T13:18:24.895Z",
+    "observed": "TinyCore banner and tc@box shell prompt after stopped-state data attachment and restart",
+    "vmid": "5c335d63-38a8-4dda-8534-39324845637a",
+    "mediaCount": 2,
+    "installationClaimed": false
+  },
+  {
+    "name": "vm-multi-detach-dark-narrow",
+    "at": "2026-11-15T13:18:52.220Z",
+    "metrics": {
+      "bg": "rgba(0, 0, 0, 0)",
+      "body": {
+        "bottom": 359,
+        "height": 280,
+        "top": 79,
+        "width": 358
+      },
+      "bodyClient": 280,
+      "bodyScroll": 434,
+      "dialog": {
+        "bottom": 440,
+        "height": 440,
+        "top": 0,
+        "width": 380
+      },
+      "footer": {
+        "bottom": 416,
+        "height": 57,
+        "top": 359,
+        "width": 358
+      },
+      "header": {
+        "bottom": 79,
+        "height": 55,
+        "top": 24,
+        "width": 358
+      },
+      "height": 440,
+      "htmlWidth": 380,
+      "overflowY": "auto",
+      "text": "rgb(197, 204, 212)",
+      "width": 390
+    },
+    "dialog": "연결 해제\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n선택한 ISO를 VM에서 연결 해제합니다. ISO 파일은 삭제하지 않습니다. 설치나 드라이버 로딩에 사용 중인지 확인해 주세요.\nqa-iso1672-local-boot\n장치 슬롯: 3\nqa-iso1672-url-data\n장치 슬롯: 4\n취소\n2개 연결 해제",
+    "submitted": false
+  },
+  {
+    "name": "vm-detach-escape-focus",
+    "at": "2026-11-15T13:19:27.465Z",
+    "dialogs": 0,
+    "focus": {
+      "tag": "BUTTON",
+      "text": "선택 연결 해제"
+    },
+    "submitted": false
+  },
+  {
+    "name": "vm-multi-detach-light",
+    "at": "2026-11-15T13:21:35.995Z",
+    "metrics": {
+      "bg": "rgb(255, 255, 255)",
+      "height": 841,
+      "text": "rgb(75, 85, 99)",
+      "width": 1680
+    },
+    "dialog": "연결 해제\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n선택한 ISO를 VM에서 연결 해제합니다. ISO 파일은 삭제하지 않습니다. 설치나 드라이버 로딩에 사용 중인지 확인해 주세요.\nqa-iso1672-local-boot\n장치 슬롯: 3\nqa-iso1672-url-data\n장치 슬롯: 4\n취소\n2개 연결 해제",
+    "selection": [
+      {
+        "checked": true,
+        "text": "qa-iso1672-local-boot\n장치 슬롯: 3"
+      },
+      {
+        "checked": true,
+        "text": "qa-iso1672-url-data\n장치 슬롯: 4"
+      }
+    ]
+  },
+  {
+    "name": "release-multi-detach-complete",
+    "at": "2026-11-15T13:23:55.147Z",
+    "dialog": "ISO 작업 결과\nVM\tqa-iso1672-liveboot\nZone\t13-Zone\n계정\tqa-iso1672-user\n성공 2 · 실패 0 · 결과 미확인 0 · 미제출 0 · 진행 중 0\nqa-iso1672-local-boot\n\n작업 ID: 9ca94111-a5e8-4795-abda-556951d1c220\n\n성공\nqa-iso1672-url-data\n\n작업 ID: 5c42f8c5-407b-469b-b1ac-028e3b23de13\n\n성공\n\n명시적으로 실패한 ISO만 재시도합니다. 결과 미확인 작업은 다시 제출하지 않고 상태를 조회합니다. 작업 ID가 없는 경우 관리자에게 실제 연결 상태 확인을 요청해 주세요.\n\n닫기",
+    "vm": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "rows": [
+        {
+          "id": "5c335d63-38a8-4dda-8534-39324845637a",
+          "state": "Running",
+          "hypervisor": "KVM",
+          "isomaxcount": 2,
+          "isos": []
+        }
+      ]
+    },
+    "targets": [
+      "f1f65764-b8e3-4d5a-8639-08bf9e1ef7c3",
+      "6d263eb9-c932-4404-ac6e-d267252192d7"
+    ]
+  },
+  {
+    "name": "vm-media-empty-after-multi",
+    "at": "2026-11-15T13:24:02.165Z",
+    "text": "ISO 연결\n선택 연결 해제\n업데이트\nISO 작업 결과: 성공 2 · 실패 0 · 결과 미확인 0 · 미제출 0 · 진행 중 0\n\t이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n이 가상머신에 연결된 ISO가 없습니다.",
+    "attachEnabled": true
+  },
+  {
+    "name": "qa-iso1672-liveboot",
+    "at": "2026-11-15T13:25:01.012Z",
+    "vmid": "5c335d63-38a8-4dda-8534-39324845637a",
+    "expunge": true,
+    "dialog": "가상머신 삭제\n현재 가상머신을 삭제하시겠습니까? 삭제된 가상머신은 복구할 수 있습니다. 영구 삭제하려면 영구 삭제 옵션을 선택하세요.\n\n\n영구 삭제\n\n이 VM에 연결된 데이터 볼륨이 없습니다.\n\n취소\n확인",
+    "dataVolumes": 0,
+    "rootVolumeId": "92d62392-8faa-4c3e-8efc-75c6059d636f"
+  },
+  {
+    "name": "vm-expunge-confirm",
+    "at": "2026-11-15T13:30:43.592Z",
+    "vmid": "5c335d63-38a8-4dda-8534-39324845637a",
+    "observedState": "Destroyed",
+    "explicitUiAction": "가상머신 영구 삭제",
+    "rootVolumeId": "92d62392-8faa-4c3e-8efc-75c6059d636f"
+  },
+  {
+    "name": "vm-expunge-complete",
+    "at": "2026-11-15T13:36:13.359Z",
+    "api": {
+      "request": {
+        "id": "5c335d63-38a8-4dda-8534-39324845637a"
+      },
+      "accepted": true,
+      "httpStatus": 200
+    },
+    "job": {
+      "request": {},
+      "jobstatus": 1,
+      "hasPreparedUrl": false
+    },
+    "returnedToIso": "http://10.10.13.10:8080/client/#/iso/6d263eb9-c932-4404-ac6e-d267252192d7"
+  },
+  {
+    "name": "qa-account-after-vm-expunge",
+    "at": "2026-11-15T13:36:40.798Z",
+    "text": "/계정/qa-iso1672-user업데이트\n작업\nqa-iso1672-user\n상태\n정상\n아이디\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b \n역할\nRead-Only User - Default\n도메인\nROOT\n생성일\n2026. 11. 15. 오후 9:07:45\n사용자 보기\nVM 보기\n볼륨 보기\n네트워크 보기\nSSH 키 쌍 보기\n사용자 데이터 보기\n템플릿 보기\nISO 보기\n상세\n제한\n구성 제한\n인증서\n설정\n이벤트\n이름\n\nqa-iso1672-user\n아이디\n\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n1\nVM 합계\n\n0\n볼륨\n\n0\n수신 바이트\n\n0\n전송 바이트\n\n0\n생성일\n\n2026. 11. 15. 오후 9:07:45",
+    "vms": 0,
+    "volumes": 0,
+    "publicIps": 1
+  },
+  {
+    "name": "qa-network-router",
+    "at": "2026-11-15T13:37:14.574Z",
+    "text": "업데이트\n이름\t상태\t게스트 IP 주소\tPublic IP 주소\t버전\t업그레이드 필요\tRedundant 라우터\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nr-258-VM\t\n실행 중\n\t172.31.167.1\t10.10.13.28\t4.23.0.0\t아니오\t아니오\tablecube13-2"
+  },
+  {
+    "name": "qa-network-public-ip",
+    "at": "2026-11-15T13:37:28.956Z",
+    "text": "새 IP 주소 가져오기\n업데이트\n\tIP 주소\t상태\tVM\t네트워크\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t10.10.13.28 Source NAT\t\n할당됨\n\t—\tqa-iso1672-net\t\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "network-cleanup-confirm",
+    "at": "2026-11-15T13:38:19.704Z",
+    "networkId": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb",
+    "dialog": "네트워크 삭제\n\n일반 삭제만 실행합니다. 연결 VM/NIC와 진행 중 작업을 다시 확인하고, 여러 네트워크는 한 건씩 완료를 확인합니다. 이 대화상자를 닫아도 접수된 작업은 서버에서 계속됩니다.\n\n전체 1 · 삭제 확인 완료 0\n업데이트\nqa-iso1672-net\n실행 가능\n\n격리형 (Isolated) · 구현 완료 · qa-iso1672-user\n\nee18f878-7b4e-49f6-b6f7-9adb564b6abb\n\n연결 자원과 삭제 조건\n\n현재 계정·프로젝트에서 조회할 수 있는 자원입니다. 표시가 비어 있어도 서버의 최종 삭제 검증은 유지됩니다. VM/NIC를 먼저 분리하거나 가상머신을 완전히 삭제한 뒤 다시 확인하세요. 라우터와 네트워크 IP는 일반 삭제 과정에서 정리됩니다.\n\n조회 범위 내 연결 VM/NIC 없음\n\n가상 라우터: r-258-VM (Running)\n\nPublic IP 주소: 10.10.13.28\n\n성공은 작업 완료와 네트워크 조회 결과를 대조해 표시합니다. 라우터 볼륨·스토리지의 물리 정리는 서버에서 별도로 진행될 수 있습니다. 잔여 자원은 관리자가 확인해야 하며 강제 삭제로 자동 전환하지 않습니다.\n\n연결 자원과 삭제 영향을 확인했으며 일반 삭제를 실행합니다.\n닫기\n네트워크 삭제",
+    "force": false,
+    "vmNicReferences": 0
+  },
+  {
+    "name": "qa-network-delete-complete",
+    "at": "2026-11-15T13:40:15.309Z",
+    "api": {
+      "request": {
+        "id": "ee18f878-7b4e-49f6-b6f7-9adb564b6abb"
+      },
+      "accepted": true,
+      "httpStatus": 200
+    },
+    "job": {
+      "request": {
+        "jobid": "234b5fdf-aebb-49ec-a584-97816205abc8"
+      },
+      "jobstatus": 1,
+      "hasPreparedUrl": false
+    },
+    "routerId": "a9dab72c-ad85-480a-b661-235df84a1cb0",
+    "publicIpId": "1f4a45c6-221b-48b0-9966-e21f9b4f4072",
+    "observedDashboardVmCount": 103,
+    "observedSystemVmCount": 2
+  },
+  {
+    "name": "qa-account-infrastructure-cleared",
+    "at": "2026-11-15T13:40:58.243Z",
+    "text": "/계정/qa-iso1672-user업데이트\n작업\nqa-iso1672-user\n상태\n정상\n아이디\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b \n역할\nRead-Only User - Default\n도메인\nROOT\n생성일\n2026. 11. 15. 오후 9:07:45\n사용자 보기\nVM 보기\n볼륨 보기\n네트워크 보기\nSSH 키 쌍 보기\n사용자 데이터 보기\n템플릿 보기\nISO 보기\n상세\n제한\n구성 제한\n인증서\n설정\n이벤트\n이름\n\nqa-iso1672-user\n아이디\n\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n수신 바이트\n\n0\n전송 바이트\n\n0\n생성일\n\n2026. 11. 15. 오후 9:07:45",
+    "vms": 0,
+    "volumes": 0,
+    "publicIps": 0
+  },
+  {
+    "name": "qa-router-absent",
+    "at": "2026-11-15T13:41:18.565Z",
+    "text": "/가상 라우터업데이트\n모두\n\t\n\t\n이름\n\t\n상태\n\t\nPublic IP 주소\n\t\n네트워크\n\t\nRedundant 상태\n\t\n소프트웨어 버전\n\t\n템플릿 버전\n\t\n호스트\n\t\nCPU 아키텍처\n\t\n계정\n\t\nZone\n\t\n업그레이드 필요\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "routerName": "r-258-VM",
+    "expectedRemaining": 0
+  },
+  {
+    "name": "final-download-rejection-one-alert",
+    "at": "2026-11-15T13:45:10.878Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n다운로드 준비에 실패했습니다. 요청 결과를 확인하고 다시 준비해 주세요.\n닫기\n다시 준비",
+    "failureMessageCount": 1,
+    "fileLinks": 0,
+    "injectedHttp400BeforeServer": true,
+    "unexpectedPosts": 0
+  },
+  {
+    "name": "final-download-observation-unknown",
+    "at": "2026-11-15T13:47:04.151Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n다운로드 준비 결과를 조회하지 못했습니다. 상태 확인으로 기존 작업을 다시 조회하세요.\n닫기\n상태 확인",
+    "warningCount": 1,
+    "falseFailureCount": 0,
+    "preparePosts": 1,
+    "jobid": "a00d341b-fb09-4100-b962-8d276d33f275",
+    "injectedOnlyJobRead500": true,
+    "unexpectedPosts": 0
+  },
+  {
+    "name": "final-download-light-narrow",
+    "at": "2026-11-15T13:47:16.664Z",
+    "metrics": {
+      "bg": "rgb(255, 255, 255)",
+      "bodyClient": 236,
+      "bodyScroll": 236,
+      "footer": {
+        "bottom": 398,
+        "height": 65,
+        "top": 333,
+        "width": 364
+      },
+      "header": {
+        "bottom": 97,
+        "height": 55,
+        "top": 42,
+        "width": 364
+      },
+      "height": 440,
+      "htmlWidth": 380,
+      "overflowY": "auto",
+      "text": "rgb(31, 41, 55)",
+      "width": 390
+    },
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n다운로드 준비 결과를 조회하지 못했습니다. 상태 확인으로 기존 작업을 다시 조회하세요.\n닫기\n상태 확인"
+  },
+  {
+    "name": "final-download-get-only-recovery",
+    "at": "2026-11-15T13:47:38.046Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n다운로드 준비가 완료되었습니다. 실제 파일 수신 여부는 브라우저의 다운로드 목록에서 확인하세요.\n닫기\n다시 준비\n파일 받기",
+    "extraPreparePosts": 0,
+    "oldWarningCount": 0,
+    "job": {
+      "request": {
+        "jobid": "a00d341b-fb09-4100-b962-8d276d33f275"
+      },
+      "jobstatus": 1,
+      "hasPreparedUrl": true
+    }
+  },
+  {
+    "name": "final-download-escape-focus",
+    "at": "2026-11-15T13:48:50.679Z",
+    "dialogs": 0,
+    "focus": {
+      "tag": "BUTTON",
+      "text": "작업"
+    }
+  },
+  {
+    "name": "final-download-no-job-warning",
+    "at": "2026-11-15T13:49:19.733Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nZone\n13-Zone\n작업 ID를 받지 못해 준비 결과를 확인할 수 없습니다. 중복 요청을 피하려면 기존 요청의 접수 여부를 먼저 확인하세요.\n닫기",
+    "checkButtons": 0,
+    "prepareButtons": 0,
+    "fileLinks": 0,
+    "fake200BeforeServer": true,
+    "actualBackendPreparation": false
+  },
+  {
+    "name": "final-zone-entry-reuses-vm-picker",
+    "at": "2026-11-15T13:49:50.462Z",
+    "dialog": "기존 VM에 ISO 연결\nISO 이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\nVM\n취소\n다음",
+    "nextDisabled": true,
+    "submitted": false
+  },
+  {
+    "name": "original-theme-restored",
+    "at": "2026-11-15T13:50:07.391Z",
+    "original": [
+      "dark"
+    ],
+    "restored": "dark",
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    }
+  },
+  {
+    "name": "url-data-iso-deleted",
+    "at": "2026-11-15T13:51:01.168Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1672-url-data\n아이디\n6d263eb9-c932-4404-ac6e-d267252192d7\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "local-boot-iso-deleted",
+    "at": "2026-11-15T13:51:55.368Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1672-local-boot\n아이디\nf1f65764-b8e3-4d5a-8639-08bf9e1ef7c3\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "original-iso-catalog-preserved",
+    "at": "2026-11-15T13:52:05.835Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ],
+    "originalIdsAndValuesPreserved": true,
+    "qaIsosRemaining": 0
+  },
+  {
+    "name": "qa-account-empty-before-removal",
+    "at": "2026-11-15T13:52:18.108Z",
+    "text": "/계정/qa-iso1672-user업데이트\n작업\nqa-iso1672-user\n상태\n정상\n아이디\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b \n역할\nRead-Only User - Default\n도메인\nROOT\n생성일\n2026. 11. 15. 오후 9:07:45\n사용자 보기\nVM 보기\n볼륨 보기\n네트워크 보기\nSSH 키 쌍 보기\n사용자 데이터 보기\n템플릿 보기\nISO 보기\n상세\n제한\n구성 제한\n인증서\n설정\n이벤트\n이름\n\nqa-iso1672-user\n아이디\n\n5f6db9ae-eaf0-4bba-8aa2-02983f4d557b\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n수신 바이트\n\n0\n전송 바이트\n\n0\n생성일\n\n2026. 11. 15. 오후 9:07:45",
+    "vms": 0,
+    "volumes": 0,
+    "publicIps": 0
+  },
+  {
+    "name": "original-accounts-preserved",
+    "at": "2026-11-15T13:53:19.345Z",
+    "text": "/계정업데이트\n모두\n계정 추가\n\t\n\t\n이름\n\t\n상태\n\t\n역할\n\t\n역할 유형\n\t\n도메인\n\t\n\n\n\tadmin\t\n정상\n\tRoot Admin\tAdmin\tROOT\t\n\n\tbaremetal-system-account\t\n정상\n\tUser\tUser\tROOT\t\n\n\tepic898-config-denied-1791388603\t\n비활성화\n\tUser\tUser\tROOT\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽",
+    "qaRemaining": 0,
+    "passwordDiscarded": true
+  },
+  {
+    "name": "original-roles-preserved",
+    "at": "2026-11-15T13:54:55.651Z",
+    "text": "/역할업데이트\n역할 추가\n\t\n이름\n\t\n유형\n\t\n설명\n\t\n상태\n\t\n\nRoot Admin\tAdmin\tDefault root admin role\t\n정상\n\t\nResource Admin\tResourceAdmin\tDefault resource admin role\t\n정상\n\t\nDomain Admin\tDomainAdmin\tDefault domain admin role\t\n정상\n\t\nUser\tUser\tDefault user role\t\n정상\n\t\nRead-Only Admin - Default\tAdmin\tDefault read-only admin role\t\n정상\n\t\nRead-Only User - Default\tUser\tDefault read-only user role\t\n정상\n\t\nSupport Admin - Default\tAdmin\tDefault support admin role\t\n정상\n\t\nSupport User - Default\tUser\tDefault support user role\t\n정상\n\t\nProject Kubernetes Service Role\tUser\tProject Kubernetes Service Role\t\n정상\n\t\n전체 9 개 항목 중 1-9 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "original-userdata-preserved",
+    "at": "2026-11-15T13:55:00.710Z",
+    "text": "/사용자 데이터 라이브러리업데이트\n프로젝트\n사용자 데이터 등록\n\t\n\t\n이름\n\t\n아이디\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "original-projects-preserved",
+    "at": "2026-11-15T13:55:06.148Z",
+    "text": "/프로젝트업데이트\n새 프로젝트\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "common-template-catalog",
+    "at": "2026-11-15T13:55:26.137Z",
+    "pagination": "전체 48 개 항목 중 1-20 표시\n1\n2\n3\n20 / 쪽\n이동하기",
+    "headers": [
+      "이름",
+      "상태",
+      "OS 유형",
+      "CPU 아키텍처",
+      "하이퍼바이저",
+      "크기",
+      "계정",
+      "템플릿 유형",
+      "순서",
+      ""
+    ]
+  },
+  {
+    "name": "common-vm-catalog-after-cleanup",
+    "at": "2026-11-15T13:55:41.307Z",
+    "pagination": "전체 103 개 항목 중 1-20 표시\n1\n2\n3\n4\n5\n6\n20 / 쪽\n이동하기",
+    "qaLinkCount": 0
+  },
+  {
+    "name": "systemvm-health-after-cleanup",
+    "at": "2026-11-15T13:56:22.559Z",
+    "rows": [
+      {
+        "name": "v-245-VM",
+        "state": "Running",
+        "agentState": "Running",
+        "version": "4.23.0.0",
+        "type": "consoleproxy"
+      },
+      {
+        "name": "s-255-VM",
+        "state": "Running",
+        "agentState": "Running",
+        "version": "4.23.0.0",
+        "type": "secondarystoragevm"
+      }
+    ],
+    "count": 2,
+    "method": "observed system VM UI table"
+  },
+  {
+    "name": "host-health-after-cleanup",
+    "at": "2026-11-15T13:57:01.150Z",
+    "hosts": [
+      {
+        "name": "ablecube13-1",
+        "state": "Up",
+        "resourceState": "Enabled",
+        "version": "4.23.0.0",
+        "ha": "Available"
+      },
+      {
+        "name": "ablecube13-2",
+        "state": "Up",
+        "resourceState": "Enabled",
+        "version": "4.23.0.0",
+        "ha": "Available"
+      },
+      {
+        "name": "ablecube13-3",
+        "state": "Up",
+        "resourceState": "Enabled",
+        "version": "4.23.0.0",
+        "ha": "Disabled (pre-existing)"
+      }
+    ]
+  },
+  {
+    "name": "final-cleanup-complete",
+    "at": "2026-11-15T13:57:21.858Z",
+    "originalIsoIdsAndValuesPreserved": true,
+    "originalIsoCount": 8,
+    "deletedQaIsos": 2,
+    "deletedQaAccount": 1,
+    "expungedQaVm": 1,
+    "removedRootVolume": 1,
+    "deletedQaNetwork": 1,
+    "removedQaRouter": 1,
+    "releasedQaPublicIp": 1,
+    "qaResourcesRemaining": 0,
+    "originalAccounts": 3,
+    "roles": 9,
+    "userdatas": 0,
+    "projects": 0,
+    "vmCatalogCount": 103,
+    "templateCatalogCount": 48,
+    "systemVmCount": 2,
+    "httpFixturesRemoved": 2,
+    "httpAfterRemoval": 404,
+    "userDownloadedFilesPreserved": true,
+    "originalDarkThemeRestored": true,
+    "viewport": {
+      "height": 841,
+      "width": 1680
+    },
+    "temporaryFetchAndCacheSettingsCleared": true,
+    "readonlyVmTabE2e": "NOT_RUN under configured role lacking Metrics API; tracked1673"
+  }
+]

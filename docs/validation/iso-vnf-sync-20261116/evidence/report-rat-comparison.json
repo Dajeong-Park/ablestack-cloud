@@ -1,0 +1,13 @@
+{
+  "base": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+  "productHead": "ce4820ba90d4ed4ac1302585349e5fb3daf83ad5",
+  "indexTree": "3e0eadf227452c096d814167584173a1087cd254",
+  "method": "staged Git index export",
+  "baselineUnknown": 4077,
+  "currentUnknown": 4077,
+  "added": [],
+  "removed": [],
+  "returnCode": 1,
+  "workspace": "/root/work/.rat-vnf-sync-report-usnmxwm2",
+  "includesRuntimePatchAndLogs": true
+}

@@ -1,0 +1,198 @@
+{
+  "canonicalHead": "ce4820ba90d4ed4ac1302585349e5fb3daf83ad5",
+  "upstreamBase": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+  "operatingInput": "/root/work/.build-iso1673-20261115/ui",
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "files": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/components/compute/VnfAccessNotice.vue",
+    "src/components/compute/VnfCredentials.vue",
+    "src/components/view/ActionButton.vue",
+    "src/components/view/BulkActionProgress.vue",
+    "src/components/view/BulkActionView.vue",
+    "src/components/view/DetailsTab.vue",
+    "src/components/view/InfoCard.vue",
+    "src/components/view/ListView.vue",
+    "src/components/view/SearchFilter.vue",
+    "src/components/view/SearchView.vue",
+    "src/components/view/VnfSearchSelect.vue",
+    "src/components/widgets/Breadcrumb.vue",
+    "src/config/section/compute.js",
+    "src/config/section/network.js",
+    "src/config/section/vmCommonActions.js",
+    "src/utils/creationVmPresentation.js",
+    "src/utils/directives.js",
+    "src/utils/vmDeletion.js",
+    "src/utils/vmIdentity.js",
+    "src/utils/vnfAccess.js",
+    "src/utils/vnfReinstall.js",
+    "src/utils/vnfSearch.js",
+    "src/utils/vnfVmActions.js",
+    "src/views/AutogenView.vue",
+    "src/views/compute/DeployVnfAppliance.vue",
+    "src/views/compute/DestroyVM.vue",
+    "src/views/compute/EditVM.vue",
+    "src/views/compute/InstanceTab.vue",
+    "src/views/compute/MigrateWizard.vue",
+    "src/views/compute/ScaleVM.vue",
+    "src/views/compute/StartVirtualMachine.vue",
+    "src/views/compute/UserDataContent.vue",
+    "src/views/compute/VmVbmcManager.vue",
+    "src/views/compute/VnfReinstall.vue",
+    "src/views/compute/VnfUnmanage.vue"
+  ],
+  "hashes": [
+    {
+      "file": "public/locales/en.json",
+      "sha256": "3ed92a9004e8cdb23ea105ae2c729bf6cea23014aa54537f86af993a908922ab"
+    },
+    {
+      "file": "public/locales/ko_KR.json",
+      "sha256": "14e53ae27e3ddd9fc001b6403feb8cae91d28874db4258fc3094574b34646f5b"
+    },
+    {
+      "file": "src/components/compute/VnfAccessNotice.vue",
+      "sha256": "ef90b71e521a79260a329f64d431e2bee1ad1af07d328e961d3f45f052b26b4f"
+    },
+    {
+      "file": "src/components/compute/VnfCredentials.vue",
+      "sha256": "3f7ea675677d34ef6e3782aa2fee2fc97fecf7138cf51ca0c6a41eb219d23430"
+    },
+    {
+      "file": "src/components/view/ActionButton.vue",
+      "sha256": "a4bb91ddaa1b16d1915a6262eeede73ac7c69ad942051f013fea22fab28d1a01"
+    },
+    {
+      "file": "src/components/view/BulkActionProgress.vue",
+      "sha256": "7c6bc1037e7aeec7738d48d90dc5106a86dc8ec05a715edfa4c1c3b762a06145"
+    },
+    {
+      "file": "src/components/view/BulkActionView.vue",
+      "sha256": "58103920c434f3438d70ce3db67ff518cf861dbf450e703daa231569a96560f1"
+    },
+    {
+      "file": "src/components/view/DetailsTab.vue",
+      "sha256": "ba5d23fd13cdb62908981eb4b59f0861a5f2f0c5b59c52602558397a27a4049d"
+    },
+    {
+      "file": "src/components/view/InfoCard.vue",
+      "sha256": "274fc5656439de22721e5f5c776e8457381e2736f92c31705f778dd8078c69a9"
+    },
+    {
+      "file": "src/components/view/ListView.vue",
+      "sha256": "d7afd414c46799fcbddabb27c28d5ab696d326e126372d7d0314cad3e7fe2915"
+    },
+    {
+      "file": "src/components/view/SearchFilter.vue",
+      "sha256": "2f0aacd0149d87619bef93260e9868b859910a750d6f99e9bdfe86e5008ee293"
+    },
+    {
+      "file": "src/components/view/SearchView.vue",
+      "sha256": "1352cfab455741374f40350d4f03274d55d79fdb44f9b8c70eb46572378c1eb6"
+    },
+    {
+      "file": "src/components/view/VnfSearchSelect.vue",
+      "sha256": "67f82f5cc05e602f69833277b86cc7fe189e4223a6c1cb743ffaa65d852fc53f"
+    },
+    {
+      "file": "src/components/widgets/Breadcrumb.vue",
+      "sha256": "c84e9b4aa89cbf0b251bb1e028cd1a6af61364bb922b63c221a89f3915f2a364"
+    },
+    {
+      "file": "src/config/section/compute.js",
+      "sha256": "657444c1e86c09efb8d1409870220e189df14776c1d2bfc52dd8c7df7387a6ea"
+    },
+    {
+      "file": "src/config/section/network.js",
+      "sha256": "3f6874a46ddd2e43dfa77ca123346c3418785f361399d5a5d970773a49c7f276"
+    },
+    {
+      "file": "src/config/section/vmCommonActions.js",
+      "sha256": "823a3587971b6236df0ff19c913a43ca5fc177f0e2b057dc6509e9eb1a962090"
+    },
+    {
+      "file": "src/utils/creationVmPresentation.js",
+      "sha256": "20003434be8103deacc8d1ba2e35a5c232b43869c817bc9afce57c2e766e36d4"
+    },
+    {
+      "file": "src/utils/directives.js",
+      "sha256": "27ae1de702cefeb4c979553d8dc6b5af1515129d333a22c556fa73cab2710015"
+    },
+    {
+      "file": "src/utils/vmDeletion.js",
+      "sha256": "e4cf2a280b53860ff9c59b863a5dcf9024954a34ff4709276a49df8ce7817226"
+    },
+    {
+      "file": "src/utils/vmIdentity.js",
+      "sha256": "c6f0475b575415c87ae20f2b4ef0079b4f5983c3b0c4f9fea56b880d43ffc534"
+    },
+    {
+      "file": "src/utils/vnfAccess.js",
+      "sha256": "21a6d7493059247f6a1ca17b867a4b21a259016ac22918698c721c647f0a654e"
+    },
+    {
+      "file": "src/utils/vnfReinstall.js",
+      "sha256": "add5e3028c27a637234d6d15f7f7cd3fd725dc52c12bb7c7c6901b9851747a90"
+    },
+    {
+      "file": "src/utils/vnfSearch.js",
+      "sha256": "539097499b281e9bf3595f5d09d79acd4871de3f0d5e9d6a7e54c22a4e9e1458"
+    },
+    {
+      "file": "src/utils/vnfVmActions.js",
+      "sha256": "13e92c713d1b62eee55f9aa90ead66f87f280997a67b7e3030fb4b9661cea3b5"
+    },
+    {
+      "file": "src/views/AutogenView.vue",
+      "sha256": "d269bf0bdb6e4a631aed438b25b0bcf91b9938877e1cd95c621471071bf9f0e2"
+    },
+    {
+      "file": "src/views/compute/DeployVnfAppliance.vue",
+      "sha256": "f13787dd884b07b163bae39678f62329132c3152ec1c91e677a158e318e876dc"
+    },
+    {
+      "file": "src/views/compute/DestroyVM.vue",
+      "sha256": "2ee2371b27706b789da6af16cecaed5ad13dae666977726b1085a7da6397addf"
+    },
+    {
+      "file": "src/views/compute/EditVM.vue",
+      "sha256": "be9afa3a3deec1b1b03b7f7e3da977c3995b079a18e7a6706e17de0150cad1e4"
+    },
+    {
+      "file": "src/views/compute/InstanceTab.vue",
+      "sha256": "52e0ecf65bd00338939e81f343891039ffd3a09b35b125dc5c65495d7076b0d2"
+    },
+    {
+      "file": "src/views/compute/MigrateWizard.vue",
+      "sha256": "4010a17b661bb9082b5babbd57b9d1d04df69da7be2509daf3428d2993751715"
+    },
+    {
+      "file": "src/views/compute/ScaleVM.vue",
+      "sha256": "2694f965e89b61c4ebd5851221cdd9237c90ef8f9bebbac78d04aae563e4a8a6"
+    },
+    {
+      "file": "src/views/compute/StartVirtualMachine.vue",
+      "sha256": "c1582338b27e2f221d91983a25c86a886375283d4d18e2216c764cd4e8e9bc8a"
+    },
+    {
+      "file": "src/views/compute/UserDataContent.vue",
+      "sha256": "b4b39c4034c96980dccf94f1d756df57c69e1587a3ea60ffad44a78d5b2f9902"
+    },
+    {
+      "file": "src/views/compute/VmVbmcManager.vue",
+      "sha256": "6e2e5cd9e02a609305c2bbabe026ae8d054cdaefe9851e6f756b1d900c76f375"
+    },
+    {
+      "file": "src/views/compute/VnfReinstall.vue",
+      "sha256": "25b6c932d4161137cadbb82c80bcbd1fcf0ab7c2e11b28ab87b9f4aa4cfa09d3"
+    },
+    {
+      "file": "src/views/compute/VnfUnmanage.vue",
+      "sha256": "7e7f4b8b23e20212ec23e6f5a39cd1c26c1d5338d5f14b1e40cbaadabf6ecbd7"
+    }
+  ],
+  "unrelatedOperatingFilesPreserved": 1019,
+  "vnfRouteAstEqualsCanonical": true,
+  "existingOperatingVpcBehaviorPreserved": true
+}

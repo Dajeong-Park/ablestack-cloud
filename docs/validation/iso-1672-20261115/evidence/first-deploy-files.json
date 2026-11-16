@@ -1,0 +1,182 @@
+{
+  "head": "24310382d6675ae6c7bcc67c13f865afaef4fd33",
+  "sourceBoundary": {
+    "previousCode": "764d1ec4635e26ac91b0f9951a2aa67f2aaa4e19",
+    "runtimeInput": "/root/work/.build-iso1671-20261115/ui",
+    "buildInput": "/root/work/.build-iso1672-20261115/ui",
+    "files": [
+      "public/locales/en.json",
+      "public/locales/ko_KR.json",
+      "src/components/view/ImageDeployInstanceButton.vue",
+      "src/config/section/image.js",
+      "src/utils/isoConsumption.js",
+      "src/utils/isoModel.js",
+      "src/views/compute/VmIsoManager.vue",
+      "src/views/compute/wizard/TemplateIsoSelection.vue",
+      "src/views/image/IsoDownload.vue",
+      "src/views/image/IsoVmAttach.vue",
+      "src/views/image/IsoZones.vue",
+      "tests/unit/views/compute/VmIsoManager.spec.js",
+      "tests/unit/views/image/IsoConsumption.spec.js"
+    ],
+    "hashes": {
+      "public/locales/en.json": "59c6325f9fcd051023bbca96f61d1a7048d2c7229ee0588af0bdacc903c23a00",
+      "public/locales/ko_KR.json": "98b46eec2405640655379c077721f5c6f72c3d3e0f1de206be2361a80e974e97",
+      "src/components/view/ImageDeployInstanceButton.vue": "a4f7f9f83207946dec6a87e5fe2ea3aff2c6a77fd90bc9a649bb53b30129c8ff",
+      "src/config/section/image.js": "e5855b2992c06264819dbdaeef1fd4ed4896edc8bcfb12ecadb05475afbdca4b",
+      "src/utils/isoConsumption.js": "38a7acfc709cb8edcef2f56adc229bc1485abb49cf58167c850590009fc8f46d",
+      "src/utils/isoModel.js": "df5c6551c2ddc70baff38d670babebc6bd465e3cd14789e322eb940557d3dfa1",
+      "src/views/compute/VmIsoManager.vue": "4a46d76b3ea3ce22668a5bc22b4142f1b66eb1765394470a0f27ae46ca7ce8dc",
+      "src/views/compute/wizard/TemplateIsoSelection.vue": "bdd24715c799c1e243cef56414944891713c312a898e41ed2b746de66ddebbea",
+      "src/views/image/IsoDownload.vue": "c7494268725fd50e6aa758715356b660154c238905403943f4165c284bc50ae3",
+      "src/views/image/IsoVmAttach.vue": "026e30f07cca1d50d17b7c70c8fb146aa89cd6f4c77493f3cb73d04fb5459662",
+      "src/views/image/IsoZones.vue": "dffb2484766110706ddd123f914cbca3c2e203d4f4c28f2c851f9715c1742260",
+      "tests/unit/views/compute/VmIsoManager.spec.js": "925ceee32d2234a68c62ef9400b8267be35935ec58593a407567060e23539a0e",
+      "tests/unit/views/image/IsoConsumption.spec.js": "a5b9e12a8d41f9fbcd4eb643a296ea700ff473acf362393282c18afe98d8f62e"
+    },
+    "localeKeys": {
+      "en": [
+        "label.iso.attach.vm",
+        "label.iso.download.prepare",
+        "label.iso.download.receive",
+        "label.iso.download.reprepare",
+        "message.iso.consume.attached",
+        "message.iso.consume.read.failed",
+        "message.iso.consume.vm.empty",
+        "message.iso.download.failed",
+        "message.iso.download.invalid",
+        "message.iso.download.preparing",
+        "message.iso.download.read.failed",
+        "message.iso.download.ready",
+        "message.iso.download.requested",
+        "message.iso.download.unknown"
+      ],
+      "ko_KR": [
+        "label.iso.attach.vm",
+        "label.iso.download.prepare",
+        "label.iso.download.receive",
+        "label.iso.download.reprepare",
+        "message.iso.consume.attached",
+        "message.iso.consume.read.failed",
+        "message.iso.consume.vm.empty",
+        "message.iso.download.failed",
+        "message.iso.download.invalid",
+        "message.iso.download.preparing",
+        "message.iso.download.read.failed",
+        "message.iso.download.ready",
+        "message.iso.download.requested",
+        "message.iso.download.unknown"
+      ]
+    },
+    "productHead": "24310382d6675ae6c7bcc67c13f865afaef4fd33",
+    "method": "three-way ISO-only delta on exact prior operating input; unrelated source and locale/configuration preserved",
+    "unrelatedOperatingSourceFilesEqual": 1015,
+    "addedFiles": [
+      "src/utils/isoConsumption.js",
+      "src/views/image/IsoDownload.vue",
+      "src/views/image/IsoVmAttach.vue",
+      "tests/unit/views/image/IsoConsumption.spec.js"
+    ]
+  },
+  "baselineIndex": {
+    "sha256": "3af095fcdd5785a6c0e6c53b13e4a907245d066540041a86eb366fbd6a4f3d8e",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "f5dabf028bcf3062b0b9db077ffbc16b8f9e5054e8a2acf88fccb7c456452efd",
+      "size": 39711,
+      "previous": {
+        "sha256": "3af095fcdd5785a6c0e6c53b13e4a907245d066540041a86eb366fbd6a4f3d8e",
+        "size": 39475
+      }
+    },
+    "locales/ko_KR.json": {
+      "sha256": "98b46eec2405640655379c077721f5c6f72c3d3e0f1de206be2361a80e974e97",
+      "size": 1021414,
+      "previous": {
+        "sha256": "17d347277c38ce78f09996ccdcf4b77ff95e2a49761cc27c45c7269a10820839",
+        "size": 1019844
+      }
+    },
+    "locales/en.json": {
+      "sha256": "59c6325f9fcd051023bbca96f61d1a7048d2c7229ee0588af0bdacc903c23a00",
+      "size": 912594,
+      "previous": {
+        "sha256": "cd48f95cff3a0f724e18207ce60fda2ea02e668810851d0b4d838abaf49e146b",
+        "size": 911315
+      }
+    },
+    "css/chunk-c5c3f4c8.fd1aaa72.css": {
+      "sha256": "a231c987abdfff8320fdb7319d59505bfc5e3e49232bb387973398f8c8b54b13",
+      "size": 1412,
+      "previous": null
+    },
+    "css/chunk-44401798.f548fae9.css": {
+      "sha256": "08a8a55ad0a3cf2d38082ad08cc9fa83908121d282c1badcc8e03caf41edb1d5",
+      "size": 1528,
+      "previous": null
+    },
+    "css/chunk-606fc267.6f2aa439.css": {
+      "sha256": "586b5f482b9778557da123c614a67c9c4aa31c0fa7d600e98cc97c5dc13ae1ee",
+      "size": 130,
+      "previous": null
+    },
+    "css/chunk-c9c4f096.6a6e27c3.css": {
+      "sha256": "d601849e11b781cc3f58122697cbb1b0eb006edfd2f95e251a812d088af239b8",
+      "size": 65505,
+      "previous": null
+    },
+    "css/chunk-594d79f4.f7852ca2.css": {
+      "sha256": "cb0e2e6517f8b86e0f2f5b2d05835f1a086916dcb1295eef6b2b5d1e921aa135",
+      "size": 3450,
+      "previous": null
+    },
+    "css/chunk-46b86a2e.adc3295f.css": {
+      "sha256": "f83f1dad8113f43624e7d34788c09ddbd5647ceb7b7fe811f915fdb280c85705",
+      "size": 3320,
+      "previous": null
+    },
+    "js/chunk-606fc267.a1f38ab2.js": {
+      "sha256": "8959e9643740de3cc9ac09e41189686a2e8d647035f1da9c7cb0e4bb447c547e",
+      "size": 9865,
+      "previous": null
+    },
+    "js/chunk-44401798.abb22585.js": {
+      "sha256": "ce69497dcd0b95cc47b7b8ced71d4624bab64c81d3b3921b156d7eb5d1f2d075",
+      "size": 40834,
+      "previous": null
+    },
+    "js/chunk-594d79f4.43422732.js": {
+      "sha256": "b307bc4622d9db99d985819afdbb194e91e2bc7b713c57bedb29bf70cb383d19",
+      "size": 34503,
+      "previous": null
+    },
+    "js/chunk-c9c4f096.e51e0161.js": {
+      "sha256": "c515b09c96d27ce24ecb49cbb84d13eeffc85d29092cf7b23fbef17e8226199b",
+      "size": 718646,
+      "previous": null
+    },
+    "js/chunk-46b86a2e.9c247170.js": {
+      "sha256": "d8574b246efac719d4f8ca70654c61a5b36801483cf0ffc32945b72ee7fdcb0a",
+      "size": 27852,
+      "previous": null
+    },
+    "js/app.86cd5adb.js": {
+      "sha256": "f81723ff4405e058f39ba6615aea30d2470342e049d38d9d0ab5b9781366c806",
+      "size": 1922002,
+      "previous": null
+    },
+    "js/chunk-c5c3f4c8.0042765c.js": {
+      "sha256": "530d307da23b7f27cfcbf3c17f9de3e845a2312c59476b182c9d25282c3d21e9",
+      "size": 26154,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2620448",
+  "backendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443"
+}

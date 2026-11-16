@@ -1,0 +1,47 @@
+{
+  "allOtherOperatingSourceFilesEqual": true,
+  "filesCompared": 1009,
+  "localeChanges": [
+    {
+      "locale": "en",
+      "onlyChangedKeys": [
+        "label.iso.filter.executable",
+        "label.iso.filter.selfexecutable",
+        "label.iso.filter.sharedexecutable",
+        "message.iso.search.failed",
+        "message.iso.search.ignored",
+        "message.iso.search.invalid",
+        "message.iso.search.keyword",
+        "message.iso.search.sort.page",
+        "message.iso.search.unsupported"
+      ]
+    },
+    {
+      "locale": "ko_KR",
+      "onlyChangedKeys": [
+        "label.iso.filter.executable",
+        "label.iso.filter.selfexecutable",
+        "label.iso.filter.sharedexecutable",
+        "message.iso.search.failed",
+        "message.iso.search.ignored",
+        "message.iso.search.invalid",
+        "message.iso.search.keyword",
+        "message.iso.search.sort.page",
+        "message.iso.search.unsupported"
+      ]
+    }
+  ],
+  "inputHashesMatch": true,
+  "noWholeCanonicalCommonFileOverwrite": true,
+  "onlyAddedSourceFiles": [
+    "src/components/view/IsoListCell.vue",
+    "src/utils/isoSearch.js"
+  ],
+  "unchangedDependencyBuildConfigFiles": [
+    "package.json",
+    "package-lock.json",
+    "babel.config.js",
+    "vue.config.js",
+    "jest.config.js"
+  ]
+}

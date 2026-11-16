@@ -59,6 +59,7 @@ it('paginates candidates and refreshes VM capacity before presenting selection',
     .mockResolvedValueOnce({ listisosresponse: { iso: [{ id: 'b' }], count: 2 } })
     .mockResolvedValueOnce({ listisosresponse: { iso: [{ id: 'a' }, { id: 'attached' }], count: 2 } })
     .mockResolvedValueOnce({ listisosresponse: {} })
+    .mockResolvedValueOnce({ listisosresponse: {} })
   await VmIsoManager.methods.openAttach.call(ctx)
   expect(ctx.fetchData).toHaveBeenCalled()
   expect(getAPI.mock.calls[1][1].page).toBe(2)

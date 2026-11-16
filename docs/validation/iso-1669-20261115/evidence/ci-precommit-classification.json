@@ -1,0 +1,34 @@
+{
+  "run": 43678648064,
+  "head": "d27ade742cc7f4b3e192785c887f4af858f0b413",
+  "failedHooks": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "diagnosticTrackedPathsMatched": 11181,
+  "changedDiagnosticPaths": [],
+  "passedIdentityListingExcluded": true,
+  "fullCiPass": false,
+  "manualStageSkipped": true,
+  "sameFailedHooksAsPrevious": true,
+  "baselineDiagnosticPathsSameAlgorithm": 11182,
+  "addedDiagnosticPaths": [],
+  "removedDiagnosticPaths": [
+    "ui/src/components/view/ResourceTags.vue"
+  ],
+  "previousClassificationCountUsesDifferentMatcher": true
+}

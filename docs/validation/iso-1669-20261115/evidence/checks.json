@@ -1,0 +1,44 @@
+{
+  "productHead": "d27ade742cc7f4b3e192785c887f4af858f0b413",
+  "lint": "pass",
+  "canonicalUnit": {
+    "suites": 18,
+    "tests": 277,
+    "status": "pass"
+  },
+  "runtimeInputUnit": {
+    "suites": 18,
+    "tests": 265,
+    "status": "pass"
+  },
+  "focusedPrecommit": "pass",
+  "focusedManual": "pass",
+  "uiBuild": "pass",
+  "deploymentStaticFiles": 6,
+  "backendChanges": false,
+  "schemaChanges": false,
+  "ci": {
+    "licenseRun": 43678648051,
+    "lintRun": 43678648064,
+    "mergeConflictRun": 43678648084,
+    "fullCiPass": false,
+    "debtIssues": [
+      926,
+      1044
+    ],
+    "newRatUnknown": 0,
+    "newFailedDiagnosticPaths": 0
+  },
+  "evidenceLogSha256": {
+    "lint.log": "a449ed36636e9ad1c00bd8e13fd5c04d21823c1bbe53e5cdb1d2970ef17c837a",
+    "source-unit.log": "e1b76c4187820fed616d961d6562699b2097dd84ee81f7d9c8d4caa7af520cc6",
+    "runtime-input-tests.log": "3b8325749e4d9a2e96e48cbfd70ce210218ea7171ddd9c751197c4b0a4337cfb",
+    "focused-precommit.log": "32d2019282287bc02d529ae7991c37b6fc1e2d48980e0703c4871475c4b27e62",
+    "focused-manual.log": "1c98b3639a8996f9b77f6e6b03d394350871989e2c2b0bc5fbe5b61fc5b3857e",
+    "ci-license.log": "f92fadfa6f2e41abf81171e55321fedfbcf38073f75b2a41e14c2208cba78b59",
+    "ci-lint.log": "136de072677d0a5fb4fafd0292ff46fda2cdd672e39bf286a4e4ba3194b3a861"
+  },
+  "reportFocusedPrecommit": "pass",
+  "reportFocusedManual": "pass",
+  "reportRatNewUnknown": 0
+}

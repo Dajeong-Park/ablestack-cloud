@@ -1,0 +1,28 @@
+{
+  "run": "43638795599",
+  "head": "727bed1519aa97cbace8e5de14d4e986e0eecb08",
+  "failedHooks": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "diagnosticTrackedPathsMatched": 11173,
+  "changedDiagnosticPaths": [],
+  "remainingMatchedDiagnosticPathsUnchangedFromBase": true,
+  "passedIdentityListingExcluded": true,
+  "fullCiPass": false,
+  "manualStageSkipped": true
+}

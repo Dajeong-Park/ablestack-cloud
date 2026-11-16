@@ -1,0 +1,4895 @@
+[
+  {
+    "name": "baseline-original-isos",
+    "at": "2026-11-15T14:34:46.278Z",
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "baseline-accounts",
+    "at": "2026-11-15T14:35:14.566Z",
+    "text": "/계정업데이트\n모두\n계정 추가\n\t\n\t\n이름\n\t\n상태\n\t\n역할\n\t\n역할 유형\n\t\n도메인\n\t\n\n\n\tadmin\t\n정상\n\tRoot Admin\tAdmin\tROOT\t\n\n\tbaremetal-system-account\t\n정상\n\tUser\tUser\tROOT\t\n\n\tepic898-config-denied-1791388603\t\n비활성화\n\tUser\tUser\tROOT\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "account-owner-created",
+    "at": "2026-11-15T14:38:23.451Z",
+    "account": {
+      "name": "qa-iso1673-a",
+      "id": "6e0e99b0-b328-4ca0-abe2-898dffd450e9",
+      "role": "User",
+      "persona": "owner/project owner/read-only later",
+      "domain": "ROOT",
+      "deleted": true
+    }
+  },
+  {
+    "name": "account-receiver-created",
+    "at": "2026-11-15T14:39:31.435Z",
+    "account": {
+      "name": "qa-iso1673-b",
+      "id": "eb6554cb-57ee-4249-bd7e-4fb110deefc9",
+      "role": "User",
+      "persona": "shared receiver/project member",
+      "domain": "ROOT",
+      "deleted": true
+    }
+  },
+  {
+    "name": "account-stranger-created",
+    "at": "2026-11-15T14:40:41.323Z",
+    "account": {
+      "name": "qa-iso1673-c",
+      "id": "1e300920-35a8-414c-a188-16b2a735112a",
+      "role": "User",
+      "persona": "unshared/project nonmember",
+      "domain": "ROOT",
+      "deleted": true
+    }
+  },
+  {
+    "name": "account-readonly-admin-created",
+    "at": "2026-11-15T14:41:32.333Z",
+    "account": {
+      "name": "qa-iso1673-roadmin",
+      "id": "3c138c28-5ff5-42db-b909-fe8d3f0fa70d",
+      "role": "Read-Only Admin - Default",
+      "persona": "read-only Admin",
+      "domain": "ROOT",
+      "deleted": true
+    }
+  },
+  {
+    "name": "domain-created",
+    "at": "2026-11-15T14:45:04.070Z",
+    "domain": {
+      "id": "14e08ea0-c664-4545-af0a-5e601401cc39",
+      "name": "qa-iso1673-domain",
+      "parent": "47178e2f-bd56-11f1-b573-002481560363",
+      "path": "/qa-iso1673-domain",
+      "deleted": true
+    }
+  },
+  {
+    "name": "subdomain-created",
+    "at": "2026-11-15T14:47:06.374Z",
+    "domain": {
+      "id": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+      "name": "qa-iso1673-sub",
+      "parent": "14e08ea0-c664-4545-af0a-5e601401cc39",
+      "path": "/qa-iso1673-domain/qa-iso1673-sub",
+      "deleted": true
+    },
+    "ui": "이름\n\nqa-iso1673-sub\n아이디\n\n26fd7b8a-56c4-40cb-a580-6302742ee6ba\n경로\n\nROOT/qa-iso1673-domain/qa-iso1673-sub\n상위 도메인\n\nqa-iso1673-domain\n레벨\n\n2\n생성일\n\n2026. 11. 15. 오후 11:45:21"
+  },
+  {
+    "name": "account-domain-admin-created",
+    "at": "2026-11-15T14:49:16.469Z",
+    "account": {
+      "name": "qa-iso1673-da",
+      "id": "10e8eb4e-25bd-4cc4-b5ce-4b329d1b82fb",
+      "role": "Domain Admin",
+      "persona": "domain admin/subtree/outside",
+      "domain": "qa-iso1673-domain",
+      "domainid": "14e08ea0-c664-4545-af0a-5e601401cc39",
+      "deleted": true
+    }
+  },
+  {
+    "name": "account-subdomain-owner-created",
+    "at": "2026-11-15T14:50:57.292Z",
+    "account": {
+      "name": "qa-iso1673-downer",
+      "id": "e88914a7-3b70-4aeb-bf4c-a2561b630c41",
+      "role": "User",
+      "persona": "subdomain owner",
+      "domain": "qa-iso1673-sub",
+      "domainid": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+      "deleted": true
+    }
+  },
+  {
+    "name": "owner-boot-ready",
+    "at": "2026-11-15T14:52:52.047Z",
+    "dialog": "ISO 등록\nqa-iso1673-owner-boot\n47be470c-71d2-4344-b0bf-d3783fd89a42\nISO 등록 요청\n준비 상태 확인\n사용자 데이터 연결\n4\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기"
+  },
+  {
+    "name": "owner-detail",
+    "at": "2026-11-15T14:53:07.250Z",
+    "text": "/ISO/qa-iso1673-owner-boot업데이트\n작업\nqa-iso1673-owner-boot\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n47be470c-71d2-4344-b0bf-d3783fd89a42 \nOS 유형\nOther Linux (64-bit)\n계정\nqa-iso1673-a\n도메인\nROOT\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1673-owner-boot\n아이디\n\n47be470c-71d2-4344-b0bf-d3783fd89a42\n설명\n\nqa-iso1673-owner-boot\n체크섬\n\nc954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc\nOS 유형\n\nOther Linux (64-bit)\n크기\n23.30 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n예\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n예\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1673-a\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 11:52:19\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1673-20261115/CorePure64-16.2.iso"
+  },
+  {
+    "name": "owner-shared-to-receiver",
+    "at": "2026-11-15T14:54:00.145Z",
+    "isoid": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+    "dialog": "ISO 권한 업데이트\n현재 공유 현황\n계정\nqa-iso1673-b\n프로젝트\n없음\n연산\n추가\n공유\n계정\n계정\n공유 권한 변경과 재조회를 완료했습니다.\n닫기\n확인",
+    "accounts": [
+      "qa-iso1673-b"
+    ]
+  },
+  {
+    "name": "project-created",
+    "at": "2026-11-15T14:54:38.062Z",
+    "project": {
+      "name": "qa-iso1673-project",
+      "id": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+      "owner": "qa-iso1673-a",
+      "deleted": true
+    }
+  },
+  {
+    "name": "project-owner-and-regular-member",
+    "at": "2026-11-15T14:58:18.219Z",
+    "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+    "text": "계정\t사용자\t역할 유형\t프로젝트 역할\t작업\nqa-iso1673-b\t\tRegular\t\t\n\nqa-iso1673-a\t\tAdmin\t\t\n전체 2 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "project-owner-iso-ready",
+    "at": "2026-11-15T15:01:02.531Z",
+    "dialog": "ISO 등록\nqa-iso1673-project-data\n679bf041-752e-47b7-b697-1d7184640a3e\nISO 등록 요청\n준비 상태 확인\n사용자 데이터 연결\n4\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기",
+    "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+  },
+  {
+    "name": "project-owner-detail",
+    "at": "2026-11-15T15:01:13.434Z",
+    "text": "/ISO/qa-iso1673-project-data업데이트\n작업\nqa-iso1673-project-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n679bf041-752e-47b7-b697-1d7184640a3e \nOS 유형\nNone\n프로젝트\nqa-iso1673-project\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1673-project-data\n아이디\n\n679bf041-752e-47b7-b697-1d7184640a3e\n설명\n\nqa-iso1673-project-data\n체크섬\n\n171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4\nOS 유형\n\nNone\n크기\n1.46 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 11:59:59"
+  },
+  {
+    "name": "project-owner-edit-saved",
+    "at": "2026-11-15T15:03:11.972Z",
+    "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+    "isoid": "679bf041-752e-47b7-b697-1d7184640a3e",
+    "descriptionVisible": 1,
+    "roleType": "Admin in project",
+    "serverAccountType": "User"
+  },
+  {
+    "name": "owner-network-created",
+    "at": "2026-11-15T15:05:42.512Z",
+    "network": {
+      "id": "4c49f8c9-eeff-49ee-af6d-d732920d713a",
+      "name": "qa-iso1673-net",
+      "account": "qa-iso1673-a",
+      "cidr": "172.31.173.0/24",
+      "deleted": true
+    }
+  },
+  {
+    "name": "owner-vm-review",
+    "at": "2026-11-15T15:06:22.097Z",
+    "summary": "성\n일반 호환성\nTPM 활성화\n템플릿 설정 사용 (미지정 시 사용 안 함)\n사용자 데이터\n\n\n\nUser Data 덮어쓰기 \n추가 설정\nAffinity 그룹\n이 VM이 속할 Affinity 그룹을 선택하십시오. \n전체 선택: 0\n모든 페이지 선택 해제\n\n표 머리글의 체크박스는 현재 페이지에만 적용됩니다. 검색·페이지를 바꿔도 전체 선택은 유지되며, 아래 항목에서 개별 해제할 수 있습니다.\n\n\tAffinity 그룹\t유형\t설명\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽\nNIC multiqueue 수\nNIC 압축 virtqueues 활성화\nIOThreads\nIO 드라이버 정책\n10\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n대상 소유 범위에 그룹이 없습니다. 새 이름을 입력하면 해당 소유 범위에 생성합니다.\n업데이트\n키보드 언어\n생성할 가상머신 수\n가상머신 생성 후 바로 시작\n\n가상머신을 생성하고 중지 상태로 유지합니다. 생성 후 상세 화면에서 시작할 수 있습니다.\n\n귀하의 가상머신\nqa-iso1673-ro-vm\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n디스크 크기(GB 단위)\n1 GB (Root)\n네트워크\n qa-iso1673-net (기본)\n루트 디스크의 기본 스토리지\n자동 선택 · 1 GB\n설치 원본 ISO\nqa-iso1673-owner-boot\n연결된 ISO\nqa-iso1673-owner-boot\n컴퓨트 오퍼링\n1C1GB\n디스크 오퍼링\ncustom (Root)\nZone\n13-Zone\n부팅 유형\nBIOS\n부팅 모드\nLEGACY\n가상머신 생성",
+    "startvm": false
+  },
+  {
+    "name": "owner-vm-created",
+    "at": "2026-11-15T15:07:24.058Z",
+    "vm": {
+      "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+      "name": "qa-iso1673-ro-vm",
+      "account": "qa-iso1673-a",
+      "sourceIsoId": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+      "networkId": "4c49f8c9-eeff-49ee-af6d-d732920d713a",
+      "state": "Stopped",
+      "deleted": true
+    },
+    "text": "/가상머신업데이트\n소유 \n메트릭\n프로젝트\n가상머신 추가\n\t\nISO : 47be470c-71d2-434...\n\t\nVM 표시 명\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n컴퓨트 오퍼링\n\t\nZone\n\t\n\n\n\tqa-iso1673-ro-vm\t\n정지된 상태\n\t\n1 CPU\n1024 MB\n\t\t\n172.31.173.225 \n\tUSER\t\t\t1C1GB\t13-Zone\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "owner-vm-iso-tab",
+    "at": "2026-11-15T15:08:16.965Z",
+    "text": "ISO 연결\n선택 연결 해제\n업데이트\n\t이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-iso1673-owner-boot\t3\t부팅 가능\t연결됨\t\n연결 해제",
+    "url": "http://10.10.13.10:8080/client/#/vm/ea746294-0b2f-4a3e-a1e1-9fe963112bea?tab=cdrom"
+  },
+  {
+    "name": "owner-vm-volume",
+    "at": "2026-11-15T15:08:53.377Z",
+    "text": "생성 및 연결\n기존 볼륨 연결\n업데이트\n이름\t상태\t유형\t볼륨 번호 (Device ID)\t크기\t스토리지\tKMS 키\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nROOT-259\n기존 호환 값: thin\n\t\n Allocated\tROOT\t0\t1.00 GB\t\t\t\n디스크 분리"
+  },
+  {
+    "name": "receiver-shared-list",
+    "at": "2026-11-15T15:10:00.452Z",
+    "text": "/ISO업데이트\n필터링 기준\n공유 \n프로젝트\nISO 등록\n\t\n필터링 기준 : 공유\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n크기\n\t\n계정\n\t순서\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1673-owner-boot\n\t\n사용 가능\n\t\nOther Linux (64-bit)\n\t\nx86_64\n\t\n0.02 GiB\n\t\nqa-iso1673-a\n\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "receiver-detail",
+    "at": "2026-11-15T15:10:25.286Z",
+    "text": "/ISO/qa-iso1673-owner-boot업데이트\n작업\nqa-iso1673-owner-boot\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n47be470c-71d2-4344-b0bf-d3783fd89a42 \nOS 유형\nOther Linux (64-bit)\n계정\nqa-iso1673-a\n도메인\nROOT\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1673-owner-boot\n아이디\n\n47be470c-71d2-4344-b0bf-d3783fd89a42\n설명\n\nqa-iso1673-owner-boot\n체크섬\n\nc954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc\nOS 유형\n\nOther Linux (64-bit)\n크기\n23.30 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n예\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n예\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1673-a\n도메인\n\nROOT\n생성일\n\n2026. 11. 15. 오후 11:52:19\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1673-20261115/CorePure64-16.2.iso",
+    "createVmButtons": 1
+  },
+  {
+    "name": "receiver-management-restricted",
+    "at": "2026-11-15T15:10:35.184Z",
+    "editEntries": 1,
+    "permissionEntries": 1,
+    "downloadEntries": 1,
+    "attachEntries": 1
+  },
+  {
+    "name": "receiver-zone-unexpected-management-observation",
+    "at": "2026-11-15T15:11:46.472Z",
+    "text": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:52:19\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 2,
+    "deleteButtons": 1,
+    "finalPass": false,
+    "reason": "verify actual account role before attributing UI ACL failure"
+  },
+  {
+    "name": "receiver-role-mismatch-invalidates-prior-acl",
+    "at": "2026-11-15T15:13:46.308Z",
+    "actualAccountText": "/계정/qa-iso1673-b업데이트\n작업\nqa-iso1673-b\n상태\n정상\n아이디\neb6554cb-57ee-4249-bd7e-4fb110deefc9 \n역할\nRoot Admin\n도메인\nROOT\n생성일\n2026. 11. 15. 오후 11:38:37\n사용자 보기\nVM 보기\n볼륨 보기\n네트워크 보기\nSSH 키 쌍 보기\n사용자 데이터 보기\n템플릿 보기\nISO 보기\n상세\n제한\n구성 제한\n인증서\n설정\n이벤트\n이름\n\nqa-iso1673-b\n아이디\n\neb6554cb-57ee-4249-bd7e-4fb110deefc9\n역할\n\nRoot Admin\n역할 유형\n\nAdmin\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:38:37",
+    "intendedRole": "User",
+    "actualRole": "Root Admin",
+    "priorOwnerAndReceiverAclRows": "NOT_PASS until corrected and rerun",
+    "noOutOfScopeWritesSubmitted": true
+  },
+  {
+    "name": "account-role-b-corrected",
+    "at": "2026-11-15T15:19:15.118Z",
+    "account": "qa-iso1673-b",
+    "id": "eb6554cb-57ee-4249-bd7e-4fb110deefc9",
+    "actualRole": "User",
+    "actualRoleType": "User",
+    "domain": "ROOT"
+  },
+  {
+    "name": "account-saved-role-audit",
+    "at": "2026-11-15T15:19:37.717Z",
+    "rows": [
+      "이름상태역할역할 유형도메인",
+      "admin정상Root AdminAdminROOT",
+      "baremetal-system-account정상UserUserROOT",
+      "epic898-config-denied-1791388603비활성화UserUserROOT",
+      "qa-iso1673-a정상UserUserROOT",
+      "qa-iso1673-b정상UserUserROOT",
+      "qa-iso1673-c정상Root AdminAdminROOT",
+      "qa-iso1673-roadmin정상Root AdminAdminROOT",
+      "qa-iso1673-da정상Domain AdminDomainAdminROOT/qa-iso1673-domain",
+      "qa-iso1673-downer정상Domain AdminDomainAdminROOT/qa-iso1673-domain/qa-iso1673-sub"
+    ]
+  },
+  {
+    "name": "account-role-c-corrected",
+    "at": "2026-11-15T15:19:58.266Z",
+    "account": "qa-iso1673-c",
+    "actualRole": "User",
+    "actualRoleType": "User"
+  },
+  {
+    "name": "account-role-roadmin-corrected",
+    "at": "2026-11-15T15:20:31.419Z",
+    "actual": "이름\n\nqa-iso1673-roadmin\n아이디\n\n3c138c28-5ff5-42db-b909-fe8d3f0fa70d\n역할\n\nRead-Only Admin - Default\n역할 유형\n\nAdmin\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:40:49"
+  },
+  {
+    "name": "account-role-downer-corrected",
+    "at": "2026-11-15T15:21:00.275Z",
+    "actual": "이름\n\nqa-iso1673-downer\n아이디\n\ne88914a7-3b70-4aeb-bf4c-a2561b630c41\n역할\n\nUser\n역할 유형\n\nUser\n도메인\n\nROOT/qa-iso1673-domain/qa-iso1673-sub\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:49:40"
+  },
+  {
+    "name": "account-roles-verified-final",
+    "at": "2026-11-15T15:21:10.634Z",
+    "rows": [
+      "이름상태역할역할 유형도메인",
+      "admin정상Root AdminAdminROOT",
+      "baremetal-system-account정상UserUserROOT",
+      "epic898-config-denied-1791388603비활성화UserUserROOT",
+      "qa-iso1673-a정상UserUserROOT",
+      "qa-iso1673-b정상UserUserROOT",
+      "qa-iso1673-c정상UserUserROOT",
+      "qa-iso1673-roadmin정상Read-Only Admin - DefaultAdminROOT",
+      "qa-iso1673-da정상Domain AdminDomainAdminROOT/qa-iso1673-domain",
+      "qa-iso1673-downer정상UserUserROOT/qa-iso1673-domain/qa-iso1673-sub"
+    ]
+  },
+  {
+    "name": "A04-user-shared-receiver-correct-role",
+    "at": "2026-11-15T15:21:59.968Z",
+    "account": "qa-iso1673-b",
+    "role": "User",
+    "iso": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+    "main": "/ISO/qa-iso1673-owner-boot업데이트\n작업\nqa-iso1673-owner-boot\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n47be470c-71d2-4344-b0bf-d3783fd89a42 \nOS 유형\nOther Linux (64-bit)\n계정\nqa-iso1673-a\n도메인\nROOT\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:52:19\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "zoneButtons": [
+      "업데이트",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "menus": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "계정",
+      "Zone",
+      "API 문서"
+    ]
+  },
+  {
+    "name": "A04-shared-consumer-preflight",
+    "at": "2026-11-15T15:22:17.425Z",
+    "account": "qa-iso1673-b",
+    "role": "User",
+    "image": "qa-iso1673-owner-boot",
+    "selectedImage": " \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽\n8\n백업\n인스턴스에 할당할 백업 오퍼링 항목을 선택하세요. 또한 다양한 간격 유형에 대한 하나 이상의 백업 스케줄을 추가하여 자동 백업을 설정할 수 있습니다. 백업 오퍼링 항목과 스케줄을 할당하면 자동 및 예약 백업을 통해 데이터를 보호할 수 있습니다.\nSelect backup offering\n9\n확장 모드\n고급 설정 표시 \n10\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n대상 소유 범위에 그룹이 없습니다. 새 이름을 입력하면 해당 소유 범위에 생성합니다.\n업데이트\n키보드 언어\n생성할 가상머신 수\n가상머신 생성 후 바로 시작\n\n가상머신을 생성하고 중지 상태로 유지합니다. 생성 후 상세 화면에서 시작할 수 있습니다.\n\n귀하의 가상머신\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 1.00 GHz \n메모리\n2048 MB 메모리\n루트 디스크의 기본 스토리지\n자동 선택 · — GB\n설치 원본 ISO\nqa-iso1673-owner-boot\n연결된 ISO\nqa-iso1673-owner-boot\n컴퓨트 오퍼링\nCKS Instance\nZone\n13-Zone\n부팅 유형\nUEFI\n부팅 모드\nLEGACY\n가상머신 생성",
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.2745",
+        "cmd": "listServiceOfferings",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2747",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2752",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2753",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2746",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2754",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "473557e5-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2748",
+        "cmd": "listBackupOfferings",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2749",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2750",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2755",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2756",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2751",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2757",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2758",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2752",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2753",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2754",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2755",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2756",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2757",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2758",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2759",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "executable",
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2760",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "executable",
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2759",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2760",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2761",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "473557e5-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2762",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2763",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2764",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2762",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2763",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2764",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2761",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2765",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2765",
+        "cmd": "listResourceIcon",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "B-local-upload-submitted",
+    "at": "2026-11-15T15:23:35.839Z",
+    "account": "qa-iso1673-b",
+    "actualRole": "User",
+    "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108"
+  },
+  {
+    "name": "B-local-upload-complete",
+    "at": "2026-11-15T15:23:55.963Z",
+    "account": "qa-iso1673-b",
+    "role": "User",
+    "result": "로컬에서 ISO 업로드\nqa-iso1673-b-local-data\n99f03e9c-af1d-4b38-8b33-5b91c06be108\nISO 등록 요청\n파일 전송\n준비 상태 확인\n사용자 데이터 연결\n5\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기"
+  },
+  {
+    "name": "B-own-local-ready-share-A",
+    "at": "2026-11-15T15:24:17.909Z",
+    "role": "User",
+    "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+    "main": "/ISO/qa-iso1673-b-local-data업데이트\n작업\nqa-iso1673-b-local-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n99f03e9c-af1d-4b38-8b33-5b91c06be108 \nOS 유형\nNone\n계정\nqa-iso1673-b\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1673-b-local-data\n아이디\n\n99f03e9c-af1d-4b38-8b33-5b91c06be108\n설명\n\nqa-iso1673-b-local-data\nOS 유형\n\nNone\n크기\n1.46 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n예\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1673-b\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오전 12:23:27",
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.2794",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2795",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2795",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2796",
+        "cmd": "listIsos",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2796",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2797",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2798",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2799",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2800",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2801",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2802",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2797",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2800",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2799",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2803",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2801",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2798",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2802",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2803",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2806",
+        "cmd": "listProjects",
+        "params": {
+          "command": "listProjects"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2807",
+        "cmd": "listIsoPermissions",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "command": "listIsoPermissions"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2806",
+        "cmd": "listProjects",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2807",
+        "cmd": "listIsoPermissions",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2808",
+        "cmd": "listProjects",
+        "params": {
+          "command": "listProjects"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2808",
+        "cmd": "listProjects",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2809",
+        "cmd": "listIsoPermissions",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "command": "listIsoPermissions"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2809",
+        "cmd": "listIsoPermissions",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2810",
+        "cmd": "updateIsoPermissions",
+        "params": {
+          "command": "updateIsoPermissions",
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2810",
+        "cmd": "updateIsoPermissions",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2811",
+        "cmd": "listIsoPermissions",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "command": "listIsoPermissions"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2811",
+        "cmd": "listIsoPermissions",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2812",
+        "cmd": "listIsos",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2812",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2813",
+        "cmd": "listIsos",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2813",
+        "cmd": "listIsos",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "B-share-A-confirmed",
+    "at": "2026-11-15T15:24:25.113Z",
+    "dialog": "ISO 권한 업데이트\n현재 공유 현황\n계정\nqa-iso1673-a\n프로젝트\n없음\n연산\n추가\n공유\n계정\n계정\n공유 권한 변경과 재조회를 완료했습니다.\n닫기\n확인"
+  },
+  {
+    "name": "A05-unshared-private-denied",
+    "at": "2026-11-15T15:24:49.299Z",
+    "account": "qa-iso1673-c",
+    "role": "User",
+    "url": "http://10.10.13.10:8080/client/#/dashboard",
+    "isoTitleVisible": 0,
+    "response": [
+      {
+        "event": "request",
+        "rid": "37784.2855",
+        "cmd": "listIsos",
+        "params": {
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2855",
+        "cmd": "listIsos",
+        "status": 531
+      }
+    ]
+  },
+  {
+    "name": "A10-project-nonmember-denied",
+    "at": "2026-11-15T15:24:59.409Z",
+    "account": "qa-iso1673-c",
+    "role": "User",
+    "projectOption": "0\n기본 보기",
+    "url": "http://10.10.13.10:8080/client/#/dashboard",
+    "isoResponse": [
+      {
+        "event": "request",
+        "rid": "37784.2868",
+        "cmd": "listIsos",
+        "params": {
+          "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2868",
+        "cmd": "listIsos",
+        "status": 531
+      }
+    ],
+    "noTitle": 0
+  },
+  {
+    "name": "subdomain-user-registered",
+    "at": "2026-11-15T15:26:33.819Z",
+    "dialog": "ISO 등록\nqa-iso1673-sub-data\nc4d56674-03e5-42c8-aa8b-d164fce32526\nISO 등록 요청\n준비 상태 확인\n사용자 데이터 연결\n4\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기"
+  },
+  {
+    "name": "subdomain-iso-ready-user",
+    "at": "2026-11-15T15:26:54.801Z",
+    "main": "/ISO/qa-iso1673-sub-data업데이트\n작업\nqa-iso1673-sub-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\nc4d56674-03e5-42c8-aa8b-d164fce32526 \nOS 유형\nNone\n계정\nqa-iso1673-downer\n도메인\nqa-iso1673-sub\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1673-sub-data\n아이디\n\nc4d56674-03e5-42c8-aa8b-d164fce32526\n설명\n\nqa-iso1673-sub-data\n체크섬\n\ndffbe7de95af7b3334cdcf850d84de7705111d93c31bc748694fc711fd3925c8ff8e82889bed0ce385f0fc1f7721be5cac9569c6dd7879ded82dc943d824a7ba\nOS 유형\n\nNone\n크기\n1.46 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1673-downer\n도메인\n\nqa-iso1673-sub\n생성일\n\n2026. 11. 16. 오전 12:26:25\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1673-20261115/data-fixture.iso",
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.2926",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2928",
+        "cmd": "listZones",
+        "params": {
+          "command": "listZones"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2929",
+        "cmd": "listOsTypes",
+        "params": {
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2930",
+        "cmd": "listUserData",
+        "params": {
+          "domainid": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+          "account": "qa-iso1673-downer",
+          "command": "listUserData"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2930",
+        "cmd": "listUserData",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2928",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2929",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2931",
+        "cmd": "registerIso",
+        "params": {
+          "command": "registerIso"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2931",
+        "cmd": "registerIso",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2932",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2933",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2933",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2932",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2934",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2934",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2935",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2935",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2936",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2936",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2937",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2937",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2939",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2940",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2941",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2942",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2943",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2944",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2939",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2943",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2942",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2941",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2945",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2940",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2944",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2945",
+        "cmd": "listResourceIcon",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A06-domainadmin-subtree",
+    "at": "2026-11-15T15:27:37.088Z",
+    "account": "qa-iso1673-da",
+    "role": "DomainAdmin",
+    "target": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+    "menus": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "계정",
+      "도메인",
+      "Zone",
+      "API 문서",
+      "기존 VM에 ISO 연결"
+    ],
+    "zone": "업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n 13-Zone\n\t\n2026. 11. 16. 오전 12:26:25\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 0,
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.2940",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2944",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2945",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2993",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2993",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.2995",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2996",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2997",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2998",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.2999",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2995",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2996",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3000",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.2997",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2998",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.2999",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3000",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3001",
+        "cmd": "listZones",
+        "params": {
+          "command": "listZones"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3002",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3003",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3004",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3005",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3006",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3007",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3008",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "26fd7b8a-56c4-40cb-a580-6302742ee6ba",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3001",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3002",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3003",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3004",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3006",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3007",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3008",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3005",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3010",
+        "cmd": "listIsos",
+        "params": {
+          "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3010",
+        "cmd": "listIsos",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A07-domainadmin-outside-denied",
+    "at": "2026-11-15T15:27:42.792Z",
+    "account": "qa-iso1673-da",
+    "target": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+    "url": "http://10.10.13.10:8080/client/#/iso/47be470c-71d2-4344-b0bf-d3783fd89a42",
+    "responses": [
+      {
+        "event": "request",
+        "rid": "37784.3012",
+        "cmd": "listIsos",
+        "params": {
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3012",
+        "cmd": "listIsos",
+        "status": 531
+      }
+    ],
+    "heading": 0
+  },
+  {
+    "name": "A07-domainadmin-outside-final",
+    "at": "2026-11-15T15:27:52.829Z",
+    "account": "qa-iso1673-da",
+    "status": 531,
+    "main": "/ISO/47be470c-71d2-4344-b0bf-d3783fd89a42업데이트\n가상머신 보기\n상세\nZone\n이벤트\n코멘트",
+    "responses": [
+      {
+        "event": "request",
+        "rid": "37784.3012",
+        "cmd": "listIsos",
+        "params": {
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3012",
+        "cmd": "listIsos",
+        "status": 531
+      }
+    ]
+  },
+  {
+    "name": "A08-project-owner-reverified",
+    "at": "2026-11-15T15:28:58.359Z",
+    "role": "User",
+    "projectRole": "Admin",
+    "main": "/ISO/qa-iso1673-project-data업데이트\n작업\nqa-iso1673-project-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n679bf041-752e-47b7-b697-1d7184640a3e \nOS 유형\nNone\n프로젝트\nqa-iso1673-project\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\nISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:59:59\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "zone": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:59:59\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.3013",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3012",
+        "cmd": "listIsos",
+        "status": 531
+      },
+      {
+        "event": "response",
+        "rid": "37784.3015",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3082",
+        "cmd": "listIsos",
+        "params": {
+          "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3082",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3084",
+        "cmd": "listTags",
+        "params": {
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3085",
+        "cmd": "listTags",
+        "params": {
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3086",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3087",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3088",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3089",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3087",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3086",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3090",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3089",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3084",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3088",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3085",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3090",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3091",
+        "cmd": "listZones",
+        "params": {
+          "command": "listZones",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3092",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3093",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3094",
+        "cmd": "listTags",
+        "params": {
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3095",
+        "cmd": "listIsos",
+        "params": {
+          "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3096",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3097",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3098",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3091",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3092",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3093",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3094",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3096",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3097",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3098",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3095",
+        "cmd": "listIsos",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A09-project-regular-write-allowed",
+    "at": "2026-11-15T15:30:01.779Z",
+    "account": "qa-iso1673-b",
+    "role": "User",
+    "projectRole": "Regular/default",
+    "description": 1,
+    "requests": [
+      {
+        "event": "request",
+        "rid": "37784.3184",
+        "cmd": "listIsos",
+        "params": {
+          "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3184",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3185",
+        "cmd": "listTags",
+        "params": {
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3186",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3187",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3188",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3189",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3190",
+        "cmd": "listIsos",
+        "params": {
+          "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3185",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3188",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3187",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3186",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3191",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3189",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3190",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3191",
+        "cmd": "listResourceIcon",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A-readonly-role-saved",
+    "at": "2026-11-15T15:31:14.583Z",
+    "actual": "이름\n\nqa-iso1673-a\n아이디\n\n6e0e99b0-b328-4ca0-abe2-898dffd450e9\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n1\n볼륨\n\n1\n생성일\n\n2026. 11. 15. 오후 11:35:49"
+  },
+  {
+    "name": "partial-roles-created",
+    "at": "2026-11-15T15:32:07.450Z",
+    "roles": [
+      {
+        "href": "#/role/5e8ad74f-bdc2-4d66-8261-8abe3d128993",
+        "name": "qa-iso1673-local-only"
+      },
+      {
+        "href": "#/role/b5b1d35c-f03e-4b9f-92a0-15ceb2569215",
+        "name": "qa-iso1673-url-only"
+      }
+    ],
+    "rules": {
+      "local": [
+        [
+          "registerIso",
+          "deny"
+        ],
+        [
+          "getUploadParamsForIso",
+          "allow"
+        ],
+        [
+          "listIsoPermissions",
+          "allow"
+        ],
+        [
+          "updateIsoPermissions",
+          "deny"
+        ],
+        [
+          "deleteIso",
+          "deny"
+        ],
+        [
+          "copyIso",
+          "allow"
+        ],
+        [
+          "deployVirtualMachine",
+          "deny"
+        ],
+        [
+          "extractIso",
+          "allow"
+        ],
+        [
+          "updateIso",
+          "allow"
+        ],
+        [
+          "attachIso",
+          "allow"
+        ],
+        [
+          "detachIso",
+          "allow"
+        ],
+        [
+          "list*",
+          "allow"
+        ],
+        [
+          "getCapabilities",
+          "allow"
+        ],
+        [
+          "queryAsyncJobResult",
+          "allow"
+        ]
+      ],
+      "url": [
+        [
+          "registerIso",
+          "allow"
+        ],
+        [
+          "getUploadParamsForIso",
+          "deny"
+        ],
+        [
+          "listIsoPermissions",
+          "deny"
+        ],
+        [
+          "updateIsoPermissions",
+          "allow"
+        ],
+        [
+          "deleteIso",
+          "allow"
+        ],
+        [
+          "copyIso",
+          "deny"
+        ],
+        [
+          "deployVirtualMachine",
+          "allow"
+        ],
+        [
+          "extractIso",
+          "deny"
+        ],
+        [
+          "updateIso",
+          "allow"
+        ],
+        [
+          "attachIso",
+          "allow"
+        ],
+        [
+          "detachIso",
+          "allow"
+        ],
+        [
+          "list*",
+          "allow"
+        ],
+        [
+          "getCapabilities",
+          "allow"
+        ],
+        [
+          "queryAsyncJobResult",
+          "allow"
+        ]
+      ]
+    }
+  },
+  {
+    "name": "partial-local-account-actual-role",
+    "at": "2026-11-15T15:33:26.882Z",
+    "href": "#/account/4ed8b237-149b-4bc0-97dc-b656730c5413",
+    "actualRow": "\tqa-iso1673-local\t\n정상\n\tqa-iso1673-local-only\tUser\tROOT",
+    "request": [
+      {
+        "event": "request",
+        "rid": "37784.3310",
+        "cmd": "createAccount",
+        "params": {
+          "command": "createAccount",
+          "roleid": "5e8ad74f-bdc2-4d66-8261-8abe3d128993",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3310",
+        "cmd": "createAccount",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A11-readonly-vm-list-saved-metrics-true",
+    "at": "2026-11-15T15:33:58.155Z",
+    "actualRole": "Read-Only User - Default",
+    "main": "/가상머신업데이트\n소유 \n프로젝트\n\t\n\t\nVM 표시 명\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n컴퓨트 오퍼링\n\t\nZone\n\n\n\tqa-iso1673-ro-vm\t\n정지된 상태\n\t\n1 CPU\n1024 MB\n\t\t\n172.31.173.225 \n\tUSER\t\t\t1C1GB\t13-Zone\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "switches": [
+      "프로젝트"
+    ],
+    "requests": [
+      {
+        "event": "request",
+        "rid": "37784.3362",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3362",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A11-readonly-vm-iso-detail",
+    "at": "2026-11-15T15:34:14.728Z",
+    "role": "Read-Only User - Default",
+    "main": "/가상머신/qa-iso1673-ro-vm업데이트\n작업\nqa-iso1673-ro-vm\nKVM\n상태\n정지된 상태\n아이디\nea746294-0b2f-4a3e-a1e1-9fe963112bea \nIP\n172.31.173.225 \n클라우드 · 주 IP\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n네트워크\n1 NIC(s)\neth0  172.31.173.225   기본\n      qa-iso1673-net\n설치 원본 ISO\nqa-iso1673-owner-boot\n연결된 ISO\nqa-iso1673-owner-boot\n컴퓨트 오퍼링\n1C1GB\nZone\n13-Zone\n계정\nqa-iso1673-a\n도메인\nROOT\n생성일\n2026. 11. 16. 오전 12:06:29\n태그\n태그 새로고침\n태그가 없습니다.\n\n\n상세\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n업데이트\n이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-iso1673-owner-boot\t3\t부팅 가능\t연결됨\t",
+    "tabs": [
+      "상세",
+      "ISO",
+      "볼륨",
+      "NIC",
+      "설정",
+      "호스트 장치",
+      "VM 스냅샷",
+      "이벤트"
+    ],
+    "buttons": [
+      "업데이트",
+      "",
+      ""
+    ],
+    "requests": [
+      {
+        "event": "request",
+        "rid": "37784.3362",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3362",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3363",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3363",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3365",
+        "cmd": "listNetworks",
+        "params": {
+          "command": "listNetworks"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3366",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "executable",
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3367",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "executable",
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3368",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3369",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3370",
+        "cmd": "listAnnotations",
+        "params": {
+          "command": "listAnnotations"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3371",
+        "cmd": "listNetworks",
+        "params": {
+          "command": "listNetworks"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3368",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3370",
+        "cmd": "listAnnotations",
+        "status": 432
+      },
+      {
+        "event": "response",
+        "rid": "37784.3371",
+        "cmd": "listNetworks",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3369",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3365",
+        "cmd": "listNetworks",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3366",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3367",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3372",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "473557e5-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3373",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3372",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3373",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3374",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3374",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3376",
+        "cmd": "listIsos",
+        "params": {
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3376",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3377",
+        "cmd": "listNetworks",
+        "params": {
+          "command": "listNetworks"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3377",
+        "cmd": "listNetworks",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A11-readonly-history-direct-denied",
+    "at": "2026-11-15T15:34:20.617Z",
+    "url": "http://10.10.13.10:8080/client/#/vm/ea746294-0b2f-4a3e-a1e1-9fe963112bea?tab=stats",
+    "selectedTabs": [
+      "상세"
+    ],
+    "metricsRequests": []
+  },
+  {
+    "name": "A11-readonly-own-iso",
+    "at": "2026-11-15T15:34:29.320Z",
+    "main": "/ISO/qa-iso1673-owner-boot업데이트\nqa-iso1673-owner-boot\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n47be470c-71d2-4344-b0bf-d3783fd89a42 \nOS 유형\nOther Linux (64-bit)\n계정\nqa-iso1673-a\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:52:19\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 0,
+    "buttons": [
+      "업데이트",
+      "",
+      "가상머신 보기",
+      "태그 새로고침",
+      "업데이트",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "A11-readonly-shared-iso",
+    "at": "2026-11-15T15:34:39.111Z",
+    "main": "/ISO/qa-iso1673-b-local-data업데이트\nqa-iso1673-b-local-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n99f03e9c-af1d-4b38-8b33-5b91c06be108 \nOS 유형\nNone\n계정\nqa-iso1673-b\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n 13-Zone\n\t\n2026. 11. 16. 오전 12:23:27\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 0,
+    "buttons": [
+      "업데이트",
+      "",
+      "가상머신 보기",
+      "태그 새로고침",
+      "업데이트",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "A11-readonly-shared-list",
+    "at": "2026-11-15T15:34:59.150Z",
+    "main": "/ISO업데이트\n필터링 기준\nshared\n공유 \n프로젝트\n\t\n필터링 기준 : 공유\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1673-b-local-data\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "checkboxes": 0,
+    "writeButtons": [
+      "업데이트",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "metricsOrHistoryRequests": []
+  },
+  {
+    "name": "A11-vm-final",
+    "at": "2026-11-15T15:35:03.288Z",
+    "main": "/가상머신/qa-iso1673-ro-vm업데이트\n작업\nqa-iso1673-ro-vm\nKVM\n상태\n정지된 상태\n아이디\nea746294-0b2f-4a3e-a1e1-9fe963112bea \nIP\n172.31.173.225 \n클라우드 · 주 IP\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n네트워크\n1 NIC(s)\neth0  172.31.173.225   기본\n      qa-iso1673-net\n설치 원본 ISO\nqa-iso1673-owner-boot\n연결된 ISO\nqa-iso1673-owner-boot\n컴퓨트 오퍼링\n1C1GB\nZone\n13-Zone\n계정\nqa-iso1673-a\n도메인\nROOT\n생성일\n2026. 11. 16. 오전 12:06:29\n태그\n태그 새로고침\n태그가 없습니다.\n\n\n상세\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n업데이트\n이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-iso1673-owner-boot\t3\t부팅 가능\t연결됨\t",
+    "requestSummary": [
+      {
+        "event": "request",
+        "rid": "37784.3362",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3362",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3363",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3363",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3374",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3374",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3379",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3379",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A12-readonly-admin-iso",
+    "at": "2026-11-15T15:35:50.408Z",
+    "role": "Read-Only Admin - Default",
+    "roleType": "Admin",
+    "main": "/ISO/qa-iso1673-owner-boot업데이트\nqa-iso1673-owner-boot\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n47be470c-71d2-4344-b0bf-d3783fd89a42 \nOS 유형\nOther Linux (64-bit)\n계정\nqa-iso1673-a\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:52:19\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "buttons": [
+      "업데이트",
+      "",
+      "가상머신 보기",
+      "태그 새로고침",
+      "업데이트",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "checkboxes": 0,
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.3422",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3424",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "shared",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3424",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3497",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3497",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3499",
+        "cmd": "listIsos",
+        "params": {
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3499",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3500",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3501",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "473557e5-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3502",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3503",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3504",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3503",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3500",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3502",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3501",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3506",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3504",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3506",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3507",
+        "cmd": "listZones",
+        "params": {
+          "command": "listZones"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3508",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "473557e5-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3509",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3510",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3511",
+        "cmd": "listIsos",
+        "params": {
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3512",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3513",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3514",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3507",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3508",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3509",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3510",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3512",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3513",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3511",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3514",
+        "cmd": "listAccounts",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A12-readonly-admin-vm-read",
+    "at": "2026-11-15T15:35:56.023Z",
+    "main": "/가상머신/qa-iso1673-ro-vm업데이트\n작업\nqa-iso1673-ro-vm\ni-41-259-VM\nx86_64\nKVM\n상태\n정지된 상태\n아이디\nea746294-0b2f-4a3e-a1e1-9fe963112bea \nIP\n172.31.173.225 \n클라우드 · 주 IP\nCPU\n1 CPU x 2.00 GHz \nx86_64\n메모리\n1024 MB 메모리\n네트워크\n1 NIC(s)\neth0  172.31.173.225   기본\n      qa-iso1673-net\n설치 원본 ISO\nqa-iso1673-owner-boot\n연결된 ISO\nqa-iso1673-owner-boot\n컴퓨트 오퍼링\n1C1GB\nZone\n13-Zone\n계정\nqa-iso1673-a\n도메인\nROOT\n생성일\n2026. 11. 16. 오전 12:06:29\n태그\n태그 새로고침\n태그가 없습니다.\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n백업\n이벤트\n코멘트\n업데이트\n이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nqa-iso1673-owner-boot\t3\t부팅 가능\t연결됨\t",
+    "metrics": [
+      {
+        "event": "request",
+        "rid": "37784.3517",
+        "cmd": "listVirtualMachinesMetrics",
+        "params": {
+          "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+          "command": "listVirtualMachinesMetrics"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3517",
+        "cmd": "listVirtualMachinesMetrics",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A13-local-only-ui",
+    "at": "2026-11-15T15:36:32.225Z",
+    "main": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\n\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "registerUrlVisible": 0,
+    "localVisible": 1
+  },
+  {
+    "name": "A13-local-only-upload-submitted",
+    "at": "2026-11-15T15:36:56.138Z",
+    "dialog": "로컬에서 ISO 업로드\nqa-iso1673-local-only-boot\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\nISO 등록 요청\n파일 전송\n3\n준비 상태 확인\n4\n사용자 데이터 연결\n5\n완료\n닫기"
+  },
+  {
+    "name": "A13-local-only-ready",
+    "at": "2026-11-15T15:38:12.765Z",
+    "dialog": "로컬에서 ISO 업로드\nqa-iso1673-local-only-boot\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\nISO 등록 요청\n파일 전송\n준비 상태 확인\n사용자 데이터 연결\n5\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기",
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.3608",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3609",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3609",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3610",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3610",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3611",
+        "cmd": "listHostsMetrics",
+        "params": {
+          "command": "listHostsMetrics"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3611",
+        "cmd": "listHostsMetrics",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3612",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3612",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3613",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3613",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3614",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3614",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3615",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3615",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3616",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3616",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3617",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3617",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3618",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3618",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3619",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3619",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3620",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3620",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3621",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3621",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3622",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3622",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3623",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3623",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3625",
+        "cmd": "listIsos",
+        "params": {
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3625",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3626",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3626",
+        "cmd": "listIsos",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A15-A16-local-role-actions",
+    "at": "2026-11-15T15:38:31.211Z",
+    "role": "qa-iso1673-local-only",
+    "iso": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+    "zone": "업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n 13-Zone\n\t\n2026. 11. 16. 오전 12:36:47\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 0,
+    "buttons": [
+      "업데이트",
+      "작업",
+      "",
+      "가상머신 보기",
+      "태그 새로고침",
+      "업데이트",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "A16-copy-allowed-no-destination",
+    "at": "2026-11-15T15:38:36.433Z",
+    "dialog": "ISO 복사\n이름\nqa-iso1673-local-only-boot\n아이디\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\n원본 Zone\n13-Zone\n복사할 수 있는 대상 Zone이 없습니다. 원본 Zone과 이미 복사본이 있는 Zone은 제외됩니다.\nZone 선택\nZone\t상태\n\n \n\t\n \n\n\n13-Zone\n\t\n사용 가능\n취소\n확인",
+    "submitEnabled": false
+  },
+  {
+    "name": "A16-extract-allowed-complete",
+    "at": "2026-11-15T15:39:11.734Z",
+    "dialog": "ISO 다운로드\n이름\nqa-iso1673-local-only-boot\n아이디\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\nZone\n13-Zone\n다운로드 준비가 완료되었습니다. 실제 파일 수신 여부는 브라우저의 다운로드 목록에서 확인하세요.\n닫기\n다시 준비\n파일 받기",
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.3647",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3648",
+        "cmd": "listZones",
+        "params": {
+          "command": "listZones"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3648",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3649",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3649",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3652",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3652",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3653",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3653",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3654",
+        "cmd": "extractIso",
+        "params": {
+          "command": "extractIso",
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3654",
+        "cmd": "extractIso",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3655",
+        "cmd": "queryAsyncJobResult",
+        "params": {
+          "command": "queryAsyncJobResult"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3655",
+        "cmd": "queryAsyncJobResult",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3656",
+        "cmd": "queryAsyncJobResult",
+        "params": {
+          "command": "queryAsyncJobResult"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3656",
+        "cmd": "queryAsyncJobResult",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "partial-url-account-actual-role",
+    "at": "2026-11-15T15:40:29.518Z",
+    "actual": "이름\n\nqa-iso1673-local\n아이디\n\n4ed8b237-149b-4bc0-97dc-b656730c5413\n역할\n\nqa-iso1673-url-only\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 16. 오전 12:32:51"
+  },
+  {
+    "name": "project-readonly-role-rules-created",
+    "at": "2026-11-15T15:42:10.893Z",
+    "rules": "프로젝트 역할 생성\n\t이름\t설명\t작업\n\n\tqa-iso1673-project-readonly\tISO1673 deny project writes\t\n\n\nRule\n거부\nlist*\n허용\nqueryAsyncJobResult\n허용\n*\n거부"
+  },
+  {
+    "name": "project-regular-readonly-role-saved",
+    "at": "2026-11-15T15:43:17.682Z",
+    "rows": "계정\t사용자\t역할 유형\t프로젝트 역할\t작업\nqa-iso1673-b\t\tRegular\tqa-iso1673-project-readonly\t\n\nqa-iso1673-a\t\tAdmin\t\t\n전체 2 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "A14-url-only-ui",
+    "at": "2026-11-15T15:43:49.775Z",
+    "main": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\n\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1673-local-only-boot\n\t\n사용 가능\n\t\nOther Linux (64-bit)\n\t\nx86_64\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "urlButton": 1,
+    "localButton": 0
+  },
+  {
+    "name": "A14-url-only-register-submitted",
+    "at": "2026-11-15T15:44:06.313Z",
+    "dialog": "ISO 등록\nqa-iso1673-url-data-abcdefghijklmnopqrstuvwxyz-0123456789\n01f71f24-36d5-4257-950e-7c6663c6ece8\nISO 등록 요청\n준비 상태 확인\n사용자 데이터 연결\n4\n완료\nISO 준비와 선택한 사용자 데이터 연결을 완료했습니다.\n닫기\n등록한 ISO 보기",
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.3648",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3649",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3649",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3652",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3652",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3653",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3653",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3654",
+        "cmd": "extractIso",
+        "params": {
+          "command": "extractIso",
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3654",
+        "cmd": "extractIso",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3655",
+        "cmd": "queryAsyncJobResult",
+        "params": {
+          "command": "queryAsyncJobResult"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3655",
+        "cmd": "queryAsyncJobResult",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3656",
+        "cmd": "queryAsyncJobResult",
+        "params": {
+          "command": "queryAsyncJobResult"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3656",
+        "cmd": "queryAsyncJobResult",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3907",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3907",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3908",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3908",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3909",
+        "cmd": "listZones",
+        "params": {
+          "command": "listZones"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3910",
+        "cmd": "listOsTypes",
+        "params": {
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3911",
+        "cmd": "listUserData",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "account": "qa-iso1673-local",
+          "command": "listUserData"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3911",
+        "cmd": "listUserData",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3909",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3910",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3912",
+        "cmd": "registerIso",
+        "params": {
+          "command": "registerIso"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3912",
+        "cmd": "registerIso",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3913",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.3914",
+        "cmd": "listIsos",
+        "params": {
+          "id": "01f71f24-36d5-4257-950e-7c6663c6ece8",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3913",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.3914",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3915",
+        "cmd": "listIsos",
+        "params": {
+          "id": "01f71f24-36d5-4257-950e-7c6663c6ece8",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3915",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3916",
+        "cmd": "listIsos",
+        "params": {
+          "id": "01f71f24-36d5-4257-950e-7c6663c6ece8",
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3916",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.3917",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3917",
+        "cmd": "listIsos",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A15-url-permission-read-denied",
+    "at": "2026-11-15T15:44:15.262Z",
+    "menus": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "역할",
+      "계정",
+      "도메인",
+      "Zone",
+      "확장",
+      "API 문서",
+      "공유 ISO 업데이트",
+      "ISO 편집",
+      "기존 VM에 ISO 연결"
+    ],
+    "downloadVisible": 0,
+    "deployVisible": 1
+  },
+  {
+    "name": "A15-write-allowed-read-denied-safe-share",
+    "at": "2026-11-15T15:44:33.236Z",
+    "main": "이름\n\nqa-iso1673-local-only-boot\n아이디\n\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\n설명\n\nqa-iso1673-local-only-boot\n체크섬\n\nc954b2900fbbd38c2da156525819de8c80c4cc7a7ffde61a89b10f4a99985ebc\nOS 유형\n\nOther Linux (64-bit)\n크기\n23.30 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n예\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1673-local\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오전 12:36:47",
+    "requests": [
+      {
+        "event": "request",
+        "rid": "37784.3929",
+        "cmd": "updateIsoPermissions",
+        "params": {
+          "command": "updateIsoPermissions",
+          "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.3929",
+        "cmd": "updateIsoPermissions",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A16-delete-allowed-copy-denied",
+    "at": "2026-11-15T15:45:38.672Z",
+    "role": "qa-iso1673-url-only",
+    "dialog": "ISO 삭제\n이름\nqa-iso1673-local-only-boot\n아이디\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t상태\n\n \n\t\n \n\n\n13-Zone\n\t\n사용 가능\n취소\n확인",
+    "copyButtonCount": 0
+  },
+  {
+    "name": "A16-url-role-deploy-preflight",
+    "at": "2026-11-15T15:46:12.579Z",
+    "role": "qa-iso1673-url-only",
+    "summary": "목\n1\n10 / 쪽\n7\nSSH 키 쌍\n\tSSH 키 쌍\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽\n8\n백업\n인스턴스에 할당할 백업 오퍼링 항목을 선택하세요. 또한 다양한 간격 유형에 대한 하나 이상의 백업 스케줄을 추가하여 자동 백업을 설정할 수 있습니다. 백업 오퍼링 항목과 스케줄을 할당하면 자동 및 예약 백업을 통해 데이터를 보호할 수 있습니다.\nSelect backup offering\n9\n확장 모드\n고급 설정 표시 \n10\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n대상 소유 범위에 그룹이 없습니다. 새 이름을 입력하면 해당 소유 범위에 생성합니다.\n업데이트\n키보드 언어\n생성할 가상머신 수\n가상머신 생성 후 바로 시작\n\n가상머신을 생성하고 중지 상태로 유지합니다. 생성 후 상세 화면에서 시작할 수 있습니다.\n\n귀하의 가상머신\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n2 CPU x 1.00 GHz \n메모리\n2048 MB 메모리\n루트 디스크의 기본 스토리지\n자동 선택 · — GB\n설치 원본 ISO\nqa-iso1673-local-only-boot\n연결된 ISO\nqa-iso1673-local-only-boot\n컴퓨트 오퍼링\nCKS Instance\nZone\n13-Zone\n부팅 유형\nUEFI\n부팅 모드\nLEGACY\n가상머신 생성",
+    "networkCreateVisible": 0
+  },
+  {
+    "name": "partial-url-create-network-added",
+    "at": "2026-11-15T15:47:18.197Z",
+    "rule": "createNetwork",
+    "permission": "allow",
+    "scope": "qa-iso1673-url-only synthetic role only",
+    "tail": "Iso\n거부\nISO1673 isolated ACL\nupdateIso\n허용\nISO1673 isolated ACL\nattachIso\n허용\nISO1673 isolated ACL\ndetachIso\n허용\nISO1673 isolated ACL\nlist*\n허용\nISO1673 isolated ACL\ngetCapabilities\n허용\nISO1673 isolated ACL\nqueryAsyncJobResult\n허용\nISO1673 isolated ACL\ncreateNetwork\n허용"
+  },
+  {
+    "name": "test-role-network-provider-baseline-block",
+    "at": "2026-11-15T15:49:05.126Z",
+    "api": "listNetworkServiceProviders",
+    "status": 431,
+    "errortext": "Unable to find the Network Element implementing the Service Provider 'Nsx'",
+    "classification": "test-role broad list wildcard probes unrelated provider; narrow synthetic role only; no product change"
+  },
+  {
+    "name": "partial-url-read-wildcard-removed",
+    "at": "2026-11-15T15:49:50.808Z",
+    "rules": "Export 규칙\n규칙\n허용\nregisterIso\n허용\nISO1673 isolated ACL\ngetUploadParamsForIso\n거부\nISO1673 isolated ACL\nlistIsoPermissions\n거부\nISO1673 isolated ACL\nupdateIsoPermissions\n허용\nISO1673 isolated ACL\ndeleteIso\n허용\nISO1673 isolated ACL\ncopyIso\n거부\nISO1673 isolated ACL\ndeployVirtualMachine\n허용\nISO1673 isolated ACL\nextractIso\n거부\nISO1673 isolated ACL\nupdateIso\n허용\nISO1673 isolated ACL\nattachIso\n허용\nISO1673 isolated ACL\ndetachIso\n허용\nISO1673 isolated ACL\ngetCapabilities\n허용\nISO1673 isolated ACL\nqueryAsyncJobResult\n허용\nISO1673 isolated ACL\ncreateNetwork\n허용"
+  },
+  {
+    "name": "partial-url-effective-rules-final",
+    "at": "2026-11-15T15:52:07.205Z",
+    "rules": "Export 규칙\n규칙\n허용\nregisterIso\n허용\nISO1673 isolated ACL\ngetUploadParamsForIso\n거부\nISO1673 isolated ACL\nlistIsoPermissions\n거부\nISO1673 isolated ACL\nupdateIsoPermissions\n허용\nISO1673 isolated ACL\ndeleteIso\n허용\nISO1673 isolated ACL\ncopyIso\n거부\nISO1673 isolated ACL\ndeployVirtualMachine\n허용\nISO1673 isolated ACL\nextractIso\n거부\nISO1673 isolated ACL\nupdateIso\n허용\nISO1673 isolated ACL\nattachIso\n허용\nISO1673 isolated ACL\ndetachIso\n허용\nISO1673 isolated ACL\ngetCapabilities\n허용\nISO1673 isolated ACL\nqueryAsyncJobResult\n허용\nISO1673 isolated ACL\ncreateNetwork\n허용\nlistNetworkServiceProviders\n거부\nlist*\n허용"
+  },
+  {
+    "name": "partial-url-network-created",
+    "at": "2026-11-15T15:52:57.271Z",
+    "network": {
+      "name": "qa-iso1673-url-net",
+      "id": "785c939f-ae29-44c4-a46b-2ee28e6c18fa",
+      "owner": "qa-iso1673-local",
+      "cidr": "172.31.174.0/24"
+    }
+  },
+  {
+    "name": "A16-url-role-vm-review",
+    "at": "2026-11-15T15:53:06.912Z",
+    "summary": "인스턴스에 할당할 백업 오퍼링 항목을 선택하세요. 또한 다양한 간격 유형에 대한 하나 이상의 백업 스케줄을 추가하여 자동 백업을 설정할 수 있습니다. 백업 오퍼링 항목과 스케줄을 할당하면 자동 및 예약 백업을 통해 데이터를 보호할 수 있습니다.\nSelect backup offering\n9\n확장 모드\n고급 설정 표시 \n10\n상세\n가상머신을 생성하기 전에 다음 설정을 확인해 주세요.\n이름(옵션)\n그룹(옵션)\n대상 소유 범위에 그룹이 없습니다. 새 이름을 입력하면 해당 소유 범위에 생성합니다.\n업데이트\n키보드 언어\n생성할 가상머신 수\n가상머신 생성 후 바로 시작\n\n가상머신을 생성하고 중지 상태로 유지합니다. 생성 후 상세 화면에서 시작할 수 있습니다.\n\n귀하의 가상머신\nqa-iso1673-url-vm\nKVM\nOS 유형\nOther Linux (64-bit)\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n디스크 크기(GB 단위)\n1 GB (Root)\n네트워크\n qa-iso1673-url-net (기본)\n루트 디스크의 기본 스토리지\n자동 선택 · 1 GB\n설치 원본 ISO\nqa-iso1673-local-only-boot\n연결된 ISO\nqa-iso1673-local-only-boot\n컴퓨트 오퍼링\n1C1GB\n디스크 오퍼링\ncustom (Root)\nZone\n13-Zone\n부팅 유형\nUEFI\n부팅 모드\nLEGACY\n가상머신 생성",
+    "startvm": "false"
+  },
+  {
+    "name": "A16-url-role-deploy-accepted",
+    "at": "2026-11-15T15:53:16.324Z",
+    "account": "qa-iso1673-local",
+    "role": "qa-iso1673-url-only",
+    "id": "a4519547-b271-44a9-8a3c-0fc33a42b020",
+    "jobid": "28ec33fa-ece5-4cc1-bb9a-1b213dcc151e"
+  },
+  {
+    "name": "A16-url-role-deploy-complete",
+    "at": "2026-11-15T15:53:50.362Z",
+    "main": "/가상머신/qa-iso1673-url-vm업데이트\n작업\nqa-iso1673-url-vm\nKVM\n상태\n정지된 상태\n아이디\na4519547-b271-44a9-8a3c-0fc33a42b020 \nIP\n172.31.174.27 \n클라우드 · 주 IP\nCPU\n1 CPU x 2.00 GHz \n메모리\n1024 MB 메모리\n네트워크\n1 NIC(s)\neth0  172.31.174.27   기본\n      qa-iso1673-url-net\n설치 원본 ISO\nqa-iso1673-local-only-boot\n연결된 ISO\nqa-iso1673-local-only-boot\n컴퓨트 오퍼링\n1C1GB\nZone\n13-Zone\n계정\nqa-iso1673-local\n도메인\nROOT\n부팅 유형\nUefi\n부팅 모드\nlegacy\n생성일\n2026. 11. 16. 오전 12:53:07\n태그\n태그 새로고침\n태그가 없습니다.\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n백업\n이벤트\n코멘트\nISO 연결\n선택 연결 해제\n업데이트\n\t이름\t장치 슬롯\t미디어 속성\t상태\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\tqa-iso1673-local-only-boot\t3\t부팅 가능\t연결됨\t\n연결 해제",
+    "state": "Stopped",
+    "sourceIso": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+    "vm": "a4519547-b271-44a9-8a3c-0fc33a42b020"
+  },
+  {
+    "name": "partial-url-vm-volume",
+    "at": "2026-11-15T15:53:57.009Z",
+    "links": [
+      {
+        "href": "#/volume/7f10adf0-707c-4f77-9092-ff0ae5953b47",
+        "name": "ROOT-260"
+      }
+    ]
+  },
+  {
+    "name": "Z02-in-use-delete-rejected",
+    "at": "2026-11-15T15:54:20.178Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1673-local-only-boot\n아이디\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t실패 · 비동기 작업 완료\n\nUnable to delete ISO, as it's used by other instances\n\n성공 0 · 실패 1 · 알 수 없음 0 · 진행 중 0\n\n닫기\n실패 항목 재시도",
+    "iso": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+    "vm": "a4519547-b271-44a9-8a3c-0fc33a42b020"
+  },
+  {
+    "name": "A14-url-only-ready",
+    "at": "2026-11-15T15:54:27.737Z",
+    "main": "/ISO/qa-iso1673-url-data-abcdefghijklmnopqrstuvwxyz-0123456789업데이트\n작업\nqa-iso1673-url-data-abcdefghijklmnopqrstuvwxyz-0123456789\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n01f71f24-36d5-4257-950e-7c6663c6ece8 \nOS 유형\nNone\n계정\nqa-iso1673-local\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n이름\n\nqa-iso1673-url-data-abcdefghijklmnopqrstuvwxyz-0123456789\n아이디\n\n01f71f24-36d5-4257-950e-7c6663c6ece8\n설명\n\nqa-iso1673-url-only-data\n체크섬\n\n171cc1569c3078e9b4b9e0d88338ba8ac990fb0843a431193c63d60669662ca4\nOS 유형\n\nNone\n크기\n1.46 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n아니오\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nqa-iso1673-local\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오전 12:43:57\nURL\n\nhttp://10.10.13.10:8080/client/qa-iso1673-20261115/data-fixture.iso"
+  },
+  {
+    "name": "A16-delete-allowed-complete",
+    "at": "2026-11-15T15:55:06.336Z",
+    "dialog": "ISO 삭제\n이름\nqa-iso1673-url-data-abcdefghijklmnopqrstuvwxyz-0123456789\n아이디\n01f71f24-36d5-4257-950e-7c6663c6ece8\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기",
+    "id": "01f71f24-36d5-4257-950e-7c6663c6ece8"
+  },
+  {
+    "name": "delete-final-copy-returned-list",
+    "at": "2026-11-15T15:55:11.974Z",
+    "url": "http://10.10.13.10:8080/client/#/iso?isofilter=self&filter=self&page=1&pagesize=20&isoowner=[%2272ac21b5-e6f1-4188-bea8-a8f9e46608ea%22,%22b5b1d35c-f03e-4b9f-92a0-15ceb2569215%22,%22User%22,%22qa-iso1673-local%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+    "rows": [
+      "이름상태OS 유형CPU 아키텍처",
+      "qa-iso1673-local-only-boot사용 가능Other Linux (64-bit)x86_64"
+    ]
+  },
+  {
+    "name": "A09-project-regular-readonly-restriction",
+    "at": "2026-11-15T15:55:56.001Z",
+    "account": "qa-iso1673-b",
+    "role": "User",
+    "projectRole": "qa-iso1673-project-readonly",
+    "main": "/ISO/qa-iso1673-project-data업데이트\nqa-iso1673-project-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n679bf041-752e-47b7-b697-1d7184640a3e \nOS 유형\nNone\n프로젝트\nqa-iso1673-project\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:59:59\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "buttons": [
+      "업데이트",
+      "",
+      "가상머신 보기",
+      "태그 새로고침",
+      "업데이트",
+      "",
+      "",
+      ""
+    ],
+    "checkboxes": 0,
+    "requests": [
+      {
+        "event": "request",
+        "rid": "37784.5402",
+        "cmd": "listApis",
+        "params": {
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "command": "listApis"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5402",
+        "cmd": "listApis",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5427",
+        "cmd": "listIsos",
+        "params": {
+          "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5427",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5437",
+        "cmd": "listIsos",
+        "params": {
+          "isofilter": "self",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5439",
+        "cmd": "listIsos",
+        "params": {
+          "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+          "projectid": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5437",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5439",
+        "cmd": "listIsos",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "project-readonly-list-no-write",
+    "at": "2026-11-15T15:56:01.626Z",
+    "main": "/ISO업데이트\n필터링 기준\n소유 \n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1673-project-data\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "buttons": [
+      "업데이트",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "project-to-personal-scope-restored",
+    "at": "2026-11-15T15:56:12.123Z",
+    "main": "/ISO업데이트\n필터링 기준\n소유 \n프로젝트\nISO 등록\n\t\n이름\n\t\n상태\n\t\nOS 유형\n\t\nCPU 아키텍처\n\t\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\nqa-iso1673-b-local-data\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "buttons": [
+      "업데이트",
+      "ISO 등록",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "C01-specific-revoke-other-target-preserved",
+    "at": "2026-11-15T15:57:24.893Z",
+    "account": "qa-iso1673-b",
+    "role": "User",
+    "iso": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+    "dialog": "ISO 권한 업데이트\n현재 공유 현황\n계정\nqa-iso1673-aqa-iso1673-c\n프로젝트\n없음\n연산\n삭제\n공유\n계정\n계정\nqa-iso1673-a\nqa-iso1673-c\n닫기\n확인"
+  },
+  {
+    "name": "C01-revoke-attempt-not-submitted",
+    "at": "2026-11-15T15:58:06.485Z",
+    "reason": "observed latest updateIsoPermissions remained op=add accounts=qa-iso1673-c; earlier candidate result not PASS; rerun required"
+  },
+  {
+    "name": "C01-specific-revoke-final-pass",
+    "at": "2026-11-15T16:00:39.973Z",
+    "account": "qa-iso1673-b",
+    "role": "User",
+    "request": {
+      "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+      "op": "remove",
+      "accounts": "qa-iso1673-a"
+    },
+    "dialog": "ISO 권한 업데이트\n현재 공유 현황\n계정\nqa-iso1673-c\n프로젝트\n없음\n연산\n삭제\n공유\n계정\n계정\n공유 권한 변경과 재조회를 완료했습니다.\n닫기\n확인"
+  },
+  {
+    "name": "C01-revoked-readonly-direct-denied",
+    "at": "2026-11-15T16:01:09.330Z",
+    "url": "http://10.10.13.10:8080/client/#/dashboard",
+    "titleCount": 0,
+    "responses": [
+      {
+        "event": "request",
+        "rid": "37784.5549",
+        "cmd": "listIsos",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5549",
+        "cmd": "listIsos",
+        "status": 531
+      }
+    ]
+  },
+  {
+    "name": "A11-readonly-relogin-vm-basic-still-readable",
+    "at": "2026-11-15T16:01:29.659Z",
+    "main": "/가상머신업데이트\n소유 \n프로젝트\n\t\n\t\nVM 표시 명\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n컴퓨트 오퍼링\n\t\nZone\n\t\n\n\n\tqa-iso1673-ro-vm\t\n정지된 상태\n\t\n1 CPU\n1024 MB\n\t\t\n172.31.173.225 \n\tUSER\t\t\t1C1GB\t13-Zone\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+    "requests": [
+      {
+        "event": "request",
+        "rid": "37784.5551",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5552",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5553",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5552",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5551",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5553",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5562",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5562",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      }
+    ],
+    "switches": [
+      "프로젝트",
+      ""
+    ]
+  },
+  {
+    "name": "C01-other-receiver-preserved-access",
+    "at": "2026-11-15T16:02:00.528Z",
+    "account": "qa-iso1673-c",
+    "role": "User",
+    "main": "/ISO/qa-iso1673-b-local-data업데이트\n작업\nqa-iso1673-b-local-data\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n99f03e9c-af1d-4b38-8b33-5b91c06be108 \nOS 유형\nNone\n계정\nqa-iso1673-b\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n상세\nZone\n이벤트\n코멘트\n업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n 13-Zone\n\t\n2026. 11. 16. 오전 12:23:27\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 0,
+    "requests": [
+      {
+        "event": "response",
+        "rid": "37784.5559",
+        "cmd": "listPublicIpAddresses",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5557",
+        "cmd": "listNetworks",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5560",
+        "cmd": "listTemplates",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5562",
+        "cmd": "listVirtualMachines",
+        "params": {
+          "command": "listVirtualMachines"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5562",
+        "cmd": "listVirtualMachines",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5603",
+        "cmd": "listIsos",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5603",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5604",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5605",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5606",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5607",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5608",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5604",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5607",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5605",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5609",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5606",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5608",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5609",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.5610",
+        "cmd": "listZones",
+        "params": {
+          "command": "listZones"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5611",
+        "cmd": "listOsTypes",
+        "params": {
+          "id": "47403c11-bd56-11f1-b573-002481560363",
+          "command": "listOsTypes"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5612",
+        "cmd": "listIsos",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5613",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5614",
+        "cmd": "listIsos",
+        "params": {
+          "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+          "isofilter": "executable",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5615",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5616",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.5617",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5610",
+        "cmd": "listZones",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5611",
+        "cmd": "listOsTypes",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5612",
+        "cmd": "listIsos",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5613",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5615",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5616",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5617",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.5614",
+        "cmd": "listIsos",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "A07-domainadmin-outside-final-reverified-pass",
+    "at": "2026-11-15T16:02:55.358Z",
+    "account": "qa-iso1673-da",
+    "role": "DomainAdmin",
+    "url": "http://10.10.13.10:8080/client/#/dashboard",
+    "notice": [
+      "요청 실패 (531)Account Account [{\"accountName\":\"qa-iso1673-da\",\"id\":45,\"uuid\":\"10e8eb4e-25bd-4cc4-b5ce-4b329d1b82fb\"}] does not have permission to operate within domain id=47178e2f-bd56-11f1-b573-002481560363"
+    ],
+    "responses": [
+      {
+        "event": "request",
+        "rid": "37784.5669",
+        "cmd": "listIsos",
+        "params": {
+          "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+          "isofilter": "all",
+          "command": "listIsos"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.5669",
+        "cmd": "listIsos",
+        "status": 531
+      }
+    ],
+    "dialogs": 0
+  },
+  {
+    "name": "A02-root-system-iso-protected",
+    "at": "2026-11-15T16:04:30.516Z",
+    "target": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+    "main": "/ISO/vmware-tools.iso업데이트\n작업\nvmware-tools.iso\nx86_64\n상태\n사용 가능\n조회된 정보 기준\n아이디\n71ed0193-510e-4d01-8faa-f1fb3faa7b1a \nOS 유형\nCentOS 4.5 (32-bit)\n계정\nsystem\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n업데이트\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t\n —\n\t\n—\n\t\n사용 가능\n\t예\t\n전체 1 개 항목\n1\n10 / 쪽",
+    "menus": [
+      "대시보드",
+      "템플릿",
+      "ISO",
+      "쿠버네티스 ISO",
+      "이벤트",
+      "프로젝트",
+      "역할",
+      "계정",
+      "도메인",
+      "확장",
+      "API 문서",
+      "기존 VM에 ISO 연결"
+    ],
+    "checkboxes": 0,
+    "buttons": [
+      "업데이트",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "mutationsSubmitted": false
+  },
+  {
+    "name": "A01-root-zone-storage-read",
+    "at": "2026-11-15T16:05:09.284Z",
+    "main": "/ISO/qa-iso1673-owner-boot업데이트\n작업\nqa-iso1673-owner-boot\nx86_64\n상태\n사용 가능\n조회 Zone: 13-Zone\n아이디\n47be470c-71d2-4344-b0bf-d3783fd89a42 \nOS 유형\nOther Linux (64-bit)\n계정\nqa-iso1673-a\n도메인\nROOT\n가상머신 보기\n가상머신 생성\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\nISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:52:19\n\t\n사용 가능\n\t예\t\n\n\n2차 스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t다운로드 완료\n전체 1 개 항목\n1\n10 / 쪽",
+    "checkboxes": 2
+  },
+  {
+    "name": "X01-light-zone-1440x1000",
+    "at": "2026-11-15T16:05:43.847Z",
+    "viewport": {
+      "docWidth": 1430,
+      "height": 1000,
+      "width": 1440
+    },
+    "zone": "ISO 일괄 삭제(0)\n업데이트\n\t\n\tZone\t생성일\t상태\t준비\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t\n\t\n 13-Zone\n\t\n2026. 11. 15. 오후 11:52:19\n\t\n사용 가능\n\t예\t\n\n\n2차 스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t다운로드 완료\n전체 1 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "A01-root-edit-other-owner-saved",
+    "at": "2026-11-15T16:06:02.833Z",
+    "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+    "heading": 1
+  },
+  {
+    "name": "X01-light-list-1280-long-name",
+    "at": "2026-11-15T16:06:35.610Z",
+    "viewport": {
+      "docWidth": 1270,
+      "height": 720,
+      "width": 1280
+    },
+    "nameStyle": {
+      "client": 375,
+      "scroll": 416,
+      "textOverflow": "ellipsis",
+      "whiteSpace": "nowrap",
+      "width": 375,
+      "x": 492.5,
+      "y": 507
+    },
+    "tooltips": [
+      "qa-iso1673-b-local-data-abcdefghijklmnopqrstuvwxyz-0123456789"
+    ]
+  },
+  {
+    "name": "X01-light-edit-390x480",
+    "at": "2026-11-15T16:07:05.838Z",
+    "viewport": {
+      "docWidth": 380,
+      "height": 480,
+      "width": 390
+    },
+    "dialog": "ISO 편집\n이름\n설명\n부팅 가능\n비밀번호 관리 사용\n동적으로 확장 가능\nCPU 아키텍처\nIntel/AMD 64 bits (x86_64)\nOS 유형\nNone\n사용자 데이터\n설정 안함\n\t 사용자 데이터\t 계정\t 도메인\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\nUser Data 링크 정책\nALLOWOVERRIDE\n취소\n확인"
+  },
+  {
+    "name": "X01-light-edit-390x844",
+    "at": "2026-11-15T16:07:15.963Z",
+    "viewport": {
+      "docWidth": 380,
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "name": "X02-scripted-escape-focus",
+    "at": "2026-11-15T16:07:21.159Z",
+    "dialogs": 0,
+    "focus": {
+      "aria": null,
+      "tag": "BUTTON",
+      "text": "작업"
+    },
+    "method": "automated locator Escape; not manual native Tab/clipboard"
+  },
+  {
+    "name": "common-root-vm-list",
+    "at": "2026-11-15T16:07:55.458Z",
+    "tail": "\n10.10.254.119 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-634178d0-3d06-31ec-84d3-9ec113093025\ti-2-111-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.122 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n전체 105 개 항목 중 1-20 표시\n1\n2\n3\n4\n5\n6\n20 / 쪽\n이동하기",
+    "metricsToggle": [
+      {
+        "checked": "false",
+        "text": "메트릭"
+      },
+      {
+        "checked": "false",
+        "text": "프로젝트"
+      },
+      {
+        "checked": "true",
+        "text": ""
+      }
+    ]
+  },
+  {
+    "name": "common-root-vm-history-allowed",
+    "at": "2026-11-15T16:08:01.159Z",
+    "selectedTabs": [
+      "메트릭"
+    ],
+    "panel": "1시간\n6시간\nCustom\n자동 새로고침 주기\n없음\n선택된 기간에 표시할 데이터가 없습니다."
+  },
+  {
+    "name": "common-template-list",
+    "at": "2026-11-15T16:08:07.477Z",
+    "tail": "posix-20261028-r1\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n\nEuropa-SystemVM-1453-inheritance-20261029-r1\n\t\n사용 가능\n\tDebian GNU/Linux 12 (64-bit)\tx86_64\tKVM\t4.88 GiB\tadmin\tSYSTEM\t\n\t\n전체 48 개 항목 중 1-20 표시\n1\n2\n3\n20 / 쪽\n이동하기"
+  },
+  {
+    "name": "common-template-settings",
+    "at": "2026-11-15T16:08:30.633Z",
+    "template": "Rocky9",
+    "tabs": [
+      "상세",
+      "Zone",
+      "설정",
+      "이벤트",
+      "코멘트"
+    ],
+    "panel": "설정 추가\n업데이트\n이름\t값\t변경 가능 여부\t작업\n\n \n\t\n \n\t\n \n\t\n \n\n\nrootDiskController\n\t\nscsi\n\t편집 가능\t\n편집\n1\n10 / 쪽"
+  },
+  {
+    "name": "common-vpc-list",
+    "at": "2026-11-15T16:08:36.297Z",
+    "main": "/VPC업데이트\n프로젝트\nVPC 추가\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\nCIDR\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-vm-a-expunged",
+    "at": "2026-11-15T16:09:35.647Z",
+    "id": "ea746294-0b2f-4a3e-a1e1-9fe963112bea",
+    "url": "http://10.10.13.10:8080/client/#/vpc",
+    "tail": "/VPC업데이트\n프로젝트\nVPC 추가\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\nCIDR\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-vm-local-expunge-completed",
+    "at": "2026-11-15T16:10:12.338Z",
+    "id": "a4519547-b271-44a9-8a3c-0fc33a42b020",
+    "dialogs": 0,
+    "url": "http://10.10.13.10:8080/client/#/vpc",
+    "requests": [
+      {
+        "event": "request",
+        "rid": "37784.6054",
+        "cmd": "readyForShutdown",
+        "params": {
+          "command": "readyForShutdown"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6054",
+        "cmd": "readyForShutdown",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6055",
+        "cmd": "queryAsyncJobResult",
+        "params": {
+          "command": "queryAsyncJobResult"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6055",
+        "cmd": "queryAsyncJobResult",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6056",
+        "cmd": "readyForShutdown",
+        "params": {
+          "command": "readyForShutdown"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6056",
+        "cmd": "readyForShutdown",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6057",
+        "cmd": "queryAsyncJobResult",
+        "params": {
+          "command": "queryAsyncJobResult"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6057",
+        "cmd": "queryAsyncJobResult",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6058",
+        "cmd": "getWallAlertAvailability",
+        "params": {
+          "command": "getWallAlertAvailability"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6058",
+        "cmd": "getWallAlertAvailability",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6059",
+        "cmd": "listWallAlertRules",
+        "params": {
+          "command": "listWallAlertRules"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.6060",
+        "cmd": "queryAsyncJobResult",
+        "params": {
+          "command": "queryAsyncJobResult"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6060",
+        "cmd": "queryAsyncJobResult",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6061",
+        "cmd": "listTags",
+        "params": {
+          "command": "listTags"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.6062",
+        "cmd": "listVPCs",
+        "params": {
+          "command": "listVPCs"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.6063",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.6064",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.6065",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.6066",
+        "cmd": "listResourceIcon",
+        "params": {
+          "command": "listResourceIcon"
+        }
+      },
+      {
+        "event": "request",
+        "rid": "37784.6067",
+        "cmd": "listAccounts",
+        "params": {
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "command": "listAccounts"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6062",
+        "cmd": "listVPCs",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.6061",
+        "cmd": "listTags",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.6064",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.6065",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.6063",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.6066",
+        "cmd": "listResourceIcon",
+        "status": 200
+      },
+      {
+        "event": "response",
+        "rid": "37784.6067",
+        "cmd": "listAccounts",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6069",
+        "cmd": "readyForShutdown",
+        "params": {
+          "command": "readyForShutdown"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6069",
+        "cmd": "readyForShutdown",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6070",
+        "cmd": "readyForShutdown",
+        "params": {
+          "command": "readyForShutdown"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6070",
+        "cmd": "readyForShutdown",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6071",
+        "cmd": "listVPCs",
+        "params": {
+          "command": "listVPCs"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6071",
+        "cmd": "listVPCs",
+        "status": 200
+      },
+      {
+        "event": "request",
+        "rid": "37784.6072",
+        "cmd": "readyForShutdown",
+        "params": {
+          "command": "readyForShutdown"
+        }
+      },
+      {
+        "event": "response",
+        "rid": "37784.6072",
+        "cmd": "readyForShutdown",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "name": "cleanup-vm-count-restored",
+    "at": "2026-11-15T16:10:17.450Z",
+    "tail": "\n10.10.254.119 \n\tUSER\t\tx86_64\t\tadmin\t13-Zone\t\n\n\tsharedfs-634178d0-3d06-31ec-84d3-9ec113093025\ti-2-111-VM\t\n정지된 상태\n\t\n2 CPU\n4096 MB\n\t7.2.22\t\n10.10.254.122 \n\tSYSTEM\t\tx86_64\t\tadmin\t13-Zone\t\n전체 103 개 항목 중 1-20 표시\n1\n2\n3\n4\n5\n6\n20 / 쪽\n이동하기"
+  },
+  {
+    "name": "cleanup-test-vms-zero",
+    "at": "2026-11-15T16:10:23.728Z",
+    "main": "/가상머신업데이트\n모두\n메트릭\n프로젝트\n가상머신 추가\n\t\n\t\nVM 표시 명\n\t\n내부 이름\n\t\n상태\n\t\n할당 자원\n\t\n에이전트 버전\n\t\nIP 주소\n\t\n템플릿 유형\n\t\n백업 오퍼링 이름\n\t\nCPU 아키텍처\n\t\n호스트\n\t\n계정\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-volume-259-zero",
+    "at": "2026-11-15T16:10:42.004Z",
+    "id": "80ba73b8-18e9-4bbc-9aa6-9a9688880870",
+    "main": "/볼륨업데이트\n사용자 \n메트릭\n프로젝트\n볼륨 생성\n\t\n\t\n이름\n\t\n상태\n\t\n크기\n\t\n유형\n\t\nVM 이름\n\t\nVM 상태\n\t\n스토리지\n\t\n계정\n\t\nZone\n\t\n디스크 파일시스템 사용량\n\t\n압축/중복제거\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-volume-260-zero",
+    "at": "2026-11-15T16:10:47.152Z",
+    "id": "7f10adf0-707c-4f77-9092-ff0ae5953b47",
+    "main": "/볼륨업데이트\n사용자 \n메트릭\n프로젝트\n볼륨 생성\n\t\n\t\n이름\n\t\n상태\n\t\n크기\n\t\n유형\n\t\nVM 이름\n\t\nVM 상태\n\t\n스토리지\n\t\n계정\n\t\nZone\n\t\n디스크 파일시스템 사용량\n\t\n압축/중복제거\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-network-a-publicip-zero",
+    "at": "2026-11-15T16:11:04.369Z",
+    "panel": "새 IP 주소 가져오기\n업데이트\n\tIP 주소\t상태\tVM\t네트워크\t\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음\n\n전체 0 개 항목\n1\n10 / 쪽"
+  },
+  {
+    "name": "cleanup-network-a-router-zero",
+    "at": "2026-11-15T16:11:08.968Z",
+    "panel": "업데이트\n이름\t상태\t게스트 IP 주소\tPublic IP 주소\t버전\t업그레이드 필요\tRedundant 라우터\t호스트\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\n데이터 없음"
+  },
+  {
+    "name": "cleanup-network-a-normal-delete-finished",
+    "at": "2026-11-15T16:12:33.703Z",
+    "id": "4c49f8c9-eeff-49ee-af6d-d732920d713a",
+    "url": "http://10.10.13.10:8080/client/#/dashboard",
+    "dialogs": 0,
+    "note": "transient Network job scope mismatch observed; normal delete completed; final list absence required"
+  },
+  {
+    "name": "cleanup-network-local-preflight",
+    "at": "2026-11-15T16:12:46.109Z",
+    "dialog": "네트워크 삭제\n\n일반 삭제만 실행합니다. 연결 VM/NIC와 진행 중 작업을 다시 확인하고, 여러 네트워크는 한 건씩 완료를 확인합니다. 이 대화상자를 닫아도 접수된 작업은 서버에서 계속됩니다.\n\n전체 1 · 삭제 확인 완료 0\n업데이트\nqa-iso1673-url-net\n실행 가능\n\n격리형 (Isolated) · 할당됨 · qa-iso1673-local\n\n785c939f-ae29-44c4-a46b-2ee28e6c18fa\n\n연결 자원과 삭제 조건\n\n현재 계정·프로젝트에서 조회할 수 있는 자원입니다. 표시가 비어 있어도 서버의 최종 삭제 검증은 유지됩니다. VM/NIC를 먼저 분리하거나 가상머신을 완전히 삭제한 뒤 다시 확인하세요. 라우터와 네트워크 IP는 일반 삭제 과정에서 정리됩니다.\n\n조회 범위 내 연결 VM/NIC 없음\n\n가상 라우터: 0\n\nPublic IP 주소: 0\n\n성공은 작업 완료와 네트워크 조회 결과를 대조해 표시합니다. 라우터 볼륨·스토리지의 물리 정리는 서버에서 별도로 진행될 수 있습니다. 잔여 자원은 관리자가 확인해야 하며 강제 삭제로 자동 전환하지 않습니다.\n\n연결 자원과 삭제 영향을 확인했으며 일반 삭제를 실행합니다.\n닫기\n네트워크 삭제"
+  },
+  {
+    "name": "cleanup-test-networks-zero",
+    "at": "2026-11-15T16:13:01.415Z",
+    "main": "/가상머신용 네트워크업데이트\n모두 \n프로젝트\n네트워크 추가\n\t\n\t\n이름\n\t\n상태\n\t\n유형\n\t\nVPC\n\t\nIPv4 CIDR\n\t\nIPv6 CIDR\n\t\n브로드 캐스트\n\t\n도메인\n\t\n계정\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:13:42.582Z",
+    "id": "47be470c-71d2-4344-b0bf-d3783fd89a42",
+    "result": "ISO 삭제\n이름\nqa-iso1673-owner-boot\n아이디\n47be470c-71d2-4344-b0bf-d3783fd89a42\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:13:48.126Z",
+    "id": "99f03e9c-af1d-4b38-8b33-5b91c06be108",
+    "result": "ISO 삭제\n이름\nqa-iso1673-b-local-data-abcdefghijklmnopqrstuvwxyz-0123456789\n아이디\n99f03e9c-af1d-4b38-8b33-5b91c06be108\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:13:58.491Z",
+    "id": "c4d56674-03e5-42c8-aa8b-d164fce32526",
+    "result": "ISO 삭제\n이름\nqa-iso1673-sub-data\n아이디\nc4d56674-03e5-42c8-aa8b-d164fce32526\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:14:03.965Z",
+    "id": "e4f00e94-cbdc-4438-9cbd-ab6c4ef63223",
+    "result": "ISO 삭제\n이름\nqa-iso1673-local-only-boot\n아이디\ne4f00e94-cbdc-4438-9cbd-ab6c4ef63223\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "cleanup-iso-deleted",
+    "at": "2026-11-15T16:14:23.281Z",
+    "id": "679bf041-752e-47b7-b697-1d7184640a3e",
+    "result": "ISO 삭제\n이름\nqa-iso1673-project-data\n아이디\n679bf041-752e-47b7-b697-1d7184640a3e\n선택한 Zone의 ISO 복사본을 삭제합니다. 마지막 복사본을 삭제하면 ISO도 제거됩니다. 항목별 결과를 확인하세요.\nZone\t작업 상태\n\n \n\t\n \n\n\n13-Zone\n\t완료 확인 · 비동기 작업 완료\n\n성공 1 · 실패 0 · 알 수 없음 0 · 진행 중 0\n\n닫기"
+  },
+  {
+    "name": "cleanup-project-member-removed",
+    "at": "2026-11-15T16:14:35.809Z",
+    "project": "c0e767a8-a4af-4fa3-82e7-bdf2829e2a40",
+    "member": "qa-iso1673-b"
+  },
+  {
+    "name": "cleanup-project-role-zero",
+    "at": "2026-11-15T16:14:43.132Z",
+    "panel": "프로젝트 역할 생성\n\t이름\t설명\t작업\n\n\n데이터 없음"
+  },
+  {
+    "name": "cleanup-projects-zero",
+    "at": "2026-11-15T16:15:56.607Z",
+    "main": "/프로젝트업데이트\n새 프로젝트\n\t\n\t\n이름\n\t\n상태\n\t\n설명\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "qa-iso1673-local",
+    "at": "2026-11-15T16:17:16.352Z",
+    "id": "4ed8b237-149b-4bc0-97dc-b656730c5413"
+  },
+  {
+    "name": "qa-iso1673-a",
+    "at": "2026-11-15T16:17:34.809Z",
+    "id": "6e0e99b0-b328-4ca0-abe2-898dffd450e9",
+    "before": "이름\n\nqa-iso1673-a\n아이디\n\n6e0e99b0-b328-4ca0-abe2-898dffd450e9\n역할\n\nRead-Only User - Default\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:35:49"
+  },
+  {
+    "name": "qa-iso1673-b",
+    "at": "2026-11-15T16:17:43.452Z",
+    "id": "eb6554cb-57ee-4249-bd7e-4fb110deefc9",
+    "before": "이름\n\nqa-iso1673-b\n아이디\n\neb6554cb-57ee-4249-bd7e-4fb110deefc9\n역할\n\nUser\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:38:37"
+  },
+  {
+    "name": "qa-iso1673-c",
+    "at": "2026-11-15T16:17:56.206Z",
+    "id": "1e300920-35a8-414c-a188-16b2a735112a",
+    "before": "이름\n\nqa-iso1673-c\n아이디\n\n1e300920-35a8-414c-a188-16b2a735112a\n역할\n\nUser\n역할 유형\n\nUser\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:39:41"
+  },
+  {
+    "name": "qa-iso1673-roadmin",
+    "at": "2026-11-15T16:18:04.983Z",
+    "id": "3c138c28-5ff5-42db-b909-fe8d3f0fa70d",
+    "before": "이름\n\nqa-iso1673-roadmin\n아이디\n\n3c138c28-5ff5-42db-b909-fe8d3f0fa70d\n역할\n\nRead-Only Admin - Default\n역할 유형\n\nAdmin\n도메인\n\nROOT\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:40:49"
+  },
+  {
+    "name": "qa-iso1673-downer",
+    "at": "2026-11-15T16:18:19.139Z",
+    "id": "e88914a7-3b70-4aeb-bf4c-a2561b630c41",
+    "before": "이름\n\nqa-iso1673-downer\n아이디\n\ne88914a7-3b70-4aeb-bf4c-a2561b630c41\n역할\n\nUser\n역할 유형\n\nUser\n도메인\n\nROOT/qa-iso1673-domain/qa-iso1673-sub\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:49:40"
+  },
+  {
+    "name": "qa-iso1673-da",
+    "at": "2026-11-15T16:18:27.793Z",
+    "id": "10e8eb4e-25bd-4cc4-b5ce-4b329d1b82fb",
+    "before": "이름\n\nqa-iso1673-da\n아이디\n\n10e8eb4e-25bd-4cc4-b5ce-4b329d1b82fb\n역할\n\nDomain Admin\n역할 유형\n\nDomainAdmin\n도메인\n\nROOT/qa-iso1673-domain\nAPI 키 액세스\n\nINHERIT\n전체 IP 주소\n\n0\nVM 합계\n\n0\n볼륨\n\n0\n생성일\n\n2026. 11. 15. 오후 11:48:57"
+  },
+  {
+    "name": "cleanup-account-baseline-restored",
+    "at": "2026-11-15T16:18:32.304Z",
+    "main": "/계정업데이트\n모두\n계정 추가\n\t\n\t\n이름\n\t\n상태\n\t\n역할\n\t\n역할 유형\n\t\n도메인\n\t\n\n\n\tadmin\t\n정상\n\tRoot Admin\tAdmin\tROOT\t\n\n\tbaremetal-system-account\t\n정상\n\tUser\tUser\tROOT\t\n\n\tepic898-config-denied-1791388603\t\n비활성화\n\tUser\tUser\tROOT\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-role-local-deleted",
+    "at": "2026-11-15T16:18:53.835Z",
+    "id": "5e8ad74f-bdc2-4d66-8261-8abe3d128993"
+  },
+  {
+    "name": "cleanup-role-baseline-restored",
+    "at": "2026-11-15T16:19:12.129Z",
+    "main": "/역할업데이트\n역할 추가\n\t\n이름\n\t\n유형\n\t\n설명\n\t\n상태\n\t\n\nRoot Admin\tAdmin\tDefault root admin role\t\n정상\n\t\nResource Admin\tResourceAdmin\tDefault resource admin role\t\n정상\n\t\nDomain Admin\tDomainAdmin\tDefault domain admin role\t\n정상\n\t\nUser\tUser\tDefault user role\t\n정상\n\t\nRead-Only Admin - Default\tAdmin\tDefault read-only admin role\t\n정상\n\t\nRead-Only User - Default\tUser\tDefault read-only user role\t\n정상\n\t\nSupport Admin - Default\tAdmin\tDefault support admin role\t\n정상\n\t\nSupport User - Default\tUser\tDefault support user role\t\n정상\n\t\nProject Kubernetes Service Role\tUser\tProject Kubernetes Service Role\t\n정상\n\t\n전체 9 개 항목 중 1-9 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "cleanup-subdomain-deleted",
+    "at": "2026-11-15T16:19:45.069Z",
+    "id": "26fd7b8a-56c4-40cb-a580-6302742ee6ba"
+  },
+  {
+    "name": "cleanup-domain-baseline-restored",
+    "at": "2026-11-15T16:20:04.081Z",
+    "main": "/도메인업데이트\n작업\nROOT\n도메인\n상세\n제한\n구성 제한\n설정\n이벤트\n코멘트\nROOT\n상태\n정상\n아이디\n47178e2f-bd56-11f1-b573-002481560363 \nCPU\n245\n메모리\n417792 메모리\n계정 보기\nVM 보기\n볼륨 보기\n네트워크 보기\n템플릿 보기\nISO 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그"
+  },
+  {
+    "name": "final-original-iso-rows-preserved",
+    "at": "2026-11-15T16:20:16.587Z",
+    "sameIdsAndValues": false,
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "final-original-iso-comparison-corrected-pass",
+    "at": "2026-11-15T16:20:23.270Z",
+    "note": "strip UI return-query from href to extract UUID; earlier comparison parser returned false",
+    "sameIdsAndValues": true,
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "text": "1.35.9-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.94 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "text": "Rocky-10.0-x86_64-dvd1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n7.13 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "text": "VirtIO Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "text": "ABLESTACK-Diplo-v4.2.1.iso\n\t\n사용 가능\n\t\nRocky Linux 9\n\t\nx86_64\n\t\n22.46 GiB\n\t\nadmin\n\t\n\t"
+      }
+    ]
+  },
+  {
+    "name": "final-systemvms-running-423",
+    "at": "2026-11-15T16:20:28.911Z",
+    "main": "/시스템 VM업데이트\n모두\n\t\n\t\n이름\n\t\n상태\n\t\nAgent 상태\n\t\n시스템 VM 유형\n\t\nPublic IP 주소\n\t\n사설 IP 주소\n\t\n로컬 연결 IP 주소\n\t\n버전\n\t\n호스트\n\t\nCPU 아키텍처\n\t\nZone\n\t\n\n\n\tv-245-VM\t\n실행 중\n\t\n실행 중\n\tconsoleproxy\t10.10.13.5\t10.10.13.6\t169.254.243.21\t4.23.0.0\tablecube13-2\tx86_64\t13-Zone\t\n\n\ts-255-VM\t\n실행 중\n\t\n실행 중\n\tsecondarystoragevm\t10.10.13.4\t10.10.13.7\t169.254.164.211\t4.23.0.0\tablecube13-1\tx86_64\t13-Zone\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-hosts-preserved",
+    "at": "2026-11-15T16:20:34.559Z",
+    "main": "/호스트업데이트\n모두\n메트릭\n호스트 추가\n\t\n이름\n\t\n상태\n\t\n리소스 상태\n\t\nIP 주소\n\t\nCPU 아키텍처\n\t\n하이퍼바이저\n\t\n버전\n\t\nHA 활성화\n\t\nHA 상태\n\t\n클러스터\n\t\nZone\n\t\n관리 서버\n\t\n\nablecube13-1\t\n실행 중\n\t\n정상\n\t10.10.13.1 \tx86_64\tKVM\t4.23.0.0\t\n정상\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-2\t\n실행 중\n\t\n정상\n\t10.10.13.2 \tx86_64\tKVM\t4.23.0.0\t\n정상\n\tAvailable\tCluster\t13-Zone\tccvm-mngt\t\nablecube13-3\t\n실행 중\n\t\n정상\n\t10.10.13.3 \tx86_64\tKVM\t4.23.0.0\t\n비활성화\n\tDisabled\tCluster\t13-Zone\tccvm-mngt\t\n전체 3 개 항목 중 1-3 표시\n1\n20 / 쪽"
+  },
+  {
+    "name": "final-ui-complete",
+    "at": "2026-11-15T16:20:59.337Z",
+    "originalIsoIdsAndValuesPreserved": true,
+    "originalIsoCount": 8,
+    "originalAccountCount": 3,
+    "originalRoleCount": 9,
+    "originalVmCount": 103,
+    "originalTemplateCount": 48,
+    "projects": 0,
+    "systemVmsRunning": 2,
+    "hostsUp": 3,
+    "themeRestored": "dark",
+    "viewportOverrideReset": true,
+    "networkCacheOverrideReset": true,
+    "testResourceRemainders": {
+      "accounts": 0,
+      "domains": 0,
+      "roles": 0,
+      "projects": 0,
+      "isos": 0,
+      "vms": 0,
+      "volumes": 0,
+      "networks": 0,
+      "routers": 0,
+      "publicIps": 0,
+      "projectRoles": 0
+    }
+  }
+]

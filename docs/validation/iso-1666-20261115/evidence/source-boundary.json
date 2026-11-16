@@ -1,0 +1,36 @@
+{
+  "head": "b8e9f242bfa38c9d5e4f0a67b677f168a418552a",
+  "runtimeSource": "4a2f5237b3d87eb6a834e813f0f406846bb787ed",
+  "runtimeInput": "/root/work/.build-epic1638-t03-t04-20261113/ui",
+  "buildInput": "/root/work/.build-iso1666-20261115/ui",
+  "changedInputs": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/InfoCard.vue",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/components/widgets/TemplateAvailability.vue",
+    "ui/src/config/section/image.js",
+    "ui/src/views/image/IsoZones.vue",
+    "ui/src/views/image/RegisterOrUploadIso.vue",
+    "ui/src/utils/isoModel.js",
+    "ui/tests/unit/utils/isoModel.spec.js",
+    "ui/tests/unit/views/image/IsoActionPolicy.spec.js"
+  ],
+  "productPatchSha256": "a718b279bacbd5a4aac1ae975ece5a22eae381480c3760190e95c149c13c8955",
+  "noBackendChange": true,
+  "localeOverlay": "only four message.iso.* entries",
+  "base": "1046a5dc3f21cb9cca0ab6881dd906d64b591e80",
+  "inputHashes": {
+    "ui/public/locales/en.json": "7469d2d8ad14623bcc8a53bde808802470c1117efc42bda9fc8707eb954b5dce",
+    "ui/public/locales/ko_KR.json": "97cb7d644f6334bc6177e5dcffdea5f42c5c996207bffe40ffc1c3d3cb58be53",
+    "ui/src/components/view/InfoCard.vue": "8c3bee99ba2eeac15461ac022575563df08e80c93e5dec69648b8a321dfc9178",
+    "ui/src/components/view/ListView.vue": "51f92664dd4a4c10676d1878bc54a8ae6afc07cc86aaf69137e183f57b1518e2",
+    "ui/src/components/widgets/TemplateAvailability.vue": "9deb2e601ffea23a4bf3b98776ca2ee1965430e707b989d1194c9484097fbd6a",
+    "ui/src/config/section/image.js": "afbaa5530566e66b7f91a63eb26e223b359c8ea0b7a1c61aedb060ebc3b7d661",
+    "ui/src/views/image/IsoZones.vue": "af6a9375392d5a56567555727730f19c38bc4647d4f98491d208b452e56c74b9",
+    "ui/src/views/image/RegisterOrUploadIso.vue": "175ce1e4d478c8e44ac81bcb62eda4b56717322c5336092978d06f578cea2afa",
+    "ui/src/utils/isoModel.js": "6ee4551803ad1621b02a7cb0c17ecdf23a35fa61673943731e77a7b24ddf44b5",
+    "ui/tests/unit/utils/isoModel.spec.js": "ec1066a0ecf817c638b8a2b0eaa4eb5f2c596f4875a89d37bb4971250407e4f1",
+    "ui/tests/unit/views/image/IsoActionPolicy.spec.js": "26d5b9b6fe12c79fd97b7937a49304f6ace5dbec71756fad4dc34e05a70852d3"
+  }
+}

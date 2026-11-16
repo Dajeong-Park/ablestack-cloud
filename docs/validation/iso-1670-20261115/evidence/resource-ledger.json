@@ -1,0 +1,36 @@
+{
+  "isos": [
+    {
+      "id": "2a4d75d2-2cb0-4580-8807-ebb9bebbf2c9",
+      "name": "qa-iso1670-long-주요정보-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-alpha-beta-gamma-",
+      "deletedViaUi": true
+    },
+    {
+      "id": "1c34bcdf-f837-4818-8a5e-6cc72e28f954",
+      "name": "qa-iso1670-checksum-failed",
+      "deletedViaUi": true
+    }
+  ],
+  "userdatas": [
+    {
+      "id": "59e65a76-5395-4404-9cd6-6c422642ed70",
+      "name": "qa-iso1670-search-userdata",
+      "deletedViaUi": true
+    }
+  ],
+  "accounts": [
+    {
+      "id": "d6298ec4-fc31-4d90-a46f-d14938b2a63b",
+      "name": "qa-iso1670-user",
+      "deletedViaUi": true
+    }
+  ],
+  "roles": [],
+  "projects": [
+    {
+      "id": "ed320193-5fec-4a2c-a4f1-cb32719a9948",
+      "name": "qa-iso1670-project",
+      "deletedViaUi": true
+    }
+  ]
+}

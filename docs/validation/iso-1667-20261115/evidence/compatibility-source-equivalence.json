@@ -1,0 +1,38 @@
+{
+  "legacy421VerifiedUiHead": "3003887f789b4fd33f2879e1833854498391366b",
+  "finalProductHead": "727bed1519aa97cbace8e5de14d4e986e0eecb08",
+  "unchangedTransferMethods": {
+    "sendFile": {
+      "sha256": "a73bcef9bf8af01809c4bbcfcf631a748b78cc74e8b577e49070a00394b6de11",
+      "unchanged": true
+    },
+    "retryUpload": {
+      "sha256": "44f605f053deb8a2a76ec6f56056a5a2fe9d5a4560e48cc9ce1c48749548e51e",
+      "unchanged": true
+    },
+    "readAccepted": {
+      "sha256": "68bbdf25bb37936536628ee306acc9caf70eb4c5214dfc7284697fd2e20cc7fc",
+      "unchanged": true
+    },
+    "finishRegistration": {
+      "sha256": "df599d4053dfba8d9388a355928b482d7e2debe148e8c3225fe853b973107906",
+      "unchanged": true
+    },
+    "completeUserdata": {
+      "sha256": "acbddb5fceffeb7364b66815523a2f30b4fa991ba9f7229f971769d5ece3d645",
+      "unchanged": true
+    },
+    "interruptTransfer": {
+      "sha256": "d4c629c416560dbd2b55d02e98e4859740daf1669a685822a44cac138da2137d",
+      "unchanged": true
+    }
+  },
+  "registrationUtilityUnchanged": true,
+  "backendSourceChanged": false,
+  "changedUiBehavior": [
+    "Owner lookup and selection guard",
+    "Plain text SSVM checksum error presentation",
+    "Failure step display and HTTPS-only certificate navigation"
+  ],
+  "verificationReuseScope": "Only SSVM transport/checksum/arch compatibility; latest owner and error UI still needs targeted 4.23 verification"
+}

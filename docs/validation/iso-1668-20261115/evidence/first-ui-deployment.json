@@ -1,0 +1,17 @@
+{
+  "codeHead": "d29095f30128fb3dd412cd602a2957c1a19c986f",
+  "root": "/usr/share/cloudstack-management/webapp",
+  "backup": "/var/tmp/iso1668-20261115-ui-backup-c2ksvgpu",
+  "files": 9,
+  "added": 6,
+  "overwritten": [
+    "index.html",
+    "locales/ko_KR.json",
+    "locales/en.json"
+  ],
+  "indexSha256": "2330b986cf26fb30492ec50480ef8a869b683acf6742dc9e6f49f75a36776391",
+  "protectedPreserved": true,
+  "moldPidPreserved": true,
+  "oldHashedAssetsRetained": true,
+  "deploymentType": "UI static delta only"
+}

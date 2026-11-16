@@ -1,0 +1,8 @@
+{
+  "originalSystemPython": "3.9.25",
+  "requiredByPinnedYamllint": ">=3.10",
+  "effectiveHookPython": "3.11",
+  "matchesCiPythonMinor": true,
+  "repositoryConfigModified": false,
+  "method": "temporary config changes only default Python interpreter"
+}

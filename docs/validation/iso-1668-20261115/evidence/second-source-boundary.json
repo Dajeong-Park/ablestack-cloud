@@ -1,0 +1,67 @@
+{
+  "previousCode": "822385d9fcf90febbf7dca1044f0846b5518e41a",
+  "runtimeInput": "/root/work/.build-iso1667-20261115/ui",
+  "buildInput": "/root/work/.build-iso1668-20261115/ui",
+  "files": [
+    "src/config/section/image.js",
+    "src/utils/isoModel.js",
+    "src/utils/imagePermissions.js",
+    "src/views/image/IsoZones.vue",
+    "src/views/image/UpdateTemplateIsoPermissions.vue",
+    "tests/unit/views/image/TemplatePermissions.spec.js",
+    "tests/unit/utils/isoResource.spec.js",
+    "src/views/image/TemplateZones.vue",
+    "tests/unit/views/image/TemplateAvailabilityRead.spec.js",
+    "tests/unit/views/image/TemplateZoneSelection.spec.js",
+    "tests/unit/utils/isoModel.spec.js"
+  ],
+  "localeKeys": {
+    "en": [
+      "message.image.permissions.invalid",
+      "message.image.permissions.scope.changed",
+      "message.image.permissions.changed",
+      "message.image.permissions.result.unconfirmed",
+      "message.image.permissions.inventory.failed",
+      "message.image.permissions.project.ids",
+      "message.image.permissions.reset.confirm",
+      "message.image.permissions.reset.ack",
+      "message.image.permissions.verified",
+      "label.image.permissions.current"
+    ],
+    "ko_KR": [
+      "message.image.permissions.invalid",
+      "message.image.permissions.scope.changed",
+      "message.image.permissions.changed",
+      "message.image.permissions.result.unconfirmed",
+      "message.image.permissions.inventory.failed",
+      "message.image.permissions.project.ids",
+      "message.image.permissions.reset.confirm",
+      "message.image.permissions.reset.ack",
+      "message.image.permissions.verified",
+      "label.image.permissions.current"
+    ]
+  },
+  "hashes": {
+    "src/config/section/image.js": "32683352ea3b9340ca8f5ffa7ed761576997469154f27a27145131b7b97609a6",
+    "src/utils/isoModel.js": "571e058a0935126e70001cc82c05677d8969f029064d8d606a8679dcba583b2c",
+    "src/utils/imagePermissions.js": "460291a88324ac5dee970ff29b008f5dec91fc5bc36233e35652b874c50aaa4b",
+    "src/views/image/IsoZones.vue": "8c88580d6bed60ae607ee01f6a5357997d7890e1fefe9f3e2b77728db4369b1b",
+    "src/views/image/UpdateTemplateIsoPermissions.vue": "2756bb9af8b1dd2a395a6d8891433044439861ec5bce1ecf4746879bf5317e45",
+    "tests/unit/views/image/TemplatePermissions.spec.js": "ff337f84d4c5f9c5e912381e8dfc03b61814b6c8a1917fb7dfbce80601eecbed",
+    "tests/unit/utils/isoResource.spec.js": "8cf3277fd65f7dcd3daca5219d874399c2c6e2a31713c6b87315f3405fae8493",
+    "src/views/image/TemplateZones.vue": "2396bc6ae21c91bab477fa8bb38d2014763666111702d1063ea046c14a0faea0",
+    "tests/unit/views/image/TemplateAvailabilityRead.spec.js": "1a5eeffdabf53b53fe31b479991ef0a86e2a479025c847650df5da52062c5b76",
+    "tests/unit/views/image/TemplateZoneSelection.spec.js": "2c7bc9dfea99ce53ab7cfcaa78dfc145237d5fdd4aad0672c796effb878f7b9c",
+    "tests/unit/utils/isoModel.spec.js": "a34479e1cf1a591bb1b8000936f9e6b652ef70b7767186c4a9558e5a42f68a42"
+  },
+  "productHead": "f66f3799be02b7fd97447d370d0af0b170145884",
+  "previousProductHead": "d29095f30128fb3dd412cd602a2957c1a19c986f",
+  "correctiveRuntimeBaselineEqual": true,
+  "correctiveFiles": [
+    "src/views/image/TemplateZones.vue",
+    "tests/unit/views/image/TemplateAvailabilityRead.spec.js",
+    "tests/unit/views/image/TemplateZoneSelection.spec.js"
+  ],
+  "supersededBuildHead": "adb5455834296d01686279ef0cad449cdb1f7ea6",
+  "aclCorrection": "Root Admin, owner, authorized concrete project; same domain alone is not mutation authority"
+}

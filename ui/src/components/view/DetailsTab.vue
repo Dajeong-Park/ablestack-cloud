@@ -50,7 +50,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': $route.meta.name === 'template', 'vm-details-list': ['vm', 'vnfapp', 'publicip'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 'vm-details-list': ['vm', 'vnfapp', 'publicip'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -65,6 +65,7 @@
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
           <public-ip-detail-value v-if="$route.meta.name === 'publicip' && publicIpDetailFields.includes(item)" :resource="dataResource" :field="item" />
+          <iso-detail-value v-else-if="$route.meta.name === 'iso' && presentedIsoValue(item)" :field="item" :value="dataResource[item]" :label="$t(getDetailTitle(item))" />
           <template-detail-value
             v-else-if="$route.meta.name === 'template' && presentedTemplateValue(item)"
             :field="item"
@@ -418,6 +419,8 @@ import Status from '@/components/widgets/Status'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import { publicIpDetailFields, publicIpFieldLabel } from '@/utils/publicIpDetails'
 import TemplateDetailValue from '@/components/widgets/TemplateDetailValue'
+import IsoDetailValue from '@/components/widgets/IsoDetailValue'
+import { presentedIsoValue } from '@/utils/isoZoneOperations'
 import { presentedTemplateValue } from '@/utils/templateDetails'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import { creationVmDetails, creationVmOsName, vmBooleanLabel, vmBooleanFields } from '@/utils/creationVmPresentation'
@@ -450,6 +453,7 @@ export default {
     VnfAccessNotice,
     InternalLbRules,
     TemplateDetailValue,
+    IsoDetailValue,
     VpnPsk,
     PvlanSupportNotice,
     NetworkIpVmLink,
@@ -622,6 +626,7 @@ export default {
       this.dataResource.account = projectAdmins.join()
     },
     presentedTemplateValue,
+    presentedIsoValue,
     fetchDetails () {
       let details = this.$route.meta.details
 

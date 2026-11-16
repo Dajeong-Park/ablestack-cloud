@@ -1,0 +1,16 @@
+{
+  "pinnedHook": "Lucas-C/pre-commit-hooks@v1.5.6",
+  "officialSourceBlob": "b644943f0ee87fc1668cfd7de17d611549fca2e3",
+  "results": [
+    {
+      "path": "docs/validation/iso-1667-20261115/README.ko.md",
+      "returnCode": 0,
+      "unchanged": true
+    },
+    {
+      "path": "ui/src/views/image/RegisterOrUploadIso.vue",
+      "returnCode": 0,
+      "unchanged": true
+    }
+  ]
+}

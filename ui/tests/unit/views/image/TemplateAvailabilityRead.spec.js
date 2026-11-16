@@ -24,7 +24,7 @@ const id = '11111111-1111-4111-8111-111111111111'; const other = '22222222-2222-
 const row = { id, zoneid: other, isready: false, status: 'Connection refused', downloaddetails: [{ downloadState: 'DOWNLOAD_ERROR' }] }
 const result = { listtemplatesresponse: { count: 1, template: [row] } }
 function context () {
-  const vm = { resource: { ...row }, $route: { path: '/template/' + id, query: { tab: 'zones' }, meta: { name: 'template' } }, $store: { getters: { userInfo: { id: 'u', roletype: 'Admin' }, project: {}, apis: {} }, state: { user: { token: 'test-session' } } }, page: 1, pageSize: 10, dataSource: [], itemCount: 0, $emit: jest.fn(), $notifyError: jest.fn(), fetchZoneData: jest.fn(), fetchOsCategoryId: jest.fn(), updateImageZones: jest.fn() }
+  const vm = { resource: { ...row }, $route: { path: '/template/' + id, query: { tab: 'zones' }, meta: { name: 'template' } }, $store: { getters: { userInfo: { id: 'u', roletype: 'Admin' }, project: {}, apis: {} }, state: { user: { token: 'test-session' } } }, page: 1, pageSize: 10, dataSource: [], itemCount: 0, $emit: jest.fn(), $notifyError: jest.fn(), fetchZoneData: jest.fn(), fetchOsCategoryId: jest.fn(), updateImageZones: jest.fn(), setSelection: jest.fn() }
   Object.defineProperty(vm, 'templateScope', { get: () => TemplateZones.computed.templateScope.call(vm) })
   vm.token = { loaded: false }; vm.listRequestToken = () => vm.token; vm.isListRequestCurrent = (_, t) => t === vm.token
   return vm

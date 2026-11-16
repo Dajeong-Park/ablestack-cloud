@@ -19,7 +19,7 @@
   <div class="template-zones">
     <div class="template-tab-toolbar">
       <a-button :loading="fetchLoading" :disabled="operationActive" @click="fetchData"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
-      <a-button v-if="'deleteTemplate' in $store.getters.apis && isActionsOnTemplatePermitted" danger :disabled="operationActive || !selectedRowKeys.length" @click="bulkActionConfirmation"><template #icon><delete-outlined /></template>{{ $t('label.action.bulk.delete.templates') }} <span class="zone-selection-count" aria-live="polite">({{ selectedRowKeys.length }})</span></a-button>
+      <a-button v-if="canSelectTemplateRows" danger :disabled="operationActive || listRefreshFailed || !selectedRowKeys.length" @click="bulkActionConfirmation"><template #icon><delete-outlined /></template>{{ $t('label.action.bulk.delete.templates') }} <span class="zone-selection-count" aria-live="polite">({{ selectedRowKeys.length }})</span></a-button>
     </div>
     <a-alert v-if="listRefreshFailed" type="warning" show-icon :message="$t('message.list.refresh.stale')" />
     <a-table
@@ -29,7 +29,7 @@ size="small"
 :data-source="dataSource"
 :pagination="false"
 :scroll="{x:800}"
-:row-selection="{selectedRowKeys,onChange:onSelectChange}"
+:row-selection="canSelectTemplateRows ? {selectedRowKeys,onChange:onSelectChange,getCheckboxProps:record=>({disabled:operationActive || !isTemplateZoneRow(record)})} : null"
 :row-key="record=>record.zoneid"
 :expand-row-by-click="true"
 :row-expandable="record=>downloadDetails(record).length>0">
@@ -43,7 +43,7 @@ size="small"
           <template v-if="isActionsOnTemplatePermitted">
             <tooltip-button :disabled="operationActive || !('copyTemplate' in $store.getters.apis && record.isready)" :tooltip="$t('label.action.copy.template')" icon="copy-outlined" @onClick="showCopyTemplate(record)" />
             <tooltip-button v-if="canPrepare" :disabled="operationActive || record.isready!==true" :tooltip="$t('label.template.zone.prepare')" icon="download-outlined" @onClick="$refs.zoneOps.open('prepare',[record])" />
-            <tooltip-button :disabled="operationActive || !('deleteTemplate' in $store.getters.apis)" :tooltip="$t('label.action.delete.template')" :danger="true" icon="delete-outlined" @onClick="onShowDeleteModal(record)" />
+            <tooltip-button :disabled="operationActive || !canSelectTemplateRows || !isTemplateZoneRow(record)" :tooltip="$t('label.action.delete.template')" :danger="true" icon="delete-outlined" @onClick="onShowDeleteModal(record)" />
           </template>
         </div>
       </template>
@@ -232,7 +232,8 @@ export default {
     this.fetchData()
   },
   watch: {
-    templateScope () { this.dataSource = []; this.itemCount = 0; this.fetchData() },
+    templateScope () { this.resetSelection(); this.dataSource = []; this.itemCount = 0; this.fetchData() },
+    canSelectTemplateRows (allowed) { if (!allowed) this.resetSelection() },
     loading (newData, oldData) {
       if (!newData && !this.showGroupActionModal) {
         this.fetchData()
@@ -242,6 +243,7 @@ export default {
   computed: {
     storeSections () { return [{ role: 'Primary', label: 'label.primary.storage', path: '/storagepool' }, { role: 'Secondary', label: 'label.secondary.storage', path: '/imagestore' }] },
     storeColumns () { return [{ key: 'datastore', dataIndex: 'datastore', title: this.$t('label.storage'), width: 220 }, { key: 'downloadPercent', dataIndex: 'downloadPercent', title: this.$t('label.download.percent'), width: 180 }, { key: 'downloadState', dataIndex: 'downloadState', title: this.$t('label.download.state'), width: 180 }] },
+    canSelectTemplateRows () { return !this.listRefreshFailed && this.isActionsOnTemplatePermitted && !!this.$store.getters.apis?.deleteTemplate && this.dataSource.some(row => this.isTemplateZoneRow(row)) },
     canPrepare () { return this.$store.getters.userInfo.roletype === 'Admin' && ['prepareTemplate', 'listStoragePools'].every(k => k in this.$store.getters.apis) && !!this.$getApiParams('prepareTemplate')?.storageid && this.resource.hypervisor === 'KVM' && this.resource.format === 'QCOW2' && this.resource.directdownload !== true },
     templateScope () { return templateObservationContext(this.$route, this.resource, this.$store.getters, this.$store.state?.user?.token) },
     isActionsOnTemplatePermitted () {
@@ -255,6 +257,7 @@ export default {
   emits: ['update-zones', 'availability-observed', 'selection-change', 'operation-retained', 'refresh-parent'],
   methods: {
     storePresentation: templateStorePresentation,
+    isTemplateZoneRow (record) { return !!record && !!this.resource.id && record.id === this.resource.id && typeof record.zoneid === 'string' && !!record.zoneid },
     storeRows (record, role) { return this.downloadDetails(record).filter(row => role === 'Primary' ? row.datastoreRole === 'Primary' : row.datastoreRole !== 'Primary') },
     initForm () {
       this.formRef = ref()
@@ -286,6 +289,7 @@ export default {
         this.itemCount = 0
         this.dataSource = json.listtemplatesresponse.template || []
         this.itemCount = json.listtemplatesresponse.count || 0
+        this.setSelection(this.selectedRowKeys)
         this.$emit('availability-observed', { templateid: this.resource.id, context, rows: this.dataSource, count: this.itemCount, coverage: this.itemCount === this.dataSource.length ? 'complete' : 'partial' })
       }).catch(error => {
         if (!this.isListRequestCurrent('fetchData', listRequest) || context !== this.templateScope) return
@@ -313,26 +317,24 @@ export default {
       this.fetchData()
     },
     setSelection (selection) {
-      this.selectedRowKeys = selection
-      if (selection?.length > 0) {
-        this.modalWidth = '50vw'
-        this.$emit('selection-change', this.selectedRowKeys)
-        this.selectedItems = (this.dataSource.filter(function (item) {
-          return selection.indexOf(item.zoneid) !== -1
-        }))
-      } else {
-        this.modalWidth = '30vw'
-        this.selectedItems = []
-      }
+      const keys = new Set(this.canSelectTemplateRows && Array.isArray(selection) ? selection : [])
+      this.selectedItems = this.dataSource.filter(item => this.isTemplateZoneRow(item) && keys.has(item.zoneid))
+      this.selectedRowKeys = this.selectedItems.map(item => item.zoneid)
+      this.modalWidth = this.selectedRowKeys.length ? '50vw' : '30vw'
+      this.$emit('selection-change', this.selectedRowKeys)
     },
     resetSelection () {
       this.setSelection([])
     },
     onSelectChange (selectedRowKeys, selectedRows) {
-      this.setSelection(selectedRowKeys)
+      if (!this.operationActive) this.setSelection(selectedRowKeys)
     },
     operationRetained (value) { this.operationActive = value.active; this.$emit('operation-retained', value) },
-    bulkActionConfirmation () { this.$refs.zoneOps.open('delete', this.selectedItems) },
+    bulkActionConfirmation () {
+      if (this.operationActive || !this.canSelectTemplateRows) return
+      this.setSelection(this.selectedRowKeys)
+      if (this.selectedItems.length) this.$refs.zoneOps.open('delete', this.selectedItems)
+    },
     fetchZoneData () {
       this.zones = []
       this.zoneLoading = true
@@ -376,7 +378,7 @@ export default {
       })
     },
     showCopyTemplate (record) { this.$refs.zoneOps.open('copy', [record]) },
-    onShowDeleteModal (record) { this.$refs.zoneOps.open('delete', [record]) },
+    onShowDeleteModal (record) { if (!this.operationActive && this.canSelectTemplateRows && this.isTemplateZoneRow(record)) this.$refs.zoneOps.open('delete', [record]) },
     onAddInstance (record) {
       const query = { templateid: this.resource.id, zoneid: record.zoneid }
       if (this.resource.arch) {

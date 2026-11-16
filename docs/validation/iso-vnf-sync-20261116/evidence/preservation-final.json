@@ -1,0 +1,16 @@
+{
+  "baselineAssets": 7113,
+  "currentAssets": 7146,
+  "overwritten": [
+    "locales/en.json",
+    "locales/ko_KR.json",
+    "index.html"
+  ],
+  "addedAssets": 33,
+  "preservedExistingAssets": 7110,
+  "preservedExistingAssetsHashesEqual": true,
+  "protectedEqual": true,
+  "moldPid": "2620448",
+  "backendJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443",
+  "indexSha256": "4e4ca8047dc1f7ae43e528e31d89cee6a80354936abc2b950d5b2ab234260c75"
+}

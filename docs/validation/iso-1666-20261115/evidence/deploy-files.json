@@ -1,0 +1,115 @@
+{
+  "head": "b8e9f242bfa38c9d5e4f0a67b677f168a418552a",
+  "sourceBoundary": {
+    "head": "b8e9f242bfa38c9d5e4f0a67b677f168a418552a",
+    "runtimeSource": "4a2f5237b3d87eb6a834e813f0f406846bb787ed",
+    "runtimeInput": "/root/work/.build-epic1638-t03-t04-20261113/ui",
+    "buildInput": "/root/work/.build-iso1666-20261115/ui",
+    "changedInputs": [
+      "ui/public/locales/en.json",
+      "ui/public/locales/ko_KR.json",
+      "ui/src/components/view/InfoCard.vue",
+      "ui/src/components/view/ListView.vue",
+      "ui/src/components/widgets/TemplateAvailability.vue",
+      "ui/src/config/section/image.js",
+      "ui/src/views/image/IsoZones.vue",
+      "ui/src/views/image/RegisterOrUploadIso.vue",
+      "ui/src/utils/isoModel.js",
+      "ui/tests/unit/utils/isoModel.spec.js",
+      "ui/tests/unit/views/image/IsoActionPolicy.spec.js"
+    ],
+    "productPatchSha256": "a718b279bacbd5a4aac1ae975ece5a22eae381480c3760190e95c149c13c8955",
+    "noBackendChange": true,
+    "localeOverlay": "only four message.iso.* entries",
+    "base": "1046a5dc3f21cb9cca0ab6881dd906d64b591e80",
+    "inputHashes": {
+      "ui/public/locales/en.json": "7469d2d8ad14623bcc8a53bde808802470c1117efc42bda9fc8707eb954b5dce",
+      "ui/public/locales/ko_KR.json": "97cb7d644f6334bc6177e5dcffdea5f42c5c996207bffe40ffc1c3d3cb58be53",
+      "ui/src/components/view/InfoCard.vue": "8c3bee99ba2eeac15461ac022575563df08e80c93e5dec69648b8a321dfc9178",
+      "ui/src/components/view/ListView.vue": "51f92664dd4a4c10676d1878bc54a8ae6afc07cc86aaf69137e183f57b1518e2",
+      "ui/src/components/widgets/TemplateAvailability.vue": "9deb2e601ffea23a4bf3b98776ca2ee1965430e707b989d1194c9484097fbd6a",
+      "ui/src/config/section/image.js": "afbaa5530566e66b7f91a63eb26e223b359c8ea0b7a1c61aedb060ebc3b7d661",
+      "ui/src/views/image/IsoZones.vue": "af6a9375392d5a56567555727730f19c38bc4647d4f98491d208b452e56c74b9",
+      "ui/src/views/image/RegisterOrUploadIso.vue": "175ce1e4d478c8e44ac81bcb62eda4b56717322c5336092978d06f578cea2afa",
+      "ui/src/utils/isoModel.js": "6ee4551803ad1621b02a7cb0c17ecdf23a35fa61673943731e77a7b24ddf44b5",
+      "ui/tests/unit/utils/isoModel.spec.js": "ec1066a0ecf817c638b8a2b0eaa4eb5f2c596f4875a89d37bb4971250407e4f1",
+      "ui/tests/unit/views/image/IsoActionPolicy.spec.js": "26d5b9b6fe12c79fd97b7937a49304f6ace5dbec71756fad4dc34e05a70852d3"
+    }
+  },
+  "baselineIndex": {
+    "sha256": "a70a72b89234fc6d3b5592e17f0be63a7adbbe25b8fa2330aa2cf6fce57976c9",
+    "size": 39475
+  },
+  "files": {
+    "index.html": {
+      "sha256": "a7e5f8fb51b197fdbaf596e13c36f59933f43649f42989b854d783d0f7f7ac72",
+      "size": 39475,
+      "previous": {
+        "sha256": "a70a72b89234fc6d3b5592e17f0be63a7adbbe25b8fa2330aa2cf6fce57976c9",
+        "size": 39475
+      }
+    },
+    "locales/ko_KR.json": {
+      "sha256": "97cb7d644f6334bc6177e5dcffdea5f42c5c996207bffe40ffc1c3d3cb58be53",
+      "size": 1012056,
+      "previous": {
+        "sha256": "d6defd198c41defd0482a3efd9c01a1a167070870050858ade29987a98881b56",
+        "size": 1011577
+      }
+    },
+    "locales/en.json": {
+      "sha256": "7469d2d8ad14623bcc8a53bde808802470c1117efc42bda9fc8707eb954b5dce",
+      "size": 904700,
+      "previous": {
+        "sha256": "966abb4cf641f91e36505f0af96dc924633cca157b0b7b65c75305e95e29a505",
+        "size": 904267
+      }
+    },
+    "css/app.e0fa1211.css": {
+      "sha256": "b5343b8321a4ad3be314e07e265cf92253de9c3f8a245e5bba04210e10ab7aa2",
+      "size": 347045,
+      "previous": null
+    },
+    "css/chunk-45238e05.a9f1c130.css": {
+      "sha256": "14b200ee364f5a9eedfde8e1880e86da548a13f4ef1222dddfd194443cc195ce",
+      "size": 109,
+      "previous": null
+    },
+    "css/chunk-dce06f00.8ba69731.css": {
+      "sha256": "588ccc62f0076718a3b1cc71869764b990f2afe07b20ac46e2d4e28398944e0b",
+      "size": 5240,
+      "previous": null
+    },
+    "css/chunk-4fe99760.1844809c.css": {
+      "sha256": "a8452d29f3c5f2c3288218f772be32bc5503c252b35970ac7aa09b7790e4d8ec",
+      "size": 65,
+      "previous": null
+    },
+    "js/chunk-45238e05.d20169fd.js": {
+      "sha256": "4a78f5da429cf139c28976ea1630ba1f6742b8ff47e6d6dbc3b782ba5fcf997b",
+      "size": 31452,
+      "previous": null
+    },
+    "js/chunk-4fe99760.28bffc8e.js": {
+      "sha256": "8e85fc39fc0c4f9dfc915f4a07da307ad8c1dfa4825c1b30f62886478e12ef49",
+      "size": 29282,
+      "previous": null
+    },
+    "js/chunk-dce06f00.e5bf4ba5.js": {
+      "sha256": "80fabd66e3c33ecfc86a1f520b07c8f73bfd59b938836d60a0fed6d5f61d8863",
+      "size": 57051,
+      "previous": null
+    },
+    "js/app.d9ca2c50.js": {
+      "sha256": "40e46b66394bd4db893ac92dc5827df916dc738578738cb94c9d486a25695864",
+      "size": 1883343,
+      "previous": null
+    }
+  },
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "moldPid": "2473572",
+  "backendJarSha256": "8fe7c6611dd1983084a3de8b5ed70b78f05a4551931022a4f1c0af5bb9f5e2c6"
+}

@@ -1,0 +1,17 @@
+{
+  "codeHead": "ce4820ba90d4ed4ac1302585349e5fb3daf83ad5",
+  "root": "/usr/share/cloudstack-management/webapp",
+  "backup": "/var/tmp/iso-vnf-sync-20261116-ui-backup-oqbl0xb3",
+  "files": 36,
+  "added": 33,
+  "overwritten": [
+    "index.html",
+    "locales/ko_KR.json",
+    "locales/en.json"
+  ],
+  "indexSha256": "4e4ca8047dc1f7ae43e528e31d89cee6a80354936abc2b950d5b2ab234260c75",
+  "protectedPreserved": true,
+  "moldPidPreserved": true,
+  "oldHashedAssetsRetained": true,
+  "deploymentType": "UI static delta only"
+}

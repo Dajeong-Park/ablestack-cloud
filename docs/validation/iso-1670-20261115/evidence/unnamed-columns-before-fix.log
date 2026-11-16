@@ -1,0 +1,63 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runInBand tests/unit/views/AutogenIsoSearch.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+FAIL tests/unit/views/AutogenIsoSearch.spec.js (14.26s)
+  ✓ actual list read retains server count/page and omits local sort, return and identity fields (27ms)
+  ✓ detail uses only id and actor project, never list return restrictions (3ms)
+  ✓ invalid search sends no broad request { userdataid: 'not-uuid' } (3ms)
+  ✓ invalid search sends no broad request { bootable: 'no' } (2ms)
+  ✓ invalid search sends no broad request { arch: 'future' } (2ms)
+  ✓ unsupported and ignored filters are not successful empty/broad results (5ms)
+  ✓ failed GET has retryable ISO error and clearing/reset can recover (4ms)
+  ✓ late list data cannot cross actor (3ms)
+  ✓ late list data cannot cross role (3ms)
+  ✓ late list data cannot cross session (3ms)
+  ✓ late list data cannot cross project (2ms)
+  ✓ scope watcher clears rows, selection and old filter URL (2ms)
+  ✓ search/page-size changes reset page while current-page sort preserves it (4ms)
+  ✓ ISO saved columns are restored even after another resource enabled metrics (2ms)
+  ✓ explicit ISO columns remain selected after returning to an all-project list (1ms)
+  ✓ hiding the sorted ISO column clears its local sort state (2ms)
+  ✓ API-valid legacy filter bookmarks get a dedicated translated selected option (1ms)
+  ✕ unnamed column refresh never rewrites ISO list/detail navigation (detail=false) (3ms)
+  ✕ unnamed column refresh never rewrites ISO list/detail navigation (detail=true) (2ms)
+
+  ● unnamed column refresh never rewrites ISO list/detail navigation (detail=false)
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 1
+
+    1: {"query": {"filter": "all", "isofilter": "all", "isoowner": "[\"actor\",\"role\",\"Admin\",\"\",\"\",\"\",false,true,[\"arch\",\"bootable\",\"hypervisor\",\"imagestoreid\",\"ispublic\",\"isready\",\"name\",\"oscategoryid\",\"storageid\",\"tags\",\"userdataid\",\"zoneid\"]]", "page": "1", "pagesize": "20"}}
+
+      120 |   c.allColumns = [{ key: 'name', dataIndex: 'name', sorter: () => 0 }, { key: 'arch', dataIndex: 'arch', sorter: () => 0 }]
+      121 |   Autogen.methods.updateSelectedColumns.call(c)
+    > 122 |   expect(c.$router.replace).not.toHaveBeenCalled()
+          |                                 ^
+      123 | })
+      124 |
+
+      at tests/unit/views/AutogenIsoSearch.spec.js:122:33
+
+  ● unnamed column refresh never rewrites ISO list/detail navigation (detail=true)
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 1
+
+    1: {"query": {"filter": "all", "isofilter": "all", "isoowner": "[\"actor\",\"role\",\"Admin\",\"\",\"\",\"\",false,true,[\"arch\",\"bootable\",\"hypervisor\",\"imagestoreid\",\"ispublic\",\"isready\",\"name\",\"oscategoryid\",\"storageid\",\"tags\",\"userdataid\",\"zoneid\"]]", "page": "1", "pagesize": "20"}}
+
+      120 |   c.allColumns = [{ key: 'name', dataIndex: 'name', sorter: () => 0 }, { key: 'arch', dataIndex: 'arch', sorter: () => 0 }]
+      121 |   Autogen.methods.updateSelectedColumns.call(c)
+    > 122 |   expect(c.$router.replace).not.toHaveBeenCalled()
+          |                                 ^
+      123 | })
+      124 |
+
+      at tests/unit/views/AutogenIsoSearch.spec.js:122:33

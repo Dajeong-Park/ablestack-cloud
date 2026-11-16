@@ -1,0 +1,17 @@
+{
+  "head": "802fab97140116cc68f4f7700e197f3c520cb278",
+  "indexSha256": "1170070d18c24110fca7cdfdfc264f95c9db3dfb690252a231ba42eee5966650",
+  "moldPid": "2545994",
+  "backendJarSha256": "97bdbed5f8f6f33edd4576a572269265ebc2c0037f7fa476423e1175c158b224",
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25"
+  },
+  "colorLessSha256": "b4828a78c5034913ce0f62a6315e0303ae63a154d2ecf8ce9e1ad0c4c170b8f0",
+  "allAssetsExactlyExpected": true,
+  "protectedPreserved": true,
+  "moldPidPreserved": true,
+  "backendJarPreserved": true,
+  "themePreserved": true,
+  "assets": 7067
+}

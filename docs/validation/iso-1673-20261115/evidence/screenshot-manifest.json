@@ -1,0 +1,82 @@
+[
+  {
+    "file": "readonly-vm-iso.jpg",
+    "nativeFormat": "JPEG",
+    "width": 1680,
+    "height": 841,
+    "sha256": "aabeab133f675e8bae6c51fbf2a2a199b7a1cec2f228c0666d8d6d1c89adc427",
+    "reencoded": false
+  },
+  {
+    "file": "final-original-isos.jpg",
+    "nativeFormat": "JPEG",
+    "width": 1680,
+    "height": 841,
+    "sha256": "a45086feaf88e887427c87b03fd2e4e15465e370ba9605b3e3e2d12ea7348d0b",
+    "reencoded": false
+  },
+  {
+    "file": "light-zone-1440x1000.jpg",
+    "nativeFormat": "JPEG",
+    "width": 1440,
+    "height": 1000,
+    "sha256": "afc58339e0d4b683a4b5459e5bda105547bf45cda736edb7ca88240f6821cb40",
+    "reencoded": false
+  },
+  {
+    "file": "dark-zone-1440x1000.jpg",
+    "nativeFormat": "JPEG",
+    "width": 1440,
+    "height": 1000,
+    "sha256": "5fe30b1397285ca4221e11eddcf97c043b7066d872ce839067f3fa0937d3189d",
+    "reencoded": false
+  },
+  {
+    "file": "light-list-long-tooltip-1280x720.jpg",
+    "nativeFormat": "JPEG",
+    "width": 1280,
+    "height": 720,
+    "sha256": "57067ede6f262c392d749a344d3821c5b5b463d469ea82eda4758327db87d480",
+    "reencoded": false
+  },
+  {
+    "file": "dark-upload-1280x720.jpg",
+    "nativeFormat": "JPEG",
+    "width": 1280,
+    "height": 720,
+    "sha256": "022d2dde2aa76398941dc365d25dcf44934605eb706b6605d80017f6fa96a638",
+    "reencoded": false
+  },
+  {
+    "file": "light-edit-390x480.jpg",
+    "nativeFormat": "JPEG",
+    "width": 390,
+    "height": 480,
+    "sha256": "dca4785117f5c5177ef7f5117e7ff078a3601431654fd1ec65ea710c0e939cb0",
+    "reencoded": false
+  },
+  {
+    "file": "light-edit-390x844.jpg",
+    "nativeFormat": "JPEG",
+    "width": 390,
+    "height": 844,
+    "sha256": "ba498cc80472dc2a375a13402f32db783d33ed2fac4cce333f138d4c6709e649",
+    "reencoded": false
+  },
+  {
+    "file": "dark-upload-390x480.jpg",
+    "nativeFormat": "JPEG",
+    "width": 390,
+    "height": 480,
+    "sha256": "31e7be260518a19f6faf5fb35432b766148b78fbfc46b976f445141a20faebe6",
+    "reencoded": false
+  },
+  {
+    "file": "dark-upload-390x844.jpg",
+    "nativeFormat": "JPEG",
+    "width": 390,
+    "height": 844,
+    "sha256": "9b4331815cd8fe6e9dde324687582b93bb8ebcc084dddd98e2e2109e8c0a5ecb",
+    "reencoded": false
+  }
+]

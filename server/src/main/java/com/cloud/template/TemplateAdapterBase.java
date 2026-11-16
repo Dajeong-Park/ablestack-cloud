@@ -548,7 +548,7 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
                 cmd.getDisplayText(), BooleanUtils.toBoolean(cmd.isPublic()), BooleanUtils.toBoolean(cmd.isFeatured()),
                 BooleanUtils.toBoolean(cmd.isExtractable()), cmd.getOsTypeId(),
                 cmd.getZoneId(), BooleanUtils.toBoolean(cmd.isBootable()), cmd.getEntityOwnerId(),
-                BooleanUtils.toBoolean(cmd.isDynamicallyScalable()));
+                BooleanUtils.toBoolean(cmd.isDynamicallyScalable()), cmd.getChecksum(), cmd.getArch());
         return prepareUploadParamsInternal(cmd, params);
     }
 

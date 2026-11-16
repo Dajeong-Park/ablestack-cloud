@@ -1,0 +1,54 @@
+{
+  "finalProductHead": "2e1f33a9b163a894ac811bba508d424121010e00",
+  "finalAssets": [
+    "js/vendors.510a9505.js",
+    "js/app.2e62dc44.js"
+  ],
+  "completedCases": [
+    "final-page-two-local-sort",
+    "final-long-name-keyboard-tooltip",
+    "final-os-hover-tooltip",
+    "final-os-column-hidden-reload",
+    "final-hidden-sort-cleared",
+    "final-narrow-390-dark",
+    "final-narrow-horizontal-scroll",
+    "final-wide-light",
+    "final-narrow-light",
+    "final-project-column-hide-survives-scope-return",
+    "final-offering-tab-history",
+    "final-vpc-empty-list",
+    "final-privategw-empty-list",
+    "final-fixed-detail-zone-breadcrumb-page-sort",
+    "final-keyword-comments-breadcrumb",
+    "final-normal-empty",
+    "final-browser-back-restored",
+    "final-open-form-route-hydrated-public",
+    "final-open-form-back-ready",
+    "final-clean-isos-original-eight",
+    "final-template-count-48",
+    "final-vm-count-103",
+    "final-original-roles-nine",
+    "final-browser-and-cleanup-summary"
+  ],
+  "beforeFixDefects": [
+    "baseline-breadcrumb-drops-search",
+    "server-isready-false-contract-defect",
+    "server-public-false-contract-defect",
+    "final-fast-detail-tab-investigation"
+  ],
+  "supersededInconclusive": {
+    "keyword-replaces-page-two": "keyword-zone-breadcrumb-restored and final-keyword-comments-breadcrumb",
+    "tag-value-mismatch-empty": "tag-negative-confirmed",
+    "not-ready-false-matches-failed-fixture": "backend-isready-false-fixed and final-open-form-back-ready"
+  },
+  "notPassedByEmptyEnvironment": [
+    "VPC/private gateway positive detail paths"
+  ],
+  "notes": [
+    "Only latest matching completed API responses in readExpectedPage are decisive. Early readPage fallback observations are not release pass counts.",
+    "Project/all-project reset validated navigation boundary and submitted projectid. Root all filter returned 10 under its existing server contract; no empty project-only result claimed.",
+    "Invalid form tests may have normal background auto-refresh reads; only invalid parameters must not be submitted. Invalid URL case has no list reads.",
+    "Light/narrow and column interaction checks used second deployment 93f7528; final 2e1f33a changes only unnamed-column navigation guard. Final dark UI, Back/form, page/sort/detail/Zone/comments and cleanup rechecked on 2e1f33a.",
+    "Original row comparison normalizes whitespace and intentional unknown-size em dash."
+  ]
+}

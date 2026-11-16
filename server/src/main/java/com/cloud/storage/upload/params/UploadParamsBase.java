@@ -182,6 +182,10 @@ public abstract class UploadParamsBase implements UploadParams {
         return checksum;
     }
 
+    protected void setChecksum(String checksum) {
+        this.checksum = checksum;
+    }
+
     @Override
     public boolean isBootable() {
         return bootable;

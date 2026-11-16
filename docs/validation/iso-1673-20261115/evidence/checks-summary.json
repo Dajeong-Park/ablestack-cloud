@@ -1,0 +1,56 @@
+{
+  "rebasedCanonical": {
+    "head": "6079c143872c93496418a33883589fe9c0370566",
+    "suites": 65,
+    "tests": 1165,
+    "passed": true
+  },
+  "deployedInputCanonical": {
+    "head": "f72df22acb72b396981c2088262abfc7169275af",
+    "suites": 40,
+    "tests": 749,
+    "passed": true
+  },
+  "operatingInput": {
+    "suites": 36,
+    "tests": 513,
+    "passed": true
+  },
+  "lintMergedSourceAndTest": true,
+  "productionBuild": {
+    "returnCode": 0,
+    "seconds": 977.8,
+    "sourceBoundary": "source-boundary.json",
+    "productHead": "f72df22acb72b396981c2088262abfc7169275af",
+    "inputHashesVerified": true
+  },
+  "globalCiBaseline": {
+    "base": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+    "lintSourceHead": "32ee2b0463bae06763add96180092273abf74da2",
+    "sameSourceTree": true,
+    "lintRun": 43724845465,
+    "failedHooks": [
+      "run oxipng",
+      "add license for all Markdown files",
+      "add license for all properties files",
+      "add license for all Shell files",
+      "add license for all SQL files",
+      "add license for all Vue files",
+      "add license for all YAML files",
+      "check that scripts with shebangs are executable",
+      "check for broken symlinks",
+      "fix end of files",
+      "fix utf-8 byte order marker",
+      "mixed line ending",
+      "trim trailing whitespace",
+      "run codespell",
+      "flake8",
+      "run markdownlint"
+    ],
+    "diagnosticPaths": 11179,
+    "licenseRun": 43725039169,
+    "licenseUnknown": 4077,
+    "fullCiPass": false
+  },
+  "globalCiLatest": "See final issue/PR results; baseline is not full CI success"
+}

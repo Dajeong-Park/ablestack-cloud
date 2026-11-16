@@ -1,0 +1,46 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runInBand --silent --coverage=false --forceExit --runTestsByPath tests/unit/views/image/IsoZoneOperations.spec.js tests/unit/components/view/IsoListSearch.spec.js tests/unit/utils/isoSearch.spec.js tests/unit/views/AutogenIsoSearch.spec.js tests/unit/views/AutogenTemplateRead.spec.js tests/unit/components/view/TemplateSearchForm.spec.js tests/unit/components/view/ListViewTemplateType.spec.js tests/unit/utils/templateSearch.spec.js tests/unit/components/view/ListViewDiskOffering.spec.js tests/unit/views/AutogenCniSearch.spec.js tests/unit/views/AutogenGuestNetworkSearch.spec.js tests/unit/views/image/UpdateISO.spec.js tests/unit/views/compute/ImageUserDataDialog.spec.js tests/unit/views/image/IsoZonesReadScope.spec.js tests/unit/components/view/ImageTagReadScope.spec.js tests/unit/utils/resourceTags.spec.js tests/unit/components/view/ResourceTags.spec.js tests/unit/views/image/TemplateZoneSelection.spec.js tests/unit/views/image/TemplateAvailabilityRead.spec.js tests/unit/views/image/TemplateZoneOperations.spec.js tests/unit/utils/isoResource.spec.js tests/unit/utils/isoRegistration.spec.js tests/unit/views/image/IsoRegistration.spec.js tests/unit/utils/isoModel.spec.js tests/unit/views/image/IsoActionPolicy.spec.js tests/unit/views/image/TemplateForms.spec.js tests/unit/views/image/TemplatePermissions.spec.js tests/unit/utils/templateFormMessages.spec.js tests/unit/utils/vmIsoActions.spec.js tests/unit/components/view/ResourceView.spec.js tests/unit/views/AutogenView.spec.js tests/unit/views/network/VpcUiIntegration.spec.js tests/unit/views/network/NetworkTabs.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS tests/unit/views/AutogenView.spec.js (18.511s)
+PASS tests/unit/components/view/ResourceTags.spec.js
+PASS tests/unit/views/image/TemplateZoneSelection.spec.js
+PASS tests/unit/views/network/VpcUiIntegration.spec.js
+PASS tests/unit/views/image/TemplateZoneOperations.spec.js
+PASS tests/unit/views/network/NetworkTabs.spec.js
+PASS tests/unit/components/view/ResourceView.spec.js
+PASS tests/unit/components/view/IsoListSearch.spec.js
+PASS tests/unit/views/image/TemplateForms.spec.js
+PASS tests/unit/views/image/TemplatePermissions.spec.js
+PASS tests/unit/components/view/ListViewTemplateType.spec.js
+PASS tests/unit/views/image/IsoZoneOperations.spec.js
+PASS tests/unit/views/image/UpdateISO.spec.js
+PASS tests/unit/views/AutogenTemplateRead.spec.js
+PASS tests/unit/components/view/ListViewDiskOffering.spec.js
+PASS tests/unit/views/image/IsoActionPolicy.spec.js
+PASS tests/unit/views/AutogenGuestNetworkSearch.spec.js
+PASS tests/unit/views/AutogenIsoSearch.spec.js
+PASS tests/unit/views/AutogenCniSearch.spec.js
+PASS tests/unit/views/image/TemplateAvailabilityRead.spec.js
+PASS tests/unit/components/view/TemplateSearchForm.spec.js
+PASS tests/unit/views/image/IsoRegistration.spec.js
+PASS tests/unit/utils/resourceTags.spec.js
+PASS tests/unit/utils/templateFormMessages.spec.js
+PASS tests/unit/utils/isoModel.spec.js
+PASS tests/unit/utils/isoSearch.spec.js
+PASS tests/unit/components/view/ImageTagReadScope.spec.js
+PASS tests/unit/utils/isoRegistration.spec.js
+PASS tests/unit/utils/vmIsoActions.spec.js
+PASS tests/unit/utils/templateSearch.spec.js
+PASS tests/unit/utils/isoResource.spec.js
+PASS tests/unit/views/compute/ImageUserDataDialog.spec.js
+PASS tests/unit/views/image/IsoZonesReadScope.spec.js
+
+Test Suites: 33 passed, 33 total
+Tests:       690 passed, 690 total
+Snapshots:   0 total
+Time:        44.306s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

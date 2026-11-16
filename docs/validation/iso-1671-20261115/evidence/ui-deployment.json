@@ -1,0 +1,15 @@
+{
+  "codeHead": "c8992a5f49fe866fa43d2ae769df87f102e716c1",
+  "root": "/usr/share/cloudstack-management/webapp",
+  "backup": "/var/tmp/iso1671-20261115-ui-backup-kqwi_t3m",
+  "files": 4,
+  "added": 3,
+  "overwritten": [
+    "index.html"
+  ],
+  "indexSha256": "3af095fcdd5785a6c0e6c53b13e4a907245d066540041a86eb366fbd6a4f3d8e",
+  "protectedPreserved": true,
+  "moldPidPreserved": true,
+  "oldHashedAssetsRetained": true,
+  "deploymentType": "UI static delta only"
+}
