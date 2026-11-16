@@ -213,6 +213,25 @@ resolve_context() {
   CLIENT_SAFE="$(sanitize_name "${CLIENT_NAME}")"
   BACKUP_ID_SAFE="$(sanitize_name "${BACKUP_ID}")"
   CONTEXT_KEY="${POLICY_SAFE}__${SCHEDULE_SAFE}__${CLIENT_SAFE}"
+  # The session filename adds 25 bytes to this key. Keep existing short keys,
+  # but bound long names before opening locks, context markers or session files.
+  if [[ ${#CONTEXT_KEY} -gt 230 ]]; then
+    local legacy_context="${CONTEXT_KEY}"
+    if [[ ${#legacy_context} -le 244 && -e "${STATE_ROOT}/contexts/${legacy_context}.inprogress" ]]; then
+      fail "A legacy long-name NetBackup context remains pending; reconcile its owner before retrying."
+    fi
+    if [[ ${#legacy_context} -le 250 && -f "${STATE_ROOT}/locks/${legacy_context}.lock" ]]; then
+      flock -n "${STATE_ROOT}/locks/${legacy_context}.lock" true || fail "A legacy long-name NetBackup Hook is still running."
+    fi
+    CONTEXT_KEY="ctx-$(python3 - "${POLICY_NAME}" "${SCHEDULE_NAME}" "${CLIENT_NAME}" <<'PY'
+import hashlib
+import json
+import sys
+
+print(hashlib.sha256(json.dumps(sys.argv[1:], separators=(',', ':')).encode()).hexdigest())
+PY
+)"
+  fi
   LOCK_FILE="${STATE_ROOT}/locks/${CONTEXT_KEY}.lock"
   CONTEXT_FILE="${STATE_ROOT}/contexts/${CONTEXT_KEY}.env"
   RUNTIME_DIR="${STATE_ROOT}/runtime/${POLICY_SAFE}"

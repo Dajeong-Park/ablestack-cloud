@@ -253,6 +253,8 @@ def append_provider_if_missing(provider_list: str, provider_name: str) -> str:
 def validate_policy_name(name: str) -> None:
     # Keep the real name in API requests, hook filenames and configuration. Never
     # turn an invalid name into another existing policy by replacing characters.
+    if len(name or "") > 128:
+        fail("Invalid --policy-name: NetBackup policy names must be at most 128 ASCII characters")
     if not re.fullmatch(r"[A-Za-z0-9_+][A-Za-z0-9_.+\-]*", name or "") or name.endswith("."):
         fail("Invalid --policy-name: use letters, digits, . _ - +, without spaces; "
              "the name cannot start with '-' or '.', or end with '.'")

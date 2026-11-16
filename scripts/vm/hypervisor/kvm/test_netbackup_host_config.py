@@ -228,6 +228,13 @@ load_admin_secretkey
                 config.validate_args(self.arguments("--policy-name=" + name))
         self.assertNotEqual(config.sanitize_name("a+b"), config.sanitize_name("a_b"))
 
+    def test_netbackup_policy_length_boundary_is_checked_before_configuration(self):
+        config.validate_policy_name("p" * 128)
+        with patch.object(config, "configure_vm_selection") as selection, \
+                contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            config.validate_args(self.arguments("--policy-name", "p" * 129))
+        selection.assert_not_called()
+
     def test_policy_client_verification_stops_before_settings_secrets_or_hooks_change(self):
         args = self.arguments("--policy-name", "custom-policy")
         with contextlib.ExitStack() as stack:

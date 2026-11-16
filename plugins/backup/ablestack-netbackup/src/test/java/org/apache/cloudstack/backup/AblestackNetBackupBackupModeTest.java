@@ -610,6 +610,29 @@ public class AblestackNetBackupBackupModeTest {
         return parent("QCOW2");
     }
 
+    @Test public void changedPolicyStartsAnIndependentFullForAStoppedVmWithoutReusingItsOldChain() {
+        enabled();
+        when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+        when(vm.getHostId()).thenReturn(null);
+        when(vm.getLastHostId()).thenReturn(30L);
+        BackupVO previous = parent();
+        previous.setHostId(30L);
+        previous.getDetails().put("netbackup.policy.name", "previous-policy");
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+        assertFull(start(false), ".qcow2");
+        assertEquals("previous-policy", previous.getDetail("netbackup.policy.name"));
+        verify(jobs, never()).validateHostPolicyBackupChain(any(), any(), any(), any(), any());
+    }
+
+    @Test public void changedPolicyStartsAnIndependentFullForARunningVmToo() {
+        enabled();
+        BackupVO previous = parent();
+        previous.getDetails().put("netbackup.policy.name", "previous-policy");
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+        assertFull(start(false), ".qcow2");
+        assertEquals("previous-policy", previous.getDetail("netbackup.policy.name"));
+    }
+
     private BackupVO parent(String engine) {
         BackupVO parent = new BackupVO();
         parent.setDate(new Date());

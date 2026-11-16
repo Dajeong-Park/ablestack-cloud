@@ -293,13 +293,21 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         // Full-only mode must not depend on any previous chain, checkpoint or catalog artifact.
         final BackupVO latestBackup = isIncrementalBackupEnabled(vm)
                 ? getLatestBackedUpBackup(vm, VirtualMachine.State.Stopped.equals(vm.getState()) ? null : backupScheduleId) : null;
-        if (VirtualMachine.State.Stopped.equals(vm.getState()) && latestBackup != null
+        final String previousPolicy = getBackupDetail(latestBackup, DETAIL_POLICY_NAME);
+        final boolean policyChanged = StringUtils.isNotBlank(previousPolicy) && StringUtils.isNotBlank(policyName)
+                && !previousPolicy.equals(policyName);
+        if (policyChanged) {
+            LOG.info("Starting an independent Full for VM [{}] after NetBackup policy changed from [{}] to [{}]",
+                    vm.getInstanceName(), previousPolicy, policyName);
+        }
+        if (!policyChanged && VirtualMachine.State.Stopped.equals(vm.getState()) && latestBackup != null
                 && !backupVolumeAllocationService.requiresOfflineFull(vmVolumes)
                 && !Boolean.parseBoolean(getBackupDetail(latestBackup, DETAIL_CHAIN_SEALED))
                 && getBackupChainSize(vm, latestBackup) < KvmBackupChainSize.value() && !hasHealthyIncrementalSource(latestBackup)) {
             throw new CloudRuntimeException("BACKUP_INCREMENTAL_SOURCE_UNCONFIRMED: Previous baseline metadata is incomplete; no Full fallback was started");
         }
-        final boolean incrementalBackup = !backupVolumeAllocationService.requiresOfflineFull(vmVolumes) && shouldUseIncrementalBackupForNetBackup(vm, latestBackup)
+        final boolean incrementalBackup = !policyChanged && !backupVolumeAllocationService.requiresOfflineFull(vmVolumes)
+                && shouldUseIncrementalBackupForNetBackup(vm, latestBackup)
                 && ThirdPartyBackupManifest.canContinue(latestBackup, getName(), vm.getInstanceName(),
                         areAllVolumesOnRbdPool(volumePoolsAndPaths.first()) ? BACKUP_ENGINE_RBD_DIFF : BACKUP_ENGINE_QCOW2, vmVolumes)
                 && isBackupChainAvailable(vm, latestBackup);
