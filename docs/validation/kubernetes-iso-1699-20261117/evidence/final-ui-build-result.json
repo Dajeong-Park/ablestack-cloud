@@ -1,0 +1,10 @@
+{
+  "returnCode": 0,
+  "seconds": 715.5,
+  "sourceHead": "052e9cd806318ad29a0a051d5a5f90c50f7b3c75",
+  "sameOperatingContext": true,
+  "inputDelta": [
+    "src/utils/kubernetesIsoDetails.js",
+    "src/views/image/KubernetesIsoZones.vue"
+  ]
+}

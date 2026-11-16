@@ -1,0 +1,22 @@
+{
+  "returnCode": 0,
+  "seconds": 745.4,
+  "sourceHead": "65256978e8f626c2ee7b45ec8e28591438bc7123",
+  "inputDelta": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/components/view/InfoCard.vue",
+    "src/components/view/ListView.vue",
+    "src/components/view/ResourceView.vue",
+    "src/config/section/image.js",
+    "src/utils/kubernetesIsoModel.js",
+    "src/components/view/KubernetesIsoSummary.vue",
+    "src/components/widgets/KubernetesIsoListCell.vue",
+    "src/components/widgets/KubernetesIsoScope.vue",
+    "src/components/widgets/KubernetesIsoStatus.vue",
+    "src/utils/kubernetesIsoDetails.js",
+    "src/views/image/KubernetesIsoDetails.vue",
+    "src/views/image/KubernetesIsoZones.vue"
+  ],
+  "sameOperatingContext": true
+}

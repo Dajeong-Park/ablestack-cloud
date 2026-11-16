@@ -1,0 +1,30 @@
+{
+  "head": "65256978e8f626c2ee7b45ec8e28591438bc7123",
+  "backup": "/var/tmp/kiso1699-backup-uej7plpy",
+  "files": [
+    "js/chunk-fbd5521c.3edac62a.js",
+    "js/chunk-3fbb855e.69cd6548.js",
+    "js/chunk-7b26d508.0d115d02.js",
+    "js/chunk-124aae44.bcf78694.js",
+    "js/chunk-70013a9c.2ea71573.js",
+    "js/app.672c417b.js",
+    "css/chunk-3fbb855e.f4d6c087.css",
+    "css/app.329c1d19.css",
+    "css/chunk-124aae44.23b4edbb.css",
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "count": 12,
+  "overwritten": [
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "preservedOldFiles": 7172,
+  "indexSha256": "644f477f884b7c0628fc1d81a93f96350ffc721cd97ddcf95e2171248b2342a7",
+  "protectedPreserved": true,
+  "backendAndPidPreserved": true,
+  "staticHttpHashesVerified": true,
+  "deploymentType": "UI static delta only"
+}

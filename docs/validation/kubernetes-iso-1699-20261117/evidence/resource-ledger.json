@@ -1,0 +1,66 @@
+[
+  {
+    "name": "qa-kiso1699-global-ready",
+    "version": "1.40.1",
+    "url": "http://10.10.13.10:8080/client/qa-kiso1699-20261117/ready.iso?qa=1699&name=global-ready",
+    "checksum": "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46",
+    "specific": false,
+    "arch": "aarch64",
+    "cpu": 4,
+    "memory": 3072,
+    "id": "30438d8d-9cad-4275-8e0f-5e1a4514f824",
+    "isoId": "392298e1-67b8-42a7-b227-b6ad543c51f4",
+    "cleanup": "pending"
+  },
+  {
+    "name": "qa-kiso1699-checksum-error",
+    "version": "1.12.99",
+    "url": "http://10.10.13.10:8080/client/qa-kiso1699-20261117/ready.iso?qa=1699&name=checksum-error",
+    "checksum": "{SHA-256}0000000000000000000000000000000000000000000000000000000000000000",
+    "specific": true,
+    "id": "6766f9d7-194a-43a3-8d74-da0615a74146",
+    "isoId": "eb59eb04-e4ec-4e32-8a59-d41ec84373c5",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1699-direct",
+    "version": "1.40.4",
+    "url": "http://10.10.13.10:8080/client/qa-kiso1699-20261117/ready.iso?qa=1699&name=direct",
+    "checksum": "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46",
+    "specific": true,
+    "direct": true,
+    "id": "bf45c463-ff01-48b3-857e-1d291e152e67",
+    "isoId": "ec3bac14-81a6-4182-b33f-097414c77f5a",
+    "cleanup": "deleted-ui",
+    "versionDisabled": true
+  },
+  {
+    "name": "qa-kiso1699-progress",
+    "version": "1.40.3",
+    "url": "http://10.10.13.10:8619/slow.iso?qa=1699",
+    "checksum": "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46",
+    "specific": true,
+    "id": "83e22979-574c-4818-99d6-23090122201a",
+    "isoId": "4fc2854b-000c-4212-8c63-ec377677d538",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1699-progress-large",
+    "version": "1.40.5",
+    "url": "http://10.10.13.10:8080/client/qa-kiso1699-20261117/progress-large.iso",
+    "checksum": "{SHA-256}30fddedcc5d9ba59aef678c69c46aa6b4072ae4b1fb9620e19e9c3f3074d0bf9",
+    "specific": false,
+    "id": "90c7c3d8-ab9a-4a77-bc53-db4c84f84f13",
+    "isoId": "fae3cff4-fd70-4d0c-b6d9-2dc3769a81e3",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1699-completion",
+    "version": "1.40.6",
+    "url": "http://10.10.13.10:8080/client/qa-kiso1699-20261117/progress-large.iso?phase=completion",
+    "id": "2b07a242-837a-4b47-88a9-ac88b08b7b48",
+    "isoId": "66f1ba95-c9e6-4a64-8225-c39250dd7ed7",
+    "specific": false,
+    "cleanup": "deleted-ui"
+  }
+]

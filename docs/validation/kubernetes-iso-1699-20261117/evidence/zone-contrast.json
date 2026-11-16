@@ -1,0 +1,260 @@
+{
+  "dark": {
+    "samples": 19,
+    "minimumTextContrast": 7.13,
+    "colors": [
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(240, 243, 246)",
+        "tag": "TH",
+        "text": ""
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(240, 243, 246)",
+        "tag": "TH",
+        "text": "Zone"
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(240, 243, 246)",
+        "tag": "TH",
+        "text": "ISO 가용성"
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(240, 243, 246)",
+        "tag": "TH",
+        "text": "준비"
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(240, 243, 246)",
+        "tag": "TH",
+        "text": "원인"
+      },
+      {
+        "background": "rgb(39, 46, 54)",
+        "color": "rgb(240, 243, 246)",
+        "tag": "TH",
+        "text": "작업"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": ""
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": "13-Zone"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": "사용 가능"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "tag": "SPAN",
+        "text": "사용 가능"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": "예"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": "—"
+      },
+      {
+        "background": "rgb(34, 40, 47)",
+        "color": "rgb(197, 204, 212)",
+        "tag": "TD",
+        "text": "ISO 보기"
+      }
+    ]
+  },
+  "light": {
+    "samples": 22,
+    "minimumTextContrast": 7.56,
+    "colors": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)",
+        "tag": "TH",
+        "text": ""
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)",
+        "tag": "TH",
+        "text": "Zone"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)",
+        "tag": "TH",
+        "text": "ISO 가용성"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)",
+        "tag": "TH",
+        "text": "준비"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)",
+        "tag": "TH",
+        "text": "원인"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(31, 41, 55)",
+        "tag": "TH",
+        "text": "작업"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": " "
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": ""
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "13-Zone"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "사용 가능"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "예"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "—"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "ISO 보기"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": ""
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "합성 검증 Zone"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "다운로드/업로드 실패"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(75, 85, 99)",
+        "tag": "TD",
+        "text": "아니오"
+      }
+    ]
+  }
+}

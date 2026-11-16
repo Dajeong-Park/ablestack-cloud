@@ -1,0 +1,50 @@
+[
+  {
+    "command": "listGuiThemes",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listApis",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listUsers",
+    "method": "GET",
+    "params": {
+      "id": "21ef473f-799f-446c-a7ea-918d65951eb9"
+    }
+  },
+  {
+    "command": "listUsers",
+    "method": "GET",
+    "params": {
+      "id": "21ef473f-799f-446c-a7ea-918d65951eb9"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listCapabilities",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listUsers",
+    "method": "GET",
+    "params": {
+      "id": "21ef473f-799f-446c-a7ea-918d65951eb9"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "id": "30438d8d-9cad-4275-8e0f-5e1a4514f824"
+    }
+  }
+]
