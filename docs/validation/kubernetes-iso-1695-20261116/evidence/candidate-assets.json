@@ -1,0 +1,63 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "files": {
+    "js/chunk-aa3d8c1a.8c1cf693.js": {
+      "sha256": "6cb8792ae0851257dfb6e0edd1ccaf83593c73f930e75b4e5a18d20c724141c9",
+      "size": 17068
+    },
+    "js/app.5c1e5558.js": {
+      "sha256": "b5cb9256be4380e461a692b73dc74bd88195dfaed68eb73caf398680de368ba1",
+      "size": 2005289
+    },
+    "js/chunk-fbd5521c.ed325ecd.js": {
+      "sha256": "7e5d65a396047aeceb0581807100fdb35b50283ad4b8ea57c35dab21da2cc2fe",
+      "size": 5554
+    },
+    "js/vendors.896191d4.js": {
+      "sha256": "926733ed8a70bdc1b4c1ba3d0f2002d6d042599c86aee00bdf76ad22a15a9d78",
+      "size": 6054278
+    },
+    "css/chunk-fbd5521c.716a5b7b.css": {
+      "sha256": "123ae9e49352bd8bafc3f1eb28478541ac5a606846e326f108648365ee23d4a0",
+      "size": 109
+    },
+    "css/app.ab5b1fda.css": {
+      "sha256": "a347c407c72bdc01bf6dedb91d9b8e8b8817db263b3756d7a4c8310c9533766e",
+      "size": 349569
+    },
+    "css/chunk-aa3d8c1a.009999da.css": {
+      "sha256": "9f414121cd441ea2f0817519cad8c2042849d1fc4a800772d9f7e54f98f94ae2",
+      "size": 41
+    },
+    "locales/ko_KR.json": {
+      "sha256": "1e497dc8812b827ed63ab6cd6137b65333135b633ebb7925c8fab5d1bae0df3e",
+      "size": 1038594
+    },
+    "locales/en.json": {
+      "sha256": "1404b23c244cbcf69e1f90400584aa28cdeea35485fc139634331fe96913cf4c",
+      "size": 926959
+    },
+    "index.html": {
+      "sha256": "54f78e61e1d30e51f4ee4c2ead0c84b785f1c84c621a06b598074d0360892e17",
+      "size": 39947
+    }
+  },
+  "count": 10
+}

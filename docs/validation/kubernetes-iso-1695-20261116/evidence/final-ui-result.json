@@ -1,0 +1,64 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "profile": true,
+  "rows": [
+    {
+      "id": "b5fabc77-be13-448e-8643-625e9ff8d1e0",
+      "text": "1.35.9정상1.35.9Ready22048x86_6413-Zone"
+    },
+    {
+      "id": "441b3f20-0a40-48dd-becb-1573c6059867",
+      "text": "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+    }
+  ],
+  "originalCatalogRestored": true,
+  "accountsRestored": true,
+  "rolesRestored": true,
+  "urlButton": 1,
+  "localButton": 1,
+  "smoke": {
+    "versionId": "b2fcdaf8-b91f-4d93-a4de-c7488821258e",
+    "isoId": "a61c780f-f459-4e88-963e-2d571796d4d8",
+    "name": "qa-kiso1695-contract-smoke",
+    "semanticversion": "1.29.95",
+    "cleanup": "version deleted through UI; catalog original2 restored",
+    "urlReceipt": "PASS",
+    "linkedIsoReady": "PASS: UI Ready, checksum match, 1.36MiB, direct download No",
+    "updateReceipt": "PASS: Enabled -> Disabled",
+    "linkedIsoCleanup": "deleted by catalog cascade; ISO list original8 restored"
+  },
+  "recovery": [
+    {
+      "case": "invalid UUID",
+      "url": "http://10.10.13.10:8080/client/#/kubernetesiso/not-a-uuid",
+      "message": "쿠버네티스 ISO 응답을 확인할 수 없습니다. 다시 조회해 주세요."
+    },
+    {
+      "case": "valid UUID not found by server",
+      "url": "http://10.10.13.10:8080/client/#/kubernetesiso/00000000-0000-4000-8000-000000001695",
+      "message": "쿠버네티스 ISO 조회에 실패했습니다. 다시 시도해 주세요.",
+      "note": "server lookup failure is a retryable error; not a successful empty result"
+    }
+  ],
+  "browserErrors": {
+    "observed": 0,
+    "renderExceptions": []
+  }
+}
