@@ -1,0 +1,223 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - img "safety-certificate":
+    - generic: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "시스템 VM":
+    - /url: "#/systemvm"
+  - text: /
+  - generic: v-174-VM
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/systemvm.html
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "thunderbolt":
+  - heading "v-174-VM" [level=4]
+  - generic: x86_64
+  - generic: KVM
+  - generic: 4.23.0.0-Mold.Europa-202609222315
+  - button "code":
+    - img "code":
+  - separator
+  - generic: 상태
+  - generic: 실행 중
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "355bd581-e0f2-43a7-8b27-95e8b46d5ed1":
+    - /url: javascript:;
+  - generic: Public IP 주소
+  - img "gateway":
+  - link "10.10.31.5":
+    - /url: javascript:;
+  - generic: 템플릿
+  - img "save":
+  - link "systemvmtemplate-x86_64-kvm-Europa-202609091134":
+    - /url: "#/template/9ff625f0-79a3-446f-afdd-3724f0178bef"
+  - generic: 시스템 오퍼링
+  - img "cloud":
+  - link "System Offering For Console Proxy":
+    - /url: "#/systemoffering/c6256a66-8064-45dc-8aff-91f1af88143f"
+  - generic: 호스트
+  - img "desktop":
+  - link "ablecube31-2":
+    - /url: "#/host/3fb147f3-aea4-4f65-b8c6-e7192ea26138"
+  - generic: Pod
+  - img "appstore":
+  - link "Pod":
+    - /url: "#/pod/2a9760c6-795d-48fc-bca1-77037c541279"
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+  - generic: 생성일
+  - img "calendar":
+  - text: 2026. 10. 6. 오전 10:53:29
+  - tablist:
+    - tab "상세" [selected]
+    - tab "메트릭"
+    - tab "볼륨"
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "상세":
+    - list:
+      - strong: 이름
+      - generic: v-174-VM
+      - strong: 아이디
+      - generic: 355bd581-e0f2-43a7-8b27-95e8b46d5ed1
+      - strong: Agent 상태
+      - generic: Up
+      - strong: 시스템 VM 유형
+      - generic: consoleproxy
+      - strong: Public IP 주소
+      - generic: 10.10.31.5
+      - strong: 사설 IP 주소
+      - generic: 10.10.31.7
+      - strong: 로컬 연결 IP 주소
+      - generic: 169.254.66.87
+      - strong: 게이트웨이
+      - generic: 10.10.0.1
+      - strong: 호스트
+      - generic: ablecube31-2
+      - strong: CPU 아키텍처
+      - generic: x86_64
+      - strong: 버전
+      - generic: 4.23.0.0-Mold.Europa-202609222315
+      - strong: Zone
+      - generic: Zone
+      - strong: 생성일
+      - generic: 2026. 10. 6. 오전 10:53:29
+      - strong: 활성 세션
+      - generic: "1"
+      - strong: 동적으로 확장 가능
+      - generic: "false"
+      - strong: 제어 영역 상태
+      - generic: Enabled

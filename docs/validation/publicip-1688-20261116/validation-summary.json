@@ -1,0 +1,163 @@
+{
+  "implementation": "1d54fa48086720c1f89497b99e04a6dd3900c28a",
+  "initialCellImplementation": "5f278f07b62df12ffd7788a5f12fd3891a22460d",
+  "focusedTests": {
+    "suites": 6,
+    "tests": 108,
+    "status": "PASS"
+  },
+  "lint": "PASS",
+  "localProductionBuild": "PASS",
+  "fullCloudBuildDispatched": false,
+  "finalUiCases": 20,
+  "apiUiNetworkComparisons": [
+    {
+      "cluster": 31,
+      "case": "final-Allocated-page1",
+      "rows": 20,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-delay-old-response-discarded",
+      "rows": 17,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-Reserved",
+      "rows": 1,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-Free",
+      "rows": 17,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-Allocated-page2",
+      "rows": 4,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-project-Allocated",
+      "rows": 2,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-cleaned-Reserved-empty",
+      "rows": 0,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-cleaned-Free",
+      "rows": 18,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 31,
+      "case": "final-default-Allocated",
+      "rows": 20,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-Allocated-page1",
+      "rows": 9,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-delay-old-response-discarded",
+      "rows": 20,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-Reserved",
+      "rows": 1,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-Free-page1",
+      "rows": 20,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-Free-page2",
+      "rows": 20,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-project-Allocated",
+      "rows": 2,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-cleaned-Reserved-empty",
+      "rows": 0,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-cleaned-Free",
+      "rows": 20,
+      "networkFieldsMatchApiInventory": true
+    },
+    {
+      "cluster": 32,
+      "case": "final-default-Allocated",
+      "rows": 9,
+      "networkFieldsMatchApiInventory": true
+    }
+  ],
+  "syntheticCasesPerCluster": 9,
+  "syntheticMobileWidth": 390,
+  "finalResponsiveCombinations": 12,
+  "realDetailNavigationChecks": 8,
+  "finalKeyboardChecks": 6,
+  "finalContextScopeChecks": 2,
+  "delayedResponseBeforeFix": {
+    "cluster": 32,
+    "pendingRows": 9,
+    "pendingNetworkLinks": 6
+  },
+  "delayedResponseAfterFix": [
+    {
+      "cluster": 32,
+      "sameScopePendingRows": 9,
+      "pendingRows": 0,
+      "pendingNetworkLinks": 0,
+      "lateResponseIgnored": true
+    },
+    {
+      "cluster": 31,
+      "sameScopePendingRows": 20,
+      "pendingRows": 0,
+      "pendingNetworkLinks": 0,
+      "lateResponseIgnored": true
+    }
+  ],
+  "perRowNetworkLookupRequests": 0,
+  "cleanup": {
+    "IPs": 2,
+    "state": "Free",
+    "displayFlagRestored": true,
+    "networksCreated": 0,
+    "VMsCreated": 0,
+    "accountsCreated": 0,
+    "domainsCreated": 0,
+    "inventoriesEqual": 16
+  },
+  "protectedFtctlTrackedFiles": 3,
+  "protectedUntrackedFiles": 14538
+}

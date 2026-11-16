@@ -1,0 +1,98 @@
+[
+  {
+    "cluster": 31,
+    "case": "system-skip-empty-network",
+    "href": "#/systemvm/355bd581-e0f2-43a7-8b27-95e8b46d5ed1",
+    "row": "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+    "text": "v-174-VM",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "case": "system-skip-empty-network",
+    "href": "#/systemvm/59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+    "row": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+    "text": "v-1-VM",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "case": "VPC-only-skip-empty-network",
+    "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+    "row": "d035d9a6-cb42-438f-893b-3353d20423e9",
+    "text": "AS-PROD-32-AS01-VPC",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "case": "normal-network-kept",
+    "href": "#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4",
+    "row": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+    "text": "AS-PROD-32-AS01-VPC-Tier",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "case": "VPC-only-skip-empty-network",
+    "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "row": "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+    "text": "qa-gn1569-31-reg-vpc",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "case": "normal-network-kept",
+    "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+    "row": "0a089eba-061a-419d-93cd-02e9f3b4a164",
+    "text": "rt1230-v13412-ha-gfs2-r17-net",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "case": "final-system",
+    "href": "#/systemvm/355bd581-e0f2-43a7-8b27-95e8b46d5ed1",
+    "row": "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+    "text": "v-174-VM",
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "case": "final-VPC-only",
+    "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+    "row": "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+    "text": "qa-gn1569-31-reg-vpc",
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "case": "final-normal-network",
+    "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+    "row": "0a089eba-061a-419d-93cd-02e9f3b4a164",
+    "text": "rt1230-v13412-ha-gfs2-r17-net",
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "case": "final-system",
+    "href": "#/systemvm/59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+    "row": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+    "text": "v-1-VM",
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "case": "final-VPC-only",
+    "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+    "row": "d035d9a6-cb42-438f-893b-3353d20423e9",
+    "text": "AS-PROD-32-AS01-VPC",
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "case": "final-normal-network",
+    "href": "#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4",
+    "row": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+    "text": "AS-PROD-32-AS01-VPC-Tier",
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  }
+]

@@ -1,0 +1,818 @@
+[
+  {
+    "cluster": 31,
+    "name": "Allocated-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20",
+      "state": "allocated"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"7c65bf2e-fbda-4ad1-a044-9d38e61c03a2","ipaddress":"10.10.32.5","state":"Allocated","virtualmachineid":"59e31d5b-2a18-4e21-84f3-0a2a7fa77162","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9064a919-9683-41ea-bfe5-ef3732e07eb2","ipaddress":"10.10.32.6","state":"Allocated","virtualmachineid":"eff7e920-577d-4576-8b54-933261930cc9","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d035d9a6-cb42-438f-893b-3353d20423e9","ipaddress":"10.10.32.101","state":"Allocated","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"7f24ac97-2e82-40f9-8e8a-6264a1144038","ipaddress":"10.10.32.102","state":"Allocated","associatednetworkid":"07f53267-063b-4975-ac47-5a5c10d57fb4","associatednetworkname":"AS-PROD-32-AS01-VPC-Tier","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"c7e46392-cbcd-4503-a810-606b5afaa884","ipaddress":"10.10.32.143","state":"Allocated","associatednetworkid":"3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8","associatednetworkname":"asdsad","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"078a87ba-8a96-4292-8f33-03163f599ef9","ipaddress":"10.10.32.144","state":"Allocated","associatednetworkid":"5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5","associatednetworkname":"tj-isolated-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9715ee32-e444-47ca-aa5c-bf7e8633dbd3","ipaddress":"10.10.32.167","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"282aad30-4938-4de3-8412-d3098f4f4caf","ipaddress":"10.10.32.168","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d82e3f23-29e2-4b44-a85c-6c8821f2a4f6","ipaddress":"10.10.32.169","state":"Allocated","associatednetworkid":"f889cc7d-02c5-490b-b256-a289b73ff824","associatednetworkname":"AS-PROD-32-AS01-userNetwork","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-attempt-auto-refresh",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"qa-pip1688-synthetic-0","ipaddress":"192.0.2.1","state":"Reserved","associatednetworkid":"network-custom_1688","associatednetworkname":"합성 연결망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-1","ipaddress":"192.0.2.2","state":"Reserved","associatednetworkid":"4e6e8d47-779b-41f6-a4de-6f9914a92c69","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-2","ipaddress":"192.0.2.3","state":"Reserved","associatednetworkname":"이름만 있는 망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-3","ipaddress":"192.0.2.4","state":"Reserved","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-4","ipaddress":"192.0.2.5","state":"Reserved","associatednetworkid":"undefined","associatednetworkname":"잘못된 ID의 이름","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-5","ipaddress":"192.0.2.6","state":"Reserved","associatednetworkid":"null","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-6","ipaddress":"192.0.2.7","state":"Reserved","vpcid":"qa-vpc-reference","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-7","ipaddress":"192.0.2.8","state":"Reserved","associatednetworkname":"<img src=x onerror=alert(1)>","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-8","ipaddress":"192.0.2.9","state":"Reserved","associatednetworkid":"network-custom_1688-long","associatednetworkname":"합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 ","issystem":false,"networkid":"public-source-must-not-link"}
+      ]
+    },
+    "originalName": "synthetic-reference-cases",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-attempt-auto-refresh",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "originalName": "synthetic-reference-cases",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-attempt-auto-refresh",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "originalName": "synthetic-reference-cases",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-attempt-auto-refresh",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "originalName": "synthetic-reference-cases",
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-reference-cases",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"qa-pip1688-synthetic-0","ipaddress":"192.0.2.1","state":"Allocated","associatednetworkid":"network-custom_1688","associatednetworkname":"합성 연결망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-1","ipaddress":"192.0.2.2","state":"Allocated","associatednetworkid":"4e6e8d47-779b-41f6-a4de-6f9914a92c69","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-2","ipaddress":"192.0.2.3","state":"Allocated","associatednetworkname":"이름만 있는 망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-3","ipaddress":"192.0.2.4","state":"Allocated","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-4","ipaddress":"192.0.2.5","state":"Allocated","associatednetworkid":"undefined","associatednetworkname":"잘못된 ID의 이름","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-5","ipaddress":"192.0.2.6","state":"Allocated","associatednetworkid":"null","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-6","ipaddress":"192.0.2.7","state":"Allocated","vpcid":"qa-vpc-reference","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-7","ipaddress":"192.0.2.8","state":"Allocated","associatednetworkname":"<img src=x onerror=alert(1)>","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-8","ipaddress":"192.0.2.9","state":"Allocated","associatednetworkid":"network-custom_1688-long","associatednetworkname":"합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 ","issystem":false,"networkid":"public-source-must-not-link"}
+      ]
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-reference-cases",
+    "method": "GET",
+    "command": "listNetworks",
+    "params": {"id":"network-custom_1688","listall":"true"},
+    "result": {
+      "errorcode": 431
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-reference-cases",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"qa-pip1688-synthetic-0","ipaddress":"192.0.2.1","state":"Allocated","associatednetworkid":"network-custom_1688","associatednetworkname":"합성 연결망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-1","ipaddress":"192.0.2.2","state":"Allocated","associatednetworkid":"4e6e8d47-779b-41f6-a4de-6f9914a92c69","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-2","ipaddress":"192.0.2.3","state":"Allocated","associatednetworkname":"이름만 있는 망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-3","ipaddress":"192.0.2.4","state":"Allocated","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-4","ipaddress":"192.0.2.5","state":"Allocated","associatednetworkid":"undefined","associatednetworkname":"잘못된 ID의 이름","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-5","ipaddress":"192.0.2.6","state":"Allocated","associatednetworkid":"null","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-6","ipaddress":"192.0.2.7","state":"Allocated","vpcid":"qa-vpc-reference","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-7","ipaddress":"192.0.2.8","state":"Allocated","associatednetworkname":"<img src=x onerror=alert(1)>","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-8","ipaddress":"192.0.2.9","state":"Allocated","associatednetworkid":"network-custom_1688-long","associatednetworkname":"합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 ","issystem":false,"networkid":"public-source-must-not-link"}
+      ]
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-reference-cases",
+    "method": "GET",
+    "command": "listNetworks",
+    "params": {"id":"network-custom_1688","listall":"true"},
+    "result": {
+      "errorcode": 431
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "name": "delay-old-response-discarded",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "rows": [
+        {"id":"7f24ac97-2e82-40f9-8e8a-6264a1144038","ipaddress":"10.10.32.102","state":"Allocated","associatednetworkid":"07f53267-063b-4975-ac47-5a5c10d57fb4","associatednetworkname":"PIP1688-LATE-OLD-LINK-32","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "name": "delay-old-response-discarded",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "state": "free",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 83,
+      "rows": [
+        {"id":"9f028022-7776-41a5-9c2f-9517e20d8c7e","ipaddress":"10.10.32.104","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"ef4ffbf6-9054-469e-a275-831b93136ce7","ipaddress":"10.10.32.105","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"26198ed4-bcc3-4e4e-b064-0956bcfa8522","ipaddress":"10.10.32.106","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"39b22f2b-be78-4613-8926-719abad0beca","ipaddress":"10.10.32.107","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"923db3b2-07df-4ff5-a817-b2264a99f53f","ipaddress":"10.10.32.108","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"7071bbac-452f-4efd-8907-e3bb5ad5ee11","ipaddress":"10.10.32.109","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d3b7af90-c543-4e10-b0a1-40f1260ed145","ipaddress":"10.10.32.110","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"4562b61e-3341-4a35-a58b-2ec688ca547c","ipaddress":"10.10.32.111","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d495cf06-3f8f-4f88-af0c-e807afc9beef","ipaddress":"10.10.32.112","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"03591cc9-3f93-4644-8934-6ac6828e8f00","ipaddress":"10.10.32.113","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"461903d1-f8b0-43f6-b09d-81635cdc50c3","ipaddress":"10.10.32.114","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"a4a7db6a-e228-46da-9e06-bb08b68c08fd","ipaddress":"10.10.32.115","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"f251dc57-16ac-4dfc-8731-c3e9a249d5e6","ipaddress":"10.10.32.116","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"af225d7c-29e2-4ed5-a054-957de86b9876","ipaddress":"10.10.32.117","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"e956ace5-df28-47f0-b470-725f9978276f","ipaddress":"10.10.32.118","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"4b6e4fc1-99ac-4d3c-94b7-aab971fa90c1","ipaddress":"10.10.32.119","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"138ba67f-ebca-436a-8869-0e0eeff6407a","ipaddress":"10.10.32.120","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"265211ac-fa5b-4594-a087-37fa511058f7","ipaddress":"10.10.32.121","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"40b520ca-e894-449a-a9e3-6e21d4a7c9ee","ipaddress":"10.10.32.122","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"fbcf99be-d35e-4141-bf6d-07459348aac1","ipaddress":"10.10.32.123","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "5f278f07b62df12ffd7788a5f12fd3891a22460d"
+  },
+  {
+    "cluster": 32,
+    "name": "final-delay-old-response-discarded",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "rows": [
+        {"id":"7f24ac97-2e82-40f9-8e8a-6264a1144038","ipaddress":"10.10.32.102","state":"Allocated","associatednetworkid":"07f53267-063b-4975-ac47-5a5c10d57fb4","associatednetworkname":"PIP1688-LATE-OLD-LINK-32","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-delay-old-response-discarded",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "state": "free",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 83,
+      "rows": [
+        {"id":"9f028022-7776-41a5-9c2f-9517e20d8c7e","ipaddress":"10.10.32.104","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"ef4ffbf6-9054-469e-a275-831b93136ce7","ipaddress":"10.10.32.105","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"26198ed4-bcc3-4e4e-b064-0956bcfa8522","ipaddress":"10.10.32.106","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"39b22f2b-be78-4613-8926-719abad0beca","ipaddress":"10.10.32.107","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"923db3b2-07df-4ff5-a817-b2264a99f53f","ipaddress":"10.10.32.108","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"7071bbac-452f-4efd-8907-e3bb5ad5ee11","ipaddress":"10.10.32.109","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d3b7af90-c543-4e10-b0a1-40f1260ed145","ipaddress":"10.10.32.110","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"4562b61e-3341-4a35-a58b-2ec688ca547c","ipaddress":"10.10.32.111","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d495cf06-3f8f-4f88-af0c-e807afc9beef","ipaddress":"10.10.32.112","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"03591cc9-3f93-4644-8934-6ac6828e8f00","ipaddress":"10.10.32.113","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"461903d1-f8b0-43f6-b09d-81635cdc50c3","ipaddress":"10.10.32.114","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"a4a7db6a-e228-46da-9e06-bb08b68c08fd","ipaddress":"10.10.32.115","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"f251dc57-16ac-4dfc-8731-c3e9a249d5e6","ipaddress":"10.10.32.116","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"af225d7c-29e2-4ed5-a054-957de86b9876","ipaddress":"10.10.32.117","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"e956ace5-df28-47f0-b470-725f9978276f","ipaddress":"10.10.32.118","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"4b6e4fc1-99ac-4d3c-94b7-aab971fa90c1","ipaddress":"10.10.32.119","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"138ba67f-ebca-436a-8869-0e0eeff6407a","ipaddress":"10.10.32.120","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"265211ac-fa5b-4594-a087-37fa511058f7","ipaddress":"10.10.32.121","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"40b520ca-e894-449a-a9e3-6e21d4a7c9ee","ipaddress":"10.10.32.122","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"fbcf99be-d35e-4141-bf6d-07459348aac1","ipaddress":"10.10.32.123","state":"Free","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-delay-old-response-discarded",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 1,
+      "rows": [
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"PIP1688-LATE-OLD-LINK-31","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-delay-old-response-discarded",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "state": "free",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 17,
+      "rows": [
+        {"id":"15759fa1-ca4c-4054-82b2-47dfb03c3afb","ipaddress":"10.10.31.107","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f9eda3b4-2655-453b-837a-28e46eb9c3f5","ipaddress":"10.10.31.110","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3aab3764-2ead-49a8-9289-b758bb2490ec","ipaddress":"10.10.31.113","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"68e29c72-552b-45e2-a073-96b55d2b7274","ipaddress":"10.10.31.114","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5e89cd1f-89ff-4ac0-88ca-4597e0410530","ipaddress":"10.10.31.115","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b13209e2-ffa6-4640-9906-3561f4fde22e","ipaddress":"10.10.31.116","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"8dab4110-29c4-4350-9888-82932d99ba26","ipaddress":"10.10.31.117","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"a0f92b87-b6c4-4f71-ae4d-58c569386686","ipaddress":"10.10.31.118","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"c0db2142-27bb-4fa0-a078-2ada1a3c3f0d","ipaddress":"10.10.31.119","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4c3fd2bd-b121-45be-b761-d5e920292ad3","ipaddress":"10.10.31.120","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"6713569e-a1e2-4b58-b1e4-2b444bae6904","ipaddress":"10.10.31.121","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"db6ca8d9-db86-407e-8a89-15a37e48f9de","ipaddress":"10.10.31.122","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"62cf1df3-aff6-4f22-978c-7aa2d2233de1","ipaddress":"10.10.31.123","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"21a6e954-afa8-4bee-89c4-25c2745713b0","ipaddress":"10.10.31.143","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c","ipaddress":"10.10.31.144","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"86b4ebcf-4e41-4f90-b64a-3ae00ec45b5d","ipaddress":"10.10.31.145","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5d521af3-d96a-439c-a10b-1f0530751e96","ipaddress":"10.10.31.150","state":"Free","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-synthetic-reference-cases",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"qa-pip1688-synthetic-0","ipaddress":"192.0.2.1","state":"Allocated","associatednetworkid":"network-custom_1688","associatednetworkname":"합성 연결망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-1","ipaddress":"192.0.2.2","state":"Allocated","associatednetworkid":"4e6e8d47-779b-41f6-a4de-6f9914a92c69","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-2","ipaddress":"192.0.2.3","state":"Allocated","associatednetworkname":"이름만 있는 망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-3","ipaddress":"192.0.2.4","state":"Allocated","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-4","ipaddress":"192.0.2.5","state":"Allocated","associatednetworkid":"undefined","associatednetworkname":"잘못된 ID의 이름","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-5","ipaddress":"192.0.2.6","state":"Allocated","associatednetworkid":"null","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-6","ipaddress":"192.0.2.7","state":"Allocated","vpcid":"qa-vpc-reference","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-7","ipaddress":"192.0.2.8","state":"Allocated","associatednetworkname":"<img src=x onerror=alert(1)>","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-8","ipaddress":"192.0.2.9","state":"Allocated","associatednetworkid":"network-custom_1688-long","associatednetworkname":"합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 ","issystem":false,"networkid":"public-source-must-not-link"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-synthetic-reference-cases",
+    "method": "GET",
+    "command": "listNetworks",
+    "params": {"id":"network-custom_1688","listall":"true"},
+    "result": {
+      "errorcode": 431
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-synthetic-reference-cases",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"qa-pip1688-synthetic-0","ipaddress":"192.0.2.1","state":"Allocated","associatednetworkid":"network-custom_1688","associatednetworkname":"합성 연결망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-1","ipaddress":"192.0.2.2","state":"Allocated","associatednetworkid":"4e6e8d47-779b-41f6-a4de-6f9914a92c69","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-2","ipaddress":"192.0.2.3","state":"Allocated","associatednetworkname":"이름만 있는 망","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-3","ipaddress":"192.0.2.4","state":"Allocated","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-4","ipaddress":"192.0.2.5","state":"Allocated","associatednetworkid":"undefined","associatednetworkname":"잘못된 ID의 이름","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-5","ipaddress":"192.0.2.6","state":"Allocated","associatednetworkid":"null","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-6","ipaddress":"192.0.2.7","state":"Allocated","vpcid":"qa-vpc-reference","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-7","ipaddress":"192.0.2.8","state":"Allocated","associatednetworkname":"<img src=x onerror=alert(1)>","issystem":false,"networkid":"public-source-must-not-link"},
+        {"id":"qa-pip1688-synthetic-8","ipaddress":"192.0.2.9","state":"Allocated","associatednetworkid":"network-custom_1688-long","associatednetworkname":"합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 합성 긴 연결망 ","issystem":false,"networkid":"public-source-must-not-link"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-synthetic-reference-cases",
+    "method": "GET",
+    "command": "listNetworks",
+    "params": {"id":"network-custom_1688","listall":"true"},
+    "result": {
+      "errorcode": 431
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-cleaned-Reserved-empty",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20",
+      "state": "reserved"
+    },
+    "result": {},
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-cleaned-Reserved-empty",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20",
+      "state": "reserved"
+    },
+    "result": {},
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 31,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 24,
+      "rows": [
+        {"id":"6ff792aa-9967-4939-9b9f-e9485c7c804b","ipaddress":"10.10.31.5","state":"Allocated","virtualmachineid":"355bd581-e0f2-43a7-8b27-95e8b46d5ed1","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e970e6b5-ded8-4a0b-b482-5b5d974677e8","ipaddress":"10.10.31.6","state":"Allocated","virtualmachineid":"1b8d7588-1dfa-490b-a8dd-53f647852403","issystem":true,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"0a089eba-061a-419d-93cd-02e9f3b4a164","ipaddress":"10.10.31.100","state":"Allocated","associatednetworkid":"b3e7c062-c074-43cf-8374-0a3f74368874","associatednetworkname":"rt1230-v13412-ha-gfs2-r17-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6","ipaddress":"10.10.31.101","state":"Allocated","associatednetworkid":"b18b4600-6f42-4827-bbba-253a2cfed320","associatednetworkname":"k8s-ui1330-gfs2-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"2c2091e2-5140-44e9-89ef-63861af57e81","ipaddress":"10.10.31.102","state":"Allocated","associatednetworkid":"957281d8-692d-4761-9adb-a3f5567b40d7","associatednetworkname":"rt1230-v13412-external-etcd-gfs2-r18-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"3719cabd-6eb8-40ea-a4e5-714e2b9544bb","ipaddress":"10.10.31.103","state":"Allocated","associatednetworkid":"2bc57a4a-89ed-46c0-afb4-5d1c2faee549","associatednetworkname":"AS-PROD-31-AS01-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"e6978afb-a4ee-4512-8fb5-a06fe6477a83","ipaddress":"10.10.31.106","state":"Allocated","vpcid":"876d40cb-64e6-42a8-a5d4-1122c7c0f1b8","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"19abe419-0c0f-49fd-ba98-9faf4ddd38e4","ipaddress":"10.10.31.111","state":"Allocated","vpcid":"2c41c280-c915-4952-ab59-a527bf248c94","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5420484d-25ba-440d-b645-668ccd46f29d","ipaddress":"10.10.31.126","state":"Allocated","associatednetworkid":"ea344bee-6633-41df-861e-c2eaf66fa5c9","associatednetworkname":"rt1230-v1342-gfs2-r16-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"4d465d47-9e09-4b92-a97c-2fa3efb55fe4","ipaddress":"10.10.31.127","state":"Allocated","associatednetworkid":"ba4d479d-304a-4adf-8a80-aa042ebb2a93","associatednetworkname":"rt1230-v1371-gfs2-r15-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd","ipaddress":"10.10.31.128","state":"Allocated","associatednetworkid":"0fa6be3d-2c14-437c-9e88-bb3bacae74e6","associatednetworkname":"rt1230-v1365-gfs2-r14-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"fa236274-78c4-41cc-8f5d-e71ba30f4f86","ipaddress":"10.10.31.129","state":"Allocated","associatednetworkid":"4734b8f0-06e5-43c3-8263-fe2ab9f493bd","associatednetworkname":"rt1230-v1359-gfs2-r13-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"40a1ca72-21ba-443c-a8d8-658849b06a4f","ipaddress":"10.10.31.130","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"5a26bd05-9f8d-41c2-a412-955c528087a6","ipaddress":"10.10.31.131","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc","ipaddress":"10.10.31.132","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"7b40411f-0835-4daf-ba78-830e2afb0d86","ipaddress":"10.10.31.133","state":"Allocated","associatednetworkid":"a037eecd-629e-446b-b0c4-f56674d99e0c","associatednetworkname":"Admin-Isoloated-Net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"b44f2d1f-42e1-4265-9b70-9afa7f4c2841","ipaddress":"10.10.31.134","state":"Allocated","associatednetworkid":"aab34179-3277-4948-8409-8e32b658ecc4","associatednetworkname":"rt1230-gfs2-v13412-r3-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"30826d80-6e62-4a5c-9510-0a7dd14379ae","ipaddress":"10.10.31.135","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"bcb6793a-241c-46dc-96c6-91b149ca37ff","ipaddress":"10.10.31.136","state":"Allocated","associatednetworkid":"41f095bf-79b7-422e-9eb3-29946b948467","associatednetworkname":"rt1230-gfs2-v13412-r5-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"},
+        {"id":"f37ea048-904e-469d-9007-7336ac4bf212","ipaddress":"10.10.31.137","state":"Allocated","associatednetworkid":"baed64d8-dc13-4868-a53c-f86b2d663297","associatednetworkname":"rt1230-v1365-gfs2-r9-net","issystem":false,"networkid":"8689dcfa-5d81-40d3-8db3-103be4a01d71"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"7c65bf2e-fbda-4ad1-a044-9d38e61c03a2","ipaddress":"10.10.32.5","state":"Allocated","virtualmachineid":"59e31d5b-2a18-4e21-84f3-0a2a7fa77162","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9064a919-9683-41ea-bfe5-ef3732e07eb2","ipaddress":"10.10.32.6","state":"Allocated","virtualmachineid":"eff7e920-577d-4576-8b54-933261930cc9","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d035d9a6-cb42-438f-893b-3353d20423e9","ipaddress":"10.10.32.101","state":"Allocated","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"7f24ac97-2e82-40f9-8e8a-6264a1144038","ipaddress":"10.10.32.102","state":"Allocated","associatednetworkid":"07f53267-063b-4975-ac47-5a5c10d57fb4","associatednetworkname":"AS-PROD-32-AS01-VPC-Tier","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"c7e46392-cbcd-4503-a810-606b5afaa884","ipaddress":"10.10.32.143","state":"Allocated","associatednetworkid":"3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8","associatednetworkname":"asdsad","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"078a87ba-8a96-4292-8f33-03163f599ef9","ipaddress":"10.10.32.144","state":"Allocated","associatednetworkid":"5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5","associatednetworkname":"tj-isolated-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9715ee32-e444-47ca-aa5c-bf7e8633dbd3","ipaddress":"10.10.32.167","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"282aad30-4938-4de3-8412-d3098f4f4caf","ipaddress":"10.10.32.168","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d82e3f23-29e2-4b44-a85c-6c8821f2a4f6","ipaddress":"10.10.32.169","state":"Allocated","associatednetworkid":"f889cc7d-02c5-490b-b256-a289b73ff824","associatednetworkname":"AS-PROD-32-AS01-userNetwork","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listVirtualMachines",
+    "params": {
+      "listAll": "true",
+      "listall": "true",
+      "details": "all",
+      "page": "1",
+      "pageSize": "200",
+      "pagesize": "200"
+    },
+    "result": {
+      "count": 58
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"7c65bf2e-fbda-4ad1-a044-9d38e61c03a2","ipaddress":"10.10.32.5","state":"Allocated","virtualmachineid":"59e31d5b-2a18-4e21-84f3-0a2a7fa77162","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9064a919-9683-41ea-bfe5-ef3732e07eb2","ipaddress":"10.10.32.6","state":"Allocated","virtualmachineid":"eff7e920-577d-4576-8b54-933261930cc9","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d035d9a6-cb42-438f-893b-3353d20423e9","ipaddress":"10.10.32.101","state":"Allocated","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"7f24ac97-2e82-40f9-8e8a-6264a1144038","ipaddress":"10.10.32.102","state":"Allocated","associatednetworkid":"07f53267-063b-4975-ac47-5a5c10d57fb4","associatednetworkname":"AS-PROD-32-AS01-VPC-Tier","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"c7e46392-cbcd-4503-a810-606b5afaa884","ipaddress":"10.10.32.143","state":"Allocated","associatednetworkid":"3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8","associatednetworkname":"asdsad","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"078a87ba-8a96-4292-8f33-03163f599ef9","ipaddress":"10.10.32.144","state":"Allocated","associatednetworkid":"5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5","associatednetworkname":"tj-isolated-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9715ee32-e444-47ca-aa5c-bf7e8633dbd3","ipaddress":"10.10.32.167","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"282aad30-4938-4de3-8412-d3098f4f4caf","ipaddress":"10.10.32.168","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d82e3f23-29e2-4b44-a85c-6c8821f2a4f6","ipaddress":"10.10.32.169","state":"Allocated","associatednetworkid":"f889cc7d-02c5-490b-b256-a289b73ff824","associatednetworkname":"AS-PROD-32-AS01-userNetwork","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"7c65bf2e-fbda-4ad1-a044-9d38e61c03a2","ipaddress":"10.10.32.5","state":"Allocated","virtualmachineid":"59e31d5b-2a18-4e21-84f3-0a2a7fa77162","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9064a919-9683-41ea-bfe5-ef3732e07eb2","ipaddress":"10.10.32.6","state":"Allocated","virtualmachineid":"eff7e920-577d-4576-8b54-933261930cc9","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d035d9a6-cb42-438f-893b-3353d20423e9","ipaddress":"10.10.32.101","state":"Allocated","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"7f24ac97-2e82-40f9-8e8a-6264a1144038","ipaddress":"10.10.32.102","state":"Allocated","associatednetworkid":"07f53267-063b-4975-ac47-5a5c10d57fb4","associatednetworkname":"AS-PROD-32-AS01-VPC-Tier","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"c7e46392-cbcd-4503-a810-606b5afaa884","ipaddress":"10.10.32.143","state":"Allocated","associatednetworkid":"3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8","associatednetworkname":"asdsad","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"078a87ba-8a96-4292-8f33-03163f599ef9","ipaddress":"10.10.32.144","state":"Allocated","associatednetworkid":"5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5","associatednetworkname":"tj-isolated-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9715ee32-e444-47ca-aa5c-bf7e8633dbd3","ipaddress":"10.10.32.167","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"282aad30-4938-4de3-8412-d3098f4f4caf","ipaddress":"10.10.32.168","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d82e3f23-29e2-4b44-a85c-6c8821f2a4f6","ipaddress":"10.10.32.169","state":"Allocated","associatednetworkid":"f889cc7d-02c5-490b-b256-a289b73ff824","associatednetworkname":"AS-PROD-32-AS01-userNetwork","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  },
+  {
+    "cluster": 32,
+    "name": "final-refresh-no-cell-lookups",
+    "method": "GET",
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "result": {
+      "count": 9,
+      "rows": [
+        {"id":"7c65bf2e-fbda-4ad1-a044-9d38e61c03a2","ipaddress":"10.10.32.5","state":"Allocated","virtualmachineid":"59e31d5b-2a18-4e21-84f3-0a2a7fa77162","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9064a919-9683-41ea-bfe5-ef3732e07eb2","ipaddress":"10.10.32.6","state":"Allocated","virtualmachineid":"eff7e920-577d-4576-8b54-933261930cc9","issystem":true,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d035d9a6-cb42-438f-893b-3353d20423e9","ipaddress":"10.10.32.101","state":"Allocated","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"7f24ac97-2e82-40f9-8e8a-6264a1144038","ipaddress":"10.10.32.102","state":"Allocated","associatednetworkid":"07f53267-063b-4975-ac47-5a5c10d57fb4","associatednetworkname":"AS-PROD-32-AS01-VPC-Tier","vpcid":"b8d2a843-3310-46c3-9d64-aed4d5684721","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"c7e46392-cbcd-4503-a810-606b5afaa884","ipaddress":"10.10.32.143","state":"Allocated","associatednetworkid":"3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8","associatednetworkname":"asdsad","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"078a87ba-8a96-4292-8f33-03163f599ef9","ipaddress":"10.10.32.144","state":"Allocated","associatednetworkid":"5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5","associatednetworkname":"tj-isolated-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"9715ee32-e444-47ca-aa5c-bf7e8633dbd3","ipaddress":"10.10.32.167","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"282aad30-4938-4de3-8412-d3098f4f4caf","ipaddress":"10.10.32.168","state":"Allocated","associatednetworkid":"5f206f2c-afcd-4291-8c77-1b7eaf387fde","associatednetworkname":"AS-PROD-32-AS01-net","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"},
+        {"id":"d82e3f23-29e2-4b44-a85c-6c8821f2a4f6","ipaddress":"10.10.32.169","state":"Allocated","associatednetworkid":"f889cc7d-02c5-490b-b256-a289b73ff824","associatednetworkname":"AS-PROD-32-AS01-userNetwork","issystem":false,"networkid":"4216b0b3-d054-46ab-88dd-9d025a1f3eb5"}
+      ]
+    },
+    "source": "1d54fa48086720c1f89497b99e04a6dd3900c28a"
+  }
+]
