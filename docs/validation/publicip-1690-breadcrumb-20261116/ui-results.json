@@ -1,0 +1,7896 @@
+[
+  {
+    "cluster": 31,
+    "name": "vm-before",
+    "actions": [
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 900.125,
+          "width": 137.125,
+          "x": 763,
+          "y": 109
+        },
+        "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(9, 105, 218)",
+          "borderRadius": "32px",
+          "color": "rgb(255, 255, 255)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 0px 5px",
+          "padding": "4px 16px",
+          "position": "relative",
+          "width": "137.125px"
+        },
+        "tag": "BUTTON",
+        "text": "가상머신 추가"
+      },
+      {
+        "bounds": {
+          "bottom": 137.5,
+          "height": 25,
+          "right": 946.125,
+          "width": 20,
+          "x": 926.125,
+          "y": 112.5
+        },
+        "class": "ant-btn ant-btn-sm filter-button",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "4px",
+          "color": "rgb(75, 85, 99)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "25px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "20px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 22,
+          "right": 1165,
+          "width": 201.875,
+          "x": 963.125,
+          "y": 114
+        },
+        "class": "ant-input",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(31, 41, 55)",
+          "display": "block",
+          "float": "left",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "22px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "201.875px"
+        },
+        "tag": "INPUT",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 1232,
+          "width": 32,
+          "x": 1200,
+          "y": 109
+        },
+        "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "0px 4px 4px 0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "25.144px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "32px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ],
+    "body": {
+      "bounds": {
+        "bottom": 193,
+        "height": 114,
+        "right": 1247,
+        "width": 978,
+        "x": 269,
+        "y": 79
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "114px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "bodyWidth": 1270,
+    "card": {
+      "bounds": {
+        "bottom": 194,
+        "height": 116,
+        "right": 1248,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "116px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "980px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 169,
+        "height": 56,
+        "right": 758,
+        "width": 453,
+        "x": 305,
+        "y": 113
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "56px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "453px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 321,
+          "width": 16,
+          "x": 305,
+          "y": 115
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 334.46875,
+          "width": 5.46875,
+          "x": 329,
+          "y": 115
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 394,
+          "width": 51.53125,
+          "x": 342.46875,
+          "y": 115
+        },
+        "class": "router-link-active router-link-exact-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "가상머신"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 416,
+          "width": 14,
+          "x": 402,
+          "y": 115
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 527.53125,
+          "width": 99.53125,
+          "x": 428,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "24px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 637.53125,
+          "width": 100,
+          "x": 537.53125,
+          "y": 113
+        },
+        "class": "ant-select ant-select-sm ant-select-single ant-select-show-arrow ant-select-show-search",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px 10px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "100px"
+        },
+        "tag": "DIV",
+        "text": "모두"
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 23,
+          "right": 726.171875,
+          "width": 80.640625,
+          "x": 645.53125,
+          "y": 113
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "80.6406px"
+        },
+        "tag": "BUTTON",
+        "text": "메트릭"
+      },
+      {
+        "bounds": {
+          "bottom": 165,
+          "height": 23,
+          "right": 406.53125,
+          "width": 93.53125,
+          "x": 313,
+          "y": 142
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "93.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "프로젝트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "vm-list-page themed-list-toolbar",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 169,
+          "height": 66,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 103
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "66px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+      }
+    ],
+    "styles": [
+      "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.31.10:8080/client/css/app.f4691620.css",
+      "http://10.10.31.10:8080/client/css/auth.c401ba6d.css",
+      "http://10.10.31.10:8080/client/css/chunk-eb6acb3c.a039f094.css",
+      "http://10.10.31.10:8080/client/css/chunk-495ce1ab.42ba12de.css"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "width": 1280
+  },
+  {
+    "cluster": 31,
+    "name": "publicip-before",
+    "actions": [
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 798,
+          "width": 28,
+          "x": 770,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-sm filter-button",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "4px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px 7px",
+          "position": "relative",
+          "width": "28px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 22,
+          "right": 930,
+          "width": 109,
+          "x": 821,
+          "y": 114
+        },
+        "class": "ant-input",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(31, 41, 55)",
+          "display": "block",
+          "float": "left",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "22px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "109px"
+        },
+        "tag": "INPUT",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 997,
+          "width": 32,
+          "x": 965,
+          "y": 109
+        },
+        "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "0px 4px 4px 0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "25.144px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "32px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ],
+    "body": {
+      "bounds": {
+        "bottom": 229,
+        "height": 150,
+        "right": 1247,
+        "width": 978,
+        "x": 269,
+        "y": 79
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "150px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소업데이트할당됨 프로젝트/상태 : 할당됨"
+    },
+    "bodyWidth": 1270,
+    "card": {
+      "bounds": {
+        "bottom": 230,
+        "height": 152,
+        "right": 1248,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "152px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "980px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소업데이트할당됨 프로젝트/상태 : 할당됨"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 169,
+        "height": 56,
+        "right": 758,
+        "width": 453,
+        "x": 305,
+        "y": 113
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "56px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "453px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소업데이트할당됨 프로젝트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 321,
+          "width": 16,
+          "x": 305,
+          "y": 115
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 334.46875,
+          "width": 5.46875,
+          "x": 329,
+          "y": 115
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 424.71875,
+          "width": 82.25,
+          "x": 342.46875,
+          "y": 115
+        },
+        "class": "router-link-active router-link-exact-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "Public IP 주소"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 446.71875,
+          "width": 14,
+          "x": 432.71875,
+          "y": 115
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 558.25,
+          "width": 99.53125,
+          "x": 458.71875,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "24px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 668.25,
+          "width": 100,
+          "x": 568.25,
+          "y": 113
+        },
+        "class": "ant-select ant-select-sm ant-select-single ant-select-show-arrow ant-select-show-search",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px 10px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "100px"
+        },
+        "tag": "DIV",
+        "text": "할당됨"
+      },
+      {
+        "bounds": {
+          "bottom": 165,
+          "height": 23,
+          "right": 406.53125,
+          "width": 93.53125,
+          "x": 313,
+          "y": 142
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "93.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "프로젝트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 169,
+          "height": 66,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 103
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "66px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "/Public IP 주소업데이트할당됨 프로젝트/"
+      },
+      {
+        "bounds": {
+          "bottom": 205,
+          "height": 36,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 169
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "36px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "12px 0px 0px 12px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "상태 : 할당됨"
+      }
+    ],
+    "styles": [
+      "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.31.10:8080/client/css/app.f4691620.css",
+      "http://10.10.31.10:8080/client/css/auth.c401ba6d.css",
+      "http://10.10.31.10:8080/client/css/chunk-eb6acb3c.a039f094.css",
+      "http://10.10.31.10:8080/client/css/chunk-495ce1ab.42ba12de.css"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated",
+    "width": 1280
+  },
+  {
+    "cluster": 31,
+    "name": "publicip-dark-before",
+    "actions": [
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 798,
+          "width": 28,
+          "x": 770,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-sm filter-button",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(39, 46, 54)",
+          "borderRadius": "4px",
+          "color": "rgb(197, 204, 212)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px 7px",
+          "position": "relative",
+          "width": "28px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 22,
+          "right": 930,
+          "width": 109,
+          "x": 821,
+          "y": 114
+        },
+        "class": "ant-input",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(240, 243, 246)",
+          "display": "block",
+          "float": "left",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "22px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "109px"
+        },
+        "tag": "INPUT",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 997,
+          "width": 32,
+          "x": 965,
+          "y": 109
+        },
+        "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(39, 46, 54)",
+          "borderRadius": "0px 4px 4px 0px",
+          "color": "rgba(255, 255, 255, 0.2)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "25.144px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "32px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ],
+    "body": {
+      "bounds": {
+        "bottom": 229,
+        "height": 150,
+        "right": 1247,
+        "width": 978,
+        "x": 269,
+        "y": 79
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(34, 40, 47)",
+        "borderRadius": "0px",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "150px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소업데이트할당됨 프로젝트/상태 : 할당됨"
+    },
+    "bodyWidth": 1270,
+    "card": {
+      "bounds": {
+        "bottom": 230,
+        "height": 152,
+        "right": 1248,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(34, 40, 47)",
+        "borderRadius": "4px",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "152px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "980px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소업데이트할당됨 프로젝트/상태 : 할당됨"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 169,
+        "height": 56,
+        "right": 758,
+        "width": 453,
+        "x": 305,
+        "y": 113
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "56px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "453px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소업데이트할당됨 프로젝트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 321,
+          "width": 16,
+          "x": 305,
+          "y": 115
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 334.46875,
+          "width": 5.46875,
+          "x": 329,
+          "y": 115
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 424.71875,
+          "width": 82.25,
+          "x": 342.46875,
+          "y": 115
+        },
+        "class": "router-link-active router-link-exact-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "Public IP 주소"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 446.71875,
+          "width": 14,
+          "x": 432.71875,
+          "y": 115
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 558.25,
+          "width": 99.53125,
+          "x": 458.71875,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(39, 46, 54)",
+          "borderRadius": "24px",
+          "color": "rgb(197, 204, 212)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 668.25,
+          "width": 100,
+          "x": 568.25,
+          "y": 113
+        },
+        "class": "ant-select ant-select-sm ant-select-single ant-select-show-arrow ant-select-show-search",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px 10px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "100px"
+        },
+        "tag": "DIV",
+        "text": "할당됨"
+      },
+      {
+        "bounds": {
+          "bottom": 165,
+          "height": 23,
+          "right": 406.53125,
+          "width": 93.53125,
+          "x": 313,
+          "y": 142
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(255, 255, 255, 0.45)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "93.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "프로젝트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 169,
+          "height": 66,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 103
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "66px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "/Public IP 주소업데이트할당됨 프로젝트/"
+      },
+      {
+        "bounds": {
+          "bottom": 205,
+          "height": 36,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 169
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "36px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "12px 0px 0px 12px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "상태 : 할당됨"
+      }
+    ],
+    "styles": [
+      "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.31.10:8080/client/css/app.f4691620.css",
+      "http://10.10.31.10:8080/client/css/auth.c401ba6d.css",
+      "http://10.10.31.10:8080/client/css/chunk-eb6acb3c.a039f094.css",
+      "http://10.10.31.10:8080/client/css/chunk-495ce1ab.42ba12de.css"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated",
+    "width": 1280
+  },
+  {
+    "cluster": 31,
+    "name": "vm-dark-before",
+    "actions": [
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 900.125,
+          "width": 137.125,
+          "x": 763,
+          "y": 109
+        },
+        "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(9, 105, 218)",
+          "borderRadius": "32px",
+          "color": "rgb(255, 255, 255)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 0px 5px",
+          "padding": "4px 16px",
+          "position": "relative",
+          "width": "137.125px"
+        },
+        "tag": "BUTTON",
+        "text": "가상머신 추가"
+      },
+      {
+        "bounds": {
+          "bottom": 137.5,
+          "height": 25,
+          "right": 946.125,
+          "width": 20,
+          "x": 926.125,
+          "y": 112.5
+        },
+        "class": "ant-btn ant-btn-sm filter-button",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(39, 46, 54)",
+          "borderRadius": "4px",
+          "color": "rgb(197, 204, 212)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "25px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "20px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 22,
+          "right": 1165,
+          "width": 201.875,
+          "x": 963.125,
+          "y": 114
+        },
+        "class": "ant-input",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(240, 243, 246)",
+          "display": "block",
+          "float": "left",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "22px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "201.875px"
+        },
+        "tag": "INPUT",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 1232,
+          "width": 32,
+          "x": 1200,
+          "y": 109
+        },
+        "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(39, 46, 54)",
+          "borderRadius": "0px 4px 4px 0px",
+          "color": "rgba(255, 255, 255, 0.2)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "25.144px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "32px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ],
+    "body": {
+      "bounds": {
+        "bottom": 193,
+        "height": 114,
+        "right": 1247,
+        "width": 978,
+        "x": 269,
+        "y": 79
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(34, 40, 47)",
+        "borderRadius": "0px",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "114px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "bodyWidth": 1270,
+    "card": {
+      "bounds": {
+        "bottom": 194,
+        "height": 116,
+        "right": 1248,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(34, 40, 47)",
+        "borderRadius": "4px",
+        "color": "rgba(255, 255, 255, 0.65)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "116px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "980px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 169,
+        "height": 56,
+        "right": 758,
+        "width": 453,
+        "x": 305,
+        "y": 113
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "56px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "453px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 321,
+          "width": 16,
+          "x": 305,
+          "y": 115
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 334.46875,
+          "width": 5.46875,
+          "x": 329,
+          "y": 115
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 394,
+          "width": 51.53125,
+          "x": 342.46875,
+          "y": 115
+        },
+        "class": "router-link-active router-link-exact-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "가상머신"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 416,
+          "width": 14,
+          "x": 402,
+          "y": 115
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 527.53125,
+          "width": 99.53125,
+          "x": 428,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(39, 46, 54)",
+          "borderRadius": "24px",
+          "color": "rgb(197, 204, 212)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 637.53125,
+          "width": 100,
+          "x": 537.53125,
+          "y": 113
+        },
+        "class": "ant-select ant-select-sm ant-select-single ant-select-show-arrow ant-select-show-search",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px 10px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "100px"
+        },
+        "tag": "DIV",
+        "text": "모두"
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 23,
+          "right": 726.171875,
+          "width": 80.640625,
+          "x": 645.53125,
+          "y": 113
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(255, 255, 255, 0.45)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "80.6406px"
+        },
+        "tag": "BUTTON",
+        "text": "메트릭"
+      },
+      {
+        "bounds": {
+          "bottom": 165,
+          "height": 23,
+          "right": 406.53125,
+          "width": 93.53125,
+          "x": 313,
+          "y": 142
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(255, 255, 255, 0.45)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "93.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "프로젝트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "vm-list-page themed-list-toolbar",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 169,
+          "height": 66,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 103
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "66px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+      }
+    ],
+    "styles": [
+      "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.31.10:8080/client/css/app.f4691620.css",
+      "http://10.10.31.10:8080/client/css/auth.c401ba6d.css",
+      "http://10.10.31.10:8080/client/css/chunk-eb6acb3c.a039f094.css",
+      "http://10.10.31.10:8080/client/css/chunk-495ce1ab.42ba12de.css"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "width": 1280
+  },
+  {
+    "cluster": 32,
+    "name": "vm-detail-before",
+    "actions": [
+      {
+        "bounds": {
+          "bottom": 214,
+          "height": 32,
+          "right": 1223,
+          "width": 79.765625,
+          "x": 1143.234375,
+          "y": 182
+        },
+        "class": "ant-btn ant-btn-primary autogen-action-dropdown__button ant-dropdown-trigger",
+        "style": {
+          "alignItems": "center",
+          "backgroundColor": "rgb(24, 144, 255)",
+          "borderRadius": "4px",
+          "color": "rgb(255, 255, 255)",
+          "display": "inline-flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "4px",
+          "height": "32px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "4px 15px",
+          "position": "relative",
+          "width": "79.7656px"
+        },
+        "tag": "BUTTON",
+        "text": "작업"
+      }
+    ],
+    "body": {
+      "bounds": {
+        "bottom": 239,
+        "height": 87,
+        "right": 1247,
+        "width": 978,
+        "x": 269,
+        "y": 152
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "87px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신/HA-VM-13업데이트/작업"
+    },
+    "bodyWidth": 1270,
+    "card": {
+      "bounds": {
+        "bottom": 240,
+        "height": 89,
+        "right": 1248,
+        "width": 980,
+        "x": 268,
+        "y": 151
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "89px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "980px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신/HA-VM-13업데이트/작업"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 215,
+        "height": 29,
+        "right": 758,
+        "width": 453,
+        "x": 305,
+        "y": 186
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "29px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "453px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신/HA-VM-13업데이트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 321,
+          "width": 16,
+          "x": 305,
+          "y": 188
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 334.46875,
+          "width": 5.46875,
+          "x": 329,
+          "y": 188
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 394,
+          "width": 51.53125,
+          "x": 342.46875,
+          "y": 188
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "가상머신"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 407.46875,
+          "width": 5.46875,
+          "x": 402,
+          "y": 188
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 482,
+          "width": 66.53125,
+          "x": 415.46875,
+          "y": 188
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "LABEL",
+        "text": "HA-VM-13"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 504,
+          "width": 14,
+          "x": 490,
+          "y": 188
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 210,
+          "height": 24,
+          "right": 615.53125,
+          "width": 99.53125,
+          "x": 516,
+          "y": 186
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "24px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 215,
+          "height": 39,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 176
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "39px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "/가상머신/HA-VM-13업데이트/작업"
+      }
+    ],
+    "styles": [
+      "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.32.10:8080/client/css/app.f4691620.css",
+      "http://10.10.32.10:8080/client/css/auth.c401ba6d.css",
+      "http://10.10.32.10:8080/client/css/chunk-eb6acb3c.a039f094.css",
+      "http://10.10.32.10:8080/client/css/chunk-495ce1ab.42ba12de.css",
+      "http://10.10.32.10:8080/client/css/chunk-63e6ddce.0b43ce34.css",
+      "http://10.10.32.10:8080/client/css/chunk-0aa7f60a.8a0d3d2b.css",
+      "http://10.10.32.10:8080/client/css/chunk-17fb6388.c5f0128f.css",
+      "http://10.10.32.10:8080/client/css/chunk-c9548e7e.fecc5982.css"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/vm/efc95839-7394-402d-b6fb-951ba269499c",
+    "width": 1280
+  },
+  {
+    "cluster": 32,
+    "name": "publicip-detail-before",
+    "actions": [],
+    "body": {
+      "bounds": {
+        "bottom": 239,
+        "height": 87,
+        "right": 1247,
+        "width": 978,
+        "x": 269,
+        "y": 152
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "87px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소/10.10.32.5업데이트/"
+    },
+    "bodyWidth": 1270,
+    "card": {
+      "bounds": {
+        "bottom": 240,
+        "height": 89,
+        "right": 1248,
+        "width": 980,
+        "x": 268,
+        "y": 151
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "89px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "980px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소/10.10.32.5업데이트/"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 215,
+        "height": 29,
+        "right": 758,
+        "width": 453,
+        "x": 305,
+        "y": 186
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "29px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "453px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소/10.10.32.5업데이트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 321,
+          "width": 16,
+          "x": 305,
+          "y": 188
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 334.46875,
+          "width": 5.46875,
+          "x": 329,
+          "y": 188
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 424.71875,
+          "width": 82.25,
+          "x": 342.46875,
+          "y": 188
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "Public IP 주소"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 438.1875,
+          "width": 5.46875,
+          "x": 432.71875,
+          "y": 188
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 508.125,
+          "width": 61.9375,
+          "x": 446.1875,
+          "y": 188
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "LABEL",
+        "text": "10.10.32.5"
+      },
+      {
+        "bounds": {
+          "bottom": 207,
+          "height": 19,
+          "right": 530.125,
+          "width": 14,
+          "x": 516.125,
+          "y": 188
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 210,
+          "height": 24,
+          "right": 641.65625,
+          "width": 99.53125,
+          "x": 542.125,
+          "y": 186
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "24px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 215,
+          "height": 39,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 176
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "39px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "/Public IP 주소/10.10.32.5업데이트/"
+      }
+    ],
+    "styles": [
+      "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.32.10:8080/client/css/app.f4691620.css",
+      "http://10.10.32.10:8080/client/css/auth.c401ba6d.css",
+      "http://10.10.32.10:8080/client/css/chunk-eb6acb3c.a039f094.css",
+      "http://10.10.32.10:8080/client/css/chunk-495ce1ab.42ba12de.css",
+      "http://10.10.32.10:8080/client/css/chunk-63e6ddce.0b43ce34.css",
+      "http://10.10.32.10:8080/client/css/chunk-0aa7f60a.8a0d3d2b.css",
+      "http://10.10.32.10:8080/client/css/chunk-17fb6388.c5f0128f.css",
+      "http://10.10.32.10:8080/client/css/chunk-c9548e7e.fecc5982.css"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/7c65bf2e-fbda-4ad1-a044-9d38e61c03a2?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+    "width": 1280
+  },
+  {
+    "cluster": 32,
+    "name": "publicip-mobile-before",
+    "actions": [],
+    "body": {
+      "bounds": {
+        "bottom": 318,
+        "height": 116,
+        "right": 357,
+        "width": 344,
+        "x": 13,
+        "y": 202
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "116px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "344px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소/10.10.32.5업데이트/"
+    },
+    "bodyWidth": 380,
+    "card": {
+      "bounds": {
+        "bottom": 319,
+        "height": 118,
+        "right": 358,
+        "width": 346,
+        "x": 12,
+        "y": 201
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "118px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "346px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소/10.10.32.5업데이트/"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 287,
+        "height": 51,
+        "right": 333,
+        "width": 284,
+        "x": 49,
+        "y": 236
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "51px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "284px"
+      },
+      "tag": "DIV",
+      "text": "/Public IP 주소/10.10.32.5업데이트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 256,
+          "height": 19,
+          "right": 65,
+          "width": 16,
+          "x": 49,
+          "y": 237
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 256,
+          "height": 19,
+          "right": 78.46875,
+          "width": 5.46875,
+          "x": 73,
+          "y": 237
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 256,
+          "height": 19,
+          "right": 168.71875,
+          "width": 82.25,
+          "x": 86.46875,
+          "y": 237
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "Public IP 주소"
+      },
+      {
+        "bounds": {
+          "bottom": 256,
+          "height": 19,
+          "right": 182.1875,
+          "width": 5.46875,
+          "x": 176.71875,
+          "y": 237
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 256,
+          "height": 19,
+          "right": 252.125,
+          "width": 61.9375,
+          "x": 190.1875,
+          "y": 237
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "LABEL",
+        "text": "10.10.32.5"
+      },
+      {
+        "bounds": {
+          "bottom": 256,
+          "height": 19,
+          "right": 274.125,
+          "width": 14,
+          "x": 260.125,
+          "y": 237
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 282,
+          "height": 24,
+          "right": 148.53125,
+          "width": 99.53125,
+          "x": 49,
+          "y": 258
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "24px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 294,
+          "height": 68,
+          "right": 333,
+          "width": 296,
+          "x": 37,
+          "y": 226
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "68px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "296px"
+        },
+        "tag": "DIV",
+        "text": "/Public IP 주소/10.10.32.5업데이트/"
+      }
+    ],
+    "styles": [
+      "http://10.10.32.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.32.10:8080/client/css/app.f4691620.css",
+      "http://10.10.32.10:8080/client/css/auth.c401ba6d.css",
+      "http://10.10.32.10:8080/client/css/chunk-eb6acb3c.a039f094.css",
+      "http://10.10.32.10:8080/client/css/chunk-495ce1ab.42ba12de.css",
+      "http://10.10.32.10:8080/client/css/chunk-63e6ddce.0b43ce34.css",
+      "http://10.10.32.10:8080/client/css/chunk-0aa7f60a.8a0d3d2b.css",
+      "http://10.10.32.10:8080/client/css/chunk-17fb6388.c5f0128f.css",
+      "http://10.10.32.10:8080/client/css/chunk-c9548e7e.fecc5982.css"
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/7c65bf2e-fbda-4ad1-a044-9d38e61c03a2?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+    "width": 390
+  },
+  {
+    "cluster": 31,
+    "name": "vm-after",
+    "actions": [
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 723.125,
+          "width": 137.125,
+          "x": 586,
+          "y": 109
+        },
+        "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(9, 105, 218)",
+          "borderRadius": "32px",
+          "color": "rgb(255, 255, 255)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 0px 5px",
+          "padding": "4px 16px",
+          "position": "relative",
+          "width": "137.125px"
+        },
+        "tag": "BUTTON",
+        "text": "가상머신 추가"
+      },
+      {
+        "bounds": {
+          "bottom": 137.5,
+          "height": 25,
+          "right": 769.125,
+          "width": 20,
+          "x": 749.125,
+          "y": 112.5
+        },
+        "class": "ant-btn ant-btn-sm filter-button",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "4px",
+          "color": "rgb(75, 85, 99)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "25px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "20px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 22,
+          "right": 987,
+          "width": 200.875,
+          "x": 786.125,
+          "y": 114
+        },
+        "class": "ant-input",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(31, 41, 55)",
+          "display": "block",
+          "float": "left",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "22px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "200.875px"
+        },
+        "tag": "INPUT",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 1054,
+          "width": 32,
+          "x": 1022,
+          "y": 109
+        },
+        "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "0px 4px 4px 0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "25.144px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "32px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ],
+    "body": {
+      "bounds": {
+        "bottom": 193,
+        "height": 114,
+        "right": 1069,
+        "width": 976,
+        "x": 93,
+        "y": 79
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "114px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "976px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "bodyWidth": 1092,
+    "card": {
+      "bounds": {
+        "bottom": 194,
+        "height": 116,
+        "right": 1070,
+        "width": 978,
+        "x": 92,
+        "y": 78
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "116px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 169,
+        "height": 56,
+        "right": 581,
+        "width": 452,
+        "x": 129,
+        "y": 113
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "56px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "452px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 145,
+          "width": 16,
+          "x": 129,
+          "y": 115
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 158.46875,
+          "width": 5.46875,
+          "x": 153,
+          "y": 115
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 218,
+          "width": 51.53125,
+          "x": 166.46875,
+          "y": 115
+        },
+        "class": "router-link-active router-link-exact-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "가상머신"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 240,
+          "width": 14,
+          "x": 226,
+          "y": 115
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 351.53125,
+          "width": 99.53125,
+          "x": 252,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "24px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 461.53125,
+          "width": 100,
+          "x": 361.53125,
+          "y": 113
+        },
+        "class": "ant-select ant-select-sm ant-select-single ant-select-show-arrow ant-select-show-search",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px 10px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "100px"
+        },
+        "tag": "DIV",
+        "text": "모두"
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 23,
+          "right": 550.171875,
+          "width": 80.640625,
+          "x": 469.53125,
+          "y": 113
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "80.6406px"
+        },
+        "tag": "BUTTON",
+        "text": "메트릭"
+      },
+      {
+        "bounds": {
+          "bottom": 165,
+          "height": 23,
+          "right": 230.53125,
+          "width": 93.53125,
+          "x": 137,
+          "y": 142
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "93.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "프로젝트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "vm-list-page themed-list-toolbar",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 169,
+          "height": 66,
+          "right": 1045,
+          "width": 928,
+          "x": 117,
+          "y": 103
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "66px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "928px"
+        },
+        "tag": "DIV",
+        "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+      }
+    ],
+    "styles": [
+      "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.31.10:8080/client/css/app.6854cd59.css"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "width": 1102
+  },
+  {
+    "cluster": 31,
+    "name": "list-light-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 113
+      },
+      {
+        "bottom": 168,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 145
+      },
+      {
+        "bottom": 150.5,
+        "height": 24,
+        "right": 1023,
+        "text": "",
+        "width": 28,
+        "x": 995,
+        "y": 126.5
+      },
+      {
+        "bottom": 154.5,
+        "height": 32,
+        "right": 1222,
+        "text": "",
+        "width": 32,
+        "x": 1190,
+        "y": 122.5
+      }
+    ],
+    "card": {
+      "bottom": 229,
+      "height": 151,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 446.71875,
+        "text": "",
+        "width": 14,
+        "x": 432.71875,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 113
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 662.25,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 562.25,
+        "y": 113
+      },
+      {
+        "bottom": 168,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 145
+      }
+    ],
+    "crumb": {
+      "bottom": 168,
+      "height": 55,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 113
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 113
+      },
+      {
+        "bottom": 136,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 1280,
+    "alignment": {
+      "difference": 1,
+      "homeY": 113,
+      "titleY": 114
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-light-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 113
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 145.5
+      },
+      {
+        "bottom": 151,
+        "height": 24,
+        "right": 511,
+        "text": "",
+        "width": 28,
+        "x": 483,
+        "y": 127
+      },
+      {
+        "bottom": 155,
+        "height": 32,
+        "right": 710,
+        "text": "",
+        "width": 32,
+        "x": 678,
+        "y": 123
+      }
+    ],
+    "card": {
+      "bottom": 230,
+      "height": 152,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 270.71875,
+        "text": "",
+        "width": 14,
+        "x": 256.71875,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 113
+      },
+      {
+        "bottom": 169,
+        "height": 24,
+        "right": 266.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 166.46875,
+        "y": 145
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 145.5
+      }
+    ],
+    "crumb": {
+      "bottom": 169,
+      "height": 56,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 113
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 113
+      },
+      {
+        "bottom": 136,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 768,
+    "alignment": {
+      "difference": 1,
+      "homeY": 113,
+      "titleY": 114
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-light-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 113
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 145.5
+      },
+      {
+        "bottom": 209,
+        "height": 24,
+        "right": 77,
+        "text": "",
+        "width": 28,
+        "x": 49,
+        "y": 185
+      },
+      {
+        "bottom": 213,
+        "height": 32,
+        "right": 276,
+        "text": "",
+        "width": 32,
+        "x": 244,
+        "y": 181
+      }
+    ],
+    "card": {
+      "bottom": 268,
+      "height": 190,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 190.71875,
+        "text": "",
+        "width": 14,
+        "x": 176.71875,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 113
+      },
+      {
+        "bottom": 169,
+        "height": 24,
+        "right": 186.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 86.46875,
+        "y": 145
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 145.5
+      }
+    ],
+    "crumb": {
+      "bottom": 169,
+      "height": 56,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 113
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 113
+      },
+      {
+        "bottom": 136,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 390,
+    "alignment": {
+      "difference": 1,
+      "homeY": 113,
+      "titleY": 114
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-light-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 113
+      }
+    ],
+    "card": {
+      "bottom": 162,
+      "height": 84,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 530.125,
+        "text": "",
+        "width": 14,
+        "x": 516.125,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 113
+      }
+    ],
+    "crumb": {
+      "bottom": 137,
+      "height": 24,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 113
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 113
+      },
+      {
+        "bottom": 135,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 113
+      },
+      {
+        "bottom": 134,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 508.125,
+        "text": "10.10.31.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 446.1875,
+        "y": 115
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 1280,
+    "alignment": {
+      "difference": 0,
+      "homeY": 113,
+      "titleY": 113
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-light-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 143
+      }
+    ],
+    "card": {
+      "bottom": 192,
+      "height": 114,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 135,
+        "height": 22,
+        "right": 354.125,
+        "text": "",
+        "width": 14,
+        "x": 340.125,
+        "y": 113
+      },
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 143
+      }
+    ],
+    "crumb": {
+      "bottom": 167,
+      "height": 54,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 113
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 113
+      },
+      {
+        "bottom": 135,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 113
+      },
+      {
+        "bottom": 133,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 332.125,
+        "text": "10.10.31.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 270.1875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 768,
+    "alignment": {
+      "difference": 0,
+      "homeY": 113,
+      "titleY": 113
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-light-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 143
+      }
+    ],
+    "card": {
+      "bottom": 199,
+      "height": 121,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 135,
+        "height": 22,
+        "right": 274.125,
+        "text": "",
+        "width": 14,
+        "x": 260.125,
+        "y": 113
+      },
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 143
+      }
+    ],
+    "crumb": {
+      "bottom": 167,
+      "height": 54,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 113
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 113
+      },
+      {
+        "bottom": 135,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 113
+      },
+      {
+        "bottom": 133,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 252.125,
+        "text": "10.10.31.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 190.1875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 390,
+    "alignment": {
+      "difference": 0,
+      "homeY": 113,
+      "titleY": 113
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-dark-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 113
+      },
+      {
+        "bottom": 168,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 145
+      },
+      {
+        "bottom": 150.5,
+        "height": 24,
+        "right": 1023,
+        "text": "",
+        "width": 28,
+        "x": 995,
+        "y": 126.5
+      },
+      {
+        "bottom": 154.5,
+        "height": 32,
+        "right": 1222,
+        "text": "",
+        "width": 32,
+        "x": 1190,
+        "y": 122.5
+      }
+    ],
+    "card": {
+      "bottom": 229,
+      "height": 151,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 446.71875,
+        "text": "",
+        "width": 14,
+        "x": 432.71875,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 113
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 662.25,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 562.25,
+        "y": 113
+      },
+      {
+        "bottom": 168,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 145
+      }
+    ],
+    "crumb": {
+      "bottom": 168,
+      "height": 55,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 113
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 113
+      },
+      {
+        "bottom": 136,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 1280,
+    "alignment": {
+      "difference": 1,
+      "homeY": 113,
+      "titleY": 114
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-dark-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 113
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 145.5
+      },
+      {
+        "bottom": 151,
+        "height": 24,
+        "right": 511,
+        "text": "",
+        "width": 28,
+        "x": 483,
+        "y": 127
+      },
+      {
+        "bottom": 155,
+        "height": 32,
+        "right": 710,
+        "text": "",
+        "width": 32,
+        "x": 678,
+        "y": 123
+      }
+    ],
+    "card": {
+      "bottom": 230,
+      "height": 152,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 270.71875,
+        "text": "",
+        "width": 14,
+        "x": 256.71875,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 113
+      },
+      {
+        "bottom": 169,
+        "height": 24,
+        "right": 266.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 166.46875,
+        "y": 145
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 145.5
+      }
+    ],
+    "crumb": {
+      "bottom": 169,
+      "height": 56,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 113
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 113
+      },
+      {
+        "bottom": 136,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 768,
+    "alignment": {
+      "difference": 1,
+      "homeY": 113,
+      "titleY": 114
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-dark-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 113
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 145.5
+      },
+      {
+        "bottom": 209,
+        "height": 24,
+        "right": 77,
+        "text": "",
+        "width": 28,
+        "x": 49,
+        "y": 185
+      },
+      {
+        "bottom": 213,
+        "height": 32,
+        "right": 276,
+        "text": "",
+        "width": 32,
+        "x": 244,
+        "y": 181
+      }
+    ],
+    "card": {
+      "bottom": 268,
+      "height": 190,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 190.71875,
+        "text": "",
+        "width": 14,
+        "x": 176.71875,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 113
+      },
+      {
+        "bottom": 169,
+        "height": 24,
+        "right": 186.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 86.46875,
+        "y": 145
+      },
+      {
+        "bottom": 168.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 145.5
+      }
+    ],
+    "crumb": {
+      "bottom": 169,
+      "height": 56,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 113
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 113
+      },
+      {
+        "bottom": 136,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 390,
+    "alignment": {
+      "difference": 1,
+      "homeY": 113,
+      "titleY": 114
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-dark-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 113
+      }
+    ],
+    "card": {
+      "bottom": 162,
+      "height": 84,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 530.125,
+        "text": "",
+        "width": 14,
+        "x": 516.125,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 113
+      }
+    ],
+    "crumb": {
+      "bottom": 137,
+      "height": 24,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 113
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 113
+      },
+      {
+        "bottom": 135,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 113
+      },
+      {
+        "bottom": 134,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 508.125,
+        "text": "10.10.31.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 446.1875,
+        "y": 115
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 1280,
+    "alignment": {
+      "difference": 0,
+      "homeY": 113,
+      "titleY": 113
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-dark-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 143
+      }
+    ],
+    "card": {
+      "bottom": 192,
+      "height": 114,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 135,
+        "height": 22,
+        "right": 354.125,
+        "text": "",
+        "width": 14,
+        "x": 340.125,
+        "y": 113
+      },
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 143
+      }
+    ],
+    "crumb": {
+      "bottom": 167,
+      "height": 54,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 113
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 113
+      },
+      {
+        "bottom": 135,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 113
+      },
+      {
+        "bottom": 133,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 332.125,
+        "text": "10.10.31.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 270.1875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 768,
+    "alignment": {
+      "difference": 0,
+      "homeY": 113,
+      "titleY": 113
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-dark-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 143
+      }
+    ],
+    "card": {
+      "bottom": 199,
+      "height": 121,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 135,
+        "height": 22,
+        "right": 274.125,
+        "text": "",
+        "width": 14,
+        "x": 260.125,
+        "y": 113
+      },
+      {
+        "bottom": 167,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 143
+      }
+    ],
+    "crumb": {
+      "bottom": 167,
+      "height": 54,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 113
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 113
+      },
+      {
+        "bottom": 135,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 113
+      },
+      {
+        "bottom": 133,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 252.125,
+        "text": "10.10.31.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 190.1875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 390,
+    "alignment": {
+      "difference": 0,
+      "homeY": 113,
+      "titleY": 113
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-light-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 186
+      },
+      {
+        "bottom": 241,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 218
+      },
+      {
+        "bottom": 223.5,
+        "height": 24,
+        "right": 1023,
+        "text": "",
+        "width": 28,
+        "x": 995,
+        "y": 199.5
+      },
+      {
+        "bottom": 227.5,
+        "height": 32,
+        "right": 1222,
+        "text": "",
+        "width": 32,
+        "x": 1190,
+        "y": 195.5
+      }
+    ],
+    "card": {
+      "bottom": 302,
+      "height": 151,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 151
+    },
+    "controls": [
+      {
+        "bottom": 209,
+        "height": 22,
+        "right": 446.71875,
+        "text": "",
+        "width": 14,
+        "x": 432.71875,
+        "y": 187
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 186
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 662.25,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 562.25,
+        "y": 186
+      },
+      {
+        "bottom": 241,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 218
+      }
+    ],
+    "crumb": {
+      "bottom": 241,
+      "height": 55,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 186
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 210,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 186
+      },
+      {
+        "bottom": 209,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 187
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 1280,
+    "alignment": {
+      "difference": 1,
+      "homeY": 186,
+      "titleY": 187
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-light-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 242,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 218
+      },
+      {
+        "bottom": 273.5,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 250.5
+      },
+      {
+        "bottom": 256,
+        "height": 24,
+        "right": 511,
+        "text": "",
+        "width": 28,
+        "x": 483,
+        "y": 232
+      },
+      {
+        "bottom": 260,
+        "height": 32,
+        "right": 710,
+        "text": "",
+        "width": 32,
+        "x": 678,
+        "y": 228
+      }
+    ],
+    "card": {
+      "bottom": 335,
+      "height": 152,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 183
+    },
+    "controls": [
+      {
+        "bottom": 241,
+        "height": 22,
+        "right": 270.71875,
+        "text": "",
+        "width": 14,
+        "x": 256.71875,
+        "y": 219
+      },
+      {
+        "bottom": 242,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 218
+      },
+      {
+        "bottom": 274,
+        "height": 24,
+        "right": 266.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 166.46875,
+        "y": 250
+      },
+      {
+        "bottom": 273.5,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 250.5
+      }
+    ],
+    "crumb": {
+      "bottom": 274,
+      "height": 56,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 218
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 242,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 218
+      },
+      {
+        "bottom": 241,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 219
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "",
+    "width": 768,
+    "alignment": {
+      "difference": 1,
+      "homeY": 218,
+      "titleY": 219
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-light-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 260,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 236
+      },
+      {
+        "bottom": 291.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 268.5
+      },
+      {
+        "bottom": 332,
+        "height": 24,
+        "right": 77,
+        "text": "",
+        "width": 28,
+        "x": 49,
+        "y": 308
+      },
+      {
+        "bottom": 336,
+        "height": 32,
+        "right": 276,
+        "text": "",
+        "width": 32,
+        "x": 244,
+        "y": 304
+      }
+    ],
+    "card": {
+      "bottom": 391,
+      "height": 190,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 201
+    },
+    "controls": [
+      {
+        "bottom": 259,
+        "height": 22,
+        "right": 190.71875,
+        "text": "",
+        "width": 14,
+        "x": 176.71875,
+        "y": 237
+      },
+      {
+        "bottom": 260,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 236
+      },
+      {
+        "bottom": 292,
+        "height": 24,
+        "right": 186.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 86.46875,
+        "y": 268
+      },
+      {
+        "bottom": 291.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 268.5
+      }
+    ],
+    "crumb": {
+      "bottom": 292,
+      "height": 56,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 236
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 260,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 236
+      },
+      {
+        "bottom": 259,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 237
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "",
+    "width": 390,
+    "alignment": {
+      "difference": 1,
+      "homeY": 236,
+      "titleY": 237
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-light-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 186
+      }
+    ],
+    "card": {
+      "bottom": 235,
+      "height": 84,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 151
+    },
+    "controls": [
+      {
+        "bottom": 209,
+        "height": 22,
+        "right": 530.125,
+        "text": "",
+        "width": 14,
+        "x": 516.125,
+        "y": 187
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 186
+      }
+    ],
+    "crumb": {
+      "bottom": 210,
+      "height": 24,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 186
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 210,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 186
+      },
+      {
+        "bottom": 208,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 186
+      },
+      {
+        "bottom": 207,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 508.125,
+        "text": "10.10.32.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 446.1875,
+        "y": 188
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 1280,
+    "alignment": {
+      "difference": 0,
+      "homeY": 186,
+      "titleY": 186
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-light-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 270.015625,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 246.015625
+      }
+    ],
+    "card": {
+      "bottom": 295.015625,
+      "height": 114,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 181.015625
+    },
+    "controls": [
+      {
+        "bottom": 238.015625,
+        "height": 22,
+        "right": 354.125,
+        "text": "",
+        "width": 14,
+        "x": 340.125,
+        "y": 216.015625
+      },
+      {
+        "bottom": 270.015625,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 246.015625
+      }
+    ],
+    "crumb": {
+      "bottom": 270.015625,
+      "height": 54,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 216.015625
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 240.015625,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 216.015625
+      },
+      {
+        "bottom": 238.015625,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 216.015625
+      },
+      {
+        "bottom": 236.015625,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 332.125,
+        "text": "10.10.32.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 270.1875,
+        "y": 217.015625
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "",
+    "width": 768,
+    "alignment": {
+      "difference": 0,
+      "homeY": 218,
+      "titleY": 218
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-light-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 290,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 266
+      }
+    ],
+    "card": {
+      "bottom": 322,
+      "height": 121,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 201
+    },
+    "controls": [
+      {
+        "bottom": 258,
+        "height": 22,
+        "right": 274.125,
+        "text": "",
+        "width": 14,
+        "x": 260.125,
+        "y": 236
+      },
+      {
+        "bottom": 290,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 266
+      }
+    ],
+    "crumb": {
+      "bottom": 290,
+      "height": 54,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 236
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 260,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 236
+      },
+      {
+        "bottom": 258,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 236
+      },
+      {
+        "bottom": 256,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 252.125,
+        "text": "10.10.32.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 190.1875,
+        "y": 237
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "",
+    "width": 390,
+    "alignment": {
+      "difference": 0,
+      "homeY": 236,
+      "titleY": 236
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-dark-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 186
+      },
+      {
+        "bottom": 241,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 218
+      },
+      {
+        "bottom": 223.5,
+        "height": 24,
+        "right": 1023,
+        "text": "",
+        "width": 28,
+        "x": 995,
+        "y": 199.5
+      },
+      {
+        "bottom": 227.5,
+        "height": 32,
+        "right": 1222,
+        "text": "",
+        "width": 32,
+        "x": 1190,
+        "y": 195.5
+      }
+    ],
+    "card": {
+      "bottom": 302,
+      "height": 151,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 151
+    },
+    "controls": [
+      {
+        "bottom": 209,
+        "height": 22,
+        "right": 446.71875,
+        "text": "",
+        "width": 14,
+        "x": 432.71875,
+        "y": 187
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 186
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 662.25,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 562.25,
+        "y": 186
+      },
+      {
+        "bottom": 241,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 218
+      }
+    ],
+    "crumb": {
+      "bottom": 241,
+      "height": 55,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 186
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 210,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 186
+      },
+      {
+        "bottom": 209,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 187
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 1280,
+    "alignment": {
+      "difference": 1,
+      "homeY": 186,
+      "titleY": 187
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-dark-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 240.015625,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 216.015625
+      },
+      {
+        "bottom": 271.515625,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 248.515625
+      },
+      {
+        "bottom": 254.015625,
+        "height": 24,
+        "right": 511,
+        "text": "",
+        "width": 28,
+        "x": 483,
+        "y": 230.015625
+      },
+      {
+        "bottom": 258.015625,
+        "height": 32,
+        "right": 710,
+        "text": "",
+        "width": 32,
+        "x": 678,
+        "y": 226.015625
+      }
+    ],
+    "card": {
+      "bottom": 333.015625,
+      "height": 152,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 181.015625
+    },
+    "controls": [
+      {
+        "bottom": 239.015625,
+        "height": 22,
+        "right": 270.71875,
+        "text": "",
+        "width": 14,
+        "x": 256.71875,
+        "y": 217.015625
+      },
+      {
+        "bottom": 240.015625,
+        "height": 24,
+        "right": 378.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 278.71875,
+        "y": 216.015625
+      },
+      {
+        "bottom": 272.015625,
+        "height": 24,
+        "right": 266.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 166.46875,
+        "y": 248.015625
+      },
+      {
+        "bottom": 271.515625,
+        "height": 23,
+        "right": 368,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 274.46875,
+        "y": 248.515625
+      }
+    ],
+    "crumb": {
+      "bottom": 272.015625,
+      "height": 56,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 216.015625
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 240.015625,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 216.015625
+      },
+      {
+        "bottom": 239.015625,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 217.015625
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 768,
+    "alignment": {
+      "difference": 1,
+      "homeY": 218,
+      "titleY": 219
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-dark-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 260,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 236
+      },
+      {
+        "bottom": 291.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 268.5
+      },
+      {
+        "bottom": 332,
+        "height": 24,
+        "right": 77,
+        "text": "",
+        "width": 28,
+        "x": 49,
+        "y": 308
+      },
+      {
+        "bottom": 336,
+        "height": 32,
+        "right": 276,
+        "text": "",
+        "width": 32,
+        "x": 244,
+        "y": 304
+      }
+    ],
+    "card": {
+      "bottom": 391,
+      "height": 190,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 201
+    },
+    "controls": [
+      {
+        "bottom": 259,
+        "height": 22,
+        "right": 190.71875,
+        "text": "",
+        "width": 14,
+        "x": 176.71875,
+        "y": 237
+      },
+      {
+        "bottom": 260,
+        "height": 24,
+        "right": 298.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 198.71875,
+        "y": 236
+      },
+      {
+        "bottom": 292,
+        "height": 24,
+        "right": 186.46875,
+        "text": "할당됨 ",
+        "width": 100,
+        "x": 86.46875,
+        "y": 268
+      },
+      {
+        "bottom": 291.5,
+        "height": 23,
+        "right": 288,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 194.46875,
+        "y": 268.5
+      }
+    ],
+    "crumb": {
+      "bottom": 292,
+      "height": 56,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 236
+    },
+    "filters": [
+      "상태 : 할당됨",
+      "system",
+      "system",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat",
+      "source-nat"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 260,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 236
+      },
+      {
+        "bottom": 259,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 237
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 390,
+    "alignment": {
+      "difference": 1,
+      "homeY": 236,
+      "titleY": 237
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-dark-1280",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 186
+      }
+    ],
+    "card": {
+      "bottom": 235,
+      "height": 84,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 151
+    },
+    "controls": [
+      {
+        "bottom": 209,
+        "height": 22,
+        "right": 530.125,
+        "text": "",
+        "width": 14,
+        "x": 516.125,
+        "y": 187
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 637.65625,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 538.125,
+        "y": 186
+      }
+    ],
+    "crumb": {
+      "bottom": 210,
+      "height": 24,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 186
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 210,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 186
+      },
+      {
+        "bottom": 208,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 186
+      },
+      {
+        "bottom": 207,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 508.125,
+        "text": "10.10.32.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 446.1875,
+        "y": 188
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 1280,
+    "alignment": {
+      "difference": 0,
+      "homeY": 186,
+      "titleY": 186
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-dark-768",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 758,
+    "buttons": [
+      {
+        "bottom": 270.015625,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 246.015625
+      }
+    ],
+    "card": {
+      "bottom": 295.015625,
+      "height": 114,
+      "right": 736,
+      "width": 644,
+      "x": 92,
+      "y": 181.015625
+    },
+    "controls": [
+      {
+        "bottom": 238.015625,
+        "height": 22,
+        "right": 354.125,
+        "text": "",
+        "width": 14,
+        "x": 340.125,
+        "y": 216.015625
+      },
+      {
+        "bottom": 270.015625,
+        "height": 24,
+        "right": 369.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 270.1875,
+        "y": 246.015625
+      }
+    ],
+    "crumb": {
+      "bottom": 270.015625,
+      "height": 54,
+      "right": 414,
+      "width": 285,
+      "x": 129,
+      "y": 216.015625
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 240.015625,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 145,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 129,
+        "y": 216.015625
+      },
+      {
+        "bottom": 238.015625,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 248.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 166.46875,
+        "y": 216.015625
+      },
+      {
+        "bottom": 236.015625,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 332.125,
+        "text": "10.10.32.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 270.1875,
+        "y": 217.015625
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 768,
+    "alignment": {
+      "difference": 0,
+      "homeY": 217.671875,
+      "titleY": 217.671875
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-dark-390",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 380,
+    "buttons": [
+      {
+        "bottom": 290,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 266
+      }
+    ],
+    "card": {
+      "bottom": 322,
+      "height": 121,
+      "right": 358,
+      "width": 346,
+      "x": 12,
+      "y": 201
+    },
+    "controls": [
+      {
+        "bottom": 258,
+        "height": 22,
+        "right": 274.125,
+        "text": "",
+        "width": 14,
+        "x": 260.125,
+        "y": 236
+      },
+      {
+        "bottom": 290,
+        "height": 24,
+        "right": 289.71875,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 190.1875,
+        "y": 266
+      }
+    ],
+    "crumb": {
+      "bottom": 290,
+      "height": 54,
+      "right": 333,
+      "width": 284,
+      "x": 49,
+      "y": 236
+    },
+    "filters": [],
+    "labels": [],
+    "paths": [
+      {
+        "bottom": 260,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 65,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 49,
+        "y": 236
+      },
+      {
+        "bottom": 258,
+        "color": "rgb(197, 204, 212)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 168.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 86.46875,
+        "y": 236
+      },
+      {
+        "bottom": 256,
+        "color": "rgb(240, 243, 246)",
+        "font": "14px",
+        "height": 19,
+        "line": "22px",
+        "position": "static",
+        "right": 252.125,
+        "text": "10.10.32.5",
+        "weight": "400",
+        "width": 61.9375,
+        "x": 190.1875,
+        "y": 237
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": "dark-mode",
+    "width": 390,
+    "alignment": {
+      "difference": 0,
+      "homeY": 236,
+      "titleY": 236
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "labelled-state-filter",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 113
+      },
+      {
+        "bottom": 168,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 145
+      },
+      {
+        "bottom": 150.5,
+        "height": 24,
+        "right": 1023,
+        "text": "",
+        "width": 28,
+        "x": 995,
+        "y": 126.5
+      },
+      {
+        "bottom": 154.5,
+        "height": 32,
+        "right": 1222,
+        "text": "",
+        "width": 32,
+        "x": 1190,
+        "y": 122.5
+      }
+    ],
+    "card": {
+      "bottom": 229,
+      "height": 151,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 78
+    },
+    "controls": [
+      {
+        "bottom": 136,
+        "height": 22,
+        "right": 446.71875,
+        "text": "",
+        "width": 14,
+        "x": 432.71875,
+        "y": 114
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 113
+      },
+      {
+        "bottom": 137,
+        "height": 24,
+        "right": 662.25,
+        "text": "free가용 ",
+        "width": 100,
+        "x": 562.25,
+        "y": 113
+      },
+      {
+        "bottom": 168,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 145
+      }
+    ],
+    "crumb": {
+      "bottom": 168,
+      "height": 55,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 113
+    },
+    "filters": [
+      "상태 : 가용"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 137,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 113
+      },
+      {
+        "bottom": 136,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 114
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 1280,
+    "alignment": {
+      "difference": 1,
+      "homeY": 113,
+      "titleY": 114
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "labelled-state-filter",
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+    "bodyWidth": 1270,
+    "buttons": [
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 186
+      },
+      {
+        "bottom": 241,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 218
+      },
+      {
+        "bottom": 223.5,
+        "height": 24,
+        "right": 1023,
+        "text": "",
+        "width": 28,
+        "x": 995,
+        "y": 199.5
+      },
+      {
+        "bottom": 227.5,
+        "height": 32,
+        "right": 1222,
+        "text": "",
+        "width": 32,
+        "x": 1190,
+        "y": 195.5
+      }
+    ],
+    "card": {
+      "bottom": 302,
+      "height": 151,
+      "right": 1248,
+      "width": 980,
+      "x": 268,
+      "y": 151
+    },
+    "controls": [
+      {
+        "bottom": 209,
+        "height": 22,
+        "right": 446.71875,
+        "text": "",
+        "width": 14,
+        "x": 432.71875,
+        "y": 187
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 554.25,
+        "text": "업데이트",
+        "width": 99.53125,
+        "x": 454.71875,
+        "y": 186
+      },
+      {
+        "bottom": 210,
+        "height": 24,
+        "right": 662.25,
+        "text": "free가용 ",
+        "width": 100,
+        "x": 562.25,
+        "y": 186
+      },
+      {
+        "bottom": 241,
+        "height": 23,
+        "right": 436,
+        "text": "프로젝트",
+        "width": 93.53125,
+        "x": 342.46875,
+        "y": 218
+      }
+    ],
+    "crumb": {
+      "bottom": 241,
+      "height": 55,
+      "right": 758,
+      "width": 453,
+      "x": 305,
+      "y": 186
+    },
+    "filters": [
+      "상태 : 가용"
+    ],
+    "labels": [
+      {
+        "connected": true,
+        "for": "public-ip-state-filter",
+        "text": "필터링 기준"
+      }
+    ],
+    "paths": [
+      {
+        "bottom": 210,
+        "color": "rgb(75, 85, 99)",
+        "font": "14px",
+        "height": 24,
+        "line": "22px",
+        "position": "static",
+        "right": 321,
+        "text": "",
+        "weight": "400",
+        "width": 16,
+        "x": 305,
+        "y": 186
+      },
+      {
+        "bottom": 209,
+        "color": "rgb(31, 41, 55)",
+        "font": "14px",
+        "height": 22,
+        "line": "22px",
+        "position": "static",
+        "right": 424.71875,
+        "text": "Public IP 주소",
+        "weight": "400",
+        "width": 82.25,
+        "x": 342.46875,
+        "y": 187
+      }
+    ],
+    "rootClass": "public-ip-page themed-list-toolbar",
+    "stateInput": "combobox",
+    "sticky": {
+      "position": "sticky",
+      "top": "0px"
+    },
+    "theme": " ",
+    "width": 1280,
+    "alignment": {
+      "difference": 1,
+      "homeY": 186,
+      "titleY": 187
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "vm-final-boundary",
+    "actions": [
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 900.125,
+          "width": 137.125,
+          "x": 763,
+          "y": 109
+        },
+        "class": "ant-btn ant-btn-primary ant-btn-round action-button-item",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(9, 105, 218)",
+          "borderRadius": "32px",
+          "color": "rgb(255, 255, 255)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 0px 5px",
+          "padding": "4px 16px",
+          "position": "relative",
+          "width": "137.125px"
+        },
+        "tag": "BUTTON",
+        "text": "가상머신 추가"
+      },
+      {
+        "bounds": {
+          "bottom": 137.5,
+          "height": 25,
+          "right": 946.125,
+          "width": 20,
+          "x": 926.125,
+          "y": 112.5
+        },
+        "class": "ant-btn ant-btn-sm filter-button",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "4px",
+          "color": "rgb(75, 85, 99)",
+          "display": "block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "25px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "20px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 22,
+          "right": 1165,
+          "width": 201.875,
+          "x": 963.125,
+          "y": 114
+        },
+        "class": "ant-input",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(31, 41, 55)",
+          "display": "block",
+          "float": "left",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "22px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "201.875px"
+        },
+        "tag": "INPUT",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 141,
+          "height": 32,
+          "right": 1232,
+          "width": 32,
+          "x": 1200,
+          "y": 109
+        },
+        "class": "ant-btn ant-input-search-button ant-btn-icon-only",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "0px 4px 4px 0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "32px",
+          "lineHeight": "25.144px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "32px"
+        },
+        "tag": "BUTTON",
+        "text": ""
+      }
+    ],
+    "body": {
+      "bounds": {
+        "bottom": 193,
+        "height": 114,
+        "right": 1247,
+        "width": 978,
+        "x": 269,
+        "y": 79
+      },
+      "class": "ant-card-body",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "0px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "114px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "24px",
+        "position": "static",
+        "width": "978px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "bodyWidth": 1270,
+    "card": {
+      "bounds": {
+        "bottom": 194,
+        "height": 116,
+        "right": 1248,
+        "width": 980,
+        "x": 268,
+        "y": 78
+      },
+      "class": "ant-card ant-card-bordered breadcrumb-card",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "color": "rgb(75, 85, 99)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "116px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "relative",
+        "width": "980px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+    },
+    "crumb": {
+      "bounds": {
+        "bottom": 169,
+        "height": 56,
+        "right": 758,
+        "width": 453,
+        "x": 305,
+        "y": 113
+      },
+      "class": "ant-breadcrumb breadcrumb",
+      "style": {
+        "alignItems": "normal",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "color": "rgba(0, 0, 0, 0.45)",
+        "display": "block",
+        "float": "none",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "gap": "normal",
+        "height": "56px",
+        "lineHeight": "22.001px",
+        "margin": "0px",
+        "padding": "0px",
+        "position": "static",
+        "width": "453px"
+      },
+      "tag": "DIV",
+      "text": "/가상머신업데이트모두메트릭프로젝트/"
+    },
+    "elements": [
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 321,
+          "width": 16,
+          "x": 305,
+          "y": 115
+        },
+        "class": "router-link-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 334.46875,
+          "width": 5.46875,
+          "x": 329,
+          "y": 115
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 394,
+          "width": 51.53125,
+          "x": 342.46875,
+          "y": 115
+        },
+        "class": "router-link-active router-link-exact-active",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": "가상머신"
+      },
+      {
+        "bounds": {
+          "bottom": 134,
+          "height": 19,
+          "right": 416,
+          "width": 14,
+          "x": 402,
+          "y": 115
+        },
+        "class": "",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 12px 0px 0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "A",
+        "text": ""
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 527.53125,
+          "width": 99.53125,
+          "x": 428,
+          "y": 113
+        },
+        "class": "ant-btn ant-btn-default ant-btn-round ant-btn-sm",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "24px",
+          "color": "rgb(75, 85, 99)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px",
+          "padding": "0px 12px",
+          "position": "relative",
+          "width": "99.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "업데이트"
+      },
+      {
+        "bounds": {
+          "bottom": 137,
+          "height": 24,
+          "right": 637.53125,
+          "width": 100,
+          "x": 537.53125,
+          "y": 113
+        },
+        "class": "ant-select ant-select-sm ant-select-single ant-select-show-arrow ant-select-show-search",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "24px",
+          "lineHeight": "22.001px",
+          "margin": "0px 0px 5px 10px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "100px"
+        },
+        "tag": "DIV",
+        "text": "모두"
+      },
+      {
+        "bounds": {
+          "bottom": 136,
+          "height": 23,
+          "right": 726.171875,
+          "width": 80.640625,
+          "x": 645.53125,
+          "y": 113
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "80.6406px"
+        },
+        "tag": "BUTTON",
+        "text": "메트릭"
+      },
+      {
+        "bounds": {
+          "bottom": 165,
+          "height": 23,
+          "right": 406.53125,
+          "width": 93.53125,
+          "x": 313,
+          "y": 142
+        },
+        "class": "ant-switch",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          "borderRadius": "100px",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "display": "inline-block",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "23px",
+          "lineHeight": "22px",
+          "margin": "0px 0px 4px 8px",
+          "padding": "0px",
+          "position": "relative",
+          "width": "93.5312px"
+        },
+        "tag": "BUTTON",
+        "text": "프로젝트"
+      },
+      {
+        "bounds": {
+          "bottom": 0,
+          "height": 0,
+          "right": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "class": "ant-breadcrumb-separator",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "display": "none",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "normal",
+          "height": "auto",
+          "lineHeight": "22.001px",
+          "margin": "0px 8px",
+          "padding": "0px",
+          "position": "static",
+          "width": "auto"
+        },
+        "tag": "SPAN",
+        "text": "/"
+      }
+    ],
+    "rootClass": "vm-list-page themed-list-toolbar",
+    "rows": [
+      {
+        "bounds": {
+          "bottom": 169,
+          "height": 66,
+          "right": 1223,
+          "width": 930,
+          "x": 293,
+          "y": 103
+        },
+        "class": "ant-row",
+        "style": {
+          "alignItems": "normal",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "color": "rgb(75, 85, 99)",
+          "display": "flex",
+          "float": "none",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "gap": "0px normal",
+          "height": "66px",
+          "lineHeight": "22.001px",
+          "margin": "0px",
+          "padding": "0px",
+          "position": "static",
+          "width": "930px"
+        },
+        "tag": "DIV",
+        "text": "/가상머신업데이트모두메트릭프로젝트/가상머신 추가"
+      }
+    ],
+    "styles": [
+      "http://10.10.31.10:8080/client/css/vendors.eb47fec1.css",
+      "http://10.10.31.10:8080/client/css/app.89e02bf8.css"
+    ],
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "width": 1280,
+    "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b"
+  }
+]

@@ -1,0 +1,474 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard Dashboard":
+      - link "dashboard Dashboard":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: Dashboard
+    - img "cloud":
+    - generic: Compute
+    - img "hdd":
+    - generic: Storage
+    - img "wifi":
+    - generic: Network
+    - img "picture":
+    - generic: Images
+    - img "lock":
+    - generic: Key Management
+    - menuitem "schedule Events":
+      - link "schedule Events":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: Events
+    - menuitem "project Projects":
+      - link "project Projects":
+        - /url: "#/project"
+        - img "project":
+        - generic: Projects
+    - menuitem "idcard Roles":
+      - link "idcard Roles":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: Roles
+    - menuitem "team Accounts":
+      - link "team Accounts":
+        - /url: "#/account"
+        - img "team":
+        - generic: Accounts
+    - menuitem "block Domains":
+      - link "block Domains":
+        - /url: "#/domain"
+        - img "block":
+        - generic: Domains
+    - img "bank":
+    - generic: Infrastructure
+    - img "shopping":
+    - generic: Service offerings
+    - img "setting":
+    - generic: Configuration
+    - menuitem "appstore-add Extensions":
+      - link "appstore-add Extensions":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: Extensions
+    - img "tool":
+    - generic: Tools
+    - menuitem "read API Docs":
+      - link "read API Docs":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API Docs
+- generic: Page style setting
+- button "Close":
+  - img "close":
+- heading "Page style setting" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "Theme color" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "Navigation setting" [level=3]
+- generic: Background color
+- textbox: "#ffffff"
+- generic: Text color
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "The setting is only visible to the current browser. To apply the setting, please download the JSON file and replace its content in the `theme` section of the `config.json` file under the path: `/public/config.json`"
+- button "download Download setting":
+  - img "download":
+  - generic: Download setting
+- button "undo Reset to default":
+  - img "undo":
+  - generic: Reset to default
+- img "menu-unfold":
+- generic: Project
+- combobox "Project"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "Notifications":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP addresses":
+    - /url: "#/publicip"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload Refresh":
+    - img "reload":
+    - generic: Refresh
+  - combobox
+  - generic: Allocated
+  - switch "Projects":
+    - generic: Projects
+  - button "Advanced search":
+    - img "filter":
+  - textbox "Search"
+  - button "search":
+    - img "search":
+  - text: "State : 할당됨"
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "IP 주소 caret-up caret-down 상태 caret-up caret-down 연결된 네트워크 이름 caret-up caret-down VPC caret-up caret-down VM 이름 caret-up caret-down 할당됨 caret-up caret-down 계정 caret-up caret-down 도메인 caret-up caret-down Zone caret-up caret-down filter":
+        - columnheader:
+          - checkbox
+        - columnheader "IP 주소 caret-up caret-down":
+          - generic: IP 주소
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "연결된 네트워크 이름 caret-up caret-down":
+          - generic: 연결된 네트워크 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VM 이름 caret-up caret-down":
+          - generic: VM 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "할당됨 caret-up caret-down":
+          - generic: 할당됨
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "도메인 caret-up caret-down":
+          - generic: 도메인
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "10.10.32.5 system Allocated — v-1-VM 17 Sep 2026 02:13:35 system ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.5 system":
+          - link "10.10.32.5":
+            - /url: "#/publicip/7c65bf2e-fbda-4ad1-a044-9d38e61c03a2?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: system
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "v-1-VM":
+          - link "v-1-VM":
+            - /url: "#/systemvm/59e31d5b-2a18-4e21-84f3-0a2a7fa77162"
+        - cell "17 Sep 2026 02:13:35"
+        - cell "system":
+          - link "system":
+            - /url: "#/account?name=system&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.6 system Allocated — s-27-VM 01 Oct 2026 03:15:46 system ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.6 system":
+          - link "10.10.32.6":
+            - /url: "#/publicip/9064a919-9683-41ea-bfe5-ef3732e07eb2?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: system
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "s-27-VM":
+          - link "s-27-VM":
+            - /url: "#/systemvm/eff7e920-577d-4576-8b54-933261930cc9"
+        - cell "01 Oct 2026 03:15:46"
+        - cell "system":
+          - link "system":
+            - /url: "#/account?name=system&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.101 source-nat Allocated — AS-PROD-32-AS01-VPC — 10 Oct 2026 16:17:25 epic1346-as01-user32 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.101 source-nat":
+          - link "10.10.32.101":
+            - /url: "#/publicip/d035d9a6-cb42-438f-893b-3353d20423e9?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "—":
+          - generic: —
+        - cell "AS-PROD-32-AS01-VPC":
+          - link "AS-PROD-32-AS01-VPC":
+            - /url: "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721"
+        - cell "—":
+          - generic: —
+        - cell "10 Oct 2026 16:17:25"
+        - cell "epic1346-as01-user32":
+          - link "epic1346-as01-user32":
+            - /url: "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.102 Allocated AS-PROD-32-AS01-VPC-Tier AS-PROD-32-AS01-VPC — 10 Oct 2026 16:18:05 epic1346-as01-user32 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.102":
+          - link "10.10.32.102":
+            - /url: "#/publicip/7f24ac97-2e82-40f9-8e8a-6264a1144038?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "AS-PROD-32-AS01-VPC-Tier":
+          - link "AS-PROD-32-AS01-VPC-Tier":
+            - /url: "#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4"
+        - cell "AS-PROD-32-AS01-VPC":
+          - link "AS-PROD-32-AS01-VPC":
+            - /url: "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721"
+        - cell "—":
+          - generic: —
+        - cell "10 Oct 2026 16:18:05"
+        - cell "epic1346-as01-user32":
+          - link "epic1346-as01-user32":
+            - /url: "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.143 source-nat Allocated asdsad — 12 Nov 2026 00:52:20 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.143 source-nat":
+          - link "10.10.32.143":
+            - /url: "#/publicip/c7e46392-cbcd-4503-a810-606b5afaa884?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "asdsad":
+          - link "asdsad":
+            - /url: "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "12 Nov 2026 00:52:20"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.144 source-nat Allocated tj-isolated-net — 11 Nov 2026 05:17:57 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.144 source-nat":
+          - link "10.10.32.144":
+            - /url: "#/publicip/078a87ba-8a96-4292-8f33-03163f599ef9?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "tj-isolated-net":
+          - link "tj-isolated-net":
+            - /url: "#/guestnetwork/5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "11 Nov 2026 05:17:57"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.166 source-nat Allocated test — 16 Nov 2026 00:57:51 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.166 source-nat":
+          - link "10.10.32.166":
+            - /url: "#/publicip/04de4618-4265-4bfc-9b4c-95bc88ac1c2c?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "test":
+          - link "test":
+            - /url: "#/guestnetwork/4681828f-494e-4847-ad39-7ba064ca76cd"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "16 Nov 2026 00:57:51"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.167 Allocated AS-PROD-32-AS01-net — 10 Oct 2026 15:03:33 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.167":
+          - link "10.10.32.167":
+            - /url: "#/publicip/9715ee32-e444-47ca-aa5c-bf7e8633dbd3?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "AS-PROD-32-AS01-net":
+          - link "AS-PROD-32-AS01-net":
+            - /url: "#/guestnetwork/5f206f2c-afcd-4291-8c77-1b7eaf387fde"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "10 Oct 2026 15:03:33"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.168 source-nat Allocated AS-PROD-32-AS01-net — 10 Oct 2026 15:03:03 admin ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.168 source-nat":
+          - link "10.10.32.168":
+            - /url: "#/publicip/282aad30-4938-4de3-8412-d3098f4f4caf?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "AS-PROD-32-AS01-net":
+          - link "AS-PROD-32-AS01-net":
+            - /url: "#/guestnetwork/5f206f2c-afcd-4291-8c77-1b7eaf387fde"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "10 Oct 2026 15:03:03"
+        - cell "admin":
+          - link "admin":
+            - /url: "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+      - row "10.10.32.169 source-nat Allocated AS-PROD-32-AS01-userNetwork — 10 Oct 2026 15:20:50 epic1346-as01-user32 ROOT Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.169 source-nat":
+          - link "10.10.32.169":
+            - /url: "#/publicip/d82e3f23-29e2-4b44-a85c-6c8821f2a4f6?pipreturn={%22projectid%22:%220%22,%22filter%22:%22allocated%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+          - generic: source-nat
+        - cell "Allocated":
+          - generic: Allocated
+        - cell "AS-PROD-32-AS01-userNetwork":
+          - link "AS-PROD-32-AS01-userNetwork":
+            - /url: "#/guestnetwork/f889cc7d-02c5-490b-b256-a289b73ff824"
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "10 Oct 2026 15:20:50"
+        - cell "epic1346-as01-user32":
+          - link "epic1346-as01-user32":
+            - /url: "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true"
+        - cell "ROOT":
+          - link "ROOT":
+            - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+        - cell
+  - list:
+    - listitem: Showing 1-10 of 10 items
+    - listitem "Previous Page":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "Next Page":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / page
+- alert:
+  - img "exclamation-circle":
+  - generic: Alerts requiring action
+  - generic: (2items)
+  - generic: "-"
+  - generic: A resource threshold was exceeded or a status change was detected in key systems and needs your attention.
+  - button "View alert details":
+    - generic: View alert details
+  - button "Go to Alert Rules Menu":
+    - generic: Go to Alert Rules Menu
+  - button "Close":
+    - img "close":

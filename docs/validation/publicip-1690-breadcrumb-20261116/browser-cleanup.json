@@ -1,0 +1,26 @@
+{
+  "closed": [
+    {
+      "cluster": 31,
+      "id": "51377957",
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated",
+      "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+      "theme": "light",
+      "locale": "ko",
+      "viewportRestored": true,
+      "previewCleared": true
+    },
+    {
+      "cluster": 32,
+      "id": "51377960",
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated",
+      "source": "17ba03fc9c8630448cad22f33c24e6cf5320c10b",
+      "theme": "light",
+      "locale": "ko",
+      "viewportRestored": true,
+      "previewCleared": true
+    }
+  ],
+  "otherTabsPreserved": true,
+  "noTestObjectsCreated": true
+}

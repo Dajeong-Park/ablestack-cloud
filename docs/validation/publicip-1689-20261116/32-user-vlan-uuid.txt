@@ -1,0 +1,170 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "global Zone":
+      - link "global Zone":
+        - /url: "#/zones"
+        - img "global":
+        - generic: Zone
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: PV
+- generic: PIP1689 Validation
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP 주소":
+    - /url: "#/publicip"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - combobox
+  - generic: 예약
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - text: "상태 : 예약"
+  - img "close":
+  - text: "VLAN 범위 UUID : c206c328-6567-479..."
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "IP 주소 caret-up caret-down 상태 caret-up caret-down 연결된 네트워크 이름 caret-up caret-down VPC caret-up caret-down VM 이름 caret-up caret-down 할당됨 caret-up caret-down 계정 caret-up caret-down 도메인 caret-up caret-down Zone caret-up caret-down":
+        - columnheader:
+          - checkbox
+        - columnheader "IP 주소 caret-up caret-down":
+          - generic: IP 주소
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "연결된 네트워크 이름 caret-up caret-down":
+          - generic: 연결된 네트워크 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VM 이름 caret-up caret-down":
+          - generic: VM 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "할당됨 caret-up caret-down":
+          - generic: 할당됨
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "도메인 caret-up caret-down":
+          - generic: 도메인
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+    - rowgroup:
+      - row "10.10.32.104 Reserved — — 2026. 11. 16. 오전 3:23:00 qa-pip1689-32-122255-user qa-pip1689-32-122255 Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.32.104":
+          - link "10.10.32.104":
+            - /url: "#/publicip/9f028022-7776-41a5-9c2f-9517e20d8c7e?pipreturn={%22projectid%22:%220%22,%22filter%22:%22reserved%22,%22state%22:%22Reserved%22,%22vlanid%22:%22c206c328-6567-4793-a8d4-7ee2cade5451%22,%22page%22:%221%22,%22pagesize%22:%2220%22}"
+        - cell "Reserved":
+          - generic: Reserved
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 16. 오전 3:23:00"
+        - cell "qa-pip1689-32-122255-user"
+        - cell "qa-pip1689-32-122255"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+  - list:
+    - listitem: 전체 1 개 항목 중 1-1 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽

@@ -1,0 +1,12 @@
+MainPID=2245419
+ActiveState=active
+STATIC_FILES_BACKED_UP=1
+79574ae648e108095bcbd5c2f2d01c5b7a8abb05e27547ad3856e311ab19190b  index.html
+6e77190491842f0f4559289f239efcc5f7890f6e5e2131d773d0b5fc6062f27a  /home/ablecloud/publicip1685-ui.tgz
+BACKUP=/root/publicip1685-ui-20261115-204009
+SERVER_CONFIG_PRESERVED=1
+HTTP=200
+WEB_INF=present
+MainPID=2245419
+ActiveState=active
+9c72a0026e4e8b72a08bf3298f67331d5b2918792c00f74fda7dd43ca4ede651  /usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar

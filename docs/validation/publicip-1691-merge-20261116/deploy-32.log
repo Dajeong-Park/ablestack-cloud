@@ -1,0 +1,12 @@
+MainPID=2698517
+ActiveState=active
+STATIC_FILES_BACKED_UP=3
+d63ef44f57d9c8596ed79a6567dee6cc509ac2951f9eba481ae5d6a4f78cbef1  index.html
+1db73a647ff7269477f20d337b368887199f22b1babde1504754b9546eb2c14c  /home/ablecloud/publicip1691-merge-ui.tgz
+BACKUP=/root/publicip1691-merge-ui-20261116-132452
+SERVER_CONFIG_PRESERVED=1
+HTTP=200
+WEB_INF=present
+MainPID=2698517
+ActiveState=active
+e89ab061913ff95beddeafc32932c4b56bacdede13374c7b9830368ea6297435  /usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar

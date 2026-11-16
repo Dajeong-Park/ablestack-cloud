@@ -1,0 +1,82 @@
+[
+  {
+    "cluster": 31,
+    "name": "qa-pip1687-31-20261116-074721",
+    "ip": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Free",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone"
+    },
+    "actors": [
+      {
+        "kind": "User",
+        "name": "qa-pip1687-31-20261116-074721-user",
+        "accountid": "47e04d58-d407-4869-9138-3a884d7f4a2d",
+        "cleaned": true
+      },
+      {
+        "kind": "DomainAdmin",
+        "name": "qa-pip1687-31-20261116-074721-da",
+        "accountid": "35e6b874-0125-4b82-a0eb-f38a73df805b",
+        "cleaned": true
+      }
+    ],
+    "domainid": "01e53fd0-ab00-4087-93e3-7329960a6a32",
+    "loginDomain": "/qa-pip1687-31-20261116-074721",
+    "allocation": {
+      "networkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "cleaned": true
+  },
+  {
+    "cluster": 32,
+    "name": "qa-pip1687-32-20261116-074721",
+    "ip": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Free",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone"
+    },
+    "actors": [
+      {
+        "kind": "User",
+        "name": "qa-pip1687-32-20261116-074721-user",
+        "accountid": "29a69920-fdbf-4473-9afd-f76af8ee247e",
+        "cleaned": true
+      },
+      {
+        "kind": "DomainAdmin",
+        "name": "qa-pip1687-32-20261116-074721-da",
+        "accountid": "ec2eac97-b641-48e2-959b-68010191cd41",
+        "cleaned": true
+      }
+    ],
+    "domainid": "2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+    "loginDomain": "/qa-pip1687-32-20261116-074721",
+    "allocation": {
+      "networkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "cleaned": true
+  }
+]

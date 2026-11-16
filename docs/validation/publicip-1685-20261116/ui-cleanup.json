@@ -1,0 +1,15 @@
+{
+  "source": "133e1bbe8a8a10bfc3368a321a57595078cc68a0",
+  "clusters": {
+    "31": {
+      "free": true,
+      "koreanActions": true,
+      "dialogs": 0
+    },
+    "32": {
+      "free": true,
+      "koreanActions": true,
+      "dialogs": 0
+    }
+  }
+}

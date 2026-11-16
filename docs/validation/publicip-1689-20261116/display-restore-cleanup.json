@@ -1,0 +1,152 @@
+[
+  {
+    "cluster": 31,
+    "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+    "path": "API-cleanup-during-desktop-access-block",
+    "desired": true,
+    "receipt": {
+      "updateipaddressresponse": {
+        "jobid": "9ad59b93-2b9d-4c2d-b1cc-08ec0f67c65e"
+      }
+    },
+    "job": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "ipaddress": {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "allocated": "2026-11-16T12:19:26+0900",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "allocationgeneration": "cbd49478-2f75-466d-a4e1-7cf241dee7d2",
+            "forvirtualnetwork": true,
+            "isstaticnat": false,
+            "issystem": false,
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "state": "Reserved",
+            "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+            "tags": [],
+            "isportable": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "IpAddress",
+        "jobinstanceid": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "created": "2026-11-16T13:53:33+0900",
+        "completed": "2026-11-16T13:53:33+0900",
+        "jobid": "9ad59b93-2b9d-4c2d-b1cc-08ec0f67c65e",
+        "jobstatus": 1
+      }
+    },
+    "verified": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Reserved",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone"
+    }
+  },
+  {
+    "cluster": 32,
+    "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "path": "API-cleanup-during-desktop-access-block",
+    "desired": true,
+    "receipt": {
+      "updateipaddressresponse": {
+        "jobid": "3f59b79d-b843-4767-b5cd-9a4724588876"
+      }
+    },
+    "job": {
+      "queryasyncjobresultresponse": {
+        "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domainpath": "ROOT",
+        "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+        "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "ipaddress": {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "allocated": "2026-11-16T12:19:27+0900",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "issourcenat": false,
+            "account": "admin",
+            "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "allocationgeneration": "ca1bb09e-f239-485e-8846-d3b71b1746d2",
+            "forvirtualnetwork": true,
+            "isstaticnat": false,
+            "issystem": false,
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "state": "Reserved",
+            "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+            "tags": [],
+            "isportable": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "forsystemvms": false,
+            "forprovider": false,
+            "hasannotations": false
+          }
+        },
+        "jobinstancetype": "IpAddress",
+        "jobinstanceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "created": "2026-11-16T13:53:35+0900",
+        "completed": "2026-11-16T13:53:35+0900",
+        "jobid": "3f59b79d-b843-4767-b5cd-9a4724588876",
+        "jobstatus": 1
+      }
+    },
+    "verified": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Reserved",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone"
+    }
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "base": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+  "pr": "9a6d2994b2e5a4336f11d97b9ea090a86c4d9b3a",
+  "target": "b777311a708e0e652f05025fecb2660dfa90f74d",
+  "candidate": "444a219cd59a1b7cdae0913a289b40717563b281",
+  "nonoverlapFilesExact": 1754,
+  "overlapFiles": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/DetailsTab.vue",
+    "ui/src/components/view/InfoCard.vue",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/components/view/SearchFilter.vue",
+    "ui/src/components/view/SearchView.vue",
+    "ui/src/components/widgets/Breadcrumb.vue",
+    "ui/src/views/AutogenView.vue"
+  ],
+  "ftctlSourceUnchanged": true,
+  "overlapResolution": "explicit conflict plan plus preserved automatic merge, to be covered by focused UI/API/runtime regression"
+}

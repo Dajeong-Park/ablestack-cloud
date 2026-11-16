@@ -1,0 +1,50 @@
+[
+  {
+    "cluster": 31,
+    "kind": "guest",
+    "heading": "rt1230-v13412-ha-gfs2-r17-net",
+    "url": "http://10.10.31.10:8080/client/#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874"
+  },
+  {
+    "cluster": 32,
+    "kind": "guest",
+    "heading": "asdsad",
+    "url": "http://10.10.32.10:8080/client/#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+  },
+  {
+    "cluster": 31,
+    "kind": "vpc",
+    "heading": "qa-gn1569-31-reg-vpc",
+    "url": "http://10.10.31.10:8080/client/#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+  },
+  {
+    "cluster": 32,
+    "kind": "vpc",
+    "heading": "AS-PROD-32-AS01-VPC",
+    "url": "http://10.10.32.10:8080/client/#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721"
+  },
+  {
+    "cluster": 31,
+    "kind": "vm",
+    "heading": "qa-gn1597-31-project-vnf",
+    "url": "http://10.10.31.10:8080/client/#/vm/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc"
+  },
+  {
+    "cluster": 32,
+    "kind": "vm",
+    "heading": "qa-gn1597-32-project-vnf",
+    "url": "http://10.10.32.10:8080/client/#/vm/812c5dcc-a538-4a58-be86-6e3dcbbc773a"
+  },
+  {
+    "cluster": 31,
+    "kind": "vm-project-settled",
+    "heading": "qa-gn1597-31-project-vnf",
+    "url": "http://10.10.31.10:8080/client/#/vm/b1a6c573-8c82-4fe8-9537-07e2cd96c1fc"
+  },
+  {
+    "cluster": 32,
+    "kind": "vm-project-settled",
+    "heading": "qa-gn1597-32-project-vnf",
+    "url": "http://10.10.32.10:8080/client/#/vm/812c5dcc-a538-4a58-be86-6e3dcbbc773a"
+  }
+]

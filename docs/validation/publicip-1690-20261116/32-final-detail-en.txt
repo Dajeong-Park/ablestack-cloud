@@ -1,0 +1,279 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard Dashboard":
+      - link "dashboard Dashboard":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: Dashboard
+    - img "cloud":
+    - generic: Compute
+    - img "hdd":
+    - generic: Storage
+    - img "wifi":
+    - generic: Network
+    - img "picture":
+    - generic: Images
+    - img "lock":
+    - generic: Key Management
+    - menuitem "schedule Events":
+      - link "schedule Events":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: Events
+    - menuitem "project Projects":
+      - link "project Projects":
+        - /url: "#/project"
+        - img "project":
+        - generic: Projects
+    - menuitem "idcard Roles":
+      - link "idcard Roles":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: Roles
+    - menuitem "team Accounts":
+      - link "team Accounts":
+        - /url: "#/account"
+        - img "team":
+        - generic: Accounts
+    - menuitem "block Domains":
+      - link "block Domains":
+        - /url: "#/domain"
+        - img "block":
+        - generic: Domains
+    - img "bank":
+    - generic: Infrastructure
+    - img "shopping":
+    - generic: Service offerings
+    - img "setting":
+    - generic: Configuration
+    - menuitem "appstore-add Extensions":
+      - link "appstore-add Extensions":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: Extensions
+    - img "tool":
+    - generic: Tools
+    - menuitem "read API Docs":
+      - link "read API Docs":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API Docs
+- generic: Page style setting
+- button "Close":
+  - img "close":
+- heading "Page style setting" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "Theme color" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "Project navigation setting" [level=3]
+- generic: Background color
+- textbox: "#001529"
+- generic: Text color
+- textbox: "#ffffff"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "The setting is only visible to the current browser. To apply the setting, please download the JSON file and replace its content in the `theme` section of the `config.json` file under the path: `/public/config.json`"
+- button "download Download setting":
+  - img "download":
+  - generic: Download setting
+- button "undo Reset to default":
+  - img "undo":
+  - generic: Reset to default
+- img "menu-unfold":
+- generic: Project
+- combobox "Project"
+- img "project":
+- text: qa-gn1597-32-project
+- img "translation":
+- button "Notifications":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP addresses":
+    - /url: "#/publicip?projectid=97f62088-fc46-4d21-acfa-fa47a2d137b1&state=Reserved&page=1&pagesize=20&filter=reserved"
+  - text: /
+  - generic: 10.10.32.103
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload Refresh":
+    - img "reload":
+    - generic: Refresh
+  - button "down Actions":
+    - img "down":
+    - generic: Actions
+  - img "environment":
+  - heading "10.10.32.103" [level=4]
+  - separator
+  - generic: Status
+  - generic: Reserved
+  - generic: ID
+  - button "Copy ID":
+    - img "barcode":
+  - link "77def528-fb75-42e3-a90f-46a6e9c5b90b":
+    - /url: javascript:;
+  - generic: IP address
+  - img "environment":
+  - link "10.10.32.103":
+    - /url: javascript:;
+  - generic: Project
+  - img "project":
+  - link "qa-gn1597-32-project":
+    - /url: "#/project/97f62088-fc46-4d21-acfa-fa47a2d137b1"
+  - generic: Instance name
+  - generic: —
+  - generic: Public network
+  - generic: 4216b0b3-d054-46ab-88dd-9d025a1f3eb5
+  - button "Copy Public network":
+    - img "copy":
+  - generic: Associated guest network
+  - generic: —
+  - generic: VPC
+  - generic: —
+  - generic: Display to users
+  - generic: Displayed
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+  - generic: Domain
+  - img "block":
+  - link "qa-gn1569-32-domain":
+    - /url: "#/domain/a051d20d-2c05-43d5-833e-e231a80b12f7?tab=details"
+  - separator
+  - strong: Tags
+  - button "reload Refresh tags":
+    - img "reload":
+    - generic: Refresh tags
+  - generic: No tags.
+  - button "plus New tag":
+    - img "plus":
+    - generic: New tag
+  - tablist:
+    - tab "Details" [selected]
+    - tab "Events"
+    - tab "Comments"
+  - tabpanel "Details":
+    - list:
+      - strong: IP Address
+      - generic: 10.10.32.103
+      - strong: ID
+      - generic: 77def528-fb75-42e3-a90f-46a6e9c5b90b
+      - strong: State
+      - generic: Reserved
+      - strong: VLAN value
+      - generic: Untagged
+      - generic: "Raw value: vlan://untagged"
+      - strong: VLAN range UUID
+      - generic: c206c328-6567-4793-a8d4-7ee2cade5451
+      - button "Copy VLAN range UUID":
+        - img "copy":
+      - strong: Public network
+      - generic: 4216b0b3-d054-46ab-88dd-9d025a1f3eb5
+      - button "Copy Public network":
+        - img "copy":
+      - strong: Associated guest network
+      - generic: —
+      - strong: VPC
+      - generic: —
+      - strong: Display to users
+      - generic: Displayed
+      - strong: Is system
+      - generic: "No"
+      - strong: Source NAT
+      - generic: "No"
+      - strong: Static NAT
+      - generic: "No"
+      - strong: Instance name
+      - generic: —
+      - strong: Allocated at
+      - generic: 16 Nov 2026 10:34:05
+      - strong: Domain
+      - generic: qa-gn1569-32-domain
+      - strong: Zone
+      - generic: Zone
+- alert:
+  - img "exclamation-circle":
+  - generic: Alerts requiring action
+  - generic: (2items)
+  - generic: "-"
+  - generic: A resource threshold was exceeded or a status change was detected in key systems and needs your attention.
+  - button "View alert details":
+    - generic: View alert details
+  - button "Go to Alert Rules Menu":
+    - generic: Go to Alert Rules Menu
+  - button "Close":
+    - img "close":
+- menu:
+  - menuitem "한국어":
+    - generic: 한국어
+  - menuitem "English" [active]:
+    - generic: English
+  - menuitem "हिन्दी":
+    - generic: हिन्दी
+  - menuitem "తెలుగు":
+    - generic: తెలుగు
+  - menuitem "日本語":
+    - generic: 日本語
+  - menuitem "简体中文":
+    - generic: 简体中文
+  - menuitem "Arabic":
+    - generic: Arabic
+  - menuitem "Catalan":
+    - generic: Catalan
+  - menuitem "Deutsch":
+    - generic: Deutsch
+  - menuitem "Español":
+    - generic: Español
+  - menuitem "Français":
+    - generic: Français
+  - menuitem "Italiano":
+    - generic: Italiano
+  - menuitem "Magyar":
+    - generic: Magyar
+  - menuitem "Nederlands":
+    - generic: Nederlands
+  - menuitem "Norsk":
+    - generic: Norsk
+  - menuitem "Polish":
+    - generic: Polish
+  - menuitem "Português brasileiro":
+    - generic: Português brasileiro
+  - menuitem "Русский":
+    - generic: Русский
+  - menuitem "Ελληνικά":
+    - generic: Ελληνικά

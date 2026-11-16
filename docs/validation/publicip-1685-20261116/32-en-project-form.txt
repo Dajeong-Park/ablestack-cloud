@@ -1,0 +1,307 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard Dashboard":
+      - link "dashboard Dashboard":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: Dashboard
+    - img "cloud":
+    - text: Compute
+    - img "hdd":
+    - text: Storage
+    - img "wifi":
+    - text: Network
+    - list:
+      - menuitem "apartment Guest Networks":
+        - link "apartment Guest Networks":
+          - /url: "#/guestnetwork"
+          - img "apartment":
+          - text: Guest Networks
+      - menuitem "deployment-unit VPC":
+        - link "deployment-unit VPC":
+          - /url: "#/vpc"
+          - img "deployment-unit":
+          - text: VPC
+      - menuitem "gateway VNF appliances":
+        - link "gateway VNF appliances":
+          - /url: "#/vnfapp"
+          - img "gateway":
+          - text: VNF appliances
+      - menuitem "environment Public IP addresses":
+        - link "environment Public IP addresses":
+          - /url: "#/publicip"
+          - img "environment":
+          - text: Public IP addresses
+      - menuitem "partition AS Numbers":
+        - link "partition AS Numbers":
+          - /url: "#/asnumbers"
+          - img "partition":
+          - text: AS Numbers
+      - menuitem "lock Site-to-site VPN":
+        - link "lock Site-to-site VPN":
+          - /url: "#/s2svpn"
+          - img "lock":
+          - text: Site-to-site VPN
+      - menuitem "sync Site-to-site VPN Connections":
+        - link "sync Site-to-site VPN Connections":
+          - /url: "#/s2svpnconn"
+          - img "sync":
+          - text: Site-to-site VPN Connections
+      - menuitem "bars Network ACLs":
+        - link "bars Network ACLs":
+          - /url: "#/acllist"
+          - img "bars":
+          - text: Network ACLs
+      - menuitem "user-switch VPN Users":
+        - link "user-switch VPN Users":
+          - /url: "#/vpnuser"
+          - img "user-switch":
+          - text: VPN Users
+      - menuitem "lock VPN customer gateway":
+        - link "lock VPN customer gateway":
+          - /url: "#/vpncustomergateway"
+          - img "lock":
+          - text: VPN customer gateway
+      - menuitem "folder Guest VLAN":
+        - link "folder Guest VLAN":
+          - /url: "#/guestvlans"
+          - img "folder":
+          - text: Guest VLAN
+      - menuitem "pic-center IPv4 Subnets":
+        - link "pic-center IPv4 Subnets":
+          - /url: "#/ipv4subnets"
+          - img "pic-center":
+          - text: IPv4 Subnets
+      - menuitem "apartment DNS Zones":
+        - link "apartment DNS Zones":
+          - /url: "#/dnszone"
+          - img "apartment":
+          - text: DNS Zones
+      - menuitem "cloud-server DNS Servers":
+        - link "cloud-server DNS Servers":
+          - /url: "#/dnsserver"
+          - img "cloud-server":
+          - text: DNS Servers
+    - img "picture":
+    - text: Images
+    - img "lock":
+    - text: Key Management
+    - menuitem "schedule Events":
+      - link "schedule Events":
+        - /url: "#/event"
+        - img "schedule":
+        - text: Events
+    - menuitem "project Projects":
+      - link "project Projects":
+        - /url: "#/project"
+        - img "project":
+        - text: Projects
+    - menuitem "idcard Roles":
+      - link "idcard Roles":
+        - /url: "#/role"
+        - img "idcard":
+        - text: Roles
+    - menuitem "team Accounts":
+      - link "team Accounts":
+        - /url: "#/account"
+        - img "team":
+        - text: Accounts
+    - menuitem "block Domains":
+      - link "block Domains":
+        - /url: "#/domain"
+        - img "block":
+        - text: Domains
+    - img "bank":
+    - text: Infrastructure
+    - img "shopping":
+    - text: Service offerings
+    - img "setting":
+    - text: Configuration
+    - menuitem "appstore-add Extensions":
+      - link "appstore-add Extensions":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: Extensions
+    - img "tool":
+    - text: Tools
+    - menuitem "read API Docs":
+      - link "read API Docs":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API Docs
+- generic: Page style setting
+- button "Close":
+  - img "close":
+- heading "Page style setting" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "Theme color" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "Navigation setting" [level=3]
+- generic: Background color
+- textbox: "#ffffff"
+- generic: Text color
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "The setting is only visible to the current browser. To apply the setting, please download the JSON file and replace its content in the `theme` section of the `config.json` file under the path: `/public/config.json`"
+- button "download Download setting":
+  - img "download":
+  - generic: Download setting
+- button "undo Reset to default":
+  - img "undo":
+  - generic: Reset to default
+- img "menu-fold":
+- generic: Project
+- combobox "Project"
+- img "project":
+- text: 기본 보기
+- button "Create down":
+  - generic: Create
+  - img "down":
+- img "translation":
+- button "Notifications":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP addresses":
+    - /url: "#/publicip"
+  - text: /
+  - generic: 10.10.32.103
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload Refresh":
+    - img "reload":
+    - generic: Refresh
+  - button "down Actions":
+    - img "down":
+    - generic: Actions
+  - img "environment":
+  - heading "10.10.32.103" [level=4]
+  - separator
+  - generic: Status
+  - generic: Available
+  - generic: ID
+  - button "Copy ID":
+    - img "barcode":
+  - link "77def528-fb75-42e3-a90f-46a6e9c5b90b":
+    - /url: javascript:;
+  - generic: IP address
+  - img "environment":
+  - link "10.10.32.103":
+    - /url: javascript:;
+  - generic: Instance name
+  - generic: —
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/991d2f57-0f37-4445-b956-09773d064816"
+  - separator
+  - strong: Tags
+  - button "reload Refresh tags":
+    - img "reload":
+    - generic: Refresh tags
+  - generic: No tags.
+  - button "plus New tag":
+    - img "plus":
+    - generic: New tag
+  - tablist:
+    - tab "Details" [selected]
+    - tab "Events"
+    - tab "Comments"
+  - tabpanel "Details":
+    - list:
+      - strong: IP Address
+      - generic: 10.10.32.103
+      - strong: ID
+      - generic: 77def528-fb75-42e3-a90f-46a6e9c5b90b
+      - strong: Network
+      - generic: 4216b0b3-d054-46ab-88dd-9d025a1f3eb5
+      - strong: Is system
+      - generic: "false"
+      - strong: Source NAT
+      - generic: "false"
+      - strong: Static NAT
+      - generic: "false"
+      - strong: Instance name
+      - generic: —
+      - strong: Zone
+      - generic: Zone
+- dialog "Reserve Public IPHelp":
+  - document:
+    - button "Close":
+      - img "close":
+    - text: Reserve Public IP
+    - link "Help":
+      - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+      - img "question-circle":
+    - table:
+      - rowgroup:
+        - 'row "IP Address : 10.10.32.103"':
+          - 'cell "IP Address : 10.10.32.103"':
+            - generic: "IP Address :"
+            - generic: 10.10.32.103
+        - 'row "Account type : Project"':
+          - 'cell "Account type : Project"':
+            - generic: "Account type :"
+            - generic: Project
+        - 'row "Reservation owner : E1335-Permission-32"':
+          - 'cell "Reservation owner : E1335-Permission-32"':
+            - generic: "Reservation owner :"
+            - generic: E1335-Permission-32
+    - generic "Account type": "* Account type"
+    - combobox "* Account type":
+      - listbox:
+        - option "account"
+        - option "project" [selected]
+    - generic: Project
+    - generic "Domain": "* Domain"
+    - combobox "* Domain"
+    - generic: ROOT
+    - generic "Project": "* Project"
+    - generic: a8c89140-8cd3-41c8-b799-ccd4f348af9d
+    - combobox "* Project" [active]:
+      - listbox:
+        - option "a8c89140-8cd3-41c8-b799-ccd4f348af9d" [selected]
+    - generic: E1335-Permission-32
+    - button "Cancel":
+      - generic: Cancel
+    - button "Reserve":
+      - generic: Reserve
+- generic: Account
+- generic: Project
+- generic: E1335-Permission-32

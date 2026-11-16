@@ -1,0 +1,70 @@
+[
+  {
+    "cluster": 31,
+    "name": "qa-pip1686-31-20261116-063653",
+    "ip": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Free",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false
+    },
+    "actors": [
+      {
+        "kind": "User",
+        "name": "qa-pip1686-31-20261116-063653-user",
+        "accountid": "0111c5ed-c303-4207-912f-3b67eba53c6b",
+        "cleaned": true
+      },
+      {
+        "kind": "DomainAdmin",
+        "name": "qa-pip1686-31-20261116-063653-da",
+        "accountid": "aeecef0f-6829-4ee2-aaee-70c8d59b581e",
+        "cleaned": true
+      }
+    ],
+    "domainid": "071a5a56-50ee-4e89-8f4e-dbbebcdf58dc",
+    "loginDomain": "/qa-pip1686-31-20261116-063653",
+    "reserved": true,
+    "cleaned": true
+  },
+  {
+    "cluster": 32,
+    "name": "qa-pip1686-32-20261116-063653",
+    "ip": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Free",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false
+    },
+    "actors": [
+      {
+        "kind": "User",
+        "name": "qa-pip1686-32-20261116-063653-user",
+        "accountid": "9d81999f-0498-4048-8431-6517c21496cb",
+        "cleaned": true
+      },
+      {
+        "kind": "DomainAdmin",
+        "name": "qa-pip1686-32-20261116-063653-da",
+        "accountid": "dc05a426-7a2f-4b54-bcaa-a6eef5c16d3d",
+        "cleaned": true
+      }
+    ],
+    "domainid": "02e654cf-e6fc-4b87-9e34-d24df3aad2c5",
+    "loginDomain": "/qa-pip1686-32-20261116-063653",
+    "reserved": true,
+    "cleaned": true
+  }
+]

@@ -1,0 +1,2058 @@
+[
+  {
+    "cluster": 31,
+    "name": "Reserved-false",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "fordisplay",
+        "links": [],
+        "text": "표시하지 않음"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "fordisplay",
+        "links": [],
+        "text": "표시하지 않음"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-false",
+    "fields": [
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "fordisplay",
+        "links": [],
+        "text": "표시하지 않음"
+      },
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "copies": [
+          "복사 VLAN 범위 UUID"
+        ],
+        "field": "vlanid",
+        "links": [],
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "copies": [
+          "복사 공용 네트워크"
+        ],
+        "field": "networkid",
+        "links": [],
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "copies": [],
+        "field": "associatednetworkname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vpcname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "fordisplay",
+        "links": [],
+        "text": "표시하지 않음"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "User-hidden",
+    "fields": [],
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "DomainAdmin-hidden",
+    "fields": [],
+    "refs": [],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "User-hidden",
+    "fields": [],
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "DomainAdmin-hidden",
+    "fields": [],
+    "refs": [],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-true-job-resume",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-31-20261116-074721-user&domainid=01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "text": "qa-pip1687-31-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/01e53fd0-ab00-4087-93e3-7329960a6a32?tab=details",
+        "text": "qa-pip1687-31-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-true",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-32-20261116-074721-user&domainid=2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+        "text": "qa-pip1687-32-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/2e2ad0e1-11e1-4e45-908d-6f68f1439476?tab=details",
+        "text": "qa-pip1687-32-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "User-visible",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanname",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanid",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "DomainAdmin-visible",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanname",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanid",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-31-20261116-074721-user&domainid=01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "text": "qa-pip1687-31-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/01e53fd0-ab00-4087-93e3-7329960a6a32?tab=details",
+        "text": "qa-pip1687-31-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "User-visible",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanname",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanid",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "DomainAdmin-visible",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanname",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "vlanid",
+        "text": "이 응답에서 미제공"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "이 응답에서 미제공"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-32-20261116-074721-user&domainid=2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+        "text": "qa-pip1687-32-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/2e2ad0e1-11e1-4e45-908d-6f68f1439476?tab=details",
+        "text": "qa-pip1687-32-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-default-true",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-31-20261116-074721-user&domainid=01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "text": "qa-pip1687-31-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/01e53fd0-ab00-4087-93e3-7329960a6a32?tab=details",
+        "text": "qa-pip1687-31-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-default-true-confirmed",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-31-20261116-074721-user&domainid=01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "text": "qa-pip1687-31-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/01e53fd0-ab00-4087-93e3-7329960a6a32?tab=details",
+        "text": "qa-pip1687-31-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Free-before-allocation",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-project-true-before",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-32-project-nat0b5ac89f-cddc-4cf3-9934-b13dc2bd4446"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/project/97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "text": "qa-gn1597-32-project"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      },
+      {
+        "href": "#/domain/a051d20d-2c05-43d5-833e-e231a80b12f7?tab=details",
+        "text": "qa-gn1569-32-domain"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-project-false",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-32-project-nat0b5ac89f-cddc-4cf3-9934-b13dc2bd4446"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/project/97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "text": "qa-gn1597-32-project"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      },
+      {
+        "href": "#/domain/a051d20d-2c05-43d5-833e-e231a80b12f7?tab=details",
+        "text": "qa-gn1569-32-domain"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "Allocated-project-true-restored",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-32-project-nat0b5ac89f-cddc-4cf3-9934-b13dc2bd4446"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/project/97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "text": "qa-gn1597-32-project"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      },
+      {
+        "href": "#/domain/a051d20d-2c05-43d5-833e-e231a80b12f7?tab=details",
+        "text": "qa-gn1569-32-domain"
+      },
+      {
+        "href": "#/guestnetwork/0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+        "text": "qa-gn1597-32-project-nat"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Allocated-project-true-before",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-31-project-nate186f3a9-a763-400b-b936-4fa4d1e5e7ca"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/project/ded3436a-00a8-4043-990d-69200d9a321b",
+        "text": "qa-gn1597-31-project"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details",
+        "text": "qa-gn1569-31-domain"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "Allocated-project-false",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-31-project-nate186f3a9-a763-400b-b936-4fa4d1e5e7ca"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/project/ded3436a-00a8-4043-990d-69200d9a321b",
+        "text": "qa-gn1597-31-project"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details",
+        "text": "qa-gn1569-31-domain"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "Allocated-project-true-restored",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "qa-gn1597-31-project-nate186f3a9-a763-400b-b936-4fa4d1e5e7ca"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/project/ded3436a-00a8-4043-990d-69200d9a321b",
+        "text": "qa-gn1597-31-project"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details",
+        "text": "qa-gn1569-31-domain"
+      },
+      {
+        "href": "#/guestnetwork/e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+        "text": "qa-gn1597-31-project-nat"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-edit-true-to-false",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-32-20261116-074721-user&domainid=2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+        "text": "qa-pip1687-32-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/2e2ad0e1-11e1-4e45-908d-6f68f1439476?tab=details",
+        "text": "qa-pip1687-32-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 32,
+    "name": "Reserved-restored-before-final-release",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-32-20261116-074721-user&domainid=2e2ad0e1-11e1-4e45-908d-6f68f1439476",
+        "text": "qa-pip1687-32-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/2e2ad0e1-11e1-4e45-908d-6f68f1439476?tab=details",
+        "text": "qa-pip1687-32-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-edit-true-to-false",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시하지 않음"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-31-20261116-074721-user&domainid=01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "text": "qa-pip1687-31-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/01e53fd0-ab00-4087-93e3-7329960a6a32?tab=details",
+        "text": "qa-pip1687-31-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "Reserved-restored-before-final-release",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      },
+      {
+        "href": "#/account?name=qa-pip1687-31-20261116-074721-user&domainid=01e53fd0-ab00-4087-93e3-7329960a6a32",
+        "text": "qa-pip1687-31-20261116-074721-user"
+      },
+      {
+        "href": "#/domain/01e53fd0-ab00-4087-93e3-7329960a6a32?tab=details",
+        "text": "qa-pip1687-31-20261116-074721"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 31,
+    "name": "Final-Free",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Final-Free",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  },
+  {
+    "cluster": 31,
+    "name": "Final-cleaned-Free",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.31.105",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "956b6cb3-4bf8-41e4-b6df-12911f30e625 "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.31.105 "
+      },
+      {
+        "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "text": "Zone"
+      }
+    ],
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625"
+  },
+  {
+    "cluster": 32,
+    "name": "Final-cleaned-Free",
+    "fields": [
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      },
+      {
+        "field": "vlanname",
+        "text": "태그 없음 (Untagged)원문: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+      },
+      {
+        "field": "networkid",
+        "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "표시"
+      }
+    ],
+    "heading": "10.10.32.103",
+    "refs": [
+      {
+        "href": "#/",
+        "text": ""
+      },
+      {
+        "href": "#/publicip",
+        "text": "Public IP 주소"
+      },
+      {
+        "href": "http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts",
+        "text": ""
+      },
+      {
+        "href": "javascript:;",
+        "text": "77def528-fb75-42e3-a90f-46a6e9c5b90b "
+      },
+      {
+        "href": "javascript:;",
+        "text": "10.10.32.103 "
+      },
+      {
+        "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+        "text": "Zone"
+      }
+    ],
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b"
+  }
+]

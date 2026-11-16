@@ -1,0 +1,118 @@
+{
+  "violations": 46,
+  "newOrModifiedPrFilesWithViolations": 0,
+  "files": [
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleEventsCmd.java",
+      "blob": "5ad7ca6ee540ff6766f16655756340c58adcf37e",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleUsagesCmd.java",
+      "blob": "ffa6f059dcfad76a9bbe512f710302a391f38a07",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleValidationsCmd.java",
+      "blob": "9a75ffbb6facf5b8a73445dccabe6a743b29f509",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/TransitionStorageServiceRuntimeBundleCmd.java",
+      "blob": "d1ca13779a68011286c258fb453a7889c042b4f8",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ValidateStorageServiceRuntimeBundleCmd.java",
+      "blob": "d5859802e2b4ee0ea881f1e66240884a602e4b65",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/BaseStorageSmbServiceNameCmd.java",
+      "blob": "87cfa4b21433d3eb03fe1b7a73ee4d3752a05da9",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/CreateStorageDirectoryPolicyCmd.java",
+      "blob": "237ed879d2d084188ff7a1d7a4bda879d18f7e20",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/DeleteStorageDirectoryPolicyCmd.java",
+      "blob": "e6a17b5fbb2bec23bdfb1c71103ea8d596442953",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/GetStorageSmbServiceNameContextCmd.java",
+      "blob": "3dd3f0a77f797e6af72654c3daad10ed7f129518",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageDirectoryPoliciesCmd.java",
+      "blob": "1ccdcc0434e9d8adce0edbe2f5d30d9cb74723bf",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageSmbServiceNamesCmd.java",
+      "blob": "ee92af3afb7da0550f140fcd75fe7aa80ce039ef",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageDirectoryPolicyCmd.java",
+      "blob": "e6b7abd4f9eeba63dcdb9ee3e6ad2afa50effdee",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageNfsIdentityMappingCmd.java",
+      "blob": "b0396ef9150aeefedff7a305b1e5f9b9fca65ed8",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/BaseSharedFSDeletionCmd.java",
+      "blob": "cbceea3119010ab1008c0a769d353499365dae54",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java",
+      "blob": "866256f4f4deca6b69e070713d78ee907a488ae2",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java",
+      "blob": "0abf9fc41c7d1dd5ebd8958ee212385d97f3c088",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionImpactCmd.java",
+      "blob": "cde5cc07e8760386b63fd3aa6fdafdbbb428c376",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionOperationCmd.java",
+      "blob": "22fafb412d04f4c04dfe1dbe6c4fb4e95b8f5816",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ListSharedFSDeletionOperationsCmd.java",
+      "blob": "7874d43a22b7909a287554da60d6feac52549222",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ResumeSharedFSDeletionCmd.java",
+      "blob": "5b4d71d6b6367c19d065ee5cef02df41af1a89fa",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/api/response/StorageSmbServiceNameResponse.java",
+      "blob": "aaa6826a09a657c2017f9fa52288e19d584e46ad",
+      "identicalToLatestEuropa": true
+    },
+    {
+      "path": "api/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeCatalog.java",
+      "blob": "9844567434714e65f932dead8641105fec71424c",
+      "identicalToLatestEuropa": true
+    }
+  ],
+  "focusedApiBuildProfile": "disablecheckstyle",
+  "strictCheckResult": "FAIL on unchanged latest-Europa source; recorded separately"
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "cluster": 31,
+    "scenario": "503 retry",
+    "retryRemoved": true
+  },
+  {
+    "cluster": 32,
+    "scenario": "503 retry",
+    "retryRemoved": true
+  },
+  {
+    "cluster": 31,
+    "scenario": "late old IP",
+    "continued": true,
+    "expectedHeading": "10.10.31.105",
+    "actualHeading": "10.10.31.105",
+    "oldGuestAbsent": true
+  },
+  {
+    "cluster": 32,
+    "scenario": "late old IP",
+    "continued": true,
+    "expectedHeading": "10.10.32.103",
+    "actualHeading": "10.10.32.103",
+    "oldGuestAbsent": true
+  }
+]

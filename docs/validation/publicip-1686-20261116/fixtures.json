@@ -1,0 +1,45 @@
+[
+  {
+    "cluster": 31,
+    "name": "qa-pip1686-31-20261116-061839",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "loginDomain": "/",
+    "kind": "User",
+    "ip": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Free",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false
+    },
+    "accountid": "82ff538f-3bbc-436c-b5ac-4f2a9266e280",
+    "cleaned": true
+  },
+  {
+    "cluster": 32,
+    "name": "qa-pip1686-32-20261116-061839",
+    "domainid": "6fbcc2db-e24c-465c-b425-1848bc735c4b",
+    "loginDomain": "/qa-pip1686-32-20261116-061839",
+    "kind": "DomainAdmin",
+    "ip": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Free",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false
+    },
+    "createdDomainId": "6fbcc2db-e24c-465c-b425-1848bc735c4b",
+    "accountid": "4e2e6889-5a52-4920-99a2-a28dce42ce5a",
+    "cleaned": true
+  }
+]

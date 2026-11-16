@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <autogen-view @change-resource="changeResource">
+    <autogen-view @change-resource="changeResource" @public-ip-read-state="state => { readPending = state.pending; readFailed = state.failed }">
       <template #resource>
         <a-alert v-if="contextFailed" type="warning" show-icon :message="$t('message.guest.feature.load.failed')">
           <template #action><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
@@ -27,6 +27,10 @@
           :key="resource.id"
           :loading="loading"
           :managed-network-context="true"
+          :read-pending="readPending"
+          :read-failed="readFailed"
+          :ready-for-actions="!readPending && !readFailed"
+          quiet-refresh
           :resource="resource"
           :historyTab="activeTab"
           :tabs="tabs"
@@ -57,6 +61,8 @@ export default {
     return {
       loading: false,
       contextFailed: false,
+      readPending: false,
+      readFailed: false,
       contextNetwork: null,
       contextVpc: null,
       contextCounts: {},
@@ -190,6 +196,10 @@ export default {
       return json[api.toLowerCase() + 'response']?.count || 0
     },
     changeResource (resource) {
+      if (resource.id !== this.resource.id) {
+        this.tabRequestVersion++; this.contextNetwork = null; this.contextVpc = null; this.contextCounts = {}
+        this.contextFailed = false; this.loading = false; this.actions = []; this.tabs = this.defaultTabs
+      }
       this.resource = resource
     },
     toggleLoading () {

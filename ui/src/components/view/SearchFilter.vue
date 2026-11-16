@@ -31,10 +31,10 @@
           @close="() => $emit('removeFilter', filter)"
         >
           <a-tooltip
-            :title="retrieveFieldLabel(filter.key) + ': ' + filter.value + (['affinitygroupid', 'volumeid', 'networkofferingid', 'physicalnetworkid'].includes(filter.key) && filter.rawValue !== filter.value ? ' (' + filter.rawValue + ')' : '')"
+            :title="retrieveFieldLabel(filter.key) + ': ' + publicIpFilterValue(filter) + (['affinitygroupid', 'volumeid', 'networkofferingid', 'physicalnetworkid'].includes(filter.key) && filter.rawValue !== filter.value ? ' (' + filter.rawValue + ')' : '')"
             placement="bottom"
           >
-            {{ retrieveFieldLabel(filter.key) }} : {{ getTrimmedText(filter.value, 20) }}
+            {{ retrieveFieldLabel(filter.key) }} : {{ getTrimmedText(publicIpFilterValue(filter), 20) }}
           </a-tooltip>
         </a-tag>
         <a-tag
@@ -57,6 +57,8 @@
 <script>
 
 import { getAPI } from '@/api'
+import { publicIpState } from '@/utils/publicIpPresentation'
+import { publicIpPickerConfig } from '@/utils/publicIpSearch'
 import { affinityPolicy } from '@/utils/affinityGroupPresentation'
 import { snapshotSearchLabel, snapshotSearchValue, snapshotPickerScope } from '@/utils/storageSnapshotSearch'
 import { networkPickerApi, networkPickerParams } from '@/utils/guestNetworkSearch'
@@ -195,11 +197,22 @@ export default {
     lookupScope () { this.resolveFilters(this.filters) }
   },
   methods: {
+    publicIpFilterValue (filter) {
+      if (this.apiName !== 'listPublicIpAddresses') return filter.value
+      const value = filter.rawValue ?? filter.value
+      if (filter.key === 'state') return this.$t(publicIpState(value).key)
+      if (['true', 'false', 'all'].includes(String(value))) return this.$t(String(value) === 'all' ? 'label.all' : String(value) === 'true' ? 'label.yes' : 'label.no')
+      return filter.value
+    },
     async resolveFilters (filters) {
       const version = ++this.filterVersion
       const scope = this.lookupScope
       const cloned = filters.map(filter => ({ ...filter, rawValue: filter.value }))
       // Keep the submitted UUID instead of looking up names in an unrelated owner.
+      if (this.apiName === 'listPublicIpAddresses') {
+        this.searchFilters = cloned.filter(f => f.key !== 'filter').map(f => ({ ...f, value: f.key === 'state' ? this.$t(publicIpState(f.value).key) : ['true', 'false', 'all'].includes(String(f.value)) ? this.$t(String(f.value) === 'all' ? 'label.all' : String(f.value) === 'true' ? 'label.yes' : 'label.no') : f.value }))
+        return
+      }
       if (this.apiName === 'listVnfAppliances') { this.searchFilters = cloned.map(f => f.key === 'state' ? { ...f, value: this.$t('state.' + String(f.value).toLowerCase()) } : f); return }
       this.searchFilters = cloned.map(filter => ({ ...filter }))
       const resolved = await Promise.all(cloned.map(async filter => {
@@ -218,6 +231,7 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listPublicIpAddresses') return this.$t(publicIpPickerConfig(fieldName)?.label || (fieldName === 'fordisplay' ? 'label.public.ip.display' : 'label.' + fieldName))
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (this.apiName === 'listIsos' && fieldName === 'isofilter') return this.$t('label.filterby')
       if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')

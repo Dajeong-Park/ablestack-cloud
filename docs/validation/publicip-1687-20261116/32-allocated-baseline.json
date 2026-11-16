@@ -1,0 +1,21 @@
+[
+  {
+    "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "ipaddress": "10.10.32.103",
+    "state": "Allocated",
+    "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+    "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+    "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+    "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+    "associatednetworkname": "qa-gn1597-32-project-nat",
+    "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "vlanname": "vlan://untagged",
+    "issourcenat": false,
+    "isstaticnat": false,
+    "fordisplay": true,
+    "hasrules": false,
+    "issystem": false,
+    "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+    "zonename": "Zone"
+  }
+]

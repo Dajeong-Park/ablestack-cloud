@@ -1,0 +1,39 @@
+[
+  {
+    "cluster": 31,
+    "case": "actual browser copy",
+    "commandResult": "true",
+    "selectedText": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+    "successVisible": true
+  },
+  {
+    "cluster": 31,
+    "case": "injected browser refusal",
+    "commandResult": "false",
+    "selectedText": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+    "successVisible": false,
+    "errorVisible": true
+  },
+  {
+    "cluster": 32,
+    "case": "actual browser copy",
+    "commandResult": "true",
+    "selectedText": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "successVisible": true
+  },
+  {
+    "cluster": 32,
+    "case": "injected browser refusal",
+    "commandResult": "false",
+    "selectedText": "c206c328-6567-4793-a8d4-7ee2cade5451",
+    "successVisible": false,
+    "errorVisible": true
+  },
+  {
+    "cluster": 31,
+    "case": "keyboard Enter",
+    "commandResult": "true",
+    "selectedText": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+    "successVisible": true
+  }
+]

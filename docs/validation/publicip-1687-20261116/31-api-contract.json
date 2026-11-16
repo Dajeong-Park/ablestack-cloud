@@ -1,0 +1,178 @@
+[
+  {
+    "name": "listPublicIpAddresses",
+    "isasync": false,
+    "params": [
+      {
+        "name": "forloadbalancing",
+        "required": false
+      },
+      {
+        "name": "forsystemvms",
+        "required": false
+      },
+      {
+        "name": "ipaddress",
+        "required": false
+      },
+      {
+        "name": "listall",
+        "required": false
+      },
+      {
+        "name": "retrieveonlyresourcecount",
+        "required": false
+      },
+      {
+        "name": "tags",
+        "required": false
+      },
+      {
+        "name": "issourcenat",
+        "required": false
+      },
+      {
+        "name": "forprovider",
+        "required": false
+      },
+      {
+        "name": "vpcid",
+        "required": false
+      },
+      {
+        "name": "id",
+        "required": false
+      },
+      {
+        "name": "pagesize",
+        "required": false
+      },
+      {
+        "name": "fordisplay",
+        "required": false
+      },
+      {
+        "name": "isstaticnat",
+        "required": false
+      },
+      {
+        "name": "domainid",
+        "required": false
+      },
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "forvirtualnetwork",
+        "required": false
+      },
+      {
+        "name": "isrecursive",
+        "required": false
+      },
+      {
+        "name": "state",
+        "required": false
+      },
+      {
+        "name": "account",
+        "required": false
+      },
+      {
+        "name": "physicalnetworkid",
+        "required": false
+      },
+      {
+        "name": "vlanid",
+        "required": false
+      },
+      {
+        "name": "allocatedonly",
+        "required": false
+      },
+      {
+        "name": "zoneid",
+        "required": false
+      },
+      {
+        "name": "projectid",
+        "required": false
+      },
+      {
+        "name": "page",
+        "required": false
+      },
+      {
+        "name": "networkid",
+        "required": false
+      },
+      {
+        "name": "associatednetworkid",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "reserveIpAddress",
+    "isasync": false,
+    "params": [
+      {
+        "name": "domainid",
+        "required": false
+      },
+      {
+        "name": "account",
+        "required": false
+      },
+      {
+        "name": "fordisplay",
+        "required": false
+      },
+      {
+        "name": "projectid",
+        "required": false
+      },
+      {
+        "name": "id",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "updateIpAddress",
+    "isasync": true,
+    "params": [
+      {
+        "name": "customid",
+        "required": false
+      },
+      {
+        "name": "fordisplay",
+        "required": false
+      },
+      {
+        "name": "id",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "queryAsyncJobResult",
+    "isasync": false,
+    "params": [
+      {
+        "name": "resourcetype",
+        "required": false
+      },
+      {
+        "name": "resourceid",
+        "required": false
+      },
+      {
+        "name": "jobid",
+        "required": false
+      }
+    ]
+  }
+]

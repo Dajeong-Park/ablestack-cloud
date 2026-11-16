@@ -127,10 +127,11 @@
 
             <a-divider/>
 
-            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'iso'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
+            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'iso', 'publicip'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
           <div class="resource-detail-item__label">{{ $t('label.status') }}</div>
           <div class="resource-detail-item__details">
-            <template-availability v-if="['template', 'iso'].includes($route.meta.name)" :kind="$route.meta.name" :record="resource" :observation="$route.meta.name === 'template' ? templateObservation : null" inspectable @show-zones="$emit('show-template-zones')" />
+            <public-ip-status v-if="$route.meta.name === 'publicip'" :value="resource.state" />
+            <template-availability v-else-if="['template', 'iso'].includes($route.meta.name)" :kind="$route.meta.name" :record="resource" :observation="$route.meta.name === 'template' ? templateObservation : null" inspectable @show-zones="$emit('show-template-zones')" />
             <backup-progress
               v-else-if="$route.meta.name === 'backup'"
               :record="resource"
@@ -749,7 +750,13 @@
                 <span v-else>{{ resource.volumename || resource.volume || resource.volumeid }}</span>
               </div>
             </div>
-            <div class="resource-detail-item" v-if="resource.associatednetworkid">
+            <template v-if="$route.meta.name === 'publicip'">
+              <div v-for="field in ['networkid', 'associatednetworkname', 'vpcname', 'fordisplay']" :key="field" class="resource-detail-item">
+                <div class="resource-detail-item__label">{{ $t(publicIpFieldLabel(field)) }}</div>
+                <div class="resource-detail-item__details"><PublicIpDetailValue :resource="resource" :field="field" compact /></div>
+              </div>
+            </template>
+            <div class="resource-detail-item" v-if="$route.meta.name !== 'publicip' && resource.associatednetworkid">
               <div class="resource-detail-item__label">{{ $t('label.associatednetwork') }}</div>
               <div class="resource-detail-item__details">
                 <wifi-outlined />
@@ -779,7 +786,7 @@
                 <copy-label v-else :label="resource.publicip" />
               </div>
             </div>
-            <div class="resource-detail-item" v-if="resource.vpcid">
+            <div class="resource-detail-item" v-if="$route.meta.name !== 'publicip' && resource.vpcid">
               <div class="resource-detail-item__label">{{ $t('label.vpcname') }}</div>
               <div class="resource-detail-item__details">
                 <span v-if="images.vpc">
@@ -1167,7 +1174,10 @@ import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { volumeVmPath } from '@/utils/storageUi'
+import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
+import { publicIpFieldLabel } from '@/utils/publicIpDetails'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import { policyVolumePath } from '@/utils/snapshotPolicyDetail'
 import { creationVmOsName } from '@/utils/creationVmPresentation'
 import BucketUsageStatus from '@/components/view/BucketUsageStatus'
@@ -1202,8 +1212,10 @@ export default {
   name: 'InfoCard',
   mixins: [vmNetworkAccessMixin()],
   components: {
+    PublicIpDetailValue,
     TemplateAvailability,
     NetworkIpVmLink,
+    PublicIpStatus,
     SharedFSCapacitySummary,
     SharedFSBootRecoverySummary,
     BucketUsageStatus,
@@ -1420,6 +1432,7 @@ export default {
     }
   },
   methods: {
+    publicIpFieldLabel,
     networkTypeLabel,
     policyVolumePath,
     volumeVmPath,

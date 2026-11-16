@@ -25,6 +25,8 @@ import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
+import { publicIpFilterLabels } from '@/utils/publicIpPresentation'
+import { displayEditable } from '@/utils/publicIpDisplay'
 import { usablePublicIp } from '@/utils/publicIpRules'
 import { hasVpc } from '@/utils/networkTabs'
 import { canWriteGuestFeature, showGuestFeature } from '@/utils/conditionalGuestNetwork'
@@ -878,15 +880,16 @@ export default {
       searchFilters: ['ipaddress', 'zoneid', 'account', 'domainid', 'vlanid', 'tags'],
       resourceType: 'PublicIpAddress',
       columns: () => {
-        var fields = ['ipaddress', 'state', 'associatednetworkname', 'vpcname', 'virtualmachinename', 'allocated', 'account']
+        var fields = ['ipaddress', 'state', 'associatednetworkname', 'vpcname', 'virtualmachinename', { field: 'allocated', customTitle: 'public.ip.allocated' }, 'account']
         if (store.getters.listAllProjects) {
           fields.push('project')
         }
         fields.push(...['domain', 'zonename'])
         return fields
       },
-      details: ['ipaddress', 'id', 'associatednetworkname', 'networkid', 'vpcname', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'vlan', 'allocated', 'account', 'domain', 'zonename'],
-      filters: ['allocated', 'reserved', 'free'],
+      details: ['ipaddress', 'id', 'state', 'vlanname', 'vlanid', 'networkid', 'associatednetworkname', 'vpcname', 'fordisplay', 'issystem', 'issourcenat', 'isstaticnat', 'virtualmachinename', 'vmipaddress', 'allocated', 'account', 'domain', 'zonename'],
+      filters: () => ['allocated', 'reserved', ...(store.getters.userInfo.roletype === 'Admin' ? ['free', 'all'] : []), 'allocating', 'releasing'],
+      filterLabels: publicIpFilterLabels,
       component: shallowRef(() => import('@/views/network/PublicIpResource.vue')),
       tabs: [{
         name: 'details',
@@ -964,6 +967,16 @@ export default {
           groupShow: (selectedIps) => {
             return selectedIps.every((ip) => ip.state === 'Allocated' && !ip.issourcenat && !ip.issystem)
           }
+        },
+        {
+          api: 'updateIpAddress',
+          icon: 'edit-outlined',
+          label: 'label.public.ip.display.edit',
+          dataView: true,
+          popup: true,
+          standardDialogSize: 'md',
+          show: record => displayEditable(record, store.getters),
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/EditPublicIpDisplay.vue')))
         },
         {
           api: 'reserveIpAddress',

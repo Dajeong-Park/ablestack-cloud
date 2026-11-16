@@ -1,0 +1,133 @@
+{
+  "inventories": [
+    {
+      "cluster": 31,
+      "scope": "ips",
+      "beforeCount": 53,
+      "afterCount": 53,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 31,
+      "scope": "networks",
+      "beforeCount": 44,
+      "afterCount": 44,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 31,
+      "scope": "vpcs",
+      "beforeCount": 5,
+      "afterCount": 5,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 31,
+      "scope": "vms",
+      "beforeCount": 149,
+      "afterCount": 149,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 31,
+      "scope": "accounts",
+      "beforeCount": 26,
+      "afterCount": 26,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 31,
+      "scope": "domains",
+      "beforeCount": 7,
+      "afterCount": 7,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 31,
+      "scope": "projects",
+      "beforeCount": 7,
+      "afterCount": 7,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 31,
+      "scope": "pools",
+      "beforeCount": 1,
+      "afterCount": 1,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "ips",
+      "beforeCount": 102,
+      "afterCount": 102,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "networks",
+      "beforeCount": 28,
+      "afterCount": 28,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "vpcs",
+      "beforeCount": 4,
+      "afterCount": 4,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "vms",
+      "beforeCount": 72,
+      "afterCount": 72,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "accounts",
+      "beforeCount": 22,
+      "afterCount": 22,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "domains",
+      "beforeCount": 5,
+      "afterCount": 5,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "projects",
+      "beforeCount": 5,
+      "afterCount": 5,
+      "equal": true,
+      "differences": []
+    },
+    {
+      "cluster": 32,
+      "scope": "pools",
+      "beforeCount": 1,
+      "afterCount": 1,
+      "equal": true,
+      "differences": []
+    }
+  ],
+  "protectedTrackedChangesPreserved": true
+}

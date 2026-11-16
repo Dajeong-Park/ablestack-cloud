@@ -1,0 +1,8 @@
+{
+  "labels": [
+    "VLAN value",
+    "VLAN range UUID",
+    "Public network",
+    "Associated guest network"
+  ]
+}

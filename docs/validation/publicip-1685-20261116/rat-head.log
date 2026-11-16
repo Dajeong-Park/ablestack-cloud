@@ -1,0 +1,136 @@
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for org.apache.cloudstack:cloud-plugin-hypervisor-kvm:jar:4.23.0.0
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.json:json:jar -> duplicate declaration of version (?) @ line 130, column 21
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO]
+[INFO] ------------------< org.apache.cloudstack:cloudstack >------------------
+[INFO] Building Apache CloudStack 4.23.0.0
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] --- apache-rat-plugin:0.12:check (default-cli) @ cloudstack ---
+[INFO] Enabled default license matchers.
+[INFO] Will parse SCM ignores for exclusions...
+[INFO] Parsing exclusions from /home/ablecloud/work/issue-1685-rat-head/.gitignore
+[INFO] Finished adding exclusions from SCM ignore files.
+[INFO] 151 implicit excludes (use -debug for more details).
+[INFO] Exclude: **/*.log
+[INFO] Exclude: **/*.patch
+[INFO] Exclude: **/.classpath
+[INFO] Exclude: **/.project
+[INFO] Exclude: **/.idea/**
+[INFO] Exclude: **/*.iml
+[INFO] Exclude: **/.settings/**
+[INFO] Exclude: **/*.crt
+[INFO] Exclude: **/*.csr
+[INFO] Exclude: **/*.key
+[INFO] Exclude: scripts/vm/hypervisor/kvm/veeam/ablestack.key.default
+[INFO] Exclude: **/authorized_keys
+[INFO] Exclude: **/*.war
+[INFO] Exclude: **/*.mar
+[INFO] Exclude: **/*.jar
+[INFO] Exclude: **/*.iso
+[INFO] Exclude: **/*.tgz
+[INFO] Exclude: **/*.zip
+[INFO] Exclude: **/*.vhd*
+[INFO] Exclude: **/target/**
+[INFO] Exclude: **/.vagrant
+[INFO] Exclude: **/*.json
+[INFO] Exclude: docs/design/vm-volume-snapshot-creation-20261009/evidence/environment32-hosts.txt
+[INFO] Exclude: docs/validation/issue-1118/final-state.txt
+[INFO] Exclude: docs/validation/issue-1118/lint.txt
+[INFO] Exclude: docs/validation/issue-1118/cleanup-final.txt
+[INFO] Exclude: docs/validation/issue-1118/deployment-final.txt
+[INFO] Exclude: docs/validation/issue-1118/ui-build-summary.txt
+[INFO] Exclude: docs/validation/issue-1118/unit-tests.txt
+[INFO] Exclude: **/.checkstyle
+[INFO] Exclude: .java-version
+[INFO] Exclude: .python-version
+[INFO] Exclude: .idea/
+[INFO] Exclude: .metadata/**
+[INFO] Exclude: .git/**
+[INFO] Exclude: .github/linters/codespell.txt
+[INFO] Exclude: .gitignore
+[INFO] Exclude: .markdownlintignore
+[INFO] Exclude: CHANGES.md
+[INFO] Exclude: ISSUE_TEMPLATE.md
+[INFO] Exclude: PULL_REQUEST_TEMPLATE.md
+[INFO] Exclude: build/build.number
+[INFO] Exclude: debian/cloudstack-agent.dirs
+[INFO] Exclude: debian/cloudstack-usage.dirs
+[INFO] Exclude: debian/compat
+[INFO] Exclude: debian/control
+[INFO] Exclude: debian/dirs
+[INFO] Exclude: debian/rules
+[INFO] Exclude: debian/source/format
+[INFO] Exclude: developer/history/**
+[INFO] Exclude: dist/console-proxy/js/jquery.js
+[INFO] Exclude: engine/schema/dist/**
+[INFO] Exclude: plugins/integrations/automation-service/src/main/resources/conf/genie
+[INFO] Exclude: plugins/integrations/desktop-service/src/main/resources/conf/dc
+[INFO] Exclude: plugins/integrations/desktop-service/src/main/resources/conf/works
+[INFO] Exclude: plugins/hypervisors/hyperv/conf/agent.properties
+[INFO] Exclude: plugins/hypervisors/hyperv/conf/uefi.properties
+[INFO] Exclude: plugins/hypervisors/hyperv/DotNet/ServerResource/**
+[INFO] Exclude: scripts/installer/windows/acs_license.rtf
+[INFO] Exclude: scripts/vm/systemvm/id_rsa.cloud
+[INFO] Exclude: services/console-proxy/server/conf/agent.properties
+[INFO] Exclude: services/console-proxy/server/conf/uefi.properties
+[INFO] Exclude: services/console-proxy/server/conf/environment.properties
+[INFO] Exclude: services/console-proxy/server/js/jquery.js
+[INFO] Exclude: services/secondary-storage/conf/agent.properties
+[INFO] Exclude: services/secondary-storage/conf/uefi.properties
+[INFO] Exclude: services/secondary-storage/conf/environment.properties
+[INFO] Exclude: systemvm/agent/conf/agent.properties
+[INFO] Exclude: systemvm/agent/conf/uefi.properties
+[INFO] Exclude: systemvm/agent/conf/environment.properties
+[INFO] Exclude: systemvm/agent/js/jquery.js
+[INFO] Exclude: systemvm/agent/js/jquery.flot.navigate.js
+[INFO] Exclude: systemvm/agent/noVNC/**
+[INFO] Exclude: systemvm/agent/packages/**
+[INFO] Exclude: systemvm/debian/**
+[INFO] Exclude: test/integration/component/test_host_ha.sh
+[INFO] Exclude: tools/appliance/*/template.json
+[INFO] Exclude: tools/cli/cloudmonkey.egg-info/*
+[INFO] Exclude: tools/devcloud/basebuild/puppet-devcloudinitial/files/network.conf
+[INFO] Exclude: tools/docker/Dockerfile
+[INFO] Exclude: tools/docker/supervisord.conf
+[INFO] Exclude: tools/logo/apache_cloudstack.png
+[INFO] Exclude: tools/marvin/Marvin.egg-info/*
+[INFO] Exclude: tools/marvin/marvin/sandbox/advanced/sandbox.cfg
+[INFO] Exclude: tools/ngui/static/bootstrap/*
+[INFO] Exclude: tools/ngui/static/js/lib/*
+[INFO] Exclude: tools/transifex/.tx/config
+[INFO] Exclude: ui/.*
+[INFO] Exclude: ui/.*/**
+[INFO] Exclude: ui/docs/full-test-plan.template.md
+[INFO] Exclude: ui/docs/smoke-test-plan.template.md
+[INFO] Exclude: ui/src/assets/**
+[INFO] Exclude: ui/public/**
+[INFO] Exclude: ui/legacy/**
+[INFO] Exclude: utils/testsmallfileinactive
+[INFO] Exclude: **/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker
+[INFO] Exclude: .github/workflows/dependabot.yaml
+[INFO] Exclude: .gitattributes
+[INFO] Exclude: .github/workflows/*.md
+[INFO] Exclude: .github/workflows/*.lock.ya?ml
+[INFO] Exclude: .github/aw/**
+[INFO] 38430 resources included (use -debug for more details)
+[INFO] Rat check: Summary over all files. Unapproved: 4077, unknown: 4077, generated: 0, approved: 15583 licenses.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  28.622 s
+[INFO] Finished at: 2026-11-16T06:00:21+09:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.rat:apache-rat-plugin:0.12:check (default-cli) on project cloudstack: Too many files with unapproved license: 4077 See RAT report in: /home/ablecloud/work/issue-1685-rat-head/target/rat.txt -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

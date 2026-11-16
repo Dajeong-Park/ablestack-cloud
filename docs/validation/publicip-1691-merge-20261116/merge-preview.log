@@ -1,0 +1,17 @@
+Auto-merging ui/public/locales/en.json
+CONFLICT (content): Merge conflict in ui/public/locales/en.json
+Auto-merging ui/public/locales/ko_KR.json
+CONFLICT (content): Merge conflict in ui/public/locales/ko_KR.json
+Auto-merging ui/src/components/view/DetailsTab.vue
+CONFLICT (content): Merge conflict in ui/src/components/view/DetailsTab.vue
+Auto-merging ui/src/components/view/InfoCard.vue
+CONFLICT (content): Merge conflict in ui/src/components/view/InfoCard.vue
+Auto-merging ui/src/components/view/ListView.vue
+CONFLICT (content): Merge conflict in ui/src/components/view/ListView.vue
+Auto-merging ui/src/components/view/SearchFilter.vue
+Auto-merging ui/src/components/view/SearchView.vue
+Auto-merging ui/src/components/widgets/Breadcrumb.vue
+CONFLICT (content): Merge conflict in ui/src/components/widgets/Breadcrumb.vue
+Auto-merging ui/src/views/AutogenView.vue
+CONFLICT (content): Merge conflict in ui/src/views/AutogenView.vue
+Automatic merge failed; fix conflicts and then commit the result.

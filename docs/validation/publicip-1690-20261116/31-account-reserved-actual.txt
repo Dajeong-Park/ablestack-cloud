@@ -1,0 +1,588 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - img "safety-certificate":
+    - generic: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- button "알림 제거":
+  - generic: 알림 제거
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP 주소":
+    - /url: "#/publicip"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - combobox
+  - generic: 가용
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - text: "상태 : 가용"
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "IP 주소 caret-up caret-down 상태 caret-up caret-down 연결된 네트워크 이름 caret-up caret-down VPC caret-up caret-down VM 이름 caret-up caret-down 할당 일시 caret-up caret-down 계정 caret-up caret-down 도메인 caret-up caret-down Zone caret-up caret-down label.filtercolumn filter":
+        - columnheader:
+          - checkbox
+        - columnheader "IP 주소 caret-up caret-down":
+          - generic: IP 주소
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "연결된 네트워크 이름 caret-up caret-down":
+          - generic: 연결된 네트워크 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VM 이름 caret-up caret-down":
+          - generic: VM 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "할당 일시 caret-up caret-down":
+          - generic: 할당 일시
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "도메인 caret-up caret-down":
+          - generic: 도메인
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "label.filtercolumn filter":
+          - generic: label.filtercolumn
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "10.10.31.105 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.105":
+          - link "10.10.31.105":
+            - /url: "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.107 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.107":
+          - link "10.10.31.107":
+            - /url: "#/publicip/15759fa1-ca4c-4054-82b2-47dfb03c3afb?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.110 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.110":
+          - link "10.10.31.110":
+            - /url: "#/publicip/f9eda3b4-2655-453b-837a-28e46eb9c3f5?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.113 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.113":
+          - link "10.10.31.113":
+            - /url: "#/publicip/3aab3764-2ead-49a8-9289-b758bb2490ec?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.114 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.114":
+          - link "10.10.31.114":
+            - /url: "#/publicip/68e29c72-552b-45e2-a073-96b55d2b7274?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.115 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.115":
+          - link "10.10.31.115":
+            - /url: "#/publicip/5e89cd1f-89ff-4ac0-88ca-4597e0410530?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.116 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.116":
+          - link "10.10.31.116":
+            - /url: "#/publicip/b13209e2-ffa6-4640-9906-3561f4fde22e?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.117 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.117":
+          - link "10.10.31.117":
+            - /url: "#/publicip/8dab4110-29c4-4350-9888-82932d99ba26?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.118 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.118":
+          - link "10.10.31.118":
+            - /url: "#/publicip/a0f92b87-b6c4-4f71-ae4d-58c569386686?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.119 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.119":
+          - link "10.10.31.119":
+            - /url: "#/publicip/c0db2142-27bb-4fa0-a078-2ada1a3c3f0d?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.120 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.120":
+          - link "10.10.31.120":
+            - /url: "#/publicip/4c3fd2bd-b121-45be-b761-d5e920292ad3?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.121 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.121":
+          - link "10.10.31.121":
+            - /url: "#/publicip/6713569e-a1e2-4b58-b1e4-2b444bae6904?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.122 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.122":
+          - link "10.10.31.122":
+            - /url: "#/publicip/db6ca8d9-db86-407e-8a89-15a37e48f9de?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.123 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.123":
+          - link "10.10.31.123":
+            - /url: "#/publicip/62cf1df3-aff6-4f22-978c-7aa2d2233de1?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.143 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.143":
+          - link "10.10.31.143":
+            - /url: "#/publicip/21a6e954-afa8-4bee-89c4-25c2745713b0?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.144 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.144":
+          - link "10.10.31.144":
+            - /url: "#/publicip/fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.145 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.145":
+          - link "10.10.31.145":
+            - /url: "#/publicip/86b4ebcf-4e41-4f90-b64a-3ae00ec45b5d?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+      - row "10.10.31.150 가용 — — — Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.150":
+          - link "10.10.31.150":
+            - /url: "#/publicip/5d521af3-d96a-439c-a10b-1f0530751e96?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}"
+        - cell "가용":
+          - generic: 가용
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "—":
+          - generic: —
+        - cell
+        - cell
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+        - cell
+  - list:
+    - listitem: 전체 18 개 항목 중 1-18 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- img "check-circle":
+- generic: Public IP 예약
+- generic: qa-pip1690-31-190449-user / ROOT/qa-pip1690-31-190449
+- img "close":

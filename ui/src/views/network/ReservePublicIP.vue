@@ -16,317 +16,302 @@
 // under the License.
 
 <template>
-  <div>
-    <div class="form" v-ctrl-enter="submitData">
-
-      <div v-if="loading" class="loading">
-        <loading-outlined style="color: #1890ff;" />
-      </div>
-
-      <a-alert type="warning" style="margin-bottom: 20px">
-        <template #message>
-          <label v-html="$t('message.action.reserve.ip')"></label>
+  <a-form
+    ref="form"
+    class="form-layout public-ip-reservation"
+    layout="vertical"
+    :model="form"
+    :rules="rules"
+    @keydown.ctrl.enter.prevent="!$event.repeat && submitData()"
+    @finish="submitData">
+    <a-descriptions class="mold-dialog-summary" :column="1" size="small">
+      <a-descriptions-item :label="$t('label.ipaddress')">{{ resource.ipaddress || resource.id }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.state')"><public-ip-status :value="resource.state" /></a-descriptions-item>
+      <a-descriptions-item :label="$t('label.accounttype')">{{ $t(form.ownerType === 'project' ? 'label.project' : 'label.account') }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.public.ip.reserve.owner')">{{ ownerPreview }}</a-descriptions-item>
+    </a-descriptions>
+    <a-alert v-if="error" class="reservation-notice" type="error" show-icon :message="error" />
+    <a-alert
+      v-if="operation"
+      class="reservation-notice"
+      type="warning"
+      show-icon
+      :message="$t(operation.status === 'mismatch' ? 'message.public.ip.reserve.mismatch' : 'message.public.ip.reserve.unknown')">
+      <template #description>
+        <div v-if="operation.actual">{{ $t('label.public.ip.reserve.observed') }}: {{ observedOwner }}</div>
+        <a-button :loading="checking" :disabled="pending || checking" @click="recheck">{{ $t('label.public.ip.reserve.check') }}</a-button>
+        <template v-if="operation.lastRead?.state === 'Free' && !pending">
+          <a-checkbox v-model:checked="acknowledged">{{ $t('message.public.ip.reserve.acknowledge') }}</a-checkbox>
+          <a-button :disabled="!acknowledged || checking" @click="endTracking">{{ $t('label.public.ip.reserve.endtracking') }}</a-button>
         </template>
-      </a-alert>
-
-      <div class="form__item">
-        <p class="form__label">{{ $t('label.accounttype') }}</p>
-        <a-select
-          v-model:value="selectedAccountType"
-          v-focus="true"
-          showSearch
-          optionFilterProp="value"
-          :filterOption="(input, option) => {
-            return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }">
-          <a-select-option :value="$t('label.account')">{{ $t('label.account') }}</a-select-option>
-          <a-select-option :value="$t('label.project')">{{ $t('label.project') }}</a-select-option>
-        </a-select>
-      </div>
-
-      <div class="form__item" v-if="isAdminOrDomainAdmin()" >
-        <p class="form__label"><span class="required">*</span>{{ $t('label.domain') }}</p>
-        <a-select
-          @change="changeDomain"
-          v-model:value="selectedDomain"
-          showSearch
-          optionFilterProp="label"
-          :filterOption="(input, option) => {
-            return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }" >
-          <a-select-option v-for="domain in domains" :key="domain.name" :value="domain.id" :label="domain.path || domain.name || domain.description">
-            <span>
-              <resource-icon v-if="domain && domain.icon" :image="domain.icon.base64image" size="1x" style="margin-right: 5px"/>
-              <block-outlined v-else style="margin-right: 5px" />
-              {{ domain.path || domain.name || domain.description }}
-            </span>
-          </a-select-option>
-        </a-select>
-      </div>
-
-      <template v-if="selectedAccountType === $t('label.account')">
-        <div class="form__item" v-if="isAdminOrDomainAdmin()">
-          <p class="form__label"><span class="required">*</span>{{ $t('label.account') }}</p>
-          <a-select
-            @change="changeAccount"
-            v-model:value="selectedAccount"
-            showSearch
-            optionFilterProp="value"
-            :filterOption="(input, option) => {
-              return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option v-for="account in accounts" :key="account.name" :value="account.name">
-              <span>
-                <resource-icon v-if="account && account.icon" :image="account.icon.base64image" size="1x" style="margin-right: 5px"/>
-                <team-outlined v-else style="margin-right: 5px" />
-                {{ account.name }}
-              </span>
-            </a-select-option>
-          </a-select>
-          <span v-if="accountError" class="required">{{ $t('label.required') }}</span>
-        </div>
       </template>
-
-      <template v-else>
-        <div class="form__item">
-          <p class="form__label"><span class="required">*</span>{{ $t('label.project') }}</p>
-          <a-select
-            @change="changeProject"
-            v-model:value="selectedProject"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return  option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }" >
-            <a-select-option v-for="project in projects" :key="project.id" :value="project.id" :label="project.name">
-              <span>
-                <resource-icon v-if="project && project.icon" :image="project.icon.base64image" size="1x" style="margin-right: 5px"/>
-                <project-outlined v-else style="margin-right: 5px" />
-                {{ project.name }}
-              </span>
-            </a-select-option>
-          </a-select>
-          <span v-if="projectError" class="required">{{ $t('label.required') }}</span>
-        </div>
-      </template>
-
-      <div class="submit-btn">
-        <a-button @click="closeAction">
-          {{ $t('label.cancel') }}
-        </a-button>
-        <a-button type="primary" @click="submitData" ref="submit">
-          {{ $t('label.submit') }}
-        </a-button>
-      </div>
-
-    </div>
-
-  </div>
+    </a-alert>
+    <a-alert v-if="lookupError" class="reservation-notice" type="error" show-icon :message="lookupError">
+      <template #action><a-button :disabled="pending" @click="initialize">{{ $t('label.refresh') }}</a-button></template>
+    </a-alert>
+    <a-form-item name="ownerType" :label="$t('label.accounttype')">
+      <a-select v-model:value="form.ownerType" :disabled="locked || !!pinnedProject" @change="changeType">
+        <a-select-option value="account">{{ $t('label.account') }}</a-select-option>
+        <a-select-option value="project">{{ $t('label.project') }}</a-select-option>
+      </a-select>
+    </a-form-item>
+    <a-form-item v-if="selectors && !pinnedProject" name="domainId" :label="$t('label.domain')">
+      <a-select
+        v-model:value="form.domainId"
+        show-search
+        optionFilterProp="label"
+        :loading="domainsLoading"
+        :disabled="locked || domainsLoading || !domains.length"
+        @change="changeDomain">
+        <a-select-option v-for="domain in domains" :key="domain.id" :value="domain.id" :label="domain.path || domain.name">{{ domain.path || domain.name }}</a-select-option>
+      </a-select>
+    </a-form-item>
+    <a-form-item v-if="form.ownerType === 'account' && selectors" name="account" :label="$t('label.account')">
+      <a-select
+        v-model:value="form.account"
+        show-search
+        optionFilterProp="label"
+        :loading="ownerLoading"
+        :disabled="locked || ownerLoading || !accounts.length"
+        @change="selectionChanged">
+        <a-select-option v-for="account in accounts" :key="account.id || account.name" :value="account.name" :label="account.name">{{ account.name }}</a-select-option>
+      </a-select>
+    </a-form-item>
+    <a-form-item v-else-if="form.ownerType === 'account'" :label="$t('label.account')">{{ user.account }}</a-form-item>
+    <a-form-item v-if="form.ownerType === 'project'" name="projectId" :label="$t('label.project')">
+      <a-select
+        v-model:value="form.projectId"
+        show-search
+        optionFilterProp="label"
+        :loading="ownerLoading"
+        :disabled="locked || ownerLoading || !!pinnedProject || !projects.length"
+        @change="selectionChanged">
+        <a-select-option v-for="project in projects" :key="project.id" :value="project.id" :label="project.name">{{ project.name }}</a-select-option>
+      </a-select>
+    </a-form-item>
+    <div v-if="candidatesReady && ((form.ownerType === 'project' && !projects.length) || (selectors && form.ownerType === 'account' && !accounts.length))" role="status">{{ $t('message.public.ip.reserve.empty') }}</div>
+    <a-collapse v-if="displaySupported" ghost class="reservation-notice">
+      <a-collapse-panel key="display" :header="$t('label.public.ip.display.options')">
+        <a-form-item name="fordisplay" :label="$t('label.public.ip.display')" :extra="$t('message.public.ip.display.help')">
+          <a-switch v-model:checked="form.fordisplay" :aria-label="$t('label.public.ip.display')" :disabled="locked" />
+        </a-form-item>
+      </a-collapse-panel>
+    </a-collapse>
+    <mold-dialog-actions :busy="pending" @keydown.ctrl.enter.prevent="!$event.repeat && submitData()">
+      <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
+      <a-button type="primary" :loading="pending" :disabled="!canSubmit" @click="submitData">{{ $t('label.public.ip.reserve.confirm') }}</a-button>
+    </mold-dialog-actions>
+  </a-form>
 </template>
 
 <script>
 import { getAPI, postAPI } from '@/api'
-import ResourceIcon from '@/components/view/ResourceIcon'
-import { isAdminOrDomainAdmin } from '@/role'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
+import { publicIpState } from '@/utils/publicIpPresentation'
+import { networkCollection, networkError } from '@/utils/networkLifecycle'
+import { displayWriteSupported, displayBoolean } from '@/utils/publicIpDisplay'
+import { reservationScope, reservationParams, reservationMatches, reservationOperation, rememberReservation, forgetReservation } from '@/utils/publicIpReservation'
 
 export default {
-  name: 'AssignInstance',
-  props: {
-    resource: {
-      type: Object,
-      required: true
-    }
-  },
-  components: {
-    ResourceIcon
-  },
-  inject: ['parentFetchData'],
+  name: 'ReservePublicIP',
+  components: { MoldDialogActions, PublicIpStatus },
+  props: { resource: { type: Object, required: true }, action: { type: Object, default: () => ({}) } },
+  emits: ['close-action', 'refresh-data'],
   data () {
     return {
+      form: { ownerType: 'account', domainId: null, account: null, projectId: null, fordisplay: true },
       domains: [],
       accounts: [],
       projects: [],
-      selectedAccountType: 'Account',
-      selectedDomain: null,
-      selectedAccount: null,
-      selectedProject: null,
-      accountError: false,
-      projectError: false,
-      loading: false
+      domainsLoading: false,
+      ownerLoading: false,
+      lookupError: '',
+      error: '',
+      pending: false,
+      checking: false,
+      candidatesReady: false,
+      active: true,
+      version: 0,
+      lookupVersion: 0,
+      operation: null,
+      acknowledged: false
     }
   },
-  created () {
-    if (isAdminOrDomainAdmin()) {
-      this.fetchData()
-    } else {
-      this.fetchProjects()
+  computed: {
+    displaySupported () { return displayWriteSupported(this.$store.getters, 'reserveIpAddress') },
+    user () { return this.$store.getters.userInfo || {} },
+    selectors () { return ['Admin', 'DomainAdmin'].includes(this.user.roletype) },
+    pinnedProject () { const id = this.$store.getters.project?.id; return id && id !== '-1' ? id : '' },
+    contextKey () { return reservationScope(this.resource, this.$route, this.$store) },
+    locked () { return this.pending || !!this.operation },
+    canSubmit () { return this.active && this.resource.state === 'Free' && 'reserveIpAddress' in (this.$store.getters.apis || {}) && this.candidatesReady && !this.lookupError && !this.locked && !this.ownerLoading && !this.domainsLoading },
+    rules () {
+      const required = [{ required: true, message: this.$t('label.required') }]
+      return { ownerType: required, domainId: this.selectors && !this.pinnedProject ? required : [], account: this.selectors && this.form.ownerType === 'account' ? required : [], projectId: this.form.ownerType === 'project' ? required : [] }
+    },
+    ownerPreview () {
+      if (this.form.ownerType === 'project') return this.projects.find(p => p.id === this.form.projectId)?.name || this.operation?.params.projectid || '—'
+      const domain = this.domains.find(d => d.id === this.form.domainId)
+      return [this.selectors ? this.form.account : this.user.account, domain?.path || domain?.name || this.form.domainId].filter(Boolean).join(' / ') || '—'
+    },
+    observedOwner () {
+      const ip = this.operation?.actual || {}
+      const state = publicIpState(ip.state)
+      const label = this.$t(state.key) + (!state.state && state.raw ? ' (' + state.raw + ')' : '')
+      return [ip.ipaddress, label, ip.project || ip.projectid || ip.account, ip.domain || ip.domainid].filter(Boolean).join(' / ')
     }
   },
+  watch: { contextKey () { this.initialize() } },
+  created () { this.initialize() },
+  activated () { if (!this.active) { this.active = true; this.initialize() } },
+  deactivated () { this.invalidate() },
+  beforeUnmount () { this.invalidate() },
   methods: {
-    isAdminOrDomainAdmin () {
-      return isAdminOrDomainAdmin()
+    current (scope, version = this.version) { return this.active && scope === this.contextKey && version === this.version && this.action?.currentAction?.reservationCurrent?.() !== false },
+    invalidate () { this.active = false; this.version++; this.lookupVersion++ },
+    selectionChanged () { this.version++; this.error = ''; if (this.$refs.form) this.$refs.form.clearValidate() },
+    async initialize () {
+      const scope = this.contextKey; const version = ++this.version; this.lookupVersion++
+      this.lookupError = ''; this.error = ''; this.pending = false; this.checking = false; this.acknowledged = false
+      this.domains = []; this.accounts = []; this.projects = []; this.candidatesReady = false
+      this.operation = reservationOperation(scope)
+      const previous = this.operation
+      this.form = { ownerType: previous?.params.projectid || this.pinnedProject ? 'project' : 'account', domainId: previous?.domainId || this.user.domainid || null, account: previous?.params.account || null, projectId: previous?.params.projectid || this.pinnedProject || null, fordisplay: previous?.params.fordisplay ?? true }
+      this.domainsLoading = false
+      if (this.selectors && !this.pinnedProject) {
+        this.domainsLoading = true
+        try {
+          const domains = await this.collection('listDomains', 'domain', { listall: true, details: 'min', ignoreproject: true }, () => this.current(scope, version))
+          if (!this.current(scope, version)) return
+          this.domains = domains
+          this.form.domainId = domains.find(d => d.id === this.form.domainId)?.id || domains[0]?.id || null
+          if (!this.form.domainId) throw new Error('empty')
+        } catch (error) {
+          if (this.current(scope, version)) this.lookupError = this.$t('message.public.ip.reserve.lookup')
+          return
+        } finally { if (this.current(scope, version)) this.domainsLoading = false }
+      }
+      if (this.current(scope, version)) await this.loadOwners()
     },
-    fetchData () {
-      this.loading = true
-      getAPI('listDomains', {
-        response: 'json',
-        listAll: true,
-        showicon: true,
-        details: 'min'
-      }).then(response => {
-        this.domains = response.listdomainsresponse.domain || []
-        this.selectedDomain = this.domains[0].id
-        this.fetchAccounts()
-        this.fetchProjects()
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.loading = false
-      })
+    async collection (api, field, params, current) {
+      if (!(api in (this.$store.getters.apis || {}))) throw new Error('permission')
+      return networkCollection((...args) => { if (!current()) throw new Error('stale'); return getAPI(...args) }, api, field, params)
     },
-    fetchAccounts () {
-      this.loading = true
-      getAPI('listAccounts', {
-        response: 'json',
-        domainId: this.selectedDomain,
-        showicon: true,
-        state: 'Enabled',
-        isrecursive: false
-      }).then(response => {
-        this.accounts = response.listaccountsresponse.account || []
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.loading = false
-      })
+    changeType () { this.form.account = null; this.form.projectId = this.pinnedProject || null; this.selectionChanged(); this.loadOwners() },
+    changeDomain () { this.form.account = null; this.form.projectId = null; this.selectionChanged(); this.loadOwners() },
+    async loadOwners () {
+      const scope = this.contextKey; const version = this.version; const lookup = ++this.lookupVersion
+      const current = () => this.current(scope, version) && lookup === this.lookupVersion
+      const type = this.form.ownerType; const domainid = this.form.domainId
+      this.ownerLoading = true; this.lookupError = ''; this.candidatesReady = false; this.accounts = []; this.projects = []
+      try {
+        if (type === 'project') {
+          const projects = await this.collection('listProjects', 'project', { listall: true, state: 'Active', details: 'min', ignoreproject: true, ...(this.pinnedProject ? { id: this.pinnedProject } : { domainid, isrecursive: false }) }, current)
+          if (!current()) return
+          this.projects = projects
+          if (!projects.some(p => p.id === this.form.projectId)) this.form.projectId = null
+        } else if (type === 'account' && this.selectors) {
+          if (!domainid) throw new Error('domain')
+          const accounts = await this.collection('listAccounts', 'account', { domainid, state: 'Enabled', isrecursive: false, ignoreproject: true }, current)
+          if (!current()) return
+          this.accounts = accounts
+          if (!accounts.some(a => a.name === this.form.account)) this.form.account = null
+        }
+        if (current()) this.candidatesReady = true
+      } catch (error) { if (current()) this.lookupError = this.$t('message.public.ip.reserve.lookup') } finally { if (current()) this.ownerLoading = false }
     },
-    fetchProjects () {
-      this.loading = true
-      getAPI('listProjects', {
-        response: 'json',
-        domainId: this.selectedDomain,
-        state: 'Active',
-        showicon: true,
-        details: 'min',
-        isrecursive: false
-      }).then(response => {
-        this.projects = response.listprojectsresponse.project || []
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.loading = false
-      })
+    async readAddress (scope, version) {
+      const json = await getAPI('listPublicIpAddresses', {
+        id: this.resource.id,
+        state: 'Free,Reserved,Allocated,Allocating,Releasing',
+        allocatedonly: false,
+        listall: true,
+        ignoreproject: true,
+        ...(this.pinnedProject ? { projectid: this.pinnedProject } : {})
+      }, { preserveOnFailure: true })
+      if (!this.current(scope, version)) return null
+      const body = json?.listpublicipaddressesresponse
+      if (!body || body.errorcode) throw new Error('read')
+      const address = body.publicipaddress?.find(ip => ip.id === this.resource.id) || null
+      if (!address && this.displaySupported) {
+        const hidden = await getAPI('listPublicIpAddresses', { id: this.resource.id, state: 'Free,Reserved,Allocated,Allocating,Releasing', allocatedonly: false, listall: true, fordisplay: false, ignoreproject: true, ...(this.pinnedProject ? { projectid: this.pinnedProject } : {}) }, { preserveOnFailure: true })
+        if (!this.current(scope, version)) return null
+        const result = hidden?.listpublicipaddressesresponse
+        if (!result || result.errorcode) throw new Error('read')
+        return result.publicipaddress?.find(ip => ip.id === this.resource.id) || null
+      }
+      return address
     },
-    changeDomain () {
-      this.selectedAccount = null
-      this.selectedProject = null
-      this.fetchAccounts()
-      this.fetchProjects()
+    async submitData () {
+      if (!this.canSubmit) return
+      const scope = this.contextKey; const version = this.version
+      this.pending = true; this.error = ''
+      let operation
+      try {
+        await this.$refs.form.validate()
+        if (!this.current(scope, version)) return
+        const params = reservationParams(this.resource.id, this.form, this.user, this.selectors, this.accounts, this.projects, this.pinnedProject)
+        if (this.displaySupported) {
+          if (!displayBoolean(this.form.fordisplay)) throw new Error('display')
+          params.fordisplay = this.form.fordisplay
+        }
+        const current = await this.readAddress(scope, version)
+        if (!this.current(scope, version)) return
+        if (current?.state !== 'Free') { this.error = this.$t('message.public.ip.reserve.unavailable'); return }
+        operation = { params, domainId: this.form.domainId, status: 'pending', actual: null, lastRead: null, receipt: false }
+        rememberReservation(scope, operation)
+        const json = await postAPI('reserveIpAddress', { ...params, ignoreproject: true }, { preserveOnFailure: true })
+        const ip = json?.reserveipaddressresponse?.ipaddress
+        operation.actual = ip || null; operation.receipt = reservationMatches(ip, { ...params, fordisplay: undefined })
+        operation.status = operation.receipt ? 'verify' : ip ? 'mismatch' : 'unknown'
+        if (!this.current(scope, version)) return
+        this.operation = operation
+        if (operation.receipt) await this.recheck()
+      } catch (error) {
+        if (operation) {
+          const failure = networkError(error)
+          if (failure.definitive) forgetReservation(scope)
+          else operation.status = 'unknown'
+          if (this.current(scope, version)) {
+            this.operation = failure.definitive ? null : operation
+            this.error = failure.definitive ? failure.text : ''
+          }
+        } else if (this.current(scope, version) && !error?.errorFields) this.error = this.$t('message.public.ip.reserve.unavailable')
+      } finally { if (this.current(scope, version)) this.pending = false }
     },
-    changeAccount () {
-      this.selectedProject = null
+    async recheck () {
+      if (!this.operation || this.checking) return
+      const scope = this.contextKey; const version = this.version; const operation = this.operation
+      this.checking = true; this.error = ''; this.acknowledged = false
+      try {
+        const ip = await this.readAddress(scope, version)
+        if (!this.current(scope, version) || operation !== this.operation) return
+        operation.lastRead = ip; operation.actual = ip || operation.actual
+        if (operation.receipt && reservationMatches(ip, operation.params)) {
+          forgetReservation(scope); this.operation = null
+          this.$notification.success({ message: this.$t('label.action.reserve.ip'), description: this.ownerPreview })
+          this.$emit('refresh-data'); this.closeAction()
+        } else if (ip?.state === 'Reserved' && !reservationMatches(ip, operation.params)) operation.status = 'mismatch'
+      } catch (error) { if (this.current(scope, version)) this.error = this.$t('message.public.ip.reserve.read') } finally { if (this.current(scope, version)) this.checking = false }
     },
-    changeProject () {
-      this.selectedAccount = null
+    endTracking () {
+      if (this.pending || this.checking || !this.acknowledged || this.operation?.lastRead?.state !== 'Free') return
+      forgetReservation(this.contextKey); this.operation = null; this.acknowledged = false; this.error = ''
     },
     closeAction () {
-      this.$emit('close-action')
-    },
-    submitData () {
-      if (this.loading) return
-
-      let variableKey = ''
-      let variableValue = ''
-
-      if (this.selectedAccountType === 'Account') {
-        if (!this.selectedAccount && isAdminOrDomainAdmin()) {
-          this.accountError = true
-          return
-        }
-        variableKey = 'account'
-        variableValue = this.selectedAccount
-      } else if (this.selectedAccountType === 'Project') {
-        if (!this.selectedProject) {
-          this.projectError = true
-          return
-        }
-        variableKey = 'projectid'
-        variableValue = this.selectedProject
-      }
-
-      this.loading = true
-      postAPI('reserveIpAddress', {
-        response: 'json',
-        id: this.resource.id,
-        domainid: this.selectedDomain,
-        [variableKey]: variableValue
-      }).then(response => {
-        this.$notification.success({
-          message: this.$t('label.action.reserve.ip')
-        })
-        this.closeAction()
-        this.$emit('refresh-data')
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.loading = false
-      })
+      if (this.pending && this.operation) return
+      const current = this.current(this.contextKey)
+      if (current && this.operation) this.$emit('refresh-data')
+      this.invalidate()
+      if (current) this.$emit('close-action')
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
-  .form {
-    width: 85vw;
-
-    @media (min-width: 760px) {
-      width: 500px;
-    }
-
-    display: flex;
-    flex-direction: column;
-
-    &__item {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-
-    &__label {
-      display: flex;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-  }
-
-  .submit-btn {
-    margin-top: 10px;
-    align-self: flex-end;
-
-    button {
-      margin-left: 10px;
-    }
-  }
-
-  .required {
-    margin-right: 2px;
-    color: red;
-    font-size: 0.7rem;
-  }
-
-  .loading {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-  }
+<style scoped>
+.public-ip-reservation { width: 100%; min-width: 0; }
+.reservation-notice { margin-bottom: 16px; }
+.reservation-notice .ant-btn, .reservation-notice .ant-checkbox-wrapper { margin-top: 8px; margin-right: 8px; }
 </style>

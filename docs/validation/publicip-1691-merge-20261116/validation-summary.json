@@ -1,0 +1,22 @@
+{
+  "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+  "actualEuropaTarget": "b777311a708e0e652f05025fecb2660dfa90f74d",
+  "uiSuites": 47,
+  "uiTests": 771,
+  "apiTests": 32,
+  "apiModulePackage": "PASS with -Pdisablecheckstyle",
+  "baselineCheckstyleViolations": 46,
+  "newPrFilesWithCheckstyleViolations": 0,
+  "responsiveThemeCases": 24,
+  "actualReservations": 2,
+  "actualDisplayJobs": 4,
+  "actualReleases": 2,
+  "inventoryGroupsEqual": 16,
+  "runtimeBothClusters": "PASS",
+  "fullBuildDispatched": false,
+  "scope": "Public IP integration and changed shared UI read/format/return boundaries; no repeated guest network/VPC/VNF lifecycle or FTCTL operation tests",
+  "ratBaselineUnknown": 4077,
+  "ratHeadUnknown": 4077,
+  "ratAddedUnknown": 0,
+  "evidenceLicenseHeadersAdded": 390
+}

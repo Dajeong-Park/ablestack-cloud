@@ -1,0 +1,2043 @@
+[
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "0a089eba-061a-419d-93cd-02e9f3b4a164",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "c7e46392-cbcd-4503-a810-606b5afaa884",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listVirtualMachinesMetrics",
+    "params": {
+      "listall": "true",
+      "id": "b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listVirtualMachinesMetrics",
+    "params": {
+      "listall": "true",
+      "id": "b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTemplates",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listOsTypes",
+    "params": {
+      "id": "7f1512c0-b253-11f1-a895-0024814c313f",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "getDrVmProtectionView",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listAnnotations",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listNetworks",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listKubernetesClusters",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listVirtualMachinesMetrics",
+    "params": {
+      "listall": "true",
+      "id": "b1a6c573-8c82-4fe8-9537-07e2cd96c1fc",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTemplates",
+    "params": {
+      "id": "ade68127-cd11-48d4-8e5f-ce9bcd53592c",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "getDrVmProtectionView",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listOsTypes",
+    "params": {
+      "id": "7f1512c0-b253-11f1-a895-0024814c313f",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listApis",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "getWallAlertAvailability",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listZones",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listZones",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listAlerts",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listEvents",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listCapacity",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPods",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listClusters",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listHosts",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listHosts",
+    "params": {
+      "listall": "true"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listStoragePools",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listSystemVms",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listRouters",
+    "params": {
+      "listall": "true",
+      "projectid": "-1"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listVirtualMachines",
+    "params": {
+      "listall": "true",
+      "projectid": "-1",
+      "page": "1",
+      "pagesize": "1"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "getWallAlertAvailability",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listHostsMetrics",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "getWallAlertAvailability",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listHostsMetrics",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 31,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 31,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listVPCs",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTemplates",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "1",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listHostsMetrics",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "200",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listVirtualMachines",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "200",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listNetworks",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "id": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+      "listall": "true"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listWallAlertSilences",
+    "params": {
+      "page": "1",
+      "pagesize": "1000",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listVirtualMachinesMetrics",
+    "params": {
+      "listall": "true",
+      "id": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listVirtualMachinesMetrics",
+    "params": {
+      "listall": "true",
+      "id": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTemplates",
+    "params": {
+      "id": "bc71c53f-767b-4674-b993-855e6b73347c",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listAnnotations",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listNetworks",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listKubernetesClusters",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listOsTypes",
+    "params": {
+      "id": "22ae0ea3-b23b-11f1-990e-0024811f8935",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listApis",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "getWallAlertAvailability",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listWallAlertRules",
+    "params": {
+      "page": "1",
+      "pagesize": "200",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listConfigurations",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listNetworks",
+    "params": {
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "page": "1",
+      "pagesize": "500"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listZones",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listZones",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listAlerts",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listEvents",
+    "params": {
+      "page": "1",
+      "pagesize": "8",
+      "listall": "true"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listAccounts",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "getWallAlertAvailability",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listWallAlertRules",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listHostsMetrics",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listVirtualMachines",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listWallAlertSilences",
+    "params": {
+      "page": "1",
+      "pagesize": "1000"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listHostsMetrics",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "getWallAlertAvailability",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listWallAlertRules",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listWallAlertSilences",
+    "params": {
+      "page": "1",
+      "pagesize": "1000"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listTags",
+    "params": {
+      "listall": "true",
+      "page": "1",
+      "pagesize": "100"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listResourceIcon",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listHostsMetrics",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "listPublicIpAddresses",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  },
+  {
+    "cluster": 32,
+    "command": "readyForShutdown",
+    "params": {}
+  }
+]

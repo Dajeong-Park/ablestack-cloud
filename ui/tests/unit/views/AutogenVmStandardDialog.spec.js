@@ -108,3 +108,19 @@ test('synchronous recovery shares the VM standard dialog and keeps its existing 
   c.execSubmit({}); await flushPromises()
   expect(c.vmActionUnknown).toBe(false); expect(c.handleResponse).toHaveBeenCalledTimes(1)
 })
+
+test('Public IP reservation uses a fresh VM-standard dialog and invalidates its previous instance', () => {
+  c.$route.meta.name = 'publicip'; c.resource = { id, state: 'Free' }; c.$store.getters.apis.reserveIpAddress = {}
+  const action = { api: 'reserveIpAddress', component: {} }
+  c.execAction(action, false)
+  expect(c.currentAction.standardDialogSize).toBe('md'); expect(Autogen.computed.publicIpReservationDialog.call(c)).toBe(true)
+  const current = c.currentAction.reservationCurrent; expect(current()).toBe(true)
+  c.execAction(action, false); expect(current()).toBe(false)
+})
+
+test.each(['permission', 'state', 'group'])('Public IP %s gate prevents opening an invalid reservation', kind => {
+  c.$route.meta.name = 'publicip'; c.resource = { id, state: kind === 'state' ? 'Reserved' : 'Free' }
+  c.$store.getters.apis = kind === 'permission' ? {} : { reserveIpAddress: {} }; c.showAction = false
+  c.execAction({ api: 'reserveIpAddress', component: {} }, kind === 'group')
+  expect(c.showAction).toBe(false)
+})

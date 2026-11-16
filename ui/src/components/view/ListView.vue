@@ -401,7 +401,7 @@
         <template v-else>
           <router-link
             v-if="['/publicip', '/privategw'].includes($route.path)"
-            :to="{ path: $route.path + '/' + record.id }"
+            :to="$route.path === '/publicip' ? publicIpDetailLocation($route, record) : { path: $route.path + '/' + record.id }"
           >{{ ipAddress(text, record) }}</router-link>
           <span v-else>
             <copy-label v-if="ipAddress(text, record)" :label="ipAddress(text, record)" />
@@ -546,7 +546,8 @@
       </template>
       <template v-if="column.key === 'state'">
         <span class="list-state-with-flatten">
-          <template-availability v-if="['template', 'iso'].includes($route.meta?.name)" :kind="$route.meta.name" :record="record" compact single-line />
+          <public-ip-status v-if="$route.meta?.name === 'publicip'" :value="text" />
+          <template-availability v-else-if="['template', 'iso'].includes($route.meta?.name)" :kind="$route.meta.name" :record="record" compact single-line />
           <status v-else-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
           <status v-else :text="text ? text : ''" :displayLabel="column.stateLabel ? column.stateLabel(record) : ''" displayText />
           <clone-flatten-control :record="record" @refresh="$emit('refresh')" />
@@ -711,7 +712,8 @@
         </template>
       </template>
       <template v-if="column.key === 'associatednetworkname' && $route.name !== 'autoscalevmgroup'">
-        <router-link :to="{ path: '/guestnetwork/' + record.associatednetworkid }">{{ text }}</router-link>
+        <public-ip-network-link v-if="$route.name === 'publicip' || $route.meta?.name === 'publicip'" :record="record" />
+        <router-link v-else :to="{ path: '/guestnetwork/' + record.associatednetworkid }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'vpcname'">
         <a v-if="record.vpcid">
@@ -938,8 +940,9 @@
         <status :text="record.enabled ? record.enabled.toString() : 'false'" />
         {{ record.enabled ? 'Enabled' : 'Disabled' }}
       </template>
+      <template v-if="$route.meta?.name === 'publicip' && ['allocated', 'issystem', 'issourcenat', 'isstaticnat', 'fordisplay'].includes(column.key)"><public-ip-detail-value :resource="record" :field="column.key" compact /></template>
       <template
-        v-if="['created', 'sent', 'removed', 'effectiveDate', 'endDate', 'allocated', 'startdate', 'enddate'].includes(column.key) && !(['startdate', 'enddate'].includes(column.key) && ['vm', 'vnfapp', 'autoscalevmgroup'].includes($route.path.split('/')[1])) || (['startdate'].includes(column.key) && ['webhook'].includes($route.path.split('/')[1])) || (column.key === 'allocated' && ['asnumbers', 'publicip', 'ipv4subnets'].includes($route.meta.name) && text)"
+        v-if="!($route.meta?.name === 'publicip' && column.key === 'allocated') && (['created', 'sent', 'removed', 'effectiveDate', 'endDate', 'allocated', 'startdate', 'enddate'].includes(column.key) && !(['startdate', 'enddate'].includes(column.key) && ['vm', 'vnfapp', 'autoscalevmgroup'].includes($route.path.split('/')[1])) || (['startdate'].includes(column.key) && ['webhook'].includes($route.path.split('/')[1])) || (column.key === 'allocated' && ['asnumbers', 'publicip', 'ipv4subnets'].includes($route.meta.name) && text))"
       >
         {{ text && $toLocaleDate(text) }}
       </template>
@@ -1273,6 +1276,9 @@ import { createPathBasedOnVmType } from '@/utils/plugins'
 import { validateLinks } from '@/utils/links'
 import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
+import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
+import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
 import cronstrue from 'cronstrue/i18n'
@@ -1283,6 +1289,7 @@ import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { publicIpDetailLocation } from '@/utils/publicIpSearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -1292,6 +1299,9 @@ export default {
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
+    PublicIpStatus,
+    PublicIpDetailValue,
+    PublicIpNetworkLink,
     BackupProgress,
     SharedFSCapacitySummary,
     SharedFSBootRecoverySummary,
@@ -1523,6 +1533,7 @@ export default {
   },
   methods: {
     vnfDetailLocation,
+    publicIpDetailLocation,
     vmDisplayName,
     isVmIdentityRoute,
     templateDetailLocation,
@@ -1964,6 +1975,7 @@ export default {
       return name.field ?? name.customTitle ?? Object.keys(name)[0]
     },
     getColumnTitle (name) {
+      if (this.$route?.meta?.name === 'publicip' && this.getColumnKey(name) === 'allocated') return 'public.ip.allocated'
       if (typeof name !== 'object' || name === null) {
         return name
       }

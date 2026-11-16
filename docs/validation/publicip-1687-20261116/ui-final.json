@@ -1,0 +1,20 @@
+[
+  {
+    "cluster": 31,
+    "height": 449,
+    "main": "/Public IP 주소/10.10.31.105업데이트\n작업\n10.10.31.105\n상태\n가능\n아이디\n956b6cb3-4bf8-41e4-b6df-12911f30e625 \nIP\n10.10.31.105 \nVM 이름\n—\n공용 네트워크\n8689dcfa-5d81-40d3-8db3-103be4a01d71\n연결된 게스트 네트워크\n—\nVPC\n—\n사용자 표시\n표시\nZone\nZone\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n이벤트\n코멘트\nIP 주소\n\n10.10.31.105\n아이디\n\n956b6cb3-4bf8-41e4-b6df-12911f30e625\nVLAN 값\n\n태그 없음 (Untagged)\n원문: vlan://untagged\nVLAN 범위 UUID\n\n6ce0457c-4b8f-46c5-8115-b85a08efaa63\n공용 네트워크\n\n8689dcfa-5d81-40d3-8db3-103be4a01d71\n연결된 게스트 네트워크\n\n—\nVPC\n\n—\n사용자 표시\n\n표시\n시스템\n\nfalse\nSource NAT\n\nfalse\nStatic NAT\n\nfalse\nVM 이름\n—\nZone\n\nZone",
+    "project": "기본 보기",
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625",
+    "width": 1102
+  },
+  {
+    "cluster": 32,
+    "height": 449,
+    "main": "/Public IP 주소/10.10.32.103업데이트\n작업\n10.10.32.103\n상태\n가능\n아이디\n77def528-fb75-42e3-a90f-46a6e9c5b90b \nIP\n10.10.32.103 \nVM 이름\n—\n공용 네트워크\n4216b0b3-d054-46ab-88dd-9d025a1f3eb5\n연결된 게스트 네트워크\n—\nVPC\n—\n사용자 표시\n표시\nZone\nZone\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n이벤트\n코멘트\nIP 주소\n\n10.10.32.103\n아이디\n\n77def528-fb75-42e3-a90f-46a6e9c5b90b\nVLAN 값\n\n태그 없음 (Untagged)\n원문: vlan://untagged\nVLAN 범위 UUID\n\nc206c328-6567-4793-a8d4-7ee2cade5451\n공용 네트워크\n\n4216b0b3-d054-46ab-88dd-9d025a1f3eb5\n연결된 게스트 네트워크\n\n—\nVPC\n\n—\n사용자 표시\n\n표시\n시스템\n\nfalse\nSource NAT\n\nfalse\nStatic NAT\n\nfalse\nVM 이름\n—\nZone\n\nZone",
+    "project": "기본 보기",
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "width": 1102
+  }
+]

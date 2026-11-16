@@ -1,0 +1,100 @@
+[
+  {
+    "cluster": 31,
+    "scenario": "tagged and long name-only",
+    "tagValue": "123원문: vlan://123",
+    "referenceLinks": []
+  },
+  {
+    "cluster": 32,
+    "scenario": "tagged and long name-only",
+    "tagValue": "123원문: vlan://123",
+    "referenceLinks": []
+  },
+  {
+    "cluster": 31,
+    "scenario": "null VLAN and ID-only refs",
+    "vlan": [
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "links": [
+      {
+        "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+        "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+      },
+      {
+        "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+      },
+      {
+        "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+        "text": "b3e7c062-c074-43cf-8374-0a3f74368874"
+      },
+      {
+        "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+        "text": "876d40cb-64e6-42a8-a5d4-1122c7c0f1b8"
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "scenario": "unknown provider and invalid refs",
+    "vlanValue": "vxlan://vendor/Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_<not-html>",
+    "referenceLinks": [],
+    "htmlElementInserted": false
+  },
+  {
+    "cluster": 32,
+    "scenario": "null VLAN and ID-only refs",
+    "vlan": [
+      {
+        "copies": [],
+        "field": "vlanname",
+        "links": [],
+        "text": "—"
+      },
+      {
+        "copies": [],
+        "field": "vlanid",
+        "links": [],
+        "text": "—"
+      }
+    ],
+    "links": [
+      {
+        "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+      },
+      {
+        "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+      },
+      {
+        "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+        "text": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8"
+      },
+      {
+        "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "text": "b8d2a843-3310-46c3-9d64-aed4d5684721"
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "scenario": "unknown provider and invalid refs",
+    "vlanValue": "vxlan://vendor/Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_Unknown_<not-html>",
+    "referenceLinks": [],
+    "htmlElementInserted": false
+  }
+]

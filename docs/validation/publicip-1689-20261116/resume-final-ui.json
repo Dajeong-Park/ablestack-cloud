@@ -1,0 +1,72 @@
+[
+  {
+    "cluster": 32,
+    "source": "0f6d1497c2b0f58e6320d157829188cb00612152",
+    "reserved": 0,
+    "free": 83,
+    "fixtureFree": "\t10.10.32.103\t\n가능\n\t—\t\t—\t\t\t\tZone\t",
+    "default": {
+      "body": "/Public IP 주소업데이트\n할당됨 \n프로젝트\n\t\n상태 : 할당됨\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당됨\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\t10.10.32.5   system\t\n할당 됨\n\t—\t\tv-1-VM\t2026. 9. 17. 오전 2:13:35\tsystem\tROOT\tZone\t\n\n\t10.10.32.6   system\t\n할당 됨\n\t—\t\ts-27-VM\t2026. 10. 1. 오전 3:15:46\tsystem\tROOT\tZone\t\n\n\t10.10.32.101   source-nat\t\n할당 됨\n\t—\tAS-PROD-32-AS01-VPC\t—\t2026. 10. 10. 오후 4:17:25\tepic1346-as01-user32\tROOT\tZone\t\n\n\t10.10.32.102\t\n할당 됨\n\tAS-PROD-32-AS01-VPC-Tier\tAS-PROD-32-AS01-VPC\t—\t2026. 10. 10. 오후 4:18:05\tepic1346-as01-user32\tROOT\tZone\t\n\n\t10.10.32.143   source-nat\t\n할당 됨\n\tasdsad\t\t—\t2026. 11. 12. 오전 12:52:20\tadmin\tROOT\tZone\t\n\n\t10.10.32.144   source-nat\t\n할당 됨\n\ttj-isolated-net\t\t—\t2026. 11. 11. 오전 5:17:57\tadmin\tROOT\tZone\t\n\n\t10.10.32.166   source-nat\t\n할당 됨\n\ttest\t\t—\t2026. 11. 16. 오전 12:57:51\tadmin\tROOT\tZone\t\n\n\t10.10.32.167\t\n할당 됨\n\tAS-PROD-32-AS01-net\t\t—\t2026. 10. 10. 오후 3:03:33\tadmin\tROOT\tZone\t\n\n\t10.10.32.168   source-nat\t\n할당 됨\n\tAS-PROD-32-AS01-net\t\t—\t2026. 10. 10. 오후 3:03:03\tadmin\tROOT\tZone\t\n\n\t10.10.32.169   source-nat\t\n할당 됨\n\tAS-PROD-32-AS01-userNetwork\t\t—\t2026. 10. 10. 오후 3:20:50\tepic1346-as01-user32\tROOT\tZone\t\n전체 10 개 항목 중 1-10 표시\n1\n20 / 쪽",
+      "ids": [
+        "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+        "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+        "d035d9a6-cb42-438f-893b-3353d20423e9",
+        "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+        "c7e46392-cbcd-4503-a810-606b5afaa884",
+        "078a87ba-8a96-4292-8f33-03163f599ef9",
+        "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+        "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+        "282aad30-4938-4de3-8412-d3098f4f4caf",
+        "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6"
+      ],
+      "selected": 0,
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated"
+    },
+    "theme": "#4b5563",
+    "localTimeBefore": "false",
+    "localTimeRestored": "false",
+    "cacheDisabled": false,
+    "viewportOverride": false,
+    "fetchInjection": false
+  },
+  {
+    "cluster": 31,
+    "source": "0f6d1497c2b0f58e6320d157829188cb00612152",
+    "reserved": 0,
+    "free": 18,
+    "fixtureFree": "\t10.10.31.105\t\n가능\n\t—\t\t—\t\t\t\tZone\t",
+    "default": {
+      "body": "/Public IP 주소업데이트\n할당됨 \n프로젝트\n\t\n상태 : 할당됨\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당됨\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\t10.10.31.5   system\t\n할당 됨\n\t—\t\tv-174-VM\t2026. 10. 6. 오전 10:53:29\tsystem\tROOT\tZone\t\n\n\t10.10.31.6   system\t\n할당 됨\n\t—\t\ts-173-VM\t2026. 10. 6. 오전 10:53:29\tsystem\tROOT\tZone\t\n\n\t10.10.31.100   source-nat\t\n할당 됨\n\trt1230-v13412-ha-gfs2-r17-net\t\t—\t2026. 10. 7. 오전 2:07:11\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.101   source-nat\t\n할당 됨\n\tk8s-ui1330-gfs2-net\t\t—\t2026. 10. 8. 오후 2:51:31\tadmin\tROOT\tZone\t\n\n\t10.10.31.102   source-nat\t\n할당 됨\n\trt1230-v13412-external-etcd-gfs2-r18-net\t\t—\t2026. 10. 7. 오전 2:47:47\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.103   source-nat\t\n할당 됨\n\tAS-PROD-31-AS01-net\t\t—\t2026. 10. 10. 오후 11:57:25\tadmin\tROOT\tZone\t\n\n\t10.10.31.106   source-nat\t\n할당 됨\n\t—\tqa-gn1569-31-reg-vpc\t—\t2026. 11. 10. 오후 6:31:08\tqa-gn1569-31-owner\tqa-gn1569-31-domain\tZone\t\n\n\t10.10.31.111   source-nat\t\n할당 됨\n\t—\trt1230-offline-custom-cni-r29-vpc\t—\t2026. 10. 7. 오후 2:43:49\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.126   source-nat\t\n할당 됨\n\trt1230-v1342-gfs2-r16-net\t\t—\t2026. 10. 7. 오전 1:18:48\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.127   source-nat\t\n할당 됨\n\trt1230-v1371-gfs2-r15-net\t\t—\t2026. 10. 6. 오후 11:23:48\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.128   source-nat\t\n할당 됨\n\trt1230-v1365-gfs2-r14-net\t\t—\t2026. 10. 6. 오후 11:01:02\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.129   source-nat\t\n할당 됨\n\trt1230-v1359-gfs2-r13-net\t\t—\t2026. 10. 6. 오후 10:06:56\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.130\t\n할당 됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t2026. 10. 6. 오후 9:24:17\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.131\t\n할당 됨\n\trt1230-v1365-gfs2-r9-net\t\t—\t2026. 10. 6. 오후 8:32:31\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.132\t\n할당 됨\n\trt1230-gfs2-v13412-r3-net\t\t—\t2026. 10. 6. 오후 6:11:19\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.133   source-nat\t\n할당 됨\n\tAdmin-Isoloated-Net\t\t—\t2026. 10. 1. 오전 10:22:50\tadmin\tROOT\tZone\t\n\n\t10.10.31.134   source-nat\t\n할당 됨\n\trt1230-gfs2-v13412-r3-net\t\t—\t2026. 10. 6. 오전 7:43:17\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.135\t\n할당 됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t2026. 10. 6. 오후 5:30:52\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.136   source-nat\t\n할당 됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t2026. 10. 6. 오전 11:07:24\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.137   source-nat\t\n할당 됨\n\trt1230-v1365-gfs2-r9-net\t\t—\t2026. 10. 6. 오후 2:24:53\tk1230-20261006\tROOT\tZone\t\n전체 24 개 항목 중 1-20 표시\n1\n2\n20 / 쪽\n이동하기",
+      "ids": [
+        "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+        "e970e6b5-ded8-4a0b-b482-5b5d974677e8",
+        "0a089eba-061a-419d-93cd-02e9f3b4a164",
+        "3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6",
+        "2c2091e2-5140-44e9-89ef-63861af57e81",
+        "3719cabd-6eb8-40ea-a4e5-714e2b9544bb",
+        "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+        "19abe419-0c0f-49fd-ba98-9faf4ddd38e4",
+        "5420484d-25ba-440d-b645-668ccd46f29d",
+        "4d465d47-9e09-4b92-a97c-2fa3efb55fe4",
+        "dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd",
+        "fa236274-78c4-41cc-8f5d-e71ba30f4f86",
+        "40a1ca72-21ba-443c-a8d8-658849b06a4f",
+        "5a26bd05-9f8d-41c2-a412-955c528087a6",
+        "54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc",
+        "7b40411f-0835-4daf-ba78-830e2afb0d86",
+        "b44f2d1f-42e1-4265-9b70-9afa7f4c2841",
+        "30826d80-6e62-4a5c-9510-0a7dd14379ae",
+        "bcb6793a-241c-46dc-96c6-91b149ca37ff",
+        "f37ea048-904e-469d-9007-7336ac4bf212"
+      ],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated"
+    },
+    "theme": "#4b5563",
+    "localTimeBefore": "false",
+    "localTimeRestored": "true",
+    "cacheDisabled": false,
+    "viewportOverride": false,
+    "fetchInjection": false
+  }
+]

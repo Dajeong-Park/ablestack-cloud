@@ -1,0 +1,15 @@
+[
+  {
+    "cluster": 31,
+    "rolesPreserved": true,
+    "actualAllocating": 0,
+    "actualReleasing": 0,
+    "controlledProbeUnchangedFree": true
+  },
+  {
+    "cluster": 32,
+    "rolesPreserved": true,
+    "actualAllocating": 0,
+    "actualReleasing": 0
+  }
+]
