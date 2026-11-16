@@ -1,0 +1,7 @@
+[
+  "ListPublicIpDisplaySearchTest",
+  "ListIsosCmdByAdminTest",
+  "ListIsosCmdTest",
+  "RegisterIsoCmdTest",
+  "AttachedIsoResponseTest"
+]

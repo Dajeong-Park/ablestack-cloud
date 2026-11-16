@@ -1,0 +1,556 @@
+
+> cloudstack-ui@4.22.0 lint
+> vue-cli-service lint --no-fix src/components/view/DetailsTab.vue src/components/view/ImageDeployInstanceButton.vue src/components/view/InfoCard.vue src/components/view/IsoListCell.vue src/components/view/ListView.vue src/components/view/PublicIpReleaseSummary.vue src/components/view/PublicIpSearch.vue src/components/view/PublicIpSearchSelect.vue src/components/view/ResourceTags.vue src/components/view/ResourceView.vue src/components/view/SearchFilter.vue src/components/view/SearchView.vue src/components/widgets/Breadcrumb.vue src/components/widgets/IsoDetailValue.vue src/components/widgets/PublicIpDetailValue.vue src/components/widgets/PublicIpNetworkLink.vue src/components/widgets/PublicIpStatus.vue src/components/widgets/TemplateAvailability.vue src/components/widgets/TooltipButton.vue src/config/router.js src/config/section/compute.js src/config/section/image.js src/config/section/network.js src/store/modules/permission.js src/utils/imagePermissions.js src/utils/isoConsumption.js src/utils/isoEdit.js src/utils/isoModel.js src/utils/isoRegistration.js src/utils/isoSearch.js src/utils/isoZoneOperations.js src/utils/publicIpDetails.js src/utils/publicIpDisplay.js src/utils/publicIpPresentation.js src/utils/publicIpReservation.js src/utils/publicIpSearch.js src/utils/resourceTags.js src/utils/vmRead.js src/views/AutogenView.vue src/views/compute/InstanceTab.vue src/views/compute/VmIsoManager.vue src/views/compute/wizard/TemplateIsoSelection.vue src/views/image/IsoDownload.vue src/views/image/IsoVmAttach.vue src/views/image/IsoZoneOperations.vue src/views/image/IsoZones.vue src/views/image/RegisterOrUploadIso.vue src/views/image/TemplateZones.vue src/views/image/UpdateISO.vue src/views/image/UpdateTemplateIsoPermissions.vue src/views/network/EditPublicIpDisplay.vue src/views/network/PublicIpResource.vue src/views/network/ReservePublicIP.vue tests/unit/components/PublicIpDetailValue.spec.js tests/unit/components/PublicIpNetworkLink.spec.js tests/unit/components/PublicIpPresentation.spec.js tests/unit/components/PublicIpSearchSelect.spec.js tests/unit/components/view/ImageTagReadScope.spec.js tests/unit/components/view/IsoListSearch.spec.js tests/unit/utils/PublicIpSearch.spec.js tests/unit/utils/isoModel.spec.js tests/unit/utils/isoRegistration.spec.js tests/unit/utils/isoResource.spec.js tests/unit/utils/isoSearch.spec.js tests/unit/utils/resourceTags.spec.js tests/unit/views/AutogenIsoSearch.spec.js tests/unit/views/AutogenPublicIpDetail.spec.js tests/unit/views/AutogenPublicIpListScope.spec.js tests/unit/views/AutogenVmRead.spec.js tests/unit/views/AutogenVmStandardDialog.spec.js tests/unit/views/compute/ImageUserDataDialog.spec.js tests/unit/views/compute/VmIsoManager.spec.js tests/unit/views/image/IsoActionPolicy.spec.js tests/unit/views/image/IsoConsumption.spec.js tests/unit/views/image/IsoRegistration.spec.js tests/unit/views/image/IsoZoneOperations.spec.js tests/unit/views/image/IsoZonesReadScope.spec.js tests/unit/views/image/TemplateAvailabilityRead.spec.js tests/unit/views/image/TemplatePermissions.spec.js tests/unit/views/image/TemplateZoneSelection.spec.js tests/unit/views/image/UpdateISO.spec.js tests/unit/views/network/EditPublicIpDisplay.spec.js tests/unit/views/network/ReservePublicIP.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:54:1:
+  52 |
+  53 | test('VM common chips preserve raw identifiers without fetching outside the search scope', async () => {
+> 54 |  const c = { apiName: 'listPublicIpAddresses', filterVersion: 0, lookupScope: 'scope', $t: key => key }
+     | ^
+  55 |  await Filter.methods.resolveFilters.call(c, [{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'all' }, { key: 'issourcenat', value: 'false' }, { key: 'filter', value: 'all' }])
+  56 |  expect(c.searchFilters.map(({ key, value }) => ({ key, value }))).toEqual([{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'label.all' }, { key: 'issourcenat', value: 'label.no' }]); expect(getAPI).not.toHaveBeenCalled()
+  57 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:55:1:
+  53 | test('VM common chips preserve raw identifiers without fetching outside the search scope', async () => {
+  54 |  const c = { apiName: 'listPublicIpAddresses', filterVersion: 0, lookupScope: 'scope', $t: key => key }
+> 55 |  await Filter.methods.resolveFilters.call(c, [{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'all' }, { key: 'issourcenat', value: 'false' }, { key: 'filter', value: 'all' }])
+     | ^
+  56 |  expect(c.searchFilters.map(({ key, value }) => ({ key, value }))).toEqual([{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'label.all' }, { key: 'issourcenat', value: 'label.no' }]); expect(getAPI).not.toHaveBeenCalled()
+  57 | })
+  58 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:56:1:
+  54 |  const c = { apiName: 'listPublicIpAddresses', filterVersion: 0, lookupScope: 'scope', $t: key => key }
+  55 |  await Filter.methods.resolveFilters.call(c, [{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'all' }, { key: 'issourcenat', value: 'false' }, { key: 'filter', value: 'all' }])
+> 56 |  expect(c.searchFilters.map(({ key, value }) => ({ key, value }))).toEqual([{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'label.all' }, { key: 'issourcenat', value: 'label.no' }]); expect(getAPI).not.toHaveBeenCalled()
+     | ^
+  57 | })
+  58 |
+  59 | test('system public network lookup requires Zone before any API request', async () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:60:1:
+  58 |
+  59 | test('system public network lookup requires Zone before any API request', async () => {
+> 60 |  const c = context(); c.kind = 'networkid'; c.$store.getters.apis.listNetworks = {}
+     | ^
+  61 |  c.$getApiParams = () => ({ zoneid: {}, traffictype: {}, issystem: {}, page: {}, pagesize: {} })
+  62 |  await c.load(true); expect(c.allowed).toBe(false); expect(getAPI).not.toHaveBeenCalled()
+  63 |  c.scope.zoneid = id; getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ id, zoneid: id, traffictype: 'Public' }] } }); await c.load(true)
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:61:1:
+  59 | test('system public network lookup requires Zone before any API request', async () => {
+  60 |  const c = context(); c.kind = 'networkid'; c.$store.getters.apis.listNetworks = {}
+> 61 |  c.$getApiParams = () => ({ zoneid: {}, traffictype: {}, issystem: {}, page: {}, pagesize: {} })
+     | ^
+  62 |  await c.load(true); expect(c.allowed).toBe(false); expect(getAPI).not.toHaveBeenCalled()
+  63 |  c.scope.zoneid = id; getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ id, zoneid: id, traffictype: 'Public' }] } }); await c.load(true)
+  64 |  expect(c.allowed).toBe(true); expect(c.error).toBe(false); expect(c.rows).toHaveLength(1)
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:62:1:
+  60 |  const c = context(); c.kind = 'networkid'; c.$store.getters.apis.listNetworks = {}
+  61 |  c.$getApiParams = () => ({ zoneid: {}, traffictype: {}, issystem: {}, page: {}, pagesize: {} })
+> 62 |  await c.load(true); expect(c.allowed).toBe(false); expect(getAPI).not.toHaveBeenCalled()
+     | ^
+  63 |  c.scope.zoneid = id; getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ id, zoneid: id, traffictype: 'Public' }] } }); await c.load(true)
+  64 |  expect(c.allowed).toBe(true); expect(c.error).toBe(false); expect(c.rows).toHaveLength(1)
+  65 |  expect(getAPI.mock.calls[0][1]).toMatchObject({ zoneid: id, traffictype: 'Public', issystem: true })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:63:1:
+  61 |  c.$getApiParams = () => ({ zoneid: {}, traffictype: {}, issystem: {}, page: {}, pagesize: {} })
+  62 |  await c.load(true); expect(c.allowed).toBe(false); expect(getAPI).not.toHaveBeenCalled()
+> 63 |  c.scope.zoneid = id; getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ id, zoneid: id, traffictype: 'Public' }] } }); await c.load(true)
+     | ^
+  64 |  expect(c.allowed).toBe(true); expect(c.error).toBe(false); expect(c.rows).toHaveLength(1)
+  65 |  expect(getAPI.mock.calls[0][1]).toMatchObject({ zoneid: id, traffictype: 'Public', issystem: true })
+  66 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:64:1:
+  62 |  await c.load(true); expect(c.allowed).toBe(false); expect(getAPI).not.toHaveBeenCalled()
+  63 |  c.scope.zoneid = id; getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ id, zoneid: id, traffictype: 'Public' }] } }); await c.load(true)
+> 64 |  expect(c.allowed).toBe(true); expect(c.error).toBe(false); expect(c.rows).toHaveLength(1)
+     | ^
+  65 |  expect(getAPI.mock.calls[0][1]).toMatchObject({ zoneid: id, traffictype: 'Public', issystem: true })
+  66 | })
+  67 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:65:1:
+  63 |  c.scope.zoneid = id; getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ id, zoneid: id, traffictype: 'Public' }] } }); await c.load(true)
+  64 |  expect(c.allowed).toBe(true); expect(c.error).toBe(false); expect(c.rows).toHaveLength(1)
+> 65 |  expect(getAPI.mock.calls[0][1]).toMatchObject({ zoneid: id, traffictype: 'Public', issystem: true })
+     | ^
+  66 | })
+  67 |
+  68 | test('non-root keeps API-supported VLAN search without granting infrastructure filters', () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:69:1:
+  67 |
+  68 | test('non-root keeps API-supported VLAN search without granting infrastructure filters', () => {
+> 69 |  const fields = Search.computed.pickers.call({ supported: { vlanid: {}, networkid: {}, physicalnetworkid: {} }, root: false, scope: { projectid: '0' } })
+     | ^
+  70 |  expect(fields).toEqual(['vlanid'])
+  71 | })
+  72 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:70:1:
+  68 | test('non-root keeps API-supported VLAN search without granting infrastructure filters', () => {
+  69 |  const fields = Search.computed.pickers.call({ supported: { vlanid: {}, networkid: {}, physicalnetworkid: {} }, root: false, scope: { projectid: '0' } })
+> 70 |  expect(fields).toEqual(['vlanid'])
+     | ^
+  71 | })
+  72 |
+  73 | test.each([
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:74:1:
+  72 |
+  73 | test.each([
+> 74 |  { current: { filter: 'all' }, form: { issourcenat: undefined, isstaticnat: 'false' }, keyword: '' },
+     | ^
+  75 |  { current: { state: 'Allocated', keyword: 'old', q: 'old' }, form: { ipaddress: '192.0.2.1' }, keyword: 'old' }
+  76 | ])('the form and URL use the same normalization for cleared/all/exact-address inputs: %j', sample => {
+  77 |  const c = { $route: { query: { projectid: '0', ...sample.current } }, $store: { getters: { userInfo: { roletype: 'Admin', domainid: id }, project: {}, apis: { listPublicIpAddresses: {} } } }, supported: Object.fromEntries(['state', 'allocatedonly', 'domainid', 'isrecursive', 'projectid', 'ipaddress', 'keyword', 'issourcenat', 'isstaticnat'].map(k => [k, {}])), scope: { projectid: '0' }, form: sample.form, keyword: sample.keyword, tags: [], blocked: {}, $emit: jest.fn(), visible: true }
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:75:1:
+  73 | test.each([
+  74 |  { current: { filter: 'all' }, form: { issourcenat: undefined, isstaticnat: 'false' }, keyword: '' },
+> 75 |  { current: { state: 'Allocated', keyword: 'old', q: 'old' }, form: { ipaddress: '192.0.2.1' }, keyword: 'old' }
+     | ^
+  76 | ])('the form and URL use the same normalization for cleared/all/exact-address inputs: %j', sample => {
+  77 |  const c = { $route: { query: { projectid: '0', ...sample.current } }, $store: { getters: { userInfo: { roletype: 'Admin', domainid: id }, project: {}, apis: { listPublicIpAddresses: {} } } }, supported: Object.fromEntries(['state', 'allocatedonly', 'domainid', 'isrecursive', 'projectid', 'ipaddress', 'keyword', 'issourcenat', 'isstaticnat'].map(k => [k, {}])), scope: { projectid: '0' }, form: sample.form, keyword: sample.keyword, tags: [], blocked: {}, $emit: jest.fn(), visible: true }
+  78 |  Search.methods.apply.call(c)
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:77:1:
+  75 |  { current: { state: 'Allocated', keyword: 'old', q: 'old' }, form: { ipaddress: '192.0.2.1' }, keyword: 'old' }
+  76 | ])('the form and URL use the same normalization for cleared/all/exact-address inputs: %j', sample => {
+> 77 |  const c = { $route: { query: { projectid: '0', ...sample.current } }, $store: { getters: { userInfo: { roletype: 'Admin', domainid: id }, project: {}, apis: { listPublicIpAddresses: {} } } }, supported: Object.fromEntries(['state', 'allocatedonly', 'domainid', 'isrecursive', 'projectid', 'ipaddress', 'keyword', 'issourcenat', 'isstaticnat'].map(k => [k, {}])), scope: { projectid: '0' }, form: sample.form, keyword: sample.keyword, tags: [], blocked: {}, $emit: jest.fn(), visible: true }
+     | ^
+  78 |  Search.methods.apply.call(c)
+  79 |  expect(c.error).toBe(''); expect(c.visible).toBe(false); expect(c.$emit).toHaveBeenCalledWith('search', expect.any(Object))
+  80 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:78:1:
+  76 | ])('the form and URL use the same normalization for cleared/all/exact-address inputs: %j', sample => {
+  77 |  const c = { $route: { query: { projectid: '0', ...sample.current } }, $store: { getters: { userInfo: { roletype: 'Admin', domainid: id }, project: {}, apis: { listPublicIpAddresses: {} } } }, supported: Object.fromEntries(['state', 'allocatedonly', 'domainid', 'isrecursive', 'projectid', 'ipaddress', 'keyword', 'issourcenat', 'isstaticnat'].map(k => [k, {}])), scope: { projectid: '0' }, form: sample.form, keyword: sample.keyword, tags: [], blocked: {}, $emit: jest.fn(), visible: true }
+> 78 |  Search.methods.apply.call(c)
+     | ^
+  79 |  expect(c.error).toBe(''); expect(c.visible).toBe(false); expect(c.$emit).toHaveBeenCalledWith('search', expect.any(Object))
+  80 | })
+  81 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/components/PublicIpSearchSelect.spec.js:79:1:
+  77 |  const c = { $route: { query: { projectid: '0', ...sample.current } }, $store: { getters: { userInfo: { roletype: 'Admin', domainid: id }, project: {}, apis: { listPublicIpAddresses: {} } } }, supported: Object.fromEntries(['state', 'allocatedonly', 'domainid', 'isrecursive', 'projectid', 'ipaddress', 'keyword', 'issourcenat', 'isstaticnat'].map(k => [k, {}])), scope: { projectid: '0' }, form: sample.form, keyword: sample.keyword, tags: [], blocked: {}, $emit: jest.fn(), visible: true }
+  78 |  Search.methods.apply.call(c)
+> 79 |  expect(c.error).toBe(''); expect(c.visible).toBe(false); expect(c.$emit).toHaveBeenCalledWith('search', expect.any(Object))
+     | ^
+  80 | })
+  81 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:67:1:
+  65 |
+  66 | test('all preserves the server available-pool semantics without treating Free as attached or owned', () => {
+> 67 |  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Free' }] } }
+     | ^
+  68 |  expect(readPublicIpPage(data, { projectid: other, account: 'owner', vpcid: id, associatednetworkid: id }).count).toBe(1)
+  69 |  expect(() => readPublicIpPage(data, { networkid: id })).toThrow()
+  70 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:68:1:
+  66 | test('all preserves the server available-pool semantics without treating Free as attached or owned', () => {
+  67 |  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Free' }] } }
+> 68 |  expect(readPublicIpPage(data, { projectid: other, account: 'owner', vpcid: id, associatednetworkid: id }).count).toBe(1)
+     | ^
+  69 |  expect(() => readPublicIpPage(data, { networkid: id })).toThrow()
+  70 | })
+  71 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:69:1:
+  67 |  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Free' }] } }
+  68 |  expect(readPublicIpPage(data, { projectid: other, account: 'owner', vpcid: id, associatednetworkid: id }).count).toBe(1)
+> 69 |  expect(() => readPublicIpPage(data, { networkid: id })).toThrow()
+     | ^
+  70 | })
+  71 |
+  72 | test('keyword and exact-address input never leave an API-ignored predicate in the URL', () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:73:1:
+  71 |
+  72 | test('keyword and exact-address input never leave an API-ignored predicate in the URL', () => {
+> 73 |  const current = publicIpQuery({ ipaddress: '192.0.2.1', state: 'Allocated' }, 20, getters)
+     | ^
+  74 |  const keyword = publicIpSearchQuery(current, { searchQuery: '192.0.2' }, 20, getters)
+  75 |  expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
+  76 |  const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:74:1:
+  72 | test('keyword and exact-address input never leave an API-ignored predicate in the URL', () => {
+  73 |  const current = publicIpQuery({ ipaddress: '192.0.2.1', state: 'Allocated' }, 20, getters)
+> 74 |  const keyword = publicIpSearchQuery(current, { searchQuery: '192.0.2' }, 20, getters)
+     | ^
+  75 |  expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
+  76 |  const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+  77 |  expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:75:1:
+  73 |  const current = publicIpQuery({ ipaddress: '192.0.2.1', state: 'Allocated' }, 20, getters)
+  74 |  const keyword = publicIpSearchQuery(current, { searchQuery: '192.0.2' }, 20, getters)
+> 75 |  expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
+     | ^
+  76 |  const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+  77 |  expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
+  78 |  expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:76:1:
+  74 |  const keyword = publicIpSearchQuery(current, { searchQuery: '192.0.2' }, 20, getters)
+  75 |  expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
+> 76 |  const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+     | ^
+  77 |  expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
+  78 |  expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
+  79 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:77:1:
+  75 |  expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
+  76 |  const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+> 77 |  expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
+     | ^
+  78 |  expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
+  79 | })
+  80 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:78:1:
+  76 |  const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+  77 |  expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
+> 78 |  expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
+     | ^
+  79 | })
+  80 |
+  81 | test('allowed User VLAN UUID and explicit empty tag value are retained as server predicates', () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:82:1:
+  80 |
+  81 | test('allowed User VLAN UUID and explicit empty tag value are retained as server predicates', () => {
+> 82 |  const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, getters)
+     | ^
+  83 |  expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
+  84 |  expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
+  85 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:83:1:
+  81 | test('allowed User VLAN UUID and explicit empty tag value are retained as server predicates', () => {
+  82 |  const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, getters)
+> 83 |  expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
+     | ^
+  84 |  expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
+  85 | })
+  86 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:84:1:
+  82 |  const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, getters)
+  83 |  expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
+> 84 |  expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
+     | ^
+  85 | })
+  86 |
+  87 | test('a permitted VLAN filter respects restricted DTO fields without recovering hidden identifiers', () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:88:1:
+  86 |
+  87 | test('a permitted VLAN filter respects restricted DTO fields without recovering hidden identifiers', () => {
+> 88 |  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Reserved' }] } }
+     | ^
+  89 |  const user = { userInfo: { roletype: 'User' } }
+  90 |  expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
+  91 |  expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:89:1:
+  87 | test('a permitted VLAN filter respects restricted DTO fields without recovering hidden identifiers', () => {
+  88 |  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Reserved' }] } }
+> 89 |  const user = { userInfo: { roletype: 'User' } }
+     | ^
+  90 |  expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
+  91 |  expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+  92 |  data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:90:1:
+  88 |  const data = { listpublicipaddressesresponse: { count: 1, publicipaddress: [{ id, state: 'Reserved' }] } }
+  89 |  const user = { userInfo: { roletype: 'User' } }
+> 90 |  expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
+     | ^
+  91 |  expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+  92 |  data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
+  93 |  expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:91:1:
+  89 |  const user = { userInfo: { roletype: 'User' } }
+  90 |  expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
+> 91 |  expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+     | ^
+  92 |  data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
+  93 |  expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
+  94 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:92:1:
+  90 |  expect(readPublicIpPage(data, { vlanid: other }, user).count).toBe(1)
+  91 |  expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+> 92 |  data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
+     | ^
+  93 |  expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
+  94 | })
+  95 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:93:1:
+  91 |  expect(() => readPublicIpPage(data, { vlanid: other }, getters)).toThrow()
+  92 |  data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
+> 93 |  expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
+     | ^
+  94 | })
+  95 |
+  96 | test.each([{ account: ['owner', 'other'], domainid: id }, { keyword: ['one', 'two'] }])('repeated URL predicates cannot serialize as ignored API array arguments: %j', values => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/utils/PublicIpSearch.spec.js:97:1:
+  95 |
+  96 | test.each([{ account: ['owner', 'other'], domainid: id }, { keyword: ['one', 'two'] }])('repeated URL predicates cannot serialize as ignored API array arguments: %j', values => {
+> 97 |  expect(publicIpSearchError(publicIpQuery(values, 20, getters), getters, supported)).toBe('message.public.ip.search.invalid')
+     | ^
+  98 | })
+  99 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:63:1:
+  61 |
+  62 | test('canonical project URL never invokes the legacy project switch/removal loop', async () => {
+> 63 |  store.getters.project = { id: '22222222-2222-4222-8222-222222222222' }; route({})
+     | ^
+  64 |  c.switchProject(store.getters.project.id)
+  65 |  expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
+  66 |  getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:64:1:
+  62 | test('canonical project URL never invokes the legacy project switch/removal loop', async () => {
+  63 |  store.getters.project = { id: '22222222-2222-4222-8222-222222222222' }; route({})
+> 64 |  c.switchProject(store.getters.project.id)
+     | ^
+  65 |  expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
+  66 |  getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
+  67 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(c.items).toMatchObject([linked]); expect(c.$router.replace).not.toHaveBeenCalled()
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:65:1:
+  63 |  store.getters.project = { id: '22222222-2222-4222-8222-222222222222' }; route({})
+  64 |  c.switchProject(store.getters.project.id)
+> 65 |  expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
+     | ^
+  66 |  getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
+  67 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(c.items).toMatchObject([linked]); expect(c.$router.replace).not.toHaveBeenCalled()
+  68 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:66:1:
+  64 |  c.switchProject(store.getters.project.id)
+  65 |  expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
+> 66 |  getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
+     | ^
+  67 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(c.items).toMatchObject([linked]); expect(c.$router.replace).not.toHaveBeenCalled()
+  68 | })
+  69 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:67:1:
+  65 |  expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace).not.toHaveBeenCalled()
+  66 |  getAPI.mockResolvedValueOnce(reply({ ...linked, projectid: store.getters.project.id })); await c.fetchData()
+> 67 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(c.items).toMatchObject([linked]); expect(c.$router.replace).not.toHaveBeenCalled()
+     | ^
+  68 | })
+  69 |
+  70 | test('URL reload restores explicit all-project scope without dropping filters or looping', async () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:71:1:
+  69 |
+  70 | test('URL reload restores explicit all-project scope without dropping filters or looping', async () => {
+> 71 |  store.getters.apis.listProjects = {}
+     | ^
+  72 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+  73 |  route({ projectid: '-1', filter: 'all' }); await c.fetchData()
+  74 |  expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:72:1:
+  70 | test('URL reload restores explicit all-project scope without dropping filters or looping', async () => {
+  71 |  store.getters.apis.listProjects = {}
+> 72 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+     | ^
+  73 |  route({ projectid: '-1', filter: 'all' }); await c.fetchData()
+  74 |  expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
+  75 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][1]).toMatchObject({ projectid: '-1', allocatedonly: false })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:73:1:
+  71 |  store.getters.apis.listProjects = {}
+  72 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+> 73 |  route({ projectid: '-1', filter: 'all' }); await c.fetchData()
+     | ^
+  74 |  expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
+  75 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][1]).toMatchObject({ projectid: '-1', allocatedonly: false })
+  76 |  expect(c.items).toMatchObject([linked]); expect(c.$router.push).not.toHaveBeenCalled()
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:74:1:
+  72 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+  73 |  route({ projectid: '-1', filter: 'all' }); await c.fetchData()
+> 74 |  expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
+     | ^
+  75 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][1]).toMatchObject({ projectid: '-1', allocatedonly: false })
+  76 |  expect(c.items).toMatchObject([linked]); expect(c.$router.push).not.toHaveBeenCalled()
+  77 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:75:1:
+  73 |  route({ projectid: '-1', filter: 'all' }); await c.fetchData()
+  74 |  expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
+> 75 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][1]).toMatchObject({ projectid: '-1', allocatedonly: false })
+     | ^
+  76 |  expect(c.items).toMatchObject([linked]); expect(c.$router.push).not.toHaveBeenCalled()
+  77 | })
+  78 | test('a named URL project is checked with the same login; denied lookup never lists addresses', async () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:76:1:
+  74 |  expect(store.getters.listAllProjects).toBe(true); expect(c.$route.query.filter).toBe('all')
+  75 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][1]).toMatchObject({ projectid: '-1', allocatedonly: false })
+> 76 |  expect(c.items).toMatchObject([linked]); expect(c.$router.push).not.toHaveBeenCalled()
+     | ^
+  77 | })
+  78 | test('a named URL project is checked with the same login; denied lookup never lists addresses', async () => {
+  79 |  store.getters.apis.listProjects = {}; route({ projectid: '22222222-2222-4222-8222-222222222222' })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:79:1:
+  77 | })
+  78 | test('a named URL project is checked with the same login; denied lookup never lists addresses', async () => {
+> 79 |  store.getters.apis.listProjects = {}; route({ projectid: '22222222-2222-4222-8222-222222222222' })
+     | ^
+  80 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: {} }); await c.fetchData()
+  81 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][0]).toBe('listProjects'); expect(getAPI.mock.calls[0][1]).toMatchObject({ id: '22222222-2222-4222-8222-222222222222', ignoreproject: true })
+  82 |  expect(c.items).toEqual([]); expect(c.publicIpSearchFailure).toBe('message.public.ip.search.scope')
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:80:1:
+  78 | test('a named URL project is checked with the same login; denied lookup never lists addresses', async () => {
+  79 |  store.getters.apis.listProjects = {}; route({ projectid: '22222222-2222-4222-8222-222222222222' })
+> 80 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: {} }); await c.fetchData()
+     | ^
+  81 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][0]).toBe('listProjects'); expect(getAPI.mock.calls[0][1]).toMatchObject({ id: '22222222-2222-4222-8222-222222222222', ignoreproject: true })
+  82 |  expect(c.items).toEqual([]); expect(c.publicIpSearchFailure).toBe('message.public.ip.search.scope')
+  83 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:81:1:
+  79 |  store.getters.apis.listProjects = {}; route({ projectid: '22222222-2222-4222-8222-222222222222' })
+  80 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: {} }); await c.fetchData()
+> 81 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][0]).toBe('listProjects'); expect(getAPI.mock.calls[0][1]).toMatchObject({ id: '22222222-2222-4222-8222-222222222222', ignoreproject: true })
+     | ^
+  82 |  expect(c.items).toEqual([]); expect(c.publicIpSearchFailure).toBe('message.public.ip.search.scope')
+  83 | })
+  84 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:82:1:
+  80 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: {} }); await c.fetchData()
+  81 |  expect(getAPI).toHaveBeenCalledTimes(1); expect(getAPI.mock.calls[0][0]).toBe('listProjects'); expect(getAPI.mock.calls[0][1]).toMatchObject({ id: '22222222-2222-4222-8222-222222222222', ignoreproject: true })
+> 82 |  expect(c.items).toEqual([]); expect(c.publicIpSearchFailure).toBe('message.public.ip.search.scope')
+     | ^
+  83 | })
+  84 |
+  85 | test('an authorized named URL project is restored with its query intact and one address read', async () => {
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:86:1:
+  84 |
+  85 | test('an authorized named URL project is restored with its query intact and one address read', async () => {
+> 86 |  const project = { id: '22222222-2222-4222-8222-222222222222', name: 'Allowed' }; store.getters.apis.listProjects = {}
+     | ^
+  87 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+  88 |  route({ projectid: project.id, state: 'Reserved' })
+  89 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:87:1:
+  85 | test('an authorized named URL project is restored with its query intact and one address read', async () => {
+  86 |  const project = { id: '22222222-2222-4222-8222-222222222222', name: 'Allowed' }; store.getters.apis.listProjects = {}
+> 87 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+     | ^
+  88 |  route({ projectid: project.id, state: 'Reserved' })
+  89 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
+  90 |  await c.fetchData(); expect(store.getters.project.id).toBe(project.id); expect(c.$route.query.state).toBe('Reserved'); expect(getAPI).toHaveBeenCalledTimes(2); expect(c.items).toHaveLength(1)
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:88:1:
+  86 |  const project = { id: '22222222-2222-4222-8222-222222222222', name: 'Allowed' }; store.getters.apis.listProjects = {}
+  87 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+> 88 |  route({ projectid: project.id, state: 'Reserved' })
+     | ^
+  89 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
+  90 |  await c.fetchData(); expect(store.getters.project.id).toBe(project.id); expect(c.$route.query.state).toBe('Reserved'); expect(getAPI).toHaveBeenCalledTimes(2); expect(c.items).toHaveLength(1)
+  91 | })
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:89:1:
+  87 |  store.dispatch = jest.fn(async (name, value) => { if (name === 'SetProject') store.getters.project = value; if (name === 'SetListAllProjects') store.getters.listAllProjects = value })
+  88 |  route({ projectid: project.id, state: 'Reserved' })
+> 89 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
+     | ^
+  90 |  await c.fetchData(); expect(store.getters.project.id).toBe(project.id); expect(c.$route.query.state).toBe('Reserved'); expect(getAPI).toHaveBeenCalledTimes(2); expect(c.items).toHaveLength(1)
+  91 | })
+  92 |
+
+
+error: Expected indentation of 2 spaces but found 1 (indent) at tests/unit/views/AutogenPublicIpListScope.spec.js:90:1:
+  88 |  route({ projectid: project.id, state: 'Reserved' })
+  89 |  getAPI.mockResolvedValueOnce({ listprojectsresponse: { count: 1, project: [project] } }).mockResolvedValueOnce(reply({ ...linked, state: 'Reserved', projectid: project.id }))
+> 90 |  await c.fetchData(); expect(store.getters.project.id).toBe(project.id); expect(c.$route.query.state).toBe('Reserved'); expect(getAPI).toHaveBeenCalledTimes(2); expect(c.items).toHaveLength(1)
+     | ^
+  91 | })
+  92 |
+
+
+55 errors found.
+55 errors potentially fixable with the `--fix` option.

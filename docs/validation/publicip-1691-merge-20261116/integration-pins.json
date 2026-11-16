@@ -1,0 +1,15 @@
+{
+  "head": "9a6d2994b2e5a4336f11d97b9ea090a86c4d9b3a",
+  "target": "b777311a708e0e652f05025fecb2660dfa90f74d",
+  "mergeBase": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+  "candidate": "/home/ablecloud/work/issue-1691-integration",
+  "conflicts": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/DetailsTab.vue",
+    "ui/src/components/view/InfoCard.vue",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/components/widgets/Breadcrumb.vue",
+    "ui/src/views/AutogenView.vue"
+  ]
+}

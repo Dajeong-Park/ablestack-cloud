@@ -1,0 +1,3979 @@
+[
+  {
+    "cluster": 31,
+    "name": "account-reservation",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "posts": 1,
+    "owner": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "account": "qa-pip1691-31-222246-user",
+      "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+      "fordisplay": "true"
+    },
+    "result": {
+      "ipaddress": {
+        "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "ipaddress": "10.10.31.105",
+        "state": "Reserved",
+        "account": "qa-pip1691-31-222246-user",
+        "domainid": "11397ba2-b661-4678-ad49-fa841e0345d5",
+        "domain": "qa-pip1691-31-222246",
+        "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true,
+        "allocated": "2026-11-16T22:26:40+0900",
+        "allocationgeneration": "ab61664c-93c9-4e61-bdf1-84a39f84c1c8"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "project-reservation",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "posts": 1,
+    "owner": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "true"
+    },
+    "result": {
+      "ipaddress": {
+        "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+        "ipaddress": "10.10.32.103",
+        "state": "Reserved",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "domain": "qa-gn1569-32-domain",
+        "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+        "project": "qa-gn1597-32-project",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issystem": false,
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true,
+        "allocated": "2026-11-16T22:27:13+0900",
+        "allocationgeneration": "44a57434-06f1-4a1e-a17d-bfa1d9b451c7"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "jobid": "1e842bc6-d766-429b-96a6-8f387df56f18",
+    "postCount": 1,
+    "readback": true,
+    "excluded": true
+  },
+  {
+    "cluster": 31,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "jobid": "db3bdb64-e24c-49ca-aba1-f63c84551786",
+    "postCount": 1,
+    "readback": true,
+    "excluded": true
+  },
+  {
+    "cluster": 32,
+    "name": "display-false",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "jobid": "75df16e8-c324-480b-bd61-2af489516ed5",
+    "postCount": 1,
+    "readback": true,
+    "excluded": true
+  },
+  {
+    "cluster": 32,
+    "name": "display-true",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "jobid": "c976fd56-df8e-4e2e-a9eb-6c0e7830ac78",
+    "postCount": 1,
+    "readback": true,
+    "excluded": true
+  },
+  {
+    "cluster": 31,
+    "name": "list-light-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "light",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 55,
+        "right": 758,
+        "x": 305,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:07:11"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 8. 오전 5:51:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:47:47"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 2:57:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 10. 오전 9:31:08"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 7. 오전 5:43:49"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 4:18:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:23:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:01:02"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 1:06:56"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 12:24:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 11:32:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 9:11:19"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 1:22:50"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 5. 오후 10:43:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 8:30:52"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 2:07:24"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 5:24:53"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-light-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "light",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 56,
+        "right": 414,
+        "x": 129,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:07:11"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 8. 오전 5:51:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:47:47"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 2:57:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 10. 오전 9:31:08"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 7. 오전 5:43:49"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 4:18:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:23:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:01:02"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 1:06:56"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 12:24:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 11:32:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 9:11:19"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 1:22:50"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 5. 오후 10:43:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 8:30:52"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 2:07:24"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 5:24:53"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-light-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "light",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 56,
+        "right": 333,
+        "x": 49,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:07:11"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 8. 오전 5:51:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:47:47"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 2:57:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 10. 오전 9:31:08"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 7. 오전 5:43:49"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 4:18:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:23:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:01:02"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 1:06:56"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 12:24:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 11:32:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 9:11:19"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 1:22:50"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 5. 오후 10:43:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 8:30:52"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 2:07:24"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 5:24:53"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-light-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "light",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 24,
+        "right": 758,
+        "x": 305,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "945b26a3-7555-40d7-8fb4-95a96a410576"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-light-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "light",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 54,
+        "right": 414,
+        "x": 129,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "945b26a3-7555-40d7-8fb4-95a96a410576"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-light-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "light",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 54,
+        "right": 333,
+        "x": 49,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "945b26a3-7555-40d7-8fb4-95a96a410576"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-dark-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "dark",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 55,
+        "right": 758,
+        "x": 305,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:07:11"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 8. 오전 5:51:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:47:47"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 2:57:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 10. 오전 9:31:08"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 7. 오전 5:43:49"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 4:18:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:23:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:01:02"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 1:06:56"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 12:24:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 11:32:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 9:11:19"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 1:22:50"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 5. 오후 10:43:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 8:30:52"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 2:07:24"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 5:24:53"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-dark-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "dark",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 56,
+        "right": 414,
+        "x": 129,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:07:11"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 8. 오전 5:51:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:47:47"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 2:57:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 10. 오전 9:31:08"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 7. 오전 5:43:49"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 4:18:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:23:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:01:02"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 1:06:56"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 12:24:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 11:32:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 9:11:19"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 1:22:50"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 5. 오후 10:43:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 8:30:52"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 2:07:24"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 5:24:53"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "list-dark-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "dark",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 56,
+        "right": 333,
+        "x": 49,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:07:11"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 8. 오전 5:51:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 5:47:47"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 2:57:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 10. 오전 9:31:08"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 7. 오전 5:43:49"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 4:18:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:23:48"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 2:01:02"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 1:06:56"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오후 12:24:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 11:32:31"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 9:11:19"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 1:22:50"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 5. 오후 10:43:17"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 8:30:52"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 2:07:24"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 5:24:53"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-dark-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "dark",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 24,
+        "right": 758,
+        "x": 305,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "945b26a3-7555-40d7-8fb4-95a96a410576"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-dark-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "dark",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 54,
+        "right": 414,
+        "x": 129,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "945b26a3-7555-40d7-8fb4-95a96a410576"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "detail-dark-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "dark",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 54,
+        "right": 333,
+        "x": 49,
+        "y": 113
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "945b26a3-7555-40d7-8fb4-95a96a410576"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 6. 오전 1:53:29"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-light-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "light",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 55,
+        "right": 758,
+        "x": 305,
+        "y": 186
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 3:15:46"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:17:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:18:05"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 12. 오전 12:52:20"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 11. 오전 5:17:57"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 12:57:51"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:33"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:03"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:20:50"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-light-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "light",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 56,
+        "right": 414,
+        "x": 129,
+        "y": 218
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 3:15:46"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:17:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:18:05"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 12. 오전 12:52:20"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 11. 오전 5:17:57"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 12:57:51"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:33"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:03"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:20:50"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-light-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "light",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 56,
+        "right": 333,
+        "x": 49,
+        "y": 236
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 3:15:46"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:17:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:18:05"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 12. 오전 12:52:20"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 11. 오전 5:17:57"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 12:57:51"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:33"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:03"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:20:50"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-light-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "light",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 24,
+        "right": 758,
+        "x": 305,
+        "y": 186
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-light-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "light",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 54,
+        "right": 414,
+        "x": 129,
+        "y": 217.671875
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-light-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "light",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 54,
+        "right": 333,
+        "x": 49,
+        "y": 236
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-dark-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "dark",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 55,
+        "right": 758,
+        "x": 305,
+        "y": 186
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 3:15:46"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:17:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:18:05"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 12. 오전 12:52:20"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 11. 오전 5:17:57"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 12:57:51"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:33"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:03"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:20:50"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-dark-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "dark",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 56,
+        "right": 414,
+        "x": 129,
+        "y": 218
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 3:15:46"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:17:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:18:05"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 12. 오전 12:52:20"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 11. 오전 5:17:57"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 12:57:51"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:33"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:03"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:20:50"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "list-dark-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "list",
+    "theme": "dark",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 56,
+        "right": 333,
+        "x": 49,
+        "y": 236
+      },
+      "fields": [
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 1. 오전 3:15:46"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:17:25"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 4:18:05"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 12. 오전 12:52:20"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 11. 오전 5:17:57"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 12:57:51"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:33"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:03:03"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 10. 10. 오후 3:20:50"
+        }
+      ],
+      "firstLineDifference": 1,
+      "invalidNetworkLinks": 0,
+      "labels": [
+        {
+          "connected": true,
+          "text": "필터링 기준"
+        }
+      ],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-dark-1280",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "dark",
+    "width": 1280,
+    "data": {
+      "bodyWidth": 1270,
+      "crumb": {
+        "height": 24,
+        "right": 758,
+        "x": 305,
+        "y": 186
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-dark-768",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "dark",
+    "width": 768,
+    "data": {
+      "bodyWidth": 758,
+      "crumb": {
+        "height": 54,
+        "right": 414,
+        "x": 129,
+        "y": 216.015625
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "detail-dark-390",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "kind": "detail",
+    "theme": "dark",
+    "width": 390,
+    "data": {
+      "bodyWidth": 380,
+      "crumb": {
+        "height": 54,
+        "right": 333,
+        "x": 49,
+        "y": 236
+      },
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "할당됨"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "예"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 9. 17. 오전 2:13:35"
+        }
+      ],
+      "firstLineDifference": 0,
+      "invalidNetworkLinks": 0,
+      "labels": [],
+      "paths": [
+        {
+          "font": "14px",
+          "position": "static",
+          "text": ""
+        },
+        {
+          "font": "14px",
+          "position": "static",
+          "text": "Public IP 주소"
+        }
+      ],
+      "states": [
+        "할당됨",
+        "할당됨"
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "iso-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "list": {
+      "errors": [],
+      "isoAvailability": 20,
+      "publicIpBadges": 0,
+      "rows": [
+        {
+          "id": "bfab5660-b9ac-4189-bb92-7c693fff2c86",
+          "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+        },
+        {
+          "id": "18f2f6bb-a067-4e23-a59a-4c74ca320454",
+          "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+        },
+        {
+          "id": "3f79047a-7f0b-48fb-a71b-3fea8fd51dc0",
+          "text": "Windows Server 2025 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2025 (64-bit)\n\t\nx86_64\n\t\n7.59 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "117c982b-187c-484d-b5af-a60df4de5bcb",
+          "text": "Windows 11 Korean x64 DVD\n\t\n사용 가능\n\t\nWindows 11 (64-bit)\n\t\nx86_64\n\t\n6.94 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "9ba4cfde-6a3a-409b-a01c-ea8f22b3561f",
+          "text": "Virtio Windows Driver 0.1.302\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "367b2ca1-ae7c-467c-8f42-eac7162ee148",
+          "text": "Rocky Linux 10.2 x86_64 DVD\n\t\n사용 가능\n\t\nRocky Linux 10\n\t\nx86_64\n\t\n9.52 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "3b5703ae-681e-4fa1-8191-7222cd2f6a5b",
+          "text": "Rocky Linux 9.8 x86_64 DVD\n\t\n사용 가능\n\t\nRocky Linux 8\n\t\nx86_64\n\t\n14.15 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "e0755bca-b649-415f-9dcc-1df2eff086f1",
+          "text": "1.34.2-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+        },
+        {
+          "id": "b89174bd-15a3-40ff-8151-214af435b97e",
+          "text": "Ubuntu 26.04 x86_64 DVD\n\t\n사용 가능\n\t\nUbuntu 24.04 LTS\n\t\nx86_64\n\t\n2.72 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "23a7eb77-6f31-4419-850d-1a45d58e8fec",
+          "text": "Windows Server 2022 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2022 (64-bit)\n\t\nx86_64\n\t\n4.70 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "1e412e42-ac14-4a12-81dd-72245c496494",
+          "text": "Windows Server 2019 x86_64 DVD\n\t\n사용 가능\n\t\nWindows Server 2019 (64-bit)\n\t\nx86_64\n\t\n5.26 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "f6218264-03c0-400f-8e33-bdf9fb12e91a",
+          "text": "Rocky Linux 8.10 x86_64 DVD\n\t\n사용 가능\n\t\nRocky Linux 8\n\t\nx86_64\n\t\n13.24 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "95b3b23b-a982-4b71-81cb-d27d12ef7115",
+          "text": "Ubuntu 22.04.5 Server x86_64 DVD\n\t\n사용 가능\n\t\nUbuntu 22.04 LTS\n\t\nx86_64\n\t\n1.99 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "d6fcefc8-35fc-4092-9a60-6132ce976a53",
+          "text": "Ubuntu 24.04.4 Server x86_64 DVD\n\t\n사용 가능\n\t\nUbuntu 24.04 LTS\n\t\nx86_64\n\t\n3.17 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "bc45845b-1dca-40b1-b05a-ba189458c7e7",
+          "text": "Debian 11.11 x86_64 DVD\n\t\n사용 가능\n\t\nDebian GNU/Linux 11 (64-bit)\n\t\nx86_64\n\t\n3.72 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "d4d7e0b1-effe-4190-a935-c332eee77cfe",
+          "text": "Debian 12.15 x86_64 DVD\n\t\n사용 가능\n\t\nDebian GNU/Linux 12 (64-bit)\n\t\nx86_64\n\t\n3.72 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "351ed450-0083-4482-8805-28ba4bbf6f38",
+          "text": "Debian 13.7 x86_64 DVD\n\t\n사용 가능\n\t\nDebian GNU/Linux 12 (64-bit)\n\t\nx86_64\n\t\n3.72 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "dcdeb196-47f8-4c69-8ce5-3fac121b65e8",
+          "text": "ABLESTACK-Tools-Process-rocky-c439f93\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.25 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "1c0e894a-f880-4b9f-8a55-48f9c472861c",
+          "text": "ABLESTACK-Tools-Process-ubuntu-c439f93\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.05 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "0369f6c4-9eac-48d6-8f4d-0f2e18d69355",
+          "text": "ABLESTACK-Tools-Process-debian-c439f93\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.04 GiB\n\t\nadmin\n\t\n\t"
+        }
+      ],
+      "url": "http://10.10.31.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+    },
+    "requests": [
+      {
+        "command": "listIsos",
+        "params": {
+          "listall": "true",
+          "showunique": "true",
+          "isofilter": "all",
+          "page": "1",
+          "pagesize": "20"
+        },
+        "result": {
+          "count": 30,
+          "rows": [
+            {
+              "id": "bfab5660-b9ac-4189-bb92-7c693fff2c86",
+              "name": "vmware-tools.iso",
+              "status": "Processing",
+              "account": "system",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "18f2f6bb-a067-4e23-a59a-4c74ca320454",
+              "name": "xs-tools.iso",
+              "status": "Processing",
+              "account": "system",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "3f79047a-7f0b-48fb-a71b-3fea8fd51dc0",
+              "name": "Windows Server 2025 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "117c982b-187c-484d-b5af-a60df4de5bcb",
+              "name": "Windows 11 Korean x64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "9ba4cfde-6a3a-409b-a01c-ea8f22b3561f",
+              "name": "Virtio Windows Driver 0.1.302",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "367b2ca1-ae7c-467c-8f42-eac7162ee148",
+              "name": "Rocky Linux 10.2 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "3b5703ae-681e-4fa1-8191-7222cd2f6a5b",
+              "name": "Rocky Linux 9.8 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "e0755bca-b649-415f-9dcc-1df2eff086f1",
+              "name": "1.34.2-Kubernetes-Binaries-ISO",
+              "status": "Successfully Installed",
+              "account": "system",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "b89174bd-15a3-40ff-8151-214af435b97e",
+              "name": "Ubuntu 26.04 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "23a7eb77-6f31-4419-850d-1a45d58e8fec",
+              "name": "Windows Server 2022 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "1e412e42-ac14-4a12-81dd-72245c496494",
+              "name": "Windows Server 2019 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "f6218264-03c0-400f-8e33-bdf9fb12e91a",
+              "name": "Rocky Linux 8.10 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "95b3b23b-a982-4b71-81cb-d27d12ef7115",
+              "name": "Ubuntu 22.04.5 Server x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "d6fcefc8-35fc-4092-9a60-6132ce976a53",
+              "name": "Ubuntu 24.04.4 Server x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "bc45845b-1dca-40b1-b05a-ba189458c7e7",
+              "name": "Debian 11.11 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "d4d7e0b1-effe-4190-a935-c332eee77cfe",
+              "name": "Debian 12.15 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "351ed450-0083-4482-8805-28ba4bbf6f38",
+              "name": "Debian 13.7 x86_64 DVD",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "dcdeb196-47f8-4c69-8ce5-3fac121b65e8",
+              "name": "ABLESTACK-Tools-Process-rocky-c439f93",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "1c0e894a-f880-4b9f-8a55-48f9c472861c",
+              "name": "ABLESTACK-Tools-Process-ubuntu-c439f93",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "0369f6c4-9eac-48d6-8f4d-0f2e18d69355",
+              "name": "ABLESTACK-Tools-Process-debian-c439f93",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "name": "iso-detail",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "label": "vmware-tools.iso",
+    "detail": {
+      "breadcrumb": [
+        {
+          "href": "#/",
+          "text": ""
+        },
+        {
+          "href": "#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+          "text": "ISO"
+        },
+        {
+          "href": "http://docs.ablecloud.io/latest/adminguide/templates.html#working-with-isos",
+          "text": ""
+        }
+      ],
+      "isoAvailability": 1,
+      "isoDetailValues": [
+        "아니오",
+        "예",
+        "아니오",
+        "아니오",
+        "아니오",
+        "예",
+        "예",
+        "아니오"
+      ],
+      "publicIpBadges": 0,
+      "text": "/ISO/vmware-tools.iso업데이트\n작업\nvmware-tools.iso\nx86_64\n상태\n사용 가능\n조회된 정보 기준\n아이디\nbfab5660-b9ac-4189-bb92-7c693fff2c86 \nOS 유형\nCentOS 4.5 (32-bit)\n계정\nsystem\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nvmware-tools.iso\n아이디\n\nbfab5660-b9ac-4189-bb92-7c693fff2c86\n설명\n\nVMware Tools Installer ISO\nOS 유형\n\nCentOS 4.5 (32-bit)\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n예\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT",
+      "url": "http://10.10.31.10:8080/client/#/iso/bfab5660-b9ac-4189-bb92-7c693fff2c86?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "iso-return",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "url": "http://10.10.31.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "cluster": 31,
+    "name": "vm-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "url": "http://10.10.31.10:8080/client/#/vm",
+    "rows": 20,
+    "requests": [
+      {
+        "cluster": 31,
+        "name": "vm-list-official-refreshed",
+        "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+        "command": "listVirtualMachines",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+          "page": "1",
+          "pagesize": "20",
+          "showIcon": "true"
+        },
+        "status": 200,
+        "result": {
+          "count": 132,
+          "rows": [
+            {
+              "id": "05f940bb-5ca7-4f58-8e41-ed8440758f0b",
+              "name": "GFS-TEST-VM",
+              "ipaddress": "10.10.254.105",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "36d5333d-670a-4644-8c68-1f1dc154ba3a",
+              "name": "W2025-GFS2-Sparse",
+              "ipaddress": "10.10.254.210",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "2f35ea9a-7ff2-494f-a857-6527e0fb1976",
+              "name": "R10-Sparse",
+              "ipaddress": "10.10.254.209",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "708d87cd-1d8a-4911-b22a-4211cdf1634f",
+              "name": "R10-Sparse-Clone1",
+              "ipaddress": "10.10.254.114",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "dbdefe41-64a0-4ab1-a596-5d5f5131517c",
+              "name": "R10-Sparse-Clone2",
+              "ipaddress": "10.10.254.237",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "1fdd690d-b0ca-45bf-9088-8534e409b866",
+              "name": "R10-Sparse-Clone3",
+              "ipaddress": "10.10.254.116",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "3f135c5e-a3cf-4eec-9e90-51f3148c406d",
+              "name": "R10-Sparse-Clone4",
+              "ipaddress": "10.10.254.144",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "c475abf7-2346-4015-9cef-001a78472c25",
+              "name": "R10-Sparse-Clone5",
+              "ipaddress": "10.10.254.115",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "630888e1-bcef-4b40-9952-b3409a664bae",
+              "name": "VM-630888e1-bcef-4b40-9952-b3409a664bae",
+              "ipaddress": "10.10.254.204",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "f4be8cb2-f649-47ef-bcd2-7b59b71d5471",
+              "name": "W2025-Sparse-Clone1",
+              "ipaddress": "10.10.254.121",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "06c6d7a7-f4da-4c2f-9a9b-c43cd015f6d9",
+              "name": "W2025-Sparse-Clone2",
+              "ipaddress": "10.10.254.118",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "9a2a9ac1-088e-40d5-b753-197a559b06e3",
+              "name": "W2025-Sparse-Clone3",
+              "ipaddress": "10.10.254.120",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "4cb71960-fc75-43e1-9830-8f4ee198def7",
+              "name": "U26-Sparse",
+              "ipaddress": "10.10.254.71",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "e7f843af-f39f-4a3e-b5fc-bcc458d40fe9",
+              "name": "ccccc",
+              "ipaddress": "10.10.254.7",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "d3cd2c68-78e3-42dd-a944-7c5ce731e658",
+              "name": "Ubuntu22-Sparse",
+              "ipaddress": "10.10.254.1",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "04125c04-cfa5-4f43-be41-39e3c7d536d3",
+              "name": "Ubuntu24-Sparse",
+              "ipaddress": "10.10.254.129",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "40f046e8-7433-4cc8-a0f0-1bc60513d222",
+              "name": "Debian12-Sparse",
+              "ipaddress": "10.10.254.133",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "b51c954a-45fc-4fdd-a395-e1b3b5b5d367",
+              "name": "Debian13-Sparse",
+              "ipaddress": "10.10.254.135",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "c5ac0d8b-c004-4040-8334-d57586eee4c7",
+              "name": "Rocky9-Sparse",
+              "ipaddress": "10.10.254.136",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            },
+            {
+              "id": "2785322f-54d0-4a5d-bf42-59bef03635d4",
+              "name": "Rocky8-Sparse",
+              "ipaddress": "10.10.254.137",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "name": "vm-detail",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "text": "/가상머신/GFS-TEST-VM업데이트\n작업\nGFS-TEST-VM\ni-2-7-VM\nx86_64\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n정지된 상태\n아이디\n05f940bb-5ca7-4f58-8e41-ed8440758f0b \nOS 유형\nRocky Linux 9\nIP\n10.10.254.105 \n클라우드 · 주 IP\nCPU\n4 CPU x 2.00 GHz \nx86_64\n메모리\n8192 MB 메모리\n네트워크\n1 NIC(s)\neth0  10.10.254.105   기본\n      ADMIN-L2-Network\n템플릿\nrocky-9-4-minimal.qcow22\n컴퓨트 오퍼링\n1C1GB-TO-64C128GB-FR-GFS\nZone\nZone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 9. 17. 오전 6:55:44\n마지막 업데이트\n2026. 11. 10. 오전 5:50:01\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\nVM 호스트 명\n\nGFS-TEST-VM\nVM 표시 명\n\nGFS-TEST-VM\n에이전트 버전\n\n10.1.0\n아이디\n\n05f940bb-5ca7-4f58-8e41-ed8440758f0b\n상태\n\n정지된 상태\nIP 주소\n\n10.10.254.105\n템플릿\n\nrocky-9-4-minimal.qcow22\nOS 유형\n\nRocky Linux 9\n템플릿 유형\n\nUSER\n컴퓨트 오퍼링\n\n1C1GB-TO-64C128GB-FR-GFS\n동적으로 확장 가능\n\n예\nHA 활성화\n\n예\n하이퍼바이저\n\nKVM\nCPU 아키텍처\n\nx86_64\n계정\n\nadmin\n도메인\n\nROOT\nZone\n\nZone\nVBMC 포트\n\n미할당\n삭제 보호\n\n사용 안 함\n보호 설정은 상단 작업 메뉴의 편집 → 삭제 보호에서 변경한 뒤 저장하세요. 자동으로 해제되지 않습니다.",
+    "publicIpBadges": 0
+  },
+  {
+    "cluster": 31,
+    "name": "vnf-empty-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "count": 0,
+    "expectedEmpty": true,
+    "url": "http://10.10.31.10:8080/client/#/vnfapp?projectid=0&page=1&pagesize=20",
+    "text": "/VNF 기기업데이트\n모두 \n프로젝트\nVNF 어플라이언스 추가\n\t\n\n선택은 현재 페이지에만 적용됩니다. 검색·페이지·프로젝트 변경 및 목록 새로고침 시 선택이 해제됩니다.\n\n\t\n표시 이름\n\t\n상태\n\t\n내부 이름\n\t\nIP 주소\n\t\n계정\n\t\n도메인\n\t\n호스트\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "detailNotConfigured": true
+  },
+  {
+    "cluster": 32,
+    "name": "iso-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "list": {
+      "errors": [],
+      "isoAvailability": 6,
+      "publicIpBadges": 0,
+      "rows": [
+        {
+          "id": "f866a178-5f59-403b-9ba4-741b42e3c6e9",
+          "text": "vmware-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+        },
+        {
+          "id": "56989eeb-b41b-48a6-91e4-9a56829f6963",
+          "text": "xs-tools.iso\n\t\n사용 가능\n\t\nCentOS 4.5 (32-bit)\n\t\nx86_64\n\t\n—\n\t\nsystem\n\t\n\t"
+        },
+        {
+          "id": "c07e05de-d2c7-4866-9ca1-528b649bb80a",
+          "text": "E1335-Rocky-9.8-ISO32\n\t\n사용 가능\n\t\nRocky Linux 8\n\t\nx86_64\n\t\n14.15 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "31598d2d-5bd4-473c-a6b6-b52c54fbafd7",
+          "text": "E1335-Virtio-Driver-ISO32\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "9ca52eda-7038-4f17-9a00-18cd46155928",
+          "text": "virtio-win-0.1.302.iso\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.82 GiB\n\t\nadmin\n\t\n\t"
+        },
+        {
+          "id": "afcaf05c-599c-4751-a5a0-9edd01058e06",
+          "text": "1.36.5-Kubernetes-Binaries-ISO\n\t\n사용 가능\n\t\nNone\n\t\nx86_64\n\t\n0.96 GiB\n\t\nsystem\n\t\n\t"
+        }
+      ],
+      "url": "http://10.10.32.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226d3f209b-b23b-11f1-990e-0024811f8935%22,%2249e68247-b23b-11f1-990e-0024811f8935%22,%22Admin%22,%22admin%22,%222246448b-b23b-11f1-990e-0024811f8935%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+    },
+    "requests": [
+      {
+        "command": "listIsos",
+        "params": {
+          "listall": "true",
+          "showunique": "true",
+          "isofilter": "all",
+          "page": "1",
+          "pagesize": "20"
+        },
+        "result": {
+          "count": 6,
+          "rows": [
+            {
+              "id": "f866a178-5f59-403b-9ba4-741b42e3c6e9",
+              "name": "vmware-tools.iso",
+              "status": "Processing",
+              "account": "system",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "56989eeb-b41b-48a6-91e4-9a56829f6963",
+              "name": "xs-tools.iso",
+              "status": "Processing",
+              "account": "system",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "c07e05de-d2c7-4866-9ca1-528b649bb80a",
+              "name": "E1335-Rocky-9.8-ISO32",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": true
+            },
+            {
+              "id": "31598d2d-5bd4-473c-a6b6-b52c54fbafd7",
+              "name": "E1335-Virtio-Driver-ISO32",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "9ca52eda-7038-4f17-9a00-18cd46155928",
+              "name": "virtio-win-0.1.302.iso",
+              "status": "Successfully Installed",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            },
+            {
+              "id": "afcaf05c-599c-4751-a5a0-9edd01058e06",
+              "name": "1.36.5-Kubernetes-Binaries-ISO",
+              "status": "Successfully Installed",
+              "account": "system",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT",
+              "isready": true,
+              "bootable": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "name": "iso-detail",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "label": "vmware-tools.iso",
+    "detail": {
+      "breadcrumb": [
+        {
+          "href": "#/",
+          "text": ""
+        },
+        {
+          "href": "#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226d3f209b-b23b-11f1-990e-0024811f8935%22,%2249e68247-b23b-11f1-990e-0024811f8935%22,%22Admin%22,%22admin%22,%222246448b-b23b-11f1-990e-0024811f8935%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]",
+          "text": "ISO"
+        },
+        {
+          "href": "http://docs.ablecloud.io/latest/adminguide/templates.html#working-with-isos",
+          "text": ""
+        }
+      ],
+      "isoAvailability": 1,
+      "isoDetailValues": [
+        "아니오",
+        "예",
+        "아니오",
+        "아니오",
+        "아니오",
+        "예",
+        "예",
+        "아니오"
+      ],
+      "publicIpBadges": 0,
+      "text": "/ISO/vmware-tools.iso업데이트\n작업\nvmware-tools.iso\nx86_64\n상태\n사용 가능\n조회된 정보 기준\n아이디\nf866a178-5f59-403b-9ba4-741b42e3c6e9 \nOS 유형\nCentOS 4.5 (32-bit)\n계정\nsystem\n도메인\nROOT\n가상머신 보기\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\nZone\n이벤트\n코멘트\n이름\n\nvmware-tools.iso\n아이디\n\nf866a178-5f59-403b-9ba4-741b42e3c6e9\n설명\n\nVMware Tools Installer ISO\nOS 유형\n\nCentOS 4.5 (32-bit)\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n예\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT",
+      "url": "http://10.10.32.10:8080/client/#/iso/f866a178-5f59-403b-9ba4-741b42e3c6e9?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226d3f209b-b23b-11f1-990e-0024811f8935%22,%2249e68247-b23b-11f1-990e-0024811f8935%22,%22Admin%22,%22admin%22,%222246448b-b23b-11f1-990e-0024811f8935%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "iso-return",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "url": "http://10.10.32.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226d3f209b-b23b-11f1-990e-0024811f8935%22,%2249e68247-b23b-11f1-990e-0024811f8935%22,%22Admin%22,%22admin%22,%222246448b-b23b-11f1-990e-0024811f8935%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+  },
+  {
+    "cluster": 32,
+    "name": "vm-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "url": "http://10.10.32.10:8080/client/#/vm",
+    "rows": 20,
+    "requests": [
+      {
+        "cluster": 32,
+        "name": "vm-list-official-route",
+        "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+        "command": "listVirtualMachines",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+          "page": "1",
+          "pagesize": "20",
+          "showIcon": "true"
+        },
+        "status": 200,
+        "result": {
+          "count": 59,
+          "rows": [
+            {
+              "id": "d76c74bc-c7cc-4793-9401-fb889e7b227b",
+              "name": "ShareVolume-VM-1",
+              "ipaddress": "10.10.254.234",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "814b573c-4713-4a21-82d6-b6990d6b6c80",
+              "name": "ShareVolume-VM-2",
+              "ipaddress": "10.10.254.83",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "efc95839-7394-402d-b6fb-951ba269499c",
+              "name": "HA-VM-13",
+              "ipaddress": "10.10.254.117",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "af949062-c901-4897-ba65-f69c0655979c",
+              "name": "HA-VM-14",
+              "ipaddress": "10.10.254.70",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "24358070-daf3-4396-b764-1427ebb18e9b",
+              "name": "HA-VM-15",
+              "ipaddress": "10.10.254.119",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "6090c295-1bef-4704-9c36-53aa003cf5ab",
+              "name": "HA-VM-16",
+              "ipaddress": "10.10.254.121",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "6e2adaa9-9a85-4c72-b4b2-c7ddab924fbe",
+              "name": "HA-VM-17",
+              "ipaddress": "10.10.254.118",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "d04fbf24-5094-42aa-91d2-fcc819cb3063",
+              "name": "HA-VM-18",
+              "ipaddress": "10.10.254.120",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "d77e1d17-2804-4d50-83bd-f6f0fecb85d0",
+              "name": "HA-VM-19",
+              "ipaddress": "10.10.254.122",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "8f892268-89dd-4294-899a-d91e6bcfc95d",
+              "name": "HA-VM-20",
+              "ipaddress": "10.10.254.7",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "cfc29141-8164-42f8-ac31-d0abe61edfe9",
+              "name": "test",
+              "ipaddress": "10.10.254.185",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "8185dc8f-757c-4fa2-b6f5-36ff991a894d",
+              "name": "test2",
+              "ipaddress": "10.10.254.179",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "7db80258-f535-4669-b7aa-7f1b4fdc1322",
+              "name": "jsjs2",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "5b77d90b-070b-4087-9f14-5f6a31238d70",
+              "name": "E1335-32-L-BIOS-seed-r2",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "83231e10-63f3-412a-94d0-55b0fe51d83f",
+              "name": "E1335-32-W-UEFI-seed",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "97307bee-992f-47c8-b6ab-4b399d8bfaa4",
+              "name": "E1335-32-L-BIOS-volume-off",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "4502b429-5662-4d95-a02b-61d65a3c95d7",
+              "name": "E1335-32-L-BIOS-volume-off-r2",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "ed3fe1e8-215d-4e67-877b-6ef6118c3133",
+              "name": "E1335-32-L-BIOS-snapshot-off-r2",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "d1a1337e-1da2-4fc8-bd50-226b5db1d47a",
+              "name": "E1335-32-L-BIOS-volume-on",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "e400c8ba-123a-4f2c-92f1-6f1f2a1ec6af",
+              "name": "E1335-32-L-BIOS-snapshot-on",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "vm-list-official-route",
+        "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+        "command": "listVirtualMachines",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,guestnetwork",
+          "page": "1",
+          "pagesize": "20",
+          "showIcon": "true"
+        },
+        "status": 200,
+        "result": {
+          "count": 59,
+          "rows": [
+            {
+              "id": "d76c74bc-c7cc-4793-9401-fb889e7b227b",
+              "name": "ShareVolume-VM-1",
+              "ipaddress": "10.10.254.234",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "814b573c-4713-4a21-82d6-b6990d6b6c80",
+              "name": "ShareVolume-VM-2",
+              "ipaddress": "10.10.254.83",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "efc95839-7394-402d-b6fb-951ba269499c",
+              "name": "HA-VM-13",
+              "ipaddress": "10.10.254.117",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "af949062-c901-4897-ba65-f69c0655979c",
+              "name": "HA-VM-14",
+              "ipaddress": "10.10.254.70",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "24358070-daf3-4396-b764-1427ebb18e9b",
+              "name": "HA-VM-15",
+              "ipaddress": "10.10.254.119",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "6090c295-1bef-4704-9c36-53aa003cf5ab",
+              "name": "HA-VM-16",
+              "ipaddress": "10.10.254.121",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "6e2adaa9-9a85-4c72-b4b2-c7ddab924fbe",
+              "name": "HA-VM-17",
+              "ipaddress": "10.10.254.118",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "d04fbf24-5094-42aa-91d2-fcc819cb3063",
+              "name": "HA-VM-18",
+              "ipaddress": "10.10.254.120",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "d77e1d17-2804-4d50-83bd-f6f0fecb85d0",
+              "name": "HA-VM-19",
+              "ipaddress": "10.10.254.122",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "8f892268-89dd-4294-899a-d91e6bcfc95d",
+              "name": "HA-VM-20",
+              "ipaddress": "10.10.254.7",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "cfc29141-8164-42f8-ac31-d0abe61edfe9",
+              "name": "test",
+              "ipaddress": "10.10.254.185",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "8185dc8f-757c-4fa2-b6f5-36ff991a894d",
+              "name": "test2",
+              "ipaddress": "10.10.254.179",
+              "state": "Running",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "7db80258-f535-4669-b7aa-7f1b4fdc1322",
+              "name": "jsjs2",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "5b77d90b-070b-4087-9f14-5f6a31238d70",
+              "name": "E1335-32-L-BIOS-seed-r2",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "83231e10-63f3-412a-94d0-55b0fe51d83f",
+              "name": "E1335-32-W-UEFI-seed",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "97307bee-992f-47c8-b6ab-4b399d8bfaa4",
+              "name": "E1335-32-L-BIOS-volume-off",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "4502b429-5662-4d95-a02b-61d65a3c95d7",
+              "name": "E1335-32-L-BIOS-volume-off-r2",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "ed3fe1e8-215d-4e67-877b-6ef6118c3133",
+              "name": "E1335-32-L-BIOS-snapshot-off-r2",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "d1a1337e-1da2-4fc8-bd50-226b5db1d47a",
+              "name": "E1335-32-L-BIOS-volume-on",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            },
+            {
+              "id": "e400c8ba-123a-4f2c-92f1-6f1f2a1ec6af",
+              "name": "E1335-32-L-BIOS-snapshot-on",
+              "ipaddress": "172.31.235.32",
+              "state": "Stopped",
+              "account": "admin",
+              "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+              "domain": "ROOT"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "name": "vm-detail",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "text": "/가상머신/ShareVolume-VM-1업데이트\n작업\nShareVolume-VM-1\ni-2-3-VM\nx86_64\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n실행 중\n아이디\nd76c74bc-c7cc-4793-9401-fb889e7b227b \nOS 유형\nRocky Linux 9\nIP\n10.10.254.234 \n클라우드 · 주 IP\nCPU\n1 CPU x 2.00 GHz \nx86_64\n메모리\n1024 MB 메모리\n네트워크\n1 NIC(s)\neth0  10.10.254.234   기본\n      ADMIN-L2-Network\n템플릿\nnginx-lb-test.qcow2\n컴퓨트 오퍼링\n1C1GB-TO-64C128GB-FR\n호스트\nablecube32-3\nZone\nZone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 9. 17. 오전 2:49:48\n마지막 업데이트\n2026. 10. 16. 오전 4:57:47\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\nVM 호스트 명\n\nShareVolume-VM-1\nVM 표시 명\n\nShareVolume-VM-1\n에이전트 버전\n\n8.0.0\n아이디\n\nd76c74bc-c7cc-4793-9401-fb889e7b227b\n상태\n\n실행 중\nIP 주소\n\n10.10.254.234\n템플릿\n\nnginx-lb-test.qcow2\nOS 유형\n\nRocky Linux 9\n템플릿 유형\n\nUSER\n컴퓨트 오퍼링\n\n1C1GB-TO-64C128GB-FR\n동적으로 확장 가능\n\n예\nHA 활성화\n\n예\n하이퍼바이저\n\nKVM\nCPU 아키텍처\n\nx86_64\n계정\n\nadmin\n도메인\n\nROOT\nZone\n\nZone\n제어 영역 상태\n\n정상\nVBMC 포트\n\n미할당\n삭제 보호\n\n사용 안 함\n보호 설정은 상단 작업 메뉴의 편집 → 삭제 보호에서 변경한 뒤 저장하세요. 자동으로 해제되지 않습니다.",
+    "publicIpBadges": 0
+  },
+  {
+    "cluster": 32,
+    "name": "vnf-empty-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "readOnly": true,
+    "count": 0,
+    "expectedEmpty": true,
+    "requests": [
+      {
+        "cluster": 32,
+        "name": "vnf-empty-list",
+        "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+        "command": "listVnfAppliances",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+          "isvnf": "true",
+          "page": "1",
+          "pagesize": "20"
+        },
+        "status": 200,
+        "result": {}
+      },
+      {
+        "cluster": 32,
+        "name": "vnf-empty-list",
+        "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+        "command": "listVnfAppliances",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+          "isvnf": "true",
+          "page": "1",
+          "pagesize": "20"
+        },
+        "status": 200,
+        "result": {}
+      },
+      {
+        "cluster": 32,
+        "name": "vnf-empty-list",
+        "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+        "command": "listVnfAppliances",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "details": "group,nics,secgrp,tmpl,servoff,diskoff,iso,volume,affgrp,backoff,vnfnics",
+          "isvnf": "true",
+          "page": "1",
+          "pagesize": "20"
+        },
+        "status": 200,
+        "result": {}
+      }
+    ],
+    "detailNotConfigured": true,
+    "text": "/VNF 기기업데이트\n모두 \n프로젝트\nVNF 어플라이언스 추가\n\t\n\n선택은 현재 페이지에만 적용됩니다. 검색·페이지·프로젝트 변경 및 목록 새로고침 시 선택이 해제됩니다.\n\n\t\n표시 이름\n\t\n상태\n\t\n내부 이름\n\t\nIP 주소\n\t\n계정\n\t\n도메인\n\t\n호스트\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "name": "user-reserved-list",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "own": 1,
+    "foreign": 0,
+    "translated": true
+  },
+  {
+    "cluster": 31,
+    "name": "user-reserved-detail",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "state": "예약",
+    "missingVlan": true,
+    "missingDisplay": true,
+    "rootDisplayAction": false
+  },
+  {
+    "cluster": 31,
+    "name": "user-vm-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "count": 0,
+    "officialRoute": true
+  },
+  {
+    "cluster": 32,
+    "name": "user-reserved-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "count": 0,
+    "projectLeak": false
+  },
+  {
+    "cluster": 32,
+    "name": "user-vm-empty",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "count": 0,
+    "officialRoute": true
+  },
+  {
+    "cluster": 31,
+    "name": "release",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "post": 1,
+    "success": true,
+    "reservedRemaining": 0
+  },
+  {
+    "cluster": 32,
+    "name": "release",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "post": 1,
+    "success": true,
+    "reservedRemaining": 0
+  },
+  {
+    "cluster": 31,
+    "name": "restored-default",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "projectid": "0",
+    "state": "Allocated",
+    "page": 1,
+    "pagesize": 20,
+    "theme": "light",
+    "locale": "ko"
+  },
+  {
+    "cluster": 32,
+    "name": "restored-default",
+    "source": "940e6d166d5e5f99e6df2fdb00d0f8ade06604a5",
+    "projectid": "0",
+    "state": "Allocated",
+    "page": 1,
+    "pagesize": 20,
+    "theme": "light",
+    "locale": "ko"
+  }
+]

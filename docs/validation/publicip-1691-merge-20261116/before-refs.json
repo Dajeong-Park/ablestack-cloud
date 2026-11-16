@@ -1,0 +1,40 @@
+{
+  "pr": {
+    "baseRefName": "ablestack-europa",
+    "baseRefOid": "8ada44ee9d921dfcca9c2be892f19730129b4188",
+    "headRefName": "dhslove/epic-1684-public-ip",
+    "headRefOid": "9a6d2994b2e5a4336f11d97b9ea090a86c4d9b3a",
+    "isDraft": false,
+    "mergeStateStatus": "DIRTY",
+    "mergeable": "CONFLICTING",
+    "number": 1691,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-11-16T12:18:36Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/43865350958/job/133292374522",
+        "name": "triage",
+        "startedAt": "2026-11-16T12:18:23Z",
+        "status": "COMPLETED",
+        "workflowName": "PR Merge Conflict Check"
+      }
+    ],
+    "title": "Public IP 예약·상세·검색과 breadcrumb 표준 UI 통합",
+    "url": "https://github.com/ablecloud-team/ablestack-cloud/pull/1691"
+  },
+  "targetBranch": {
+    "name": "ablestack-europa",
+    "sha": "b777311a708e0e652f05025fecb2660dfa90f74d"
+  },
+  "remotes": {
+    "origin": [
+      "b777311a708e0e652f05025fecb2660dfa90f74d\trefs/heads/ablestack-europa",
+      "9a6d2994b2e5a4336f11d97b9ea090a86c4d9b3a\trefs/heads/dhslove/epic-1684-public-ip"
+    ],
+    "upstream": [
+      "b777311a708e0e652f05025fecb2660dfa90f74d\trefs/heads/ablestack-europa"
+    ]
+  }
+}

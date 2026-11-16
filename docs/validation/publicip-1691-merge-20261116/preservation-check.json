@@ -1,0 +1,162 @@
+[
+  {
+    "cluster": 31,
+    "kind": "ips",
+    "before": 53,
+    "after": 53,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 31,
+    "kind": "networks",
+    "before": 44,
+    "after": 44,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 31,
+    "kind": "vpcs",
+    "before": 5,
+    "after": 5,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 31,
+    "kind": "vms",
+    "before": 149,
+    "after": 149,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 31,
+    "kind": "accounts",
+    "before": 26,
+    "after": 26,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 31,
+    "kind": "domains",
+    "before": 7,
+    "after": 7,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 31,
+    "kind": "projects",
+    "before": 7,
+    "after": 7,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 31,
+    "kind": "pools",
+    "before": 1,
+    "after": 1,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "ips",
+    "before": 102,
+    "after": 102,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "networks",
+    "before": 29,
+    "after": 29,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "vpcs",
+    "before": 4,
+    "after": 4,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "vms",
+    "before": 73,
+    "after": 73,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "accounts",
+    "before": 22,
+    "after": 22,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "domains",
+    "before": 5,
+    "after": 5,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "projects",
+    "before": 5,
+    "after": 5,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  },
+  {
+    "cluster": 32,
+    "kind": "pools",
+    "before": 1,
+    "after": 1,
+    "equal": true,
+    "changed": [],
+    "added": [],
+    "removed": []
+  }
+]

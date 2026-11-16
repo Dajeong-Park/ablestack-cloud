@@ -1,0 +1,15 @@
+{
+  "uiTestFiles": [
+    "tests/unit/components/PublicIpSearchSelect.spec.js",
+    "tests/unit/utils/PublicIpSearch.spec.js",
+    "tests/unit/views/AutogenPublicIpListScope.spec.js"
+  ],
+  "fixedIndentErrors": 55,
+  "babelAstBeforeAfterEqual": true,
+  "astHashes": {
+    "tests/unit/components/PublicIpSearchSelect.spec.js": "2c2aa7996cd78b9932dd8f08e547e03d6dccde2eb1769fea61eeb3984637cdcf",
+    "tests/unit/utils/PublicIpSearch.spec.js": "3dd84b78ee9b23d8d74e277abe122add203e7369b952e351887b9eed61805a13",
+    "tests/unit/views/AutogenPublicIpListScope.spec.js": "d4a2bdb741a25c4e5e1939db2b3cf0f43f9a23521313ffdfdd86e2b0ba9e6a4a"
+  },
+  "apiTestChange": "explicit assertEquals/assertNull static imports; assertions unchanged"
+}

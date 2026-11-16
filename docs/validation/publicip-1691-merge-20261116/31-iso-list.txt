@@ -1,0 +1,760 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - list:
+      - menuitem "save 템플릿":
+        - link "save 템플릿":
+          - /url: "#/template"
+          - img "save":
+          - text: 템플릿
+      - menuitem "usb ISO":
+        - link "usb ISO":
+          - /url: "#/iso"
+          - img "usb":
+          - text: ISO
+      - menuitem "쿠버네티스 ISO":
+        - link "쿠버네티스 ISO":
+          - /url: "#/kubernetesiso"
+          - text: 쿠버네티스 ISO
+    - img "lock":
+    - text: 키 관리
+    - img "safety-certificate":
+    - text: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기" [active]:
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "ISO":
+    - /url: "#/iso"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/templates.html#working-with-isos
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - generic: 필터링 기준
+  - combobox "필터링 기준"
+  - generic: 모두
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "ISO 등록":
+    - img "plus":
+    - generic: ISO 등록
+  - button "로컬에서 ISO 업로드":
+    - img "cloud-upload":
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "이름 caret-up caret-down 상태 caret-up caret-down OS 유형 caret-up caret-down CPU 아키텍처 caret-up caret-down 크기 caret-up caret-down 계정 caret-up caret-down 순서 filter":
+        - columnheader "이름 caret-up caret-down":
+          - generic: 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "OS 유형 caret-up caret-down":
+          - generic: OS 유형
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "CPU 아키텍처 caret-up caret-down":
+          - generic: CPU 아키텍처
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "크기 caret-up caret-down":
+          - generic: 크기
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "순서"
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "vmware-tools.iso 사용 가능 CentOS 4.5 (32-bit) x86_64 — system double-left double-right caret-up caret-down":
+        - cell "vmware-tools.iso":
+          - link "vmware-tools.iso":
+            - /url: "#/iso/bfab5660-b9ac-4189-bb92-7c693fff2c86?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - cell "사용 가능":
+          - generic "사용 가능":
+            - generic "사용 가능 조회된 정보 기준":
+              - generic: 사용 가능
+        - cell "CentOS 4.5 (32-bit)":
+          - generic "CentOS 4.5 (32-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "—":
+          - generic "—"
+        - cell "system":
+          - generic "system":
+            - link "system":
+              - /url: "#/account?name=system&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - row "xs-tools.iso 사용 가능 CentOS 4.5 (32-bit) x86_64 — system double-left double-right caret-up caret-down":
+        - cell "xs-tools.iso":
+          - link "xs-tools.iso":
+            - /url: "#/iso/18f2f6bb-a067-4e23-a59a-4c74ca320454?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - cell "사용 가능":
+          - generic "사용 가능":
+            - generic "사용 가능 조회된 정보 기준":
+              - generic: 사용 가능
+        - cell "CentOS 4.5 (32-bit)":
+          - generic "CentOS 4.5 (32-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "—":
+          - generic "—"
+        - cell "system":
+          - generic "system":
+            - link "system":
+              - /url: "#/account?name=system&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Windows Server 2025 x86_64 DVD 사용 가능 조회 Zone: Zone Windows Server 2025 (64-bit) x86_64 7.59 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Windows Server 2025 x86_64 DVD":
+          - link "Windows Server 2025 x86_64 DVD":
+            - /url: "#/iso/3f79047a-7f0b-48fb-a71b-3fea8fd51dc0?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Windows Server 2025 (64-bit)":
+          - generic "Windows Server 2025 (64-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "7.59 GiB":
+          - generic "7.59 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Windows 11 Korean x64 DVD 사용 가능 조회 Zone: Zone Windows 11 (64-bit) x86_64 6.94 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Windows 11 Korean x64 DVD":
+          - link "Windows 11 Korean x64 DVD":
+            - /url: "#/iso/117c982b-187c-484d-b5af-a60df4de5bcb?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Windows 11 (64-bit)":
+          - generic "Windows 11 (64-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "6.94 GiB":
+          - generic "6.94 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Virtio Windows Driver 0.1.302 사용 가능 조회 Zone: Zone None x86_64 0.82 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Virtio Windows Driver 0.1.302":
+          - link "Virtio Windows Driver 0.1.302":
+            - /url: "#/iso/9ba4cfde-6a3a-409b-a01c-ea8f22b3561f?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "None":
+          - generic "None"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "0.82 GiB":
+          - generic "0.82 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Rocky Linux 10.2 x86_64 DVD 사용 가능 조회 Zone: Zone Rocky Linux 10 x86_64 9.52 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Rocky Linux 10.2 x86_64 DVD":
+          - link "Rocky Linux 10.2 x86_64 DVD":
+            - /url: "#/iso/367b2ca1-ae7c-467c-8f42-eac7162ee148?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Rocky Linux 10":
+          - generic "Rocky Linux 10"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "9.52 GiB":
+          - generic "9.52 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Rocky Linux 9.8 x86_64 DVD 사용 가능 조회 Zone: Zone Rocky Linux 8 x86_64 14.15 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Rocky Linux 9.8 x86_64 DVD":
+          - link "Rocky Linux 9.8 x86_64 DVD":
+            - /url: "#/iso/3b5703ae-681e-4fa1-8191-7222cd2f6a5b?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Rocky Linux 8":
+          - generic "Rocky Linux 8"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "14.15 GiB":
+          - generic "14.15 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "1.34.2-Kubernetes-Binaries-ISO 사용 가능 조회 Zone: Zone None x86_64 0.96 GiB system double-left double-right caret-up caret-down"':
+        - cell "1.34.2-Kubernetes-Binaries-ISO":
+          - link "1.34.2-Kubernetes-Binaries-ISO":
+            - /url: "#/iso/e0755bca-b649-415f-9dcc-1df2eff086f1?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "None":
+          - generic "None"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "0.96 GiB":
+          - generic "0.96 GiB"
+        - cell "system":
+          - generic "system":
+            - link "system":
+              - /url: "#/account?name=system&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Ubuntu 26.04 x86_64 DVD 사용 가능 조회 Zone: Zone Ubuntu 24.04 LTS x86_64 2.72 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Ubuntu 26.04 x86_64 DVD":
+          - link "Ubuntu 26.04 x86_64 DVD":
+            - /url: "#/iso/b89174bd-15a3-40ff-8151-214af435b97e?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Ubuntu 24.04 LTS":
+          - generic "Ubuntu 24.04 LTS"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "2.72 GiB":
+          - generic "2.72 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Windows Server 2022 x86_64 DVD 사용 가능 조회 Zone: Zone Windows Server 2022 (64-bit) x86_64 4.70 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Windows Server 2022 x86_64 DVD":
+          - link "Windows Server 2022 x86_64 DVD":
+            - /url: "#/iso/23a7eb77-6f31-4419-850d-1a45d58e8fec?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Windows Server 2022 (64-bit)":
+          - generic "Windows Server 2022 (64-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "4.70 GiB":
+          - generic "4.70 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Windows Server 2019 x86_64 DVD 사용 가능 조회 Zone: Zone Windows Server 2019 (64-bit) x86_64 5.26 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Windows Server 2019 x86_64 DVD":
+          - link "Windows Server 2019 x86_64 DVD":
+            - /url: "#/iso/1e412e42-ac14-4a12-81dd-72245c496494?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Windows Server 2019 (64-bit)":
+          - generic "Windows Server 2019 (64-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "5.26 GiB":
+          - generic "5.26 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Rocky Linux 8.10 x86_64 DVD 사용 가능 조회 Zone: Zone Rocky Linux 8 x86_64 13.24 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Rocky Linux 8.10 x86_64 DVD":
+          - link "Rocky Linux 8.10 x86_64 DVD":
+            - /url: "#/iso/f6218264-03c0-400f-8e33-bdf9fb12e91a?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Rocky Linux 8":
+          - generic "Rocky Linux 8"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "13.24 GiB":
+          - generic "13.24 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Ubuntu 22.04.5 Server x86_64 DVD 사용 가능 조회 Zone: Zone Ubuntu 22.04 LTS x86_64 1.99 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Ubuntu 22.04.5 Server x86_64 DVD":
+          - link "Ubuntu 22.04.5 Server x86_64 DVD":
+            - /url: "#/iso/95b3b23b-a982-4b71-81cb-d27d12ef7115?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Ubuntu 22.04 LTS":
+          - generic "Ubuntu 22.04 LTS"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "1.99 GiB":
+          - generic "1.99 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Ubuntu 24.04.4 Server x86_64 DVD 사용 가능 조회 Zone: Zone Ubuntu 24.04 LTS x86_64 3.17 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Ubuntu 24.04.4 Server x86_64 DVD":
+          - link "Ubuntu 24.04.4 Server x86_64 DVD":
+            - /url: "#/iso/d6fcefc8-35fc-4092-9a60-6132ce976a53?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Ubuntu 24.04 LTS":
+          - generic "Ubuntu 24.04 LTS"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "3.17 GiB":
+          - generic "3.17 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Debian 11.11 x86_64 DVD 사용 가능 조회 Zone: Zone Debian GNU/Linux 11 (64-bit) x86_64 3.72 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Debian 11.11 x86_64 DVD":
+          - link "Debian 11.11 x86_64 DVD":
+            - /url: "#/iso/bc45845b-1dca-40b1-b05a-ba189458c7e7?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Debian GNU/Linux 11 (64-bit)":
+          - generic "Debian GNU/Linux 11 (64-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "3.72 GiB":
+          - generic "3.72 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Debian 12.15 x86_64 DVD 사용 가능 조회 Zone: Zone Debian GNU/Linux 12 (64-bit) x86_64 3.72 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Debian 12.15 x86_64 DVD":
+          - link "Debian 12.15 x86_64 DVD":
+            - /url: "#/iso/d4d7e0b1-effe-4190-a935-c332eee77cfe?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Debian GNU/Linux 12 (64-bit)":
+          - generic "Debian GNU/Linux 12 (64-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "3.72 GiB":
+          - generic "3.72 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "Debian 13.7 x86_64 DVD 사용 가능 조회 Zone: Zone Debian GNU/Linux 12 (64-bit) x86_64 3.72 GiB admin double-left double-right caret-up caret-down"':
+        - cell "Debian 13.7 x86_64 DVD":
+          - link "Debian 13.7 x86_64 DVD":
+            - /url: "#/iso/351ed450-0083-4482-8805-28ba4bbf6f38?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "Debian GNU/Linux 12 (64-bit)":
+          - generic "Debian GNU/Linux 12 (64-bit)"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "3.72 GiB":
+          - generic "3.72 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "ABLESTACK-Tools-Process-rocky-c439f93 사용 가능 조회 Zone: Zone None x86_64 0.25 GiB admin double-left double-right caret-up caret-down"':
+        - cell "ABLESTACK-Tools-Process-rocky-c439f93":
+          - link "ABLESTACK-Tools-Process-rocky-c439f93":
+            - /url: "#/iso/dcdeb196-47f8-4c69-8ce5-3fac121b65e8?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "None":
+          - generic "None"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "0.25 GiB":
+          - generic "0.25 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "ABLESTACK-Tools-Process-ubuntu-c439f93 사용 가능 조회 Zone: Zone None x86_64 0.05 GiB admin double-left double-right caret-up caret-down"':
+        - cell "ABLESTACK-Tools-Process-ubuntu-c439f93":
+          - link "ABLESTACK-Tools-Process-ubuntu-c439f93":
+            - /url: "#/iso/1c0e894a-f880-4b9f-8a55-48f9c472861c?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "None":
+          - generic "None"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "0.05 GiB":
+          - generic "0.05 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+      - 'row "ABLESTACK-Tools-Process-debian-c439f93 사용 가능 조회 Zone: Zone None x86_64 0.04 GiB admin double-left double-right caret-up caret-down"':
+        - cell "ABLESTACK-Tools-Process-debian-c439f93":
+          - link "ABLESTACK-Tools-Process-debian-c439f93":
+            - /url: "#/iso/0369f6c4-9eac-48d6-8f4d-0f2e18d69355?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%22a75cdd55-b253-11f1-a895-0024814c313f%5C%22,%5C%2292709d09-b253-11f1-a895-0024814c313f%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%227ef6b29a-b253-11f1-a895-0024814c313f%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%22a75cdd55-b253-11f1-a895-0024814c313f%22,%2292709d09-b253-11f1-a895-0024814c313f%22,%22Admin%22,%22admin%22,%227ef6b29a-b253-11f1-a895-0024814c313f%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]"
+        - 'cell "사용 가능 조회 Zone: Zone"':
+          - 'generic "사용 가능 조회 Zone: Zone"':
+            - 'generic "사용 가능 조회 Zone: Zone"':
+              - generic: 사용 가능
+        - cell "None":
+          - generic "None"
+        - cell "x86_64":
+          - generic "x86_64"
+        - cell "0.04 GiB":
+          - generic "0.04 GiB"
+        - cell "admin":
+          - generic "admin":
+            - link "admin":
+              - /url: "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true"
+        - cell "double-left double-right caret-up caret-down":
+          - button "double-left":
+            - img "double-left":
+          - button "double-right":
+            - img "double-right":
+          - button "caret-up":
+            - img "caret-up":
+          - button "caret-down":
+            - img "caret-down":
+        - cell
+  - list:
+    - listitem: 전체 30 개 항목 중 1-20 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "2":
+      - generic: "2"
+    - listitem "다음 페이지":
+      - button "right":
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+    - text: 이동하기
+    - textbox
+- 'tooltip "사용 가능 조회 Zone: Zone"'
