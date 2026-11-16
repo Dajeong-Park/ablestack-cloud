@@ -350,6 +350,10 @@ public class AblestackNetBackupClient {
     }
 
     public void validateUserBackupPolicy(String name, String hostName, String hostIp) {
+        validateUserBackupPolicyClient(name, hostName, hostIp);
+    }
+
+    public String validateUserBackupPolicyClient(String name, String hostName, String hostIp) {
         JSONObject response = artifactGetStrict("/config/policies/" + uriSegment(filterValue(name)), null);
         if (response == null) { throw new ThirdPartyBackupSubmissionException("NetBackup Host policy does not exist: " + name); }
         JSONObject policy = response.getJSONObject("data").getJSONObject("attributes").getJSONObject("policy");
@@ -370,6 +374,7 @@ public class AblestackNetBackupClient {
             throw new ThirdPartyBackupSubmissionException("NetBackup requires an active Standard Host policy with one matching Client, "
                     + "and a mold-transfer User Backup schedule with an open start window");
         }
+        return clients.getJSONObject(0).getString("hostName");
     }
 
     /** Older Host files contain a sanitized filename, not necessarily the original policy name. */
@@ -389,7 +394,7 @@ public class AblestackNetBackupClient {
                     JSONObject attributes = entry.optJSONObject("attributes");
                     name = attributes == null ? "" : attributes.optString("policyName");
                 }
-                if (!configuredName.equals(name.replaceAll("[^A-Za-z0-9._-]", "_"))) { continue; }
+                if (!configuredName.equals(name) && !configuredName.equals(name.replaceAll("[^A-Za-z0-9._-]", "_"))) { continue; }
                 JSONObject detail = artifactGetStrict("/config/policies/" + uriSegment(filterValue(name)), null);
                 if (detail == null) { throw new CloudRuntimeException("NetBackup policy inventory changed during synchronization"); }
                 JSONObject policy = detail.getJSONObject("data").getJSONObject("attributes").getJSONObject("policy");
@@ -453,7 +458,8 @@ public class AblestackNetBackupClient {
         if (target.equals(current)) { return false; }
         if ("VERIFY".equals(action)) { throw new CloudRuntimeException("NetBackup parent path verification failed: " + name); }
         String suffix = "/ablestack-netbackup/bootstrap/" + name.replaceAll("[^A-Za-z0-9._-]", "_");
-        if (!current.endsWith(suffix)) {
+        String exactSuffix = "/ablestack-netbackup/bootstrap/" + name;
+        if (!current.endsWith(exactSuffix) && !current.endsWith(suffix)) {
             throw new CloudRuntimeException("NetBackup parent selection is not a generated staging path: " + name);
         }
         for (Object item : userBackupJobs(name, " and state ne 'DONE'")) {
@@ -552,7 +558,20 @@ public class AblestackNetBackupClient {
     }
 
     private static boolean matchesClient(String client, String host, String ip) {
-        return StringUtils.isNotBlank(client) && (client.equalsIgnoreCase(host) || client.equals(ip));
+        if (StringUtils.isBlank(client)) { return false; }
+        if (client.equalsIgnoreCase(host) || client.equals(ip)) { return true; }
+        if (StringUtils.isBlank(ip)) { return false; }
+        // Provisioning proves that this address belongs to the executing KVM host.
+        // Compare full DNS addresses; never match short names across DNS domains.
+        try {
+            final java.net.InetAddress hostAddress = java.net.InetAddress.getByName(ip);
+            for (java.net.InetAddress address : java.net.InetAddress.getAllByName(client)) {
+                if (address.equals(hostAddress)) { return true; }
+            }
+        } catch (java.net.UnknownHostException ignored) {
+            return false;
+        }
+        return false;
     }
 
     private static boolean userBackupJobMatches(JSONObject attributes, String policy, String host, String ip) {
@@ -730,7 +749,7 @@ public class AblestackNetBackupClient {
                 final JSONArray clients = new JSONArray();
                 for (Object value : policy.getJSONArray("clients")) {
                     final JSONObject client = (JSONObject) value;
-                    if (hostName.equalsIgnoreCase(client.optString("hostName")) || hostIp.equals(client.optString("hostName"))) {
+                    if (matchesClient(client.optString("hostName"), hostName, hostIp)) {
                         clients.put(client);
                     }
                 }

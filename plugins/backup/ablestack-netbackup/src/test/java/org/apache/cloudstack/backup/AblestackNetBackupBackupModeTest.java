@@ -346,7 +346,8 @@ public class AblestackNetBackupBackupModeTest {
 
     @Test public void expiredParentStillPresentInCatalogStartsAnIndependentFull() {
         enabled();
-        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent()));
+        BackupVO previous = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
         netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id"))
                 .willReturn(aResponse().withStatus(200).withBody(new JSONObject().put("data", new JSONObject()
                         .put("id", "volume-id").put("attributes", new JSONObject().put("backupStatus", 0)
@@ -357,7 +358,8 @@ public class AblestackNetBackupBackupModeTest {
 
     @Test public void unavailableRetentionCatalogDoesNotSelectFullOrRegisterAnIncremental() {
         enabled();
-        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(parent()));
+        BackupVO previous = parent();
+        when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
         netbackup.stubFor(get(urlEqualTo("/netbackup/catalog/images/volume-id"))
                 .willReturn(aResponse().withStatus(503)));
         assertThrows(CloudRuntimeException.class, () -> start(false));

@@ -21,6 +21,7 @@ import base64
 import hashlib
 import hmac
 import json
+import ipaddress
 import os
 import re
 import shlex
@@ -126,7 +127,7 @@ def validate_custom_secret_key_file(secret_key_file: Path) -> None:
 
 
 def sanitize_name(value: str) -> str:
-    return re.sub(r"[^A-Za-z0-9._-]", "_", value)
+    return re.sub(r"[^A-Za-z0-9._+-]", "_", value)
 
 
 def url_encode(value: str) -> str:
@@ -249,39 +250,110 @@ def append_provider_if_missing(provider_list: str, provider_name: str) -> str:
     return ",".join(items)
 
 
+def validate_policy_name(name: str) -> None:
+    # Keep the real name in API requests, hook filenames and configuration. Never
+    # turn an invalid name into another existing policy by replacing characters.
+    if not re.fullmatch(r"[A-Za-z0-9_+][A-Za-z0-9_.+\-]*", name or "") or name.endswith("."):
+        fail("Invalid --policy-name: use letters, digits, . _ - +, without spaces; "
+             "the name cannot start with '-' or '.', or end with '.'")
+
+
+def read_netbackup_policy(args: argparse.Namespace) -> dict:
+    if hasattr(args, "verified_policy"):
+        return args.verified_policy
+    validate_policy_name(args.policy_name)
+    request = Request(args.netbackup_url.rstrip("/") + "/config/policies/" + quote(args.policy_name, safe=""),
+                      headers={"Accept": "application/vnd.netbackup+json;version=12.0", "Authorization": args.netbackup_apikey})
+    try:
+        with urlopen(request, context=ssl._create_unverified_context(), timeout=30) as response:
+            document = json.load(response)
+        entry = document["data"]
+        if entry.get("id") is not None and entry["id"] != args.policy_name:
+            fail("NetBackup returned a different policy name; configuration was stopped")
+        policy = entry["attributes"]["policy"]
+        if policy.get("policyName") is not None and policy["policyName"] != args.policy_name:
+            fail("NetBackup returned a different policy name; configuration was stopped")
+        clients = policy.get("clients", [])
+        if (str(policy.get("policyType", "")).lower() != "standard" or not isinstance(clients, list)
+                or len(clients) != 1 or not str(clients[0].get("hostName", "")).strip()):
+            fail("NetBackup requires an existing Standard policy containing exactly one Client")
+    except HTTPError as error:
+        fail(f"Cannot read NetBackup policy: HTTP {error.code}; check the API key, permissions and policy name")
+    except (URLError, ValueError, KeyError, TypeError, AttributeError) as error:
+        fail(f"Cannot verify NetBackup policy: {type(error).__name__}")
+    args.verified_policy = policy
+    return policy
+
+
+def resolve_addresses(name: str) -> set[str]:
+    try:
+        return {str(ipaddress.ip_address(name))}
+    except ValueError:
+        try:
+            return {str(ipaddress.ip_address(item[4][0].split("%", 1)[0]))
+                    for item in socket.getaddrinfo(name, None, type=socket.SOCK_STREAM)}
+        except (OSError, ValueError):
+            return set()
+
+
+def local_host_addresses() -> set[str]:
+    try:
+        result = subprocess.run(["ip", "-j", "address", "show"], check=True, capture_output=True, text=True, timeout=10)
+        addresses = {str(ipaddress.ip_address(address["local"])) for interface in json.loads(result.stdout)
+                     for address in interface.get("addr_info", []) if address.get("local")}
+    except (OSError, subprocess.SubprocessError, ValueError, KeyError, TypeError) as error:
+        fail(f"Cannot inspect local KVM interfaces: {type(error).__name__}; run this tool on the KVM host with iproute installed")
+    return {address for address in addresses if not ipaddress.ip_address(address).is_loopback
+            and not ipaddress.ip_address(address).is_unspecified}
+
+
 def resolve_host_context(args: argparse.Namespace) -> tuple[str, str]:
-    log_step("Resolve Host Context")
-    log_info(f"Resolving zone and cluster IDs using host={args.kvm_ip or args.kvm_hostname}")
-    params = {
-        "listAll": "true",
-        "pagesize": "500",
-        "page": "1",
-        "type": "Routing",
-    }
-    if not args.kvm_ip:
-        params["name"] = args.kvm_hostname
-    data = invoke_mold_api("GET", "listHosts", params, args.mold_url, args.admin_apikey, args.admin_secretkey)
-    hosts = data.get("listhostsresponse", {}).get("host", [])
-    if isinstance(hosts, dict):
-        hosts = [hosts]
-    matches = [host for host in hosts
-               if (args.kvm_ip and host.get("ipaddress") == args.kvm_ip)
-               or (not args.kvm_ip and str(host.get("name", "")).lower() == args.kvm_hostname.lower())]
+    log_step("Resolve Policy Client and Mold Host")
+    policy = read_netbackup_policy(args)
+    client_name = str(policy["clients"][0]["hostName"])
+    client_addresses = resolve_addresses(client_name)
+    local_addresses = local_host_addresses()
+    if not client_addresses.intersection(local_addresses):
+        fail(f"NetBackup policy Client '{client_name}' does not resolve to this KVM host's local interfaces")
+
+    matches = []
+    page = 1
+    while True:
+        params = {"listAll": "true", "pagesize": "500", "page": str(page), "type": "Routing"}
+        data = invoke_mold_api("GET", "listHosts", params, args.mold_url, args.admin_apikey, args.admin_secretkey)
+        response = data.get("listhostsresponse", {})
+        hosts = response.get("host", [])
+        if isinstance(hosts, dict):
+            hosts = [hosts]
+        for host in hosts:
+            addresses = resolve_addresses(str(host.get("ipaddress") or ""))
+            if (str(host.get("hypervisor", "")).lower() == "kvm"
+                    and addresses.intersection(client_addresses)):
+                matches.append(host)
+        if len(hosts) < 500:
+            break
+        page += 1
+        if page > 10000:
+            fail("Mold Host inventory pagination did not terminate")
     if len(matches) != 1:
-        fail("Cannot uniquely match this KVM host in Mold; provide --kvm-hostname or --kvm-ip")
+        fail("Cannot uniquely match the policy Client to one Mold-registered local KVM host; check its Client DNS/IP and Mold Host IP")
     exact = matches[0]
+    if not resolve_addresses(str(exact.get("ipaddress") or "")).intersection(local_addresses):
+        fail("The Mold Host matched by the policy Client is not this executing KVM host")
     if not exact.get("name") or not exact.get("zoneid") or not exact.get("clusterid"):
         fail("Matched KVM host is missing its name, zone ID or cluster ID")
-    if args.policy_name != str(exact["name"]):
-        fail(f"--policy-name must exactly match the Mold-registered host name '{exact['name']}'. "
-             "Create or select the NetBackup policy with that name, then run this tool again.")
+    # Retain old invocations as assertions, never as a way to select a different host.
+    if args.kvm_hostname and args.kvm_hostname != str(exact["name"]):
+        fail("--kvm-hostname differs from the automatically verified Mold Host")
+    if args.kvm_ip and args.kvm_ip != str(exact.get("ipaddress", "")):
+        fail("--kvm-ip differs from the automatically verified Mold Host")
     args.kvm_hostname = str(exact["name"])
-    args.kvm_ip = str(exact.get("ipaddress") or args.kvm_ip or "")
-    zone_id = str(exact["zoneid"])
-    cluster_id = str(exact.get("clusterid", "") or "")
-    log_ok(f"Resolved Mold host: {args.kvm_hostname}")
-    log_ok(f"Resolved zone ID: {zone_id}")
-    log_ok(f"Resolved cluster ID: {cluster_id}")
+    args.kvm_ip = str(exact["ipaddress"])
+    args.netbackup_client = client_name
+    zone_id, cluster_id = str(exact["zoneid"]), str(exact["clusterid"])
+    log_ok(f"NetBackup policy: {args.policy_name}; Client: {client_name}")
+    log_ok(f"Resolved Mold host: {args.kvm_hostname} ({args.kvm_ip})")
+    log_ok(f"Resolved zone ID: {zone_id}; cluster ID: {cluster_id}")
     return zone_id, cluster_id
 
 
@@ -369,19 +441,11 @@ def ensure_backup_framework_configuration(zone_id: str, cluster_id: str, args: a
 def check_netbackup_policy(args: argparse.Namespace) -> None:
     """Read-only checks; policy, Client and storage concurrency remain administrator settings."""
     log_step("Check NetBackup Host Policy")
-    request = Request(args.netbackup_url.rstrip("/") + "/config/policies/" + quote(args.policy_name, safe=""),
-                      headers={"Accept": "application/vnd.netbackup+json;version=12.0", "Authorization": args.netbackup_apikey})
-    try:
-        with urlopen(request, context=ssl._create_unverified_context(), timeout=30) as response:
-            policy = json.load(response)["data"]["attributes"]["policy"]
-    except HTTPError as error:
-        fail(f"Cannot read NetBackup Host policy: HTTP {error.code}; check the API key, permissions and policy name")
-    except (URLError, ValueError, KeyError) as error:
-        fail(f"Cannot verify NetBackup Host policy: {type(error).__name__}")
-    clients = policy.get("clients", [])
-    if (str(policy.get("policyType", "")).lower() != "standard" or len(clients) != 1
-            or str(clients[0].get("hostName", "")).lower() not in {args.kvm_hostname.lower(), (args.kvm_ip or "").lower()}):
-        fail("NetBackup requires a Standard policy containing exactly this KVM Host as its Client")
+    policy = read_netbackup_policy(args)
+    client = str(policy["clients"][0]["hostName"])
+    if (client.lower() not in {str(args.kvm_hostname or "").lower(), str(args.kvm_ip or "").lower()}
+            and args.kvm_ip not in resolve_addresses(client)):
+        fail("NetBackup policy Client does not match the verified Mold KVM host")
     if not any(str(schedule.get("backupType", "")).lower() == "full backup" for schedule in policy.get("schedules", [])):
         fail("Keep a Full Backup schedule on the Host policy to dispatch VM requests through the bootstrap hooks")
     schedules = [schedule for schedule in policy.get("schedules", []) if schedule.get("scheduleName") == "mold-transfer"]
@@ -1008,10 +1072,9 @@ def parse_boolean(value: str) -> bool:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="NetBackup configuration helper")
-    parser.add_argument("--policy-name", help="existing NetBackup parent policy name; must exactly match the Mold-registered host name")
-    parser.add_argument("--kvm-hostname", default=socket.gethostname().split(".")[0],
-                        help="Mold host name; default: current local host name")
-    parser.add_argument("--kvm-ip", help="match the Mold host by its IP instead of its name")
+    parser.add_argument("--policy-name", help="existing NetBackup Standard policy with exactly one Client matching this KVM host; independent of Mold Host name")
+    parser.add_argument("--kvm-hostname", help="Optional compatibility assertion: expected Mold Host name; normally detected from the policy Client")
+    parser.add_argument("--kvm-ip", help="Optional compatibility assertion: expected Mold Host IP; normally detected from the policy Client")
     parser.add_argument("--vm-schedule-backup", type=parse_boolean, metavar="true|false",
                         help="Update Mold's global NetBackup VM schedule mode for all host policies. "
                              "If omitted, use the current Mold value (initial default: true).")
@@ -1090,6 +1153,7 @@ def validate_args(args: argparse.Namespace) -> None:
     global BACKUP_STAGING_ROOT
     if not args.policy_name:
         fail("--policy-name is required")
+    validate_policy_name(args.policy_name)
     if args.backup_chain_size is not None and args.backup_chain_size <= 0:
         fail("--backup-chain-size must be a positive integer")
     if not args.incremental_backup and args.backup_chain_size is not None:
@@ -1125,6 +1189,7 @@ def main() -> None:
              f"VM_INCLUDE={args.vm_include}, VM_EXCLUDE={args.vm_exclude}")
 
     # Fail before creating credentials, changing Mold settings or importing an offering.
+    read_netbackup_policy(args)
     load_common_staging(args)
     zone_id, cluster_id = resolve_host_context(args)
     check_netbackup_policy(args)

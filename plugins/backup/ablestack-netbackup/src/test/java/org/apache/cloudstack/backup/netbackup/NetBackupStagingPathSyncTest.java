@@ -144,6 +144,18 @@ public class NetBackupStagingPathSyncTest {
         assertEquals(0, writes());
     }
 
+    @Test public void plusNamesKeepExactBootstrapPathsAndCannotResolveThroughAnUnderscoreCollision() {
+        names = List.of("custom+policy", "custom_policy");
+        assertEquals("custom+policy", client.resolveStagingPolicyName("custom+policy", "host-four", "192.0.2.4"));
+        assertThrows(CloudRuntimeException.class,
+                () -> client.resolveStagingPolicyName("custom_policy", "host-four", "192.0.2.4"));
+        selected = "/old/ablestack-netbackup/bootstrap/custom+policy";
+        String target = "/new/ablestack-netbackup/bootstrap/custom+policy";
+        assertTrue(client.synchronizeStagingPath("custom+policy", "host-four", "192.0.2.4", selected, target, "APPLY"));
+        assertEquals(target, selected);
+        assertEquals(1, writes());
+    }
+
     @Test public void ambiguousLegacyNamesCannotAuthorizeAnyPolicyWrite() {
         names = List.of("custom policy", "custom_policy");
         assertThrows(CloudRuntimeException.class, () -> client.resolveStagingPolicyName("custom_policy", "host-four", "192.0.2.4"));

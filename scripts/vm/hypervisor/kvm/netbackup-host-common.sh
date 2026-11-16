@@ -156,7 +156,7 @@ cleanup_runtime_history() {
 
 sanitize_name() {
   local value="$1"
-  value="${value//[^A-Za-z0-9._-]/_}"
+  value="${value//[^A-Za-z0-9._+-]/_}"
   builtin echo "${value}"
 }
 
@@ -734,6 +734,7 @@ load_policy_schedule_config() {
   VM_EXCLUDE=""
   NETBACKUP_PARENT_PAYLOAD_PATH=""
   KVM_HOSTNAME=""
+  NETBACKUP_POLICY_NAME=""
   MOLD_URL=""
   ADMIN_APIKEY=""
   ADMIN_SECRETKEY=""
@@ -743,6 +744,7 @@ load_policy_schedule_config() {
   if [[ -f "${config_file}" ]]; then
     # shellcheck disable=SC1090
     source "${config_file}"
+    [[ -z "${NETBACKUP_POLICY_NAME}" || "${NETBACKUP_POLICY_NAME}" == "${POLICY_NAME}" ]] || fail "Configured NetBackup policy differs from requested policy."
     log -ne "Loaded NetBackup config: ${config_file}"
   else
     log -ne "No NetBackup config found for policy=${POLICY_NAME}"

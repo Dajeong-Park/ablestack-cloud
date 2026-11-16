@@ -130,6 +130,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
     private static final String DETAIL_BACKUP_ID = "netbackup.backup.id";
     private static final String DETAIL_MEMBER_COUNT = "netbackup.backup.member.count";
     private static final String DETAIL_POLICY_NAME = "netbackup.policy.name";
+    private static final String DETAIL_SOURCE_HOST_NAME = "netbackup.source.host.name";
+    private static final String DETAIL_CLIENT_NAME = "netbackup.client.name";
     private static final String DETAIL_TRANSFER_MODE = "netbackup.transfer.mode";
     private static final String USER_BACKUP_TRANSFER = "USER_BACKUP";
     private static final String DETAIL_RESTORE_ROOT_JOB_ID = "netbackup.restore.root.job.id";
@@ -352,7 +354,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         }
         // Reject disabled/missing policies before registering a point or preparing the Host.
         // Otherwise reactivating the policy can silently resume an old queued request.
-        getClient(vm.getDataCenterId()).validateUserBackupPolicy(policyName, vmHost.getName(), vmHost.getPrivateIpAddress());
+        final String sourceClient = getClient(vm.getDataCenterId()).validateUserBackupPolicyClient(policyName, vmHost.getName(), vmHost.getPrivateIpAddress());
         final String backupPath = buildBackupPath(vm);
         final String checkpointName = backupPath.substring(backupPath.lastIndexOf("/") + 1);
         final String backupEngine = backupVolumeAllocationService.requiresOfflineFull(vmVolumes) ? AblestackSharedRawBackup.ENGINE
@@ -368,6 +370,8 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                 String.valueOf(Boolean.TRUE.equals(quiesceVM)));
         // Persist the protocol before dispatch. In-flight backups without this detail retain their original policy ownership.
         backupDetails.put(DETAIL_TRANSFER_MODE, USER_BACKUP_TRANSFER);
+        backupDetails.put(DETAIL_SOURCE_HOST_NAME, vmHost.getName());
+        backupDetails.put(DETAIL_CLIENT_NAME, sourceClient);
 
         final BackupVO backupVO = createBackupObject(vm, vmHost.getId(), backupPath, requestedBackupType, backupDetails);
         boolean planPersisted = false;
@@ -1061,20 +1065,13 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             return null;
         }
         loadBackupDetailsIfNeeded(backup);
-        final String sourceHostName = getBackupDetail(backup, DETAIL_POLICY_NAME);
-        if (StringUtils.isBlank(sourceHostName)) {
-            return null;
-        }
-        Host host = hostDao.findByName(sourceHostName);
-        if (host == null) {
-            host = hostDao.findByIp(sourceHostName);
-        }
+        final Host host = findRecordedBackupSourceHost(backup);
         if (host == null) {
             throw new CloudRuntimeException(String.format(
-                    "Unable to find backup source host [%s] for NetBackup restore from backup [%s]",
-                    sourceHostName, backup.getUuid()));
+                    "Unable to find recorded backup source host for NetBackup restore from backup [%s]", backup.getUuid()));
         }
-        if (!Status.Up.equals(host.getStatus()) || !Hypervisor.HypervisorType.KVM.equals(host.getHypervisorType())) {
+        if (host.getDataCenterId() != backup.getZoneId() || !Status.Up.equals(host.getStatus())
+                || !Hypervisor.HypervisorType.KVM.equals(host.getHypervisorType())) {
             throw new CloudRuntimeException(String.format(
                     "Backup source host [%s] is not an available KVM host for NetBackup restore from backup [%s]",
                     host.getName(), backup.getUuid()));
@@ -1918,7 +1915,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
                     destinationHostName));
         }
         final AblestackNetBackupClient client = getClient(zoneId);
-        for (final Map.Entry<String, List<Backup>> entry : groupRestoreChainByStageHost(destinationHostName, restoreChain).entrySet()) {
+        for (final Map.Entry<String, List<Backup>> entry : groupRestoreChainByStageHost(restoreChain).entrySet()) {
             final String sourceHost = entry.getKey();
             final List<Backup> sourceHostChain = entry.getValue();
             if (CollectionUtils.isEmpty(sourceHostChain)) {
@@ -1930,7 +1927,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             LOG.info("{} phase=[PREPARE_SOURCE_BEGIN], sourceHost=[{}], destinationHost=[{}], backupPaths=[{}], requiredVolumeUuids=[{}]",
                     RESTORE_TRACE, sourceHost, destinationHostName,
                     sourceHostChain.stream().map(Backup::getExternalId).collect(Collectors.toList()), requiredVolumeUuids);
-            final String chainJobId = client.restoreBackupChain(sourceHost, destinationHostName, sourceHostChain);
+            final String chainJobId = client.restoreBackupChain(getBackupDetail(sourceHostChain.get(0), DETAIL_CLIENT_NAME, sourceHost), destinationHostName, sourceHostChain);
             LOG.info("{} phase=[PREPARE_SOURCE_JOB_CREATED], sourceHost=[{}], destinationHost=[{}], backupPaths=[{}], jobId=[{}]",
                     RESTORE_TRACE, sourceHost, destinationHostName,
                     sourceHostChain.stream().map(Backup::getExternalId).collect(Collectors.toList()), chainJobId);
@@ -2031,7 +2028,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         if (CollectionUtils.isEmpty(restoreChain)) {
             return;
         }
-        final LinkedHashMap<String, List<Backup>> groupedRestoreChain = groupRestoreChainByStageHost(destinationHostName, restoreChain);
+        final LinkedHashMap<String, List<Backup>> groupedRestoreChain = groupRestoreChainByStageHost(restoreChain);
         final List<String> destinationRestorePaths = groupedRestoreChain.entrySet().stream()
                 .filter(entry -> !StringUtils.equalsIgnoreCase(entry.getKey(), destinationHostName))
                 .flatMap(entry -> entry.getValue().stream())
@@ -2113,24 +2110,39 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         return hostDao.findByIp(restoreHostName);
     }
 
-    private LinkedHashMap<String, List<Backup>> groupRestoreChainByStageHost(final String destinationHostName, final List<Backup> restoreChain) {
+    private LinkedHashMap<String, List<Backup>> groupRestoreChainByStageHost(final List<Backup> restoreChain) {
         final LinkedHashMap<String, List<Backup>> grouped = new LinkedHashMap<>();
         for (final Backup chainBackup : restoreChain) {
             loadBackupDetailsIfNeeded(chainBackup);
-            final String sourceHost = getRestoreSourceHost(chainBackup, destinationHostName);
+            final String sourceHost = getRestoreSourceHost(chainBackup);
             grouped.computeIfAbsent(sourceHost, key -> new ArrayList<>()).add(chainBackup);
         }
         return grouped;
     }
 
-    private String getRestoreSourceHost(final Backup backup, final String defaultHostName) {
-        final String sourceHost = getBackupDetail(backup, DETAIL_POLICY_NAME);
-        if (StringUtils.isBlank(sourceHost)) {
-            LOG.warn("NetBackup source/stage host detail [{}] is missing for backup [{}]. Falling back to destination host [{}].",
-                    DETAIL_POLICY_NAME, backup != null ? backup.getUuid() : null, defaultHostName);
-            return defaultHostName;
+    private String getRestoreSourceHost(final Backup backup) {
+        final Host source = findRecordedBackupSourceHost(backup);
+        if (source == null || source.getDataCenterId() != backup.getZoneId()
+                || !Hypervisor.HypervisorType.KVM.equals(source.getHypervisorType())) {
+            throw new CloudRuntimeException("Recorded NetBackup source host is unavailable for backup " + backup.getUuid());
         }
-        return sourceHost;
+        return source.getName();
+    }
+
+    private Host findRecordedBackupSourceHost(final Backup backup) {
+        loadBackupDetailsIfNeeded(backup);
+        if (backup.getHostId() != null) {
+            // Do not redirect cleanup or restore to a VM's new host after migration.
+            return hostDao.findById(backup.getHostId());
+        }
+        String source = getBackupDetail(backup, DETAIL_SOURCE_HOST_NAME);
+        if (StringUtils.isBlank(source)) {
+            // Compatibility only: old records without host ID used policy == Host name.
+            source = getBackupDetail(backup, DETAIL_POLICY_NAME);
+        }
+        if (StringUtils.isBlank(source)) { return null; }
+        final Host host = hostDao.findByName(source);
+        return host != null ? host : hostDao.findByIp(source);
     }
 
 
@@ -3062,28 +3074,12 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
     }
 
     private Host resolveBackupCleanupHost(final Backup backup) {
-        loadBackupDetailsIfNeeded(backup);
-        final String sourceHostName = getBackupDetail(backup, DETAIL_POLICY_NAME);
-        if (StringUtils.isNotBlank(sourceHostName)) {
-            Host host = hostDao.findByName(sourceHostName);
-            if (host == null) {
-                host = hostDao.findByIp(sourceHostName);
-            }
-            if (host != null && Status.Up.equals(host.getStatus()) && Hypervisor.HypervisorType.KVM.equals(host.getHypervisorType())) {
-                return host;
-            }
+        final Host host = findRecordedBackupSourceHost(backup);
+        if (host != null && host.getDataCenterId() == backup.getZoneId() && Status.Up.equals(host.getStatus())
+                && Hypervisor.HypervisorType.KVM.equals(host.getHypervisorType())) {
+            return host;
         }
-        final VMInstanceVO vm = vmInstanceDao.findByIdIncludingRemoved(backup.getVmId());
-        if (vm != null) {
-            final Long hostId = vm.getHostId() != null ? vm.getHostId() : vm.getLastHostId();
-            if (hostId != null) {
-                final Host host = hostDao.findById(hostId);
-                if (host != null && Status.Up.equals(host.getStatus()) && Hypervisor.HypervisorType.KVM.equals(host.getHypervisorType())) {
-                    return host;
-                }
-            }
-        }
-        return resourceManager.findOneRandomRunningHostByHypervisor(Hypervisor.HypervisorType.KVM, backup.getZoneId());
+        return null;
     }
 
     @Override

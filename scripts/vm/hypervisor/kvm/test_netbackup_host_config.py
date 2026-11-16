@@ -95,6 +95,7 @@ load_admin_secretkey
 
     def test_policy_check_uses_raw_api_auth_and_accepts_serial_limits_during_configuration(self):
         args = self.arguments("--vm-schedule-backup", "true")
+        args.kvm_hostname = "host-test"
         response = {"data": {"attributes": {"policy": self.policy()}}}
         with patch.object(config, "urlopen", return_value=io.BytesIO(json.dumps(response).encode())) as request, \
                 patch.object(config, "get_configuration_value", return_value="1"), contextlib.redirect_stderr(io.StringIO()):
@@ -132,72 +133,158 @@ load_admin_secretkey
         with patch.object(sys, "argv", argv + list(options)), patch.object(config.socket, "gethostname", return_value="host-test"):
             return config.parse_args()
 
-    def test_host_context_rejects_a_policy_named_after_another_host(self):
-        args = self.arguments("--policy-name", "prod-weekly")
-        hosts = [{"name": "prod-weekly", "zoneid": "wrong-zone", "clusterid": "wrong-cluster"},
-                 {"name": "host-test", "zoneid": "zone", "clusterid": "cluster"}]
-        error = io.StringIO()
-        with patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": hosts}}) as api, \
-                contextlib.redirect_stderr(error), self.assertRaises(SystemExit):
-            config.resolve_host_context(args)
-        self.assertEqual("host-test", api.call_args.args[2]["name"])
-        self.assertIn("must exactly match the Mold-registered host name 'host-test'", error.getvalue())
-        self.assertEqual("prod-weekly", args.policy_name)
+    def host(self, **values):
+        return dict(name="host-test", ipaddress="192.0.2.1", hypervisor="KVM", zoneid="zone", clusterid="cluster", **values)
 
-    def test_host_context_requires_the_exact_registered_policy_name(self):
-        host = {"name": "host-test", "zoneid": "zone", "clusterid": "cluster"}
-        for policy in ("host-test", "HOST-TEST", "custom-policy"):
-            with self.subTest(policy=policy), \
-                    patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": host}}), \
-                    contextlib.redirect_stderr(io.StringIO()):
+    def resolve(self, args, hosts=None, client="host-test", addresses=None):
+        policy = self.policy()
+        policy["clients"] = [{"hostName": client}]
+        def lookup(name):
+            return {"192.0.2.1"} if name in (client, "192.0.2.1") else set()
+        with patch.object(config, "read_netbackup_policy", return_value=policy), \
+                patch.object(config, "local_host_addresses", return_value=addresses or {"192.0.2.1"}), \
+                patch.object(config, "resolve_addresses", side_effect=lookup), \
+                patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": hosts if hosts is not None else [self.host()]}}), \
+                contextlib.redirect_stderr(io.StringIO()):
+            return config.resolve_host_context(args)
+
+    def test_existing_and_custom_policy_names_resolve_the_same_local_mold_host(self):
+        for policy in ("host-test", "HOST-TEST", "custom-policy", "PoC.GFS_01+full", "ends-"):
+            with self.subTest(policy=policy):
                 args = self.arguments("--policy-name", policy)
-                if policy == "host-test":
-                    self.assertEqual(("zone", "cluster"), config.resolve_host_context(args))
-                else:
-                    with self.assertRaises(SystemExit):
-                        config.resolve_host_context(args)
+                self.assertIsNone(args.kvm_hostname)
+                self.assertEqual(("zone", "cluster"), self.resolve(args))
+                self.assertEqual("host-test", args.kvm_hostname)
+                self.assertEqual("192.0.2.1", args.kvm_ip)
+                self.assertEqual(policy, args.policy_name)
+                self.assertEqual("host-test", args.netbackup_client)
 
-    def test_policy_name_mismatch_stops_before_configuration_changes(self):
+    def test_policy_client_fqdn_alias_and_ip_can_identify_a_differently_named_mold_host(self):
+        for client in ("host-test.example.test", "192.0.2.1", "backup-alias.example.test"):
+            with self.subTest(client=client):
+                args = self.arguments("--policy-name", "independent-policy")
+                self.assertEqual(("zone", "cluster"), self.resolve(args, client=client))
+                self.assertEqual("host-test", args.kvm_hostname)
+
+    def test_policy_client_on_another_machine_cannot_be_overridden_with_kvm_arguments(self):
+        args = self.arguments("--kvm-hostname", "host-test", "--kvm-ip", "192.0.2.1")
+        with self.assertRaises(SystemExit):
+            self.resolve(args, addresses={"192.0.2.99"})
+
+    def test_optional_legacy_arguments_are_assertions_of_the_verified_host(self):
+        self.resolve(self.arguments("--kvm-hostname", "host-test", "--kvm-ip", "192.0.2.1"))
+        for options in (("--kvm-hostname", "other-host"), ("--kvm-ip", "192.0.2.2")):
+            with self.subTest(options=options), self.assertRaises(SystemExit):
+                self.resolve(self.arguments(*options))
+
+    def test_missing_ambiguous_non_kvm_or_incomplete_mold_hosts_are_rejected(self):
+        other = dict(self.host(), ipaddress="192.0.2.2")
+        for hosts in ([], [other], [self.host(), self.host()], [dict(self.host(), hypervisor="VMware")],
+                      [dict(self.host(), clusterid="")]):
+            with self.subTest(hosts=hosts), self.assertRaises(SystemExit):
+                self.resolve(self.arguments(), hosts=hosts)
+
+    def test_dns_client_matching_multiple_mold_hosts_is_ambiguous_even_when_one_is_local(self):
+        policy = self.policy()
+        hosts = [self.host(), dict(self.host(), name="host-other", ipaddress="192.0.2.2")]
+        with patch.object(config, "read_netbackup_policy", return_value=policy), \
+                patch.object(config, "local_host_addresses", return_value={"192.0.2.1"}), \
+                patch.object(config, "resolve_addresses", side_effect=lambda name: {"192.0.2.1", "192.0.2.2"} if name == "host-test" else {name}), \
+                patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": hosts}}), \
+                contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            config.resolve_host_context(self.arguments())
+
+    def test_hosts_on_later_inventory_pages_are_checked_before_accepting_uniqueness(self):
+        rows = [dict(self.host(), ipaddress="192.0.2.99")] * 500
+        policy = self.policy()
         args = self.arguments("--policy-name", "custom-policy")
-        host = {"name": "host-test", "zoneid": "zone", "clusterid": "cluster"}
+        with patch.object(config, "read_netbackup_policy", return_value=policy), \
+                patch.object(config, "local_host_addresses", return_value={"192.0.2.1"}), \
+                patch.object(config, "resolve_addresses", side_effect=lambda name: {"192.0.2.1"} if name == "host-test" else {name}), \
+                patch.object(config, "invoke_mold_api", side_effect=[{"listhostsresponse": {"host": rows}},
+                    {"listhostsresponse": {"host": [self.host()]}}]) as api, contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(("zone", "cluster"), config.resolve_host_context(args))
+        self.assertEqual(["1", "2"], [call.args[2]["page"] for call in api.call_args_list])
+        self.assertNotIn("name", api.call_args.args[2])
+
+    def test_policy_read_checks_registration_one_client_and_exact_encoded_name(self):
+        args = self.arguments("--policy-name", "PoC.GFS_01+full")
+        response = {"data": {"id": args.policy_name, "attributes": {"policy": self.policy()}}}
+        with patch.object(config, "urlopen", return_value=io.BytesIO(json.dumps(response).encode())) as request:
+            config.read_netbackup_policy(args)
+        self.assertTrue(request.call_args.args[0].full_url.endswith("/PoC.GFS_01%2Bfull"))
+        for clients in ([], [{"hostName": "host-test"}, {"hostName": "other"}], [{}]):
+            args = self.arguments()
+            policy = self.policy()
+            policy["clients"] = clients
+            with self.subTest(clients=clients), patch.object(config, "urlopen", return_value=io.BytesIO(
+                    json.dumps({"data": {"attributes": {"policy": policy}}}).encode())), \
+                    contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                config.read_netbackup_policy(args)
+
+    def test_invalid_policy_names_fail_before_any_configuration_or_file_changes(self):
+        for name in ("", "with space", "with\ttab", "-start", ".start", "end.", "a/b", "a;cmd", "a$(cmd)", "a'quote", "한글"):
+            with self.subTest(name=name), contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                config.validate_args(self.arguments("--policy-name=" + name))
+        self.assertNotEqual(config.sanitize_name("a+b"), config.sanitize_name("a_b"))
+
+    def test_policy_client_verification_stops_before_settings_secrets_or_hooks_change(self):
+        args = self.arguments("--policy-name", "custom-policy")
         with contextlib.ExitStack() as stack:
             stack.enter_context(patch.object(config, "parse_args", return_value=args))
             stack.enter_context(patch.object(config, "validate_args"))
             stack.enter_context(patch.object(config, "load_common_staging"))
-            stack.enter_context(patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": host}}))
+            stack.enter_context(patch.object(config, "read_netbackup_policy", side_effect=SystemExit(1)))
             downstream = [stack.enter_context(patch.object(config, name)) for name in (
-                "check_netbackup_policy", "prepare_secret_key", "ensure_backup_framework_configuration",
-                "ensure_netbackup_offering", "generate_host_outputs")]
+                "prepare_secret_key", "ensure_backup_framework_configuration", "ensure_netbackup_offering", "generate_host_outputs")]
             stack.enter_context(contextlib.redirect_stderr(io.StringIO()))
             with self.assertRaises(SystemExit):
                 config.main()
         for operation in downstream:
             operation.assert_not_called()
 
-    def test_host_ip_override_saves_the_exact_mold_host_name(self):
-        args = self.arguments("--policy-name", "Mold-Host-2", "--kvm-ip", "192.0.2.2")
-        hosts = [{"name": "host-test", "ipaddress": "192.0.2.1", "zoneid": "wrong-zone", "clusterid": "wrong-cluster"},
-                 {"name": "Mold-Host-2", "ipaddress": "192.0.2.2", "zoneid": "zone", "clusterid": "cluster"}]
-        with patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": hosts}}), \
-                contextlib.redirect_stderr(io.StringIO()):
-            self.assertEqual(("zone", "cluster"), config.resolve_host_context(args))
-        self.assertEqual("Mold-Host-2", args.kvm_hostname)
+    def test_local_interface_detection_excludes_loopback_and_does_not_use_dns_as_local_proof(self):
+        result = subprocess.CompletedProcess([], 0, json.dumps([{"addr_info": [
+            {"local": "127.0.0.1"}, {"local": "192.0.2.1"}, {"local": "::1"}, {"local": "2001:db8::1"}]}]))
+        with patch.object(config.subprocess, "run", return_value=result):
+            self.assertEqual({"192.0.2.1", "2001:db8::1"}, config.local_host_addresses())
 
-    def test_explicit_host_name_is_used_instead_of_the_local_name(self):
-        args = self.arguments("--policy-name", "mold-host", "--kvm-hostname", "mold-host")
-        host = {"name": "mold-host", "zoneid": "zone", "clusterid": "cluster"}
-        with patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": host}}), \
-                contextlib.redirect_stderr(io.StringIO()):
-            self.assertEqual(("zone", "cluster"), config.resolve_host_context(args))
+    def test_plus_is_preserved_in_shell_config_and_transfer_hook_names(self):
+        args = self.arguments("--policy-name", "poc+gfs_01")
+        args.kvm_hostname = "host-test"
+        with tempfile.TemporaryDirectory() as directory, patch.object(config, "HOOK_OUTPUT_DIR", Path(directory)):
+            config.write_transfer_hooks(config.sanitize_name(args.policy_name))
+            self.assertTrue((Path(directory) / "bpstart_notify.poc+gfs_01.mold-transfer").is_file())
+            path = Path(directory) / "config"
+            config.write_config_file(path, args)
+            shell = subprocess.run(["bash", "-c", 'source "$1"; printf "%s\n%s" "$NETBACKUP_POLICY_NAME" "$KVM_HOSTNAME"', "test", str(path)],
+                                   capture_output=True, text=True, check=True)
+            self.assertEqual("poc+gfs_01\nhost-test", shell.stdout)
 
-    def test_unmatched_or_ambiguous_hosts_never_fall_back_to_the_first_result(self):
-        args = self.arguments("--policy-name", "prod-weekly")
-        for names in (("prod-weekly",), ("host-test", "host-test")):
-            hosts = [{"name": name, "zoneid": "zone", "clusterid": "cluster"} for name in names]
-            with self.subTest(names=names), \
-                    patch.object(config, "invoke_mold_api", return_value={"listhostsresponse": {"host": hosts}}), \
-                    contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
-                config.resolve_host_context(args)
+    def test_policy_runtime_keeps_plus_and_underscore_contexts_separate(self):
+        script = r'''
+set -euo pipefail
+source "$1"
+POLICY_NAME="$3"
+resolve_context
+[[ "$POLICY_SAFE" == "$3" ]]
+CONFIG_ROOT="$2"
+log() { :; }
+load_admin_secretkey() { :; }
+load_backup_staging_root_from_mold() { :; }
+load_staging_timeout_from_data_operation_config() { :; }
+load_policy_schedule_config
+[[ "$KVM_HOSTNAME" == mold-host-2 ]]
+'''
+        for requested in ("poc+gfs", "poc_gfs"):
+            for configured in (requested, "wrong-policy"):
+                with self.subTest(requested=requested, configured=configured), tempfile.TemporaryDirectory() as directory:
+                    path = Path(directory) / ("netbackup-host-" + requested + ".conf")
+                    path.write_text("KVM_HOSTNAME=mold-host-2\nNETBACKUP_POLICY_NAME=" + configured
+                                    + "\nMOLD_URL=http://mold.test/client/api\nADMIN_APIKEY=synthetic-key\n")
+                    result = subprocess.run(["bash", "-c", script, "test", str(Path(config.__file__).with_name("netbackup-host-common.sh")),
+                                             directory, requested], capture_output=True, text=True, timeout=10)
+                    self.assertEqual(0 if requested == configured else 1, result.returncode, result.stderr)
 
     def test_runtime_selects_the_configured_mold_host_and_keeps_the_policy_name(self):
         script = r'''
@@ -299,6 +386,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
 
     def test_schedule_flag_is_only_stored_in_mold_and_host_filters_remain_usable(self):
         args = self.arguments("--vm-schedule-backup", "true")
+        self.resolve(args)
         with patch.object(sys.stdin, "isatty", return_value=False):
             config.configure_vm_selection(args)
         with tempfile.TemporaryDirectory() as directory:
@@ -528,6 +616,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
                     patch.object(config, "STAGING_MOUNT_PATH", None), \
                     patch.object(config, "get_configuration_value", side_effect=read_value), \
                     patch.object(config.subprocess, "run", side_effect=check_mount) as mounted, \
+                    patch.object(config, "read_netbackup_policy"), \
                     patch.object(config, "resolve_host_context", return_value=("zone-id", "cluster-id")), \
                     patch.object(config, "check_netbackup_policy"), \
                     patch.object(config, "ensure_key", side_effect=lambda *a, **kw: events.append("key")) as key, \
@@ -694,8 +783,10 @@ cat "${MOLD_VM_CACHE_FILE}.request"
             inode = lock.stat().st_ino
             path = base / "watcher.conf"
             path.write_text(f"STATE_FILE={shlex.quote(str(state))}\nLOCK_FILE={shlex.quote(str(lock))}\nPOLL_INTERVAL_SECONDS=30\n")
+            args = self.arguments()
+            self.resolve(args)
             with contextlib.redirect_stdout(io.StringIO()):
-                config.write_watcher_config(path, self.arguments())
+                config.write_watcher_config(path, args)
             values = {line.split("=", 1)[0]: shlex.split(line.split("=", 1)[1])[0]
                       for line in path.read_text().splitlines() if "=" in line}
             self.assertEqual("host-test", values["MOLD_HOST_NAME"])
