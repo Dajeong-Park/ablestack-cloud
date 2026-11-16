@@ -41,9 +41,10 @@ export function publicIpQuery (raw = {}, size = 20, getters = {}) {
 export function publicIpSearchQuery (current, values = {}, size, getters) {
   let query = { projectid: current.projectid, filter: current.filter, ...(Object.prototype.hasOwnProperty.call(values, 'filter') ? {} : { state: current.state }), ...values }
   if (Object.prototype.hasOwnProperty.call(values, 'searchQuery')) {
-    query = { ...current }; delete query.q; delete query.keyword
+    query = { ...current }; delete query.q; delete query.keyword; delete query.ipaddress
     if (String(values.searchQuery || '').trim()) query.q = query.keyword = String(values.searchQuery).trim()
   }
+  if (query.ipaddress) { delete query.keyword; delete query.q }
   return publicIpQuery({ ...query, page: '1', pagesize: String(size) }, size, getters)
 }
 export function publicIpSearchError (query, getters, supported = {}) {
@@ -56,6 +57,7 @@ export function publicIpSearchError (query, getters, supported = {}) {
   if (['issourcenat', 'isstaticnat', 'fordisplay'].some(k => present(query[k]) && !(k === 'fordisplay' ? ['true', 'false', 'all'] : ['true', 'false']).includes(query[k]))) return 'message.public.ip.search.invalid'
   if (['zoneid', 'domainid', 'vlanid', 'vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid'].some(k => query[k] && !uuid(query[k])) || !['0', '-1'].includes(query.projectid) && !uuid(query.projectid)) return 'message.public.ip.search.invalid'
   if (query.projectid !== '0' && !supported.projectid) return 'message.public.ip.search.unsupported'
+  if (query.ipaddress && query.keyword) return 'message.public.ip.search.invalid'
   if (query.account && query.projectid !== '0') return 'message.public.ip.search.invalid'
   if (query.account && !query.domainid) return 'message.affinity.search.account.domain'
   if (['networkid', 'physicalnetworkid', 'fordisplay'].some(k => present(query[k])) && !publicIpRoot(getters)) return 'message.public.ip.search.permission'

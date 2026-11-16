@@ -68,3 +68,12 @@ test('all preserves the server available-pool semantics without treating Free as
  expect(readPublicIpPage(data, { projectid: other, account: 'owner', vpcid: id, associatednetworkid: id }).count).toBe(1)
  expect(() => readPublicIpPage(data, { networkid: id })).toThrow()
 })
+
+test('keyword and exact-address input never leave an API-ignored predicate in the URL', () => {
+ const current = publicIpQuery({ ipaddress: '192.0.2.1', state: 'Allocated' }, 20, getters)
+ const keyword = publicIpSearchQuery(current, { searchQuery: '192.0.2' }, 20, getters)
+ expect(keyword.ipaddress).toBeUndefined(); expect(keyword.keyword).toBe('192.0.2')
+ const exact = publicIpSearchQuery(keyword, { ipaddress: '192.0.2.1', keyword: keyword.keyword }, 20, getters)
+ expect(exact.keyword).toBeUndefined(); expect(exact.q).toBeUndefined()
+ expect(publicIpSearchError(publicIpQuery({ ipaddress: '192.0.2.1', keyword: 'ignored' }, 20, getters), getters, { ...supported, ipaddress: {} })).toBe('message.public.ip.search.invalid')
+})
