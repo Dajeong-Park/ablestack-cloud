@@ -69,3 +69,12 @@ test('non-root keeps API-supported VLAN search without granting infrastructure f
  const fields = Search.computed.pickers.call({ supported: { vlanid: {}, networkid: {}, physicalnetworkid: {} }, root: false, scope: { projectid: '0' } })
  expect(fields).toEqual(['vlanid'])
 })
+
+test.each([
+ { current: { filter: 'all' }, form: { issourcenat: undefined, isstaticnat: 'false' }, keyword: '' },
+ { current: { state: 'Allocated', keyword: 'old', q: 'old' }, form: { ipaddress: '192.0.2.1' }, keyword: 'old' }
+])('the form and URL use the same normalization for cleared/all/exact-address inputs: %j', sample => {
+ const c = { $route: { query: { projectid: '0', ...sample.current } }, $store: { getters: { userInfo: { roletype: 'Admin', domainid: id }, project: {}, apis: { listPublicIpAddresses: {} } } }, supported: Object.fromEntries(['state', 'allocatedonly', 'domainid', 'isrecursive', 'projectid', 'ipaddress', 'keyword', 'issourcenat', 'isstaticnat'].map(k => [k, {}])), scope: { projectid: '0' }, form: sample.form, keyword: sample.keyword, tags: [], blocked: {}, $emit: jest.fn(), visible: true }
+ Search.methods.apply.call(c)
+ expect(c.error).toBe(''); expect(c.visible).toBe(false); expect(c.$emit).toHaveBeenCalledWith('search', expect.any(Object))
+})

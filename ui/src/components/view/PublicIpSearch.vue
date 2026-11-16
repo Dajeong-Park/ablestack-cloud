@@ -61,7 +61,7 @@
 </template>
 <script>
 import PublicIpSearchSelect from '@/components/view/PublicIpSearchSelect'
-import { publicIpPickerConfig, publicIpProject, publicIpRoot, publicIpKeys, publicIpSearchError } from '@/utils/publicIpSearch'
+import { publicIpPickerConfig, publicIpProject, publicIpRoot, publicIpKeys, publicIpSearchError, publicIpSearchQuery } from '@/utils/publicIpSearch'
 import { publicIpReadAuth } from '@/utils/publicIpDetails'
 export default {
   name: 'PublicIpSearch',
@@ -85,7 +85,7 @@ export default {
     config: publicIpPickerConfig,
     open (value) { this.visible = value; if (!value) return; this.form = Object.fromEntries(Object.entries(this.$route.query).filter(([k]) => publicIpKeys.includes(k))); this.tags = []; for (const [key, val] of Object.entries(this.$route.query)) { const match = /^tags\[(\d+)\]\.key$/.exec(key); if (match) this.tags.push({ key: val, value: this.$route.query['tags[' + match[1] + '].value'] || '' }) } this.error = ''; this.blocked = {}; this.generation++ },
     changed (field) { const children = { zoneid: ['vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid', 'vlanid'], domainid: ['account', 'vpcid', 'associatednetworkid', 'vlanid'], account: ['vpcid', 'associatednetworkid', 'vlanid'], vpcid: ['associatednetworkid'], networkid: ['vlanid'], physicalnetworkid: ['vlanid'] }; for (const key of children[field] || []) { delete this.form[key]; delete this.blocked[key] } },
-    apply () { if (Object.values(this.blocked).some(Boolean)) return; const values = { ...this.form }; this.tags.filter(t => t.key.trim()).forEach((t, i) => { values['tags[' + i + '].key'] = t.key.trim(); values['tags[' + i + '].value'] = t.value }); if (this.keyword.trim()) values.keyword = this.keyword.trim(); this.error = publicIpSearchError({ ...values, state: this.$route.query.state || undefined, filter: this.$route.query.filter || 'allocated', projectid: this.scope.projectid }, this.$store.getters, this.supported); if (this.error) return; this.$emit('search', values); this.visible = false },
+    apply () { if (Object.values(this.blocked).some(Boolean)) return; const values = { ...this.form }; this.tags.filter(t => t.key.trim()).forEach((t, i) => { values['tags[' + i + '].key'] = t.key.trim(); values['tags[' + i + '].value'] = t.value }); if (this.keyword.trim()) values.keyword = this.keyword.trim(); this.error = publicIpSearchError(publicIpSearchQuery(this.$route.query, { ...values, projectid: this.scope.projectid }, Number(this.$route.query.pagesize) || 20, this.$store.getters), this.$store.getters, this.supported); if (this.error) return; this.$emit('search', values); this.visible = false },
     reset () { this.keyword = ''; this.visible = false; this.$emit('search', { projectid: publicIpProject(this.$store.getters), filter: 'allocated', state: 'Allocated' }) },
     remove (key) { const values = { ...this.$route.query }; delete values[key]; if (key === 'domainid') delete values.account; if (/^tags/.test(key)) delete values[key.replace('.key', '.value')]; this.form = values; this.changed(key); this.$emit('search', this.form) }
   }
