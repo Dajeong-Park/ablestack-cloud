@@ -84,7 +84,7 @@ test('an existing Public IP date rerenders for a locale change even though the c
 })
 
 test('column selection controls retain their icon-only title during a Public IP language change', () => {
-  const utility = { key: 'filterColumn', title: '' }; const t = jest.fn(k => k)
+  const utility = { key: 'filtercolumn', dataIndex: 'filtercolumn', title: '', customFilterDropdown: true, width: 5 }; const t = jest.fn(k => k)
   expect(AutogenView.methods.localizePublicIpColumns.call({ $route: { meta: { name: 'publicip' } }, $t: t }, [utility])[0]).toBe(utility)
   expect(t).not.toHaveBeenCalled()
 })
