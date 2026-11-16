@@ -64,7 +64,7 @@ test('reported Ready without a child read is unqueried; version status remains i
 })
 test('Zone pane has read-only actions and distinct forbidden/empty states', async () => {
   const { global } = environment()
-  const w = mount(Zones, { props: { resource, observation: { isoid: iso, status: 'forbidden', rows: [] } }, global: { ...global, stubs: { ...global.stubs, 'a-alert': { props: ['message'], render () { return h('div', this.message) } }, 'a-input-search': true, 'a-empty': { props: ['description'], render () { return h('div', this.description) } } } } })
+  const w = mount(Zones, { props: { resource, observation: { isoid: iso, status: 'forbidden', rows: [] } }, global: { ...global, stubs: { ...global.stubs, 'a-alert': { props: ['message'], render () { return h('div', this.message) } }, 'a-input-search': true } } })
   expect(w.text()).toContain('message.kubernetes.iso.availability.forbidden')
   expect(w.findAll('button')).toHaveLength(1); expect(w.find('button').attributes('disabled')).toBeDefined()
   expect(w.vm.columns.map(column => column.key)).toEqual(['zonename', 'availability', 'isready', 'reason', 'actions'])

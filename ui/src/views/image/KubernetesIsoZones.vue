@@ -61,13 +61,14 @@
   </div>
 </template>
 <script>
+import { Empty } from 'ant-design-vue'
 import KubernetesIsoScope from '@/components/widgets/KubernetesIsoScope'
 import KubernetesIsoStatus from '@/components/widgets/KubernetesIsoStatus'
 import { kubernetesIsoCanReadChild, kubernetesIsoLink, kubernetesIsoBooleanLabel, kubernetesIsoZoneReason } from '@/utils/kubernetesIsoDetails'
 import { isoStorePresentation, isoStoreReason } from '@/utils/isoZoneOperations'
 export default {
   name: 'KubernetesIsoZones',
-  components: { KubernetesIsoScope, KubernetesIsoStatus },
+  components: { AEmpty: Empty, KubernetesIsoScope, KubernetesIsoStatus },
   props: { resource: { type: Object, required: true }, observation: { type: Object, default: null } },
   emits: ['refresh-availability'],
   data: () => ({ keyword: '', page: 1, pageSize: 20 }),
