@@ -108,6 +108,7 @@
 import { getAPI, postAPI } from '@/api'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
+import { publicIpState } from '@/utils/publicIpPresentation'
 import { networkCollection, networkError } from '@/utils/networkLifecycle'
 import { displayWriteSupported, displayBoolean } from '@/utils/publicIpDisplay'
 import { reservationScope, reservationParams, reservationMatches, reservationOperation, rememberReservation, forgetReservation } from '@/utils/publicIpReservation'
@@ -156,7 +157,9 @@ export default {
     },
     observedOwner () {
       const ip = this.operation?.actual || {}
-      return [ip.ipaddress, ip.state, ip.project || ip.projectid || ip.account, ip.domain || ip.domainid].filter(Boolean).join(' / ')
+      const state = publicIpState(ip.state)
+      const label = this.$t(state.key) + (!state.state && state.raw ? ' (' + state.raw + ')' : '')
+      return [ip.ipaddress, label, ip.project || ip.projectid || ip.account, ip.domain || ip.domainid].filter(Boolean).join(' / ')
     }
   },
   watch: { contextKey () { this.initialize() } },

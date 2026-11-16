@@ -573,6 +573,7 @@
                 style="overflow-y: auto"
               >
                 <template #bodyCell="{ column, text, record }">
+                  <public-ip-status v-if="$route.meta?.name === 'publicip' && column.key === 'state'" :value="record.state" />
                   <template v-if="column.key === 'displayname' && isVmIdentityRoute($route)">{{ vmDisplayName(record) }}</template>
                   <template v-if="column.key === 'allocated' && ['asnumbers', 'publicip'].includes($route.meta.name)">
                     {{ $toLocaleDate(text) }}
@@ -1041,6 +1042,7 @@ import { isSshKeyPairDetailRoute, sshKeyPairDetailScope, sshKeyPairDetailTarget,
 import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErrorKey, vmGroupDeleteTargets } from '@/utils/vmGroupNames'
 import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentity'
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
+import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
 
@@ -1054,6 +1056,7 @@ export default {
     Breadcrumb,
     MoldDialog,
     PublicIpReleaseSummary,
+    PublicIpStatus,
     VpcActionContext,
     VpcDialog,
     ResourceView,

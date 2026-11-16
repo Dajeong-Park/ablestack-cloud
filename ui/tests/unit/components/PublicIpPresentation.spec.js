@@ -19,6 +19,7 @@ import { reactive, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
 import { publicIpState, publicIpBoolean, publicIpAllocated, publicIpFilterLabels } from '@/utils/publicIpPresentation'
 import { publicIpField, publicIpDetailFields } from '@/utils/publicIpDetails'
+import ReservePublicIP from '@/views/network/ReservePublicIP'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
@@ -86,4 +87,10 @@ test('column selection controls retain their icon-only title during a Public IP 
   const utility = { key: 'filterColumn', title: '' }; const t = jest.fn(k => k)
   expect(AutogenView.methods.localizePublicIpColumns.call({ $route: { meta: { name: 'publicip' } }, $t: t }, [utility])[0]).toBe(utility)
   expect(t).not.toHaveBeenCalled()
+})
+
+test('the unresolved reservation summary localizes the observed state and retains an unknown raw value', () => {
+  const context = { operation: { actual: { ipaddress: '192.0.2.10', state: 'Free', account: 'owner', domain: 'D' } }, $t: key => ko[key] || key }
+  expect(ReservePublicIP.computed.observedOwner.call(context)).toBe('192.0.2.10 / 가용 / owner / D')
+  context.operation.actual.state = 'ProviderFuture'; const value = ReservePublicIP.computed.observedOwner.call(context); expect(value).toContain('확인 불가'); expect(value).toContain('ProviderFuture')
 })
