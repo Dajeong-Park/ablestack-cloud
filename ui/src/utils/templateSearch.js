@@ -60,8 +60,10 @@ export async function readTemplateResource (request, params, getters = {}, curre
   return request('listTemplates', { ...scoped, templatefilter: 'shared' }, options)
 }
 export function templateRequestParams (params, detail = false, getters = {}) {
-  if (detail) return { id: params.id, templatefilter: templateReadFilter(getters), ...(params.projectid ? { projectid: params.projectid } : {}), ...(params.showicon ? { showicon: params.showicon } : {}) }
-  const result = { listall: true, showunique: 'true', ...templateListQuery(params) }
+  const showicon = params.showicon ?? params.showIcon
+  const iconParams = showicon === undefined ? {} : { showicon }
+  if (detail) return { id: params.id, templatefilter: templateReadFilter(getters), ...(params.projectid ? { projectid: params.projectid } : {}), ...iconParams }
+  const result = { listall: true, showunique: 'true', ...templateListQuery(params), ...iconParams }
   delete result.filter; delete result.q
   return result
 }
