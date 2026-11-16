@@ -20,6 +20,8 @@
     <a-descriptions class="mold-dialog-summary" :column="1" size="small">
       <a-descriptions-item :label="$t('label.ipaddress')">{{ resource.ipaddress || resource.id }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.state')"><public-ip-status :value="row?.state || resource.state" /></a-descriptions-item>
+      <a-descriptions-item :label="$t((row || resource).projectid ? 'label.project' : 'label.account')">{{ (row || resource).projectid ? (row || resource).project || (row || resource).projectid : (row || resource).account || $t('label.public.ip.value.notprovided') }}</a-descriptions-item>
+      <a-descriptions-item :label="$t('label.domain')">{{ (row || resource).domain || (row || resource).domainid || $t('label.public.ip.value.notprovided') }}</a-descriptions-item>
       <a-descriptions-item :label="$t('label.public.ip.display.current')">{{ currentLabel }}</a-descriptions-item>
     </a-descriptions>
     <a-alert v-if="error" class="display-notice" type="error" show-icon :message="translated(error)">
