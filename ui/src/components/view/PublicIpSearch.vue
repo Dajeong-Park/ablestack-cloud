@@ -22,7 +22,7 @@
         <template #addonBefore>
           <a-popover placement="bottomRight" trigger="click" :visible="visible" @visibleChange="open">
             <template #content>
-              <a-form v-if="visible" :model="form" layout="vertical" class="storage-standard-search-form guest-network-search-form public-ip-search-form" @finish="apply" v-ctrl-enter="apply">
+              <a-form v-if="visible" :model="form" layout="vertical" class="storage-standard-search-form guest-network-search-form public-ip-search-form" @finish="apply" @keydown.esc.stop.prevent="visible = false" v-ctrl-enter="apply">
                 <a-alert v-if="root && ['all', 'free'].includes($route.query.filter)" type="info" show-icon :message="$t('message.public.ip.search.pool')" />
                 <a-alert v-if="error" type="error" show-icon :message="$t(error)" />
                 <a-form-item v-if="supported.ipaddress" :label="$t('label.ipaddress')" html-for="pip-search-ipaddress"><a-input id="pip-search-ipaddress" v-model:value="form.ipaddress" /></a-form-item>
