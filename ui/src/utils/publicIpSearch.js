@@ -49,6 +49,7 @@ export function publicIpSearchQuery (current, values = {}, size, getters) {
 }
 export function publicIpSearchError (query, getters, supported = {}) {
   if (!('listPublicIpAddresses' in (getters.apis || {}))) return 'message.public.ip.search.permission'
+  if (Object.values(query).some(value => typeof value !== 'string')) return 'message.public.ip.search.invalid'
   if (query.projectid !== publicIpProject(getters)) return 'message.public.ip.search.scope'
   if (query.state && !publicIpStates.includes(query.state)) return 'message.public.ip.search.invalid'
   if (['all', 'free'].includes(query.filter) && !publicIpRoot(getters)) return 'message.public.ip.search.permission'

@@ -92,3 +92,7 @@ test('a permitted VLAN filter respects restricted DTO fields without recovering 
  data.listpublicipaddressesresponse.publicipaddress[0].vlanid = id
  expect(() => readPublicIpPage(data, { vlanid: other }, user)).toThrow()
 })
+
+test.each([{ account: ['owner', 'other'], domainid: id }, { keyword: ['one', 'two'] }])('repeated URL predicates cannot serialize as ignored API array arguments: %j', values => {
+ expect(publicIpSearchError(publicIpQuery(values, 20, getters), getters, supported)).toBe('message.public.ip.search.invalid')
+})
