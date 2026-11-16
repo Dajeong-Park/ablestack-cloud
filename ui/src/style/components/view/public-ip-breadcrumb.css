@@ -10,7 +10,7 @@
 .public-ip-page :deep(.breadcrumb) {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   row-gap: 8px;
   min-width: 0;
   font-size: 14px;
@@ -57,7 +57,8 @@
   color: var(--ui-text-muted);
 }
 
-.public-ip-page :deep(.breadcrumb .ant-breadcrumb-link > a:hover) {
+.public-ip-page :deep(.breadcrumb .ant-breadcrumb-link > a:hover),
+.public-ip-page :deep(.breadcrumb .ant-breadcrumb-link > a:hover > span) {
   color: var(--ui-link);
 }
 
