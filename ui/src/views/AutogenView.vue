@@ -3812,7 +3812,7 @@ export default {
     },
     localizePublicIpColumns (columns) {
       if (!publicIpRoute(this.$route)) return columns
-      return (columns || []).map(column => typeof column.title === 'string' ? { ...column, title: this.$t(column.key === 'allocated' ? 'label.public.ip.allocated' : 'label.' + String(column.key).toLowerCase()) } : column)
+      return (columns || []).map(column => column.dataIndex && typeof column.title === 'string' ? { ...column, title: this.$t(column.key === 'allocated' ? 'label.public.ip.allocated' : 'label.' + String(column.key).toLowerCase()) } : column)
     },
     getFilterLabel (filter) {
       const key = this.$route.meta?.filterLabels?.[filter] || ('label.' + (this.$route.name === 'comment' ? 'filter.annotations.' : '') + filter)

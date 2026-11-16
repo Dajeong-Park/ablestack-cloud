@@ -81,3 +81,9 @@ test('an existing Public IP date rerenders for a locale change even though the c
   const locale = reactive({ locale: 'ko_KR' }); let storedLocale = 'ko_KR'; const global = options(); global.mocks.$i18n = locale; global.mocks.$toLocaleDate = date => storedLocale + ':' + date
   const w = mount(PublicIpDetailValue, { props: { resource: { allocated: '2026-11-16T07:17:03Z' }, field: 'allocated' }, global }); expect(w.attributes('lang')).toBe('ko-KR'); storedLocale = 'en'; locale.locale = 'en'; await nextTick(); expect(w.attributes('lang')).toBe('en'); expect(w.text()).toBe('en:2026-11-16T07:17:03Z'); w.unmount()
 })
+
+test('column selection controls retain their icon-only title during a Public IP language change', () => {
+  const utility = { key: 'filterColumn', title: '' }; const t = jest.fn(k => k)
+  expect(AutogenView.methods.localizePublicIpColumns.call({ $route: { meta: { name: 'publicip' } }, $t: t }, [utility])[0]).toBe(utility)
+  expect(t).not.toHaveBeenCalled()
+})
