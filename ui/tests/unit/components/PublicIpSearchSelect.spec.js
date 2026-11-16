@@ -16,6 +16,7 @@
 // under the License.
 
 import Select from '@/components/view/PublicIpSearchSelect'
+import Filter from '@/components/view/SearchFilter'
 import Search from '@/components/view/PublicIpSearch'
 import { getAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
@@ -47,4 +48,10 @@ test('parent changes clear dependent UUIDs and stale blocked values', () => {
   const c = { form: { vpcid: id, associatednetworkid: id, vlanid: id, domainid: id, account: 'owner' }, blocked: { vpcid: true, associatednetworkid: true } }
   Search.methods.changed.call(c, 'zoneid'); expect(c.form.vpcid).toBeUndefined(); expect(c.form.associatednetworkid).toBeUndefined(); expect(c.form.vlanid).toBeUndefined(); expect(c.blocked.vpcid).toBeUndefined()
   Search.methods.changed.call(c, 'domainid'); expect(c.form.account).toBeUndefined()
+})
+
+test('VM common chips preserve raw identifiers without fetching outside the search scope', async () => {
+ const c = { apiName: 'listPublicIpAddresses', filterVersion: 0, lookupScope: 'scope', $t: key => key }
+ await Filter.methods.resolveFilters.call(c, [{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'all' }, { key: 'issourcenat', value: 'false' }, { key: 'filter', value: 'all' }])
+ expect(c.searchFilters).toEqual([{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'label.all' }, { key: 'issourcenat', value: 'label.no' }]); expect(getAPI).not.toHaveBeenCalled()
 })
