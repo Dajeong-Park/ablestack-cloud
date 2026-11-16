@@ -23,7 +23,7 @@ export function publicIpState (value) {
   const raw = scalar(value)
   const state = typeof value === 'string' && states.find(state => state.toLowerCase() === raw.toLowerCase())
   const missing = value == null || typeof value === 'string' && !raw
-  return { state: state || '', raw, key: state ? publicIpFilterLabels[state.toLowerCase()] : missing ? 'label.public.ip.value.notprovided' : 'label.unknown' }
+  return { state: state || '', raw, key: state ? publicIpFilterLabels[state.toLowerCase()] : missing ? 'label.public.ip.value.notprovided' : 'label.public.ip.state.unknown' }
 }
 
 export function publicIpBoolean (resource, field) {

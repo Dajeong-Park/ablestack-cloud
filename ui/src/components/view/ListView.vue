@@ -1959,7 +1959,7 @@ export default {
       return name.field ?? name.customTitle ?? Object.keys(name)[0]
     },
     getColumnTitle (name) {
-      if (this.$route.meta?.name === 'publicip' && this.getColumnKey(name) === 'allocated') return 'public.ip.allocated'
+      if (this.$route?.meta?.name === 'publicip' && this.getColumnKey(name) === 'allocated') return 'public.ip.allocated'
       if (typeof name !== 'object' || name === null) {
         return name
       }

@@ -11944,5 +11944,6 @@
   "label.public.ip.state.allocating": "Allocating",
   "label.public.ip.state.releasing": "Releasing",
   "label.public.ip.allocated": "Allocated at",
-  "label.public.ip.release.confirm": "Release"
+  "label.public.ip.release.confirm": "Release",
+  "label.public.ip.state.unknown": "Unknown"
 }

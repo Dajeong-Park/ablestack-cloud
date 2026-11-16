@@ -43,7 +43,7 @@ test.each([null, undefined, '', '  '])('a missing state %p is never labelled Fre
   const w = mount(PublicIpStatus, { props: { value }, global: options() }); expect(w.text()).toBe(ko['label.public.ip.value.notprovided']); expect(w.get('.badge').attributes('data-status')).toBe('default'); w.unmount()
 })
 test.each(['Running', 'provider-state', false, 0])('an unknown state %p remains neutral and exposes its raw value', value => {
-  const w = mount(PublicIpStatus, { props: { value }, global: options() }); expect(w.text()).toContain(ko['label.unknown']); expect(w.get('.public-ip-status__raw').text()).toContain(String(value)); expect(w.get('.badge').attributes('data-status')).toBe('default'); w.unmount()
+  const w = mount(PublicIpStatus, { props: { value }, global: options() }); expect(w.text()).toContain(ko['label.public.ip.state.unknown']); expect(w.get('.public-ip-status__raw').text()).toContain(String(value)); expect(w.get('.badge').attributes('data-status')).toBe('default'); w.unmount()
 })
 test('untrusted state text is escaped and cannot create elements', () => { const raw = '<img src=x onerror=alert(1)>' + 'x'.repeat(400); const w = mount(PublicIpStatus, { props: { value: raw }, global: options() }); expect(w.text()).toContain(raw); expect(w.find('img').exists()).toBe(false); w.unmount() })
 test.each(['issystem', 'issourcenat', 'isstaticnat'])('%s distinguishes false/true, missing and malformed responses', field => {

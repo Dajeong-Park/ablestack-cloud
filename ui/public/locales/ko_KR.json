@@ -11952,5 +11952,6 @@
   "label.public.ip.state.allocating": "할당 중",
   "label.public.ip.state.releasing": "해제 중",
   "label.public.ip.allocated": "할당 일시",
-  "label.public.ip.release.confirm": "해제"
+  "label.public.ip.release.confirm": "해제",
+  "label.public.ip.state.unknown": "확인 불가"
 }
