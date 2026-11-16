@@ -14,5 +14,9 @@
   "inventoryGroupsEqual": 16,
   "runtimeBothClusters": "PASS",
   "fullBuildDispatched": false,
-  "scope": "Public IP integration and changed shared UI read/format/return boundaries; no repeated guest network/VPC/VNF lifecycle or FTCTL operation tests"
+  "scope": "Public IP integration and changed shared UI read/format/return boundaries; no repeated guest network/VPC/VNF lifecycle or FTCTL operation tests",
+  "ratBaselineUnknown": 4077,
+  "ratHeadUnknown": 4077,
+  "ratAddedUnknown": 0,
+  "evidenceLicenseHeadersAdded": 390
 }

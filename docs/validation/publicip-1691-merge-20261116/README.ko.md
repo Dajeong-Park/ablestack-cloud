@@ -73,3 +73,5 @@ VM의 초기 시험 보조 함수가 Public IP 전용 `projectid=0`을 VM URL에
 - 기존 dirty FTCTL 작업트리는 별도 스냅샷으로 보호했다. 병합 커밋 부모·트리, 최종 Origin/Local/Upstream 참조 일치 및 작업트리 최종 보존 비교는 병합 후 PR 결과 댓글에 기록한다.
 
 ![32번 기본 Public IP 목록](32-final-default-list.jpg)
+
+라이선스 후속 확인: 이번 PR 증거 문서의 누락 헤더 390개를 보완했다. 의존성·빌드 출력이 없는 작업트리에서 최신 Europa와 최종 PR의 RAT 미승인 경로 집합이 모두 4,077개로 완전히 동일하며 추가 항목은 0개다(`license-comparison.json`, `rat-base.log`, `rat-head-clean.log`). 자동 전체 License Check의 기존 실패와 구분한다. 최초 자동 triage는 충돌 라벨 제거 권한 오류였으며 실제 GitHub 판정은 MERGEABLE이다. 오래된 충돌 라벨은 정리했다.
