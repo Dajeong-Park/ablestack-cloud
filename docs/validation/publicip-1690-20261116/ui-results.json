@@ -1,0 +1,5398 @@
+[
+  {
+    "cluster": 31,
+    "name": "detail-language-date-boolean",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "enDate": "06 Oct 2026 10:53:29",
+    "wire": [
+      {
+        "cluster": 31,
+        "name": "detail-ko-date-source",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "listall": "true",
+          "id": "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+          "allocatedonly": "false",
+          "page": "1",
+          "pagesize": "20"
+        },
+        "result": {
+          "count": 1,
+          "rows": [
+            {
+              "id": "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+              "ipaddress": "10.10.31.5",
+              "state": "Allocated",
+              "account": "system",
+              "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+              "domain": "ROOT",
+              "vlanid": "945b26a3-7555-40d7-8fb4-95a96a410576",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": true,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true,
+              "allocated": "2026-10-06T10:53:29+0900",
+              "allocationgeneration": "1e306bbf-c1c3-11f1-a599-0024814c313f"
+            }
+          ]
+        }
+      }
+    ],
+    "values": [
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "Displayed"
+      },
+      {
+        "field": "state",
+        "text": "Allocated"
+      },
+      {
+        "field": "vlanname",
+        "text": "Untagged\nRaw value: vlan://untagged"
+      },
+      {
+        "field": "vlanid",
+        "text": "945b26a3-7555-40d7-8fb4-95a96a410576"
+      },
+      {
+        "field": "networkid",
+        "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+      },
+      {
+        "field": "associatednetworkname",
+        "text": "—"
+      },
+      {
+        "field": "vpcname",
+        "text": "—"
+      },
+      {
+        "field": "fordisplay",
+        "text": "Displayed"
+      },
+      {
+        "field": "issystem",
+        "text": "Yes"
+      },
+      {
+        "field": "issourcenat",
+        "text": "No"
+      },
+      {
+        "field": "isstaticnat",
+        "text": "No"
+      },
+      {
+        "field": "allocated",
+        "text": "06 Oct 2026 10:53:29"
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "name": "live-language-list",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "english": {
+      "chips": [
+        "State : Allocated",
+        "system"
+      ],
+      "headers": [
+        "",
+        "IP Address",
+        "State",
+        "Network name",
+        "VPC",
+        "Instance name",
+        "Allocated at",
+        "Account",
+        "Domain",
+        "Zone",
+        "label.filtercolumn"
+      ],
+      "row": "\t10.10.31.5   system\t\nAllocated\n\t—\t\tv-174-VM\t\n06 Oct 2026 10:53:29\n\tsystem\tROOT\tZone\t"
+    },
+    "korean": {
+      "chips": [
+        "상태 : 할당됨",
+        "system"
+      ],
+      "headers": [
+        "",
+        "IP 주소",
+        "상태",
+        "연결된 네트워크 이름",
+        "VPC",
+        "VM 이름",
+        "할당 일시",
+        "계정",
+        "도메인",
+        "Zone",
+        "label.filtercolumn"
+      ],
+      "row": "\t10.10.31.5   system\t\n할당됨\n\t—\t\tv-174-VM\t\n2026. 10. 6. 오전 10:53:29\n\tsystem\tROOT\tZone\t"
+    },
+    "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&filter=allocated&state=Allocated&page=1&pagesize=20"
+  },
+  {
+    "cluster": 31,
+    "name": "reserve-definitive-error-preserved",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "command": "reserveIpAddress",
+    "status": 503,
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "account": "qa-pip1690-31-190449-user",
+      "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+      "fordisplay": "true"
+    },
+    "busy": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": true,
+          "text": "예약"
+        }
+      ],
+      "close": [],
+      "forms": 1
+    },
+    "backendWrite": false,
+    "observed": "API error envelope with an errorcode is definitive; owner/input retained"
+  },
+  {
+    "cluster": 31,
+    "name": "reserve-unknown-no-receipt",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "command": "reserveIpAddress",
+    "status": 503,
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "account": "qa-pip1690-31-190449-user",
+      "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+      "fordisplay": "true"
+    },
+    "busy": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": true,
+          "text": "예약"
+        }
+      ],
+      "forms": 1
+    },
+    "backendWrite": false,
+    "payload": {}
+  },
+  {
+    "cluster": 31,
+    "name": "reserve-unknown-recovery",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "recheckOnly": true,
+    "ownerPreserved": true,
+    "wire": [
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true"
+        },
+        "result": {
+          "count": 1,
+          "rows": [
+            {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "getWallAlertAvailability",
+        "method": "GET",
+        "params": {},
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "listHostsMetrics",
+        "method": "GET",
+        "params": {},
+        "result": {
+          "count": 3
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "reserve-unknown-read-only-recheck",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "name": "account-reserve-actual",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "wire": [
+      {
+        "cluster": 31,
+        "name": "account-reserve-actual",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true"
+        },
+        "result": {
+          "count": 1,
+          "rows": [
+            {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "account-reserve-actual",
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "account": "qa-pip1690-31-190449-user",
+          "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+          "fordisplay": "true"
+        },
+        "result": {
+          "count": 0,
+          "rows": [
+            {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "state": "Reserved",
+              "account": "qa-pip1690-31-190449-user",
+              "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+              "domain": "qa-pip1690-31-190449",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true,
+              "allocated": "2026-11-16T19:27:55+0900",
+              "allocationgeneration": "e1b947f3-cffb-44ea-a68b-90a92411661e"
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "account-reserve-actual",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true"
+        },
+        "result": {
+          "count": 1,
+          "rows": [
+            {
+              "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+              "ipaddress": "10.10.31.105",
+              "state": "Reserved",
+              "account": "qa-pip1690-31-190449-user",
+              "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+              "domain": "qa-pip1690-31-190449",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true,
+              "allocated": "2026-11-16T19:27:55+0900",
+              "allocationgeneration": "e1b947f3-cffb-44ea-a68b-90a92411661e"
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "account-reserve-actual",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "state": "Free",
+          "page": "1",
+          "pagesize": "20",
+          "listall": "true",
+          "allocatedonly": "false",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "isrecursive": "true"
+        },
+        "result": {
+          "count": 17,
+          "rows": [
+            {
+              "id": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+              "ipaddress": "10.10.31.107",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+              "ipaddress": "10.10.31.110",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "3aab3764-2ead-49a8-9289-b758bb2490ec",
+              "ipaddress": "10.10.31.113",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "68e29c72-552b-45e2-a073-96b55d2b7274",
+              "ipaddress": "10.10.31.114",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "5e89cd1f-89ff-4ac0-88ca-4597e0410530",
+              "ipaddress": "10.10.31.115",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "b13209e2-ffa6-4640-9906-3561f4fde22e",
+              "ipaddress": "10.10.31.116",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "8dab4110-29c4-4350-9888-82932d99ba26",
+              "ipaddress": "10.10.31.117",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "a0f92b87-b6c4-4f71-ae4d-58c569386686",
+              "ipaddress": "10.10.31.118",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "c0db2142-27bb-4fa0-a078-2ada1a3c3f0d",
+              "ipaddress": "10.10.31.119",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "4c3fd2bd-b121-45be-b761-d5e920292ad3",
+              "ipaddress": "10.10.31.120",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "6713569e-a1e2-4b58-b1e4-2b444bae6904",
+              "ipaddress": "10.10.31.121",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "db6ca8d9-db86-407e-8a89-15a37e48f9de",
+              "ipaddress": "10.10.31.122",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "62cf1df3-aff6-4f22-978c-7aa2d2233de1",
+              "ipaddress": "10.10.31.123",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+              "ipaddress": "10.10.31.143",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c",
+              "ipaddress": "10.10.31.144",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "86b4ebcf-4e41-4f90-b64a-3ae00ec45b5d",
+              "ipaddress": "10.10.31.145",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            },
+            {
+              "id": "5d521af3-d96a-439c-a10b-1f0530751e96",
+              "ipaddress": "10.10.31.150",
+              "state": "Free",
+              "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+              "vlanname": "vlan://untagged",
+              "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 31,
+        "name": "account-reserve-actual",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "716fb21e-86f3-4f8c-b34d-11c8d0220230"
+        },
+        "result": {
+          "count": 0
+        }
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "name": "project-reserve-definitive-error",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "command": "reserveIpAddress",
+    "status": 431,
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "true"
+    },
+    "busy": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": true,
+          "text": "예약"
+        }
+      ],
+      "forms": 1
+    },
+    "backendWrite": false,
+    "payload": {
+      "errorresponse": {
+        "errorcode": 431,
+        "errortext": "PIP1690 controlled project validation"
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "project-reserve-actual",
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "wire": [
+      {
+        "cluster": 32,
+        "name": "project-reserve-actual",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        },
+        "result": {
+          "count": 1,
+          "rows": [
+            {
+              "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+              "ipaddress": "10.10.32.103",
+              "state": "Free",
+              "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+              "vlanname": "vlan://untagged",
+              "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "project-reserve-actual",
+        "command": "reserveIpAddress",
+        "method": "POST",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "fordisplay": "true"
+        },
+        "result": {
+          "count": 0,
+          "rows": [
+            {
+              "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+              "ipaddress": "10.10.32.103",
+              "state": "Reserved",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+              "project": "qa-gn1597-32-project",
+              "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true,
+              "allocated": "2026-11-16T19:34:05+0900",
+              "allocationgeneration": "88c94d50-db87-41b1-827a-a0ea281dbbbd"
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "project-reserve-actual",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "state": "Free,Reserved,Allocated,Allocating,Releasing",
+          "allocatedonly": "false",
+          "listall": "true",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        },
+        "result": {
+          "count": 1,
+          "rows": [
+            {
+              "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+              "ipaddress": "10.10.32.103",
+              "state": "Reserved",
+              "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+              "domain": "qa-gn1569-32-domain",
+              "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+              "project": "qa-gn1597-32-project",
+              "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+              "vlanname": "vlan://untagged",
+              "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+              "issystem": false,
+              "issourcenat": false,
+              "isstaticnat": false,
+              "fordisplay": true,
+              "allocated": "2026-11-16T19:34:05+0900",
+              "allocationgeneration": "88c94d50-db87-41b1-827a-a0ea281dbbbd"
+            }
+          ]
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "project-reserve-actual",
+        "command": "listPublicIpAddresses",
+        "method": "GET",
+        "params": {
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "state": "Free",
+          "page": "1",
+          "pagesize": "20",
+          "listall": "true",
+          "allocatedonly": "false",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "isrecursive": "true"
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "project-reserve-actual",
+        "command": "readyForShutdown",
+        "method": "GET",
+        "params": {
+          "managementserverid": "09c71016-1716-4de1-89ba-da513d7562e0",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        },
+        "result": {
+          "count": 0
+        }
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "name": "latest-reserved-list",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "data": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\nlabel.filtercolumn\n\n\n\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "links": [
+            {
+              "href": "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}",
+              "text": "10.10.31.105"
+            },
+            {
+              "href": "#/account?name=qa-pip1690-31-190449-user&domainid=3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23&dataView=true",
+              "text": "qa-pip1690-31-190449-user"
+            },
+            {
+              "href": "#/domain/3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23?tab=details",
+              "text": "qa-pip1690-31-190449"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone\t"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserve-recovery-localized-probe",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "command": "reserveIpAddress",
+    "status": 503,
+    "params": {
+      "id": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+      "account": "qa-pip1690-31-190449-user",
+      "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+      "fordisplay": "true"
+    },
+    "busy": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": true,
+          "text": "예약"
+        }
+      ],
+      "forms": 1
+    },
+    "backendWrite": false,
+    "payload": {}
+  },
+  {
+    "cluster": 31,
+    "name": "localized-observed-state",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "text": "IP 주소\n10.10.31.107\n\n\n상태\n가용\n\n\n계정 유형\n계정\n\n\n예약 대상 소유자\nqa-pip1690-31-190449-user / ROOT/qa-pip1690-31-190449\n예약 결과를 확인하지 못했습니다. 중복 예약을 막기 위해 다시 제출하지 않습니다. 현재 상태를 확인해 주세요.\n현재 서버 상태: 10.10.31.107 / 가용\n예약 결과 확인\n현재 미예약 상태를 확인했습니다. 이전 요청이 뒤늦게 완료될 수 있음을 확인하고 새 시도 전에 추적을 끝냅니다.\n추적 종료\n계정 유형\n계정\n도메인\nROOT/qa-pip1690-31-190449\n계정\nqa-pip1690-31-190449-user\n고급 옵션: 사용자 표시",
+    "backendUnchanged": true
+  },
+  {
+    "cluster": 31,
+    "name": "role-User",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "account": "qa-pip1690-31-190449-user",
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\n\n\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "links": [
+            {
+              "href": "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}",
+              "text": "10.10.31.105"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    },
+    "detail": {
+      "buttons": [
+        "업데이트",
+        "작업",
+        "",
+        "",
+        "태그 새로고침",
+        "새 태그",
+        "",
+        ""
+      ],
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "vlanid",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "states": [
+        "예약",
+        "예약"
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "role-actions-User",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "items": [],
+    "writeUiHidden": false,
+    "rootDisplayHidden": true
+  },
+  {
+    "cluster": 31,
+    "name": "role-DomainAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "account": "qa-pip1690-31-190449-domainadmin",
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\n\n\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "links": [
+            {
+              "href": "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}",
+              "text": "10.10.31.105"
+            },
+            {
+              "href": "#/account?name=qa-pip1690-31-190449-user&domainid=3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23&dataView=true",
+              "text": "qa-pip1690-31-190449-user"
+            },
+            {
+              "href": "#/domain/3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23?tab=details",
+              "text": "qa-pip1690-31-190449"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    },
+    "detail": {
+      "buttons": [
+        "업데이트",
+        "작업",
+        "",
+        "",
+        "태그 새로고침",
+        "",
+        ""
+      ],
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "vlanid",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "states": [
+        "예약",
+        "예약"
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "role-actions-DomainAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "items": [
+      "예약된 IP 해제"
+    ],
+    "writeUiHidden": false,
+    "rootDisplayHidden": true
+  },
+  {
+    "cluster": 31,
+    "name": "role-ReadOnlyAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "account": "qa-pip1690-31-190449-readonly",
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\n\n\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "links": [
+            {
+              "href": "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}",
+              "text": "10.10.31.105"
+            },
+            {
+              "href": "#/account?name=qa-pip1690-31-190449-user&domainid=3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23&dataView=true",
+              "text": "qa-pip1690-31-190449-user"
+            },
+            {
+              "href": "#/domain/3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23?tab=details",
+              "text": "qa-pip1690-31-190449"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.105\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오후 7:27:55\n\tqa-pip1690-31-190449-user\tqa-pip1690-31-190449\tZone"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    },
+    "detail": {
+      "buttons": [
+        "업데이트",
+        "",
+        "",
+        "태그 새로고침",
+        "",
+        "",
+        ""
+      ],
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "states": [
+        "예약",
+        "예약"
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "role-actions-ReadOnlyAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "items": [],
+    "writeUiHidden": true,
+    "rootDisplayHidden": true
+  },
+  {
+    "cluster": 32,
+    "name": "role-User",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "account": "qa-pip1690-32-190449-user",
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\n\n\t10.10.32.104\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오전 10:04:53\n\tqa-pip1690-32-190449-user\tqa-pip1690-32-190449\tZone\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "links": [
+            {
+              "href": "#/publicip/9f028022-7776-41a5-9c2f-9517e20d8c7e?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}",
+              "text": "10.10.32.104"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.104\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오전 10:04:53\n\tqa-pip1690-32-190449-user\tqa-pip1690-32-190449\tZone"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    },
+    "detail": {
+      "buttons": [
+        "업데이트",
+        "작업",
+        "",
+        "",
+        "태그 새로고침",
+        "새 태그",
+        "",
+        ""
+      ],
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "vlanid",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:04:53"
+        }
+      ],
+      "states": [
+        "예약",
+        "예약"
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "role-actions-User",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "items": [
+      "예약된 IP 해제"
+    ],
+    "writeUiHidden": false,
+    "rootDisplayHidden": true
+  },
+  {
+    "cluster": 32,
+    "name": "user-free-url-blocked",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "rows": 0,
+    "wire": [
+      {
+        "cluster": 32,
+        "name": "user-free-url-blocked",
+        "command": "listTags",
+        "method": "GET",
+        "params": {
+          "resourcetype": "PublicIpAddress",
+          "resourceid": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "listall": "true",
+          "page": "1",
+          "pagesize": "100"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "user-free-url-blocked",
+        "command": "listResourceIcon",
+        "method": "GET",
+        "params": {
+          "resourceids": "991d2f57-0f37-4445-b956-09773d064816",
+          "resourcetype": "zone"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "user-free-url-blocked",
+        "command": "listResourceIcon",
+        "method": "GET",
+        "params": {
+          "resourceids": "dfbef020-f942-46a0-9442-996032904cbd",
+          "resourcetype": "domain"
+        },
+        "result": {
+          "count": 0
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "user-free-url-blocked",
+        "command": "listAccounts",
+        "method": "GET",
+        "params": {
+          "name": "qa-pip1690-32-190449-user",
+          "domainid": "dfbef020-f942-46a0-9442-996032904cbd",
+          "showicon": "true"
+        }
+      },
+      {
+        "cluster": 32,
+        "name": "user-free-url-blocked",
+        "command": "listResourceIcon",
+        "method": "GET",
+        "params": {
+          "resourceids": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "resourcetype": "network"
+        },
+        "result": {
+          "count": 0
+        }
+      }
+    ],
+    "error": "현재 권한으로 사용할 수 없는 Public IP 검색 조건입니다.\n재설정재시도"
+  },
+  {
+    "cluster": 32,
+    "name": "role-DomainAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "account": "qa-pip1690-32-190449-domainadmin",
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\n\n\t10.10.32.104\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오전 10:04:53\n\tqa-pip1690-32-190449-user\tqa-pip1690-32-190449\tZone\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "links": [
+            {
+              "href": "#/publicip/9f028022-7776-41a5-9c2f-9517e20d8c7e?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}",
+              "text": "10.10.32.104"
+            },
+            {
+              "href": "#/account?name=qa-pip1690-32-190449-user&domainid=dfbef020-f942-46a0-9442-996032904cbd&dataView=true",
+              "text": "qa-pip1690-32-190449-user"
+            },
+            {
+              "href": "#/domain/dfbef020-f942-46a0-9442-996032904cbd?tab=details",
+              "text": "qa-pip1690-32-190449"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.104\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오전 10:04:53\n\tqa-pip1690-32-190449-user\tqa-pip1690-32-190449\tZone"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    },
+    "detail": {
+      "buttons": [
+        "업데이트",
+        "작업",
+        "",
+        "",
+        "태그 새로고침",
+        "",
+        ""
+      ],
+      "fields": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "vlanid",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "이 응답에서 미제공"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:04:53"
+        }
+      ],
+      "states": [
+        "예약",
+        "예약"
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "role-actions-DomainAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "items": [
+      "예약된 IP 해제"
+    ],
+    "writeUiHidden": false,
+    "rootDisplayHidden": true
+  },
+  {
+    "cluster": 32,
+    "name": "role-ReadOnlyAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 네트워크 이름\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\n\n\t10.10.32.104\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오전 10:04:53\n\tqa-pip1690-32-190449-user\tqa-pip1690-32-190449\tZone\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "links": [
+            {
+              "href": "#/publicip/9f028022-7776-41a5-9c2f-9517e20d8c7e?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}",
+              "text": "10.10.32.104"
+            },
+            {
+              "href": "#/account?name=qa-pip1690-32-190449-user&domainid=dfbef020-f942-46a0-9442-996032904cbd&dataView=true",
+              "text": "qa-pip1690-32-190449-user"
+            },
+            {
+              "href": "#/domain/dfbef020-f942-46a0-9442-996032904cbd?tab=details",
+              "text": "qa-pip1690-32-190449"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.104\t\n예약\n\t—\t\t—\t\n2026. 11. 16. 오전 10:04:53\n\tqa-pip1690-32-190449-user\tqa-pip1690-32-190449\tZone"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    },
+    "detail": "/Public IP 주소/10.10.32.104업데이트\n10.10.32.104\n상태\n예약\n아이디\n9f028022-7776-41a5-9c2f-9517e20d8c7e \nIP\n10.10.32.104 \nVM 이름\n—\n공용 네트워크\n4216b0b3-d054-46ab-88dd-9d025a1f3eb5\n연결된 게스트 네트워크\n—\nVPC\n—\n사용자 표시\n표시\nZone\nZone\n계정\nqa-pip1690-32-190449-user\n도메인\nqa-pip1690-32-190449\n태그\n태그 새로고침\n태그가 없습니다.\n상세\n이벤트\n코멘트\nIP 주소\n\n10.10.32.104\n아이디\n\n9f028022-7776-41a5-9c2f-9517e20d8c7e\n상태\n\n예약\nVLAN 값\n\n태그 없음 (Untagged)\n원문: vlan://untagged\nVLAN 범위 UUID\n\nc206c328-6567-4793-a8d4-7ee2cade5451\n공용 네트워크\n\n4216b0b3-d054-46ab-88dd-9d025a1f3eb5\n연결된 게스트 네트워크\n\n—\nVPC\n\n—\n사용자 표시\n\n표시\n시스템\n\n아니오\nSource NAT\n\n아니오\nStatic NAT\n\n아니오\nVM 이름\n—\n할당 일시\n\n2026. 11. 16. 오전 10:04:53\n계정\n\nqa-pip1690-32-190449-user\n도메인\n\nqa-pip1690-32-190449\nZone\n\nZone"
+  },
+  {
+    "cluster": 32,
+    "name": "role-actions-ReadOnlyAdmin",
+    "source": "5c9786c44dbd8d820b780f7fd66cf97950bfe00c",
+    "items": [],
+    "writeUiHidden": true,
+    "rootDisplayHidden": true
+  },
+  {
+    "cluster": 32,
+    "name": "final-locales-date",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "detail": "/Public IP 주소/10.10.32.103업데이트\n작업\n10.10.32.103\n상태\n예약\n아이디\n77def528-fb75-42e3-a90f-46a6e9c5b90b \nIP\n10.10.32.103 \n프로젝트\nqa-gn1597-32-project\nVM 이름\n—\n공용 네트워크\n4216b0b3-d054-46ab-88dd-9d025a1f3eb5\n연결된 게스트 네트워크\n—\nVPC\n—\n사용자 표시\n표시\nZone\nZone\n도메인\nqa-gn1569-32-domain\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n상세\n이벤트\n코멘트\nIP 주소\n\n10.10.32.103\n아이디\n\n77def528-fb75-42e3-a90f-46a6e9c5b90b\n상태\n\n예약\nVLAN 값\n\n태그 없음 (Untagged)\n원문: vlan://untagged\nVLAN 범위 UUID\n\nc206c328-6567-4793-a8d4-7ee2cade5451\n공용 네트워크\n\n4216b0b3-d054-46ab-88dd-9d025a1f3eb5\n연결된 게스트 네트워크\n\n—\nVPC\n\n—\n사용자 표시\n\n표시\n시스템\n\n아니오\nSource NAT\n\n아니오\nStatic NAT\n\n아니오\nVM 이름\n—\n할당 일시\n\n2026. 11. 16. 오전 10:34:05\n도메인\n\nqa-gn1569-32-domain\nZone\n\nZone",
+    "englishSnapshot": "32-final-detail-en.txt"
+  },
+  {
+    "cluster": 31,
+    "name": "keyboard-light",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "focusBefore": true,
+    "focusAfter": true,
+    "escapeClosed": true
+  },
+  {
+    "cluster": 31,
+    "name": "keyboard-dark",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "focusBefore": true,
+    "focusAfter": true,
+    "escapeClosed": true
+  },
+  {
+    "cluster": 32,
+    "name": "keyboard-light",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "focusBefore": true,
+    "focusAfter": true,
+    "escapeClosed": true
+  },
+  {
+    "cluster": 32,
+    "name": "keyboard-dark",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "focusBefore": true,
+    "focusAfter": true,
+    "escapeClosed": true
+  },
+  {
+    "cluster": 31,
+    "name": "display-job-read-503",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "queryAsyncJobResult",
+    "status": 503,
+    "params": {
+      "jobid": "92c73fd0-714c-4cc9-a405-983181433f11"
+    },
+    "busy": {
+      "buttons": [
+        {
+          "disabled": false,
+          "text": "취소"
+        },
+        {
+          "disabled": true,
+          "text": "저장"
+        }
+      ],
+      "forms": 1
+    },
+    "payload": {},
+    "actualWriteAccepted": true,
+    "interceptedReadOnly": true
+  },
+  {
+    "cluster": 31,
+    "name": "display-restored",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "posts": 1,
+    "hiddenFilterRows": 0
+  },
+  {
+    "cluster": 32,
+    "name": "display-hidden",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "posts": 1,
+    "rows": 0
+  },
+  {
+    "cluster": 32,
+    "name": "display-restored",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "posts": 1,
+    "hiddenFilterRows": 0
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-states-read-only",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "isrecursive": "true"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 7,
+        "publicipaddress": [
+          {
+            "id": "11111111-1111-4111-8111-000000000001",
+            "ipaddress": "192.0.2.1",
+            "state": "Free",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000002",
+            "ipaddress": "192.0.2.2",
+            "state": "Reserved",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000003",
+            "ipaddress": "192.0.2.3",
+            "state": "Allocated",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000004",
+            "ipaddress": "192.0.2.4",
+            "state": "Allocating",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000005",
+            "ipaddress": "192.0.2.5",
+            "state": "Releasing",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000006",
+            "ipaddress": "192.0.2.6",
+            "state": "provider-next",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": "false",
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000007",
+            "ipaddress": "192.0.2.7",
+            "state": null,
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "allocated": "not-a-date"
+          }
+        ]
+      }
+    },
+    "outcome": "scope mismatch rejected; previous real rows retained; excluded from state-render PASS count"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-refresh-read-only",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "isrecursive": "true"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 7,
+        "publicipaddress": [
+          {
+            "id": "11111111-1111-4111-8111-000000000001",
+            "ipaddress": "192.0.2.1",
+            "state": "Free",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000002",
+            "ipaddress": "192.0.2.2",
+            "state": "Reserved",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000003",
+            "ipaddress": "192.0.2.3",
+            "state": "Allocated",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000004",
+            "ipaddress": "192.0.2.4",
+            "state": "Allocating",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000005",
+            "ipaddress": "192.0.2.5",
+            "state": "Releasing",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000006",
+            "ipaddress": "192.0.2.6",
+            "state": "provider-next",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": "false",
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          },
+          {
+            "id": "11111111-1111-4111-8111-000000000007",
+            "ipaddress": "192.0.2.7",
+            "state": null,
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "allocated": "not-a-date"
+          }
+        ]
+      }
+    },
+    "outcome": "scope mismatch rejected; previous real rows retained; excluded from state-render PASS count"
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-0",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "Free",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-1",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "Reserved",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-2",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "Allocated",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-3",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "Allocating",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-4",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "Releasing",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-5",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "provider-next",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": "false",
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-6",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": null,
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone",
+            "allocated": "not-a-date"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-detail-states",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "readOnly": true,
+    "tests": [
+      {
+        "rawState": "Free",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "가용"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+          },
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "예"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Reserved",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "예약"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+          },
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "아니오"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Allocated",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "할당됨"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+          },
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "예"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Allocating",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "할당 중"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+          },
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "아니오"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Releasing",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "해제 중"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+          },
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "예"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "provider-next",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "확인 불가\n원문: provider-next"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+          },
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "아니오"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "알 수 없음\n원문: false"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": null,
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "이 응답에서 미제공"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+          },
+          {
+            "field": "networkid",
+            "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "이 응답에서 미제공"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "알 수 없음\n원문: not-a-date"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-0",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "Free",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-1",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "Reserved",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-2",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "Allocated",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-3",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "Allocating",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-4",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "Releasing",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": true,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-5",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "provider-next",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": "false",
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-6",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": null,
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone",
+            "allocated": "not-a-date"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-detail-states",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "readOnly": true,
+    "tests": [
+      {
+        "rawState": "Free",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "가용"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+          },
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "예"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Reserved",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "예약"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+          },
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "아니오"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Allocated",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "할당됨"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+          },
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "예"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Allocating",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "할당 중"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+          },
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "아니오"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "Releasing",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "해제 중"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+          },
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "예"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": "provider-next",
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "확인 불가\n원문: provider-next"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+          },
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "아니오"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "알 수 없음\n원문: false"
+          },
+          {
+            "field": "allocated",
+            "text": "—"
+          }
+        ]
+      },
+      {
+        "rawState": null,
+        "fields": [
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "state",
+            "text": "이 응답에서 미제공"
+          },
+          {
+            "field": "vlanname",
+            "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+          },
+          {
+            "field": "vlanid",
+            "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+          },
+          {
+            "field": "networkid",
+            "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+          },
+          {
+            "field": "associatednetworkname",
+            "text": "—"
+          },
+          {
+            "field": "vpcname",
+            "text": "—"
+          },
+          {
+            "field": "fordisplay",
+            "text": "표시"
+          },
+          {
+            "field": "issystem",
+            "text": "이 응답에서 미제공"
+          },
+          {
+            "field": "issourcenat",
+            "text": "아니오"
+          },
+          {
+            "field": "isstaticnat",
+            "text": "아니오"
+          },
+          {
+            "field": "allocated",
+            "text": "알 수 없음\n원문: not-a-date"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-guard-Allocating",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "Allocating",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-guard-Releasing",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "Releasing",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-guard-provider-next",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+            "ipaddress": "10.10.31.105",
+            "state": "provider-next",
+            "account": "qa-pip1690-31-190449-user",
+            "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+            "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+            "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "synthetic-transition-action-guards",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "readOnly": true,
+    "guards": [
+      {
+        "state": "Allocating",
+        "mutators": []
+      },
+      {
+        "state": "Releasing",
+        "mutators": []
+      },
+      {
+        "state": "provider-next",
+        "mutators": []
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-guard-Allocating",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "Allocating",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-guard-Releasing",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "Releasing",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-guard-provider-next",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "listPublicIpAddresses",
+    "status": 200,
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "busy": {
+      "buttons": [],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "listpublicipaddressesresponse": {
+        "count": 1,
+        "publicipaddress": [
+          {
+            "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+            "ipaddress": "10.10.32.103",
+            "state": "provider-next",
+            "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+            "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+            "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+            "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+            "vlanname": "vlan://untagged",
+            "issourcenat": false,
+            "isstaticnat": false,
+            "fordisplay": true,
+            "hasrules": false,
+            "issystem": false,
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "zonename": "Zone"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "synthetic-transition-action-guards",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "readOnly": true,
+    "guards": [
+      {
+        "state": "Allocating",
+        "mutators": []
+      },
+      {
+        "state": "Releasing",
+        "mutators": []
+      },
+      {
+        "state": "provider-next",
+        "mutators": []
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "name": "release-definite-failure",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "command": "releaseIpAddress",
+    "status": 431,
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+    },
+    "busy": {
+      "buttons": [
+        {
+          "disabled": true,
+          "text": "취소"
+        },
+        {
+          "disabled": false,
+          "text": "해제"
+        }
+      ],
+      "forms": 0
+    },
+    "backendWrite": false,
+    "payload": {
+      "releaseipaddressresponse": {
+        "errorcode": 431,
+        "errortext": "Controlled validation: no release forwarded"
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "release-ui-complete",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "posts": 1,
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n프로젝트\n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 게스트 네트워크\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+      "rows": [],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "release-ui-complete",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "posts": 1,
+    "list": {
+      "body": "/Public IP 주소업데이트\n예약 \n\t\n상태 : 예약\n\t\nIP 주소\n\t\n상태\n\t\n연결된 게스트 네트워크\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+      "rows": [],
+      "selected": 0,
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=97f62088-fc46-4d21-acfa-fa47a2d137b1&state=Reserved&page=1&pagesize=20&filter=reserved"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "final-free-reserved-restored",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "reserved": 0,
+    "free": {
+      "body": "/Public IP 주소업데이트\n가용 \n프로젝트\n\t\n상태 : 가용\n\t\nIP 주소\n\t\n상태\n\t\n연결된 게스트 네트워크\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\t10.10.31.105\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.107\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.110\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.113\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.114\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.115\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.116\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.117\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.118\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.119\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.120\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.121\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.122\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.123\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.143\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.144\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.145\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.31.150\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n전체 18 개 항목 중 1-18 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "links": [
+            {
+              "href": "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.105"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.105\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+          "links": [
+            {
+              "href": "#/publicip/15759fa1-ca4c-4054-82b2-47dfb03c3afb?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.107"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.107\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "f9eda3b4-2655-453b-837a-28e46eb9c3f5",
+          "links": [
+            {
+              "href": "#/publicip/f9eda3b4-2655-453b-837a-28e46eb9c3f5?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.110"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.110\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "3aab3764-2ead-49a8-9289-b758bb2490ec",
+          "links": [
+            {
+              "href": "#/publicip/3aab3764-2ead-49a8-9289-b758bb2490ec?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.113"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.113\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "68e29c72-552b-45e2-a073-96b55d2b7274",
+          "links": [
+            {
+              "href": "#/publicip/68e29c72-552b-45e2-a073-96b55d2b7274?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.114"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.114\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "5e89cd1f-89ff-4ac0-88ca-4597e0410530",
+          "links": [
+            {
+              "href": "#/publicip/5e89cd1f-89ff-4ac0-88ca-4597e0410530?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.115"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.115\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "b13209e2-ffa6-4640-9906-3561f4fde22e",
+          "links": [
+            {
+              "href": "#/publicip/b13209e2-ffa6-4640-9906-3561f4fde22e?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.116"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.116\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "8dab4110-29c4-4350-9888-82932d99ba26",
+          "links": [
+            {
+              "href": "#/publicip/8dab4110-29c4-4350-9888-82932d99ba26?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.117"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.117\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "a0f92b87-b6c4-4f71-ae4d-58c569386686",
+          "links": [
+            {
+              "href": "#/publicip/a0f92b87-b6c4-4f71-ae4d-58c569386686?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.118"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.118\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "c0db2142-27bb-4fa0-a078-2ada1a3c3f0d",
+          "links": [
+            {
+              "href": "#/publicip/c0db2142-27bb-4fa0-a078-2ada1a3c3f0d?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.119"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.119\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "4c3fd2bd-b121-45be-b761-d5e920292ad3",
+          "links": [
+            {
+              "href": "#/publicip/4c3fd2bd-b121-45be-b761-d5e920292ad3?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.120"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.120\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "6713569e-a1e2-4b58-b1e4-2b444bae6904",
+          "links": [
+            {
+              "href": "#/publicip/6713569e-a1e2-4b58-b1e4-2b444bae6904?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.121"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.121\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "db6ca8d9-db86-407e-8a89-15a37e48f9de",
+          "links": [
+            {
+              "href": "#/publicip/db6ca8d9-db86-407e-8a89-15a37e48f9de?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.122"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.122\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "62cf1df3-aff6-4f22-978c-7aa2d2233de1",
+          "links": [
+            {
+              "href": "#/publicip/62cf1df3-aff6-4f22-978c-7aa2d2233de1?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.123"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.123\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "21a6e954-afa8-4bee-89c4-25c2745713b0",
+          "links": [
+            {
+              "href": "#/publicip/21a6e954-afa8-4bee-89c4-25c2745713b0?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.143"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.143\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c",
+          "links": [
+            {
+              "href": "#/publicip/fb24522f-6bd3-4dc6-8ba8-6f2e7a516e5c?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.144"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.144\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "86b4ebcf-4e41-4f90-b64a-3ae00ec45b5d",
+          "links": [
+            {
+              "href": "#/publicip/86b4ebcf-4e41-4f90-b64a-3ae00ec45b5d?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.145"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.145\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "5d521af3-d96a-439c-a10b-1f0530751e96",
+          "links": [
+            {
+              "href": "#/publicip/5d521af3-d96a-439c-a10b-1f0530751e96?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.31.150"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.150\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Free&page=1&pagesize=20&filter=free"
+    },
+    "theme": "light",
+    "locale": "ko",
+    "project": "0"
+  },
+  {
+    "cluster": 32,
+    "name": "final-free-reserved-restored",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "reserved": 0,
+    "free": {
+      "body": "/Public IP 주소업데이트\n가용 \n프로젝트\n\t\n상태 : 가용\n\t\nIP 주소\n\t\n상태\n\t\n연결된 게스트 네트워크\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\t10.10.32.103\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.104\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.105\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.106\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.107\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.108\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.109\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.110\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.111\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.112\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.113\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.114\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.115\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.116\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.117\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.118\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.119\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.120\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.121\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n\n\t10.10.32.122\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t\n전체 83 개 항목 중 1-20 표시\n1\n2\n3\n4\n5\n20 / 쪽\n이동하기",
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "links": [
+            {
+              "href": "#/publicip/77def528-fb75-42e3-a90f-46a6e9c5b90b?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.103"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.103\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "links": [
+            {
+              "href": "#/publicip/9f028022-7776-41a5-9c2f-9517e20d8c7e?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.104"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.104\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "ef4ffbf6-9054-469e-a275-831b93136ce7",
+          "links": [
+            {
+              "href": "#/publicip/ef4ffbf6-9054-469e-a275-831b93136ce7?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.105"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.105\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "26198ed4-bcc3-4e4e-b064-0956bcfa8522",
+          "links": [
+            {
+              "href": "#/publicip/26198ed4-bcc3-4e4e-b064-0956bcfa8522?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.106"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.106\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "39b22f2b-be78-4613-8926-719abad0beca",
+          "links": [
+            {
+              "href": "#/publicip/39b22f2b-be78-4613-8926-719abad0beca?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.107"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.107\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "923db3b2-07df-4ff5-a817-b2264a99f53f",
+          "links": [
+            {
+              "href": "#/publicip/923db3b2-07df-4ff5-a817-b2264a99f53f?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.108"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.108\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "7071bbac-452f-4efd-8907-e3bb5ad5ee11",
+          "links": [
+            {
+              "href": "#/publicip/7071bbac-452f-4efd-8907-e3bb5ad5ee11?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.109"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.109\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "d3b7af90-c543-4e10-b0a1-40f1260ed145",
+          "links": [
+            {
+              "href": "#/publicip/d3b7af90-c543-4e10-b0a1-40f1260ed145?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.110"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.110\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "4562b61e-3341-4a35-a58b-2ec688ca547c",
+          "links": [
+            {
+              "href": "#/publicip/4562b61e-3341-4a35-a58b-2ec688ca547c?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.111"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.111\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "d495cf06-3f8f-4f88-af0c-e807afc9beef",
+          "links": [
+            {
+              "href": "#/publicip/d495cf06-3f8f-4f88-af0c-e807afc9beef?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.112"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.112\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "03591cc9-3f93-4644-8934-6ac6828e8f00",
+          "links": [
+            {
+              "href": "#/publicip/03591cc9-3f93-4644-8934-6ac6828e8f00?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.113"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.113\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "461903d1-f8b0-43f6-b09d-81635cdc50c3",
+          "links": [
+            {
+              "href": "#/publicip/461903d1-f8b0-43f6-b09d-81635cdc50c3?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.114"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.114\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "a4a7db6a-e228-46da-9e06-bb08b68c08fd",
+          "links": [
+            {
+              "href": "#/publicip/a4a7db6a-e228-46da-9e06-bb08b68c08fd?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.115"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.115\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "f251dc57-16ac-4dfc-8731-c3e9a249d5e6",
+          "links": [
+            {
+              "href": "#/publicip/f251dc57-16ac-4dfc-8731-c3e9a249d5e6?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.116"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.116\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "af225d7c-29e2-4ed5-a054-957de86b9876",
+          "links": [
+            {
+              "href": "#/publicip/af225d7c-29e2-4ed5-a054-957de86b9876?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.117"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.117\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "e956ace5-df28-47f0-b470-725f9978276f",
+          "links": [
+            {
+              "href": "#/publicip/e956ace5-df28-47f0-b470-725f9978276f?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.118"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.118\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "4b6e4fc1-99ac-4d3c-94b7-aab971fa90c1",
+          "links": [
+            {
+              "href": "#/publicip/4b6e4fc1-99ac-4d3c-94b7-aab971fa90c1?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.119"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.119\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "138ba67f-ebca-436a-8869-0e0eeff6407a",
+          "links": [
+            {
+              "href": "#/publicip/138ba67f-ebca-436a-8869-0e0eeff6407a?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.120"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.120\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "265211ac-fa5b-4594-a087-37fa511058f7",
+          "links": [
+            {
+              "href": "#/publicip/265211ac-fa5b-4594-a087-37fa511058f7?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.121"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.121\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        },
+        {
+          "id": "40b520ca-e894-449a-a9e3-6e21d4a7c9ee",
+          "links": [
+            {
+              "href": "#/publicip/40b520ca-e894-449a-a9e3-6e21d4a7c9ee?pipreturn={%22projectid%22:%220%22,%22state%22:%22Free%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22free%22}",
+              "text": "10.10.32.122"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.122\t\n가용\n\t—\t\t—\t\n—\n\t\t\tZone\t"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Free&page=1&pagesize=20&filter=free"
+    },
+    "theme": "light",
+    "locale": "ko",
+    "project": "0"
+  },
+  {
+    "cluster": 32,
+    "name": "vm-common-boundary",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "readOnly": true,
+    "text": "/가상머신/HA-VM-13업데이트\n작업\nHA-VM-13\ni-2-17-VM\nx86_64\nKVM\nHA 활성화\n동적으로 확장 가능\n상태\n정지된 상태\n아이디\nefc95839-7394-402d-b6fb-951ba269499c \nOS 유형\nRocky Linux 9\nIP\n10.10.254.117 \n클라우드 · 주 IP\nCPU\n1 CPU x 2.00 GHz \nx86_64\n메모리\n1024 MB 메모리\n네트워크\n1 NIC(s)\neth0  10.10.254.117   기본\n      ADMIN-L2-Network\n템플릿\nnginx-lb-test.qcow2\n컴퓨트 오퍼링\n1C1GB-TO-64C128GB-FR\nZone\nZone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 9. 17. 오전 4:19:42\n마지막 업데이트\n2026. 9. 26. 오후 4:19:33\n태그\n태그 새로고침\n태그가 없습니다.\n새 태그\n\n\n상세\nIP 구성\n메트릭\n프로세스\n스케줄\nISO\n볼륨\nNIC\n설정\n호스트 장치\nVM 스냅샷\n이벤트\n코멘트\nVM 호스트 명\n\nHA-VM-13\nVM 표시 명\n\nHA-VM-13\n에이전트 버전\n\n8.0.0\n아이디\n\nefc95839-7394-402d-b6fb-951ba269499c\n상태\n\n정지된 상태\nIP 주소\n\n10.10.254.117\n템플릿\n\nnginx-lb-test.qcow2\nOS 유형\n\nRocky Linux 9\n템플릿 유형\n\nUSER\n컴퓨트 오퍼링\n\n1C1GB-TO-64C128GB-FR\n동적으로 확장 가능\n\n예\nHA 활성화\n\n예\n하이퍼바이저\n\nKVM\nCPU 아키텍처\n\nx86_64\n계정\n\nadmin\n도메인\n\nROOT\nZone\n\nZone\nVBMC 포트\n\n미할당\n삭제 보호\n\n사용 안 함\n보호 설정은 상단 작업 메뉴의 편집 → 삭제 보호에서 변경한 뒤 저장하세요. 자동으로 해제되지 않습니다."
+  },
+  {
+    "cluster": 31,
+    "name": "final-defaults",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated",
+    "rows": {
+      "body": "/Public IP 주소업데이트\n할당됨 \n프로젝트\n\t\n상태 : 할당됨\n\t\nIP 주소\n\t\n상태\n\t\n연결된 게스트 네트워크\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\t10.10.31.5   system\t\n할당됨\n\t—\t\tv-174-VM\t\n2026. 10. 6. 오전 10:53:29\n\tsystem\tROOT\tZone\t\n\n\t10.10.31.6   system\t\n할당됨\n\t—\t\ts-173-VM\t\n2026. 10. 6. 오전 10:53:29\n\tsystem\tROOT\tZone\t\n\n\t10.10.31.100   source-nat\t\n할당됨\n\trt1230-v13412-ha-gfs2-r17-net\t\t—\t\n2026. 10. 7. 오전 2:07:11\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.101   source-nat\t\n할당됨\n\tk8s-ui1330-gfs2-net\t\t—\t\n2026. 10. 8. 오후 2:51:31\n\tadmin\tROOT\tZone\t\n\n\t10.10.31.102   source-nat\t\n할당됨\n\trt1230-v13412-external-etcd-gfs2-r18-net\t\t—\t\n2026. 10. 7. 오전 2:47:47\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.103   source-nat\t\n할당됨\n\tAS-PROD-31-AS01-net\t\t—\t\n2026. 10. 10. 오후 11:57:25\n\tadmin\tROOT\tZone\t\n\n\t10.10.31.106   source-nat\t\n할당됨\n\t—\tqa-gn1569-31-reg-vpc\t—\t\n2026. 11. 10. 오후 6:31:08\n\tqa-gn1569-31-owner\tqa-gn1569-31-domain\tZone\t\n\n\t10.10.31.111   source-nat\t\n할당됨\n\t—\trt1230-offline-custom-cni-r29-vpc\t—\t\n2026. 10. 7. 오후 2:43:49\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.126   source-nat\t\n할당됨\n\trt1230-v1342-gfs2-r16-net\t\t—\t\n2026. 10. 7. 오전 1:18:48\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.127   source-nat\t\n할당됨\n\trt1230-v1371-gfs2-r15-net\t\t—\t\n2026. 10. 6. 오후 11:23:48\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.128   source-nat\t\n할당됨\n\trt1230-v1365-gfs2-r14-net\t\t—\t\n2026. 10. 6. 오후 11:01:02\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.129   source-nat\t\n할당됨\n\trt1230-v1359-gfs2-r13-net\t\t—\t\n2026. 10. 6. 오후 10:06:56\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.130\t\n할당됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t\n2026. 10. 6. 오후 9:24:17\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.131\t\n할당됨\n\trt1230-v1365-gfs2-r9-net\t\t—\t\n2026. 10. 6. 오후 8:32:31\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.132\t\n할당됨\n\trt1230-gfs2-v13412-r3-net\t\t—\t\n2026. 10. 6. 오후 6:11:19\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.133   source-nat\t\n할당됨\n\tAdmin-Isoloated-Net\t\t—\t\n2026. 10. 1. 오전 10:22:50\n\tadmin\tROOT\tZone\t\n\n\t10.10.31.134   source-nat\t\n할당됨\n\trt1230-gfs2-v13412-r3-net\t\t—\t\n2026. 10. 6. 오전 7:43:17\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.135\t\n할당됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t\n2026. 10. 6. 오후 5:30:52\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.136   source-nat\t\n할당됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t\n2026. 10. 6. 오전 11:07:24\n\tk1230-20261006\tROOT\tZone\t\n\n\t10.10.31.137   source-nat\t\n할당됨\n\trt1230-v1365-gfs2-r9-net\t\t—\t\n2026. 10. 6. 오후 2:24:53\n\tk1230-20261006\tROOT\tZone\t\n전체 24 개 항목 중 1-20 표시\n1\n2\n20 / 쪽\n이동하기",
+      "rows": [
+        {
+          "id": "6ff792aa-9967-4939-9b9f-e9485c7c804b",
+          "links": [
+            {
+              "href": "#/publicip/6ff792aa-9967-4939-9b9f-e9485c7c804b?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.5"
+            },
+            {
+              "href": "#/systemvm/355bd581-e0f2-43a7-8b27-95e8b46d5ed1",
+              "text": "v-174-VM"
+            },
+            {
+              "href": "#/account?name=system&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "system"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.5   system\t\n할당됨\n\t—\t\tv-174-VM\t\n2026. 10. 6. 오전 10:53:29\n\tsystem\tROOT\tZone\t"
+        },
+        {
+          "id": "e970e6b5-ded8-4a0b-b482-5b5d974677e8",
+          "links": [
+            {
+              "href": "#/publicip/e970e6b5-ded8-4a0b-b482-5b5d974677e8?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.6"
+            },
+            {
+              "href": "#/systemvm/1b8d7588-1dfa-490b-a8dd-53f647852403",
+              "text": "s-173-VM"
+            },
+            {
+              "href": "#/account?name=system&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "system"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.6   system\t\n할당됨\n\t—\t\ts-173-VM\t\n2026. 10. 6. 오전 10:53:29\n\tsystem\tROOT\tZone\t"
+        },
+        {
+          "id": "0a089eba-061a-419d-93cd-02e9f3b4a164",
+          "links": [
+            {
+              "href": "#/publicip/0a089eba-061a-419d-93cd-02e9f3b4a164?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.100"
+            },
+            {
+              "href": "#/guestnetwork/b3e7c062-c074-43cf-8374-0a3f74368874",
+              "text": "rt1230-v13412-ha-gfs2-r17-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.100   source-nat\t\n할당됨\n\trt1230-v13412-ha-gfs2-r17-net\t\t—\t\n2026. 10. 7. 오전 2:07:11\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6",
+          "links": [
+            {
+              "href": "#/publicip/3880d22c-d4cb-4c11-a1d2-e7852aa7c8d6?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.101"
+            },
+            {
+              "href": "#/guestnetwork/b18b4600-6f42-4827-bbba-253a2cfed320",
+              "text": "k8s-ui1330-gfs2-net"
+            },
+            {
+              "href": "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.101   source-nat\t\n할당됨\n\tk8s-ui1330-gfs2-net\t\t—\t\n2026. 10. 8. 오후 2:51:31\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "2c2091e2-5140-44e9-89ef-63861af57e81",
+          "links": [
+            {
+              "href": "#/publicip/2c2091e2-5140-44e9-89ef-63861af57e81?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.102"
+            },
+            {
+              "href": "#/guestnetwork/957281d8-692d-4761-9adb-a3f5567b40d7",
+              "text": "rt1230-v13412-external-etcd-gfs2-r18-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.102   source-nat\t\n할당됨\n\trt1230-v13412-external-etcd-gfs2-r18-net\t\t—\t\n2026. 10. 7. 오전 2:47:47\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "3719cabd-6eb8-40ea-a4e5-714e2b9544bb",
+          "links": [
+            {
+              "href": "#/publicip/3719cabd-6eb8-40ea-a4e5-714e2b9544bb?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.103"
+            },
+            {
+              "href": "#/guestnetwork/2bc57a4a-89ed-46c0-afb4-5d1c2faee549",
+              "text": "AS-PROD-31-AS01-net"
+            },
+            {
+              "href": "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.103   source-nat\t\n할당됨\n\tAS-PROD-31-AS01-net\t\t—\t\n2026. 10. 10. 오후 11:57:25\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "e6978afb-a4ee-4512-8fb5-a06fe6477a83",
+          "links": [
+            {
+              "href": "#/publicip/e6978afb-a4ee-4512-8fb5-a06fe6477a83?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.106"
+            },
+            {
+              "href": null,
+              "text": "qa-gn1569-31-reg-vpc"
+            },
+            {
+              "href": "#/vpc/876d40cb-64e6-42a8-a5d4-1122c7c0f1b8",
+              "text": "qa-gn1569-31-reg-vpc"
+            },
+            {
+              "href": "#/account?name=qa-gn1569-31-owner&domainid=f3772036-4b8f-41fd-83f2-b71751950364&dataView=true",
+              "text": "qa-gn1569-31-owner"
+            },
+            {
+              "href": "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details",
+              "text": "qa-gn1569-31-domain"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.106   source-nat\t\n할당됨\n\t—\tqa-gn1569-31-reg-vpc\t—\t\n2026. 11. 10. 오후 6:31:08\n\tqa-gn1569-31-owner\tqa-gn1569-31-domain\tZone\t"
+        },
+        {
+          "id": "19abe419-0c0f-49fd-ba98-9faf4ddd38e4",
+          "links": [
+            {
+              "href": "#/publicip/19abe419-0c0f-49fd-ba98-9faf4ddd38e4?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.111"
+            },
+            {
+              "href": null,
+              "text": "rt1230-offline-custom-cni-r29-vpc"
+            },
+            {
+              "href": "#/vpc/2c41c280-c915-4952-ab59-a527bf248c94",
+              "text": "rt1230-offline-custom-cni-r29-vpc"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.111   source-nat\t\n할당됨\n\t—\trt1230-offline-custom-cni-r29-vpc\t—\t\n2026. 10. 7. 오후 2:43:49\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "5420484d-25ba-440d-b645-668ccd46f29d",
+          "links": [
+            {
+              "href": "#/publicip/5420484d-25ba-440d-b645-668ccd46f29d?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.126"
+            },
+            {
+              "href": "#/guestnetwork/ea344bee-6633-41df-861e-c2eaf66fa5c9",
+              "text": "rt1230-v1342-gfs2-r16-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.126   source-nat\t\n할당됨\n\trt1230-v1342-gfs2-r16-net\t\t—\t\n2026. 10. 7. 오전 1:18:48\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "4d465d47-9e09-4b92-a97c-2fa3efb55fe4",
+          "links": [
+            {
+              "href": "#/publicip/4d465d47-9e09-4b92-a97c-2fa3efb55fe4?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.127"
+            },
+            {
+              "href": "#/guestnetwork/ba4d479d-304a-4adf-8a80-aa042ebb2a93",
+              "text": "rt1230-v1371-gfs2-r15-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.127   source-nat\t\n할당됨\n\trt1230-v1371-gfs2-r15-net\t\t—\t\n2026. 10. 6. 오후 11:23:48\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd",
+          "links": [
+            {
+              "href": "#/publicip/dcb39d16-d5ec-40b2-94ce-e4e6d2e60bdd?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.128"
+            },
+            {
+              "href": "#/guestnetwork/0fa6be3d-2c14-437c-9e88-bb3bacae74e6",
+              "text": "rt1230-v1365-gfs2-r14-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.128   source-nat\t\n할당됨\n\trt1230-v1365-gfs2-r14-net\t\t—\t\n2026. 10. 6. 오후 11:01:02\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "fa236274-78c4-41cc-8f5d-e71ba30f4f86",
+          "links": [
+            {
+              "href": "#/publicip/fa236274-78c4-41cc-8f5d-e71ba30f4f86?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.129"
+            },
+            {
+              "href": "#/guestnetwork/4734b8f0-06e5-43c3-8263-fe2ab9f493bd",
+              "text": "rt1230-v1359-gfs2-r13-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.129   source-nat\t\n할당됨\n\trt1230-v1359-gfs2-r13-net\t\t—\t\n2026. 10. 6. 오후 10:06:56\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "40a1ca72-21ba-443c-a8d8-658849b06a4f",
+          "links": [
+            {
+              "href": "#/publicip/40a1ca72-21ba-443c-a8d8-658849b06a4f?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.130"
+            },
+            {
+              "href": "#/guestnetwork/41f095bf-79b7-422e-9eb3-29946b948467",
+              "text": "rt1230-gfs2-v13412-r5-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.130\t\n할당됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t\n2026. 10. 6. 오후 9:24:17\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "5a26bd05-9f8d-41c2-a412-955c528087a6",
+          "links": [
+            {
+              "href": "#/publicip/5a26bd05-9f8d-41c2-a412-955c528087a6?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.131"
+            },
+            {
+              "href": "#/guestnetwork/baed64d8-dc13-4868-a53c-f86b2d663297",
+              "text": "rt1230-v1365-gfs2-r9-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.131\t\n할당됨\n\trt1230-v1365-gfs2-r9-net\t\t—\t\n2026. 10. 6. 오후 8:32:31\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc",
+          "links": [
+            {
+              "href": "#/publicip/54e2ef0a-e1ee-4b14-83ef-b6b043ecd9dc?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.132"
+            },
+            {
+              "href": "#/guestnetwork/aab34179-3277-4948-8409-8e32b658ecc4",
+              "text": "rt1230-gfs2-v13412-r3-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.132\t\n할당됨\n\trt1230-gfs2-v13412-r3-net\t\t—\t\n2026. 10. 6. 오후 6:11:19\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "7b40411f-0835-4daf-ba78-830e2afb0d86",
+          "links": [
+            {
+              "href": "#/publicip/7b40411f-0835-4daf-ba78-830e2afb0d86?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.133"
+            },
+            {
+              "href": "#/guestnetwork/a037eecd-629e-446b-b0c4-f56674d99e0c",
+              "text": "Admin-Isoloated-Net"
+            },
+            {
+              "href": "#/account?name=admin&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.133   source-nat\t\n할당됨\n\tAdmin-Isoloated-Net\t\t—\t\n2026. 10. 1. 오전 10:22:50\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "b44f2d1f-42e1-4265-9b70-9afa7f4c2841",
+          "links": [
+            {
+              "href": "#/publicip/b44f2d1f-42e1-4265-9b70-9afa7f4c2841?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.134"
+            },
+            {
+              "href": "#/guestnetwork/aab34179-3277-4948-8409-8e32b658ecc4",
+              "text": "rt1230-gfs2-v13412-r3-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.134   source-nat\t\n할당됨\n\trt1230-gfs2-v13412-r3-net\t\t—\t\n2026. 10. 6. 오전 7:43:17\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "30826d80-6e62-4a5c-9510-0a7dd14379ae",
+          "links": [
+            {
+              "href": "#/publicip/30826d80-6e62-4a5c-9510-0a7dd14379ae?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.135"
+            },
+            {
+              "href": "#/guestnetwork/41f095bf-79b7-422e-9eb3-29946b948467",
+              "text": "rt1230-gfs2-v13412-r5-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.135\t\n할당됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t\n2026. 10. 6. 오후 5:30:52\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "bcb6793a-241c-46dc-96c6-91b149ca37ff",
+          "links": [
+            {
+              "href": "#/publicip/bcb6793a-241c-46dc-96c6-91b149ca37ff?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.136"
+            },
+            {
+              "href": "#/guestnetwork/41f095bf-79b7-422e-9eb3-29946b948467",
+              "text": "rt1230-gfs2-v13412-r5-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.136   source-nat\t\n할당됨\n\trt1230-gfs2-v13412-r5-net\t\t—\t\n2026. 10. 6. 오전 11:07:24\n\tk1230-20261006\tROOT\tZone\t"
+        },
+        {
+          "id": "f37ea048-904e-469d-9007-7336ac4bf212",
+          "links": [
+            {
+              "href": "#/publicip/f37ea048-904e-469d-9007-7336ac4bf212?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.31.137"
+            },
+            {
+              "href": "#/guestnetwork/baed64d8-dc13-4868-a53c-f86b2d663297",
+              "text": "rt1230-v1365-gfs2-r9-net"
+            },
+            {
+              "href": "#/account?name=k1230-20261006&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&dataView=true",
+              "text": "k1230-20261006"
+            },
+            {
+              "href": "#/domain/7ef6b29a-b253-11f1-a895-0024814c313f?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.31.137   source-nat\t\n할당됨\n\trt1230-v1365-gfs2-r9-net\t\t—\t\n2026. 10. 6. 오후 2:24:53\n\tk1230-20261006\tROOT\tZone\t"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated"
+    },
+    "locale": "ko",
+    "theme": "light",
+    "project": "0",
+    "viewportRestored": true,
+    "interceptionCleared": true
+  },
+  {
+    "cluster": 32,
+    "name": "final-defaults",
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated",
+    "rows": {
+      "body": "/Public IP 주소업데이트\n할당됨 \n프로젝트\n\t\n상태 : 할당됨\n\t\nIP 주소\n\t\n상태\n\t\n연결된 게스트 네트워크\n\t\nVPC\n\t\nVM 이름\n\t\n할당 일시\n\t\n계정\n\t\n도메인\n\t\nZone\n\t\n\n\n\t10.10.32.5   system\t\n할당됨\n\t—\t\tv-1-VM\t\n2026. 9. 17. 오전 2:13:35\n\tsystem\tROOT\tZone\t\n\n\t10.10.32.6   system\t\n할당됨\n\t—\t\ts-27-VM\t\n2026. 10. 1. 오전 3:15:46\n\tsystem\tROOT\tZone\t\n\n\t10.10.32.101   source-nat\t\n할당됨\n\t—\tAS-PROD-32-AS01-VPC\t—\t\n2026. 10. 10. 오후 4:17:25\n\tepic1346-as01-user32\tROOT\tZone\t\n\n\t10.10.32.102\t\n할당됨\n\tAS-PROD-32-AS01-VPC-Tier\tAS-PROD-32-AS01-VPC\t—\t\n2026. 10. 10. 오후 4:18:05\n\tepic1346-as01-user32\tROOT\tZone\t\n\n\t10.10.32.143   source-nat\t\n할당됨\n\tasdsad\t\t—\t\n2026. 11. 12. 오전 12:52:20\n\tadmin\tROOT\tZone\t\n\n\t10.10.32.144   source-nat\t\n할당됨\n\ttj-isolated-net\t\t—\t\n2026. 11. 11. 오전 5:17:57\n\tadmin\tROOT\tZone\t\n\n\t10.10.32.166   source-nat\t\n할당됨\n\ttest\t\t—\t\n2026. 11. 16. 오전 12:57:51\n\tadmin\tROOT\tZone\t\n\n\t10.10.32.167\t\n할당됨\n\tAS-PROD-32-AS01-net\t\t—\t\n2026. 10. 10. 오후 3:03:33\n\tadmin\tROOT\tZone\t\n\n\t10.10.32.168   source-nat\t\n할당됨\n\tAS-PROD-32-AS01-net\t\t—\t\n2026. 10. 10. 오후 3:03:03\n\tadmin\tROOT\tZone\t\n\n\t10.10.32.169   source-nat\t\n할당됨\n\tAS-PROD-32-AS01-userNetwork\t\t—\t\n2026. 10. 10. 오후 3:20:50\n\tepic1346-as01-user32\tROOT\tZone\t\n전체 10 개 항목 중 1-10 표시\n1\n20 / 쪽",
+      "rows": [
+        {
+          "id": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+          "links": [
+            {
+              "href": "#/publicip/7c65bf2e-fbda-4ad1-a044-9d38e61c03a2?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.5"
+            },
+            {
+              "href": "#/systemvm/59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+              "text": "v-1-VM"
+            },
+            {
+              "href": "#/account?name=system&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "system"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.5   system\t\n할당됨\n\t—\t\tv-1-VM\t\n2026. 9. 17. 오전 2:13:35\n\tsystem\tROOT\tZone\t"
+        },
+        {
+          "id": "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+          "links": [
+            {
+              "href": "#/publicip/9064a919-9683-41ea-bfe5-ef3732e07eb2?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.6"
+            },
+            {
+              "href": "#/systemvm/eff7e920-577d-4576-8b54-933261930cc9",
+              "text": "s-27-VM"
+            },
+            {
+              "href": "#/account?name=system&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "system"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.6   system\t\n할당됨\n\t—\t\ts-27-VM\t\n2026. 10. 1. 오전 3:15:46\n\tsystem\tROOT\tZone\t"
+        },
+        {
+          "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+          "links": [
+            {
+              "href": "#/publicip/d035d9a6-cb42-438f-893b-3353d20423e9?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.101"
+            },
+            {
+              "href": null,
+              "text": "AS-PROD-32-AS01-VPC"
+            },
+            {
+              "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+              "text": "AS-PROD-32-AS01-VPC"
+            },
+            {
+              "href": "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "epic1346-as01-user32"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.101   source-nat\t\n할당됨\n\t—\tAS-PROD-32-AS01-VPC\t—\t\n2026. 10. 10. 오후 4:17:25\n\tepic1346-as01-user32\tROOT\tZone\t"
+        },
+        {
+          "id": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+          "links": [
+            {
+              "href": "#/publicip/7f24ac97-2e82-40f9-8e8a-6264a1144038?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.102"
+            },
+            {
+              "href": "#/guestnetwork/07f53267-063b-4975-ac47-5a5c10d57fb4",
+              "text": "AS-PROD-32-AS01-VPC-Tier"
+            },
+            {
+              "href": null,
+              "text": "AS-PROD-32-AS01-VPC"
+            },
+            {
+              "href": "#/vpc/b8d2a843-3310-46c3-9d64-aed4d5684721",
+              "text": "AS-PROD-32-AS01-VPC"
+            },
+            {
+              "href": "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "epic1346-as01-user32"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.102\t\n할당됨\n\tAS-PROD-32-AS01-VPC-Tier\tAS-PROD-32-AS01-VPC\t—\t\n2026. 10. 10. 오후 4:18:05\n\tepic1346-as01-user32\tROOT\tZone\t"
+        },
+        {
+          "id": "c7e46392-cbcd-4503-a810-606b5afaa884",
+          "links": [
+            {
+              "href": "#/publicip/c7e46392-cbcd-4503-a810-606b5afaa884?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.143"
+            },
+            {
+              "href": "#/guestnetwork/3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+              "text": "asdsad"
+            },
+            {
+              "href": "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.143   source-nat\t\n할당됨\n\tasdsad\t\t—\t\n2026. 11. 12. 오전 12:52:20\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "078a87ba-8a96-4292-8f33-03163f599ef9",
+          "links": [
+            {
+              "href": "#/publicip/078a87ba-8a96-4292-8f33-03163f599ef9?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.144"
+            },
+            {
+              "href": "#/guestnetwork/5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+              "text": "tj-isolated-net"
+            },
+            {
+              "href": "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.144   source-nat\t\n할당됨\n\ttj-isolated-net\t\t—\t\n2026. 11. 11. 오전 5:17:57\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+          "links": [
+            {
+              "href": "#/publicip/04de4618-4265-4bfc-9b4c-95bc88ac1c2c?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.166"
+            },
+            {
+              "href": "#/guestnetwork/4681828f-494e-4847-ad39-7ba064ca76cd",
+              "text": "test"
+            },
+            {
+              "href": "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.166   source-nat\t\n할당됨\n\ttest\t\t—\t\n2026. 11. 16. 오전 12:57:51\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+          "links": [
+            {
+              "href": "#/publicip/9715ee32-e444-47ca-aa5c-bf7e8633dbd3?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.167"
+            },
+            {
+              "href": "#/guestnetwork/5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+              "text": "AS-PROD-32-AS01-net"
+            },
+            {
+              "href": "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.167\t\n할당됨\n\tAS-PROD-32-AS01-net\t\t—\t\n2026. 10. 10. 오후 3:03:33\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "282aad30-4938-4de3-8412-d3098f4f4caf",
+          "links": [
+            {
+              "href": "#/publicip/282aad30-4938-4de3-8412-d3098f4f4caf?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.168"
+            },
+            {
+              "href": "#/guestnetwork/5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+              "text": "AS-PROD-32-AS01-net"
+            },
+            {
+              "href": "#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "admin"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.168   source-nat\t\n할당됨\n\tAS-PROD-32-AS01-net\t\t—\t\n2026. 10. 10. 오후 3:03:03\n\tadmin\tROOT\tZone\t"
+        },
+        {
+          "id": "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6",
+          "links": [
+            {
+              "href": "#/publicip/d82e3f23-29e2-4b44-a85c-6c8821f2a4f6?pipreturn={%22projectid%22:%220%22,%22state%22:%22Allocated%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22allocated%22}",
+              "text": "10.10.32.169"
+            },
+            {
+              "href": "#/guestnetwork/f889cc7d-02c5-490b-b256-a289b73ff824",
+              "text": "AS-PROD-32-AS01-userNetwork"
+            },
+            {
+              "href": "#/account?name=epic1346-as01-user32&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true",
+              "text": "epic1346-as01-user32"
+            },
+            {
+              "href": "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details",
+              "text": "ROOT"
+            },
+            {
+              "href": "#/zone/991d2f57-0f37-4445-b956-09773d064816",
+              "text": "Zone"
+            }
+          ],
+          "text": "\t10.10.32.169   source-nat\t\n할당됨\n\tAS-PROD-32-AS01-userNetwork\t\t—\t\n2026. 10. 10. 오후 3:20:50\n\tepic1346-as01-user32\tROOT\tZone\t"
+        }
+      ],
+      "selected": 0,
+      "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated"
+    },
+    "locale": "ko",
+    "theme": "light",
+    "project": "0",
+    "viewportRestored": true,
+    "interceptionCleared": true
+  }
+]

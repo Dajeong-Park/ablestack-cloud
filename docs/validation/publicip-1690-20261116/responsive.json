@@ -1,0 +1,5630 @@
+[
+  {
+    "cluster": 32,
+    "kind": "reserve-error",
+    "theme": "light",
+    "width": 1280,
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 736,
+          "height": 572,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 164
+        },
+        "buttons": [
+          {
+            "bottom": 719,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 687
+          },
+          {
+            "bottom": 719,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 687
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 735,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 670
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 980,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve-error",
+    "theme": "light",
+    "width": 768,
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 736,
+          "height": 572,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 164
+        },
+        "buttons": [
+          {
+            "bottom": 719,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 687
+          },
+          {
+            "bottom": 719,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 687
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 735,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 670
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 644,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve-error",
+    "theme": "light",
+    "width": 390,
+    "source": "3f5b223df16d0207daf16a088d5304f649b9258d",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 728,
+          "height": 556,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 172
+        },
+        "buttons": [
+          {
+            "bottom": 711,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 679
+          },
+          {
+            "bottom": 711,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 679
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 727,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 662
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "list",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "list",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "list",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 356,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "detail",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "detail",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "detail",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "display",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "display",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "display",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 705.5,
+          "height": 511,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 194.5
+        },
+        "buttons": [
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 656.5
+          },
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 656.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 704.5,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 639.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 356,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "reserve",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 742,
+          "height": 584,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 158
+        },
+        "buttons": [
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 693
+          },
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 693
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 741,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 676
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_domainId",
+            "text": "도메인"
+          },
+          {
+            "connected": true,
+            "for": "form_item_account",
+            "text": "계정"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 980,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "reserve",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 742,
+          "height": 584,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 158
+        },
+        "buttons": [
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 693
+          },
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 693
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 741,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 676
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_domainId",
+            "text": "도메인"
+          },
+          {
+            "connected": true,
+            "for": "form_item_account",
+            "text": "계정"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 644,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "reserve",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 734,
+          "height": 568,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 166
+        },
+        "buttons": [
+          {
+            "bottom": 717,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 685
+          },
+          {
+            "bottom": 717,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 685
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 733,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 668
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_domainId",
+            "text": "도메인"
+          },
+          {
+            "connected": true,
+            "for": "form_item_account",
+            "text": "계정"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "release",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 897.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 839.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "release",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 641.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 583.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "release",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 632,
+          "height": 364,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 268
+        },
+        "buttons": [
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 287.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 229.46875,
+            "y": 583
+          },
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 583
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 631,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 566
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 356,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "list",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "list",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "list",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 356,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "detail",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "detail",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "detail",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "6ce0457c-4b8f-46c5-8115-b85a08efaa63"
+        },
+        {
+          "field": "networkid",
+          "text": "8689dcfa-5d81-40d3-8db3-103be4a01d71"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "display",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "display",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "display",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 705.5,
+          "height": 511,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 194.5
+        },
+        "buttons": [
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 656.5
+          },
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 656.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 704.5,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 639.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 356,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "reserve",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 742,
+          "height": 584,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 158
+        },
+        "buttons": [
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 693
+          },
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 693
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 741,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 676
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_domainId",
+            "text": "도메인"
+          },
+          {
+            "connected": true,
+            "for": "form_item_account",
+            "text": "계정"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 980,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "reserve",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 742,
+          "height": 584,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 158
+        },
+        "buttons": [
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 693
+          },
+          {
+            "bottom": 725,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 693
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 741,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 676
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_domainId",
+            "text": "도메인"
+          },
+          {
+            "connected": true,
+            "for": "form_item_account",
+            "text": "계정"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 644,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "reserve",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 734,
+          "height": 568,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 166
+        },
+        "buttons": [
+          {
+            "bottom": 717,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 685
+          },
+          {
+            "bottom": 717,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 685
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 733,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 668
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_domainId",
+            "text": "도메인"
+          },
+          {
+            "connected": true,
+            "for": "form_item_account",
+            "text": "계정"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "release",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 897.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 839.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "release",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 641.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 583.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 31,
+    "kind": "release",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오후 7:27:55"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 632,
+          "height": 364,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 268
+        },
+        "buttons": [
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 287.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 229.46875,
+            "y": 583
+          },
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 583
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 631,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 566
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 356,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "list",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "list",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "list",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "detail",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "detail",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "detail",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "display",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "display",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "display",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 705.5,
+          "height": 511,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 194.5
+        },
+        "buttons": [
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 656.5
+          },
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 656.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 704.5,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 639.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 708,
+          "height": 516,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 192
+        },
+        "buttons": [
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 659
+          },
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 659
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 707,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 642
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 980,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 708,
+          "height": 516,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 192
+        },
+        "buttons": [
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 659
+          },
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 659
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 707,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 642
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 644,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 700,
+          "height": 500,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 200
+        },
+        "buttons": [
+          {
+            "bottom": 683,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 651
+          },
+          {
+            "bottom": 683,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 651
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 699,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 634
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "release",
+    "theme": "light",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 897.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 839.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "release",
+    "theme": "light",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 641.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 583.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "release",
+    "theme": "light",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 632,
+          "height": 364,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 268
+        },
+        "buttons": [
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 287.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 229.46875,
+            "y": 583
+          },
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 583
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 631,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 566
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "list",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "list",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "list",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "detail",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "detail",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "detail",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "state",
+          "text": "예약"
+        },
+        {
+          "field": "vlanname",
+          "text": "태그 없음 (Untagged)\n원문: vlan://untagged"
+        },
+        {
+          "field": "vlanid",
+          "text": "c206c328-6567-4793-a8d4-7ee2cade5451"
+        },
+        {
+          "field": "networkid",
+          "text": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5"
+        },
+        {
+          "field": "associatednetworkname",
+          "text": "—"
+        },
+        {
+          "field": "vpcname",
+          "text": "—"
+        },
+        {
+          "field": "fordisplay",
+          "text": "표시"
+        },
+        {
+          "field": "issystem",
+          "text": "아니오"
+        },
+        {
+          "field": "issourcenat",
+          "text": "아니오"
+        },
+        {
+          "field": "isstaticnat",
+          "text": "아니오"
+        },
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": null,
+      "height": 900,
+      "states": [
+        "예약",
+        "예약"
+      ],
+      "tables": [],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "display",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "display",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 691.5,
+          "height": 483,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 208.5
+        },
+        "buttons": [
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 642.5
+          },
+          {
+            "bottom": 674.5,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 642.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 690.5,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 625.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "display",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 705.5,
+          "height": 511,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 194.5
+        },
+        "buttons": [
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 656.5
+          },
+          {
+            "bottom": 688.5,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "저장",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 656.5
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 704.5,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 639.5
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_fordisplay",
+            "text": "사용자 표시"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 708,
+          "height": 516,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 192
+        },
+        "buttons": [
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 905.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 847.46875,
+            "y": 659
+          },
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 659
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 707,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 642
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 980,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 708,
+          "height": 516,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 192
+        },
+        "buttons": [
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 649.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 591.46875,
+            "y": 659
+          },
+          {
+            "bottom": 691,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 659
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 707,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 642
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 644,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "reserve",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        },
+        {
+          "field": "allocated",
+          "text": "—"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 700,
+          "height": 500,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 200
+        },
+        "buttons": [
+          {
+            "bottom": 683,
+            "height": 32,
+            "hit": true,
+            "right": 295.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 237.46875,
+            "y": 651
+          },
+          {
+            "bottom": 683,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "예약",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 651
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 699,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 634
+          }
+        ],
+        "labels": [
+          {
+            "connected": true,
+            "for": "form_item_ownerType",
+            "text": "계정 유형"
+          },
+          {
+            "connected": true,
+            "for": "form_item_projectId",
+            "text": "프로젝트"
+          }
+        ]
+      },
+      "height": 900,
+      "states": [
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용",
+        "가용"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "release",
+    "theme": "dark",
+    "width": 1280,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 1270,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 1000,
+          "width": 720,
+          "x": 280,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 897.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 839.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 971,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 913.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 999,
+            "width": 718,
+            "x": 281,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 990,
+          "x": 268
+        }
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "release",
+    "theme": "dark",
+    "width": 768,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 758,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 629,
+          "height": 358,
+          "right": 744,
+          "width": 720,
+          "x": 24,
+          "y": 271
+        },
+        "buttons": [
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 641.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 583.46875,
+            "y": 580
+          },
+          {
+            "bottom": 612,
+            "height": 32,
+            "hit": true,
+            "right": 715,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 657.234375,
+            "y": 580
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 628,
+            "height": 65,
+            "right": 743,
+            "width": 718,
+            "x": 25,
+            "y": 563
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 654,
+          "x": 92
+        }
+      ],
+      "width": 768
+    }
+  },
+  {
+    "cluster": 32,
+    "kind": "release",
+    "theme": "dark",
+    "width": 390,
+    "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+    "data": {
+      "bodyWidth": 380,
+      "detail": [
+        {
+          "field": "allocated",
+          "text": "2026. 11. 16. 오전 10:34:05"
+        }
+      ],
+      "dialog": {
+        "bounds": {
+          "bottom": 632,
+          "height": 364,
+          "right": 378,
+          "width": 366,
+          "x": 12,
+          "y": 268
+        },
+        "buttons": [
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 287.234375,
+            "text": "취소",
+            "width": 57.765625,
+            "x": 229.46875,
+            "y": 583
+          },
+          {
+            "bottom": 615,
+            "height": 32,
+            "hit": true,
+            "right": 361,
+            "text": "해제",
+            "width": 57.765625,
+            "x": 303.234375,
+            "y": 583
+          }
+        ],
+        "footer": [
+          {
+            "bottom": 631,
+            "height": 65,
+            "right": 377,
+            "width": 364,
+            "x": 13,
+            "y": 566
+          }
+        ],
+        "labels": []
+      },
+      "height": 900,
+      "states": [
+        "예약"
+      ],
+      "tables": [
+        {
+          "width": 346,
+          "x": 12
+        }
+      ],
+      "width": 390
+    }
+  }
+]

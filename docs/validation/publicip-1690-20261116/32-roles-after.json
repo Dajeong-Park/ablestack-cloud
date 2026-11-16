@@ -1,0 +1,68 @@
+[
+  {
+    "id": "49e68247-b23b-11f1-990e-0024811f8935",
+    "name": "Root Admin",
+    "type": "Admin",
+    "isdefault": true
+  },
+  {
+    "id": "49e68d89-b23b-11f1-990e-0024811f8935",
+    "name": "Resource Admin",
+    "type": "ResourceAdmin",
+    "isdefault": true
+  },
+  {
+    "id": "49e69974-b23b-11f1-990e-0024811f8935",
+    "name": "Domain Admin",
+    "type": "DomainAdmin",
+    "isdefault": true
+  },
+  {
+    "id": "49e69f80-b23b-11f1-990e-0024811f8935",
+    "name": "User",
+    "type": "User",
+    "isdefault": true
+  },
+  {
+    "id": "50d0de96-b23b-11f1-990e-0024811f8935",
+    "name": "Read-Only Admin - Default",
+    "type": "Admin",
+    "isdefault": true
+  },
+  {
+    "id": "50d0e60a-b23b-11f1-990e-0024811f8935",
+    "name": "Read-Only User - Default",
+    "type": "User",
+    "isdefault": true
+  },
+  {
+    "id": "50d0ec31-b23b-11f1-990e-0024811f8935",
+    "name": "Support Admin - Default",
+    "type": "Admin",
+    "isdefault": true
+  },
+  {
+    "id": "50d0f24a-b23b-11f1-990e-0024811f8935",
+    "name": "Support User - Default",
+    "type": "User",
+    "isdefault": true
+  },
+  {
+    "id": "c180db0f-e98c-41d8-9c41-fd8ae6a4cf4b",
+    "name": "Project Kubernetes Service Role",
+    "type": "User",
+    "isdefault": false
+  },
+  {
+    "id": "9fc6a9e4-ca2f-4ffa-b223-7af876e47cbe",
+    "name": "AS01-32-no-condition",
+    "type": "User",
+    "isdefault": false
+  },
+  {
+    "id": "42b9d4f2-a1cd-4cff-8f13-bccbb4dd20e0",
+    "name": "qa-gn1597-32-ip-read-only",
+    "type": "User",
+    "isdefault": false
+  }
+]

@@ -1,0 +1,154 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "global Zone":
+      - link "global Zone":
+        - /url: "#/zones"
+        - img "global":
+        - generic: Zone
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: PV
+- generic: PIP1690 Validation
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP 주소":
+    - /url: "#/publicip"
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - combobox
+  - generic: 예약
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색"
+  - button "search":
+    - img "search":
+  - text: "상태 : 예약"
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "IP 주소 caret-up caret-down 상태 caret-up caret-down 연결된 네트워크 이름 caret-up caret-down VPC caret-up caret-down VM 이름 caret-up caret-down 할당 일시 caret-up caret-down 계정 caret-up caret-down 도메인 caret-up caret-down Zone caret-up caret-down":
+        - columnheader:
+          - checkbox
+        - columnheader "IP 주소 caret-up caret-down":
+          - generic: IP 주소
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "상태 caret-up caret-down":
+          - generic: 상태
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "연결된 네트워크 이름 caret-up caret-down":
+          - generic: 연결된 네트워크 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VPC caret-up caret-down":
+          - generic: VPC
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "VM 이름 caret-up caret-down":
+          - generic: VM 이름
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "할당 일시 caret-up caret-down":
+          - generic: 할당 일시
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "계정 caret-up caret-down":
+          - generic: 계정
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "도메인 caret-up caret-down":
+          - generic: 도메인
+          - img "caret-up":
+          - img "caret-down":
+        - columnheader "Zone caret-up caret-down":
+          - generic: Zone
+          - img "caret-up":
+          - img "caret-down":
+    - rowgroup:
+      - row "10.10.31.105 예약 — — 2026. 11. 16. 오후 7:27:55 qa-pip1690-31-190449-user qa-pip1690-31-190449 Zone":
+        - cell:
+          - checkbox
+        - cell "10.10.31.105":
+          - link "10.10.31.105":
+            - /url: "#/publicip/956b6cb3-4bf8-41e4-b6df-12911f30e625?pipreturn={%22projectid%22:%220%22,%22state%22:%22Reserved%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22filter%22:%22reserved%22}"
+        - cell "예약":
+          - generic: 예약
+        - cell "—":
+          - generic: —
+        - cell
+        - cell "—":
+          - generic: —
+        - cell "2026. 11. 16. 오후 7:27:55":
+          - generic: 2026. 11. 16. 오후 7:27:55
+        - cell "qa-pip1690-31-190449-user"
+        - cell "qa-pip1690-31-190449"
+        - cell "Zone":
+          - link "Zone":
+            - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+  - list:
+    - listitem: 전체 1 개 항목 중 1-1 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- img "check-circle":
+- text: 사용 가능한 모든 기능을 발견했습니다!

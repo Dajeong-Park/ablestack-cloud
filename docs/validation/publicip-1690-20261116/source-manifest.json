@@ -1,0 +1,66 @@
+{
+  "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+  "base": "82ecf90f3984e50eee74237bad9da650a57f66f9",
+  "files": [
+    {
+      "path": "ui/public/locales/en.json",
+      "sha256": "fb42b8cdeb037f1a96886d61b099a72e2a9bb24f768aca0c5cb2dae2ffbbd5bf"
+    },
+    {
+      "path": "ui/public/locales/ko_KR.json",
+      "sha256": "c5968af0bbcde08486caa9cd31f7d1f2eb32e99d1c273cdd45a9e992566ab1c2"
+    },
+    {
+      "path": "ui/src/components/view/InfoCard.vue",
+      "sha256": "fe71af3c5e30b6b141f2a4df32e85f3f8bb85131f6c655e87da999eb091cab07"
+    },
+    {
+      "path": "ui/src/components/view/ListView.vue",
+      "sha256": "8c30e86a174d0dc58fd9ef15374803507b66058a9d080ddd0eb8e0e947cd6c3b"
+    },
+    {
+      "path": "ui/src/components/view/PublicIpReleaseSummary.vue",
+      "sha256": "633d5dca749949c436f3421f862789c43e5e744889b739a15dcb5c1c05e121f1"
+    },
+    {
+      "path": "ui/src/components/view/SearchFilter.vue",
+      "sha256": "a82f9270cfa9e25c7e608c923e6ca2cc870d5ce7212bfd2ccb88d2ef02c4425b"
+    },
+    {
+      "path": "ui/src/components/widgets/PublicIpDetailValue.vue",
+      "sha256": "bc619673536155330ae19cd0c7383c7d5d5a093dacc71e8836349f105160d2c8"
+    },
+    {
+      "path": "ui/src/components/widgets/PublicIpStatus.vue",
+      "sha256": "30dbaf1f37073707579942814958c3a2a62603b988716dfc59e2ffed415d9ae9"
+    },
+    {
+      "path": "ui/src/config/section/network.js",
+      "sha256": "d5b241bf62d01e375fc44a3495a4f9ae91725291279b0e63208d026b1644e8f7"
+    },
+    {
+      "path": "ui/src/utils/publicIpDetails.js",
+      "sha256": "5eaab2acaba41f5a4c465a0e2be45d03665b5f1b765665dc6a246c7b7f10d731"
+    },
+    {
+      "path": "ui/src/utils/publicIpPresentation.js",
+      "sha256": "3f22c7e146e2155da29f8e680fa9de6b1807dc401dfd46130872a14faa39115b"
+    },
+    {
+      "path": "ui/src/views/AutogenView.vue",
+      "sha256": "06df54ad6c8b3e5bb6ea58d4370fefac527c7a1ab82055d5066959fe1f92e01f"
+    },
+    {
+      "path": "ui/src/views/network/EditPublicIpDisplay.vue",
+      "sha256": "00a083b7f62c85931978bb21325b980a1da339612e39138dc6f474c8f4d8d09b"
+    },
+    {
+      "path": "ui/src/views/network/ReservePublicIP.vue",
+      "sha256": "b8ed34039219a24440679a22f6392b32f9ee3b653669a7cd6468b5d2546d026c"
+    },
+    {
+      "path": "ui/tests/unit/components/PublicIpPresentation.spec.js",
+      "sha256": "bfa08f254bf1874b9ae8a663de3c0d73622cf391a7a8b68ab85b2fa902657589"
+    }
+  ]
+}

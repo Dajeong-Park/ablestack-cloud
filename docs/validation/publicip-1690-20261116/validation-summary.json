@@ -1,0 +1,84 @@
+{
+  "issue": 1690,
+  "epic": 1684,
+  "status": "complete",
+  "source": "5a46ec6f7b994fe8d1b3a45c6d75e9141a349560",
+  "local": {
+    "suites": 11,
+    "tests": 250,
+    "lint": "PASS",
+    "productionUiBuild": "PASS",
+    "fullCloudBuild": false,
+    "actionsDispatch": false,
+    "javaChange": false
+  },
+  "live": {
+    "clusters": [
+      31,
+      32
+    ],
+    "responsiveFinalSourceCases": 60,
+    "roleUiCases": 6,
+    "roleApiCases": 6,
+    "actualUiReservations": 2,
+    "actualUiDisplayWrites": 4,
+    "distinctSuccessfulJobs": 4,
+    "actualUiReleases": 2,
+    "syntheticDetailStates": 14,
+    "syntheticTransitionActionGuards": 6,
+    "actualTransitionRows": 0,
+    "displayJobs": [
+      {
+        "cluster": 31,
+        "name": "display-false-recheck-final",
+        "jobid": "92c73fd0-714c-4cc9-a405-983181433f11",
+        "desired": false,
+        "postCount": 1,
+        "finalJobStatus": 1,
+        "readback": true
+      },
+      {
+        "cluster": 31,
+        "name": "display-true-restore-final",
+        "jobid": "600534b6-7842-4354-a6d8-f839716d004d",
+        "desired": true,
+        "postCount": 1,
+        "finalJobStatus": 1,
+        "readback": true
+      },
+      {
+        "cluster": 32,
+        "name": "display-false-final",
+        "jobid": "68e0dd7d-c5c5-439e-869c-afc1ae15184a",
+        "desired": false,
+        "postCount": 1,
+        "finalJobStatus": 1,
+        "readback": true
+      },
+      {
+        "cluster": 32,
+        "name": "display-true-restore-final",
+        "jobid": "eb453459-36bd-4874-b578-1246feb465db",
+        "desired": true,
+        "postCount": 1,
+        "finalJobStatus": 1,
+        "readback": true
+      }
+    ]
+  },
+  "cleanup": {
+    "restoredIps": 3,
+    "deletedTestAccounts": 6,
+    "deletedTestDomains": 2,
+    "inventoryGroupsEqual": 16,
+    "protectedFilesIdentical": 14541,
+    "rolesPreserved": true,
+    "controlledProbeUnchangedFree": true,
+    "defaultsRestored": true,
+    "tabsClosed": 2
+  },
+  "pending": [],
+  "remainingIndependentIssue": 1693,
+  "pr": 1691,
+  "prMerged": false
+}

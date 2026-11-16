@@ -1,0 +1,214 @@
+[
+  {
+    "cluster": 31,
+    "domain": {
+      "id": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+      "name": "qa-pip1690-31-190449",
+      "level": 1,
+      "parentdomainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "parentdomainname": "ROOT",
+      "haschild": false,
+      "path": "ROOT/qa-pip1690-31-190449",
+      "secondarystoragetotal": 0.0
+    },
+    "accounts": [
+      {
+        "kind": "User",
+        "name": "qa-pip1690-31-190449-user",
+        "id": "8685d2f7-ea4d-43aa-9b59-81767bb98b2e",
+        "loginDomain": "/qa-pip1690-31-190449",
+        "cleaned": true
+      },
+      {
+        "kind": "DomainAdmin",
+        "name": "qa-pip1690-31-190449-domainadmin",
+        "id": "e0397a25-4009-4db5-bdde-c5d3a31275a3",
+        "loginDomain": "/qa-pip1690-31-190449",
+        "cleaned": true
+      },
+      {
+        "kind": "ReadOnlyAdmin",
+        "name": "qa-pip1690-31-190449-readonly",
+        "id": "0e7d0823-948f-4a7d-8a8d-bc916484dfa9",
+        "roleid": "9513333a-b253-11f1-a895-0024814c313f",
+        "loginDomain": "/",
+        "cleaned": true
+      }
+    ],
+    "ips": [
+      {
+        "kind": "primary-ui",
+        "original": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "issystem": false,
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone"
+        },
+        "expectedOwner": {
+          "account": "qa-pip1690-31-190449-user",
+          "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23"
+        },
+        "project": null,
+        "reserved": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1690-31-190449-user",
+          "domainid": "3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "issystem": false,
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone"
+        },
+        "generation": "e1b947f3-cffb-44ea-a68b-90a92411661e",
+        "allocated": "2026-11-16T19:27:55+0900",
+        "cleaned": true
+      }
+    ],
+    "cleaned": true
+  },
+  {
+    "cluster": 32,
+    "domain": {
+      "id": "dfbef020-f942-46a0-9442-996032904cbd",
+      "name": "qa-pip1690-32-190449",
+      "level": 1,
+      "parentdomainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "parentdomainname": "ROOT",
+      "haschild": false,
+      "path": "ROOT/qa-pip1690-32-190449",
+      "secondarystoragetotal": 0.0
+    },
+    "accounts": [
+      {
+        "kind": "User",
+        "name": "qa-pip1690-32-190449-user",
+        "id": "ab13994e-e906-4f04-bc9a-f0093bc009be",
+        "loginDomain": "/qa-pip1690-32-190449",
+        "cleaned": true
+      },
+      {
+        "kind": "DomainAdmin",
+        "name": "qa-pip1690-32-190449-domainadmin",
+        "id": "f477797c-c111-44b3-8100-39f4894273cd",
+        "loginDomain": "/qa-pip1690-32-190449",
+        "cleaned": true
+      },
+      {
+        "kind": "ReadOnlyAdmin",
+        "name": "qa-pip1690-32-190449-readonly",
+        "id": "5e16843f-33e6-4f47-9482-ba0c305b6a38",
+        "roleid": "50d0de96-b23b-11f1-990e-0024811f8935",
+        "loginDomain": "/",
+        "cleaned": true
+      }
+    ],
+    "ips": [
+      {
+        "kind": "primary-ui",
+        "original": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "issystem": false,
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone"
+        },
+        "expectedOwner": {
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+        },
+        "project": {
+          "id": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "name": "qa-gn1597-32-project",
+          "state": "Active",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7"
+        },
+        "reserved": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "issystem": false,
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone"
+        },
+        "generation": "88c94d50-db87-41b1-827a-a0ea281dbbbd",
+        "allocated": "2026-11-16T19:34:05+0900",
+        "cleaned": true
+      },
+      {
+        "kind": "role-api",
+        "original": {
+          "id": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "ipaddress": "10.10.32.104",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "issystem": false,
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone"
+        },
+        "expectedOwner": {
+          "account": "qa-pip1690-32-190449-user",
+          "domainid": "dfbef020-f942-46a0-9442-996032904cbd"
+        },
+        "reserved": {
+          "id": "9f028022-7776-41a5-9c2f-9517e20d8c7e",
+          "ipaddress": "10.10.32.104",
+          "state": "Reserved",
+          "account": "qa-pip1690-32-190449-user",
+          "domainid": "dfbef020-f942-46a0-9442-996032904cbd",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "issystem": false,
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone"
+        },
+        "generation": "28c04ed4-32aa-4d71-8db6-5df353d7f02d",
+        "allocated": "2026-11-16T19:04:53+0900",
+        "cleaned": true
+      }
+    ],
+    "cleaned": true
+  }
+]

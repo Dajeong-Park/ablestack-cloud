@@ -1,0 +1,215 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard Dashboard":
+      - link "dashboard Dashboard":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: Dashboard
+    - img "cloud":
+    - generic: Compute
+    - img "hdd":
+    - generic: Storage
+    - img "wifi":
+    - generic: Network
+    - img "picture":
+    - generic: Images
+    - img "lock":
+    - generic: Key Management
+    - img "safety-certificate":
+    - generic: Disaster Recovery
+    - menuitem "schedule Events":
+      - link "schedule Events":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: Events
+    - menuitem "project Projects":
+      - link "project Projects":
+        - /url: "#/project"
+        - img "project":
+        - generic: Projects
+    - menuitem "idcard Roles":
+      - link "idcard Roles":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: Roles
+    - menuitem "team Accounts":
+      - link "team Accounts":
+        - /url: "#/account"
+        - img "team":
+        - generic: Accounts
+    - menuitem "block Domains":
+      - link "block Domains":
+        - /url: "#/domain"
+        - img "block":
+        - generic: Domains
+    - img "bank":
+    - generic: Infrastructure
+    - img "shopping":
+    - generic: Service offerings
+    - img "setting":
+    - generic: Configuration
+    - menuitem "appstore-add Extensions":
+      - link "appstore-add Extensions":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: Extensions
+    - img "tool":
+    - generic: Tools
+    - menuitem "read API Docs":
+      - link "read API Docs":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API Docs
+- generic: Page style setting
+- button "Close":
+  - img "close":
+- heading "Page style setting" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "Theme color" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "Navigation setting" [level=3]
+- generic: Background color
+- textbox: "#ffffff"
+- generic: Text color
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "The setting is only visible to the current browser. To apply the setting, please download the JSON file and replace its content in the `theme` section of the `config.json` file under the path: `/public/config.json`"
+- button "download Download setting":
+  - img "download":
+  - generic: Download setting
+- button "undo Reset to default":
+  - img "undo":
+  - generic: Reset to default
+- img "menu-unfold":
+- generic: Project
+- combobox "Project"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "Notifications":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "Public IP addresses":
+    - /url: "#/publicip?projectid=0&state=Reserved&page=1&pagesize=20&filter=reserved"
+  - text: /
+  - generic: 10.10.31.105
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/adminguide/networking_and_traffic.html#reserving-public-ip-addresses-and-vlans-for-accounts
+    - img "question-circle":
+  - button "reload Refresh":
+    - img "reload":
+    - generic: Refresh
+  - button "down Actions":
+    - img "down":
+    - generic: Actions
+  - img "environment":
+  - heading "10.10.31.105" [level=4]
+  - separator
+  - generic: Status
+  - generic: Reserved
+  - generic: ID
+  - button "Copy ID":
+    - img "barcode":
+  - link "956b6cb3-4bf8-41e4-b6df-12911f30e625":
+    - /url: javascript:;
+  - generic: IP address
+  - img "environment":
+  - link "10.10.31.105":
+    - /url: javascript:;
+  - generic: Instance name
+  - generic: —
+  - generic: Public network
+  - generic: 8689dcfa-5d81-40d3-8db3-103be4a01d71
+  - button "Copy Public network":
+    - img "copy":
+  - generic: Associated guest network
+  - generic: —
+  - generic: VPC
+  - generic: —
+  - generic: Display to users
+  - generic: Displayed
+  - generic: Zone
+  - img "global":
+  - link "Zone":
+    - /url: "#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c"
+  - generic: Account
+  - img "user":
+  - link "qa-pip1690-31-190449-user":
+    - /url: "#/account?name=qa-pip1690-31-190449-user&domainid=3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23"
+  - generic: Domain
+  - img "block":
+  - link "qa-pip1690-31-190449":
+    - /url: "#/domain/3301a5f2-1c6d-4a77-86cc-7bbf54a5eb23?tab=details"
+  - separator
+  - strong: Tags
+  - button "reload Refresh tags":
+    - img "reload":
+    - generic: Refresh tags
+  - generic: No tags.
+  - button "plus New tag":
+    - img "plus":
+    - generic: New tag
+  - tablist:
+    - tab "Details" [selected]
+    - tab "Events"
+    - tab "Comments"
+  - tabpanel "Details":
+    - list:
+      - strong: IP Address
+      - generic: 10.10.31.105
+      - strong: ID
+      - generic: 956b6cb3-4bf8-41e4-b6df-12911f30e625
+      - strong: State
+      - generic: Reserved
+      - strong: VLAN value
+      - generic: Untagged
+      - generic: "Raw value: vlan://untagged"
+      - strong: VLAN range UUID
+      - generic: 6ce0457c-4b8f-46c5-8115-b85a08efaa63
+      - button "Copy VLAN range UUID":
+        - img "copy":
+      - strong: Public network
+      - generic: 8689dcfa-5d81-40d3-8db3-103be4a01d71
+      - button "Copy Public network":
+        - img "copy":
+      - strong: Associated guest network
+      - generic: —
+      - strong: VPC
+      - generic: —
+      - strong: Display to users
+      - generic: Displayed
+      - strong: Is system
+      - generic: "No"
+      - strong: Source NAT
+      - generic: "No"
+      - strong: Static NAT
+      - generic: "No"
+      - strong: Instance name
+      - generic: —
+      - strong: Allocated at
+      - generic: 16 Nov 2026 19:27:55
+      - strong: Account
+      - generic: qa-pip1690-31-190449-user
+      - strong: Domain
+      - generic: qa-pip1690-31-190449
+      - strong: Zone
+      - generic: Zone
