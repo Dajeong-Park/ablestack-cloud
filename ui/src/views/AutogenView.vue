@@ -1509,7 +1509,7 @@ export default {
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
       for (const filter in queryParams) {
-        if (['sortkey', 'sortorder'].includes(filter)) continue
+        if (['sortkey', 'sortorder'].includes(filter) || publicIpRoute(this.$route) && filter === 'filter') continue
         if (this.$route.name === 'vmsnapshot' && filter === 'filter') {
           continue
         }
@@ -2783,6 +2783,11 @@ export default {
         delete queryParams[`tags[${filter.tagIdx}].value`]
       } else {
         delete queryParams[filter.key]
+        if (publicIpRoute(this.$route)) {
+          const children = { zoneid: ['vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid', 'vlanid'], domainid: ['account', 'vpcid', 'associatednetworkid', 'vlanid'], account: ['vpcid', 'associatednetworkid', 'vlanid'], vpcid: ['associatednetworkid'], networkid: ['vlanid'], physicalnetworkid: ['vlanid'] }
+          for (const key of children[filter.key] || []) delete queryParams[key]
+          if (filter.key === 'state') { queryParams.filter = 'allocated'; queryParams.state = 'Allocated' }
+        }
         if (this.$route.name === 'snapshot') {
           if (filter.key === 'showunique') delete queryParams.locationtype
           if (filter.key === 'snapshottype') delete queryParams.intervaltype

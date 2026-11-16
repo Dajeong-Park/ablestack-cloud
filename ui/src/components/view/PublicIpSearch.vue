@@ -56,7 +56,6 @@
         </template>
       </a-input-search>
     </span>
-    <span class="public-ip-search-chips"><a-tag v-for="chip in chips" :key="chip.key" closable @close.prevent="remove(chip.key)">{{ chip.label }}: {{ chip.value }}</a-tag></span>
   </span>
 </template>
 <script>

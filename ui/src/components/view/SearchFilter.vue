@@ -57,6 +57,7 @@
 <script>
 
 import { getAPI } from '@/api'
+import { publicIpPickerConfig } from '@/utils/publicIpSearch'
 import { affinityPolicy } from '@/utils/affinityGroupPresentation'
 import { snapshotSearchLabel, snapshotSearchValue, snapshotPickerScope } from '@/utils/storageSnapshotSearch'
 import { networkPickerApi, networkPickerParams } from '@/utils/guestNetworkSearch'
@@ -200,6 +201,10 @@ export default {
       const scope = this.lookupScope
       const cloned = filters.map(filter => ({ ...filter, rawValue: filter.value }))
       // Keep the submitted UUID instead of looking up names in an unrelated owner.
+      if (this.apiName === 'listPublicIpAddresses') {
+        this.searchFilters = cloned.filter(f => f.key !== 'filter').map(f => ({ ...f, value: f.key === 'state' ? this.$t('label.' + String(f.value).toLowerCase()) : ['true', 'false', 'all'].includes(String(f.value)) ? this.$t(String(f.value) === 'all' ? 'label.all' : String(f.value) === 'true' ? 'label.yes' : 'label.no') : f.value }))
+        return
+      }
       if (this.apiName === 'listVnfAppliances') { this.searchFilters = cloned.map(f => f.key === 'state' ? { ...f, value: this.$t('state.' + String(f.value).toLowerCase()) } : f); return }
       this.searchFilters = cloned.map(filter => ({ ...filter }))
       const resolved = await Promise.all(cloned.map(async filter => {
@@ -218,6 +223,7 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listPublicIpAddresses') return this.$t(publicIpPickerConfig(fieldName)?.label || (fieldName === 'fordisplay' ? 'label.public.ip.display' : 'label.' + fieldName))
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (this.apiName === 'listTemplates' && fieldName === 'name') return this.$t('label.template.name.exact')
       if (fieldName === 'forvpc') return this.$t('label.network.search.forvpc')
