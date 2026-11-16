@@ -90,3 +90,11 @@ test('quiet parent refresh does not block the independent ISO availability reade
   expect(getAPI).toHaveBeenCalledTimes(2)
   expect(w.findComponent(Zones).props('observation').status).toBe('ready')
 })
+
+test('download completion retains the Zone component identity and its expansion state', async () => {
+  const { w } = setup('zones'); await flushPromises()
+  const key = w.vm.tabInstanceKey({ name: 'zones' })
+  await w.setProps({ resource: { ...row, isostate: 'Ready' } }); await flushPromises()
+  expect(w.vm.tabInstanceKey({ name: 'zones' })).toBe(key)
+  expect(getAPI).toHaveBeenCalledTimes(1)
+})

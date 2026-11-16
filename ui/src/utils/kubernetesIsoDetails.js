@@ -32,7 +32,7 @@ export function kubernetesIsoScope (record = {}) {
   return kubernetesIsoZone(record)
 }
 export function kubernetesIsoDetailContext (route, record, getters, session) {
-  return hash.sha256().update(JSON.stringify([route?.path, kubernetesIsoContext(getters, session, record?.id), record?.isoid, kubernetesIsoScope(record), record?.isostate])).digest('hex')
+  return hash.sha256().update(JSON.stringify([route?.path, kubernetesIsoContext(getters, session, record?.id), record?.isoid, kubernetesIsoScope(record)])).digest('hex')
 }
 export function kubernetesIsoCanReadChild (getters = {}) { return kubernetesIsoCapability('read', getters).available && object(getters.apis?.listIsos) }
 export function kubernetesIsoLink (record = {}, getters = {}, observation) {

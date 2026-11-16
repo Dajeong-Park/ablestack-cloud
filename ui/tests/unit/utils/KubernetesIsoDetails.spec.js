@@ -136,3 +136,8 @@ test('download reasons redact URL credentials, query data and named secrets', ()
   expect(value.reasons.join(' ')).not.toMatch(/reader|example-pass|example-token/)
   expect(value.reasons.join(' ')).toContain('http://source.test/file.iso')
 })
+
+test('registration state changes cannot change observation ownership during a download', () => {
+  const route = { path: '/kubernetesiso/' + id }
+  expect(kubernetesIsoDetailContext(route, { ...record, isostate: 'Allocated' }, getters(), 'session')).toBe(kubernetesIsoDetailContext(route, { ...record, isostate: 'Ready' }, getters(), 'session'))
+})
