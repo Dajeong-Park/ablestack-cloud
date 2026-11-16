@@ -1,16 +1,17 @@
 {
   "issue": 1689,
-  "status": "implementation-deployed-ui-validation-incomplete",
-  "source": "f8c8c7d3e8cf3bffca70d971242f5d1c18c29206",
+  "status": "complete",
+  "source": "0f6d1497c2b0f58e6320d157829188cb00612152",
+  "previousCheckpoint": "d882f93f5d58d269100add787df027b2b67ee3cd",
   "local": {
     "uiSuites": 8,
     "uiTests": 147,
     "apiTests": 5,
-    "lint": "PASS",
-    "productionUiBuild": "PASS",
     "changedMavenModules": [
       "api"
     ],
+    "lint": "PASS",
+    "productionUiBuild": "PASS",
     "fullCloudBuild": false,
     "actionsDispatch": false
   },
@@ -19,29 +20,28 @@
       31,
       32
     ],
-    "apiUiSearchMatrix": "16 basic single/combined cases per cluster before final restricted-role fixes; exact rows/count/wire in ui-search-results.json",
-    "currentSourceUserVlan": "PASS both; own Reserved=1; no forbidden listVlanIpRanges",
-    "historyProjectScopes": "PASS; source history and reload observations in evidence",
-    "faultInjection": "read-only browser-controlled failures/order/transition responses; not real allocating/releasing jobs"
+    "finalRootSearchCases": 36,
+    "responsiveCases": 12,
+    "mobileInteractiveCases": 2,
+    "actualUiDisplayWrites": 8,
+    "distinctSuccessfulJobs": 8,
+    "finalSourceUiDisplayWrites": 6,
+    "rootScopeHistoryRoleFaultEvidence": "retained in prior checkpoint; CSS-only final change; Root18 each and responsive/mobile/display requalified",
+    "transitionStates": "actual query0; read-only synthetic action guards, not real transition jobs"
   },
-  "pending": [
-    "1280/768/390 x light/dark search popup and list, both clusters",
-    "finish latest-source Root search matrix and UI display-change/list-exclusion combined check",
-    "restore final browser filters/theme/viewport and close validation tabs"
-  ],
-  "blocker": {
-    "kind": "Windows desktop access denied",
-    "error": "GetCursorPos failed: access denied 0x80070005",
-    "userUnlockRequested": true,
-    "issueClosed": false
-  },
+  "pending": [],
+  "blockerResolved": "Windows unlocked and browser runtime reset; CUA validation completed",
   "cleanup": {
-    "reservedIpsRestored": 6,
-    "temporaryAccountsDeleted": 4,
-    "temporaryDomainsDeleted": 2,
+    "resumeReservedIpsRestored": 2,
+    "resumeNewAccounts": 0,
+    "resumeNewDomains": 0,
+    "previousReservedIpsRestored": 6,
+    "previousAccountsDeleted": 4,
+    "previousDomainsDeleted": 2,
     "inventoryGroupsEqual": 16,
-    "of": 16,
-    "displayRestorePath": "API; not credited as UI action"
+    "protectedFilesIdentical": 14541,
+    "uiDefaultsRestored": true,
+    "currentTurnTabsClosed": 2
   },
-  "nextAfterCompletion": 1690
+  "nextIssue": 1690
 }
