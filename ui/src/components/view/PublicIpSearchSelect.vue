@@ -36,7 +36,7 @@ dropdown-class-name="public-ip-search-options"
 @popupScroll="moreOnScroll">
       <template #option="{ label, description }"><div class="public-ip-search-option">{{ label }}<div class="public-ip-search-description">{{ description }}</div></div></template>
     </a-select>
-    <p v-if="!allowed" class="public-ip-search-description">{{ $t(kind === 'account' && !scope.domainid ? 'message.affinity.search.account.domain' : 'message.public.ip.search.permission') }}</p>
+    <p v-if="!allowed" class="public-ip-search-description">{{ $t(kind === 'account' && !scope.domainid ? 'message.affinity.search.account.domain' : kind === 'networkid' && !scope.zoneid ? 'message.public.ip.search.zone' : 'message.public.ip.search.permission') }}</p>
     <p v-if="value && selected" class="public-ip-search-description">{{ describe(selected) }}</p>
     <a-alert v-if="value && !selected && !loading && !error" type="warning" show-icon :message="$t('message.public.ip.search.candidate')" />
     <a-alert v-if="error" type="error" show-icon :message="$t('error.fetching.data')"><template #description><a-button size="small" @click="load(true)">{{ $t('label.retry') }}</a-button></template></a-alert>
@@ -55,7 +55,7 @@ export default {
   computed: {
     config () { return publicIpPickerConfig(this.kind) },
     params () { return publicIpPickerParams(this.kind, this.scope, this.$getApiParams(this.config.api) || {}) },
-    allowed () { return !!this.$store.state?.user?.token && (this.scope.projectid || publicIpProject(this.$store.getters)) === publicIpProject(this.$store.getters) && this.config.api in (this.$store.getters.apis || {}) && (this.kind !== 'account' || !!this.scope.domainid) },
+    allowed () { return !!this.$store.state?.user?.token && (this.scope.projectid || publicIpProject(this.$store.getters)) === publicIpProject(this.$store.getters) && this.config.api in (this.$store.getters.apis || {}) && (this.kind !== 'account' || !!this.scope.domainid) && (this.kind !== 'networkid' || !!this.scope.zoneid) },
     context () { return JSON.stringify([this.params, publicIpReadAuth(this.$store), this.$route?.path, this.allowed]) },
     blocked () { return !!this.value && (this.loading || !this.selected || this.error || !this.allowed) },
     options () { return (this.loading || this.error ? [] : this.rows).map(r => ({ value: this.key(r), label: r.displaytext || r.path || r.name || r.vlan || r.id, description: this.describe(r) })) }

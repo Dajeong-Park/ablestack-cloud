@@ -11936,5 +11936,6 @@
   "label.allocating": "Allocating",
   "label.releasing": "Releasing",
   "label.public.ip.search.display.default": "Default: displayed addresses",
-  "message.public.ip.search.pool": "Free addresses are the unowned public pool available to the selected owner, VPC or network. They are distinct from attached addresses."
+  "message.public.ip.search.pool": "Free addresses are the unowned public pool available to the selected owner, VPC or network. They are distinct from attached addresses.",
+  "message.public.ip.search.zone": "Select a Zone before looking up public networks."
 }

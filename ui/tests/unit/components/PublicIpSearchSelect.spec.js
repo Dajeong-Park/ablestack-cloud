@@ -55,3 +55,12 @@ test('VM common chips preserve raw identifiers without fetching outside the sear
  await Filter.methods.resolveFilters.call(c, [{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'all' }, { key: 'issourcenat', value: 'false' }, { key: 'filter', value: 'all' }])
  expect(c.searchFilters.map(({ key, value }) => ({ key, value }))).toEqual([{ key: 'vpcid', value: id }, { key: 'fordisplay', value: 'label.all' }, { key: 'issourcenat', value: 'label.no' }]); expect(getAPI).not.toHaveBeenCalled()
 })
+
+test('system public network lookup requires Zone before any API request', async () => {
+ const c = context(); c.kind = 'networkid'; c.$store.getters.apis.listNetworks = {}
+ c.$getApiParams = () => ({ zoneid: {}, traffictype: {}, issystem: {}, page: {}, pagesize: {} })
+ await c.load(true); expect(c.allowed).toBe(false); expect(getAPI).not.toHaveBeenCalled()
+ c.scope.zoneid = id; getAPI.mockResolvedValueOnce({ listnetworksresponse: { count: 1, network: [{ id, zoneid: id, traffictype: 'Public' }] } }); await c.load(true)
+ expect(c.allowed).toBe(true); expect(c.error).toBe(false); expect(c.rows).toHaveLength(1)
+ expect(getAPI.mock.calls[0][1]).toMatchObject({ zoneid: id, traffictype: 'Public', issystem: true })
+})
