@@ -243,6 +243,10 @@ mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/python-site
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/lib
 mkdir -p ${RPM_BUILD_ROOT}/usr/bin
 cp -r scripts/* ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/scripts
+# Bundle the current source SQL for the runtime schema replay utility.
+mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/scripts/util/schema-repair/sql
+cp engine/schema/src/main/resources/META-INF/db/schema-*.sql ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/scripts/util/schema-repair/sql/
+cp -r engine/schema/src/main/resources/META-INF/db/procedures ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/scripts/util/schema-repair/sql/
 install -D systemvm/dist/* ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/vms/
 install python/lib/cloud_utils.py ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/python-site/cloud_utils.py
 cp -r python/lib/cloudutils ${RPM_BUILD_ROOT}%{_datadir}/%{name}-common/python-site/
