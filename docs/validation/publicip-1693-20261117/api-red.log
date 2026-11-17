@@ -1,0 +1,111 @@
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for org.apache.cloudstack:cloud-plugin-hypervisor-kvm:jar:4.23.0.0
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.json:json:jar -> duplicate declaration of version (?) @ line 130, column 21
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO]
+[INFO] ------------------< org.apache.cloudstack:cloud-api >-------------------
+[INFO] Building Apache CloudStack API 4.23.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-remote-resources-plugin:1.3:process (default) @ cloud-api ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.5:resources (default-resources) @ cloud-api ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] Copying 3 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ cloud-api ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1926 source files to /home/ablecloud/work/issue-1693-public-ip/api/target/classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.5:testResources (default-testResources) @ cloud-api ---
+[debug] execute contextualize
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/ablecloud/work/issue-1693-public-ip/api/src/test/resources
+[INFO] Copying 3 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ cloud-api ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 249 source files to /home/ablecloud/work/issue-1693-public-ip/api/target/test-classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ cloud-api ---
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest
+[ERROR] Tests run: 15, Failures: 10, Errors: 0, Skipped: 0, Time elapsed: 3.188 s <<< FAILURE! - in org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest
+[ERROR] releaseDoesNotLeaveThePreviousOwnerCached(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.02 s  <<< FAILURE!
+java.lang.AssertionError: expected:<1> but was:<44>
+	at org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest.releaseDoesNotLeaveThePreviousOwnerCached(UpdateIPAddrCmdOwnerTest.java:157)
+
+[ERROR] hiddenOwnerParameterCannotOverrideTheActualOwner(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: expected:<44> but was:<777>
+	at org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest.hiddenOwnerParameterCannotOverrideTheActualOwner(UpdateIPAddrCmdOwnerTest.java:164)
+
+[ERROR] domainAdminCannotScheduleAnUnownedAddressUpdate(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: Expected exception: com.cloud.exception.PermissionDeniedException
+
+[ERROR] freeAddressUsesSystemOwnerInsteadOfTheNegativeSentinelOrCaller(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: expected:<1> but was:<-1>
+	at org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest.freeAddressUsesSystemOwnerInsteadOfTheNegativeSentinelOrCaller(UpdateIPAddrCmdOwnerTest.java:83)
+
+[ERROR] readOnlyAdminCannotScheduleAnUnownedAddressUpdate(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.005 s  <<< FAILURE!
+java.lang.AssertionError: Expected exception: com.cloud.exception.PermissionDeniedException
+
+[ERROR] negativeAllocatedOwnerIsRejected(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: Expected exception: com.cloud.exception.InvalidParameterValueException
+
+[ERROR] hiddenOwnerParameterCannotBypassTheUnownedPermissionCheck(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.006 s  <<< FAILURE!
+java.lang.AssertionError: Expected exception: com.cloud.exception.PermissionDeniedException
+
+[ERROR] userCannotScheduleAnUnownedAddressUpdate(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.011 s  <<< FAILURE!
+java.lang.AssertionError: Expected exception: com.cloud.exception.PermissionDeniedException
+
+[ERROR] zeroAllocatedOwnerIsRejected(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.008 s  <<< FAILURE!
+java.lang.AssertionError: Expected exception: com.cloud.exception.InvalidParameterValueException
+
+[ERROR] ownerIsResolvedAgainAfterTheAddressChangesOwner(org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest)  Time elapsed: 0.014 s  <<< FAILURE!
+java.lang.AssertionError: expected:<45> but was:<44>
+	at org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest.ownerIsResolvedAgainAfterTheAddressChangesOwner(UpdateIPAddrCmdOwnerTest.java:149)
+
+[INFO]
+[INFO] Results:
+[INFO]
+[ERROR] Failures:
+[ERROR]   UpdateIPAddrCmdOwnerTest.domainAdminCannotScheduleAnUnownedAddressUpdate Expected exception: com.cloud.exception.PermissionDeniedException
+[ERROR]   UpdateIPAddrCmdOwnerTest.freeAddressUsesSystemOwnerInsteadOfTheNegativeSentinelOrCaller:83 expected:<1> but was:<-1>
+[ERROR]   UpdateIPAddrCmdOwnerTest.hiddenOwnerParameterCannotBypassTheUnownedPermissionCheck Expected exception: com.cloud.exception.PermissionDeniedException
+[ERROR]   UpdateIPAddrCmdOwnerTest.hiddenOwnerParameterCannotOverrideTheActualOwner:164 expected:<44> but was:<777>
+[ERROR]   UpdateIPAddrCmdOwnerTest.negativeAllocatedOwnerIsRejected Expected exception: com.cloud.exception.InvalidParameterValueException
+[ERROR]   UpdateIPAddrCmdOwnerTest.ownerIsResolvedAgainAfterTheAddressChangesOwner:149 expected:<45> but was:<44>
+[ERROR]   UpdateIPAddrCmdOwnerTest.readOnlyAdminCannotScheduleAnUnownedAddressUpdate Expected exception: com.cloud.exception.PermissionDeniedException
+[ERROR]   UpdateIPAddrCmdOwnerTest.releaseDoesNotLeaveThePreviousOwnerCached:157 expected:<1> but was:<44>
+[ERROR]   UpdateIPAddrCmdOwnerTest.userCannotScheduleAnUnownedAddressUpdate Expected exception: com.cloud.exception.PermissionDeniedException
+[ERROR]   UpdateIPAddrCmdOwnerTest.zeroAllocatedOwnerIsRejected Expected exception: com.cloud.exception.InvalidParameterValueException
+[INFO]
+[ERROR] Tests run: 15, Failures: 10, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  33.603 s
+[INFO] Finished at: 2026-11-17T06:26:55+09:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.2:test (default-test) on project cloud-api: There are test failures.
+[ERROR]
+[ERROR] Please refer to /home/ablecloud/work/issue-1693-public-ip/api/target/surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

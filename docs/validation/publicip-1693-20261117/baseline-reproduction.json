@@ -1,0 +1,34 @@
+[
+  {
+    "cluster": 31,
+    "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+    "request": {
+      "fordisplay": true
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 530,
+        "cserrorcode": 4250,
+        "errortext": "Unable to persist on DB, due to: Data truncation: Out of range value for column 'account_id' at row 1"
+      }
+    },
+    "ipUnchanged": true
+  },
+  {
+    "cluster": 32,
+    "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "request": {
+      "fordisplay": true
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 530,
+        "cserrorcode": 4250,
+        "errortext": "Unable to persist on DB, due to: Data truncation: Out of range value for column 'account_id' at row 1"
+      }
+    },
+    "ipUnchanged": true
+  }
+]

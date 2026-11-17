@@ -1,0 +1,29 @@
+[
+  {
+    "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+    "name": "org.apache.cloudstack.api.command.user.address.ListPublicIpDisplaySearchTest",
+    "time": "0.018",
+    "tests": "5",
+    "errors": "0",
+    "skipped": "0",
+    "failures": "0"
+  },
+  {
+    "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+    "name": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmdOwnerTest",
+    "time": "0.842",
+    "tests": "15",
+    "errors": "0",
+    "skipped": "0",
+    "failures": "0"
+  },
+  {
+    "{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation": "https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd",
+    "name": "org.apache.cloudstack.api.command.user.bucket.CreateBucketCmdTest",
+    "time": "2.667",
+    "tests": "9",
+    "errors": "0",
+    "skipped": "0",
+    "failures": "0"
+  }
+]

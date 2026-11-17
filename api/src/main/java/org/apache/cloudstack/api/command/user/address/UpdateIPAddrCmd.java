@@ -27,12 +27,14 @@ import org.apache.cloudstack.api.ResponseObject.ResponseView;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.AccountResponse;
 import org.apache.cloudstack.api.response.IPAddressResponse;
+import org.apache.cloudstack.context.CallContext;
 
 import com.cloud.event.EventTypes;
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.exception.InsufficientCapacityException;
 import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.exception.NetworkRuleConflictException;
+import com.cloud.exception.PermissionDeniedException;
 import com.cloud.exception.ResourceAllocationException;
 import com.cloud.exception.ResourceUnavailableException;
 import com.cloud.network.IpAddress;
@@ -84,16 +86,18 @@ public class UpdateIPAddrCmd extends BaseAsyncCustomIdCmd {
 
     @Override
     public long getEntityOwnerId() {
+        IpAddress ip = getIpAddress(id);
+        // getAccountId() uses -1 for unowned addresses; it is not a valid event owner.
+        // Resolve the current nullable owner rather than trusting a cached/hidden parameter.
+        ownerId = ip.getAllocatedToAccountId();
         if (ownerId == null) {
-            IpAddress ip = getIpAddress(id);
-            if (ip == null) {
-                throw new InvalidParameterValueException("Unable to find IP address by ID=" + id);
+            if (CallContext.current().getCallingAccount().getType() != Account.Type.ADMIN) {
+                throw new PermissionDeniedException("Only Root admin can update non-allocated ip addresses");
             }
-            ownerId = ip.getAccountId();
-        }
-
-        if (ownerId == null) {
             return Account.ACCOUNT_ID_SYSTEM;
+        }
+        if (ownerId <= 0) {
+            throw new InvalidParameterValueException("Unable to update IP address with invalid allocated account ID");
         }
         return ownerId;
     }

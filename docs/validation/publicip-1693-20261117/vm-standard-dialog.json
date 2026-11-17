@@ -1,0 +1,46 @@
+{
+  "actions": {
+    "display": "flex",
+    "gap": "8px",
+    "justify": "flex-end"
+  },
+  "bodyOverflow": false,
+  "buttons": [
+    {
+      "font": "14px",
+      "height": 32,
+      "text": "취소",
+      "width": 57.765625,
+      "x": 847.46875,
+      "y": 791.5
+    },
+    {
+      "font": "14px",
+      "height": 32,
+      "text": "확인",
+      "width": 57.765625,
+      "x": 913.234375,
+      "y": 791.5
+    }
+  ],
+  "contentOverflow": false,
+  "dialog": {
+    "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+    "height": 900,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "footer": {
+    "background": "rgb(247, 249, 252)",
+    "padding": "16px 28px"
+  },
+  "height": 900,
+  "summary": false,
+  "title": {
+    "font": "16px",
+    "lineHeight": "22px",
+    "padding": "0px"
+  },
+  "width": 1280
+}

@@ -1,0 +1,9 @@
+{
+  "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+  "files": {
+    "api/src/main/java/org/apache/cloudstack/api/command/user/address/UpdateIPAddrCmd.java": "0a330fcebb2f11d7dd9084eb1efd48b9f5ddeb3d6c6002a87390a1d162b73348",
+    "api/src/test/java/org/apache/cloudstack/api/command/user/address/UpdateIPAddrCmdOwnerTest.java": "109b41e47de7145505257ab704b76d3e15d594ca0c2f26e29a8975e17c520079"
+  },
+  "uiChanged": false,
+  "ftctlChanged": false
+}
