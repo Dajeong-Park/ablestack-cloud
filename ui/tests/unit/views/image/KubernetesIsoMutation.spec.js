@@ -85,3 +85,12 @@ test('late preflight after role revocation cannot submit or restore old data', a
   complete(list(version)); await task; expect(postAPI).not.toHaveBeenCalled()
   expect(w.vm.snapshot).toBeNull(); expect(w.vm.blocksNavigation).toBe(false); w.unmount()
 })
+
+test('an explicit atomic conflict rereads current state and releases its rejected receipt', async () => {
+  getAPI.mockResolvedValueOnce(list(version)).mockResolvedValueOnce(list(version)).mockResolvedValueOnce(list({ ...version, state: 'Disabled' }))
+  postAPI.mockRejectedValue({ response: { status: 530, data: { updatekubernetessupportedversionresponse: { errorcode: 530, errortext: 'Kubernetes version state changed; reload and review the current state' } } } })
+  const { w } = setup(); await flushPromises(); w.vm.nextState = 'Disabled'; await w.vm.submit()
+  expect(w.vm.receipt).toBeNull(); expect(w.vm.snapshot.state).toBe('Disabled')
+  expect(w.vm.nextState).toBe('Disabled'); expect(w.vm.errorKey).toContain('changed')
+  expect(w.vm.canSubmit).toBe(false); expect(w.emitted('close-action')).toBeUndefined(); w.unmount()
+})

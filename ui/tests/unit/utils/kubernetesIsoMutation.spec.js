@@ -16,6 +16,7 @@
 // under the License.
 
 import { beginKubernetesMutation, finishKubernetesMutation, kubernetesMutationReceipt, kubernetesMutationScope, kubernetesMutationSnapshot, kubernetesMutationParams, kubernetesMutationJob } from '@/utils/kubernetesIsoMutation'
+import { reactive } from 'vue'
 const id = '11111111-1111-4111-8111-111111111111'
 const record = { id, state: 'Enabled', semanticversion: '1.36.5', referenceschecked: true, isreferenced: false }
 const getters = { userInfo: { id: 'actor', roletype: 'Admin' }, apis: { listKubernetesSupportedVersions: { params: [{ name: 'showreferences' }] }, updateKubernetesSupportedVersion: { params: [{ name: 'expectedstate' }] }, deleteKubernetesSupportedVersion: {}, queryAsyncJobResult: {} } }
@@ -64,4 +65,12 @@ test('lost receipts survive a page/module reload without storing authentication 
   expect(() => reloaded.beginKubernetesMutation(scope, 'update', record, 'Disabled')).toThrow('uncertain')
   reloaded.finishKubernetesMutation(scope, recovered)
   finishKubernetesMutation(scope, receipt)
+})
+
+test('a reactive dialog receipt can be confirmed and removed after reconciliation', () => {
+  const scope = kubernetesMutationScope(getters, 'reactive-receipt', id)
+  const receipt = beginKubernetesMutation(scope, 'delete', record)
+  finishKubernetesMutation(scope, reactive(receipt))
+  expect(kubernetesMutationReceipt(scope)).toBeUndefined()
+  expect(sessionStorage.getItem('kubernetes-iso-mutation:' + scope)).toBeNull()
 })

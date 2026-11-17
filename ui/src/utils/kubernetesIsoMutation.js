@@ -16,6 +16,7 @@
 // under the License.
 
 import hash from 'hash.js'
+import { toRaw } from 'vue'
 import { kubernetesIsoContext, kubernetesIsoCapability } from '@/utils/kubernetesIsoCapabilities'
 import { kubernetesIsoListResponse } from '@/utils/kubernetesIsoModel'
 
@@ -48,7 +49,7 @@ export function beginKubernetesMutation (key, operation, record, state) {
   return receipt
 }
 export function finishKubernetesMutation (key, receipt) {
-  if (writes.get(key) === receipt) {
+  if (writes.get(key) === toRaw(receipt)) {
     if (typeof sessionStorage !== 'undefined') sessionStorage.removeItem(storageKey(key))
     writes.delete(key)
   }

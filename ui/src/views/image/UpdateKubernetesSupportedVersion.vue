@@ -19,13 +19,13 @@
   <mold-dialog size="md" focus-guard :title="$t(deletion ? 'label.kubernetes.version.delete' : 'label.kubernetes.version.update')" :closable="!blocksNavigation" :keyboard="!blocksNavigation" @cancel="close">
     <div class="kiso-mutation" v-ctrl-enter="submit">
       <a-alert v-if="errorKey" type="error" show-icon role="alert" :message="$t(errorKey)" />
-      <a-alert v-if="receipt" type="warning" show-icon :message="$t('message.kubernetes.iso.mutation.uncertain')" />
+      <a-alert v-if="receipt && !blocksNavigation && errorKey !== 'message.kubernetes.iso.mutation.uncertain'" type="warning" show-icon :message="$t('message.kubernetes.iso.mutation.uncertain')" />
       <a-spin :spinning="reading || blocksNavigation">
         <dl class="kiso-mutation-target">
           <dt>{{ $t('label.name') }}</dt><dd>{{ shown.name || '—' }}</dd>
           <dt>{{ $t('label.semanticversion') }}</dt><dd>{{ shown.semanticversion || '—' }}</dd>
           <dt>{{ $t('label.id') }}</dt><dd>{{ resource.id }}</dd>
-          <dt>{{ $t('label.state') }}</dt><dd>{{ shown.state ? $t('state.' + shown.state.toLowerCase()) : '—' }}</dd>
+          <dt>{{ $t('label.state') }}</dt><dd>{{ shown.state ? stateLabel(shown.state) : '—' }}</dd>
           <template v-if="deletion">
             <dt>{{ $t('label.kubernetes.iso.child.id') }}</dt><dd>{{ shown.isoid || '—' }}</dd>
             <dt>{{ $t('label.kubernetes.iso.mutation.references') }}</dt><dd>{{ $t(!snapshot ? 'message.kubernetes.iso.mutation.references.unknown' : snapshot.isreferenced ? 'message.kubernetes.iso.mutation.references.used' : 'message.kubernetes.iso.mutation.references.free') }}</dd>
@@ -33,9 +33,9 @@
         </dl>
         <a-alert v-if="deletion" type="warning" show-icon :message="$t('message.kubernetes.iso.mutation.delete.impact')" />
         <a-form v-else layout="vertical">
-          <a-form-item :label="$t('label.kubernetes.iso.mutation.next.state')">
-            <a-select v-model:value="nextState" :disabled="reading || blocksNavigation || !!receipt || !snapshot" :aria-label="$t('label.kubernetes.iso.mutation.next.state')">
-              <a-select-option v-for="state in ['Enabled', 'Disabled']" :key="state" :value="state">{{ $t('state.' + state.toLowerCase()) }}</a-select-option>
+          <a-form-item :label="$t('label.kubernetes.iso.mutation.next.state')" html-for="kiso-next-state">
+            <a-select id="kiso-next-state" v-model:value="nextState" :disabled="reading || blocksNavigation || !!receipt || !snapshot" :aria-label="$t('label.kubernetes.iso.mutation.next.state')">
+              <a-select-option v-for="state in ['Enabled', 'Disabled']" :key="state" :value="state" :label="stateLabel(state)">{{ stateLabel(state) }}</a-select-option>
             </a-select>
           </a-form-item>
         </a-form>
@@ -44,7 +44,7 @@
     <template #footer>
       <a-button :disabled="blocksNavigation" @click="close">{{ $t('label.cancel') }}</a-button>
       <a-button :loading="reading" :disabled="blocksNavigation || reading" @click="refresh">{{ $t(receipt ? 'label.kubernetes.iso.mutation.check' : 'label.refresh') }}</a-button>
-      <a-button :type="deletion ? 'danger' : 'primary'" :disabled="!canSubmit" :loading="blocksNavigation" @click="submit">{{ $t(deletion ? 'label.delete' : 'label.ok') }}</a-button>
+      <a-button type="primary" :danger="deletion" :disabled="!canSubmit" :loading="blocksNavigation" @click="submit">{{ $t(deletion ? 'label.delete' : 'label.ok') }}</a-button>
     </template>
   </mold-dialog>
 </template>
@@ -74,8 +74,9 @@ export default {
   mounted () { this.refresh() },
   beforeUnmount () { this.disposed = true; this.generation++; clearTimeout(this.pollTimer) },
   methods: {
+    stateLabel (state) { return this.$t('label.kubernetes.iso.version.' + (state === 'Enabled' ? 'enabled' : state === 'Disabled' ? 'disabled' : 'unknown')) },
     current (scope, generation) { return !this.disposed && this.context === scope && this.generation === generation },
-    readOptions () { return { preserveOnFailure: true, readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } },
+    readOptions () { return { preserveOnFailure: true, timeout: 30000, readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } },
     failure (error) { return error?.message?.startsWith('message.kubernetes.iso.') ? error.message : 'message.kubernetes.iso.read.' + kubernetesIsoFailure(error) },
     async read () {
       if (!canKubernetesIsoAction('read', this.resource, this.$store.getters) || !canKubernetesIsoAction(this.operation, this.resource, this.$store.getters)) throw new Error('message.kubernetes.iso.read.forbidden')
@@ -135,11 +136,19 @@ export default {
         }
       } catch (error) {
         if (!this.current(scope, generation)) return
-        const root = error?.response?.data?.errorresponse || error?.response?.data?.updatekubernetessupportedversionresponse || error?.response?.data?.deletekubernetessupportedversionresponse
+        const root = Object.values(error?.response?.data || {}).find(body => body && typeof body === 'object' && body.errorcode)
+        const changed = typeof root?.errortext === 'string' && root.errortext.startsWith('Kubernetes version state changed;')
         // A validated explicit command rejection is a known failure. Transport,
         // malformed receipts and lost reads remain blocked until reconciled.
-        if (receipt && [401, 403, 431, 432, 531].includes(Number(root?.errorcode)) && !receipt.jobid) { finishKubernetesMutation(scope, receipt); this.receipt = null }
-        this.errorKey = this.failure(error)
+        if (receipt && (changed || [401, 403, 431, 432, 531].includes(Number(root?.errorcode))) && !receipt.jobid) { finishKubernetesMutation(scope, receipt); this.receipt = null }
+        if (changed) {
+          try {
+            const latest = await this.read()
+            if (!this.current(scope, generation)) return
+            this.snapshot = latest; this.nextState = latest?.state || ''
+          } catch (_) { if (!this.current(scope, generation)) return; this.snapshot = null }
+        }
+        this.errorKey = changed ? 'message.kubernetes.iso.mutation.changed' : receipt && this.receipt ? 'message.kubernetes.iso.mutation.uncertain' : this.failure(error)
         if (receipt && this.receipt) { receipt.status = 'uncertain'; saveKubernetesMutation(scope, receipt) }
       } finally { if (this.current(scope, generation)) this.blocksNavigation = false }
     },
@@ -179,7 +188,7 @@ export default {
 <style scoped lang="less">
 .kiso-mutation { display: grid; gap: 16px; }
 .kiso-mutation-target { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(0, 3fr); gap: 12px 20px; margin: 0 0 20px; }
-.kiso-mutation-target dt { color: var(--mold-text-secondary, inherit); }
+.kiso-mutation-target dt { color: var(--ui-text-secondary); }
 .kiso-mutation-target dd { margin: 0; overflow-wrap: anywhere; }
 @media (max-width: 575px) { .kiso-mutation-target { grid-template-columns: 1fr; gap: 6px; } .kiso-mutation-target dd { margin-bottom: 10px; } }
 </style>
