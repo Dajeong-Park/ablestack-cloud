@@ -21,12 +21,10 @@ import base64
 import hashlib
 import hmac
 import json
-import ipaddress
 import os
 import re
 import shlex
 import shutil
-import socket
 import ssl
 import subprocess
 import sys
@@ -38,6 +36,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
 from ablestack_backup_secret_key import SecretKeyError, ensure_key, read_key_material
+from netbackup_host_identity import local_host_addresses as read_local_host_addresses, resolve_addresses
 
 
 HOOK_OUTPUT_DIR = Path(os.environ.get("HOOK_OUTPUT_DIR", "/usr/openv/netbackup/bin"))
@@ -287,26 +286,11 @@ def read_netbackup_policy(args: argparse.Namespace) -> dict:
     return policy
 
 
-def resolve_addresses(name: str) -> set[str]:
-    try:
-        return {str(ipaddress.ip_address(name))}
-    except ValueError:
-        try:
-            return {str(ipaddress.ip_address(item[4][0].split("%", 1)[0]))
-                    for item in socket.getaddrinfo(name, None, type=socket.SOCK_STREAM)}
-        except (OSError, ValueError):
-            return set()
-
-
 def local_host_addresses() -> set[str]:
     try:
-        result = subprocess.run(["ip", "-j", "address", "show"], check=True, capture_output=True, text=True, timeout=10)
-        addresses = {str(ipaddress.ip_address(address["local"])) for interface in json.loads(result.stdout)
-                     for address in interface.get("addr_info", []) if address.get("local")}
-    except (OSError, subprocess.SubprocessError, ValueError, KeyError, TypeError) as error:
-        fail(f"Cannot inspect local KVM interfaces: {type(error).__name__}; run this tool on the KVM host with iproute installed")
-    return {address for address in addresses if not ipaddress.ip_address(address).is_loopback
-            and not ipaddress.ip_address(address).is_unspecified}
+        return read_local_host_addresses()
+    except ValueError as error:
+        fail(str(error))
 
 
 def resolve_host_context(args: argparse.Namespace) -> tuple[str, str]:
@@ -342,19 +326,20 @@ def resolve_host_context(args: argparse.Namespace) -> tuple[str, str]:
     exact = matches[0]
     if not resolve_addresses(str(exact.get("ipaddress") or "")).intersection(local_addresses):
         fail("The Mold Host matched by the policy Client is not this executing KVM host")
-    if not exact.get("name") or not exact.get("zoneid") or not exact.get("clusterid"):
-        fail("Matched KVM host is missing its name, zone ID or cluster ID")
+    if not exact.get("id") or not exact.get("name") or not exact.get("zoneid") or not exact.get("clusterid"):
+        fail("Matched KVM host is missing its UUID, name, zone ID or cluster ID")
     # Retain old invocations as assertions, never as a way to select a different host.
     if args.kvm_hostname and args.kvm_hostname != str(exact["name"]):
         fail("--kvm-hostname differs from the automatically verified Mold Host")
     if args.kvm_ip and args.kvm_ip != str(exact.get("ipaddress", "")):
         fail("--kvm-ip differs from the automatically verified Mold Host")
     args.kvm_hostname = str(exact["name"])
+    args.kvm_host_id = str(exact["id"])
     args.kvm_ip = str(exact["ipaddress"])
     args.netbackup_client = client_name
     zone_id, cluster_id = str(exact["zoneid"]), str(exact["clusterid"])
     log_ok(f"NetBackup policy: {args.policy_name}; Client: {client_name}")
-    log_ok(f"Resolved Mold host: {args.kvm_hostname} ({args.kvm_ip})")
+    log_ok(f"Resolved Mold host: {args.kvm_hostname} ({args.kvm_ip}), UUID: {args.kvm_host_id}")
     log_ok(f"Resolved zone ID: {zone_id}; cluster ID: {cluster_id}")
     return zone_id, cluster_id
 
@@ -388,20 +373,13 @@ def ensure_backup_framework_configuration(zone_id: str, cluster_id: str, args: a
         restart_required = True
 
     desired_incremental = str(args.incremental_backup).lower()
-    log_info("Checking global configuration: kvm.incremental.backup")
-    current = get_configuration_value("kvm.incremental.backup", args.mold_url, args.admin_apikey, args.admin_secretkey)
-    if current.lower() != desired_incremental:
-        log_info(f"Updating global configuration: kvm.incremental.backup={desired_incremental}")
-        update_configuration_value("kvm.incremental.backup", desired_incremental, args.mold_url, args.admin_apikey, args.admin_secretkey)
-        print(f"Updated global configuration: kvm.incremental.backup={desired_incremental}")
-        restart_required = True
-
     log_info("Checking cluster configuration: kvm.incremental.backup")
     current = get_configuration_value("kvm.incremental.backup", args.mold_url, args.admin_apikey, args.admin_secretkey, cluster_id=cluster_id)
+    # listConfigurations returns an effective value, which may be inherited.
+    # Always persist this Cluster's choice so a later Global change cannot alter it.
+    update_configuration_value("kvm.incremental.backup", desired_incremental, args.mold_url, args.admin_apikey, args.admin_secretkey, cluster_id=cluster_id)
+    print(f"Set cluster configuration: kvm.incremental.backup={desired_incremental} (clusterid={cluster_id})")
     if current.lower() != desired_incremental:
-        log_info(f"Updating cluster configuration: kvm.incremental.backup={desired_incremental}")
-        update_configuration_value("kvm.incremental.backup", desired_incremental, args.mold_url, args.admin_apikey, args.admin_secretkey, cluster_id=cluster_id)
-        print(f"Updated cluster configuration: kvm.incremental.backup={desired_incremental} (clusterid={cluster_id})")
         restart_required = True
 
     log_info("Backup mode: incremental chains" if args.incremental_backup else "Backup mode: Full only")
@@ -682,6 +660,7 @@ def write_config_file(path: Path, args: argparse.Namespace) -> None:
         "MOLD_SECRET_FILE": shlex.quote(str(SECRET_OUTPUT_DIR / "secret.enc")),
         "SECRET_KEY_FILE": shlex.quote(str(SECRET_KEY_FILE)),
         "KVM_HOSTNAME": shlex.quote(args.kvm_hostname),
+        "KVM_HOST_ID": shlex.quote(args.kvm_host_id),
         "NETBACKUP_POLICY_NAME": shlex.quote(args.policy_name),
         "NETBACKUP_PARENT_PAYLOAD_PATH": shlex.quote(str(BACKUP_STAGING_ROOT / "bootstrap" / sanitize_name(args.policy_name))),
     })
@@ -1058,6 +1037,7 @@ def generate_host_outputs(zone_id: str, args: argparse.Namespace) -> None:
     print(f"  Logrotate  : {LOGROTATE_CONFIG_PATH}")
     print(f"  Staging dir: {BACKUP_STAGING_ROOT}")
     print(f"  Mold Host  : {args.kvm_hostname}")
+    print(f"  Host UUID  : {args.kvm_host_id}")
     print(f"  Parent policy Backup Selections: {parent_payload} (small bootstrap markers only)")
     print("  Required transfer schedule: mold-transfer (User Backup, allow requests every day 00:00-24:00)")
     print("  Transfer command: bpbackup with the exact ready file list; no per-artifact policies are created")
@@ -1083,7 +1063,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--vm-include")
     parser.add_argument("--vm-exclude")
     parser.add_argument("--incremental-backup", type=parse_boolean, default=True, metavar="true|false",
-                        help="Set global and this Cluster's kvm.incremental.backup (default: true). Use false for Full backups only.")
+                        help="Set only this Cluster's kvm.incremental.backup; preserve the Global default (default: true). Use false for Full backups only.")
     parser.add_argument("--backup-chain-size", type=int,
                         help="Update global kvm.backup.chain.size in incremental mode only. If omitted, retain the existing value (default: 8).")
     parser.add_argument("--backup-staging-root", default=str(BACKUP_STAGING_ROOT),

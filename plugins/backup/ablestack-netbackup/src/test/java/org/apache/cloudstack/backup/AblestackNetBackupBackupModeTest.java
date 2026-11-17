@@ -61,6 +61,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
@@ -536,6 +537,56 @@ public class AblestackNetBackupBackupModeTest {
 
     private void enabled() {
         when(depot.getConfigStringValue("kvm.incremental.backup", ConfigKey.Scope.Cluster, 40L)).thenReturn("true");
+    }
+
+    @Test public void runningQcow2UsesIncrementalWithGlobalFalseAndClusterTrue() {
+        assertIncrementalWithGlobalDisabled(false, false);
+    }
+
+    @Test public void stoppedQcow2UsesIncrementalWithGlobalFalseAndClusterTrue() {
+        assertIncrementalWithGlobalDisabled(true, false);
+    }
+
+    @Test public void runningRbdUsesIncrementalWithGlobalFalseAndClusterTrue() {
+        assertIncrementalWithGlobalDisabled(false, true);
+    }
+
+    @Test public void stoppedRbdUsesIncrementalWithGlobalFalseAndClusterTrue() {
+        assertIncrementalWithGlobalDisabled(true, true);
+    }
+
+    private void assertIncrementalWithGlobalDisabled(boolean stopped, boolean rbd) {
+        Object originalGlobal = ReflectionTestUtils.getField(BackupManager.KvmIncrementalBackup, "_value");
+        try {
+            ReflectionTestUtils.setField(BackupManager.KvmIncrementalBackup, "_value", null);
+            when(depot.getConfigStringValue("kvm.incremental.backup", ConfigKey.Scope.Global, null)).thenReturn("false");
+            assertFalse(BackupManager.KvmIncrementalBackup.value());
+            enabled();
+            if (stopped) {
+                when(vm.getState()).thenReturn(VirtualMachine.State.Stopped);
+                when(vm.getHostId()).thenReturn(null);
+                when(vm.getLastHostId()).thenReturn(30L);
+            }
+            if (rbd) {
+                when(pool.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+                when(poolTo.getPoolType()).thenReturn(Storage.StoragePoolType.RBD);
+            }
+            BackupVO previous = parent(rbd ? "RBD_DIFF" : "QCOW2");
+            previous.setHostId(30L);
+            when(backups.listByVmIdAndOffering(1L, 10L, 2L)).thenReturn(List.of(previous));
+
+            AblestackNetBackupTakeBackupCommand command = start(false);
+
+            assertEquals("INCREMENTAL", command.getBackupType());
+            assertEquals("previous-point", command.getParentCheckpointName());
+            assertEquals(previous.getExternalId(), command.getParentBackupPath());
+            ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.fromJson(command.getVolumeStagingManifest());
+            assertEquals(previous.getUuid(), manifest.getParentBackupUuid());
+            assertEquals("INCREMENTAL", manifest.getBackupType());
+            verify(jobs, times(stopped ? 1 : 0)).validateHostPolicyBackupChain(eq(vm), eq(previous), eq(host), eq("source-policy"), any());
+        } finally {
+            ReflectionTestUtils.setField(BackupManager.KvmIncrementalBackup, "_value", originalGlobal);
+        }
     }
 
     @Test public void hostPolicyBackupPassesQuiesceToTheVolumeCommandAndRetryDetails() {

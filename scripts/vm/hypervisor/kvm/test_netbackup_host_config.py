@@ -22,6 +22,7 @@ import contextlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
 import shlex
 import subprocess
@@ -51,6 +52,7 @@ class NetBackupConfigurationTest(unittest.TestCase):
             root = Path(temporary).resolve()
             args = self.arguments("--vm-schedule-backup", "false")
             args.kvm_hostname = "host-test"
+            args.kvm_host_id = "host-uuid"
             with patch.object(config, "SECRET_OUTPUT_DIR", root / "secrets with spaces"), \
                     patch.object(config, "SECRET_KEY_FILE", root / "host.key"):
                 path = root / "policy.conf"
@@ -59,6 +61,7 @@ class NetBackupConfigurationTest(unittest.TestCase):
             self.assertEqual([str(root / "secrets with spaces/secret.enc")], shlex.split(values["MOLD_SECRET_FILE"]))
             self.assertEqual([str(root / "host.key")], shlex.split(values["SECRET_KEY_FILE"]))
             self.assertEqual([args.policy_name], shlex.split(values["NETBACKUP_POLICY_NAME"]))
+            self.assertEqual([args.kvm_host_id], shlex.split(values["KVM_HOST_ID"]))
             self.assertNotIn("ADMIN_SECRETKEY=", path.read_text())
 
     def test_policy_secret_decryption_receives_its_configured_key_without_export(self):
@@ -130,11 +133,12 @@ load_admin_secretkey
         argv = ["netbackup-host-config.py", "--policy-name", "host-test", "--mold-url", "http://mold.test/client/api",
                 "--admin-apikey", "synthetic-key", "--admin-secretkey", "synthetic-secret",
                 "--netbackup-url", "https://netbackup.test/netbackup", "--netbackup-apikey", "synthetic-netbackup-key"]
-        with patch.object(sys, "argv", argv + list(options)), patch.object(config.socket, "gethostname", return_value="host-test"):
+        with patch.object(sys, "argv", argv + list(options)):
             return config.parse_args()
 
     def host(self, **values):
-        return dict(name="host-test", ipaddress="192.0.2.1", hypervisor="KVM", zoneid="zone", clusterid="cluster", **values)
+        return dict(dict(id="host-uuid", name="host-test", ipaddress="192.0.2.1", hypervisor="KVM",
+                         zoneid="zone", clusterid="cluster"), **values)
 
     def resolve(self, args, hosts=None, client="host-test", addresses=None):
         policy = self.policy()
@@ -155,6 +159,7 @@ load_admin_secretkey
                 self.assertIsNone(args.kvm_hostname)
                 self.assertEqual(("zone", "cluster"), self.resolve(args))
                 self.assertEqual("host-test", args.kvm_hostname)
+                self.assertEqual("host-uuid", args.kvm_host_id)
                 self.assertEqual("192.0.2.1", args.kvm_ip)
                 self.assertEqual(policy, args.policy_name)
                 self.assertEqual("host-test", args.netbackup_client)
@@ -165,6 +170,12 @@ load_admin_secretkey
                 args = self.arguments("--policy-name", "independent-policy")
                 self.assertEqual(("zone", "cluster"), self.resolve(args, client=client))
                 self.assertEqual("host-test", args.kvm_hostname)
+
+    def test_same_host_name_in_another_cluster_does_not_change_verified_uuid(self):
+        args = self.arguments()
+        hosts = [self.host(), self.host(id="other-host-uuid", ipaddress="192.0.2.2", clusterid="other-cluster")]
+        self.assertEqual(("zone", "cluster"), self.resolve(args, hosts=hosts))
+        self.assertEqual("host-uuid", args.kvm_host_id)
 
     def test_policy_client_on_another_machine_cannot_be_overridden_with_kvm_arguments(self):
         args = self.arguments("--kvm-hostname", "host-test", "--kvm-ip", "192.0.2.1")
@@ -180,7 +191,7 @@ load_admin_secretkey
     def test_missing_ambiguous_non_kvm_or_incomplete_mold_hosts_are_rejected(self):
         other = dict(self.host(), ipaddress="192.0.2.2")
         for hosts in ([], [other], [self.host(), self.host()], [dict(self.host(), hypervisor="VMware")],
-                      [dict(self.host(), clusterid="")]):
+                      [dict(self.host(), clusterid="")], [dict(self.host(), id="")]):
             with self.subTest(hosts=hosts), self.assertRaises(SystemExit):
                 self.resolve(self.arguments(), hosts=hosts)
 
@@ -258,7 +269,7 @@ load_admin_secretkey
 
     def test_plus_is_preserved_in_shell_config_and_transfer_hook_names(self):
         args = self.arguments("--policy-name", "poc+gfs_01")
-        args.kvm_hostname = "host-test"
+        self.resolve(args)
         with tempfile.TemporaryDirectory() as directory, patch.object(config, "HOOK_OUTPUT_DIR", Path(directory)):
             config.write_transfer_hooks(config.sanitize_name(args.policy_name))
             self.assertTrue((Path(directory) / "bpstart_notify.poc+gfs_01.mold-transfer").is_file())
@@ -293,31 +304,109 @@ load_policy_schedule_config
                                              directory, requested], capture_output=True, text=True, timeout=10)
                     self.assertEqual(0 if requested == configured else 1, result.returncode, result.stderr)
 
-    def test_runtime_selects_the_configured_mold_host_and_keeps_the_policy_name(self):
+    def candidate_lookup(self, host_id="host-uuid", host_name="host-test", inventories=None, candidates=None,
+                         client="192.0.2.1", local_addresses=("192.0.2.1",)):
         script = r'''
 set -euo pipefail
 source "$1"
 MOLD_VM_CACHE_FILE="$2/cache"
-KVM_HOSTNAME="$3"
-CLIENT_NAME=netbackup-client
+TEST_ROOT="$2"
+KVM_HOST_ID="$3"
+KVM_HOSTNAME="$4"
+CLIENT_NAME="$5"
 POLICY_NAME=prod-weekly
-VM_SCHEDULE_BACKUP=true
+MOLD_LIST_VMS_API_URL=http://mold.test/client/api
 log() { :; }
 invoke_mold_api() {
-  printf '%s\n' "$@" > "${MOLD_VM_CACHE_FILE}.request"
-  printf '%s\n' '{"listexternalbackupcandidatesresponse":{"externalbackupcandidates":{"selectionmode":"SCHEDULE","candidate":[]}}}'
+  printf '%s\n' "$@" >> "${MOLD_VM_CACHE_FILE}.request"
+  case "$3" in
+    listHosts) cat "$TEST_ROOT/hosts-${@: -1}.json" ;;
+    listExternalBackupCandidates) cat "$TEST_ROOT/candidates.json" ;;
+    *) return 1 ;;
+  esac
 }
 cache_mold_virtual_machines
-cat "${MOLD_VM_CACHE_FILE}.request"
+printf '%s\n%s' "$KVM_HOST_ID" "$KVM_HOSTNAME"
 '''
-        for host, expected in (("host-test", "host-test"), ("", "netbackup-client")):
-            with self.subTest(host=host), tempfile.TemporaryDirectory() as directory:
-                result = subprocess.run(["bash", "-c", script, "test", str(Path(__file__).with_name("netbackup-host-common.sh")),
-                                         directory, host], capture_output=True, text=True, timeout=10)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            ip = root / "ip"
+            interfaces = json.dumps([{"addr_info": [{"local": address} for address in local_addresses]}])
+            ip.write_text("#!/bin/sh\nprintf '%s\\n' " + shlex.quote(interfaces) + "\n")
+            ip.chmod(0o755)
+            for page, inventory in enumerate([self.host()] if inventories is None else inventories, start=1):
+                (root / f"hosts-{page}.json").write_text(json.dumps({"listhostsresponse": {"host": inventory}}))
+            (root / "candidates.json").write_text(json.dumps({"listexternalbackupcandidatesresponse": {
+                "externalbackupcandidates": {"selectionmode": "CONFIG", "candidate": candidates or []}}}))
+            result = subprocess.run(["bash", "-c", script, "test", str(Path(__file__).with_name("netbackup-host-common.sh")),
+                                     directory, host_id, host_name, client], capture_output=True, text=True, timeout=10,
+                                    env=dict(os.environ, PATH=str(root) + os.pathsep + os.environ["PATH"]))
+            request = root / "cache.request"
+            return result, request.read_text().splitlines() if request.exists() else []
+
+    def test_runtime_verifies_current_uuid_for_identically_named_hosts_and_keeps_policy_name(self):
+        for host_id in ("cluster-a-host-uuid", "cluster-b-host-uuid"):
+            with self.subTest(host_id=host_id):
+                inventory = [self.host(id=host_id), self.host(id="other-host-uuid", ipaddress="192.0.2.2", clusterid="other-cluster")]
+                result, params = self.candidate_lookup(host_id=host_id, inventories=[inventory])
                 self.assertEqual(0, result.returncode, result.stderr)
-                params = result.stdout.splitlines()
-                self.assertEqual(expected, params[params.index("hostname") + 1])
+                self.assertEqual(host_id, params[params.index("hostid") + 1])
                 self.assertEqual("prod-weekly", params[params.index("policyid") + 1])
+                self.assertNotIn("hostname", params)
+                self.assertIn("listHosts", params)
+                self.assertNotIn("name", params)
+
+    def test_runtime_refreshes_renamed_reregistered_and_legacy_host_identity(self):
+        for saved_id, saved_name in (("host-uuid", "old-name"), ("deleted-host-uuid", "host-test"), ("", "")):
+            with self.subTest(saved_id=saved_id, saved_name=saved_name):
+                inventory = [self.host(id="current-uuid", name="current-host"),
+                             self.host(id=saved_id or "other-uuid", name=saved_name or "other-host", ipaddress="192.0.2.2")]
+                result, params = self.candidate_lookup(host_id=saved_id, host_name=saved_name, inventories=[inventory])
+                self.assertEqual(0, result.returncode, result.stderr)
+                self.assertEqual("current-uuid", params[params.index("hostid") + 1])
+                self.assertEqual(["current-uuid", "current-host"], result.stdout.splitlines())
+                self.assertNotIn("hostname", params)
+
+    def test_runtime_rejects_missing_ambiguous_or_incomplete_hosts_before_selection(self):
+        for inventory in ([], [self.host(), self.host(id="other-uuid", clusterid="other-cluster")],
+                          [self.host(id="")], [self.host(hypervisor="VMware")], "invalid"):
+            with self.subTest(inventory=inventory):
+                result, params = self.candidate_lookup(host_id="", inventories=[inventory])
+                self.assertNotEqual(0, result.returncode)
+                self.assertNotIn("listExternalBackupCandidates", params)
+
+    def test_runtime_checks_later_pages_before_accepting_host_identity(self):
+        first = [self.host()] + [self.host(name="other-host", ipaddress="192.0.2.99")] * 499
+        for second, accepted in (([], True), ([self.host(id="second-host-uuid")], False)):
+            with self.subTest(accepted=accepted):
+                result, params = self.candidate_lookup(host_id="", inventories=[first, second])
+                self.assertEqual(accepted, result.returncode == 0, result.stderr)
+                self.assertEqual(2, params.count("listHosts"))
+                self.assertEqual(accepted, "listExternalBackupCandidates" in params)
+
+    def test_runtime_cannot_accept_a_saved_uuid_when_client_is_not_local(self):
+        for addresses in ((), ("192.0.2.2",), ("127.0.0.1",)):
+            with self.subTest(addresses=addresses):
+                result, params = self.candidate_lookup(local_addresses=addresses)
+                self.assertNotEqual(0, result.returncode)
+                self.assertNotIn("listExternalBackupCandidates", params)
+                self.assertNotIn("listHosts", params)
+
+    def test_runtime_inventory_failure_cannot_fall_back_to_the_saved_uuid(self):
+        result, params = self.candidate_lookup(inventories=[])
+        self.assertNotEqual(0, result.returncode)
+        self.assertNotIn("listExternalBackupCandidates", params)
+
+    def test_candidate_response_cannot_redirect_execution_to_another_host_uuid(self):
+        candidate = dict(virtualmachineid="vm-uuid", instancename="i-2-1-VM", hostid="host-uuid")
+        for host_id in ("host-uuid", "other-host-uuid"):
+            with self.subTest(host_id=host_id):
+                result, _ = self.candidate_lookup(host_id=host_id, inventories=[[self.host(id=host_id)]], candidates=[candidate])
+                self.assertEqual(host_id == "host-uuid", result.returncode == 0)
+
+    def assert_cluster_incremental_update(self, update, args, value):
+        update.assert_called_once_with("kvm.incremental.backup", value, args.mold_url, args.admin_apikey,
+                                       args.admin_secretkey, cluster_id="cluster-id")
 
     def configure(self, args, current_incremental="true", chain="8", global_incremental=None, global_plugins="ablestack-netbackup", zone_plugins="ablestack-netbackup", global_schedule="false"):
         if global_incremental is None:
@@ -354,7 +443,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         self.assertIsNone(args.backup_chain_size)
         restart, read, update = self.configure(args, chain="25")
         self.assertFalse(restart)
-        update.assert_not_called()
+        self.assert_cluster_incremental_update(update, args, "true")
         self.assertNotIn("kvm.backup.chain.size", [call.args[0] for call in read.call_args_list])
 
     def test_interactive_selection_asks_mode_before_host_filters(self):
@@ -416,8 +505,9 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         args = self.arguments("--vm-schedule-backup", "true")
         restart, read, update = self.configure(args)
         self.assertFalse(restart)
-        update.assert_called_once_with(config.NETBACKUP_VM_SCHEDULE_CONFIG_NAME, "true",
-                                       args.mold_url, args.admin_apikey, args.admin_secretkey)
+        self.assertEqual([config.NETBACKUP_VM_SCHEDULE_CONFIG_NAME, "kvm.incremental.backup"],
+                         [call.args[0] for call in update.call_args_list])
+        self.assertEqual("true", update.call_args_list[0].args[1])
 
     def test_omitted_noninteractive_mode_retains_current_mold_value(self):
         for current in ("true", "false"):
@@ -429,7 +519,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
                 self.assertEqual(current == "true", args.vm_schedule_backup)
                 restart, read, update = self.configure(args, global_schedule=current)
                 self.assertFalse(restart)
-                update.assert_not_called()
+                self.assert_cluster_incremental_update(update, args, "true")
 
     def test_interactive_default_comes_from_mold_and_mentions_global_scope(self):
         args = self.arguments()
@@ -454,6 +544,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
             with self.subTest(enabled=enabled), patch.object(sys.stdin, "isatty", return_value=False):
                 args = self.arguments("--vm-schedule-backup", enabled)
                 config.configure_vm_selection(args)
+                self.resolve(args)
                 config.write_config_file(path, args)
                 self.assertEqual(("i-2-1-VM,i-2-2-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
                 self.assertNotIn("VM_SCHEDULE_BACKUP=", path.read_text())
@@ -462,6 +553,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         include = "ERP Server, Finance  DB, 팀 업무 VM, Accounting 'DB' VM"
         exclude = "Finance  DB"
         args = self.arguments("--vm-schedule-backup", "false", "--vm-include", include, "--vm-exclude", exclude)
+        self.resolve(args)
         path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
         config.write_config_file(path, args)
         self.assertEqual({"VM_INCLUDE": include, "VM_EXCLUDE": exclude}, config.read_vm_selection_filters(args))
@@ -484,6 +576,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         template = config.CONFIG_OUTPUT_DIR / "old-template.conf"
         template.write_text('VM_SCHEDULE_BACKUP=true\nVM_INCLUDE="*"\nVM_EXCLUDE="*"\n')
         args = self.arguments("--vm-schedule-backup", "false", "--vm-exclude", "")
+        self.resolve(args)
         with patch.object(sys.stdin, "isatty", return_value=False):
             config.configure_vm_selection(args)
         path = config.CONFIG_OUTPUT_DIR / "new-policy.conf"
@@ -492,23 +585,54 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         self.assertNotIn("VM_SCHEDULE_BACKUP=", path.read_text())
         self.assertIn('VM_EXCLUDE=""', path.read_text())
 
-    def test_full_mode_updates_global_and_cluster_flags_and_requires_restart(self):
+    def test_full_mode_updates_only_cluster_flag_and_requires_restart(self):
         args = self.arguments("--incremental-backup", "false")
         restart, read, update = self.configure(args)
         self.assertTrue(restart)
-        self.assertEqual(2, update.call_count)
-        self.assertEqual([("kvm.incremental.backup", "false"), ("kvm.incremental.backup", "false")],
-                         [call.args[:2] for call in update.call_args_list])
-        self.assertEqual({}, update.call_args_list[0].kwargs)
-        self.assertEqual({"cluster_id": "cluster-id"}, update.call_args_list[1].kwargs)
+        self.assert_cluster_incremental_update(update, args, "false")
         self.assertNotIn("kvm.backup.chain.size", [call.args[0] for call in read.call_args_list])
 
-    def test_global_flag_is_updated_even_when_cluster_already_matches(self):
+    def test_global_flag_is_preserved_when_cluster_already_matches(self):
         args = self.arguments("--incremental-backup", "false")
         restart, _, update = self.configure(args, current_incremental="false", global_incremental="true")
-        self.assertTrue(restart)
-        update.assert_called_once_with("kvm.incremental.backup", "false", args.mold_url, args.admin_apikey,
-                                       args.admin_secretkey)
+        self.assertFalse(restart)
+        self.assert_cluster_incremental_update(update, args, "false")
+
+    def test_configuring_multiple_clusters_pins_each_choice_without_changing_global(self):
+        for initial_global in ("false", "true"):
+            with self.subTest(initial_global=initial_global):
+                args = self.arguments("--vm-schedule-backup", "true")
+                values = {"backup.framework.enabled": "true", "backup.framework.provider.plugin": "ablestack-netbackup",
+                          "kvm.incremental.backup": initial_global, "backup.plugin.netbackup.url": args.netbackup_url,
+                          "backup.plugin.netbackup.apikey": args.netbackup_apikey,
+                          config.NETBACKUP_VM_SCHEDULE_CONFIG_NAME: "true"}
+                overrides = {}
+
+                def read_value(name, *unused, cluster_id=None):
+                    return overrides.get(cluster_id, values[name]) if cluster_id else values[name]
+
+                def write_value(name, value, *unused, cluster_id=None):
+                    self.assertEqual("kvm.incremental.backup", name)
+                    self.assertIsNotNone(cluster_id)
+                    overrides[cluster_id] = value
+
+                with patch.object(config, "get_configuration_value", side_effect=read_value), \
+                        patch.object(config, "update_configuration_value", side_effect=write_value), \
+                        contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                    restart_a = config.ensure_backup_framework_configuration("zone", "cluster-a", args)
+                    args.incremental_backup = False
+                    restart_b = config.ensure_backup_framework_configuration("zone", "cluster-b", args)
+                    self.assertFalse(config.ensure_backup_framework_configuration("zone", "cluster-b", args))
+
+                self.assertEqual(initial_global == "false", restart_a)
+                self.assertEqual(initial_global == "true", restart_b)
+                self.assertEqual(initial_global, values["kvm.incremental.backup"])
+                self.assertEqual({"cluster-a": "true", "cluster-b": "false"}, overrides)
+                # Simulate a later administrator change to the Global default.
+                values["kvm.incremental.backup"] = "true" if initial_global == "false" else "false"
+                self.assertEqual("true", read_value("kvm.incremental.backup", cluster_id="cluster-a"))
+                self.assertEqual("false", read_value("kvm.incremental.backup", cluster_id="cluster-b"))
+                self.assertEqual(values["kvm.incremental.backup"], read_value("kvm.incremental.backup", cluster_id="unconfigured-cluster"))
 
     def test_cluster_override_is_updated_even_when_global_already_matches(self):
         args = self.arguments("--incremental-backup", "false")
@@ -518,19 +642,19 @@ cat "${MOLD_VM_CACHE_FILE}.request"
                                        args.admin_secretkey, cluster_id="cluster-id")
 
     def test_rerunning_full_mode_is_idempotent(self):
-        restart, _, update = self.configure(self.arguments("--incremental-backup", "false"), current_incremental="false")
+        args = self.arguments("--incremental-backup", "false")
+        restart, _, update = self.configure(args, current_incremental="false")
         self.assertFalse(restart)
-        update.assert_not_called()
+        self.assert_cluster_incremental_update(update, args, "false")
 
     def test_reenabling_incremental_applies_the_requested_chain_size(self):
         args = self.arguments("--incremental-backup", "true", "--backup-chain-size", "4")
         restart, _, update = self.configure(args, current_incremental="false")
         self.assertTrue(restart)
-        self.assertEqual([("kvm.incremental.backup", "true"), ("kvm.incremental.backup", "true"), ("kvm.backup.chain.size", "4")],
+        self.assertEqual([("kvm.incremental.backup", "true"), ("kvm.backup.chain.size", "4")],
                          [call.args[:2] for call in update.call_args_list])
-        self.assertNotIn("cluster_id", update.call_args_list[0].kwargs)
-        self.assertEqual("cluster-id", update.call_args_list[1].kwargs["cluster_id"])
-        self.assertNotIn("cluster_id", update.call_args_list[2].kwargs)
+        self.assertEqual("cluster-id", update.call_args_list[0].kwargs["cluster_id"])
+        self.assertNotIn("cluster_id", update.call_args_list[1].kwargs)
 
     def test_chain_change_alone_does_not_require_restart(self):
         restart, _, update = self.configure(self.arguments("--backup-chain-size", "6"))
@@ -563,7 +687,7 @@ cat "${MOLD_VM_CACHE_FILE}.request"
     def test_full_configuration_never_updates_chain_even_if_validation_is_bypassed(self):
         args = self.arguments("--incremental-backup", "false", "--backup-chain-size", "7")
         _, read, update = self.configure(args, current_incremental="false")
-        update.assert_not_called()
+        self.assert_cluster_incremental_update(update, args, "false")
         self.assertNotIn("kvm.backup.chain.size", [call.args[0] for call in read.call_args_list])
 
     def test_local_directory_preflight_and_creation_use_the_same_filesystem_validator(self):
@@ -683,12 +807,13 @@ cat "${MOLD_VM_CACHE_FILE}.request"
         self.assertLess(events.index("mount"), events.index("key"))
         key.assert_called_once()
         mounted.assert_called_once()
-        update.assert_not_called()
+        self.assert_cluster_incremental_update(update, self.arguments(), "true")
         offering.assert_called_once()
         output.assert_called_once()
 
     def test_host_reconfiguration_migrates_the_daemon_to_a_timer_and_is_retryable(self):
         args = self.arguments("--vm-schedule-backup", "false")
+        self.resolve(args)
         with patch.object(sys.stdin, "isatty", return_value=False):
             config.configure_vm_selection(args)
         with tempfile.TemporaryDirectory() as directory, contextlib.ExitStack() as stack:

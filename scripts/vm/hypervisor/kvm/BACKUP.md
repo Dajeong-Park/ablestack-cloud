@@ -651,7 +651,7 @@ NetBackup의 [netbackup-host-config.py](netbackup-host-config.py), Veeam의 [vee
 아래 옵션 주의사항은 구성 도구를 실제로 재실행하는 경우에 적용한다.
 
 - `--vm-schedule-backup`과, `false`일 때의 include/exclude를 기존 운영 값으로 명시한다.
-- `--incremental-backup`도 현재 적용할 값으로 명시한다. 생략하면 기본 `true`가 Global·해당 Cluster에 반영될 수 있다.
+- `--incremental-backup`도 현재 적용할 값으로 명시한다. 생략하면 기본 `true`가 해당 Cluster에만 반영된다. 두 도구 모두 Global 증분값을 변경하지 않는다.
 - 체인 길이를 변경하지 않으면 `--backup-chain-size`는 생략하여 기존 `kvm.backup.chain.size`를 유지한다.
 - Veeam 기본 구성을 사용하면 `--agent-payload-path`를 생략하고 출력된 새 마커 디렉터리로 부모 Job의 SelectedFiles를 변경한다.
   명시적 경로를 유지할 경우에는 해당 옵션을 같은 값으로 지정한다.
@@ -660,9 +660,10 @@ NetBackup의 [netbackup-host-config.py](netbackup-host-config.py), Veeam의 [vee
   기존 백업 이미지나 복원 시점에 저장된 원본 파일 경로는 변경하지 않는다.
 
 구성 도구가 비동적 설정 변경으로 Mold 재기동을 요구하면 안내에 따라 재기동하고 같은 명령을 재실행한다.
-`backup.framework.enabled`와 `kvm.incremental.backup`의 대상 범위 값이 모두 요청값과 같으면
-업데이트를 건너뛰고 관리 서버 재기동 안내 없이 오퍼링·Host 구성을 계속한다.
-전역값이 같더라도 대상 Zone·Cluster 값이 달라 실제로 변경하면 재기동 안내가 나올 수 있다.
+`backup.framework.enabled`와 `kvm.incremental.backup`의 대상 범위 유효값이 모두 요청값과 같으면
+관리 서버 재기동 안내 없이 오퍼링·Host 구성을 계속한다.
+NetBackup·Veeam은 상속한 유효값이 요청값과 같아도 Cluster 값을 명시적으로 저장하며 Global 증분값은 변경하지 않는다.
+대상 Zone·Cluster의 유효값이 달라 실제 동작을 변경하면 재기동 안내가 나올 수 있다.
 NetBackup은 `bp.conf`를 갱신하면서 Client를 재시작할 수 있고,
 Veeam은 Agent 설정이 바뀌면 Agent 서비스를 재시작할 수 있다.
 두 도구 모두 복원 감시를 다시 활성화하므로 모든 Host 구성이 끝나기 전에는 외부 UI 복원을 새로 시작하지 않는다.
@@ -739,7 +740,7 @@ VM 스케줄 사용 여부와 `--incremental-backup`의 Full/증분 선택은 �
 | 판단 항목 | 운영 중 기준 | 사전 구성의 역할 |
 | --- | --- | --- |
 | VM별 스케줄 사용 여부 | 해당 솔루션의 Mold 글로벌 `vm.schedule.enabled` | 입력값으로 글로벌 설정 갱신, 생략 시 현재 Mold 값 유지 |
-| Full/증분 선택 | Mold의 `kvm.incremental.backup` 유효값 | `--incremental-backup`으로 Mold 전역값과 대상 Cluster 값을 설정 |
+| Full/증분 선택 | Mold의 `kvm.incremental.backup` 유효값 | `--incremental-backup`으로 대상 Cluster 값만 명시적으로 저장하며 전역값 유지 |
 | 증분 체인 길이 상한 | Mold의 `kvm.backup.chain.size` | 증분 사용 시 명시한 값으로 Mold 설정 갱신 |
 
 실행 중 호스트 구성 파일의 모드·증분·체인 값으로 Mold 글로벌 설정을 다시 덮어쓰지 않는다.
@@ -1005,6 +1006,12 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
    **정책 이름은 Mold Host 이름과 달라도 된다.** 사전구성의 `--policy-name`에는 NetBackup에 미리 생성한 실제 정책명을 대소문자까지 그대로 입력한다.
    정책에는 Client가 정확히 하나 있어야 한다. 사전구성 도구는 Client의 DNS/IP가 실행 중인 KVM Host의 실제 인터페이스와 일치하고,
    같은 IP를 가진 Mold KVM Host가 하나인지 확인한 뒤 Host·Zone·Cluster를 자동으로 결정한다.
+   `listHosts` 응답의 `id`인 Mold Host UUID(`cloud.host.uuid`)를 호스트별 구성 파일의 `KVM_HOST_ID`에 저장한다.
+   Hook은 실행할 때마다 Client의 DNS/IP와 실제 로컬 인터페이스를 확인하고 현재 Mold 등록 정보를 조회한다.
+   정확히 하나의 KVM Host가 일치하면 실행 중 UUID와 이름을 최신값으로 갱신하고 `hostid`로 요청한다.
+   따라서 Host 이름 변경, 삭제 후 재등록, UUID 없는 기존 구성 파일에서도 저장한 이름이나 UUID에 의존하지 않는다.
+   구성 파일은 사전 구성 시 확인한 값을 보존하며 실행 시 갱신값으로 파일을 덮어쓰지 않는다.
+   Client가 로컬 Host를 가리키지 않거나 등록 정보가 없거나 둘 이상 일치하면 백업 요청 전에 중단한다.
    Client가 없거나 여러 개이거나, 다른 서버를 가리키거나, Mold Host를 하나로 특정할 수 없으면 자격증명 생성·Mold 설정 변경 전에 중단한다.
    `--kvm-hostname`·`--kvm-ip`는 생략한다. 기존 호출에서 지정했다면 자동 검증 결과와 같은지 추가로 확인한다.
    정책명은 최대 128자이며 영문·숫자와 `. _ - +`를 사용할 수 있다. 공백과 다른 특수문자는 허용하지 않으며 `-`·`.`으로 시작하거나 `.`으로 끝낼 수 없다.
@@ -1043,8 +1050,9 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
    VM의 표시 이름과 Host에서 사용하는 `i-...-VM` 인스턴스 이름을 구분하여 입력한다.
    실제 키를 명령행에 입력할 때는 Shell history와 명령행 접근 권한을 관리한다.
 6. 스크립트는 Mold 글로벌 `backup.plugin.netbackup.vm.schedule.enabled`를 선택값으로 설정하고 Zone·Cluster 설정을 확인한 뒤 NetBackup 오퍼링을 등록한다.
-   `kvm.incremental.backup`의 전역 기본값과 해당 Cluster 값을 선택한 값으로 설정한다.
-   다른 Cluster의 개별 설정은 유지되며, 개별 설정이 없는 Cluster는 전역 기본값을 따른다.
+   `kvm.incremental.backup`은 해당 Cluster 값만 선택한 값으로 명시적으로 저장한다. 전역 기본값과 다른 Cluster 값은 변경하지 않는다.
+   현재 유효값이 요청값과 같아도 Cluster 값을 저장하여 이후 전역 기본값 변경의 영향을 받지 않게 한다.
+   Global이 `false`여도 대상 Cluster가 `true`이면 정상 부모와 체인 조건을 충족할 때 증분 백업을 선택한다.
    `kvm.backup.chain.size`는 여러 백업 공급자가 공유하는 전역값이다.
    관리 서버 재기동 안내와 함께 중단되면 Mold를 재기동하고 같은 명령을 다시 실행한다.
 7. 사전·사후 백업 스크립트, 암호화된 Mold 인증정보와 복원 감시 서비스를 Host에 구성한다.
@@ -2272,7 +2280,7 @@ Veeam의 기존 환경 생성·설치·설정용 셸 스크립트는 `veeam-host
 | `--mold-url URL` | Mold API 주소. NetBackup 필수, Veeam 생략 시 Agent의 `agent.properties`에서 조회 |
 | `--vm-schedule-backup true\|false` | 해당 솔루션의 Mold 글로벌 스케줄 모드 갱신. 생략 시 현재 Mold 값 유지(최초 NetBackup `true`, Veeam `false`), Host conf에 모드 저장하지 않음 |
 | `--vm-include LIST`, `--vm-exclude LIST` | `false`일 때 대상/제외 필터. 기본 `*`/빈 값. 터미널에서 생략 시 입력받음 |
-| `--incremental-backup true\|false` | 최초 구성할 Full/증분 정책. 기본 `true`. Mold Global 및 해당 Cluster에 반영 |
+| `--incremental-backup true\|false` | 최초 구성할 Full/증분 정책. 기본 `true`. 두 도구 모두 해당 Cluster 값만 명시적으로 저장하며 Global 유지 |
 | `--backup-chain-size N` | 증분일 때만 지정. 생략하면 기존 `kvm.backup.chain.size` 유지, 제품 기본값 `8` |
 
 `--vm-schedule-backup true`는 필터를 묻지 않고 기존 필터를 보존한다(최초 `VM_INCLUDE=*`, `VM_EXCLUDE=`).
@@ -4012,9 +4020,9 @@ Job의 `VEEAM_RESTORE_WATCH_WINDOW_MIN`은 해당 Job의 조회 범위로 적용
 구성은 다음 순서로 진행한다.
 
 1. 입력값, Agent 설치, Host/Zone/Cluster, 공통 staging 마운트를 확인한다.
-2. Global/Zone의 백업 프레임워크와 공급자를 확인하고 선택한 증분 정책을 Global/Cluster에 반영한다.
+2. Global/Zone의 백업 프레임워크와 공급자를 확인하고 선택한 증분 정책을 해당 Cluster에만 명시적으로 저장한다. Global 증분값은 유지한다.
 3. `backup.framework.enabled` 또는 `kvm.incremental.backup`을 실제로 변경한 경우에만 관리 서버 재기동을 안내하고 중단한다.
-   재기동 후 같은 명령을 다시 실행한다. 대상 범위의 값이 모두 같아 변경을 건너뛰면 안내 없이 다음 단계로 진행한다.
+   재기동 후 같은 명령을 다시 실행한다. 대상 범위의 유효값이 모두 같으면 Cluster 증분값을 명시적으로 저장하고 안내 없이 다음 단계로 진행한다.
 4. 같은 Zone·`ablestack-veeam`·`externalid=veeam` 오퍼링이 있으면 재사용한다. 없으면 생성하고 완료를 확인한다.
 5. 패키지 런타임의 존재를 확인하고 systemd 파일·디렉터리를 준비한다. 암호화한 API secret, Job conf, Pre/Post Hook과 업로드용 래퍼를 생성한다.
 6. Agent의 `timeoutPrePost`를 설정하고 변경 시 Agent 서비스를 재시작한다.

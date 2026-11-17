@@ -66,6 +66,7 @@ POLICY_NAME="${POLICY_NAME:-}"
 SCHEDULE_NAME="${SCHEDULE_NAME:-}"
 CLIENT_NAME="${CLIENT_NAME:-}"
 KVM_HOSTNAME="${KVM_HOSTNAME:-}"
+KVM_HOST_ID="${KVM_HOST_ID:-}"
 SESSION_TIMESTAMP="${SESSION_TIMESTAMP:-}"
 JOB_STATUS="${JOB_STATUS:-}"
 NETBACKUP_REQUIRE_JOB_SUCCESS="${NETBACKUP_REQUIRE_JOB_SUCCESS:-true}"
@@ -753,6 +754,7 @@ load_policy_schedule_config() {
   VM_EXCLUDE=""
   NETBACKUP_PARENT_PAYLOAD_PATH=""
   KVM_HOSTNAME=""
+  KVM_HOST_ID=""
   NETBACKUP_POLICY_NAME=""
   MOLD_URL=""
   ADMIN_APIKEY=""
@@ -1143,12 +1145,40 @@ wait_for_mold_async_job() {
   done
 }
 
+resolve_mold_host_identity() {
+  local identity_helper="${BASH_SOURCE[0]%/*}/netbackup_host_identity.py"
+  local addresses
+  addresses="$(python3 "$identity_helper" client "$CLIENT_NAME")" || \
+    fail "Cannot verify the local NetBackup Client identity; no backups were dispatched."
+  local page=1 matches=0 resolved_id="" resolved_name="" response rows count host_id host_name
+  while true; do
+    response="$(invoke_mold_api "${MOLD_LIST_VMS_API_METHOD}" "${MOLD_LIST_VMS_API_URL}" \
+      listHosts type Routing listall true pagesize 500 page "$page")" || fail "Cannot read current Mold Host inventory."
+    response="$(printf '%s' "$response" | python3 "$identity_helper" inventory "$addresses")" || \
+      fail "Cannot verify current Mold Host identity; no backups were dispatched."
+    IFS=$'\t' read -r rows count host_id host_name <<< "$response"
+    matches=$((matches + count))
+    if (( count > 0 )); then resolved_id="$host_id"; resolved_name="$host_name"; fi
+    (( matches <= 1 )) || fail "NetBackup Client matches multiple Mold KVM Hosts; check the Client DNS/IP and Host registrations."
+    if (( rows < 500 )); then break; fi
+    page=$((page + 1))
+    (( page <= 10000 )) || fail "Mold Host inventory pagination did not terminate."
+  done
+  [[ "$matches" -eq 1 ]] || fail "The local NetBackup Client does not match a registered Mold KVM Host."
+  if [[ "$KVM_HOST_ID" != "$resolved_id" || "$KVM_HOSTNAME" != "$resolved_name" ]]; then
+    log -ne "Refreshed Mold Host identity host=${resolved_name} hostId=${resolved_id}"
+  fi
+  KVM_HOST_ID="$resolved_id"
+  KVM_HOSTNAME="$resolved_name"
+}
+
 cache_mold_virtual_machines() {
   [[ -n "${MOLD_VM_CACHE_FILE}" ]] || fail "MOLD_VM_CACHE_FILE is not initialized."
   local response
-  local mold_host="${KVM_HOSTNAME:-$CLIENT_NAME}"
-  log -ne "Calling Mold listExternalBackupCandidates host=${mold_host} client=${CLIENT_NAME} policy=${POLICY_NAME}"
-  local -a selection_args=("provider" "ablestack-netbackup" "hostname" "$mold_host" "policyid" "$POLICY_NAME")
+  resolve_mold_host_identity
+  local mold_host="$KVM_HOSTNAME"
+  log -ne "Calling Mold listExternalBackupCandidates host=${mold_host} hostId=${KVM_HOST_ID} client=${CLIENT_NAME} policy=${POLICY_NAME}"
+  local -a selection_args=("provider" "ablestack-netbackup" "hostid" "$KVM_HOST_ID" "policyid" "$POLICY_NAME")
   selection_args+=("vminclude" "${VM_INCLUDE-*}" "vmexclude" "${VM_EXCLUDE-}")
   response="$(invoke_mold_api \
     "${MOLD_LIST_NETBACKUP_CANDIDATES_API_METHOD}" \
@@ -1170,6 +1200,7 @@ try:
         require(isinstance(candidate, dict))
         for key in ("virtualmachineid", "instancename", "hostid"):
             require(isinstance(candidate.get(key), str) and candidate[key].strip())
+        require(candidate["hostid"] == sys.argv[1])
         require(candidate["virtualmachineid"] not in seen)
         seen.add(candidate["virtualmachineid"])
         if mode == "SCHEDULE":
@@ -1180,7 +1211,7 @@ try:
     print(json.dumps(response))
 except (ValueError, KeyError, TypeError, AssertionError):
     sys.exit("Invalid Mold schedule response; configuration fallback is forbidden")
-' > "${MOLD_VM_CACHE_FILE}" || fail "Mold schedule response validation failed; no backups were dispatched"
+' "$KVM_HOST_ID" > "${MOLD_VM_CACHE_FILE}" || fail "Mold schedule response validation failed; no backups were dispatched"
   log -ne "Mold target selection mode=$(lookup_mold_candidate_field "" selectionmode)"
 }
 
