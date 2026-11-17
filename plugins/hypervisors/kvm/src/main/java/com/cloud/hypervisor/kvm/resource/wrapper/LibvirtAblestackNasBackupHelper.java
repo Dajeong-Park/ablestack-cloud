@@ -115,14 +115,14 @@ class LibvirtAblestackNasBackupHelper {
         String[] scriptCommand = buildBackupScriptCommand(command, diskPaths, executionMode);
         LOGGER.debug("Executing NAS backup script command=[{}]", String.join(" ", scriptCommand));
         commands.add(scriptCommand);
-        final int commandWaitSeconds = command.getWait();
+        final int dataTimeoutSeconds = command.getTimeout();
         final long resourceTimeoutMillis = resource.getCmdsTimeout();
-        final long effectiveTimeoutMillis = commandWaitSeconds > 0 ? TimeUnit.SECONDS.toMillis(commandWaitSeconds) : resourceTimeoutMillis;
+        final long effectiveTimeoutMillis = dataTimeoutSeconds > 0 ? TimeUnit.SECONDS.toMillis(dataTimeoutSeconds) : resourceTimeoutMillis;
         LOGGER.info(
-                "Executing running VM NAS backup for vm=[{}], commandWaitSeconds=[{}], "
+                "Executing running VM NAS backup for vm=[{}], dataTimeoutSeconds=[{}], "
                         + "resourceCmdsTimeoutMillis=[{}], effectiveTimeoutMillis=[{}]",
                 command.getVmName(),
-                commandWaitSeconds,
+                dataTimeoutSeconds,
                 resourceTimeoutMillis,
                 effectiveTimeoutMillis
         );
@@ -205,7 +205,7 @@ class LibvirtAblestackNasBackupHelper {
                 "-q", command.getQuiesce() != null && command.getQuiesce() ? "true" : "false",
                 "-f", CollectionUtils.isNullOrEmpty(command.getBackupFiles()) ? "" : String.join(",", command.getBackupFiles()),
                 "-d", diskPaths.isEmpty() ? "" : String.join(",", diskPaths),
-                "--data-operation-timeout-seconds", String.valueOf(command.getWait()),
+                "--data-operation-timeout-seconds", String.valueOf(command.getTimeout()),
                 "--bandwidth-limit-mbps", String.valueOf(command.getBandwidthLimitMbps())
         };
     }
@@ -292,7 +292,7 @@ class LibvirtAblestackNasBackupHelper {
                     System.currentTimeMillis() - startedAt);
 
             try {
-                final long effectiveTimeoutMillis = command.getWait() > 0 ? TimeUnit.SECONDS.toMillis(command.getWait()) : resource.getCmdsTimeout();
+                final long effectiveTimeoutMillis = command.getTimeout() > 0 ? TimeUnit.SECONDS.toMillis(command.getTimeout()) : resource.getCmdsTimeout();
                 waitForBackup(command, dummyVmName, effectiveTimeoutMillis, startedAt);
                 LOGGER.info("{} phase=[BACKUP_JOB_COMPLETED], vm=[{}], dummyVm=[{}], backupType=[{}], checkpoint=[{}], elapsedMs=[{}]",
                         BACKUP_TRACE, command.getVmName(), dummyVmName, command.getBackupType(), command.getCheckpointName(),
@@ -361,14 +361,14 @@ class LibvirtAblestackNasBackupHelper {
             java.util.Map<String, Object> payload = new java.util.LinkedHashMap<>();
             payload.put("plan", plan); payload.put("paths", sources);
             payload.put("destination", destination.toString()); payload.put("files", command.getBackupFiles());
-            payload.put("timeout", command.getWait() > 0 ? command.getWait() : 43200);
+            payload.put("timeout", command.getTimeout() > 0 ? command.getTimeout() : 43200);
             payload.put("bandwidth", command.getBandwidthLimitMbps() == null ? 0 : command.getBandwidthLimitMbps());
             payloadFile = Files.createTempFile("ablestack-offline-raw-", ".json");
             Files.writeString(payloadFile, new com.google.gson.Gson().toJson(payload));
             Path helper = Path.of(resource.getAbleCvtBackupPath()).getParent().resolve("ablestack_shared_raw.py");
             var result = Script.executePipedCommands(List.<String[]>of(new String[] {"python3", helper.toString(),
                     "--action", "EXPORT_NAS", "--plan-file", payloadFile.toString()}),
-                    TimeUnit.SECONDS.toMillis(command.getWait() > 0 ? command.getWait() + 60L : 43260L));
+                    TimeUnit.SECONDS.toMillis(command.getTimeout() > 0 ? command.getTimeout() + 60L : 43260L));
             if (result.first() != 0) throw new IOException("Offline RAW export failed: " + result.second());
             markBackupComplete(destination, command);
             return result;

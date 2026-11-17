@@ -33,6 +33,7 @@ public class LibvirtAblestackVeeamTakeBackupCommandWrapper extends CommandWrappe
     @Override
     public Answer execute(final AblestackVeeamTakeBackupCommand command, final LibvirtComputingResource libvirtComputingResource) {
         final AblestackVeeamTakeBackupCommand delegate = new AblestackVeeamTakeBackupCommand(command.getVmName(), command.getBackupPath());
+        delegate.setTimeout(command.getTimeout());
         delegate.setWait(command.getWait());
         delegate.setQuiesce(command.getQuiesce());
         delegate.setVolumePools(command.getVolumePools());

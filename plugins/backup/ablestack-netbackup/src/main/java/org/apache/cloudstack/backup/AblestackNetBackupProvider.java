@@ -397,7 +397,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
             command.setVolumeStagingManifest(manifest.toJson());
             command.setStagingQueueTimeout(BackupManager.ThirdPartyStagingQueueTimeout.value());
             command.setStagingBufferPercent(thirdPartyBackupStagingService.getCapacityBufferPercent());
-            command.setWait(BackupDataOperationTimeout.value());
+            command.setTimeout(BackupDataOperationTimeout.value());
             command.setBackupJobId(backupVO.getUuid());
             command.setQuiesce(quiesceVM);
             command.setVolumePools(volumePoolsAndPaths.first());
@@ -422,7 +422,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
 
             LOG.info("{} phase=[START], backupId=[{}], backupUuid=[{}], vmId=[{}], vmName=[{}], backupType=[{}], backupEngine=[{}], parentBackupUuid=[{}], hostId=[{}], hostName=[{}], backupPath=[{}], timeoutSeconds=[{}]",
                     BACKUP_TRACE, backupVO.getId(), backupVO.getUuid(), vm.getId(), vm.getInstanceName(), requestedBackupType, backupEngine,
-                    latestBackup != null ? latestBackup.getUuid() : null, vmHost.getId(), vmHost.getName(), backupPath, command.getWait());
+                    latestBackup != null ? latestBackup.getUuid() : null, vmHost.getId(), vmHost.getName(), backupPath, command.getTimeout());
             thirdPartyBackupVolumeService.dispatchBackup(backupVO, vmHost, command, volumeTransfer(vm, backupVO, vmHost));
             LOG.info("Volume backup start submitted for reconciliation, backup [{}], VM [{}]", backupVO.getUuid(), vm.getInstanceName());
             return BackupExecutionResult.success(backupVO);
@@ -563,7 +563,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final AblestackDeleteBackupCommand command = new AblestackDeleteBackupCommand(backup.getExternalId(), null, null, null, true);
         final int deleteTimeout = BackupDataOperationTimeout.value();
         if (deleteTimeout > 0) {
-            command.setWait(deleteTimeout);
+            command.setTimeout(deleteTimeout);
         }
         command.setBackupProvider(getName());
         final VMInstanceVO vm = vmInstanceDao.findByIdIncludingRemoved(backup.getVmId());
@@ -3008,7 +3008,7 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
         final AblestackDeleteBackupCommand command = new AblestackDeleteBackupCommand(backup.getExternalId(), null, null, null, true);
         final int deleteTimeout = BackupDataOperationTimeout.value();
         if (deleteTimeout > 0) {
-            command.setWait(deleteTimeout);
+            command.setTimeout(deleteTimeout);
         }
         command.setBackupProvider(getName());
         final VMInstanceVO vm = vmInstanceDao.findByIdIncludingRemoved(backup.getVmId());

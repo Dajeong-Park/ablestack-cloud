@@ -97,6 +97,16 @@ public class LibvirtNasSourceGuardTest {
                 () -> LibvirtAblestackNasSourceHelper.prepare(file, command, List.of("/primary/different.qcow2"), null));
     }
 
+    @Test public void responseTimeoutOverrideKeepsTheProtectedSourceExecutionBudget() throws Exception {
+        command.setTimeout(300);
+        command.setWait(30);
+        assertTrue(LibvirtAblestackBackupStartHelper.nasPlan(command).validNasSource());
+        Path file = temporary.newFolder().toPath().resolve("nas-source-plan.json");
+        LibvirtAblestackNasSourceHelper.prepare(file, command, List.of("/primary/root.qcow2"), null);
+        var payload = com.google.gson.JsonParser.parseString(Files.readString(file)).getAsJsonObject();
+        assertEquals(300, payload.get("timeout").getAsInt());
+    }
+
     @Test public void nasQcow2UsesTheSamePersistentVmStartFence() throws Exception {
         Path root = temporary.newFolder().toPath();
         LibvirtAblestackStoppedBackupGuard.prepare(root, plan);

@@ -135,7 +135,7 @@ class LibvirtAblestackVeeamHelper {
             String[] scriptCommand = buildBackupScriptCommand(command, diskPaths, executionMode);
             LOGGER.debug("Executing Veeam script command=[{}]", String.join(" ", scriptCommand));
             commands.add(scriptCommand);
-            final int timeout = command.getWait() > 0 ? command.getWait() * 1000 : resource.getCmdsTimeout();
+            final int timeout = command.getTimeout() > 0 ? command.getTimeout() * 1000 : resource.getCmdsTimeout();
             return Script.executePipedCommands(commands, timeout);
         } finally {
             cleanupParentCheckpointWorkspace(parentCheckpointWorkspace);
@@ -146,7 +146,7 @@ class LibvirtAblestackVeeamHelper {
         if (command.getVolumeStagingManifest() != null) {
             return LibvirtAblestackVolumeBackupHelper.buildCommand(resource, command.getVolumeStagingManifest(), command.getBackupPath(),
                     command.getVolumePools(), command.getVolumePaths(), command.getCheckpointName(), command.getParentCheckpointName(),
-                    command.getParentCheckpointXmlChain(), command.getQuiesce(), command.getWait(), command.getStagingBufferPercent(), command.getBandwidthLimitMbps(), command.getStagingQueueTimeout());
+                    command.getParentCheckpointXmlChain(), command.getQuiesce(), command.getTimeout(), command.getStagingBufferPercent(), command.getBandwidthLimitMbps(), command.getStagingQueueTimeout());
         }
         List<String> diskPaths = resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
         BackupExecutionMode executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools());
@@ -230,7 +230,7 @@ class LibvirtAblestackVeeamHelper {
                 "-f", command.getBackupFiles() == null || command.getBackupFiles().isEmpty() ? "" : String.join(",", command.getBackupFiles()),
                 "-q", command.getQuiesce() != null && command.getQuiesce() ? "true" : "false",
                 "-d", diskPaths.isEmpty() ? "" : String.join(",", diskPaths),
-                "--data-operation-timeout-seconds", String.valueOf(command.getWait())
+                "--data-operation-timeout-seconds", String.valueOf(command.getTimeout())
         };
     }
 

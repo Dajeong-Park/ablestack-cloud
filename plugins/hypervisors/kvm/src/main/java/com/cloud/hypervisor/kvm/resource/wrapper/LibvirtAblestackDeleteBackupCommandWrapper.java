@@ -46,7 +46,7 @@ public class LibvirtAblestackDeleteBackupCommandWrapper extends CommandWrapper<A
         final String cleanupCheckpointNames = command.getCleanupCheckpointNames();
         final String diskPaths = command.getDiskPaths();
         final boolean forced = command.isForced();
-        int timeout = command.getWait() > 0 ? command.getWait() * 1000 : libvirtComputingResource.getCmdsTimeout();
+        int timeout = command.getTimeout() > 0 ? command.getTimeout() * 1000 : libvirtComputingResource.getCmdsTimeout();
 
         List<String[]> commands = new ArrayList<>();
         if (List.of("ablestack-commvault", "ablestack-netbackup", "ablestack-veeam").stream()

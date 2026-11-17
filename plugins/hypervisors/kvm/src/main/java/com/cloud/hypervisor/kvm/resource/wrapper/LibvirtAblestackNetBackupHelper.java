@@ -105,14 +105,14 @@ class LibvirtAblestackNetBackupHelper {
             String[] scriptCommand = buildBackupScriptCommand(command, diskPaths, executionMode);
             LOGGER.debug("Executing NetBackup script command=[{}]", String.join(" ", scriptCommand));
             commands.add(scriptCommand);
-            final int commandWaitSeconds = command.getWait();
+            final int dataTimeoutSeconds = command.getTimeout();
             final long resourceTimeoutMillis = resource.getCmdsTimeout();
-            final long effectiveTimeoutMillis = commandWaitSeconds > 0 ? TimeUnit.SECONDS.toMillis(commandWaitSeconds) : resourceTimeoutMillis;
+            final long effectiveTimeoutMillis = dataTimeoutSeconds > 0 ? TimeUnit.SECONDS.toMillis(dataTimeoutSeconds) : resourceTimeoutMillis;
             LOGGER.info(
-                    "Executing running VM NetBackup backup for vm=[{}], commandWaitSeconds=[{}], "
+                    "Executing running VM NetBackup backup for vm=[{}], dataTimeoutSeconds=[{}], "
                             + "resourceCmdsTimeoutMillis=[{}], effectiveTimeoutMillis=[{}]",
                     command.getVmName(),
-                    commandWaitSeconds,
+                    dataTimeoutSeconds,
                     resourceTimeoutMillis,
                     effectiveTimeoutMillis
             );
@@ -130,7 +130,7 @@ class LibvirtAblestackNetBackupHelper {
         if (command.getVolumeStagingManifest() != null) {
             return LibvirtAblestackVolumeBackupHelper.buildCommand(resource, command.getVolumeStagingManifest(), command.getBackupPath(),
                     command.getVolumePools(), command.getVolumePaths(), command.getCheckpointName(), command.getParentCheckpointName(),
-                    command.getParentCheckpointXmlChain(), command.getQuiesce(), command.getWait(), command.getStagingBufferPercent(), null, command.getStagingQueueTimeout());
+                    command.getParentCheckpointXmlChain(), command.getQuiesce(), command.getTimeout(), command.getStagingBufferPercent(), null, command.getStagingQueueTimeout());
         }
         List<String> diskPaths = resolveDiskPaths(command.getVolumePools(), command.getVolumePaths());
         BackupExecutionMode executionMode = determineExecutionMode(command.getVmName(), command.getVolumePools());
@@ -197,7 +197,7 @@ class LibvirtAblestackNetBackupHelper {
                 "-f", command.getBackupFiles() == null || command.getBackupFiles().isEmpty() ? "" : String.join(",", command.getBackupFiles()),
                 "-q", command.getQuiesce() != null && command.getQuiesce() ? "true" : "false",
                 "-d", diskPaths.isEmpty() ? "" : String.join(",", diskPaths),
-                "--data-operation-timeout-seconds", String.valueOf(command.getWait()),
+                "--data-operation-timeout-seconds", String.valueOf(command.getTimeout()),
                 "--bandwidth-limit-mbps", String.valueOf(command.getBandwidthLimitMbps())
         };
     }
@@ -268,7 +268,7 @@ class LibvirtAblestackNetBackupHelper {
                     System.currentTimeMillis() - startedAt);
 
             try {
-                final long effectiveTimeoutMillis = command.getWait() > 0 ? TimeUnit.SECONDS.toMillis(command.getWait()) : resource.getCmdsTimeout();
+                final long effectiveTimeoutMillis = command.getTimeout() > 0 ? TimeUnit.SECONDS.toMillis(command.getTimeout()) : resource.getCmdsTimeout();
                 waitForBackup(dummyVmName, effectiveTimeoutMillis);
                 LOGGER.info("{} phase=[BACKUP_JOB_COMPLETED], vm=[{}], dummyVm=[{}], backupType=[{}], checkpoint=[{}], elapsedMs=[{}]",
                         BACKUP_TRACE, command.getVmName(), dummyVmName, command.getBackupType(), command.getCheckpointName(),

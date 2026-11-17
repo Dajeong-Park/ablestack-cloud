@@ -132,7 +132,8 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
     ConfigKey<Integer> BackupDataOperationTimeout = new ConfigKey<>("Advanced", Integer.class,
             "backup.data.operation.timeout",
             "43200",
-            "Maximum execution time in seconds for host-side KVM backup and restore data operations, external staging, and backup data cleanup.",
+            "Execution timeout in seconds for each host-side KVM backup/restore data operation, external staging transfer, " +
+                    "and backup data cleanup. Separate from staging queue wait and detached start/control response timeouts.",
             true,
             BackupFrameworkEnabled.key());
 
