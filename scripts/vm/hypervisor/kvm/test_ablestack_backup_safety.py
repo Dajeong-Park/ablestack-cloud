@@ -219,6 +219,78 @@ if ablestack_wait_for_backup; then exit 1; fi
         self.assertEqual(0, result.returncode, result.stderr)
 
 
+    def test_unchanged_native_bytes_stop_waiting_without_releasing_source_protection(self):
+        result = self.run_shell(r"""
+DATA_OPERATION_TIMEOUT_SECONDS=43200
+elapsed=0
+date() { printf '%s\n' "$elapsed"; }
+virsh() { printf 'Job type: Unbounded\nData processed: 1 MiB\n'; }
+sleep() { elapsed=$((elapsed + 900)); }
+ablestack_backup_job_started
+if ablestack_wait_for_backup; then exit 1; fi
+[[ "$elapsed" == 1800 && "$BACKUP_JOB_MAY_BE_ACTIVE" == 1 && -f "$ABLESTACK_BACKUP_JOB_DIR/backup-domain" ]]
+""")
+        self.assertEqual(0, result.returncode, result.stderr)
+
+    def test_advancing_bytes_allow_a_backup_longer_than_the_idle_budget(self):
+        result = self.run_shell(r"""
+DATA_OPERATION_TIMEOUT_SECONDS=43200
+elapsed=0
+date() { printf '%s\n' "$elapsed"; }
+virsh() {
+  case "$*" in
+    *--completed*) echo 'Job type: Completed' ;;
+    *) if [[ "$elapsed" -ge 3600 ]]; then echo 'Job type: None';
+       else printf 'Job type: Unbounded\nData processed: %s MiB\n' "$elapsed"; fi ;;
+  esac
+}
+sleep() { elapsed=$((elapsed + 900)); }
+ablestack_backup_job_started
+ablestack_wait_for_backup || exit 1
+[[ "$elapsed" == 3600 && "$BACKUP_JOB_MAY_BE_ACTIVE" == 0 ]]
+""")
+        self.assertEqual(0, result.returncode, result.stderr)
+
+    def test_missing_native_metrics_warn_without_canceling_a_healthy_job(self):
+        result = self.run_shell(r"""
+DATA_OPERATION_TIMEOUT_SECONDS=43200
+elapsed=0
+date() { printf '%s\n' "$elapsed"; }
+log() { printf '%s\n' "$*" >> "$ABLESTACK_BACKUP_JOB_DIR/warnings"; }
+virsh() {
+  case "$*" in
+    *--completed*) echo 'Job type: Completed' ;;
+    *) if [[ "$elapsed" -ge 3600 ]]; then echo 'Job type: None'; else echo 'Job type: Unbounded'; fi ;;
+  esac
+}
+sleep() { elapsed=$((elapsed + 900)); }
+ablestack_backup_job_started
+ablestack_wait_for_backup || exit 1
+[[ "$BACKUP_JOB_MAY_BE_ACTIVE" == 0 && "$(wc -l < "$ABLESTACK_BACKUP_JOB_DIR/warnings" | tr -d ' ')" == 1 ]]
+""")
+        self.assertEqual(0, result.returncode, result.stderr)
+
+
+    def test_file_counter_advances_even_when_the_data_counter_is_constant(self):
+        result = self.run_shell(r"""
+DATA_OPERATION_TIMEOUT_SECONDS=43200
+elapsed=0
+date() { printf '%s\n' "$elapsed"; }
+virsh() {
+  case "$*" in
+    *--completed*) echo 'Job type: Completed' ;;
+    *) if [[ "$elapsed" -ge 3600 ]]; then echo 'Job type: None';
+       else printf 'Job type: Unbounded\nData processed: 1 GiB\nFile processed: %s KiB\n' "$elapsed"; fi ;;
+  esac
+}
+sleep() { elapsed=$((elapsed + 900)); }
+ablestack_backup_job_started
+ablestack_wait_for_backup || exit 1
+[[ "$BACKUP_JOB_MAY_BE_ACTIVE" == 0 ]]
+""")
+        self.assertEqual(0, result.returncode, result.stderr)
+
+
 class VolumeSafetyTest(unittest.TestCase):
     def test_close_attempts_abort_even_when_guest_thaw_fails(self):
         worker = object.__new__(volume.Backup)

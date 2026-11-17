@@ -89,7 +89,10 @@ ablestack_backup_cleanup_safe() {
 
 ablestack_wait_for_backup() {
   local deadline=$(( $(date +%s) + DATA_OPERATION_TIMEOUT_SECONDS ))
-  local info active_status status
+  local info active_status status processed data_bytes file_bytes now advanced
+  local last_data=-1 last_file=-1 last_progress_at measured=0
+  local progress_warning=0
+  last_progress_at=$(date +%s)
   while (( $(date +%s) < deadline )); do
     # --completed queries the last finished job, not the currently running backup.
     # Its None result while IO is active must never trigger cleanup or abort.
@@ -115,6 +118,38 @@ ablestack_wait_for_backup() {
         ;;
       *) log -ne "FAILED active backup status is unexpected vm=[$VM] status=[$active_status]"; return 1 ;;
     esac
+    # Successful polling is not data progress. Normalize virsh's native processed counter to bytes.
+    processed=$(awk '/^[[:space:]]*(Data|File) processed:/ {
+      scale=1; if ($4=="KiB" || $4=="kB") scale=1024;
+      if ($4=="MiB" || $4=="MB") scale=1024*1024;
+      if ($4=="GiB" || $4=="GB") scale=1024*1024*1024;
+      if ($4=="TiB" || $4=="TB") scale=1024*1024*1024*1024;
+      if ($3 ~ /^[0-9]+([.][0-9]+)?$/ && $4 ~ /^(B|bytes|KiB|kB|MiB|MB|GiB|GB|TiB|TB)$/) {
+        value=sprintf("%.0f", $3*scale); if ($1=="Data") data=value; else file=value;
+      }
+    } END {printf "%s|%s", data, file}' <<< "$info")
+    IFS='|' read -r data_bytes file_bytes <<< "$processed"
+    now=$(date +%s)
+    advanced=0
+    if [[ -n "$data_bytes" ]] && (( data_bytes > last_data )); then
+      last_data=$data_bytes
+      if (( data_bytes > 0 )); then advanced=1; fi
+    fi
+    if [[ -n "$file_bytes" ]] && (( file_bytes > last_file )); then
+      last_file=$file_bytes
+      if (( file_bytes > 0 )); then advanced=1; fi
+    fi
+    if (( advanced == 1 )); then
+      measured=1
+      last_progress_at=$now
+      progress_warning=0
+    elif (( measured == 1 && now - last_progress_at >= 1800 )) && [[ -n "$data_bytes$file_bytes" ]]; then
+      log -ne "FAILED BACKUP_DATA_NO_PROGRESS vm=[$VM] no measurable progress for 1800 seconds; source termination must be confirmed"
+      return 1
+    elif (( progress_warning == 0 && now - last_progress_at >= 1800 )); then
+      log -ne "WARNING BACKUP_PROGRESS_UNAVAILABLE vm=[$VM] native progress is unavailable; execution timeout remains in effect"
+      progress_warning=1
+    fi
     sleep 5
   done
   log -ne "FAILED backup exceeded wall-clock timeout vm=[$VM] timeoutSeconds=[$DATA_OPERATION_TIMEOUT_SECONDS]"

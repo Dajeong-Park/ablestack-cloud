@@ -60,7 +60,8 @@ final class LibvirtAblestackVolumeBackupHelper {
                 throw new CloudRuntimeException("Invalid source volume staging plan");
             }
             Path script = Path.of(resource.getAbleCvtBackupPath()).getParent().resolve("thirdparty_volume_backup.py");
-            if (!Files.isRegularFile(script)) {
+            Path supervisor = script.resolveSibling("ablestack_backup_progress.py");
+            if (!Files.isRegularFile(script) || !Files.isRegularFile(supervisor)) {
                 throw new CloudRuntimeException("Volume backup script is not installed on the host");
             }
             boolean rbd = pools.stream().allMatch(p -> p.getPoolType() == Storage.StoragePoolType.RBD);
@@ -86,7 +87,8 @@ final class LibvirtAblestackVolumeBackupHelper {
             Path file = directory.resolve("volume-plan.json");
             Files.writeString(file, new Gson().toJson(plan));
             Files.setPosixFilePermissions(file, PosixFilePermissions.fromString("rw-------"));
-            return new String[] {"python3", script.toString(), "--plan-file", file.toString()};
+            return new String[] {"python3", supervisor.toString(), "--job-dir", directory.toString(), "--",
+                    "python3", script.toString(), "--plan-file", file.toString()};
         } catch (java.io.IOException e) {
             throw new CloudRuntimeException("Unable to prepare volume backup plan", e);
         }

@@ -619,7 +619,9 @@ final class LibvirtAblestackVolumeRestoreHelper {
                                 preparedUri, sourceFormat, targetFormat, plan.timeout);
                     } else {
                         QemuImg qemu = new QemuImg(TimeUnit.SECONDS.toMillis(plan.timeout));
-                        qemu.convert(new QemuImgFile(file.toString(), sourceFormat), new QemuImgFile(preparedUri, targetFormat));
+                        try (var observation = LibvirtAblestackDataProgress.unmeasured(logger::warn)) {
+                            qemu.convert(new QemuImgFile(file.toString(), sourceFormat), new QemuImgFile(preparedUri, targetFormat));
+                        }
                     }
                     if (volume.engine.startsWith("RBD") && volume.chain.size() > 1) {
                         LibvirtAblestackRbdRestoreHelper.createPreparedCheckpoint(pool, prepared, artifact.checkpointName, plan.timeout);
@@ -636,7 +638,9 @@ final class LibvirtAblestackVolumeRestoreHelper {
                     // The downloaded overlay belongs exclusively to this restore job; no second staging copy is needed.
                     run("qemu-img rebase -u -f qcow2 -F " + targetFormat.toString().toLowerCase(java.util.Locale.ROOT)
                             + " -b " + quote(preparedUri) + " " + quote(file.toString()));
-                    run("qemu-img commit -f qcow2 " + quote(file.toString()));
+                    var applied = LibvirtAblestackDataProgress.execute("qemu-img commit -p -f qcow2 " + quote(file.toString()),
+                            plan.timeout, "qemu", logger::warn);
+                    if (applied.first() != 0) { throw new CloudRuntimeException("Unable to apply restored QCOW2 overlay: " + applied.second()); }
                 }
                 Files.delete(file);
                 progress("PREPARE_VOLUME", index + 1, 15 + 65 * sequence / artifactCount);
@@ -687,6 +691,8 @@ final class LibvirtAblestackVolumeRestoreHelper {
         progress(provider.toUpperCase(java.util.Locale.ROOT) + "_RESTORE", metadata ? 0 : volume + 1,
                 15 + 65 * request.sequence / artifactCount);
         atomic(job.resolve("volume-restore-request.json"), new Gson().toJson(request));
+        final long observationStarted = System.nanoTime();
+        boolean progressWarning = false;
         while (!Files.isRegularFile(acknowledgment)) {
             checkCancellation();
             Path failure = job.resolve("volume-restore-failure");
@@ -696,6 +702,12 @@ final class LibvirtAblestackVolumeRestoreHelper {
                 throw new CloudRuntimeException(String.valueOf(result.get("message")));
             }
             if (System.nanoTime() >= deadline) { throw new CloudRuntimeException("Timed out waiting for external volume restore"); }
+            if (!progressWarning && System.nanoTime() - observationStarted >= TimeUnit.SECONDS.toNanos(LibvirtAblestackDataProgress.IDLE_SECONDS)) {
+                String warning = "External restore progress is unavailable; waiting for confirmed completion within the execution timeout";
+                logger.warn("{} jobId=[{}] {}", trace, plan.jobId, warning);
+                step(provider.toUpperCase(java.util.Locale.ROOT) + "_RESTORE", warning);
+                progressWarning = true;
+            }
             try { Thread.sleep(1000); } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 throw new CloudRuntimeException("Volume restore interrupted", e);

@@ -38,6 +38,7 @@ import xml.etree.ElementTree as ET
 from thirdparty_staging_cleanup import validate_job_directory
 from thirdparty_qcow2_nbd import Connection, copy_volume, preflight
 from thirdparty_backup_source_support import require_supported_sources
+from ablestack_backup_progress import percent
 import thirdparty_stopped_backup_guard as stopped_source
 
 
@@ -220,7 +221,7 @@ class Backup:
         self.bandwidth_file = self.job / "volume-bandwidth-mbps"
         atomic(self.bandwidth_file, str(max(0, self.plan.get("bandwidthLimitMbps", 0))))
 
-    def progress(self, step, index, fraction=0):
+    def progress(self, step, index, fraction=0, processed_bytes=None):
         # Each volume receives equal export/transfer shares; metadata owns the final 5%.
         if index < self.count:
             completed = 2 * index + (1 if step.endswith("_TRANSFER") else 0) + fraction
@@ -231,7 +232,8 @@ class Backup:
                "step=%s\nvolumeIndex=%d\nvolumeCount=%d\nprogress=%d\n" %
                (step, min(index + 1, self.count), self.count, min(progress, 99)) +
                "liveBandwidthSupported=%s\nbandwidthLimitMbps=%s\n" %
-               (str(self.live_bandwidth).lower(), self.bandwidth_file.read_text().strip()))
+               (str(self.live_bandwidth).lower(), self.bandwidth_file.read_text().strip()) +
+               ("processedBytes=%d\n" % processed_bytes if processed_bytes is not None else ""))
 
     def throttle(self, byte_count, started_at):
         while True:
@@ -475,7 +477,9 @@ class Backup:
         command = args + (["export-diff", "--from-snap", parent] if parent else ["export"])
         command += [image + "@" + self.plan["checkpointName"], str(target)]
         step = "RBD_EXPORT_DIFF" if parent else "RBD_EXPORT"
-        with subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) as proc:
+        with subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE) as proc:
+            os.set_blocking(proc.stderr.fileno(), False)
+            diagnostics = b""
             deadline = time.monotonic() + self.timeout
             try:
                 while proc.poll() is None:
@@ -484,7 +488,12 @@ class Backup:
                         raise RuntimeError("RBD volume export timed out")
                     size = target.stat().st_size if target.exists() else 0
                     total = self.manifest["volumes"][index]["provisionedBytes"]
-                    self.progress(step, index, min(1, size / total))
+                    with contextlib.suppress(BlockingIOError):
+                        diagnostics = (diagnostics + os.read(proc.stderr.fileno(), 65536))[-4096:]
+                    completed = percent("rbd", diagnostics.decode(errors="replace"))
+                    # Sparse image size is unsuitable for stall detection; use rbd's own progress.
+                    measured = int(total * completed / 100) if completed is not None and 0 < completed < 100 else None
+                    self.progress(step, index, min(1, size / total), measured)
                     time.sleep(1)
                 if proc.returncode:
                     raise RuntimeError("RBD volume export failed")
@@ -506,6 +515,7 @@ class Backup:
         diagnostics = self.job / ("qcow2-volume-" + str(index + 1) + ".log")
         deadline = time.monotonic() + self.timeout
         phase = "SOURCE_CONNECT"
+        self.progress("QCOW2_BACKUP", index, processed_bytes=0)
         try:
             # All initialization is inside the cleanup scope, including failed handshakes and image creation.
             with contextlib.ExitStack() as stack:
@@ -546,7 +556,8 @@ class Backup:
                     time.sleep(0.1)
                 phase = "DATA_COPY"
                 copy_volume(source, destination, incremental, self.check_cancel, self.throttle,
-                            lambda fraction: self.progress("QCOW2_BACKUP", index, fraction), deadline)
+                            lambda fraction: self.progress("QCOW2_BACKUP", index, fraction,
+                                                           int(size * fraction) if fraction < 1 else None), deadline)
                 if process.poll() is not None:
                     raise RuntimeError("QCOW2 output server exited before completion (exit %d): %s" %
                                        (process.returncode, diagnostic_tail(diagnostics)))
@@ -725,7 +736,8 @@ class Backup:
                 source = self.plan["diskPaths"][index]
                 disk = self.offline["disks"][index]
                 convert(source, target, disk["format"], volume["provisionedBytes"], self.timeout,
-                        lambda fraction: self.progress("OFFLINE_FULL_EXPORT", index, fraction), self.check_cancel,
+                        lambda fraction: self.progress("OFFLINE_FULL_EXPORT", index, fraction,
+                                                       int(volume["provisionedBytes"] * fraction) if 0 < fraction < 1 else None), self.check_cancel,
                         int(self.bandwidth_file.read_text().strip()))
                 artifact["size"] = target.stat().st_size
                 self.transfer(index, artifact)
@@ -1373,6 +1385,9 @@ def run_backup(plan_file):
             sys.stdout.flush()
     finally:
         if worker is not None:
+            # Cleanup has its own recovery protocol; never carry a stalled-copy deadline into it.
+            with contextlib.suppress(OSError):
+                worker.progress("CLEANUP_SOURCE", worker.count)
             try:
                 worker.close()
                 finalized = worker.success

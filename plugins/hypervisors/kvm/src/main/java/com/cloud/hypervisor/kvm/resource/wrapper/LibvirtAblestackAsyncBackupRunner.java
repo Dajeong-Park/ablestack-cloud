@@ -952,6 +952,18 @@ final class LibvirtAblestackAsyncBackupRunner {
             properties.setProperty("volumeCount", progress.getProperty("volumeCount", "1"));
             properties.setProperty("progress", String.valueOf(Math.max(parseInteger(properties.getProperty("progress"), 0),
                     Math.min(99, parseInteger(progress.getProperty("progress"), 0)))));
+            final Path warning = path.resolveSibling("data-progress-warning.properties");
+            if (Files.isRegularFile(warning)) {
+                try (InputStream warningInput = Files.newInputStream(warning)) {
+                    Properties observation = new Properties();
+                    observation.load(warningInput);
+                    properties.setProperty("details", observation.getProperty("details", step));
+                    properties.setProperty("dataProgressWarning", "true");
+                }
+            } else if ("true".equals(properties.getProperty("dataProgressWarning"))) {
+                properties.remove("dataProgressWarning");
+                properties.setProperty("details", step);
+            }
             properties.remove("progressUnavailable");
             properties.setProperty("volumePipeline", "true");
             properties.setProperty("liveBandwidthSupported", progress.getProperty("liveBandwidthSupported", "false"));

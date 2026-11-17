@@ -201,7 +201,7 @@ run_rbd_export_with_progress() {
   local step="$5"
   shift 5
   write_rbd_progress "$output_file" "$total_bytes" "$disk_index" "$disk_count" "$step"
-  "$@" &
+  python3 "$(dirname "${BASH_SOURCE[0]}")/ablestack_backup_progress.py" --kind rbd -- "$@" &
   local export_pid=$!
   while kill -0 "$export_pid" 2>/dev/null; do
     write_rbd_progress "$output_file" "$total_bytes" "$disk_index" "$disk_count" "$step"
