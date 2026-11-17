@@ -72,6 +72,6 @@ export default {
 <style scoped>
 .kubernetes-iso-detail-field { width:100%; min-width:0; overflow-wrap:anywhere; }
 .kubernetes-iso-details { color:var(--ui-text-secondary); background:var(--ui-bg-surface); }
-.kubernetes-iso-details :deep(.ant-list-item) { padding:12px 8px; color:var(--ui-text-secondary); background:transparent; border-color:var(--ui-border); }
+.kubernetes-iso-details :deep(.ant-list-item) { padding:12px 0; color:var(--ui-text-secondary); background:transparent; border-color:var(--ui-border); }
 .kubernetes-iso-details :deep(.ant-list-item strong) { color:var(--ui-text-primary); }
 </style>

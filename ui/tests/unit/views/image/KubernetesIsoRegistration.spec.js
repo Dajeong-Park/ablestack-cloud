@@ -32,7 +32,7 @@ const row = { id, name: 'Example', semanticversion: '1.30.0', isoid: iso, isosta
 const parents = { listkubernetessupportedversionsresponse: { count: 1, kubernetessupportedversion: [row] } }
 const getters = () => ({ userInfo: { id: 'actor-' + (++actor), roletype: 'Admin' }, project: {}, apis: { addKubernetesSupportedVersion: {}, listKubernetesSupportedVersions: {}, listIsos: {}, listZones: {} } })
 function context (shared) {
-  const c = { ...Register.data(), $store: shared || { getters: getters(), state: { user: { token: 'session' } } }, $refs: { registrationForm: { validate: jest.fn().mockResolvedValue({}), scrollToField: jest.fn() } }, $t: key => key, $emit: jest.fn(), $router: { push: jest.fn() } }
+  const c = { ...Register.data(), $store: shared || { getters: getters(), state: { user: { token: 'session' } } }, $refs: { registrationForm: { validate: jest.fn().mockResolvedValue({}), scrollToField: jest.fn(), setFields: jest.fn() } }, $t: key => key, $emit: jest.fn(), $router: { push: jest.fn() } }
   Object.entries(Register.methods).forEach(([key, fn]) => { c[key] = fn.bind(c) })
   Object.entries(Register.computed).forEach(([key, fn]) => Object.defineProperty(c, key, { get: () => fn.call(c), configurable: true }))
   Object.assign(c.form, { semanticversion: '1.30.0', name: 'Example', url: 'https://example.test/k8s.iso' })
@@ -156,4 +156,20 @@ test('request uncertainty and read errors have one meaningful alert instead of d
   expect(c.showSubmitError).toBe(false)
   c.phase = 'accepted'; c.availability = 'network'; c.submitError = 'message.kubernetes.iso.read.network'
   expect(c.showSubmitError).toBe(false); expect(c.availabilityType).toBe('error')
+})
+
+test('a definite gateway length rejection keeps values editable and releases the rejected attempt', async () => {
+  const c = context()
+  postAPI.mockRejectedValueOnce({ response: { data: { addkubernetessupportedversionresponse: { errorcode: 431, errortext: 'Unable to execute API command addkubernetessupportedversion due to invalid value. Value greater than max allowed length 255 for param: url' } } } })
+  await c.handleSubmit()
+  expect(c.phase).toBe('draft'); expect(c.busy).toBe(false); expect(c.form.url).toBe('https://example.test/k8s.iso')
+  expect(c.$refs.registrationForm.setFields).toHaveBeenCalledWith([{ name: 'url', errors: ['message.kubernetes.iso.field.length'] }])
+  await c.handleSubmit()
+  expect(postAPI).toHaveBeenCalledTimes(2); expect(c.phase).toBe('accepted')
+})
+test('a business 431 without the gateway length signature remains uncertain', async () => {
+  const c = context()
+  postAPI.mockRejectedValueOnce({ response: { data: { errorresponse: { errorcode: 431, errortext: 'Unexpected registration failure' } } } })
+  await c.handleSubmit(); expect(c.phase).toBe('uncertain')
+  await c.handleSubmit(); expect(postAPI).toHaveBeenCalledTimes(1)
 })

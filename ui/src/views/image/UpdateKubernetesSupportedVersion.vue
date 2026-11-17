@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <mold-dialog size="md" focus-guard :title="$t(deletion ? 'label.kubernetes.version.delete' : 'label.kubernetes.version.update')" :closable="!blocksNavigation" :keyboard="!blocksNavigation" @cancel="close">
+  <mold-dialog class="kubernetes-iso-dialog" size="md" focus-guard :title="$t(deletion ? 'label.kubernetes.version.delete' : 'label.kubernetes.version.update')" :closable="!blocksNavigation" :keyboard="!blocksNavigation" @cancel="close">
     <div class="kiso-mutation" v-ctrl-enter="submit">
       <a-alert v-if="errorKey" type="error" show-icon role="alert" :message="$t(errorKey)" />
       <a-alert v-if="receipt && !blocksNavigation && errorKey !== 'message.kubernetes.iso.mutation.uncertain'" type="warning" show-icon :message="$t('message.kubernetes.iso.mutation.uncertain')" />

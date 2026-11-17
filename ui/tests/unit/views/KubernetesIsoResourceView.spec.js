@@ -98,3 +98,9 @@ test('download completion retains the Zone component identity and its expansion 
   expect(w.vm.tabInstanceKey({ name: 'zones' })).toBe(key)
   expect(getAPI).toHaveBeenCalledTimes(1)
 })
+
+test('KISO opts in to the same minimum tab rail and notice spacing as template/VM content', async () => {
+  const { w } = setup(); await flushPromises()
+  expect(w.find('.template-main-tabs').exists()).toBe(true)
+  expect(w.classes()).toContain('kubernetes-iso-resource')
+})

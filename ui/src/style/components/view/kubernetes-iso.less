@@ -1,0 +1,52 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+.kubernetes-iso-page {
+  min-width:0;
+  max-width:100%;
+  .breadcrumb-card .ant-breadcrumb { overflow-wrap:anywhere; }
+  .kubernetes-iso-breadcrumb-name { display:inline-block; max-width:~"min(240px, 28vw)"; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; vertical-align:bottom; }
+  .kubernetes-iso-breadcrumb-name:focus-visible { outline:2px solid var(--ui-focus); outline-offset:2px; }
+}
+.kubernetes-iso-list-page {
+  .autogen-toolbar-actions { display:flex !important; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; min-width:0; }
+  .autogen-toolbar-actions .row-action-button { display:inline-flex !important; flex-wrap:wrap; gap:8px; margin:0 !important; }
+  .autogen-toolbar-actions .row-action-button .ant-btn { margin:0; }
+  .autogen-toolbar-actions > .ant-input-search { flex:1 1 260px; min-width:180px; width:auto !important; max-width:100%; }
+  .ant-pagination { display:flex; flex-wrap:wrap; align-items:center; gap:4px; }
+}
+.kubernetes-iso-resource {
+  .resource-content-card .ant-tabs-content-holder { min-width:0; }
+  .kubernetes-iso-zones .ant-table-thead th { white-space:nowrap; }
+  .kubernetes-iso-zones .ant-table-content { max-width:100%; }
+  .kubernetes-iso-details .ant-list-item { padding:12px 0; }
+}
+.kubernetes-iso-dialog {
+  .ant-descriptions-view, .ant-descriptions-row, .ant-descriptions-item-label, .ant-descriptions-item-content { border-color:var(--ui-border) !important; }
+  .ant-descriptions-item-label { background:var(--ui-bg-elevated); color:var(--ui-text-secondary); }
+  .ant-descriptions-item-content { color:var(--ui-text-primary); background:var(--ui-bg-surface); overflow-wrap:anywhere; word-break:break-word; }
+  .ant-alert-message, p, li { overflow-wrap:anywhere; }
+}
+@media (max-width:767px) {
+  .kubernetes-iso-page .breadcrumb-card { margin-left:-12px; margin-right:-12px; }
+  .kubernetes-iso-page .autogen-toolbar-actions { margin-bottom:0 !important; }
+}
+@media (max-width:575px) {
+  .kubernetes-iso-resource .template-tab-toolbar .ant-input-search { flex:1 1 100%; width:100%; }
+  .kubernetes-iso-resource .template-tab-pagination { justify-content:flex-start; }
+  .kubernetes-iso-dialog .ant-descriptions-item-label { min-width:80px; }
+}

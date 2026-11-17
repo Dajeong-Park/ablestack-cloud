@@ -123,3 +123,14 @@ test.each([{ zoneid: zone }, { arch: 'aarch64' }, { directdownload: true }, { mi
     expect(result.key).toBe('invalid'); expect(request).toHaveBeenCalledTimes(1)
   })
 })
+
+test('discovered string lengths apply to URL and optional name without truncating values', () => {
+  const { kubernetesTextLengthErrors, kubernetesUrlRejectedLength } = require('@/utils/kubernetesIsoRegistration')
+  const capability = { parameters: { url: { length: '255' }, name: { length: 255 } } }
+  expect(kubernetesTextLengthErrors({ url: 'x'.repeat(255), name: '' }, capability)).toEqual({})
+  const form = { url: 'x'.repeat(256), name: '가'.repeat(256) }
+  expect(kubernetesTextLengthErrors(form, capability)).toEqual({ url: 'message.kubernetes.iso.field.length', name: 'message.kubernetes.iso.field.length' })
+  expect(form.url.length).toBe(256); expect(form.name.length).toBe(256)
+  expect(kubernetesTextLengthErrors(form, { parameters: {} })).toEqual({})
+  expect(kubernetesUrlRejectedLength({ response: { data: { errorresponse: { errorcode: 500, errortext: 'Value greater than max allowed length 255 for param: url' } } } })).toBe('')
+})

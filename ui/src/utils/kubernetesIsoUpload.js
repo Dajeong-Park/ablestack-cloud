@@ -15,13 +15,13 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { validKubernetesVersion, validKubernetesInteger, validKubernetesChecksum } from '@/utils/kubernetesIsoRegistration'
+import { validKubernetesVersion, validKubernetesInteger, validKubernetesChecksum, kubernetesTextLengthErrors } from '@/utils/kubernetesIsoRegistration'
 import { kubernetesIsoCapability, kubernetesIsoRegistrationParams } from '@/utils/kubernetesIsoCapabilities'
 import { kubernetesIsoUploadResponse, kubernetesIsoListResponse } from '@/utils/kubernetesIsoModel'
 import { uploadTicketExpired } from '@/utils/isoRegistration'
 const uuid = value => typeof value === 'string' && /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(value)
 export function kubernetesLocalErrors (form, files, zones, capability) {
-  const errors = {}
+  const errors = kubernetesTextLengthErrors(form, capability, ['name', 'semanticversion', 'checksum'])
   if (!validKubernetesVersion(form.semanticversion)) errors.semanticversion = 'message.kubernetes.iso.version.invalid'
   if (!String(form.name || '').trim()) errors.name = 'message.error.name'
   if (!validKubernetesInteger(form.mincpunumber, 2)) errors.mincpunumber = 'message.kubernetes.iso.cpu.invalid'

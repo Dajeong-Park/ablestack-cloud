@@ -39,6 +39,9 @@
             {{ $t(resource.name.toLowerCase()) }}
           </span>
         </label>
+        <keyboard-tooltip v-else-if="$route.meta?.name === 'kubernetesiso'" :title="resource.name || $route.params.id" :trigger="['hover','focus']">
+          <span tabindex="0" class="kubernetes-iso-breadcrumb-name">{{ resource.name || $route.params.id }}</span>
+        </keyboard-tooltip>
         <label v-else>
           {{ isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
         </label>
@@ -67,6 +70,7 @@
 </template>
 
 <script>
+import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import { kubernetesIsoListLocation } from '@/utils/kubernetesIsoSearch'
 import { templateListLocation } from '@/utils/templateSearch'
 import { isoListLocation } from '@/utils/isoSearch'
@@ -79,6 +83,7 @@ import { vnfListLocation } from '@/utils/vnfSearch'
 
 export default {
   name: 'Breadcrumb',
+  components: { KeyboardTooltip },
   props: {
     resource: {
       type: Object,

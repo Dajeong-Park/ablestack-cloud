@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <MoldDialog size="md" focus-guard :title="$t('label.kubernetes.version.from.local')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
+  <MoldDialog class="kubernetes-iso-dialog" size="md" focus-guard :title="$t('label.kubernetes.version.from.local')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
     <a-alert v-if="submitError" class="upload-notice" type="error" show-icon :message="submitError" />
     <a-form
 v-if="phase === 'draft'"
@@ -42,8 +42,8 @@ v-ctrl-enter="handleSubmit">
       </a-form-item>
       <a-form-item name="checksum" :label="$t('label.checksum')" :extra="$t('message.kubernetes.iso.checksum.help')"><a-input v-model:value="form.checksum" :disabled="busy" /></a-form-item>
       <a-row :gutter="16">
-        <a-col :span="12"><a-form-item name="mincpunumber" :label="$t('label.mincpunumber')"><a-input v-model:value="form.mincpunumber" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
-        <a-col :span="12"><a-form-item name="minmemory" :label="$t('label.minmemory')"><a-input v-model:value="form.minmemory" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
+        <a-col :xs="24" :sm="12"><a-form-item name="mincpunumber" :label="$t('label.mincpunumber')"><a-input v-model:value="form.mincpunumber" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
+        <a-col :xs="24" :sm="12"><a-form-item name="minmemory" :label="$t('label.minmemory')"><a-input v-model:value="form.minmemory" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
       </a-row>
       <a-form-item v-if="capability.parameters.arch" name="arch" :label="$t('label.arch')">
         <a-select v-model:value="form.arch" :disabled="busy"><a-select-option v-for="arch in ['x86_64', 'aarch64', 's390x']" :key="arch" :value="arch">{{ arch }}</a-select-option></a-select>

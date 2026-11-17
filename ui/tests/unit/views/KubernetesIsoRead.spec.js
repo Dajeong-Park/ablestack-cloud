@@ -130,3 +130,11 @@ test('API531 carried by a resolved envelope still produces a forbidden read stat
   await ctx.fetchData()
   expect(ctx.kubernetesIsoReadError).toBe('forbidden'); expect(ctx.items).toEqual([])
 })
+
+test('a fresh KISO column selector is available even when the global VM Metrics preference is enabled', async () => {
+  store.getters.metrics = true
+  await ctx.fetchData()
+  expect(ctx.updateSelectedColumns).toHaveBeenCalled()
+  expect(getAPI.mock.calls[0][0]).toBe('listKubernetesSupportedVersions')
+  expect(callAPI).not.toHaveBeenCalled()
+})

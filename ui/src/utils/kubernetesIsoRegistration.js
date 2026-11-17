@@ -65,8 +65,24 @@ export function kubernetesDirectDownloadForced (zoneid, zones = []) {
   return zoneid === ALL_KUBERNETES_ZONES ? zones.some(z => z.type === 'Edge') : zones.find(z => z.id === zoneid)?.type === 'Edge'
 }
 
-export function kubernetesUrlErrors (form, zones, capability) {
+// Use the API discovery contract; older servers without lengths retain their existing validation.
+export function kubernetesTextLengthErrors (form, capability, fields = ['name', 'semanticversion', 'url', 'checksum']) {
   const errors = {}
+  for (const key of fields) {
+    const limit = Number(capability.parameters?.[key]?.length)
+    if (Number.isSafeInteger(limit) && limit > 0 && String(form[key] ?? '').trim().length > limit) errors[key] = 'message.kubernetes.iso.field.length'
+  }
+  return errors
+}
+export function kubernetesUrlRejectedLength (error) {
+  const body = Object.values(error?.response?.data || {}).find(value => value && typeof value === 'object' && Number(value.errorcode) === 431)
+  if (!/^Unable to execute API command addkubernetessupportedversion due to invalid value[.]/i.test(body?.errortext || '')) return ''
+  const match = /max allowed length [0-9]+ for param: (name|url|semanticversion|checksum)$/i.exec(body.errortext)
+  return match?.[1]?.toLowerCase() || ''
+}
+
+export function kubernetesUrlErrors (form, zones, capability) {
+  const errors = kubernetesTextLengthErrors(form, capability)
   if (!capability.available) errors._form = 'message.kubernetes.iso.read.forbidden'
   if (!validKubernetesVersion(form.semanticversion)) errors.semanticversion = 'message.kubernetes.iso.version.invalid'
   if (!validKubernetesInteger(form.mincpunumber, 2)) errors.mincpunumber = 'message.kubernetes.iso.cpu.invalid'
@@ -117,6 +133,10 @@ function persistAttempts () {
 }
 export function rememberKubernetesUrlAttempt (entry, state, record = null) {
   entry.state = state; entry.record = record
+  persistAttempts()
+}
+export function discardRejectedKubernetesUrlAttempt (entry) {
+  for (const [key, value] of attempts) if (value === entry) attempts.delete(key)
   persistAttempts()
 }
 export function synchronizeKubernetesUrlScope (scope) {

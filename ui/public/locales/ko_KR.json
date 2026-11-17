@@ -12209,5 +12209,6 @@
   "message.kubernetes.iso.mutation.delete.failed": "삭제하지 못했습니다. 버전이 남아 있는 것을 확인했습니다. 최신 참조와 ISO 상태를 확인한 후 다시 시도해 주세요.",
   "message.kubernetes.iso.mutation.uncertain": "요청 결과를 확인 중입니다. 중복 요청은 차단됩니다. 결과 확인으로 서버 상태를 다시 조회해 주세요.",
   "message.kubernetes.iso.mutation.changed": "서버 정보가 변경되었습니다. 최신 정보를 확인하고 다시 선택해 주세요.",
-  "message.kubernetes.iso.mutation.deleted": "버전과 연결 ISO가 삭제되었습니다."
+  "message.kubernetes.iso.mutation.deleted": "버전과 연결 ISO가 삭제되었습니다.",
+  "message.kubernetes.iso.field.length": "입력값이 허용된 길이를 초과했습니다."
 }

@@ -12201,5 +12201,6 @@
   "message.kubernetes.iso.mutation.delete.failed": "Deletion failed and the version still exists. Review current references and ISO state before retrying.",
   "message.kubernetes.iso.mutation.uncertain": "The request outcome is not confirmed. Duplicate requests are blocked. Use Check result to query the server.",
   "message.kubernetes.iso.mutation.changed": "Server information changed. Review the latest values and select again.",
-  "message.kubernetes.iso.mutation.deleted": "The version and linked ISO were deleted."
+  "message.kubernetes.iso.mutation.deleted": "The version and linked ISO were deleted.",
+  "message.kubernetes.iso.field.length": "The value exceeds the allowed length."
 }

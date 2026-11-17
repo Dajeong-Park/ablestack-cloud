@@ -28,7 +28,7 @@
           <kubernetes-iso-scope v-if="column.key === 'zonename'" :resource="{ zoneid: record.zoneid, zonename: record.zonename }" />
           <kubernetes-iso-status v-else-if="column.key === 'availability'" :resource="resource" :observation="rowObservation(record)" compact />
           <span v-else-if="column.key === 'isready'">{{ $t(kubernetesIsoBooleanLabel(record.isready)) }}</span>
-          <a-tooltip v-else-if="column.key === 'reason'" :title="reason(record)" :trigger="['hover','focus']"><span tabindex="0" class="template-cell-value">{{ reason(record) || '—' }}</span></a-tooltip>
+          <keyboard-tooltip v-else-if="column.key === 'reason'" :title="reason(record)" :trigger="['hover','focus']"><span tabindex="0" class="template-cell-value">{{ reason(record) || '—' }}</span></keyboard-tooltip>
           <router-link v-else-if="column.key === 'actions' && isoLink" :to="{ ...isoLink, query: { tab: 'zones' } }">{{ $t('label.kubernetes.iso.view.child') }}</router-link>
         </template>
         <template #expandedRowRender="{ record }">
@@ -36,7 +36,7 @@
             <h5 class="template-tab-section-title">{{ $t(section.label) }}</h5>
             <a-table size="small" :columns="storeColumns" :data-source="stores(record,section.role)" :pagination="false" :scroll="{ x: 570 }" :row-key="(row,index) => row.datastoreId || index">
               <template #bodyCell="{ column, record: store }">
-                <a-tooltip v-if="column.key === 'datastore'" :title="store.datastore || '—'"><span class="template-cell-value">{{ store.datastore || '—' }}</span></a-tooltip>
+                <keyboard-tooltip v-if="column.key === 'datastore'" :title="store.datastore || '—'" :trigger="['hover','focus']"><span tabindex="0" class="template-cell-value">{{ store.datastore || '—' }}</span></keyboard-tooltip>
                 <template v-else-if="column.key === 'downloadPercent'"><a-progress v-if="isoStorePresentation(store).percent !== null" :percent="isoStorePresentation(store).percent" size="small" :status="isoStorePresentation(store).badge === 'error' ? 'exception' : undefined" /><span v-else>—</span></template>
                 <a-badge v-else-if="column.key === 'downloadState'" :status="isoStorePresentation(store).badge" :text="$t(isoStorePresentation(store).label)" />
               </template>
@@ -62,13 +62,14 @@
 </template>
 <script>
 import { Empty } from 'ant-design-vue'
+import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import KubernetesIsoScope from '@/components/widgets/KubernetesIsoScope'
 import KubernetesIsoStatus from '@/components/widgets/KubernetesIsoStatus'
 import { kubernetesIsoCanReadChild, kubernetesIsoLink, kubernetesIsoBooleanLabel, kubernetesIsoZoneReason } from '@/utils/kubernetesIsoDetails'
 import { isoStorePresentation, isoStoreReason } from '@/utils/isoZoneOperations'
 export default {
   name: 'KubernetesIsoZones',
-  components: { AEmpty: Empty, KubernetesIsoScope, KubernetesIsoStatus },
+  components: { KeyboardTooltip, AEmpty: Empty, KubernetesIsoScope, KubernetesIsoStatus },
   props: { resource: { type: Object, required: true }, observation: { type: Object, default: null } },
   emits: ['refresh-availability'],
   data: () => ({ keyword: '', page: 1, pageSize: 20 }),

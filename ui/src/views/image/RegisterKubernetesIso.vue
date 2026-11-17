@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <MoldDialog size="md" focus-guard :title="$t('label.kubernetes.version.add')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
+  <MoldDialog class="kubernetes-iso-dialog" size="md" focus-guard :title="$t('label.kubernetes.version.add')" :closable="!busy" :keyboard="!busy" @cancel="closeAction">
     <a-alert v-if="showSubmitError" type="error" show-icon :message="$t(submitError)" class="registration-notice" />
     <a-form
 :id="formId"
@@ -47,8 +47,8 @@ v-ctrl-enter="handleSubmit">
         <a-input v-model:value="form.checksum" :disabled="busy" />
       </a-form-item>
       <a-row :gutter="16">
-        <a-col :span="12"><a-form-item name="mincpunumber" :label="$t('label.mincpunumber')"><a-input v-model:value="form.mincpunumber" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
-        <a-col :span="12"><a-form-item name="minmemory" :label="$t('label.minmemory')"><a-input v-model:value="form.minmemory" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
+        <a-col :xs="24" :sm="12"><a-form-item name="mincpunumber" :label="$t('label.mincpunumber')"><a-input v-model:value="form.mincpunumber" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
+        <a-col :xs="24" :sm="12"><a-form-item name="minmemory" :label="$t('label.minmemory')"><a-input v-model:value="form.minmemory" :disabled="busy" inputmode="numeric" /></a-form-item></a-col>
       </a-row>
       <a-form-item v-if="supports('directdownload')" name="directdownload" :label="$t('label.directdownload')" :extra="$t(forcedDirect ? 'message.kubernetes.iso.direct.forced' : 'message.kubernetes.iso.direct.help')">
         <a-switch v-model:checked="form.directdownload" :disabled="busy || forcedDirect" @change="handleDirectChange" />
@@ -97,7 +97,7 @@ import { getAPI, postAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
 import { kubernetesIsoCapability, kubernetesIsoContext } from '@/utils/kubernetesIsoCapabilities'
 import { kubernetesIsoWriteResponse, kubernetesIsoFailure } from '@/utils/kubernetesIsoModel'
-import { ALL_KUBERNETES_ZONES, kubernetesUrlErrors, kubernetesUrlParams, kubernetesDirectDownloadForced, kubernetesUrlAttempt, rememberKubernetesUrlAttempt, synchronizeKubernetesUrlScope, reconcileKubernetesUrl, observeKubernetesUrl } from '@/utils/kubernetesIsoRegistration'
+import { ALL_KUBERNETES_ZONES, kubernetesUrlErrors, kubernetesUrlRejectedLength, discardRejectedKubernetesUrlAttempt, kubernetesUrlParams, kubernetesDirectDownloadForced, kubernetesUrlAttempt, rememberKubernetesUrlAttempt, synchronizeKubernetesUrlScope, reconcileKubernetesUrl, observeKubernetesUrl } from '@/utils/kubernetesIsoRegistration'
 
 let registrationSequence = 0
 export default {
@@ -144,7 +144,7 @@ export default {
       return ['x86_64', 'aarch64', 's390x'].map(id => options.find(row => row.id === id) || { id, name: id })
     },
     rules () {
-      return Object.fromEntries(['semanticversion', 'zoneid', 'url', 'checksum', 'mincpunumber', 'minmemory', 'directdownload', 'arch'].map(key => [key, [{
+      return Object.fromEntries(['name', 'semanticversion', 'zoneid', 'url', 'checksum', 'mincpunumber', 'minmemory', 'directdownload', 'arch'].map(key => [key, [{
         required: ['semanticversion', 'zoneid', 'url', 'mincpunumber', 'minmemory', 'arch'].includes(key),
         validator: async () => {
           const error = kubernetesUrlErrors(this.form, this.zones, this.capability)[key]
@@ -205,9 +205,19 @@ export default {
           rememberKubernetesUrlAttempt(operation.entry, 'accepted', record)
           this.receipt = record; this.phase = 'accepted'; this.$emit('refresh-data')
         } catch (error) {
-          rememberKubernetesUrlAttempt(operation.entry, 'uncertain')
-          if (!this.isCurrent(scope)) return
-          this.phase = 'uncertain'; this.submitError = 'message.kubernetes.iso.request.uncertain'
+          const rejectedField = kubernetesUrlRejectedLength(error)
+          if (rejectedField) {
+            // This gateway rejection occurred before the command was dispatched.
+            discardRejectedKubernetesUrlAttempt(operation.entry)
+            if (!this.isCurrent(scope)) return
+            this.phase = 'draft'; this.pendingParams = null; this.attempt = null
+            this.$refs.registrationForm.setFields([{ name: rejectedField, errors: [this.$t('message.kubernetes.iso.field.length')] }])
+            this.$refs.registrationForm.scrollToField(rejectedField)
+          } else {
+            rememberKubernetesUrlAttempt(operation.entry, 'uncertain')
+            if (!this.isCurrent(scope)) return
+            this.phase = 'uncertain'; this.submitError = 'message.kubernetes.iso.request.uncertain'
+          }
         }
       } catch (error) {
         if (!this.isCurrent(scope)) return

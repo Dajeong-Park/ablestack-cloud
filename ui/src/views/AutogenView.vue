@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': !!asnSearchAuth || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -986,6 +986,7 @@
 </template>
 
 <script>
+import '@/style/components/view/kubernetes-iso.less'
 import { isVmDeletion } from '@/utils/vmDeletion'
 import { templateObservationContext } from '@/utils/templateAvailability'
 import { isoZoneContext } from '@/utils/isoZoneOperations'
@@ -1515,6 +1516,7 @@ export default {
   computed: {
     kubernetesIsoSecurityContext () { return kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token) },
     vnfSearchAuth () { return vnfAuth(this.$store.getters, this.$store.state?.user?.token) },
+    isKubernetesIsoList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id },
     isIsoList () { return this.$route.meta?.name === 'iso' && !this.$route.params?.id },
     isoRestoredFilter () { return this.isIsoList && ['executable', 'selfexecutable', 'sharedexecutable'].includes(this.filterValue) ? this.filterValue : '' },
     isoSecurityContext () { return JSON.stringify([isoListOwner(this.$store.getters), this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()]) },
@@ -2442,6 +2444,7 @@ export default {
           requiredCopyColumns.forEach(column => { if (!this.columns.some(old => old.key === column.key)) this.columns.splice(1, 0, column) })
         }
         if (this.$route.name === 'autoscalevmgroup' && !this.columns.some(column => column.key === 'filtercolumn')) this.updateSelectedColumns()
+        if (kubernetesIsoQuery && !this.columns.some(column => column.key === 'filtercolumn')) this.updateSelectedColumns()
 
         this.chosenColumns = this.columns.filter(column => {
           return ![this.$t('label.state'), this.$t('label.hostname'), this.$t('label.hostid'), this.$t('label.zonename'),
