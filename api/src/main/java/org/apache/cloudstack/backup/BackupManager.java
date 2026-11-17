@@ -113,8 +113,9 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
     ConfigKey<Boolean> NetBackupVmScheduleEnabled = new ConfigKey<>("Advanced", Boolean.class,
             "backup.plugin.netbackup.vm.schedule.enabled", "true",
             "Use Mold per-VM schedules for all ABLESTACK NetBackup host policies. " +
-                    "When false, use each host policy's VM include/exclude filters. " +
-                    "When true, an empty due schedule list skips backup without falling back to host filters.",
+                    "Only VMs explicitly assigned a matching NetBackup backup offering are eligible in either mode. " +
+                    "When false, back up all eligible assigned VMs when the NetBackup policy runs. " +
+                    "When true, require a due Mold VM schedule; an empty due list skips backup.",
             true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
 
     ConfigKey<Boolean> AblestackVeeamVmScheduleEnabled = new ConfigKey<>("Advanced", Boolean.class,

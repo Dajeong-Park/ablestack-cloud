@@ -31,7 +31,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-spec = importlib.util.spec_from_file_location("netbackup_host_config", Path(__file__).with_name("netbackup-host-config.py"))
+spec = importlib.util.spec_from_file_location("netbackup_host_config", Path(__file__).with_name("netbackup_host_setup.py"))
 config = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(config)
 
@@ -398,7 +398,7 @@ printf '%s\n%s' "$KVM_HOST_ID" "$KVM_HOSTNAME"
         self.assertNotIn("listExternalBackupCandidates", params)
 
     def test_candidate_response_cannot_redirect_execution_to_another_host_uuid(self):
-        candidate = dict(virtualmachineid="vm-uuid", instancename="i-2-1-VM", hostid="host-uuid")
+        candidate = dict(virtualmachineid="vm-uuid", instancename="i-2-1-VM", hostid="host-uuid", backupofferingid="offering-uuid")
         for host_id in ("host-uuid", "other-host-uuid"):
             with self.subTest(host_id=host_id):
                 result, _ = self.candidate_lookup(host_id=host_id, inventories=[[self.host(id=host_id)]], candidates=[candidate])
@@ -446,60 +446,44 @@ printf '%s\n%s' "$KVM_HOST_ID" "$KVM_HOSTNAME"
         self.assert_cluster_incremental_update(update, args, "true")
         self.assertNotIn("kvm.backup.chain.size", [call.args[0] for call in read.call_args_list])
 
-    def test_interactive_selection_asks_mode_before_host_filters(self):
-        args = self.arguments()
-        with patch.object(sys.stdin, "isatty", return_value=True), patch("builtins.input", side_effect=["false", "i-2-1-VM", "i-2-2-VM"]) as read:
-            config.configure_vm_selection(args)
-        self.assertFalse(args.vm_schedule_backup)
-        self.assertEqual("i-2-1-VM", args.vm_include)
-        self.assertEqual("i-2-2-VM", args.vm_exclude)
-        self.assertIn("per-VM", read.call_args_list[0].args[0])
-        self.assertIn("VM_INCLUDE", read.call_args_list[1].args[0])
-        self.assertIn("VM_EXCLUDE", read.call_args_list[2].args[0])
 
-    def test_schedule_mode_skips_both_filter_prompts(self):
-        args = self.arguments()
-        with patch.object(sys.stdin, "isatty", return_value=True), patch("builtins.input", return_value="true") as read:
-            config.configure_vm_selection(args)
-        self.assertTrue(args.vm_schedule_backup)
-        self.assertEqual(("*", ""), (args.vm_include, args.vm_exclude))
-        self.assertEqual(1, read.call_count)
+    def test_mode_prompt_does_not_ask_for_vm_filters(self):
+        for mode in ("true", "false"):
+            args = self.arguments()
+            with patch.object(sys.stdin, "isatty", return_value=True), patch("builtins.input", return_value=mode) as read:
+                config.configure_vm_selection(args)
+            self.assertEqual(mode == "true", args.vm_schedule_backup)
+            self.assertEqual(1, read.call_count)
+            self.assertFalse(hasattr(args, "vm_include"))
+            self.assertFalse(hasattr(args, "vm_exclude"))
 
-    def test_noninteractive_selection_uses_mold_schedule_mode_by_default(self):
-        args = self.arguments()
-        with patch.object(sys.stdin, "isatty", return_value=False), patch("builtins.input") as read:
-            config.configure_vm_selection(args)
-        self.assertTrue(args.vm_schedule_backup)
-        self.assertEqual(("*", ""), (args.vm_include, args.vm_exclude))
-        read.assert_not_called()
+    def test_removed_netbackup_filter_arguments_are_rejected(self):
+        for argument in ("--vm-include", "--vm-exclude"):
+            with self.subTest(argument=argument), contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                self.arguments(argument, "*")
 
-    def test_explicit_selection_and_filters_support_unattended_configuration(self):
-        args = self.arguments("--vm-schedule-backup", "false", "--vm-include", "i-2-1-VM", "--vm-exclude", "i-2-2-VM")
-        with patch.object(sys.stdin, "isatty", return_value=True), patch("builtins.input") as read:
-            config.configure_vm_selection(args)
-        self.assertEqual(("i-2-1-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
-        read.assert_not_called()
-
-    def test_schedule_flag_is_only_stored_in_mold_and_host_filters_remain_usable(self):
-        args = self.arguments("--vm-schedule-backup", "true")
-        self.resolve(args)
-        with patch.object(sys.stdin, "isatty", return_value=False):
-            config.configure_vm_selection(args)
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "policy.conf"
+    def test_generated_policy_has_no_vm_filters_in_either_mode(self):
+        for mode in ("true", "false"):
+            args = self.arguments("--vm-schedule-backup", mode)
+            self.resolve(args)
+            path = config.CONFIG_OUTPUT_DIR / "new-policy.conf"
             config.write_config_file(path, args)
             text = path.read_text()
-        self.assertNotIn("VM_SCHEDULE_BACKUP=", text)
-        self.assertIn('VM_INCLUDE="*"', text)
-        self.assertIn('VM_EXCLUDE=""', text)
-        self.assertIn("KVM_HOSTNAME=host-test", text)
-        self.assertIn("NETBACKUP_POLICY_NAME=host-test", text)
-        self.assertIn("/bootstrap/host-test", text)
+            for key in ("VM_SCHEDULE_BACKUP=", "VM_INCLUDE=", "VM_EXCLUDE="):
+                self.assertNotIn(key, text)
+            self.assertIn("NETBACKUP_POLICY_NAME=host-test", text)
+            self.assertIn("/bootstrap/host-test", text)
 
-    def test_schedule_mode_rejects_manual_filters(self):
-        args = self.arguments("--vm-schedule-backup", "true", "--vm-include", "*")
-        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
-            config.configure_vm_selection(args)
+    def test_custom_template_cannot_reintroduce_removed_filter_keys(self):
+        template = config.CONFIG_OUTPUT_DIR / "template.conf"
+        template.write_text('VM_SCHEDULE_BACKUP=true\nVM_INCLUDE="*"\nVM_EXCLUDE="*"\n')
+        args = self.arguments("--vm-schedule-backup", "false")
+        self.resolve(args)
+        path = config.CONFIG_OUTPUT_DIR / "new-policy.conf"
+        with patch.object(config, "POLICY_TEMPLATE_PATH", template):
+            config.write_config_file(path, args)
+        for key in ("VM_SCHEDULE_BACKUP=", "VM_INCLUDE=", "VM_EXCLUDE="):
+            self.assertNotIn(key, path.read_text())
 
     def test_dynamic_global_schedule_update_does_not_require_restart(self):
         args = self.arguments("--vm-schedule-backup", "true")
@@ -537,53 +521,6 @@ printf '%s\n%s' "$KVM_HOST_ID" "$KVM_HOSTNAME"
                     contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
                 config.configure_vm_selection(self.arguments())
 
-    def test_reconfiguration_preserves_filters_in_both_modes(self):
-        path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
-        path.write_text('VM_INCLUDE="i-2-1-VM,i-2-2-VM"\nVM_EXCLUDE="i-2-2-VM"\n')
-        for enabled in ("true", "false"):
-            with self.subTest(enabled=enabled), patch.object(sys.stdin, "isatty", return_value=False):
-                args = self.arguments("--vm-schedule-backup", enabled)
-                config.configure_vm_selection(args)
-                self.resolve(args)
-                config.write_config_file(path, args)
-                self.assertEqual(("i-2-1-VM,i-2-2-VM", "i-2-2-VM"), (args.vm_include, args.vm_exclude))
-                self.assertNotIn("VM_SCHEDULE_BACKUP=", path.read_text())
-
-    def test_netbackup_config_round_trip_preserves_imported_vm_name_spacing(self):
-        include = "ERP Server, Finance  DB, 팀 업무 VM, Accounting 'DB' VM"
-        exclude = "Finance  DB"
-        args = self.arguments("--vm-schedule-backup", "false", "--vm-include", include, "--vm-exclude", exclude)
-        self.resolve(args)
-        path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
-        config.write_config_file(path, args)
-        self.assertEqual({"VM_INCLUDE": include, "VM_EXCLUDE": exclude}, config.read_vm_selection_filters(args))
-        result = subprocess.run(["bash", "-c", 'source "$1"; printf "%s\\0%s" "$VM_INCLUDE" "$VM_EXCLUDE"', "_", str(path)],
-                                capture_output=True, text=True, timeout=10)
-        self.assertEqual(0, result.returncode, result.stderr)
-        self.assertEqual([include, exclude], result.stdout.split("\0"))
-
-    def test_legacy_schedule_sentinel_is_removed_without_clearing_intentional_exclude_all(self):
-        path = config.CONFIG_OUTPUT_DIR / "netbackup-host-host-test.conf"
-        for legacy_mode, expected in (("true", ""), ("false", "*")):
-            path.write_text(f'VM_SCHEDULE_BACKUP={legacy_mode}\nVM_INCLUDE="*"\nVM_EXCLUDE="*"\n')
-            args = self.arguments("--vm-schedule-backup", "false")
-            with self.subTest(legacy_mode=legacy_mode), patch.object(sys.stdin, "isatty", return_value=False), \
-                    contextlib.redirect_stderr(io.StringIO()):
-                config.configure_vm_selection(args)
-            self.assertEqual(expected, args.vm_exclude)
-
-    def test_legacy_policy_template_does_not_reintroduce_host_mode(self):
-        template = config.CONFIG_OUTPUT_DIR / "old-template.conf"
-        template.write_text('VM_SCHEDULE_BACKUP=true\nVM_INCLUDE="*"\nVM_EXCLUDE="*"\n')
-        args = self.arguments("--vm-schedule-backup", "false", "--vm-exclude", "")
-        self.resolve(args)
-        with patch.object(sys.stdin, "isatty", return_value=False):
-            config.configure_vm_selection(args)
-        path = config.CONFIG_OUTPUT_DIR / "new-policy.conf"
-        with patch.object(config, "POLICY_TEMPLATE_PATH", template):
-            config.write_config_file(path, args)
-        self.assertNotIn("VM_SCHEDULE_BACKUP=", path.read_text())
-        self.assertIn('VM_EXCLUDE=""', path.read_text())
 
     def test_full_mode_updates_only_cluster_flag_and_requires_restart(self):
         args = self.arguments("--incremental-backup", "false")

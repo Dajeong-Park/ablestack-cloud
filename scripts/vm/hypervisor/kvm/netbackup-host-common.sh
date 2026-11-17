@@ -40,8 +40,6 @@ SECRET_KEY_FILE="$SECRET_KEY_FILE_DEFAULT"
 MOLD_SECRET_FILE="${MOLD_SECRET_FILE:-}"
 BACKUP_STAGING_ROOT="${BACKUP_STAGING_ROOT:-$BACKUP_STAGING_ROOT_DEFAULT}"
 
-VM_INCLUDE="${VM_INCLUDE:-*}"
-VM_EXCLUDE="${VM_EXCLUDE:-}"
 MOLD_URL="${MOLD_URL:-}"
 ADMIN_APIKEY="${ADMIN_APIKEY:-}"
 ADMIN_SECRETKEY="${ADMIN_SECRETKEY:-}"
@@ -750,8 +748,6 @@ load_policy_schedule_config() {
   local config_file
   config_file="$(resolve_config_file_path)"
 
-  VM_INCLUDE="*"
-  VM_EXCLUDE=""
   NETBACKUP_PARENT_PAYLOAD_PATH=""
   KVM_HOSTNAME=""
   KVM_HOST_ID=""
@@ -771,8 +767,6 @@ load_policy_schedule_config() {
     log -ne "No NetBackup config found for policy=${POLICY_NAME}"
   fi
 
-  VM_INCLUDE="${VM_INCLUDE:-*}"
-  VM_EXCLUDE="${VM_EXCLUDE:-}"
   # Legacy policy files may still contain this flag; Mold owns NetBackup mode selection.
   unset VM_SCHEDULE_BACKUP
   MOLD_CREATE_BACKUP_API_URL="${MOLD_CREATE_BACKUP_API_URL:-${MOLD_URL}}"
@@ -794,35 +788,7 @@ load_policy_schedule_config() {
   load_backup_staging_root_from_mold
   load_staging_timeout_from_data_operation_config
 
-  log -ne "VM selection include=${VM_INCLUDE} exclude=${VM_EXCLUDE}"
-}
-
-match_csv_glob() {
-  local value="$1"
-  local patterns="$2"
-  local pattern
-
-  [[ -z "${patterns}" ]] && return 1
-  while IFS= read -r pattern; do
-    pattern="${pattern#"${pattern%%[![:space:]]*}"}"
-    pattern="${pattern%"${pattern##*[![:space:]]}"}"
-    [[ -z "${pattern}" ]] && continue
-    if [[ "${value}" == ${pattern} ]]; then
-      return 0
-    fi
-  done < <(tr ',' '\n' <<< "${patterns}")
-  return 1
-}
-
-vm_is_selected() {
-  local vm_name="$1"
-  if match_csv_glob "${vm_name}" "${VM_EXCLUDE}"; then
-    return 1
-  fi
-  if match_csv_glob "${vm_name}" "${VM_INCLUDE}"; then
-    return 0
-  fi
-  return 1
+  log -ne "VM selection uses explicitly assigned NetBackup backup offerings"
 }
 
 list_mold_virtual_machine_names() {
@@ -877,15 +843,9 @@ vm_exists_in_mold_cache() {
 }
 
 list_target_vms() {
-  local vm_name selection_mode
-  selection_mode="$(lookup_mold_candidate_field "" selectionmode)" || return 1
+  local vm_name
   while IFS= read -r vm_name; do
     [[ -z "${vm_name}" ]] && continue
-    if [[ "${selection_mode}" == "CONFIG" ]] && ! vm_is_selected "${vm_name}"; then
-      log -ne "Skipping VM ${vm_name}: not selected by VM_INCLUDE/VM_EXCLUDE"
-      continue
-    fi
-
     if vm_exists_in_mold_cache "${vm_name}"; then
       builtin echo "${vm_name}"
     else
@@ -1179,7 +1139,6 @@ cache_mold_virtual_machines() {
   local mold_host="$KVM_HOSTNAME"
   log -ne "Calling Mold listExternalBackupCandidates host=${mold_host} hostId=${KVM_HOST_ID} client=${CLIENT_NAME} policy=${POLICY_NAME}"
   local -a selection_args=("provider" "ablestack-netbackup" "hostid" "$KVM_HOST_ID" "policyid" "$POLICY_NAME")
-  selection_args+=("vminclude" "${VM_INCLUDE-*}" "vmexclude" "${VM_EXCLUDE-}")
   response="$(invoke_mold_api \
     "${MOLD_LIST_NETBACKUP_CANDIDATES_API_METHOD}" \
     "${MOLD_LIST_NETBACKUP_CANDIDATES_API_URL}" \
@@ -1201,6 +1160,7 @@ try:
         for key in ("virtualmachineid", "instancename", "hostid"):
             require(isinstance(candidate.get(key), str) and candidate[key].strip())
         require(candidate["hostid"] == sys.argv[1])
+        require(isinstance(candidate.get("backupofferingid"), str) and candidate["backupofferingid"].strip())
         require(candidate["virtualmachineid"] not in seen)
         seen.add(candidate["virtualmachineid"])
         if mode == "SCHEDULE":

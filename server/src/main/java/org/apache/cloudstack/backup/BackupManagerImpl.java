@@ -1774,8 +1774,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             checkNoActiveFastCloneFlattenForBackup(vm.getId());
             final BackupScheduleVO schedule = validateExternalBackupExecution(vm, BackupProviderNameUtils.ABLESTACK_NETBACKUP,
                     cmd.getPolicyId(), cmd.getSelectionMode(), cmd.getHostId(), cmd.getBackupOfferingId(), backupScheduleId, cmd.getVmScheduleBackup());
-            final BackupOffering offering = resolveExternalBackupOffering(vm, BackupProviderNameUtils.ABLESTACK_NETBACKUP,
-                    backupScheduleId == null && (cmd.getSelectionMode() == null || "CONFIG".equals(cmd.getSelectionMode())));
+            final BackupOffering offering = resolveExternalBackupOffering(vm, BackupProviderNameUtils.ABLESTACK_NETBACKUP, false);
             final BackupProvider backupProvider = getBackupProvider(offering.getProvider());
             if (backupProvider == null) {
                 throw new CloudRuntimeException("Failed to get NetBackup provider for existing offering assignment");
@@ -2422,13 +2421,16 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                     .filter(vm -> VirtualMachine.State.Stopped.equals(vm.getState()) && vm.getLastHostId() == null)
                     .collect(Collectors.toList()));
             for (final VMInstanceVO vm : hostVms) {
-                if (!externalBackupHostFilterMatches(vm.getInstanceName(), cmd)) { continue; }
+                final boolean netbackup = BackupProviderNameUtils.isNetBackupFamily(cmd.getProvider());
+                if (netbackup && (vm.getBackupOfferingId() == null || !externalBackupOfferingMatches(
+                        backupOfferingDao.findById(vm.getBackupOfferingId()), cmd.getProvider(), cmd.getPolicyId()))) { continue; }
+                if (!netbackup && !externalBackupHostFilterMatches(vm.getInstanceName(), cmd)) { continue; }
                 if (vm.getRemoved() == null && VirtualMachine.Type.User.equals(vm.getType())
                         && VirtualMachine.State.Stopped.equals(vm.getState()) && vm.getLastHostId() == null
                         && (vm.getBackupOfferingId() == null || externalBackupOfferingMatches(
                                 backupOfferingDao.findById(vm.getBackupOfferingId()), cmd.getProvider(), cmd.getPolicyId()))) {
                     // Older Hooks did not send their filters, so they cannot safely claim new CONFIG placements.
-                    if (cmd.getVmInclude() == null) { continue; }
+                    if (!netbackup && cmd.getVmInclude() == null) { continue; }
                     if (!Objects.equals(host.getId(), externalBackupHostId(vm, cmd.getProvider(), cmd.getPolicyId(), host))) { continue; }
                 }
                 if (isExternalBackupCandidate(vm, host.getId(), cmd.getProvider(), cmd.getPolicyId()) && selected.add(vm.getId())) {
@@ -2499,8 +2501,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             final String provider, final String policyId) {
         return vm != null && vm.getRemoved() == null && VirtualMachine.Type.User.equals(vm.getType())
                 && (VirtualMachine.State.Running.equals(vm.getState()) || VirtualMachine.State.Stopped.equals(vm.getState()))
-                && (vm.getBackupOfferingId() == null
-                        || externalBackupOfferingMatches(backupOfferingDao.findById(vm.getBackupOfferingId()), provider, policyId))
+                && (vm.getBackupOfferingId() == null ? !BackupProviderNameUtils.isNetBackupFamily(provider)
+                        : externalBackupOfferingMatches(backupOfferingDao.findById(vm.getBackupOfferingId()), provider, policyId))
                 && Objects.equals(hostId, externalBackupHostId(vm, provider, policyId, null))
                 && !hasActiveBackingUpBackup(vm);
     }
@@ -2556,7 +2558,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         }
         if (!scheduleMode) {
             if (scheduleId != null) {
-                throw new CloudRuntimeException("Host-filter backup must not specify a Mold schedule");
+                throw new CloudRuntimeException("Policy-driven backup must not specify a Mold schedule");
             }
             return null;
         }
@@ -2580,8 +2582,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             }
             return offering;
         }
-        if (!autoAssign) {
-            throw new CloudRuntimeException("VM must have a backup offering assigned before a scheduled backup");
+        if (!autoAssign || BackupProviderNameUtils.isNetBackupFamily(provider)) {
+            throw new CloudRuntimeException("Assign a backup offering to the VM before requesting backup");
         }
         final String externalId = BackupProviderNameUtils.isNetBackupFamily(provider) ? "netbackup" : "veeam";
         final BackupOffering offering = backupOfferingDao.findByExternalId(externalId, vm.getDataCenterId());
@@ -4812,6 +4814,8 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     @Override
     public List<Class<?>> getCommands() {
         final List<Class<?>> cmdList = new ArrayList<Class<?>>();
+        cmdList.add(org.apache.cloudstack.api.command.admin.backup.GetNetBackupHostConfigurationCmd.class);
+        cmdList.add(org.apache.cloudstack.api.command.admin.backup.ConfigureNetBackupHostCmd.class);
         if (!BackupFrameworkEnabled.value()) {
             return cmdList;
         }
