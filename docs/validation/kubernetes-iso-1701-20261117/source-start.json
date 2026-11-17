@@ -1,0 +1,18 @@
+{
+  "before": {
+    "base": "10150bdead45260b58313879d27402383b6b9bf8",
+    "feature": "da44333da325cca9aa1f2a7a4df386f216b6835f",
+    "originFeature": "da44333da325cca9aa1f2a7a4df386f216b6835f"
+  },
+  "after": {
+    "base": "aff74eee0d835891f9209492514f6c2d204bc138",
+    "feature": "02f2dbd8a985b26ac2d823872b7ed44e6f3113b0",
+    "originBase": "10150bdead45260b58313879d27402383b6b9bf8",
+    "upstreamBase": "aff74eee0d835891f9209492514f6c2d204bc138",
+    "divergence": [
+      "0",
+      "0"
+    ],
+    "branch": "dhslove/epic-1692-ui-design"
+  }
+}

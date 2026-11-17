@@ -1,0 +1,35 @@
+{
+  "head": "a374df51ab1cad156915b608f0443ef5ed021268",
+  "backup": "/var/tmp/kiso1701-backup-onn32aja",
+  "files": [
+    "js/chunk-07783eac.8e7ff940.js",
+    "js/chunk-543657c9.ae389453.js",
+    "js/vendors.cd88e224.js",
+    "js/app.5269f03f.js",
+    "js/chunk-b89ed21a.1020eb1f.js",
+    "js/chunk-0581513e.0d4b03d0.js",
+    "js/chunk-5ed105e8.83a0bace.js",
+    "js/chunk-8f373f7e.f6906503.js",
+    "css/chunk-5ed105e8.8720a665.css",
+    "css/chunk-b89ed21a.04236756.css",
+    "css/app.4b778f56.css",
+    "css/chunk-07783eac.5443bd22.css",
+    "css/chunk-543657c9.afb05e4e.css",
+    "css/chunk-8f373f7e.78644df3.css",
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "count": 17,
+  "overwritten": [
+    "locales/ko_KR.json",
+    "locales/en.json",
+    "index.html"
+  ],
+  "preservedOldFiles": 7194,
+  "indexSha256": "250d31cb0107ed4c5d51ba73f6cdda6abce9fa3a042c2d7b15ae2a94a46ad7b1",
+  "protectedPreserved": true,
+  "backendAndPidPreserved": true,
+  "staticHttpHashesVerified": true,
+  "deploymentType": "UI static delta only"
+}

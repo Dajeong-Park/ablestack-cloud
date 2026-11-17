@@ -1,0 +1,5 @@
+{
+  "reason": "Include the observed light-mode name link contrast correction before final production build",
+  "sourceHead": "0b905cc9d25c06eb440562872b2d78951e6c792f",
+  "deployed": false
+}

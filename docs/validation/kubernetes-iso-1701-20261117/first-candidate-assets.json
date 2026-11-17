@@ -1,0 +1,73 @@
+{
+  "files": {
+    "js/chunk-07783eac.8e7ff940.js": {
+      "sha256": "6073b6e90a9579d8e482a7db5c295a55b8d4bb48d7257fe91f50ee55e7c8033e",
+      "size": 21874
+    },
+    "js/chunk-543657c9.ae389453.js": {
+      "sha256": "a9b33c9ff13ae8452b7c413b6fbb036ee5f63f81d0b90146d7106bca706f0ff8",
+      "size": 27635
+    },
+    "js/vendors.cd88e224.js": {
+      "sha256": "3ffc8622cb2ce1bd66945832b1a277186bdbb971855df8268304854de727ca3e",
+      "size": 6054280
+    },
+    "js/app.5269f03f.js": {
+      "sha256": "0078af60b176bfd15c374a3f99a81275c7b1332d507cf9f9fadf7989ba86eae8",
+      "size": 2056348
+    },
+    "js/chunk-b89ed21a.1020eb1f.js": {
+      "sha256": "128d2fdfc305d7e3ea301d40aedf35a472b7c510fbd4942ea558b858cb290c5f",
+      "size": 17600
+    },
+    "js/chunk-0581513e.0d4b03d0.js": {
+      "sha256": "f43363bd9ea2e5c935b21a837450470ec4f956a10db879828f138b7f2064e952",
+      "size": 14741
+    },
+    "js/chunk-5ed105e8.83a0bace.js": {
+      "sha256": "5e0652eb293ca03b11d19bed488a80718044a7525edd2c588450e1b6a73e0910",
+      "size": 10103
+    },
+    "js/chunk-8f373f7e.f6906503.js": {
+      "sha256": "5128dd8f06fc2e8e1afb3b37eda0b2132c9d9374bf651d89f73cc920bfe7794b",
+      "size": 4994
+    },
+    "css/chunk-5ed105e8.8720a665.css": {
+      "sha256": "819c189e85cb65e8a8183991c98fcdbd25e9f0590e073d996b090b2b006c84fa",
+      "size": 488
+    },
+    "css/chunk-b89ed21a.04236756.css": {
+      "sha256": "d5df217160a6f6485cb7014e7a8a3eac3d6345b500e32049db0b51862ea6e979",
+      "size": 497
+    },
+    "css/app.4b778f56.css": {
+      "sha256": "c510ac7670c8bd0cdcc040f02aa5a60274db06317adb2f07511bfe3af873a9f3",
+      "size": 354775
+    },
+    "css/chunk-07783eac.5443bd22.css": {
+      "sha256": "a3c91356db5ee4380fbd647fa1d1f48d1fad6ce1b6b298aa9456acb9ae577536",
+      "size": 52
+    },
+    "css/chunk-543657c9.afb05e4e.css": {
+      "sha256": "54d3a57687184765057db6a6fa9a40c255e572ee42413b52eaa11581773ecc98",
+      "size": 46
+    },
+    "css/chunk-8f373f7e.78644df3.css": {
+      "sha256": "4de7ec6989ab7d23fbfd17fb70579361a526b35b583fccc14087dfe48b665351",
+      "size": 443
+    },
+    "locales/ko_KR.json": {
+      "sha256": "5fd9c5ac0faba66d92be5ab4f71063e5ffba86285ab8b30b7e15f104a2f229d5",
+      "size": 1069799
+    },
+    "locales/en.json": {
+      "sha256": "6b5d3f65e644bc3f03cbc0fb1b21073cb7b64bf7002c6cf43bb9c5dc8303861c",
+      "size": 954316
+    },
+    "index.html": {
+      "sha256": "250d31cb0107ed4c5d51ba73f6cdda6abce9fa3a042c2d7b15ae2a94a46ad7b1",
+      "size": 40359
+    }
+  },
+  "count": 17
+}
