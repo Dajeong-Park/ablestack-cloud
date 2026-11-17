@@ -1,0 +1,34 @@
+[
+  {
+    "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+    "text": "vmware-tools.iso사용 가능CentOS 4.5 (32-bit)x86_64—system"
+  },
+  {
+    "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+    "text": "xs-tools.iso사용 가능CentOS 4.5 (32-bit)x86_64—system"
+  },
+  {
+    "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+    "text": "1.35.9-Kubernetes-Binaries-ISO사용 가능Nonex86_640.94 GiBsystem"
+  },
+  {
+    "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+    "text": "1.36.5-Kubernetes-Binaries-ISO사용 가능Nonex86_640.96 GiBsystem"
+  },
+  {
+    "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+    "text": "Rocky-10.0-x86_64-dvd1.iso사용 가능Rocky Linux 9x86_647.13 GiBadmin"
+  },
+  {
+    "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+    "text": "Windows Server 2025 x86_64 DVD사용 가능Windows Server 2025 (64-bit)x86_647.59 GiBadmin"
+  },
+  {
+    "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+    "text": "VirtIO Windows Driver 0.1.302사용 가능Nonex86_640.82 GiBadmin"
+  },
+  {
+    "id": "367c88cb-4947-452f-9429-54a19885adf4",
+    "text": "ABLESTACK-Diplo-v4.2.1.iso사용 가능Ubuntu 24.04 LTSx86_6422.46 GiBadmin"
+  }
+]

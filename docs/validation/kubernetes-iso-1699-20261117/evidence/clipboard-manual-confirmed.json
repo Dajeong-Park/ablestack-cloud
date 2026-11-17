@@ -1,0 +1,10 @@
+{
+  "confirmedBy": "user",
+  "result": "세 값 모두 원문과 일치",
+  "fields": [
+    "version ID",
+    "linked ISO ID",
+    "ISO URL"
+  ],
+  "resource": "qa-kiso1699-global-ready"
+}

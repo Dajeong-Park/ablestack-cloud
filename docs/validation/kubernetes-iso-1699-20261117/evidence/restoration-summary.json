@@ -1,0 +1,21 @@
+{
+  "qaVersionIsoPairsDeleted": 6,
+  "qaAccountRoleSetsDeleted": 2,
+  "originalCatalogIdsRestored": true,
+  "originalAccountIdsRestored": true,
+  "originalRoleIdsRestored": true,
+  "qaIsoIdsAbsent": true,
+  "catalog": 2,
+  "iso": 8,
+  "accounts": 3,
+  "roles": 9,
+  "templates": 48,
+  "guestVm": 102,
+  "systemVms": [
+    "v-245-VM",
+    "s-263-VM"
+  ],
+  "httpFixtureStatus": 404,
+  "auditRetained": true,
+  "clipboardConfirmedByUser": true
+}
