@@ -1,0 +1,283 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - list:
+      - menuitem "cloud-server 가상머신":
+        - link "cloud-server 가상머신":
+          - /url: "#/vm"
+          - img "cloud-server":
+          - text: 가상머신
+      - menuitem "camera VM 스냅샷":
+        - link "camera VM 스냅샷":
+          - /url: "#/vmsnapshot"
+          - img "camera":
+          - text: VM 스냅샷
+      - menuitem "쿠버네티스":
+        - link "쿠버네티스":
+          - /url: "#/kubernetes"
+          - text: 쿠버네티스
+      - menuitem "fullscreen 오토스케일 VM 그룹":
+        - link "fullscreen 오토스케일 VM 그룹":
+          - /url: "#/autoscalevmgroup"
+          - img "fullscreen":
+          - text: 오토스케일 VM 그룹
+      - menuitem "gold 가상머신 그룹":
+        - link "gold 가상머신 그룹":
+          - /url: "#/vmgroup"
+          - img "gold":
+          - text: 가상머신 그룹
+      - menuitem "key SSH 키 쌍":
+        - link "key SSH 키 쌍":
+          - /url: "#/ssh"
+          - img "key":
+          - text: SSH 키 쌍
+      - menuitem "solution 사용자 데이터 라이브러리":
+        - link "solution 사용자 데이터 라이브러리":
+          - /url: "#/userdata"
+          - img "solution":
+          - text: 사용자 데이터 라이브러리
+      - menuitem "solution CNI 구성":
+        - link "solution CNI 구성":
+          - /url: "#/cniconfiguration"
+          - img "solution":
+          - text: CNI 구성
+      - menuitem "swap Affinity 그룹":
+        - link "swap Affinity 그룹":
+          - /url: "#/affinitygroup"
+          - img "swap":
+          - text: Affinity 그룹
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+  - superscript:
+    - paragraph: "2"
+- generic: AC
+- generic: admin cloud
+- button "알림 제거":
+  - generic: 알림 제거
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "쿠버네티스":
+    - /url: "#/kubernetes"
+  - text: /
+  - generic: qa-kiso1700-upgrade
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - heading "qa-kiso1700-upgrade" [level=4]
+  - separator
+  - generic: 상태
+  - generic: 오류
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "de53c0a8-db4f-4997-b71b-3b4c05f23c6b":
+    - /url: javascript:;
+  - generic: IP
+  - img "environment":
+  - link "10.10.13.29":
+    - /url: "#/publicip/14c350c5-f202-43f0-a6ab-26036ded5ccb"
+    - link "10.10.13.29":
+      - /url: javascript:;
+  - generic: CPU 코어
+  - generic: "4"
+  - generic: 메모리
+  - text: 4096 MB 메모리
+  - generic: 기본 템플릿
+  - img "save":
+  - link "Europa-SystemVM-4.23-ISO1667-20261115":
+    - /url: "#/template/1cce97d2-a4b6-49c7-871a-3f52d70ce858"
+  - generic: 컨트롤 노드 템플릿
+  - img "save":
+  - link "Europa-SystemVM-4.23-ISO1667-20261115":
+    - /url: "#/template/1cce97d2-a4b6-49c7-871a-3f52d70ce858"
+  - generic: 워커 노드 템플릿
+  - img "save":
+  - link "Europa-SystemVM-4.23-ISO1667-20261115":
+    - /url: "#/template/1cce97d2-a4b6-49c7-871a-3f52d70ce858"
+  - generic: 컴퓨트 오퍼링
+  - img "cloud":
+  - link "CKS Instance":
+    - /url: "#/computeoffering/4007504f-6cc3-4694-b44e-46f5a6f0baa4"
+  - generic: Zone
+  - img "global":
+  - link "13-Zone":
+    - /url: "#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+  - generic: 계정
+  - img "user":
+  - link "admin":
+    - /url: "#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363"
+  - generic: 도메인
+  - img "block":
+  - link "ROOT":
+    - /url: "#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details"
+  - generic: 생성일
+  - img "calendar":
+  - text: 2026. 11. 17. 오전 10:51:06
+  - tablist:
+    - tab "상세" [selected]
+    - tab "액세스"
+    - tab "가상머신"
+    - tab "방화벽"
+    - tab "포트 포워딩"
+    - tab "부하 분산"
+    - tab "이벤트"
+    - tab "코멘트"
+  - tabpanel "상세":
+    - list:
+      - strong: 이름
+      - generic: qa-kiso1700-upgrade
+      - strong: 설명
+      - generic: qa-kiso1700-upgrade
+      - strong: Zone
+      - generic: 13-Zone
+      - strong: 쿠버네티스 버전
+      - generic: 1.35.9
+      - strong: 오토스케일링
+      - generic: 비활성화
+      - strong: CSI 활성화됨
+      - generic: 비활성화
+      - strong: 워커 노드 수
+      - generic: "1"
+      - strong: 마스터 노드
+      - generic: "1"
+      - strong: etcd 노드 수
+      - generic: "0"
+      - strong: 노드 할당 CPU 합계 (vCore)
+      - generic: "4"
+      - strong: 노드 할당 메모리 합계 (MB)
+      - generic: "4096"
+      - strong: 연결된 네트워크 이름
+      - generic: qa-kiso1700-upgrade-network
+      - strong: 계정
+      - generic: admin
+      - strong: 도메인
+      - generic: ROOT
+      - strong: 클러스터 유형
+      - generic: Mold 관리형
+      - strong: 생성일
+      - generic: 2026. 11. 17. 오전 10:51:06
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- img "close-circle":
+- generic: 오류
+- generic: Failed to initialize Kubernetes Provider; nodes and cleanup receipts are preserved
+- img "close":
+- tooltip "복사"

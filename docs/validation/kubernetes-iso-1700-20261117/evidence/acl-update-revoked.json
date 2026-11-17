@@ -1,0 +1,8 @@
+{
+  "actor": "qa-kiso1700-write",
+  "operation": "updateKubernetesSupportedVersion",
+  "revokedVia": "admin UI role permission",
+  "target": "b86ee829-34fa-4a43-ab5a-4a6377e41077",
+  "errorcode": 432,
+  "errortext": "The API [updateKubernetesSupportedVersion] does not exist or is not available for the account qa-kiso1700-write."
+}

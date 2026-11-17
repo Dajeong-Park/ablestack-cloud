@@ -1,0 +1,144 @@
+[
+  {
+    "label": "final-test-isos-zero",
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "keyword": "qa-kiso1700"
+  },
+  {
+    "label": "final-test-vms-zero",
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "keyword": "qa-kiso1700"
+  },
+  {
+    "label": "final-test-networks-zero",
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "keyword": "qa-kiso1700"
+  },
+  {
+    "label": "final-test-accounts-zero",
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "keyword": "qa-kiso1700"
+  },
+  {
+    "label": "final-test-roles-zero",
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "keyword": "qa-kiso1700"
+  },
+  {
+    "label": "final-accounts-preserved",
+    "pagination": [
+      "전체 3 개 항목 중 1-3 표시"
+    ],
+    "keyword": "",
+    "rows": [
+      "이름상태역할역할 유형도메인",
+      "admin정상Root AdminAdminROOT",
+      "baremetal-system-account정상UserUserROOT",
+      "epic898-config-denied-1791388603비활성화UserUserROOT"
+    ]
+  },
+  {
+    "label": "final-roles-preserved",
+    "pagination": [
+      "전체 9 개 항목 중 1-9 표시"
+    ],
+    "keyword": "",
+    "rows": [
+      "이름유형설명상태",
+      "Root AdminAdminDefault root admin role정상",
+      "Resource AdminResourceAdminDefault resource admin role정상",
+      "Domain AdminDomainAdminDefault domain admin role정상",
+      "UserUserDefault user role정상",
+      "Read-Only Admin - DefaultAdminDefault read-only admin role정상",
+      "Read-Only User - DefaultUserDefault read-only user role정상",
+      "Support Admin - DefaultAdminDefault support admin role정상",
+      "Support User - DefaultUserDefault support user role정상",
+      "Project Kubernetes Service RoleUserProject Kubernetes Service Role정상"
+    ]
+  },
+  {
+    "label": "final-isos-preserved",
+    "pagination": [
+      "전체 8 개 항목 중 1-8 표시"
+    ],
+    "keyword": "",
+    "rows": [
+      "이름상태OS 유형CPU 아키텍처크기계정순서",
+      "vmware-tools.iso사용 가능CentOS 4.5 (32-bit)x86_64—system",
+      "xs-tools.iso사용 가능CentOS 4.5 (32-bit)x86_64—system",
+      "1.35.9-Kubernetes-Binaries-ISO사용 가능Nonex86_640.94 GiBsystem",
+      "1.36.5-Kubernetes-Binaries-ISO사용 가능Nonex86_640.96 GiBsystem",
+      "Rocky-10.0-x86_64-dvd1.iso사용 가능Rocky Linux 9x86_647.13 GiBadmin",
+      "Windows Server 2025 x86_64 DVD사용 가능Windows Server 2025 (64-bit)x86_647.59 GiBadmin",
+      "VirtIO Windows Driver 0.1.302사용 가능Nonex86_640.82 GiBadmin",
+      "ABLESTACK-Diplo-v4.2.1.iso사용 가능Ubuntu 24.04 LTSx86_6422.46 GiBadmin"
+    ]
+  },
+  {
+    "label": "final-vms-preserved",
+    "pagination": [
+      "전체 102 개 항목 중 1-20 표시"
+    ],
+    "keyword": ""
+  },
+  {
+    "label": "final-templates-preserved",
+    "pagination": [
+      "전체 48 개 항목 중 1-20 표시"
+    ],
+    "keyword": ""
+  },
+  {
+    "label": "final-clusters-preserved",
+    "pagination": [
+      "전체 2 개 항목 중 1-2 표시"
+    ],
+    "keyword": "",
+    "rows": [
+      "이름상태오토스케일링클러스터 유형워커 노드 수노드 할당 자원 합계쿠버네티스 버전계정Zone",
+      "koral1정지된 상태미사용Mold 관리형1 4 CPU  4096 MB 1.35.9admin13-Zone",
+      "koral3정지된 상태미사용Mold 관리형2 8 CPU  8192 MB 1.36.5admin13-Zone"
+    ]
+  },
+  {
+    "label": "final-systemvms-preserved",
+    "pagination": [
+      "전체 2 개 항목 중 1-2 표시"
+    ],
+    "keyword": "",
+    "rows": [
+      "이름상태Agent 상태시스템 VM 유형Public IP 주소사설 IP 주소로컬 연결 IP 주소버전호스트CPU 아키텍처Zone",
+      "v-245-VM실행 중실행 중consoleproxy10.10.13.510.10.13.6169.254.243.214.23.0.0ablecube13-2x86_6413-Zone",
+      "s-263-VM실행 중실행 중secondarystoragevm10.10.13.410.10.13.7169.254.87.834.23.0.0ablecube13-2x86_6413-Zone"
+    ]
+  },
+  {
+    "label": "final-test-catalog-zero",
+    "pagination": [
+      "전체 0 개 항목 중 0-0 표시"
+    ],
+    "keyword": "qa-kiso1700"
+  },
+  {
+    "label": "final-catalog-preserved",
+    "pagination": [
+      "전체 2 개 항목 중 1-2 표시"
+    ],
+    "keyword": "",
+    "rows": [
+      "이름상태시맨틱 버전ISO 상태최소 CPU 코어최소 메모리(MB)CPU 아키텍처Zone",
+      "1.35.9사용 허용1.35.9미확인22048x86_6413-Zone",
+      "1.36.5사용 허용1.36.5미확인22048x86_6413-Zone"
+    ]
+  }
+]
