@@ -993,7 +993,7 @@ import { isoListQuery, isoSearchQuery, isoSearchError, isoRequestParams, isoList
 import { isoListResponse, readIsoResource } from '@/utils/isoModel'
 import { kubernetesIsoApis, kubernetesIsoCapability, canKubernetesIsoAction, kubernetesIsoContext } from '@/utils/kubernetesIsoCapabilities'
 import { kubernetesIsoListResponse, kubernetesIsoReadParams, kubernetesIsoFailure } from '@/utils/kubernetesIsoModel'
-import { kubernetesIsoListQuery, kubernetesIsoListOwner, kubernetesIsoSearchError, kubernetesIsoSearchQuery, kubernetesIsoSortFields, kubernetesIsoFilterMismatch } from '@/utils/kubernetesIsoSearch'
+import { kubernetesIsoListQuery, kubernetesIsoListLocation, kubernetesIsoListOwner, kubernetesIsoSearchError, kubernetesIsoSearchQuery, kubernetesIsoSortFields, kubernetesIsoFilterMismatch } from '@/utils/kubernetesIsoSearch'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
@@ -2914,6 +2914,12 @@ export default {
       return this.fetchData(result)
     },
     closeAction (result) {
+      const deletedKubernetesIso = this.$route.meta?.name === 'kubernetesiso' && this.currentAction?.api === 'deleteKubernetesSupportedVersion' && result?.removed?.includes(this.resource?.id)
+      const kubernetesIsoLocation = deletedKubernetesIso ? kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token) : null
+      if (deletedKubernetesIso) {
+        this.listRequestVersion++; this.listRequestPending = false; this.listLoadedScope = null
+        this.resource = {}; this.items = []; this.itemCount = 0; this.resetSelection()
+      }
       const networkDeletion = this.currentAction?.networkDeletionTargets && this.currentAction.networkDeletionScope === this.listScope()
       const deletedNetworkDetail = networkDeletion && this.dataView && result?.removed?.includes(this.$route.params?.id)
       const networkLocation = this.currentAction?.networkDeletionLocation
@@ -2925,7 +2931,7 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
-      const guardedDialog = this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.$route.meta?.name === 'kubernetesiso' || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -2975,6 +2981,7 @@ export default {
       if (deletedPolicyDetail) this.$router.replace(policyListLocation)
       if (deletedSshDetail) this.$router.push('/ssh')
       if (deletedUserDataDetail) this.$router.push('/userdata')
+      if (deletedKubernetesIso) this.$router.replace(kubernetesIsoLocation)
       // Clearing currentAction unmounts the legacy modal before AntD can restore focus.
       const generation = this.storageActionGeneration
       const scope = this.listScope?.()

@@ -390,7 +390,7 @@ export default {
         {
           api: 'updateKubernetesSupportedVersion',
           show: (record, getters) => canKubernetesIsoAction('update', record, getters),
-          dialogWidth: 1000,
+          selfManagedDialog: true,
           icon: 'edit-outlined',
           label: 'label.kubernetes.version.update',
           dataView: true,
@@ -402,7 +402,9 @@ export default {
           show: (record, getters) => canKubernetesIsoAction('delete', record, getters),
           icon: 'delete-outlined',
           label: 'label.kubernetes.version.delete',
-          message: 'message.kubernetes.version.delete',
+          selfManagedDialog: true,
+          popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/UpdateKubernetesSupportedVersion.vue'))),
           dataView: true
         }
       ]

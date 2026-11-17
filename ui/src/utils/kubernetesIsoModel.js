@@ -43,7 +43,7 @@ export function normalizeKubernetesIso (record, getters = {}, catalogResponse = 
   for (const key of ['supportsha', 'supportsautoscaling', 'directdownload']) row[key] = isoBoolean(record[key])
   // Only RootAdmin receives this field from the server. Retain that boundary
   // even when a partial/old response accidentally contains it.
-  if (getters.userInfo?.roletype !== 'Admin') delete row.isourl
+  if (getters.userInfo?.roletype !== 'Admin') { delete row.isourl; delete row.referenceschecked; delete row.isreferenced }
   return { ...row, catalog: { versionState: versionKey(record.state), zone: kubernetesIsoZone(record, catalogResponse), directDownload: row.directdownload } }
 }
 

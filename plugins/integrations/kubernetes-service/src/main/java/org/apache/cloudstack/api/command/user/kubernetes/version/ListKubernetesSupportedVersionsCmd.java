@@ -95,6 +95,14 @@ public class ListKubernetesSupportedVersionsCmd extends BaseListCmd {
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
+    @Parameter(name = "showreferences", type = CommandType.BOOLEAN,
+            description = "Root administrators only: include deletion references for a single ID")
+    private Boolean showReferences;
+
+    public boolean getShowReferences() {
+        return Boolean.TRUE.equals(showReferences);
+    }
+
     public Long getId() {
         return id;
     }

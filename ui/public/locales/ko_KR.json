@@ -12198,5 +12198,16 @@
   "message.kubernetes.iso.availability.invalid": "ISO 조회 응답을 확인할 수 없습니다. 새로고침해 다시 조회하세요.",
   "message.kubernetes.iso.availability.network": "ISO 가용성 조회에 연결하지 못했습니다. 다시 시도하세요.",
   "message.kubernetes.iso.availability.failed": "ISO 가용성을 조회하지 못했습니다. 다시 시도하세요.",
-  "message.kubernetes.iso.availability.cancelled": "ISO 조회가 취소되었습니다. 다시 시도하세요."
+  "message.kubernetes.iso.availability.cancelled": "ISO 조회가 취소되었습니다. 다시 시도하세요.",
+  "label.kubernetes.iso.mutation.references": "삭제 참조",
+  "label.kubernetes.iso.mutation.next.state": "변경할 상태",
+  "label.kubernetes.iso.mutation.check": "결과 확인",
+  "message.kubernetes.iso.mutation.references.unknown": "삭제 참조를 확인하지 못했습니다. 다시 조회해 주세요.",
+  "message.kubernetes.iso.mutation.references.used": "클러스터 또는 미완료 업그레이드에서 참조 중이므로 삭제할 수 없습니다.",
+  "message.kubernetes.iso.mutation.references.free": "현재 삭제를 차단하는 참조가 없습니다. 삭제 시 서버에서 다시 확인합니다.",
+  "message.kubernetes.iso.mutation.delete.impact": "이 버전과 연결된 Kubernetes 바이너리 ISO를 함께 삭제합니다. ISO 삭제에 실패하면 버전은 보존됩니다.",
+  "message.kubernetes.iso.mutation.delete.failed": "삭제하지 못했습니다. 버전이 남아 있는 것을 확인했습니다. 최신 참조와 ISO 상태를 확인한 후 다시 시도해 주세요.",
+  "message.kubernetes.iso.mutation.uncertain": "요청 결과를 확인 중입니다. 중복 요청은 차단됩니다. 결과 확인으로 서버 상태를 다시 조회해 주세요.",
+  "message.kubernetes.iso.mutation.changed": "서버 정보가 변경되었습니다. 최신 정보를 확인하고 다시 선택해 주세요.",
+  "message.kubernetes.iso.mutation.deleted": "버전과 연결 ISO가 삭제되었습니다."
 }

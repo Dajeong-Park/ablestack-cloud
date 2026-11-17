@@ -16,156 +16,170 @@
 // under the License.
 
 <template>
-  <div class="form-layout" v-ctrl-enter="handleSubmit">
-    <a-spin :spinning="loading">
-      <a-form
-        :ref="formRef"
-        :model="form"
-        :rules="rules"
-        layout="vertical"
-class="mold-form-dialog">
-      <div class="mold-form-content">
-        <a-form-item ref="state" name="state" :label="$t('label.state')">
-          <a-select
-            id="state-selection"
-            v-model:value="form.state"
-            showSearch
-            optionFilterProp="label"
-            :filterOption="(input, option) => {
-              return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }"
-            :loading="stateLoading"
-            :placeholder="$t('label.state')"
-            v-focus="true" >
-            <a-select-option v-for="(opt, optIndex) in states" :key="optIndex" :label="opt.name || opt.description">
-              {{ opt.name || opt.description }}
-            </a-select-option>
-          </a-select>
-        </a-form-item>
-
-        </div>
-      <div :span="24" class="action-button">
-          <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
-      </a-form>
-    </a-spin>
-  </div>
+  <mold-dialog size="md" focus-guard :title="$t(deletion ? 'label.kubernetes.version.delete' : 'label.kubernetes.version.update')" :closable="!blocksNavigation" :keyboard="!blocksNavigation" @cancel="close">
+    <div class="kiso-mutation" v-ctrl-enter="submit">
+      <a-alert v-if="errorKey" type="error" show-icon role="alert" :message="$t(errorKey)" />
+      <a-alert v-if="receipt" type="warning" show-icon :message="$t('message.kubernetes.iso.mutation.uncertain')" />
+      <a-spin :spinning="reading || blocksNavigation">
+        <dl class="kiso-mutation-target">
+          <dt>{{ $t('label.name') }}</dt><dd>{{ shown.name || '—' }}</dd>
+          <dt>{{ $t('label.semanticversion') }}</dt><dd>{{ shown.semanticversion || '—' }}</dd>
+          <dt>{{ $t('label.id') }}</dt><dd>{{ resource.id }}</dd>
+          <dt>{{ $t('label.state') }}</dt><dd>{{ shown.state ? $t('state.' + shown.state.toLowerCase()) : '—' }}</dd>
+          <template v-if="deletion">
+            <dt>{{ $t('label.kubernetes.iso.child.id') }}</dt><dd>{{ shown.isoid || '—' }}</dd>
+            <dt>{{ $t('label.kubernetes.iso.mutation.references') }}</dt><dd>{{ $t(!snapshot ? 'message.kubernetes.iso.mutation.references.unknown' : snapshot.isreferenced ? 'message.kubernetes.iso.mutation.references.used' : 'message.kubernetes.iso.mutation.references.free') }}</dd>
+          </template>
+        </dl>
+        <a-alert v-if="deletion" type="warning" show-icon :message="$t('message.kubernetes.iso.mutation.delete.impact')" />
+        <a-form v-else layout="vertical">
+          <a-form-item :label="$t('label.kubernetes.iso.mutation.next.state')">
+            <a-select v-model:value="nextState" :disabled="reading || blocksNavigation || !!receipt || !snapshot" :aria-label="$t('label.kubernetes.iso.mutation.next.state')">
+              <a-select-option v-for="state in ['Enabled', 'Disabled']" :key="state" :value="state">{{ $t('state.' + state.toLowerCase()) }}</a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-form>
+      </a-spin>
+    </div>
+    <template #footer>
+      <a-button :disabled="blocksNavigation" @click="close">{{ $t('label.cancel') }}</a-button>
+      <a-button :loading="reading" :disabled="blocksNavigation || reading" @click="refresh">{{ $t(receipt ? 'label.kubernetes.iso.mutation.check' : 'label.refresh') }}</a-button>
+      <a-button :type="deletion ? 'danger' : 'primary'" :disabled="!canSubmit" :loading="blocksNavigation" @click="submit">{{ $t(deletion ? 'label.delete' : 'label.ok') }}</a-button>
+    </template>
+  </mold-dialog>
 </template>
-
 <script>
-import { ref, reactive, toRaw } from 'vue'
-import { postAPI } from '@/api'
-import { canKubernetesIsoAction, kubernetesIsoContext } from '@/utils/kubernetesIsoCapabilities'
-import { kubernetesIsoWriteResponse } from '@/utils/kubernetesIsoModel'
-
+import { getAPI, postAPI } from '@/api'
+import MoldDialog from '@/components/view/MoldDialog.vue'
+import { canKubernetesIsoAction, kubernetesIsoCapability } from '@/utils/kubernetesIsoCapabilities'
+import { kubernetesIsoFailure, kubernetesIsoWriteResponse } from '@/utils/kubernetesIsoModel'
+import { saveKubernetesMutation, kubernetesMutationScope, kubernetesMutationReceipt, beginKubernetesMutation, finishKubernetesMutation, kubernetesMutationSnapshot, kubernetesMutationParams, kubernetesMutationJob } from '@/utils/kubernetesIsoMutation'
 export default {
   name: 'UpdateKubernetesSupportedVersion',
-  props: {
-    resource: {
-      type: Object,
-      required: true
+  components: { MoldDialog },
+  props: { resource: { type: Object, required: true }, currentAction: { type: Object, default: () => ({}) } },
+  emits: ['refresh-data', 'close-action'],
+  data: () => ({ snapshot: null, nextState: '', reading: false, blocksNavigation: false, receipt: null, errorKey: '', generation: 0, disposed: false, pollTimer: null }),
+  computed: {
+    deletion () { return this.currentAction.api === 'deleteKubernetesSupportedVersion' },
+    operation () { return this.deletion ? 'delete' : 'update' },
+    context () { return kubernetesMutationScope(this.$store.getters, this.$store.state?.user?.token, this.resource.id) },
+    shown () { return this.snapshot || this.resource },
+    canSubmit () {
+      if (this.reading || this.blocksNavigation || this.receipt || !this.snapshot) return false
+      try { kubernetesMutationParams(this.operation, this.snapshot, this.nextState, this.$store.getters); return true } catch (_) { return false }
     }
   },
-  data () {
-    return {
-      states: [],
-      stateLoading: false,
-      loading: false
-    }
-  },
-  beforeCreate () {
-    this.apiParams = this.$getApiParams('updateKubernetesSupportedVersion')
-  },
-  created () {
-    this.states = [
-      {
-        id: 'Enabled',
-        name: this.$t('state.enabled')
-      },
-      {
-        id: 'Disabled',
-        name: this.$t('state.disabled')
-      }
-    ]
-    this.initForm()
-    this.fetchData()
-  },
+  watch: { context () { this.generation++; clearTimeout(this.pollTimer); this.snapshot = null; this.receipt = null; this.blocksNavigation = false; this.reading = false; this.nextState = ''; this.refresh() } },
+  mounted () { this.refresh() },
+  beforeUnmount () { this.disposed = true; this.generation++; clearTimeout(this.pollTimer) },
   methods: {
-    initForm () {
-      this.formRef = ref()
-      this.form = reactive({})
-      this.rules = reactive({
-        state: [{ required: true, message: this.$t('message.error.required.input') }]
-      })
+    current (scope, generation) { return !this.disposed && this.context === scope && this.generation === generation },
+    readOptions () { return { preserveOnFailure: true, readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } },
+    failure (error) { return error?.message?.startsWith('message.kubernetes.iso.') ? error.message : 'message.kubernetes.iso.read.' + kubernetesIsoFailure(error) },
+    async read () {
+      if (!canKubernetesIsoAction('read', this.resource, this.$store.getters) || !canKubernetesIsoAction(this.operation, this.resource, this.$store.getters)) throw new Error('message.kubernetes.iso.read.forbidden')
+      if (this.deletion && !kubernetesIsoCapability('read', this.$store.getters).parameters.showreferences) throw new Error('message.kubernetes.iso.mutation.references.unknown')
+      const json = await getAPI('listKubernetesSupportedVersions', { id: this.resource.id, ...(this.deletion ? { showreferences: true } : {}) }, this.readOptions())
+      return kubernetesMutationSnapshot(json, this.$store.getters, this.resource.id, this.deletion)
     },
-    fetchData () {
-      var selectedState = 0
-      if (!this.isObjectEmpty(this.resource)) {
-        for (var i = 0; i < this.states.length; ++i) {
-          if (this.states[i].id === this.resource.state) {
-            selectedState = i
-            break
+    async refresh () {
+      if (this.reading || this.blocksNavigation) return
+      const scope = this.context; const generation = ++this.generation
+      this.reading = true; this.errorKey = ''; this.snapshot = null
+      this.receipt = kubernetesMutationReceipt(scope) || null
+      try {
+        if (this.receipt?.jobid) {
+          this.blocksNavigation = true
+          return await this.poll(scope, generation, this.receipt)
+        }
+        const record = await this.read()
+        if (!this.current(scope, generation)) return
+        if (this.receipt) {
+          if (this.receipt.operation === 'delete' && !record || this.receipt.operation === 'update' && record?.state === this.receipt.state) return this.complete(scope, this.receipt)
+          this.errorKey = 'message.kubernetes.iso.mutation.uncertain'
+        }
+        if (!record) { this.errorKey = 'message.kubernetes.iso.read.missing'; return }
+        this.snapshot = record; this.nextState = record.state
+      } catch (error) { if (this.current(scope, generation)) this.errorKey = this.failure(error) } finally { if (this.current(scope, generation)) { this.reading = false; this.blocksNavigation = false } }
+    },
+    async submit (event) {
+      if (event?.preventDefault) event.preventDefault()
+      if (!this.canSubmit) return
+      const scope = this.context; const generation = ++this.generation
+      const previous = this.snapshot; const desired = this.nextState
+      this.blocksNavigation = true; this.errorKey = ''
+      let receipt
+      try {
+        const record = await this.read()
+        if (!this.current(scope, generation)) return
+        if (!record) { this.snapshot = null; throw new Error('message.kubernetes.iso.read.missing') }
+        this.snapshot = record
+        if (record.state !== previous.state || record.isoid !== previous.isoid) { this.nextState = record.state; throw new Error('message.kubernetes.iso.mutation.changed') }
+        const params = kubernetesMutationParams(this.operation, record, desired, this.$store.getters)
+        receipt = beginKubernetesMutation(scope, this.operation, record, desired); this.receipt = receipt
+        const json = await postAPI(this.deletion ? 'deleteKubernetesSupportedVersion' : 'updateKubernetesSupportedVersion', params, this.readOptions())
+        if (!this.current(scope, generation)) return
+        if (this.deletion) {
+          const id = json?.deletekubernetessupportedversionresponse?.jobid
+          if (typeof id !== 'string' || !/^[a-f0-9-]{36}$/i.test(id)) throw new Error('message.kubernetes.iso.read.invalid')
+          receipt.jobid = id; receipt.status = 'pending'; saveKubernetesMutation(scope, receipt)
+          await this.poll(scope, generation, receipt)
+        } else {
+          const updated = kubernetesIsoWriteResponse(json, 'update', this.$store.getters)
+          if (updated.id !== record.id || updated.state !== desired) throw new Error('message.kubernetes.iso.read.invalid')
+          const fresh = await this.read()
+          if (!this.current(scope, generation)) return
+          if (!fresh || fresh.state !== desired) throw new Error('message.kubernetes.iso.mutation.uncertain')
+          this.complete(scope, receipt)
+        }
+      } catch (error) {
+        if (!this.current(scope, generation)) return
+        const root = error?.response?.data?.errorresponse || error?.response?.data?.updatekubernetessupportedversionresponse || error?.response?.data?.deletekubernetessupportedversionresponse
+        // A validated explicit command rejection is a known failure. Transport,
+        // malformed receipts and lost reads remain blocked until reconciled.
+        if (receipt && [401, 403, 431, 432, 531].includes(Number(root?.errorcode)) && !receipt.jobid) { finishKubernetesMutation(scope, receipt); this.receipt = null }
+        this.errorKey = this.failure(error)
+        if (receipt && this.receipt) { receipt.status = 'uncertain'; saveKubernetesMutation(scope, receipt) }
+      } finally { if (this.current(scope, generation)) this.blocksNavigation = false }
+    },
+    async poll (scope, generation, receipt) {
+      for (let attempt = 0; attempt < 60 && this.current(scope, generation); attempt++) {
+        if (!this.$store.getters.apis?.queryAsyncJobResult) throw new Error('message.kubernetes.iso.read.forbidden')
+        const json = await getAPI('queryAsyncJobResult', { jobid: receipt.jobid }, this.readOptions())
+        if (!this.current(scope, generation)) return
+        const job = kubernetesMutationJob(json, receipt.jobid)
+        if (job.status !== 0) {
+          const record = await this.read()
+          if (!this.current(scope, generation)) return
+          if (!record) return this.complete(scope, receipt)
+          this.snapshot = record; this.nextState = record.state
+          if (job.status === 2) {
+            finishKubernetesMutation(scope, receipt); this.receipt = null
+            this.errorKey = 'message.kubernetes.iso.mutation.delete.failed'
+            this.$emit('refresh-data')
+            return
           }
+          throw new Error('message.kubernetes.iso.mutation.uncertain')
         }
+        await new Promise(resolve => { this.pollTimer = setTimeout(resolve, 2000) })
       }
-      this.form.state = selectedState
+      if (this.current(scope, generation)) { receipt.status = 'uncertain'; saveKubernetesMutation(scope, receipt); this.errorKey = 'message.kubernetes.iso.mutation.uncertain' }
     },
-    isValidValueForKey (obj, key) {
-      return key in obj && obj[key] != null
+    complete (scope, receipt) {
+      finishKubernetesMutation(scope, receipt); this.receipt = null
+      this.$message.success(this.$t(receipt.operation === 'delete' ? 'message.kubernetes.iso.mutation.deleted' : 'message.success.update.kubeversion'))
+      this.$emit('close-action', receipt.operation === 'delete' ? { removed: [receipt.id] } : undefined)
+      this.$emit('refresh-data')
     },
-    arrayHasItems (array) {
-      return array !== null && array !== undefined && Array.isArray(array) && array.length > 0
-    },
-    isObjectEmpty (obj) {
-      return !(obj !== null && obj !== undefined && Object.keys(obj).length > 0 && obj.constructor === Object)
-    },
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.loading || !canKubernetesIsoAction('update', this.resource, this.$store.getters)) return
-      const context = kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token, this.resource.id)
-      const current = () => context === kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token, this.resource.id) && canKubernetesIsoAction('update', this.resource, this.$store.getters)
-      return this.formRef.value.validate().then(() => {
-        if (!current()) return
-        const values = toRaw(this.form)
-        this.loading = true
-        const params = {
-          id: this.resource.id
-        }
-        if (this.isValidValueForKey(values, 'state') && this.arrayHasItems(this.states)) {
-          params.state = this.states[values.state].id
-        }
-        return postAPI('updateKubernetesSupportedVersion', params, { preserveOnFailure: true, readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) }).then(json => {
-          if (!current()) return
-          kubernetesIsoWriteResponse(json, 'update', this.$store.getters)
-          this.$message.success(`${this.$t('message.success.update.kubeversion')}: ${this.resource.name}`)
-          this.$emit('refresh-data')
-          this.closeAction()
-        }).catch(error => {
-          if (!current()) return
-          this.$notifyError(error)
-        }).finally(() => {
-          if (!current()) return
-          this.loading = false
-        })
-      }).catch(error => {
-        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
-        else if (current()) this.$notifyError(error)
-      })
-    },
-    closeAction () {
-      this.$emit('close-action')
-    }
+    close () { if (!this.blocksNavigation) this.$emit('close-action') }
   }
 }
 </script>
-
 <style scoped lang="less">
-  .form-layout {
-    width: 60vw;
-
-    @media (min-width: 500px) {
-      width: 450px;
-    }
-  }
+.kiso-mutation { display: grid; gap: 16px; }
+.kiso-mutation-target { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(0, 3fr); gap: 12px 20px; margin: 0 0 20px; }
+.kiso-mutation-target dt { color: var(--mold-text-secondary, inherit); }
+.kiso-mutation-target dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 575px) { .kiso-mutation-target { grid-template-columns: 1fr; gap: 6px; } .kiso-mutation-target dd { margin-bottom: 10px; } }
 </style>

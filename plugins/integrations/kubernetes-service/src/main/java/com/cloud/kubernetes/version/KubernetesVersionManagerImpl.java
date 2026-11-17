@@ -367,7 +367,28 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
                 kubernetesSupportedVersionDao.searchAndCount(sc, searchFilter);
         Pair<List<KubernetesSupportedVersionVO>, Integer> page = KubernetesVersionCatalog.page(versionsAndCount.first(),
                 minimumSemanticVersion, cmd.getStartIndex(), cmd.getPageSizeVal(), cmd.getSortKey(), cmd.getSortOrder());
+        if (cmd.getShowReferences()) {
+            if (versionId == null || !accountManager.isRootAdmin(CallContext.current().getCallingAccountId())) {
+                throw new InvalidParameterValueException("Deletion reference checks require a single ID and a root administrator");
+            }
+            return KubernetesVersionReferences.withLock(versionId, () -> createDeletionReferenceResponse(versionId));
+        }
         return createKubernetesSupportedVersionListResponse(page.first(), page.second());
+    }
+
+    // A fresh lock-protected snapshot is advisory; deletion takes the same lock and
+    // checks again. Never infer global non-reference from a caller-filtered cluster list.
+    protected ListResponse<KubernetesSupportedVersionResponse> createDeletionReferenceResponse(long versionId) {
+        KubernetesSupportedVersionVO current = kubernetesSupportedVersionDao.findById(versionId);
+        List<KubernetesSupportedVersionResponse> records = new ArrayList<>();
+        if (current != null) {
+            KubernetesSupportedVersionResponse record = createKubernetesSupportedVersionResponse(current, true);
+            record.setDeletionReferences(isKubernetesVersionReferenced(current));
+            records.add(record);
+        }
+        ListResponse<KubernetesSupportedVersionResponse> response = new ListResponse<>();
+        response.setResponses(records, records.size());
+        return response;
     }
 
     private void validateKubernetesSupportedVersion(Long zoneId, String semanticVersion, Integer minimumCpu,
@@ -575,6 +596,9 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
         KubernetesSupportedVersionVO version = kubernetesSupportedVersionDao.findById(versionId);
         if (version == null) {
             throw new InvalidParameterValueException("Invalid Kubernetes version id specified");
+        }
+        if (cmd.getExpectedState() != null && !version.getState().name().equals(cmd.getExpectedState())) {
+            throw new InvalidParameterValueException("Kubernetes version state changed; reload and review the current state");
         }
         try {
             state = KubernetesSupportedVersion.State.valueOf(cmd.getState());

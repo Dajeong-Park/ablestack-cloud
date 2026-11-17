@@ -130,4 +130,32 @@ public class KubernetesVersionDeletionReferenceTest {
         try { manager.deleteUnreferencedKubernetesVersion(cmd); fail("ISO deletion failure must propagate"); }
         catch (CloudRuntimeException expected) { Mockito.verify(versions, Mockito.never()).remove(2L); }
     }
+
+    @Test public void legacyReferenceReadFailureDoesNotClaimUnreferenced() {
+        Mockito.when(cluster.getState()).thenReturn(KubernetesCluster.State.Alert);
+        try { manager.isKubernetesVersionReferenced(version); fail("unknown current artifact must fail closed"); }
+        catch (CloudRuntimeException expected) { Mockito.verify(versions).findById(1L); }
+    }
+    @Test public void concurrentStateChangeRejectedBeforeWriting() {
+        org.apache.cloudstack.api.command.admin.kubernetes.version.UpdateKubernetesSupportedVersionCmd cmd =
+                Mockito.mock(org.apache.cloudstack.api.command.admin.kubernetes.version.UpdateKubernetesSupportedVersionCmd.class);
+        Mockito.when(cmd.getId()).thenReturn(2L);
+        Mockito.when(cmd.getExpectedState()).thenReturn("Enabled");
+        Mockito.when(cmd.getState()).thenReturn("Disabled");
+        Mockito.when(versions.findById(2L)).thenReturn(version);
+        Mockito.when(version.getState()).thenReturn(KubernetesSupportedVersion.State.Disabled);
+        try { manager.updateVersionWithReferenceLock(cmd); fail("concurrent state change must be rejected"); }
+        catch (com.cloud.exception.InvalidParameterValueException expected) {
+            Mockito.verify(versions, Mockito.never()).update(Mockito.anyLong(), Mockito.any());
+        }
+    }
+    @Test public void referencedDeleteNeverCallsIsoOrRemovesVersion() {
+        DeleteKubernetesSupportedVersionCmd cmd = deletion();
+        pin(KubernetesVersionReferences.TARGET, "2");
+        try { manager.deleteUnreferencedKubernetesVersion(cmd); fail("unfinished upgrade must protect artifact"); }
+        catch (CloudRuntimeException expected) {
+            Mockito.verify(versions, Mockito.never()).remove(2L);
+            Mockito.verify(templates, Mockito.never()).findByIdIncludingRemoved(Mockito.anyLong());
+        }
+    }
 }

@@ -12190,5 +12190,16 @@
   "message.kubernetes.iso.availability.invalid": "The ISO response could not be verified. Refresh to read it again.",
   "message.kubernetes.iso.availability.network": "Could not connect to read ISO availability. Retry the read.",
   "message.kubernetes.iso.availability.failed": "Could not read ISO availability. Retry the read.",
-  "message.kubernetes.iso.availability.cancelled": "The ISO read was cancelled. Retry the read."
+  "message.kubernetes.iso.availability.cancelled": "The ISO read was cancelled. Retry the read.",
+  "label.kubernetes.iso.mutation.references": "Deletion references",
+  "label.kubernetes.iso.mutation.next.state": "New state",
+  "label.kubernetes.iso.mutation.check": "Check result",
+  "message.kubernetes.iso.mutation.references.unknown": "Deletion references could not be verified. Refresh to check again.",
+  "message.kubernetes.iso.mutation.references.used": "A cluster or unfinished upgrade references this version. Deletion is blocked.",
+  "message.kubernetes.iso.mutation.references.free": "No blocking references were found. The server checks again when deleting.",
+  "message.kubernetes.iso.mutation.delete.impact": "This deletes the version and its linked Kubernetes binaries ISO. The version is preserved if ISO deletion fails.",
+  "message.kubernetes.iso.mutation.delete.failed": "Deletion failed and the version still exists. Review current references and ISO state before retrying.",
+  "message.kubernetes.iso.mutation.uncertain": "The request outcome is not confirmed. Duplicate requests are blocked. Use Check result to query the server.",
+  "message.kubernetes.iso.mutation.changed": "Server information changed. Review the latest values and select again.",
+  "message.kubernetes.iso.mutation.deleted": "The version and linked ISO were deleted."
 }
