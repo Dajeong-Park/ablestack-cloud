@@ -1,0 +1,112 @@
+[
+  {
+    "cluster": 31,
+    "original": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Free",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone"
+    },
+    "reserved": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "allocated": "2026-11-17T06:40:32+0900",
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "account": "qa-pip1693-31-063811-user",
+      "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+      "domain": "qa-pip1693-31-063811",
+      "domainpath": "ROOT/qa-pip1693-31-063811",
+      "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39",
+      "forvirtualnetwork": true,
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "state": "Reserved",
+      "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    },
+    "user": {
+      "id": "706028fd-f3fd-45a7-9e0e-52d6e5421131",
+      "name": "qa-pip1693-31-063811-user",
+      "kind": "User",
+      "loginDomain": "/qa-pip1693-31-063811"
+    },
+    "domain": {
+      "id": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+      "name": "qa-pip1693-31-063811",
+      "path": "ROOT/qa-pip1693-31-063811"
+    }
+  },
+  {
+    "cluster": 32,
+    "original": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Free",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone"
+    },
+    "reserved": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "allocated": "2026-11-17T06:40:32+0900",
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone",
+      "issourcenat": false,
+      "account": "qa-pip1693-32-063811-user",
+      "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+      "domain": "qa-pip1693-32-063811",
+      "domainpath": "ROOT/qa-pip1693-32-063811",
+      "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f",
+      "forvirtualnetwork": true,
+      "isstaticnat": false,
+      "issystem": false,
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "state": "Reserved",
+      "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+      "tags": [],
+      "isportable": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "forsystemvms": false,
+      "forprovider": false,
+      "hasannotations": false
+    },
+    "user": {
+      "id": "84026284-7b35-45e5-a957-72e55e1627fb",
+      "name": "qa-pip1693-32-063811-user",
+      "kind": "User",
+      "loginDomain": "/qa-pip1693-32-063811"
+    },
+    "domain": {
+      "id": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+      "name": "qa-pip1693-32-063811",
+      "path": "ROOT/qa-pip1693-32-063811"
+    }
+  }
+]

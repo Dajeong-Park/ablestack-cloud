@@ -1,0 +1,23 @@
+{
+  "base": "a747a6d13b38be7444562534523b82cf228676fc",
+  "productSource": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+  "changedProductClasses": 1,
+  "apiTests": 29,
+  "newOwnerTests": 15,
+  "uiSuites": 10,
+  "uiTests": 230,
+  "apiModulePackage": "PASS with -Pdisablecheckstyle",
+  "baselineCheckstyle": 46,
+  "newCheckstyle": 0,
+  "freeRootJobs": 6,
+  "freeDeniedRequests": 8,
+  "ownedRoleNoopJobs": 4,
+  "actualUiJobs": 8,
+  "responsiveThemeCases": 12,
+  "roleUiCases": 4,
+  "inventoryGroupsRestored": 16,
+  "ftctlWindowsPaths": 14541,
+  "ftctlWslPaths": 12,
+  "uiSourceChanged": false,
+  "fullCloudBuildRun": false
+}

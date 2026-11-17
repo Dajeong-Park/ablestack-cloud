@@ -1,0 +1,18 @@
+{
+  "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+  "backup": "/root/publicip1693-backend-20261116-213318",
+  "classSha256": "ffaef41792c538bc4554a8dbdcb54b5dddc86deb86d972567a49f42274ba0792",
+  "jarBefore": "e89ab061913ff95beddeafc32932c4b56bacdede13374c7b9830368ea6297435",
+  "jarAfter": "37af4160d3f0cad958a04b27b10e077f56c52acb948e233a84ce75ece6f68b75",
+  "changedEntries": [
+    "org/apache/cloudstack/api/command/user/address/UpdateIPAddrCmd.class"
+  ],
+  "unchangedEntries": 198632,
+  "ftctlClassesPreserved": 95,
+  "pidBefore": "2698517",
+  "pidAfter": "2812588",
+  "http": 200,
+  "webInf": true,
+  "serverDirectoriesPreserved": true,
+  "staticIndexPreserved": "fd706e43fbcbf74689256464bc78b750fffaf4700453b4df84abbd24ce9f62e0"
+}

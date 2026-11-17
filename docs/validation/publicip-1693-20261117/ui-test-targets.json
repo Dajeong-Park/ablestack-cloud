@@ -1,0 +1,12 @@
+[
+  "tests/unit/components/PublicIpDetailValue.spec.js",
+  "tests/unit/components/PublicIpNetworkLink.spec.js",
+  "tests/unit/components/PublicIpPresentation.spec.js",
+  "tests/unit/components/PublicIpSearchSelect.spec.js",
+  "tests/unit/utils/PublicIpSearch.spec.js",
+  "tests/unit/views/AutogenPublicIpDetail.spec.js",
+  "tests/unit/views/AutogenPublicIpListScope.spec.js",
+  "tests/unit/views/AutogenVmStandardDialog.spec.js",
+  "tests/unit/views/network/EditPublicIpDisplay.spec.js",
+  "tests/unit/views/network/ReservePublicIP.spec.js"
+]

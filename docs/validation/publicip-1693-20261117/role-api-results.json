@@ -1,0 +1,198 @@
+[
+  {
+    "cluster": 31,
+    "phase": "free",
+    "role": "User",
+    "request": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "phase": "free",
+    "role": "User",
+    "request": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "true"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "phase": "free",
+    "role": "DomainAdmin",
+    "request": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 31,
+    "phase": "free",
+    "role": "DomainAdmin",
+    "request": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "true"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "phase": "free",
+    "role": "User",
+    "request": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "phase": "free",
+    "role": "User",
+    "request": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "true"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "phase": "free",
+    "role": "DomainAdmin",
+    "request": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  },
+  {
+    "cluster": 32,
+    "phase": "free",
+    "role": "DomainAdmin",
+    "request": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "true"
+    },
+    "response": {
+      "updateipaddressresponse": {
+        "uuidList": [],
+        "errorcode": 531,
+        "cserrorcode": 4365,
+        "errortext": "Only Root admin can update non-allocated ip addresses"
+      }
+    },
+    "apiMetadata": [
+      {
+        "name": "updateIpAddress",
+        "params": [
+          "id"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "cluster": 31,
+    "role": "User",
+    "request": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": false
+    },
+    "initial": {
+      "updateipaddressresponse": {
+        "jobid": "3bcd9bea-1a79-453f-ae35-2f82165fecef"
+      }
+    },
+    "job": {
+      "accountid": "706028fd-f3fd-45a7-9e0e-52d6e5421131",
+      "account": "qa-pip1693-31-063811-user",
+      "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+      "domainpath": "ROOT/qa-pip1693-31-063811",
+      "userid": "24f9758b-1da5-4e7c-b105-bbd440c3da48",
+      "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "ipaddress": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "allocated": "2026-11-17T06:40:32+0900",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "issourcenat": false,
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "domainpath": "ROOT/qa-pip1693-31-063811",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39",
+          "forvirtualnetwork": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "state": "Reserved",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "tags": [],
+          "isportable": false,
+          "hasrules": false,
+          "forsystemvms": false,
+          "forprovider": false,
+          "hasannotations": false
+        }
+      },
+      "jobinstancetype": "IpAddress",
+      "jobinstanceid": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "created": "2026-11-17T06:40:33+0900",
+      "completed": "2026-11-17T06:40:33+0900",
+      "jobid": "3bcd9bea-1a79-453f-ae35-2f82165fecef",
+      "jobstatus": 1
+    },
+    "rootReadback": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Reserved",
+      "account": "qa-pip1693-31-063811-user",
+      "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone"
+    },
+    "policy": "existing unsupported fordisplay argument ignored; job succeeds without changing display"
+  },
+  {
+    "cluster": 31,
+    "role": "DomainAdmin",
+    "request": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": false
+    },
+    "initial": {
+      "updateipaddressresponse": {
+        "jobid": "7d99a688-4ce3-43ad-a2d0-c2d1b8f8e72a"
+      }
+    },
+    "job": {
+      "accountid": "a17d19dd-edeb-488c-91ef-b16b6599488d",
+      "account": "qa-pip1693-31-063811-domainadmin",
+      "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+      "domainpath": "ROOT/qa-pip1693-31-063811",
+      "userid": "1d18da2a-5941-4ca6-a5e2-6ab7f1170a8c",
+      "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "ipaddress": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "allocated": "2026-11-17T06:40:32+0900",
+          "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+          "zonename": "Zone",
+          "issourcenat": false,
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "domainpath": "ROOT/qa-pip1693-31-063811",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39",
+          "forvirtualnetwork": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "state": "Reserved",
+          "physicalnetworkid": "51cdd7ed-ab33-419d-98fc-8e7eabea1194",
+          "tags": [],
+          "isportable": false,
+          "hasrules": false,
+          "forsystemvms": false,
+          "forprovider": false,
+          "hasannotations": false
+        }
+      },
+      "jobinstancetype": "IpAddress",
+      "jobinstanceid": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "created": "2026-11-17T06:40:34+0900",
+      "completed": "2026-11-17T06:40:34+0900",
+      "jobid": "7d99a688-4ce3-43ad-a2d0-c2d1b8f8e72a",
+      "jobstatus": 1
+    },
+    "rootReadback": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "ipaddress": "10.10.31.105",
+      "state": "Reserved",
+      "account": "qa-pip1693-31-063811-user",
+      "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+      "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+      "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+      "zonename": "Zone"
+    },
+    "policy": "existing unsupported fordisplay argument ignored; job succeeds without changing display"
+  },
+  {
+    "cluster": 32,
+    "role": "User",
+    "request": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": false
+    },
+    "initial": {
+      "updateipaddressresponse": {
+        "jobid": "7cfbc944-58fc-42d5-ae76-917ea5e4593a"
+      }
+    },
+    "job": {
+      "accountid": "84026284-7b35-45e5-a957-72e55e1627fb",
+      "account": "qa-pip1693-32-063811-user",
+      "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+      "domainpath": "ROOT/qa-pip1693-32-063811",
+      "userid": "241cef34-e6af-46b3-9a3a-5c1e7ce74da3",
+      "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "ipaddress": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "allocated": "2026-11-17T06:40:32+0900",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "issourcenat": false,
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "domainpath": "ROOT/qa-pip1693-32-063811",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f",
+          "forvirtualnetwork": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "state": "Reserved",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "tags": [],
+          "isportable": false,
+          "hasrules": false,
+          "forsystemvms": false,
+          "forprovider": false,
+          "hasannotations": false
+        }
+      },
+      "jobinstancetype": "IpAddress",
+      "jobinstanceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "created": "2026-11-17T06:40:36+0900",
+      "completed": "2026-11-17T06:40:36+0900",
+      "jobid": "7cfbc944-58fc-42d5-ae76-917ea5e4593a",
+      "jobstatus": 1
+    },
+    "rootReadback": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Reserved",
+      "account": "qa-pip1693-32-063811-user",
+      "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone"
+    },
+    "policy": "existing unsupported fordisplay argument ignored; job succeeds without changing display"
+  },
+  {
+    "cluster": 32,
+    "role": "DomainAdmin",
+    "request": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": false
+    },
+    "initial": {
+      "updateipaddressresponse": {
+        "jobid": "17aa092a-6328-4c55-9363-7224b9c91abd"
+      }
+    },
+    "job": {
+      "accountid": "21217723-6948-484d-9780-a3d12431498f",
+      "account": "qa-pip1693-32-063811-domainadmin",
+      "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+      "domainpath": "ROOT/qa-pip1693-32-063811",
+      "userid": "61111f29-3546-492e-987d-8a00410d939e",
+      "cmd": "org.apache.cloudstack.api.command.user.address.UpdateIPAddrCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "ipaddress": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "allocated": "2026-11-17T06:40:32+0900",
+          "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+          "zonename": "Zone",
+          "issourcenat": false,
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "domainpath": "ROOT/qa-pip1693-32-063811",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f",
+          "forvirtualnetwork": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "state": "Reserved",
+          "physicalnetworkid": "f9ed8d65-60ae-45c3-8ee0-e37e1b453b0b",
+          "tags": [],
+          "isportable": false,
+          "hasrules": false,
+          "forsystemvms": false,
+          "forprovider": false,
+          "hasannotations": false
+        }
+      },
+      "jobinstancetype": "IpAddress",
+      "jobinstanceid": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "created": "2026-11-17T06:40:37+0900",
+      "completed": "2026-11-17T06:40:37+0900",
+      "jobid": "17aa092a-6328-4c55-9363-7224b9c91abd",
+      "jobstatus": 1
+    },
+    "rootReadback": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "ipaddress": "10.10.32.103",
+      "state": "Reserved",
+      "account": "qa-pip1693-32-063811-user",
+      "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+      "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+      "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+      "vlanname": "vlan://untagged",
+      "issourcenat": false,
+      "isstaticnat": false,
+      "fordisplay": true,
+      "hasrules": false,
+      "issystem": false,
+      "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+      "zonename": "Zone"
+    },
+    "policy": "existing unsupported fordisplay argument ignored; job succeeds without changing display"
+  }
+]

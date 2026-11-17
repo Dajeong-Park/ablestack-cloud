@@ -1,0 +1,2843 @@
+[
+  {
+    "cluster": 31,
+    "name": "free-visible-before",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "free-visible-before",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "free-visible-before",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "free-visible-restored",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "free-visible-restored",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "a860dc7c-2606-422e-b775-eef9cb9daa3f"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "a860dc7c-2606-422e-b775-eef9cb9daa3f"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "a860dc7c-2606-422e-b775-eef9cb9daa3f",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "9eeb21c5-180b-4ffe-b01a-8c9f6d305a7f"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "9eeb21c5-180b-4ffe-b01a-8c9f6d305a7f"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "9eeb21c5-180b-4ffe-b01a-8c9f6d305a7f",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "f1a1c3b5-10f3-4bd8-bc18-79948c5c1234"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "f1a1c3b5-10f3-4bd8-bc18-79948c5c1234"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "f1a1c3b5-10f3-4bd8-bc18-79948c5c1234",
+      "jobstatus": 0,
+      "jobresultcode": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "f1a1c3b5-10f3-4bd8-bc18-79948c5c1234"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "f1a1c3b5-10f3-4bd8-bc18-79948c5c1234",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Allocated",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "true",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+    },
+    "status": 200,
+    "result": {
+      "count": 10,
+      "rows": [
+        {
+          "id": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+          "ipaddress": "10.10.32.5",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": true,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-09-17T11:13:35+0900",
+          "allocationgeneration": "1d487a60-c339-11f1-a4bf-00248162d5a9"
+        },
+        {
+          "id": "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+          "ipaddress": "10.10.32.6",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "eff7e920-577d-4576-8b54-933261930cc9",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": true,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-01T12:15:46+0900",
+          "allocationgeneration": "1d487dc7-c339-11f1-a4bf-00248162d5a9"
+        },
+        {
+          "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+          "ipaddress": "10.10.32.101",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-11T01:17:25+0900",
+          "allocationgeneration": "ae8adf1f-6551-4871-bf55-9923643732fb"
+        },
+        {
+          "id": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+          "ipaddress": "10.10.32.102",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "07f53267-063b-4975-ac47-5a5c10d57fb4",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T01:18:05+0900",
+          "allocationgeneration": "6fd486ad-aba0-4ebc-a090-d800030c7d66"
+        },
+        {
+          "id": "c7e46392-cbcd-4503-a810-606b5afaa884",
+          "ipaddress": "10.10.32.143",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-12T09:52:20+0900",
+          "allocationgeneration": "5780bbf3-fc8a-46c1-8e93-56ceb8953779"
+        },
+        {
+          "id": "078a87ba-8a96-4292-8f33-03163f599ef9",
+          "ipaddress": "10.10.32.144",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-11T14:17:57+0900",
+          "allocationgeneration": "7d764d95-7efd-4ea6-9ccc-0f0352c63ea7"
+        },
+        {
+          "id": "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+          "ipaddress": "10.10.32.166",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "4681828f-494e-4847-ad39-7ba064ca76cd",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-16T09:57:51+0900",
+          "allocationgeneration": "37a23279-ef15-4355-825f-bbe4db572cf3"
+        },
+        {
+          "id": "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+          "ipaddress": "10.10.32.167",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T00:03:33+0900",
+          "allocationgeneration": "e549bd51-8826-4cc8-85ea-99f8bc590d03"
+        },
+        {
+          "id": "282aad30-4938-4de3-8412-d3098f4f4caf",
+          "ipaddress": "10.10.32.168",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-11T00:03:03+0900",
+          "allocationgeneration": "47443f15-d861-4f32-ae3d-ddb33780fe4d"
+        },
+        {
+          "id": "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6",
+          "ipaddress": "10.10.32.169",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "f889cc7d-02c5-490b-b256-a289b73ff824",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T00:20:50+0900",
+          "allocationgeneration": "87b61ade-2cd8-42a3-9c2b-0e38e438ccd8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Allocated",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "true",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+    },
+    "status": 200,
+    "result": {
+      "count": 10,
+      "rows": [
+        {
+          "id": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+          "ipaddress": "10.10.32.5",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": true,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-09-17T11:13:35+0900",
+          "allocationgeneration": "1d487a60-c339-11f1-a4bf-00248162d5a9"
+        },
+        {
+          "id": "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+          "ipaddress": "10.10.32.6",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "eff7e920-577d-4576-8b54-933261930cc9",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": true,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-01T12:15:46+0900",
+          "allocationgeneration": "1d487dc7-c339-11f1-a4bf-00248162d5a9"
+        },
+        {
+          "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+          "ipaddress": "10.10.32.101",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-11T01:17:25+0900",
+          "allocationgeneration": "ae8adf1f-6551-4871-bf55-9923643732fb"
+        },
+        {
+          "id": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+          "ipaddress": "10.10.32.102",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "07f53267-063b-4975-ac47-5a5c10d57fb4",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T01:18:05+0900",
+          "allocationgeneration": "6fd486ad-aba0-4ebc-a090-d800030c7d66"
+        },
+        {
+          "id": "c7e46392-cbcd-4503-a810-606b5afaa884",
+          "ipaddress": "10.10.32.143",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-12T09:52:20+0900",
+          "allocationgeneration": "5780bbf3-fc8a-46c1-8e93-56ceb8953779"
+        },
+        {
+          "id": "078a87ba-8a96-4292-8f33-03163f599ef9",
+          "ipaddress": "10.10.32.144",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-11T14:17:57+0900",
+          "allocationgeneration": "7d764d95-7efd-4ea6-9ccc-0f0352c63ea7"
+        },
+        {
+          "id": "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+          "ipaddress": "10.10.32.166",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "4681828f-494e-4847-ad39-7ba064ca76cd",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-16T09:57:51+0900",
+          "allocationgeneration": "37a23279-ef15-4355-825f-bbe4db572cf3"
+        },
+        {
+          "id": "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+          "ipaddress": "10.10.32.167",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T00:03:33+0900",
+          "allocationgeneration": "e549bd51-8826-4cc8-85ea-99f8bc590d03"
+        },
+        {
+          "id": "282aad30-4938-4de3-8412-d3098f4f4caf",
+          "ipaddress": "10.10.32.168",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-11T00:03:03+0900",
+          "allocationgeneration": "47443f15-d861-4f32-ae3d-ddb33780fe4d"
+        },
+        {
+          "id": "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6",
+          "ipaddress": "10.10.32.169",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "f889cc7d-02c5-490b-b256-a289b73ff824",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T00:20:50+0900",
+          "allocationgeneration": "87b61ade-2cd8-42a3-9c2b-0e38e438ccd8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-detail-navigation",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Allocated",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "true",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+    },
+    "status": 200,
+    "result": {
+      "count": 10,
+      "rows": [
+        {
+          "id": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+          "ipaddress": "10.10.32.5",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "59e31d5b-2a18-4e21-84f3-0a2a7fa77162",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": true,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-09-17T11:13:35+0900",
+          "allocationgeneration": "1d487a60-c339-11f1-a4bf-00248162d5a9"
+        },
+        {
+          "id": "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+          "ipaddress": "10.10.32.6",
+          "state": "Allocated",
+          "account": "system",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "9d39f51f-b7eb-4293-82d4-c797b3e99b2a",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "eff7e920-577d-4576-8b54-933261930cc9",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": true,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-01T12:15:46+0900",
+          "allocationgeneration": "1d487dc7-c339-11f1-a4bf-00248162d5a9"
+        },
+        {
+          "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+          "ipaddress": "10.10.32.101",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-11T01:17:25+0900",
+          "allocationgeneration": "ae8adf1f-6551-4871-bf55-9923643732fb"
+        },
+        {
+          "id": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+          "ipaddress": "10.10.32.102",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "07f53267-063b-4975-ac47-5a5c10d57fb4",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T01:18:05+0900",
+          "allocationgeneration": "6fd486ad-aba0-4ebc-a090-d800030c7d66"
+        },
+        {
+          "id": "c7e46392-cbcd-4503-a810-606b5afaa884",
+          "ipaddress": "10.10.32.143",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "3a0f7476-b0cb-467f-9f6b-c5c4e8654bc8",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-12T09:52:20+0900",
+          "allocationgeneration": "5780bbf3-fc8a-46c1-8e93-56ceb8953779"
+        },
+        {
+          "id": "078a87ba-8a96-4292-8f33-03163f599ef9",
+          "ipaddress": "10.10.32.144",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5b8c2866-4c7d-4fe0-93c3-b80d89a9dbc5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-11T14:17:57+0900",
+          "allocationgeneration": "7d764d95-7efd-4ea6-9ccc-0f0352c63ea7"
+        },
+        {
+          "id": "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+          "ipaddress": "10.10.32.166",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "4681828f-494e-4847-ad39-7ba064ca76cd",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-16T09:57:51+0900",
+          "allocationgeneration": "37a23279-ef15-4355-825f-bbe4db572cf3"
+        },
+        {
+          "id": "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+          "ipaddress": "10.10.32.167",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T00:03:33+0900",
+          "allocationgeneration": "e549bd51-8826-4cc8-85ea-99f8bc590d03"
+        },
+        {
+          "id": "282aad30-4938-4de3-8412-d3098f4f4caf",
+          "ipaddress": "10.10.32.168",
+          "state": "Allocated",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "5f206f2c-afcd-4291-8c77-1b7eaf387fde",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-10-11T00:03:03+0900",
+          "allocationgeneration": "47443f15-d861-4f32-ae3d-ddb33780fe4d"
+        },
+        {
+          "id": "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6",
+          "ipaddress": "10.10.32.169",
+          "state": "Allocated",
+          "account": "epic1346-as01-user32",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "f889cc7d-02c5-490b-b256-a289b73ff824",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": true,
+          "allocated": "2026-10-11T00:20:50+0900",
+          "allocationgeneration": "87b61ade-2cd8-42a3-9c2b-0e38e438ccd8"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "hidden-reserved-search",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "fordisplay": "false",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "806006b7-51e3-4692-bf10-70e94b241b67"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "806006b7-51e3-4692-bf10-70e94b241b67"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "806006b7-51e3-4692-bf10-70e94b241b67",
+      "jobstatus": 0,
+      "jobresultcode": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "806006b7-51e3-4692-bf10-70e94b241b67"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "806006b7-51e3-4692-bf10-70e94b241b67",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+          "ipaddress": "10.10.31.124",
+          "state": "Allocated",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+          "project": "qa-gn1597-31-project",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:23:16+0900",
+          "allocationgeneration": "63e59bd1-986e-41a9-9a0b-180957f9c6e1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "d9c8f9f0-9351-4e43-8bdf-a0d00132ed4c"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "d9c8f9f0-9351-4e43-8bdf-a0d00132ed4c"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "d9c8f9f0-9351-4e43-8bdf-a0d00132ed4c",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+          "ipaddress": "10.10.31.124",
+          "state": "Allocated",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+          "project": "qa-gn1597-31-project",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:23:16+0900",
+          "allocationgeneration": "63e59bd1-986e-41a9-9a0b-180957f9c6e1"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+          "ipaddress": "10.10.31.124",
+          "state": "Allocated",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+          "project": "qa-gn1597-31-project",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:23:16+0900",
+          "allocationgeneration": "63e59bd1-986e-41a9-9a0b-180957f9c6e1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+          "ipaddress": "10.10.31.124",
+          "state": "Allocated",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+          "project": "qa-gn1597-31-project",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:23:16+0900",
+          "allocationgeneration": "63e59bd1-986e-41a9-9a0b-180957f9c6e1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "c4831de1-ffac-4afb-9817-75cdd351a879"
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "c4831de1-ffac-4afb-9817-75cdd351a879"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "c4831de1-ffac-4afb-9817-75cdd351a879",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+          "ipaddress": "10.10.31.124",
+          "state": "Allocated",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+          "project": "qa-gn1597-31-project",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:23:16+0900",
+          "allocationgeneration": "63e59bd1-986e-41a9-9a0b-180957f9c6e1"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "ded3436a-00a8-4043-990d-69200d9a321b"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+          "ipaddress": "10.10.31.124",
+          "state": "Allocated",
+          "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+          "domain": "qa-gn1569-31-domain",
+          "projectid": "ded3436a-00a8-4043-990d-69200d9a321b",
+          "project": "qa-gn1597-31-project",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "associatednetworkid": "e186f3a9-a763-400b-b936-4fa4d1e5e7ca",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": true,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:23:16+0900",
+          "allocationgeneration": "63e59bd1-986e-41a9-9a0b-180957f9c6e1"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "ipaddress": "10.10.32.154",
+          "state": "Allocated",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "issourcenat": false,
+          "isstaticnat": true,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:28:11+0900",
+          "allocationgeneration": "72dc1724-0103-4e81-b959-df220c8cfe56"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "8e6e30c8-a973-4919-9079-c5507fda3642"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "8e6e30c8-a973-4919-9079-c5507fda3642"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "8e6e30c8-a973-4919-9079-c5507fda3642",
+      "jobstatus": 0,
+      "jobresultcode": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "8e6e30c8-a973-4919-9079-c5507fda3642"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "8e6e30c8-a973-4919-9079-c5507fda3642",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "ipaddress": "10.10.32.154",
+          "state": "Allocated",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "virtualmachineid": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "issourcenat": false,
+          "isstaticnat": true,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:28:11+0900",
+          "allocationgeneration": "72dc1724-0103-4e81-b959-df220c8cfe56"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "ipaddress": "10.10.32.154",
+          "state": "Allocated",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "issourcenat": false,
+          "isstaticnat": true,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:28:11+0900",
+          "allocationgeneration": "72dc1724-0103-4e81-b959-df220c8cfe56"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {}
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "fordisplay": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "ipaddress": "10.10.32.154",
+          "state": "Allocated",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "issourcenat": false,
+          "isstaticnat": true,
+          "issystem": false,
+          "fordisplay": false,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:28:11+0900",
+          "allocationgeneration": "72dc1724-0103-4e81-b959-df220c8cfe56"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "updateIpAddress",
+    "method": "POST",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "fordisplay": "true"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "0836017f-9fdf-4ee0-95c5-f6e6e3c01835"
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "0836017f-9fdf-4ee0-95c5-f6e6e3c01835"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "0836017f-9fdf-4ee0-95c5-f6e6e3c01835",
+      "jobstatus": 0,
+      "jobresultcode": 0
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "0836017f-9fdf-4ee0-95c5-f6e6e3c01835"
+    },
+    "status": 200,
+    "result": {
+      "jobid": "0836017f-9fdf-4ee0-95c5-f6e6e3c01835",
+      "jobstatus": 1,
+      "jobresultcode": 0,
+      "jobresult": {
+        "ipaddress": {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "ipaddress": "10.10.32.154",
+          "state": "Allocated",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "virtualmachineid": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "issourcenat": false,
+          "isstaticnat": true,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:28:11+0900",
+          "allocationgeneration": "72dc1724-0103-4e81-b959-df220c8cfe56"
+        }
+      }
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "state": "Free,Reserved,Allocated,Allocating,Releasing",
+      "allocatedonly": "false",
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "ipaddress": "10.10.32.154",
+          "state": "Allocated",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "issourcenat": false,
+          "isstaticnat": true,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:28:11+0900",
+          "allocationgeneration": "72dc1724-0103-4e81-b959-df220c8cfe56"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+      "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+          "ipaddress": "10.10.32.154",
+          "state": "Allocated",
+          "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+          "domain": "qa-gn1569-32-domain",
+          "projectid": "97f62088-fc46-4d21-acfa-fa47a2d137b1",
+          "project": "qa-gn1597-32-project",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "associatednetworkid": "0b5ac89f-cddc-4cf3-9934-b13dc2bd4446",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "virtualmachineid": "812c5dcc-a538-4a58-be86-6e3dcbbc773a",
+          "issourcenat": false,
+          "isstaticnat": true,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false,
+          "allocated": "2026-11-08T23:28:11+0900",
+          "allocationgeneration": "72dc1724-0103-4e81-b959-df220c8cfe56"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "User-reserved-list",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "DomainAdmin-reserved-list",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Reserved",
+          "account": "qa-pip1693-31-063811-user",
+          "domainid": "bdbe67ed-78c5-4fef-a32b-510f4ca8c1e6",
+          "domain": "qa-pip1693-31-063811",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "15d557ad-4419-4ee0-bd4c-7f751dad6a39"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "User-reserved-list",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "DomainAdmin-reserved-list",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "state": "Reserved",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true",
+      "allocatedonly": "false"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Reserved",
+          "account": "qa-pip1693-32-063811-user",
+          "domainid": "8cad33b2-1386-46d6-9dda-4cbed3f8c2f7",
+          "domain": "qa-pip1693-32-063811",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "hasrules": false,
+          "allocated": "2026-11-17T06:40:32+0900",
+          "allocationgeneration": "6bf3c3a4-5e08-4fe7-81c1-6929bc57932f"
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 31,
+    "name": "final-free",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+          "ipaddress": "10.10.31.105",
+          "state": "Free",
+          "networkid": "8689dcfa-5d81-40d3-8db3-103be4a01d71",
+          "vlanid": "6ce0457c-4b8f-46c5-8115-b85a08efaa63",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  },
+  {
+    "cluster": 32,
+    "name": "final-free",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "command": "listPublicIpAddresses",
+    "method": "GET",
+    "params": {
+      "listall": "true",
+      "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+      "allocatedonly": "false",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "status": 200,
+    "result": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+          "ipaddress": "10.10.32.103",
+          "state": "Free",
+          "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+          "vlanid": "c206c328-6567-4793-a8d4-7ee2cade5451",
+          "vlanname": "vlan://untagged",
+          "issourcenat": false,
+          "isstaticnat": false,
+          "issystem": false,
+          "fordisplay": true,
+          "hasrules": false
+        }
+      ]
+    }
+  }
+]

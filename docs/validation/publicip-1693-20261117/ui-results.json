@@ -1,0 +1,847 @@
+[
+  {
+    "cluster": 31,
+    "name": "free-readonly",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "state": "Free",
+    "displayEditor": false
+  },
+  {
+    "cluster": 31,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "state": "Free",
+    "fordisplay": false,
+    "displayEditor": false
+  },
+  {
+    "cluster": 32,
+    "name": "free-hidden-readback",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "state": "Free",
+    "fordisplay": false,
+    "displayEditor": false
+  },
+  {
+    "cluster": 31,
+    "name": "free-visible-restored",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "state": "Free",
+    "fordisplay": true
+  },
+  {
+    "cluster": 32,
+    "name": "free-visible-restored",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "state": "Free",
+    "fordisplay": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-dialog-light-1280",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "light",
+    "width": 1280,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 847.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 913.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(247, 249, 252)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 1280
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-dialog-light-768",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "light",
+    "width": 768,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 591.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 657.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 768,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(247, 249, 252)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 768
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-dialog-light-390",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "light",
+    "width": 390,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 237.46875,
+          "y": 656.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 303.234375,
+          "y": 656.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(247, 249, 252)",
+        "padding": "16px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 390
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-dialog-dark-1280",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "dark",
+    "width": 1280,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 847.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 913.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(39, 46, 54)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 1280
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-dialog-dark-768",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "dark",
+    "width": 768,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 591.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 657.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 768,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(39, 46, 54)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 768
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-dialog-dark-390",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "dark",
+    "width": 390,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 237.46875,
+          "y": 656.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 303.234375,
+          "y": 656.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(39, 46, 54)",
+        "padding": "16px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 390
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-dialog-light-1280",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "light",
+    "width": 1280,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 847.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 913.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(247, 249, 252)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 1280
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-dialog-light-768",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "light",
+    "width": 768,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 591.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 657.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 768,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(247, 249, 252)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 768
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-dialog-light-390",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "light",
+    "width": 390,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 237.46875,
+          "y": 656.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 303.234375,
+          "y": 656.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(247, 249, 252)",
+        "padding": "16px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 390
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-dialog-dark-1280",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "dark",
+    "width": 1280,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 847.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 913.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(39, 46, 54)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 1280
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-dialog-dark-768",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "dark",
+    "width": 768,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 591.46875,
+          "y": 642.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 657.234375,
+          "y": 642.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 768,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(39, 46, 54)",
+        "padding": "16px 28px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 768
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-dialog-dark-390",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "theme": "dark",
+    "width": 390,
+    "data": {
+      "actions": {
+        "display": "flex",
+        "gap": "8px",
+        "justify": "flex-end"
+      },
+      "bodyOverflow": false,
+      "buttons": [
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "취소",
+          "width": 57.765625,
+          "x": 237.46875,
+          "y": 656.5
+        },
+        {
+          "font": "14px",
+          "height": 32,
+          "text": "저장",
+          "width": 57.765625,
+          "x": 303.234375,
+          "y": 656.5
+        }
+      ],
+      "contentOverflow": false,
+      "dialog": {
+        "classes": "ant-modal-wrap mold-dialog-standard-wrap ant-modal-centered",
+        "height": 900,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "footer": {
+        "background": "rgb(39, 46, 54)",
+        "padding": "16px"
+      },
+      "height": 900,
+      "summary": true,
+      "title": {
+        "font": "16px",
+        "lineHeight": "22px",
+        "padding": "0px"
+      },
+      "width": 390
+    },
+    "vmStandard": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+    "desired": false,
+    "postCount": 1,
+    "jobId": "a860dc7c-2606-422e-b775-eef9cb9daa3f",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 31,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+    "desired": true,
+    "postCount": 1,
+    "jobId": "9eeb21c5-180b-4ffe-b01a-8c9f6d305a7f",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "desired": false,
+    "postCount": 1,
+    "jobId": "f1a1c3b5-10f3-4bd8-bc18-79948c5c1234",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 32,
+    "name": "reserved-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "77def528-fb75-42e3-a90f-46a6e9c5b90b",
+    "desired": true,
+    "postCount": 1,
+    "jobId": "806006b7-51e3-4692-bf10-70e94b241b67",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+    "desired": false,
+    "postCount": 1,
+    "jobId": "d9c8f9f0-9351-4e43-8bdf-a0d00132ed4c",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 31,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "ae4ec34f-141b-4625-bb7d-c2d1cc044e41",
+    "desired": true,
+    "postCount": 1,
+    "jobId": "c4831de1-ffac-4afb-9817-75cdd351a879",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-false",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+    "desired": false,
+    "postCount": 1,
+    "jobId": "8e6e30c8-a973-4919-9079-c5507fda3642",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 32,
+    "name": "allocated-true",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "id": "91b10ee8-92ab-45e7-80e6-05092bd5b838",
+    "desired": true,
+    "postCount": 1,
+    "jobId": "0836017f-9fdf-4ee0-95c5-f6e6e3c01835",
+    "jobstatus": 1,
+    "ownerPreserved": true,
+    "readback": true
+  },
+  {
+    "cluster": 31,
+    "name": "User-reserved-readonly",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "role": "User",
+    "ownScopeCount": 1,
+    "displayEditor": false
+  },
+  {
+    "cluster": 31,
+    "name": "DomainAdmin-reserved-readonly",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "role": "DomainAdmin",
+    "ownScopeCount": 1,
+    "displayEditor": false
+  },
+  {
+    "cluster": 32,
+    "name": "User-reserved-readonly",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "role": "User",
+    "ownScopeCount": 1,
+    "displayEditor": false
+  },
+  {
+    "cluster": 32,
+    "name": "DomainAdmin-reserved-readonly",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "role": "DomainAdmin",
+    "ownScopeCount": 1,
+    "displayEditor": false
+  },
+  {
+    "cluster": 31,
+    "name": "final-free",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "state": "Free",
+    "fordisplay": true,
+    "ownerAbsent": true
+  },
+  {
+    "cluster": 32,
+    "name": "final-free",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "state": "Free",
+    "fordisplay": true,
+    "ownerAbsent": true
+  },
+  {
+    "cluster": 31,
+    "name": "browser-restored",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "locale": "ko",
+    "theme": "light",
+    "url": "http://10.10.31.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated"
+  },
+  {
+    "cluster": 32,
+    "name": "browser-restored",
+    "source": "f505208869d0e89ed38e9ca7c429eba94ca0bc39",
+    "locale": "ko",
+    "theme": "light",
+    "url": "http://10.10.32.10:8080/client/#/publicip?projectid=0&state=Allocated&page=1&pagesize=20&filter=allocated"
+  }
+]
