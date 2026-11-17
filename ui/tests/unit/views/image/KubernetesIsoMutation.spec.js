@@ -55,6 +55,7 @@ test('a lost response blocks resubmit and resolves only after observing desired 
   const { w } = setup(); await flushPromises(); w.vm.nextState = 'Disabled'; await w.vm.submit()
   expect(w.vm.receipt.status).toBe('uncertain'); expect(w.vm.canSubmit).toBe(false)
   await w.vm.refresh(); expect(w.vm.canSubmit).toBe(false); expect(w.emitted('close-action')).toBeUndefined()
+  expect(w.vm.snapshot.state).toBe('Enabled'); expect(w.vm.nextState).toBe('Disabled')
   getAPI.mockResolvedValue(list({ ...version, state: 'Disabled' })); await w.vm.refresh()
   expect(w.emitted('close-action')).toHaveLength(1); expect(postAPI).toHaveBeenCalledTimes(1); w.unmount()
 })

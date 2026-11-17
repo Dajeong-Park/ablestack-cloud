@@ -101,7 +101,7 @@ export default {
           this.errorKey = 'message.kubernetes.iso.mutation.uncertain'
         }
         if (!record) { this.errorKey = 'message.kubernetes.iso.read.missing'; return }
-        this.snapshot = record; this.nextState = record.state
+        this.snapshot = record; this.nextState = this.receipt?.operation === 'update' ? this.receipt.state : record.state
       } catch (error) { if (this.current(scope, generation)) this.errorKey = this.failure(error) } finally { if (this.current(scope, generation)) { this.reading = false; this.blocksNavigation = false } }
     },
     async submit (event) {
