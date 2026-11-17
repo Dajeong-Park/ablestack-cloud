@@ -1487,7 +1487,7 @@ export default {
     this.getUsageTypes()
   },
   computed: {
-    isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.resourcePath },
+    isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id && !this.resourcePath },
     displayColumns () {
       const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.dataIndex !== 'order')
       if (!this.isKubernetesIsoMainList) return columns

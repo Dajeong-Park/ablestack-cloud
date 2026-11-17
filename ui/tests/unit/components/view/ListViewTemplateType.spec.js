@@ -104,3 +104,8 @@ test('KISO column picker follows explicit visibility updates and returns focus o
     expect(trigger.focus).toHaveBeenCalledTimes(1)
   } finally { global.requestAnimationFrame = original }
 })
+
+test('KISO main table rules never apply to the nested detail event table', () => {
+  expect(ListView.computed.isKubernetesIsoMainList.call({ $route: { meta: { name: 'kubernetesiso' }, params: { id } }, resourcePath: '' })).toBe(false)
+  expect(ListView.computed.isKubernetesIsoMainList.call({ $route: { meta: { name: 'kubernetesiso' }, params: {} }, resourcePath: '' })).toBe(true)
+})
