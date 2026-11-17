@@ -17,6 +17,8 @@
 package org.apache.cloudstack.api.command.admin.bgp;
 
 import com.cloud.bgp.ASNumberRange;
+import com.cloud.bgp.ASNumberRangeValidator;
+import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.exception.InsufficientCapacityException;
 import com.cloud.exception.NetworkRuleConflictException;
@@ -33,6 +35,9 @@ import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.ASNRangeResponse;
 import org.apache.cloudstack.api.response.ZoneResponse;
 
+import java.util.Map;
+import java.util.UUID;
+
 @APICommand(name = "createASNRange",
         description = "Creates a range of Autonomous Systems for BGP Dynamic Routing",
         responseObject = ASNRangeResponse.class,
@@ -45,22 +50,35 @@ public class CreateASNRangeCmd extends BaseCmd {
             description = "the zone ID", required = true)
     private Long zoneId;
 
-    @Parameter(name = ApiConstants.START_ASN, type = CommandType.LONG, required=true, description = "the start AS Number")
-    private Long startASNumber;
+    @Parameter(name = ApiConstants.START_ASN, type = CommandType.STRING, required=true,
+            description = "the start AS Number, a decimal integer from 1 to 4294967294 (excluding 23456 and 65535); at most 1000 numbers per range")
+    private String startASNumber;
 
-    @Parameter(name = ApiConstants.END_ASN, type = CommandType.LONG, required=true, description = "the end AS Number")
-    private Long endASNumber;
+    @Parameter(name = ApiConstants.END_ASN, type = CommandType.STRING, required=true, description = "the end AS Number, using the same admission policy as startasn")
+    private String endASNumber;
+
+    @Override
+    public void validateSpecificParameters(final Map<String, String> params) {
+        ASNumberRangeValidator.validate(getStartASNumber(), getEndASNumber());
+    }
 
     @Override
     public void execute() throws ResourceUnavailableException, InsufficientCapacityException, ServerApiException, ConcurrentOperationException, ResourceAllocationException, NetworkRuleConflictException {
         try {
-            ASNumberRange asnRange = bgpService.createASNumberRange(zoneId, startASNumber, endASNumber);
+            long start = getStartASNumber();
+            long end = getEndASNumber();
+            ASNumberRangeValidator.validate(start, end);
+            ASNumberRange asnRange = bgpService.createASNumberRange(zoneId, start, end);
             ASNRangeResponse response = _responseGenerator.createASNumberRangeResponse(asnRange);
             response.setResponseName(getCommandName());
             setResponseObject(response);
+        } catch (InvalidParameterValueException e) {
+            throw new ServerApiException(ApiErrorCode.PARAM_ERROR, e.getMessage());
         } catch (Exception e) {
-            String msg = String.format("Cannot create AS Number Range %s-%s for zone %s: %s", startASNumber, endASNumber, zoneId, e.getMessage());
-            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, msg);
+            String diagnosticId = UUID.randomUUID().toString();
+            logger.error("ASN range creation failed (diagnostic ID {})", diagnosticId, e);
+            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR,
+                    "Could not create the ASN range. Diagnostic ID: " + diagnosticId);
         }
     }
 
@@ -69,11 +87,11 @@ public class CreateASNRangeCmd extends BaseCmd {
     }
 
     public Long getStartASNumber() {
-        return startASNumber;
+        return ASNumberRangeValidator.parse(startASNumber, ApiConstants.START_ASN);
     }
 
     public Long getEndASNumber() {
-        return endASNumber;
+        return ASNumberRangeValidator.parse(endASNumber, ApiConstants.END_ASN);
     }
 
     @Override

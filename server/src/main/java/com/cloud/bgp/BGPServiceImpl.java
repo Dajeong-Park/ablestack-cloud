@@ -112,42 +112,48 @@ public class BGPServiceImpl implements BGPService {
     @DB
     @ActionEvent(eventType = EventTypes.EVENT_AS_RANGE_CREATE, eventDescription = "AS Range creation")
     public ASNumberRange createASNumberRange(long zoneId, long startASNumber, long endASNumber) {
+        ASNumberRangeValidator.validate(startASNumber, endASNumber);
         DataCenterVO zone = dataCenterDao.findById(zoneId);
         if (zone == null) {
             String msg = String.format("Cannot find a zone with ID %s", zoneId);
             LOGGER.error(msg);
-            throw new InvalidParameterException(msg);
+            throw new InvalidParameterValueException(msg);
         }
         if (!routedIpv4Manager.isRoutedNetworkVpcEnabled(zoneId)) {
             throw new InvalidParameterValueException("Cannot create ASN range as Routed networks and VPCs are not enabled for the zone.");
         }
-        if (startASNumber > endASNumber) {
-            String msg = "Please specify a valid AS Number range";
-            LOGGER.error(msg);
-            throw new InvalidParameterException(msg);
-        }
-
-        List<ASNumberRangeVO> asNumberRanges = asNumberRangeDao.listByZoneId(zoneId);
-        for (ASNumberRangeVO asNumberRange : asNumberRanges) {
-            if (isASNumbersOverlap(asNumberRange.getStartASNumber(), asNumberRange.getEndASNumber(), startASNumber, endASNumber)) {
-                throw new InvalidParameterException(String.format("New AS number range (%s-%s) has conflict with an existing AS number range (%s-%s)",
-                        startASNumber, endASNumber, asNumberRange.getStartASNumber(), asNumberRange.getEndASNumber()));
-            }
-        }
-
         try {
             return Transaction.execute((TransactionCallback<ASNumberRange>) status -> {
+                // Lock a row that exists even before the first range. All management servers use this DB lock.
+                if (dataCenterDao.lockRow(zoneId, true) == null) {
+                    throw new InvalidParameterValueException("The selected Zone no longer exists.");
+                }
+                if (!routedIpv4Manager.isRoutedNetworkVpcEnabled(zoneId)) {
+                    throw new InvalidParameterValueException("Routed networks and VPCs are not enabled for the Zone.");
+                }
+                for (ASNumberRangeVO range : asNumberRangeDao.listByZoneId(zoneId)) {
+                    if (isASNumbersOverlap(range.getStartASNumber(), range.getEndASNumber(), startASNumber, endASNumber)) {
+                        throw new InvalidParameterValueException(String.format("ASN range %s-%s overlaps the existing range %s-%s.",
+                                startASNumber, endASNumber, range.getStartASNumber(), range.getEndASNumber()));
+                    }
+                }
                 LOGGER.debug("Persisting AS Number Range {}-{} for the zone {}", startASNumber, endASNumber, zone);
                 ASNumberRangeVO asNumberRangeVO = new ASNumberRangeVO(zoneId, startASNumber, endASNumber);
-                asNumberRangeDao.persist(asNumberRangeVO);
+                if (asNumberRangeDao.persist(asNumberRangeVO) == null) {
+                    throw new CloudRuntimeException("Could not persist ASN range");
+                }
 
                 for (long asn = startASNumber; asn <= endASNumber; asn++) {
                     LOGGER.debug("Persisting AS Number {} for zone {}", asn, zone);
                     ASNumberVO asNumber = new ASNumberVO(asn, asNumberRangeVO.getId(), zoneId);
-                    asNumberDao.persist(asNumber);
+                    if (asNumberDao.persist(asNumber) == null) {
+                        throw new CloudRuntimeException("Could not persist ASN range member");
+                    }
                 }
                 return asNumberRangeVO;
             });
+        } catch (InvalidParameterValueException e) {
+            throw e;
         } catch (Exception e) {
             String err = String.format("Error creating AS Number range %s-%s for zone %s: %s", startASNumber, endASNumber, zone, e.getMessage());
             LOGGER.error(err, e);
