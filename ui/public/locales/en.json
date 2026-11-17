@@ -6012,5 +6012,10 @@
   "label.storage.service.authentication.failed": "Failed",
   "label.storage.service.authentication.unknown": "Unknown",
   "message.storage.service.authentication.unknown.help": "The runtime evidence is insufficient to verify authentication. No secret value is collected or displayed.",
-  "message.storage.service.nvme.volume.detach.in.use.disabled": "Delete the namespace before detaching the backing volume it uses."
+  "message.storage.service.nvme.volume.detach.in.use.disabled": "Delete the namespace before detaching the backing volume it uses.",
+  "label.ssvm.open.cert.page": "Open Certificate Page",
+  "label.retry.upload": "Retry Upload",
+  "message.ssvm.cert.untrusted": "Unable to reach the upload server.",
+  "message.ssvm.cert.trust.instructions": "The upload server may be using a self-signed or untrusted certificate. Click 'Open Certificate Page' to open the server in a new browser tab, accept the certificate warning, then return here and click 'Retry Upload'. If the server remains unreachable, contact your administrator.",
+  "message.ssvm.unreachable.retry": "The upload server is still unreachable. If it uses a self-signed certificate, please accept it in the opened tab and try again."
 }

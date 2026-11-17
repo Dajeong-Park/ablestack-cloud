@@ -317,7 +317,7 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
     /**
      * Prepare upload parameters internal method for templates and ISOs local upload
      */
-    private TemplateProfile prepareUploadParamsInternal(UploadParams params) throws ResourceAllocationException {
+    private TemplateProfile prepareUploadParamsInternal(UploadParams params, TemplateType templateType) throws ResourceAllocationException {
         //check if the caller can operate with the template owner
         Account caller = CallContext.current().getCallingAccount();
         Account owner = _accountMgr.getAccount(params.getTemplateOwnerId());
@@ -326,7 +326,7 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
         List<Long> zoneList = null;
         // ignore passed zoneId if we are using region wide image store
         List<ImageStoreVO> stores = _imgStoreDao.findRegionImageStores();
-        if (!(stores != null && stores.size() > 0)) {
+        if (CollectionUtils.isEmpty(stores) && !Long.valueOf(-1L).equals(params.getZoneId())) {
             zoneList = new ArrayList<>();
             zoneList.add(params.getZoneId());
         }
@@ -343,7 +343,7 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
                 params.isExtractable(), params.getFormat(), params.getGuestOSId(), zoneList,
                 params.getHypervisorType(), params.getChecksum(), params.isBootable(), params.getTemplateTag(), owner,
                 params.getDetails(), params.isSshKeyEnabled(), params.getImageStoreUuid(),
-                params.isDynamicallyScalable(), params.isRoutingType() ? TemplateType.ROUTING : TemplateType.USER, params.isDirectDownload(), params.isKvdoEnable(), params.isDeployAsIs());
+                params.isDynamicallyScalable(), templateType, params.isDirectDownload(), params.isKvdoEnable(), params.isDeployAsIs());
     }
 
     private Long getDefaultDeployAsIsGuestOsId() {
@@ -353,6 +353,9 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
 
     @Override
     public TemplateProfile prepare(GetUploadParamsForTemplateCmd cmd) throws ResourceAllocationException {
+        Account caller = CallContext.current().getCallingAccount();
+        TemplateType templateType = templateMgr.validateTemplateType(cmd, _accountMgr.isAdmin(caller.getAccountId()),
+                Long.valueOf(-1L).equals(cmd.getZoneId()));
         Long osTypeId = cmd.getOsTypeId();
         if (osTypeId == null) {
             logger.info("Setting the default guest OS for deploy-as-is templates while the template upload is not completed");
@@ -364,8 +367,8 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
                 BooleanUtils.toBoolean(cmd.isFeatured()), BooleanUtils.toBoolean(cmd.isExtractable()), cmd.getFormat(), osTypeId,
                 cmd.getZoneId(), HypervisorType.getType(cmd.getHypervisor()), cmd.getChecksum(),
                 cmd.getTemplateTag(), cmd.getEntityOwnerId(), cmd.getDetails(), BooleanUtils.toBoolean(cmd.isSshKeyEnabled()),
-                BooleanUtils.toBoolean(cmd.isDynamicallyScalable()), BooleanUtils.toBoolean(cmd.isRoutingType()), cmd.isKvdoEnable(), cmd.isDeployAsIs());
-        return prepareUploadParamsInternal(params);
+                BooleanUtils.toBoolean(cmd.isDynamicallyScalable()), BooleanUtils.toBoolean(cmd.isRoutingType()), cmd.isDeployAsIs(), cmd.isKvdoEnable());
+        return prepareUploadParamsInternal(params, templateType);
     }
 
     @Override
@@ -375,7 +378,7 @@ public abstract class TemplateAdapterBase extends AdapterBase implements Templat
                 BooleanUtils.toBoolean(cmd.isExtractable()), cmd.getOsTypeId(),
                 cmd.getZoneId(), BooleanUtils.toBoolean(cmd.isBootable()), cmd.getEntityOwnerId(),
                 BooleanUtils.toBoolean(cmd.isDynamicallyScalable()));
-        return prepareUploadParamsInternal(params);
+        return prepareUploadParamsInternal(params, TemplateType.USER);
     }
 
     @Override

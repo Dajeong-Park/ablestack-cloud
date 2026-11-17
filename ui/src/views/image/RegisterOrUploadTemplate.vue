@@ -19,11 +19,27 @@
   <div
     :class="'form-layout'"
     @keyup.ctrl.enter="handleSubmit">
-    <span v-if="uploadPercentage > 0">
+    <span v-if="uploading">
       <loading-outlined />
       {{ $t('message.upload.file.processing') }}
       <a-progress :percent="uploadPercentage" />
     </span>
+    <div v-else-if="ssvmCertUntrusted" class="ssvm-cert-warning">
+      <a-alert
+        type="warning"
+        show-icon
+        :message="$t('message.ssvm.cert.untrusted')"
+        :description="$t('message.ssvm.cert.trust.instructions')" />
+      <div :span="24" class="action-button">
+        <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
+        <a-button :href="ssvmOrigin" target="_blank" rel="noopener noreferrer">
+          {{ $t('label.ssvm.open.cert.page') }}
+        </a-button>
+        <a-button type="primary" :loading="loading" @click="retryUpload">
+          {{ $t('label.retry.upload') }}
+        </a-button>
+      </div>
+    </div>
     <a-spin :spinning="loading" v-else>
       <a-form
         :ref="formRef"
@@ -478,6 +494,7 @@ import { api } from '@/api'
 import store from '@/store'
 import { axios } from '../../utils/request'
 import { mixinForm } from '@/utils/mixin'
+import { probeSsvmCert } from '@/utils/ssvmProbe'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
@@ -530,6 +547,8 @@ export default {
       allowed: false,
       allowDirectDownload: false,
       uploadParams: null,
+      ssvmCertUntrusted: false,
+      ssvmOrigin: '',
       currentForm: ['plus-outlined', 'PlusOutlined'].includes(this.action.currentAction.icon) ? 'Create' : 'Upload',
       domains: [],
       accounts: [],
@@ -616,14 +635,27 @@ export default {
       this.form.file = file
       return false
     },
+    async retryUpload () {
+      if (this.loading || this.uploading) return
+      this.loading = true
+      const reachable = await probeSsvmCert(this.ssvmOrigin)
+      this.loading = false
+      if (!reachable) {
+        this.$message.warning(this.$t('message.ssvm.unreachable.retry'))
+        return
+      }
+      this.ssvmCertUntrusted = false
+      this.handleUpload()
+    },
     handleUpload () {
       const { fileList } = this
       const formData = new FormData()
       fileList.forEach(file => {
         formData.append('files[]', file)
       })
+      this.uploading = true
       this.uploadPercentage = 0
-      axios.post(this.uploadParams.postURL,
+      return axios.post(this.uploadParams.postURL,
         formData,
         {
           headers: {
@@ -631,13 +663,18 @@ export default {
             'x-signature': this.uploadParams.signature,
             'x-expires': this.uploadParams.expires,
             'x-metadata': this.uploadParams.metadata,
-            'x-host': this.uploadParams.postURL.split('/')[2]
+            'x-host': new URL(this.uploadParams.postURL).host
           },
           onUploadProgress: (progressEvent) => {
             this.uploadPercentage = Number(parseFloat(100 * progressEvent.loaded / progressEvent.total).toFixed(1))
           },
           timeout: 86400000
-        }).then((json) => {
+        }).then(async () => {
+        if (this.userdataid !== null) {
+          const params = { userdataid: this.userdataid, templateid: this.uploadParams.id }
+          if (this.userdatapolicy) params.userdatapolicy = this.userdatapolicy
+          await api('linkUserDataToTemplate', params).catch(error => this.$notifyError(error))
+        }
         this.$notification.success({
           message: this.$t('message.success.upload'),
           description: this.$t('message.success.upload.template.description')
@@ -645,14 +682,13 @@ export default {
         this.$emit('refresh-data')
         this.closeAction()
       }).catch(e => {
-        this.$notification.error({
-          message: this.$t('message.upload.failed'),
-          description: `${this.$t('message.upload.template.failed.description')} -  ${e}`,
-          duration: 0
-        })
+        this.$notifyError(e)
+      }).finally(() => {
+        this.uploading = false
       })
     },
     fetchCustomHypervisorName () {
+      if (!('listConfigurations' in store.getters.apis)) return
       const params = {
         name: 'hypervisor.custom.display.name'
       }
@@ -675,7 +711,7 @@ export default {
       params.showicon = true
       this.allowed = false
 
-      if (store.getters.userInfo.roletype === this.rootAdmin && this.currentForm === 'Create') {
+      if (store.getters.userInfo.roletype === this.rootAdmin) {
         this.allowed = true
         listZones.push({
           id: this.$t('label.all.zone'),
@@ -683,13 +719,7 @@ export default {
         })
       }
 
-      if (store.getters.userInfo.roletype === this.rootAdmin && this.currentForm === 'Upload') {
-        this.allowed = true
-        listZones.push({
-          id: this.$t('label.all.zone'),
-          name: this.$t('label.all.zone')
-        })
-      }
+      this.allowed = store.getters.userInfo.roletype === this.rootAdmin
 
       this.zones.loading = true
       this.zones.opts = []
@@ -699,10 +729,8 @@ export default {
         listZones = listZones.concat(listZonesResponse)
         this.zones.opts = listZones
       }).finally(() => {
-        this.form.zoneid = (this.filteredZones && this.filteredZones[1]) ? this.filteredZones[1].id : ''
-        if (!this.form.zoneid) {
-          this.form.zoneid = (this.filteredZones && this.filteredZones[0] && this.filteredZones[0].id !== this.$t('label.all.zone')) ? this.filteredZones[0].id : ''
-        }
+        const defaultZone = this.filteredZones.find(zone => zone.id !== this.$t('label.all.zone'))
+        this.form.zoneid = defaultZone ? defaultZone.id : ''
         this.zones.loading = false
         if (this.form.zoneid) {
           this.fetchHyperVisor({ zoneid: this.form.zoneid })
@@ -1066,7 +1094,7 @@ export default {
     },
     handleSubmit (e) {
       e.preventDefault()
-      if (this.loading) return
+      if (this.loading || this.uploading || this.ssvmCertUntrusted) return
       this.formRef.value.validate().then(() => {
         if (this.currentForm === 'Create') {
           delete this.form.zoneid
@@ -1092,6 +1120,8 @@ export default {
               continue
             }
             params[key] = input.join()
+          } else if (key === 'zoneid') {
+            params.zoneid = input === this.$t('label.all.zone') ? '-1' : input
           } else if (key === 'hypervisor') {
             params[key] = this.hyperVisor.opts[input].name
           } else if (key === 'groupenabled') {
@@ -1153,13 +1183,18 @@ export default {
               description: this.$t('message.error.upload.template.description'),
               duration: 0
             })
+            this.loading = false
+            return
           }
-          api('getUploadParamsForTemplate', params).then(json => {
-            this.uploadParams = (json.postuploadtemplateresponse && json.postuploadtemplateresponse.getuploadparams) ? json.postuploadtemplateresponse.getuploadparams : ''
-            this.handleUpload()
-            if (this.userdataid !== null) {
-              this.linkUserdataToTemplate(this.userdataid, json.postuploadtemplateresponse.template[0].id)
+          api('getUploadParamsForTemplate', params).then(async json => {
+            this.uploadParams = json.postuploadtemplateresponse?.getuploadparams || ''
+            this.ssvmOrigin = new URL(this.uploadParams.postURL).origin
+            const reachable = await probeSsvmCert(this.ssvmOrigin)
+            if (!reachable) {
+              this.ssvmCertUntrusted = true
+              return
             }
+            this.handleUpload()
           }).catch(error => {
             this.$notifyError(error)
           }).finally(() => {

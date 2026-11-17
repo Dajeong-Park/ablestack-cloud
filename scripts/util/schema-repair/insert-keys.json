@@ -1,0 +1,9 @@
+{
+  "cloud.configuration_group": ["name"],
+  "cloud.configuration_subgroup": ["name"],
+  "cloud.configuration": ["name"],
+  "cloud.hypervisor_capabilities": ["hypervisor_type", "hypervisor_version"],
+  "cloud.guest_os_hypervisor": ["hypervisor_type", "hypervisor_version", "guest_os_id"],
+  "cloud.role_permissions": ["role_id", "rule"],
+  "cloud.counter": ["provider", "source", "value"]
+}

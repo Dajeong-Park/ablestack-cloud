@@ -33,7 +33,7 @@ public class TemplateUploadParams extends UploadParamsBase {
                                 Boolean isDynamicallyScalable, Boolean isRoutingType, boolean deployAsIs, Boolean kvdoEnable) {
         super(userId, name, displayText, arch, bits, passwordEnabled, requiresHVM, isPublic, featured, isExtractable,
                 format, guestOSId, zoneId, hypervisorType, chksum, templateTag, templateOwnerId, details,
-                sshkeyEnabled, isDynamicallyScalable, isRoutingType, kvdoEnable, deployAsIs);
+                sshkeyEnabled, isDynamicallyScalable, isRoutingType, deployAsIs, Boolean.TRUE.equals(kvdoEnable));
         setBootable(true);
     }
 }

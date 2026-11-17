@@ -82,6 +82,10 @@ public class GetUploadParamsForTemplateCmd extends AbstractGetUploadParamsCmd {
     @Parameter(name = ApiConstants.ROUTING, type = CommandType.BOOLEAN, description = "true if the template type is routing i.e., if template is used to deploy router")
     private Boolean isRoutingType;
 
+    @Parameter(name = ApiConstants.TEMPLATE_TYPE, type = CommandType.STRING,
+            description = "the type of the template. Valid options are: USER/VNF (for all users) and SYSTEM/ROUTING/BUILTIN (for admins only).")
+    private String templateType;
+
     @Parameter(name = ApiConstants.PASSWORD_ENABLED, type = CommandType.BOOLEAN, description = "true if the template supports the password reset feature; default is false")
     private Boolean passwordEnabled;
 
@@ -150,6 +154,10 @@ public class GetUploadParamsForTemplateCmd extends AbstractGetUploadParamsCmd {
         return isRoutingType;
     }
 
+    public String getTemplateType() {
+        return templateType;
+    }
+
     public Boolean isPasswordEnabled() {
         return passwordEnabled;
     }
@@ -167,7 +175,7 @@ public class GetUploadParamsForTemplateCmd extends AbstractGetUploadParamsCmd {
     }
 
     public Boolean isKvdoEnable() {
-        return kvdoEnable;
+        return Boolean.TRUE.equals(kvdoEnable);
     }
 
     public boolean isDeployAsIs() {
@@ -193,7 +201,7 @@ public class GetUploadParamsForTemplateCmd extends AbstractGetUploadParamsCmd {
     }
 
     private void validateRequest() {
-        if (getZoneId() <= 0) {
+        if (getZoneId() == null || (getZoneId() <= 0 && getZoneId() != -1L)) {
             throw new ServerApiException(ApiErrorCode.PARAM_ERROR, "invalid zoneid");
         }
         if (!isDeployAsIs() && osTypeId == null) {

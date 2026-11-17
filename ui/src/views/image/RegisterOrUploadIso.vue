@@ -19,11 +19,27 @@
   <div
     class="form-layout"
     @keyup.ctrl.enter="handleSubmit">
-    <span v-if="uploadPercentage > 0">
+    <span v-if="uploading">
       <loading-outlined />
       {{ $t('message.upload.file.processing') }}
       <a-progress :percent="uploadPercentage" />
     </span>
+    <div v-else-if="ssvmCertUntrusted" class="ssvm-cert-warning">
+      <a-alert
+        type="warning"
+        show-icon
+        :message="$t('message.ssvm.cert.untrusted')"
+        :description="$t('message.ssvm.cert.trust.instructions')" />
+      <div :span="24" class="action-button">
+        <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
+        <a-button :href="ssvmOrigin" target="_blank" rel="noopener noreferrer">
+          {{ $t('label.ssvm.open.cert.page') }}
+        </a-button>
+        <a-button type="primary" :loading="loading" @click="retryUpload">
+          {{ $t('label.retry.upload') }}
+        </a-button>
+      </div>
+    </div>
     <a-spin :spinning="loading" v-else>
       <a-form
         :ref="formRef"
@@ -312,6 +328,7 @@ import { api } from '@/api'
 import store from '@/store'
 import { axios } from '../../utils/request'
 import { mixinForm } from '@/utils/mixin'
+import { probeSsvmCert } from '@/utils/ssvmProbe'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
@@ -346,6 +363,9 @@ export default {
       loading: false,
       allowed: false,
       uploadParams: null,
+      ssvmCertUntrusted: false,
+      ssvmOrigin: '',
+      uploading: false,
       uploadPercentage: 0,
       currentForm: ['plus-outlined', 'PlusOutlined'].includes(this.action.currentAction.icon) ? 'Create' : 'Upload',
       domains: [],
@@ -363,7 +383,7 @@ export default {
   created () {
     this.initForm()
     this.zones = []
-    if (this.$store.getters.userInfo.roletype === 'Admin' && this.currentForm === 'Create') {
+    if (this.$store.getters.userInfo.roletype === 'Admin') {
       this.zones = [
         {
           id: '-1',
@@ -486,21 +506,35 @@ export default {
       this.form.file = file
       return false
     },
+    async retryUpload () {
+      if (this.loading || this.uploading) return
+      this.loading = true
+      const reachable = await probeSsvmCert(this.ssvmOrigin)
+      this.loading = false
+      if (!reachable) {
+        this.$message.warning(this.$t('message.ssvm.unreachable.retry'))
+        return
+      }
+      this.ssvmCertUntrusted = false
+      this.handleUpload()
+    },
     handleUpload () {
       const { fileList } = this
-      if (this.fileList.length > 1) {
+      if (this.fileList.length !== 1) {
         this.$notification.error({
           message: this.$t('message.upload.iso.failed'),
           description: this.$t('message.error.upload.iso.description'),
           duration: 0
         })
+        return
       }
       const formData = new FormData()
       fileList.forEach(file => {
         formData.append('files[]', file)
       })
+      this.uploading = true
       this.uploadPercentage = 0
-      axios.post(this.uploadParams.postURL,
+      return axios.post(this.uploadParams.postURL,
         formData,
         {
           headers: {
@@ -508,13 +542,18 @@ export default {
             'x-signature': this.uploadParams.signature,
             'x-expires': this.uploadParams.expires,
             'x-metadata': this.uploadParams.metadata,
-            'x-host': this.uploadParams.postURL.split('/')[2]
+            'x-host': new URL(this.uploadParams.postURL).host
           },
           onUploadProgress: (progressEvent) => {
             this.uploadPercentage = Number(parseFloat(100 * progressEvent.loaded / progressEvent.total).toFixed(1))
           },
           timeout: 86400000
-        }).then((json) => {
+        }).then(async () => {
+        if (this.userdataid !== null) {
+          const params = { userdataid: this.userdataid, templateid: this.uploadParams.id }
+          if (this.userdatapolicy) params.userdatapolicy = this.userdatapolicy
+          await api('linkUserDataToTemplate', params).catch(error => this.$notifyError(error))
+        }
         this.$notification.success({
           message: this.$t('message.success.upload'),
           description: this.$t('message.success.upload.description')
@@ -522,16 +561,14 @@ export default {
         this.closeAction()
         this.$emit('refresh-data')
       }).catch(e => {
-        this.$notification.error({
-          message: this.$t('message.upload.failed'),
-          description: `${this.$t('message.upload.iso.failed.description')} -  ${e}`,
-          duration: 0
-        })
+        this.$notifyError(e)
+      }).finally(() => {
+        this.uploading = false
       })
     },
     handleSubmit (e) {
       e.preventDefault()
-      if (this.loading) return
+      if (this.loading || this.uploading || this.ssvmCertUntrusted) return
       this.formRef.value.validate().then(() => {
         const formRaw = toRaw(this.form)
         const values = this.handleRemoveFields(formRaw)
@@ -557,7 +594,6 @@ export default {
               break
           }
         }
-        console.log('params :>> ', params)
         if (this.currentForm === 'Create') {
           this.loading = true
           api('registerIso', params).then(json => {
@@ -581,18 +617,15 @@ export default {
           }
           params.format = 'ISO'
           this.loading = true
-          api('getUploadParamsForIso', params).then(json => {
-            this.uploadParams = (json.postuploadisoresponse && json.postuploadisoresponse.getuploadparams) ? json.postuploadisoresponse.getuploadparams : ''
-            const response = this.handleUpload()
-            if (this.userdataid !== null) {
-              this.linkUserdataToTemplate(this.userdataid, json.postuploadisoresponse.iso[0].id)
+          api('getUploadParamsForIso', params).then(async json => {
+            this.uploadParams = json.postuploadisoresponse?.getuploadparams || ''
+            this.ssvmOrigin = new URL(this.uploadParams.postURL).origin
+            const reachable = await probeSsvmCert(this.ssvmOrigin)
+            if (!reachable) {
+              this.ssvmCertUntrusted = true
+              return
             }
-            if (response === 'upload successful') {
-              this.$notification.success({
-                message: this.$t('message.success.upload'),
-                description: this.$t('message.success.upload.iso.description')
-              })
-            }
+            this.handleUpload()
           }).catch(error => {
             this.$notifyError(error)
           }).finally(() => {

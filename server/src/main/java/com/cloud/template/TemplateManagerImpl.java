@@ -2541,7 +2541,7 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
 
     @Override
     public TemplateType validateTemplateType(BaseCmd cmd, boolean isAdmin, boolean isCrossZones) {
-        if (!(cmd instanceof UpdateTemplateCmd) && !(cmd instanceof RegisterTemplateCmd)) {
+        if (!(cmd instanceof UpdateTemplateCmd) && !(cmd instanceof RegisterTemplateCmd) && !(cmd instanceof GetUploadParamsForTemplateCmd)) {
             return null;
         }
         TemplateType templateType = null;
@@ -2553,6 +2553,9 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
         } else if (cmd instanceof RegisterTemplateCmd) {
             newType = ((RegisterTemplateCmd)cmd).getTemplateType();
             isRoutingType = ((RegisterTemplateCmd)cmd).isRoutingType();
+        } else if (cmd instanceof GetUploadParamsForTemplateCmd) {
+            newType = ((GetUploadParamsForTemplateCmd)cmd).getTemplateType();
+            isRoutingType = ((GetUploadParamsForTemplateCmd)cmd).isRoutingType();
         }
         if (newType != null) {
             try {
@@ -2570,12 +2573,12 @@ public class TemplateManagerImpl extends ManagerBase implements TemplateManager,
             } else if ((cmd instanceof RegisterVnfTemplateCmd || cmd instanceof UpdateVnfTemplateCmd) && !TemplateType.VNF.equals(templateType)) {
                 throw new InvalidParameterValueException("The template type must be VNF for VNF templates, but the actual type is " + templateType);
             }
-        } else if (cmd instanceof RegisterTemplateCmd) {
+        } else if (cmd instanceof RegisterTemplateCmd || cmd instanceof GetUploadParamsForTemplateCmd) {
             boolean isRouting = Boolean.TRUE.equals(isRoutingType);
             templateType = (cmd instanceof RegisterVnfTemplateCmd) ? TemplateType.VNF : (isRouting ? TemplateType.ROUTING : TemplateType.USER);
         }
         if (templateType != null && !isAdmin && !Arrays.asList(TemplateType.USER, TemplateType.VNF).contains(templateType)) {
-            if (cmd instanceof RegisterTemplateCmd) {
+            if (cmd instanceof RegisterTemplateCmd || cmd instanceof GetUploadParamsForTemplateCmd) {
                 throw new InvalidParameterValueException(String.format("Users can not register template with template type %s.", templateType));
             } else if (cmd instanceof UpdateTemplateCmd) {
                 throw new InvalidParameterValueException(String.format("Users can not update template to template type %s.", templateType));

@@ -75,6 +75,7 @@ import com.cloud.agent.api.Answer;
 import com.cloud.alert.AlertManager;
 import com.cloud.configuration.Config;
 import com.cloud.configuration.Resource.ResourceType;
+import com.cloud.dc.DataCenter;
 import com.cloud.dc.DataCenterVO;
 import com.cloud.dc.dao.DataCenterDao;
 import com.cloud.deployasis.dao.TemplateDeployAsIsDetailsDao;
@@ -433,14 +434,7 @@ public class HypervisorTemplateAdapter extends TemplateAdapterBase {
                     throw new CloudRuntimeException("Unable to persist the template " + profile.getTemplate());
                 }
 
-                List<Long> zoneIdList = profile.getZoneIdList();
-
-                if (zoneIdList == null) {
-                    throw new CloudRuntimeException("Zone ID is null, cannot upload ISO/template.");
-                }
-
-                if (zoneIdList.size() > 1)
-                    throw new CloudRuntimeException("Operation is not supported for more than one zone id at a time.");
+                Long zoneId = getPostUploadZoneId(profile);
 
                 // Set Event Details for Template/ISO Upload
                 String eventType = template.getFormat().equals(ImageFormat.ISO) ? "Iso" : "Template";
@@ -452,7 +446,6 @@ public class HypervisorTemplateAdapter extends TemplateAdapterBase {
                     CallContext.current().setEventResourceId(template.getId());
                 }
 
-                Long zoneId = zoneIdList.get(0);
                 DataStore imageStore = verifyHeuristicRulesForZone(template, zoneId);
                 List<TemplateOrVolumePostUploadCommand> payloads = new LinkedList<>();
 
@@ -470,6 +463,27 @@ public class HypervisorTemplateAdapter extends TemplateAdapterBase {
                 return payloads;
             }
         });
+    }
+
+    protected Long getPostUploadZoneId(TemplateProfile profile) {
+        List<Long> zoneIds = profile.getZoneIdList();
+        if (zoneIds != null) {
+            if (zoneIds.size() != 1) {
+                throw new CloudRuntimeException("Local upload requires one zone or all zones.");
+            }
+            return zoneIds.get(0);
+        }
+
+        // Cross-zone templates are uploaded once, using an enabled zone with writable secondary storage.
+        for (DataCenterVO zone : _dcDao.listAll()) {
+            if (Grouping.AllocationState.Disabled == zone.getAllocationState() || zone.getType() == DataCenter.Type.Edge) {
+                continue;
+            }
+            if (CollectionUtils.isNotEmpty(storeMgr.getImageStoresByScopeExcludingReadOnly(new ZoneScope(zone.getId())))) {
+                return zone.getId();
+            }
+        }
+        throw new CloudRuntimeException("No enabled zone with writable secondary storage is available for local upload.");
     }
 
     /**
