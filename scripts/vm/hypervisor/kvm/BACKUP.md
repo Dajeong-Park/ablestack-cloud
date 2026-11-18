@@ -2361,7 +2361,7 @@ python3 veeam-host-config.py \
 
 - **Full**: 해당 백업 시점의 볼륨 전체 데이터를 보관한다. 최초 백업은 Full로 시작한다.
 - **증분**: 이전 정상 백업 이후 변경된 데이터만 보관한다. 복원 시 기준 Full과 필요한 이전 증분 백업도 사용한다.
-- `kvm.incremental.backup`: VM이 속한 Cluster의 증분 백업 사용 여부이다.
+- `kvm.incremental.backup`: VM이 속한 Cluster의 증분 백업 사용 여부이며, 제품 기본값은 `true`이다. 기존에 저장된 Global·Cluster 값은 유지한다.
 - `kvm.backup.chain.size`: Full과 후속 증분이 연결된 백업 체인의 길이 상한이다. 기본값은 `8`이다.
 
 NetBackup·Veeam은 실행 시 VM의 ROOT 볼륨에서 확인한 Cluster의 `kvm.incremental.backup` 유효값을 따른다.

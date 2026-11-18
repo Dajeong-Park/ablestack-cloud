@@ -143,10 +143,10 @@ public class NetBackupHostConfigurationServiceImplTest {
         ReflectionTestUtils.setField(BackupManager.KvmIncrementalBackup, "_value", previousIncrementalValue);
     }
 
-    @Test public void absentZoneAndClusterOverridesInheritGlobalForInspectionAndHostPayload() throws Exception {
+    @Test public void absentZoneAndClusterOverridesInheritGlobalDefaultsForInspectionAndHostPayload() throws Exception {
         when(depot.getConfigStringValue(anyString(), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn(null);
         when(depot.getConfigStringValue(eq("kvm.incremental.backup"), eq(ConfigKey.Scope.Cluster), eq(5L))).thenReturn(null);
-        when(depot.getConfigStringValue(eq("kvm.incremental.backup"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn("true");
+        when(depot.getConfigStringValue(eq("kvm.incremental.backup"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn(null);
         var result = service.inspect(14L);
         assertTrue(result.frameworkenabled);
         assertTrue(result.frameworkglobalenabled);

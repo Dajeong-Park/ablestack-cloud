@@ -73,7 +73,7 @@ async function mount (info = {}, options = {}) {
       },
       mocks: {
         $store: { getters: { apis: { configureNetBackupHost: {} } } },
-        $t: key => ko[key] || key,
+        $t: (key, params = {}) => (ko[key] || key).replace(/\{(\w+)\}/g, (match, name) => params[name] ?? match),
         $toLocaleDate: value => value,
         $route: { path: '/host/host-1' },
         $pollJob: options.pollJob || jest.fn(async ({ successMethod }) => successMethod())
@@ -122,16 +122,84 @@ test('initial disabled settings stay on shared setup and identify the Global fra
   w.unmount()
 })
 
+test('a preflight receipt instructs applying Host setup before assigning offerings', async () => {
+  const raw = 'Assign the NetBackup offering to the VMs to protect and register their Mold backup schedules'
+  const w = await mount({ state: 'CHECKED', action: 'CHECK', step: 'FINISHED', policyname: 'seocho+01', moldurl: 'http://mold.test/client/api', message: raw })
+  expect(w.vm.canApply).toBe(true)
+  expect(w.vm.statusMessage).toBe(ko['message.backup.integration.checked'])
+  expect(w.text()).toContain(ko['label.backup.integration.step.finished'])
+  expect(w.text()).not.toContain(raw)
+  expect(w.text()).not.toContain('FINISHED')
+  w.unmount()
+})
+
+test('an applied configuration translates offering guidance, check names and results', async () => {
+  const raw = 'Assign the NetBackup offering to the VMs to protect and register their Mold backup schedules'
+  const w = await mount({ state: 'COMPLETED', action: 'APPLY', step: 'FINISHED', message: raw, check: [{ name: 'CLIENT', state: 'OK' }, { name: 'POLICY_PATH', state: 'MISMATCH' }] })
+  expect(w.vm.statusMessage).toBe(ko['message.backup.integration.applied.schedule'])
+  expect(w.text()).toContain(ko['label.backup.integration.step.client'] + ' · ' + ko['label.success'])
+  expect(w.text()).toContain(ko['label.backup.integration.step.policy_path'] + ' · ' + ko['label.backup.integration.check.mismatch'])
+  expect(w.text()).not.toContain(raw)
+  w.unmount()
+})
+
+test('policy schedule guidance does not ask for Mold VM schedules after applying configuration', async () => {
+  const w = await mount({ state: 'COMPLETED', action: 'APPLY', vmschedulebackup: false, message: 'Assign the NetBackup offering to the VMs to protect; no Mold VM schedule is required' })
+  expect(w.vm.statusMessage).toBe(ko['message.backup.integration.applied.policy'])
+  w.unmount()
+})
+
+test('rechecking an already configured Host does not instruct applying it again', async () => {
+  const w = await mount({ state: 'CHECKED', action: 'CHECK', configured: true, hooksready: true, timeractive: true, message: 'Assign the NetBackup offering to the VMs to protect and register their Mold backup schedules' })
+  expect(w.vm.statusMessage).toBe(ko['message.backup.integration.rechecked'])
+  w.unmount()
+})
+
+test('an applied Host with mismatching policy selections instructs fixing the path first', async () => {
+  const w = await mount({ state: 'POLICY_PATH_MISMATCH', action: 'APPLY', message: 'Assign the NetBackup offering to the VMs to protect and register their Mold backup schedules' })
+  expect(w.vm.statusMessage).toBe(ko['message.backup.integration.applied.path'])
+  w.unmount()
+})
+
+test.each([401, 403, 404])('policy HTTP %i errors are localized and retain the response status', async status => {
+  const raw = 'Cannot read NetBackup policy: HTTP ' + status + '; check the API key, permissions and policy name'
+  const w = await mount({ state: 'FAILED', step: 'POLICY', message: raw })
+  expect(w.vm.statusMessage).toContain('HTTP ' + status)
+  expect(w.vm.statusMessage).toContain('NetBackup API 키')
+  expect(w.text()).not.toContain(raw)
+  w.unmount()
+})
+
+test('unknown diagnostic text and stage codes remain visible', async () => {
+  const raw = 'Custom filesystem error: /mnt/staging/example'
+  const w = await mount({ state: 'FAILED', step: 'NEW_AGENT_STAGE', message: raw, check: [{ name: 'NEW_AGENT_CHECK', state: 'NEW_AGENT_RESULT' }] })
+  expect(w.text()).toContain(raw)
+  expect(w.text()).toContain('NEW_AGENT_STAGE')
+  expect(w.text()).toContain('NEW_AGENT_CHECK · NEW_AGENT_RESULT')
+  w.unmount()
+})
+
+test('API error responses use the same localized configuration messages', async () => {
+  const w = await mount()
+  getAPI.mockRejectedValueOnce({ response: { data: { errorresponse: { errortext: 'Register an API key pair for this administrator before preparing Host integration' } } } })
+  await w.vm.load()
+  expect(w.text()).toContain(ko['message.backup.integration.result.credentials.required'])
+  expect(w.vm.canRun).toBe(false)
+  w.unmount()
+})
+
 test('default true mode guides offering assignment and VM schedules with an empty inventory', async () => {
   const w = await mount()
   expect(w.text()).toContain(ko['label.backup.integration.schedule'])
-  expect(w.text()).toContain(ko['message.backup.integration.next.schedule'])
+  expect(w.text()).not.toContain(ko['message.backup.integration.next.schedule'])
   expect(w.vm.step).toBe(1)
   await w.setData({ policyName: 'seocho+01', moldUrl: 'http://mold.test/client/api' })
   expect(w.vm.canRun).toBe(true)
   expect(w.vm.canApply).toBe(false)
   expect(w.text()).not.toContain('VM_INCLUDE')
   expect(w.text()).not.toContain('VM_EXCLUDE')
+  await w.setData({ info: { ...w.vm.info, state: 'COMPLETED', linkready: true } })
+  expect(w.text()).toContain(ko['message.backup.integration.next.schedule'])
   w.unmount()
 })
 
@@ -174,6 +242,87 @@ test('opening a running configuration resumes status polling and unmount cancels
   w.unmount()
   jest.advanceTimersByTime(10000)
   expect(getAPI).toHaveBeenCalledTimes(2)
+})
+
+test('a running receipt shows path verification in progress without a false mismatch or inspection time', async () => {
+  const started = Date.UTC(2026, 10, 18, 4, 30, 37)
+  const w = await mount({ state: 'RUNNING', step: 'PREFLIGHT', bootstrappath: '/stage/bootstrap/seocho+01', checkedat: started, policyselections: [], policypathmatched: false })
+  expect(w.text()).toContain(ko['label.backup.integration.path.checking'])
+  expect(w.text()).toContain(ko['message.backup.integration.running'])
+  expect(w.text()).not.toContain(ko['label.backup.integration.path.mismatch'])
+  expect(w.text()).not.toContain(ko['message.backup.integration.path.check'])
+  expect(w.text()).not.toContain(new Date(started).toISOString())
+  expect(w.find('[data-type="success"]').exists()).toBe(false)
+  w.unmount()
+})
+
+test('applying stays in progress across job acceptance and receipt refresh until final path verification', async () => {
+  const path = '/stage/bootstrap/seocho+01'
+  let completeJob
+  const w = await mount({ state: 'CHECKED', action: 'CHECK', policyname: 'seocho+01', moldurl: 'http://mold.test/client/api', bootstrappath: path, policyselections: ['/old/path'], check: [{ name: 'POLICY_PATH', state: 'MISMATCH' }], checkedat: 1 }, {
+    pollJob: jest.fn(async ({ successMethod }) => { completeJob = successMethod })
+  })
+  expect(w.text()).toContain(ko['label.backup.integration.path.mismatch'])
+  postAPI.mockResolvedValue({ configurenetbackuphostresponse: { jobid: 'apply-1' } })
+  await w.vm.run('APPLY')
+  await flush()
+  expect(w.vm.busy).toBe(true)
+  expect(w.text()).not.toContain(ko['label.backup.integration.path.mismatch'])
+  let finishStatus
+  getAPI.mockImplementationOnce(() => new Promise(resolve => { finishStatus = resolve }))
+  const refreshing = completeJob()
+  await flush()
+  expect(w.vm.busy).toBe(true)
+  expect(w.vm.pathState).toBe('checking')
+  finishStatus(response({ state: 'RUNNING', action: 'APPLY', bootstrappath: path, checkedat: 2, policyselections: [], check: [] }))
+  await refreshing
+  await flush()
+  expect(w.vm.submitting).toBe(false)
+  expect(w.vm.pathState).toBe('checking')
+  expect(w.text()).not.toContain(ko['label.backup.integration.path.mismatch'])
+  const finished = Date.UTC(2026, 10, 18, 4, 30, 41)
+  getAPI.mockResolvedValue(response({ state: 'COMPLETED', action: 'APPLY', bootstrappath: path, checkedat: finished, policyselections: [path], policypathmatched: true, check: [{ name: 'POLICY_PATH', state: 'OK' }], linkready: true }))
+  jest.advanceTimersByTime(5000)
+  await flush()
+  expect(w.vm.pathState).toBe('matched')
+  expect(w.text()).toContain(new Date(finished).toISOString())
+  expect(w.find('[data-type="success"]').exists()).toBe(true)
+  expect(w.text()).not.toContain(ko['label.backup.integration.path.mismatch'])
+  w.unmount()
+})
+
+test('an actual empty selection after verification is shown as requiring a policy path update', async () => {
+  const w = await mount({ state: 'CHECKED', action: 'CHECK', bootstrappath: '/stage/bootstrap/seocho+01', policyselections: [], policypathmatched: false, checkedat: 1, check: [{ name: 'POLICY_PATH', state: 'MISMATCH' }] })
+  expect(w.vm.pathState).toBe('mismatch')
+  expect(w.text()).toContain(ko['label.backup.integration.path.empty'])
+  expect(w.text()).toContain(ko['label.backup.integration.path.mismatch'])
+  w.unmount()
+})
+
+test('a failed preflight before policy path verification shows the path as unconfirmed', async () => {
+  const w = await mount({ state: 'FAILED', step: 'POLICY', bootstrappath: '/stage/bootstrap/seocho+01', policyselections: [], policypathmatched: false, checkedat: 1, check: [{ name: 'POLICY', state: 'FAILED' }] })
+  expect(w.vm.pathState).toBe('unconfirmed')
+  expect(w.text()).toContain(ko['label.backup.integration.path.unconfirmed'])
+  expect(w.text()).not.toContain(ko['label.backup.integration.path.mismatch'])
+  w.unmount()
+})
+
+test('starting a recheck hides the previous ready state and restores it only after refreshing results', async () => {
+  let completeJob
+  const w = await mount({ state: 'COMPLETED', linkready: true, bootstrappath: '/stage/bootstrap/seocho+01', policypathmatched: true, check: [{ name: 'POLICY_PATH', state: 'OK' }] }, {
+    pollJob: jest.fn(async ({ successMethod }) => { completeJob = successMethod })
+  })
+  await w.setData({ policyName: 'seocho+01', moldUrl: 'http://mold.test/client/api' })
+  postAPI.mockResolvedValue({ configurenetbackuphostresponse: { jobid: 'check-2' } })
+  await w.vm.run('CHECK')
+  await flush()
+  expect(w.find('[data-type="success"]').exists()).toBe(false)
+  expect(w.text()).not.toContain(ko['message.backup.integration.next.schedule'])
+  getAPI.mockResolvedValue(response({ state: 'COMPLETED', linkready: true }))
+  await completeJob()
+  await flush()
+  expect(w.find('[data-type="success"]').exists()).toBe(true)
+  w.unmount()
 })
 
 test('preflight starts through the admin API without transmitting API keys from the browser', async () => {

@@ -27,12 +27,12 @@
     <a-alert v-if="error" type="error" show-icon :message="error" class="integration-block" />
     <a-spin :spinning="loading">
       <a-descriptions bordered size="small" :column="2" class="integration-block">
-        <a-descriptions-item :label="$t('label.status')">{{ stateLabel }}<span v-if="info.step"> · {{ info.step }}</span></a-descriptions-item>
+        <a-descriptions-item :label="$t('label.status')">{{ stateLabel }}<span v-if="info.step && !submitting"> · {{ stepLabel(info.step) }}</span></a-descriptions-item>
         <a-descriptions-item :label="$t('label.backup.integration.mode')">{{ $t(info.vmschedulebackup === false ? 'label.backup.integration.mode.policy' : 'label.backup.integration.mode.schedule') }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.backup.integration.server')">{{ info.netbackupurl || '—' }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.backup.integration.credentials')">{{ $t(info.credentialsconfigured ? 'label.backup.integration.registered' : 'label.backup.integration.required') }}</a-descriptions-item>
         <a-descriptions-item :label="$t('label.backup.integration.staging')">{{ info.stagingpath || '—' }}</a-descriptions-item>
-        <a-descriptions-item :label="$t('label.backup.integration.components')">{{ $t(info.hooksready && info.timeractive ? 'label.backup.integration.ready' : 'label.backup.integration.required') }}</a-descriptions-item>
+        <a-descriptions-item :label="$t('label.backup.integration.components')">{{ $t(busy ? 'label.backup.integration.in.progress' : (info.hooksready && info.timeractive ? 'label.backup.integration.ready' : 'label.backup.integration.required')) }}</a-descriptions-item>
       </a-descriptions>
       <a-card :title="$t('label.backup.integration.settings')" size="small" class="integration-block">
         <p>{{ $t('message.backup.integration.inheritance') }}</p>
@@ -73,23 +73,24 @@
           <a-button :disabled="submitting" :loading="loading" @click="load">{{ $t('label.refresh') }}</a-button>
         </a-space>
       </a-form>
-      <a-alert v-if="info.message" :type="info.state === 'FAILED' ? 'error' : 'info'" show-icon :message="info.message" class="integration-block" />
-      <a-space v-if="info.check?.length" wrap class="integration-block">
-        <a-tag v-for="check in info.check" :key="check.name" :color="check.state === 'OK' ? 'green' : 'orange'">{{ check.name }} · {{ check.state }}</a-tag>
+      <a-alert v-if="busy && !inspectionFailed" type="info" show-icon :message="$t('message.backup.integration.running')" class="integration-block" />
+      <a-alert v-else-if="info.message" :type="info.state === 'FAILED' ? 'error' : 'info'" show-icon :message="statusMessage" class="integration-block" />
+      <a-space v-if="!submitting && info.check?.length" wrap class="integration-block">
+        <a-tag v-for="check in info.check" :key="check.name" :color="check.state === 'OK' ? 'green' : 'orange'">{{ stepLabel(check.name) }} · {{ checkStateLabel(check.state) }}</a-tag>
       </a-space>
       <a-card v-if="info.bootstrappath" :title="$t('label.backup.integration.path.check')" size="small" class="integration-block">
-        <p>{{ $t('message.backup.integration.path.check') }}</p>
+        <p>{{ $t(pathState === 'mismatch' ? 'message.backup.integration.path.check' : 'message.backup.integration.path.' + pathState) }}</p>
         <a-descriptions :column="1" size="small">
           <a-descriptions-item :label="$t('label.backup.integration.path.expected')"><a-typography-paragraph copyable>{{ info.bootstrappath }}</a-typography-paragraph></a-descriptions-item>
-          <a-descriptions-item :label="$t('label.backup.integration.path.actual')">{{ (info.policyselections || []).join(', ') || '—' }}</a-descriptions-item>
-          <a-descriptions-item :label="$t('label.backup.integration.path.result')"><a-tag :color="info.policypathmatched ? 'green' : 'orange'">{{ $t(info.policypathmatched ? 'label.backup.integration.path.matched' : 'label.backup.integration.path.mismatch') }}</a-tag></a-descriptions-item>
-          <a-descriptions-item :label="$t('label.backup.integration.checked')">{{ info.checkedat ? $toLocaleDate(new Date(info.checkedat).toISOString()) : '—' }}</a-descriptions-item>
+          <a-descriptions-item :label="$t('label.backup.integration.path.actual')">{{ pathVerified ? ((info.policyselections || []).join(', ') || $t('label.backup.integration.path.empty')) : $t('label.backup.integration.path.' + pathState) }}</a-descriptions-item>
+          <a-descriptions-item :label="$t('label.backup.integration.path.result')"><a-tag :color="pathColor">{{ $t('label.backup.integration.path.' + pathState) }}</a-tag></a-descriptions-item>
+          <a-descriptions-item :label="$t('label.backup.integration.checked')">{{ pathVerified ? (info.checkedat ? $toLocaleDate(new Date(info.checkedat).toISOString()) : '—') : $t('label.backup.integration.path.' + pathState) }}</a-descriptions-item>
         </a-descriptions>
       </a-card>
-      <a-alert v-if="info.linkready" type="success" show-icon :message="$t('label.backup.integration.ready')" :description="nextStep" class="integration-block" />
+      <a-alert v-if="integrationReady" type="success" show-icon :message="$t('label.backup.integration.ready')" :description="nextStep" class="integration-block" />
       <a-card :title="$t('label.backup.integration.targets')" size="small" class="integration-block">
         <p>{{ $t('message.backup.integration.targets') }}</p>
-        <p>{{ nextStep }}</p>
+        <p v-if="integrationReady">{{ nextStep }}</p>
         <a-space wrap class="integration-block">
           <router-link :to="{ name: 'backupoffering' }">{{ $t('label.backup.offerings') }}</router-link>
           <router-link :to="{ name: 'vm' }">{{ $t('label.instances') }}</router-link>
@@ -107,6 +108,7 @@
 
 <script>
 import { getAPI, postAPI } from '@/api'
+import { netBackupHostMessage, netBackupHostStep, netBackupHostCheckState } from '@/utils/netbackupHostConfiguration'
 
 export default {
   name: 'NetBackupHostConfiguration',
@@ -125,10 +127,23 @@ export default {
     },
     canApply () { return this.canRun && this.info.state === 'CHECKED' && this.checkedInput === this.fingerprint },
     nextStep () { return this.$t(this.info.vmschedulebackup === false ? 'message.backup.integration.next.policy' : 'message.backup.integration.next.schedule') },
-    stateLabel () { return this.$t('label.backup.integration.state.' + (this.info.state || 'UNKNOWN').toLowerCase()) },
+    stateLabel () { return this.$t('label.backup.integration.state.' + (this.busy ? 'RUNNING' : (this.info.state || 'UNKNOWN')).toLowerCase()) },
+    statusMessage () { return this.localizeMessage(this.info.message) },
+    integrationReady () { return !this.busy && !this.inspectionFailed && this.info.linkready },
+    pathVerified () {
+      return !this.busy && !this.inspectionFailed && (this.info.state === 'POLICY_PATH_MISMATCH' ||
+        (this.info.check || []).some(check => check.name === 'POLICY_PATH' && ['OK', 'MISMATCH'].includes(check.state)))
+    },
+    pathState () {
+      if (this.inspectionFailed) return 'unconfirmed'
+      if (this.busy) return 'checking'
+      if (!this.pathVerified) return 'unconfirmed'
+      return this.info.policypathmatched ? 'matched' : 'mismatch'
+    },
+    pathColor () { return { matched: 'green', mismatch: 'orange', checking: 'blue' }[this.pathState] },
     step () {
       if (!this.prerequisitesReady) return 0
-      if (!this.info.linkready) return 1
+      if (this.busy || !this.integrationReady) return 1
       if (!(this.info.virtualmachine || []).length) return 2
       return this.info.vmschedulebackup === false ? 3 : (this.info.virtualmachine.every(vm => vm.hasschedule) ? 4 : 3)
     },
@@ -168,6 +183,9 @@ export default {
   watch: { 'resource.id': { immediate: true, handler () { this.reset(); this.load() } } },
   beforeUnmount () { this.generation++; clearTimeout(this.timer) },
   methods: {
+    localizeMessage (message) { return netBackupHostMessage(message, (key, params) => this.$t(key, params), this.info) },
+    stepLabel (value) { return netBackupHostStep(value, key => this.$t(key)) },
+    checkStateLabel (value) { return netBackupHostCheckState(value, key => this.$t(key)) },
     settingRoute (scope) {
       if (scope === 'Zone') return { path: '/zone/' + this.resource.zoneid, query: { tab: 'settings' } }
       if (scope === 'Cluster') return { path: '/cluster/' + this.resource.clusterid, query: { tab: 'settings' } }
@@ -179,8 +197,9 @@ export default {
       this.moldUrl = typeof window === 'undefined' ? '' : window.location.origin + '/client/api'
     },
     failure (error) {
-      return error?.jobresult?.errortext || error?.response?.data?.configurenetbackuphostresponse?.errortext ||
-        error?.response?.data?.getnetbackuphostconfigurationresponse?.errortext || error?.message || this.$t('message.backup.integration.unconfirmed')
+      const message = error?.jobresult?.errortext || error?.response?.data?.configurenetbackuphostresponse?.errortext ||
+        error?.response?.data?.getnetbackuphostconfigurationresponse?.errortext || error?.response?.data?.errorresponse?.errortext || error?.message || this.$t('message.backup.integration.unconfirmed')
+      return this.localizeMessage(message)
     },
     async load () {
       const generation = this.generation
@@ -206,10 +225,14 @@ export default {
       if (!['CHECK', 'APPLY'].includes(action) || !this.canRun || (action === 'APPLY' && !this.canApply)) return
       const generation = this.generation
       this.submitting = true; this.error = ''; this.checkedInput = ''
+      const refreshStatus = () => {
+        if (generation !== this.generation) return
+        return this.load().finally(() => { if (generation === this.generation) this.submitting = false })
+      }
       const failed = error => {
         if (generation !== this.generation) return
-        this.submitting = false; this.error = this.failure(error)
-        this.load()
+        this.error = this.failure(error)
+        return refreshStatus()
       }
       try {
         const response = await postAPI('configureNetBackupHost', { hostid: this.resource.id, action, policyname: this.policyName.trim(), moldurl: this.moldUrl.trim() })
@@ -222,11 +245,11 @@ export default {
           resourceId: this.resource.id,
           showLoading: false,
           showSuccessMessage: false,
-          successMethod: () => { if (generation === this.generation) { this.submitting = false; this.load() } },
+          successMethod: refreshStatus,
           errorMethod: failed,
           catchMethod: failed
         })
-      } catch (error) { failed(error) }
+      } catch (error) { await failed(error) }
     }
   }
 }

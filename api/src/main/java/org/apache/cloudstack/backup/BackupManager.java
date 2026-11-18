@@ -279,7 +279,7 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
 
     ConfigKey<Boolean> KvmIncrementalBackup = new ConfigKey<>("Advanced", Boolean.class,
             "kvm.incremental.backup",
-            "false",
+            "true",
             "Enable KVM incremental backups for supported backup providers.",
             false,
             ConfigKey.Scope.Cluster,
