@@ -147,4 +147,13 @@ public class ListASNumbersCmdTest {
         ServerApiException error = Assert.assertThrows(ServerApiException.class, cmd::execute);
         Assert.assertEquals(ApiErrorCode.PARAM_ERROR, error.getErrorCode());
     }
+
+    @Test
+    public void inaccessibleScopeHasAnAuthorizationResponseWithoutInternalDetails() {
+        ListASNumbersCmd cmd = new ListASNumbersCmd(); ReflectionTestUtils.setField(cmd, "bgpService", bgpService);
+        Mockito.when(bgpService.listASNumbers(cmd)).thenThrow(new com.cloud.exception.PermissionDeniedException("private domain details"));
+        ServerApiException error = Assert.assertThrows(ServerApiException.class, cmd::execute);
+        Assert.assertEquals(ApiErrorCode.UNAUTHORIZED, error.getErrorCode());
+        Assert.assertFalse(error.getDescription().contains("private domain"));
+    }
 }

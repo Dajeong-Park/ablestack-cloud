@@ -44,12 +44,22 @@ public class BGPASNumberQueryTest {
     private final NetworkDao networks = Mockito.mock(NetworkDao.class);
     private final ListASNumbersCmd cmd = Mockito.spy(new ListASNumbersCmd());
     private Account caller;
+    private final com.cloud.user.AccountManager access = Mockito.mock(com.cloud.user.AccountManager.class);
+    private final com.cloud.dc.dao.ASNumberRangeDao ranges = Mockito.mock(com.cloud.dc.dao.ASNumberRangeDao.class);
+    private final com.cloud.network.vpc.dao.VpcDao vpcs = Mockito.mock(com.cloud.network.vpc.dao.VpcDao.class);
 
     @Before
     public void setup() {
         caller = Mockito.mock(Account.class);
         Mockito.when(caller.getDomainId()).thenReturn(2L);
         CallContext.register(Mockito.mock(User.class), caller);
+        ReflectionTestUtils.setField(service, "asnAccountManager", access);
+        ReflectionTestUtils.setField(service, "asNumberRangeDao", ranges);
+        ReflectionTestUtils.setField(service, "vpcDao", vpcs);
+        Mockito.when(ranges.findById(10L)).thenReturn(new com.cloud.dc.ASNumberRangeVO(1L, 4200000000L, 4200000002L));
+        com.cloud.network.vpc.VpcVO vpc = Mockito.mock(com.cloud.network.vpc.VpcVO.class);
+        Mockito.when(vpc.getZoneId()).thenReturn(1L); Mockito.when(vpcs.findById(40L)).thenReturn(vpc);
+        Mockito.when(numbers.searchAndCountByZoneOrRangeOrAllocated(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(new Pair<>(Collections.emptyList(), 0));
         ReflectionTestUtils.setField(service, "asNumberDao", numbers);
         ReflectionTestUtils.setField(service, "accountDao", accounts);
         ReflectionTestUtils.setField(service, "domainDao", domains);
@@ -88,11 +98,68 @@ public class BGPASNumberQueryTest {
         ReflectionTestUtils.setField(cmd, "networkId", 30L);
         NetworkVO tier = Mockito.mock(NetworkVO.class);
         Mockito.when(tier.getVpcId()).thenReturn(40L);
+        Mockito.when(tier.getDataCenterId()).thenReturn(1L);
         Mockito.when(networks.findById(30L)).thenReturn(tier);
         Mockito.when(numbers.searchAndCountByZoneOrRangeOrAllocated(1L, 10L, 4200000000L, null, 40L, true, 3L, 2L,
                 "4200000000", caller, 0L, cmd.getPageSizeVal())).thenReturn(new Pair<>(Collections.emptyList(), 0));
         Assert.assertEquals(Integer.valueOf(0), service.listASNumbers(cmd).second());
         Mockito.verify(numbers).searchAndCountByZoneOrRangeOrAllocated(1L, 10L, 4200000000L, null, 40L, true, 3L, 2L,
                 "4200000000", caller, 0L, cmd.getPageSizeVal());
+    }
+
+    @Test
+    public void domainWithoutAccountReachesDaoAndAcl() {
+        ReflectionTestUtils.setField(cmd, "account", null); ReflectionTestUtils.setField(cmd, "domainId", 2L);
+        service.listASNumbers(cmd);
+        Mockito.verify(access).checkAccess(Mockito.eq(caller), Mockito.any(com.cloud.domain.Domain.class));
+        Mockito.verify(numbers).searchAndCountByZoneOrRangeOrAllocated(1L, 10L, 4200000000L, null, null, true, null, 2L, "4200000000", caller, 0L, cmd.getPageSizeVal());
+    }
+
+    @Test
+    public void inaccessibleDomainCannotReachDao() {
+        Mockito.doThrow(new com.cloud.exception.PermissionDeniedException("denied")).when(access).checkAccess(Mockito.eq(caller), Mockito.any(com.cloud.domain.Domain.class));
+        Assert.assertThrows(com.cloud.exception.PermissionDeniedException.class, () -> service.listASNumbers(cmd));
+        Mockito.verifyNoInteractions(numbers);
+    }
+
+    @Test
+    public void missingDomainAndWrongAccountDomainAreRejected() {
+        ReflectionTestUtils.setField(cmd, "domainId", 99L);
+        Assert.assertThrows(com.cloud.exception.InvalidParameterValueException.class, () -> service.listASNumbers(cmd));
+        ReflectionTestUtils.setField(cmd, "domainId", 2L); ReflectionTestUtils.setField(cmd, "account", "other-domain-owner");
+        Assert.assertThrows(com.cloud.exception.InvalidParameterValueException.class, () -> service.listASNumbers(cmd));
+        Mockito.verifyNoInteractions(numbers);
+    }
+
+    @Test
+    public void rangeFromAnotherZoneIsRejected() {
+        Mockito.when(ranges.findById(10L)).thenReturn(new com.cloud.dc.ASNumberRangeVO(2L, 64512, 64514));
+        Assert.assertThrows(com.cloud.exception.InvalidParameterValueException.class, () -> service.listASNumbers(cmd));
+        Mockito.verifyNoInteractions(numbers);
+    }
+
+    @Test
+    public void vpcDirectLookupIsPreserved() {
+        ReflectionTestUtils.setField(cmd, "vpcId", 40L); service.listASNumbers(cmd);
+        Mockito.verify(numbers).searchAndCountByZoneOrRangeOrAllocated(1L, 10L, 4200000000L, null, 40L, true, 3L, 2L, "4200000000", caller, 0L, cmd.getPageSizeVal());
+    }
+
+    @Test
+    public void crossZoneVpcAndNetworkAreRejected() {
+        ReflectionTestUtils.setField(cmd, "vpcId", 40L);
+        Mockito.when(vpcs.findById(40L).getZoneId()).thenReturn(2L);
+        Assert.assertThrows(com.cloud.exception.InvalidParameterValueException.class, () -> service.listASNumbers(cmd));
+        ReflectionTestUtils.setField(cmd, "vpcId", null); ReflectionTestUtils.setField(cmd, "networkId", 30L);
+        NetworkVO network = Mockito.mock(NetworkVO.class); Mockito.when(network.getDataCenterId()).thenReturn(2L); Mockito.when(networks.findById(30L)).thenReturn(network);
+        Assert.assertThrows(com.cloud.exception.InvalidParameterValueException.class, () -> service.listASNumbers(cmd));
+        Mockito.verifyNoInteractions(numbers);
+    }
+
+    @Test
+    public void explicitVpcCannotBeSilentlyReplacedByTierVpc() {
+        ReflectionTestUtils.setField(cmd, "networkId", 30L); ReflectionTestUtils.setField(cmd, "vpcId", 41L);
+        NetworkVO tier = Mockito.mock(NetworkVO.class); Mockito.when(tier.getDataCenterId()).thenReturn(1L); Mockito.when(tier.getVpcId()).thenReturn(40L); Mockito.when(networks.findById(30L)).thenReturn(tier);
+        Assert.assertThrows(com.cloud.exception.InvalidParameterValueException.class, () -> service.listASNumbers(cmd));
+        Mockito.verifyNoInteractions(numbers);
     }
 }

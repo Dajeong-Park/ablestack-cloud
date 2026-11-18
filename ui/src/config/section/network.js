@@ -1021,7 +1021,7 @@ export default {
       },
       filters: ['all', 'allocatedonly', 'free'],
       columns: ['asnumber', 'allocationstate', 'asnrange', 'associatednetworkname', 'vpcname', 'allocated', 'account', 'domain', 'zonename'],
-      searchFilters: ['zoneid', 'associatednetworkid', 'account', 'domainid'],
+      searchFilters: ['zoneid', 'asnrangeid', 'asnumber', 'vpcid', 'associatednetworkid', 'account', 'domainid'],
       resourceType: 'ASNumber',
       actions: [
         {

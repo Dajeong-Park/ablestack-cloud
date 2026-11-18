@@ -1,0 +1,1936 @@
+{
+  "issue": 1712,
+  "epic": 1708,
+  "pullRequest": 1716,
+  "sourceBase": "1545558aa151972f1691a42f37554c3ddf7ec07c",
+  "scope": "No ISP: UI/API consistency; allocated ownership/tier/cross-zone use controlled fixtures",
+  "tests": {
+    "api": 6,
+    "schema": 6,
+    "server": 16,
+    "overlaySchema": 6,
+    "overlayServer": 16,
+    "uiSuites": 6,
+    "uiTests": 71,
+    "changedJavaCheckstyleFiles": 5,
+    "changedUiLint": "PASS",
+    "productionUiBuild": "PASS",
+    "validationPythonFlake8": "PASS"
+  },
+  "clusters": {
+    "31": {
+      "apiChecks": [
+        {
+          "name": "exact",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "leading-zero",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "keyword",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "range",
+          "pass": true,
+          "errorCode": null,
+          "count": 3
+        },
+        {
+          "name": "intersection",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "wrong-keyword",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "wrong-range",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "free",
+          "pass": true,
+          "errorCode": null,
+          "count": 26
+        },
+        {
+          "name": "allocated",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "server-page-total",
+          "pass": true,
+          "errorCode": null,
+          "count": null
+        },
+        {
+          "name": "invalid-exact--1",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "invalid-exact-1e3",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "invalid-exact-4294967296",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "domain-only-excludes-unowned-free",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "account-domain-excludes-unowned-free",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "vpc-read-only-empty",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "vpc-tier-and-empty",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "network-read-only-empty",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "contradictory-network-vpc-rejected",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "user-default-free-visibility-preserved",
+          "pass": true,
+          "errorCode": null,
+          "count": 26
+        },
+        {
+          "name": "user-explicit-domain-excludes-unowned",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "user-foreign-domain-no-visible-records",
+          "pass": true,
+          "errorCode": 401,
+          "count": null
+        }
+      ],
+      "cleanup": {
+        "cluster": 31,
+        "counts": {
+          "listASNumbers": 0,
+          "listASNRanges": 0
+        },
+        "accountAbsent": true,
+        "roleAbsent": true,
+        "domainAbsent": true
+      },
+      "inventory": {
+        "listZones": {
+          "count": 1,
+          "idsPreserved": true,
+          "idsSha256": "4df625b6fbd0a89f7e631fe7819808f4aea49c2d6dfb80ca5a4ec82d9073d7d2"
+        },
+        "listASNRanges": {
+          "count": 0,
+          "idsPreserved": true,
+          "idsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "listASNumbers": {
+          "count": 0,
+          "idsPreserved": true,
+          "idsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "listNetworks": {
+          "count": 31,
+          "idsPreserved": true,
+          "idsSha256": "878d9fd649bf21966307a62224b981cd9efdc076c69e2b554b8b4ae42ccf54e5"
+        },
+        "listVPCs": {
+          "count": 2,
+          "idsPreserved": true,
+          "idsSha256": "b71abff041468c41dad8bb015501599ccabce58160799f7e4399f9e50558ecbc"
+        },
+        "listBgpPeers": {
+          "count": 0,
+          "idsPreserved": true,
+          "idsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "listNetworkOfferings": {
+          "count": 33,
+          "idsPreserved": true,
+          "idsSha256": "98cb78eb1b25c8561bb35632d799df8f42010090cff481e68a59891f17379136"
+        },
+        "listVPCOfferings": {
+          "count": 7,
+          "idsPreserved": true,
+          "idsSha256": "dc2df3849aaf5ad8087c9f0cbb52027de9683c685e73f4b4042cd52eeed0d7ee"
+        }
+      },
+      "deployment": {
+        "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+        "jar_sha256": "3981f2dfe14600c6b9aa2053fad25e0ff5561d1601d6c52bc0203829273da578",
+        "class_sha256": {
+          "com/cloud/bgp/BGPServiceImpl$1.class": "25ba8ef504517ce560d0673df6383b5a7b9a3896d41c959c700f552f416e0cf7",
+          "com/cloud/api/response/ApiResponseSerializer.class": "57f0d523a29b170c15e5ba45772c46aed76aecff6f76b307ff0dd404b0e424b0",
+          "org/apache/cloudstack/api/command/admin/bgp/DeleteASNRangeCmd.class": "27eedc6f480ddc578bfd59e8c6d7f48b42e2269612bceda356f00ea3f3ccd5aa",
+          "com/cloud/bgp/BGPServiceImpl.class": "caf3e7c00471650f314ee36adb4477b69905922504e1745c02f521127942d246",
+          "com/cloud/bgp/ASNumberQueryValidator.class": "28e3b39e1d00d90e530984e4ae67dce926fc09bfc8ff1336ccec4b768ae6f870",
+          "org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd.class": "24af9ef2606db9bb831cede91a2777db1da74314d93719121426f7574099ffd6",
+          "com/cloud/dc/dao/ASNumberDao.class": "80bad1fe2d16d77bade2b38dce0573cc06a03cd922200f3b6b6ebdd4eca0e696",
+          "com/cloud/dc/dao/ASNumberDaoImpl.class": "70ee02199bb4ad1f043eb8de17e631a4f6a5fbab48825ff7e779564825498019",
+          "com/cloud/bgp/ASNumberRangeValidator.class": "995e597e53aafcb5ba333a29b11583dfe6f78716b2eb98e98767a4c9e2010f50",
+          "org/apache/cloudstack/api/command/admin/bgp/CreateASNRangeCmd.class": "5112a5ea4f74c3be80f2e53e8f373da616c8ecc59d5fe9a0def3b1f8cfafeb50"
+        },
+        "ui_index_sha256": "2de35f7ea3aefc3d05027905b79e6ee82f74bccff984ab5a3aa6fc95c09b339f",
+        "web_inf_exists": true,
+        "meta_inf_exists": false,
+        "config_sha256": "b7de5f6a1f7a3a17310ee7d34ca801bb316fc6f841039f865fbabf154cd59a13",
+        "http": "200",
+        "service": "active",
+        "pid": "2728608"
+      },
+      "finalUiBackup": "/root/asn1712-ui-20261118-132908"
+    },
+    "32": {
+      "apiChecks": [
+        {
+          "name": "exact",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "leading-zero",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "keyword",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "range",
+          "pass": true,
+          "errorCode": null,
+          "count": 3
+        },
+        {
+          "name": "intersection",
+          "pass": true,
+          "errorCode": null,
+          "count": 1
+        },
+        {
+          "name": "wrong-keyword",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "wrong-range",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "free",
+          "pass": true,
+          "errorCode": null,
+          "count": 26
+        },
+        {
+          "name": "allocated",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "server-page-total",
+          "pass": true,
+          "errorCode": null,
+          "count": null
+        },
+        {
+          "name": "invalid-exact--1",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "invalid-exact-1e3",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "invalid-exact-4294967296",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "domain-only-excludes-unowned-free",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "account-domain-excludes-unowned-free",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "vpc-read-only-empty",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "vpc-tier-and-empty",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "network-read-only-empty",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "contradictory-network-vpc-rejected",
+          "pass": true,
+          "errorCode": 431,
+          "count": null
+        },
+        {
+          "name": "user-default-free-visibility-preserved",
+          "pass": true,
+          "errorCode": null,
+          "count": 26
+        },
+        {
+          "name": "user-explicit-domain-excludes-unowned",
+          "pass": true,
+          "errorCode": null,
+          "count": 0
+        },
+        {
+          "name": "user-foreign-domain-no-visible-records",
+          "pass": true,
+          "errorCode": 401,
+          "count": null
+        }
+      ],
+      "cleanup": {
+        "cluster": 32,
+        "counts": {
+          "listASNumbers": 0,
+          "listASNRanges": 0
+        },
+        "accountAbsent": true,
+        "roleAbsent": true,
+        "domainAbsent": true
+      },
+      "inventory": {
+        "listZones": {
+          "count": 1,
+          "idsPreserved": true,
+          "idsSha256": "8a69054ee761a2b708a04d5511ecc074b9444815c4b631f65e3589c7ec26761c"
+        },
+        "listASNRanges": {
+          "count": 0,
+          "idsPreserved": true,
+          "idsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "listASNumbers": {
+          "count": 0,
+          "idsPreserved": true,
+          "idsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "listNetworks": {
+          "count": 17,
+          "idsPreserved": true,
+          "idsSha256": "9010c2a1a5193198e200705db3bf34349a78075b769c7b69cc0a3739da5ec5eb"
+        },
+        "listVPCs": {
+          "count": 1,
+          "idsPreserved": true,
+          "idsSha256": "46effa3b359f0989bd5ad1adea594acfcbf83301f9a07f332e4582031b871c82"
+        },
+        "listBgpPeers": {
+          "count": 0,
+          "idsPreserved": true,
+          "idsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "listNetworkOfferings": {
+          "count": 24,
+          "idsPreserved": true,
+          "idsSha256": "88d5ad88716210a147edb7db4c63884ee566e42220fc7046c8951ec863898347"
+        },
+        "listVPCOfferings": {
+          "count": 7,
+          "idsPreserved": true,
+          "idsSha256": "ecf41e2b47eb99da639cc581a7a6cec350f8251f1e38cec9f29c1407b2d1379c"
+        }
+      },
+      "deployment": {
+        "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+        "jar_sha256": "a7121afa4cf23fbe98db9cb3c3cb78b8146871ae6ead98187aa21a52bf22eb84",
+        "class_sha256": {
+          "com/cloud/bgp/BGPServiceImpl$1.class": "25ba8ef504517ce560d0673df6383b5a7b9a3896d41c959c700f552f416e0cf7",
+          "com/cloud/api/response/ApiResponseSerializer.class": "57f0d523a29b170c15e5ba45772c46aed76aecff6f76b307ff0dd404b0e424b0",
+          "org/apache/cloudstack/api/command/admin/bgp/DeleteASNRangeCmd.class": "27eedc6f480ddc578bfd59e8c6d7f48b42e2269612bceda356f00ea3f3ccd5aa",
+          "com/cloud/bgp/BGPServiceImpl.class": "caf3e7c00471650f314ee36adb4477b69905922504e1745c02f521127942d246",
+          "com/cloud/bgp/ASNumberQueryValidator.class": "28e3b39e1d00d90e530984e4ae67dce926fc09bfc8ff1336ccec4b768ae6f870",
+          "org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd.class": "24af9ef2606db9bb831cede91a2777db1da74314d93719121426f7574099ffd6",
+          "com/cloud/dc/dao/ASNumberDao.class": "80bad1fe2d16d77bade2b38dce0573cc06a03cd922200f3b6b6ebdd4eca0e696",
+          "com/cloud/dc/dao/ASNumberDaoImpl.class": "70ee02199bb4ad1f043eb8de17e631a4f6a5fbab48825ff7e779564825498019",
+          "com/cloud/bgp/ASNumberRangeValidator.class": "995e597e53aafcb5ba333a29b11583dfe6f78716b2eb98e98767a4c9e2010f50",
+          "org/apache/cloudstack/api/command/admin/bgp/CreateASNRangeCmd.class": "5112a5ea4f74c3be80f2e53e8f373da616c8ecc59d5fe9a0def3b1f8cfafeb50"
+        },
+        "ui_index_sha256": "2de35f7ea3aefc3d05027905b79e6ee82f74bccff984ab5a3aa6fc95c09b339f",
+        "web_inf_exists": true,
+        "meta_inf_exists": false,
+        "config_sha256": "56e421a72d76daa8dcd007eb0e8669ee2951f3940e02b00e4123c0cf9c2a03ff",
+        "http": "200",
+        "service": "active",
+        "pid": "3049864"
+      },
+      "finalUiBackup": "/root/asn1712-ui-20261118-132920"
+    }
+  },
+  "responsive": [
+    {
+      "label": "responsive",
+      "cluster": 31,
+      "theme": "light",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "documentWidth": 758,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 98,
+        "right": 438
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 768,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "31-light-768.jpg",
+      "screenshotSha256": "e92f84445eb5108ff5a572cb705209180e5275ba242af688b6c49adf2654bf68"
+    },
+    {
+      "label": "responsive",
+      "cluster": 31,
+      "theme": "light",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "documentWidth": 390,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 48,
+        "right": 374
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 390,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "31-light-390.jpg",
+      "screenshotSha256": "a086a65af0b334667a011645a0d13ea019ebe6e171aed38d91bbf1f716cf4591"
+    },
+    {
+      "label": "responsive",
+      "cluster": 31,
+      "theme": "light",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "documentWidth": 1270,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 442,
+        "right": 782
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 1280,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "31-light-1280.jpg",
+      "screenshotSha256": "13ac1382e8f6f841133593096cc094204a2875c134f61db7adb4e0462164c4ea"
+    },
+    {
+      "label": "responsive",
+      "cluster": 32,
+      "theme": "light",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "documentWidth": 1270,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 447,
+        "right": 787
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 1280,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "32-light-1280.jpg",
+      "screenshotSha256": "55ce3205d512a0c065228c797840d978965f76801e44eaecba58c694e32545dc"
+    },
+    {
+      "label": "responsive",
+      "cluster": 32,
+      "theme": "light",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "documentWidth": 758,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 103,
+        "right": 443
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 768,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "32-light-768.jpg",
+      "screenshotSha256": "8b9c02b17e5361e017d17f6ff7d77ee26eeba70d4e1275ecf060e4d4a152d898"
+    },
+    {
+      "label": "responsive",
+      "cluster": 31,
+      "theme": "dark",
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "documentWidth": 1270,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 441,
+        "right": 781
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 1280,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "31-dark-1280.jpg",
+      "screenshotSha256": "d7b9474112eed8b031a137414e9a19a25a28b0531bf6fcb5843af99a79a52029"
+    },
+    {
+      "label": "responsive",
+      "cluster": 31,
+      "theme": "dark",
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "documentWidth": 758,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 97,
+        "right": 437
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 768,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "31-dark-768.jpg",
+      "screenshotSha256": "ae6c17f5b70e3791babd0e7740d728d4f352b3764dda19439158f104d4e94952"
+    },
+    {
+      "label": "responsive",
+      "cluster": 32,
+      "theme": "light",
+      "background": "rgba(0, 0, 0, 0)",
+      "color": "rgba(0, 0, 0, 0.65)",
+      "documentWidth": 390,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 48,
+        "right": 374
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 390,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "32-light-390.jpg",
+      "screenshotSha256": "f88299dd6a97db54bb449b5f20ece9035cd26bf8aa3dfc170b0ac3b9f85c3184"
+    },
+    {
+      "label": "responsive",
+      "cluster": 31,
+      "theme": "dark",
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "documentWidth": 390,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 47,
+        "right": 373
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 390,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "31-dark-390.jpg",
+      "screenshotSha256": "583ca60448e60bd25bcd031a177374dda72a299b05f0a1c3fb18dfc959a9257e"
+    },
+    {
+      "label": "responsive",
+      "cluster": 32,
+      "theme": "dark",
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "documentWidth": 1270,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 446,
+        "right": 786
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 1280,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "32-dark-1280.jpg",
+      "screenshotSha256": "eae3448412242c5b26538d4cbef4cf49647892867771ccfbbd385790b1596dcf"
+    },
+    {
+      "label": "responsive",
+      "cluster": 32,
+      "theme": "dark",
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "documentWidth": 758,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 102,
+        "right": 442
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 768,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "32-dark-768.jpg",
+      "screenshotSha256": "842800abc970e5785b2f4a43b619b6486bf8a4c307ebcfc63c1f5254b55539a2"
+    },
+    {
+      "label": "responsive",
+      "cluster": 32,
+      "theme": "dark",
+      "background": "rgb(34, 40, 47)",
+      "color": "rgba(255, 255, 255, 0.65)",
+      "documentWidth": 390,
+      "footer": "sticky",
+      "form": {
+        "height": 585,
+        "left": 47,
+        "right": 373
+      },
+      "labels": [
+        {
+          "htmlFor": "asn-search-exact",
+          "text": "정확 ASN"
+        },
+        {
+          "htmlFor": "asn-search-zoneid",
+          "text": "Zone"
+        },
+        {
+          "htmlFor": "asn-search-asnrangeid",
+          "text": "AS Range"
+        },
+        {
+          "htmlFor": "asn-search-domainid",
+          "text": "도메인"
+        },
+        {
+          "htmlFor": "asn-search-account",
+          "text": "계정"
+        },
+        {
+          "htmlFor": "asn-search-vpcid",
+          "text": "VPC"
+        },
+        {
+          "htmlFor": "asn-search-networkid",
+          "text": "네트워크"
+        }
+      ],
+      "width": 390,
+      "afterEscape": {
+        "expanded": "false",
+        "label": "고급 검색"
+      },
+      "screenshot": "32-dark-390.jpg",
+      "screenshotSha256": "c6972b15f4013a2dbc8588b8087590447ff2c2a8346aea8f3b23dc920021be7c"
+    }
+  ],
+  "uiObservations": [
+    {
+      "label": "31-exact-range-keyword-match",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&asnumber=4200000000&keyword=4200000000&filter=all&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-remove-exact-range-three",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 3 개 항목 중 1-3 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-history-exact-restored",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&asnumber=4200000000&filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-exact-normalized",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?asnumber=4200000000&filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-reset-all",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&asnumber=4200000000&filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-reset-confirmed",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 26 개 항목 중 1-20 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-page-two-six-total26",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=2&pagesize=20",
+      "totalDisplay": [
+        "전체 26 개 항목 중 21-26 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-page-size10-reset-page1",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=10",
+      "totalDisplay": [
+        "전체 26 개 항목 중 1-10 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-exact-and-range",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-keyword-mismatch-zero",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&keyword=64512&filter=all&q=64512&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-domain-root-unowned-excluded-zero",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&filter=all&page=1&pagesize=10",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-vpc-tier-zero",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&vpcid=876d40cb-64e6-42a8-a5d4-1122c7c0f1b8&networkid=ad1a8462-ed3d-46f6-894e-e630f0484c13&filter=all&page=1&pagesize=10",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-direct-url-normalized-allowlist",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&keyword=4200000000&filter=all&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-conflicting-vpc-independent-network-blocked",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&vpcid=876d40cb-64e6-42a8-a5d4-1122c7c0f1b8&networkid=6a09e40c-0585-4e08-bc3c-c5003f178cd9&filter=all&page=1&pagesize=10",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": true,
+      "searchScopeError": true
+    },
+    {
+      "label": "32-invalid-integer-inline",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&keyword=4200000000&filter=all&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-reset-all26",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 26 개 항목 중 1-20 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-page2-six-total26",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?filter=all&page=2&pagesize=20",
+      "totalDisplay": [
+        "전체 26 개 항목 중 21-26 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-final-exact-range-keyword",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&asnumber=4200000000&keyword=4200000000&filter=all&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-final-exact-range-keyword",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&keyword=4200000000&filter=all&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-allocated-keeps-search-zero",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&asnumber=4200000000&keyword=4200000000&isallocated=true&filter=allocatedonly&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-free-keeps-search-one",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&keyword=4200000000&isallocated=false&filter=free&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-reset-includes-allocation-state",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 26 개 항목 중 1-20 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "31-deleted-range-retained-error",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 3 개 항목 중 1-3 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": true
+    },
+    {
+      "label": "32-deleted-range-retained-error",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&keyword=4200000000&isallocated=false&filter=free&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 1 개 항목 중 1-1 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": true
+    },
+    {
+      "label": "31-final-deleted-uuid-unverified",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3&filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": true,
+      "searchScopeError": true
+    },
+    {
+      "label": "32-final-deleted-uuid-unverified",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=72535263-8b77-4db8-bb23-59ece8a8f3bd&asnumber=4200000000&keyword=4200000000&isallocated=false&filter=free&q=4200000000&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": true,
+      "searchScopeError": true
+    },
+    {
+      "label": "31-final-reset-empty",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "32-final-reset-empty",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "final-mobile-uuid-chips",
+      "cluster": 31,
+      "chips": [
+        {
+          "left": 37,
+          "right": 325,
+          "text": "Zone: 7013f5a1-de59-4cea-a596-f4f58815f31c · 확인 필요"
+        },
+        {
+          "left": 37,
+          "right": 325,
+          "text": "AS Range: 74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3 · 확인 필요"
+        }
+      ],
+      "documentWidth": 380,
+      "width": 390,
+      "totalDisplay": [],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "final-mobile-uuid-chips",
+      "cluster": 32,
+      "chips": [
+        {
+          "left": 37,
+          "right": 325,
+          "text": "Zone: 991d2f57-0f37-4445-b956-09773d064816 · 확인 필요"
+        },
+        {
+          "left": 37,
+          "right": 325,
+          "text": "AS Range: 72535263-8b77-4db8-bb23-59ece8a8f3bd · 확인 필요"
+        },
+        {
+          "left": 37,
+          "right": 189.046875,
+          "text": "정확 ASN: 4200000000"
+        }
+      ],
+      "documentWidth": 380,
+      "width": 390,
+      "totalDisplay": [],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "final-cleanup-31",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    },
+    {
+      "label": "final-cleanup-32",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+      "totalDisplay": [
+        "전체 0 개 항목 중 0-0 표시"
+      ],
+      "unverifiedUuid": false,
+      "searchScopeError": false
+    }
+  ],
+  "uiRequests": [
+    {
+      "cluster": 31,
+      "sequence": 3899,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3904,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3911,
+      "params": {
+        "command": "listASNumbers",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "asnrangeid": "74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3",
+        "page": "1",
+        "pagesize": "10"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3920,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3925,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3932,
+      "params": {
+        "command": "listASNumbers",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "asnrangeid": "74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3",
+        "page": "1",
+        "pagesize": "10"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3955,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3960,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 3967,
+      "params": {
+        "command": "listASNumbers",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "asnrangeid": "74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3",
+        "page": "1",
+        "pagesize": "10"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 1221,
+      "params": {
+        "command": "listASNumbers",
+        "page": "2",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 1228,
+      "params": {
+        "command": "listZones",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 1229,
+      "params": {
+        "command": "listDomains",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 1263,
+      "params": {
+        "command": "listASNumbers",
+        "page": "2",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4198,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4203,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4210,
+      "params": {
+        "command": "listASNumbers",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "asnrangeid": "74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3",
+        "asnumber": "4200000000",
+        "keyword": "4200000000",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4219,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4224,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4231,
+      "params": {
+        "command": "listASNumbers",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "asnrangeid": "74b88f07-e6de-4b6f-ac43-7bad1f3ed7d3",
+        "asnumber": "4200000000",
+        "keyword": "4200000000",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2445,
+      "params": {
+        "command": "listASNumbers",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "asnrangeid": "72535263-8b77-4db8-bb23-59ece8a8f3bd",
+        "asnumber": "4200000000",
+        "keyword": "4200000000",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2458,
+      "params": {
+        "command": "listZones",
+        "id": "991d2f57-0f37-4445-b956-09773d064816",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2463,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2470,
+      "params": {
+        "command": "listASNumbers",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+        "asnrangeid": "72535263-8b77-4db8-bb23-59ece8a8f3bd",
+        "asnumber": "4200000000",
+        "keyword": "4200000000",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4801,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4806,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4829,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 4834,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2819,
+      "params": {
+        "command": "listZones",
+        "id": "991d2f57-0f37-4445-b956-09773d064816",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2824,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2875,
+      "params": {
+        "command": "listZones",
+        "id": "991d2f57-0f37-4445-b956-09773d064816",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 2880,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 8371,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 8375,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 8392,
+      "params": {
+        "command": "listZones",
+        "id": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 31,
+      "sequence": 8396,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 8584,
+      "params": {
+        "command": "listZones",
+        "id": "991d2f57-0f37-4445-b956-09773d064816",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 8588,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 8598,
+      "params": {
+        "command": "listZones",
+        "id": "991d2f57-0f37-4445-b956-09773d064816",
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "cluster": 32,
+      "sequence": 8609,
+      "params": {
+        "command": "listASNRanges",
+        "zoneid": "991d2f57-0f37-4445-b956-09773d064816"
+      }
+    }
+  ],
+  "license": {
+    "base": "aff74eee0d835891f9209492514f6c2d204bc138",
+    "sourceBeforeCommit": "1545558aa151972f1691a42f37554c3ddf7ec07c plus staged1712 files",
+    "baseUnknown": 4077,
+    "headUnknown": 4077,
+    "added": [],
+    "removed": [],
+    "unknownListSha256": "aee5cc4e585134597a8eb78f91ce8d6b64b9783ddd301662988bc66ad2d7f9a0",
+    "finalUnknown": 4077
+  },
+  "uiPayload": {
+    "uiPayloadSha256": "f782435606bc04c2e6a627db859a9e8d49340fde17385b6283f9efb05896ab36",
+    "sourceSha256": {
+      "ui/src/views/infra/zone/AsNumbersTab.vue": "19cc6364cd22e83f1ece5ede43ff8021f919b75ece4d445055e0c9c4ac243810",
+      "ui/src/utils/asnRange.js": "c64d0bfe3a409f0d74df644ff8304de8a8ca319f632a1bf3a494d44ec5625bde",
+      "ui/src/components/view/AsnSearch.vue": "ebd5b4272102461d758258e0838889cedeabaaf685c7f14c977aa46ccb2b0d19",
+      "ui/src/components/view/AsnSearchSelect.vue": "4d18ba91729ee7971995d821dfd819e00b612b6628656a510af63f9a126d362e",
+      "ui/src/utils/asnSearch.js": "d4036a6bc7fbca856d9d52f08dabbe887edefe910816a5c7ded736dc357b1d56",
+      "ui/src/views/AutogenView.vue": "ea68d33b20be3f95728ae0f49caef5a083210492a856aca0a0651e48a41f24e2",
+      "ui/src/components/view/SearchView.vue": "3f9494447ab75ebec7c8caa863ef887c48907f4e36701d8ef3c388a12c3ed606",
+      "ui/public/locales/en.json": "65ccdf0ef28fc4ebc07cfafc5c281abe5d68c51c463d2f3b06db04f9978aade8",
+      "ui/public/locales/ko_KR.json": "c9598f234aa3ad3386173c6d9906f5364ac774edf1d423e7b29e51c6de11b81c"
+    }
+  },
+  "productSourceSha256": {
+    "api/src/main/java/org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd.java": "ef656a682f4bccadf74afa644567abfdc5221bd8137d7556fe4481c4de9f9f9a",
+    "api/src/test/java/org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmdTest.java": "1c3659f87724483cad5d7c2cc4818213380ce202465ff560a4579dd63002f15a",
+    "engine/schema/src/test/java/com/cloud/dc/dao/ASNumberDaoQueryTest.java": "df5900235fdede06a147426bcbded7c31e576e49b2ad023cb4bc1047e3bed8f1",
+    "server/src/main/java/com/cloud/bgp/BGPServiceImpl.java": "966fb7466be5e56515ff275dfdf7b2b803e9a755e06f90a2c241dbdc233566a9",
+    "server/src/test/java/com/cloud/bgp/BGPASNumberQueryTest.java": "d9a0b393d1b344b663bad31b43f5796fec3d3b11208c87a861e9a30ce758ac48",
+    "ui/public/locales/en.json": "65ccdf0ef28fc4ebc07cfafc5c281abe5d68c51c463d2f3b06db04f9978aade8",
+    "ui/public/locales/ko_KR.json": "c9598f234aa3ad3386173c6d9906f5364ac774edf1d423e7b29e51c6de11b81c",
+    "ui/src/components/view/AsnSearch.vue": "ebd5b4272102461d758258e0838889cedeabaaf685c7f14c977aa46ccb2b0d19",
+    "ui/src/components/view/AsnSearchSelect.vue": "4d18ba91729ee7971995d821dfd819e00b612b6628656a510af63f9a126d362e",
+    "ui/src/components/view/SearchView.vue": "3f9494447ab75ebec7c8caa863ef887c48907f4e36701d8ef3c388a12c3ed606",
+    "ui/src/config/section/network.js": "6a02513068d18e03a36ff343b637eeca88a29b14050a898c066afed66b1ec61b",
+    "ui/src/utils/asnSearch.js": "d4036a6bc7fbca856d9d52f08dabbe887edefe910816a5c7ded736dc357b1d56",
+    "ui/src/views/AutogenView.vue": "ea68d33b20be3f95728ae0f49caef5a083210492a856aca0a0651e48a41f24e2",
+    "ui/tests/unit/components/AsnSearch.spec.js": "30916af27ccbf45e8e2d27be83e690ecf9c0aa976fe92f009da0527bd46340b4",
+    "ui/tests/unit/utils/asnSearch.spec.js": "f80e18207c9221e8c7d7b38643e91188ad5b1a767c718d98eb783a95d578447a",
+    "ui/tests/unit/views/AutogenAsnSearch.spec.js": "3008ac01fb3a012c9fc7b04f31dd60dc3e75cae6279bf376e307547ea496615f"
+  },
+  "finalUiChecks": {
+    "finalDark": [
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "color": "rgb(197, 204, 212)",
+        "documentWidth": 1270,
+        "error": true,
+        "left": 446,
+        "right": 786,
+        "value": "4294967296",
+        "width": 1280
+      },
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "color": "rgb(197, 204, 212)",
+        "documentWidth": 758,
+        "error": true,
+        "left": 102,
+        "right": 442,
+        "value": "4294967296",
+        "width": 768
+      },
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "color": "rgb(197, 204, 212)",
+        "documentWidth": 390,
+        "error": true,
+        "left": 47,
+        "right": 373,
+        "value": "4294967296",
+        "width": 390
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "color": "rgb(197, 204, 212)",
+        "documentWidth": 1270,
+        "error": true,
+        "left": 446,
+        "right": 786,
+        "value": "4294967296",
+        "width": 1280
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "color": "rgb(197, 204, 212)",
+        "documentWidth": 758,
+        "error": true,
+        "left": 102,
+        "right": 442,
+        "value": "4294967296",
+        "width": 768
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "color": "rgb(197, 204, 212)",
+        "documentWidth": 390,
+        "error": true,
+        "left": 47,
+        "right": 373,
+        "value": "4294967296",
+        "width": 390
+      }
+    ],
+    "lightInfo": {
+      "color": "rgb(75, 85, 99)",
+      "text": "0~4294967295의 10진 정수입니다. 예약 번호도 조회할 수 있습니다."
+    },
+    "cleanup": [
+      {
+        "cluster": 31,
+        "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+        "zero": true,
+        "light": true,
+        "viewportReset": true
+      },
+      {
+        "cluster": 32,
+        "url": "http://10.10.32.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20",
+        "zero": true,
+        "light": true,
+        "viewportReset": true
+      }
+    ]
+  },
+  "moduleReports": [
+    {
+      "module": "api",
+      "class": "ListASNumbersCmdTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "engine/schema",
+      "class": "ASNumberDaoQueryTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "server",
+      "class": "BGPASNumberQueryTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "module": "server",
+      "class": "BGPASNumberRangeDeletionTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "deletedRetryProof": [
+    {
+      "cluster": 31,
+      "lookupRequests": 2,
+      "listASNumbersRequests": 0,
+      "conditionsRetained": true,
+      "uuidUnverified": true
+    },
+    {
+      "cluster": 32,
+      "lookupRequests": 2,
+      "listASNumbersRequests": 0,
+      "conditionsRetained": true,
+      "uuidUnverified": true
+    }
+  ]
+}

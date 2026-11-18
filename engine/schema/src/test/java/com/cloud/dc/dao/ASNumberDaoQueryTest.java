@@ -164,4 +164,17 @@ public class ASNumberDaoQueryTest {
             Assert.assertEquals(1, sql.executeUpdate("UPDATE as_number SET network_id=31 WHERE as_number_range_id=11"));
         } finally { transaction.rollback(); }
     }
+
+    @Test
+    public void explicitDomainExcludesFreeAndOtherOwnersWithoutBroadeningCallerScope() {
+        Account admin = caller(Account.Type.ADMIN, 1, 1);
+        Assert.assertEquals(Integer.valueOf(1), query(null, null, null, null, null, null, null, 2L, null, admin, 0, 20).second());
+        Assert.assertEquals(Integer.valueOf(1), query(null, null, null, null, 40L, null, null, 3L, null, admin, 0, 20).second());
+        Assert.assertEquals(Integer.valueOf(0), query(null, null, null, null, null, false, null, 2L, null, admin, 0, 20).second());
+        Assert.assertEquals(Integer.valueOf(0), query(null, null, null, null, null, null, 2L, 3L, null, admin, 0, 20).second());
+        for (Account.Type type : new Account.Type[] {Account.Type.NORMAL, Account.Type.DOMAIN_ADMIN, Account.Type.RESOURCE_DOMAIN_ADMIN}) {
+            Assert.assertEquals(Integer.valueOf(0), query(null, null, null, null, null, null, null, 3L, null, caller(type, 2, 2), 0, 20).second());
+            Assert.assertEquals(Integer.valueOf(1), query(null, null, null, null, null, null, null, 2L, null, caller(type, 2, 2), 0, 20).second());
+        }
+    }
 }

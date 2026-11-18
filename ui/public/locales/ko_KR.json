@@ -12078,5 +12078,19 @@
   "message.asn.delete.rejected": "삭제가 거부되었습니다. 대상을 다시 조회한 뒤 확인하세요.",
   "message.asn.delete.acknowledge": "이전 요청이 나중에 완료될 수 있음을 이해했으며, 현재 추적을 종료합니다. 다음 삭제는 새 확인 화면에서 직접 진행합니다.",
   "message.asn.delete.synchronized": "대상이 없음을 확인하여 ASN 목록과 Zone 정보를 동기화했습니다.",
-  "label.asn.delete.recheck": "삭제 상태 재확인"
+  "label.asn.delete.recheck": "삭제 상태 재확인",
+  "label.asn.search.exact": "정확 ASN",
+  "message.asn.search.exact": "0~4294967295의 10진 정수입니다. 예약 번호도 조회할 수 있습니다.",
+  "message.asn.search.integer": "정확 ASN은 0~4294967295의 ASCII 10진 정수로 입력하세요.",
+  "message.asn.search.invalid": "URL 또는 검색 조건의 형식이 올바르지 않습니다. 조건을 확인하거나 초기화하세요.",
+  "message.asn.search.zone": "먼저 Zone을 선택하세요. 후보는 해당 Zone으로 제한됩니다.",
+  "message.asn.search.domain": "계정을 선택하려면 먼저 도메인을 선택하세요.",
+  "message.asn.search.permission": "검색에 필요한 조회 권한이 없습니다.",
+  "message.asn.search.project": "AS Numbers 조회는 기본 보기에서 지원합니다. 프로젝트 선택을 기본 보기로 변경하세요.",
+  "message.asn.search.lookup": "검색 범위나 목록을 확인하지 못했습니다. 조건을 유지합니다. 재시도하거나 조건을 다시 선택하세요.",
+  "message.asn.search.scope": "선택한 조건과 조회 범위가 일치하지 않습니다. 조건을 다시 선택하세요.",
+  "message.asn.search.missing": "선택한 대상이 없거나 접근할 수 없습니다. UUID 조건을 유지합니다. 다시 선택하세요.",
+  "message.asn.search.combination": "선택한 네트워크가 해당 VPC에 속하지 않습니다. 조합을 확인하세요.",
+  "message.asn.search.unverified": "확인 필요",
+  "message.asn.search.checking": "선택한 범위를 확인하는 중입니다."
 }

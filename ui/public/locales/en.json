@@ -12070,5 +12070,19 @@
   "message.asn.delete.rejected": "Deletion was rejected. Verify the target again before continuing.",
   "message.asn.delete.acknowledge": "I understand the previous request may complete later and will end tracking. A new deletion requires a new confirmation.",
   "message.asn.delete.synchronized": "Confirmed that the target is absent and synchronized the ASN list and Zone information.",
-  "label.asn.delete.recheck": "Check deletion status"
+  "label.asn.delete.recheck": "Check deletion status",
+  "label.asn.search.exact": "Exact ASN",
+  "message.asn.search.exact": "Decimal integer from 0 to 4294967295, including special numbers for lookup.",
+  "message.asn.search.integer": "Enter an ASCII decimal integer from 0 to 4294967295.",
+  "message.asn.search.invalid": "The URL or search condition is invalid. Check or reset the conditions.",
+  "message.asn.search.zone": "Select a Zone first. Candidates are scoped to that Zone.",
+  "message.asn.search.domain": "Select a domain before selecting an account.",
+  "message.asn.search.permission": "Required read permission is unavailable.",
+  "message.asn.search.project": "AS Numbers supports the default view. Switch the project selector to the default view.",
+  "message.asn.search.lookup": "The search scope or list could not be verified. Conditions are retained. Retry or select the conditions again.",
+  "message.asn.search.scope": "The response does not match the selected scope. Select the conditions again.",
+  "message.asn.search.missing": "The selected target is absent or inaccessible. Its UUID condition is retained. Select again.",
+  "message.asn.search.combination": "The selected network does not belong to the selected VPC.",
+  "message.asn.search.unverified": "Verification required",
+  "message.asn.search.checking": "Verifying the selected scope."
 }

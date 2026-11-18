@@ -45,6 +45,7 @@ import com.cloud.offerings.dao.NetworkOfferingDao;
 import com.cloud.event.ActionEvent;
 import com.cloud.event.EventTypes;
 import com.cloud.user.Account;
+import com.cloud.user.AccountManager;
 import com.cloud.user.dao.AccountDao;
 import com.cloud.utils.Pair;
 import com.cloud.utils.db.DB;
@@ -63,7 +64,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -88,6 +88,9 @@ public class BGPServiceImpl implements BGPService {
     private VpcOfferingDao vpcOfferingDao;
     @Inject
     private NetworkOfferingDao networkOfferingDao;
+    @Inject
+    private AccountManager asnAccountManager;
+
     @Inject
     private AccountDao accountDao;
     @Inject
@@ -186,39 +189,53 @@ public class BGPServiceImpl implements BGPService {
         Long pageSizeVal = cmd.getPageSizeVal();
         String keyword = cmd.getKeyword();
 
-        Account userAccount = null;
-        Domain domain = null;
         final Account caller = CallContext.current().getCallingAccount();
-        if (Objects.nonNull(accountName)) {
-            if (domainId != null) {
-                userAccount = accountDao.findActiveAccount(accountName, domainId);
-                domain = domainDao.findById(domainId);
-            } else {
-                userAccount = accountDao.findActiveAccount(accountName, caller.getDomainId());
-                domain = domainDao.findById(caller.getDomainId());
+        Domain domain = null;
+        Account userAccount = null;
+        if (domainId != null || accountName != null) {
+            domain = domainDao.findById(domainId != null ? domainId : caller.getDomainId());
+            if (domain == null) {
+                throw new InvalidParameterValueException("The selected domain no longer exists.");
+            }
+            asnAccountManager.checkAccess(caller, domain);
+            if (accountName != null) {
+                userAccount = accountDao.findActiveAccount(accountName, domain.getId());
+                if (userAccount == null) {
+                    throw new InvalidParameterValueException("The account does not exist in the selected domain.");
+                }
             }
         }
-
-        if (Objects.nonNull(accountName) && Objects.isNull(userAccount)) {
-            throw new InvalidParameterException(String.format("Failed to find user Account: %s", accountName));
+        if (asNumberRangeId != null) {
+            ASNumberRangeVO range = asNumberRangeDao.findById(asNumberRangeId);
+            if (range == null || zoneId != null && range.getDataCenterId() != zoneId) {
+                throw new InvalidParameterValueException("The ASN range does not belong to the selected Zone.");
+            }
         }
-
         Long networkSearchId = networkId;
-        Long vpcSerchId = vpcId;
+        Long vpcSearchId = vpcId;
         if (networkId != null) {
             NetworkVO network = networkDao.findById(networkId);
-            if (network == null) {
-                throw new InvalidParameterException(String.format("Failed to find network with ID: %s", networkId));
+            if (network == null || zoneId != null && network.getDataCenterId() != zoneId) {
+                throw new InvalidParameterValueException("The network does not belong to the selected Zone.");
+            }
+            asnAccountManager.checkAccess(caller, null, false, network);
+            if (vpcId != null && !vpcId.equals(network.getVpcId())) {
+                throw new InvalidParameterValueException("The network does not belong to the selected VPC.");
             }
             if (network.getVpcId() != null) {
-                LOGGER.debug("The network {} is a VPC tier, searching for the AS number on the VPC {}",
-                        network::toString, () -> vpcDao.findById(network.getVpcId()));
                 networkSearchId = null;
-                vpcSerchId = network.getVpcId();
+                vpcSearchId = network.getVpcId();
             }
         }
+        if (vpcSearchId != null) {
+            VpcVO vpc = vpcDao.findById(vpcSearchId);
+            if (vpc == null || zoneId != null && vpc.getZoneId() != zoneId) {
+                throw new InvalidParameterValueException("The VPC does not belong to the selected Zone.");
+            }
+            asnAccountManager.checkAccess(caller, null, false, vpc);
+        }
         Pair<List<ASNumberVO>, Integer> pair = asNumberDao.searchAndCountByZoneOrRangeOrAllocated(zoneId, asNumberRangeId,
-                asNumber, networkSearchId, vpcSerchId, allocated, Objects.nonNull(userAccount) ? userAccount.getId() : null,
+                asNumber, networkSearchId, vpcSearchId, allocated, Objects.nonNull(userAccount) ? userAccount.getId() : null,
                 Objects.nonNull(domain) ? domain.getId() : null, keyword, caller, startIndex, pageSizeVal);
         return new Pair<>(new ArrayList<>(pair.first()), pair.second());
     }

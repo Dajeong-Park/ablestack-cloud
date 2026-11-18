@@ -19,6 +19,7 @@ package org.apache.cloudstack.api.command.user.bgp;
 import com.cloud.bgp.ASNumber;
 import com.cloud.bgp.ASNumberQueryValidator;
 import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.exception.PermissionDeniedException;
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.exception.InsufficientCapacityException;
 import com.cloud.exception.NetworkRuleConflictException;
@@ -139,6 +140,8 @@ public class ListASNumbersCmd extends BaseListCmd {
             response.setResponses(responses, pair.second());
             response.setResponseName(getCommandName());
             setResponseObject(response);
+        } catch (PermissionDeniedException e) {
+            throw new ServerApiException(ApiErrorCode.UNAUTHORIZED, "The selected search scope is not accessible.");
         } catch (InvalidParameterValueException e) {
             throw new ServerApiException(ApiErrorCode.PARAM_ERROR, e.getMessage());
         } catch (Exception e) {
