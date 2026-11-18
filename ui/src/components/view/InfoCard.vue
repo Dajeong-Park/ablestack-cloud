@@ -1318,7 +1318,7 @@ export default {
         this.newResource = newData
         this.showKeys = false
         this.setData()
-        this.validLinks = this.$route.meta?.name === 'kubernetesiso' ? {} : await validateLinksAsync(this.$router, this.isStatic, this.resource)
+        this.validLinks = this.$route.meta?.name === 'kubernetesiso' ? {} : await validateLinksAsync(this.$router, this.isStatic, this.resource, api => !!this.$store.getters.apis?.[api])
 
         if (this.$route.meta.name === 'accountuser' && 'apikey' in this.resource) {
           this.getUserKeys()

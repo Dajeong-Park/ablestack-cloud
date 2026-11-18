@@ -72,7 +72,7 @@ test('Zone pane has read-only actions and distinct forbidden/empty states', asyn
   expect(getAPI).not.toHaveBeenCalled(); w.unmount()
 })
 test('KISO card skips generic link validation while the VM path keeps its existing child read', async () => {
-  const ctx = { $route: { meta: { name: 'kubernetesiso' } }, $router: { resolve: () => ({ matched: [{}] }) }, resource, isStatic: false, setData: jest.fn(), updateResourceAdditionalData: jest.fn() }
+  const ctx = { $store: { getters: { apis: { listIsos: {} } } }, $route: { meta: { name: 'kubernetesiso' } }, $router: { resolve: () => ({ matched: [{}] }) }, resource, isStatic: false, setData: jest.fn(), updateResourceAdditionalData: jest.fn() }
   await InfoCard.watch.resource.handler.call(ctx, resource, {})
   expect(getAPI).not.toHaveBeenCalled(); expect(ctx.validLinks).toEqual({})
   getAPI.mockResolvedValue({ listisosresponse: { iso: [{ id: iso }] } }); ctx.$route.meta.name = 'vm'
