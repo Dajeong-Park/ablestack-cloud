@@ -21,14 +21,14 @@ import ListView from '@/components/view/ListView'
 import { getAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn().mockResolvedValue({}) }))
 const id = '11111111-1111-4111-8111-111111111111'
-function cell (path, type, key = 'templatetype', name = 'Image') {
-  const record = { id, name, templatetype: type, account: 'admin', domainid: id, zoneid: id, zonename: 'Zone' }
+function cell (path, type, key = 'templatetype', name = 'Image', params = {}, extraRecord = {}) {
+  const record = { id, name, templatetype: type, account: 'admin', domainid: id, zoneid: id, zonename: 'Zone', ...extraRecord }
   const push = jest.fn()
   const wrapper = shallowMount(ListView, {
     props: { columns: [{ key, dataIndex: key }], items: [record] },
     global: {
       provide: { parentFetchData: jest.fn(), parentToggleLoading: jest.fn() },
-      mocks: { $route: { name: path.slice(1), path, meta: { name: path.slice(1) } }, $router: { push, resolve: () => ({ matched: [{}] }) }, $store: { getters: { apis: {}, userInfo: { roletype: 'Admin' } } }, $t: k => k, $showIcon: () => false },
+      mocks: { $route: { name: path.slice(1), path, params, meta: { name: path.slice(1) } }, $router: { push, resolve: () => ({ matched: [{}] }) }, $store: { getters: { apis: {}, userInfo: { roletype: 'Admin' } } }, $t: k => k, $showIcon: () => false },
       stubs: {
         'a-table': { render () { return h('div', this.$slots.bodyCell({ column: { key }, text: record[key], record })) } },
         KeyboardTooltip: { props: ['title'], render () { return h('span', { 'data-tooltip': this.title }, this.$slots.default()) } },
@@ -108,4 +108,18 @@ test('KISO column picker follows explicit visibility updates and returns focus o
 test('KISO main table rules never apply to the nested detail event table', () => {
   expect(ListView.computed.isKubernetesIsoMainList.call({ $route: { meta: { name: 'kubernetesiso' }, params: { id } }, resourcePath: '' })).toBe(false)
   expect(ListView.computed.isKubernetesIsoMainList.call({ $route: { meta: { name: 'kubernetesiso' }, params: {} }, resourcePath: '' })).toBe(true)
+})
+
+test('a Completed detail event uses the standard event Status component instead of a version badge', () => {
+  const { wrapper } = cell('/kubernetesiso', 'USER', 'state', 'event', { id }, { state: 'Completed' })
+  expect(wrapper.findComponent({ name: 'KubernetesIsoListCell' }).exists()).toBe(false)
+  expect(wrapper.findComponent({ name: 'Status' }).props('text')).toBe('Completed')
+  expect(wrapper.find('.list-view-table-wrapper').attributes('role')).toBeUndefined()
+  wrapper.unmount()
+})
+test('the KISO main list still renders its Enabled version through the catalog status cell', () => {
+  const { wrapper } = cell('/kubernetesiso', 'USER', 'state', 'version', {}, { state: 'Enabled' })
+  expect(wrapper.findComponent({ name: 'KubernetesIsoListCell' }).props('field')).toBe('state')
+  expect(wrapper.findComponent({ name: 'Status' }).exists()).toBe(false)
+  wrapper.unmount()
 })
