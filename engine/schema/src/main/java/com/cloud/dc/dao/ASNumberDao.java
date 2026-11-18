@@ -32,6 +32,7 @@ public interface ASNumberDao extends GenericDao<ASNumberVO, Long> {
 
     ASNumberVO findOneByAllocationStateAndZone(long zoneId, boolean allocated);
 
+    /** Lock allocated members for range deletion; call within the Zone/range transaction. */
     List<ASNumberVO> listAllocatedByASRange(Long asRangeId);
 
     ASNumberVO findByZoneAndNetworkId(long zoneId, long networkId);

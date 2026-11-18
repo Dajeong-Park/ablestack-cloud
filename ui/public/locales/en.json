@@ -12055,5 +12055,20 @@
   "message.asn.range.unknown": "The registration outcome is unknown. Recheck the actual state before another attempt.",
   "message.asn.range.unverified": "A registration response was received, but the range and all its numbers could not be verified.",
   "message.asn.range.lookup.failed": "Registration lookup failed. The input and target have been retained.",
-  "message.asn.range.acknowledge": "The range is currently absent. I understand the previous request may finish later and want to end tracking before another attempt."
+  "message.asn.range.acknowledge": "The range is currently absent. I understand the previous request may finish later and want to end tracking before another attempt.",
+  "label.asn.delete.zoneid": "Zone ID",
+  "label.asn.delete.total": "Total ASN count",
+  "label.asn.delete.allocated": "Allocated ASN count",
+  "label.asn.delete.unknown": "Checking / verification required",
+  "label.asn.delete.confirm": "Delete range",
+  "message.asn.delete.impact": "Deletes the unallocated ASN pool in this range. The entire range is protected if any ASN is allocated.",
+  "message.asn.delete.lookup": "The target, permissions or query result could not be verified. The previous list is retained. Check again before continuing.",
+  "message.asn.delete.allocated": "This range contains allocated ASNs and cannot be deleted. Check the associated network or VPC first.",
+  "message.asn.delete.absent": "The target has already been deleted. Check status to synchronize the list. No deletion request was sent.",
+  "message.asn.delete.unknown": "The deletion result is unknown. Check status before requesting deletion again. The previous request may still be running even if this UUID is present.",
+  "message.asn.delete.refreshfailed": "Deletion was accepted, but list synchronization is incomplete. Check status performs read requests only.",
+  "message.asn.delete.rejected": "Deletion was rejected. Verify the target again before continuing.",
+  "message.asn.delete.acknowledge": "I understand the previous request may complete later and will end tracking. A new deletion requires a new confirmation.",
+  "message.asn.delete.synchronized": "Confirmed that the target is absent and synchronized the ASN list and Zone information.",
+  "label.asn.delete.recheck": "Check deletion status"
 }

@@ -158,3 +158,21 @@ test('both native finishFailed and guarded validation focus the first invalid in
   expect(form.methods.scrollToField).toHaveBeenLastCalledWith('startasn')
   expect(postAPI).not.toHaveBeenCalled()
 })
+
+test('range delete permission is independent of create permission and opens a frozen target without posting', async () => {
+  const { w, getters } = await mount(); w.vm.closeAction()
+  expect(w.vm.canDelete).toBe(false)
+  getters.apis.deleteASNRange = {}; delete getters.apis.createASNRange; await drain()
+  expect(w.vm.canDelete).toBe(true); expect(w.vm.canCreate).toBe(false)
+  w.vm.onDelete({ id: 'delete-range', zoneid: 'zone', startasn: 64512, endasn: 64514 })
+  expect(w.vm.deleteTarget.id).toBe('delete-range'); expect(Object.isFrozen(w.vm.deleteTarget)).toBe(true); expect(postAPI).not.toHaveBeenCalled()
+  delete getters.apis.deleteASNRange; await drain(); expect(w.vm.deleteTarget).toBeNull()
+})
+
+test('cancellation restores focus to the native row button with a safe fallback after removal', async () => {
+  const { w } = await mount(); w.vm.closeAction()
+  const row = document.createElement('span'); const source = document.createElement('button'); row.appendChild(source); document.body.appendChild(row)
+  w.vm.deleteButtons.range = row; w.vm.deleteTarget = { id: 'range' }; w.vm.closeDelete(); await nextTick()
+  expect(document.activeElement).toBe(source)
+  row.remove(); w.vm.deleteTarget = { id: 'range' }; expect(() => w.vm.closeDelete()).not.toThrow(); await nextTick()
+})

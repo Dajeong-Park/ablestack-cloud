@@ -18,22 +18,24 @@
 <template>
   <div class="asn-range-tab">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-button ref="createButton" type="primary" block :disabled="!canCreate || loading" @click="showCreateASRange">
+    <a-button ref="createButton" type="primary" block :disabled="!canCreate || loading || !!deleteTarget" @click="showCreateASRange">
       <template #icon><plus-outlined /></template> {{ $t('label.create.asnrange') }}
     </a-button>
     <a-table rowKey="id" bordered :scroll="{ x: 500 }" :dataSource="asnRanges" :columns="columns" :pagination="false">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'range'">{{ record.startasn }} - {{ record.endasn }}</template>
-        <tooltip-button
-          v-if="column.key === 'actions'"
+        <span v-if="column.key === 'actions' && canDelete" :ref="el => { if (el) deleteButtons[record.id] = el }">
+          <tooltip-button
           :tooltip="$t('label.delete.asnrange')"
           type="primary"
           :danger="true"
-          :disabled="loading || submitting || !!operation"
+          :disabled="loading || submitting || !!operation || !!deleteTarget"
           icon="delete-outlined"
-          @onClick="onDelete(record.id)" />
+          @onClick="onDelete(record)" />
+        </span>
       </template>
     </a-table>
+    <asn-range-delete-dialog v-if="deleteTarget" :key="creationContext + deleteTarget.id" :target="deleteTarget" :context="creationContext" @cancel="closeDelete" @complete="completeDelete" />
     <mold-dialog
       v-if="addASRangeModal"
       :visible="addASRangeModal"
@@ -92,18 +94,22 @@
 import { getAPI, postAPI } from '@/api'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { asnCreationContext, asnOperation, trackAsnOperation, clearAsnOperation, asnRangeErrors, asnRangeValues, asnRangeMatches, confirmAsnRange } from '@/utils/asnRange'
+import { deletionTarget } from '@/utils/asnRangeDeletion'
+import AsnRangeDeleteDialog from './AsnRangeDeleteDialog'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 
 export default {
-  components: { TooltipButton, MoldDialog, MoldDialogActions },
+  components: { AsnRangeDeleteDialog, TooltipButton, MoldDialog, MoldDialogActions },
   mixins: [listRefreshMixin(['fetchData'], { scopeKey: vm => vm.creationContext })],
   props: { resource: { type: Object, required: true } },
   emits: ['refresh-data', 'close-action'],
   data () {
     return {
       asnRanges: [],
+      deleteTarget: null,
+      deleteButtons: {},
       fetchLoading: false,
       loading: false,
       addASRangeModal: false,
@@ -123,6 +129,7 @@ export default {
   computed: {
     creationContext () { return asnCreationContext(this.$store.getters, this.$store.state?.user?.token, this.resource.id) },
     canCreate () { return !!this.resource.id && this.resource.routedmodeenabled === true && 'createASNRange' in this.$store.getters.apis },
+    canDelete () { return !!this.resource.id && 'deleteASNRange' in this.$store.getters.apis },
     locked () { return this.submitting || this.checking || !!this.operation },
     preview () { return asnRangeValues(this.form) },
     rules () {
@@ -137,7 +144,7 @@ export default {
   watch: {
     creationContext () {
       this.addASRangeModal = false; this.submitting = false; this.checking = false; this.loading = false
-      this.operation = null; this.error = ''; this.asnRanges = []
+      this.operation = null; this.error = ''; this.asnRanges = []; this.deleteTarget = null; this.deleteButtons = {}
       if (this.resource.id) this.fetchData()
     }
   },
@@ -165,7 +172,7 @@ export default {
       }
     },
     showCreateASRange () {
-      if (!this.canCreate || this.loading || this.submitting) return
+      if (!this.canCreate || this.loading || this.submitting || this.deleteTarget) return
       this.operation = asnOperation(this.creationContext) || null
       this.form = this.operation ? { startasn: this.operation.expected.startasn, endasn: this.operation.expected.endasn } : { startasn: '', endasn: '' }
       this.acknowledged = false; this.error = ''; this.addASRangeModal = true
@@ -248,17 +255,22 @@ export default {
       if (this.submitting || this.checking || !this.operation?.absent || !this.acknowledged) return
       clearAsnOperation(this.creationContext); this.operation = null; this.acknowledged = false; this.error = ''
     },
-    async onDelete (rangeId) {
-      if (this.loading || this.submitting || asnOperation(this.creationContext)) return
-      const context = this.creationContext
-      this.loading = true
-      try {
-        await postAPI('deleteASNRange', { id: rangeId })
-        if (!this.current(context)) return
-        this.$notification.success({ message: this.$t('message.success.delete.asnrange') }); this.$emit('refresh-data')
-      } catch (error) { if (this.current(context)) this.$notifyError(error) } finally {
-        if (this.current(context)) { this.loading = false; this.fetchData() }
-      }
+    onDelete (record) {
+      if (!this.canDelete || this.loading || this.submitting || this.deleteTarget || asnOperation(this.creationContext)) return
+      try { this.deleteTarget = deletionTarget(this.resource, record) } catch (_) { this.$notifyError(new Error(this.$t('message.asn.delete.lookup'))) }
+    },
+    closeDelete () {
+      const id = this.deleteTarget?.id
+      this.deleteTarget = null
+      this.$nextTick(() => {
+        const source = this.deleteButtons[id]?.querySelector('button')
+        if (source?.isConnected) source.focus()
+        else if (this.$refs.createButton?.$el) this.$refs.createButton.$el.focus()
+      })
+    },
+    completeDelete ({ ranges, accepted }) {
+      this.asnRanges = ranges; this.closeDelete(); this.$emit('refresh-data')
+      this.$notification[accepted ? 'success' : 'info']({ message: this.$t(accepted ? 'message.success.delete.asnrange' : 'message.asn.delete.synchronized') })
     }
   }
 }

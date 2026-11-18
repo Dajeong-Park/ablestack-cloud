@@ -12063,5 +12063,20 @@
   "message.asn.range.unknown": "등록 결과를 확인하지 못했습니다. 중복 등록 전에 실제 등록 상태를 재확인하세요.",
   "message.asn.range.unverified": "등록 응답을 받았지만 범위와 전체 번호를 재조회해 확인하지 못했습니다.",
   "message.asn.range.lookup.failed": "등록 상태 조회에 실패했습니다. 입력과 확인 대상을 유지합니다.",
-  "message.asn.range.acknowledge": "현재 대상 범위가 없음을 확인했습니다. 이전 요청이 늦게 완료될 수 있음을 이해하고 새 시도 전에 추적을 끝냅니다."
+  "message.asn.range.acknowledge": "현재 대상 범위가 없음을 확인했습니다. 이전 요청이 늦게 완료될 수 있음을 이해하고 새 시도 전에 추적을 끝냅니다.",
+  "label.asn.delete.zoneid": "Zone ID",
+  "label.asn.delete.total": "전체 ASN 수",
+  "label.asn.delete.allocated": "할당된 ASN 수",
+  "label.asn.delete.unknown": "확인 중 / 확인 필요",
+  "label.asn.delete.confirm": "범위 삭제",
+  "message.asn.delete.impact": "이 범위의 미할당 ASN 풀을 삭제합니다. 할당된 ASN이 하나라도 있으면 범위 전체를 삭제할 수 없습니다.",
+  "message.asn.delete.lookup": "대상, 권한 또는 조회 결과를 확인할 수 없습니다. 기존 목록을 유지합니다. 다시 확인한 뒤 진행하세요.",
+  "message.asn.delete.allocated": "할당된 ASN이 있어 삭제할 수 없습니다. 사용 중인 네트워크 또는 VPC를 먼저 확인하세요.",
+  "message.asn.delete.absent": "대상이 이미 삭제되었습니다. 상태 다시 확인을 눌러 목록을 동기화하세요. 삭제 요청을 보내지 않았습니다.",
+  "message.asn.delete.unknown": "삭제 결과를 확인하지 못했습니다. 삭제를 다시 요청하지 말고 상태를 확인하세요. 동일 UUID가 조회되어도 이전 요청이 처리 중일 수 있습니다.",
+  "message.asn.delete.refreshfailed": "삭제 성공 응답을 받았지만 목록 동기화가 완료되지 않았습니다. 상태 다시 확인으로 조회만 수행합니다.",
+  "message.asn.delete.rejected": "삭제가 거부되었습니다. 대상을 다시 조회한 뒤 확인하세요.",
+  "message.asn.delete.acknowledge": "이전 요청이 나중에 완료될 수 있음을 이해했으며, 현재 추적을 종료합니다. 다음 삭제는 새 확인 화면에서 직접 진행합니다.",
+  "message.asn.delete.synchronized": "대상이 없음을 확인하여 ASN 목록과 Zone 정보를 동기화했습니다.",
+  "label.asn.delete.recheck": "삭제 상태 재확인"
 }

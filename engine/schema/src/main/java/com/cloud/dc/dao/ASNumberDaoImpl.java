@@ -116,7 +116,8 @@ public class ASNumberDaoImpl extends GenericDaoBase<ASNumberVO, Long> implements
         SearchCriteria<ASNumberVO> sc = asNumberSearch.create();
         sc.setParameters("rangeId", asRangeId);
         sc.setParameters("isAllocated", true);
-        return listBy(sc);
+        // A locking current read must not use a transaction's earlier consistent-read snapshot.
+        return lockRows(sc, null, true);
     }
 
     public ASNumberVO findByZoneAndNetworkId(long zoneId, long networkId) {

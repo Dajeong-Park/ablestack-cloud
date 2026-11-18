@@ -150,4 +150,18 @@ public class ASNumberDaoQueryTest {
         }
         Assert.assertEquals(Integer.valueOf(4), query(null, null, 4200000000L, null, null, null, null, null, null, caller(Account.Type.ADMIN, 1, 1), 0, 20).second());
     }
+
+    @Test
+    public void allocatedGuardUsesCurrentRowsAndHoldsMemberLocksUntilCommit() throws Exception {
+        transaction.start();
+        List<ASNumberVO> rows = dao.listAllocatedByASRange(11L);
+        Assert.assertEquals(1, rows.size());
+        Assert.assertEquals(Long.valueOf(30), rows.get(0).getNetworkId());
+        try (Connection other = source.getConnection(); Statement sql = other.createStatement()) {
+            sql.execute("SET LOCK_TIMEOUT 100");
+            Assert.assertThrows(java.sql.SQLException.class, () -> sql.executeUpdate("UPDATE as_number SET network_id=31 WHERE as_number_range_id=11"));
+            transaction.commit();
+            Assert.assertEquals(1, sql.executeUpdate("UPDATE as_number SET network_id=31 WHERE as_number_range_id=11"));
+        } finally { transaction.rollback(); }
+    }
 }
