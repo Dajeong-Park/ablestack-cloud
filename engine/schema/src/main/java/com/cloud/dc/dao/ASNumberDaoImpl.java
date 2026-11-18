@@ -17,6 +17,7 @@
 package com.cloud.dc.dao;
 
 import com.cloud.dc.ASNumberVO;
+import com.cloud.bgp.ASNumberQueryValidator;
 import com.cloud.user.Account;
 import com.cloud.utils.Pair;
 import com.cloud.utils.db.Filter;
@@ -46,11 +47,12 @@ public class ASNumberDaoImpl extends GenericDaoBase<ASNumberVO, Long> implements
 
     @Override
     public Pair<List<ASNumberVO>, Integer> searchAndCountByZoneOrRangeOrAllocated(Long zoneId, Long asnRangeId,
-                                                                                  Integer asNumber, Long networkId, Long vpcId,
+                                                                                  Long asNumber, Long networkId, Long vpcId,
                                                                                   Boolean allocated,
                                                                                   Long accountId, Long domainId,
                                                                                   String keyword, Account caller,
                                                                                   Long startIndex, Long pageSizeVal) {
+        ASNumberQueryValidator.validate(asNumber);
         SearchCriteria<ASNumberVO> sc = asNumberSearch.create();
         if (zoneId != null) {
             sc.setParameters("zoneId", zoneId);

@@ -19,6 +19,14 @@ package org.apache.cloudstack.api.command.user.bgp;
 
 import com.cloud.bgp.ASNumber;
 import com.cloud.bgp.BGPService;
+import com.cloud.exception.InvalidParameterValueException;
+import org.apache.cloudstack.api.ApiConstants;
+import org.apache.cloudstack.api.ApiErrorCode;
+import org.apache.cloudstack.api.BaseCmd;
+import org.apache.cloudstack.api.Parameter;
+import org.apache.cloudstack.api.ServerApiException;
+import java.util.Collections;
+import java.util.Map;
 
 import com.cloud.utils.Pair;
 import org.apache.cloudstack.api.ResponseGenerator;
@@ -41,10 +49,10 @@ public class ListASNumbersCmdTest {
     ResponseGenerator _responseGenerator = Mockito.spy(ResponseGenerator.class);
 
     @Test
-    public void testListASNumbersCmdTest() {
+    public void testListASNumbersCmdTest() throws Exception {
         Long zoneId = 1L;
         Long asNumberRangeId = 2L;
-        Integer asNumber = 10;
+        Long asNumber = 4200000000L;
         Long networkId = 11L;
         Long vpcId = 12L;
         String account = "account";
@@ -81,10 +89,7 @@ public class ListASNumbersCmdTest {
         Mockito.when(_responseGenerator.createASNumberResponse(asn)).thenReturn(asNumberResponse);
 
         Mockito.when(bgpService.listASNumbers(cmd)).thenReturn(pair);
-        try {
-            cmd.execute();
-        } catch (Exception ignored) {
-        }
+        cmd.execute();
 
         Object response = cmd.getResponseObject();
         Assert.assertTrue(response instanceof ListResponse);
@@ -93,5 +98,53 @@ public class ListASNumbersCmdTest {
         Assert.assertTrue(listResponse.getResponses().get(0) instanceof ASNumberResponse);
         ASNumberResponse firstResponse = (ASNumberResponse) listResponse.getResponses().get(0);
         Assert.assertEquals(asNumberResponse, firstResponse);
+    }
+    @Test
+    public void metadataAndGetterPreserveUnsigned32BitNumbers() throws Exception {
+        Assert.assertEquals(Long.class, ListASNumbersCmd.class.getDeclaredField("asNumber").getType());
+        Parameter parameter = ListASNumbersCmd.class.getDeclaredField("asNumber").getAnnotation(Parameter.class);
+        Assert.assertEquals(BaseCmd.CommandType.LONG, parameter.type());
+        ListASNumbersCmd cmd = new ListASNumbersCmd();
+        Assert.assertNull(cmd.getAsNumber());
+        for (long number : new long[] {0, 23456, 64512, 65535, 2147483647L, 2147483648L, 4200000000L, 4294967294L, 4294967295L}) {
+            ReflectionTestUtils.setField(cmd, "asNumber", number);
+            cmd.validateSpecificParameters(Collections.singletonMap(ApiConstants.AS_NUMBER, Long.toString(number)));
+            Assert.assertEquals(Long.valueOf(number), cmd.getAsNumber());
+        }
+    }
+
+    @Test
+    public void invalidRawInputAndMissingPaginationPairAreParameterErrors() {
+        ListASNumbersCmd cmd = new ListASNumbersCmd();
+        for (String raw : new String[] {"", " ", "-1", "+1", "1.5", "1e3", "1.10", "1,000", "abc", "\uff11", "4294967296", "9223372036854775808"}) {
+            Assert.assertThrows(InvalidParameterValueException.class,
+                    () -> cmd.validateSpecificParameters(Collections.singletonMap(ApiConstants.AS_NUMBER, raw)));
+        }
+        cmd.validateSpecificParameters(Collections.emptyMap());
+        cmd.validateSpecificParameters(Map.of(ApiConstants.PAGE, "1", ApiConstants.PAGE_SIZE, "20"));
+        ServerApiException error = Assert.assertThrows(ServerApiException.class,
+                () -> cmd.validateSpecificParameters(Collections.singletonMap(ApiConstants.PAGE_SIZE, "20")));
+        Assert.assertEquals(ApiErrorCode.PARAM_ERROR, error.getErrorCode());
+    }
+
+    @Test
+    public void invalidTypedValueNeverInvokesTheService() {
+        ListASNumbersCmd cmd = new ListASNumbersCmd();
+        ReflectionTestUtils.setField(cmd, "bgpService", bgpService);
+        for (long number : new long[] {-1, 4294967296L, Long.MAX_VALUE}) {
+            ReflectionTestUtils.setField(cmd, "asNumber", number);
+            ServerApiException error = Assert.assertThrows(ServerApiException.class, cmd::execute);
+            Assert.assertEquals(ApiErrorCode.PARAM_ERROR, error.getErrorCode());
+        }
+        Mockito.verifyNoInteractions(bgpService);
+    }
+
+    @Test
+    public void serviceParameterRejectionIsNotReclassifiedAsInternalFailure() {
+        ListASNumbersCmd cmd = new ListASNumbersCmd();
+        ReflectionTestUtils.setField(cmd, "bgpService", bgpService);
+        Mockito.when(bgpService.listASNumbers(cmd)).thenThrow(new InvalidParameterValueException("Invalid query"));
+        ServerApiException error = Assert.assertThrows(ServerApiException.class, cmd::execute);
+        Assert.assertEquals(ApiErrorCode.PARAM_ERROR, error.getErrorCode());
     }
 }

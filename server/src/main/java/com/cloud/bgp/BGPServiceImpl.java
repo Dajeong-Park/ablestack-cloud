@@ -178,7 +178,7 @@ public class BGPServiceImpl implements BGPService {
     public Pair<List<ASNumber>, Integer> listASNumbers(ListASNumbersCmd cmd) {
         Long zoneId = cmd.getZoneId();
         Long asNumberRangeId = cmd.getAsNumberRangeId();
-        Integer asNumber = cmd.getAsNumber();
+        Long asNumber = cmd.getAsNumber();
         Boolean allocated = cmd.getAllocated();
         Long networkId = cmd.getNetworkId();
         Long vpcId = cmd.getVpcId();

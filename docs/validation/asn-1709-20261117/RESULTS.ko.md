@@ -26,7 +26,7 @@ under the License.
 | 순서 | 확인 항목 | 31 GFS2 | 32 RBD |
 |---:|---|---|---|
 | 1 | `invalid:/` | PASS (431) | PASS (431) |
-| 2 | `invalid: / ` | PASS (431) | PASS (431) |
+| 2 | `invalid:(공백)/(공백)` | PASS (431) | PASS (431) |
 | 3 | `invalid:-1/-1` | PASS (431) | PASS (431) |
 | 4 | `invalid:+1/+1` | PASS (431) | PASS (431) |
 | 5 | `invalid:1.5/1.5` | PASS (431) | PASS (431) |
@@ -71,7 +71,7 @@ under the License.
 | 44 | `overlap-rejected` | PASS (431) | PASS (431) |
 | 45 | `overlap-rejected` | PASS (431) | PASS (431) |
 | 46 | `생성한 범위 ID로 정리` | PASS | PASS |
-| 47 | `valid: 4200000010 / 4200000010 ` | PASS | PASS |
+| 47 | `valid:(공백)4200000010(공백)/(공백)4200000010(공백)` | PASS | PASS |
 | 48 | `members-exact` | PASS | PASS |
 | 49 | `overlap-rejected` | PASS (431) | PASS (431) |
 | 50 | `overlap-rejected` | PASS (431) | PASS (431) |
