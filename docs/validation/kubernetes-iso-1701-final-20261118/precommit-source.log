@@ -1,0 +1,37 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.04s
+
+ui/src/components/view/ListView.vue
+ui/tests/unit/components/view/ListViewTemplateType.spec.js
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files...................(no files to check)Skipped
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files............................................Passed
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.....................................(no files to check)Skipped
+run yamllint.........................................(no files to check)Skipped

@@ -1,0 +1,723 @@
+Window: "쿠버네티스 ISO - ABLESTACK-Mold - Chrome", App: chrome.exe.
+	0 window (창) 쿠버네티스 ISO - ABLESTACK-Mold - Chrome Secondary Actions: Raise
+		1 pane (창) (disabled)
+		2 pane (영역) 쿠버네티스 ISO - ABLESTACK-Mold - Chrome
+			3 pane (영역)
+				4 pane (영역)
+					5 pane (영역)
+						6 button (단추) 최소화 ID: view_1
+						420 button (단추) 복구 ID: view_3
+						8 button (단추) 닫기 ID: view_4
+					9 pane (영역)
+						10 pane (영역)
+							11 toolbar (도구 모음) ID: view_1000
+								12 button (단추) 뒤로 ID: view_1001
+								13 button (단추) (disabled) 앞으로 ID: view_1002
+								14 button (단추) 새로고침 ID: view_1003
+								15 button (단추) 홈 ID: view_1004
+								16 group (그룹)
+									17 button (단추) 주의 요함 ID: view_1011
+									18 text field (편집) (settable, string) 주소창 및 검색창 Description: Google에 물어보거나 URL을 입력하세요. Value: 10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57 ID: view_1012
+									19 pane (영역)
+										1514 button (단추) 번역
+										21 button (단추) 현재 탭을 북마크에 추가
+								22 pane (영역)
+									23 button (단추) ChatGPT 이 사이트의 액세스 권한이 있습니다. ID: view_1009
+									24 button (단추) iCloud 암호 이 사이트의 액세스 권한이 있습니다. ID: view_1009
+									25 button (단추) 확장 프로그램 ID: view_1006
+								26 pane (영역)
+								27 pane (영역)
+									28 button (단추) 새 시크릿 창 - 고정됨
+									29 button (단추) Google 비밀번호 관리자 - 고정됨
+									30 button (단추) 개발자 도구 - 고정됨
+									31 pane (영역)
+								32 button (단추) 동혁 ID: view_1018
+								33 button (단추) Chrome ID: view_1007
+						34 pane (영역)
+							35 pane (영역)
+								1269 document (문서) DevTools Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true ID: RootWebArea
+									1270 group (그룹) DevTools is now available in Korean
+										1271 text (경고)
+											1272 text (텍스트) DevTools is now available in Korean
+										1273 button (단추) Don’t show again
+										1274 button (단추) Always match Chrome’s language
+										1275 button (단추) Switch DevTools to Korean
+										1276 group (그룹)
+											1277 group (그룹) Close Description: Close
+												1278 button (단추) Close Description: Close
+									1279 group (그룹)
+										1280 group (탐색) Main toolbar
+											1281 toolbar (도구 모음)
+												1332 group (그룹) Select an element in the page to inspect it Description: Select an element in the page to inspect it - Ctrl + Shift + C
+													1333 button (전환 버튼) Select an element in the page to inspect it - Ctrl + Shift + C Description: Select an element in the page to inspect it - Ctrl + Shift + C
+												1334 group (그룹) Toggle device toolbar Description: Toggle device toolbar - Ctrl + Shift + M
+													1335 button (전환 버튼) Toggle device toolbar - Ctrl + Shift + M Description: Toggle device toolbar - Ctrl + Shift + M
+											1282 tab (Tab) Panels
+											1285 button (단추) More tabs Description: More tabs
+											1336 toolbar (도구 모음)
+												1551 group (그룹) Open Issues to view 3 issues: 3 possible improvements Description: Open Issues to view 3 issues: 3 possible improvements
+													1552 button (단추) Open Issues to view 3 issues: 3 possible improvements
+												1337 button (단추) AI assistance Description: Open AI assistance panel
+												1338 group (그룹) Settings Description: Settings - F1 - Shift + ?
+													1339 button (단추) Settings - F1 - Shift + ? Description: Settings - F1 - Shift + ?
+												1340 button (단추) Customize and control DevTools Description: Customize and control DevTools
+													1341 button (단추) Customize and control DevTools Description: Customize and control DevTools
+												1342 group (그룹) Close Description: Close
+													1343 button (단추) Close Description: Close
+										1286 pane (탭 패널) Console panel
+											1287 group (그룹) console
+												1288 toolbar (도구 모음)
+													1289 group (그룹) Show Console sidebar Description: Show Console sidebar
+														1290 button (단추) Show Console sidebar Description: Show Console sidebar
+													1291 group (그룹) Clear console Description: Clear console - Ctrl + L
+														1292 button (단추) Clear console - Ctrl + L Description: Clear console - Ctrl + L
+													1293 group (그룹) Collapse all Description: Collapse all
+														1294 button (단추) Collapse all Description: Collapse all
+													1295 button (단추) JavaScript context: top Description: JavaScript context: top
+													1296 group (그룹) Create live expression Description: Create live expression
+														1297 button (단추) Create live expression Description: Create live expression
+													1298 group (그룹) Description: e.g. /eventd/ -cdn url:a.com
+														1299 combo box (콤보 상자) (settable, string) Filter Value: Filter
+															1511 text (텍스트) Filter
+													1301 button (단추) Log level: Default levels Description: Log level: Default levels
+														1302 text (텍스트) Default levels
+													1303 group (그룹) Some problems no longer generate console messages, but are surfaced in the Issues tab Click to view 3 possible improvements Description: Some problems no longer generate console messages, but are surfaced in the Issues tab Click to view 3 possible improvements ID: console-issues-counter
+														1345 button (단추) Some problems no longer generate console messages, but are surfaced in the Issues tab Click to view 3 possible improvements
+													1515 text (텍스트) 1 hidden
+													1304 group (그룹) Console settings Description: Console settings
+														1305 button (전환 버튼) Console settings Description: Console settings
+													1306 group (그룹) 0 messages in console
+												1307 group (그룹) ID: console-messages
+													1308 group (그룹)
+														1537 group (그룹) config and theme applied
+															1538 group (그룹) config and theme applied Stack table collapsed
+																1539 group (그룹)
+																	1540 hyperlink (링크) app.227b8030.js:1 Description: http://10.10.13.10:8080/client/js/app.227b8030.js:1
+																	1541 text (텍스트)
+																	1542 text (텍스트) config and theme applied
+														1543 group (그룹) Login detected, revalidating API permissions
+															1544 group (그룹) Login detected, revalidating API permissions Stack table collapsed
+																1545 group (그룹)
+																	1546 hyperlink (링크) app.227b8030.js:1 Description: http://10.10.13.10:8080/client/js/app.227b8030.js:1
+																	1547 text (텍스트)
+																	1548 text (텍스트) Login detected, revalidating API permissions
+													1309 group (그룹)
+													1310 group (그룹)
+														1311 text field (편집) (settable, string) Console prompt Value: Press ctrl i to turn on code suggestions Press ctrl x to disable code suggestions
+															1312 group (그룹)
+																1346 text (텍스트) Press ctrl i to turn on code suggestions Press ctrl x to disable code suggestions
+															1313 text (텍스트)
+									1314 group (보조) Drawer
+										1315 group (그룹)
+											1316 toolbar (도구 모음)
+												1317 button (단추) More tools Description: More tools
+													1318 button (단추) More tools Description: More tools
+											1319 tab (Tab)
+												1320 tab item (탭 항목) (selectable) What’s new ID: tab-release-note
+											1321 button (단추) More tabs Description: More tabs
+											1322 toolbar (도구 모음)
+												1323 group (그룹) Toggle drawer orientation Description: Toggle drawer orientation
+													1324 button (단추) Toggle drawer orientation Description: Toggle drawer orientation
+												1325 group (그룹) Minimize drawer Description: Minimize drawer
+													1326 button (단추) Minimize drawer Description: Minimize drawer
+												1327 group (그룹) Close drawer Description: Close drawer
+													1328 button (단추) Close drawer Description: Close drawer
+											1329 pane (탭 패널) What’s new panel
+												1347 group (그룹) whats-new
+													1348 text (텍스트) New in DevTools (November 2026)
+													1349 button (단추) See all new features
+													1350 text (제목) DevTools for agents
+														1351 hyperlink (링크) DevTools for agents Description: https://developer.chrome.com/blog/new-in-devtools-november-2026/#mcp
+													1352 text (텍스트) Inspect matched rules, inherited styles, pseudo-elements, and
+													1353 text (텍스트) @
+													1354 text (텍스트) rules with the
+													1355 text (텍스트) get_css_styles
+													1356 text (텍스트) tool in Chrome DevTools for agents. You can also manage server flags with a configuration file and parse large performance traces with chunked trace buffer parsing.
+													1357 text (제목) Visual position-area editor for CSS anchor positioning
+														1358 hyperlink (링크) Visual position-area editor for CSS anchor positioning Description: https://developer.chrome.com/blog/new-in-devtools-november-2026/#sources
+													1359 text (텍스트) Click the inline swatch next to a
+													1360 text (텍스트) position-area
+													1361 text (텍스트) declaration in the
+													1362 text (텍스트) Styles
+													1363 text (텍스트) tab to visually select anchor grid regions, configure axis modes, and toggle the
+													1364 text (텍스트) self
+													1365 text (텍스트) keyword. Right-click
+													1366 text (텍스트) popover
+													1367 text (텍스트) adorners in the DOM tree to disambiguate multiple implicit anchors.
+													1368 text (제목) Web Install manifest diagnostics and ad script provenance
+														1369 hyperlink (링크) Web Install manifest diagnostics and ad script provenance Description: https://developer.chrome.com/blog/new-in-devtools-november-2026/#web-install-manifest-diagnosti
+													1370 text (텍스트) Diagnose Web Install (
+													1371 text (텍스트) navigator.install
+													1372 text (텍스트) and
+													1373 text (텍스트) <install>
+													1374 text (텍스트) ) manifest errors in the
+													1375 text (텍스트) Issues
+													1376 text (텍스트) panel with direct links to affected manifests. In the
+													1377 text (텍스트) Application
+													1378 text (텍스트) panel's
+													1379 text (텍스트) Ads
+													1380 text (텍스트) section, use the new
+													1381 text (텍스트) Ad provenance
+													1382 text (텍스트) column to see whether script ancestry or a filter list rule tagged an ad script.
+									1330 text (경고)
+										1512 text (텍스트) Console cleared
+									1384 status bar (상태)
+								36 pane (영역)
+								1513 document (문서) 쿠버네티스 ISO - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57 ID: RootWebArea
+									1534 group (그룹)
+										1553 image (라벨이 없는 그래픽) 누락된 이미지 설명을 확인하려면 컨텍스트 메뉴를 여세요.
+										1554 menu (메뉴)
+											1555 menu item (메뉴 항목) dashboard 대시보드
+												1556 hyperlink (링크) dashboard 대시보드 Value: http://10.10.13.10:8080/client/#/dashboard
+													1557 image (그래픽) dashboard
+											1558 group (그룹)
+												1559 image (그래픽) cloud
+												1560 group (그룹)
+													1561 text (텍스트) 컴퓨트
+											1562 group (그룹)
+												1563 image (그래픽) hdd
+												1564 group (그룹)
+													1565 text (텍스트) 스토리지
+											1566 group (그룹)
+												1567 image (그래픽) wifi
+												1568 group (그룹)
+													1569 text (텍스트) 네트워크
+											1570 group (그룹)
+												1571 image (그래픽) picture
+												1572 group (그룹)
+													1573 text (텍스트) 이미지
+											1574 list (LIST) ID: sub_menu_4_$$_/image-popup
+												1575 menu item (메뉴 항목) save 템플릿
+													1576 hyperlink (링크) save 템플릿 Value: http://10.10.13.10:8080/client/#/template
+														1577 image (그래픽) save
+												1578 menu item (메뉴 항목) usb ISO
+													1579 hyperlink (링크) usb ISO Value: http://10.10.13.10:8080/client/#/iso
+														1580 image (그래픽) usb
+												1581 menu item (메뉴 항목) 쿠버네티스 ISO
+													1582 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+														1583 image (그래픽)
+											1584 group (그룹)
+												1585 image (그래픽) lock
+												1586 group (그룹)
+													1587 text (텍스트) 키 관리
+											1588 menu item (메뉴 항목) schedule 이벤트
+												1589 hyperlink (링크) schedule 이벤트 Value: http://10.10.13.10:8080/client/#/event
+													1590 image (그래픽) schedule
+											1591 menu item (메뉴 항목) project 프로젝트
+												1592 hyperlink (링크) project 프로젝트 Value: http://10.10.13.10:8080/client/#/project
+													1593 image (그래픽) project
+											1594 menu item (메뉴 항목) idcard 역할
+												1595 hyperlink (링크) idcard 역할 Value: http://10.10.13.10:8080/client/#/role
+													1596 image (그래픽) idcard
+											1597 menu item (메뉴 항목) team 계정
+												1598 hyperlink (링크) team 계정 Value: http://10.10.13.10:8080/client/#/account
+													1599 image (그래픽) team
+											1600 menu item (메뉴 항목) block 도메인
+												1601 hyperlink (링크) block 도메인 Value: http://10.10.13.10:8080/client/#/domain
+													1602 image (그래픽) block
+											1603 group (그룹)
+												1604 image (그래픽) bank
+												1605 group (그룹)
+													1606 text (텍스트) 인프라스트럭쳐
+											1607 group (그룹)
+												1608 image (그래픽) shopping
+												1609 group (그룹)
+													1610 text (텍스트) 서비스 오퍼링
+											1611 group (그룹)
+												1612 image (그래픽) setting
+												1613 group (그룹)
+													1614 text (텍스트) 구성
+											1615 menu item (메뉴 항목) appstore-add 확장
+												1616 hyperlink (링크) appstore-add 확장 Value: http://10.10.13.10:8080/client/#/extension
+													1617 image (그래픽) appstore-add
+											1618 group (그룹)
+												1619 image (그래픽) tool
+												1620 group (그룹)
+													1621 text (텍스트) 도구
+											1622 menu item (메뉴 항목) read API 문서
+												1623 hyperlink (링크) read API 문서 Value: http://10.10.13.10:8080/client/#/apidocs/
+													1624 image (그래픽) read
+										1625 group (섹션 헤더)
+											1626 text (텍스트) 페이지 스타일 설정
+											1627 button (단추) 닫기
+												1628 image (그래픽) close
+										1629 text (제목) 페이지 스타일 설정
+										1630 group (그룹)
+											1631 image (그래픽)
+											1632 radio button (라디오 단추) (selectable, settable, string)
+											1854 text (텍스트)
+										1634 group (그룹)
+											1635 image (그래픽)
+											1636 radio button (라디오 단추) (selectable, settable, string)
+											1855 text (텍스트)
+											1638 image (그래픽) check
+										1639 text (제목) 테마 색상
+										1640 group (그룹)
+											1641 radio button (라디오 단추) (selectable, settable, string)
+											1856 text (텍스트)
+											1643 image (그래픽) check
+										1644 group (그룹)
+											1645 radio button (라디오 단추) (selectable, settable, string)
+											1857 text (텍스트)
+										1647 group (그룹)
+											1648 radio button (라디오 단추) (selectable, settable, string)
+											1858 text (텍스트)
+										1650 group (그룹)
+											1651 radio button (라디오 단추) (selectable, settable, string)
+											1859 text (텍스트)
+										1653 group (그룹)
+											1654 radio button (라디오 단추) (selectable, settable, string)
+											1860 text (텍스트)
+										1656 group (그룹)
+											1657 radio button (라디오 단추) (selectable, settable, string)
+											1861 text (텍스트)
+										1659 group (그룹)
+											1660 radio button (라디오 단추) (selectable, settable, string)
+											1862 text (텍스트)
+										1662 group (그룹)
+											1663 radio button (라디오 단추) (selectable, settable, string)
+											1863 text (텍스트)
+										1665 separator (구분 기호)
+										1666 text (제목) 네비게이션 설정
+										1667 list item (목록 항목) 배경색
+											1668 text (텍스트) 배경색
+											1669 button (color picker) (disabled) Value: 100% red 100% green 100% blue
+										1670 list item (목록 항목) 텍스트 색상
+											1671 text (텍스트) 텍스트 색상
+											1672 button (color picker) (disabled) Value: 0% red 0% green 0% blue
+										1673 separator (구분 기호)
+										1674 text (경고)
+											1675 image (그래픽) exclamation-circle
+											1676 text (텍스트) 설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+										1677 button (단추) download 세팅값 다운로드(json)
+											1678 image (그래픽) download
+										1679 button (단추) undo 기본값으로 재설정
+											1680 image (그래픽) undo
+										1681 group (섹션 헤더)
+											1682 image (그래픽) menu-fold
+											1683 text (텍스트) 프로젝트
+											1684 group (그룹)
+												1685 group (그룹)
+													1686 combo box (콤보 상자) (settable, string) 프로젝트 ID: project-selector-1
+													1687 image (그래픽) project
+													1688 text (텍스트) 기본 보기
+											1689 button (단추) 생성 down
+												1690 image (그래픽) down
+											1691 group (그룹)
+												1692 image (그래픽) translation
+											1693 button (단추) 알림
+												1694 image (그래픽) bell
+											1695 group (그룹)
+												1696 text (텍스트) AC
+												1697 text (텍스트) admin cloud
+										1698 group (기본)
+											1699 hyperlink (링크) home Value: http://10.10.13.10:8080/client/#/
+												1700 image (그래픽) home
+											1701 text (텍스트) /
+											1702 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+											1703 hyperlink (링크) question-circle Value: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions
+												1704 image (그래픽) question-circle
+											1705 button (단추) reload 업데이트
+												1775 image (그래픽) reload
+											1707 group (그룹)
+											1708 button (단추) 쿠버네티스 버전 추가
+												1709 image (그래픽) plus
+											1710 button (단추) 로컬에서 Kubernetes 버전 추가
+												1711 image (그래픽) cloud-upload
+											1712 button (단추) 고급 검색
+												1713 image (그래픽) filter
+											1714 group (그룹)
+												1715 text field (편집) (settable, string) 검색 Description: 검색
+											1716 button (단추) search
+												1717 image (그래픽) search
+											1718 group (지역) 쿠버네티스 ISO
+												1720 table (TABLE)
+													1721 data item (행)
+														1722 data item (열 머리글) 이름 caret-up caret-down Description: 이름
+															1723 group (그룹)
+																1724 group (그룹)
+																1725 image (그래픽) caret-up
+																1726 image (그래픽) caret-down
+														1727 data item (열 머리글) 상태 caret-up caret-down Description: 상태
+															1728 group (그룹)
+																1729 group (그룹)
+																1730 image (그래픽) caret-up
+																1731 image (그래픽) caret-down
+														1732 data item (열 머리글) 시맨틱 버전 caret-up caret-down Description: 시맨틱 버전
+															1733 group (그룹)
+																1734 group (그룹)
+																1735 image (그래픽) caret-up
+																1736 image (그래픽) caret-down
+														1737 data item (열 머리글) ISO 상태 Description: ISO 상태
+															1738 group (그룹)
+														1739 data item (열 머리글) 최소 CPU 코어 caret-up caret-down Description: 최소 CPU 코어
+															1740 group (그룹)
+																1741 group (그룹)
+																1742 image (그래픽) caret-up
+																1743 image (그래픽) caret-down
+														1744 data item (열 머리글) 최소 메모리(MB) caret-up caret-down Description: 최소 메모리(MB)
+															1745 group (그룹)
+																1746 group (그룹)
+																1747 image (그래픽) caret-up
+																1748 image (그래픽) caret-down
+														1749 data item (열 머리글) CPU 아키텍처 Description: CPU 아키텍처
+															1750 group (그룹)
+														1751 data item (열 머리글) Zone Description: Zone
+															1752 group (그룹)
+														1753 data item (열 머리글) 열 선택
+															1754 button (단추) 열 선택
+																1755 image (그래픽) filter
+													1776 data item (행)
+														1777 data item (항목) 1.35.9
+															1778 image (그래픽)
+															1779 hyperlink (링크) 1.35.9 Value: http://10.10.13.10:8080/client/#/kubernetesiso/b5fabc77-be13-448e-8643-625e9ff8d1e0?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1780 data item (항목) 사용 허용
+															1781 group (그룹)
+														1782 data item (항목) 1.35.9
+															1783 group (그룹)
+														1784 data item (항목) 미확인
+															1785 group (그룹)
+														1786 data item (항목) 2
+															1787 group (그룹)
+														1788 data item (항목) 2048
+															1789 group (그룹)
+														1790 data item (항목) x86_64
+															1791 group (그룹)
+														1792 data item (항목) 13-Zone
+															1793 hyperlink (링크) 13-Zone Description: f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f Value: http://10.10.13.10:8080/client/#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f
+														1794 data item (항목)
+													1795 data item (행)
+														1796 data item (항목) 1.36.5
+															1797 image (그래픽)
+															1798 hyperlink (링크) 1.36.5 Value: http://10.10.13.10:8080/client/#/kubernetesiso/441b3f20-0a40-48dd-becb-1573c6059867?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1799 data item (항목) 사용 허용
+															1800 group (그룹)
+														1801 data item (항목) 1.36.5
+															1802 group (그룹)
+														1803 data item (항목) 미확인
+															1804 group (그룹)
+														1805 data item (항목) 2
+															1806 group (그룹)
+														1807 data item (항목) 2048
+															1808 group (그룹)
+														1809 data item (항목) x86_64
+															1810 group (그룹)
+														1811 data item (항목) 13-Zone
+															1812 hyperlink (링크) 13-Zone Description: f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f Value: http://10.10.13.10:8080/client/#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f
+														1813 data item (항목)
+													1814 data item (행)
+														1815 data item (항목) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-
+															1816 image (그래픽)
+															1817 hyperlink (링크) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE- Value: http://10.10.13.10:8080/client/#/kubernetesiso/8f773b4a-8802-40ea-88e6-76d2b8141e29?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1818 data item (항목) 사용 허용
+															1819 group (그룹)
+														1820 data item (항목) 1.36.72
+															1821 group (그룹)
+														1822 data item (항목) 미확인
+															1823 group (그룹)
+														1824 data item (항목) 2
+															1825 group (그룹)
+														1826 data item (항목) 2048
+															1827 group (그룹)
+														1828 data item (항목) x86_64
+															1829 group (그룹)
+														1830 data item (항목) 모든 Zone
+															1831 group (그룹)
+														1832 data item (항목)
+													1833 data item (행)
+														1834 data item (항목) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-
+															1835 image (그래픽)
+															1836 hyperlink (링크) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ- Value: http://10.10.13.10:8080/client/#/kubernetesiso/29ce330b-a632-445e-b687-a6eacffa5523?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1837 data item (항목) 사용 허용
+															1838 group (그룹)
+														1839 data item (항목) 1.36.74
+															1840 group (그룹)
+														1841 data item (항목) 미확인
+															1842 group (그룹)
+														1843 data item (항목) 2
+															1844 group (그룹)
+														1845 data item (항목) 2048
+															1846 group (그룹)
+														1847 data item (항목) x86_64
+															1848 group (그룹)
+														1849 data item (항목) 모든 Zone
+															1850 group (그룹)
+														1851 data item (항목)
+											1759 list (LIST)
+												1760 list item (목록 항목) 전체 4 개 항목 중 1-4 표시
+												1761 list item (목록 항목) (disabled) 이전 페이지 Description: 이전 페이지
+													1762 button (단추) (disabled) left
+														1763 image (그래픽) left
+												1852 list item (목록 항목) 1 Description: 1
+													1853 text (텍스트) 1
+												1766 list item (목록 항목) (disabled) 다음 페이지 Description: 다음 페이지
+													1767 button (단추) (disabled) right
+														1768 image (그래픽) right
+												1769 list item (목록 항목) 20 / 쪽
+													1770 group (그룹)
+														1771 group (그룹)
+															1772 combo box (콤보 상자) ID: rc_select_1
+															1773 text (텍스트) 20 / 쪽
+										1774 group (섹션 바닥글)
+										1864 text (경고)
+											1865 image (그래픽) exclamation-circle
+											1866 text (텍스트) 조치가 필요한 경보
+											1867 text (텍스트) (2건)
+											1868 text (텍스트) -
+											1869 text (텍스트) 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+											1870 button (단추) 세부 경보 내용 확인
+											1871 button (단추) 경보 규칙으로 이동
+											1872 button (단추) 닫기
+												1873 image (그래픽) close
+							387 pane (영역)
+						388 pane (영역)
+							389 pane (영역)
+								390 button (단추) 탭 검색
+							391 pane (영역) ID: view_21
+								392 tab (Tab)
+									393 tab item (탭 항목) (selectable) 쿠버네티스 ISO - ABLESTACK-Mold - 메모리 사용량 - 468MB ID: view_20
+										394 button (단추) 닫기
+								395 pane (영역)
+							396 button (단추) 새 탭
+							397 pane (영역)
+							398 pane (영역)
+								399 button (단추) Chrome의 Gemini 열기
+								400 pane (영역)
+						401 pane (영역)
+			1516 pane (창) 이 페이지를 번역하시겠습니까?
+				1517 pane (창) (disabled)
+				1518 text (경고) 이 페이지를 번역하시겠습니까?
+					1519 pane (영역)
+						1520 pane (영역)
+							1521 pane (영역)
+							1522 pane (영역)
+								1523 pane (영역)
+									1524 pane (영역)
+										1525 pane (영역)
+											1526 tab (Tab) 영어
+												1527 tab item (탭 항목) (selectable) 영어
+												1528 tab item (탭 항목) (selectable) 한국어
+											1529 button (단추) 번역 옵션 ID: view_4
+											1530 button (단추) 닫기 ID: view_5
+								1531 pane (영역)
+							1535 pane (영역)
+								1536 pane (영역)
+		1516 pane (창) 이 페이지를 번역하시겠습니까?
+			1517 pane (창) (disabled)
+			1518 text (경고) 이 페이지를 번역하시겠습니까?
+				1519 pane (영역)
+					1520 pane (영역)
+						1521 pane (영역)
+						1522 pane (영역)
+							1523 pane (영역)
+								1524 pane (영역)
+									1525 pane (영역)
+										1526 tab (Tab) 영어
+											1527 tab item (탭 항목) (selectable) 영어
+											1528 tab item (탭 항목) (selectable) 한국어
+										1529 button (단추) 번역 옵션 ID: view_4
+										1530 button (단추) 닫기 ID: view_5
+							1531 pane (영역)
+						1535 pane (영역)
+							1536 pane (영역)
+
+Document text: ```
+￼
+￼
+￼
+대시보드
+￼
+컴퓨트
+￼
+￼
+스토리지
+￼
+￼
+네트워크
+￼
+￼
+이미지
+￼
+￼
+￼
+템플릿
+￼
+￼
+ISO
+￼
+￼
+쿠버네티스 ISO
+￼
+키 관리
+￼
+￼
+￼
+이벤트
+￼
+￼
+프로젝트
+￼
+￼
+역할
+￼
+￼
+계정
+￼
+￼
+도메인
+￼
+인프라스트럭쳐
+￼
+￼
+서비스 오퍼링
+￼
+￼
+구성
+￼
+￼
+￼
+확장
+￼
+도구
+￼
+￼
+￼
+API 문서
+페이지 스타일 설정
+￼
+페이지 스타일 설정
+￼
+￼
+￼
+￼
+￼
+테마 색상
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+￼
+네비게이션 설정
+배경색
+￼
+텍스트 색상
+￼
+￼
+￼
+설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+￼
+세팅값 다운로드(json)
+￼
+기본값으로 재설정
+￼
+프로젝트
+￼
+￼
+기본 보기
+생성
+￼
+￼
+￼
+AC
+admin cloud
+￼
+/쿠버네티스 ISO
+￼
+￼
+업데이트
+￼
+￼
+쿠버네티스 버전 추가
+￼
+￼
+￼
+￼
+이름
+￼
+￼
+상태
+￼
+￼
+시맨틱 버전
+￼
+￼
+ISO 상태
+최소 CPU 코어
+￼
+￼
+최소 메모리(MB)
+￼
+￼
+CPU 아키텍처
+Zone
+￼
+￼
+1.35.9
+￼
+사용 허용
+1.35.9
+￼
+미확인
+2
+2048
+x86_64
+13-Zone
+￼
+￼
+1.36.5
+￼
+사용 허용
+1.36.5
+￼
+미확인
+2
+2048
+x86_64
+13-Zone
+￼
+￼
+qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마AB…
+￼
+사용 허용
+1.36.72
+￼
+미확인
+2
+2048
+x86_64
+모든 Zone
+￼
+￼
+qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQ…
+￼
+사용 허용
+1.36.74
+￼
+미확인
+2
+2048
+x86_64
+모든 Zone
+￼
+전체 4 개 항목 중 1-4 표시
+￼
+1
+￼
+￼
+20 / 쪽
+￼
+￼
+￼
+조치가 필요한 경보
+(2건)
+-
+주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+세부 경보 내용 확인
+경보 규칙으로 이동
+￼
+```

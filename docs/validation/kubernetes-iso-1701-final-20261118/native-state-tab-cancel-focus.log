@@ -1,0 +1,385 @@
+Window: "쿠버네티스 ISO - ABLESTACK-Mold - Chrome", App: chrome.exe.
+	0 window (창) 쿠버네티스 ISO - ABLESTACK-Mold - Chrome Secondary Actions: Raise
+		1 pane (창) (disabled)
+		2 pane (영역) 쿠버네티스 ISO - ABLESTACK-Mold - Chrome
+			3 pane (영역)
+				4 pane (영역)
+					5 pane (영역)
+						6 button (단추) 최소화 ID: view_1
+						420 button (단추) 복구 ID: view_3
+						8 button (단추) 닫기 ID: view_4
+					9 pane (영역)
+						10 pane (영역)
+							11 toolbar (도구 모음) ID: view_1000
+								12 button (단추) 뒤로 ID: view_1001
+								13 button (단추) (disabled) 앞으로 ID: view_1002
+								14 button (단추) 새로고침 ID: view_1003
+								15 button (단추) 홈 ID: view_1004
+								16 group (그룹)
+									17 button (단추) 주의 요함 ID: view_1011
+									18 text field (편집) (settable, string) 주소창 및 검색창 Description: Google에 물어보거나 URL을 입력하세요. Value: 10.10.13.10:8080/client/#/kubernetesiso/8f773b4a-8802-40ea-88e6-76d2b8141e29?tab=events ID: view_1012
+									19 pane (영역)
+										20 button (단추) 번역
+										21 button (단추) 현재 탭을 북마크에 추가
+								22 pane (영역)
+									23 button (단추) ChatGPT 이 사이트의 액세스 권한이 있습니다. ID: view_1009
+									24 button (단추) iCloud 암호 이 사이트의 액세스 권한이 있습니다. ID: view_1009
+									25 button (단추) 확장 프로그램 ID: view_1006
+								26 pane (영역)
+								27 pane (영역)
+									28 button (단추) 새 시크릿 창 - 고정됨
+									29 button (단추) Google 비밀번호 관리자 - 고정됨
+									30 button (단추) 개발자 도구 - 고정됨
+									31 pane (영역)
+								32 button (단추) 동혁 ID: view_1018
+								33 button (단추) Chrome ID: view_1007
+						34 pane (영역)
+							35 pane (영역)
+								36 pane (영역)
+								37 document (문서) 쿠버네티스 ISO - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/kubernetesiso/8f773b4a-8802-40ea-88e6-76d2b8141e29?tab=events ID: RootWebArea
+									38 group (그룹)
+										421 image (라벨이 없는 그래픽)
+										40 menu (메뉴)
+											41 menu item (메뉴 항목) dashboard 대시보드
+												42 hyperlink (링크) dashboard 대시보드 Value: http://10.10.13.10:8080/client/#/dashboard
+													43 image (그래픽) dashboard
+											44 group (그룹)
+												45 image (그래픽) cloud
+												46 group (그룹)
+													47 text (텍스트) 컴퓨트
+											48 group (그룹)
+												49 image (그래픽) hdd
+												50 group (그룹)
+													51 text (텍스트) 스토리지
+											52 group (그룹)
+												53 image (그래픽) wifi
+												54 group (그룹)
+													55 text (텍스트) 네트워크
+											56 group (그룹)
+												57 image (그래픽) picture
+												58 group (그룹)
+													59 text (텍스트) 이미지
+											435 list (LIST) ID: sub_menu_4_$$_/image-popup
+												436 menu item (메뉴 항목) save 템플릿
+													437 hyperlink (링크) save 템플릿 Value: http://10.10.13.10:8080/client/#/template
+														438 image (그래픽) save
+												439 menu item (메뉴 항목) usb ISO
+													440 hyperlink (링크) usb ISO Value: http://10.10.13.10:8080/client/#/iso
+														441 image (그래픽) usb
+												442 menu item (메뉴 항목) 쿠버네티스 ISO
+													443 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+														444 image (그래픽)
+											60 group (그룹)
+												61 image (그래픽) lock
+												62 group (그룹)
+													63 text (텍스트) 키 관리
+											64 menu item (메뉴 항목) schedule 이벤트
+												65 hyperlink (링크) schedule 이벤트 Value: http://10.10.13.10:8080/client/#/event
+													66 image (그래픽) schedule
+											67 menu item (메뉴 항목) project 프로젝트
+												68 hyperlink (링크) project 프로젝트 Value: http://10.10.13.10:8080/client/#/project
+													69 image (그래픽) project
+											70 menu item (메뉴 항목) idcard 역할
+												71 hyperlink (링크) idcard 역할 Value: http://10.10.13.10:8080/client/#/role
+													72 image (그래픽) idcard
+											73 menu item (메뉴 항목) team 계정
+												74 hyperlink (링크) team 계정 Value: http://10.10.13.10:8080/client/#/account
+													75 image (그래픽) team
+											76 menu item (메뉴 항목) block 도메인
+												77 hyperlink (링크) block 도메인 Value: http://10.10.13.10:8080/client/#/domain
+													78 image (그래픽) block
+											79 group (그룹)
+												80 image (그래픽) bank
+												81 group (그룹)
+													82 text (텍스트) 인프라스트럭쳐
+											83 group (그룹)
+												84 image (그래픽) shopping
+												85 group (그룹)
+													86 text (텍스트) 서비스 오퍼링
+											87 group (그룹)
+												88 image (그래픽) setting
+												89 group (그룹)
+													90 text (텍스트) 구성
+											91 menu item (메뉴 항목) appstore-add 확장
+												92 hyperlink (링크) appstore-add 확장 Value: http://10.10.13.10:8080/client/#/extension
+													93 image (그래픽) appstore-add
+											94 group (그룹)
+												95 image (그래픽) tool
+												96 group (그룹)
+													97 text (텍스트) 도구
+											98 menu item (메뉴 항목) read API 문서
+												99 hyperlink (링크) read API 문서 Value: http://10.10.13.10:8080/client/#/apidocs/
+													100 image (그래픽) read
+										101 group (섹션 헤더)
+											102 text (텍스트) 페이지 스타일 설정
+											103 button (단추) 닫기
+												104 image (그래픽) close
+										105 text (제목) 페이지 스타일 설정
+										106 group (그룹)
+											107 image (그래픽)
+											108 radio button (라디오 단추) (selectable, settable, string)
+											422 text (텍스트)
+										110 group (그룹)
+											111 image (그래픽)
+											112 radio button (라디오 단추) (selectable, settable, string)
+											423 text (텍스트)
+											114 image (그래픽) check
+										115 text (제목) 테마 색상
+										116 group (그룹)
+											117 radio button (라디오 단추) (selectable, settable, string)
+											424 text (텍스트)
+											119 image (그래픽) check
+										120 group (그룹)
+											121 radio button (라디오 단추) (selectable, settable, string)
+											425 text (텍스트)
+										123 group (그룹)
+											124 radio button (라디오 단추) (selectable, settable, string)
+											426 text (텍스트)
+										126 group (그룹)
+											127 radio button (라디오 단추) (selectable, settable, string)
+											427 text (텍스트)
+										129 group (그룹)
+											130 radio button (라디오 단추) (selectable, settable, string)
+											428 text (텍스트)
+										132 group (그룹)
+											133 radio button (라디오 단추) (selectable, settable, string)
+											429 text (텍스트)
+										135 group (그룹)
+											136 radio button (라디오 단추) (selectable, settable, string)
+											430 text (텍스트)
+										138 group (그룹)
+											139 radio button (라디오 단추) (selectable, settable, string)
+											431 text (텍스트)
+										141 separator (구분 기호)
+										142 text (제목) 네비게이션 설정
+										143 list item (목록 항목) 배경색
+											144 text (텍스트) 배경색
+											145 button (color picker) (disabled) Value: 100% red 100% green 100% blue
+										146 list item (목록 항목) 텍스트 색상
+											147 text (텍스트) 텍스트 색상
+											148 button (color picker) (disabled) Value: 0% red 0% green 0% blue
+										149 separator (구분 기호)
+										150 text (경고)
+											151 image (그래픽) exclamation-circle
+											152 text (텍스트) 설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+										153 button (단추) download 세팅값 다운로드(json)
+											154 image (그래픽) download
+										155 button (단추) undo 기본값으로 재설정
+											156 image (그래픽) undo
+										157 group (섹션 헤더)
+											432 image (그래픽) menu-fold
+											159 text (텍스트) 프로젝트
+											160 group (그룹)
+												161 group (그룹)
+													162 combo box (콤보 상자) (settable, string) 프로젝트 ID: project-selector-1
+													163 image (그래픽) project
+													164 text (텍스트) 기본 보기
+											433 button (단추) 생성 down
+												434 image (그래픽) down
+											167 group (그룹)
+												168 image (그래픽) translation
+											169 button (단추) 알림
+												170 image (그래픽) bell
+											171 group (그룹)
+												172 text (텍스트) AC
+												173 text (텍스트) admin cloud
+										174 group (기본)
+											450 hyperlink (링크) home Value: http://10.10.13.10:8080/client/#/
+												451 image (그래픽) home
+											452 text (텍스트) /
+											453 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+											604 text (텍스트) /
+											605 group (그룹)
+												923 text (텍스트) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-
+											607 hyperlink (링크) question-circle Value: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions
+												608 image (그래픽) question-circle
+											609 button (단추) reload 업데이트
+												924 image (그래픽) reload
+											611 group (그룹)
+											925 button (단추) down 작업
+												926 image (그래픽) down
+											613 group (그룹)
+												614 image (그래픽)
+											927 text (제목) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-
+											928 text (텍스트) x86_64
+											616 separator (구분 기호)
+											929 text (텍스트) 버전 사용 설정
+											930 text (텍스트) 사용 허용
+											931 text (텍스트) 아이디
+											932 group (그룹)
+												933 button (단추) 아이디 복사
+													934 image (그래픽) barcode
+											935 group (그룹)
+												936 hyperlink (링크) 8f773b4a-8802-40ea-88e6-76d2b8141e29 Value: javascript:;
+											937 text (텍스트) ISO 가용성
+											938 group (그룹) Description: 사용 가능 ISO 등록 상태: Ready
+												939 text (텍스트) 사용 가능
+												1077 text (텍스트) 조회한 ISO Zone 준비: 1/1
+												940 button (단추) Zone에서 원인 확인
+											941 text (텍스트) 등록 범위
+											942 text (텍스트) 모든 Zone
+											943 text (텍스트) 연결된 ISO
+											1078 hyperlink (링크) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE--Kubernetes-Binaries-ISO Value: http://10.10.13.10:8080/client/#/iso/49819ec0-6527-40fc-91ce-236b9ab30c47
+											945 text (텍스트) 생성일
+											946 image (그래픽) calendar
+											947 text (텍스트) 2026. 11. 17. 오후 1:23:37
+											948 tab (Tab)
+												949 group (그룹)
+													950 tab item (탭 항목) (selectable) 상세 ID: rc-tabs-3-tab-details
+												951 group (그룹)
+													952 tab item (탭 항목) (selectable) Zone ID: rc-tabs-3-tab-zones
+												953 group (그룹)
+													954 tab item (탭 항목) (selectable) 이벤트 ID: rc-tabs-3-tab-events
+											955 pane (탭 패널) 이벤트 ID: rc-tabs-3-panel-events
+												956 button (단추) reload 업데이트
+													957 image (그래픽) reload
+												958 button (단추) 열 선택
+													959 image (그래픽) setting
+												960 group (그룹)
+													961 text field (편집) (settable, string) 관련 자원 이벤트 검색 Description: 검색
+												962 button (단추) search
+													963 image (그래픽) search
+												964 table (TABLE)
+													965 data item (행)
+														966 data item (열 머리글) 레벨 caret-up caret-down
+															967 group (그룹)
+																968 image (그래픽) caret-up
+																969 image (그래픽) caret-down
+														970 data item (열 머리글) 유형 caret-up caret-down
+															971 group (그룹)
+																972 image (그래픽) caret-up
+																973 image (그래픽) caret-down
+														974 data item (열 머리글) 상태 caret-up caret-down
+															975 group (그룹)
+																976 image (그래픽) caret-up
+																977 image (그래픽) caret-down
+														978 data item (열 머리글) 사용자 이름 caret-up caret-down
+															979 group (그룹)
+																980 image (그래픽) caret-up
+																981 image (그래픽) caret-down
+														982 data item (열 머리글) 계정 caret-up caret-down
+															983 group (그룹)
+																984 image (그래픽) caret-up
+																985 image (그래픽) caret-down
+														986 data item (열 머리글) 도메인 caret-up caret-down
+															987 group (그룹)
+																988 image (그래픽) caret-up
+																989 image (그래픽) caret-down
+														990 data item (열 머리글) 생성일 caret-up caret-down
+															991 group (그룹)
+																992 image (그래픽) caret-up
+																993 image (그래픽) caret-down
+													994 data item (행)
+														995 data item (항목) INFO
+															996 hyperlink (링크) INFO Value: http://10.10.13.10:8080/client/#/event/019271bb-e817-4849-bddd-1225681f6543
+														997 data item (항목) KUBERNETES.VERSION.UPDATE
+														998 data item (항목) 확인 필요
+															999 group (그룹)
+														1000 data item (항목) admin
+															1001 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/accountuser?username=admin&domainid=47178e2f-bd56-11f1-b573-002481560363
+														1002 data item (항목) admin
+															1003 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+														1004 data item (항목) ROOT
+															1005 hyperlink (링크) ROOT Value: http://10.10.13.10:8080/client/#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details
+														1006 data item (항목) 2026. 11. 17. 오후 2:42:58
+													1007 data item (행)
+														1008 data item (항목) INFO
+															1009 hyperlink (링크) INFO Value: http://10.10.13.10:8080/client/#/event/c62f1f3f-967f-423d-ac37-980b45bb6abc
+														1010 data item (항목) KUBERNETES.VERSION.UPDATE
+														1011 data item (항목) 확인 필요
+															1012 group (그룹)
+														1013 data item (항목) admin
+															1014 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/accountuser?username=admin&domainid=47178e2f-bd56-11f1-b573-002481560363
+														1015 data item (항목) admin
+															1016 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+														1017 data item (항목) ROOT
+															1018 hyperlink (링크) ROOT Value: http://10.10.13.10:8080/client/#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details
+														1019 data item (항목) 2026. 11. 17. 오후 2:41:57
+													1020 data item (행)
+														1021 data item (항목) INFO
+															1022 hyperlink (링크) INFO Value: http://10.10.13.10:8080/client/#/event/6eafc8e3-6164-49f4-ab7a-5415a054179c
+														1023 data item (항목) KUBERNETES.VERSION.ADD
+														1024 data item (항목) 확인 필요
+															1025 group (그룹)
+														1026 data item (항목) admin
+															1027 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/accountuser?username=admin&domainid=47178e2f-bd56-11f1-b573-002481560363
+														1028 data item (항목) admin
+															1029 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+														1030 data item (항목) ROOT
+															1031 hyperlink (링크) ROOT Value: http://10.10.13.10:8080/client/#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details
+														1032 data item (항목) 2026. 11. 17. 오후 1:23:37
+												1033 list (LIST)
+													1034 list item (목록 항목) 전체 3개 항목 중 1-3 표시
+													1035 list item (목록 항목) (disabled) 이전 페이지 Description: 이전 페이지
+														1036 button (단추) (disabled) left
+															1037 image (그래픽) left
+													1038 list item (목록 항목) 1 Description: 1
+														1039 text (텍스트) 1
+													1040 list item (목록 항목) (disabled) 다음 페이지 Description: 다음 페이지
+														1041 button (단추) (disabled) right
+															1042 image (그래픽) right
+													1043 list item (목록 항목) 10 / 쪽
+														1044 group (그룹)
+															1045 group (그룹)
+																1046 combo box (콤보 상자) ID: rc_select_6
+																1047 text (텍스트) 10 / 쪽
+										376 group (섹션 바닥글)
+										377 text (경고)
+											378 image (그래픽) exclamation-circle
+											379 text (텍스트) 조치가 필요한 경보
+											380 text (텍스트) (2건)
+											381 text (텍스트) -
+											382 text (텍스트) 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+											383 button (단추) 세부 경보 내용 확인
+											384 button (단추) 경보 규칙으로 이동
+											385 button (단추) 닫기
+												386 image (그래픽) close
+										1048 window (대화 상자) 쿠버네티스 버전 관리 Secondary Actions: Raise
+											1049 document (문서)
+												1050 button (단추) Close
+													1051 image (그래픽) close
+												1052 text (텍스트) 쿠버네티스 버전 관리
+												1053 group (그룹)
+													1055 list (LIST)
+														1056 list item (용어) 이름
+															1057 text (텍스트) 이름
+														1058 text (텍스트) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-
+														1059 list item (용어) 시맨틱 버전
+															1060 text (텍스트) 시맨틱 버전
+														1061 text (텍스트) 1.36.72
+														1062 list item (용어) 아이디
+															1063 text (텍스트) 아이디
+														1064 text (텍스트) 8f773b4a-8802-40ea-88e6-76d2b8141e29
+														1065 list item (용어) 상태
+															1066 text (텍스트) 상태
+														1067 text (텍스트) 사용 허용
+													1068 group (그룹) Description: 변경할 상태
+														1069 text (텍스트) 변경할 상태
+													1070 group (그룹) 변경할 상태
+														1091 group (그룹)
+															1092 text (텍스트) Disabled
+														1071 group (그룹)
+															1072 combo box (콤보 상자) 변경할 상태 ID: kiso-next-state
+															1093 text (텍스트) 사용 중지
+												1073 button (단추) 취소
+												1074 button (단추) 업데이트
+												1076 button (단추) 확인
+							387 pane (영역)
+						388 pane (영역)
+							389 pane (영역)
+								390 button (단추) 탭 검색
+							391 pane (영역) ID: view_21
+								392 tab (Tab)
+									393 tab item (탭 항목) (selectable) 쿠버네티스 ISO - ABLESTACK-Mold - 메모리 사용량 - 219MB ID: view_20
+										394 button (단추) 닫기
+								395 pane (영역)
+							396 button (단추) 새 탭
+							397 pane (영역)
+							398 pane (영역)
+								399 button (단추) Chrome의 Gemini 열기
+								400 pane (영역)
+						401 pane (영역)
+
+Document text: ```
+관련 자원 이벤트 검색
+```
