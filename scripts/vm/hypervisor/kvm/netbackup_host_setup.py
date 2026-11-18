@@ -64,6 +64,7 @@ NETBACKUP_SERVICE_NAME = os.environ.get("NETBACKUP_SERVICE_NAME", "netbackup")
 MOLD_API_RESPONSE_FORMAT = "json"
 NETBACKUP_PROVIDER_NAME = "ablestack-netbackup"
 NETBACKUP_VM_SCHEDULE_CONFIG_NAME = "backup.plugin.netbackup.vm.schedule.enabled"
+NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME = "backup.plugin.netbackup.hook.timeout"
 NETBACKUP_OFFERING_NAME = "NetBackup"
 NETBACKUP_OFFERING_DESCRIPTION = "Ablestack NetBackup backup offering"
 NETBACKUP_OFFERING_EXTERNAL_ID = "netbackup"
@@ -867,7 +868,8 @@ def set_bp_conf_value(path: Path, key: str, value: str) -> None:
     new_lines = []
     for line in lines:
         if pattern.match(line):
-            new_lines.append(f"{key} = {value}")
+            if not replaced:
+                new_lines.append(f"{key} = {value}")
             replaced = True
         else:
             new_lines.append(line)
@@ -876,17 +878,31 @@ def set_bp_conf_value(path: Path, key: str, value: str) -> None:
     path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
 
 
-def apply_netbackup_bp_conf() -> bool:
+def read_hook_timeout(args) -> int:
+    value = get_configuration_value(NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME, args.mold_url, args.admin_apikey, args.admin_secretkey)
+    try:
+        if type(value) not in (str, int):
+            raise ValueError()
+        seconds = int(value)
+        if not 1 <= seconds <= 2147483647:
+            raise ValueError()
+        return seconds
+    except (ValueError, TypeError):
+        fail(f"Configure a positive Integer for {NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME} in Global settings first")
+
+
+def apply_netbackup_bp_conf(notify_timeout: int) -> bool:
     if not NETBACKUP_BP_CONF_PATH.is_file():
         print(f"NetBackup bp.conf not found: {NETBACKUP_BP_CONF_PATH}")
         return False
     copy_existing_file_backup(NETBACKUP_BP_CONF_PATH)
-    # NetBackup's outer hook timeout must exceed Mold's default 12-hour
-    # backup.data.operation.timeout plus staging completion grace. CLIENT_READ_TIMEOUT must not be lower than the
-    # bpstart/bpend notify timeouts.
-    set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "BPSTART_TIMEOUT", "86400")
-    set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "BPEND_TIMEOUT", "86400")
-    set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "CLIENT_READ_TIMEOUT", "86400")
+    # These Client-side values do not update the Primary/Media servers or
+    # represent product maxima. Size the server notify limits for the cumulative
+    # Hook request/bootstrap preparation time, separately from VM slot/data waits.
+    # CLIENT_READ_TIMEOUT must not be lower than the bpstart/bpend notify limits.
+    set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "BPSTART_TIMEOUT", str(notify_timeout))
+    set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "BPEND_TIMEOUT", str(notify_timeout))
+    set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "CLIENT_READ_TIMEOUT", str(notify_timeout))
     set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "CLIENT_CONNECT_TIMEOUT", "1800")
     set_bp_conf_value(NETBACKUP_BP_CONF_PATH, "SERVER_CONNECT_TIMEOUT", "1800")
     print(f"Updated NetBackup config: {NETBACKUP_BP_CONF_PATH}")
@@ -989,6 +1005,7 @@ def restart_netbackup_service() -> None:
 
 
 def generate_host_outputs(zone_id: str, args: argparse.Namespace, progress=None) -> None:
+    notify_timeout = read_hook_timeout(args)
     log_step("Generate Host Files")
     log_info("Generating host-side NetBackup hook/config/watcher files")
     progress = progress or (lambda step: None)
@@ -1028,7 +1045,7 @@ def generate_host_outputs(zone_id: str, args: argparse.Namespace, progress=None)
     parent_payload.mkdir(parents=True, exist_ok=True)
     apply_permissions()
     progress("CLIENT_SERVICE")
-    if apply_netbackup_bp_conf():
+    if apply_netbackup_bp_conf(notify_timeout):
         restart_netbackup_service()
     else:
         print("Skipped NetBackup service restart because bp.conf was not found.")

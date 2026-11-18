@@ -96,20 +96,24 @@ test('shared configuration starts in Global and displays inherited sources with 
   const endpoint = w.find('[data-setting="backup.plugin.netbackup.url"]')
   expect(endpoint.text()).toContain('https://netbackup.test/netbackup')
   expect(endpoint.text()).toContain(ko['label.backup.integration.source.global'])
-  expect(JSON.parse(endpoint.find('a').attributes('data-route'))).toEqual({ name: 'globalsetting' })
+  expect(endpoint.find('a').exists()).toBe(false)
   const settingsLink = w.findAll('a').find(a => a.text() === ko['label.backup.integration.shared.settings'])
   expect(JSON.parse(settingsLink.attributes('data-route'))).toEqual({ name: 'globalsetting' })
   w.unmount()
 })
 
-test('Zone and Cluster overrides link to the scope actually supplying each value', async () => {
+test('Zone and Cluster sources are informational and scope navigation is kept in separate links', async () => {
   const w = await mount({ settingsource: { ...base.settingsource, 'backup.plugin.netbackup.url': 'Zone', 'kvm.incremental.backup': 'Cluster' }, incrementalbackup: true })
   const endpoint = w.find('[data-setting="backup.plugin.netbackup.url"]')
   expect(endpoint.text()).toContain(ko['label.backup.integration.source.zone'])
-  expect(JSON.parse(endpoint.find('a').attributes('data-route'))).toEqual({ path: '/zone/zone-1', query: { tab: 'settings' } })
+  expect(endpoint.find('a').exists()).toBe(false)
+  const zoneLink = w.findAll('a').find(a => a.text() === ko['label.backup.integration.zone.settings'])
+  expect(JSON.parse(zoneLink.attributes('data-route'))).toEqual({ path: '/zone/zone-1', query: { tab: 'settings' } })
   const incremental = w.find('[data-setting="kvm.incremental.backup"]')
   expect(incremental.text()).toContain('true')
-  expect(JSON.parse(incremental.find('a').attributes('data-route'))).toEqual({ path: '/cluster/cluster-1', query: { tab: 'settings' } })
+  expect(incremental.find('a').exists()).toBe(false)
+  const clusterLink = w.findAll('a').find(a => a.text() === ko['label.backup.integration.cluster.settings'])
+  expect(JSON.parse(clusterLink.attributes('data-route'))).toEqual({ path: '/cluster/cluster-1', query: { tab: 'settings' } })
   w.unmount()
 })
 
@@ -117,8 +121,23 @@ test('initial disabled settings stay on shared setup and identify the Global fra
   const w = await mount({ state: 'PROVIDER_DISABLED', frameworkenabled: false, frameworkglobalenabled: false, frameworkzoneenabled: false, providerenabled: false, stagingenabled: false })
   expect(w.vm.step).toBe(0)
   expect(w.vm.canRun).toBe(false)
-  expect(w.find('[data-setting="backup.framework.enabled"]').text()).toContain('Global: false / Zone: false')
+  expect(w.vm.settings.find(setting => setting.key === 'backup.framework.enabled').value).toBe('false')
+  expect(w.find('[data-setting="backup.framework.enabled"]').text()).not.toContain('Global: false / Zone: false')
   expect(w.text()).toContain(ko['message.backup.integration.prerequisites'])
+  w.unmount()
+})
+
+test.each([
+  ['Global', true, true, 'true'],
+  ['Zone', true, false, 'false'],
+  ['Zone', false, true, 'true']
+])('framework current value shows only the value from its %s source', async (scope, global, zone, expected) => {
+  const w = await mount({ frameworkglobalenabled: global, frameworkzoneenabled: zone, settingsource: { ...base.settingsource, 'backup.framework.enabled': scope } })
+  const row = w.find('[data-setting="backup.framework.enabled"]')
+  expect(row.text()).toContain(ko['label.backup.integration.source.' + scope.toLowerCase()])
+  expect(row.text()).not.toContain('Global:')
+  expect(row.text()).not.toContain('Zone:')
+  expect(w.vm.settings.find(setting => setting.key === 'backup.framework.enabled').value).toBe(expected)
   w.unmount()
 })
 
@@ -146,6 +165,8 @@ test('an applied configuration translates offering guidance, check names and res
 test('policy schedule guidance does not ask for Mold VM schedules after applying configuration', async () => {
   const w = await mount({ state: 'COMPLETED', action: 'APPLY', vmschedulebackup: false, message: 'Assign the NetBackup offering to the VMs to protect; no Mold VM schedule is required' })
   expect(w.vm.statusMessage).toBe(ko['message.backup.integration.applied.policy'])
+  expect(w.text()).toContain(ko['message.backup.integration.policy.limits'])
+  expect(w.text()).toContain('BPSTART_TIMEOUT')
   w.unmount()
 })
 

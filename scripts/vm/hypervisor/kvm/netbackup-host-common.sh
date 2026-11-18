@@ -29,6 +29,7 @@ SECRET_KEY_FILE_DEFAULT="${SECRET_KEY_FILE:-${ABLESTACK_SECRET_KEY_FILE:-/root/.
 BACKUP_STAGING_ROOT_DEFAULT="/tmp/mold/netbackup"
 NETBACKUP_STAGE_ROOT_CONFIG_NAME="backup.thirdparty.staging.root.path"
 BACKUP_DATA_OPERATION_TIMEOUT_CONFIG_NAME="backup.data.operation.timeout"
+NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME="backup.plugin.netbackup.hook.timeout"
 
 CONFIG_ROOT="${CONFIG_ROOT:-$CONFIG_ROOT_DEFAULT}"
 STATE_ROOT="${STATE_ROOT:-$STATE_ROOT_DEFAULT}"
@@ -743,7 +744,7 @@ load_staging_timeout_from_data_operation_config() {
   log -ne "Loaded ${BACKUP_DATA_OPERATION_TIMEOUT_CONFIG_NAME}=${configured_timeout}; stagingTimeout=${NETBACKUP_STAGING_TIMEOUT}"
 }
 
-load_policy_schedule_config() {
+load_policy_connection_config() {
   local config_file
   config_file="$(resolve_config_file_path)"
 
@@ -784,10 +785,39 @@ load_policy_schedule_config() {
   [[ "${NETBACKUP_STAGING_TIMEOUT}" =~ ^[1-9][0-9]*$ ]] || fail "Invalid NETBACKUP_STAGING_TIMEOUT=${NETBACKUP_STAGING_TIMEOUT}. It must be a positive integer."
 
   load_admin_secretkey
+}
+
+load_policy_schedule_config() {
+  load_policy_connection_config
   load_backup_staging_root_from_mold
   load_staging_timeout_from_data_operation_config
 
   log -ne "VM selection uses explicitly assigned NetBackup backup offerings"
+}
+
+load_hook_timeout_from_mold() {
+  local response
+  response="$(invoke_mold_api "${MOLD_LIST_VMS_API_METHOD}" "${MOLD_LIST_VMS_API_URL}" \
+    listConfigurations name "${NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME}")" || \
+    fail "Failed to query Mold Global configuration ${NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME}; no Hook worker was started"
+  NETBACKUP_HOOK_TIMEOUT="$(python3 - "$response" "${NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME}" <<'PY'
+import json
+import sys
+
+try:
+    rows = json.loads(sys.argv[1])["listconfigurationsresponse"]["configuration"]
+    matches = [row for row in rows if row.get("name") == sys.argv[2] and row.get("scope", "Global") == "Global"]
+    if len(matches) != 1 or type(matches[0].get("value")) not in (str, int):
+        raise ValueError("Missing or ambiguous Global value")
+    seconds = int(matches[0]["value"])
+    if not 1 <= seconds <= 2147483647:
+        raise ValueError("Timeout outside positive Integer range")
+    print(seconds)
+except (ValueError, TypeError, KeyError, AttributeError):
+    sys.exit(1)
+PY
+  )" || fail "Invalid ${NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME}; use a positive whole number of seconds and update Management and Host scripts together"
+  log -ne "Loaded ${NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME}=${NETBACKUP_HOOK_TIMEOUT}"
 }
 
 list_mold_virtual_machine_names() {
@@ -864,8 +894,10 @@ supervise_netbackup_hook() {
   local phase="$1"
   shift
   [[ "${ABLESTACK_NETBACKUP_HOOK_WORKER:-}" != "$phase" ]] || return 0
+  load_policy_connection_config
+  load_hook_timeout_from_mold
   export STATE_ROOT POLICY_NAME SCHEDULE_NAME CLIENT_NAME SESSION_TIMESTAMP BACKUP_ID NETBACKUP_JOB_ID
-  exec python3 "${SCRIPT_DIR}/netbackup_hook_runner.py" run --phase "$phase" --context "$CONTEXT_KEY" -- "$@"
+  exec python3 "${SCRIPT_DIR}/netbackup_hook_runner.py" run --phase "$phase" --context "$CONTEXT_KEY" --timeout "$NETBACKUP_HOOK_TIMEOUT" -- "$@"
 }
 
 sanity_checks() {

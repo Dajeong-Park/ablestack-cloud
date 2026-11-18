@@ -2370,6 +2370,11 @@ public class AblestackNetBackupProvider extends AdapterBase implements BackupPro
     }
 
     @Override
+    public void validateVmScheduleModeChange(Long zoneId, List<String> policies) {
+        getClient(zoneId).validateVmScheduleModeChange(policies);
+    }
+
+    @Override
     public boolean synchronizeStagingPath(Host host, ThirdPartyBackupStagingSync.Binding binding, String action) {
         final AblestackNetBackupClient client = getClient(host.getDataCenterId());
         if (!binding.nameIsExact) {

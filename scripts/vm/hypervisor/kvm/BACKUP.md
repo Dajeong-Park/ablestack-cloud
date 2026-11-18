@@ -1064,7 +1064,8 @@ Mold에서 VM별 백업 스케줄을 사용하는 경우에는 아래의
    이 구성은 각 백업 Host에서 수행한다. VM이 이동할 수 있다면 이동 대상 Host도 준비한다.
 
 구성 스크립트는 `/usr/openv/netbackup/bp.conf`가 있으면 기존 파일을 백업하고
-사전·사후 작업 및 Client 읽기 timeout을 24시간으로 설정한 후 NetBackup 서비스를 재시작한다.
+사전·사후 작업 및 Client 읽기 timeout을 Global `backup.plugin.netbackup.hook.timeout` 값
+(기본 `86400`초)으로 설정한 후 NetBackup 서비스를 재시작한다.
 진행 중인 NetBackup 작업이 없는 시간에 구성한다. NetBackup Client 자체를 설치하는 스크립트는 아니다.
 
 **백업 순서**
@@ -2752,6 +2753,246 @@ GFS2 원본 파일시스템의 클러스터 잠금과도 적용 대상이 다르
 
 #### 대용량 작업의 대기 시간 조정
 
+##### NetBackup ON/OFF별 한 회차의 요청 개수
+
+아래 기준은 현재 **볼륨별 스테이징·`mold-transfer` 방식**에 해당한다.
+VM 스케줄 모드는 백업 대상 선정 기준을 바꾸며, 파일 생성·전송·복원 엔진이나 슬롯 개수를 바꾸지 않는다.
+두 모드 모두 NetBackup Host 정책 실행으로 부모 PRE Hook이 시작되며, 일치하는 NetBackup 오퍼링 할당이 필요하다.
+ON에서도 Mold 예약 시각만 도래하고 NetBackup 정책이 실행되지 않으면 이 Hook 흐름은 시작되지 않는다.
+
+| 구분 | ON (`true`) | OFF (`false`) |
+|---|---|---|
+| 한 회차 대상 | 이 Host·정책에 맞는 오퍼링이 있고 Mold 예약 시간이 도래한 백업 가능한 VM | 이 Host·정책에 맞는 오퍼링이 있는 백업 가능한 VM 전체 |
+| Mold VM 스케줄 | 필요. 예약이 없거나 아직 도래하지 않았으면 제외 | 사용하지 않음. 기존 스케줄은 보존하되 이번 백업의 실행 완료로 소비하지 않음 |
+| 같은 Host에 대상 가능 VM 10개, 예약 도래 2개 | VM 백업 요청 최대 2개 | VM 백업 요청 최대 10개 |
+| 예약 도래 VM 없음 | VM 백업 요청 0개. 전체 VM 백업으로 전환하지 않음 | 예약 여부와 관계없이 적격 VM 수만큼 요청 |
+| 동일 시각에 10개 모두 예약 도래 | VM 백업 요청 최대 10개 | VM 백업 요청 최대 10개 |
+| 같은 VM에 여러 예약이 함께 도래 | 한 회차에서 VM별 중복 제거 후 1개만 선택 | VM별 1개만 선택 |
+| 요청 순서 | 앞 VM의 요청 결과·정확한 bootstrap 표식 확인 후 다음 VM 요청 | 동일 |
+| 앞 VM의 실제 백업 완료 대기 | 기다리지 않음. 접수된 여러 VM 작업이 슬롯을 기다릴 수 있음 | 동일 |
+
+Running·Stopped 사용자 VM 중 실행/마지막 Host 및 정지 VM 배정 조건을 만족하는 VM이 대상이며,
+다른 솔루션·정책의 오퍼링, 삭제된 VM, 이미 백업 중인 VM 등은 제외한다.
+조회 후 상태·오퍼링·모드·예약이 바뀌면 실행 시 다시 검증하여 요청이 거절될 수 있으므로 표의 수는 정상 조건의 최대치다.
+VM 접수·초기 준비 확인이 실패하거나 결과가 불명확하면 남은 VM 순회를 중단한다.
+이미 접수한 작업은 이 실패만으로 취소·삭제되지 않으므로 Mold에서 종료와 정리를 따로 확인한다.
+
+여기서 **VM 백업 요청 수**, **NetBackup Job 수**, **동시에 실행하는 VM 수**는 서로 다르다.
+VM 1개가 볼륨 3개를 백업하면 정상 회차에서 보통 볼륨 전송 3개와 마지막 메타데이터 전송 1개가 발생한다.
+부모 bootstrap 정책 Job은 별도로 존재한다. 증분도 이번 회차에서 만든 볼륨별 증분 파일을 전송한다.
+따라서 VM 10개가 접수되었다고 `mold-transfer` 전송 Job이 10개이거나 10개가 동시에 실행된다는 뜻은 아니다.
+
+##### 코드 기본값과 초기 검증 권장값
+
+초기 권장값은 처리량을 보장하는 고정 규칙이 아니라 **실측을 시작하기 위한 운영 기준**이다.
+VM 개수·가상 디스크의 표시 용량만으로 시간을 정하지 않고 FULL/증분의 실제 처리량과 소요시간을 함께 측정한다.
+
+| 설정 / 적용 위치 | 코드 기본값 | 초기 검증 권장과 변경 판단 |
+|---|---|---|
+| `backup.plugin.netbackup.hook.timeout` / Global·동적 | `86400`초 (24시간, 기존 동작 호환) | 정상 회차의 VM 요청·초기 확인 총시간을 측정한 뒤 하향 가능. 검증 시작 예시는 `3600`초(1시간)이며, 대상 전체의 접수·초기 확인과 여유가 이 안에 들어오는지 먼저 확인. 실제 백업·복원 완료시간을 더하지 않음 |
+| `backup.thirdparty.staging.queue.timeout` / Global | `14400`초 (4시간) | 초기에는 유지. 가장 늦게 슬롯을 얻을 VM의 예상 대기가 4시간에 접근·초과하면 반드시 재산정. 백업·복원 및 다른 공통 제공자의 기존 대기도 포함 |
+| `backup.data.operation.timeout` / Global | `43200`초 (12시간) | 초기에는 유지. 백업의 볼륨별 생성·전송 및 복원의 파일별 다운로드·FULL 변환·증분 적용 중 가장 오래 걸리는 개별 단계를 기준으로 재산정. 앞선 단계의 시간은 다음 단계 제한을 소비하지 않음 |
+| `backup.thirdparty.staging.concurrent.jobs.per.host` / Global | `1` | 첫 검증은 1 유지. 같은 Host의 백업·복원 VM 작업 합계. VM 하나의 모든 볼륨이 슬롯 1개를 공유하며 볼륨은 순차 처리 |
+| `backup.thirdparty.staging.concurrent.jobs.per.cluster` / Global | `4` | Host·스토리지 분산과 다른 백업·복원의 슬롯 사용을 보며 유지/조정. 각 Cluster의 상한을 Global에서 지정하는 값이며 Cluster 범위 override를 뜻하지 않음 |
+| `backup.thirdparty.staging.concurrent.jobs.total` / Global | `4` | 공통 스테이징을 쓰는 모든 Host·솔루션의 백업·복원 합계 상한. Host 제한과 실제 저장소 처리능력보다 크게 잡아도 그만큼 실행되지 않음 |
+| `backup.qos.bandwidth.limit.mbps` / Global | `0` (제한 없음) | 운영 VM의 디스크 부하를 측정해 필요한 경우 제한. NetBackup 전송 네트워크 전체에 대한 속도 제한으로 해석하지 않음. 속도를 낮추면 데이터·큐 시간을 다시 계산 |
+| `backup.thirdparty.staging.capacity.buffer.percent` / Global | `20`% | 초기 유지. 작업별 스테이징 예약과 실제 여유 공간을 확인. 용량 부족을 피하려고 여유율을 낮추기보다 공간 확보·병렬도 축소 검토 |
+| `backup.restore.primary.storage.capacity.buffer.percent` / Global | `20`% | 초기 유지. 복원 준비 볼륨과 원본 보존·롤백 공간을 포함한 기본스토리지 여유 확인. 최소 10 GiB 여유 조건도 별도로 적용 |
+| `backup.thirdparty.staging.mount.timeout` / Global | `300`초 | 마운트 자체가 정상 환경에서도 늦는 경우에만 조정. 파일 생성·전송시간이나 큐 시간을 더하는 값이 아님 |
+| `backup.plugin.netbackup.request.timeout` / Global 기본·Zone 재정의 | `300`초 | REST API 한 번의 연결·응답 제한. 실제 파일 복원 전체 시간과 분리. 개별 API 응답이 이 제한을 넘는지 확인한 경우에만 조정 |
+| `backup.plugin.netbackup.recovery.job.timeout` / Global 기본·Zone 재정의 | `0`초 (동기 recovery 대기 무제한) | 구형/비볼륨 동기 복원 경로의 완료 대기에 적용. 현재 볼륨별 비동기 복원의 주 제한이 아니므로 이 값만 늘려 대용량 복원을 해결하려 하지 않음 |
+| `netbackup.prepared.restore.path.ready.timeout` / Global | `300`초 | NetBackup WebUI/비볼륨 경로에서 준비된 복원 경로·필수 파일의 가시성 확인. 현재 볼륨별 파일 전송 완료시간을 늘리는 값이 아님 |
+
+새 Hook Global 설정을 포함한 코드 기본값과 이미 운영 DB에 저장된 값은 구분한다.
+본 표의 권장 예시를 운영 서버에 자동 적용하지 않는다. Zone에 별도 API/복원 설정이 있으면 그 값이 우선하므로
+Global 변경 전 실제 값의 출처도 확인한다.
+
+##### NetBackup VM 스케줄 모드 OFF 운영 기준
+
+OFF에서는 해당 Host 정책에 맞는 NetBackup 오퍼링이 할당된 백업 가능한 VM 전체가 대상이다.
+정책 실행 시 VM별 요청과 초기 bootstrap 준비 확인은 순서대로 수행하지만,
+앞 VM의 실제 백업 완료를 기다려야 다음 VM을 요청하는 구조는 아니다.
+슬롯을 기다리기 전에 작은 bootstrap 표식을 생성하므로 여러 VM 요청이 접수되어 대기할 수 있다.
+요청 또는 초기 준비 확인이 실패하면 같은 회차에서 나머지 VM 요청을 중단하며,
+이미 접수된 작업은 별도로 상태·종료·정리를 확인한다.
+
+운영값은 VM 개수만으로 정하지 않고 다음 정보를 함께 확인한다.
+
+| 확인 항목 | 판단 기준 |
+|---|---|
+| 백업 대상 수 | Host의 전체 VM 수가 아니라 정책과 일치하는 오퍼링이 할당된 백업 가능한 VM 수 |
+| VM별 소요시간 | 최초 FULL 기준으로 원본 준비·데이터 생성·외부 전송·완료 확인·정리·슬롯 반환까지 측정한 시간 |
+| 데이터량 | VM의 모든 대상 볼륨과 실제 FULL/증분 생성·전송량. 가상 디스크 용량만으로 전송시간을 확정하지 않는다. |
+| 실제 병렬도 | Host·Cluster·전체 슬롯의 현재 가용 수, NetBackup 정책·Client·스토리지의 실행 제한을 함께 확인 |
+| 가용 용량과 부하 | 스테이징·원본 스토리지의 예약 용량, 디스크 I/O, CPU 및 네트워크 사용률. 다른 공통 제공자의 백업·복원도 포함 |
+
+동시에 접수된 N개 VM의 슬롯 점유 시간이 비슷하고 실제 병렬도가 C라면,
+마지막 VM의 예상 대기는 대략 `(ceil(N / C) - 1) × VM당 슬롯 점유시간`이다.
+이는 계획용 근사치이며 기존 대기 작업, 다른 Host·복원의 슬롯 사용, VM별 시간 차이와 여유시간을 추가한다.
+Host 제한이 기본값 1이면 Cluster·전체 제한이 4여도 같은 Host의 VM 4개가 동시에 실행되는 것은 아니다.
+
+| 조정할 설정 | 권고 기준 |
+|---|---|
+| `backup.thirdparty.staging.queue.timeout` | 마지막 대상 VM의 예상 슬롯 대기보다 길게 설정. 기본 4시간에 앞선 작업 시간 전체를 더하는 것이 아니라, 예상 최장 대기와 여유를 기준으로 결정 |
+| `backup.data.operation.timeout` | 백업·복원 모두 가장 오래 걸리는 개별 파일 생성·전송·다운로드·변환·증분 적용 단계로 산정하며 모든 VM·전체 체인 시간을 합산하지 않음 |
+| `backup.thirdparty.staging.concurrent.jobs.per.host` | 초기에는 1을 유지. 용량·I/O·네트워크와 외부 실행 제한을 확인한 뒤 실측 결과로 조정 |
+| `backup.thirdparty.staging.concurrent.jobs.per.cluster` / `concurrent.jobs.total` | 여러 Host와 복원을 함께 고려해 조정. Host 제한과 스토리지·전송 처리 능력을 넘는 증가는 처리속도를 보장하지 않는다. |
+| `backup.qos.bandwidth.limit.mbps` | 실제 처리량과 VM 서비스 영향을 기준으로 설정. 낮추면 백업 시간이 늘 수 있으므로 대기·처리 제한을 함께 검토 |
+| NetBackup 정책 실행 주기 | 한 회차의 예상 전체 처리시간과 여유시간을 고려해 결정. 주기마다 감당할 수 있는 양보다 많은 작업을 계속 접수하지 않도록 운영 |
+
+예를 들어 대상 10개, 실제 병렬도 1, VM당 슬롯 점유 30분이면 마지막 VM은 약 4시간 30분을 기다린다.
+기존 대기 작업이 없다는 가정에서도 기본 4시간을 넘으므로, 여유를 포함한 6시간(`21600`초) 등을 시험 기준으로 잡는다.
+VM당 1시간이면 예상 마지막 대기는 약 9시간이며, 여유를 포함한 12시간(`43200`초) 등을 검토한다.
+이 수치는 예시이며 실제 용량·처리시간·예약 주기를 측정한 뒤 확정한다.
+
+이 계산은 **ON에서 같은 회차에 N개가 도래한 경우에도 동일**하다.
+ON이라고 Hook·슬롯 대기를 짧게 고정하거나, OFF라고 데이터 처리 제한을 VM 수 배로 늘리지 않는다.
+
+##### VM 수·용량에 따른 조정 예시
+
+| 조건 (실측을 가정한 예시) | Hook 제한 판단 | 큐 제한 판단 | 데이터 제한 판단 |
+|---|---|---|---|
+| ON, 적격 VM 10개 중 이번 회차 예약 도래 2개, 요청·초기 확인 VM당 30초, 슬롯 점유 VM당 1시간, 병렬도 1 | 약 1분 + 공통 조회·여유. 1시간 검증 예시 안에 충분한지 확인 | 마지막 VM 약 1시간 대기 + 여유. 기본 4시간으로 시작 가능 | 백업의 최장 개별 단계가 12시간 이내면 기본 유지 |
+| OFF, 같은 10개 모두 적격. 나머지 조건 동일 | 약 5분 + 공통 조회·여유. 전체 백업 10시간을 Hook 값에 더하지 않음 | 마지막 VM 약 9시간 대기. 기본 4시간으로 부족하므로 여유 포함 12시간 등을 검토 | VM 수 10개만으로 12시간을 120시간으로 늘리지 않음 |
+| ON, 같은 시각에 10개 모두 예약 도래 | 바로 위 OFF와 동일한 요청 수 기준으로 산정 | 동일 | 동일 |
+| 한 VM의 큰 FULL 볼륨 생성 13시간, 해당 파일 전송 3시간 | 요청·bootstrap 확인이 짧으면 용량을 이유로 늘리지 않음 | 뒤 VM은 최소 그 VM의 전체 슬롯 점유시간 영향을 받으므로 별도 재산정 | 13시간 생성 단계가 기본 12시간 초과. 생성 제한에 여유를 더한 16시간 등으로 시험하고 실제 부하·전송·정리도 확인 |
+| VM 1개 복원에 다운로드 5시간·FULL 적용 5시간·증분 적용 4시간 등 합계 14시간, 개별 단계는 모두 12시간 미만 | 부모 백업 Hook 제한과 무관 | 뒤 복원 요청은 약 14시간의 슬롯 점유 영향을 받으므로 큐 대기를 재산정 | 단계별로 제한을 새로 적용하므로 합계 14시간이라는 이유만으로 기본 12시간을 늘리지 않음 |
+| 복원 파일 한 개 다운로드 또는 FULL 변환 한 번이 13시간 예상 | 부모 백업 Hook 제한과 무관 | 선행 복원의 전체 슬롯 점유시간을 고려 | 해당 개별 단계가 12시간 초과하므로 여유 포함 16시간 등으로 검토 |
+
+용량을 시간으로 환산할 때는 표시 용량 대신 실제 생성·읽기·전송 바이트와 실효 처리율을 사용한다.
+예를 들어 **실제로 1 TiB를 100 MiB/s로 한 번 처리**하면 이상적인 데이터 처리시간은 약 2.91시간이다.
+50 MiB/s면 약 5.83시간이며, 이는 원본 읽기·파일 생성·NetBackup 전송·체인 적용·flush가 모두 합쳐진 시간이 아니다.
+FULL/증분 생성량, 볼륨 수, 저장소 부하와 각 단계의 처리량을 따로 측정한다.
+
+##### 대용량·증분 체인 복원 시 반드시 구분할 제한
+
+VM 스케줄 ON/OFF는 **백업 대상 선정 모드**이며, 선택한 백업본의 복원 방식과 Hook 실행을 바꾸지 않는다.
+현재 볼륨 복원은 별도 Restore Worker가 슬롯을 확보한 뒤 메타데이터 및 필요한 FULL·증분 파일을 순서대로
+NetBackup Primary REST로 복원 요청하고, 파일별 완료를 확인하여 대상 기본스토리지에 적용한다.
+부모 백업 PRE/POST나 `mold-transfer` Hook 안에서 이 과정을 기다리지 않는다.
+
+현재 `LibvirtAblestackVolumeRestoreHelper`는 **외부 파일을 요청할 때마다** `backup.data.operation.timeout`으로
+새 마감시각을 정한다. 이전 파일 다운로드·FULL 적용·증분 적용 시간이 다음 파일의 대기 여유를 소비하지 않는다.
+개별 FULL 변환·가져오기·증분 적용 명령도 같은 설정값을 각각의 제한으로 사용한다.
+따라서 백업·복원 모두 **가장 오래 걸리는 개별 데이터 단계 + 여유**를 기준으로 같은 설정 하나를 관리한다.
+전체 VM·체인의 처리시간을 한 타이머로 합산하지 않는다. 전체 체인이 길어지면 슬롯 점유시간은 길어지므로 뒤 작업의 큐 제한은 별도로 재산정한다.
+최종 전환·롤백·정리와 불명확한 외부 작업의 종료 확인 절차는 유지한다.
+
+`backup.plugin.netbackup.recovery.job.timeout=0`은 별도의 구형 동기 대기 상한을 두지 않는다는 의미이며,
+현재 볼륨 Restore Worker의 `backup.data.operation.timeout`까지 무제한으로 바꾸지 않는다.
+`netbackup.prepared.restore.path.ready.timeout=300`도 현재 볼륨별 복원 전체를 5분으로 제한하는 설정이 아니다.
+
+| 증상·예상 조건 | 반드시 검토/조정할 대상 | 다른 값으로 해결하지 않을 항목 |
+|---|---|---|
+| 새 백업·복원이 슬롯을 얻기 전 4시간 이상 대기 예상 | `backup.thirdparty.staging.queue.timeout`, 선행 작업량·병렬도·용량 | Hook 제한만 연장해도 큐 만료는 그대로 발생 |
+| 개별 백업 볼륨 생성/전송 단계가 12시간 이상 예상 | `backup.data.operation.timeout`, 실제 I/O·전송 성능 및 NetBackup 자원 대기 | `BPSTART_TIMEOUT`만 연장해도 데이터 단계 제한은 그대로 발생 |
+| 복원 파일 다운로드 한 건 또는 변환/증분 적용 한 단계가 12시간 이상 예상 | `backup.data.operation.timeout`, 실제 전송량·기본스토리지 쓰기 성능 | 전체 체인 시간이 12시간을 넘는다는 이유만으로 확대하지 않음. 구형 recovery/prepared 경로 제한과도 구분 |
+| 부모 Hook이 VM 요청·초기 확인을 끝내기 전에 종료 | Global Hook 제한과 NetBackup notify/read 제한, 개별 API/초기 준비 실패 원인 | 대용량 디스크 전체 복사시간을 Hook에 합산하지 않음 |
+| 실제 진행량이 30분간 증가하지 않아 중단 | 정체 원인·스토리지·네트워크·프로세스 진행 상태 | 데이터 절대 제한만 늘려도 내부 무진행 감지는 그대로 유지 |
+| 복원 스테이징/기본스토리지 공간 부족 | 공간 확보, 예약·준비 볼륨·원본 보존 공간, 병렬도 | timeout 확대만으로 공간 부족은 해결되지 않음 |
+
+Hook의 요청 응답·초기 준비 확인 제한은 요청과 bootstrap 준비에 필요한 시간을 기준으로 관리한다.
+이는 슬롯 대기시간이나 실제 데이터 처리시간과 다르다. 대기시간 초과 작업은 값을 늘려도 자동 재개하지 않으며,
+설정 변경은 새로 접수하는 작업부터 적용된다. 대기 실패를 피하려고 용량 예약이나 안전한 종료 확인을 해제하지 않는다.
+
+##### Host·NetBackup 서버의 외부 제한 함께 확인
+
+Mold의 Global 값을 변경해도 Host의 NetBackup `bp.conf`와 Primary·Media 서버의 제한이 함께 변경되지는 않는다.
+Linux Client의 파일은 `/usr/openv/netbackup/bp.conf`이며 `nb.conf`와 구분한다.
+호스트 구성 적용 시 Client의 세 notify/read 값을 Global `backup.plugin.netbackup.hook.timeout`
+(기본 `86400`초), 두 connect 값을 각각 `1800`초로 설정하지만,
+이 값은 현재 구성 도구의 적용값이며 NetBackup 제품의 최대 허용값을 뜻하지 않는다.
+Primary·Media 서버의 Host properties 또는 해당 서버의 `bp.conf` 유효값도 별도로 확인한다.
+
+| 계층 / 설정 | 현재 코드 기준 | 제한하는 구간 / 조정 기준 |
+|---|---|---|
+| Mold `backup.thirdparty.staging.queue.timeout` | 기본 `14400`초 | 각 VM이 슬롯을 얻기 전 대기. 가장 늦게 입장할 VM의 예상 대기와 여유로 산정 |
+| Mold `backup.data.operation.timeout` | 기본 `43200`초 | 백업의 볼륨 생성·전송과 복원의 파일별 다운로드·변환·증분 적용에 각각 적용. VM 전체·체인 전체의 합산 제한이 아님 |
+| Host Hook `MOLD_ASYNC_JOB_TIMEOUT` | 기본 `7200`초 | VM별 `createNetBackup` 비동기 API의 접수·실행 시작 결과 확인. 실제 볼륨 백업 완료 대기와 구분 |
+| Host Hook `NETBACKUP_STAGING_TIMEOUT` | 실행 시 Mold 데이터 처리 제한 + `600`초 (기본 `43800`초) | VM별 정확한 백업 UUID의 bootstrap 준비 확인. 현재 볼륨 방식은 슬롯 대기 전에 표식을 만들므로 전체 슬롯 대기를 이 시간에 더하지 않음. 정상적인 Mold 설정 조회가 있으면 수동 환경변수 값보다 조회 결과를 사용 |
+| Global `backup.plugin.netbackup.hook.timeout` → Host `netbackup_hook_runner.py` | 기본 `86400`초 · Global · 동적 | PRE / POST 각각 한 번의 실행 제한. 새 호출마다 Global 값을 조회하여 `--timeout`으로 전달. 전체 VM 요청·비동기 결과·초기 준비 확인 누적 시간과 여유로 산정 |
+| NetBackup `BPSTART_TIMEOUT` | 호스트 구성 시 Global Hook 값 적용 (기본 `86400`초) | 서버가 Client의 `bpstart_notify` 종료를 기다리는 시간. 전체 대상 VM의 요청·초기 준비 확인을 합산한 PRE 시간과 여유로 산정 |
+| NetBackup `BPEND_TIMEOUT` | 호스트 구성 시 Global Hook 값 적용 (기본 `86400`초) | 서버가 Client의 `bpend_notify` 종료를 기다리는 시간. 실제 POST 후처리와 여유로 산정 |
+| NetBackup `CLIENT_READ_TIMEOUT` | 호스트 구성 시 Global Hook 값 적용 (기본 `86400`초) | 응답이 없는 구간의 읽기 대기. 전체 백업 수행시간 상한과 구분하며, 같은 실행 경로의 notify 제한 이상인지 확인 |
+| NetBackup `CLIENT_CONNECT_TIMEOUT` / `SERVER_CONNECT_TIMEOUT` | Client 구성 적용값 각각 `1800`초 | 연결 수립 대기. VM 수·대용량 전송시간을 이유로 일괄 확대하지 않음 |
+
+예를 들어 10개 VM의 실제 백업을 순차 처리하는 데 총 10시간이 걸려도 각 VM 요청과 bootstrap 준비가
+빠르게 끝나면 PRE는 10시간 동안 기다리지 않는다. 이 경우 Mold 큐 제한을 늘릴 수 있지만,
+그 이유만으로 `BPSTART_TIMEOUT`을 10시간보다 크게 늘릴 필요는 없다.
+반대로 PRE가 대상 VM들을 요청·확인하는 데 오래 걸리면 개별 내부 대기 제한과 PRE 전체를 감싸는
+NetBackup 서버 제한 및 Host Hook 감시기 제한을 모두 확인한다.
+Hook 제한 초과는 아직 요청하지 않은 VM의 접수를 중단시킬 수 있으나 이미 접수한 VM 백업을 취소·삭제하지 않는다.
+
+현재 볼륨 백업 흐름은 다음과 같다.
+
+1. 부모 정책의 `bpstart_notify`: 대상 VM 요청과 작은 bootstrap 표식 확인 후 종료.
+2. 호스트의 별도 Mold 작업 `thirdparty_volume_backup.py`: 슬롯 확보 및 부모 bootstrap 작업 종료 확인 후 볼륨 파일 생성.
+3. Mold 전송 제어와 호스트의 `netbackup-volume-backup.py`: 준비된 파일을 `bpbackup`의 `mold-transfer` 스케줄로 전송 요청.
+4. NetBackup이 파일을 전송하고 Mold가 정확한 Job·이미지를 확인. 볼륨별 생성 → 전송 확인 → 정리를 반복.
+
+`mold-transfer` 전용 사전·사후 Hook은 `exit 0`으로 즉시 종료하며, VM 백업 요청이나 파일 생성·완료 대기를 수행하지 않는다.
+디스크가 커질 때 늘어나는 파일 생성·전송 시간은 Hook 전체 제한과 분리한 `backup.data.operation.timeout`으로 관리한다.
+Hook의 기존 `86400`초 기본값은 호환을 위해 유지하며, 24시간 대기가 필요한 구조라는 뜻은 아니다.
+운영에서는 대상 VM 전체의 요청·초기 준비 확인 실측 시간에 여유를 더해 Global Hook 값을 줄일 수 있다.
+
+Global Hook 값은 양의 Integer 초 단위이며 0·음수·소수는 허용하지 않는다.
+PRE·POST 시작 시마다 읽고 실행 중인 Hook은 시작할 때 캡처한 값을 유지한다.
+설정 조회 실패·누락·잘못된 값은 고정 기본값으로 우회하지 않고 새 Hook 시작 전에 오류로 처리한다.
+실제 적용한 값은 `hook-control/` 기록의 `timeoutSeconds`로 확인한다.
+신규 설정 등록을 위해 Management를 업데이트하고 Host의 `netbackup-host-common.sh`와 `netbackup_hook_runner.py`도 함께 배포한다.
+이후 Global 값 변경은 다음 호출부터 적용되며 Management 재시작·호스트 사전구성 재적용 없이 Hook에 반영된다.
+Global 값 변경 및 기본값 초기화 시 **사전구성이 완료되고 `bp.conf`가 있는 KVM Client**의
+`BPSTART_TIMEOUT`·`BPEND_TIMEOUT`·`CLIENT_READ_TIMEOUT` 세 항목을 같은 값으로 자동 동기화한다.
+Client만 설치된 미구성 Host와 `bp.conf`가 없는 Host는 건너뛰고 파일을 만들지 않는다.
+정책을 비활성화하고 백업·복원·취소·정리·호스트 구성 작업이 없는지 확인한 뒤 변경한다.
+대상 Host 전체를 사전 확인하고 파일 변경·필요한 Client 서비스 재시작을 확인한 다음 Global 값을 저장한다.
+같은 값으로 이미 구성된 파일은 다시 쓰거나 Client를 재시작하지 않는다.
+일부 Host 적용 실패·응답 유실 시 Global을 유지하고 반영한 Host를 원래 파일로 복구한다.
+Host의 개인 복구 기록은 작업 ID와 원래 파일을 보존하여 연결 복구 후 같은 Global 값을 재저장할 때 조정한다.
+DB 저장 응답이 불명확하면 실제 저장값을 확인하여 이미 저장된 값 뒤에서 파일만 되돌리지 않는다.
+확인되지 않은 반영 또는 현재 Global과 불일치하는 복구 기록이 있으면 새 Hook의 VM 요청을 시작하지 않는다.
+Global과 일치하는 반영이 확인되고 마지막 기록 정리 응답만 유실된 경우에는 새 Hook을 허용한다.
+Primary·Media 서버의 `bp.conf`는 자동 수정하지 않는다. 새 Agent 명령을 포함하므로 Management·Common 스크립트·KVM Agent를 함께 업데이트한다.
+서버 notify 제한은 Hook 제한 이상으로 두고, 설정 조회·종료 확인 등의 여유시간도 고려한다.
+`CLIENT_READ_TIMEOUT`은 notify 제한 이상으로 두며 connect 제한은 별도로 관리한다.
+
+NetBackup 11.1 공식 안내의 적용 위치는 `BPSTART_TIMEOUT`이 **Media 서버**, `BPEND_TIMEOUT`이 **Primary 서버**다.
+실제 설치 버전의 문서와 작업을 실행하는 서버를 확인하고, Primary와 Media를 한 장비가 겸하면 해당 장비에서 둘 다 확인한다.
+`CLIENT_READ_TIMEOUT`은 시작·종료 notify 제한보다 작지 않게 맞춘다.
+Host 구성 도구는 이러한 서버 설정을 자동으로 수정하지 않는다.
+근거: [BPSTART_TIMEOUT](https://docs.cohesity.com/docs/netbackup/11.1/18716246-170847606-0/v40555698-170847606),
+[BPEND_TIMEOUT](https://docs.cohesity.com/docs/netbackup/11.1/18716246-170847606-0/v40555686-170847606),
+[Timeouts properties (10.1)](https://www.veritas.com/support/en_US/doc/18716246-157328516-0/v40229750-157328516).
+
+**최대 허용값 검증 상태**
+
+| NetBackup 설정 | 확인한 공식 문서의 최대값 명시 여부 |
+|---|---|
+| `BPSTART_TIMEOUT` | 11.1 항목 문서는 최대값을 명시하지 않음. 7.1.0.4 릴리스 노트에는 Java Console 제한을 48시간(`172800`초)으로 확대한 이력이 있으나, 이를 현재 모든 버전·설정 경로의 최대값으로 적용하지 않음 |
+| `BPEND_TIMEOUT` | 확인한 항목 문서에 숫자 상한이 없어 현재 설치 버전의 최대값 미확정 |
+| `CLIENT_READ_TIMEOUT` | 확인한 항목 문서에 숫자 상한이 없어 현재 설치 버전의 최대값 미확정 |
+| `CLIENT_CONNECT_TIMEOUT` / `SERVER_CONNECT_TIMEOUT` | 현재 설치 버전의 입력·런타임 상한 미확정. 구성 도구의 `1800`초를 상한으로 해석하지 않음 |
+
+상한 근거가 없는 항목을 무제한 또는 32비트 정수 최대값으로 안내하지 않는다.
+운영 적용 전 설치 버전별 Host properties의 허용 범위와 공급사 지원 범위를 확인한다.
+`nbgetconfig` 조회나 `bp.conf`에 숫자가 저장되는 것만으로 해당 시간까지 실행이 보장되는 것은 아니다.
+최대값을 확인하려고 운영 서버 설정을 큰 값으로 시험 변경하지 않는다.
+과거 UI 제한 변경 근거: [NetBackup 7.1.0.4 Release Notes](https://vox.veritas.com/legacyfs/online/veritasdata/NB_7104_Release_Notes.pdf).
+
+##### VM 스케줄 모드 변경
+
+`backup.plugin.netbackup.vm.schedule.enabled`는 모든 Zone의 NetBackup Host에 공통 적용되는 동적 설정이다.
+변경 자체를 위해 기존 백업본·VM 스케줄 삭제나 호스트 사전구성 재적용을 수행하지 않는다.
+운영 중에는 구성된 NetBackup 정책을 비활성화하고 백업·복원·취소·정리 작업 및 호스트 구성 작업이 끝난 뒤 변경한다.
+Mold는 기존 기록을 보존하면서 관련 상태를 확인하고, 상태를 확인할 수 없으면 변경하지 않는다.
+호스트 구성 스크립트도 함께 업데이트하여 모든 구성 정책 목록을 조회할 수 있어야 한다.
+초기 사전구성 전에는 정책·NetBackup 인증정보가 없어도 확인된 미구성 상태에서 변경할 수 있다.
+
+ON → OFF에서는 기존 VM 스케줄을 보존하지만 백업 대상 선정에 사용하지 않는다.
+OFF 백업을 기존 예약의 실행 완료로 소비하지 않는다.
+OFF → ON에서는 스케줄이 없는 VM을 제외하며 이미 도래한 예약이 다음 정책 실행에서 바로 대상이 될 수 있으므로,
+다음 실행 시각과 보호 대상 VM을 확인한다. 같은 값의 재저장에는 운영 중단 검사를 다시 요구하지 않는다.
+
 **대용량 VM이나 같은 Host에서 순차 처리할 VM이 많으면 `backup.thirdparty.staging.queue.timeout`을
 마지막 작업의 예상 대기 시간보다 길게 조정한다.** 기본값은 `14400`초(4시간)이며,
 Commvault·NetBackup·Veeam의 백업과 복원에 공통 적용한다.
@@ -2780,7 +3021,8 @@ C의 예상 대기 시간은 약 3시간 30분이다. 전송 속도 변동과 �
 | 처리 | 적용 기준 |
 | --- | --- |
 | 백업·복원 시작 접수, 상태 조회·취소 요청 | Management 공통 `wait` 및 기존 명령별 `commands.timeout`. Host의 짧은 제어 제한도 유지한다. |
-| 볼륨 내보내기·복사·변환, 외부 전송, 대용량 백업 데이터 삭제 | `backup.data.operation.timeout` (기본 `43200`초). 볼륨·처리 단계마다 적용하며 VM 전체의 합산 제한은 아니다. |
+| 백업 볼륨 내보내기·복사·변환, 외부 전송, 대용량 백업 데이터 삭제 | `backup.data.operation.timeout` (기본 `43200`초). 백업은 볼륨·처리 단계마다 적용하며 모든 VM의 합산 제한이 아니다. |
+| 현재 볼륨 복원의 외부 파일 대기·대상 디스크 적용 | 같은 데이터 제한값을 파일 다운로드·FULL 변환·증분 적용마다 새로 적용. 전체 VM·체인 처리시간을 합산하지 않으며, 슬롯 점유 전체 시간은 뒤 작업의 큐 대기에 반영 |
 | 공용 스테이징 실행 허용 대기 | `backup.thirdparty.staging.queue.timeout` (기본 `14400`초). 슬롯 확보 전까지만 적용한다. |
 
 백그라운드 백업·복원은 시작 응답을 받은 뒤 Host에서 계속 실행한다. 시작 응답 대기에 데이터 처리 제한인
@@ -3631,7 +3873,8 @@ NetBackup Host 연동 스크립트의 기본 상태 경로는 `/var/lib/ablestac
 | `restore-watcher.lock` | 복원 감시기의 중복 실행을 제어한다. 기본 파일 경로이며 감시기 설정에 따라 지정할 수 있다. |
 
 사전·사후 Hook은 `netbackup_hook_runner.py`가 별도 프로세스 그룹으로 실행하고 호출 프로세스의 생존을 확인한다.
-호출자 종료, TERM/INT/HUP, 실행 제한(기본 86,400초), 동일 작업의 실패·시간 초과·취소 Post 알림이 확인되면
+호출자 종료, TERM/INT/HUP, Global `backup.plugin.netbackup.hook.timeout` 실행 제한(기본 86,400초),
+동일 작업의 실패·시간 초과·취소 Post 알림이 확인되면
 해당 Hook 그룹을 TERM으로 종료한 뒤 남은 프로세스를 KILL로 종료하여 자식에게 상속된 context 잠금도 해제한다.
 Mold가 접수한 VM 백업 작업, 스테이징 파일과 외부 백업본은 이 처리로 취소하거나 삭제하지 않는다.
 실행 중인 VM 백업의 중복 제출은 Mold의 기존 실행 중 검사로 차단한다.
@@ -3653,8 +3896,10 @@ Backup ID를 재사용한 새 호출자는 감시기가 이전 PRE 소유자의 
 업데이트할 Host 파일은 `netbackup-host-common.sh`, `netbackup-host-bpstart-notify.sh`,
 `netbackup-host-bpend-notify.sh`, `netbackup_hook_runner.py`이다. 기존 notify 래퍼가 이 경로들을 호출하면 래퍼 재생성은 필요 없다.
 Mold API 연결은 15초, 요청 전체는 300초로 제한하고 백업 생성 POST를 자동 재전송하지 않는다.
-대용량 백업의 `BPSTART_TIMEOUT`은 NetBackup Primary 서버에서도 확인하고, `CLIENT_READ_TIMEOUT`과 함께 실행 시간에 맞춘다.
-Host 구성 도구가 Client의 `bp.conf`를 수정한 것만으로 Primary 서버의 제한이 변경되지는 않는다.
+대용량 백업의 notify 제한은 실제 작업을 수행하는 NetBackup 서버에서도 확인하고, `CLIENT_READ_TIMEOUT`과 함께 실행 시간에 맞춘다.
+11.1 공식 문서에서 `BPSTART_TIMEOUT`은 Media 서버, `BPEND_TIMEOUT`은 Primary 서버에 해당한다.
+Host 구성 도구가 Client의 `bp.conf`를 수정한 것만으로 Primary·Media 서버의 제한이 변경되지는 않는다.
+VM 스케줄 모드 OFF의 전체 제한 관계와 최대값 검증 상태는 위의 “Host·NetBackup 서버의 외부 제한 함께 확인”을 참고한다.
 
 #### 기본스토리지의 백업·복원 작업 파일
 

@@ -256,6 +256,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
     private BackupDao backupDao;
     @Inject
     private BackupDetailsDao backupDetailsDao;
+    @Inject private NetBackupScheduleModeGuard netBackupScheduleModeGuard;
     @Inject
     private BackupScheduleDao backupScheduleDao;
     @Inject
@@ -1772,8 +1773,11 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
             backupSnapshotGuard.checkBackup(vmId);
             backupSnapshotGuard.checkBackupSource(vmId, BackupProviderNameUtils.ABLESTACK_NETBACKUP);
             checkNoActiveFastCloneFlattenForBackup(vm.getId());
-            final BackupScheduleVO schedule = validateExternalBackupExecution(vm, BackupProviderNameUtils.ABLESTACK_NETBACKUP,
-                    cmd.getPolicyId(), cmd.getSelectionMode(), cmd.getHostId(), cmd.getBackupOfferingId(), backupScheduleId, cmd.getVmScheduleBackup());
+            final BackupScheduleVO schedule;
+            try (NetBackupScheduleModeGuard.Lease modeGuard = netBackupScheduleModeGuard.acquireExecution()) {
+                schedule = validateExternalBackupExecution(vm, BackupProviderNameUtils.ABLESTACK_NETBACKUP,
+                        cmd.getPolicyId(), cmd.getSelectionMode(), cmd.getHostId(), cmd.getBackupOfferingId(), backupScheduleId, cmd.getVmScheduleBackup());
+            }
             final BackupOffering offering = resolveExternalBackupOffering(vm, BackupProviderNameUtils.ABLESTACK_NETBACKUP, false);
             final BackupProvider backupProvider = getBackupProvider(offering.getProvider());
             if (backupProvider == null) {
@@ -4894,6 +4898,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
                 BackupProviderPlugin,
                 BackupSyncPollingInterval,
                 NetBackupVmScheduleEnabled,
+                NetBackupHookTimeout,
                 AblestackVeeamVmScheduleEnabled,
                 BackupActiveJobSyncPollingInterval,
                 BackupDataOperationTimeout,

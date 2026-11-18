@@ -65,6 +65,18 @@ class NetBackupHostConfigurationTest(unittest.TestCase):
         self.stack.enter_context(patch.object(ui, "timer_active", return_value=True))
         self.update = self.stack.enter_context(patch.object(ui.setup, "update_configuration_value"))
 
+    def test_status_reports_all_policies_without_selecting_only_the_latest_receipt(self):
+        for name in ("policy-a", "policy-b"):
+            (ui.setup.CONFIG_OUTPUT_DIR / ("netbackup-host-" + name + ".conf")).write_text("NETBACKUP_POLICY_NAME=" + name + "\n")
+        value = ui.status()
+        self.assertEqual(["policy-a", "policy-b"], value["configuredpolicies"])
+        self.assertTrue(value["policyinventorycomplete"])
+
+    def test_status_marks_incomplete_policy_identity_instead_of_reporting_an_empty_inventory(self):
+        (ui.setup.CONFIG_OUTPUT_DIR / "netbackup-host-legacy.conf").write_text("KVM_HOSTNAME=host-test\n")
+        value = ui.status()
+        self.assertFalse(value["policyinventorycomplete"])
+
     def identity(self, args):
         args.kvm_host_id = "host-1"
         args.kvm_hostname = "host-test"
@@ -74,6 +86,7 @@ class NetBackupHostConfigurationTest(unittest.TestCase):
 
     def setting(self, name, *args, **kwargs):
         return {ui.setup.NETBACKUP_VM_SCHEDULE_CONFIG_NAME: str(self.request["vmschedulebackup"]).lower(),
+                ui.setup.NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME: "86400",
                 "kvm.incremental.backup": str(self.request["incrementalbackup"]).lower(),
                 "backup.plugin.netbackup.url": self.request["netbackupurl"],
                 "backup.plugin.netbackup.apikey": self.request["netbackupapikey"]}[name]

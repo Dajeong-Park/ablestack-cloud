@@ -58,7 +58,6 @@ final class LibvirtAblestackVolumeRestoreHelper {
     private final Logger logger;
     private final String provider;
     private final String trace;
-    private long deadline;
     private int sequence;
     private boolean transferUncertain;
     private String targetVmName;
@@ -70,7 +69,6 @@ final class LibvirtAblestackVolumeRestoreHelper {
         provider = plan.manifest.getProvider().substring("ablestack-".length());
         trace = AblestackBackupFrameworkUtils.buildTracePrefix(provider, AblestackBackupFrameworkUtils.OPERATION_RESTORE);
         job = Path.of(AblestackBackupFrameworkUtils.ASYNC_BACKUP_JOB_ROOT, plan.jobId);
-        deadline = plan.timeout <= 0 ? Long.MAX_VALUE : System.nanoTime() + TimeUnit.SECONDS.toNanos(plan.timeout);
     }
 
     private static Path startDirectory() {
@@ -448,7 +446,6 @@ final class LibvirtAblestackVolumeRestoreHelper {
             reserved = true;
             checkCancellation();
             Files.deleteIfExists(job.resolve("staging-admission-request.json"));
-            deadline = plan.timeout <= 0 ? Long.MAX_VALUE : System.nanoTime() + TimeUnit.SECONDS.toNanos(plan.timeout);
             Files.createDirectories(destination.resolve("payload"));
             Files.createDirectories(destination.resolve("metadata"));
             atomic(destination.resolve(".restore-owner"), plan.jobId);
@@ -692,6 +689,10 @@ final class LibvirtAblestackVolumeRestoreHelper {
                 15 + 65 * request.sequence / artifactCount);
         atomic(job.resolve("volume-restore-request.json"), new Gson().toJson(request));
         final long observationStarted = System.nanoTime();
+        // Each exact artifact gets its own transfer budget, like backup exports
+        // and transfers. Earlier downloads/imports must not consume this wait.
+        final long deadline = plan.timeout <= 0 ? Long.MAX_VALUE
+                : observationStarted + TimeUnit.SECONDS.toNanos(plan.timeout);
         boolean progressWarning = false;
         while (!Files.isRegularFile(acknowledgment)) {
             checkCancellation();

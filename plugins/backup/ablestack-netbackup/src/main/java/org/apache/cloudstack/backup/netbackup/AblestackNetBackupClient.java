@@ -430,6 +430,29 @@ public class AblestackNetBackupClient {
         return matches.iterator().next();
     }
 
+    /** Mode changes never pause policies or cancel jobs on the operator's behalf. */
+    public void validateVmScheduleModeChange(List<String> policies) {
+        for (String name : new LinkedHashSet<>(policies)) {
+            try {
+                JSONObject response = artifactGetStrict("/config/policies/" + uriSegment(filterValue(name)), null);
+                if (response == null) { throw new IllegalStateException("Policy is unavailable"); }
+                JSONObject policy = response.getJSONObject("data").getJSONObject("attributes").getJSONObject("policy");
+                if (policy.getJSONObject("policyAttributes").getBoolean("active")) {
+                    throw new CloudRuntimeException("NETBACKUP_VM_SCHEDULE_MODE_POLICY_ACTIVE: " + name);
+                }
+                for (Object item : userBackupJobs(name, " and state ne 'DONE'")) {
+                    JSONObject job = (JSONObject) item;
+                    if (!terminalJob(job.getJSONObject("attributes"))) {
+                        throw new CloudRuntimeException("NETBACKUP_VM_SCHEDULE_MODE_NATIVE_BUSY: " + name + "/" + job.optString("id"));
+                    }
+                }
+            } catch (RuntimeException error) {
+                if (StringUtils.startsWith(error.getMessage(), "NETBACKUP_VM_SCHEDULE_MODE_")) { throw error; }
+                throw new CloudRuntimeException("NETBACKUP_VM_SCHEDULE_MODE_UNCONFIRMED: " + name, error);
+            }
+        }
+    }
+
     /** Update only a generated parent's Backup Selections, never its Client, schedule, active flag or retention. */
     public boolean synchronizeStagingPath(String name, String hostName, String hostIp, String previousPath, String target, String action) {
         if (!Set.of("CHECK", "APPLY", "VERIFY").contains(action)) { throw new CloudRuntimeException("Invalid staging synchronization action"); }

@@ -43,7 +43,8 @@ class NetBackupConfigurationTest(unittest.TestCase):
         patcher = patch.object(config, "CONFIG_OUTPUT_DIR", Path(directory.name))
         patcher.start()
         self.addCleanup(patcher.stop)
-        patcher = patch.object(config, "get_configuration_value", return_value="true")
+        patcher = patch.object(config, "get_configuration_value", side_effect=lambda key, *args, **kwargs:
+                              "86400" if key == config.NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME else "true")
         patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -63,6 +64,33 @@ class NetBackupConfigurationTest(unittest.TestCase):
             self.assertEqual([args.policy_name], shlex.split(values["NETBACKUP_POLICY_NAME"]))
             self.assertEqual([args.kvm_host_id], shlex.split(values["KVM_HOST_ID"]))
             self.assertNotIn("ADMIN_SECRETKEY=", path.read_text())
+
+    def test_client_notify_and_read_limits_use_global_hook_timeout_and_preserve_other_settings(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'bp.conf'
+            path.write_text('SERVER = primary\nBPSTART_TIMEOUT = 300\nBPSTART_TIMEOUT = 600\nCLIENT_READ_TIMEOUT = 300\n')
+            with patch.object(config, 'NETBACKUP_BP_CONF_PATH', path):
+                self.assertTrue(config.apply_netbackup_bp_conf(172800))
+            values = path.read_text()
+            self.assertIn('SERVER = primary\n', values)
+            for key in ('BPSTART_TIMEOUT', 'BPEND_TIMEOUT', 'CLIENT_READ_TIMEOUT'):
+                self.assertEqual(1, values.count(key + ' = '))
+                self.assertIn(key + ' = 172800\n', values)
+            for key in ('CLIENT_CONNECT_TIMEOUT', 'SERVER_CONNECT_TIMEOUT'):
+                self.assertIn(key + ' = 1800\n', values)
+
+    def test_host_setup_reads_global_hook_timeout_and_rejects_invalid_values_before_writes(self):
+        args = self.arguments()
+        for value in ('86400', '172800', '1'):
+            with patch.object(config, 'get_configuration_value', return_value=value) as read:
+                self.assertEqual(int(value), config.read_hook_timeout(args))
+                read.assert_called_once_with(config.NETBACKUP_HOOK_TIMEOUT_CONFIG_NAME, args.mold_url, args.admin_apikey, args.admin_secretkey)
+        for value in (None, '', '0', '-1', 'bad', '1.5', 1.5, True, '2147483648'):
+            with self.subTest(value=value), patch.object(config, 'get_configuration_value', return_value=value), \
+                    patch.object(config, 'apply_netbackup_bp_conf') as apply, contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit):
+                    config.generate_host_outputs('zone-1', args)
+                apply.assert_not_called()
 
     def test_policy_secret_decryption_receives_its_configured_key_without_export(self):
         with tempfile.TemporaryDirectory() as temporary:

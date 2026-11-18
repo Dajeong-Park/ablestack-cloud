@@ -119,6 +119,7 @@ public class ExternalBackupScheduleTest {
         when(depot.getConfigStringValue(eq(BackupManager.NetBackupVmScheduleEnabled.key()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("true");
         when(depot.getConfigStringValue(eq(BackupManager.AblestackVeeamVmScheduleEnabled.key()), eq(ConfigKey.Scope.Global), isNull())).thenReturn("true");
         manager = spy(new BackupManagerImpl());
+        ReflectionTestUtils.setField(manager, "netBackupScheduleModeGuard", mock(NetBackupScheduleModeGuard.class));
         schedules = mock(BackupScheduleDao.class);
         offerings = mock(BackupOfferingDao.class);
         vms = mock(VMInstanceDao.class);

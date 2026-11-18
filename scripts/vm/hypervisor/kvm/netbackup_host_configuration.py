@@ -94,12 +94,17 @@ def timer_active():
 
 def status():
     value = read_state()
-    policies = [config_values(path) for path in sorted(setup.CONFIG_OUTPUT_DIR.glob("netbackup-host-*.conf"))]
-    policies = [item for item in policies if item.get("NETBACKUP_POLICY_NAME")]
+    from netbackup_hook_timeout import inventory
+    updates = inventory(ROOT)
+    value.update(hooktimeoutpending=bool(updates))
+    configurations = [config_values(path) for path in sorted(setup.CONFIG_OUTPUT_DIR.glob("netbackup-host-*.conf"))]
+    policies = [item for item in configurations if item.get("NETBACKUP_POLICY_NAME")]
     # One host may have multiple existing policies; never silently choose a different one.
     policy = value.get("policyname") or (policies[0]["NETBACKUP_POLICY_NAME"] if len(policies) == 1 else "")
     current = next((item for item in policies if item["NETBACKUP_POLICY_NAME"] == policy), {})
-    value.update({"policyname": policy, "moldurl": value.get("moldurl") or current.get("MOLD_URL", ""),
+    value.update({"configuredpolicies": sorted({item["NETBACKUP_POLICY_NAME"] for item in policies}),
+                  "policyinventorycomplete": len(policies) == len(configurations),
+                  "policyname": policy, "moldurl": value.get("moldurl") or current.get("MOLD_URL", ""),
                   "configured": bool(current), "clientinstalled": setup.NETBACKUP_BP_CONF_PATH.is_file(),
                   "hooksready": bool(policy) and all((setup.HOOK_OUTPUT_DIR / (name + policy)).is_file()
                       for name in ("bpstart_notify.", "bpend_notify.")),
@@ -124,7 +129,8 @@ def read_request(path):
     if not stat.S_ISREG(info.st_mode) or info.st_uid != os.geteuid() or stat.S_IMODE(info.st_mode) != 0o600:
         raise ValueError("Configuration request must be a private regular file")
     value = json.loads(path.read_text())
-    if value.get("action") not in {"CHECK", "APPLY"} or not value.get("operationid"):
+    if value.get("action") not in {"CHECK", "APPLY", "HOOK_TIMEOUT_CHECK", "HOOK_TIMEOUT_APPLY", "HOOK_TIMEOUT_RECOVER",
+            "HOOK_TIMEOUT_ROLLBACK", "HOOK_TIMEOUT_COMMIT"} or not value.get("operationid"):
         raise ValueError("Invalid configuration action")
     return value
 
@@ -210,6 +216,7 @@ def preflight(request, value):
     check("SCHEDULES", lambda: setup.check_netbackup_policy(args))
     check("STAGING", lambda: setup.load_common_staging(args, read_only=True))
     def settings():
+        setup.read_hook_timeout(args)
         for key, expected, scope in ((setup.NETBACKUP_VM_SCHEDULE_CONFIG_NAME, str(request["vmschedulebackup"]).lower(), {}),
                 ("kvm.incremental.backup", str(request["incrementalbackup"]).lower(), {"cluster_id": request["clusterid"]}),
                 ("backup.plugin.netbackup.url", request["netbackupurl"], {"zone_id": request["zoneid"]}),
@@ -300,7 +307,18 @@ def main():
         run_worker(args.worker, args.lock_fd)
         return
     try:
-        result = status() if args.status else start(args.request)
+        if args.status:
+            result = status()
+        else:
+            request = read_request(args.request)
+            if request['action'].startswith('HOOK_TIMEOUT_'):
+                from netbackup_hook_timeout import execute
+                try:
+                    result = execute(request, sys.modules[__name__])
+                finally:
+                    Path(args.request).unlink(missing_ok=True)
+            else:
+                result = start(args.request)
     except Exception as error:
         result = {"state": "FAILED", "message": str(error)[:500]}
     print(json.dumps(result))

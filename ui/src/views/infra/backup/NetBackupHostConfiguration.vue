@@ -49,7 +49,7 @@
               <div class="setting-help">{{ record.help }}</div>
             </template>
             <template v-else-if="column.key === 'source'">
-              <router-link v-if="record.source" :to="settingRoute(record.source)">{{ $t('label.backup.integration.source.' + record.source.toLowerCase()) }}</router-link>
+              <span v-if="record.source">{{ $t('label.backup.integration.source.' + record.source.toLowerCase()) }}</span>
               <span v-else>—</span>
             </template>
           </template>
@@ -90,6 +90,7 @@
       <a-alert v-if="integrationReady" type="success" show-icon :message="$t('label.backup.integration.ready')" :description="nextStep" class="integration-block" />
       <a-card :title="$t('label.backup.integration.targets')" size="small" class="integration-block">
         <p>{{ $t('message.backup.integration.targets') }}</p>
+        <a-alert v-if="info.vmschedulebackup === false" type="info" show-icon :message="$t('label.backup.integration.policy.limits')" :description="$t('message.backup.integration.policy.limits')" class="integration-block" />
         <p v-if="integrationReady">{{ nextStep }}</p>
         <a-space wrap class="integration-block">
           <router-link :to="{ name: 'backupoffering' }">{{ $t('label.backup.offerings') }}</router-link>
@@ -163,8 +164,9 @@ export default {
     settings () {
       const boolean = value => value === undefined ? '—' : String(value)
       const source = key => this.info.settingsource?.[key]
+      const framework = source('backup.framework.enabled') === 'Zone' ? this.info.frameworkzoneenabled : this.info.frameworkglobalenabled
       return [
-        { key: 'backup.framework.enabled', label: 'framework', scope: 'zone', source: source('backup.framework.enabled'), value: 'Global: ' + boolean(this.info.frameworkglobalenabled) + ' / Zone: ' + boolean(this.info.frameworkzoneenabled) },
+        { key: 'backup.framework.enabled', label: 'framework', scope: 'zone', source: source('backup.framework.enabled'), value: boolean(framework) },
         { key: 'backup.framework.provider.plugin', label: 'provider', scope: 'zone', source: source('backup.framework.provider.plugin'), value: this.info.providerenabled === undefined ? '—' : this.$t(this.info.providerenabled ? 'label.backup.integration.registered' : 'label.backup.integration.required') },
         { key: 'backup.plugin.netbackup.url', label: 'server', scope: 'zone', source: source('backup.plugin.netbackup.url'), value: this.info.netbackupurl || '—' },
         { key: 'backup.plugin.netbackup.apikey', label: 'credentials', scope: 'zone', source: source('backup.plugin.netbackup.apikey'), value: this.info.credentialsconfigured === undefined ? '—' : this.$t(this.info.credentialsconfigured ? 'label.backup.integration.registered' : 'label.backup.integration.required') },
@@ -186,11 +188,6 @@ export default {
     localizeMessage (message) { return netBackupHostMessage(message, (key, params) => this.$t(key, params), this.info) },
     stepLabel (value) { return netBackupHostStep(value, key => this.$t(key)) },
     checkStateLabel (value) { return netBackupHostCheckState(value, key => this.$t(key)) },
-    settingRoute (scope) {
-      if (scope === 'Zone') return { path: '/zone/' + this.resource.zoneid, query: { tab: 'settings' } }
-      if (scope === 'Cluster') return { path: '/cluster/' + this.resource.clusterid, query: { tab: 'settings' } }
-      return { name: 'globalsetting' }
-    },
     reset () {
       this.generation++; clearTimeout(this.timer)
       this.info = {}; this.error = ''; this.inspectionFailed = false; this.policyName = ''; this.checkedInput = ''; this.submitting = false

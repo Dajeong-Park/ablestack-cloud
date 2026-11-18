@@ -115,7 +115,8 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             "Use Mold per-VM schedules for all ABLESTACK NetBackup host policies. " +
                     "Only VMs explicitly assigned a matching NetBackup backup offering are eligible in either mode. " +
                     "When false, back up all eligible assigned VMs when the NetBackup policy runs. " +
-                    "When true, require a due Mold VM schedule; an empty due list skips backup.",
+                    "When true, require a due Mold VM schedule; an empty due list skips backup. " +
+                    "Changing modes requires idle NetBackup work and inactive configured host policies; existing VM schedules are preserved.",
             true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
 
     ConfigKey<Boolean> AblestackVeeamVmScheduleEnabled = new ConfigKey<>("Advanced", Boolean.class,
@@ -123,6 +124,15 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             "Use Mold per-VM schedules for all ABLESTACK Veeam host jobs. " +
                     "When false, use each host job's VM include/exclude filters. " +
                     "When true, an empty due schedule list skips backup without falling back to host filters.",
+            true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
+
+    ConfigKey<Integer> NetBackupHookTimeout = new ConfigKey<>("Advanced", Integer.class,
+            "backup.plugin.netbackup.hook.timeout", "86400",
+            "Execution timeout in seconds for each ABLESTACK NetBackup PRE or POST hook invocation. " +
+                    "Must be positive. Each new invocation reads this Global value; running hooks retain their original limit. " +
+                    "Separate from VM staging queue and data-operation timeouts. Host setup and Global changes apply this value to managed Client notify/read timeouts. " +
+                    "Changes require idle configured Hosts and inactive policies; resaving reconciles incomplete Host updates. " +
+                    "Also verify notify/read timeouts on the NetBackup Primary and Media servers.",
             true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
 
     ConfigKey<Long> BackupActiveJobSyncPollingInterval = new ConfigKey<>("Advanced", Long.class,
