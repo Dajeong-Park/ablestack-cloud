@@ -97,10 +97,12 @@ export default {
 .asn-search-control { display: inline-flex; flex-direction: column; min-width: 0; max-width: 100%; }
 .asn-search-control .input-search { width: 240px; max-width: 100%; }
 .asn-search-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
-.asn-search-chips :deep(.ant-tag) { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.asn-search-chips :deep(.ant-tag) { max-width: 100%; white-space: normal; overflow-wrap: anywhere; color: var(--ui-text-primary); background: var(--ui-bg-elevated); border-color: var(--ui-border-strong); }
 .asn-search-verification { color: var(--ui-text-secondary); overflow-wrap: anywhere; }
 .asn-search-form { max-height: 65vh; overflow-y: auto; width: min(340px, calc(100vw - 64px)); scroll-padding-bottom: 48px; }
 .asn-search-form :deep(.ant-form-item-extra) { color: var(--ui-text-secondary); }
+.asn-search-form :deep(.ant-form-item-label > label) { color: var(--ui-text-primary); }
+.asn-search-form :deep(.ant-input), .asn-search-form :deep(.ant-select:not(.ant-select-disabled) .ant-select-selector) { color: var(--ui-text-primary); background: var(--ui-bg-input); border-color: var(--ui-border-strong); }
 .asn-search-form .filter-group-button { position: sticky; bottom: 0; z-index: 1; display: flex; justify-content: space-between; gap: 8px; background: var(--ui-bg-elevated); border-top: 1px solid var(--ui-border); padding: 8px 0; }
 .asn-search-form .filter-group-button :deep(.ant-btn) { position: static; }
 </style>

@@ -1020,37 +1020,10 @@ export default {
         return false
       },
       filters: ['all', 'allocatedonly', 'free'],
-      columns: ['asnumber', 'allocationstate', 'asnrange', 'associatednetworkname', 'vpcname', 'allocated', 'account', 'domain', 'zonename'],
+      columns: ['asnumber', 'allocationstate', 'asnrange', 'associatednetworkname', 'vpcname', 'allocated', 'created', 'account', 'domain', 'zonename', 'releasereason'],
       searchFilters: ['zoneid', 'asnrangeid', 'asnumber', 'vpcid', 'associatednetworkid', 'account', 'domainid'],
       resourceType: 'ASNumber',
-      actions: [
-        {
-          api: 'releaseASNumber',
-          icon: 'delete-outlined',
-          label: 'label.action.release.asnumber',
-          message: 'message.action.release.asnumber',
-          show: (record) => { return record.allocationstate === 'Allocated' },
-          args: ['zoneid', 'asnumber'],
-          mapping: {
-            zoneid: {
-              value: (record) => { return record.zoneid }
-            },
-            asnumber: {
-              value: (record) => { return record.asnumber }
-            }
-          },
-          dataView: true,
-          groupAction: true,
-          popup: true,
-          groupShow: (selectedItems, storegetters) => {
-            return selectedItems.length === 1 && selectedItems[0].allocationstate === 'Allocated'
-          },
-          groupMap: (selectedId, values, records) => {
-            const record = records.filter(x => { return x.id === selectedId[0] })
-            return record
-          }
-        }
-      ]
+      actions: []
     },
     {
       name: 'privategw',

@@ -177,4 +177,11 @@ public class ASNumberDaoQueryTest {
             Assert.assertEquals(Integer.valueOf(1), query(null, null, null, null, null, null, null, 2L, null, caller(type, 2, 2), 0, 20).second());
         }
     }
+    @Test
+    public void releaseLookupNeverSubstitutesAnEqualAsnFromAnotherZone() {
+        java.util.List<ASNumberVO> rows = dao.listByZoneAndAsNumber(1L, 4200000000L);
+        Assert.assertFalse(rows.isEmpty());
+        Assert.assertTrue(rows.stream().allMatch(row -> row.getDataCenterId() == 1L && row.getAsNumber() == 4200000000L));
+        Assert.assertTrue(dao.listByZoneAndAsNumber(999L, 4200000000L).isEmpty());
+    }
 }

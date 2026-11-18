@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'themed-list-toolbar': isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': !!asnSearchAuth || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -161,6 +161,7 @@
               <template #icon><reload-outlined /></template>
               {{ $t('label.refresh') }}
             </a-button>
+            <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="!listRequestPending && !listRefreshError && !asnSearchFailure && listLoadedScope === listScope()" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <search-view
               v-if="!dataView"
               :searchFilters="searchFilters"
@@ -859,6 +860,7 @@
     <div
       :style="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 'margin-top: 24px; margin-bottom: 12px' : null"
     >
+      <a-alert v-if="asnSearchAuth && !items.length && !listRequestPending && !listRefreshError && !asnSearchFailure" class="asn-list-guidance" type="info" show-icon :message="$t('message.asn.management.empty')" />
       <a-alert v-if="asnSearchFailure && $route.meta?.name === 'asnumbers'" class="asn-search-error" type="error" show-icon :message="$t('message.asn.search.' + asnSearchFailure)"><template #description><a-button @click="onSearch({ asnSearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="publicIpSearchFailure && $route.meta?.name === 'publicip' && !dataView" class="public-ip-search-error" type="error" show-icon :message="$t(publicIpSearchFailure)"><template #description><a-button @click="onSearch({ filter: 'allocated', state: 'Allocated', projectid: publicIpProject($store.getters) })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="vnfSearchFailure && $route.meta?.name === 'vnfapp'" class="vnf-search-error" type="error" show-icon :message="$t(vnfSearchFailure)"><template #description><a-button @click="onSearch({})">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
@@ -927,15 +929,16 @@
         <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
           <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
-        <p v-else-if="listRefreshError && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
+        <p v-else-if="listRefreshError && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
           :emptyText="asnSearchAuth ? $t(asnSearchFailure ? 'message.asn.search.lookup' : listRequestPending ? 'label.loading' : 'label.no.data') : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
           :items="items"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
-          :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
-          :explicitlyAllowRowSelection="policySelectionAvailable"
+          :selectionDisabled="record => (asnSearchAuth && (listRequestPending || listRefreshError || !!asnSearchFailure)) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
+          :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
+          :tableScroll="asnSearchAuth ? { x: 1640 } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -1053,6 +1056,7 @@ import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErro
 import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentity'
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
+import AsnListTools from '@/components/view/AsnListTools'
 import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
 import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
@@ -1062,6 +1066,7 @@ let templateFilterSequence = 0
 export default {
   name: 'Resource',
   components: {
+    AsnListTools,
     NetworkOperationPolicy,
     BucketStoreFilter,
     Breadcrumb,
@@ -1521,7 +1526,11 @@ export default {
     isPublicIpUi () { return publicIpRoute(this.$route) },
     publicIpDetail () { return this.$route.meta?.name === 'publicip' && !!this.$route.params?.id },
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
-    presentedColumns () { return this.localizePublicIpColumns(this.columns) },
+    presentedColumns () {
+      const columns = this.localizePublicIpColumns(this.columns)
+      if (!asnRoute(this.$route)) return columns
+      return columns.map(column => column.key === 'filtercolumn' ? column : ({ ...column, title: this.$t(column.key === 'allocated' ? 'label.asn.allocatedat' : 'label.' + column.key.toLowerCase()), width: ['asnumber', 'allocationstate'].includes(column.key) ? 140 : column.key === 'releasereason' ? 230 : 160 }))
+    },
     presentedChosenColumns () { return this.localizePublicIpColumns(this.chosenColumns) },
     publicIpReleaseDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'releaseIpAddress' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
@@ -2360,6 +2369,10 @@ export default {
               // Replace the former default domain column in saved selections as well.
               this.selectedColumns = [...new Set(this.selectedColumns.map(key => key === 'domain' ? 'zonename' : key))]
             }
+            if (this.$route.meta?.name === 'asnumbers') {
+              const oldDefaults = ['asnumber', 'allocationstate', 'asnrange', 'associatednetworkname', 'vpcname', 'allocated', 'account', 'domain', 'zonename']
+              if (JSON.stringify(this.selectedColumns) === JSON.stringify(oldDefaults)) this.selectedColumns = [...defaultColumnKeys]
+            }
             if (this.$store.getters.listAllProjects && !this.projectView && !isoQuery) {
               this.selectedColumns.push('project')
             }
@@ -2790,6 +2803,7 @@ export default {
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
         this.listRequestPending = false
         this.loading = false
+        if (asnRoute(this.$route) && !this.listRefreshError && !this.asnSearchFailure) this.onRowSelectionChange(this.selectedRowKeys)
         if (this.publicIpDetail) this.$emit('public-ip-read-state', { pending: false, failed: this.listRefreshError })
         this.searchParams = params
         if (this.listRefreshQueued) {
@@ -2954,6 +2968,11 @@ export default {
       this.$router.push({ query: queryParams })
     },
     onRowSelectionChange (selection) {
+      if (asnRoute(this.$route)) {
+        if (this.listRequestPending) return
+        if (this.listRefreshError || this.asnSearchFailure) { this.resetSelection(); return }
+        selection = [...new Set(selection || [])].filter(id => this.items.some(row => listRowKey(row) === id))
+      }
       if (vnfRoute(this.$route)) {
         if (!this.storageActionReady) { this.resetSelection(); return }
         selection = [...new Set(selection || [])].filter(id => this.items.some(row => row.id === id))

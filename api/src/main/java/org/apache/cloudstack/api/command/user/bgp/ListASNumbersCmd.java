@@ -17,6 +17,7 @@
 package org.apache.cloudstack.api.command.user.bgp;
 
 import com.cloud.bgp.ASNumber;
+import com.cloud.bgp.ASNumberReleasePolicy;
 import com.cloud.bgp.ASNumberQueryValidator;
 import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.exception.PermissionDeniedException;
@@ -132,10 +133,15 @@ public class ListASNumbersCmd extends BaseListCmd {
             ASNumberQueryValidator.validate(asNumber);
             Pair<List<ASNumber>, Integer> pair = bgpService.listASNumbers(this);
             List<ASNumber> asNumbers = pair.first();
+            Map<Long, String> releaseReasons = bgpService.getASNumberReleaseReasons(asNumbers);
             ListResponse<ASNumberResponse> response = new ListResponse<>();
             List<ASNumberResponse> responses = new ArrayList<>();
             for (ASNumber asn : asNumbers) {
-                responses.add(_responseGenerator.createASNumberResponse(asn));
+                ASNumberResponse item = _responseGenerator.createASNumberResponse(asn);
+                String reason = releaseReasons == null ? ASNumberReleasePolicy.UNKNOWN : releaseReasons.getOrDefault(asn.getId(), ASNumberReleasePolicy.UNKNOWN);
+                item.setReleasable(ASNumberReleasePolicy.ELIGIBLE.equals(reason));
+                item.setReleaseReason(reason);
+                responses.add(item);
             }
             response.setResponses(responses, pair.second());
             response.setResponseName(getCommandName());

@@ -117,4 +117,8 @@ export default {
 <style>
 .asn-search-options .asn-search-option { white-space: normal; overflow-wrap: anywhere; }
 .asn-search-options .asn-search-description { font-size: 12px; color: var(--ui-text-secondary); }
+.asn-search-options { background: var(--ui-bg-elevated); color: var(--ui-text-primary); }
+.asn-search-options .ant-select-item { color: var(--ui-text-primary); }
+.asn-search-options .ant-select-item-option-active:not(.ant-select-item-option-disabled) { background: var(--ui-bg-hover); }
+.asn-search-options .ant-select-item-option-selected:not(.ant-select-item-option-disabled) { background: var(--ui-bg-selected); color: var(--ui-text-primary); }
 </style>

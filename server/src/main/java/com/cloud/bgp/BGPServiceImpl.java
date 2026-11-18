@@ -25,6 +25,7 @@ import com.cloud.dc.dao.DataCenterDao;
 import com.cloud.domain.Domain;
 import com.cloud.domain.dao.DomainDao;
 import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.exception.PermissionDeniedException;
 import com.cloud.exception.ResourceUnavailableException;
 import com.cloud.network.Network;
 import com.cloud.network.NetworkModel;
@@ -49,6 +50,8 @@ import com.cloud.user.AccountManager;
 import com.cloud.user.dao.AccountDao;
 import com.cloud.utils.Pair;
 import com.cloud.utils.db.DB;
+import com.cloud.utils.db.GenericDao;
+import com.cloud.utils.db.SearchCriteria;
 import com.cloud.utils.db.Transaction;
 import com.cloud.utils.db.TransactionCallback;
 import com.cloud.utils.exception.CloudRuntimeException;
@@ -66,6 +69,11 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -334,67 +342,145 @@ public class BGPServiceImpl implements BGPService {
     }
 
     @Override
+    @DB
     @ActionEvent(eventType = EventTypes.EVENT_AS_NUMBER_RELEASE, eventDescription = "Releasing AS Number")
     public Pair<Boolean, String> releaseASNumber(long zoneId, long asNumber, boolean isDestroyNetworkOperation) {
-        ASNumberVO asNumberVO = asNumberDao.findByAsNumber(asNumber);
-        DataCenterVO zone = dataCenterDao.findById(zoneId);
-        if (asNumberVO == null) {
-            return logAndReturnErrorMessage(String.format("Cannot find AS Number %s on zone %s", asNumber, zone));
+        ASNumberQueryValidator.validate(asNumber);
+        Account caller = CallContext.current().getCallingAccount();
+        if (!isDestroyNetworkOperation && (caller == null || caller.getType() != Account.Type.ADMIN)) {
+            throw new PermissionDeniedException("ASN release requires root administrator permission.");
         }
-        if (!asNumberVO.isAllocated()) {
-            LOGGER.debug("The AS Number {} is not allocated to any network on zone {}, ignoring release", asNumber, zone);
-            return new Pair<>(true, "");
-        }
-        Long networkId = asNumberVO.getNetworkId();
-        Long vpcId = asNumberVO.getVpcId();
-        if (!isDestroyNetworkOperation) {
-            Pair<Boolean, String> checksResult = performReleaseASNumberChecks(networkId, vpcId, asNumber);
-            if (checksResult != null) {
-                return checksResult;
+        return Transaction.execute((TransactionCallback<Pair<Boolean, String>>) status -> {
+            if (dataCenterDao.lockRow(zoneId, true) == null) {
+                throw new InvalidParameterValueException("The selected Zone no longer exists.");
             }
-        }
-        LOGGER.debug("Releasing AS Number {} on zone {} from previous allocation", asNumber, zone);
-        asNumberVO.setAllocated(false);
-        asNumberVO.setAllocatedTime(null);
-        asNumberVO.setDomainId(null);
-        asNumberVO.setAccountId(null);
-        if (vpcId != null) {
-            asNumberVO.setVpcId(null);
-        } else {
-            asNumberVO.setNetworkId(null);
-        }
-        boolean update = asNumberDao.update(asNumberVO.getId(), asNumberVO);
-        String msg = update ? "OK" : "Could not update database record for AS number";
-        return new Pair<>(update, msg);
+            List<ASNumberVO> candidates = asNumberDao.listByZoneAndAsNumber(zoneId, asNumber);
+            if (candidates == null || candidates.size() != 1) {
+                throw new InvalidParameterValueException("The ASN is absent or ambiguous in the selected Zone.");
+            }
+            ASNumberVO snapshot = candidates.get(0);
+            ASNumberRangeVO range = asNumberRangeDao.lockRow(snapshot.getAsNumberRangeId(), true);
+            if (range == null || range.getRemoved() != null || range.getDataCenterId() != zoneId) {
+                throw new InvalidParameterValueException("The ASN range no longer exists in the selected Zone.");
+            }
+            ASNumberVO number = asNumberDao.lockRow(snapshot.getId(), true);
+            if (number == null || number.getRemoved() != null || number.getDataCenterId() != zoneId
+                    || number.getAsNumber() != asNumber || number.getAsNumberRangeId() != range.getId()) {
+                throw new InvalidParameterValueException("The selected ASN changed. Read its state again.");
+            }
+            if (!number.isAllocated()) {
+                return new Pair<>(true, "");
+            }
+            if (!isDestroyNetworkOperation) {
+                String reason = lockedASNumberReleaseReason(number);
+                if (!ASNumberReleasePolicy.ELIGIBLE.equals(reason)) {
+                    throw new InvalidParameterValueException("ASN release is not permitted: " + reason);
+                }
+            }
+            number.setAllocated(false);
+            number.setAllocatedTime(null);
+            number.setAccountId(null);
+            number.setDomainId(null);
+            number.setNetworkId(null);
+            number.setVpcId(null);
+            if (!asNumberDao.update(number.getId(), number)) {
+                throw new CloudRuntimeException("Could not persist ASN release");
+            }
+            return new Pair<>(true, "OK");
+        });
     }
 
-    private Pair<Boolean, String> performReleaseASNumberChecks(Long networkId, Long vpcId, long asNumber) {
-        if (networkId != null) {
-            NetworkVO network = networkDao.findById(networkId);
-            if (network == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a network with ID %s which acquired the AS number %s", networkId, asNumber));
+    private String lockedASNumberReleaseReason(ASNumber number) {
+        if (number.getNetworkId() != null && number.getVpcId() != null) {
+            return ASNumberReleasePolicy.UNKNOWN;
+        }
+        if (number.getVpcId() != null) {
+            VpcVO vpc = vpcDao.lockRow(number.getVpcId(), true);
+            VpcOfferingVO offering = vpc == null ? null : vpcOfferingDao.lockRow(vpc.getVpcOfferingId(), true);
+            return ASNumberReleasePolicy.reason(number, vpc != null && vpc.getRemoved() == null
+                    && vpc.getZoneId() == number.getDataCenterId() && offering != null && offering.getRemoved() == null,
+                    offering == null ? null : offering.isSpecifyAsNumber());
+        }
+        if (number.getNetworkId() != null) {
+            NetworkVO network = networkDao.lockRow(number.getNetworkId(), true);
+            NetworkOfferingVO offering = network == null ? null : networkOfferingDao.lockRow(network.getNetworkOfferingId(), true);
+            return ASNumberReleasePolicy.reason(number, network != null && network.getRemoved() == null
+                    && network.getDataCenterId() == number.getDataCenterId() && offering != null && offering.getRemoved() == null,
+                    offering == null ? null : offering.isSpecifyAsNumber());
+        }
+        return ASNumberReleasePolicy.MISSING;
+    }
+
+    @Override
+    public Map<Long, String> getASNumberReleaseReasons(List<ASNumber> numbers) {
+        Map<Long, String> reasons = new HashMap<>();
+        Set<Long> networkIds = new HashSet<>();
+        Set<Long> vpcIds = new HashSet<>();
+        for (ASNumber number : numbers) {
+            reasons.put(number.getId(), number.isAllocated() ? ASNumberReleasePolicy.UNKNOWN : ASNumberReleasePolicy.NOT_ALLOCATED);
+            if (!number.isAllocated()) {
+                continue;
             }
-            NetworkOfferingVO offering = networkOfferingDao.findById(network.getNetworkOfferingId());
-            if (offering == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a network offering with ID %s", network.getNetworkOfferingId()));
+            if (number.getNetworkId() != null) {
+                networkIds.add(number.getNetworkId());
             }
-            if (offering.isSpecifyAsNumber()) {
-                return logAndReturnErrorMessage(String.format("Cannot release the AS number %s as it is acquired by a network that requires AS number", asNumber));
-            }
-        } else if (vpcId != null) {
-            VpcVO vpc = vpcDao.findById(vpcId);
-            if (vpc == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a VPC with ID %s which acquired the AS number %s", vpcId, asNumber));
-            }
-            VpcOfferingVO vpcOffering = vpcOfferingDao.findById(vpc.getVpcOfferingId());
-            if (vpcOffering == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a VPC offering with ID %s", vpc.getVpcOfferingId()));
-            }
-            if (vpcOffering.isSpecifyAsNumber()) {
-                return logAndReturnErrorMessage(String.format("Cannot release the AS number %s as it is acquired by a VPC that requires AS number", asNumber));
+            if (number.getVpcId() != null) {
+                vpcIds.add(number.getVpcId());
             }
         }
-        return null;
+        try {
+            Map<Long, NetworkVO> networks = new HashMap<>();
+            Set<Long> networkOfferingIds = new HashSet<>();
+            for (NetworkVO network : asnPageReferences(networkDao, networkIds)) {
+                networks.put(network.getId(), network);
+                networkOfferingIds.add(network.getNetworkOfferingId());
+            }
+            Map<Long, VpcVO> vpcs = new HashMap<>();
+            Set<Long> vpcOfferingIds = new HashSet<>();
+            for (VpcVO vpc : asnPageReferences(vpcDao, vpcIds)) {
+                vpcs.put(vpc.getId(), vpc);
+                vpcOfferingIds.add(vpc.getVpcOfferingId());
+            }
+            Map<Long, NetworkOfferingVO> offerings = new HashMap<>();
+            for (NetworkOfferingVO offering : asnPageReferences(networkOfferingDao, networkOfferingIds)) {
+                offerings.put(offering.getId(), offering);
+            }
+            Map<Long, VpcOfferingVO> vpcOfferings = new HashMap<>();
+            for (VpcOfferingVO offering : asnPageReferences(vpcOfferingDao, vpcOfferingIds)) {
+                vpcOfferings.put(offering.getId(), offering);
+            }
+            for (ASNumber number : numbers) {
+                NetworkVO network = networks.get(number.getNetworkId());
+                VpcVO vpc = vpcs.get(number.getVpcId());
+                NetworkOfferingVO offering = network == null ? null : offerings.get(network.getNetworkOfferingId());
+                VpcOfferingVO vpcOffering = vpc == null ? null : vpcOfferings.get(vpc.getVpcOfferingId());
+                boolean valid = number.getVpcId() != null
+                        ? vpc != null && vpc.getRemoved() == null && vpc.getZoneId() == number.getDataCenterId()
+                            && vpcOffering != null && vpcOffering.getRemoved() == null
+                        : network != null && network.getRemoved() == null && network.getDataCenterId() == number.getDataCenterId()
+                            && offering != null && offering.getRemoved() == null;
+                Boolean required = number.getVpcId() != null ? vpcOffering == null ? null : vpcOffering.isSpecifyAsNumber()
+                        : offering == null ? null : offering.isSpecifyAsNumber();
+                reasons.put(number.getId(), ASNumberReleasePolicy.reason(number, valid, required));
+            }
+        } catch (RuntimeException unavailable) {
+            // Reading eligibility must not emit errors/events or accidentally make a resource releasable.
+            return reasons;
+        }
+        return reasons;
+    }
+
+    private <T> List<T> asnPageReferences(GenericDao<T, Long> dao, Set<Long> ids) {
+        if (ids.isEmpty()) {
+            return Collections.emptyList();
+        }
+        SearchCriteria<T> criteria = dao.createSearchCriteria();
+        criteria.addAnd("id", SearchCriteria.Op.IN, ids.toArray());
+        List<T> rows = dao.search(criteria, null);
+        if (rows == null) {
+            throw new CloudRuntimeException("ASN references could not be verified");
+        }
+        return rows;
     }
 
     @Override

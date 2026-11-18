@@ -1,0 +1,2043 @@
+{
+  "issue": 1713,
+  "epic": 1708,
+  "pr": 1716,
+  "sourceBase": "0b92097f11c6d0cb0c7c960d9fbb4107bd30f17e",
+  "scope": "ISP-free UI/API only; allocation references in disposable new ASN rows; no live BGP validation",
+  "tests": {
+    "api": 10,
+    "schema": 7,
+    "server": 28,
+    "overlaySameTests": 45,
+    "asnUiSuites": 8,
+    "asnUiTests": 78,
+    "commonUiSuites": 4,
+    "commonUiTests": 44,
+    "changedJavaCheckstyleFiles": 16,
+    "mavenSuites": [
+      {
+        "module": "api",
+        "suite": "com.cloud.bgp.ASNumberReleasePolicyTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "module": "api",
+        "suite": "org.apache.cloudstack.api.command.admin.bgp.ReleaseASNumberCmdTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "module": "api",
+        "suite": "org.apache.cloudstack.api.command.user.bgp.ListASNumbersCmdTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "module": "engine/schema",
+        "suite": "com.cloud.dc.dao.ASNumberDaoQueryTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "module": "server",
+        "suite": "com.cloud.bgp.BGPASNumberQueryTest",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "module": "server",
+        "suite": "com.cloud.bgp.BGPASNumberRangeDeletionTest",
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "module": "server",
+        "suite": "com.cloud.bgp.BGPASNumberReleasePolicyTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "module": "server",
+        "suite": "com.cloud.api.ApiResponseHelperAsnTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "clusters": {
+    "31": {
+      "apiPhases": {
+        "free": {
+          "count": 12,
+          "checks": [
+            {
+              "name": "six-owned-members",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64512",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64513",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64514",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000000",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000001",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000002",
+              "pass": true
+            },
+            {
+              "name": "exact-32bit-query",
+              "pass": true
+            },
+            {
+              "name": "32bit-range-filter",
+              "pass": true
+            },
+            {
+              "name": "server-page-count",
+              "pass": true
+            },
+            {
+              "name": "free-release-idempotent-sync",
+              "pass": true
+            },
+            {
+              "name": "absent-target-rejected",
+              "pass": true
+            }
+          ]
+        },
+        "allocated": {
+          "count": 17,
+          "checks": [
+            {
+              "name": "six-owned-members",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64512",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64513",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64514",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000000",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000001",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000002",
+              "pass": true
+            },
+            {
+              "name": "exact-32bit-query",
+              "pass": true
+            },
+            {
+              "name": "32bit-range-filter",
+              "pass": true
+            },
+            {
+              "name": "server-page-count",
+              "pass": true
+            },
+            {
+              "name": "free-release-idempotent-sync",
+              "pass": true
+            },
+            {
+              "name": "absent-target-rejected",
+              "pass": true
+            },
+            {
+              "name": "read-only-offering-eligible-64512",
+              "pass": true
+            },
+            {
+              "name": "read-only-offering-eligible-64513",
+              "pass": true
+            },
+            {
+              "name": "missing-reference-fails-closed",
+              "pass": true
+            },
+            {
+              "name": "missing-reference-release-rejected",
+              "pass": true
+            },
+            {
+              "name": "allocated-filter-current-count",
+              "pass": true
+            }
+          ]
+        },
+        "released": {
+          "count": 14,
+          "checks": [
+            {
+              "name": "six-owned-members",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64512",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64513",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64514",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000000",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000001",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000002",
+              "pass": true
+            },
+            {
+              "name": "exact-32bit-query",
+              "pass": true
+            },
+            {
+              "name": "32bit-range-filter",
+              "pass": true
+            },
+            {
+              "name": "server-page-count",
+              "pass": true
+            },
+            {
+              "name": "free-release-idempotent-sync",
+              "pass": true
+            },
+            {
+              "name": "absent-target-rejected",
+              "pass": true
+            },
+            {
+              "name": "ui-release-observed-free-64512",
+              "pass": true
+            },
+            {
+              "name": "ui-release-observed-free-64513",
+              "pass": true
+            }
+          ]
+        }
+      },
+      "contract": {
+        "command": "listASNumbers",
+        "asnumberType": "long",
+        "eligibilityResponse": {
+          "releasable": "boolean",
+          "releasereason": "string"
+        }
+      },
+      "permission": {
+        "releaseDenied": true,
+        "errorcode": 432,
+        "resourceEligibilityIndependentOfPermission": true,
+        "releaseAbsentFromCatalog": true
+      },
+      "cleanup": {
+        "identity": {
+          "accountAbsent": true,
+          "roleAbsent": true
+        },
+        "counts": {
+          "listZones": 1,
+          "listASNRanges": 0,
+          "listASNumbers": 0,
+          "listNetworks": 31,
+          "listVPCs": 2,
+          "listBgpPeers": 0,
+          "listNetworkOfferings": 33,
+          "listVPCOfferings": 7
+        },
+        "configurationPreserved": true,
+        "resourceIdsPreserved": true
+      },
+      "disposableRanges": [
+        {
+          "id": "86694329-3d00-4d73-91ae-893588a9642b",
+          "startasn": 64512,
+          "endasn": 64514
+        },
+        {
+          "id": "cc767e6b-1b0c-40c9-b0d5-b2c1ae069ed7",
+          "startasn": 4200000000,
+          "endasn": 4200000002
+        }
+      ]
+    },
+    "32": {
+      "apiPhases": {
+        "free": {
+          "count": 12,
+          "checks": [
+            {
+              "name": "six-owned-members",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64512",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64513",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64514",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000000",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000001",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000002",
+              "pass": true
+            },
+            {
+              "name": "exact-32bit-query",
+              "pass": true
+            },
+            {
+              "name": "32bit-range-filter",
+              "pass": true
+            },
+            {
+              "name": "server-page-count",
+              "pass": true
+            },
+            {
+              "name": "free-release-idempotent-sync",
+              "pass": true
+            },
+            {
+              "name": "absent-target-rejected",
+              "pass": true
+            }
+          ]
+        },
+        "allocated": {
+          "count": 17,
+          "checks": [
+            {
+              "name": "six-owned-members",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64512",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64513",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64514",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000000",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000001",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000002",
+              "pass": true
+            },
+            {
+              "name": "exact-32bit-query",
+              "pass": true
+            },
+            {
+              "name": "32bit-range-filter",
+              "pass": true
+            },
+            {
+              "name": "server-page-count",
+              "pass": true
+            },
+            {
+              "name": "free-release-idempotent-sync",
+              "pass": true
+            },
+            {
+              "name": "absent-target-rejected",
+              "pass": true
+            },
+            {
+              "name": "read-only-offering-eligible-64512",
+              "pass": true
+            },
+            {
+              "name": "read-only-offering-eligible-64513",
+              "pass": true
+            },
+            {
+              "name": "missing-reference-fails-closed",
+              "pass": true
+            },
+            {
+              "name": "missing-reference-release-rejected",
+              "pass": true
+            },
+            {
+              "name": "allocated-filter-current-count",
+              "pass": true
+            }
+          ]
+        },
+        "released": {
+          "count": 14,
+          "checks": [
+            {
+              "name": "six-owned-members",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64512",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64513",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-64514",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000000",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000001",
+              "pass": true
+            },
+            {
+              "name": "additive-eligibility-4200000002",
+              "pass": true
+            },
+            {
+              "name": "exact-32bit-query",
+              "pass": true
+            },
+            {
+              "name": "32bit-range-filter",
+              "pass": true
+            },
+            {
+              "name": "server-page-count",
+              "pass": true
+            },
+            {
+              "name": "free-release-idempotent-sync",
+              "pass": true
+            },
+            {
+              "name": "absent-target-rejected",
+              "pass": true
+            },
+            {
+              "name": "ui-release-observed-free-64512",
+              "pass": true
+            },
+            {
+              "name": "ui-release-observed-free-64513",
+              "pass": true
+            }
+          ]
+        }
+      },
+      "contract": {
+        "command": "listASNumbers",
+        "asnumberType": "long",
+        "eligibilityResponse": {
+          "releasable": "boolean",
+          "releasereason": "string"
+        }
+      },
+      "permission": {
+        "releaseDenied": true,
+        "errorcode": 432,
+        "resourceEligibilityIndependentOfPermission": true,
+        "releaseAbsentFromCatalog": true
+      },
+      "cleanup": {
+        "identity": {
+          "accountAbsent": true,
+          "roleAbsent": true
+        },
+        "counts": {
+          "listZones": 1,
+          "listASNRanges": 0,
+          "listASNumbers": 0,
+          "listNetworks": 17,
+          "listVPCs": 1,
+          "listBgpPeers": 0,
+          "listNetworkOfferings": 24,
+          "listVPCOfferings": 7
+        },
+        "configurationPreserved": true,
+        "resourceIdsPreserved": true
+      },
+      "disposableRanges": [
+        {
+          "id": "8d1f1459-a696-4dbc-b30f-10ab38881ac9",
+          "startasn": 64512,
+          "endasn": 64514
+        },
+        {
+          "id": "a72cca43-3a75-4356-af60-16f926344bb8",
+          "startasn": 4200000000,
+          "endasn": 4200000002
+        }
+      ]
+    }
+  },
+  "uiMatrix": [
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 390,
+      "view": "create",
+      "minMeasuredTextContrast": 7.13,
+      "dialogBounds": [
+        {
+          "height": 498,
+          "width": 366,
+          "x": 12,
+          "y": 201
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 390,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 571,
+          "width": 366,
+          "x": 12,
+          "y": 164.5
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 390,
+      "view": "list",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 390,
+      "view": "release",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": [
+        {
+          "height": 596,
+          "width": 366,
+          "x": 12,
+          "y": 152
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 390,
+      "view": "search",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 390,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 768,
+      "view": "create",
+      "minMeasuredTextContrast": 7.13,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 24,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 768,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 24,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 768,
+      "view": "list",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 768,
+      "view": "release",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 24,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 768,
+      "view": "search",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 768,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 1280,
+      "view": "create",
+      "minMeasuredTextContrast": 7.13,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 280,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 1280,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 280,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 1280,
+      "view": "list",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 1280,
+      "view": "release",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 280,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 1280,
+      "view": "search",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "dark",
+      "width": 1280,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 390,
+      "view": "create",
+      "minMeasuredTextContrast": 7.56,
+      "dialogBounds": [
+        {
+          "height": 498,
+          "width": 366,
+          "x": 12,
+          "y": 201
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 390,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 571,
+          "width": 366,
+          "x": 12,
+          "y": 164.5
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 390,
+      "view": "list",
+      "minMeasuredTextContrast": 5.19,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 390,
+      "view": "release",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": [
+        {
+          "height": 596,
+          "width": 366,
+          "x": 12,
+          "y": 152
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 390,
+      "view": "search",
+      "minMeasuredTextContrast": 4.65,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 390,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 768,
+      "view": "create",
+      "minMeasuredTextContrast": 7.56,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 24,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 768,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 24,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 768,
+      "view": "list",
+      "minMeasuredTextContrast": 5.19,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 768,
+      "view": "release",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 24,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 768,
+      "view": "search",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 768,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 1280,
+      "view": "create",
+      "minMeasuredTextContrast": 7.56,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 280,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 1280,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 280,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 1280,
+      "view": "list",
+      "minMeasuredTextContrast": 5.19,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 1280,
+      "view": "release",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 280,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 1280,
+      "view": "search",
+      "minMeasuredTextContrast": 4.65,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 31,
+      "theme": "light",
+      "width": 1280,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 390,
+      "view": "create",
+      "minMeasuredTextContrast": 7.13,
+      "dialogBounds": [
+        {
+          "height": 498,
+          "width": 366,
+          "x": 12,
+          "y": 201
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 390,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 571,
+          "width": 366,
+          "x": 12,
+          "y": 164.5
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 390,
+      "view": "list",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 390,
+      "view": "release",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": [
+        {
+          "height": 596,
+          "width": 366,
+          "x": 12,
+          "y": 152
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 390,
+      "view": "search",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 390,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 768,
+      "view": "create",
+      "minMeasuredTextContrast": 7.13,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 24,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 768,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 24,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 768,
+      "view": "list",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 768,
+      "view": "release",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 24,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 768,
+      "view": "search",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 768,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 1280,
+      "view": "create",
+      "minMeasuredTextContrast": 7.13,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 280,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 1280,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 280,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 1280,
+      "view": "list",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 1280,
+      "view": "release",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 280,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 1280,
+      "view": "search",
+      "minMeasuredTextContrast": 6.61,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "dark",
+      "width": 1280,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 390,
+      "view": "create",
+      "minMeasuredTextContrast": 7.56,
+      "dialogBounds": [
+        {
+          "height": 498,
+          "width": 366,
+          "x": 12,
+          "y": 201
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 390,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 571,
+          "width": 366,
+          "x": 12,
+          "y": 164.5
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 390,
+      "view": "list",
+      "minMeasuredTextContrast": 5.19,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 390,
+      "view": "release",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": [
+        {
+          "height": 596,
+          "width": 366,
+          "x": 12,
+          "y": 152
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 390,
+      "view": "search",
+      "minMeasuredTextContrast": 4.65,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 390,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 768,
+      "view": "create",
+      "minMeasuredTextContrast": 7.56,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 24,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 768,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 24,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 768,
+      "view": "list",
+      "minMeasuredTextContrast": 5.14,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 768,
+      "view": "release",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 24,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 768,
+      "view": "search",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 768,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 1280,
+      "view": "create",
+      "minMeasuredTextContrast": 7.56,
+      "dialogBounds": [
+        {
+          "height": 470,
+          "width": 720,
+          "x": 280,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 1280,
+      "view": "delete",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": [
+        {
+          "height": 499,
+          "width": 720,
+          "x": 280,
+          "y": 200.5
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 1280,
+      "view": "list",
+      "minMeasuredTextContrast": 5.19,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 1280,
+      "view": "release",
+      "minMeasuredTextContrast": 4.73,
+      "dialogBounds": [
+        {
+          "height": 546,
+          "width": 720,
+          "x": 280,
+          "y": 177
+        }
+      ]
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 1280,
+      "view": "search",
+      "minMeasuredTextContrast": 4.65,
+      "dialogBounds": []
+    },
+    {
+      "cluster": 32,
+      "theme": "light",
+      "width": 1280,
+      "view": "zone",
+      "minMeasuredTextContrast": null,
+      "dialogBounds": []
+    }
+  ],
+  "license": {
+    "base": "aff74eee0d835891f9209492514f6c2d204bc138",
+    "baseUnapproved": 4077,
+    "headUnapproved": 4077,
+    "new": 0,
+    "removed": 0,
+    "overallPass": false
+  },
+  "preservation": {
+    "passed": true,
+    "checks": [
+      "PASS com/cloud/bgp/BGPServiceImpl: preserved 21 other methods/all original fields; selected [asnPageReferences, performReleaseASNumberChecks, releaseASNumber, getASNumberReleaseReasons, lambda$releaseASNumber$2, lockedASNumberReleaseReason]",
+      "PASS com/cloud/api/ApiResponseHelper: preserved 206 other methods/all original fields; selected [createASNumberResponse]",
+      "PASS org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd: preserved 10 other methods/all original fields; selected [execute]",
+      "PASS org/apache/cloudstack/api/command/admin/bgp/ReleaseASNumberCmd: preserved 4 other methods/all original fields; selected [execute]",
+      "PASS org/apache/cloudstack/api/response/ASNumberResponse: preserved 35 other methods/all original fields; selected [setReleaseReason, getReleaseReason, getReleasable, setReleasable]",
+      "PASS com/cloud/bgp/BGPService: preserved 10 other methods/all original fields; selected [getASNumberReleaseReasons]",
+      "PASS com/cloud/dc/dao/ASNumberDao: preserved 7 other methods/all original fields; selected [listByZoneAndAsNumber]",
+      "PASS com/cloud/dc/dao/ASNumberDaoImpl: preserved 8 other methods/all original fields; selected [listByZoneAndAsNumber]"
+    ]
+  },
+  "checkedJavaFiles": 16,
+  "uiBuildPayload": {
+    "uiPayloadSha256": "24eda7602d3f3f73f5d38679a2c0ce274369582cdbfbdd27e3dea45d078edfbd",
+    "sourceSha256": {
+      "ui/src/views/infra/zone/AsNumbersTab.vue": "d35772b1f17ec893c5778ccaba1ddd8cb6c71fdcd9af9d40d6f12cea2f157a7e",
+      "ui/src/utils/asnRange.js": "c64d0bfe3a409f0d74df644ff8304de8a8ca319f632a1bf3a494d44ec5625bde",
+      "ui/src/components/view/AsnListTools.vue": "0f70001a1702f69c7ef8f46a71bfbec7340f53155617266e02822d2c20c7b021",
+      "ui/src/components/view/AsnListCell.vue": "7e538578aecd5f9aa762d080347a75d7f6b6687576e0de1b6a5589281327593f",
+      "ui/src/components/view/AsnReleaseDialog.vue": "1e2dfd4b353b7a09e8361d5f521528907531e5dd826e74488d2a924c8846dd4f",
+      "ui/src/utils/asnOperations.js": "acccd27cac7199c63ca4a00d91f8cebf70bd335aa00d2526d4df18fcae8ac5f5",
+      "ui/src/config/section/network.js": "5c4b1cfcc7fc3f43ac60d575b6437c976f8cf2dba160479ef8265a3f7ab59374",
+      "ui/src/components/view/ListView.vue": "08e584ab88290035a57f301af1c871dfca59cea2f416badbda7a72cf229d4b99",
+      "ui/src/components/view/AsnSearch.vue": "9b3c5618d9f2a863d298e88c817e3bfe663bd4d7ebdcda63147f312fe0d0f840",
+      "ui/src/components/view/AsnSearchSelect.vue": "31981029127ad0540405cbdad4b0aa0f379f38deee6bd27eba7af0679b4c179d",
+      "ui/src/utils/asnSearch.js": "d4036a6bc7fbca856d9d52f08dabbe887edefe910816a5c7ded736dc357b1d56",
+      "ui/src/views/AutogenView.vue": "252f8eb191ca06231a2619b9edaf01ebfea4df42d1277771237fd0a260d744d3",
+      "ui/src/components/view/SearchView.vue": "3f9494447ab75ebec7c8caa863ef887c48907f4e36701d8ef3c388a12c3ed606",
+      "ui/public/locales/en.json": "2f73d44eefc9822ffe4de39d368c54ff688de6d813e0aa276da5d3963bf39549",
+      "ui/public/locales/ko_KR.json": "d4fda27197ebe24773626df46481288d48cced24baa9f4a575697919e0983aea"
+    }
+  },
+  "deployment": {
+    "31": {
+      "before": {
+        "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+        "jar_sha256": "3981f2dfe14600c6b9aa2053fad25e0ff5561d1601d6c52bc0203829273da578",
+        "class_sha256": {
+          "com/cloud/bgp/BGPServiceImpl$1.class": "25ba8ef504517ce560d0673df6383b5a7b9a3896d41c959c700f552f416e0cf7",
+          "com/cloud/bgp/BGPServiceImpl.class": "caf3e7c00471650f314ee36adb4477b69905922504e1745c02f521127942d246",
+          "com/cloud/bgp/BGPService.class": "77b70812ef142678ba5d1fd8ca9c67ce8b3b8d1b2920914876af59c1a03680fd",
+          "com/cloud/api/ApiResponseHelper.class": "d07d1c8044688d08d46e3a626a381205c77e154e1ee49f70990a9e92d1ac6310",
+          "org/apache/cloudstack/api/response/ASNumberResponse.class": "495c1b233aac394a4524132a32adfe539a001c3402c29a0b75bc51029d25a50e",
+          "org/apache/cloudstack/api/command/admin/bgp/ReleaseASNumberCmd.class": "97607ae64b63c0830927017cb56e1b3c5a5173bd0c38ccdd591ffa2778771ace",
+          "org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd.class": "24af9ef2606db9bb831cede91a2777db1da74314d93719121426f7574099ffd6",
+          "com/cloud/dc/dao/ASNumberDao.class": "80bad1fe2d16d77bade2b38dce0573cc06a03cd922200f3b6b6ebdd4eca0e696",
+          "com/cloud/dc/dao/ASNumberDaoImpl.class": "70ee02199bb4ad1f043eb8de17e631a4f6a5fbab48825ff7e779564825498019"
+        },
+        "ui_index_sha256": "2de35f7ea3aefc3d05027905b79e6ee82f74bccff984ab5a3aa6fc95c09b339f",
+        "web_inf_exists": true,
+        "meta_inf_exists": false,
+        "config_sha256": "b7de5f6a1f7a3a17310ee7d34ca801bb316fc6f841039f865fbabf154cd59a13",
+        "http": "200",
+        "service": "active",
+        "pid": "2728608"
+      },
+      "after": {
+        "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+        "jar_sha256": "e6c685e612f6c2458ece8ca9247e4f8bab6cfd7b057a550e18ae3a3b54242404",
+        "class_sha256": {
+          "com/cloud/bgp/BGPServiceImpl$1.class": "25ba8ef504517ce560d0673df6383b5a7b9a3896d41c959c700f552f416e0cf7",
+          "com/cloud/bgp/BGPServiceImpl.class": "f2a0d66a0e383fc302d717f535e9354b8e3740df101a570ecbcf8d38b86ba217",
+          "com/cloud/bgp/BGPService.class": "bd81fb7431d2dc91088379efbf696fc931d2567f2a3820dd9671f397ef2ed346",
+          "com/cloud/api/ApiResponseHelper.class": "cf072780c35fc25fbf030d325cdd0f331901b1423eec9c69cff499b4f7e00b70",
+          "org/apache/cloudstack/api/response/ASNumberResponse.class": "4df330bbf6a5f81bfcc44da0d75500c2e8e765bbe17ed0da45ca2a48388a3f69",
+          "org/apache/cloudstack/api/command/admin/bgp/ReleaseASNumberCmd.class": "0abe82495cac331102f9a4c0db33ce3fac5348f91f304e5621da3fdf549ca78e",
+          "org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd.class": "b06c067c243275e9b1911d28e9b228f7af0c528ad2144437077deb66bdcb19ff",
+          "com/cloud/dc/dao/ASNumberDao.class": "71f148fbc61b6805af81bb65a9e0086ea9e5b6f27d2c8f115acc241c3a1a4971",
+          "com/cloud/dc/dao/ASNumberDaoImpl.class": "909a4067f6f3b952e5c76000ac03a85f709a8cc274f2a2bd7850d1190f3daacb",
+          "com/cloud/bgp/ASNumberReleasePolicy.class": "fb1244d77695b77fc2015183c22c8be245cc315bd205bda81579e0019d77489c"
+        },
+        "ui_index_sha256": "78d18488f6fabadf17013cfc340e539a7833892c875f6730a71a86324652b627",
+        "web_inf_exists": true,
+        "meta_inf_exists": false,
+        "config_sha256": "b7de5f6a1f7a3a17310ee7d34ca801bb316fc6f841039f865fbabf154cd59a13",
+        "http": "200",
+        "service": "active",
+        "pid": "2737982"
+      },
+      "health": {
+        "tailLines": 20000,
+        "classLinkageErrors": 0,
+        "uiBackups": [
+          "/root/asn1713-ui-20261118-141241",
+          "/root/asn1713-ui-20261118-143014",
+          "/root/asn1713-ui-20261118-144708",
+          "/root/asn1713-ui-20261118-145816"
+        ]
+      }
+    },
+    "32": {
+      "before": {
+        "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+        "jar_sha256": "a7121afa4cf23fbe98db9cb3c3cb78b8146871ae6ead98187aa21a52bf22eb84",
+        "class_sha256": {
+          "com/cloud/bgp/BGPServiceImpl$1.class": "25ba8ef504517ce560d0673df6383b5a7b9a3896d41c959c700f552f416e0cf7",
+          "com/cloud/bgp/BGPServiceImpl.class": "caf3e7c00471650f314ee36adb4477b69905922504e1745c02f521127942d246",
+          "com/cloud/bgp/BGPService.class": "77b70812ef142678ba5d1fd8ca9c67ce8b3b8d1b2920914876af59c1a03680fd",
+          "com/cloud/api/ApiResponseHelper.class": "d07d1c8044688d08d46e3a626a381205c77e154e1ee49f70990a9e92d1ac6310",
+          "org/apache/cloudstack/api/response/ASNumberResponse.class": "495c1b233aac394a4524132a32adfe539a001c3402c29a0b75bc51029d25a50e",
+          "org/apache/cloudstack/api/command/admin/bgp/ReleaseASNumberCmd.class": "97607ae64b63c0830927017cb56e1b3c5a5173bd0c38ccdd591ffa2778771ace",
+          "org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd.class": "24af9ef2606db9bb831cede91a2777db1da74314d93719121426f7574099ffd6",
+          "com/cloud/dc/dao/ASNumberDao.class": "80bad1fe2d16d77bade2b38dce0573cc06a03cd922200f3b6b6ebdd4eca0e696",
+          "com/cloud/dc/dao/ASNumberDaoImpl.class": "70ee02199bb4ad1f043eb8de17e631a4f6a5fbab48825ff7e779564825498019"
+        },
+        "ui_index_sha256": "2de35f7ea3aefc3d05027905b79e6ee82f74bccff984ab5a3aa6fc95c09b339f",
+        "web_inf_exists": true,
+        "meta_inf_exists": false,
+        "config_sha256": "56e421a72d76daa8dcd007eb0e8669ee2951f3940e02b00e4123c0cf9c2a03ff",
+        "http": "200",
+        "service": "active",
+        "pid": "3049864"
+      },
+      "after": {
+        "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+        "jar_sha256": "357abffd36e0f9e233004c00ef16e3ad4edb791c9b27e0001bbb844ae594fa71",
+        "class_sha256": {
+          "com/cloud/bgp/BGPServiceImpl$1.class": "25ba8ef504517ce560d0673df6383b5a7b9a3896d41c959c700f552f416e0cf7",
+          "com/cloud/bgp/BGPServiceImpl.class": "f2a0d66a0e383fc302d717f535e9354b8e3740df101a570ecbcf8d38b86ba217",
+          "com/cloud/bgp/BGPService.class": "bd81fb7431d2dc91088379efbf696fc931d2567f2a3820dd9671f397ef2ed346",
+          "com/cloud/api/ApiResponseHelper.class": "cf072780c35fc25fbf030d325cdd0f331901b1423eec9c69cff499b4f7e00b70",
+          "org/apache/cloudstack/api/response/ASNumberResponse.class": "4df330bbf6a5f81bfcc44da0d75500c2e8e765bbe17ed0da45ca2a48388a3f69",
+          "org/apache/cloudstack/api/command/admin/bgp/ReleaseASNumberCmd.class": "0abe82495cac331102f9a4c0db33ce3fac5348f91f304e5621da3fdf549ca78e",
+          "org/apache/cloudstack/api/command/user/bgp/ListASNumbersCmd.class": "b06c067c243275e9b1911d28e9b228f7af0c528ad2144437077deb66bdcb19ff",
+          "com/cloud/dc/dao/ASNumberDao.class": "71f148fbc61b6805af81bb65a9e0086ea9e5b6f27d2c8f115acc241c3a1a4971",
+          "com/cloud/dc/dao/ASNumberDaoImpl.class": "909a4067f6f3b952e5c76000ac03a85f709a8cc274f2a2bd7850d1190f3daacb",
+          "com/cloud/bgp/ASNumberReleasePolicy.class": "fb1244d77695b77fc2015183c22c8be245cc315bd205bda81579e0019d77489c"
+        },
+        "ui_index_sha256": "78d18488f6fabadf17013cfc340e539a7833892c875f6730a71a86324652b627",
+        "web_inf_exists": true,
+        "meta_inf_exists": false,
+        "config_sha256": "56e421a72d76daa8dcd007eb0e8669ee2951f3940e02b00e4123c0cf9c2a03ff",
+        "http": "200",
+        "service": "active",
+        "pid": "3059293"
+      },
+      "health": {
+        "tailLines": 20000,
+        "classLinkageErrors": 0,
+        "uiBackups": [
+          "/root/asn1713-ui-20261118-141300",
+          "/root/asn1713-ui-20261118-143033",
+          "/root/asn1713-ui-20261118-144727",
+          "/root/asn1713-ui-20261118-145835"
+        ]
+      }
+    }
+  },
+  "uiFunctional": [
+    {
+      "cluster": 31,
+      "case": "network-ui-release",
+      "free": true,
+      "check": "network-ui-release",
+      "observedFree": true
+    },
+    {
+      "cluster": 32,
+      "check": "network-release-observed-free",
+      "pass": true,
+      "observedFree": true
+    },
+    {
+      "cluster": 31,
+      "check": "vpc-release-current-free",
+      "observedFree": true
+    },
+    {
+      "cluster": 32,
+      "check": "vpc-release-current-free",
+      "observedFree": true
+    },
+    {
+      "cluster": 31,
+      "check": "readonly-release-hidden",
+      "releaseButtonCount": 0,
+      "observedEligible": true
+    },
+    {
+      "cluster": 32,
+      "check": "readonly-release-hidden",
+      "releaseButtonCount": 0,
+      "observedEligible": true
+    },
+    {
+      "cluster": 31,
+      "check": "readonly-existing-range-tab",
+      "url": "http://10.10.31.10:8080/client/#/zone/7013f5a1-de59-4cea-a596-f4f58815f31c?tab=asnumber&asnreturn={%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22}",
+      "createDisabled": true,
+      "deleteButtons": 0
+    },
+    {
+      "cluster": 32,
+      "check": "readonly-existing-range-tab",
+      "url": "http://10.10.32.10:8080/client/#/zone/991d2f57-0f37-4445-b956-09773d064816?tab=asnumber&asnreturn={%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22}",
+      "createDisabled": true,
+      "deleteButtons": 0
+    },
+    {
+      "cluster": 31,
+      "check": "final-bundle-release-clears-selection",
+      "checked": 0,
+      "observedFree": true
+    },
+    {
+      "cluster": 32,
+      "check": "final-bundle-release-clears-selection",
+      "checked": 0,
+      "observedFree": true
+    },
+    {
+      "cluster": 31,
+      "check": "final-vpc-free-selection-clear",
+      "checked": 0,
+      "observedFree": true
+    },
+    {
+      "cluster": 32,
+      "check": "final-vpc-free-selection-clear",
+      "checked": 0,
+      "observedFree": true
+    },
+    {
+      "cluster": 31,
+      "check": "exact-high-asn-ui",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?asnumber=4200000000&filter=all&page=1&pagesize=20"
+    },
+    {
+      "cluster": 32,
+      "check": "exact-high-asn-ui",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?asnumber=4200000000&filter=all&page=1&pagesize=20"
+    },
+    {
+      "cluster": 31,
+      "check": "high-range-ui-three-results",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=cc767e6b-1b0c-40c9-b0d5-b2c1ae069ed7&filter=all&page=1&pagesize=20"
+    },
+    {
+      "cluster": 32,
+      "check": "high-range-ui-three-results",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=a72cca43-3a75-4356-af60-16f926344bb8&filter=all&page=1&pagesize=20"
+    },
+    {
+      "cluster": 31,
+      "check": "ui-range-cleanup-empty"
+    },
+    {
+      "cluster": 32,
+      "check": "ui-range-cleanup-empty"
+    },
+    {
+      "cluster": 31,
+      "check": "deleted-range-query-kept-failclosed",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?zoneid=7013f5a1-de59-4cea-a596-f4f58815f31c&asnrangeid=cc767e6b-1b0c-40c9-b0d5-b2c1ae069ed7&filter=all&page=1&pagesize=20",
+      "guard": true
+    },
+    {
+      "cluster": 32,
+      "check": "deleted-range-query-kept-failclosed",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?zoneid=991d2f57-0f37-4445-b956-09773d064816&asnrangeid=a72cca43-3a75-4356-af60-16f926344bb8&filter=all&page=1&pagesize=20",
+      "guard": true
+    },
+    {
+      "cluster": 31,
+      "check": "range-options-empty-after-delete",
+      "deletedRangeOptionsAbsent": true
+    },
+    {
+      "cluster": 32,
+      "check": "range-options-empty-after-delete",
+      "deletedRangeOptionsAbsent": true
+    },
+    {
+      "cluster": 31,
+      "check": "final-stale-range-specific-message",
+      "uuidKept": true,
+      "noMisleadingGenericStale": true,
+      "scripts": [
+        "js/less.min.js",
+        "js/vendors.f4d2ccb7.js",
+        "js/app.d7bdd4e6.js"
+      ]
+    },
+    {
+      "cluster": 32,
+      "check": "final-stale-range-specific-message",
+      "uuidKept": true,
+      "noMisleadingGenericStale": true,
+      "scripts": [
+        "js/less.min.js",
+        "js/vendors.f4d2ccb7.js",
+        "js/app.d7bdd4e6.js"
+      ]
+    },
+    {
+      "cluster": 31,
+      "check": "final-normal-empty-no-stale-filter",
+      "url": "http://10.10.31.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20"
+    },
+    {
+      "cluster": 32,
+      "check": "final-normal-empty-no-stale-filter",
+      "url": "http://10.10.32.10:8080/client/#/asnumbers?filter=all&page=1&pagesize=20"
+    }
+  ],
+  "finalCleanup": {
+    "31": {
+      "inventory": {
+        "listZones": {
+          "count": 1,
+          "configurationFieldsPreserved": true
+        },
+        "listASNRanges": {
+          "count": 0,
+          "configurationFieldsPreserved": true
+        },
+        "listASNumbers": {
+          "count": 0,
+          "configurationFieldsPreserved": true
+        },
+        "listNetworks": {
+          "count": 31,
+          "configurationFieldsPreserved": true
+        },
+        "listVPCs": {
+          "count": 2,
+          "configurationFieldsPreserved": true
+        },
+        "listBgpPeers": {
+          "count": 0,
+          "configurationFieldsPreserved": true
+        },
+        "listNetworkOfferings": {
+          "count": 33,
+          "configurationFieldsPreserved": true
+        },
+        "listVPCOfferings": {
+          "count": 7,
+          "configurationFieldsPreserved": true
+        }
+      },
+      "identity": {
+        "accountAbsent": true,
+        "roleAbsent": true
+      }
+    },
+    "32": {
+      "inventory": {
+        "listZones": {
+          "count": 1,
+          "configurationFieldsPreserved": true
+        },
+        "listASNRanges": {
+          "count": 0,
+          "configurationFieldsPreserved": true
+        },
+        "listASNumbers": {
+          "count": 0,
+          "configurationFieldsPreserved": true
+        },
+        "listNetworks": {
+          "count": 17,
+          "configurationFieldsPreserved": true
+        },
+        "listVPCs": {
+          "count": 1,
+          "configurationFieldsPreserved": true
+        },
+        "listBgpPeers": {
+          "count": 0,
+          "configurationFieldsPreserved": true
+        },
+        "listNetworkOfferings": {
+          "count": 24,
+          "configurationFieldsPreserved": true
+        },
+        "listVPCOfferings": {
+          "count": 7,
+          "configurationFieldsPreserved": true
+        }
+      },
+      "identity": {
+        "accountAbsent": true,
+        "roleAbsent": true
+      }
+    }
+  },
+  "completedDate": "2026-11-19 Asia/Seoul",
+  "uiRequestWindows": {
+    "collectorRejectsTruncated": true,
+    "cases": [
+      {
+        "cluster": 31,
+        "case": "create-low-range",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "createASNRange",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "startasn": "64512",
+            "endasn": "64514"
+          }
+        ],
+        "positiveListReads": 1
+      },
+      {
+        "cluster": 31,
+        "case": "create-high-range",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "createASNRange",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "startasn": "4200000000",
+            "endasn": "4200000002"
+          }
+        ],
+        "positiveListReads": 1
+      },
+      {
+        "cluster": 32,
+        "case": "create-low-range",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "createASNRange",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "startasn": "64512",
+            "endasn": "64514"
+          }
+        ],
+        "positiveListReads": 1
+      },
+      {
+        "cluster": 32,
+        "case": "create-high-range",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "createASNRange",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "startasn": "4200000000",
+            "endasn": "4200000002"
+          }
+        ],
+        "positiveListReads": 1
+      },
+      {
+        "cluster": 31,
+        "case": "release-cancel-final-positive-get",
+        "mutationRequests": [],
+        "positiveListReads": 2
+      },
+      {
+        "cluster": 32,
+        "case": "release-cancel-final-positive-get",
+        "mutationRequests": [],
+        "positiveListReads": 1
+      },
+      {
+        "cluster": 31,
+        "case": "network-release-single-post",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "asnumber": "64512"
+          }
+        ],
+        "positiveListReads": 4
+      },
+      {
+        "cluster": 32,
+        "case": "network-release-single-post",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "asnumber": "64512"
+          }
+        ],
+        "positiveListReads": 9
+      },
+      {
+        "cluster": 31,
+        "case": "vpc-release-single-post",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "asnumber": "64513"
+          }
+        ],
+        "positiveListReads": 4
+      },
+      {
+        "cluster": 32,
+        "case": "vpc-release-single-post",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "asnumber": "64513"
+          }
+        ],
+        "positiveListReads": 4
+      },
+      {
+        "cluster": 31,
+        "case": "final-network-release-clears-selection",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "asnumber": "64512"
+          }
+        ],
+        "positiveListReads": 5
+      },
+      {
+        "cluster": 32,
+        "case": "final-network-release-clears-selection",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "asnumber": "64512"
+          }
+        ],
+        "positiveListReads": 5
+      },
+      {
+        "cluster": 31,
+        "case": "final-vpc-release-single-post",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "7013f5a1-de59-4cea-a596-f4f58815f31c",
+            "asnumber": "64513"
+          }
+        ],
+        "positiveListReads": 4
+      },
+      {
+        "cluster": 32,
+        "case": "final-vpc-release-single-post",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "releaseASNumber",
+            "zoneid": "991d2f57-0f37-4445-b956-09773d064816",
+            "asnumber": "64513"
+          }
+        ],
+        "positiveListReads": 3
+      },
+      {
+        "cluster": 31,
+        "case": "delete-high-range-once",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "deleteASNRange",
+            "id": "cc767e6b-1b0c-40c9-b0d5-b2c1ae069ed7"
+          }
+        ],
+        "positiveListReads": 5
+      },
+      {
+        "cluster": 32,
+        "case": "delete-high-range-once",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "deleteASNRange",
+            "id": "a72cca43-3a75-4356-af60-16f926344bb8"
+          }
+        ],
+        "positiveListReads": 5
+      },
+      {
+        "cluster": 31,
+        "case": "delete-low-range-once",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "deleteASNRange",
+            "id": "86694329-3d00-4d73-91ae-893588a9642b"
+          }
+        ],
+        "positiveListReads": 5
+      },
+      {
+        "cluster": 32,
+        "case": "delete-low-range-once",
+        "mutationRequests": [
+          {
+            "method": "POST",
+            "command": "deleteASNRange",
+            "id": "8d1f1459-a696-4dbc-b30f-10ab38881ac9"
+          }
+        ],
+        "positiveListReads": 5
+      }
+    ]
+  },
+  "settingsRestored": {
+    "31": {
+      "width": 1102,
+      "height": 483,
+      "light": true
+    },
+    "32": {
+      "width": 1102,
+      "height": 483,
+      "light": true
+    }
+  },
+  "representativeScreenshots": {
+    "31-list-1280-dark.jpg": "864063d8b5024af7b6501d9c569c3eef8204f7aa24388b10aa779a503a9ce38c",
+    "31-search-768-dark.jpg": "98089e72085aa73d09ec2f1fc24e4d8e6fd71788ac1ca774ed1d8fdcdab6bab9",
+    "31-release-390-dark.jpg": "76219fb0476cfeac661d153acf6c34dab6436a191d70768304c88f4e8746dbb9",
+    "31-create-390-dark.jpg": "2e6f9c0c3737c32345facc163a35e4fa3bf2ca161ae27bc4e99eb340f6d3d804",
+    "31-delete-390-dark.jpg": "80521ded858c044defaa2aeda15a74c78e9ef4b7a10d059207747af128338b96",
+    "32-list-1280-light.jpg": "d66641aa7b94a5d0aa5b3ca9bcbebdcd8bb3c02e502817bc5bcb4db3ef8e330b",
+    "32-search-768-light.jpg": "60fccbd9841c3f50e636dd62433c181f81d439d12302af1159d4b32764d6f752",
+    "32-release-390-light.jpg": "8832596bbae78d7f8a820f18e4a7378f8805e46cbddf4cb36a621ab342b295f2",
+    "32-create-390-light.jpg": "6a31cb0c96a76606ba2281dedf2773e3b884d5b390f6b44160778386c5368bf1",
+    "32-delete-390-light.jpg": "00053d6091107591cdda7b1b7f306131f7b350c812b7dc770280de17ea58f6b0",
+    "31-cleanup-empty.jpg": "9f6563f870d68e9b48e9e4280fe2c32a699ac4c02aee441ec3c7e1fb2ac5a1e9",
+    "32-cleanup-empty.jpg": "3cdd915b69a5b92d844d697a164da6d5192b4e8e5e9db41f2eb2fbce976cbc18",
+    "31-readonly-list.jpg": "4eb80875cd0b89ddd1cccc019538caf4905b0ee001c20f3afd260710e3875dad",
+    "32-readonly-zone.jpg": "9a1fa95e25c18d04ff9bf510fcf9989035759779e9b7f9a7a97ec6ace18fea1f",
+    "31-zone-1280-dark.jpg": "b50611541dd09aacae67a86835b386813ae727c82982e5201d790b58395e47d8",
+    "32-zone-1280-light.jpg": "4ea9c3bb450f67ba3cba3209aec4d05d7e3f2439f26860548d65580258ec74f9"
+  },
+  "matrixDetails": {
+    "file": "matrix-curated.json",
+    "sha256": "57de0234a4b3eb222a4ee01941254ce8be8a2418541641bb7b759fba96fcacc6"
+  }
+}

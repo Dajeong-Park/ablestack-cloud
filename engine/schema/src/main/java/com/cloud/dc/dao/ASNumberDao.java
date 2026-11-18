@@ -30,6 +30,8 @@ public interface ASNumberDao extends GenericDao<ASNumberVO, Long> {
                                                                            Long startIndex, Long pageSizeVal);
     ASNumberVO findByAsNumber(Long asNumber);
 
+    List<ASNumberVO> listByZoneAndAsNumber(long zoneId, long asNumber);
+
     ASNumberVO findOneByAllocationStateAndZone(long zoneId, boolean allocated);
 
     /** Lock allocated members for range deletion; call within the Zone/range transaction. */

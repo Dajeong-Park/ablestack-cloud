@@ -17,13 +17,25 @@
 
 <template>
   <div class="asn-range-tab">
+    <router-link v-if="returnLocation" class="asn-return-link" :to="returnLocation"><arrow-left-outlined /> {{ $t('label.asn.return') }}</router-link>
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-button ref="createButton" type="primary" block :disabled="!canCreate || loading || !!deleteTarget" @click="showCreateASRange">
+    <div class="asn-range-toolbar"><h3>{{ $t('label.asn.manage') }}</h3>
+    <a-button ref="createButton" type="primary" :disabled="!canCreate || fetchLoading || listRefreshFailed || loading || !!deleteTarget" @click="showCreateASRange">
       <template #icon><plus-outlined /></template> {{ $t('label.create.asnrange') }}
-    </a-button>
-    <a-table rowKey="id" bordered :scroll="{ x: 500 }" :dataSource="asnRanges" :columns="columns" :pagination="false">
+    </a-button></div>
+    <a-table
+      :loading="fetchLoading"
+      :locale="{ emptyText: $t(listRefreshFailed ? 'message.asn.range.lookup.failed' : 'label.no.data') }"
+      rowKey="id"
+      bordered
+      :scroll="{ x: 800 }"
+      :dataSource="asnRanges"
+      :columns="columns"
+      :pagination="false">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'range'">{{ record.startasn }} - {{ record.endasn }}</template>
+        <template v-if="column.key === 'count'">{{ Number(record.endasn) - Number(record.startasn) + 1 }}</template>
+        <template v-if="column.key === 'created'">{{ record.created ? $toLocaleDate(record.created) : '—' }}</template>
         <span v-if="column.key === 'actions' && canDelete" :ref="el => { if (el) deleteButtons[record.id] = el }">
           <tooltip-button
           :tooltip="$t('label.delete.asnrange')"
@@ -94,6 +106,7 @@
 import { getAPI, postAPI } from '@/api'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { asnCreationContext, asnOperation, trackAsnOperation, clearAsnOperation, asnRangeErrors, asnRangeValues, asnRangeMatches, confirmAsnRange } from '@/utils/asnRange'
+import { asnReturnLocation } from '@/utils/asnOperations'
 import { deletionTarget } from '@/utils/asnRangeDeletion'
 import AsnRangeDeleteDialog from './AsnRangeDeleteDialog'
 import TooltipButton from '@/components/widgets/TooltipButton'
@@ -121,12 +134,15 @@ export default {
       acknowledged: false,
       disposed: false,
       columns: [
-        { key: 'range', title: this.$t('label.asnrange'), width: 140 },
+        { key: 'range', title: this.$t('label.asnrange'), width: 270 },
+        { key: 'count', title: this.$t('label.asn.count'), width: 90 },
+        { key: 'created', title: this.$t('label.created'), width: 180 },
         { key: 'actions', title: this.$t('label.delete.asnrange'), width: 70 }
       ]
     }
   },
   computed: {
+    returnLocation () { return asnReturnLocation(this.$route.query?.asnreturn, this.$store.getters) },
     creationContext () { return asnCreationContext(this.$store.getters, this.$store.state?.user?.token, this.resource.id) },
     canCreate () { return !!this.resource.id && this.resource.routedmodeenabled === true && 'createASNRange' in this.$store.getters.apis },
     canDelete () { return !!this.resource.id && 'deleteASNRange' in this.$store.getters.apis },
@@ -156,10 +172,13 @@ export default {
       const request = this.listRequestToken('fetchData')
       this.fetchLoading = !request.loaded
       try {
-        const data = await getAPI('listASNRanges', { zoneid: this.resource.id })
+        const data = await getAPI('listASNRanges', { zoneid: this.resource.id }, { preserveOnFailure: true })
         if (!data?.listasnrangesresponse || data.listasnrangesresponse.errorcode) throw new Error('ASN ranges unavailable')
         if (!this.isListRequestCurrent('fetchData', request)) return false
-        this.asnRanges = data.listasnrangesresponse.asnumberrange || []
+        const body = data.listasnrangesresponse
+        const ranges = body.asnumberrange || []
+        if (!Array.isArray(ranges) || !Number.isSafeInteger(body.count) || body.count !== ranges.length || ranges.some(r => r.zoneid !== this.resource.id || !r.id)) throw Error('ASN range response scope')
+        this.asnRanges = ranges
         return true
       } catch (error) {
         if (this.isListRequestCurrent('fetchData', request)) {
@@ -277,7 +296,12 @@ export default {
 </script>
 
 <style scoped>
-.asn-range-tab > .ant-btn { margin-bottom: 10px; }
+.asn-range-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.asn-range-toolbar h3 { margin: 0; color: var(--ui-text-primary); }
+.asn-return-link { display: inline-block; margin-bottom: 12px; }
+.asn-range-tab { color: var(--ui-text-primary); }
+.asn-range-tab :deep(.ant-table) { color: var(--ui-text-primary); }
+.asn-range-create :deep(.ant-form-item-extra) { color: var(--ui-text-secondary); }
 .asn-range-notice { margin-bottom: 16px; }
 .asn-range-create :deep(.ant-checkbox-wrapper) { display: block; margin: 12px 0; }
 </style>

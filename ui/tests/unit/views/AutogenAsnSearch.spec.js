@@ -31,6 +31,14 @@ test('canonical URL strips arbitrary API arguments before any request', async ()
   c.$route.query.command = 'deleteASNRange'; await c.fetchData(); expect(getAPI).not.toHaveBeenCalled(); expect(c.$router.replace.mock.calls[0][0].query.command).toBeUndefined()
   route(); await c.fetchData(); expect(getAPI.mock.calls[0][0]).toBe('listASNumbers'); expect(getAPI.mock.calls[0][1]).toEqual({ page: '1', pagesize: '20' })
 })
+
+test('ASN presentation localizes allocation time without relabeling the common column picker', () => {
+  const picker = { key: 'filtercolumn', title: '' }
+  c.columns = [{ key: 'allocated' }, picker]
+  const columns = Autogen.computed.presentedColumns.call(c)
+  expect(columns[0].title).toBe('label.asn.allocatedat')
+  expect(columns[1]).toBe(picker)
+})
 test('invalid exact or unsupported project cannot broaden the list', async () => {
   route({ asnumber: '4294967296' }); await c.fetchData(); expect(c.asnSearchFailure).toBe('integer'); expect(getAPI).not.toHaveBeenCalled()
   route(); store.getters.project = { id: '22222222-2222-4222-8222-222222222222' }; await c.fetchData(); expect(c.asnSearchFailure).toBe('project'); expect(getAPI).not.toHaveBeenCalled()
@@ -38,6 +46,20 @@ test('invalid exact or unsupported project cannot broaden the list', async () =>
 test('same-scope failed refresh preserves rows with failure, while a destination query clears them', async () => {
   await c.fetchData(); getAPI.mockRejectedValueOnce(Error('offline')); await c.fetchData(); expect(c.items).toMatchObject([linked]); expect(c.asnSearchFailure).toBe('lookup')
   route({ asnumber: '64512' }); getAPI.mockRejectedValueOnce(Error('offline')); await c.fetchData(); expect(c.items).toEqual([])
+})
+
+test('same-scope refresh keeps selection coherent and replaces eligibility with the latest row', async () => {
+  await c.fetchData()
+  c.onRowSelectionChange([linked.id])
+  const pending = deferred()
+  getAPI.mockReturnValueOnce(pending.promise)
+  const request = c.fetchData()
+  c.onRowSelectionChange([linked.id])
+  expect(c.selectedRowKeys).toEqual([linked.id])
+  pending.resolve(reply({ ...linked, releasable: false, releasereason: 'notallocated' }))
+  await request
+  expect(c.selectedRowKeys).toEqual([linked.id])
+  expect(c.selectedItems[0].releasereason).toBe('notallocated')
 })
 test('late old query never replaces the current exact result or count', async () => {
   route({ asnumber: '64512' }); const old = deferred(); getAPI.mockReturnValueOnce(old.promise); const first = c.fetchData()

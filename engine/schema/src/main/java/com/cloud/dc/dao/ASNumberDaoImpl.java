@@ -104,6 +104,14 @@ public class ASNumberDaoImpl extends GenericDaoBase<ASNumberVO, Long> implements
     }
 
     @Override
+    public List<ASNumberVO> listByZoneAndAsNumber(long zoneId, long asNumber) {
+        SearchCriteria<ASNumberVO> sc = asNumberSearch.create();
+        sc.setParameters("zoneId", zoneId);
+        sc.setParameters("asNumber", asNumber);
+        return search(sc, null);
+    }
+
+    @Override
     public ASNumberVO findOneByAllocationStateAndZone(long zoneId, boolean allocated) {
         SearchCriteria<ASNumberVO> sc = asNumberSearch.create();
         sc.setParameters("zoneId", zoneId);

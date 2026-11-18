@@ -78,6 +78,7 @@ public class BGPASNumberRangeDeletionTest {
             s.execute("CREATE TABLE linked_resources(id BIGINT PRIMARY KEY, name VARCHAR(80))");
             s.execute("INSERT INTO linked_resources VALUES(90,'existing-network'),(91,'existing-vpc')");
         }
+        try (Connection c = source.getConnection(); Statement sql = c.createStatement()) { sql.execute("ALTER TABLE members ADD COLUMN zone_id BIGINT DEFAULT 1"); sql.execute("ALTER TABLE members ADD COLUMN vpc_id BIGINT"); }
         sourceField = TransactionLegacy.class.getDeclaredField("s_ds"); sourceField.setAccessible(true);
         previousSource = sourceField.get(null); sourceField.set(null, source);
         DataCenterDao zones = Mockito.mock(DataCenterDao.class);
@@ -107,6 +108,7 @@ public class BGPASNumberRangeDeletionTest {
         });
         Mockito.when(ranges.findById(10L)).thenAnswer(call -> range(false));
         Mockito.when(ranges.lockRow(10L, true)).thenAnswer(call -> range(true));
+        Mockito.when(members.listByZoneAndAsNumber(Mockito.anyLong(), Mockito.anyLong())).thenAnswer(call -> memberRows("zone_id=" + call.getArgument(0) + " AND asn=" + call.getArgument(1), false));
         Mockito.when(members.findByAsNumber(Mockito.anyLong())).thenAnswer(call -> {
             List<ASNumberVO> result = memberRows("asn=" + call.getArgument(0), false);
             return result.isEmpty() ? null : result.get(0);
@@ -118,8 +120,8 @@ public class BGPASNumberRangeDeletionTest {
         Mockito.when(members.listAllocatedByASRange(10L)).thenAnswer(call -> memberRows("range_id=10 AND allocated=TRUE", true));
         Mockito.when(members.update(Mockito.anyLong(), Mockito.any(ASNumberVO.class))).thenAnswer(call -> {
             ASNumberVO row = call.getArgument(1);
-            try (PreparedStatement s = connection().prepareStatement("UPDATE members SET allocated=?,network_id=?,account_id=?,domain_id=? WHERE id=?")) {
-                s.setBoolean(1, row.isAllocated()); s.setObject(2, row.getNetworkId()); s.setObject(3, row.getAccountId()); s.setObject(4, row.getDomainId()); s.setLong(5, row.getId());
+            try (PreparedStatement s = connection().prepareStatement("UPDATE members SET allocated=?,network_id=?,account_id=?,domain_id=?,vpc_id=? WHERE id=?")) {
+                s.setBoolean(1, row.isAllocated()); s.setObject(2, row.getNetworkId()); s.setObject(3, row.getAccountId()); s.setObject(4, row.getDomainId()); s.setObject(5, row.getVpcId()); s.setLong(6, row.getId());
                 s.executeUpdate();
             }
             return !failAllocation.get();
@@ -148,9 +150,9 @@ public class BGPASNumberRangeDeletionTest {
         List<ASNumberVO> rows = new ArrayList<>();
         try (Statement s = connection().createStatement(); ResultSet rs = s.executeQuery("SELECT * FROM members WHERE " + where + (lock ? " FOR UPDATE" : ""))) {
             while (rs.next()) {
-                ASNumberVO row = new ASNumberVO(rs.getLong("asn"), rs.getLong("range_id"), 1L);
+                ASNumberVO row = new ASNumberVO(rs.getLong("asn"), rs.getLong("range_id"), rs.getLong("zone_id"));
                 ReflectionTestUtils.setField(row, "id", rs.getLong("id")); row.setAllocated(rs.getBoolean("allocated"));
-                row.setNetworkId((Long)rs.getObject("network_id")); row.setAccountId((Long)rs.getObject("account_id")); row.setDomainId((Long)rs.getObject("domain_id")); rows.add(row);
+                row.setVpcId((Long)rs.getObject("vpc_id")); row.setNetworkId((Long)rs.getObject("network_id")); row.setAccountId((Long)rs.getObject("account_id")); row.setDomainId((Long)rs.getObject("domain_id")); rows.add(row);
             }
         }
         return rows;
@@ -168,6 +170,7 @@ public class BGPASNumberRangeDeletionTest {
 
     @After
     public void cleanup() throws Exception {
+        org.apache.cloudstack.context.CallContext.unregister();
         proceed.countDown(); if (sourceField != null) sourceField.set(null, previousSource);
         try (Connection c = source.getConnection(); Statement s = c.createStatement()) { s.execute("SHUTDOWN"); }
     }
@@ -231,4 +234,119 @@ public class BGPASNumberRangeDeletionTest {
 
     @Test
     public void deletionWinsAndAllocationCannotCreateAnOrphan() throws Exception { race(false); }
+
+    private void releaseCaller(com.cloud.user.Account.Type type) {
+        org.apache.cloudstack.context.CallContext.unregister();
+        com.cloud.user.Account caller = Mockito.mock(com.cloud.user.Account.class);
+        Mockito.when(caller.getId()).thenReturn(1L); Mockito.when(caller.getType()).thenReturn(type);
+        org.apache.cloudstack.context.CallContext.register(Mockito.mock(com.cloud.user.User.class), caller);
+    }
+
+    private void releaseNetwork(boolean required) {
+        NetworkDao networks = (NetworkDao) ReflectionTestUtils.getField(service, "networkDao");
+        NetworkOfferingDao offerings = (NetworkOfferingDao) ReflectionTestUtils.getField(service, "networkOfferingDao");
+        NetworkVO network = networks.findById(90L); NetworkOfferingVO offering = offerings.findById(5L);
+        Mockito.when(network.getDataCenterId()).thenReturn(1L);
+        Mockito.when(networks.lockRow(90L, true)).thenReturn(network);
+        Mockito.when(offerings.lockRow(5L, true)).thenReturn(offering);
+        Mockito.when(offering.isSpecifyAsNumber()).thenReturn(required);
+    }
+
+    @Test
+    public void releaseAvailableAsnIsIdempotentAndNeverTouchesAnotherZone() throws Exception {
+        releaseCaller(com.cloud.user.Account.Type.ADMIN);
+        try (Connection c = source.getConnection(); Statement sql = c.createStatement()) {
+            sql.execute("INSERT INTO members(id,range_id,asn,allocated,zone_id,network_id) VALUES(21,20,64512,TRUE,2,91)");
+        }
+        Assert.assertTrue(service.releaseASNumber(1, 64512, false).first());
+        Assert.assertTrue(service.releaseASNumber(1, 64512, false).first());
+        Assert.assertEquals(1, scalar("SELECT COUNT(*) FROM members WHERE zone_id=2 AND allocated=TRUE AND network_id=91"));
+        ASNumberDao members = (ASNumberDao) ReflectionTestUtils.getField(service, "asNumberDao");
+        Mockito.verify(members, Mockito.never()).findByAsNumber(Mockito.anyLong());
+    }
+
+    @Test
+    public void releaseUsesLatestOfferingAndClearsAllOwnerLinks() throws Exception {
+        Assert.assertTrue(service.allocateASNumber(1L, 64512L, 90L, null));
+        releaseCaller(com.cloud.user.Account.Type.ADMIN); releaseNetwork(true);
+        Assert.assertThrows(InvalidParameterValueException.class, () -> service.releaseASNumber(1, 64512, false));
+        Assert.assertEquals(1, scalar("SELECT COUNT(*) FROM members WHERE allocated=TRUE AND network_id=90"));
+        releaseNetwork(false);
+        Assert.assertTrue(service.releaseASNumber(1, 64512, false).first());
+        Assert.assertEquals(0, scalar("SELECT COUNT(*) FROM members WHERE allocated=TRUE OR network_id IS NOT NULL OR account_id IS NOT NULL OR domain_id IS NOT NULL OR vpc_id IS NOT NULL"));
+        retained();
+    }
+
+    @Test
+    public void missingReferenceAndDuplicateTargetFailClosed() throws Exception {
+        releaseCaller(com.cloud.user.Account.Type.ADMIN);
+        try (Connection c = source.getConnection(); Statement sql = c.createStatement()) { sql.execute("UPDATE members SET allocated=TRUE,network_id=999 WHERE id=11"); }
+        Assert.assertThrows(InvalidParameterValueException.class, () -> service.releaseASNumber(1, 64512, false));
+        try (Connection c = source.getConnection(); Statement sql = c.createStatement()) { sql.execute("INSERT INTO members(id,range_id,asn,allocated) VALUES(13,10,64512,FALSE)"); }
+        Assert.assertThrows(InvalidParameterValueException.class, () -> service.releaseASNumber(1, 64512, false));
+        Assert.assertEquals(1, scalar("SELECT COUNT(*) FROM members WHERE network_id=999 AND allocated=TRUE"));
+    }
+
+    @Test
+    public void vpcRequiresTheSamePolicyAndReleaseCanBeRejectedOrAllowed() throws Exception {
+        releaseCaller(com.cloud.user.Account.Type.ADMIN);
+        try (Connection c = source.getConnection(); Statement sql = c.createStatement()) { sql.execute("UPDATE members SET allocated=TRUE,vpc_id=91,account_id=2,domain_id=1 WHERE id=11"); }
+        com.cloud.network.vpc.dao.VpcDao vpcs = Mockito.mock(com.cloud.network.vpc.dao.VpcDao.class);
+        com.cloud.network.vpc.dao.VpcOfferingDao offerings = Mockito.mock(com.cloud.network.vpc.dao.VpcOfferingDao.class);
+        com.cloud.network.vpc.VpcVO vpc = Mockito.mock(com.cloud.network.vpc.VpcVO.class);
+        com.cloud.network.vpc.VpcOfferingVO offering = Mockito.mock(com.cloud.network.vpc.VpcOfferingVO.class);
+        Mockito.when(vpc.getZoneId()).thenReturn(1L); Mockito.when(vpc.getVpcOfferingId()).thenReturn(5L);
+        Mockito.when(vpcs.lockRow(91L, true)).thenReturn(vpc); Mockito.when(offerings.lockRow(5L, true)).thenReturn(offering);
+        ReflectionTestUtils.setField(service, "vpcDao", vpcs); ReflectionTestUtils.setField(service, "vpcOfferingDao", offerings);
+        Mockito.when(offering.isSpecifyAsNumber()).thenReturn(true);
+        Assert.assertThrows(InvalidParameterValueException.class, () -> service.releaseASNumber(1, 64512, false));
+        Mockito.when(offering.isSpecifyAsNumber()).thenReturn(false);
+        Assert.assertTrue(service.releaseASNumber(1, 64512, false).first());
+        Assert.assertEquals(0, scalar("SELECT COUNT(*) FROM members WHERE vpc_id IS NOT NULL OR allocated=TRUE"));
+    }
+
+    @Test
+    public void nonAdminAndChangedLockedRowCannotRelease() throws Exception {
+        releaseCaller(com.cloud.user.Account.Type.NORMAL);
+        Assert.assertThrows(com.cloud.exception.PermissionDeniedException.class, () -> service.releaseASNumber(1, 64512, false));
+        releaseCaller(com.cloud.user.Account.Type.ADMIN);
+        ASNumberDao members = (ASNumberDao) ReflectionTestUtils.getField(service, "asNumberDao");
+        ASNumberVO wrong = new ASNumberVO(64512L, 10L, 2L);
+        ReflectionTestUtils.setField(wrong, "id", 11L); Mockito.when(members.lockRow(11L, true)).thenReturn(wrong);
+        Assert.assertThrows(InvalidParameterValueException.class, () -> service.releaseASNumber(1, 64512, false));
+        retained();
+    }
+
+    @Test
+    public void failedReleaseRollsBackTheAllocationAndOwner() throws Exception {
+        Assert.assertTrue(service.allocateASNumber(1L, 64512L, 90L, null));
+        releaseCaller(com.cloud.user.Account.Type.ADMIN); releaseNetwork(false); failAllocation.set(true);
+        Assert.assertThrows(CloudRuntimeException.class, () -> service.releaseASNumber(1, 64512, false));
+        Assert.assertEquals(1, scalar("SELECT COUNT(*) FROM members WHERE allocated=TRUE AND network_id=90 AND account_id=2 AND domain_id=1"));
+    }
+
+    @Test
+    public void releaseThenDeleteSerializesUnderTheZoneLock() throws Exception {
+        Assert.assertTrue(service.allocateASNumber(1L, 64512L, 90L, null)); releaseNetwork(false);
+        pause.set(true); ExecutorService threads = Executors.newFixedThreadPool(2);
+        try {
+            Future<Boolean> release = threads.submit(() -> { releaseCaller(com.cloud.user.Account.Type.ADMIN); try { return service.releaseASNumber(1, 64512, false).first(); } finally { org.apache.cloudstack.context.CallContext.unregister(); } });
+            Assert.assertTrue(locked.await(5, TimeUnit.SECONDS));
+            Future<Boolean> delete = threads.submit(() -> service.deleteASRange(10));
+            proceed.countDown(); Assert.assertTrue(release.get(10, TimeUnit.SECONDS)); Assert.assertTrue(delete.get(10, TimeUnit.SECONDS));
+            Assert.assertEquals(0, scalar("SELECT COUNT(*) FROM members")); Assert.assertEquals(2, scalar("SELECT COUNT(*) FROM linked_resources"));
+        } finally { proceed.countDown(); threads.shutdownNow(); Assert.assertTrue(threads.awaitTermination(10, TimeUnit.SECONDS)); }
+    }
+
+    @Test
+    public void releaseWaitsForAllocationAndRejectsItsRequiredOffering() throws Exception {
+        releaseNetwork(true); pause.set(true); ExecutorService threads = Executors.newFixedThreadPool(2);
+        try {
+            Future<Boolean> allocation = threads.submit(() -> service.allocateASNumber(1L, 64512L, 90L, null));
+            Assert.assertTrue(locked.await(5, TimeUnit.SECONDS));
+            Future<Boolean> release = threads.submit(() -> { releaseCaller(com.cloud.user.Account.Type.ADMIN); try { return service.releaseASNumber(1, 64512, false).first(); } catch (InvalidParameterValueException expected) { return false; } finally { org.apache.cloudstack.context.CallContext.unregister(); } });
+            proceed.countDown(); Assert.assertTrue(allocation.get(10, TimeUnit.SECONDS)); Assert.assertFalse(release.get(10, TimeUnit.SECONDS));
+            Assert.assertEquals(1, scalar("SELECT COUNT(*) FROM members WHERE allocated=TRUE AND network_id=90"));
+        } finally { proceed.countDown(); threads.shutdownNow(); Assert.assertTrue(threads.awaitTermination(10, TimeUnit.SECONDS)); }
+    }
 }

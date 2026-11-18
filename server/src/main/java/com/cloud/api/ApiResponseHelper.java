@@ -5738,36 +5738,45 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         response.setId(asn.getUuid());
         if (asn.getAccountId() != null) {
             Account account = ApiDBUtils.findAccountById(asn.getAccountId());
-            response.setAccountId(account.getUuid());
-            response.setAccountName(account.getAccountName());
+            if (account != null) {
+                response.setAccountId(account.getUuid());
+                response.setAccountName(account.getAccountName());
+            }
         }
         if (asn.getDomainId() != null) {
             DomainVO domain = ApiDBUtils.findDomainById(asn.getDomainId());
-            response.setDomainId(domain.getUuid());
-            response.setDomainName(domain.getName());
+            if (domain != null) {
+                response.setDomainId(domain.getUuid());
+                response.setDomainName(domain.getName());
+            }
         }
         DataCenterVO zone = ApiDBUtils.findZoneById(asn.getDataCenterId());
-        response.setZoneId(zone.getUuid());
-        response.setZoneName(zone.getName());
+        if (zone != null) {
+            response.setZoneId(zone.getUuid());
+            response.setZoneName(zone.getName());
+        }
         response.setAsNumber(asn.getAsNumber());
         ASNumberRangeVO range = asNumberRangeDao.findById(asn.getAsNumberRangeId());
         if (Objects.nonNull(range)) {
             response.setAsNumberRangeId(range.getUuid());
             String rangeText = String.format("%s-%s", range.getStartASNumber(), range.getEndASNumber());
             response.setAsNumberRange(rangeText);
-        } else {
-            logger.info("Range is null for AS number: "+ asn.getAsNumber());
+
         }
         response.setAllocated(asn.getAllocatedTime());
         response.setAllocationState(asn.isAllocated() ? "Allocated" : "Free");
         if (asn.getVpcId() != null) {
             VpcVO vpc = ApiDBUtils.findVpcById(asn.getVpcId());
-            response.setVpcId(vpc.getUuid());
-            response.setVpcName(vpc.getName());
+            if (vpc != null) {
+                response.setVpcId(vpc.getUuid());
+                response.setVpcName(vpc.getName());
+            }
         } else if (asn.getNetworkId() != null) {
             NetworkVO network = ApiDBUtils.findNetworkById(asn.getNetworkId());
-            response.setAssociatedNetworkId(network.getUuid());
-            response.setAssociatedNetworkName(network.getName());
+            if (network != null) {
+                response.setAssociatedNetworkId(network.getUuid());
+                response.setAssociatedNetworkName(network.getName());
+            }
         }
         response.setCreated(asn.getCreated());
         response.setObjectName("asnumber");

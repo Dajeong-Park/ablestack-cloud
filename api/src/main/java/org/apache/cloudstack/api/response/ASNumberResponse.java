@@ -96,6 +96,30 @@ public class ASNumberResponse extends BaseResponse {
     @Param(description = "Created Date")
     private Date created;
 
+    @SerializedName("releasable")
+    @Param(description = "Whether current resource conditions permit releasing this ASN; command permission is checked separately")
+    private Boolean releasable;
+
+    @SerializedName("releasereason")
+    @Param(description = "Release eligibility: eligible, notallocated, requiredbyoffering, missingreference or unknown")
+    private String releaseReason;
+
+    public Boolean getReleasable() {
+        return releasable;
+    }
+
+    public void setReleasable(Boolean releasable) {
+        this.releasable = releasable;
+    }
+
+    public String getReleaseReason() {
+        return releaseReason;
+    }
+
+    public void setReleaseReason(String releaseReason) {
+        this.releaseReason = releaseReason;
+    }
+
     public ASNumberResponse() {
     }
 

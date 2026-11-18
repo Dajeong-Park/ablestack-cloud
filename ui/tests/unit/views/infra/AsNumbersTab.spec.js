@@ -38,7 +38,7 @@ beforeEach(() => {
     if (c === 'listZones') return { listzonesresponse: { zone: [{ id: p.id, routedmodeenabled: true }] } }
     if (c === 'listASNRanges') {
       if (staleList) throw Error('lookup failed')
-      return { listasnrangesresponse: { asnumberrange: rows.filter(x => x.zoneid === p.zoneid) } }
+      return { listasnrangesresponse: { count: rows.filter(x => x.zoneid === p.zoneid).length, asnumberrange: rows.filter(x => x.zoneid === p.zoneid) } }
     }
     if (failMembers) throw Error('members unavailable')
     const row = rows.find(x => x.id === p.asnrangeid)

@@ -156,4 +156,20 @@ public class ListASNumbersCmdTest {
         Assert.assertEquals(ApiErrorCode.UNAUTHORIZED, error.getErrorCode());
         Assert.assertFalse(error.getDescription().contains("private domain"));
     }
+    @Test
+    public void eligibilityIsRequestedOncePerPageAndAddedWithoutChangingCount() throws Exception {
+        ListASNumbersCmd cmd = new ListASNumbersCmd();
+        ReflectionTestUtils.setField(cmd, "bgpService", bgpService);
+        ReflectionTestUtils.setField(cmd, "_responseGenerator", _responseGenerator);
+        ASNumber row = Mockito.mock(ASNumber.class);
+        Mockito.when(row.getId()).thenReturn(7L);
+        Mockito.when(bgpService.listASNumbers(cmd)).thenReturn(new Pair<>(java.util.Collections.singletonList(row), 25));
+        Mockito.when(bgpService.getASNumberReleaseReasons(Mockito.anyList())).thenReturn(java.util.Collections.singletonMap(7L, "eligible"));
+        ASNumberResponse item = new ASNumberResponse();
+        Mockito.when(_responseGenerator.createASNumberResponse(row)).thenReturn(item);
+        cmd.execute();
+        Assert.assertTrue(item.getReleasable()); Assert.assertEquals("eligible", item.getReleaseReason());
+        Assert.assertEquals(Integer.valueOf(25), ((ListResponse<?>) cmd.getResponseObject()).getCount());
+        Mockito.verify(bgpService, Mockito.times(1)).getASNumberReleaseReasons(Mockito.anyList());
+    }
 }
