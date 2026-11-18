@@ -1,0 +1,293 @@
+Accessibility document subtree; unrelated Chrome toolbar omitted.
+								27057 document (문서) 쿠버네티스 - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/kubernetes ID: RootWebArea
+									27079 group (그룹)
+										27521 image (라벨이 없는 그래픽)
+										27083 menu (메뉴)
+											27084 menu item (메뉴 항목) dashboard 대시보드
+												27085 hyperlink (링크) dashboard 대시보드 Value: http://10.10.13.10:8080/client/#/dashboard
+													27086 image (그래픽) dashboard
+											27087 group (그룹)
+												27088 image (그래픽) cloud
+												27089 group (그룹)
+													27090 text (텍스트) 컴퓨트
+											29828 list (LIST) ID: sub_menu_1_$$_/compute-popup
+												29829 menu item (메뉴 항목) cloud-server 가상머신
+													29830 hyperlink (링크) cloud-server 가상머신 Value: http://10.10.13.10:8080/client/#/vm
+														29831 image (그래픽) cloud-server
+												29832 menu item (메뉴 항목) camera VM 스냅샷
+													29833 hyperlink (링크) camera VM 스냅샷 Value: http://10.10.13.10:8080/client/#/vmsnapshot
+														29834 image (그래픽) camera
+												29835 menu item (메뉴 항목) 쿠버네티스
+													29836 hyperlink (링크) 쿠버네티스 Value: http://10.10.13.10:8080/client/#/kubernetes
+														29837 image (그래픽)
+												29838 menu item (메뉴 항목) fullscreen 오토스케일 VM 그룹
+													29839 hyperlink (링크) fullscreen 오토스케일 VM 그룹 Value: http://10.10.13.10:8080/client/#/autoscalevmgroup
+														29840 image (그래픽) fullscreen
+												29841 menu item (메뉴 항목) gold 가상머신 그룹
+													29842 hyperlink (링크) gold 가상머신 그룹 Value: http://10.10.13.10:8080/client/#/vmgroup
+														29843 image (그래픽) gold
+												29844 menu item (메뉴 항목) key SSH 키 쌍
+													29845 hyperlink (링크) key SSH 키 쌍 Value: http://10.10.13.10:8080/client/#/ssh
+														29846 image (그래픽) key
+												29847 menu item (메뉴 항목) solution 사용자 데이터 라이브러리
+													29848 hyperlink (링크) solution 사용자 데이터 라이브러리 Value: http://10.10.13.10:8080/client/#/userdata
+														29849 image (그래픽) solution
+												29850 menu item (메뉴 항목) solution CNI 구성
+													29851 hyperlink (링크) solution CNI 구성 Value: http://10.10.13.10:8080/client/#/cniconfiguration
+														29852 image (그래픽) solution
+												29853 menu item (메뉴 항목) swap Affinity 그룹
+													29854 hyperlink (링크) swap Affinity 그룹 Value: http://10.10.13.10:8080/client/#/affinitygroup
+														29855 image (그래픽) swap
+											27091 group (그룹)
+												27092 image (그래픽) hdd
+												27093 group (그룹)
+													27094 text (텍스트) 스토리지
+											27095 group (그룹)
+												27096 image (그래픽) wifi
+												27097 group (그룹)
+													27098 text (텍스트) 네트워크
+											27099 group (그룹)
+												27100 image (그래픽) picture
+												27101 group (그룹)
+													27102 text (텍스트) 이미지
+											27103 group (그룹)
+												27104 image (그래픽) lock
+												27105 group (그룹)
+													27106 text (텍스트) 키 관리
+											27107 menu item (메뉴 항목) schedule 이벤트
+												27108 hyperlink (링크) schedule 이벤트 Value: http://10.10.13.10:8080/client/#/event
+													27109 image (그래픽) schedule
+											27110 menu item (메뉴 항목) project 프로젝트
+												27111 hyperlink (링크) project 프로젝트 Value: http://10.10.13.10:8080/client/#/project
+													27112 image (그래픽) project
+											27113 menu item (메뉴 항목) idcard 역할
+												27114 hyperlink (링크) idcard 역할 Value: http://10.10.13.10:8080/client/#/role
+													27115 image (그래픽) idcard
+											27116 menu item (메뉴 항목) team 계정
+												27117 hyperlink (링크) team 계정 Value: http://10.10.13.10:8080/client/#/account
+													27118 image (그래픽) team
+											27119 menu item (메뉴 항목) block 도메인
+												27120 hyperlink (링크) block 도메인 Value: http://10.10.13.10:8080/client/#/domain
+													27121 image (그래픽) block
+											27122 group (그룹)
+												27123 image (그래픽) bank
+												27124 group (그룹)
+													27125 text (텍스트) 인프라스트럭쳐
+											27126 group (그룹)
+												27127 image (그래픽) shopping
+												27128 group (그룹)
+													27129 text (텍스트) 서비스 오퍼링
+											27130 group (그룹)
+												27131 image (그래픽) setting
+												27132 group (그룹)
+													27133 text (텍스트) 구성
+											27134 menu item (메뉴 항목) appstore-add 확장
+												27135 hyperlink (링크) appstore-add 확장 Value: http://10.10.13.10:8080/client/#/extension
+													27136 image (그래픽) appstore-add
+											27137 group (그룹)
+												27138 image (그래픽) tool
+												27139 group (그룹)
+													27140 text (텍스트) 도구
+											27141 menu item (메뉴 항목) read API 문서
+												27142 hyperlink (링크) read API 문서 Value: http://10.10.13.10:8080/client/#/apidocs/
+													27143 image (그래픽) read
+										27144 group (섹션 헤더)
+											27145 text (텍스트) 페이지 스타일 설정
+											27146 button (단추) 닫기
+												27147 image (그래픽) close
+										27148 text (제목) 페이지 스타일 설정
+										27149 group (그룹)
+											27150 image (그래픽)
+											27151 radio button (라디오 단추) (selectable, settable, string)
+											28563 text (텍스트)
+											27712 image (그래픽) check
+										27153 group (그룹)
+											27154 image (그래픽)
+											27155 radio button (라디오 단추) (selectable, settable, string)
+											28564 text (텍스트)
+										27158 text (제목) 테마 색상
+										27159 group (그룹)
+											27160 radio button (라디오 단추) (selectable, settable, string)
+											28565 text (텍스트)
+											27162 image (그래픽) check
+										27163 group (그룹)
+											27164 radio button (라디오 단추) (selectable, settable, string)
+											28566 text (텍스트)
+										27166 group (그룹)
+											27167 radio button (라디오 단추) (selectable, settable, string)
+											28567 text (텍스트)
+										27169 group (그룹)
+											27170 radio button (라디오 단추) (selectable, settable, string)
+											28568 text (텍스트)
+										27172 group (그룹)
+											27173 radio button (라디오 단추) (selectable, settable, string)
+											28569 text (텍스트)
+										27175 group (그룹)
+											27176 radio button (라디오 단추) (selectable, settable, string)
+											28570 text (텍스트)
+										27178 group (그룹)
+											27179 radio button (라디오 단추) (selectable, settable, string)
+											28571 text (텍스트)
+										27181 group (그룹)
+											27182 radio button (라디오 단추) (selectable, settable, string)
+											28572 text (텍스트)
+										27184 separator (구분 기호)
+										27185 text (제목) 네비게이션 설정
+										27186 list item (목록 항목) 배경색
+											27187 text (텍스트) 배경색
+											27188 button (color picker) (settable, string) Value: 100% red 100% green 100% blue
+										27189 list item (목록 항목) 텍스트 색상
+											27190 text (텍스트) 텍스트 색상
+											27191 button (color picker) (settable, string) Value: 0% red 0% green 0% blue
+										27192 separator (구분 기호)
+										27193 text (경고)
+											27194 image (그래픽) exclamation-circle
+											27195 text (텍스트) 설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+										27196 button (단추) download 세팅값 다운로드(json)
+											27197 image (그래픽) download
+										27198 button (단추) undo 기본값으로 재설정
+											27199 image (그래픽) undo
+										27200 group (섹션 헤더)
+											27542 image (그래픽) menu-fold
+											27202 text (텍스트) 프로젝트
+											27203 group (그룹)
+												27204 group (그룹)
+													27205 combo box (콤보 상자) (settable, string) 프로젝트 ID: project-selector-1
+													27206 image (그래픽) project
+													27207 text (텍스트) 기본 보기
+											27543 button (단추) 생성 down
+												27544 image (그래픽) down
+											27208 group (그룹)
+												27209 image (그래픽) translation
+											27210 button (단추) 알림
+												27211 image (그래픽) bell
+											27212 group (그룹)
+												27213 text (텍스트) AC
+												27214 text (텍스트) admin cloud
+										27215 group (기본)
+											29702 hyperlink (링크) home Value: http://10.10.13.10:8080/client/#/
+												29703 image (그래픽) home
+											29704 text (텍스트) /
+											29705 hyperlink (링크) 쿠버네티스 Value: http://10.10.13.10:8080/client/#/kubernetes
+											29706 hyperlink (링크) question-circle Value: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html
+												29707 image (그래픽) question-circle
+											29708 button (단추) reload 업데이트
+												30408 image (그래픽) reload
+											29710 group (그룹)
+												29711 group (그룹)
+													29712 combo box (콤보 상자) (settable, string) ID: rc_select_10
+													29713 text (텍스트) 모두
+											29858 button (전환) (settable, string) 프로젝트
+											29859 button (단추) 쿠버네티스 클러스터 생성
+												29860 image (그래픽) plus
+											29714 button (단추) 고급 검색
+												29715 image (그래픽) filter
+											29716 group (그룹)
+												29717 text field (편집) (settable, string) 검색 Description: 검색
+											29718 button (단추) search
+												29719 image (그래픽) search
+											29720 table (TABLE)
+												29721 data item (행)
+													29722 data item (열 머리글)
+														29723 checkbox (확인란) (settable, string)
+													30383 data item (열 머리글) 이름 caret-up caret-down
+														30384 group (그룹)
+															30385 image (그래픽) caret-up
+															30386 image (그래픽) caret-down
+													29728 data item (열 머리글) 상태 caret-up caret-down
+														29729 group (그룹)
+															29730 image (그래픽) caret-up
+															29731 image (그래픽) caret-down
+													30387 data item (열 머리글) 오토스케일링 caret-up caret-down
+														30388 group (그룹)
+															30389 image (그래픽) caret-up
+															30390 image (그래픽) caret-down
+													30391 data item (열 머리글) 클러스터 유형 caret-up caret-down
+														30392 group (그룹)
+															30393 image (그래픽) caret-up
+															30394 image (그래픽) caret-down
+													30395 data item (열 머리글) 워커 노드 수 caret-up caret-down
+														30396 group (그룹)
+															30397 image (그래픽) caret-up
+															30398 image (그래픽) caret-down
+													29870 data item (열 머리글) 노드 할당 자원 합계 caret-up caret-down
+														29871 group (그룹)
+															29872 image (그래픽) caret-up
+															29873 image (그래픽) caret-down
+													30399 data item (열 머리글) 쿠버네티스 버전 caret-up caret-down
+														30400 group (그룹)
+															30401 image (그래픽) caret-up
+															30402 image (그래픽) caret-down
+													29890 data item (열 머리글) 계정 caret-up caret-down
+														29891 group (그룹)
+															29892 image (그래픽) caret-up
+															29893 image (그래픽) caret-down
+													29764 data item (열 머리글) Zone caret-up caret-down
+														29765 group (그룹)
+															29766 image (그래픽) caret-up
+															29767 image (그래픽) caret-down
+													29768 data item (열 머리글) filter
+														29769 button (단추) filter
+															29770 image (그래픽) filter
+												30409 data item (행)
+													30410 data item (항목)
+														30411 checkbox (확인란) (settable, string)
+													30412 data item (항목) koral1
+														30413 image (그래픽)
+														30414 hyperlink (링크) koral1 Value: http://10.10.13.10:8080/client/#/kubernetes/cda4e02b-1f6b-4cdf-8010-6aabfc3c3a8f
+													30415 data item (항목) 정지된 상태
+														30416 group (그룹)
+													30417 data item (항목) 미사용
+													30418 data item (항목) Mold 관리형
+													30419 data item (항목) 1
+													30420 data item (항목) 4 CPU 4096 MB
+													30421 data item (항목) 1.35.9
+													30422 data item (항목) admin
+														30423 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													30424 data item (항목) 13-Zone
+														30425 hyperlink (링크) 13-Zone Value: http://10.10.13.10:8080/client/#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f
+													30426 data item (항목)
+												30427 data item (행)
+													30428 data item (항목)
+														30429 checkbox (확인란) (settable, string)
+													30430 data item (항목) koral3
+														30431 image (그래픽)
+														30432 hyperlink (링크) koral3 Value: http://10.10.13.10:8080/client/#/kubernetes/c1b341e7-3ee2-4836-bcbd-c63f2126f8fe
+													30433 data item (항목) 정지된 상태
+														30434 group (그룹)
+													30435 data item (항목) 미사용
+													30436 data item (항목) Mold 관리형
+													30437 data item (항목) 2
+													30438 data item (항목) 8 CPU 8192 MB
+													30439 data item (항목) 1.36.5
+													30440 data item (항목) admin
+														30441 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													30442 data item (항목) 13-Zone
+														30443 hyperlink (링크) 13-Zone Value: http://10.10.13.10:8080/client/#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f
+													30444 data item (항목)
+											29813 list (LIST)
+												29814 list item (목록 항목) 전체 2 개 항목 중 1-2 표시
+												29815 list item (목록 항목) (disabled) 이전 페이지 Description: 이전 페이지
+													29816 button (단추) (disabled) left
+														29817 image (그래픽) left
+												30445 list item (목록 항목) 1 Description: 1
+													30446 text (텍스트) 1
+												29820 list item (목록 항목) (disabled) 다음 페이지 Description: 다음 페이지
+													29821 button (단추) (disabled) right
+														29822 image (그래픽) right
+												29823 list item (목록 항목) 20 / 쪽
+													29824 group (그룹)
+														29825 group (그룹)
+															29826 combo box (콤보 상자) ID: rc_select_11
+															29827 text (텍스트) 20 / 쪽
+										27291 group (섹션 바닥글)
+										27381 text (경고)
+											27382 image (그래픽) exclamation-circle
+											27383 text (텍스트) 조치가 필요한 경보
+											27384 text (텍스트) (1건)
+											27385 text (텍스트) -
+											27386 text (텍스트) 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+											27387 button (단추) 세부 경보 내용 확인
+											27388 button (단추) 경보 규칙으로 이동
+											27389 button (단추) 닫기
+												27390 image (그래픽) close

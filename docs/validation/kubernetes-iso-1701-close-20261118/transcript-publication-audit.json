@@ -1,0 +1,72 @@
+[
+  {
+    "file": "after-failed-version-deletion.log",
+    "omittedChromeToolbar": true,
+    "sha256": "8b170c888aa0a77554a67ecbbd46f140af238d2a7df28237fe95ddc02ab62a36"
+  },
+  {
+    "file": "catalog-restored-dark-desktop.log",
+    "omittedChromeToolbar": true,
+    "sha256": "5d8e57d8b75f4c94b4cc9a44a753a170bf133a552b8b8bd571b329ffec9dcd4e"
+  },
+  {
+    "file": "catalog-restored-two-originals.log",
+    "omittedChromeToolbar": true,
+    "sha256": "9d067b271c11c33a4be2f2a6f214d610a2e023fe2e7b3161918f545e0a51a931"
+  },
+  {
+    "file": "corrected-events-dark-pass.log",
+    "omittedChromeToolbar": true,
+    "sha256": "ebb590712187bb4c777b7bbb21d7de7df4aaa2df620d448ce5c87aa9532dd927"
+  },
+  {
+    "file": "corrected-events-light-pass.log",
+    "omittedChromeToolbar": true,
+    "sha256": "41aebcf38bb7e72babca08f769517330cda34ac4688c59f590f78d50fa2a1c0b"
+  },
+  {
+    "file": "delete-failed-target-confirmation.log",
+    "omittedChromeToolbar": true,
+    "sha256": "159495ddb834ceeb6d06054d678ba5c26495603f515beabe110ade9ac3684f11"
+  },
+  {
+    "file": "delete-ready-target-confirmation.log",
+    "omittedChromeToolbar": true,
+    "sha256": "3885b39d6951bd85683bc593fa2558cc718cc7ee8478d85abbff75e22da09a9c"
+  },
+  {
+    "file": "final-detail-dark-narrow.log",
+    "omittedChromeToolbar": true,
+    "sha256": "ddcc846f9cad5906477794466cfbb7728ab2ea78ae7ed751822ce669aa2b00ba"
+  },
+  {
+    "file": "final-failure-detail-light.log",
+    "omittedChromeToolbar": true,
+    "sha256": "49ddfc0f5cdc256f63af2f62feb99822c8c8b6bfc1d660473d9a38f367f07af4"
+  },
+  {
+    "file": "final-main-dark-narrow.log",
+    "omittedChromeToolbar": true,
+    "sha256": "88ed47b8165bd5b7127313f14bbc1e9cf54a06a24d314662d6cfe9404d879870"
+  },
+  {
+    "file": "final-main-light-pass.log",
+    "omittedChromeToolbar": true,
+    "sha256": "dd337fea2a820c687db3c6e3c3f695ddef88d276d68a735220d5534084ab6124"
+  },
+  {
+    "file": "iso-restored-eight-no-test-items.log",
+    "omittedChromeToolbar": true,
+    "sha256": "f7729b3acba2d5a3b3df70f9381c9e0069c6c20caca6805e59328ae6918e69c5"
+  },
+  {
+    "file": "original-cks-clusters-preserved.log",
+    "omittedChromeToolbar": true,
+    "sha256": "0da00ead02a563f56fd3108cce9ed0e468a68cb728207f5b4edf1b0c50f3ddce"
+  },
+  {
+    "file": "systemvm-originals-running-423.log",
+    "omittedChromeToolbar": true,
+    "sha256": "015f8c4e36da5fee3c404eab53a0575d45323a65580933f1df41c1530e8907ab"
+  }
+]

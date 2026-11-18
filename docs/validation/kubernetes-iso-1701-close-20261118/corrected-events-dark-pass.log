@@ -1,0 +1,299 @@
+Accessibility document subtree; unrelated Chrome toolbar omitted.
+								27057 document (문서) 쿠버네티스 ISO - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/kubernetesiso/8f773b4a-8802-40ea-88e6-76d2b8141e29?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57&tab=events ID: RootWebArea
+									27079 group (그룹)
+										27521 image (라벨이 없는 그래픽)
+										27083 menu (메뉴)
+											27084 menu item (메뉴 항목) dashboard 대시보드
+												27085 hyperlink (링크) dashboard 대시보드 Value: http://10.10.13.10:8080/client/#/dashboard
+													27086 image (그래픽) dashboard
+											27087 group (그룹)
+												27088 image (그래픽) cloud
+												27089 group (그룹)
+													27090 text (텍스트) 컴퓨트
+											27091 group (그룹)
+												27092 image (그래픽) hdd
+												27093 group (그룹)
+													27094 text (텍스트) 스토리지
+											27095 group (그룹)
+												27096 image (그래픽) wifi
+												27097 group (그룹)
+													27098 text (텍스트) 네트워크
+											27099 group (그룹)
+												27100 image (그래픽) picture
+												27101 group (그룹)
+													27102 text (텍스트) 이미지
+											27522 list (LIST) ID: sub_menu_4_$$_/image-popup
+												27523 menu item (메뉴 항목) save 템플릿
+													27524 hyperlink (링크) save 템플릿 Value: http://10.10.13.10:8080/client/#/template
+														27525 image (그래픽) save
+												27526 menu item (메뉴 항목) usb ISO
+													27527 hyperlink (링크) usb ISO Value: http://10.10.13.10:8080/client/#/iso
+														27528 image (그래픽) usb
+												27529 menu item (메뉴 항목) 쿠버네티스 ISO
+													27530 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+														27531 image (그래픽)
+											27103 group (그룹)
+												27104 image (그래픽) lock
+												27105 group (그룹)
+													27106 text (텍스트) 키 관리
+											27107 menu item (메뉴 항목) schedule 이벤트
+												27108 hyperlink (링크) schedule 이벤트 Value: http://10.10.13.10:8080/client/#/event
+													27109 image (그래픽) schedule
+											27110 menu item (메뉴 항목) project 프로젝트
+												27111 hyperlink (링크) project 프로젝트 Value: http://10.10.13.10:8080/client/#/project
+													27112 image (그래픽) project
+											27113 menu item (메뉴 항목) idcard 역할
+												27114 hyperlink (링크) idcard 역할 Value: http://10.10.13.10:8080/client/#/role
+													27115 image (그래픽) idcard
+											27116 menu item (메뉴 항목) team 계정
+												27117 hyperlink (링크) team 계정 Value: http://10.10.13.10:8080/client/#/account
+													27118 image (그래픽) team
+											27119 menu item (메뉴 항목) block 도메인
+												27120 hyperlink (링크) block 도메인 Value: http://10.10.13.10:8080/client/#/domain
+													27121 image (그래픽) block
+											27122 group (그룹)
+												27123 image (그래픽) bank
+												27124 group (그룹)
+													27125 text (텍스트) 인프라스트럭쳐
+											27126 group (그룹)
+												27127 image (그래픽) shopping
+												27128 group (그룹)
+													27129 text (텍스트) 서비스 오퍼링
+											27130 group (그룹)
+												27131 image (그래픽) setting
+												27132 group (그룹)
+													27133 text (텍스트) 구성
+											27134 menu item (메뉴 항목) appstore-add 확장
+												27135 hyperlink (링크) appstore-add 확장 Value: http://10.10.13.10:8080/client/#/extension
+													27136 image (그래픽) appstore-add
+											27137 group (그룹)
+												27138 image (그래픽) tool
+												27139 group (그룹)
+													27140 text (텍스트) 도구
+											27141 menu item (메뉴 항목) read API 문서
+												27142 hyperlink (링크) read API 문서 Value: http://10.10.13.10:8080/client/#/apidocs/
+													27143 image (그래픽) read
+										27144 group (섹션 헤더)
+											27145 text (텍스트) 페이지 스타일 설정
+											27146 button (단추) 닫기
+												27147 image (그래픽) close
+										27148 text (제목) 페이지 스타일 설정
+										27149 group (그룹)
+											27150 image (그래픽)
+											27151 radio button (라디오 단추) (selectable, settable, string)
+											27532 text (텍스트)
+										27153 group (그룹)
+											27154 image (그래픽)
+											27155 radio button (라디오 단추) (selectable, settable, string)
+											27533 text (텍스트)
+											27157 image (그래픽) check
+										27158 text (제목) 테마 색상
+										27159 group (그룹)
+											27160 radio button (라디오 단추) (selectable, settable, string)
+											27534 text (텍스트)
+											27162 image (그래픽) check
+										27163 group (그룹)
+											27164 radio button (라디오 단추) (selectable, settable, string)
+											27535 text (텍스트)
+										27166 group (그룹)
+											27167 radio button (라디오 단추) (selectable, settable, string)
+											27536 text (텍스트)
+										27169 group (그룹)
+											27170 radio button (라디오 단추) (selectable, settable, string)
+											27537 text (텍스트)
+										27172 group (그룹)
+											27173 radio button (라디오 단추) (selectable, settable, string)
+											27538 text (텍스트)
+										27175 group (그룹)
+											27176 radio button (라디오 단추) (selectable, settable, string)
+											27539 text (텍스트)
+										27178 group (그룹)
+											27179 radio button (라디오 단추) (selectable, settable, string)
+											27540 text (텍스트)
+										27181 group (그룹)
+											27182 radio button (라디오 단추) (selectable, settable, string)
+											27541 text (텍스트)
+										27184 separator (구분 기호)
+										27185 text (제목) 네비게이션 설정
+										27186 list item (목록 항목) 배경색
+											27187 text (텍스트) 배경색
+											27188 button (color picker) (disabled) Value: 100% red 100% green 100% blue
+										27189 list item (목록 항목) 텍스트 색상
+											27190 text (텍스트) 텍스트 색상
+											27191 button (color picker) (disabled) Value: 0% red 0% green 0% blue
+										27192 separator (구분 기호)
+										27193 text (경고)
+											27194 image (그래픽) exclamation-circle
+											27195 text (텍스트) 설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+										27196 button (단추) download 세팅값 다운로드(json)
+											27197 image (그래픽) download
+										27198 button (단추) undo 기본값으로 재설정
+											27199 image (그래픽) undo
+										27200 group (섹션 헤더)
+											27542 image (그래픽) menu-fold
+											27202 text (텍스트) 프로젝트
+											27203 group (그룹)
+												27204 group (그룹)
+													27205 combo box (콤보 상자) (settable, string) 프로젝트 ID: project-selector-1
+													27206 image (그래픽) project
+													27207 text (텍스트) 기본 보기
+											27543 button (단추) 생성 down
+												27544 image (그래픽) down
+											27208 group (그룹)
+												27209 image (그래픽) translation
+											27210 button (단추) 알림
+												27211 image (그래픽) bell
+											27212 group (그룹)
+												27213 text (텍스트) AC
+												27214 text (텍스트) admin cloud
+										27215 group (기본)
+											27216 hyperlink (링크) home Value: http://10.10.13.10:8080/client/#/
+												27217 image (그래픽) home
+											27218 text (텍스트) /
+											27219 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+											27396 text (텍스트) /
+											27397 group (그룹)
+												27549 text (텍스트) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-
+											27399 hyperlink (링크) question-circle Value: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions
+												27400 image (그래픽) question-circle
+											27401 button (단추) reload 업데이트
+												27550 image (그래픽) reload
+											27403 group (그룹)
+											27551 button (단추) down 작업
+												27552 image (그래픽) down
+											27405 group (그룹)
+												27406 image (그래픽)
+											27553 text (제목) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-
+											27554 text (텍스트) x86_64
+											27408 separator (구분 기호)
+											27555 text (텍스트) 버전 사용 설정
+											27556 text (텍스트) 사용 허용
+											27557 text (텍스트) 아이디
+											27558 group (그룹)
+												27559 button (단추) 아이디 복사
+													27560 image (그래픽) barcode
+											27561 group (그룹)
+												27562 hyperlink (링크) 8f773b4a-8802-40ea-88e6-76d2b8141e29 Value: javascript:;
+											27563 text (텍스트) ISO 가용성
+											27564 group (그룹) Description: 사용 가능 ISO 등록 상태: Ready
+												27565 text (텍스트) 사용 가능
+												27590 text (텍스트) 조회한 ISO Zone 준비: 1/1
+												27566 button (단추) Zone에서 원인 확인
+											27567 text (텍스트) 등록 범위
+											27568 text (텍스트) 모든 Zone
+											27569 text (텍스트) 연결된 ISO
+											27591 hyperlink (링크) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE--Kubernetes-Binaries-ISO Value: http://10.10.13.10:8080/client/#/iso/49819ec0-6527-40fc-91ce-236b9ab30c47
+											27571 text (텍스트) 생성일
+											27572 image (그래픽) calendar
+											27573 text (텍스트) 2026. 11. 17. 오후 1:23:37
+											27574 tab (Tab)
+												27575 group (그룹)
+													27576 tab item (탭 항목) (selectable) 상세 ID: rc-tabs-1-tab-details
+												27577 group (그룹)
+													27578 tab item (탭 항목) (selectable) Zone ID: rc-tabs-1-tab-zones
+												27579 group (그룹)
+													27580 tab item (탭 항목) (selectable) 이벤트 ID: rc-tabs-1-tab-events
+											27581 pane (탭 패널) 이벤트 ID: rc-tabs-1-panel-events
+												27582 button (단추) reload 업데이트
+													27592 image (그래픽) reload
+												27584 button (단추) 열 선택
+													27585 image (그래픽) setting
+												27586 group (그룹)
+													27587 text field (편집) (settable, string) 관련 자원 이벤트 검색 Description: 검색
+												27588 button (단추) search
+													27589 image (그래픽) search
+												27593 table (TABLE)
+													27594 data item (행)
+														27595 data item (열 머리글) 레벨 caret-up caret-down
+															27596 group (그룹)
+																27597 image (그래픽) caret-up
+																27598 image (그래픽) caret-down
+														27599 data item (열 머리글) 유형 caret-up caret-down
+															27600 group (그룹)
+																27601 image (그래픽) caret-up
+																27602 image (그래픽) caret-down
+														27603 data item (열 머리글) 상태 caret-up caret-down
+															27604 group (그룹)
+																27605 image (그래픽) caret-up
+																27606 image (그래픽) caret-down
+														27607 data item (열 머리글) 사용자 이름 caret-up caret-down
+															27608 group (그룹)
+																27609 image (그래픽) caret-up
+																27610 image (그래픽) caret-down
+														27611 data item (열 머리글) 계정 caret-up caret-down
+															27612 group (그룹)
+																27613 image (그래픽) caret-up
+																27614 image (그래픽) caret-down
+														27615 data item (열 머리글) 도메인 caret-up caret-down
+															27616 group (그룹)
+																27617 image (그래픽) caret-up
+																27618 image (그래픽) caret-down
+														27619 data item (열 머리글) 생성일 caret-up caret-down
+															27620 group (그룹)
+																27621 image (그래픽) caret-up
+																27622 image (그래픽) caret-down
+													27623 data item (행)
+														27624 data item (항목) INFO
+															27625 hyperlink (링크) INFO Value: http://10.10.13.10:8080/client/#/event/019271bb-e817-4849-bddd-1225681f6543
+														27626 data item (항목) KUBERNETES.VERSION.UPDATE
+														27627 data item (항목) 완료
+															27628 group (그룹)
+														27629 data item (항목) admin
+															27630 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/accountuser?username=admin&domainid=47178e2f-bd56-11f1-b573-002481560363
+														27631 data item (항목) admin
+															27632 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+														27633 data item (항목) ROOT
+															27634 hyperlink (링크) ROOT Value: http://10.10.13.10:8080/client/#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details
+														27635 data item (항목) 2026. 11. 17. 오후 2:42:58
+													27636 data item (행)
+														27637 data item (항목) INFO
+															27638 hyperlink (링크) INFO Value: http://10.10.13.10:8080/client/#/event/c62f1f3f-967f-423d-ac37-980b45bb6abc
+														27639 data item (항목) KUBERNETES.VERSION.UPDATE
+														27640 data item (항목) 완료
+															27641 group (그룹)
+														27642 data item (항목) admin
+															27643 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/accountuser?username=admin&domainid=47178e2f-bd56-11f1-b573-002481560363
+														27644 data item (항목) admin
+															27645 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+														27646 data item (항목) ROOT
+															27647 hyperlink (링크) ROOT Value: http://10.10.13.10:8080/client/#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details
+														27648 data item (항목) 2026. 11. 17. 오후 2:41:57
+													27649 data item (행)
+														27650 data item (항목) INFO
+															27651 hyperlink (링크) INFO Value: http://10.10.13.10:8080/client/#/event/6eafc8e3-6164-49f4-ab7a-5415a054179c
+														27652 data item (항목) KUBERNETES.VERSION.ADD
+														27653 data item (항목) 완료
+															27654 group (그룹)
+														27655 data item (항목) admin
+															27656 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/accountuser?username=admin&domainid=47178e2f-bd56-11f1-b573-002481560363
+														27657 data item (항목) admin
+															27658 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+														27659 data item (항목) ROOT
+															27660 hyperlink (링크) ROOT Value: http://10.10.13.10:8080/client/#/domain/47178e2f-bd56-11f1-b573-002481560363?tab=details
+														27661 data item (항목) 2026. 11. 17. 오후 1:23:37
+												27662 list (LIST)
+													27663 list item (목록 항목) 전체 3개 항목 중 1-3 표시
+													27664 list item (목록 항목) (disabled) 이전 페이지 Description: 이전 페이지
+														27665 button (단추) (disabled) left
+															27666 image (그래픽) left
+													27667 list item (목록 항목) 1 Description: 1
+														27668 text (텍스트) 1
+													27669 list item (목록 항목) (disabled) 다음 페이지 Description: 다음 페이지
+														27670 button (단추) (disabled) right
+															27671 image (그래픽) right
+													27672 list item (목록 항목) 10 / 쪽
+														27673 group (그룹)
+															27674 group (그룹)
+																27675 combo box (콤보 상자) ID: rc_select_2
+																27676 text (텍스트) 10 / 쪽
+										27291 group (섹션 바닥글)
+										27381 text (경고)
+											27382 image (그래픽) exclamation-circle
+											27383 text (텍스트) 조치가 필요한 경보
+											27384 text (텍스트) (1건)
+											27385 text (텍스트) -
+											27386 text (텍스트) 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+											27387 button (단추) 세부 경보 내용 확인
+											27388 button (단추) 경보 규칙으로 이동
+											27389 button (단추) 닫기
+												27390 image (그래픽) close
