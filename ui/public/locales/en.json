@@ -12133,5 +12133,5 @@
   "label.backup.integration.state.policy_path_mismatch": "Host configured · policy path update required",
   "label.backup.integration.state.unreachable": "Host unreachable",
   "label.backup.integration.state.unknown": "Not inspected",
-  "label.backup.integration.state.provider_disabled": "NetBackup provider setup required"
+  "label.backup.integration.state.provider_disabled": "NetBackup integration setup required"
 }
