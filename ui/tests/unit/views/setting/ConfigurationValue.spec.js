@@ -63,7 +63,7 @@ test('changing mode requires directional confirmation before submitting, and can
   confirmation.onCancel()
   expect(vm.editableValue).toBe(true)
   expect(vm.actualValue).toBe(true)
-  expect(wrapper.text()).toContain(ko['message.netbackup.schedule.mode.help'])
+  expect(wrapper.text()).not.toContain(ko['message.netbackup.schedule.mode.help'])
   wrapper.unmount()
 })
 
@@ -134,7 +134,7 @@ test('ordinary settings retain their update and reset flow and raw API error det
 test('Hook timeout explains automatic Host synchronization and localizes recovery failures', async () => {
   const { wrapper, vm, mocks, record } = mount({ name: netBackupHookTimeoutKey, type: 'Number', value: '86400', defaultvalue: '86400' })
   const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {})
-  expect(wrapper.text()).toContain(ko['message.netbackup.hook.timeout.help'])
+  expect(wrapper.text()).not.toContain(ko['message.netbackup.hook.timeout.help'])
   postAPI.mockRejectedValueOnce({ response: { data: { updateconfigurationresponse: { errortext: 'NETBACKUP_HOOK_TIMEOUT_RECOVERY_PENDING: host-1' } } } })
   vm.editableValue = 3600
   await vm.updateConfigurationValue(record)

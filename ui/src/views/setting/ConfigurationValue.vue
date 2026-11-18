@@ -190,8 +190,6 @@
           :disabled="(!('resetConfiguration' in $store.getters.apis) || configDisabled || valueLoading || configrecord.value === configrecord.defaultvalue)" />
       </span>
     </a-list-item>
-    <a-alert v-if="isNetBackupScheduleMode" type="info" show-icon :message="$t('message.netbackup.schedule.mode.help')" />
-    <a-alert v-if="isNetBackupHookTimeout" type="info" show-icon :message="$t('message.netbackup.hook.timeout.help')" />
   </a-list>
 </template>
 <script>
