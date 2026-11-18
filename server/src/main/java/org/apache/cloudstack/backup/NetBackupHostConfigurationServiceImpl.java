@@ -78,7 +78,12 @@ public class NetBackupHostConfigurationServiceImpl implements NetBackupHostConfi
     }
 
     private String zoneValue(String name, HostVO host) {
-        return StringUtils.defaultString(configDepot.getConfigStringValue(name, ConfigKey.Scope.Zone, host.getDataCenterId()));
+        ConfigKey<?> key = configDepot.get(name);
+        return key == null ? "" : StringUtils.defaultString((String) key.valueIn(host.getDataCenterId()));
+    }
+
+    private String source(String name, ConfigKey.Scope scope, Long id) {
+        return configDepot.getConfigStringValue(name, scope, id) == null ? ConfigKey.Scope.Global.name() : scope.name();
     }
 
     private ApiKeyPair credentials() {
@@ -90,24 +95,36 @@ public class NetBackupHostConfigurationServiceImpl implements NetBackupHostConfi
         value.hostname = host.getName();
         value.hoststate = host.getStatus().toString();
         value.netbackupurl = zoneValue("backup.plugin.netbackup.url", host);
-        value.credentialsconfigured = StringUtils.isNotBlank(zoneValue("backup.plugin.netbackup.apikey", host));
+        String netbackupKey = zoneValue("backup.plugin.netbackup.apikey", host);
+        value.credentialsconfigured = StringUtils.isNotBlank(netbackupKey)
+                && !netbackupKey.equals(configDepot.get("backup.plugin.netbackup.apikey").defaultValue());
         ApiKeyPair key = credentials();
         value.moldcredentialsavailable = key != null && StringUtils.isNoneBlank(key.getApiKey(), key.getSecretKey());
-        value.frameworkenabled = BackupManager.BackupFrameworkEnabled.value() && BackupManager.BackupFrameworkEnabled.valueIn(host.getDataCenterId());
+        value.frameworkglobalenabled = BackupManager.BackupFrameworkEnabled.value();
+        value.frameworkzoneenabled = BackupManager.BackupFrameworkEnabled.valueIn(host.getDataCenterId());
+        value.frameworkenabled = value.frameworkglobalenabled && value.frameworkzoneenabled;
+        value.settingsource = new java.util.HashMap<>();
+        for (String name : java.util.List.of(BackupManager.BackupFrameworkEnabled.key(), BackupManager.BackupProviderPlugin.key(),
+                "backup.plugin.netbackup.url", "backup.plugin.netbackup.apikey")) {
+            value.settingsource.put(name, source(name, ConfigKey.Scope.Zone, host.getDataCenterId()));
+        }
+        value.settingsource.put(BackupManager.KvmIncrementalBackup.key(), source(BackupManager.KvmIncrementalBackup.key(), ConfigKey.Scope.Cluster, host.getClusterId()));
         value.providerenabled = BackupProviderNameUtils.isConfigured(zoneValue(BackupManager.BackupProviderPlugin.key(), host),
                 BackupProviderNameUtils.ABLESTACK_NETBACKUP);
         value.stagingenabled = BackupManager.ThirdPartyStagingEnable.value();
         value.vmschedulebackup = BackupManager.NetBackupVmScheduleEnabled.value();
         value.incrementalbackup = BackupManager.KvmIncrementalBackup.valueIn(host.getClusterId());
-        value.stagingpath = StringUtils.removeEnd(BackupManager.ThirdPartyStagingRootPath.value(), "/") + "/ablestack-netbackup";
-        String expectedBootstrap = value.stagingpath + "/bootstrap/" + StringUtils.defaultString(value.policyname);
-        if (!expectedBootstrap.equals(value.bootstrappath)) { value.bootstrappresent = false; }
-        value.bootstrappath = StringUtils.isBlank(value.policyname) ? null : expectedBootstrap;
-        value.policypathmatched = value.checkedat != null && value.policyselections != null
+        value.backupchainsize = BackupManager.KvmBackupChainSize.value();
+        String stagingRoot = BackupManager.ThirdPartyStagingRootPath.value();
+        value.stagingpath = StringUtils.isBlank(stagingRoot) ? null : StringUtils.removeEnd(stagingRoot, "/") + "/ablestack-netbackup";
+        String expectedBootstrap = value.stagingpath == null || StringUtils.isBlank(value.policyname) ? null : value.stagingpath + "/bootstrap/" + value.policyname;
+        if (!java.util.Objects.equals(expectedBootstrap, value.bootstrappath)) { value.bootstrappresent = false; }
+        value.bootstrappath = expectedBootstrap;
+        value.policypathmatched = expectedBootstrap != null && value.checkedat != null && value.policyselections != null
                 && value.policyselections.equals(java.util.List.of(expectedBootstrap));
         BackupOffering registered = backupOfferingDao.findByExternalId("netbackup", host.getDataCenterId());
         value.backupofferingid = registered != null && BackupProviderNameUtils.isNetBackupFamily(registered.getProvider()) ? registered.getUuid() : null;
-        value.linkready = value.frameworkenabled && value.providerenabled && value.stagingenabled && value.configured
+        value.linkready = expectedBootstrap != null && value.frameworkenabled && value.providerenabled && value.stagingenabled && value.configured
                 && value.hooksready && value.timeractive && value.policypathmatched && value.bootstrappresent
                 && value.backupofferingid != null && expectedBootstrap.equals(value.configuredbootstrappath)
                 && value.netbackupurl.equals(value.inspectednetbackupurl)
@@ -173,7 +190,7 @@ public class NetBackupHostConfigurationServiceImpl implements NetBackupHostConfi
             throw new CloudRuntimeException("Enable the backup framework, Zone NetBackup provider and common staging first; restart Management if required");
         }
         if (StringUtils.isBlank(settings.netbackupurl) || !settings.credentialsconfigured) {
-            throw new CloudRuntimeException("Register the Zone NetBackup URL and API key first");
+            throw new CloudRuntimeException("Configure the NetBackup URL and API key in Global settings or this Zone's overrides first");
         }
         validateUrl(settings.netbackupurl);
         ApiKeyPair key = credentials();

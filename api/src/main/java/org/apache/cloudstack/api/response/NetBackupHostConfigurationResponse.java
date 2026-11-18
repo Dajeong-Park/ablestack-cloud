@@ -18,7 +18,9 @@
 package org.apache.cloudstack.api.response;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.cloud.serializer.Param;
 import com.google.gson.annotations.SerializedName;
 import org.apache.cloudstack.api.BaseResponse;
@@ -37,16 +39,20 @@ public class NetBackupHostConfigurationResponse extends BaseResponse {
     @SerializedName("policyname") @Param(description = "Existing NetBackup Host policy") public String policyname;
     @SerializedName("clientname") @Param(description = "Verified NetBackup Client") public String clientname;
     @SerializedName("moldurl") @Param(description = "Mold API endpoint reachable from this Host") public String moldurl;
-    @SerializedName("netbackupurl") @Param(description = "Zone NetBackup API endpoint") public String netbackupurl;
-    @SerializedName("credentialsconfigured") @Param(description = "Zone NetBackup API key is configured") public boolean credentialsconfigured;
+    @SerializedName("netbackupurl") @Param(description = "Effective Zone NetBackup API endpoint, inheriting Global when no Zone override exists") public String netbackupurl;
+    @SerializedName("credentialsconfigured") @Param(description = "Effective NetBackup API key is configured") public boolean credentialsconfigured;
     @SerializedName("moldcredentialsavailable") @Param(description = "Current administrator has an existing API key pair for Host integration") public boolean moldcredentialsavailable;
     @SerializedName("frameworkenabled") @Param(description = "Backup framework is enabled globally and for this Zone") public boolean frameworkenabled;
+    @SerializedName("frameworkglobalenabled") @Param(description = "Global backup framework master switch") public boolean frameworkglobalenabled;
+    @SerializedName("frameworkzoneenabled") @Param(description = "Effective Zone backup framework setting, inheriting Global when unset") public boolean frameworkzoneenabled;
+    @SerializedName("settingsource") @Param(description = "Source scope of each effective setting; contains setting names and scopes, never credentials") public Map<String, String> settingsource = new HashMap<>();
     @SerializedName("providerenabled") @Param(description = "NetBackup provider is registered for this Zone") public boolean providerenabled;
     @SerializedName("stagingenabled") @Param(description = "Common staging is enabled") public boolean stagingenabled;
     @SerializedName("stagingpath") @Param(description = "Effective common staging provider directory") public String stagingpath;
     @SerializedName("bootstrappath") @Param(description = "Required policy Backup Selections directory") public String bootstrappath;
     @SerializedName("vmschedulebackup") @Param(description = "Global NetBackup VM schedule mode; true requires VM schedules after offering assignment") public boolean vmschedulebackup;
     @SerializedName("incrementalbackup") @Param(description = "Effective Cluster incremental backup setting") public boolean incrementalbackup;
+    @SerializedName("backupchainsize") @Param(description = "Global KVM incremental backup chain size") public int backupchainsize;
     @SerializedName("configured") @Param(description = "Host policy configuration file exists") public boolean configured;
     @SerializedName("clientinstalled") @Param(description = "NetBackup Client is installed") public boolean clientinstalled;
     @SerializedName("hooksready") @Param(description = "Policy Hook files exist") public boolean hooksready;

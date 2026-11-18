@@ -19,6 +19,7 @@ package org.apache.cloudstack.backup;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -26,8 +27,10 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
@@ -72,11 +75,22 @@ public class NetBackupHostConfigurationServiceImplTest {
     private AgentManager agents;
     private BackupDetailsDao details;
     private HostVO host;
+    private Object previousFrameworkValue;
+    private Object previousIncrementalValue;
 
     @Before public void setUp() throws Exception {
         previous = (ConfigDepotImpl) ReflectionTestUtils.getField(BackupManager.NetBackupVmScheduleEnabled, "s_depot");
+        previousFrameworkValue = ReflectionTestUtils.getField(BackupManager.BackupFrameworkEnabled, "_value");
+        previousIncrementalValue = ReflectionTestUtils.getField(BackupManager.KvmIncrementalBackup, "_value");
+        ReflectionTestUtils.setField(BackupManager.BackupFrameworkEnabled, "_value", null);
+        ReflectionTestUtils.setField(BackupManager.KvmIncrementalBackup, "_value", null);
         depot = mock(ConfigDepotImpl.class);
         ConfigKey.init(depot);
+        doReturn(BackupManager.BackupProviderPlugin).when(depot).get(BackupManager.BackupProviderPlugin.key());
+        doReturn(new ConfigKey<>("Advanced", String.class, "backup.plugin.netbackup.url", "https://localhost:1556/netbackup", "URL", true,
+                ConfigKey.Scope.Zone)).when(depot).get("backup.plugin.netbackup.url");
+        doReturn(new ConfigKey<>("Advanced", String.class, "backup.plugin.netbackup.apikey", "apikey", "API key", true,
+                ConfigKey.Scope.Zone)).when(depot).get("backup.plugin.netbackup.apikey");
         when(depot.getConfigStringValue(anyString(), any(), any())).thenAnswer(call -> {
             switch ((String) call.getArgument(0)) {
                 case "backup.framework.enabled": return "true";
@@ -85,6 +99,7 @@ public class NetBackupHostConfigurationServiceImplTest {
                 case "backup.thirdparty.staging.root.path": return "/stage";
                 case "backup.plugin.netbackup.vm.schedule.enabled": return "true";
                 case "kvm.incremental.backup": return "false";
+                case "kvm.backup.chain.size": return "8";
                 case "backup.plugin.netbackup.url": return "https://netbackup.test/netbackup";
                 case "backup.plugin.netbackup.apikey": return "netbackup-private-key";
                 default: return "";
@@ -121,7 +136,92 @@ public class NetBackupHostConfigurationServiceImplTest {
             ReflectionTestUtils.setField(service, (String) dependency[0], dependency[1]);
         }
     }
-    @After public void tearDown() { CallContext.unregister(); ConfigKey.init(previous); }
+    @After public void tearDown() {
+        CallContext.unregister();
+        ConfigKey.init(previous);
+        ReflectionTestUtils.setField(BackupManager.BackupFrameworkEnabled, "_value", previousFrameworkValue);
+        ReflectionTestUtils.setField(BackupManager.KvmIncrementalBackup, "_value", previousIncrementalValue);
+    }
+
+    @Test public void absentZoneAndClusterOverridesInheritGlobalForInspectionAndHostPayload() throws Exception {
+        when(depot.getConfigStringValue(anyString(), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn(null);
+        when(depot.getConfigStringValue(eq("kvm.incremental.backup"), eq(ConfigKey.Scope.Cluster), eq(5L))).thenReturn(null);
+        when(depot.getConfigStringValue(eq("kvm.incremental.backup"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn("true");
+        var result = service.inspect(14L);
+        assertTrue(result.frameworkenabled);
+        assertTrue(result.frameworkglobalenabled);
+        assertTrue(result.frameworkzoneenabled);
+        assertTrue(result.providerenabled);
+        assertTrue(result.credentialsconfigured);
+        assertTrue(result.incrementalbackup);
+        assertEquals("https://netbackup.test/netbackup", result.netbackupurl);
+        assertEquals(8, result.backupchainsize);
+        assertTrue(result.settingsource.values().stream().allMatch("Global"::equals));
+        assertFalse(new com.google.gson.Gson().toJson(result).contains("netbackup-private-key"));
+        GlobalLock lock = mock(GlobalLock.class); when(lock.lock(5)).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = mockStatic(GlobalLock.class)) {
+            locks.when(() -> GlobalLock.getInternLock(ThirdPartyBackupStagingService.CONFIGURATION_LOCK)).thenReturn(lock);
+            service.configure(14L, "CHECK", "seocho+01", "http://mold.test/client/api");
+        }
+        var captor = org.mockito.ArgumentCaptor.forClass(NetBackupHostConfigurationCommand.class);
+        verify(agents, times(2)).send(eq(14L), captor.capture());
+        var payload = JsonParser.parseString(captor.getValue().getPayload()).getAsJsonObject();
+        assertEquals("https://netbackup.test/netbackup", payload.get("netbackupurl").getAsString());
+        assertEquals("netbackup-private-key", payload.get("netbackupapikey").getAsString());
+        assertTrue(payload.get("incrementalbackup").getAsBoolean());
+    }
+
+    @Test public void zoneAndClusterOverridesTakePrecedenceAndExplicitEmptyValuesDoNotInherit() throws Exception {
+        when(depot.getConfigStringValue(eq("backup.plugin.netbackup.url"), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn("https://zone.test/netbackup");
+        when(depot.getConfigStringValue(eq("kvm.incremental.backup"), eq(ConfigKey.Scope.Cluster), eq(5L))).thenReturn("true");
+        var result = service.inspect(14L);
+        assertEquals("https://zone.test/netbackup", result.netbackupurl);
+        assertEquals("Zone", result.settingsource.get("backup.plugin.netbackup.url"));
+        assertEquals("Cluster", result.settingsource.get("kvm.incremental.backup"));
+        assertTrue(result.incrementalbackup);
+        when(depot.getConfigStringValue(eq("backup.plugin.netbackup.url"), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn("");
+        when(depot.getConfigStringValue(eq("backup.plugin.netbackup.apikey"), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn("");
+        result = service.inspect(14L);
+        assertEquals("", result.netbackupurl);
+        assertFalse(result.credentialsconfigured);
+        assertEquals("Zone", result.settingsource.get("backup.plugin.netbackup.apikey"));
+        assertThrows(CloudRuntimeException.class, () -> service.configure(14L, "CHECK", "seocho+01", "http://mold.test/client/api"));
+    }
+
+    @Test public void frameworkRequiresGlobalMasterAndAllowsAZoneToDisableInheritedBackup() {
+        when(depot.getConfigStringValue(eq("backup.framework.enabled"), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn("false");
+        var result = service.inspect(14L);
+        assertTrue(result.frameworkglobalenabled);
+        assertFalse(result.frameworkzoneenabled);
+        assertFalse(result.frameworkenabled);
+        when(depot.getConfigStringValue(eq("backup.framework.enabled"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn("false");
+        ReflectionTestUtils.setField(BackupManager.BackupFrameworkEnabled, "_value", null);
+        when(depot.getConfigStringValue(eq("backup.framework.enabled"), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn("true");
+        result = service.inspect(14L);
+        assertFalse(result.frameworkglobalenabled);
+        assertTrue(result.frameworkzoneenabled);
+        assertFalse(result.frameworkenabled);
+    }
+
+    @Test public void factoryDefaultsDoNotReportCredentialsOrStagingAsConfigured() {
+        when(depot.getConfigStringValue(anyString(), eq(ConfigKey.Scope.Zone), eq(1L))).thenReturn(null);
+        when(depot.getConfigStringValue(eq("backup.framework.enabled"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn("false");
+        when(depot.getConfigStringValue(eq("backup.framework.provider.plugin"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn(null);
+        when(depot.getConfigStringValue(eq("backup.plugin.netbackup.url"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn(null);
+        when(depot.getConfigStringValue(eq("backup.plugin.netbackup.apikey"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn(null);
+        when(depot.getConfigStringValue(eq("backup.thirdparty.staging.enable"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn("false");
+        when(depot.getConfigStringValue(eq("backup.thirdparty.staging.root.path"), eq(ConfigKey.Scope.Global), eq(null))).thenReturn("");
+        var result = service.inspect(14L);
+        assertFalse(result.frameworkenabled);
+        assertFalse(result.providerenabled);
+        assertFalse(result.credentialsconfigured);
+        assertFalse(result.stagingenabled);
+        assertNull(result.stagingpath);
+        assertNull(result.bootstrappath);
+        assertFalse(result.linkready);
+        assertEquals("https://localhost:1556/netbackup", result.netbackupurl);
+        verifyNoInteractions(agents);
+    }
 
     @Test public void inspectionPreservesTrueDefaultAndRequiresBothPathsAndComponentsForReady() throws Exception {
         when(agents.send(eq(14L), any(NetBackupHostConfigurationCommand.class))).thenReturn(new Answer(null, true,
