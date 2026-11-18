@@ -1209,6 +1209,9 @@ MPA 승인은 NetBackup에서 처리하고 Mold의 **작업 상태 다시 확인
 여기서 말하는 bootstrap은 Mold 요청을 시작하는 일반 Standard 백업이며,
 NetBackup 멀티스트림 기능의 자원을 소비하지 않는 제어용 parent job과 구분한다.
 PRE Hook은 조회 시점에 조건에 맞는 VM 목록을 순회하며 모든 VM의 백업 요청을 접수한다.
+VM 준비가 실패하거나 접수 결과를 확인할 수 없으면 해당 순회를 중단한다. 캐시된 다음 VM을 계속 접수하지 않는다.
+접수 응답에는 정확한 Mold 백업 UUID가 필요하다. UUID가 없으면 다른 백업의 마커를 찾거나 같은 요청을
+다시 접수하지 않고, 관리 서버의 API·Server·NetBackup 플러그인과 Host 스크립트의 버전 일치를 먼저 확인한다.
 각 VM은 스테이징 슬롯을 기다리기 전에 작은 `.volume-bootstrap` 마커를 생성하므로,
 Hook은 실제 볼륨 백업 완료를 기다리지 않고 대상 목록의 접수를 끝낼 수 있다.
 실제 데이터 처리는 bootstrap Job 종료 확인 이후 시작한다. 따라서 bootstrap용 동시 슬롯을 별도로 더하지 않는다.
@@ -1266,6 +1269,17 @@ Mold는 `/mnt/glue-gfs` 아래에 `ablestack-netbackup`을 붙이므로 root 설
 볼륨이나 VM 백업본이 늘어나도 정책을 추가하거나 Backup Selections를 변경하지 않는다.
 
 **3. 각 Host에서 VM별 스케줄 모드로 사전구성한다.**
+
+UI로 사전구성을 시험할 때는 관리 서버의 API·Core·Server·NetBackup 플러그인, KVM Agent 모듈,
+Host 공용 스크립트와 UI를 같은 소스 기준으로 반영한다. `ablestack_backup_progress.py`와
+`thirdparty_volume_backup.py`를 함께 포함한다. Host 상세의 백업 연동 화면에서 정책과 API 주소를 지정하고
+사전 점검을 통과한 뒤 구성을 적용한다. VM 오퍼링 할당·스케줄 등록 여부는 화면에 조회된 실제 상태로 확인한다.
+
+새 구성의 첫 시험은 작은 VM 한 대로 백업 접수부터 `BackedUp`, 스테이징 정리 완료와 예약 `RELEASED`까지
+확인한 뒤 여러 VM의 예약 시험으로 확대한다. 사전구성 완료나 서비스 `active`만으로 백업 성공을 판단하지 않는다.
+야간 시험 종료 시에는 Mold 백업뿐 아니라 기준 정책의 NetBackup Job과 Host PRE Hook도 모두 종료됐는지 확인한다.
+기준 정책의 실행 창을 닫아도 이미 실행 중인 Hook의 VM 순회가 자동으로 끝나는 것은 아니다.
+종료가 확인되지 않은 작업의 잠금·예약·원본 보호 기록을 삭제하여 다음 시험을 시작하지 않는다.
 
 아래는 `ablecube1`에서 실행하는 예시다. 나머지 Host에서는 `--policy-name`을 해당 Host를 Client로 등록한 실제 NetBackup 정책명으로 바꿔 순서대로 실행한다.
 `--vm-schedule-backup true`일 때는 `--vm-include`·`--vm-exclude`를 지정하지 않는다.

@@ -571,16 +571,15 @@ wait_for_vm_staging_complete() {
   local backup_path=""
   local preparation_state="" preparation_rc=0
 
+  [[ -n "$backup_id" ]] || fail "Mold backup UUID is required to confirm preparation; update the management API and Host scripts together"
   wait_start_epoch="$(date +%s)"
   last_log_epoch=0
 
   while true; do
     preparation_rc=0
-    if [[ -n "$backup_id" ]]; then
-      preparation_state="$(check_mold_backup_preparation "$backup_id" 2>&1)" || preparation_rc=$?
-      if [[ "$preparation_rc" -eq 2 ]]; then
-        fail "$preparation_state"
-      fi
+    preparation_state="$(check_mold_backup_preparation "$backup_id" 2>&1)" || preparation_rc=$?
+    if [[ "$preparation_rc" -eq 2 ]]; then
+      fail "$preparation_state"
     fi
     if [[ "$preparation_rc" -eq 0 ]]; then
       backup_path="$(discover_completed_vm_backup_path "${vm_name}" "${stage_start_epoch}" "$backup_id" 2>/dev/null || true)"
@@ -1296,7 +1295,9 @@ run_stage_vm_backup() {
 
   backup_id="$(extract_json_value_by_key "$final_response" backupid 2>/dev/null || true)"
   if [[ -z "$backup_id" ]]; then
-    log -ne "Mold did not return a backup UUID; using legacy marker discovery without preparation status checks"
+    printf 'FAILED\t%s\t%s\t\t%s\n' "${vm_id}" "${job_id}" \
+      "$(tsv_escape "Mold createNetBackup did not return a backup UUID; preparation cannot be confirmed. Update the management API and Host scripts together; do not resubmit this request.")"
+    return 1
   fi
   log -ne "Waiting for NetBackup staging completion vm=${vm_name} vmId=${vm_id} jobId=${job_id} backupId=${backup_id}"
   if ! backup_path="$(wait_for_vm_staging_complete "${vm_name}" "${stage_start_epoch}" "$backup_id" 2>&1)"; then

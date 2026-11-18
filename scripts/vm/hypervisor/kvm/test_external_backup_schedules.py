@@ -293,7 +293,7 @@ mold_backup_pre_notify host-test parent-policy default
                     self.assertNotEqual(0, result.returncode)
                     self.assertEqual("", result.stdout)
 
-    def run_dispatch(self, provider, mode, assigned=True, fail=False, vm_schedules="", vm_name="i-2-1-VM"):
+    def run_dispatch(self, provider, mode, assigned=True, fail=False, vm_schedules="", vm_name="i-2-1-VM", backup_id="backup-uuid"):
         data = response(mode, [candidate(vm_name, scheduled=mode == "SCHEDULE", assigned=assigned)])
         if mode == "CONFIG" and not assigned:
             data["listexternalbackupcandidatesresponse"]["externalbackupcandidates"]["candidate"][0].update(
@@ -318,7 +318,7 @@ invoke_mold_api() {
   [[ "$TEST_FAIL_DISPATCH" == False ]] || return 1
   echo '{"createnetbackupresponse":{"jobid":"job-uuid"}}'
 }
-wait_for_mold_async_job() { echo '{"queryasyncjobresultresponse":{"jobstatus":1,"jobresult":{"success":true,"backupid":"backup-uuid"}}}'; }
+wait_for_mold_async_job() { printf '%s' "$TEST_ASYNC_RESULT"; }
 wait_for_vm_staging_complete() { echo "PREPARATION:$*" >> "$TEST_ROOT/requests"; echo /test/staging; }
 run_stage_vm_backup "$TEST_VM_NAME"
 '''
@@ -350,6 +350,8 @@ mold_backup_api_create_veeam_and_wait vm-i-2-1-VM i-2-1-VM
             env = dict(os.environ, TEST_LIBRARY=str(library), TEST_ROOT=str(Path(directory).resolve()),
                        TEST_CANDIDATES=json.dumps(data["listexternalbackupcandidatesresponse"]["externalbackupcandidates"]),
                        TEST_FAIL_DISPATCH=str(fail), TEST_VM_NAME=vm_name)
+            env["TEST_ASYNC_RESULT"] = json.dumps({"queryasyncjobresultresponse": {
+                "jobstatus": 1, "jobresult": {"success": True, **({"backupid": backup_id} if backup_id else {})}}})
             env["TEST_VM_SCHEDULE_BACKUP"] = vm_schedules
             result = subprocess.run(["bash", "-c", script], capture_output=True, text=True, env=env, timeout=10)
             requests = Path(directory) / "requests"
@@ -370,6 +372,13 @@ mold_backup_api_create_veeam_and_wait vm-i-2-1-VM i-2-1-VM
         result = self.run_dispatch("netbackup", "CONFIG")
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertRegex(result.stderr, r"PREPARATION:i-2-1-VM [0-9]+ backup-uuid")
+
+    def test_netbackup_missing_backup_uuid_never_waits_for_an_unidentified_marker_or_replays_the_request(self):
+        result = self.run_dispatch("netbackup", "SCHEDULE", backup_id=None)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("did not return a backup UUID", result.stdout)
+        self.assertNotIn("PREPARATION:", result.stderr)
+        self.assertEqual(1, result.stderr.count("REQUEST:"))
 
     def test_netbackup_dispatch_preserves_the_selected_imported_name_and_vm_id(self):
         for mode in ("CONFIG", "SCHEDULE"):

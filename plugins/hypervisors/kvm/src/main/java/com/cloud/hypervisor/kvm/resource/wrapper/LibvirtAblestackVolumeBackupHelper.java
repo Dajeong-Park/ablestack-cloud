@@ -87,10 +87,15 @@ final class LibvirtAblestackVolumeBackupHelper {
             Path file = directory.resolve("volume-plan.json");
             Files.writeString(file, new Gson().toJson(plan));
             Files.setPosixFilePermissions(file, PosixFilePermissions.fromString("rw-------"));
-            return new String[] {"python3", supervisor.toString(), "--job-dir", directory.toString(), "--",
-                    "python3", script.toString(), "--plan-file", file.toString()};
+            return supervisedCommand(script, directory);
         } catch (java.io.IOException e) {
             throw new CloudRuntimeException("Unable to prepare volume backup plan", e);
         }
+    }
+
+    static String[] supervisedCommand(Path script, Path directory) {
+        return new String[] {"python3", script.resolveSibling("ablestack_backup_progress.py").toString(),
+                "--job-dir", directory.toString(), "--", "python3", script.toString(),
+                "--plan-file", directory.resolve("volume-plan.json").toString()};
     }
 }
