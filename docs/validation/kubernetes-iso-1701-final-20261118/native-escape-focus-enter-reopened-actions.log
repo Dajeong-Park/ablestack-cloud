@@ -1,41 +1,4 @@
-Window: "쿠버네티스 ISO - ABLESTACK-Mold - Chrome", App: chrome.exe.
-	0 window (창) 쿠버네티스 ISO - ABLESTACK-Mold - Chrome Secondary Actions: Raise
-		1 pane (창) (disabled)
-		2 pane (영역) 쿠버네티스 ISO - ABLESTACK-Mold - Chrome
-			3 pane (영역)
-				4 pane (영역)
-					5 pane (영역)
-						6 button (단추) 최소화 ID: view_1
-						420 button (단추) 복구 ID: view_3
-						8 button (단추) 닫기 ID: view_4
-					9 pane (영역)
-						10 pane (영역)
-							11 toolbar (도구 모음) ID: view_1000
-								12 button (단추) 뒤로 ID: view_1001
-								13 button (단추) (disabled) 앞으로 ID: view_1002
-								14 button (단추) 새로고침 ID: view_1003
-								15 button (단추) 홈 ID: view_1004
-								16 group (그룹)
-									17 button (단추) 주의 요함 ID: view_1011
-									18 text field (편집) (settable, string) 주소창 및 검색창 Description: Google에 물어보거나 URL을 입력하세요. Value: 10.10.13.10:8080/client/#/kubernetesiso/8f773b4a-8802-40ea-88e6-76d2b8141e29?tab=events ID: view_1012
-									19 pane (영역)
-										20 button (단추) 번역
-										21 button (단추) 현재 탭을 북마크에 추가
-								22 pane (영역)
-									23 button (단추) ChatGPT 이 사이트의 액세스 권한이 있습니다. ID: view_1009
-									24 button (단추) iCloud 암호 이 사이트의 액세스 권한이 있습니다. ID: view_1009
-									25 button (단추) 확장 프로그램 ID: view_1006
-								26 pane (영역)
-								27 pane (영역)
-									28 button (단추) 새 시크릿 창 - 고정됨
-									29 button (단추) Google 비밀번호 관리자 - 고정됨
-									30 button (단추) 개발자 도구 - 고정됨
-									31 pane (영역)
-								32 button (단추) 동혁 ID: view_1018
-								33 button (단추) Chrome ID: view_1007
-						34 pane (영역)
-							35 pane (영역)
-								36 pane (영역)
+Accessibility document subtrees; unrelated Chrome toolbar omitted.
 								37 document (문서) 쿠버네티스 ISO - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/kubernetesiso/8f773b4a-8802-40ea-88e6-76d2b8141e29?tab=events ID: RootWebArea
 									38 group (그룹)
 										421 image (라벨이 없는 그래픽)
@@ -345,22 +308,3 @@ Window: "쿠버네티스 ISO - ABLESTACK-Mold - Chrome", App: chrome.exe.
 													1105 list (LIST)
 														1106 menu item (메뉴 항목) 쿠버네티스 버전 삭제
 															1107 group (그룹)
-							387 pane (영역)
-						388 pane (영역)
-							389 pane (영역)
-								390 button (단추) 탭 검색
-							391 pane (영역) ID: view_21
-								392 tab (Tab)
-									393 tab item (탭 항목) (selectable) 쿠버네티스 ISO - ABLESTACK-Mold - 메모리 사용량 - 219MB ID: view_20
-										394 button (단추) 닫기
-								395 pane (영역)
-							396 button (단추) 새 탭
-							397 pane (영역)
-							398 pane (영역)
-								399 button (단추) Chrome의 Gemini 열기
-								400 pane (영역)
-						401 pane (영역)
-
-Document text: ```
-관련 자원 이벤트 검색
-```

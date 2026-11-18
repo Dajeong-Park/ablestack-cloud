@@ -1,45 +1,20 @@
 identity.................................................................Passed
 - hook id: identity
-- duration: 0.12s
+- duration: 0.07s
 
 docs/validation/kubernetes-iso-1701-final-20261118/README.ko.md
 docs/validation/kubernetes-iso-1701-final-20261118/final-list-dark-native.log
-docs/validation/kubernetes-iso-1701-final-20261118/final-detail-dark-native.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/native-escape-focus-enter-reopened-actions.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/native-state-tab-cancel-focus.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/qcow-fixture-cleanup.json
-docs/validation/kubernetes-iso-1701-final-20261118/native-state-escape-returned.log
-docs/validation/kubernetes-iso-1701-final-20261118/dark-link-color-token-verified.jpg
-docs/validation/kubernetes-iso-1701-20261117/README.ko.md
+docs/validation/kubernetes-iso-1701-final-20261118/dark-link-color-token-verified.log
 docs/validation/kubernetes-iso-1701-final-20261118/dark-link-computed.log
 docs/validation/kubernetes-iso-1701-final-20261118/before-cell-correction-events-dark.log
-docs/validation/kubernetes-iso-1701-final-20261118/final-list-dark-native.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/ci-source-comparison.json
-docs/validation/kubernetes-iso-1701-final-20261118/native-state-down-enter-selected.log
-docs/validation/kubernetes-iso-1701-final-20261118/candidate-assets.json
-docs/validation/kubernetes-iso-1701-final-20261118/unit-source.log
-docs/validation/kubernetes-iso-1701-final-20261118/dark-link-computed-visible.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/resume-state.json
-docs/validation/kubernetes-iso-1701-final-20261118/dark-link-color-token-verified.log
-docs/validation/kubernetes-iso-1701-final-20261118/dark-link-computed-visible.log
-docs/validation/kubernetes-iso-1701-final-20261118/contrast-progress.json
-docs/validation/kubernetes-iso-1701-final-20261118/native-escape-focus-enter-reopened-actions.log
-docs/validation/kubernetes-iso-1701-final-20261118/ci-prior-head-comparison.json
-docs/validation/kubernetes-iso-1701-final-20261118/native-state-escape-returned.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/native-state-down-enter-selected.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/before-cell-correction-events-dark.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/lint-source.log
-docs/validation/kubernetes-iso-1701-final-20261118/ui-build.log
-docs/validation/kubernetes-iso-1701-final-20261118/ui-build-result.json
-docs/validation/kubernetes-iso-1701-final-20261118/build-boundary.json
-docs/validation/kubernetes-iso-1701-final-20261118/final-detail-dark-native.log
-docs/validation/kubernetes-iso-1701-final-20261118/deployment-result.json
-docs/validation/kubernetes-iso-1701-final-20261118/precommit-source.log
-docs/validation/kubernetes-iso-1701-final-20261118/fresh-list-dark-console.log
-docs/validation/kubernetes-iso-1701-final-20261118/fresh-list-dark-console.jpg
-docs/validation/kubernetes-iso-1701-final-20261118/dark-link-computed.jpg
+docs/validation/kubernetes-iso-1701-final-20261118/native-state-escape-returned.log
 docs/validation/kubernetes-iso-1701-final-20261118/native-state-tab-cancel-focus.log
-docs/validation/kubernetes-iso-1701-final-20261118/unit-operating.log
+docs/validation/kubernetes-iso-1701-final-20261118/native-escape-focus-enter-reopened-actions.log
+docs/validation/kubernetes-iso-1701-final-20261118/final-detail-dark-native.log
+docs/validation/kubernetes-iso-1701-final-20261118/dark-link-computed-visible.log
+docs/validation/kubernetes-iso-1701-final-20261118/transcript-publication-audit.json
+docs/validation/kubernetes-iso-1701-final-20261118/fresh-list-dark-console.log
+docs/validation/kubernetes-iso-1701-final-20261118/native-state-down-enter-selected.log
 
 Check hooks apply to the repository..................(no files to check)Skipped
 Add TOC for Markdown files...........................(no files to check)Skipped

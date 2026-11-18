@@ -21,5 +21,16 @@
   "remainingSupportFile": "/usr/share/cloudstack-management/webapp/qa-kiso1701-20261117/ready.iso",
   "inputBlock": "Windows helper could not determine the current browser URL while DevTools had focus; stop app input until user recovery/new turn",
   "nextIssue": 1702,
-  "pinUiPrerequisiteIssue": 1707
+  "pinUiPrerequisiteIssue": 1707,
+  "restoreAfterVerification": {
+    "theme": "dark",
+    "closeDevtools": true,
+    "restoreChromeFromMaximizedToOriginalWindow": true,
+    "originalWindowApproximatePixels": [
+      811,
+      975
+    ]
+  },
+  "browserOrigin": "http://10.10.13.10:8080/client/",
+  "doNotReopenDevtoolsDuringRecovery": true
 }
