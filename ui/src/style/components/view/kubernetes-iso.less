@@ -18,8 +18,43 @@
 .kubernetes-iso-page {
   min-width:0;
   max-width:100%;
-  .breadcrumb-card .ant-breadcrumb { overflow-wrap:anywhere; }
-  .kubernetes-iso-breadcrumb-name { display:inline-block; max-width:~"min(240px, 28vw)"; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; vertical-align:bottom; }
+  // Match the VM breadcrumb type scale and align complete path/control items.
+  // A clipped inline-block uses its bottom edge as a baseline, lowering text.
+  .breadcrumb-card .breadcrumb {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    row-gap:8px;
+    min-width:0;
+    font-size:14px;
+    font-weight:400;
+    line-height:22px;
+  }
+  .breadcrumb > span,
+  .breadcrumb .ant-breadcrumb-link,
+  .breadcrumb .ant-breadcrumb-link > span:not(.breadcrumb-controls) {
+    display:inline-flex;
+    flex-wrap:wrap;
+    align-items:center;
+    min-width:0;
+    max-width:100%;
+  }
+  .breadcrumb .breadcrumb-controls {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .breadcrumb .breadcrumb-controls > a { margin-right:0 !important; }
+  .kubernetes-iso-breadcrumb-name {
+    display:block;
+    min-width:0;
+    max-width:~"min(240px, 28vw)";
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-size:inherit;
+    line-height:inherit;
+  }
   .kubernetes-iso-breadcrumb-name:focus-visible { outline:2px solid var(--ui-focus); outline-offset:2px; }
 }
 .kubernetes-iso-list-page {
