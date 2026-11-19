@@ -1,0 +1,71 @@
+{
+  "issue": 1719,
+  "sourceCommit": "c112f240e56fd72fa4e9b2f2b0448ee32fcaeaf9",
+  "implementationCommits": [
+    "ee4ca17972b",
+    "c112f240e56"
+  ],
+  "build": {
+    "modules": [
+      "api",
+      "server"
+    ],
+    "fullCloudBuild": false,
+    "manualActions": false,
+    "uiProduction": true
+  },
+  "tests": {
+    "server": 49,
+    "ui": 70,
+    "liveSearchApi": 50,
+    "liveKeywordOwnerAcl": 8,
+    "overlayJUnitPerCluster": 49,
+    "changedJavaCheckstyleViolations": 0,
+    "changedUiLint": "PASS"
+  },
+  "ui": {
+    "clusters": [
+      31,
+      32
+    ],
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "matchedVmPairs": 12,
+    "nativeCaptures": 26,
+    "stableComparisonCaptures": 24,
+    "compactStateCaptures": 2,
+    "evidence": "ui-evidence-final.json",
+    "metrics": "ui-matrix.json",
+    "nativeDimensions": "capture-dimensions.json"
+  },
+  "cleanup": {
+    "dedicatedVpcsRemoved": 4,
+    "dedicatedVpnGatewaysRemoved": 4,
+    "dedicatedReaderAccountsRemoved": 2,
+    "existingDefaultAndProjectIdentitiesSettingsPreserved": true,
+    "theme": "original dark restored",
+    "viewport": "override reset",
+    "project": "default"
+  },
+  "limitations": [
+    "ISP/peer tunnel and packet traffic not tested",
+    "No full regression of completed network/VPC/VNF/PublicIP/ASN features",
+    "PR is not merged by this implementation task"
+  ],
+  "deployment": {
+    "uiPayloadSha256": "823a9320c51a852e0ec522b97d9fe86c9a60080fe2595da5b18efa4e04b9b53d",
+    "preserved": [
+      "WEB-INF",
+      "config.json",
+      "unrelated JAR entries",
+      "existing FTCTL/ASN bundle markers"
+    ]
+  }
+}

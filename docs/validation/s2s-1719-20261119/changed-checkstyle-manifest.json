@@ -1,0 +1,6 @@
+{
+  "api/src/main/java/org/apache/cloudstack/api/command/user/vpn/ListVpnGatewaysCmd.java": "9edb06cd95456e88238e8c76be0b90b5529066b64612339ba1e7c69ca03fdd19",
+  "server/src/main/java/com/cloud/network/vpn/Site2SiteVpnManagerImpl.java": "8d820432ce6261b23759a6ca8c1cf6f78d45fcf453dcab293be66235644c8a46",
+  "server/src/main/java/com/cloud/network/vpn/Site2SiteVpnGatewaySearch.java": "a3db1ce1a419bb48fb9b838ed45ef137dce2219cb3074dda8070127f667080e6",
+  "server/src/test/java/com/cloud/network/vpn/Site2SiteVpnGatewaySearchTest.java": "704ffd55f35c285e8328135326df25153341d295f98d8e7eb697af0e6f4c723a"
+}

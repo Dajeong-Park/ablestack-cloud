@@ -1,0 +1,32 @@
+{
+  "baseSource": "055ea57b238746c65b66cc5600215b10f0087b23",
+  "classes": {
+    "com/cloud/network/vpn/Site2SiteVpnManagerImpl.class": "25239b7112d4a632f106b151a49568d76197f6ae9c7e001d153c9bb9f57d9103",
+    "org/apache/cloudstack/api/command/user/vpn/ListVpnGatewaysCmd.class": "b184d0045afb8e6346d5c6f0bb65a6c4bf7196811bfb2f271bc3e817e82c3148",
+    "com/cloud/network/vpn/Site2SiteVpnGatewaySearch.class": "3afe9e0203a8014293d2ff063a8a6ca4d0357c70b33435a25aa5af4106684bca"
+  },
+  "preservation": {
+    "source": "055ea57b238746c65b66cc5600215b10f0087b23",
+    "passed": true,
+    "checks": [
+      {
+        "cluster": 31,
+        "check": "PASS service: preserved 47 other methods/all fields; module-built search or description only"
+      },
+      {
+        "cluster": 31,
+        "check": "PASS command: preserved 5 other methods/all fields; module-built search or description only"
+      },
+      {
+        "cluster": 32,
+        "check": "PASS service: preserved 47 other methods/all fields; module-built search or description only"
+      },
+      {
+        "cluster": 32,
+        "check": "PASS command: preserved 5 other methods/all fields; module-built search or description only"
+      }
+    ],
+    "overlayTests": "49 tests per deployed overlay; class verification enabled"
+  },
+  "javaPayloadSha256": "d3d47af6b2da617584e7351b614eb6322ee43471334a8134525c430418fd52a5"
+}

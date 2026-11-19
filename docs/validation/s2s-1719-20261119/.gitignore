@@ -1,0 +1,24 @@
+# Runtime artifacts and exploratory logs remain local.
+*.class
+*.tgz
+baseline/
+baseline-source/
+before-classes/
+overlay/
+target/
+checkstyle-packaged-sources/
+__pycache__/
+changed-checkstyle-pom.xml
+*-inventory-before.json
+*-projects-before.json
+*-fixture-*.json
+fixtures.json
+*-api-contracts.json
+ui-evidence-initial.json
+ui-tests.log
+ui-lint.log
+ui-build.log
+ui-candidate-*.log
+ui-live-fixes-*.log
+ui-lint-fix-tests.log
+ui-permission-*.log

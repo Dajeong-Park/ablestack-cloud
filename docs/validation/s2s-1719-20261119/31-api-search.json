@@ -1,0 +1,644 @@
+[
+  {
+    "name": "baseline",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 2,
+        "vpngateway": [
+          {
+            "id": "c22a845e-dde4-4888-bb8e-309cdae5068c",
+            "publicip": "10.10.31.107",
+            "vpcid": "92d5788d-aa08-4a52-9974-92f8b253b034",
+            "vpcname": "qa-s2s1719-31-Plain",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          },
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "ip",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "10.10.31.105"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "uuid",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "c4ca7148-a3ca-44bd-9d67-496416943b97"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "uuid-upper-trim",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "  C4CA7148-A3CA-44BD-9D67-496416943B97  "
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "name-case",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "mix_"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "korean",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "한글"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "literal-percent",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "%"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "literal-underscore",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "_"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "literal-backslash",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "\\"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "not-wildcard",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "qa%s2s"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "name": "quote-literal",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "' OR 1=1 --"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "name": "no-match",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "unknown-1719"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "name": "blank",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "keyword": "  "
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 2,
+        "vpngateway": [
+          {
+            "id": "c22a845e-dde4-4888-bb8e-309cdae5068c",
+            "publicip": "10.10.31.107",
+            "vpcid": "92d5788d-aa08-4a52-9974-92f8b253b034",
+            "vpcname": "qa-s2s1719-31-Plain",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          },
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "exact-id",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "id": "c4ca7148-a3ca-44bd-9d67-496416943b97"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "exact-vpc",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "exact-id-and-keyword",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+      "keyword": "Plain"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "name": "exact-vpc-and-keyword",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "vpcid": "92d5788d-aa08-4a52-9974-92f8b253b034",
+      "keyword": "한글"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "name": "owner-and-keyword",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "keyword": "Plain"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c22a845e-dde4-4888-bb8e-309cdae5068c",
+            "publicip": "10.10.31.107",
+            "vpcid": "92d5788d-aa08-4a52-9974-92f8b253b034",
+            "vpcname": "qa-s2s1719-31-Plain",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "other-owner-and-keyword",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "account": "system",
+      "keyword": "한글"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "name": "paging-count",
+    "page1": {
+      "count": 2,
+      "vpngateway": [
+        {
+          "id": "c22a845e-dde4-4888-bb8e-309cdae5068c",
+          "publicip": "10.10.31.107",
+          "vpcid": "92d5788d-aa08-4a52-9974-92f8b253b034",
+          "vpcname": "qa-s2s1719-31-Plain",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "fordisplay": true
+        }
+      ]
+    },
+    "page2": {
+      "count": 2,
+      "vpngateway": [
+        {
+          "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+          "publicip": "10.10.31.105",
+          "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+          "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+          "account": "admin",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "fordisplay": true
+        }
+      ]
+    },
+    "passed": true
+  },
+  {
+    "name": "project-isolation",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "dd3acff3-3f1f-44ba-bd8d-55d44c854d88",
+            "publicip": "10.10.31.146",
+            "vpcid": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+            "vpcname": "qa-gn1569-31-svc-review",
+            "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "keyword-cannot-escape-project",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "keyword": "한글"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "name": "projectid-minus-one",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "projectid": "-1"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 3,
+        "vpngateway": [
+          {
+            "id": "c22a845e-dde4-4888-bb8e-309cdae5068c",
+            "publicip": "10.10.31.107",
+            "vpcid": "92d5788d-aa08-4a52-9974-92f8b253b034",
+            "vpcname": "qa-s2s1719-31-Plain",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          },
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          },
+          {
+            "id": "dd3acff3-3f1f-44ba-bd8d-55d44c854d88",
+            "publicip": "10.10.31.146",
+            "vpcid": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+            "vpcname": "qa-gn1569-31-svc-review",
+            "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "keyword-cannot-escape-project-all",
+    "params": {
+      "listall": "true",
+      "page": 1,
+      "pagesize": 500,
+      "projectid": "-1",
+      "keyword": "한글"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "c4ca7148-a3ca-44bd-9d67-496416943b97",
+            "publicip": "10.10.31.105",
+            "vpcid": "46981d14-fc3b-44ba-9805-a77282c66301",
+            "vpcname": "qa-s2s1719-31-MiX_한글%\\Tail",
+            "account": "admin",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "name": "invalid-uuid-rejected",
+    "response": {
+      "listvpngatewaysresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command listvpngateways due to invalid value. Invalid parameter id value=not-a-uuid due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "passed": true
+  }
+]
