@@ -1,0 +1,39 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runTestsByPath tests/unit/views/DomainDeletionLifecycle.spec.js --runInBand --coverage=false
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+  console.info ../../../issue-1681-vnf-presentation/ui/node_modules/vue-code-highlight/node_modules/vue/dist/vue.runtime.common.dev.js:8720
+    Download the Vue Devtools extension for a better development experience:
+    https://github.com/vuejs/vue-devtools
+
+  console.info ../../../issue-1681-vnf-presentation/ui/node_modules/vue-code-highlight/node_modules/vue/dist/vue.runtime.common.dev.js:8727
+    You are running Vue in development mode.
+    Make sure to turn on production mode when deploying for production.
+    See more tips at https://vuejs.org/guide/deployment.html
+
+PASS tests/unit/views/DomainDeletionLifecycle.spec.js
+  ✓ successful deletion awaits navigation before the only root reload; no deleted ID reread (9ms)
+  ✓ tree deletion clears deleted selection and reloads root exactly once (3ms)
+  ✓ route watcher does not race the awaited post-delete reload (1ms)
+  ✓ double confirmation and cancel during a pending job cannot submit another delete (197ms)
+  ✓ an explicit server delete rejection stays visible and retains the target without redirect (1ms)
+  ✓ an async delete failure preserves the domain and its actual error
+  ✓ a late completed job cannot navigate a disposed page (1ms)
+  ✓ a pending detail failure is discarded after route or instance invalidation (1ms)
+  ✓ a current detail read failure is still reported (2ms)
+  ✓ cancel during account impact read aborts and prevents a second VM query (2ms)
+  ✓ an unmounted impact dialog cannot publish a late VM error (1ms)
+  ✓ a current impact failure blocks delete, shows its error and can retry successfully (2ms)
+  ✓ changing impact target discards old accounts instead of querying the new target from that old response
+  ✓ an unmounted domain tree never sends its queued detail lookup (1ms)
+  ✓ a late domain tree failure is local and silent after disposal (1ms)
+  ✓ a current domain tree lookup error remains visible (1ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        8.355s
+Ran all test suites within paths "tests/unit/views/DomainDeletionLifecycle.spec.js".

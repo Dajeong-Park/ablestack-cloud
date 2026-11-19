@@ -1,0 +1,54 @@
+[
+  {
+    "method": "POST",
+    "command": "createVpnGateway",
+    "params": {
+      "vpcid": "cb113972-9e11-437b-8c8d-8ea7e5ec9b9a",
+      "account": "qa-s2s1721-31-user",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "customjobid": "cccf27f1-2f62-4571-9f74-4a79f0d5d0c0"
+    }
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "cccf27f1-2f62-4571-9f74-4a79f0d5d0c0"
+    }
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "cccf27f1-2f62-4571-9f74-4a79f0d5d0c0"
+    }
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "cccf27f1-2f62-4571-9f74-4a79f0d5d0c0"
+    }
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "params": {
+      "jobid": "cccf27f1-2f62-4571-9f74-4a79f0d5d0c0"
+    }
+  },
+  {
+    "method": "GET",
+    "command": "listVpnGateways",
+    "params": {
+      "account": "qa-s2s1721-31-user",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "vpcid": "cb113972-9e11-437b-8c8d-8ea7e5ec9b9a"
+    }
+  },
+  {
+    "method": "GET",
+    "command": "listVpnGateways",
+    "params": {}
+  }
+]
