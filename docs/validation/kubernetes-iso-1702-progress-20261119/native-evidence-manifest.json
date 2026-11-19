@@ -1,0 +1,38 @@
+[
+  {
+    "file": "1702-official-local421-ready.jpg",
+    "sha256": "84b9f4ae55f667bde8fabc17e3b1d262a88ebb6d33e44d8ce0537912e56bc80e",
+    "bytes": 116400,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-local421-parent-add-audit-completed.jpg",
+    "sha256": "522e3a54f817acb61c67237fa9b6ac30a34f2673ef187a15747394204422887b",
+    "bytes": 102923,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-local421-child-checksum-size-arch.jpg",
+    "sha256": "b9f3ac8028f93cf1ab9ac4a5d709530c771239f6aed04e74224b30692b5e638e",
+    "bytes": 117896,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-systemvm421-running-native-version-proof.jpg",
+    "sha256": "0f806ef99d6fdede770128ed3329c78818548cd0f6ec269ecc22f55ae799fbb1",
+    "bytes": 120621,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-resource-admin-account-created.jpg",
+    "sha256": "74300e0bcb255c1f455cf0dcfbf6dea3f24561a510b025413814f1f399676c25",
+    "bytes": 133293,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-user-catalog-only-policy-deny-last.jpg",
+    "sha256": "52df95295b159d8c02c1f5a1a8531afb95fcd2f37e0c7eb08cdabd8a662ec7d1",
+    "bytes": 127617,
+    "pixelsEdited": false
+  }
+]

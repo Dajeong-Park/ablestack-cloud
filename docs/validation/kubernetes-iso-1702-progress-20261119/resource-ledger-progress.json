@@ -1,0 +1,169 @@
+{
+  "originals": {
+    "catalogs": [
+      "b5fabc77-be13-448e-8643-625e9ff8d1e0",
+      "441b3f20-0a40-48dd-becb-1573c6059867"
+    ],
+    "clusters": [
+      "cda4e02b-1f6b-4cdf-8010-6aabfc3c3a8f",
+      "c1b341e7-3ee2-4836-bcbd-c63f2126f8fe"
+    ]
+  },
+  "created": [
+    {
+      "type": "catalog",
+      "name": "qa-kiso1707-europa-1.34.9",
+      "id": "2b287bc4-aa56-4bf2-9511-97a34a81bf84",
+      "isoId": "11ff6b0e-2b5a-4ed0-b4b5-432ee38fa9f4",
+      "status": "Ready; UI exact checksum and 790.20 MiB verified",
+      "cleanup": "pending"
+    },
+    {
+      "type": "cluster",
+      "name": "qa-kiso1707-europa",
+      "id": "5dba7000-aac0-4b13-afd4-ef9ca646b312",
+      "networkName": "qa-kiso1707-europa-network",
+      "publicIp": "10.10.13.29",
+      "status": "Running after actual 1.34.9 -> 1.34.12 upgrade and worker outage recovery",
+      "cleanup": "pending",
+      "nodes": [
+        "d61c2869-78a2-401b-901f-fb4619f7d65b",
+        "8db3401b-96fd-4b19-a64f-9ae8864ef688"
+      ],
+      "networkId": "d4427a45-0405-4020-8a41-83742970eb1b",
+      "nodeVersion": "v1.34.12",
+      "sourcePinBlockedDuringUpgrade": true,
+      "targetPinBlockedDuringUpgrade": true,
+      "sourceUnreferencedAfterCompletion": true
+    },
+    {
+      "type": "role",
+      "id": "4ed7d328-714f-473c-9dd6-519d81db877f",
+      "name": "qa-kiso1702-read-admin-role",
+      "cleanup": "pending",
+      "policyPhase": "14 reads + local upload allow; URL explicitly deny; wildcard deny last; state/delete/VM Metrics denied"
+    },
+    {
+      "type": "catalog",
+      "name": "qa-kiso1702-europa-1.34.12",
+      "id": "2c1f6e49-8abf-4313-8c6e-73482981b3b1",
+      "isoId": "93df6800-ba5e-4df2-8e35-9a9419904ff9",
+      "status": "Ready; global; UI checksum and 794.32 MiB verified; unreferenced baseline",
+      "cleanup": "pending"
+    },
+    {
+      "type": "domain",
+      "name": "qa-kiso1702",
+      "id": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "cleanup": "pending"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-admin",
+      "id": "f670a7ff-61ba-485a-b539-8e249a03eeef",
+      "domain": "ROOT",
+      "roleId": "4ed7d328-714f-473c-9dd6-519d81db877f",
+      "cleanup": "pending"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-da",
+      "id": "30ba5df5-a22d-46d3-924d-21bd3a507000",
+      "role": "Domain Admin",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "cleanup": "pending"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-user",
+      "id": "40a76174-5461-419f-9b8f-d5c1bfbf8739",
+      "role": "Read-Only User - Default",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "cleanup": "pending",
+      "roleId": "60f61c91-bd56-11f1-b573-002481560363"
+    },
+    {
+      "type": "catalog",
+      "name": "qa-kiso1702-url421-official",
+      "id": "e0dfc5ec-6307-4b87-bee5-0ec9c866e272",
+      "isoId": "b5453cee-d256-444f-adbd-2f0fb5360613",
+      "runtimeFamily": "4.21",
+      "status": "PASS actual4.21 URL official ISO Ready, parent ADD Completed1, exact SHA and790.20MiB x86_64",
+      "cleanup": "pending"
+    },
+    {
+      "type": "zone",
+      "id": "8b842cb8-bdcc-4d48-86a8-16be87716219",
+      "name": "qa-kiso1702-acl-private",
+      "allocationstate": "Disabled",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "purpose": "ACL control-plane fixture only, no physical multi-Zone claim",
+      "cleanup": "pending UI delete"
+    },
+    {
+      "type": "catalog",
+      "name": "qa-kiso1702-local421-official",
+      "id": "c6e76312-a20b-4745-a7cb-86879dfadaa9",
+      "isoId": "2afde582-64c5-4a26-9727-9bfead046be3",
+      "runtimeFamily": "4.21",
+      "status": "PASS actual4.21 local official ISO Ready, parent ADD Completed1, exact SHA and790.20MiB x86_64",
+      "cleanup": "pending"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-ra",
+      "id": "ed23ad1e-b92c-4640-88ab-45cadf336993",
+      "role": "Resource Admin",
+      "roleId": "5da3706e-bd56-11f1-b573-002481560363",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "createdVia": "UI after approved Disabled private Zone fixture",
+      "cleanup": "pending"
+    },
+    {
+      "type": "role",
+      "name": "qa-kiso1702-catalog-role",
+      "id": "138759de-7f4a-4389-bc75-c79313dcfec9",
+      "typeName": "User",
+      "ispublic": false,
+      "status": "4 read allow + wildcard deny last verified in native UI; private User",
+      "cleanup": "pending"
+    }
+  ],
+  "systemVmTransitions": {
+    "preservedConsoleId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
+    "initialSecondaryId": "6f8eee76-dd70-42b1-b501-ab3d68815d8d",
+    "initialSecondaryName": "s-263-VM",
+    "status": "new s-2714.23 actual Cloud JAR/service active verified; UI Agent Up proof and uploads next",
+    "restoreRequired": false,
+    "runtime421Name": "s-270-VM",
+    "host421": "10.10.13.1",
+    "linkLocal421": "169.254.208.129",
+    "new423SecondaryStillRequired": false,
+    "runtime421Id": "4b1e50f1-2b97-4547-9347-ef26a4b64aa9",
+    "runtime421UiVersion": "4.21.0.0-Mold.Diplo-202609221440",
+    "new423RecreatePrecondition": "4.21 URL/local Ready and ADD completed; all3 factories original4.23; console original preserved",
+    "new423RecreateSubmittedUtc": "2026-11-19T00:51:14.484815+00:00",
+    "runtime423Name": "s-271-VM",
+    "runtime423Id": "0e7d4563-a48d-4602-ae5c-758008e4530b",
+    "runtime423Host": "10.10.13.1",
+    "runtime423LinkLocal": "169.254.177.128",
+    "new423UiAndUploadsRequired": true
+  },
+  "rejectedAttempts": [
+    {
+      "name": "qa-kiso1702-revoked-url-no-resource",
+      "reason": "URL grant revoked while dialog open; server API not available",
+      "created": false,
+      "uiAbsenceCheck": "PASS exact name keyword count0"
+    }
+  ],
+  "uiControlBlock": {
+    "utc": "2026-11-19T01:07:54.612670+00:00",
+    "capture": "CreateForMonitor 0x80070057 after fresh window retry",
+    "activation": "GetCursorPos access denied 0x80070005 after fresh binding retry",
+    "userRestoreRequested": true,
+    "lastIntendedAction": "cancel unsaved qa-kiso1702-user role edit; activation failed before a confirmed cancellation",
+    "accountRoleSaveSubmitted": false,
+    "uiOnlyBusinessPrinciplePreserved": true
+  }
+}

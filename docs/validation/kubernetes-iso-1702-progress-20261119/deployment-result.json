@@ -1,0 +1,21 @@
+{
+  "head": "e6a579404d476d52101157f10cfccdc6b811195b",
+  "backup": "/var/tmp/kiso1702-backup-y9rofa3d",
+  "files": [
+    "js/app.51f44384.js",
+    "js/chunk-1f2e4be3.3036ef56.js",
+    "css/app.c6baf762.css",
+    "css/chunk-1f2e4be3.214bf9a4.css",
+    "index.html"
+  ],
+  "count": 5,
+  "overwritten": [
+    "index.html"
+  ],
+  "preservedOldFiles": 7214,
+  "indexSha256": "bcaabb92d96f142499de4bc8a47ef21bf97c93b862d9072f9078ee8cc2456ae1",
+  "protectedPreserved": true,
+  "backendAndPidPreserved": true,
+  "staticHttpHashesVerified": true,
+  "deploymentType": "UI static delta only"
+}

@@ -1,0 +1,10 @@
+{
+  "sameRoleAnd14Grants": true,
+  "requests": 229,
+  "httpErrors": 0,
+  "optionalDeniedApisRequested": [],
+  "metricsRequested": 0,
+  "kisoWrites": 0,
+  "trace": "read-admin-postdeploy-access-result.json",
+  "notes": "Login/dashboard denial retained separately; trace starts once KISO loaded. Both /api and /api/ endpoints counted."
+}
