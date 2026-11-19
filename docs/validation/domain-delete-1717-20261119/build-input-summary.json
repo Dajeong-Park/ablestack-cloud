@@ -1,0 +1,17 @@
+{
+  "head": "42c472907d9714f2fbb07a69e81262e5851bef10",
+  "input": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "changedSources": [
+    "ui/src/views/iam/DomainView.vue",
+    "ui/src/components/view/DomainDeleteConfirm.vue",
+    "ui/src/components/view/TreeView.vue"
+  ],
+  "otherOperatingDifferencesPreserved": true,
+  "inputFiles": 1120,
+  "inputManifestSha256": "9c21bf93cd01a3958361fd0f1a9532b7b2e5976fd7d15af93ce994f5a9ac2e08",
+  "changedSourceHashes": {
+    "ui/src/views/iam/DomainView.vue": "b8da22f95451454d5ffc2e13944064448cbeb9ba70462f644894b6017a993900",
+    "ui/src/components/view/DomainDeleteConfirm.vue": "d6f2115ca6eb12a56f192f994f1520147d530e801e6334c07a69173e7bac630a",
+    "ui/src/components/view/TreeView.vue": "f9ca6a727ffdbfc374815f99fb0cedbbc5459e2901032b9ea266d08cf835c63e"
+  }
+}

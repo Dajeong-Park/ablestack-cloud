@@ -1,0 +1,67 @@
+{
+  "baseline": {
+    "domainCount": 1,
+    "rootId": "47178e2f-bd56-11f1-b573-002481560363",
+    "accountsCreated": 0,
+    "vmsCreated": 0
+  },
+  "fixtures": [
+    {
+      "name": "qa-domain1717-before-detail",
+      "id": "0a437a03-3efa-4b51-b4d9-68b5bcf82863",
+      "created": "native UI",
+      "deleted": "native UI; DOMAIN.DELETE Completed observed",
+      "reproducedFalseError": "Domain id=12 doesn't exist",
+      "postDeleteSameIdListDomains431": 2
+    },
+    {
+      "name": "qa-domain1717-linux-detail",
+      "id": "c734ab1d-c724-43c0-924f-8020e965fb02",
+      "createdUi": true,
+      "deletedUi": true,
+      "uuidObservedInFailedAttemptUi": true
+    },
+    {
+      "name": "qa-domain1717-linux-tree",
+      "id": "47bd1734-4609-4827-8bf5-53ef576bf4d7",
+      "createdUi": true,
+      "deletedUi": true
+    },
+    {
+      "name": "qa-domain1717-linux-detail",
+      "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+      "createdUi": true,
+      "deletedUi": true
+    },
+    {
+      "name": "qa-domain1717-linux-tree",
+      "id": "349835b5-089d-42ce-bad3-bafaa6cb9688",
+      "createdUi": true,
+      "deletedUi": true
+    }
+  ],
+  "postDeployUi": "PASS Linux Chromium 130.0.6723.31 / actual cluster13 web UI",
+  "resourceCleanupAfterReproduction": "All5 trial domains deleted via UI; prefix search0; ROOT preserved; no accounts/VMs created",
+  "issueCloseAllowed": true,
+  "deployment": {
+    "head": "42c472907d9714f2fbb07a69e81262e5851bef10",
+    "backup": "/var/tmp/domain1717-backup-q9ui5bor",
+    "files": [
+      "js/app.39167b5e.js",
+      "js/chunk-4d5ece0a.6a0336a8.js",
+      "css/chunk-4d5ece0a.7120b5a4.css",
+      "css/app.98a40780.css",
+      "index.html"
+    ],
+    "count": 5,
+    "overwritten": [
+      "index.html"
+    ],
+    "preservedOldFiles": 7221,
+    "indexSha256": "eaf3bca66efcd4d3f2b2bed0870189bd83e71b26a53ce89b9839596041a0d5ae",
+    "protectedPreserved": true,
+    "backendAndPidPreserved": true,
+    "staticHttpHashesVerified": true,
+    "deploymentType": "UI static delta only"
+  }
+}

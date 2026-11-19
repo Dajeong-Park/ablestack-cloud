@@ -1,0 +1,42 @@
+[
+  {
+    "file": "before-delete-success-with-stale-error.jpg",
+    "browser": "Windows Chrome / native capture",
+    "sha256": "5073416e03af46223b41a9cd328814f9b558cd916341462c9a902dda136de29f"
+  },
+  {
+    "file": "detail-delete-returns-root-no-error.jpg",
+    "browser": "Linux Chromium 130.0.6723.31 / actual13 page capture",
+    "sha256": "d8407b56c9bb69f8d3c3644e3f59fb2c1ea3ef35320e3979e449eef953def062"
+  },
+  {
+    "file": "real-server-delete-rejection-retained.jpg",
+    "browser": "Linux Chromium 130.0.6723.31 / actual13 page capture",
+    "sha256": "7f96ee97e83b72def40b65a48fded66a8bf1ab8e22512500a45a08ea1256580a"
+  },
+  {
+    "file": "pending-impact-loading-before-cancel.jpg",
+    "browser": "Linux Chromium 130.0.6723.31 / actual13 page capture",
+    "sha256": "70d53ef5e34ab249dcc1ef8866e46b6d9e3b8ed0a947a768648ac7b64eedc372"
+  },
+  {
+    "file": "pending-impact-cancel-no-error.jpg",
+    "browser": "Linux Chromium 130.0.6723.31 / actual13 page capture",
+    "sha256": "cb3f4f2ce7741f094d95629c5fec57b831038747b0327c82d9eb895432900cdd"
+  },
+  {
+    "file": "reopened-impact-ready.jpg",
+    "browser": "Linux Chromium 130.0.6723.31 / actual13 page capture",
+    "sha256": "d330952a3fd5ed223c893d8c8bf2543c9b9d0030584fdb25f9a7cafed6757ca1"
+  },
+  {
+    "file": "tree-delete-root-no-error.jpg",
+    "browser": "Linux Chromium 130.0.6723.31 / actual13 page capture",
+    "sha256": "f2debf654264788e7b0cec7da961d410969d53f3ffa25944b85e8222788cdc63"
+  },
+  {
+    "file": "cleanup-no-trial-domains.jpg",
+    "browser": "Linux Chromium 130.0.6723.31 / actual13 page capture",
+    "sha256": "e4bf4dacc9310433aa282c18c480828996f93337c64b85c9f9aff79bde322a49"
+  }
+]
