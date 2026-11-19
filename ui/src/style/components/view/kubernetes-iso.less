@@ -32,30 +32,31 @@
   }
   .breadcrumb > span,
   .breadcrumb .ant-breadcrumb-link,
-  .breadcrumb .ant-breadcrumb-link > span:not(.breadcrumb-controls) {
+  .breadcrumb .ant-breadcrumb-link > span:not(:last-child) {
     display:inline-flex;
     flex-wrap:wrap;
     align-items:center;
     min-width:0;
     max-width:100%;
   }
-  .breadcrumb .breadcrumb-controls {
+  // The final span also supports operating bundles predating breadcrumb-controls.
+  .breadcrumb .ant-breadcrumb-link > span:last-child {
     display:inline-flex;
     align-items:center;
     gap:8px;
   }
   .breadcrumb .ant-breadcrumb-link > a,
-  .breadcrumb .breadcrumb-controls > a {
+  .breadcrumb .ant-breadcrumb-link > span:last-child > a {
     display:inline-flex;
     align-items:center;
     position:static;
     font-size:inherit;
     line-height:inherit;
   }
-  .breadcrumb .breadcrumb-controls > .ant-btn,
-  .breadcrumb .breadcrumb-controls > .ant-select,
-  .breadcrumb .breadcrumb-controls > .ant-switch,
-  .breadcrumb .breadcrumb-controls > a { margin:0 !important; }
+  .breadcrumb .ant-breadcrumb-link > span:last-child > .ant-btn,
+  .breadcrumb .ant-breadcrumb-link > span:last-child > .ant-select,
+  .breadcrumb .ant-breadcrumb-link > span:last-child > .ant-switch,
+  .breadcrumb .ant-breadcrumb-link > span:last-child > a { margin:0 !important; }
   .kubernetes-iso-breadcrumb-name {
     display:block;
     min-width:0;
