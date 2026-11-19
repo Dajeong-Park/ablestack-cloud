@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <resource-layout :wide="wideLayout" :class="{ 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
+  <resource-layout :wide="wideLayout" :class="{ 's2s-gateway-resource': $route.meta?.name === 's2svpn', 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
     <template #left>
       <slot name="info-card">
         <info-card
@@ -61,7 +61,7 @@
         </keep-alive>
         <a-tabs
           v-else
-          :class="{'template-main-tabs':['template','iso','kubernetesiso'].includes($route.meta?.name)}"
+          :class="{'s2s-gateway-tabs': $route.meta?.name === 's2svpn', 'template-main-tabs':['template','iso','kubernetesiso'].includes($route.meta?.name)}"
           :style="{ width: '100%', marginTop: resourceTabPosition === 'top' ? '-12px' : '0' }"
           :tabPosition="resourceTabPosition"
           :animated="false"
@@ -330,6 +330,9 @@ export default {
 <style lang="less" scoped>
 .template-resource :deep(.resource-content-card .ant-tabs-content-holder) { min-width: 0; }
 .template-resource :deep(.resource-content-card .ant-tabs-tabpane) { min-width: 0; }
+/* Match the notice-line spacing and rail minimum of VM InstanceTab. */
+.s2s-gateway-resource :deep(.s2s-gateway-tabs) { margin-top: 22px !important; }
+.s2s-gateway-resource :deep(.s2s-gateway-tabs.ant-tabs-left > .ant-tabs-nav) { min-width: 100px; }
 .guest-feature-notice {
   margin-bottom: 16px;
 }

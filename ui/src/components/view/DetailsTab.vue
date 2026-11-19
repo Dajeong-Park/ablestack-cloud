@@ -50,7 +50,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 'vm-details-list': ['vm', 'vnfapp', 'publicip', 's2svpn'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': ['vm', 'vnfapp', 'publicip', 's2svpn'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -665,6 +665,7 @@ export default {
       return detailsKeys
     },
     getDetailTitle (detail) {
+      if (this.$route.meta.name === 's2svpn' && detail === 'fordisplay') return 'label.public.ip.display'
       if (this.$route.meta.name === 'publicip' && publicIpDetailFields.includes(detail)) return publicIpFieldLabel(detail)
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && ['osdisplayname', 'ostypename'].includes(detail)) return 'label.ostypename'
       if (['vm', 'vnfapp'].includes(this.$route.meta.name) && detail === 'name') return 'label.vm.name'
@@ -920,6 +921,8 @@ export default {
   max-width: 100%;
   overflow-wrap: anywhere;
 }
+/* Same row rhythm as the VM InstanceTab details. */
+.s2s-gateway-details :deep(.ant-list-item) { padding-top: 12px; padding-bottom: 12px; }
 .preline {
   white-space: pre-line;
   word-break: break-word;

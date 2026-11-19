@@ -1066,7 +1066,7 @@ import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentit
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
-import { readGatewayDetail } from '@/utils/s2sGateway'
+import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
 import { s2sGatewayListLocation, s2sGatewayProject, s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery } from '@/utils/s2sGatewaySearch'
 import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
 import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
@@ -2443,6 +2443,7 @@ export default {
             this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
           } else {
             this.selectedColumns = this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] || this.selectedColumns
+            if (s2sGatewayRoute(this.$route)) this.selectedColumns = gatewayVisibleColumns(this.selectedColumns, defaultColumnKeys)
             if (this.$route.meta?.name === 'vnfapp' && this.selectedColumns.includes('name')) {
               this.selectedColumns = [...new Set(this.selectedColumns.map(key => key === 'name' ? 'displayname' : key))]
               this.$store.getters.customColumns[this.$store.getters.userInfo.id][this.$route.path] = this.selectedColumns
@@ -2968,7 +2969,7 @@ export default {
     },
     closeAction (result) {
       const deletedGatewayDetail = s2sGatewayRoute(this.$route) && this.currentAction?.api === 'deleteVpnGateway' && this.dataView && result?.removed?.includes(this.$route.params?.id)
-      const gatewayLocation = deletedGatewayDetail ? s2sGatewayListLocation(this.$route, this.$store.getters) : null
+      const gatewayLocation = deletedGatewayDetail ? gatewayDeletedListLocation(s2sGatewayListLocation(this.$route, this.$store.getters), this.$route.params.id) : null
       if (deletedGatewayDetail) { this.listRequestVersion++; this.listRequestPending = false; this.listLoadedScope = null; this.resource = {}; this.items = []; this.itemCount = 0; this.resetSelection() }
       const deletedKubernetesIso = this.$route.meta?.name === 'kubernetesiso' && this.currentAction?.api === 'deleteKubernetesSupportedVersion' && result?.removed?.includes(this.resource?.id)
       const kubernetesIsoLocation = deletedKubernetesIso ? kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token) : null

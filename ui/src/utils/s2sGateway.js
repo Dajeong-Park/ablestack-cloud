@@ -58,3 +58,14 @@ export function gatewayConnectionRows (rows, resource) {
   // Whitelist read-only presentation fields; PSK and policy data never enter tab state.
   return rows.map(({ id, publicip, gateway, state, created, s2svpngatewayid, s2scustomergatewayid }) => ({ id, publicip, gateway, state, created, s2svpngatewayid, s2scustomergatewayid }))
 }
+
+// Upgrade only the former default selection; preserve deliberate user choices.
+export function gatewayVisibleColumns (selected, defaults) {
+  return JSON.stringify(selected) === JSON.stringify(['publicip', 'account', 'domain']) ? [...defaults] : selected
+}
+export function gatewayDeletedListLocation (location, id) {
+  if (location.query?.id !== id) return location
+  const query = { ...location.query, page: '1' }
+  delete query.id
+  return { ...location, query }
+}

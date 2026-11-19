@@ -21,7 +21,7 @@ import Dialog from '@/views/network/S2sGatewayDialog.vue'
 import Connections from '@/views/network/S2sVpnConnectionsTab.vue'
 import Value from '@/components/view/S2sGatewayValue.vue'
 import { getAPI, postAPI } from '@/api'
-import { gatewayName, gatewayConnectionRows, readGatewayDetail } from '@/utils/s2sGateway'
+import { gatewayName, gatewayConnectionRows, readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
 import { vpnJobMatches } from '@/utils/vpcVpn'
 import eventBus from '@/config/eventBus'
 import ResourceView from '@/components/view/ResourceView'
@@ -174,4 +174,15 @@ test('confirmed deletion clears the old detail and returns to the saved list sco
   const vm = { $route: { path: '/s2svpn/gateway', params: { id: 'gateway' }, meta: { name: 's2svpn' }, query: {} }, $store: { getters: access }, currentAction: { api: 'deleteVpnGateway' }, dataView: true, resource: { id: 'gateway' }, items: [{ id: 'gateway' }], listRequestVersion: 0, listRequestPending: true, listLoadedScope: 'old', resetSelection: jest.fn(), $router: { replace: jest.fn() }, $nextTick: jest.fn(), listScope: () => 'scope', actionOriginPath: '/s2svpn/gateway' }
   AutogenView.methods.closeAction.call(vm, { removed: ['gateway'] })
   expect(vm.resource).toEqual({}); expect(vm.listRequestVersion).toBe(1); expect(vm.listRequestPending).toBe(false); expect(vm.$router.replace).toHaveBeenCalledWith(expect.objectContaining({ path: '/s2svpn', query: expect.objectContaining({ projectid: '0' }) }))
+})
+
+test('saved legacy defaults acquire the VPC and project columns without overwriting custom choices', () => {
+  const defaults = ['publicip', 'vpcname', 'account', 'domain', 'project']
+  expect(gatewayVisibleColumns(['publicip', 'account', 'domain'], defaults)).toEqual(defaults)
+  expect(gatewayVisibleColumns(['domain', 'publicip'], defaults)).toEqual(['domain', 'publicip'])
+})
+test('deleting an exact-ID search target clears only that stale filter', () => {
+  const location = { path: '/s2svpn', query: { id: gateway.id, projectid: '0', vpcid: 'vpc', page: '3', pagesize: '20' } }
+  expect(gatewayDeletedListLocation(location, gateway.id)).toEqual({ path: '/s2svpn', query: { projectid: '0', vpcid: 'vpc', page: '1', pagesize: '20' } })
+  expect(gatewayDeletedListLocation(location, 'other')).toBe(location)
 })
