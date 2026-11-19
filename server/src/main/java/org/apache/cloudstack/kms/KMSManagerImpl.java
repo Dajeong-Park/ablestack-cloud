@@ -701,17 +701,12 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             throw new InvalidParameterValueException("KMS key is not enabled: " + kmsKey);
         }
 
-        HSMProfileVO profile = null;
-        if (hsmProfileId != null) {
-            profile = hsmProfileDao.findById(hsmProfileId);
-            if (profile == null) {
-                throw new InvalidParameterValueException("Target HSM Profile not found: " + hsmProfileId);
-            }
-            checkHSMProfileAccess(caller, profile, false);
-            validateProfileScopeForOwner(profile, kmsKey.getAccountId(), kmsKey.getDomainId());
-            if (!profile.isEnabled()) {
-                throw new InvalidParameterValueException("HSM profile is not enabled: " + profile.getName());
-            }
+        Long targetProfileId = hsmProfileId != null ? hsmProfileId : kmsKey.getHsmProfileId();
+        HSMProfileVO profile = getHSMProfile(targetProfileId);
+        checkHSMProfileAccess(caller, profile, false);
+        validateProfileScopeForOwner(profile, kmsKey.getAccountId(), kmsKey.getDomainId());
+        if (!profile.isEnabled()) {
+            throw new InvalidParameterValueException("HSM profile is not enabled: " + profile.getName());
         }
 
         int newKeyBits = keyBits != null ? keyBits : kmsKey.getKeyBits();
@@ -737,12 +732,18 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
     String rotateKek(KMSKeyVO kmsKey, String oldKekLabel, String newKekLabel, int keyBits,
                      HSMProfileVO newHSMProfile) throws KMSException {
+        if (keyBits != 128 && keyBits != 192 && keyBits != 256) {
+            throw KMSException.invalidParameter("Key size must be 128, 192, or 256 bits");
+        }
         if (StringUtils.isEmpty(oldKekLabel)) {
             throw KMSException.invalidParameter("oldKekLabel must be specified");
         }
 
         if (newHSMProfile == null) {
             newHSMProfile = hsmProfileDao.findById(kmsKey.getHsmProfileId());
+        }
+        if (newHSMProfile == null || !newHSMProfile.isEnabled()) {
+            throw KMSException.invalidParameter("An enabled HSM profile is required for KEK rotation");
         }
 
         KMSProvider provider = getKMSProvider(newHSMProfile.getProtocol());
@@ -762,11 +763,17 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             String finalNewKekLabel = newKekLabel;
             Long newProfileId = newHSMProfile.getId();
             final HSMProfileVO finalHSMProfile = newHSMProfile;
+            final Integer oldKeyBits = kmsKey.getKeyBits();
+            final Long oldProfileId = kmsKey.getHsmProfileId();
+            final String previousKekLabel = kmsKey.getKekLabel();
             String newKekId = retryOperation(
                     () -> provider.createKek(kmsKey.getPurpose(), finalNewKekLabel, keyBits, newProfileId));
 
+            KMSKekVersionVO previousActive = kmsKekVersionDao.getActiveVersion(kmsKey.getId());
+            KMSKekVersionVO.Status previousActiveStatus = previousActive == null ? null : previousActive.getStatus();
+            KMSKekVersionVO newVersion;
             try {
-                KMSKekVersionVO newVersion = Transaction
+                newVersion = Transaction
                         .execute((TransactionCallbackWithException<KMSKekVersionVO, KMSException>) status -> {
                             newVersionEntity.setKmsKeyId(kmsKey.getId());
                             newVersionEntity.setHsmProfileId(newProfileId);
@@ -778,16 +785,20 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                                 logger.info("Updated KMS key {} to use HSM profile {}", kmsKey, finalHSMProfile);
                             }
                             kmsKey.setKekLabel(finalNewKekLabel);
-                            kmsKeyDao.update(kmsKey.getId(), kmsKey);
+                            kmsKey.setKeyBits(keyBits);
+                            if (!kmsKeyDao.update(kmsKey.getId(), kmsKey)) {
+                                throw KMSException.kekOperationFailed("Failed to save rotated KMS key metadata", null);
+                            }
                             return version;
                         });
-
-                logger.info("KEK rotation: KMS key {} now has {} versions (active: v{}, previous: v{})",
-                        kmsKey, newVersion.getVersionNumber(), newVersion.getVersionNumber(),
-                        newVersion.getVersionNumber() - 1);
-
-                return newKekId;
-            } catch (KMSException e) {
+            } catch (Exception e) {
+                // The transaction rolls back persisted rows; also restore the caller's detached entity.
+                kmsKey.setKeyBits(oldKeyBits);
+                kmsKey.setHsmProfileId(oldProfileId);
+                kmsKey.setKekLabel(previousKekLabel);
+                if (previousActive != null) {
+                    previousActive.setStatus(previousActiveStatus);
+                }
                 logger.error(
                         "Database update failed during KEK rotation for kmsKey {}. Attempting to delete orphaned KEK "
                                 + "{} from provider {}",
@@ -805,6 +816,11 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                 throw e;
             }
 
+            logger.info("KEK rotation: KMS key {} now has {} versions (active: v{}, previous: v{})",
+                    kmsKey, newVersion.getVersionNumber(), newVersion.getVersionNumber(),
+                    newVersion.getVersionNumber() - 1);
+            return newKekId;
+
         } catch (Exception e) {
             logger.error("KEK rotation failed for kmsKey {}: {}", kmsKey, e.getMessage());
             throw handleKmsException(e);
@@ -819,16 +835,29 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                 .orElse(0) + 1;
 
         KMSKekVersionVO currentActive = kmsKekVersionDao.getActiveVersion(newVersion.getKmsKeyId());
-        if (currentActive != null) {
-            currentActive.setStatus(KMSKekVersionVO.Status.Previous);
-            kmsKekVersionDao.update(currentActive.getId(), currentActive);
-        }
+        KMSKekVersionVO.Status previousStatus = currentActive == null ? null : currentActive.getStatus();
+        try {
+            if (currentActive != null) {
+                currentActive.setStatus(KMSKekVersionVO.Status.Previous);
+                if (!kmsKekVersionDao.update(currentActive.getId(), currentActive)) {
+                    throw KMSException.kekOperationFailed("Failed to update previous KEK version", null);
+                }
+            }
 
-        newVersion.setVersionNumber(nextVersion);
-        newVersion.setStatus(KMSKekVersionVO.Status.Active);
-        newVersion = kmsKekVersionDao.persist(newVersion);
-        logger.info("Created KEK version {} for KMS key {}", nextVersion, newVersion.getKmsKeyId());
-        return newVersion;
+            newVersion.setVersionNumber(nextVersion);
+            newVersion.setStatus(KMSKekVersionVO.Status.Active);
+            newVersion = kmsKekVersionDao.persist(newVersion);
+            if (newVersion == null) {
+                throw KMSException.kekOperationFailed("Failed to persist new KEK version", null);
+            }
+            logger.info("Created KEK version {} for KMS key {}", nextVersion, newVersion.getKmsKeyId());
+            return newVersion;
+        } catch (RuntimeException e) {
+            if (currentActive != null) {
+                currentActive.setStatus(previousStatus);
+            }
+            throw e;
+        }
     }
 
     @Override
