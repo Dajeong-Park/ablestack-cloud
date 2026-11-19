@@ -25,6 +25,7 @@ import com.cloud.dc.dao.DataCenterDao;
 import com.cloud.domain.Domain;
 import com.cloud.domain.dao.DomainDao;
 import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.exception.PermissionDeniedException;
 import com.cloud.exception.ResourceUnavailableException;
 import com.cloud.network.Network;
 import com.cloud.network.NetworkModel;
@@ -45,13 +46,14 @@ import com.cloud.offerings.dao.NetworkOfferingDao;
 import com.cloud.event.ActionEvent;
 import com.cloud.event.EventTypes;
 import com.cloud.user.Account;
+import com.cloud.user.AccountManager;
 import com.cloud.user.dao.AccountDao;
 import com.cloud.utils.Pair;
 import com.cloud.utils.db.DB;
+import com.cloud.utils.db.GenericDao;
+import com.cloud.utils.db.SearchCriteria;
 import com.cloud.utils.db.Transaction;
 import com.cloud.utils.db.TransactionCallback;
-import com.cloud.utils.db.TransactionCallbackNoReturn;
-import com.cloud.utils.db.TransactionStatus;
 import com.cloud.utils.exception.CloudRuntimeException;
 import org.apache.cloudstack.api.command.user.bgp.ListASNumbersCmd;
 import org.apache.cloudstack.context.CallContext;
@@ -65,9 +67,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -91,6 +97,9 @@ public class BGPServiceImpl implements BGPService {
     @Inject
     private NetworkOfferingDao networkOfferingDao;
     @Inject
+    private AccountManager asnAccountManager;
+
+    @Inject
     private AccountDao accountDao;
     @Inject
     private DomainDao domainDao;
@@ -112,42 +121,48 @@ public class BGPServiceImpl implements BGPService {
     @DB
     @ActionEvent(eventType = EventTypes.EVENT_AS_RANGE_CREATE, eventDescription = "AS Range creation")
     public ASNumberRange createASNumberRange(long zoneId, long startASNumber, long endASNumber) {
+        ASNumberRangeValidator.validate(startASNumber, endASNumber);
         DataCenterVO zone = dataCenterDao.findById(zoneId);
         if (zone == null) {
             String msg = String.format("Cannot find a zone with ID %s", zoneId);
             LOGGER.error(msg);
-            throw new InvalidParameterException(msg);
+            throw new InvalidParameterValueException(msg);
         }
         if (!routedIpv4Manager.isRoutedNetworkVpcEnabled(zoneId)) {
             throw new InvalidParameterValueException("Cannot create ASN range as Routed networks and VPCs are not enabled for the zone.");
         }
-        if (startASNumber > endASNumber) {
-            String msg = "Please specify a valid AS Number range";
-            LOGGER.error(msg);
-            throw new InvalidParameterException(msg);
-        }
-
-        List<ASNumberRangeVO> asNumberRanges = asNumberRangeDao.listByZoneId(zoneId);
-        for (ASNumberRangeVO asNumberRange : asNumberRanges) {
-            if (isASNumbersOverlap(asNumberRange.getStartASNumber(), asNumberRange.getEndASNumber(), startASNumber, endASNumber)) {
-                throw new InvalidParameterException(String.format("New AS number range (%s-%s) has conflict with an existing AS number range (%s-%s)",
-                        startASNumber, endASNumber, asNumberRange.getStartASNumber(), asNumberRange.getEndASNumber()));
-            }
-        }
-
         try {
             return Transaction.execute((TransactionCallback<ASNumberRange>) status -> {
+                // Lock a row that exists even before the first range. All management servers use this DB lock.
+                if (dataCenterDao.lockRow(zoneId, true) == null) {
+                    throw new InvalidParameterValueException("The selected Zone no longer exists.");
+                }
+                if (!routedIpv4Manager.isRoutedNetworkVpcEnabled(zoneId)) {
+                    throw new InvalidParameterValueException("Routed networks and VPCs are not enabled for the Zone.");
+                }
+                for (ASNumberRangeVO range : asNumberRangeDao.listByZoneId(zoneId)) {
+                    if (isASNumbersOverlap(range.getStartASNumber(), range.getEndASNumber(), startASNumber, endASNumber)) {
+                        throw new InvalidParameterValueException(String.format("ASN range %s-%s overlaps the existing range %s-%s.",
+                                startASNumber, endASNumber, range.getStartASNumber(), range.getEndASNumber()));
+                    }
+                }
                 LOGGER.debug("Persisting AS Number Range {}-{} for the zone {}", startASNumber, endASNumber, zone);
                 ASNumberRangeVO asNumberRangeVO = new ASNumberRangeVO(zoneId, startASNumber, endASNumber);
-                asNumberRangeDao.persist(asNumberRangeVO);
+                if (asNumberRangeDao.persist(asNumberRangeVO) == null) {
+                    throw new CloudRuntimeException("Could not persist ASN range");
+                }
 
                 for (long asn = startASNumber; asn <= endASNumber; asn++) {
                     LOGGER.debug("Persisting AS Number {} for zone {}", asn, zone);
                     ASNumberVO asNumber = new ASNumberVO(asn, asNumberRangeVO.getId(), zoneId);
-                    asNumberDao.persist(asNumber);
+                    if (asNumberDao.persist(asNumber) == null) {
+                        throw new CloudRuntimeException("Could not persist ASN range member");
+                    }
                 }
                 return asNumberRangeVO;
             });
+        } catch (InvalidParameterValueException e) {
+            throw e;
         } catch (Exception e) {
             String err = String.format("Error creating AS Number range %s-%s for zone %s: %s", startASNumber, endASNumber, zone, e.getMessage());
             LOGGER.error(err, e);
@@ -172,7 +187,7 @@ public class BGPServiceImpl implements BGPService {
     public Pair<List<ASNumber>, Integer> listASNumbers(ListASNumbersCmd cmd) {
         Long zoneId = cmd.getZoneId();
         Long asNumberRangeId = cmd.getAsNumberRangeId();
-        Integer asNumber = cmd.getAsNumber();
+        Long asNumber = cmd.getAsNumber();
         Boolean allocated = cmd.getAllocated();
         Long networkId = cmd.getNetworkId();
         Long vpcId = cmd.getVpcId();
@@ -182,55 +197,73 @@ public class BGPServiceImpl implements BGPService {
         Long pageSizeVal = cmd.getPageSizeVal();
         String keyword = cmd.getKeyword();
 
-        Account userAccount = null;
-        Domain domain = null;
         final Account caller = CallContext.current().getCallingAccount();
-        if (Objects.nonNull(accountName)) {
-            if (domainId != null) {
-                userAccount = accountDao.findActiveAccount(accountName, domainId);
-                domain = domainDao.findById(domainId);
-            } else {
-                userAccount = accountDao.findActiveAccount(accountName, caller.getDomainId());
-                domain = domainDao.findById(caller.getDomainId());
+        Domain domain = null;
+        Account userAccount = null;
+        if (domainId != null || accountName != null) {
+            domain = domainDao.findById(domainId != null ? domainId : caller.getDomainId());
+            if (domain == null) {
+                throw new InvalidParameterValueException("The selected domain no longer exists.");
+            }
+            asnAccountManager.checkAccess(caller, domain);
+            if (accountName != null) {
+                userAccount = accountDao.findActiveAccount(accountName, domain.getId());
+                if (userAccount == null) {
+                    throw new InvalidParameterValueException("The account does not exist in the selected domain.");
+                }
             }
         }
-
-        if (Objects.nonNull(accountName) && Objects.isNull(userAccount)) {
-            throw new InvalidParameterException(String.format("Failed to find user Account: %s", accountName));
+        if (asNumberRangeId != null) {
+            ASNumberRangeVO range = asNumberRangeDao.findById(asNumberRangeId);
+            if (range == null || zoneId != null && range.getDataCenterId() != zoneId) {
+                throw new InvalidParameterValueException("The ASN range does not belong to the selected Zone.");
+            }
         }
-
         Long networkSearchId = networkId;
-        Long vpcSerchId = vpcId;
+        Long vpcSearchId = vpcId;
         if (networkId != null) {
             NetworkVO network = networkDao.findById(networkId);
-            if (network == null) {
-                throw new InvalidParameterException(String.format("Failed to find network with ID: %s", networkId));
+            if (network == null || zoneId != null && network.getDataCenterId() != zoneId) {
+                throw new InvalidParameterValueException("The network does not belong to the selected Zone.");
+            }
+            asnAccountManager.checkAccess(caller, null, false, network);
+            if (vpcId != null && !vpcId.equals(network.getVpcId())) {
+                throw new InvalidParameterValueException("The network does not belong to the selected VPC.");
             }
             if (network.getVpcId() != null) {
-                LOGGER.debug("The network {} is a VPC tier, searching for the AS number on the VPC {}",
-                        network::toString, () -> vpcDao.findById(network.getVpcId()));
                 networkSearchId = null;
-                vpcSerchId = network.getVpcId();
+                vpcSearchId = network.getVpcId();
             }
         }
+        if (vpcSearchId != null) {
+            VpcVO vpc = vpcDao.findById(vpcSearchId);
+            if (vpc == null || zoneId != null && vpc.getZoneId() != zoneId) {
+                throw new InvalidParameterValueException("The VPC does not belong to the selected Zone.");
+            }
+            asnAccountManager.checkAccess(caller, null, false, vpc);
+        }
         Pair<List<ASNumberVO>, Integer> pair = asNumberDao.searchAndCountByZoneOrRangeOrAllocated(zoneId, asNumberRangeId,
-                asNumber, networkSearchId, vpcSerchId, allocated, Objects.nonNull(userAccount) ? userAccount.getId() : null,
+                asNumber, networkSearchId, vpcSearchId, allocated, Objects.nonNull(userAccount) ? userAccount.getId() : null,
                 Objects.nonNull(domain) ? domain.getId() : null, keyword, caller, startIndex, pageSizeVal);
         return new Pair<>(new ArrayList<>(pair.first()), pair.second());
     }
 
     @Override
     public boolean allocateASNumber(long zoneId, Long asNumber, Long networkId, Long vpcId) {
-        ASNumberVO asNumberVO = isOfferingSpecifyAsNumber(networkId, vpcId) ?
-                asNumberDao.findByAsNumber(asNumber) :
-                asNumberDao.findOneByAllocationStateAndZone(zoneId, false);
-        if (asNumberVO == null || asNumberVO.getDataCenterId() != zoneId) {
-            if (asNumber != null) {
-                LOGGER.error("Cannot find AS number {} in zone {} with id {}", asNumber, dataCenterDao.findById(zoneId), zoneId);
-                return false;
+        // Use the same lock order as range creation/deletion across all management servers.
+        return Transaction.execute((TransactionCallback<Boolean>) status -> {
+            if (dataCenterDao.lockRow(zoneId, true) == null) {
+                throw new InvalidParameterValueException("The selected Zone no longer exists.");
             }
-            throw new CloudRuntimeException(String.format("Cannot allocate AS number in zone with ID %s", zoneId));
-        }
+            if (!allocateASNumberInTransaction(zoneId, asNumber, networkId, vpcId)) {
+                // Existing network/VPC callers clean up on CloudRuntimeException, but ignore false.
+                throw new CloudRuntimeException("The requested AS number is no longer available in the selected Zone.");
+            }
+            return true;
+        });
+    }
+
+    private boolean allocateASNumberInTransaction(long zoneId, Long asNumber, Long networkId, Long vpcId) {
         long accountId, domainId;
         String netName;
         VpcVO vpc = null;
@@ -255,9 +288,24 @@ public class BGPServiceImpl implements BGPService {
             netName = network.getName();
         }
 
-        String networkName = Objects.nonNull(vpcId) ? ("VPC " + vpc) : ("network " + network);
-        LOGGER.debug("Allocating the AS Number {} to {} on zone {}", asNumberVO::toString,
-                networkName::toString, () -> dataCenterDao.findById(zoneId));
+        ASNumberVO candidate = isOfferingSpecifyAsNumber(networkId, vpcId)
+                ? asNumberDao.findByAsNumber(asNumber) : asNumberDao.findOneByAllocationStateAndZone(zoneId, false);
+        if (candidate == null || candidate.getDataCenterId() != zoneId) {
+            if (asNumber != null) {
+                return false;
+            }
+            throw new CloudRuntimeException("Cannot allocate AS number in zone with ID " + zoneId);
+        }
+        ASNumberRangeVO range = asNumberRangeDao.lockRow(candidate.getAsNumberRangeId(), true);
+        if (range == null || range.getRemoved() != null || range.getDataCenterId() != zoneId) {
+            return false;
+        }
+        ASNumberVO asNumberVO = asNumberDao.lockRow(candidate.getId(), true);
+        if (asNumberVO == null || asNumberVO.getRemoved() != null || asNumberVO.isAllocated()
+                || asNumberVO.getDataCenterId() != zoneId || asNumberVO.getAsNumberRangeId() != range.getId()) {
+            return false;
+        }
+        LOGGER.debug("Allocating AS number {} to network {} / VPC {} in Zone {}", asNumberVO.getAsNumber(), networkId, vpcId, zoneId);
         asNumberVO.setAllocated(true);
         asNumberVO.setAllocatedTime(new Date());
         if (Objects.nonNull(vpcId)) {
@@ -267,7 +315,10 @@ public class BGPServiceImpl implements BGPService {
         }
         asNumberVO.setAccountId(accountId);
         asNumberVO.setDomainId(domainId);
-        return asNumberDao.update(asNumberVO.getId(), asNumberVO);
+        if (!asNumberDao.update(asNumberVO.getId(), asNumberVO)) {
+            throw new CloudRuntimeException("Could not persist AS number allocation");
+        }
+        return true;
     }
 
     private boolean isOfferingSpecifyAsNumber(Long networkId, Long vpcId) {
@@ -291,104 +342,179 @@ public class BGPServiceImpl implements BGPService {
     }
 
     @Override
+    @DB
     @ActionEvent(eventType = EventTypes.EVENT_AS_NUMBER_RELEASE, eventDescription = "Releasing AS Number")
     public Pair<Boolean, String> releaseASNumber(long zoneId, long asNumber, boolean isDestroyNetworkOperation) {
-        ASNumberVO asNumberVO = asNumberDao.findByAsNumber(asNumber);
-        DataCenterVO zone = dataCenterDao.findById(zoneId);
-        if (asNumberVO == null) {
-            return logAndReturnErrorMessage(String.format("Cannot find AS Number %s on zone %s", asNumber, zone));
+        ASNumberQueryValidator.validate(asNumber);
+        Account caller = CallContext.current().getCallingAccount();
+        if (!isDestroyNetworkOperation && (caller == null || caller.getType() != Account.Type.ADMIN)) {
+            throw new PermissionDeniedException("ASN release requires root administrator permission.");
         }
-        if (!asNumberVO.isAllocated()) {
-            LOGGER.debug("The AS Number {} is not allocated to any network on zone {}, ignoring release", asNumber, zone);
-            return new Pair<>(true, "");
-        }
-        Long networkId = asNumberVO.getNetworkId();
-        Long vpcId = asNumberVO.getVpcId();
-        if (!isDestroyNetworkOperation) {
-            Pair<Boolean, String> checksResult = performReleaseASNumberChecks(networkId, vpcId, asNumber);
-            if (checksResult != null) {
-                return checksResult;
+        return Transaction.execute((TransactionCallback<Pair<Boolean, String>>) status -> {
+            if (dataCenterDao.lockRow(zoneId, true) == null) {
+                throw new InvalidParameterValueException("The selected Zone no longer exists.");
             }
-        }
-        LOGGER.debug("Releasing AS Number {} on zone {} from previous allocation", asNumber, zone);
-        asNumberVO.setAllocated(false);
-        asNumberVO.setAllocatedTime(null);
-        asNumberVO.setDomainId(null);
-        asNumberVO.setAccountId(null);
-        if (vpcId != null) {
-            asNumberVO.setVpcId(null);
-        } else {
-            asNumberVO.setNetworkId(null);
-        }
-        boolean update = asNumberDao.update(asNumberVO.getId(), asNumberVO);
-        String msg = update ? "OK" : "Could not update database record for AS number";
-        return new Pair<>(update, msg);
+            List<ASNumberVO> candidates = asNumberDao.listByZoneAndAsNumber(zoneId, asNumber);
+            if (candidates == null || candidates.size() != 1) {
+                throw new InvalidParameterValueException("The ASN is absent or ambiguous in the selected Zone.");
+            }
+            ASNumberVO snapshot = candidates.get(0);
+            ASNumberRangeVO range = asNumberRangeDao.lockRow(snapshot.getAsNumberRangeId(), true);
+            if (range == null || range.getRemoved() != null || range.getDataCenterId() != zoneId) {
+                throw new InvalidParameterValueException("The ASN range no longer exists in the selected Zone.");
+            }
+            ASNumberVO number = asNumberDao.lockRow(snapshot.getId(), true);
+            if (number == null || number.getRemoved() != null || number.getDataCenterId() != zoneId
+                    || number.getAsNumber() != asNumber || number.getAsNumberRangeId() != range.getId()) {
+                throw new InvalidParameterValueException("The selected ASN changed. Read its state again.");
+            }
+            if (!number.isAllocated()) {
+                return new Pair<>(true, "");
+            }
+            if (!isDestroyNetworkOperation) {
+                String reason = lockedASNumberReleaseReason(number);
+                if (!ASNumberReleasePolicy.ELIGIBLE.equals(reason)) {
+                    throw new InvalidParameterValueException("ASN release is not permitted: " + reason);
+                }
+            }
+            number.setAllocated(false);
+            number.setAllocatedTime(null);
+            number.setAccountId(null);
+            number.setDomainId(null);
+            number.setNetworkId(null);
+            number.setVpcId(null);
+            if (!asNumberDao.update(number.getId(), number)) {
+                throw new CloudRuntimeException("Could not persist ASN release");
+            }
+            return new Pair<>(true, "OK");
+        });
     }
 
-    private Pair<Boolean, String> performReleaseASNumberChecks(Long networkId, Long vpcId, long asNumber) {
-        if (networkId != null) {
-            NetworkVO network = networkDao.findById(networkId);
-            if (network == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a network with ID %s which acquired the AS number %s", networkId, asNumber));
+    private String lockedASNumberReleaseReason(ASNumber number) {
+        if (number.getNetworkId() != null && number.getVpcId() != null) {
+            return ASNumberReleasePolicy.UNKNOWN;
+        }
+        if (number.getVpcId() != null) {
+            VpcVO vpc = vpcDao.lockRow(number.getVpcId(), true);
+            VpcOfferingVO offering = vpc == null ? null : vpcOfferingDao.lockRow(vpc.getVpcOfferingId(), true);
+            return ASNumberReleasePolicy.reason(number, vpc != null && vpc.getRemoved() == null
+                    && vpc.getZoneId() == number.getDataCenterId() && offering != null && offering.getRemoved() == null,
+                    offering == null ? null : offering.isSpecifyAsNumber());
+        }
+        if (number.getNetworkId() != null) {
+            NetworkVO network = networkDao.lockRow(number.getNetworkId(), true);
+            NetworkOfferingVO offering = network == null ? null : networkOfferingDao.lockRow(network.getNetworkOfferingId(), true);
+            return ASNumberReleasePolicy.reason(number, network != null && network.getRemoved() == null
+                    && network.getDataCenterId() == number.getDataCenterId() && offering != null && offering.getRemoved() == null,
+                    offering == null ? null : offering.isSpecifyAsNumber());
+        }
+        return ASNumberReleasePolicy.MISSING;
+    }
+
+    @Override
+    public Map<Long, String> getASNumberReleaseReasons(List<ASNumber> numbers) {
+        Map<Long, String> reasons = new HashMap<>();
+        Set<Long> networkIds = new HashSet<>();
+        Set<Long> vpcIds = new HashSet<>();
+        for (ASNumber number : numbers) {
+            reasons.put(number.getId(), number.isAllocated() ? ASNumberReleasePolicy.UNKNOWN : ASNumberReleasePolicy.NOT_ALLOCATED);
+            if (!number.isAllocated()) {
+                continue;
             }
-            NetworkOfferingVO offering = networkOfferingDao.findById(network.getNetworkOfferingId());
-            if (offering == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a network offering with ID %s", network.getNetworkOfferingId()));
+            if (number.getNetworkId() != null) {
+                networkIds.add(number.getNetworkId());
             }
-            if (offering.isSpecifyAsNumber()) {
-                return logAndReturnErrorMessage(String.format("Cannot release the AS number %s as it is acquired by a network that requires AS number", asNumber));
-            }
-        } else if (vpcId != null) {
-            VpcVO vpc = vpcDao.findById(vpcId);
-            if (vpc == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a VPC with ID %s which acquired the AS number %s", vpcId, asNumber));
-            }
-            VpcOfferingVO vpcOffering = vpcOfferingDao.findById(vpc.getVpcOfferingId());
-            if (vpcOffering == null) {
-                return logAndReturnErrorMessage(String.format("Cannot find a VPC offering with ID %s", vpc.getVpcOfferingId()));
-            }
-            if (vpcOffering.isSpecifyAsNumber()) {
-                return logAndReturnErrorMessage(String.format("Cannot release the AS number %s as it is acquired by a VPC that requires AS number", asNumber));
+            if (number.getVpcId() != null) {
+                vpcIds.add(number.getVpcId());
             }
         }
-        return null;
+        try {
+            Map<Long, NetworkVO> networks = new HashMap<>();
+            Set<Long> networkOfferingIds = new HashSet<>();
+            for (NetworkVO network : asnPageReferences(networkDao, networkIds)) {
+                networks.put(network.getId(), network);
+                networkOfferingIds.add(network.getNetworkOfferingId());
+            }
+            Map<Long, VpcVO> vpcs = new HashMap<>();
+            Set<Long> vpcOfferingIds = new HashSet<>();
+            for (VpcVO vpc : asnPageReferences(vpcDao, vpcIds)) {
+                vpcs.put(vpc.getId(), vpc);
+                vpcOfferingIds.add(vpc.getVpcOfferingId());
+            }
+            Map<Long, NetworkOfferingVO> offerings = new HashMap<>();
+            for (NetworkOfferingVO offering : asnPageReferences(networkOfferingDao, networkOfferingIds)) {
+                offerings.put(offering.getId(), offering);
+            }
+            Map<Long, VpcOfferingVO> vpcOfferings = new HashMap<>();
+            for (VpcOfferingVO offering : asnPageReferences(vpcOfferingDao, vpcOfferingIds)) {
+                vpcOfferings.put(offering.getId(), offering);
+            }
+            for (ASNumber number : numbers) {
+                NetworkVO network = networks.get(number.getNetworkId());
+                VpcVO vpc = vpcs.get(number.getVpcId());
+                NetworkOfferingVO offering = network == null ? null : offerings.get(network.getNetworkOfferingId());
+                VpcOfferingVO vpcOffering = vpc == null ? null : vpcOfferings.get(vpc.getVpcOfferingId());
+                boolean valid = number.getVpcId() != null
+                        ? vpc != null && vpc.getRemoved() == null && vpc.getZoneId() == number.getDataCenterId()
+                            && vpcOffering != null && vpcOffering.getRemoved() == null
+                        : network != null && network.getRemoved() == null && network.getDataCenterId() == number.getDataCenterId()
+                            && offering != null && offering.getRemoved() == null;
+                Boolean required = number.getVpcId() != null ? vpcOffering == null ? null : vpcOffering.isSpecifyAsNumber()
+                        : offering == null ? null : offering.isSpecifyAsNumber();
+                reasons.put(number.getId(), ASNumberReleasePolicy.reason(number, valid, required));
+            }
+        } catch (RuntimeException unavailable) {
+            // Reading eligibility must not emit errors/events or accidentally make a resource releasable.
+            return reasons;
+        }
+        return reasons;
+    }
+
+    private <T> List<T> asnPageReferences(GenericDao<T, Long> dao, Set<Long> ids) {
+        if (ids.isEmpty()) {
+            return Collections.emptyList();
+        }
+        SearchCriteria<T> criteria = dao.createSearchCriteria();
+        criteria.addAnd("id", SearchCriteria.Op.IN, ids.toArray());
+        List<T> rows = dao.search(criteria, null);
+        if (rows == null) {
+            throw new CloudRuntimeException("ASN references could not be verified");
+        }
+        return rows;
     }
 
     @Override
     @DB
     @ActionEvent(eventType = EventTypes.EVENT_AS_RANGE_DELETE, eventDescription = "Deleting AS Range")
     public boolean deleteASRange(long id) {
-        final ASNumberRange asRange = asNumberRangeDao.findById(id);
-        if (asRange == null) {
-            throw new CloudRuntimeException(String.format("Could not find a AS range with id: %s", id));
+        ASNumberRangeVO snapshot = asNumberRangeDao.findById(id);
+        if (snapshot == null) {
+            throw new InvalidParameterValueException("The ASN range no longer exists.");
         }
-        long startASNumber = asRange.getStartASNumber();
-        long endASNumber = asRange.getEndASNumber();
-        long zoneId = asRange.getDataCenterId();
-        DataCenterVO zone = dataCenterDao.findById(zoneId);
-        List<ASNumberVO> allocatedAsNumbers = asNumberDao.listAllocatedByASRange(asRange.getId());
-        if (Objects.nonNull(allocatedAsNumbers) && !allocatedAsNumbers.isEmpty()) {
-            throw new CloudRuntimeException(String.format("There are %s AS numbers in use from the range %s-%s, cannot remove the range",
-                    allocatedAsNumbers.size(), startASNumber, endASNumber));
-        }
-        try {
-            Transaction.execute(new TransactionCallbackNoReturn() {
-                @Override
-                public void doInTransactionWithoutResult(TransactionStatus status) {
-                    int removedASNumbers = asNumberDao.removeASRangeNumbers(asRange.getId());
-                    LOGGER.debug(String.format("Removed %s AS numbers from the range %s-%s", removedASNumbers,
-                            startASNumber, endASNumber));
-                    asNumberRangeDao.remove(id);
-                    LOGGER.debug("Removing the AS Number Range {}-{} for the zone {}", startASNumber, endASNumber, zone);
-                }
-            });
-        } catch (Exception e) {
-            String err = String.format("Error removing AS Number range %s-%s for zone %s: %s",
-                    startASNumber, endASNumber, zone, e.getMessage());
-            LOGGER.error(err, e);
-            throw new CloudRuntimeException(err);
-        }
-        return true;
+        long zoneId = snapshot.getDataCenterId();
+        return Transaction.execute((TransactionCallback<Boolean>) status -> {
+            if (dataCenterDao.lockRow(zoneId, true) == null) {
+                throw new InvalidParameterValueException("The selected Zone no longer exists.");
+            }
+            ASNumberRangeVO range = asNumberRangeDao.lockRow(id, true);
+            if (range == null || range.getRemoved() != null || range.getDataCenterId() != zoneId) {
+                throw new InvalidParameterValueException("The ASN range no longer exists in the selected Zone.");
+            }
+            // Allocation holds the Zone and range locks until commit, so this is the final authoritative guard.
+            List<ASNumberVO> allocated = asNumberDao.listAllocatedByASRange(id);
+            if (allocated == null) {
+                throw new CloudRuntimeException("Could not verify allocated AS numbers");
+            }
+            if (!allocated.isEmpty()) {
+                throw new InvalidParameterValueException("The ASN range contains allocated AS numbers and cannot be deleted.");
+            }
+            int removed = asNumberDao.removeASRangeNumbers(id);
+            if (!asNumberRangeDao.remove(id)) {
+                throw new CloudRuntimeException("Could not remove ASN range");
+            }
+            LOGGER.debug("Removed ASN range {} and {} members in Zone {}", id, removed, zoneId);
+            return true;
+        });
     }
 
     @Override

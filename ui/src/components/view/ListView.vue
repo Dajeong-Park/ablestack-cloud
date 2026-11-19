@@ -59,7 +59,8 @@
       <span v-else>{{ column.title }}</span>
     </template>
     <template #bodyCell="{ column, text, record }">
-      <IsoListCell v-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
+      <AsnListCell v-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
+      <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
       <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
@@ -1278,6 +1279,7 @@ import { volumeVmPath } from '@/utils/storageUi'
 import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
+import AsnListCell from '@/components/view/AsnListCell'
 import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
@@ -1302,6 +1304,7 @@ export default {
     PublicIpStatus,
     PublicIpDetailValue,
     PublicIpNetworkLink,
+    AsnListCell,
     BackupProgress,
     SharedFSCapacitySummary,
     SharedFSBootRecoverySummary,

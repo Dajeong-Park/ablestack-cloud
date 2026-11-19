@@ -17,6 +17,10 @@
 package org.apache.cloudstack.api.command.user.bgp;
 
 import com.cloud.bgp.ASNumber;
+import com.cloud.bgp.ASNumberReleasePolicy;
+import com.cloud.bgp.ASNumberQueryValidator;
+import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.exception.PermissionDeniedException;
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.exception.InsufficientCapacityException;
 import com.cloud.exception.NetworkRuleConflictException;
@@ -42,6 +46,7 @@ import org.apache.cloudstack.api.response.ZoneResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @APICommand(name = "listASNumbers",
         description = "List Autonomous Systems Numbers",
@@ -58,9 +63,9 @@ public class ListASNumbersCmd extends BaseListCmd {
             description = "the AS Number range ID")
     private Long asNumberRangeId;
 
-    @Parameter(name = ApiConstants.AS_NUMBER, type = CommandType.INTEGER, entityType = ASNumberResponse.class,
-            description = "AS number")
-    private Integer asNumber;
+    @Parameter(name = ApiConstants.AS_NUMBER, type = CommandType.LONG, entityType = ASNumberResponse.class,
+            description = "Exact AS number from 0 to 4294967295, including special numbers for read-only lookup")
+    private Long asNumber;
 
     @Parameter(name = ApiConstants.IS_ALLOCATED, type = CommandType.BOOLEAN,
             description = "to indicate if the AS number is allocated to any network")
@@ -94,7 +99,17 @@ public class ListASNumbersCmd extends BaseListCmd {
         return allocated;
     }
 
-    public Integer getAsNumber() { return asNumber; }
+    public Long getAsNumber() {
+        ASNumberQueryValidator.validate(asNumber);
+        return asNumber;
+    }
+
+    @Override
+    public void validateSpecificParameters(final Map<String, String> params) {
+        super.validateSpecificParameters(params);
+        ASNumberQueryValidator.validateRaw(params.get(ApiConstants.AS_NUMBER));
+        ASNumberQueryValidator.validate(asNumber);
+    }
 
     public Long getNetworkId() {
         return networkId;
@@ -115,16 +130,26 @@ public class ListASNumbersCmd extends BaseListCmd {
     @Override
     public void execute() throws ResourceUnavailableException, InsufficientCapacityException, ServerApiException, ConcurrentOperationException, ResourceAllocationException, NetworkRuleConflictException {
         try {
+            ASNumberQueryValidator.validate(asNumber);
             Pair<List<ASNumber>, Integer> pair = bgpService.listASNumbers(this);
             List<ASNumber> asNumbers = pair.first();
+            Map<Long, String> releaseReasons = bgpService.getASNumberReleaseReasons(asNumbers);
             ListResponse<ASNumberResponse> response = new ListResponse<>();
             List<ASNumberResponse> responses = new ArrayList<>();
             for (ASNumber asn : asNumbers) {
-                responses.add(_responseGenerator.createASNumberResponse(asn));
+                ASNumberResponse item = _responseGenerator.createASNumberResponse(asn);
+                String reason = releaseReasons == null ? ASNumberReleasePolicy.UNKNOWN : releaseReasons.getOrDefault(asn.getId(), ASNumberReleasePolicy.UNKNOWN);
+                item.setReleasable(ASNumberReleasePolicy.ELIGIBLE.equals(reason));
+                item.setReleaseReason(reason);
+                responses.add(item);
             }
             response.setResponses(responses, pair.second());
             response.setResponseName(getCommandName());
             setResponseObject(response);
+        } catch (PermissionDeniedException e) {
+            throw new ServerApiException(ApiErrorCode.UNAUTHORIZED, "The selected search scope is not accessible.");
+        } catch (InvalidParameterValueException e) {
+            throw new ServerApiException(ApiErrorCode.PARAM_ERROR, e.getMessage());
         } catch (Exception e) {
             String msg = String.format("Error listing AS Numbers, due to: %s", e.getMessage());
             throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, msg);

@@ -17,6 +17,9 @@
 package org.apache.cloudstack.api.command.admin.bgp;
 
 import com.cloud.exception.ConcurrentOperationException;
+import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.exception.PermissionDeniedException;
+import com.cloud.bgp.ASNumberQueryValidator;
 import com.cloud.exception.InsufficientCapacityException;
 import com.cloud.exception.NetworkRuleConflictException;
 import com.cloud.exception.ResourceAllocationException;
@@ -53,6 +56,7 @@ public class ReleaseASNumberCmd extends BaseCmd {
     @Override
     public void execute() throws ResourceUnavailableException, InsufficientCapacityException, ServerApiException, ConcurrentOperationException, ResourceAllocationException, NetworkRuleConflictException {
         try {
+            ASNumberQueryValidator.validate(asNumber);
             Pair<Boolean, String> resultPair = bgpService.releaseASNumber(zoneId, asNumber, false);
             Boolean result = resultPair.first();
             if (!result) {
@@ -62,6 +66,12 @@ public class ReleaseASNumberCmd extends BaseCmd {
             SuccessResponse response = new SuccessResponse(getCommandName());
             response.setDisplayText(String.format("AS Number %s is released successfully", asNumber));
             setResponseObject(response);
+        } catch (PermissionDeniedException e) {
+            throw new ServerApiException(ApiErrorCode.UNAUTHORIZED, "The selected ASN release scope is not accessible.");
+        } catch (InvalidParameterValueException e) {
+            throw new ServerApiException(ApiErrorCode.PARAM_ERROR, e.getMessage());
+        } catch (ServerApiException e) {
+            throw e;
         } catch (Exception e) {
             String msg = String.format("Error releasing AS Number %s: %s", asNumber, e.getMessage());
             throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, msg);

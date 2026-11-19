@@ -16,6 +16,9 @@
 // under the License.
 package org.apache.cloudstack.api.command.admin.bgp;
 
+import java.util.UUID;
+
+import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.exception.ConcurrentOperationException;
 import com.cloud.exception.InsufficientCapacityException;
 import com.cloud.exception.NetworkRuleConflictException;
@@ -64,11 +67,18 @@ public class DeleteASNRangeCmd extends BaseCmd {
 
     @Override
     public void execute() throws ResourceUnavailableException, InsufficientCapacityException, ServerApiException, ConcurrentOperationException, ResourceAllocationException, NetworkRuleConflictException {
-        if (bgpService.deleteASRange(getId())) {
-            SuccessResponse response = new SuccessResponse(getCommandName());
-            setResponseObject(response);
-        } else {
-            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Failed to remove AS range: " + getId());
+        try {
+            if (!bgpService.deleteASRange(getId())) {
+                throw new IllegalStateException("ASN range removal did not complete");
+            }
+            setResponseObject(new SuccessResponse(getCommandName()));
+        } catch (InvalidParameterValueException e) {
+            throw new ServerApiException(ApiErrorCode.PARAM_ERROR, e.getMessage());
+        } catch (Exception e) {
+            String diagnosticId = UUID.randomUUID().toString();
+            logger.error("ASN range deletion failed (diagnostic ID {})", diagnosticId, e);
+            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR,
+                    "Could not delete the ASN range. Diagnostic ID: " + diagnosticId);
         }
     }
 

@@ -96,6 +96,12 @@ public class ApiResponseSerializer {
         return result.toString();
     }
 
+    private static boolean includeListCount(ResponseObject result, Integer count) {
+        // ASN deletion requires an explicit verified zero, distinct from a malformed/unknown response.
+        return count != null && (count != 0 || "listasnumbersresponse".equals(result.getResponseName())
+                || "listasnrangesresponse".equals(result.getResponseName()));
+    }
+
     public static String toJSONSerializedString(ResponseObject result, StringBuilder log) {
         if (result != null && log != null) {
             Gson responseBuilder = ApiResponseGsonHelper.getBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC).create();
@@ -108,8 +114,8 @@ public class ApiResponseSerializer {
             if (result instanceof ListResponse) {
                 List<? extends ResponseObject> responses = ((ListResponse)result).getResponses();
                 Integer count = ((ListResponse)result).getCount();
-                boolean nonZeroCount = (count != null && count.longValue() != 0);
-                if (nonZeroCount) {
+                boolean includeCount = includeListCount(result, count);
+                if (includeCount) {
                     sb.append("{\"").append(ApiConstants.COUNT).append("\":").append(count);
                     log.append("{\"").append(ApiConstants.COUNT).append("\":").append(count);
                 }
@@ -120,7 +126,7 @@ public class ApiResponseSerializer {
                     String logStr = logBuilder.toJson(responses.get(0));
                     logStr = unescape(logStr);
 
-                    if (nonZeroCount) {
+                    if (includeCount) {
                         sb.append(",\"").append(responses.get(0).getObjectName()).append("\":[").append(jsonStr);
                         log.append(",\"").append(responses.get(0).getObjectName()).append("\":[").append(logStr);
                     }
@@ -136,7 +142,7 @@ public class ApiResponseSerializer {
                     sb.append("]}");
                     log.append("]}");
                 } else  {
-                    if (!nonZeroCount) {
+                    if (!includeCount) {
                         sb.append("{");
                         log.append("{");
                     }
@@ -199,7 +205,7 @@ public class ApiResponseSerializer {
             if (result instanceof ListResponse) {
                 Integer count = ((ListResponse)result).getCount();
 
-                if (count != null && count != 0) {
+                if (includeListCount(result, count)) {
                     sb.append("<").append(ApiConstants.COUNT).append(">").append(((ListResponse)result).getCount()).append("</").append(ApiConstants.COUNT).append(">");
                     log.append("<").append(ApiConstants.COUNT).append(">").append(((ListResponse)result).getCount()).append("</").append(ApiConstants.COUNT).append(">");
                 }

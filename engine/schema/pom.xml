@@ -29,6 +29,12 @@
     </parent>
     <dependencies>
         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.cloudstack</groupId>
             <artifactId>cloud-engine-api</artifactId>
             <version>${project.version}</version>

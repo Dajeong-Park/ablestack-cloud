@@ -1,0 +1,670 @@
+{
+  "scope": "AS Numbers toolbar / refresh / Zone ASN range table follow-up; ISP excluded",
+  "baseSource": "c2e02b38fafbea177b2160f43737ddd9bca846ff",
+  "sourceSha256": {
+    "ui/public/locales/en.json": "80eaf3fc8b94c03c1becb515f44cd26eab114dcc2cd44d74dd6a4c6e74f7a594",
+    "ui/public/locales/ko_KR.json": "753b1666cc32ceedaa89aa798dba2bbab3dc11ab9af9d164b0521a4b14a02d85",
+    "ui/src/components/view/AsnListTools.vue": "c41224f06d0c504e92cc7f2fa465f372e1865ed2263489bfa1d89dbb81081649",
+    "ui/src/components/view/AsnSearch.vue": "1b3f705d4d329485561ab9a4cf54db7212e5580aa4762a823a04904cc3dd45b5",
+    "ui/src/views/AutogenView.vue": "8338ae062dce3a6ea16660982f525d27f7a550d7e3c863ebac634a027b7d330d",
+    "ui/src/views/infra/zone/AsNumbersTab.vue": "696bf078cc4a5ba326d72281973b73dd5d45d9dbe807bd8114f44a7232dae176",
+    "ui/tests/unit/views/AutogenAsnSearch.spec.js": "06cd888a3cc709d3c0b8920a7452263dde740f85842883b1dd142d0966d1f1da"
+  },
+  "tests": {
+    "uniqueSuites": 8,
+    "uniqueTestsPassed": 80,
+    "finalChangedComponentsRerun": {
+      "suites": 2,
+      "tests": 10
+    },
+    "lint": "PASS",
+    "productionBuild": "PASS",
+    "diffCheck": "PASS"
+  },
+  "ui": {
+    "toolbarMatrix": [
+      {
+        "cluster": 31,
+        "theme": "light",
+        "width": 1280,
+        "buttonY": 109,
+        "searchY": 109,
+        "searchWidth": 280.859375,
+        "ribbon": 0
+      },
+      {
+        "cluster": 32,
+        "theme": "light",
+        "width": 1280,
+        "buttonY": 182,
+        "searchY": 182,
+        "searchWidth": 280.859375,
+        "ribbon": 0
+      },
+      {
+        "cluster": 31,
+        "theme": "light",
+        "width": 768,
+        "buttonY": 177,
+        "searchY": 177,
+        "searchWidth": 131,
+        "ribbon": 0
+      },
+      {
+        "cluster": 32,
+        "theme": "light",
+        "width": 768,
+        "buttonY": 282,
+        "searchY": 282,
+        "searchWidth": 131,
+        "ribbon": 0
+      },
+      {
+        "cluster": 31,
+        "theme": "light",
+        "width": 390,
+        "buttonY": 183,
+        "searchY": 183,
+        "searchWidth": 131,
+        "ribbon": 0
+      },
+      {
+        "cluster": 32,
+        "theme": "light",
+        "width": 390,
+        "buttonY": 306,
+        "searchY": 306,
+        "searchWidth": 131,
+        "ribbon": 0
+      },
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "width": 1280,
+        "buttonY": 109,
+        "searchY": 109,
+        "searchWidth": 280.859375,
+        "ribbon": 0
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "width": 1280,
+        "buttonY": 182,
+        "searchY": 182,
+        "searchWidth": 280.859375,
+        "ribbon": 0
+      },
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "width": 768,
+        "buttonY": 177,
+        "searchY": 177,
+        "searchWidth": 131,
+        "ribbon": 0
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "width": 768,
+        "buttonY": 282,
+        "searchY": 282,
+        "searchWidth": 131,
+        "ribbon": 0
+      },
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "width": 390,
+        "buttonY": 183,
+        "searchY": 183,
+        "searchWidth": 131,
+        "ribbon": 0
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "width": 390,
+        "buttonY": 306,
+        "searchY": 306,
+        "searchWidth": 131,
+        "ribbon": 0
+      }
+    ],
+    "zoneMatrix": [
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1270,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(39, 46, 54)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgb(62, 70, 80)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(34, 40, 47)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 628
+          }
+        ]
+      },
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "width": 768,
+        "documentWidth": 758,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(39, 46, 54)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgb(62, 70, 80)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(34, 40, 47)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 457
+          }
+        ]
+      },
+      {
+        "cluster": 31,
+        "theme": "dark",
+        "width": 390,
+        "documentWidth": 380,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(39, 46, 54)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgb(62, 70, 80)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(34, 40, 47)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 79
+          }
+        ]
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "width": 1280,
+        "documentWidth": 1270,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(39, 46, 54)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgb(62, 70, 80)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(34, 40, 47)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 580
+          }
+        ]
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "width": 768,
+        "documentWidth": 758,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(39, 46, 54)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgb(62, 70, 80)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(34, 40, 47)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 457
+          }
+        ]
+      },
+      {
+        "cluster": 32,
+        "theme": "dark",
+        "width": 390,
+        "documentWidth": 380,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(39, 46, 54)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgb(62, 70, 80)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(34, 40, 47)",
+          "border": "rgb(62, 70, 80)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(197, 204, 212)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 79
+          }
+        ]
+      },
+      {
+        "cluster": 31,
+        "theme": "light",
+        "width": 768,
+        "documentWidth": 758,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgb(217, 223, 231)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 457
+          }
+        ]
+      },
+      {
+        "cluster": 31,
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 380,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgb(217, 223, 231)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 296
+          }
+        ]
+      },
+      {
+        "cluster": 32,
+        "theme": "light",
+        "width": 390,
+        "documentWidth": 380,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgb(217, 223, 231)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 296
+          }
+        ]
+      },
+      {
+        "cluster": 31,
+        "theme": "light",
+        "width": 1280,
+        "documentWidth": 1270,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgb(217, 223, 231)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 504
+          }
+        ]
+      },
+      {
+        "cluster": 32,
+        "theme": "light",
+        "width": 1280,
+        "documentWidth": 1270,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgb(217, 223, 231)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 504
+          }
+        ]
+      },
+      {
+        "cluster": 32,
+        "theme": "light",
+        "width": 768,
+        "documentWidth": 758,
+        "bordered": 0,
+        "middle": 1,
+        "rows": 2,
+        "header": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgb(217, 223, 231)",
+          "tag": "TH",
+          "text": "ASN 범위"
+        },
+        "body": {
+          "bg": "rgb(255, 255, 255)",
+          "border": "rgb(217, 223, 231)",
+          "borderWidth": "0px 0px 1px",
+          "color": "rgb(75, 85, 99)",
+          "headerSeparator": "rgba(0, 0, 0, 0)",
+          "tag": "TD",
+          "text": "64512 - 64514"
+        },
+        "internalScroll": [
+          {
+            "scrollWidth": 800,
+            "width": 457
+          }
+        ]
+      }
+    ],
+    "refresh": {
+      "31": {
+        "before": {
+          "rows": 4,
+          "selected": 1,
+          "tableTop": 179,
+          "spinning": 0,
+          "empty": "데이터 없음",
+          "ribbon": 0
+        },
+        "during": {
+          "rows": 4,
+          "selected": 1,
+          "tableTop": 179,
+          "spinning": 0,
+          "empty": "데이터 없음",
+          "ribbon": 0
+        },
+        "after": {
+          "rows": 0,
+          "selected": 0,
+          "tableTop": 179,
+          "spinning": 0,
+          "empty": "표시할 데이터가 없음",
+          "ribbon": 0
+        },
+        "emptyDuring": {
+          "rows": 0,
+          "selected": 0,
+          "tableTop": 179,
+          "spinning": 0,
+          "empty": "표시할 데이터가 없음",
+          "ribbon": 0
+        }
+      },
+      "32": {
+        "before": {
+          "rows": 4,
+          "selected": 1,
+          "tableTop": 252,
+          "spinning": 0,
+          "empty": "데이터 없음",
+          "ribbon": 0
+        },
+        "during": {
+          "rows": 4,
+          "selected": 1,
+          "tableTop": 252,
+          "spinning": 0,
+          "empty": "데이터 없음",
+          "ribbon": 0
+        },
+        "after": {
+          "rows": 0,
+          "selected": 0,
+          "tableTop": 252,
+          "spinning": 0,
+          "empty": "표시할 데이터가 없음",
+          "ribbon": 0
+        },
+        "emptyDuring": {
+          "rows": 0,
+          "selected": 0,
+          "tableTop": 252,
+          "spinning": 0,
+          "empty": "표시할 데이터가 없음",
+          "ribbon": 0
+        }
+      }
+    },
+    "restoration": [
+      {
+        "cluster": 31,
+        "light": true,
+        "width": 1102,
+        "rows": 0,
+        "empty": "표시할 데이터가 없음"
+      },
+      {
+        "cluster": 32,
+        "light": true,
+        "width": 1102,
+        "rows": 0,
+        "empty": "표시할 데이터가 없음"
+      }
+    ]
+  },
+  "deployment": {
+    "31": {
+      "backup": "/root/asn-ui-followup-ui-20261119-005733",
+      "indexSha256": "b9de989dafa00348a7bc6fdd6dae46423209196b7cc14721a3f302f80d9609a1",
+      "artifactSha256": "3a3d9ecefa585355ed88724454ecaa3c467985a3b6a8fce0594924681266b367",
+      "jarSha256": "e6c685e612f6c2458ece8ca9247e4f8bab6cfd7b057a550e18ae3a3b54242404",
+      "webInfAndServerConfigPreserved": true,
+      "httpStatus": 200,
+      "servicePID": "2737982"
+    },
+    "32": {
+      "backup": "/root/asn-ui-followup-ui-20261119-005752",
+      "indexSha256": "b9de989dafa00348a7bc6fdd6dae46423209196b7cc14721a3f302f80d9609a1",
+      "artifactSha256": "3a3d9ecefa585355ed88724454ecaa3c467985a3b6a8fce0594924681266b367",
+      "jarSha256": "357abffd36e0f9e233004c00ef16e3ad4edb791c9b27e0001bbb844ae594fa71",
+      "webInfAndServerConfigPreserved": true,
+      "httpStatus": 200,
+      "servicePID": "3059293"
+    }
+  },
+  "cleanup": {
+    "31": {
+      "inventoryIdsAndCountsPreserved": true,
+      "ranges": 0,
+      "numbers": 0,
+      "protectedCounts": {
+        "listZones": 1,
+        "listASNRanges": 0,
+        "listASNumbers": 0,
+        "listVirtualMachines": 132,
+        "listNetworks": 31,
+        "listVPCs": 2,
+        "listPublicIpAddresses": 24
+      }
+    },
+    "32": {
+      "inventoryIdsAndCountsPreserved": true,
+      "ranges": 0,
+      "numbers": 0,
+      "protectedCounts": {
+        "listZones": 1,
+        "listASNRanges": 0,
+        "listASNumbers": 0,
+        "listVirtualMachines": 59,
+        "listNetworks": 17,
+        "listVPCs": 1,
+        "listPublicIpAddresses": 10
+      }
+    }
+  }
+}

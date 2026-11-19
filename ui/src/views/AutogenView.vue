@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'themed-list-toolbar': isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': !!asnSearchAuth || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -161,11 +161,13 @@
               <template #icon><reload-outlined /></template>
               {{ $t('label.refresh') }}
             </a-button>
+            <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="asnListReady" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <search-view
               v-if="!dataView"
               :searchFilters="searchFilters"
               :searchParams="searchParams"
               :apiName="apiName"
+              :asn-search-failure="asnSearchFailure"
               @search="onSearch"
               @change-filter="changeFilter"
             />
@@ -858,6 +860,7 @@
     <div
       :style="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 'margin-top: 24px; margin-bottom: 12px' : null"
     >
+      <a-alert v-if="asnSearchFailure && $route.meta?.name === 'asnumbers'" class="asn-search-error" type="error" show-icon :message="$t('message.asn.search.' + asnSearchFailure)"><template #description><a-button @click="onSearch({ asnSearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="publicIpSearchFailure && $route.meta?.name === 'publicip' && !dataView" class="public-ip-search-error" type="error" show-icon :message="$t(publicIpSearchFailure)"><template #description><a-button @click="onSearch({ filter: 'allocated', state: 'Allocated', projectid: publicIpProject($store.getters) })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="vnfSearchFailure && $route.meta?.name === 'vnfapp'" class="vnf-search-error" type="error" show-icon :message="$t(vnfSearchFailure)"><template #description><a-button @click="onSearch({})">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <InstanceGroupQueryStatus
@@ -925,15 +928,16 @@
         <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
           <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
-        <p v-else-if="listRefreshError && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
+        <p v-else-if="listRefreshError && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
-          :emptyText="$route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
+          :emptyText="asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
           :items="items"
-          :actions="isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
-          :selectionDisabled="record => (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
-          :explicitlyAllowRowSelection="policySelectionAvailable"
+          :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
+          :selectionDisabled="record => (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
+          :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
+          :tableScroll="asnSearchAuth ? { x: 1640 } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -1051,6 +1055,8 @@ import { normalizeVmGroupName, isVmGroupNameAction, isVmGroupAction, vmGroupErro
 import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentity'
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
+import AsnListTools from '@/components/view/AsnListTools'
+import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
 import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
 
@@ -1059,6 +1065,7 @@ let templateFilterSequence = 0
 export default {
   name: 'Resource',
   components: {
+    AsnListTools,
     NetworkOperationPolicy,
     BucketStoreFilter,
     Breadcrumb,
@@ -1162,6 +1169,7 @@ export default {
       listCustomRender: {},
       listRefreshError: false,
       vnfSearchFailure: '',
+      asnSearchFailure: '',
       publicIpSearchFailure: '',
       publicIpProjectSync: false,
       publicIpProjectApplying: false,
@@ -1303,7 +1311,7 @@ export default {
 
     this.currentPath = this.$route.fullPath
     this.fetchData()
-    if ('projectid' in this.$route.query && this.$route.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(this.$route)) {
+    if (!asnRoute(this.$route) && 'projectid' in this.$route.query && this.$route.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(this.$route)) {
       this.switchProject(this.$route.query.projectid)
     }
     this.setModalWidthByScreen()
@@ -1334,6 +1342,7 @@ export default {
     next()
   },
   watch: {
+    asnSearchAuth: { flush: 'sync', handler () { if (asnRoute(this.$route)) { this.rejectAsnSearch(''); this.fetchData() } } },
     publicIpAuth: {
       flush: 'sync',
       handler () {
@@ -1512,10 +1521,17 @@ export default {
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
+    asnSearchAuth () { return asnRoute(this.$route) ? asnAuth(this.$store) : '' },
+    asnListReady () { return !!this.asnSearchAuth && !this.listRefreshError && !this.asnSearchFailure && this.listLoadedScope === this.listScope() },
+    asnListEmptyText () { return this.$t(this.asnSearchFailure ? 'message.asn.search.lookup' : this.listRequestPending && this.listLoadedScope !== this.listScope() ? 'label.loading' : 'label.no.data') },
     isPublicIpUi () { return publicIpRoute(this.$route) },
     publicIpDetail () { return this.$route.meta?.name === 'publicip' && !!this.$route.params?.id },
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
-    presentedColumns () { return this.localizePublicIpColumns(this.columns) },
+    presentedColumns () {
+      const columns = this.localizePublicIpColumns(this.columns)
+      if (!asnRoute(this.$route)) return columns
+      return columns.map(column => column.key === 'filtercolumn' ? column : ({ ...column, title: this.$t(column.key === 'allocated' ? 'label.asn.allocatedat' : 'label.' + column.key.toLowerCase()), width: ['asnumber', 'allocationstate'].includes(column.key) ? 140 : column.key === 'releasereason' ? 230 : 160 }))
+    },
     presentedChosenColumns () { return this.localizePublicIpColumns(this.chosenColumns) },
     publicIpReleaseDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'releaseIpAddress' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
@@ -1547,6 +1563,7 @@ export default {
     },
     snapshotSecurityScope () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$store.state?.user?.token, this.$store.getters.userInfo?.roletype, ...(snapshotDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])]) },
     activeFiltersList () {
+      if (asnRoute(this.$route)) return []
       if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
@@ -1595,6 +1612,7 @@ export default {
       }).map(String)
     },
     filterValue () {
+      if (asnRoute(this.$route)) return this.$route.query.filter || 'all'
       if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || 'Allocated').toLowerCase()
       if (vnfRoute(this.$route)) return String(this.$route.query.state || 'all').toLowerCase()
       if (this.$route.meta?.defaultFilter) {
@@ -1790,7 +1808,7 @@ export default {
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -1951,7 +1969,19 @@ export default {
       }
       if (retry && publicIpRoute(this.$route) && !this.$route.params?.id && this.$store.state?.user?.token) return this.fetchData()
     },
+    rejectAsnSearch (reason) {
+      this.asnSearchFailure = reason; this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+      this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
+      if (this.$refs.listview) this.$refs.listview.resetSelection()
+    },
     fetchData (params = {}) {
+      if (asnRoute(this.$route)) {
+        this.dataView = false; this.asnSearchFailure = ''
+        const query = asnQuery(this.$route.query, this.getValidPageSize(this.pageSize), this.$store.getters)
+        const error = !this.$store.state?.user?.token ? 'permission' : asnError(query, this.$store.getters)
+        if (error) { this.rejectAsnSearch(error); return Promise.resolve() }
+        if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) { this.rejectAsnSearch(''); return this.$router.replace({ query }) }
+      }
       if (publicIpRoute(this.$route) && !this.$route.params?.id) {
         if (this.publicIpProjectSync) return Promise.resolve()
         this.dataView = false; this.publicIpSearchFailure = ''
@@ -2111,7 +2141,7 @@ export default {
           : null
         this.routeName = matchedRoute?.meta?.name || this.$route?.meta?.name || this.$route?.name || ''
       }
-      const securityScope = JSON.stringify([...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
+      const securityScope = JSON.stringify([...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
       if (this.listSecurityScope !== securityScope) {
         this.items = []
         this.resource = {}
@@ -2340,6 +2370,10 @@ export default {
               // Replace the former default domain column in saved selections as well.
               this.selectedColumns = [...new Set(this.selectedColumns.map(key => key === 'domain' ? 'zonename' : key))]
             }
+            if (this.$route.meta?.name === 'asnumbers') {
+              const oldDefaults = ['asnumber', 'allocationstate', 'asnrange', 'associatednetworkname', 'vpcname', 'allocated', 'account', 'domain', 'zonename']
+              if (JSON.stringify(this.selectedColumns) === JSON.stringify(oldDefaults)) this.selectedColumns = [...defaultColumnKeys]
+            }
             if (this.$store.getters.listAllProjects && !this.projectView && !isoQuery) {
               this.selectedColumns.push('project')
             }
@@ -2482,6 +2516,7 @@ export default {
       if (customParamHandler && typeof customParamHandler === 'function') {
         params = customParamHandler(params, this.$route.query)
       }
+      if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
       if (vnfRoute(this.$route)) params = vnfListParams(params, this.dataView)
 
@@ -2526,7 +2561,7 @@ export default {
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
-      const response = isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2723,6 +2758,12 @@ export default {
           if (isAutoScheduled) throw error
           return
         }
+        if (asnRoute(this.$route)) {
+          this.asnSearchFailure = ['permission', 'project', 'zone', 'domain', 'integer', 'invalid', 'missing', 'scope', 'combination'].includes(error?.message) ? error.message : 'lookup'
+          this.listRefreshError = true; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+          if (!sameList) { this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null }
+          return
+        }
         if (publicIpList) { if ([401, 403].includes(Number(error?.response?.status))) { this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection() } this.listRefreshError = true; this.publicIpSearchFailure = 'message.public.ip.search.failed'; if (!isAutoScheduled) this.$notifyError(error); return }
         if (sameList || this.$route.name === 'vmsnapshot') {
           this.listRefreshError = true
@@ -2763,6 +2804,7 @@ export default {
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
         this.listRequestPending = false
         this.loading = false
+        if (asnRoute(this.$route) && !this.listRefreshError && !this.asnSearchFailure) this.onRowSelectionChange(this.selectedRowKeys)
         if (this.publicIpDetail) this.$emit('public-ip-read-state', { pending: false, failed: this.listRefreshError })
         this.searchParams = params
         if (this.listRefreshQueued) {
@@ -2927,6 +2969,11 @@ export default {
       this.$router.push({ query: queryParams })
     },
     onRowSelectionChange (selection) {
+      if (asnRoute(this.$route)) {
+        if (this.listRequestPending && this.listLoadedScope !== this.listScope()) return
+        if (this.listRefreshError || this.asnSearchFailure) { this.resetSelection(); return }
+        selection = [...new Set(selection || [])].filter(id => this.items.some(row => listRowKey(row) === id))
+      }
       if (vnfRoute(this.$route)) {
         if (!this.storageActionReady) { this.resetSelection(); return }
         selection = [...new Set(selection || [])].filter(id => this.items.some(row => row.id === id))
@@ -3900,6 +3947,7 @@ export default {
       return this.$t(key)
     },
     changeFilter (filter) {
+      if (asnRoute(this.$route)) { const query = { ...this.$route.query, filter }; delete query.isallocated; this.onSearch(query); return }
       if (publicIpRoute(this.$route)) {
         const query = { ...this.$route.query, filter }; delete query.state
         if (filter !== 'all') query.state = filter
@@ -4031,6 +4079,13 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (asnRoute(this.$route)) {
+        const query = asnSearchQuery(this.$route.query, opts?.asnSearch || opts || {}, this.pageSize, this.$store.getters)
+        this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData()
+        else this.$router.push({ query })
+        return
+      }
       if (publicIpRoute(this.$route) && !this.$route.params?.id) {
         const query = publicIpSearchQuery(this.$route.query, opts, this.pageSize, this.$store.getters)
         this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -4133,7 +4188,7 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -4163,7 +4218,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
