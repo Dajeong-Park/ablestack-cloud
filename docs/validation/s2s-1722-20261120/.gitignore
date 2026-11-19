@@ -246,3 +246,7 @@
 !screenshots/**
 !checkstyle-audit.py
 !vm-standard-preservation.json
+
+!32-1280-recheck-captures.json
+!32-1280-recheck-audit.json
+!32-1280-*-recheck.log
