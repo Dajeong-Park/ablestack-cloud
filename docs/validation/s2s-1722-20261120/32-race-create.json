@@ -1,0 +1,45 @@
+{
+  "command": "createVpnGateway",
+  "params": {
+    "vpcid": "012ca552-d769-421d-be2b-44d6fe2d8fc0",
+    "ipaddressid": "d670d49c-497f-46fe-940a-45c83202a1d7",
+    "customjobid": "69e9c2f3-215f-4361-94c1-8d5c46a1bd09"
+  },
+  "accepted": {
+    "createvpngatewayresponse": {
+      "id": "64cbe30b-eb9a-4fdb-9ad1-763691756ae6",
+      "jobid": "69e9c2f3-215f-4361-94c1-8d5c46a1bd09"
+    }
+  },
+  "final": {
+    "queryasyncjobresultresponse": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpngateway": {
+          "id": "64cbe30b-eb9a-4fdb-9ad1-763691756ae6",
+          "publicip": "10.10.32.170",
+          "vpcid": "012ca552-d769-421d-be2b-44d6fe2d8fc0",
+          "vpcname": "qa-s2s1722-32-source",
+          "account": "qa-s2s1722-32-user",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "fordisplay": true
+        }
+      },
+      "jobinstancetype": "None",
+      "created": "2026-11-20T01:14:58+0900",
+      "completed": "2026-11-20T01:14:58+0900",
+      "jobid": "69e9c2f3-215f-4361-94c1-8d5c46a1bd09",
+      "jobstatus": 1
+    }
+  }
+}

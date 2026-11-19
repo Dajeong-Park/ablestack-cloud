@@ -1,0 +1,34 @@
+{
+  "changedJavaFiles": [
+    "api/src/main/java/org/apache/cloudstack/api/command/user/vpn/CreateVpnGatewayCmd.java",
+    "api/src/test/java/org/apache/cloudstack/api/command/user/vpn/CreateVpnGatewayCmdMetadataTest.java"
+  ],
+  "changedFileErrors": 0,
+  "moduleFilesChecked": 2159,
+  "moduleErrors": 46,
+  "unchangedBaselineFiles": {
+    "api/src/main/java/org/apache/cloudstack/api/response/StorageSmbServiceNameResponse.java": 1,
+    "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleEventsCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ValidateStorageServiceRuntimeBundleCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleValidationsCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleUsagesCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/TransitionStorageServiceRuntimeBundleCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/DeleteStorageDirectoryPolicyCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageDirectoryPolicyCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageSmbServiceNamesCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/GetStorageSmbServiceNameContextCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/BaseStorageSmbServiceNameCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageDirectoryPoliciesCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageNfsIdentityMappingCmd.java": 1,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/CreateStorageDirectoryPolicyCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionImpactCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java": 5,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ResumeSharedFSDeletionCmd.java": 1,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionOperationCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/BaseSharedFSDeletionCmd.java": 1,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java": 5,
+    "api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ListSharedFSDeletionOperationsCmd.java": 2,
+    "api/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeCatalog.java": 2
+  },
+  "base": "afbf6f26f14cfdb22cedb65d746c0a3f18784b2e"
+}

@@ -1,0 +1,136 @@
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn"
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "VPN 게이트웨이 추가":
+    - img "plus":
+    - generic: VPN 게이트웨이 추가
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색":
+    - /placeholder: 공인 IP, 게이트웨이 ID 또는 VPC 이름 검색
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "Public IP 주소 VPC 계정 도메인 filter":
+        - columnheader "Public IP 주소"
+        - columnheader "VPC"
+        - columnheader "계정"
+        - columnheader "도메인"
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "데이터 없음":
+        - cell "데이터 없음":
+          - paragraph: 데이터 없음
+  - list:
+    - listitem: 전체 0 개 항목 중 0-0 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (3건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "VPN 게이트웨이 추가":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: VPN 게이트웨이 추가
+    - paragraph: VPN 게이트웨이를 추가할 VPC를 선택하세요.
+    - generic "VPC": "* VPC"
+    - generic "VPC":
+      - generic: 012ca552-d769-421d-be2b-44d6fe2d8fc0
+      - combobox "* VPC" [active]
+      - strong: qa-s2s1722-32-source
+      - generic: 012ca552-d769-421d-be2b-44d6fe2d8fc0
+      - generic: qa-s2s1722-32-user · Zone
+    - generic: VPN 게이트웨이가 없는 VPC를 선택하세요. 이름·ID·소유 범위·Zone으로 대상을 구분합니다.
+    - generic "Public IP 주소": "* Public IP 주소"
+    - textbox "Public IP 주소": 10.10.32.170
+    - generic: d670d49c-497f-46fe-940a-45c83202a1d7
+    - generic: 이 VPC는 VpcVirtualRouter의 Source NAT IP를 사용합니다. 표시된 필수 IP를 다른 공인 IP로 변경할 수 없습니다.
+    - button "업데이트":
+      - generic: 업데이트
+    - term: VPC
+    - definition: qa-s2s1722-32-source
+    - term: 아이디
+    - definition: 012ca552-d769-421d-be2b-44d6fe2d8fc0
+    - term: Zone
+    - definition: Zone
+    - term: 계정
+    - definition: qa-s2s1722-32-user
+    - term: 도메인
+    - definition: ROOT
+    - button "취소":
+      - generic: 취소
+    - button "VPN 게이트웨이 추가":
+      - generic: VPN 게이트웨이 추가

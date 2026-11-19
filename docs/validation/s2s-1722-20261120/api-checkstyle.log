@@ -1,0 +1,76 @@
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for org.apache.cloudstack:cloud-plugin-hypervisor-kvm:jar:4.23.0.0
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.json:json:jar -> duplicate declaration of version (?) @ line 130, column 21
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO]
+[INFO] ------------------< org.apache.cloudstack:cloud-api >-------------------
+[INFO] Building Apache CloudStack API 4.23.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-checkstyle-plugin:3.6.0:check (default-cli) @ cloud-api ---
+[INFO] Starting audit...
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/response/StorageSmbServiceNameResponse.java:19: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleEventsCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleEventsCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ValidateStorageServiceRuntimeBundleCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ValidateStorageServiceRuntimeBundleCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleValidationsCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleValidationsCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleUsagesCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/ListStorageServiceRuntimeBundleUsagesCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/TransitionStorageServiceRuntimeBundleCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/admin/storage/dataservice/TransitionStorageServiceRuntimeBundleCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/DeleteStorageDirectoryPolicyCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/DeleteStorageDirectoryPolicyCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageDirectoryPolicyCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageDirectoryPolicyCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageSmbServiceNamesCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageSmbServiceNamesCmd.java:22: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/GetStorageSmbServiceNameContextCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/GetStorageSmbServiceNameContextCmd.java:22: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/BaseStorageSmbServiceNameCmd.java:20: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/BaseStorageSmbServiceNameCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageDirectoryPoliciesCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/ListStorageDirectoryPoliciesCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/UpdateStorageNfsIdentityMappingCmd.java:21:8: Unused import - org.apache.cloudstack.api.BaseCmd. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/CreateStorageDirectoryPolicyCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/dataservice/CreateStorageDirectoryPolicyCmd.java:23: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionImpactCmd.java:20: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionImpactCmd.java:31: Line has trailing spaces. [RegexpSingleline]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java:24:8: Unused import - org.apache.cloudstack.api.ApiErrorCode. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java:25:8: Unused import - org.apache.cloudstack.api.BaseAsyncCmd. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java:28:8: Unused import - org.apache.cloudstack.api.ServerApiException. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java:29:8: Unused import - org.apache.cloudstack.api.command.user.UserCmd. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ExpungeSharedFSCmd.java:31:8: Unused import - org.apache.cloudstack.api.response.SuccessResponse. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ResumeSharedFSDeletionCmd.java:20: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionOperationCmd.java:20: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/GetSharedFSDeletionOperationCmd.java:31: Line has trailing spaces. [RegexpSingleline]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/BaseSharedFSDeletionCmd.java:20: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java:22:8: Unused import - org.apache.cloudstack.api.ApiErrorCode. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java:23:8: Unused import - org.apache.cloudstack.api.BaseAsyncCmd. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java:26:8: Unused import - org.apache.cloudstack.api.ServerApiException. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java:27:8: Unused import - org.apache.cloudstack.api.command.user.UserCmd. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/DestroySharedFSCmd.java:29:8: Unused import - org.apache.cloudstack.api.response.SuccessResponse. [UnusedImports]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ListSharedFSDeletionOperationsCmd.java:19: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/api/command/user/storage/sharedfs/ListSharedFSDeletionOperationsCmd.java:21: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeCatalog.java:18: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.command.admin.storage.dataservice.*. [AvoidStarImport]
+[ERROR] /home/ablecloud/work/dhslove/cloud-s2s-1722/api/src/main/java/org/apache/cloudstack/storage/dataservice/StorageServiceRuntimeCatalog.java:19: Using the '.*' form of import should be avoided - org.apache.cloudstack.api.response.*. [AvoidStarImport]
+Audit done.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.396 s
+[INFO] Finished at: 2026-11-20T00:59:45+09:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check (default-cli) on project cloud-api: Failed during checkstyle execution: There are 46 errors reported by Checkstyle 8.18 with cloud-style.xml ruleset. -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

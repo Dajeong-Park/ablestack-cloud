@@ -1,0 +1,78 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "command": "listVPCs",
+      "params": {
+        "projectid": "9fbefb97-0451-49ae-8668-78c00400c817",
+        "id": "6a66efa9-0355-461e-a564-f2a2beb6064f"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9fbefb97-0451-49ae-8668-78c00400c817",
+        "vpcid": "6a66efa9-0355-461e-a564-f2a2beb6064f",
+        "fordisplay": "true"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9fbefb97-0451-49ae-8668-78c00400c817",
+        "vpcid": "6a66efa9-0355-461e-a564-f2a2beb6064f",
+        "fordisplay": "false"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listPublicIpAddresses",
+      "params": {
+        "projectid": "9fbefb97-0451-49ae-8668-78c00400c817",
+        "vpcid": "6a66efa9-0355-461e-a564-f2a2beb6064f"
+      }
+    },
+    {
+      "method": "POST",
+      "command": "createVpnGateway",
+      "params": {
+        "vpcid": "6a66efa9-0355-461e-a564-f2a2beb6064f",
+        "ipaddressid": "a224e269-d6eb-4b4a-8130-bf2f8927f1c9",
+        "projectid": "9fbefb97-0451-49ae-8668-78c00400c817",
+        "customjobid": "49162be8-0b8b-49bf-8a23-e7cac363b239"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "49162be8-0b8b-49bf-8a23-e7cac363b239"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9fbefb97-0451-49ae-8668-78c00400c817",
+        "vpcid": "6a66efa9-0355-461e-a564-f2a2beb6064f",
+        "fordisplay": "true"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9fbefb97-0451-49ae-8668-78c00400c817"
+      }
+    }
+  ]
+}

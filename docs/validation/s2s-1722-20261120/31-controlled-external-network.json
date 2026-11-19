@@ -1,0 +1,30 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "command": "listVPCs",
+      "params": {}
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "fordisplay": "true"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "fordisplay": "false"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "49767c4b-61bd-4535-9957-af9908e220f1"
+      }
+    }
+  ]
+}

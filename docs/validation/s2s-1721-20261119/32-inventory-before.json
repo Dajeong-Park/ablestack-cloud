@@ -2082,8 +2082,8 @@
           "created": "2026-10-31T15:05:18+0900",
           "user": "[redacted]",
           "accountdetails": {
-            "ceph-rgw-accesskey": "OKP128CJQUSJGEJZ0DRD",
-            "ceph-rgw-secretkey": "6DoPWuiOyFNmvD82JJWuZNwOy8vWlkfZ0avwqZbz",
+            "ceph-rgw-accesskey": "[redacted]",
+            "ceph-rgw-secretkey": "[redacted]",
             "mold.external-iam.provisioning": "local-only-v1"
           },
           "isdefault": false,
