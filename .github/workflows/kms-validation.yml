@@ -18,11 +18,11 @@
 name: KMS Focused Validation
 
 on:
-  push:
-    branches: [dhslove/epic-1727-key-management]
-    paths:
-      - 'server/src/**/org/apache/cloudstack/kms/**'
-      - '.github/workflows/kms-validation.yml'
+  workflow_call:
+    inputs:
+      source_ref:
+        required: false
+        type: string
   workflow_dispatch:
     inputs:
       source_ref:
@@ -35,7 +35,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   kms:
