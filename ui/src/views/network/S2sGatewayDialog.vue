@@ -40,7 +40,7 @@ focus-guard
         </a-form-item>
         <a-alert v-if="loaded && candidates.length && !candidates.some(vpc => !vpc.reason) && !loadError" type="info" show-icon :message="$t('message.s2s.create.candidates.unavailable')" />
         <a-spin :spinning="selectionPending">
-          <a-alert v-if="selectionError" type="error" show-icon :message="selectionError" role="alert" />
+          <a-alert v-if="selectionError && selectionError !== error" type="error" show-icon :message="selectionError" role="alert" />
           <a-form-item v-if="selection" :label="$t('label.publicip')" :extra="$t('message.s2s.create.ip.' + selection.kind)" name="ipaddressid" :rules="[{ required: true, message: $t('label.required') }]">
             <a-input v-if="selection.fixed" :value="selection.ips[0].ipaddress" :aria-label="$t('label.publicip')" readonly />
             <a-select v-else v-model:value="draft.ipaddressid" :aria-label="$t('label.publicip')" :disabled="busy || !!jobId || !allowed" show-search option-filter-prop="label">
