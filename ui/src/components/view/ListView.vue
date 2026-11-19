@@ -434,7 +434,7 @@
         >{{ text }}</router-link>
         <router-link
           v-else
-          :to="{ path: $route.path + '/' + record.id }"
+          :to="$route.meta?.name === 's2svpn' ? s2sGatewayDetailLocation($route, record, $store.getters) : { path: $route.path + '/' + record.id }"
         >{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'traffictype'">
@@ -1292,6 +1292,7 @@ import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySum
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
+import { s2sGatewayDetailLocation } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -1535,6 +1536,7 @@ export default {
     }
   },
   methods: {
+    s2sGatewayDetailLocation,
     vnfDetailLocation,
     publicIpDetailLocation,
     vmDisplayName,

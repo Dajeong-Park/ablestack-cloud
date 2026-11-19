@@ -74,6 +74,7 @@ import { documentationUrl } from '@/utils/cniFileImport'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpListLocation } from '@/utils/publicIpSearch'
+import { s2sGatewayListLocation } from '@/utils/s2sGatewaySearch'
 import { vnfListLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -107,7 +108,7 @@ export default {
     vmDisplayName,
     isVmIdentityRoute,
     documentationUrl,
-    breadcrumbLocation (item) { if (item.path === '/publicip' && this.$route.meta?.name === 'publicip' && this.$route.params?.id) return publicIpListLocation(this.$route, this.$store.getters); if (item.path === '/vnfapp' && this.$route.meta?.name === 'vnfapp' && this.$route.params?.id) return vnfListLocation(this.$route, this.$store.getters); if (item.path === '/iso' && this.$route.meta?.name === 'iso' && this.$route.params?.id) return isoListLocation(this.$route, this.$store.getters); if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }; if (item.path === '/template' && this.$route.meta?.name === 'template' && this.$route.params?.id) return templateListLocation(this.$route, this.$store.getters); return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
+    breadcrumbLocation (item) { if (item.path === '/s2svpn' && this.$route.meta?.name === 's2svpn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters); if (item.path === '/publicip' && this.$route.meta?.name === 'publicip' && this.$route.params?.id) return publicIpListLocation(this.$route, this.$store.getters); if (item.path === '/vnfapp' && this.$route.meta?.name === 'vnfapp' && this.$route.params?.id) return vnfListLocation(this.$route, this.$store.getters); if (item.path === '/iso' && this.$route.meta?.name === 'iso' && this.$route.params?.id) return isoListLocation(this.$route, this.$store.getters); if (item.vpcParent) return { path: item.path, query: { tab: 'pgw' } }; if (item.path === '/template' && this.$route.meta?.name === 'template' && this.$route.params?.id) return templateListLocation(this.$route, this.$store.getters); return item.path === '/guestnetwork' && this.$route.meta?.name === 'guestnetwork' && this.$route.params?.id ? networkListLocation(this.$route) : { path: item.path === '' ? '/' : item.path } },
     getBreadcrumb () {
       this.name = this.$route.name
       this.breadList = []

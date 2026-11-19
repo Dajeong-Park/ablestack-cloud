@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': !!asnSearchAuth || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': s2sGatewayListRoute($route) || !!asnSearchAuth || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -168,6 +168,7 @@
               :searchParams="searchParams"
               :apiName="apiName"
               :asn-search-failure="asnSearchFailure"
+              :s2s-gateway-search-failure="s2sGatewaySearchFailure"
               @search="onSearch"
               @change-filter="changeFilter"
             />
@@ -860,6 +861,7 @@
     <div
       :style="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 'margin-top: 24px; margin-bottom: 12px' : null"
     >
+      <a-alert v-if="s2sGatewaySearchFailure && s2sGatewayListRoute($route)" class="s2s-gateway-search-error" type="error" show-icon :message="$t('message.s2s.gateway.search.' + s2sGatewaySearchFailure)"><template #description><a-button @click="onSearch({ s2sGatewaySearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="asnSearchFailure && $route.meta?.name === 'asnumbers'" class="asn-search-error" type="error" show-icon :message="$t('message.asn.search.' + asnSearchFailure)"><template #description><a-button @click="onSearch({ asnSearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="publicIpSearchFailure && $route.meta?.name === 'publicip' && !dataView" class="public-ip-search-error" type="error" show-icon :message="$t(publicIpSearchFailure)"><template #description><a-button @click="onSearch({ filter: 'allocated', state: 'Allocated', projectid: publicIpProject($store.getters) })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="vnfSearchFailure && $route.meta?.name === 'vnfapp'" class="vnf-search-error" type="error" show-icon :message="$t(vnfSearchFailure)"><template #description><a-button @click="onSearch({})">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
@@ -931,7 +933,7 @@
         <p v-else-if="listRefreshError && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
-          :emptyText="asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
+          :emptyText="s2sGatewayListRoute($route) && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
           :items="items"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
@@ -1056,6 +1058,7 @@ import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentit
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
+import { s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery } from '@/utils/s2sGatewaySearch'
 import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
 import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
@@ -1169,6 +1172,7 @@ export default {
       listCustomRender: {},
       listRefreshError: false,
       vnfSearchFailure: '',
+      s2sGatewaySearchFailure: '',
       asnSearchFailure: '',
       publicIpSearchFailure: '',
       publicIpProjectSync: false,
@@ -1201,6 +1205,7 @@ export default {
     this.formRef = ref()
     this.form = reactive({})
     this.rules = reactive({})
+    this.onListEvent('project-switch-start', () => { if (s2sGatewayRoute(this.$route)) this.rejectS2sGatewaySearch('scope') })
     this.onListEvent('vm-refresh-data', () => {
       if (this.$route.path === '/vm' || this.$route.path.includes('/vm/')) {
         this.fetchData()
@@ -1311,7 +1316,7 @@ export default {
 
     this.currentPath = this.$route.fullPath
     this.fetchData()
-    if (!asnRoute(this.$route) && 'projectid' in this.$route.query && this.$route.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(this.$route)) {
+    if (!asnRoute(this.$route) && !s2sGatewayRoute(this.$route) && 'projectid' in this.$route.query && this.$route.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(this.$route)) {
       this.switchProject(this.$route.query.projectid)
     }
     this.setModalWidthByScreen()
@@ -1342,6 +1347,19 @@ export default {
     next()
   },
   watch: {
+    s2sGatewaySearchAuth: {
+      flush: 'sync',
+      handler (value, old) {
+        if (!s2sGatewayRoute(this.$route)) return
+        this.rejectS2sGatewaySearch('')
+        if (s2sGatewayListRoute(this.$route)) {
+          let switched = false
+          try { const before = JSON.parse(old || 'null'); const after = JSON.parse(value); switched = !!before?.[0] && JSON.stringify(before.slice(0, 6)) !== JSON.stringify(after.slice(0, 6)) } catch (_) {}
+          if (switched) { this.$router.replace({ query: s2sGatewayQuery({}, this.getValidPageSize(this.pageSize), this.$store.getters) }); return }
+        }
+        this.fetchData()
+      }
+    },
     asnSearchAuth: { flush: 'sync', handler () { if (asnRoute(this.$route)) { this.rejectAsnSearch(''); this.fetchData() } } },
     publicIpAuth: {
       flush: 'sync',
@@ -1451,7 +1469,7 @@ export default {
         this.clearAutoRefresh()
         this.fetchData()
         this.scheduleAutoRefresh()
-        if ('projectid' in to.query && to.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(to)) {
+        if (!s2sGatewayRoute(to) && 'projectid' in to.query && to.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(to)) {
           this.switchProject(to.query.projectid)
         }
       }
@@ -1472,7 +1490,7 @@ export default {
     },
     '$store.getters.listAllProjects' (enabled) {
       // The synchronous VNF context watcher owns its canonical URL transition.
-      if (vnfRoute(this.$route) || publicIpRoute(this.$route)) return
+      if (vnfRoute(this.$route) || publicIpRoute(this.$route) || s2sGatewayRoute(this.$route)) return
       if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || guestNetworkRoute(this.$route)) && !this.$store.getters.project?.id) {
         const projectid = enabled ? '-1' : '0'
         if (this.$route.query.projectid !== projectid) return this.$router.push({ query: { ...this.$route.query, projectid, page: '1' } })
@@ -1521,6 +1539,7 @@ export default {
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
+    s2sGatewaySearchAuth () { return s2sGatewayRoute(this.$route) ? s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
     asnSearchAuth () { return asnRoute(this.$route) ? asnAuth(this.$store) : '' },
     asnListReady () { return !!this.asnSearchAuth && !this.listRefreshError && !this.asnSearchFailure && this.listLoadedScope === this.listScope() },
     asnListEmptyText () { return this.$t(this.asnSearchFailure ? 'message.asn.search.lookup' : this.listRequestPending && this.listLoadedScope !== this.listScope() ? 'label.loading' : 'label.no.data') },
@@ -1563,7 +1582,7 @@ export default {
     },
     snapshotSecurityScope () { return JSON.stringify([this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$store.state?.user?.token, this.$store.getters.userInfo?.roletype, ...(snapshotDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])]) },
     activeFiltersList () {
-      if (asnRoute(this.$route)) return []
+      if (asnRoute(this.$route) || s2sGatewayListRoute(this.$route)) return []
       if (this.isIsoList) return isoFilterChips(this.$route.query, this.$store.getters)
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
@@ -1696,6 +1715,7 @@ export default {
     }
   },
   methods: {
+    s2sGatewayListRoute,
     publicIpProject,
     vmDisplayName,
     isVmIdentityRoute,
@@ -1808,7 +1828,7 @@ export default {
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
         routeKey = cniHistoryRouteKey(this.$route)
       }
-      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
+      return JSON.stringify([routeKey, ...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...(s2sGatewayRoute(this.$route) ? [this.s2sGatewaySearchAuth] : []), ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : []), this.$store.getters.project?.id,
         this.$store.getters.userInfo?.id, this.$store.getters.metrics, this.$store.getters.listAllProjects])
     },
     getStyle () {
@@ -1974,7 +1994,20 @@ export default {
       this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
       if (this.$refs.listview) this.$refs.listview.resetSelection()
     },
+    rejectS2sGatewaySearch (reason) {
+      this.s2sGatewaySearchFailure = reason; this.listRequestVersion++; this.listRequestPending = false; this.listRefreshQueued = false; this.loading = false
+      this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
+      if (this.$refs.listview) this.$refs.listview.resetSelection()
+    },
     fetchData (params = {}) {
+      if (s2sGatewayListRoute(this.$route)) {
+        this.dataView = false
+        const query = s2sGatewayQuery(this.$route.query, this.getValidPageSize(this.pageSize), this.$store.getters)
+        const error = !this.$store.state?.user?.token ? 'permission' : s2sGatewayError(query, this.$store.getters, this.$getApiParams('listVpnGateways'))
+        if (error) { this.rejectS2sGatewaySearch(error); return Promise.resolve() }
+        if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) { this.rejectS2sGatewaySearch(''); return this.$router.replace({ query }) }
+        this.s2sGatewaySearchFailure = ''
+      }
       if (asnRoute(this.$route)) {
         this.dataView = false; this.asnSearchFailure = ''
         const query = asnQuery(this.$route.query, this.getValidPageSize(this.pageSize), this.$store.getters)
@@ -2141,7 +2174,7 @@ export default {
           : null
         this.routeName = matchedRoute?.meta?.name || this.$route?.meta?.name || this.$route?.name || ''
       }
-      const securityScope = JSON.stringify([...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
+      const securityScope = JSON.stringify([...(['template', 'iso', 'vm'].includes(this.$route.meta?.name) ? [this.$store.getters.userInfo?.roletype, this.$store.getters.userInfo?.roleid, this.$store.state?.user?.token, Object.keys(this.$store.getters.apis || {}).sort()] : []), ...(guestNetworkRoute(this.$route) ? [this.guestNetworkAuth] : []), ...(publicIpRoute(this.$route) ? [this.publicIpAuth] : []), ...(asnRoute(this.$route) ? [this.asnSearchAuth] : []), ...(s2sGatewayRoute(this.$route) ? [this.s2sGatewaySearchAuth] : []), this.$store.getters.userInfo?.id, this.$store.getters.project?.id, this.$route.params.id, ...((snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.isObjectStorageUi) ? [this.$store.getters.userInfo?.roletype, this.$store.state?.user?.token, this.$store.getters.userInfo?.roleid, ...(snapshotDetailRoute(this.$route) ? [snapshotDetailPermissions(this.$store.getters)] : []), ...(policyDetailRoute(this.$route) ? [this.$store.getters.userInfo?.roleid, policyDetailPermissions(this.$store.getters)] : [])] : [])])
       if (this.listSecurityScope !== securityScope) {
         this.items = []
         this.resource = {}
@@ -2159,7 +2192,7 @@ export default {
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
       const publicIpList = this.$route.meta?.name === 'publicip' && !this.$route.params?.id && !this.$route.query?.dataView
-      if ((publicIpList || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route)) && !this.dataView) && !sameList) {
+      if ((publicIpList || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || s2sGatewayListRoute(this.$route)) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -2227,6 +2260,7 @@ export default {
       delete params.autoscheduled
       delete params.pipreturn
       delete params.cnireturn
+      delete params.s2sreturn
       delete params.networkreturn
       if (guestNetworkRoute(this.$route) && typeof params.forvpc === 'boolean') params.forvpc = String(params.forvpc)
       if (storageUiRoute(this.$route)) ['relatedkeyword', 'relatedpage', 'relatedpagesize'].forEach(key => delete params[key])
@@ -2242,7 +2276,7 @@ export default {
 
       this.projectView = Boolean(store.getters.project && store.getters.project.id)
       this.hasProjectId = ['vm', 'vmgroup', 'ssh', 'affinitygroup', 'userdata', 'cniconfiguration', 'volume', 'snapshot', 'buckets', 'vmsnapshot', 'guestnetwork',
-        'vpc', 'securitygroups', 'publicip', 'vpncustomergateway', 'template', 'iso', 'event', 'kubernetes', 'sharedfs',
+        'vpc', 'securitygroups', 'publicip', 's2svpn', 'vpncustomergateway', 'template', 'iso', 'event', 'kubernetes', 'sharedfs',
         'autoscalevmgroup', 'vnfapp', 'webhook', 'kmskey', 'hsmprofile', 'snapshotpolicy'].includes(this.$route.name)
 
       if (this.dataView && !refreshed && !sameList) {
@@ -2516,6 +2550,7 @@ export default {
       if (customParamHandler && typeof customParamHandler === 'function') {
         params = customParamHandler(params, this.$route.query)
       }
+      if (s2sGatewayListRoute(this.$route)) { params = s2sGatewayParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
       if (vnfRoute(this.$route)) params = vnfListParams(params, this.dataView)
@@ -2561,7 +2596,7 @@ export default {
       const policyDetail = policyDetailRoute(this.$route)
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
-      const response = asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
+      const response = s2sGatewayListRoute(this.$route) ? readS2sGatewayQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000 }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2756,6 +2791,13 @@ export default {
             this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
           }
           if (isAutoScheduled) throw error
+          return
+        }
+        if (s2sGatewayListRoute(this.$route)) {
+          const denied = [401, 403].includes(Number(error?.response?.status))
+          const reason = denied ? 'permission' : ['permission', 'scope', 'missing', 'uuid', 'unsupported', 'invalid', 'account'].includes(error?.message) ? error.message : 'lookup'
+          this.s2sGatewaySearchFailure = reason; this.listRefreshError = true; this.resetSelection(); this.$refs.listview && this.$refs.listview.resetSelection()
+          if (!sameList || ['permission', 'scope'].includes(reason)) { this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null }
           return
         }
         if (asnRoute(this.$route)) {
@@ -4079,6 +4121,13 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (s2sGatewayListRoute(this.$route)) {
+        const query = s2sGatewaySearchQuery(this.$route.query, opts || {}, this.pageSize, this.$store.getters)
+        this.searchParams = {}; this.resetSelection(); this.$refs.listview && this.$refs.listview.resetSelection()
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData()
+        else this.$router.push({ query })
+        return
+      }
       if (asnRoute(this.$route)) {
         const query = asnSearchQuery(this.$route.query, opts?.asnSearch || opts || {}, this.pageSize, this.$store.getters)
         this.searchParams = {}; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection()
