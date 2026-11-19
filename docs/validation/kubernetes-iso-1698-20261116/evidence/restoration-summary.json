@@ -1,0 +1,20 @@
+{
+  "qaVersionIsoPairsDeleted": 12,
+  "qaIsoIdsAbsent": true,
+  "originalAccountIdsRestored": true,
+  "originalRoleIdsRestored": true,
+  "catalog": 2,
+  "iso": 8,
+  "accounts": 3,
+  "roles": 9,
+  "templates": 48,
+  "guestVm": 102,
+  "systemVmUnchanged": [
+    "v-245-VM",
+    "s-263-VM"
+  ],
+  "auditHistoryPreserved": true,
+  "qaEmptyProjectsDeleted": 1,
+  "projects": 0,
+  "projectDeleteReceipt": "check-circle"
+}

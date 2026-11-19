@@ -1,0 +1,211 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.14s
+
+docs/validation/kubernetes-iso-1701-20261117/after-state-modal-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/first-deployment-result.json
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-810x900.json
+docs/validation/kubernetes-iso-1701-20261117/after-iso-list-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-iso-zone-dark-810.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-kiso-list-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-disabled-ready-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/reference-vm-list-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/initial-runtime-summary.json
+docs/validation/kubernetes-iso-1701-20261117/before-url-modal-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/lint-nested.log
+docs/validation/kubernetes-iso-1701-20261117/before-delete-long-modal-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/ci-final-product-lint-status.json
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-1280x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-delete-modal-light-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-long-detail-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-url-accepted-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/before-template-ubuntu-name-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-events-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-810x900.json
+docs/validation/kubernetes-iso-1701-20261117/source-start.json
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-1440x900.json
+docs/validation/kubernetes-iso-1701-20261117/after-state-modal-dark-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-events-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-vm-detail-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-state-modal-dark-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/before-long-list-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/ui-build.log
+docs/validation/kubernetes-iso-1701-20261117/unit-operating.log
+docs/validation/kubernetes-iso-1701-20261117/lint.log
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-1280x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-iso-detail-dark-810.jpg
+docs/validation/kubernetes-iso-1701-20261117/cleanup-local-list.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-390x844.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-zone-dark-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/reference-vm-detail-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/deployment-result.json
+docs/validation/kubernetes-iso-1701-20261117/README.ko.md
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-light-810.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-1280x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-810x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-local-result-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/resource-ledger.json
+docs/validation/kubernetes-iso-1701-20261117/after-delete-modal-light-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/after-iso-detail-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-long-detail-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-disabled-ready-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-1440x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-vm-dialog-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-zone-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/cleanup-url-recovered-list.json
+docs/validation/kubernetes-iso-1701-20261117/after-url-accepted-dark-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/cleanup-template-zone-receipt.json
+docs/validation/kubernetes-iso-1701-20261117/build-boundary.json
+docs/validation/kubernetes-iso-1701-20261117/after-template-custom-comment-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-810x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/debt-1044.json
+docs/validation/kubernetes-iso-1701-20261117/after-state-modal-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-1280x900.json
+docs/validation/kubernetes-iso-1701-20261117/candidate-assets.json
+docs/validation/kubernetes-iso-1701-20261117/reference-iso-detail-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/before-long-error-zone-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-local-modal-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-delete-modal-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/reference-vm-detail-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-390x844.json
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/cleanup-template-empty.json
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-light-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/reference-vm-dialog-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-long-error-zone-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/intermediate-build-stopped.json
+docs/validation/kubernetes-iso-1701-20261117/after-local-file-required-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/before-state-long-modal-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-local-modal-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-template-ubuntu-fallback-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-local-file-required-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-vm-detail-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-kiso-list-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-error-expanded-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/before-template-icon-comment-layout.json
+docs/validation/kubernetes-iso-1701-20261117/after-iso-detail-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-template-comments-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/before-kiso-detail-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-1280x900.json
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-390x844.jpg
+docs/validation/kubernetes-iso-1701-20261117/first-candidate-assets.json
+docs/validation/kubernetes-iso-1701-20261117/first-build-boundary.json
+docs/validation/kubernetes-iso-1701-20261117/after-iso-zone-dark-810.json
+docs/validation/kubernetes-iso-1701-20261117/cleanup-url-recovered-list.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-url-modal-light-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/after-iso-detail-dark-810.json
+docs/validation/kubernetes-iso-1701-20261117/contrast-samples.json
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-1440x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/cleanup-template-zone-receipt.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-kiso-zone-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/precommit-product.log
+docs/validation/kubernetes-iso-1701-20261117/after-zone-expanded-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-state-modal-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-error-expanded-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-390x844.json
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-1440x900.json
+docs/validation/kubernetes-iso-1701-20261117/after-delete-modal-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-light-810.json
+docs/validation/kubernetes-iso-1701-20261117/cleanup-local-list.json
+docs/validation/kubernetes-iso-1701-20261117/after-url-accepted-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-local-modal-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-accepted-long-modal-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/precommit-contrast.log
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-1280x900.json
+docs/validation/kubernetes-iso-1701-20261117/before-kiso-events-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-url-modal-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-url-length-rejected-editable-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/first-ui-build-result.json
+docs/validation/kubernetes-iso-1701-20261117/after-delete-modal-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/before-long-error-zone-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-local-modal-light-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/after-template-custom-comment-light-390.json
+docs/validation/kubernetes-iso-1701-20261117/keyboard-list.json
+docs/validation/kubernetes-iso-1701-20261117/after-state-modal-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-local-result-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/search-return.json
+docs/validation/kubernetes-iso-1701-20261117/after-local-modal-dark-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/ci-comparison.json
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-810x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-url-length-rejected-editable-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-vm-dialog-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-1280x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-1440x900.json
+docs/design/kubernetes-iso-1692/implementation-1701.ko.md
+docs/validation/kubernetes-iso-1701-20261117/after-iso-list-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/before-template-custom-comment-name.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-390x844.json
+docs/validation/kubernetes-iso-1701-20261117/before-url-modal-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-1280x900.json
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-390x844.json
+docs/validation/kubernetes-iso-1701-20261117/after-delete-modal-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-local-modal-light-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/unit.log
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-1440x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-url-accepted-dark-390x540.json
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-810x900.json
+docs/validation/kubernetes-iso-1701-20261117/before-long-list-810.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-zone-dark-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-template-custom-comment-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/reference-iso-detail-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-url-modal-light-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-dark-810x900.json
+docs/validation/kubernetes-iso-1701-20261117/after-template-ubuntu-fallback-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/after-zone-dark-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-local-modal-dark-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-1440x900.json
+docs/validation/kubernetes-iso-1701-20261117/ui-build-result.json
+docs/validation/kubernetes-iso-1701-20261117/before-kiso-detail-layout.json
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-1440x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-detail-light-390x844.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-zone-expanded-dark-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/precommit-nested.log
+docs/validation/kubernetes-iso-1701-20261117/after-error-zone-light-390x540.jpg
+docs/validation/kubernetes-iso-1701-20261117/cleanup-template-empty.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-light-390x844.jpg
+docs/validation/kubernetes-iso-1701-20261117/before-long-list-390.jpg
+docs/validation/kubernetes-iso-1701-20261117/reference-vm-layout.json
+docs/validation/kubernetes-iso-1701-20261117/after-template-custom-comment-light-390.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-template-comments-light-1280.jpg
+docs/validation/kubernetes-iso-1701-20261117/after-list-dark-810x900.jpg
+docs/validation/kubernetes-iso-1701-20261117/lint-entire-ui.log
+docs/validation/kubernetes-iso-1701-20261117/before-long-error-zone-light-1280.json
+docs/validation/kubernetes-iso-1701-20261117/debt-926.json
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files........................(no files to check)Skipped
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

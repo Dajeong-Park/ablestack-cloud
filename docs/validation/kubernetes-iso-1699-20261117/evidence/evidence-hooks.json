@@ -1,0 +1,164 @@
+{
+  "files": [
+    "docs/design/kubernetes-iso-1692/availability.ko.md",
+    "docs/validation/kubernetes-iso-1699-20261117/README.ko.md",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/accounts-after.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/accounts-roles-before.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/acl-ledger.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/acl-role-draft.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/actual-checksum-failure-dark.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/actual-progress-dark.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/actual-route-failure.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/actual-store-expansion-dark.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/after-list.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/before-detail.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/build-boundary.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/catalog-before.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/catalog-only-requests.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/catalog-only-zone.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/catalog-role-rules.txt",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/ci-baseline.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/ci-comparison.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/clipboard-automation.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/clipboard-pending-detail.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/deployment-result.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/disabled-version-ready-iso.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/final-build-boundary.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/final-completed-expanded.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/final-deployment-result.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/final-empty-state.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/final-progress-expanded.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/final-ui-build-result.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/fixture.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/iso-read-role-requests.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/iso-read-role-zones.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/iso-role-rules.txt",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/isos-interim.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/keyboard-tabs.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/large-fixture.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/operating-input-before.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/partial-file-cleanup.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/reference-iso-zone.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/reference-vm-detail-dark.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/resource-ledger.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/roles-after.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/root-global-detail-dark.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/scoped-hooks.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/slow-fixture.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/source-start.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/sync-before-push.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-auth-expired.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-auth-expired.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-expanded-light.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-invalid.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-network.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-partial-zones-dark.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-partial-zones-light.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/synthetic-server-denied.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/systemvms-after.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/templates-after.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/test-summary.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/theme-restored.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/ui-build-result.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/ui-checks.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/vm-count-before.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/vms-after.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/zone-810-light.jpg",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/zone-contrast.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/zone-dark-styles.json",
+    "docs/validation/kubernetes-iso-1699-20261117/evidence/zone-light-styles.json",
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/InfoCard.vue",
+    "ui/src/components/view/KubernetesIsoSummary.vue",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/components/view/ResourceView.vue",
+    "ui/src/components/widgets/KubernetesIsoListCell.vue",
+    "ui/src/components/widgets/KubernetesIsoScope.vue",
+    "ui/src/components/widgets/KubernetesIsoStatus.vue",
+    "ui/src/config/section/image.js",
+    "ui/src/utils/kubernetesIsoDetails.js",
+    "ui/src/utils/kubernetesIsoModel.js",
+    "ui/src/views/image/KubernetesIsoDetails.vue",
+    "ui/src/views/image/KubernetesIsoZones.vue",
+    "ui/tests/unit/utils/KubernetesIsoDetails.spec.js",
+    "ui/tests/unit/views/KubernetesIsoResourceView.spec.js",
+    "ui/tests/unit/views/KubernetesIsoSummary.spec.js",
+    "ui/tests/unit/views/image/KubernetesIsoDetails.spec.js"
+  ],
+  "results": [
+    {
+      "hook": "oxipng",
+      "exit": 0
+    },
+    {
+      "hook": "insert-license",
+      "exit": 0
+    },
+    {
+      "hook": "check-case-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-illegal-windows-names",
+      "exit": 0
+    },
+    {
+      "hook": "check-merge-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "check-vcs-permalinks",
+      "exit": 0
+    },
+    {
+      "hook": "destroyed-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "detect-aws-credentials",
+      "exit": 0
+    },
+    {
+      "hook": "detect-private-key",
+      "exit": 0
+    },
+    {
+      "hook": "end-of-file-fixer",
+      "exit": 0
+    },
+    {
+      "hook": "fix-byte-order-marker",
+      "exit": 0
+    },
+    {
+      "hook": "forbid-submodules",
+      "exit": 0
+    },
+    {
+      "hook": "mixed-line-ending",
+      "exit": 0
+    },
+    {
+      "hook": "trailing-whitespace",
+      "exit": 0
+    },
+    {
+      "hook": "gitleaks",
+      "exit": 0
+    },
+    {
+      "hook": "codespell",
+      "exit": 0
+    },
+    {
+      "hook": "markdownlint",
+      "exit": 0,
+      "initialExit": 1
+    }
+  ]
+}

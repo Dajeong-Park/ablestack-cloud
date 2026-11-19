@@ -1,0 +1,36 @@
+{
+  "recordedAtUtc": "2026-11-18T01:11:50.244618+00:00",
+  "issueState": "OPEN",
+  "epicCompletedChildren": 7,
+  "epicTotalChildren": 9,
+  "productHead": "d4ccbe39956f9412cfb5be411033df141583b335",
+  "deployedIndexSha256": "e39ac0bb82fa486d8013b694f819a9a2a9d31cca07c2605069832066fc3e67d5",
+  "nativeKeyboardVerified": true,
+  "darkComputedForegroundVerified": true,
+  "correctedEventUiVerified": false,
+  "lightFinalUiVerified": false,
+  "remainingVersionIds": [
+    "8f773b4a-8802-40ea-88e6-76d2b8141e29",
+    "29ce330b-a632-445e-b687-a6eacffa5523"
+  ],
+  "remainingIsoIds": [
+    "49819ec0-6527-40fc-91ce-236b9ab30c47",
+    "ebdfe97a-e42e-418d-a072-f732bd9b1cf4"
+  ],
+  "qcowFixtureRemoved404": true,
+  "remainingSupportFile": "/usr/share/cloudstack-management/webapp/qa-kiso1701-20261117/ready.iso",
+  "inputBlock": "Windows helper could not determine the current browser URL while DevTools had focus; stop app input until user recovery/new turn",
+  "nextIssue": 1702,
+  "pinUiPrerequisiteIssue": 1707,
+  "restoreAfterVerification": {
+    "theme": "dark",
+    "closeDevtools": true,
+    "restoreChromeFromMaximizedToOriginalWindow": true,
+    "originalWindowApproximatePixels": [
+      811,
+      975
+    ]
+  },
+  "browserOrigin": "http://10.10.13.10:8080/client/",
+  "doNotReopenDevtoolsDuringRecovery": true
+}

@@ -1,0 +1,55 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "files": {
+    "js/chunk-31b7d4dc.12126be8.js": {
+      "sha256": "6e8c8b157a896d2f71e2dc50da9475d55e06c7246c28e7b5c627197bb4f52669",
+      "size": 34078
+    },
+    "js/app.ac6aa70c.js": {
+      "sha256": "a76cfdf837fb7023c63100c98bf9d4026c0128292cdd67a5cb5a7ea302720f02",
+      "size": 2005381
+    },
+    "js/chunk-20fd3fca.f896aa3d.js": {
+      "sha256": "800ae6f938dc2e385c9fe996e12487cd76fa446944e764fab7ee82a1b281ad85",
+      "size": 55322
+    },
+    "css/chunk-20fd3fca.f32e6d51.css": {
+      "sha256": "cc3319b068c80e1e39d42304a214f597047e276be532b00c4d9537c2c3c7b43e",
+      "size": 528
+    },
+    "css/chunk-31b7d4dc.0d75bf84.css": {
+      "sha256": "444256bf00dbeb92ee278aa95492dbbe68775dacc9147d6b1f460e6506f9b796",
+      "size": 52
+    },
+    "locales/ko_KR.json": {
+      "sha256": "c660581a37d74ae7b06b6c9fd723123e78c924097d0eaf14f19321dd52b31adc",
+      "size": 1041718
+    },
+    "locales/en.json": {
+      "sha256": "f36d31dde08342962531422dc5eb82b035be20a8a10ecc4c33aeba30303c0d8c",
+      "size": 929672
+    },
+    "index.html": {
+      "sha256": "a7b07dc98e9448b922f4308f75985548cf1dc43f0765f49d8f0f9cf3fca0af91",
+      "size": 40065
+    }
+  },
+  "count": 8
+}

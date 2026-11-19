@@ -470,7 +470,7 @@ export default {
       if (!this.shouldShowWallLink) {
         return
       }
-      if (this.routeName === 'vnfapp' && !this.$store.getters.apis?.listConfigurations) { this.wallLinkReason = 'message.vnf.action.permission'; return }
+      if (!this.$store.getters.apis?.listConfigurations) { this.wallLinkReason = 'message.vnf.action.permission'; return }
       postAPI('listConfigurations', { keyword: 'monitoring.wall.portal' }).then(json => {
         if (version !== this.wallRequestVersion || scope !== this.wallScope) return
         const items = json?.listconfigurationsresponse?.configuration || []

@@ -1,0 +1,16 @@
+{
+  "public/locales/en.json": "0540f1dc0d83f2cf7747fca061d26d85192fcbb041e2cc4bd6fb976eaad2d13a",
+  "public/locales/ko_KR.json": "6d4e5ba0e92abdb3623a56cfd363868249e2ac61aeb120fc6612405975844909",
+  "src/components/view/InfoCard.vue": "7c4b188975f4652317781dc02dd3d7656ff6fa0f21fcee717e3d843807dfbc9f",
+  "src/components/view/ListView.vue": "14ede87e00fd88b3c50e2d47d1ba9a81ff6754529238639d87146083ad63b008",
+  "src/components/view/ResourceView.vue": "e60fe27aa97f16baf82bc5e4a306440a8af28e8a7081225afc50521979cfaa19",
+  "src/config/section/image.js": "d598ed81ad371ed4dd9e2932b7fb1e2370a19d89b0ed2a553784b4dcb7b523f1",
+  "src/utils/kubernetesIsoModel.js": "274f80998ef80f5bd40b54813a55dbdbf65a565cb2c72da47b785855128fb74d",
+  "src/components/view/KubernetesIsoSummary.vue": null,
+  "src/components/widgets/KubernetesIsoListCell.vue": null,
+  "src/components/widgets/KubernetesIsoScope.vue": null,
+  "src/components/widgets/KubernetesIsoStatus.vue": null,
+  "src/utils/kubernetesIsoDetails.js": null,
+  "src/views/image/KubernetesIsoDetails.vue": null,
+  "src/views/image/KubernetesIsoZones.vue": null
+}

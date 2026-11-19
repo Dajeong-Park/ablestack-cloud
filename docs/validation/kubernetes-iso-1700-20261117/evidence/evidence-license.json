@@ -1,0 +1,13 @@
+{
+  "scope": "new validation package only",
+  "ratPlugin": "0.12",
+  "resources": 15,
+  "approved": 1,
+  "unknown": 0,
+  "unapproved": 0,
+  "generatedEvidenceExcludes": [
+    "**/*.json",
+    "**/*.log"
+  ],
+  "fullCiDebtUnknown": 4077
+}

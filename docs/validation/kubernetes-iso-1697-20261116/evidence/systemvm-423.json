@@ -1,0 +1,30 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "results": [
+    {
+      "id": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
+      "text": "v-245-VM실행 중실행 중consoleproxy10.10.13.510.10.13.6169.254.243.214.23.0.0ablecube13-2x86_6413-Zone"
+    },
+    {
+      "id": "6f8eee76-dd70-42b1-b501-ab3d68815d8d",
+      "text": "s-263-VM실행 중실행 중secondarystoragevm10.10.13.410.10.13.7169.254.87.834.23.0.0ablecube13-2x86_6413-Zone"
+    }
+  ]
+}

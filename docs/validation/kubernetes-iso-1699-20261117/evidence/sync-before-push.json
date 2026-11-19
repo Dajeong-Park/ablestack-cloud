@@ -1,0 +1,10 @@
+{
+  "beforeHead": "9d05e8feb3366258a2bfca35a40c98ca776394c7",
+  "afterHead": "65256978e8f626c2ee7b45ec8e28591438bc7123",
+  "base": "a747a6d13b38be7444562534523b82cf228676fc",
+  "baseUpstreamDivergence": [
+    "0",
+    "0"
+  ],
+  "receivedBaseCommits": 2
+}

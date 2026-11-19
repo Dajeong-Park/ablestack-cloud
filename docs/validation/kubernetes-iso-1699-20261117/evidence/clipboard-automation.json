@@ -1,0 +1,9 @@
+{
+  "runtimeClipboardStillProbe": true,
+  "uiCopyControlsInvoked": [
+    "version id",
+    "linked ISO id",
+    "ISO URL"
+  ],
+  "actualPaste": "manual verification required"
+}

@@ -1,0 +1,8 @@
+{
+  "readyIsoRemoved": true,
+  "directoryAbsent": true,
+  "httpStatuses": {
+    "ready.iso": 404,
+    "style-template.qcow2": 404
+  }
+}

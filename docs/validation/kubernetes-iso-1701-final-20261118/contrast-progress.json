@@ -1,0 +1,26 @@
+{
+  "darkLinkComputedViaChromeUi": [
+    105,
+    177,
+    255
+  ],
+  "darkSurfaceToken": [
+    34,
+    40,
+    47
+  ],
+  "darkTokenPairRatio": 6.61,
+  "lightLinkToken": [
+    9,
+    105,
+    218
+  ],
+  "lightSurfaceToken": [
+    255,
+    255,
+    255
+  ],
+  "lightTokenPairRatio": 5.19,
+  "lightComputedUiVerified": false,
+  "notes": "Dark foreground was read from Chrome Computed UI; ratios are calculations for the declared surface token pair, not a whole-page accessibility audit."
+}

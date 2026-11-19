@@ -1,0 +1,28 @@
+{
+  "created": [
+    {
+      "type": "KISO/ISO pair",
+      "id": "dcd229a5-b752-4383-a4c7-382d2129aaa4",
+      "isoId": "4c004bd9-f605-4119-85e0-4a51023d0570",
+      "prefix": "qa-kiso1701-breadcrumb",
+      "version": "1.34.12",
+      "source": "official Europa mold-cks",
+      "sha256": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+      "cleanup": "DONE native UI cascade; original KISO2 and ISO8 verified"
+    }
+  ],
+  "http": {
+    "url": "http://10.10.13.10:8080/client/qa-kiso1701-breadcrumb-20261119/official-europa-1.34.12.iso",
+    "sha256": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+    "bytes": 832905216,
+    "cleanup": "DONE exact SHA verified, file removed,404,directory absent"
+  },
+  "originalCatalogs": 2,
+  "originalIsos": 8,
+  "finalUiCounts": {
+    "catalogs": 2,
+    "isos": 8
+  },
+  "originalDarkModeRestored": true,
+  "cleanupComplete": true
+}

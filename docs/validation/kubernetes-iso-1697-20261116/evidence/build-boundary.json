@@ -1,0 +1,45 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "sourceBase": "b59674f847e94b4ab67d7362a0c3feaca3a3c6d5",
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "inputDelta": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/config/section/image.js",
+    "src/utils/kubernetesIsoUpload.js",
+    "src/views/image/UploadKubernetesIso.vue"
+  ],
+  "operatingSourceHashes": {
+    "public/locales/en.json": "9c53bc702e554e45336cff7f7475f7ed57d09d1726f8fa0f26dbfcb865343de7",
+    "public/locales/ko_KR.json": "9abb24d924c8934047999756e707de421372c41516356833aee4457244b1205e",
+    "src/config/section/image.js": "1515141d918e4514d809bbab22cfdba7aee44c913ef79088b5efcc7642e23998",
+    "src/utils/kubernetesIsoUpload.js": "221cee1293895041e841971aecba2bc10d00c8034ec94ffd706c607633241560",
+    "src/views/image/UploadKubernetesIso.vue": "a9bcb43b37ee9bc57569f6cf50ce46c317607f52de1ee7b1f4443f4c4bac00ce"
+  },
+  "canonicalSourceHashes": {
+    "public/locales/en.json": "300fd7be8d66147ba8e7ec17e1e776e10298861fa36955b5bed3d423eaeb41b5",
+    "public/locales/ko_KR.json": "5124b4c8bc56a56b4b47ec49b56ea1e630dbc4cb5c6698fa4b3940554fd57e91",
+    "src/config/section/image.js": "1515141d918e4514d809bbab22cfdba7aee44c913ef79088b5efcc7642e23998",
+    "src/utils/kubernetesIsoUpload.js": "221cee1293895041e841971aecba2bc10d00c8034ec94ffd706c607633241560",
+    "src/views/image/UploadKubernetesIso.vue": "a9bcb43b37ee9bc57569f6cf50ce46c317607f52de1ee7b1f4443f4c4bac00ce"
+  },
+  "otherInputsPreserved": 1097,
+  "productHead": "722613a3c8c875b3706a5ed9fa4436cb13e0c09e"
+}

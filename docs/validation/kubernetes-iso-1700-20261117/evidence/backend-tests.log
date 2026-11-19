@@ -1,0 +1,42 @@
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for org.apache.cloudstack:cloud-plugin-hypervisor-kvm:jar:4.23.0.0
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.json:json:jar -> duplicate declaration of version (?) @ line 130, column 21
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+...
+[INFO] Apache CloudStack Utils ............................ SUCCESS [  1.502 s]
+[INFO] Apache CloudStack Framework - Database ............. SUCCESS [  1.071 s]
+[INFO] Apache CloudStack Framework - Configuration ........ SUCCESS [  0.468 s]
+[INFO] Apache CloudStack Framework - Direct Download to Primary Storage SUCCESS [  0.368 s]
+[INFO] Apache CloudStack Framework - Key Management Service SUCCESS [  0.383 s]
+[INFO] Apache CloudStack API .............................. SUCCESS [ 22.918 s]
+[INFO] Apache CloudStack Framework - REST ................. SUCCESS [  0.330 s]
+[INFO] Apache CloudStack Framework - IPC .................. SUCCESS [  6.241 s]
+[INFO] Apache CloudStack Cloud Engine ..................... SUCCESS [  0.020 s]
+[INFO] Apache CloudStack Cloud Engine API ................. SUCCESS [  5.861 s]
+[INFO] Apache CloudStack Cloud Engine Schema Component .... SUCCESS [ 21.737 s]
+[INFO] Apache CloudStack Framework - Security ............. SUCCESS [  2.891 s]
+[INFO] Apache CloudStack Core ............................. SUCCESS [ 12.718 s]
+[INFO] Apache CloudStack Agents ........................... SUCCESS [  7.753 s]
+[INFO] Apache CloudStack Framework - Clustering ........... SUCCESS [  6.291 s]
+[INFO] Apache CloudStack Framework - Event Notification ... SUCCESS [  0.348 s]
+[INFO] Apache CloudStack Framework - Jobs ................. SUCCESS [  7.219 s]
+[INFO] Apache CloudStack Cloud Engine Internal Components API SUCCESS [  6.058 s]
+[INFO] Apache CloudStack Agent Management Servers Load Balancer SUCCESS [  0.042 s]
+[INFO] Apache CloudStack Framework - Storage Config Drive Component SUCCESS [  5.803 s]
+[INFO] Apache CloudStack Framework - Extensions ........... SUCCESS [  9.577 s]
+[INFO] Apache CloudStack Server ........................... SUCCESS [ 46.944 s]
+[INFO] Apache CloudStack Cloud Services ................... SUCCESS [  0.082 s]
+[INFO] Apache CloudStack Secondary Storage ................ SUCCESS [  0.045 s]
+[INFO] Apache CloudStack Secondary Storage Service ........ SUCCESS [  9.387 s]
+[INFO] Apache CloudStack Engine Storage Component ......... SUCCESS [  8.946 s]
+[INFO] Apache CloudStack Engine Storage Object Component .. SUCCESS [  5.440 s]
+[INFO] Apache CloudStack Plugin POM ....................... SUCCESS [  0.981 s]
+[INFO] Apache CloudStack Plugin - Kubernetes Service ...... SUCCESS [ 19.953 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:37 min
+[INFO] Finished at: 2026-11-17T10:38:34+09:00
+[INFO] ------------------------------------------------------------------------

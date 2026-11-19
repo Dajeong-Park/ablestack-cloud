@@ -1,0 +1,19 @@
+{
+  "returnCode": 0,
+  "seconds": 761.9,
+  "sourceHead": "ff63d35973a0c3bb2587b68159bb8fef12a14c62",
+  "inputDelta": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/components/view/KubernetesIsoSearch.vue",
+    "src/components/view/ListView.vue",
+    "src/components/view/ResourceView.vue",
+    "src/components/view/SearchView.vue",
+    "src/components/widgets/Breadcrumb.vue",
+    "src/config/section/image.js",
+    "src/utils/kubernetesIsoModel.js",
+    "src/utils/kubernetesIsoSearch.js",
+    "src/views/AutogenView.vue"
+  ],
+  "sameOperatingContext": true
+}

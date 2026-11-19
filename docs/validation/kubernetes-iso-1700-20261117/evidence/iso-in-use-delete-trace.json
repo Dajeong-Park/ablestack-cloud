@@ -1,0 +1,32 @@
+[
+  {
+    "requestId": "46988.18942",
+    "command": "listKubernetesSupportedVersions",
+    "target": "8fdbadde-fd29-40a6-b819-18c334f2907c"
+  },
+  {
+    "requestId": "46988.18943",
+    "command": "deleteKubernetesSupportedVersion",
+    "target": "8fdbadde-fd29-40a6-b819-18c334f2907c"
+  },
+  {
+    "requestId": "46988.18944",
+    "command": "queryAsyncJobResult",
+    "target": "c5fc3227-69ed-48e5-aeb9-fd363f47d4bb"
+  },
+  {
+    "requestId": "46988.18946",
+    "command": "queryAsyncJobResult",
+    "target": "c5fc3227-69ed-48e5-aeb9-fd363f47d4bb"
+  },
+  {
+    "requestId": "46988.18947",
+    "command": "listKubernetesSupportedVersions",
+    "target": "8fdbadde-fd29-40a6-b819-18c334f2907c"
+  },
+  {
+    "requestId": "46988.18948",
+    "command": "listKubernetesSupportedVersions",
+    "target": "8fdbadde-fd29-40a6-b819-18c334f2907c"
+  }
+]

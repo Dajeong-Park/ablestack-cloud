@@ -65,6 +65,14 @@ public class UpdateKubernetesSupportedVersionCmd extends BaseCmd implements Admi
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
+    @Parameter(name = "expectedstate", type = CommandType.STRING,
+            description = "Optional previously observed state; reject a concurrent change under the version lock")
+    private String expectedState;
+
+    public String getExpectedState() {
+        return expectedState;
+    }
+
     public Long getId() {
         return id;
     }

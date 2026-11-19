@@ -373,7 +373,6 @@ const user = {
       commit = (...args) => { if (current()) originalCommit(...args) }
       return new Promise((resolve, reject) => {
         const cachedApis = switchDomain ? {} : vueProps.$localStorage.get(APIS, {})
-        const cachedZones = vueProps.$localStorage.get(ZONES, [])
         const cachedTimezoneOffset = vueProps.$localStorage.get(TIMEZONE_OFFSET, 0.0)
         const cachedUseBrowserTimezone = vueProps.$localStorage.get(USE_BROWSER_TIMEZONE, true)
         const cachedCustomColumns = vueProps.$localStorage.get(CUSTOM_COLUMNS, {})
@@ -423,6 +422,25 @@ const user = {
         }
 
         // This block is to enforce password change for first time login after admin resets password
+        const loadOptionalContext = apis => {
+          if (!current()) return
+          // A catalog-only role need not read infrastructure or networks to log in.
+          // Clear old owner data before optionally discovering the current grants.
+          commit('SET_ZONES', [])
+          discoverOptional(apis, 'listZones').then(json => {
+            if (current() && json) commit('SET_ZONES', json.listzonesresponse?.zone || [])
+          })
+          for (const [api, params, responseKey, key, title, path] of [
+            ['listNetworks', { restartrequired: true, forvpc: false }, 'listnetworksresponse', 'NETWORK_RESTART_REQUIRED', 'label.network.restart.required', '/guestnetwork/'],
+            ['listVPCs', { restartrequired: true }, 'listvpcsresponse', 'VPC_RESTART_REQUIRED', 'label.vpc.restart.required', '/vpc/']
+          ]) {
+            discoverOptional(apis, api, params).then(json => {
+              if (!current() || !(json?.[responseKey]?.count > 0)) return
+              store.dispatch('AddHeaderNotice', { key, title: i18n.global.t(title), path, query: { restartrequired: true }, status: 'done', timestamp: new Date() })
+            })
+          }
+        }
+
         const isPwdChangeRequired = vueProps.$localStorage.get(PASSWORD_CHANGE_REQUIRED)
         commit('SET_PASSWORD_CHANGE_REQUIRED', isPwdChangeRequired)
         if (isPwdChangeRequired) {
@@ -432,7 +450,7 @@ const user = {
 
         if (hasAuth) {
           console.log('Login detected, revalidating API permissions')
-          commit('SET_ZONES', cachedZones)
+          commit('SET_ZONES', [])
           commit('SET_SHOW_SECURITY_GROUPS', cachedShowSecurityGroups)
           commit('SET_TIMEZONE_OFFSET', cachedTimezoneOffset)
           commit('SET_USE_BROWSER_TIMEZONE', cachedUseBrowserTimezone)
@@ -446,6 +464,7 @@ const user = {
             if (!current()) return {}
             const apis = toApiMetadata(response.listapisresponse.api)
             commit('SET_APIS', apis)
+            loadOptionalContext(apis)
             return apis
           })
           Promise.all([themePermissions, getAPI('listUsers', { id: Cookies.get('userid'), listall: true })]).then(([apis, response]) => {
@@ -463,16 +482,11 @@ const user = {
           // in-memory login flag. Discover through the authenticated API so the
           // promise always resolves or rejects; never leave the router pending.
           const hide = message.loading(i18n.global.t('message.discovering.feature'), 0)
-          getAPI('listZones').then(json => {
-            const zones = json.listzonesresponse.zone || []
-            commit('SET_ZONES', zones)
-          }).catch(error => {
-            reject(error)
-          })
           themePermissions = getAPI('listApis').then(response => {
             if (!current()) { hide(); resolve({}); return }
             const apis = toApiMetadata(response.listapisresponse.api)
             commit('SET_APIS', apis)
+            loadOptionalContext(apis)
             loadFeatures(apis).then(() => {
               resolve(current() ? apis : {})
               if (!current()) { hide(); return }
@@ -490,36 +504,6 @@ const user = {
             reject(error)
             return {}
           })
-
-          getAPI('listNetworks', { restartrequired: true, forvpc: false }).then(response => {
-            if (!current()) return
-            if (response.listnetworksresponse.count > 0) {
-              store.dispatch('AddHeaderNotice', {
-                key: 'NETWORK_RESTART_REQUIRED',
-                title: i18n.global.t('label.network.restart.required'),
-                description: i18n.global.t('message.network.restart.required'),
-                path: '/guestnetwork/',
-                query: { restartrequired: true, forvpc: false },
-                status: 'done',
-                timestamp: new Date()
-              })
-            }
-          }).catch(ignored => {})
-
-          getAPI('listVPCs', { restartrequired: true }).then(response => {
-            if (!current()) return
-            if (response.listvpcsresponse.count > 0) {
-              store.dispatch('AddHeaderNotice', {
-                key: 'VPC_RESTART_REQUIRED',
-                title: i18n.global.t('label.vpc.restart.required'),
-                description: i18n.global.t('message.vpc.restart.required'),
-                path: '/vpc/',
-                query: { restartrequired: true },
-                status: 'done',
-                timestamp: new Date()
-              })
-            }
-          }).catch(ignored => {})
         }
 
         getAPI('listUsers', { id: Cookies.get('userid'), showicon: true }).then(response => {

@@ -1,0 +1,6 @@
+{
+  "url": "http://10.10.13.10:8080/client/#/template?page=1&pagesize=20",
+  "pagination": [
+    "전체 48 개 항목 중 1-20 표시"
+  ]
+}

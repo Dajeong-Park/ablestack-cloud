@@ -1,0 +1,60 @@
+<!doctype html>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html lang="ko" class="dark-mode">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Epic 1692 · 운영 VM 표준 UI 설계 목업</title>
+<link rel="stylesheet" href="theme-tokens.css"><link rel="stylesheet" href="mockup.css">
+<script defer src="mockup.js?v=keyboard-20261116-2"></script>
+</head>
+<body>
+<div class="review-tools" aria-label="목업 검토 도구">
+<strong>Epic #1692 · 설계 목업</strong>
+<span>모든 값과 저장·업로드는 예시입니다. 운영 API를 호출하지 않습니다.</span>
+<label>테마 <select id="theme"><option value="dark">다크</option><option value="light">라이트</option></select></label>
+<label>권한 <select id="role"><option value="admin">관리자</option><option value="readonly">읽기 전용</option><option value="localonly">로컬 등록만 허용</option></select></label>
+<label>상태 <select id="scenario"><option value="ready">사용 가능</option><option value="checksum">체크섬 실패</option><option value="loading">전송 중</option><option value="lookup">조회 실패</option><option value="denied">조회 권한 없음</option><option value="referenced">클러스터 참조 중</option><option value="unknown">작업 결과 불명</option></select></label>
+</div>
+<div class="app">
+<header class="topbar"><div class="brand"><img id="brand-logo" src="../../../ui/public/assets/white-logo-ablestack.png" alt="ABLESTACK"></div><button class="nav-toggle" id="nav-toggle" aria-label="메뉴 접기">☰</button><span class="project">▣ 기본 보기</span><span class="top-spacer"></span><button>생성⌄</button><span>♧</span><span class="avatar">AC</span><span>admin cloud</span></header>
+<div class="shell">
+<aside class="sidebar" aria-label="Mold 주 메뉴">
+<span>◴　대시보드</span><span>☁　컴퓨트</span><span class="sub">가상머신</span><span>▣　스토리지</span><span>⌁　네트워크</span><span>▧　이미지</span>
+<button class="sub" data-nav="template">템플릿</button><span class="sub">ISO</span><button class="sub active" data-nav="kiso">쿠버네티스 ISO</button><span>♙　키 관리</span><span>▦　이벤트</span><span>⚙　인프라스트럭쳐</span>
+</aside>
+<main>
+<section class="breadcrumb-card">
+<div class="crumbs"><span>⌂ /</span><button class="link" id="breadcrumb-list">쿠버네티스 ISO</button><span id="crumb-tail" class="ellipsis" title=""></span><button class="quiet" id="refresh">↻ 업데이트</button></div>
+<div id="page-actions" class="toolbar-actions"></div>
+</section>
+<div id="screen"></div>
+<div id="feedback" role="status" aria-live="polite"></div>
+</main>
+</div>
+</div>
+<dialog id="modal" aria-labelledby="modal-title">
+<form id="modal-form" novalidate>
+<header class="modal-head"><h2 id="modal-title"></h2><button type="button" id="modal-close" class="icon-button" aria-label="대화상자 닫기">×</button></header>
+<div id="modal-body" class="modal-body"></div>
+<footer class="modal-foot"><button type="button" id="modal-cancel">취소</button><button id="modal-submit" type="submit" class="primary">저장</button></footer>
+</form>
+</dialog>
+</body>
+</html>

@@ -1,0 +1,45 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+
+/쿠버네티스 ISO업데이트
+쿠버네티스 버전 추가
+
+최소 시멘틱 버전 : 1.29.0
+label.minimumkubernetesversionid : 71ee2178-afa4-4cc...
+검색 조건을 확인하세요. 최소 버전 기준은 하나만 선택하고 올바른 버전·식별자·정렬 값을 사용하세요.
+재시도
+
+목록을 갱신하지 못했습니다. 마지막 정상 데이터를 표시하며 자동으로 다시 시도합니다.
+
+이름
+
+상태
+
+시맨틱 버전
+	ISO 상태
+최소 CPU 코어
+
+최소 메모리(MB)
+	CPU 아키텍처	Zone
+
+
+
+데이터 없음
+
+전체 0 개 항목 중 0-0 표시
+1
+20 / 쪽

@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { appendApiData, callAPI } from '@/api'
+import { appendApiData, callAPI, getAPI, postAPI } from '@/api'
 import { axios } from '@/utils/request'
 jest.mock('@/utils/request', () => ({ axios: jest.fn(), sourceToken: {} }))
 jest.mock('@/vue-app', () => ({ vueProps: { $localStorage: { get: () => 'session' } } }))
@@ -44,4 +44,13 @@ test.each(['getBucketProtection', 'reconcileBucketProtection', 'getBucketObjectM
   const request = axios.mock.calls[axios.mock.calls.length - 1][0]
   expect(request.method).toBe('POST'); expect(request.params).toBeUndefined()
   expect(request.data.get('command')).toBe(command); expect(request.data.get('acceptactual')).toBe('false')
+})
+
+test.each([getAPI, postAPI])('scoped catalog transport keeps read ownership off the wire', request => {
+  request('listKubernetesSupportedVersions', { id: 'version' }, { preserveOnFailure: true, readScope: 'local-owner' })
+  const config = axios.mock.calls[axios.mock.calls.length - 1][0]
+  expect(config.readScope).toBe('local-owner')
+  expect(config.preserveOnFailure).toBe(true)
+  if (config.params) expect(config.params.readScope).toBeUndefined()
+  else expect(config.data.has('readScope')).toBe(false)
 })

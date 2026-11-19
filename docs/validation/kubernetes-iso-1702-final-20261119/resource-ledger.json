@@ -1,0 +1,277 @@
+{
+  "originals": {
+    "catalogs": [
+      "b5fabc77-be13-448e-8643-625e9ff8d1e0",
+      "441b3f20-0a40-48dd-becb-1573c6059867"
+    ],
+    "clusters": [
+      "cda4e02b-1f6b-4cdf-8010-6aabfc3c3a8f",
+      "c1b341e7-3ee2-4836-bcbd-c63f2126f8fe"
+    ]
+  },
+  "created": [
+    {
+      "type": "catalog",
+      "name": "qa-kiso1707-europa-1.34.9",
+      "id": "2b287bc4-aa56-4bf2-9511-97a34a81bf84",
+      "isoId": "11ff6b0e-2b5a-4ed0-b4b5-432ee38fa9f4",
+      "status": "deleted",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    },
+    {
+      "type": "cluster",
+      "name": "qa-kiso1707-europa",
+      "id": "5dba7000-aac0-4b13-afd4-ef9ca646b312",
+      "networkName": "qa-kiso1707-europa-network",
+      "publicIp": "10.10.13.29",
+      "status": "deleted",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "nodes": [
+        "d61c2869-78a2-401b-901f-fb4619f7d65b",
+        "8db3401b-96fd-4b19-a64f-9ae8864ef688"
+      ],
+      "networkId": "d4427a45-0405-4020-8a41-83742970eb1b",
+      "nodeVersion": "v1.34.12",
+      "sourcePinBlockedDuringUpgrade": true,
+      "targetPinBlockedDuringUpgrade": true,
+      "sourceUnreferencedAfterCompletion": true
+    },
+    {
+      "type": "role",
+      "id": "4ed7d328-714f-473c-9dd6-519d81db877f",
+      "name": "qa-kiso1702-read-admin-role",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "policyPhase": "14 reads + local upload allow; URL explicitly deny; wildcard deny last; state/delete/VM Metrics denied",
+      "status": "deleted"
+    },
+    {
+      "type": "catalog",
+      "name": "qa-kiso1702-europa-1.34.12",
+      "id": "2c1f6e49-8abf-4313-8c6e-73482981b3b1",
+      "isoId": "93df6800-ba5e-4df2-8e35-9a9419904ff9",
+      "status": "deleted",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    },
+    {
+      "type": "domain",
+      "name": "qa-kiso1702",
+      "id": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "status": "deleted"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-admin",
+      "id": "f670a7ff-61ba-485a-b539-8e249a03eeef",
+      "domain": "ROOT",
+      "roleId": "4ed7d328-714f-473c-9dd6-519d81db877f",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "status": "deleted"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-da",
+      "id": "30ba5df5-a22d-46d3-924d-21bd3a507000",
+      "role": "Domain Admin",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "status": "deleted"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-user",
+      "id": "40a76174-5461-419f-9b8f-d5c1bfbf8739",
+      "role": "qa-kiso1702-catalog-role",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "roleId": "138759de-7f4a-4389-bc75-c79313dcfec9",
+      "status": "deleted"
+    },
+    {
+      "type": "catalog",
+      "name": "qa-kiso1702-url421-official",
+      "id": "e0dfc5ec-6307-4b87-bee5-0ec9c866e272",
+      "isoId": "b5453cee-d256-444f-adbd-2f0fb5360613",
+      "runtimeFamily": "4.21",
+      "status": "deleted",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    },
+    {
+      "type": "zone",
+      "id": "8b842cb8-bdcc-4d48-86a8-16be87716219",
+      "name": "qa-kiso1702-acl-private",
+      "allocationstate": "Disabled",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "purpose": "ACL control-plane fixture only, no physical multi-Zone claim",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "status": "deleted"
+    },
+    {
+      "type": "catalog",
+      "name": "qa-kiso1702-local421-official",
+      "id": "c6e76312-a20b-4745-a7cb-86879dfadaa9",
+      "isoId": "2afde582-64c5-4a26-9727-9bfead046be3",
+      "runtimeFamily": "4.21",
+      "status": "deleted",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    },
+    {
+      "type": "account",
+      "name": "qa-kiso1702-ra",
+      "id": "ed23ad1e-b92c-4640-88ab-45cadf336993",
+      "role": "Resource Admin",
+      "roleId": "5da3706e-bd56-11f1-b573-002481560363",
+      "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
+      "createdVia": "UI after approved Disabled private Zone fixture",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison",
+      "status": "deleted"
+    },
+    {
+      "type": "role",
+      "name": "qa-kiso1702-catalog-role",
+      "id": "138759de-7f4a-4389-bc75-c79313dcfec9",
+      "typeName": "User",
+      "ispublic": false,
+      "status": "deleted",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    },
+    {
+      "type": "catalog",
+      "family": "4.23",
+      "method": "URL",
+      "name": "qa-kiso1702-url423-official",
+      "version": "1.34.12",
+      "sha256": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+      "bytes": 832905216,
+      "arch": "x86_64",
+      "scope": "13-Zone",
+      "actor": "Root Admin",
+      "id": "dccd8fb2-8d9f-4363-a7b9-116611acfb5a",
+      "isoId": "21be9ee4-3e8e-4b59-9c9e-a709fe058630",
+      "acceptedUi": true,
+      "status": "deleted",
+      "evidence": [
+        "1702-url423-official-accepted-not-ready",
+        "1702-url423-ready-parent-add-event-completed",
+        "1702-url423-child-ready-size-sha-arch"
+      ],
+      "readyUi": true,
+      "parentArch": "x86_64",
+      "childArch": "x86_64",
+      "childSizeUi": "794.32 MiB",
+      "exactBytesUi": 832905216,
+      "childChecksumExact": true,
+      "parentEvent": "KUBERNETES.VERSION.ADD Completed1",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    },
+    {
+      "type": "catalog",
+      "family": "4.23",
+      "method": "local",
+      "name": "qa-kiso1702-local423-official",
+      "version": "1.34.12",
+      "sha256": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+      "bytes": 832905216,
+      "arch": "x86_64",
+      "scope": "13-Zone",
+      "actor": "Root Admin",
+      "id": "4203ba5f-adbe-4ec9-85a2-8a1e2a061bda",
+      "isoId": "fd6a5670-c7e9-4f12-abc5-5504717abe04",
+      "status": "deleted",
+      "evidence": [
+        "1702-local423-official-selected-before-submit",
+        "1702-local423-preflight-failed-unused-ticket",
+        "1702-local423-parent-add-event-completed",
+        "1702-local423-child-ready-size-sha-arch",
+        "1702-local423-file-transferred-server-preparing",
+        "1702-local423-ready-one-of-one"
+      ],
+      "readyUi": true,
+      "parentArch": "x86_64",
+      "childArch": "x86_64",
+      "childSizeUi": "794.32 MiB",
+      "exactBytesUi": 832905216,
+      "childChecksumExact": true,
+      "parentEvent": "KUBERNETES.VERSION.ADD Completed1",
+      "sameUnusedTicketRetry": true,
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    },
+    {
+      "type": "project",
+      "name": "qa-kiso1702-context",
+      "id": "2c919ce7-e1a8-4fa2-9277-d7775a7cfebd",
+      "originalCount": 0,
+      "status": "deleted",
+      "cleanup": "DONE native UI deletion and final list/identifier comparison"
+    }
+  ],
+  "systemVmTransitions": {
+    "preservedConsoleId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
+    "initialSecondaryId": "6f8eee76-dd70-42b1-b501-ab3d68815d8d",
+    "initialSecondaryName": "s-263-VM",
+    "status": "PASS new s-271 native Running/Agent Up4.23 plus actual JAR4.23; official URL/local Ready and saved values verified",
+    "restoreRequired": false,
+    "runtime421Name": "s-270-VM",
+    "host421": "10.10.13.1",
+    "linkLocal421": "169.254.208.129",
+    "new423SecondaryStillRequired": false,
+    "runtime421Id": "4b1e50f1-2b97-4547-9347-ef26a4b64aa9",
+    "runtime421UiVersion": "4.21.0.0-Mold.Diplo-202609221440",
+    "new423RecreatePrecondition": "4.21 URL/local Ready and ADD completed; all3 factories original4.23; console original preserved",
+    "new423RecreateSubmittedUtc": "2026-11-19T00:51:14.484815+00:00",
+    "runtime423Name": "s-271-VM",
+    "runtime423Id": "0e7d4563-a48d-4602-ae5c-758008e4530b",
+    "runtime423Host": "10.10.13.1",
+    "runtime423LinkLocal": "169.254.177.128",
+    "new423UiAndUploadsRequired": false
+  },
+  "rejectedAttempts": [
+    {
+      "name": "qa-kiso1702-revoked-url-no-resource",
+      "reason": "URL grant revoked while dialog open; server API not available",
+      "created": false,
+      "uiAbsenceCheck": "PASS exact name keyword count0"
+    }
+  ],
+  "uiControlBlock": {
+    "resolvedByOperator": true,
+    "recoveredUtc": "2026-11-19T05:11:21.701749+00:00",
+    "currentUiInput": "restored; delete-only cascade completed"
+  },
+  "cleanup": {
+    "resourceAdmin": "UI disabled then deleted ed23ad1e-b92c-4640-88ab-45cadf336993; account list6",
+    "privateZone": "UI deleted empty Disabled8b842cb8-bdcc-4d48-86a8-16be87716219; original13-Zone count1 confirmed"
+  },
+  "cleanupCompleteUi": true,
+  "finalUiCounts": {
+    "catalogs": 2,
+    "isos": 8,
+    "templates": 48,
+    "guestVms": 102,
+    "cksClusters": 2,
+    "accounts": 3,
+    "roles": 9,
+    "domains": 1,
+    "zones": 1,
+    "projects": 0,
+    "systemVms": 2
+  },
+  "preservedOriginalClusters": "koral1/koral3 same UUID, Stopped",
+  "httpCleanup": {
+    "files": [
+      {
+        "name": "kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.iso",
+        "sha256BeforeDelete": "9434a2fc7a0f26999f5c623d1140d013dc38a1488ab4adc6f12c5f2f23e43678",
+        "httpStatusAfterDelete": 404
+      },
+      {
+        "name": "kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.iso",
+        "sha256BeforeDelete": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+        "httpStatusAfterDelete": 404
+      }
+    ],
+    "directoryAbsent": true
+  },
+  "finalSystemVm": "s-271 and original v-245 Running/Agent Up4.23",
+  "supportingDbDirectRead": "NOT USED: encrypted DB credential; cleanup proof is native UI, no DB mutation"
+}

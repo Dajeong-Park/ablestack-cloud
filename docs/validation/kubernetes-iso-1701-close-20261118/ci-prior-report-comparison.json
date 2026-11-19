@@ -1,0 +1,25 @@
+{
+  "checkedHead": "18a7729bea13681b7c5aecdd1e340bfd4a1b9374",
+  "lintRun": 44215744455,
+  "licenseRun": 44215744885,
+  "failedHooks": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "sameProductBaseline": true,
+  "licenseUnknown": 4077
+}

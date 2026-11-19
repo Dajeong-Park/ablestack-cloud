@@ -1,0 +1,67 @@
+{
+  "afterProjectRoundTrip": [
+    "b5fabc77-be13-448e-8643-625e9ff8d1e0441b3f20-0a40-48dd-becb-1573c60598671.35.9 (1.35.9)1.36.5 (1.36.5)"
+  ],
+  "registeredMinimumWorking": true,
+  "requests": [
+    {
+      "command": "listKubernetesSupportedVersions",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "50"
+      }
+    },
+    {
+      "command": "listKubernetesSupportedVersions",
+      "method": "GET",
+      "params": {
+        "keyword": "1.35",
+        "page": "1",
+        "pagesize": "50"
+      }
+    },
+    {
+      "command": "listKubernetesSupportedVersions",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "50"
+      }
+    },
+    {
+      "command": "listKubernetesSupportedVersions",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "command": "listKubernetesSupportedVersions",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "20"
+      }
+    },
+    {
+      "command": "listKubernetesSupportedVersions",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "50"
+      }
+    },
+    {
+      "command": "listKubernetesSupportedVersions",
+      "method": "GET",
+      "params": {
+        "minimumkubernetesversionid": "441b3f20-0a40-48dd-becb-1573c6059867",
+        "page": "1",
+        "pagesize": "20"
+      }
+    }
+  ],
+  "sameComponentOwnerRace": "unit-tested; actual project UI navigates via dashboard"
+}

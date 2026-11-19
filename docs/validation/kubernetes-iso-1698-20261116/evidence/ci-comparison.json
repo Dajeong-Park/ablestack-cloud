@@ -1,0 +1,106 @@
+{
+  "runs": {
+    "baseline": 43868690029,
+    "product": 43876632549,
+    "license": 43876632494
+  },
+  "failedHookCounts": {
+    "lint-baseline.log": 16,
+    "lint-product.log": 16
+  },
+  "sameFailedHooks": true,
+  "failedHooks": {
+    "lint-baseline.log": [
+      "run oxipng...............................................................Failed",
+      "add license for all Markdown files.......................................Failed",
+      "add license for all properties files.....................................Failed",
+      "add license for all Shell files..........................................Failed",
+      "add license for all SQL files............................................Failed",
+      "add license for all Vue files............................................Failed",
+      "add license for all YAML files...........................................Failed",
+      "check that scripts with shebangs are executable..........................Failed",
+      "check for broken symlinks................................................Failed",
+      "fix end of files.........................................................Failed",
+      "fix utf-8 byte order marker..............................................Failed",
+      "mixed line ending........................................................Failed",
+      "trim trailing whitespace.................................................Failed",
+      "run codespell............................................................Failed",
+      "flake8...................................................................Failed",
+      "run markdownlint.........................................................Failed"
+    ],
+    "lint-product.log": [
+      "run oxipng...............................................................Failed",
+      "add license for all Markdown files.......................................Failed",
+      "add license for all properties files.....................................Failed",
+      "add license for all Shell files..........................................Failed",
+      "add license for all SQL files............................................Failed",
+      "add license for all Vue files............................................Failed",
+      "add license for all YAML files...........................................Failed",
+      "check that scripts with shebangs are executable..........................Failed",
+      "check for broken symlinks................................................Failed",
+      "fix end of files.........................................................Failed",
+      "fix utf-8 byte order marker..............................................Failed",
+      "mixed line ending........................................................Failed",
+      "trim trailing whitespace.................................................Failed",
+      "run codespell............................................................Failed",
+      "flake8...................................................................Failed",
+      "run markdownlint.........................................................Failed"
+    ]
+  },
+  "changedPaths": [
+    "docs/design/kubernetes-iso-1692/search-return.ko.md",
+    "plugins/integrations/kubernetes-service/src/main/java/com/cloud/kubernetes/version/KubernetesVersionCatalog.java",
+    "plugins/integrations/kubernetes-service/src/main/java/com/cloud/kubernetes/version/KubernetesVersionManagerImpl.java",
+    "plugins/integrations/kubernetes-service/src/main/java/org/apache/cloudstack/api/command/user/kubernetes/version/ListKubernetesSupportedVersionsCmd.java",
+    "plugins/integrations/kubernetes-service/src/test/java/com/cloud/kubernetes/version/KubernetesVersionPagingTest.java",
+    "plugins/integrations/kubernetes-service/src/test/java/com/cloud/kubernetes/version/KubernetesVersionServiceTest.java",
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/KubernetesIsoSearch.vue",
+    "ui/src/components/view/ListView.vue",
+    "ui/src/components/view/ResourceView.vue",
+    "ui/src/components/view/SearchView.vue",
+    "ui/src/components/widgets/Breadcrumb.vue",
+    "ui/src/config/section/image.js",
+    "ui/src/utils/kubernetesIsoModel.js",
+    "ui/src/utils/kubernetesIsoSearch.js",
+    "ui/src/views/AutogenView.vue",
+    "ui/tests/unit/utils/kubernetesIsoSearch.spec.js",
+    "ui/tests/unit/views/KubernetesIsoRead.spec.js",
+    "ui/tests/unit/views/KubernetesIsoSearch.spec.js"
+  ],
+  "changedPathDiagnostics": {
+    "lint-baseline.log": {},
+    "lint-product.log": {}
+  },
+  "licenseUnapproved": 4077,
+  "baseRef": "b777311a708e0e652f05025fecb2660dfa90f74d",
+  "currentHead": "10366f30b2f0a587cb69a23f6bd2a665c1e05fbb",
+  "mergeCheck": {
+    "run": 43880409989,
+    "result": "FAILURE",
+    "cause": "unrelated PR label removal returned integration403",
+    "thisPrMergeable": "MERGEABLE",
+    "localBaseUpstreamDivergence": [
+      0,
+      0
+    ]
+  },
+  "updatedBase": "985aad7fdba2ae600cfbc9920fa8f346ab930875",
+  "updatedBaseLicense": {
+    "run": 43881883154,
+    "unapproved": 4077
+  },
+  "rebasedProduct": {
+    "head": "2d39020c7807fab079145891baf27ccf8dcb9df4",
+    "lintRun": 43885343265,
+    "lintStatus": "IN_PROGRESS",
+    "licenseRun": 43885343155,
+    "licenseUnapproved": 4077
+  },
+  "labelHeadLint": {
+    "run": 43880410029,
+    "failedHookCount": 16,
+    "sameFailedHooks": true
+  }
+}

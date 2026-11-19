@@ -1,0 +1,1232 @@
+Accessibility document subtrees; unrelated Chrome toolbar omitted.
+								1269 document (문서) DevTools Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true ID: RootWebArea
+									1270 group (그룹) DevTools is now available in Korean
+										1271 text (경고)
+											1272 text (텍스트) DevTools is now available in Korean
+										1273 button (단추) Don’t show again
+										1274 button (단추) Always match Chrome’s language
+										1275 button (단추) Switch DevTools to Korean
+										1276 group (그룹)
+											1277 group (그룹) Close Description: Close
+												1278 button (단추) Close Description: Close
+									1279 group (그룹)
+										1280 group (탐색) Main toolbar
+											1281 toolbar (도구 모음)
+												1332 group (그룹) Select an element in the page to inspect it Description: Select an element in the page to inspect it - Ctrl + Shift + C
+													1333 button (전환 버튼) Select an element in the page to inspect it - Ctrl + Shift + C Description: Select an element in the page to inspect it - Ctrl + Shift + C
+												1334 group (그룹) Toggle device toolbar Description: Toggle device toolbar - Ctrl + Shift + M
+													1335 button (전환 버튼) Toggle device toolbar - Ctrl + Shift + M Description: Toggle device toolbar - Ctrl + Shift + M
+											1282 tab (Tab) Panels
+											1285 button (단추) More tabs Description: More tabs
+											1336 toolbar (도구 모음)
+												1551 group (그룹) Open Issues to view 3 issues: 3 possible improvements Description: Open Issues to view 3 issues: 3 possible improvements
+													1552 button (단추) Open Issues to view 3 issues: 3 possible improvements
+												1337 button (단추) AI assistance Description: Open AI assistance panel
+												1338 group (그룹) Settings Description: Settings - F1 - Shift + ?
+													1339 button (단추) Settings - F1 - Shift + ? Description: Settings - F1 - Shift + ?
+												1340 button (단추) Customize and control DevTools Description: Customize and control DevTools
+													1341 button (단추) Customize and control DevTools Description: Customize and control DevTools
+												1342 group (그룹) Close Description: Close
+													1343 button (단추) Close Description: Close
+										1875 pane (탭 패널) Elements panel
+											1876 group (그룹) elements
+												1877 group (기본) DOM tree explorer ID: elements-content
+													1878 group (그룹)
+														1879 tree (트리) Page DOM
+															1880 tree item (콘솔 트리) <!DOCTYPE html>
+																1881 group (그룹)
+															1882 tree item (콘솔 트리) <html lang="en-gb" class="dark-mode" style="--autoBannerHeight: 73px; --affixTopHeader: 73px; --affixTopContent: 151px;"> ​ View source code
+																1883 group (그룹) <html lang="en-gb" class="dark-mode" style="--autoBannerHeight: 73px; --affixTopHeader: 73px; --affixTopContent: 151px;">
+																1884 group (그룹)
+																1885 button (단추) View source code
+															1886 group (그룹)
+																1887 tree item (콘솔 트리) <head> ​ Expand …​ </head> ​
+																	1888 group (그룹) <head>
+																	1889 button (단추) Expand
+																	1890 group (그룹) </head>
+																	1891 group (그룹)
+																1892 tree item (콘솔 트리) <body class="dark-mode"> ​
+																	1893 group (그룹) <body class="dark-mode">
+																	1894 group (그룹)
+																1895 group (그룹)
+																	1896 tree item (콘솔 트리) <link rel="stylesheet/less" type="text/css" href="./color.less"> ​
+																		1897 group (그룹) <link rel="stylesheet/less" type="text/css" href="./color.less">
+																			1898 hyperlink (링크) ./​color.less Description: http://10.10.13.10:8080/client/color.less
+																		1899 group (그룹)
+																	1900 tree item (콘솔 트리) <style type="text/css" id="less:client-color"> ​ Expand …​ </style> ​
+																		1901 group (그룹) <style type="text/css" id="less:client-color">
+																		1902 button (단추) Expand
+																		1903 group (그룹) </style>
+																		1904 group (그룹)
+																	1905 tree item (콘솔 트리) <script> ​ Expand …​ </script> ​
+																		1906 group (그룹) <script>
+																		1907 button (단추) Expand
+																		1908 group (그룹) </script>
+																		1909 group (그룹)
+																	1910 tree item (콘솔 트리) <script type="text/javascript" src="js/less.min.js"> ​ </script> ​
+																		1911 group (그룹) <script type="text/javascript" src="js/less.min.js">
+																			1912 hyperlink (링크) js/​less.min.js Description: http://10.10.13.10:8080/client/js/less.min.js
+																		1913 group (그룹) </script>
+																		1914 group (그룹)
+																	1915 tree item (콘솔 트리) <script> ​ Expand …​ </script> ​
+																		1916 group (그룹) <script>
+																		1917 button (단추) Expand
+																		1918 group (그룹) </script>
+																		1919 group (그룹)
+																	1920 tree item (콘솔 트리) <noscript> ​ Expand …​ </noscript> ​
+																		1921 group (그룹) <noscript>
+																		1922 button (단추) Expand
+																		1923 group (그룹) </noscript>
+																		1924 group (그룹)
+																	1925 tree item (콘솔 트리) <div id="app" data-v-app> ​
+																		1926 group (그룹) <div id="app" data-v-app>
+																		1927 group (그룹)
+																	1928 group (그룹)
+																		1929 tree item (콘솔 트리) <div id="app"> ​
+																			1930 group (그룹) <div id="app">
+																			1931 group (그룹)
+																		1932 group (그룹)
+																			1933 tree item (콘솔 트리) <div> ​
+																				1934 group (그룹) <div>
+																				1935 group (그룹)
+																			1936 group (그룹)
+																				1937 tree item (콘솔 트리) <!---->
+																					1938 group (그룹)
+																				1939 tree item (콘솔 트리) <!---->
+																					1940 group (그룹)
+																				1941 tree item (콘솔 트리) <div class="banner-spacer" aria-hidden="true" style="height: 73px;"> ​ </div> ​
+																					1942 group (그룹) <div class="banner-spacer" aria-hidden="true" style="height: 73px;">
+																					1943 group (그룹) </div>
+																					1944 group (그룹)
+																				1945 tree item (콘솔 트리) <section class="ant-layout ant-layout-has-sider layout global-workbench desktop" style="height: calc(100dvh - 73px);"> ​ Enable flex mode
+																					1946 group (그룹) <section class="ant-layout ant-layout-has-sider layout global-workbench desktop" style="height: calc(100dvh - 73px);">
+																					1947 group (그룹)
+																					2421 button (전환 버튼) Enable flex mode
+																				1948 group (그룹)
+																					1949 tree item (콘솔 트리) <div class="global-workbench__main"> ​ Enable flex mode
+																						1950 group (그룹) <div class="global-workbench__main">
+																						1951 group (그룹)
+																						2422 button (전환 버튼) Enable flex mode
+																					1952 group (그룹)
+																						1953 tree item (콘솔 트리) <div class="sticky-sidebar"> ​ Expand …​ </div> ​
+																							1954 group (그룹) <div class="sticky-sidebar">
+																							1955 button (단추) Expand
+																							1956 group (그룹) </div>
+																							1957 group (그룹)
+																						1958 tree item (콘솔 트리) <div class="global-workbench__workspace" style="padding-left: 256px;"> ​ Enable flex mode
+																							1959 group (그룹) <div class="global-workbench__workspace" style="padding-left: 256px;">
+																							1960 group (그룹)
+																							2423 button (전환 버튼) Enable flex mode
+																						1961 group (그룹)
+																							1962 tree item (콘솔 트리) <section class="ant-layout global-workbench__content sidemenu content-width-Fixed"> ​ Enable flex mode
+																								1963 group (그룹) <section class="ant-layout global-workbench__content sidemenu content-width-Fixed">
+																								1964 group (그룹)
+																								2424 button (전환 버튼) Enable flex mode
+																							1965 group (그룹)
+																								1966 tree item (콘솔 트리) <div class="sticky-header"> ​ Expand …​ </div> ​
+																									1967 group (그룹) <div class="sticky-header">
+																									1968 button (단추) Expand
+																									1969 group (그룹) </div>
+																									1970 group (그룹)
+																								1971 tree item (콘솔 트리) <!---->
+																									1972 group (그룹)
+																								1973 tree item (콘솔 트리) <main class="ant-layout-content layout-content is-header-fixed"> ​
+																									1974 group (그룹) <main class="ant-layout-content layout-content is-header-fixed">
+																									1975 group (그룹)
+																								1976 group (그룹)
+																									1977 tree item (콘솔 트리) <!---->
+																										1978 group (그룹)
+																									1979 tree item (콘솔 트리) <div class="kubernetes-iso-page kubernetes-iso-list-page themed-list-toolbar" data-v-22c325c6> ​
+																										1980 group (그룹) <div class="kubernetes-iso-page kubernetes-iso-list-page themed-list-toolbar" data-v-22c325c6>
+																										1981 group (그룹)
+																									1982 group (그룹)
+																										1983 tree item (콘솔 트리) <div class="content-breadcrumb" data-v-22c325c6> ​ Expand …​ </div> ​
+																											1984 group (그룹) <div class="content-breadcrumb" data-v-22c325c6>
+																											1985 button (단추) Expand
+																											1986 group (그룹) </div>
+																											1987 group (그룹)
+																										1988 tree item (콘솔 트리) <div data-v-22c325c6 style="display: none;"> ​ Expand …​ </div> ​
+																											1989 group (그룹) <div data-v-22c325c6 style="display: none;">
+																											1990 button (단추) Expand
+																											1991 group (그룹) </div>
+																											1992 group (그룹)
+																										1993 tree item (콘솔 트리) <div data-v-22c325c6> ​
+																											1994 group (그룹) <div data-v-22c325c6>
+																											1995 group (그룹)
+																										1996 group (그룹)
+																											1997 tree item (콘솔 트리) <!---->
+																												1998 group (그룹)
+																											1999 tree item (콘솔 트리) <!---->
+																												2000 group (그룹)
+																											2001 tree item (콘솔 트리) <!---->
+																												2002 group (그룹)
+																											2003 tree item (콘솔 트리) <!---->
+																												2004 group (그룹)
+																											2005 tree item (콘솔 트리) <!---->
+																												2006 group (그룹)
+																											2007 tree item (콘솔 트리) <!---->
+																												2008 group (그룹)
+																											2009 tree item (콘솔 트리) <!---->
+																												2010 group (그룹)
+																											2011 tree item (콘솔 트리) <!---->
+																												2012 group (그룹)
+																											2013 tree item (콘솔 트리) <!---->
+																												2014 group (그룹)
+																											2015 tree item (콘솔 트리) <div class="row-element" data-v-22c325c6> ​
+																												2016 group (그룹) <div class="row-element" data-v-22c325c6>
+																												2017 group (그룹)
+																											2018 group (그룹)
+																												2019 tree item (콘솔 트리) <!---->
+																													2020 group (그룹)
+																												2021 tree item (콘솔 트리) <!---->
+																													2022 group (그룹)
+																												2023 tree item (콘솔 트리) <!---->
+																													2024 group (그룹)
+																												2025 tree item (콘솔 트리) <div class="list-view-table-wrapper kubernetes-iso-list-table" tabindex="0" role="region" aria-label="쿠버네티스 ISO" data-v-00287ae5> ​
+																													2026 group (그룹) <div class="list-view-table-wrapper kubernetes-iso-list-table" tabindex="0" role="region" aria-label="쿠버네티스 ISO" data-v-00287ae5>
+																													2027 group (그룹)
+																												2028 group (그룹)
+																													2029 tree item (콘솔 트리) <div class="ant-table-wrapper" data-v-00287ae5 style="overflow-y: auto;"> ​
+																														2030 group (그룹) <div class="ant-table-wrapper" data-v-00287ae5 style="overflow-y: auto;">
+																														2031 group (그룹)
+																													2032 group (그룹)
+																														2033 tree item (콘솔 트리) ::before​
+																															2034 group (그룹)
+																														2035 tree item (콘솔 트리) <div class="ant-spin-nested-loading"> ​
+																															2036 group (그룹) <div class="ant-spin-nested-loading">
+																															2037 group (그룹)
+																														2038 group (그룹)
+																															2039 tree item (콘솔 트리) <!---->
+																																2040 group (그룹)
+																															2041 tree item (콘솔 트리) <div class="ant-spin-container"> ​
+																																2042 group (그룹) <div class="ant-spin-container">
+																																2043 group (그룹)
+																															2044 group (그룹)
+																																2045 tree item (콘솔 트리) <div class="ant-table ant-table-ping-right ant-table-layout-fixed ant-table-scroll-horizontal ant-table-middle" style="overflow-y: auto;"> ​
+																																	2046 group (그룹) <div class="ant-table ant-table-ping-right ant-table-layout-fixed ant-table-scroll-horizontal ant-table-middle" style="overflow-y: auto;">
+																																	2047 group (그룹)
+																																2048 group (그룹)
+																																	2049 tree item (콘솔 트리) <!---->
+																																		2050 group (그룹)
+																																	2051 tree item (콘솔 트리) <div class="ant-table-container"> ​
+																																		2052 group (그룹) <div class="ant-table-container">
+																																		2053 group (그룹)
+																																	2054 group (그룹)
+																																		2055 tree item (콘솔 트리) ::before​
+																																			2056 group (그룹)
+																																		2057 tree item (콘솔 트리) <div class="ant-table-content" style="overflow: auto hidden;"> ​ This element has a scrollable overflow
+																																			2058 group (그룹) <div class="ant-table-content" style="overflow: auto hidden;">
+																																			2059 group (그룹)
+																																			2060 group (그룹) This element has a scrollable overflow
+																																		2061 group (그룹)
+																																			2062 tree item (콘솔 트리) <table style="width: 1444px; min-width: 100%; table-layout: fixed;"> ​
+																																				2063 group (그룹) <table style="width: 1444px; min-width: 100%; table-layout: fixed;">
+																																				2064 group (그룹)
+																																			2065 group (그룹)
+																																				2066 tree item (콘솔 트리) <colgroup> ​ Expand …​ </colgroup> ​
+																																					2067 group (그룹) <colgroup>
+																																					2068 button (단추) Expand
+																																					2069 group (그룹) </colgroup>
+																																					2070 group (그룹)
+																																				2071 tree item (콘솔 트리) <thead class="ant-table-thead"> ​ Expand …​ </thead> ​
+																																					2072 group (그룹) <thead class="ant-table-thead">
+																																					2073 button (단추) Expand
+																																					2074 group (그룹) </thead>
+																																					2075 group (그룹)
+																																				2076 tree item (콘솔 트리) <tbody class="ant-table-tbody"> ​
+																																					2077 group (그룹) <tbody class="ant-table-tbody">
+																																					2078 group (그룹)
+																																				2079 group (그룹)
+																																					2080 tree item (콘솔 트리) <tr aria-hidden="true" class="ant-table-measure-row" style="height: 0px; font-size: 0px;"> ​ Expand …​ </tr> ​
+																																						2081 group (그룹) <tr aria-hidden="true" class="ant-table-measure-row" style="height: 0px; font-size: 0px;">
+																																						2082 button (단추) Expand
+																																						2083 group (그룹) </tr>
+																																						2084 group (그룹)
+																																					2085 tree item (콘솔 트리) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 light-row"> ​
+																																						2086 group (그룹) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 light-row">
+																																						2087 group (그룹)
+																																					2088 group (그룹)
+																																						2089 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​
+																																							2090 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2091 group (그룹)
+																																						2092 group (그룹)
+																																							2093 tree item (콘솔 트리) <!---->
+																																								2094 group (그룹)
+																																							2095 tree item (콘솔 트리) <span class="template-name-cell" data-v-00287ae5 style="min-width: 0px;"> ​ Enable flex mode
+																																								2096 group (그룹) <span class="template-name-cell" data-v-00287ae5 style="min-width: 0px;">
+																																								2097 group (그룹)
+																																								2425 button (전환 버튼) Enable flex mode
+																																							2098 group (그룹)
+																																								2099 tree item (콘솔 트리) <quickview actions="[object Object],[object Object],[object Object],[object Object]" resource="[object Object]" enabled="true" data-v-00287ae5 style="margin-left: 5px;"> ​ </quickview> ​
+																																									2100 group (그룹) <quickview actions="[object Object],[object Object],[object Object],[object Object]" resource="[object Object]" enabled="true" data-v-00287ae5 style="margin-left: 5px;">
+																																									2101 group (그룹) </quickview>
+																																									2102 group (그룹)
+																																								2103 tree item (콘솔 트리) <!---->
+																																									2104 group (그룹)
+																																								2105 tree item (콘솔 트리) <span class="template-name-icon" data-v-00287ae5 style="margin-right: 5px;"> ​ Expand …​ </span> ​ Enable flex mode
+																																									2106 group (그룹) <span class="template-name-icon" data-v-00287ae5 style="margin-right: 5px;">
+																																									2107 button (단추) Expand
+																																									2108 group (그룹) </span>
+																																									2109 group (그룹)
+																																									2426 button (전환 버튼) Enable flex mode
+																																								2110 tree item (콘솔 트리) <span class="template-primary-name" data-v-00287ae5> ​ Enable flex mode
+																																									2111 group (그룹) <span class="template-primary-name" data-v-00287ae5>
+																																									2112 group (그룹)
+																																									2427 button (전환 버튼) Enable flex mode
+																																								2113 group (그룹)
+																																									2114 tree item (콘솔 트리) <!---->
+																																										2115 group (그룹)
+																																									2116 tree item (콘솔 트리) (selectable) <a href="#/kubernetesiso/b5fabc77-be13-448e-8643-625e9ff8d1e0?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57" class="template-name-link" data-v-00287ae5> ​1.35.9​ </a> ​
+																																										2117 group (그룹) <a href="#/kubernetesiso/b5fabc77-be13-448e-8643-625e9ff8d1e0?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57" class="template-name-link" data-v-00287ae5>
+																																											2118 hyperlink (링크) #/​kubernetesiso/​b5fabc77-be13-448e-8643-625e9ff8d1e0?kisoreturn={%22page%…kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57 Description: http://10.10.13.10:8080/client/#/kubernetesiso/b5fabc77-be13-448e-8643-625e9ff8d1e0?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+																																										2119 group (그룹) </a>
+																																										2120 group (그룹)
+																																									2121 tree item (콘솔 트리) </span> ​
+																																										2122 group (그룹) </span>
+																																										2123 group (그룹)
+																																								2124 tree item (콘솔 트리) <!---->
+																																									2125 group (그룹)
+																																								2126 tree item (콘솔 트리) <!---->
+																																									2127 group (그룹)
+																																								2128 tree item (콘솔 트리) <!---->
+																																									2129 group (그룹)
+																																								2130 tree item (콘솔 트리) </span> ​
+																																									2131 group (그룹) </span>
+																																									2132 group (그룹)
+																																							2133 tree item (콘솔 트리) <!---->
+																																								2134 group (그룹)
+																																							2135 tree item (콘솔 트리) </td> ​
+																																								2136 group (그룹) </td>
+																																								2137 group (그룹)
+																																						2138 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​ Expand …​ </td> ​
+																																							2139 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2140 button (단추) Expand
+																																							2141 group (그룹) </td>
+																																							2142 group (그룹)
+																																						2143 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​ Expand …​ </td> ​
+																																							2144 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2145 button (단추) Expand
+																																							2146 group (그룹) </td>
+																																							2147 group (그룹)
+																																						2148 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​ Expand …​ </td> ​
+																																							2149 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2150 button (단추) Expand
+																																							2151 group (그룹) </td>
+																																							2152 group (그룹)
+																																						2153 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​ Expand …​ </td> ​
+																																							2154 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2155 button (단추) Expand
+																																							2156 group (그룹) </td>
+																																							2157 group (그룹)
+																																						2158 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​ Expand …​ </td> ​
+																																							2159 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2160 button (단추) Expand
+																																							2161 group (그룹) </td>
+																																							2162 group (그룹)
+																																						2163 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​ Expand …​ </td> ​
+																																							2164 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2165 button (단추) Expand
+																																							2166 group (그룹) </td>
+																																							2167 group (그룹)
+																																						2168 tree item (콘솔 트리) <td class="ant-table-cell ant-table-cell-ellipsis"> ​ Expand …​ </td> ​
+																																							2169 group (그룹) <td class="ant-table-cell ant-table-cell-ellipsis">
+																																							2170 button (단추) Expand
+																																							2171 group (그룹) </td>
+																																							2172 group (그룹)
+																																						2173 tree item (콘솔 트리) <td class="ant-table-cell"> ​ Expand …​ </td> ​
+																																							2174 group (그룹) <td class="ant-table-cell">
+																																							2175 button (단추) Expand
+																																							2176 group (그룹) </td>
+																																							2177 group (그룹)
+																																						2178 tree item (콘솔 트리) </tr> ​
+																																							2179 group (그룹) </tr>
+																																							2180 group (그룹)
+																																					2181 tree item (콘솔 트리) <!---->
+																																						2182 group (그룹)
+																																					2183 tree item (콘솔 트리) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 dark-row"> ​ Expand …​ </tr> ​
+																																						2184 group (그룹) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 dark-row">
+																																						2185 button (단추) Expand
+																																						2186 group (그룹) </tr>
+																																						2187 group (그룹)
+																																					2188 tree item (콘솔 트리) <!---->
+																																						2189 group (그룹)
+																																					2190 tree item (콘솔 트리) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 light-row"> ​ Expand …​ </tr> ​
+																																						2191 group (그룹) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 light-row">
+																																						2192 button (단추) Expand
+																																						2193 group (그룹) </tr>
+																																						2194 group (그룹)
+																																					2195 tree item (콘솔 트리) <!---->
+																																						2196 group (그룹)
+																																					2197 tree item (콘솔 트리) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 dark-row"> ​ Expand …​ </tr> ​
+																																						2198 group (그룹) <tr tabindex="0" data-row-key="[resource-id]" class="ant-table-row ant-table-row-level-0 dark-row">
+																																						2199 button (단추) Expand
+																																						2200 group (그룹) </tr>
+																																						2201 group (그룹)
+																																					2202 tree item (콘솔 트리) <!---->
+																																						2203 group (그룹)
+																																					2204 tree item (콘솔 트리) </tbody> ​
+																																						2205 group (그룹) </tbody>
+																																						2206 group (그룹)
+																																				2207 tree item (콘솔 트리) <!---->
+																																					2208 group (그룹)
+																																				2209 tree item (콘솔 트리) </table> ​
+																																					2210 group (그룹) </table>
+																																					2211 group (그룹)
+																																			2212 tree item (콘솔 트리) </div> ​
+																																				2213 group (그룹) </div>
+																																				2214 group (그룹)
+																																		2215 tree item (콘솔 트리) ::after​
+																																			2216 group (그룹)
+																																		2217 tree item (콘솔 트리) </div> ​
+																																			2218 group (그룹) </div>
+																																			2219 group (그룹)
+																																	2220 tree item (콘솔 트리) <div class="ant-table-footer"> ​ Expand …​ </div> ​
+																																		2221 group (그룹) <div class="ant-table-footer">
+																																		2222 button (단추) Expand
+																																		2223 group (그룹) </div>
+																																		2224 group (그룹)
+																																	2225 tree item (콘솔 트리) </div> ​
+																																		2226 group (그룹) </div>
+																																		2227 group (그룹)
+																																2228 tree item (콘솔 트리) ::after​
+																																	2229 group (그룹)
+																																2230 tree item (콘솔 트리) </div> ​
+																																	2231 group (그룹) </div>
+																																	2232 group (그룹)
+																															2233 tree item (콘솔 트리) </div> ​
+																																2234 group (그룹) </div>
+																																2235 group (그룹)
+																														2236 tree item (콘솔 트리) ::after​
+																															2237 group (그룹)
+																														2238 tree item (콘솔 트리) </div> ​
+																															2239 group (그룹) </div>
+																															2240 group (그룹)
+																													2241 tree item (콘솔 트리) </div> ​
+																														2242 group (그룹) </div>
+																														2243 group (그룹)
+																												2244 tree item (콘솔 트리) <!---->
+																													2245 group (그룹)
+																												2246 tree item (콘솔 트리) <ul unselectable="on" class="ant-pagination mini row-element" data-v-22c325c6 style="margin-top: 10px;"> ​ Expand …​ </ul> ​ Enable flex mode
+																													2247 group (그룹) <ul unselectable="on" class="ant-pagination mini row-element" data-v-22c325c6 style="margin-top: 10px;">
+																													2248 button (단추) Expand
+																													2249 group (그룹) </ul>
+																													2250 group (그룹)
+																													2428 button (전환 버튼) Enable flex mode
+																												2251 tree item (콘솔 트리) </div> ​
+																													2252 group (그룹) </div>
+																													2253 group (그룹)
+																											2254 tree item (콘솔 트리) </div> ​
+																												2255 group (그룹) </div>
+																												2256 group (그룹)
+																										2257 tree item (콘솔 트리) <!---->
+																											2258 group (그룹)
+																										2259 tree item (콘솔 트리) </div> ​
+																											2260 group (그룹) </div>
+																											2261 group (그룹)
+																									2262 tree item (콘솔 트리) </main> ​
+																										2263 group (그룹) </main>
+																										2264 group (그룹)
+																								2265 tree item (콘솔 트리) <footer class="ant-layout-footer" style="padding: 0px;"> ​ Expand …​ </footer> ​
+																									2266 group (그룹) <footer class="ant-layout-footer" style="padding: 0px;">
+																									2267 button (단추) Expand
+																									2268 group (그룹) </footer>
+																									2269 group (그룹)
+																								2270 tree item (콘솔 트리) </section> ​
+																									2271 group (그룹) </section>
+																									2272 group (그룹)
+																							2273 tree item (콘솔 트리) <section class="bottom-activity-panel" aria-label="Activity panel" style="height: 220px; display: none;"> ​ Expand …​ </section> ​
+																								2274 group (그룹) <section class="bottom-activity-panel" aria-label="Activity panel" style="height: 220px; display: none;">
+																								2275 button (단추) Expand
+																								2276 group (그룹) </section>
+																								2277 group (그룹)
+																							2278 tree item (콘솔 트리) </div> ​
+																								2279 group (그룹) </div>
+																								2280 group (그룹)
+																						2281 tree item (콘솔 트리) </div> ​
+																							2282 group (그룹) </div>
+																							2283 group (그룹)
+																					2284 tree item (콘솔 트리) </section> ​
+																						2285 group (그룹) </section>
+																						2286 group (그룹)
+																				2287 tree item (콘솔 트리) </div> ​
+																					2288 group (그룹) </div>
+																					2289 group (그룹)
+																			2290 tree item (콘솔 트리) </div> ​
+																				2291 group (그룹) </div>
+																				2292 group (그룹)
+																		2293 tree item (콘솔 트리) </div> ​
+																			2294 group (그룹) </div>
+																			2295 group (그룹)
+																	2296 tree item (콘솔 트리) <script src="js/vendors.cd88e224.js"> ​ </script> ​
+																		2297 group (그룹) <script src="js/vendors.cd88e224.js">
+																			2298 hyperlink (링크) js/​vendors.cd88e224.js Description: http://10.10.13.10:8080/client/js/vendors.cd88e224.js
+																		2299 group (그룹) </script>
+																		2300 group (그룹)
+																	2301 tree item (콘솔 트리) <script src="js/app.227b8030.js"> ​ </script> ​
+																		2302 group (그룹) <script src="js/app.227b8030.js">
+																			2303 hyperlink (링크) js/​app.227b8030.js Description: http://10.10.13.10:8080/client/js/app.227b8030.js
+																		2304 group (그룹) </script>
+																		2305 group (그룹)
+																	2306 tree item (콘솔 트리) <script> ​ Expand …​ </script> ​
+																		2307 group (그룹) <script>
+																		2308 button (단추) Expand
+																		2309 group (그룹) </script>
+																		2310 group (그룹)
+																	2311 tree item (콘솔 트리) <style id="guiThemeCSS"> ​ </style> ​
+																		2312 group (그룹) <style id="guiThemeCSS">
+																		2313 group (그룹) </style>
+																		2314 group (그룹)
+																	2315 tree item (콘솔 트리) <div> ​ Expand …​ </div> ​
+																		2316 group (그룹) <div>
+																		2317 button (단추) Expand
+																		2318 group (그룹) </div>
+																		2319 group (그룹)
+																	2320 tree item (콘솔 트리) <div class="auto-alert-banner-container has-banner mask-on" data-v-12c825da> ​ Expand …​ </div> ​
+																		2321 group (그룹) <div class="auto-alert-banner-container has-banner mask-on" data-v-12c825da>
+																		2322 button (단추) Expand
+																		2323 group (그룹) </div>
+																		2324 group (그룹)
+																	2325 tree item (콘솔 트리) <!---->
+																		2326 group (그룹)
+																	2327 tree item (콘솔 트리) <!---->
+																		2328 group (그룹)
+																	2329 tree item (콘솔 트리) <!---->
+																		2330 group (그룹)
+																	2331 tree item (콘솔 트리) <div aria-hidden="true" style="display: none;"> ​ Expand …​ </div> ​
+																		2332 group (그룹) <div aria-hidden="true" style="display: none;">
+																		2333 button (단추) Expand
+																		2334 group (그룹) </div>
+																		2335 group (그룹)
+																	2336 tree item (콘솔 트리) </body> ​
+																		2337 group (그룹) </body>
+																		2338 group (그룹)
+																2339 tree item (콘솔 트리) </html> ​
+																	2340 group (그룹) </html>
+																	2341 group (그룹)
+												2342 group (탐색) DOM tree breadcrumbs
+													2429 button (단추) Scroll left Description: Scroll left
+													2343 list (LIST)
+														2344 list item (목록 항목) html.dark-mode
+															2345 hyperlink (링크) html.dark-mode Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2346 list item (목록 항목) body.dark-mode
+															2347 hyperlink (링크) body.dark-mode Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2348 list item (목록 항목) div#app
+															2349 hyperlink (링크) div#app Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2350 list item (목록 항목) div#app
+															2351 hyperlink (링크) div#app Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2352 list item (목록 항목) div
+															2353 hyperlink (링크) div Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2354 list item (목록 항목) section.ant-layout.ant-layout-has-sider.layout.global-workbench.desktop
+															2355 hyperlink (링크) section.ant-layout.ant-layout-has-sider.layout.global-workbench.desktop Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2356 list item (목록 항목) div.global-workbench__main
+															2357 hyperlink (링크) div.global-workbench__main Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2358 list item (목록 항목) div.global-workbench__workspace
+															2359 hyperlink (링크) div.global-workbench__workspace Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2360 list item (목록 항목) section.ant-layout.global-workbench__content.sidemenu.content-width-Fixed
+															2361 hyperlink (링크) section.ant-layout.global-workbench__content.sidemenu.content-width-Fixed Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2362 list item (목록 항목) main.ant-layout-content.layout-content.is-header-fixed
+															2363 hyperlink (링크) main.ant-layout-content.layout-content.is-header-fixed Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2364 list item (목록 항목) div.kubernetes-iso-page.kubernetes-iso-list-page.themed-list-toolbar
+															2365 hyperlink (링크) div.kubernetes-iso-page.kubernetes-iso-list-page.themed-list-toolbar Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2366 list item (목록 항목) div
+															2367 hyperlink (링크) div Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2368 list item (목록 항목) div.row-element
+															2369 hyperlink (링크) div.row-element Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2370 list item (목록 항목) div.list-view-table-wrapper.kubernetes-iso-list-table
+															2371 hyperlink (링크) div.list-view-table-wrapper.kubernetes-iso-list-table Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2372 list item (목록 항목) div.ant-table-wrapper
+															2373 hyperlink (링크) div.ant-table-wrapper Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2374 list item (목록 항목) div.ant-spin-nested-loading
+															2375 hyperlink (링크) div.ant-spin-nested-loading Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2376 list item (목록 항목) div.ant-spin-container
+															2377 hyperlink (링크) div.ant-spin-container Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2378 list item (목록 항목) div.ant-table.ant-table-ping-right.ant-table-layout-fixed.ant-table-scroll-horizontal.ant-table-middle
+															2379 hyperlink (링크) div.ant-table.ant-table-ping-right.ant-table-layout-fixed.ant-table-scroll-horizontal.ant-table-middle Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2380 list item (목록 항목) div.ant-table-container
+															2381 hyperlink (링크) div.ant-table-container Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2382 list item (목록 항목) div.ant-table-content
+															2383 hyperlink (링크) div.ant-table-content Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2384 list item (목록 항목) table
+															2385 hyperlink (링크) table Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2386 list item (목록 항목) tbody.ant-table-tbody
+															2387 hyperlink (링크) tbody.ant-table-tbody Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2388 list item (목록 항목) tr.ant-table-row.ant-table-row-level-0.light-row
+															2389 hyperlink (링크) tr.ant-table-row.ant-table-row-level-0.light-row Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2390 list item (목록 항목) td.ant-table-cell.ant-table-cell-ellipsis
+															2391 hyperlink (링크) td.ant-table-cell.ant-table-cell-ellipsis Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2392 list item (목록 항목) span.template-name-cell
+															2393 hyperlink (링크) span.template-name-cell Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2394 list item (목록 항목) span.template-primary-name
+															2395 hyperlink (링크) span.template-primary-name Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+														2396 list item (목록 항목) a.template-name-link
+															2397 hyperlink (링크) a.template-name-link Value: devtools://devtools/bundled/devtools_app.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@5cb0fce6746acfc926045c45b23d811d479c49b9/&targetType=tab&can_dock=true#
+													2430 button (단추) (disabled) Scroll right Description: Scroll right
+												2398 group (그룹)
+													2399 group (탐색) Side panel toolbar
+														2400 tab (Tab)
+															2401 tab item (탭 항목) (selectable) Styles ID: tab-styles
+															2402 tab item (탭 항목) (selectable) Computed ID: tab-computed
+															2403 tab item (탭 항목) (selectable) Layout ID: tab-elements.layout
+														2404 button (단추) More tabs Description: More tabs
+													2405 group (보조) Side panel content
+														6723 pane (탭 패널) Computed panel
+															6698 text (텍스트) margin
+															6699 text (텍스트) 0
+															6700 text (텍스트)
+															6701 text (텍스트) 0
+															6702 text (텍스트) border
+															6703 text (텍스트) 0
+															6704 text (텍스트)
+															6705 text (텍스트) 0
+															6706 text (텍스트) padding
+															6707 text (텍스트) 0
+															6708 text (텍스트)
+															6709 text (텍스트) 0
+															6710 text (텍스트) 370
+															6711 text (텍스트) ×
+															6712 text (텍스트) 22
+															6713 text (텍스트) 0
+															6714 text (텍스트)
+															6715 text (텍스트) 0
+															6716 text (텍스트) 0
+															6717 text (텍스트)
+															6718 text (텍스트) 0
+															6719 text (텍스트) 0
+															6720 text (텍스트)
+															6721 text (텍스트) 0
+															6724 group (그룹)
+																6725 text field (편집) (settable, string) Filter Description: Filter Value: Filter
+																	6726 text (텍스트) Filter
+																6727 group (그룹) Use regular expression Description: Use regular expression
+																	6728 button (전환 버튼) Use regular expression Description: Use regular expression
+																6729 checkbox (확인란) (settable, string) Show all Description: Show all ID: ui-checkbox-label10
+																6730 group (그룹) Show all Description: Show all
+																	6731 text (텍스트) Show all
+																6732 checkbox (확인란) (settable, string) Group Description: Group ID: ui-checkbox-label11
+																6733 group (그룹) Group Description: Group
+																	6734 text (텍스트) Group
+																6735 tree (트리)
+																	6736 tree item (콘솔 트리) (selectable) CSS property name: accent-color CSS property value: rgb(64, 150, 255)
+																		6737 group (그룹)
+																		6738 group (그룹) CSS property name: accent-color
+																		6739 group (그룹) CSS property value: rgb(64, 150, 255)
+																			6740 group (그룹)
+																				6741 group (그룹) Description: Shift-click to change color format
+																					6742 group (그룹)
+																	6743 tree item (콘솔 트리) (selectable) CSS property name: background-color CSS property value: rgba(0, 0, 0, 0)
+																		6744 group (그룹)
+																		6745 group (그룹) CSS property name: background-color
+																		6746 group (그룹) CSS property value: rgba(0, 0, 0, 0)
+																			6747 group (그룹)
+																				6748 group (그룹) Description: Shift-click to change color format
+																					6749 group (그룹)
+																	6750 tree item (콘솔 트리) (selectable) CSS property name: border-collapse CSS property value: separate
+																		6751 group (그룹)
+																		6752 group (그룹) CSS property name: border-collapse
+																		6753 group (그룹) CSS property value: separate
+																	6754 tree item (콘솔 트리) (selectable) CSS property name: box-sizing CSS property value: border-box
+																		6755 group (그룹)
+																		6756 group (그룹) CSS property name: box-sizing
+																		6757 group (그룹) CSS property value: border-box
+																	6758 tree item (콘솔 트리) (selectable) CSS property name: color CSS property value: rgb(105, 177, 255)
+																		6759 group (그룹)
+																		6760 group (그룹) CSS property name: color
+																		6761 group (그룹) CSS property value: rgb(105, 177, 255)
+																			6762 group (그룹)
+																				6763 group (그룹) Description: Shift-click to change color format
+																					6764 group (그룹)
+																	6765 tree item (콘솔 트리) (selectable) CSS property name: color-scheme CSS property value: dark
+																		6766 group (그룹)
+																		6767 group (그룹) CSS property name: color-scheme
+																		6768 group (그룹) CSS property value: dark
+																	6769 tree item (콘솔 트리) (selectable) CSS property name: cursor CSS property value: pointer
+																		6770 group (그룹)
+																		6771 group (그룹) CSS property name: cursor
+																		6772 group (그룹) CSS property value: pointer
+																	6773 tree item (콘솔 트리) (selectable) CSS property name: display CSS property value: block
+																		6774 group (그룹)
+																		6775 group (그룹) CSS property name: display
+																		6776 group (그룹) CSS property value: block
+																	6777 tree item (콘솔 트리) (selectable) CSS property name: flex-basis CSS property value: 0px
+																		6778 group (그룹)
+																		6779 group (그룹) CSS property name: flex-basis
+																		6780 group (그룹) CSS property value: 0px
+																	6781 tree item (콘솔 트리) (selectable) CSS property name: flex-grow CSS property value: 1
+																		6782 group (그룹)
+																		6783 group (그룹) CSS property name: flex-grow
+																		6784 group (그룹) CSS property value: 1
+																	6785 tree item (콘솔 트리) (selectable) CSS property name: flex-shrink CSS property value: 1
+																		6786 group (그룹)
+																		6787 group (그룹) CSS property name: flex-shrink
+																		6788 group (그룹) CSS property value: 1
+																	6789 tree item (콘솔 트리) (selectable) CSS property name: font-family CSS property value: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+																		6790 group (그룹)
+																		6791 group (그룹) CSS property name: font-family
+																		6792 group (그룹) CSS property value: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+																	6793 tree item (콘솔 트리) (selectable) CSS property name: font-feature-settings CSS property value: "tnum"
+																		6794 group (그룹)
+																		6795 group (그룹) CSS property name: font-feature-settings
+																		6796 group (그룹) CSS property value: "tnum"
+																	6797 tree item (콘솔 트리) (selectable) CSS property name: font-size CSS property value: 14px
+																		6798 group (그룹)
+																		6799 group (그룹) CSS property name: font-size
+																		6800 group (그룹) CSS property value: 14px
+																	6801 tree item (콘솔 트리) (selectable) CSS property name: font-variant-alternates CSS property value: normal
+																		6802 group (그룹)
+																		6803 group (그룹) CSS property name: font-variant-alternates
+																		6804 group (그룹) CSS property value: normal
+																	6805 tree item (콘솔 트리) (selectable) CSS property name: font-variant-caps CSS property value: normal
+																		6806 group (그룹)
+																		6807 group (그룹) CSS property name: font-variant-caps
+																		6808 group (그룹) CSS property value: normal
+																	6809 tree item (콘솔 트리) (selectable) CSS property name: font-variant-east-asian CSS property value: normal
+																		6810 group (그룹)
+																		6811 group (그룹) CSS property name: font-variant-east-asian
+																		6812 group (그룹) CSS property value: normal
+																	6813 tree item (콘솔 트리) (selectable) CSS property name: font-variant-emoji CSS property value: normal
+																		6814 group (그룹)
+																		6815 group (그룹) CSS property name: font-variant-emoji
+																		6816 group (그룹) CSS property value: normal
+																	6817 tree item (콘솔 트리) (selectable) CSS property name: font-variant-ligatures CSS property value: normal
+																		6818 group (그룹)
+																		6819 group (그룹) CSS property name: font-variant-ligatures
+																		6820 group (그룹) CSS property value: normal
+																	6821 tree item (콘솔 트리) (selectable) CSS property name: font-variant-numeric CSS property value: tabular-nums
+																		6822 group (그룹)
+																		6823 group (그룹) CSS property name: font-variant-numeric
+																		6824 group (그룹) CSS property value: tabular-nums
+																	6825 tree item (콘솔 트리) (selectable) CSS property name: font-variant-position CSS property value: normal
+																		6826 group (그룹)
+																		6827 group (그룹) CSS property name: font-variant-position
+																		6828 group (그룹) CSS property value: normal
+																	6829 tree item (콘솔 트리) (selectable) CSS property name: height CSS property value: 22px
+																		6830 group (그룹)
+																		6831 group (그룹) CSS property name: height
+																		6832 group (그룹) CSS property value: 22px
+																	6833 tree item (콘솔 트리) (selectable) CSS property name: line-height CSS property value: 22.001px
+																		6834 group (그룹)
+																		6835 group (그룹) CSS property name: line-height
+																		6836 group (그룹) CSS property value: 22.001px
+																	6837 tree item (콘솔 트리) (selectable) CSS property name: list-style-image CSS property value: none
+																		6838 group (그룹)
+																		6839 group (그룹) CSS property name: list-style-image
+																		6840 group (그룹) CSS property value: none
+																	6841 tree item (콘솔 트리) (selectable) CSS property name: list-style-position CSS property value: outside
+																		6842 group (그룹)
+																		6843 group (그룹) CSS property name: list-style-position
+																		6844 group (그룹) CSS property value: outside
+																	6845 tree item (콘솔 트리) (selectable) CSS property name: list-style-type CSS property value: none
+																		6846 group (그룹)
+																		6847 group (그룹) CSS property name: list-style-type
+																		6848 group (그룹) CSS property value: none
+																	6849 tree item (콘솔 트리) (selectable) CSS property name: min-width CSS property value: 0px
+																		6850 group (그룹)
+																		6851 group (그룹) CSS property name: min-width
+																		6852 group (그룹) CSS property value: 0px
+																	6853 tree item (콘솔 트리) (selectable) CSS property name: outline-color CSS property value: rgb(105, 177, 255)
+																		6854 group (그룹)
+																		6855 group (그룹) CSS property name: outline-color
+																		6856 group (그룹) CSS property value: rgb(105, 177, 255)
+																			6857 group (그룹)
+																				6858 group (그룹) Description: Shift-click to change color format
+																					6859 group (그룹)
+																	6860 tree item (콘솔 트리) (selectable) CSS property name: outline-style CSS property value: none
+																		6861 group (그룹)
+																		6862 group (그룹) CSS property name: outline-style
+																		6863 group (그룹) CSS property value: none
+																	6864 tree item (콘솔 트리) (selectable) CSS property name: outline-width CSS property value: 3px
+																		6865 group (그룹)
+																		6866 group (그룹) CSS property name: outline-width
+																		6867 group (그룹) CSS property value: 3px
+																	6868 tree item (콘솔 트리) (selectable) CSS property name: overflow-wrap CSS property value: break-word
+																		6869 group (그룹)
+																		6870 group (그룹) CSS property name: overflow-wrap
+																		6871 group (그룹) CSS property value: break-word
+																	6872 tree item (콘솔 트리) (selectable) CSS property name: overflow-x CSS property value: hidden
+																		6873 group (그룹)
+																		6874 group (그룹) CSS property name: overflow-x
+																		6875 group (그룹) CSS property value: hidden
+																	6876 tree item (콘솔 트리) (selectable) CSS property name: overflow-y CSS property value: hidden
+																		6877 group (그룹)
+																		6878 group (그룹) CSS property name: overflow-y
+																		6879 group (그룹) CSS property value: hidden
+																	6880 tree item (콘솔 트리) (selectable) CSS property name: scrollbar-color CSS property value: rgba(143, 179, 217, 0.56) rgba(21, 29, 38, 0.92)
+																		6881 group (그룹)
+																		6882 group (그룹) CSS property name: scrollbar-color
+																		6883 group (그룹) CSS property value: rgba(143, 179, 217, 0.56) rgba(21, 29, 38, 0.92)
+																			6884 group (그룹)
+																				6885 group (그룹) Description: Shift-click to change color format
+																					6886 group (그룹)
+																			6887 group (그룹)
+																				6888 group (그룹) Description: Shift-click to change color format
+																					6889 group (그룹)
+																	6890 tree item (콘솔 트리) (selectable) CSS property name: scrollbar-width CSS property value: thin
+																		6891 group (그룹)
+																		6892 group (그룹) CSS property name: scrollbar-width
+																		6893 group (그룹) CSS property value: thin
+																	6894 tree item (콘솔 트리) (selectable) CSS property name: text-align CSS property value: left
+																		6895 group (그룹)
+																		6896 group (그룹) CSS property name: text-align
+																		6897 group (그룹) CSS property value: left
+																	6898 tree item (콘솔 트리) (selectable) CSS property name: text-decoration-color CSS property value: rgb(105, 177, 255)
+																		6899 group (그룹)
+																		6900 group (그룹) CSS property name: text-decoration-color
+																		6901 group (그룹) CSS property value: rgb(105, 177, 255)
+																			6902 group (그룹)
+																				6903 group (그룹) Description: Shift-click to change color format
+																					6904 group (그룹)
+																	6905 tree item (콘솔 트리) (selectable) CSS property name: text-decoration-line CSS property value: none
+																		6906 group (그룹)
+																		6907 group (그룹) CSS property name: text-decoration-line
+																		6908 group (그룹) CSS property value: none
+																	6909 tree item (콘솔 트리) (selectable) CSS property name: text-decoration-style CSS property value: solid
+																		6910 group (그룹)
+																		6911 group (그룹) CSS property name: text-decoration-style
+																		6912 group (그룹) CSS property value: solid
+																	6913 tree item (콘솔 트리) (selectable) CSS property name: text-decoration-thickness CSS property value: auto
+																		6914 group (그룹)
+																		6915 group (그룹) CSS property name: text-decoration-thickness
+																		6916 group (그룹) CSS property value: auto
+																	6917 tree item (콘솔 트리) (selectable) CSS property name: text-indent CSS property value: 0px
+																		6918 group (그룹)
+																		6919 group (그룹) CSS property name: text-indent
+																		6920 group (그룹) CSS property value: 0px
+																	6921 tree item (콘솔 트리) (selectable) CSS property name: text-overflow CSS property value: ellipsis
+																		6922 group (그룹)
+																		6923 group (그룹) CSS property name: text-overflow
+																		6924 group (그룹) CSS property value: ellipsis
+																	6925 tree item (콘솔 트리) (selectable) CSS property name: text-size-adjust CSS property value: 100%
+																		6926 group (그룹)
+																		6927 group (그룹) CSS property name: text-size-adjust
+																		6928 group (그룹) CSS property value: 100%
+																	6929 tree item (콘솔 트리) (selectable) CSS property name: text-wrap-mode CSS property value: nowrap
+																		6930 group (그룹)
+																		6931 group (그룹) CSS property name: text-wrap-mode
+																		6932 group (그룹) CSS property value: nowrap
+																	6933 tree item (콘솔 트리) (selectable) CSS property name: touch-action CSS property value: manipulation
+																		6934 group (그룹)
+																		6935 group (그룹) CSS property name: touch-action
+																		6936 group (그룹) CSS property value: manipulation
+																	6937 tree item (콘솔 트리) (selectable) CSS property name: transition-behavior CSS property value: normal
+																		6938 group (그룹)
+																		6939 group (그룹) CSS property name: transition-behavior
+																		6940 group (그룹) CSS property value: normal
+																	6941 tree item (콘솔 트리) (selectable) CSS property name: transition-delay CSS property value: 0s
+																		6942 group (그룹)
+																		6943 group (그룹) CSS property name: transition-delay
+																		6944 group (그룹) CSS property value: 0s
+																	6945 tree item (콘솔 트리) (selectable) CSS property name: transition-duration CSS property value: 0.3s
+																		6946 group (그룹)
+																		6947 group (그룹) CSS property name: transition-duration
+																		6948 group (그룹) CSS property value: 0.3s
+																	6949 tree item (콘솔 트리) (selectable) CSS property name: transition-property CSS property value: color
+																		6950 group (그룹)
+																		6951 group (그룹) CSS property name: transition-property
+																		6952 group (그룹) CSS property value: color
+																	6953 tree item (콘솔 트리) (selectable) CSS property name: transition-timing-function CSS property value: ease
+																		6954 group (그룹)
+																		6955 group (그룹) CSS property name: transition-timing-function
+																		6956 group (그룹) CSS property value: ease
+																	6957 tree item (콘솔 트리) (selectable) CSS property name: white-space-collapse CSS property value: collapse
+																		6958 group (그룹)
+																		6959 group (그룹) CSS property name: white-space-collapse
+																		6960 group (그룹) CSS property value: collapse
+																	6961 tree item (콘솔 트리) (selectable) CSS property name: width CSS property value: 370px
+																		6962 group (그룹)
+																		6963 group (그룹) CSS property name: width
+																		6964 group (그룹) CSS property value: 370px
+																	6965 tree item (콘솔 트리) (selectable) CSS property name: word-break CSS property value: keep-all
+																		6966 group (그룹)
+																		6967 group (그룹) CSS property name: word-break
+																		6968 group (그룹) CSS property value: keep-all
+																	6969 tree item (콘솔 트리) (selectable) CSS property name: -webkit-border-horizontal-spacing CSS property value: 0px
+																		6970 group (그룹)
+																		6971 group (그룹) CSS property name: -webkit-border-horizontal-spacing
+																		6972 group (그룹) CSS property value: 0px
+																	6973 tree item (콘솔 트리) (selectable) CSS property name: -webkit-border-vertical-spacing CSS property value: 0px
+																		6974 group (그룹)
+																		6975 group (그룹) CSS property name: -webkit-border-vertical-spacing
+																		6976 group (그룹) CSS property value: 0px
+																	6977 tree item (콘솔 트리) (selectable) CSS property name: -webkit-box-flex CSS property value: 1
+																		6978 group (그룹)
+																		6979 group (그룹) CSS property name: -webkit-box-flex
+																		6980 group (그룹) CSS property value: 1
+																	6981 tree item (콘솔 트리) (selectable) CSS property name: -webkit-tap-highlight-color CSS property value: rgba(0, 0, 0, 0)
+																		6982 group (그룹)
+																		6983 group (그룹) CSS property name: -webkit-tap-highlight-color
+																		6984 group (그룹) CSS property value: rgba(0, 0, 0, 0)
+																			6985 group (그룹)
+																				6986 group (그룹) Description: Shift-click to change color format
+																					6987 group (그룹)
+															6988 text (텍스트) Rendered fonts
+															6989 text (텍스트) Family name
+															6990 text (텍스트) :
+															6991 text (텍스트) Segoe UI
+															6992 text (텍스트) PostScript name
+															6993 text (텍스트) :
+															6994 text (텍스트) SegoeUI
+															6995 text (텍스트) Font origin
+															6996 text (텍스트) :
+															6997 text (텍스트) Local file
+															6998 text (텍스트) (6 glyphs)
+									1314 group (보조) Drawer
+										1315 group (그룹)
+											1316 toolbar (도구 모음)
+												1317 button (단추) More tools Description: More tools
+													1318 button (단추) More tools Description: More tools
+											1319 tab (Tab)
+												1320 tab item (탭 항목) (selectable) What’s new ID: tab-release-note
+											1321 button (단추) More tabs Description: More tabs
+											1322 toolbar (도구 모음)
+												1323 group (그룹) Toggle drawer orientation Description: Toggle drawer orientation
+													1324 button (단추) Toggle drawer orientation Description: Toggle drawer orientation
+												1325 group (그룹) Minimize drawer Description: Minimize drawer
+													1326 button (단추) Minimize drawer Description: Minimize drawer
+												1327 group (그룹) Close drawer Description: Close drawer
+													1328 button (단추) Close drawer Description: Close drawer
+											1329 pane (탭 패널) What’s new panel
+												1347 group (그룹) whats-new
+													1348 text (텍스트) New in DevTools (November 2026)
+													1349 button (단추) See all new features
+													1350 text (제목) DevTools for agents
+														1351 hyperlink (링크) DevTools for agents Description: https://developer.chrome.com/blog/new-in-devtools-november-2026/#mcp
+													1352 text (텍스트) Inspect matched rules, inherited styles, pseudo-elements, and
+													1353 text (텍스트) @
+													1354 text (텍스트) rules with the
+													1355 text (텍스트) get_css_styles
+													1356 text (텍스트) tool in Chrome DevTools for agents. You can also manage server flags with a configuration file and parse large performance traces with chunked trace buffer parsing.
+													1357 text (제목) Visual position-area editor for CSS anchor positioning
+														1358 hyperlink (링크) Visual position-area editor for CSS anchor positioning Description: https://developer.chrome.com/blog/new-in-devtools-november-2026/#sources
+													1359 text (텍스트) Click the inline swatch next to a
+													1360 text (텍스트) position-area
+													1361 text (텍스트) declaration in the
+													1362 text (텍스트) Styles
+													1363 text (텍스트) tab to visually select anchor grid regions, configure axis modes, and toggle the
+													1364 text (텍스트) self
+													1365 text (텍스트) keyword. Right-click
+													1366 text (텍스트) popover
+													1367 text (텍스트) adorners in the DOM tree to disambiguate multiple implicit anchors.
+													1368 text (제목) Web Install manifest diagnostics and ad script provenance
+														1369 hyperlink (링크) Web Install manifest diagnostics and ad script provenance Description: https://developer.chrome.com/blog/new-in-devtools-november-2026/#web-install-manifest-diagnosti
+													1370 text (텍스트) Diagnose Web Install (
+													1371 text (텍스트) navigator.install
+													1372 text (텍스트) and
+													1373 text (텍스트) <install>
+													1374 text (텍스트) ) manifest errors in the
+													1375 text (텍스트) Issues
+													1376 text (텍스트) panel with direct links to affected manifests. In the
+													1377 text (텍스트) Application
+													1378 text (텍스트) panel's
+													1379 text (텍스트) Ads
+													1380 text (텍스트) section, use the new
+													1381 text (텍스트) Ad provenance
+													1382 text (텍스트) column to see whether script ancestry or a filter list rule tagged an ad script.
+									1330 text (경고)
+										1512 text (텍스트) Console cleared
+									1384 status bar (상태)
+								1513 document (문서) 쿠버네티스 ISO - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57 ID: RootWebArea
+									1534 group (그룹)
+										1553 image (라벨이 없는 그래픽) 누락된 이미지 설명을 확인하려면 컨텍스트 메뉴를 여세요.
+										1554 menu (메뉴)
+											1555 menu item (메뉴 항목) dashboard 대시보드
+												1556 hyperlink (링크) dashboard 대시보드 Value: http://10.10.13.10:8080/client/#/dashboard
+													1557 image (그래픽) dashboard
+											1558 group (그룹)
+												1559 image (그래픽) cloud
+												1560 group (그룹)
+													1561 text (텍스트) 컴퓨트
+											1562 group (그룹)
+												1563 image (그래픽) hdd
+												1564 group (그룹)
+													1565 text (텍스트) 스토리지
+											1566 group (그룹)
+												1567 image (그래픽) wifi
+												1568 group (그룹)
+													1569 text (텍스트) 네트워크
+											1570 group (그룹)
+												1571 image (그래픽) picture
+												1572 group (그룹)
+													1573 text (텍스트) 이미지
+											1574 list (LIST) ID: sub_menu_4_$$_/image-popup
+												1575 menu item (메뉴 항목) save 템플릿
+													1576 hyperlink (링크) save 템플릿 Value: http://10.10.13.10:8080/client/#/template
+														1577 image (그래픽) save
+												1578 menu item (메뉴 항목) usb ISO
+													1579 hyperlink (링크) usb ISO Value: http://10.10.13.10:8080/client/#/iso
+														1580 image (그래픽) usb
+												1581 menu item (메뉴 항목) 쿠버네티스 ISO
+													1582 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+														1583 image (그래픽)
+											1584 group (그룹)
+												1585 image (그래픽) lock
+												1586 group (그룹)
+													1587 text (텍스트) 키 관리
+											1588 menu item (메뉴 항목) schedule 이벤트
+												1589 hyperlink (링크) schedule 이벤트 Value: http://10.10.13.10:8080/client/#/event
+													1590 image (그래픽) schedule
+											1591 menu item (메뉴 항목) project 프로젝트
+												1592 hyperlink (링크) project 프로젝트 Value: http://10.10.13.10:8080/client/#/project
+													1593 image (그래픽) project
+											1594 menu item (메뉴 항목) idcard 역할
+												1595 hyperlink (링크) idcard 역할 Value: http://10.10.13.10:8080/client/#/role
+													1596 image (그래픽) idcard
+											1597 menu item (메뉴 항목) team 계정
+												1598 hyperlink (링크) team 계정 Value: http://10.10.13.10:8080/client/#/account
+													1599 image (그래픽) team
+											1600 menu item (메뉴 항목) block 도메인
+												1601 hyperlink (링크) block 도메인 Value: http://10.10.13.10:8080/client/#/domain
+													1602 image (그래픽) block
+											1603 group (그룹)
+												1604 image (그래픽) bank
+												1605 group (그룹)
+													1606 text (텍스트) 인프라스트럭쳐
+											1607 group (그룹)
+												1608 image (그래픽) shopping
+												1609 group (그룹)
+													1610 text (텍스트) 서비스 오퍼링
+											1611 group (그룹)
+												1612 image (그래픽) setting
+												1613 group (그룹)
+													1614 text (텍스트) 구성
+											1615 menu item (메뉴 항목) appstore-add 확장
+												1616 hyperlink (링크) appstore-add 확장 Value: http://10.10.13.10:8080/client/#/extension
+													1617 image (그래픽) appstore-add
+											1618 group (그룹)
+												1619 image (그래픽) tool
+												1620 group (그룹)
+													1621 text (텍스트) 도구
+											1622 menu item (메뉴 항목) read API 문서
+												1623 hyperlink (링크) read API 문서 Value: http://10.10.13.10:8080/client/#/apidocs/
+													1624 image (그래픽) read
+										1625 group (섹션 헤더)
+											1626 text (텍스트) 페이지 스타일 설정
+											1627 button (단추) 닫기
+												1628 image (그래픽) close
+										1629 text (제목) 페이지 스타일 설정
+										1630 group (그룹)
+											1631 image (그래픽)
+											1632 radio button (라디오 단추) (selectable, settable, string)
+											1854 text (텍스트)
+										1634 group (그룹)
+											1635 image (그래픽)
+											1636 radio button (라디오 단추) (selectable, settable, string)
+											1855 text (텍스트)
+											1638 image (그래픽) check
+										1639 text (제목) 테마 색상
+										1640 group (그룹)
+											1641 radio button (라디오 단추) (selectable, settable, string)
+											1856 text (텍스트)
+											1643 image (그래픽) check
+										1644 group (그룹)
+											1645 radio button (라디오 단추) (selectable, settable, string)
+											1857 text (텍스트)
+										1647 group (그룹)
+											1648 radio button (라디오 단추) (selectable, settable, string)
+											1858 text (텍스트)
+										1650 group (그룹)
+											1651 radio button (라디오 단추) (selectable, settable, string)
+											1859 text (텍스트)
+										1653 group (그룹)
+											1654 radio button (라디오 단추) (selectable, settable, string)
+											1860 text (텍스트)
+										1656 group (그룹)
+											1657 radio button (라디오 단추) (selectable, settable, string)
+											1861 text (텍스트)
+										1659 group (그룹)
+											1660 radio button (라디오 단추) (selectable, settable, string)
+											1862 text (텍스트)
+										1662 group (그룹)
+											1663 radio button (라디오 단추) (selectable, settable, string)
+											1863 text (텍스트)
+										1665 separator (구분 기호)
+										1666 text (제목) 네비게이션 설정
+										1667 list item (목록 항목) 배경색
+											1668 text (텍스트) 배경색
+											1669 button (color picker) (disabled) Value: 100% red 100% green 100% blue
+										1670 list item (목록 항목) 텍스트 색상
+											1671 text (텍스트) 텍스트 색상
+											1672 button (color picker) (disabled) Value: 0% red 0% green 0% blue
+										1673 separator (구분 기호)
+										1674 text (경고)
+											1675 image (그래픽) exclamation-circle
+											1676 text (텍스트) 설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+										1677 button (단추) download 세팅값 다운로드(json)
+											1678 image (그래픽) download
+										1679 button (단추) undo 기본값으로 재설정
+											1680 image (그래픽) undo
+										1681 group (섹션 헤더)
+											1682 image (그래픽) menu-fold
+											1683 text (텍스트) 프로젝트
+											1684 group (그룹)
+												1685 group (그룹)
+													1686 combo box (콤보 상자) (settable, string) 프로젝트 ID: project-selector-1
+													1687 image (그래픽) project
+													1688 text (텍스트) 기본 보기
+											1689 button (단추) 생성 down
+												1690 image (그래픽) down
+											1691 group (그룹)
+												1692 image (그래픽) translation
+											1693 button (단추) 알림
+												1694 image (그래픽) bell
+											1695 group (그룹)
+												1696 text (텍스트) AC
+												1697 text (텍스트) admin cloud
+										1698 group (기본)
+											1699 hyperlink (링크) home Value: http://10.10.13.10:8080/client/#/
+												1700 image (그래픽) home
+											1701 text (텍스트) /
+											1702 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+											1703 hyperlink (링크) question-circle Value: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions
+												1704 image (그래픽) question-circle
+											1705 button (단추) reload 업데이트
+												1775 image (그래픽) reload
+											1707 group (그룹)
+											1708 button (단추) 쿠버네티스 버전 추가
+												1709 image (그래픽) plus
+											1710 button (단추) 로컬에서 Kubernetes 버전 추가
+												1711 image (그래픽) cloud-upload
+											1712 button (단추) 고급 검색
+												1713 image (그래픽) filter
+											1714 group (그룹)
+												1715 text field (편집) (settable, string) 검색 Description: 검색
+											1716 button (단추) search
+												1717 image (그래픽) search
+											1718 group (지역) 쿠버네티스 ISO
+												1720 table (TABLE)
+													1721 data item (행)
+														1722 data item (열 머리글) 이름 caret-up caret-down Description: 이름
+															1723 group (그룹)
+																1724 group (그룹)
+																1725 image (그래픽) caret-up
+																1726 image (그래픽) caret-down
+														1727 data item (열 머리글) 상태 caret-up caret-down Description: 상태
+															1728 group (그룹)
+																1729 group (그룹)
+																1730 image (그래픽) caret-up
+																1731 image (그래픽) caret-down
+														1732 data item (열 머리글) 시맨틱 버전 caret-up caret-down Description: 시맨틱 버전
+															1733 group (그룹)
+																1734 group (그룹)
+																1735 image (그래픽) caret-up
+																1736 image (그래픽) caret-down
+														1737 data item (열 머리글) ISO 상태 Description: ISO 상태
+															1738 group (그룹)
+														1739 data item (열 머리글) 최소 CPU 코어 caret-up caret-down Description: 최소 CPU 코어
+															1740 group (그룹)
+																1741 group (그룹)
+																1742 image (그래픽) caret-up
+																1743 image (그래픽) caret-down
+														1744 data item (열 머리글) 최소 메모리(MB) caret-up caret-down Description: 최소 메모리(MB)
+															1745 group (그룹)
+																1746 group (그룹)
+																1747 image (그래픽) caret-up
+																1748 image (그래픽) caret-down
+														1749 data item (열 머리글) CPU 아키텍처 Description: CPU 아키텍처
+															1750 group (그룹)
+														1751 data item (열 머리글) Zone Description: Zone
+															1752 group (그룹)
+														1753 data item (열 머리글) 열 선택
+															1754 button (단추) 열 선택
+																1755 image (그래픽) filter
+													1776 data item (행)
+														1777 data item (항목) 1.35.9
+															1778 image (그래픽)
+															1779 hyperlink (링크) 1.35.9 Value: http://10.10.13.10:8080/client/#/kubernetesiso/b5fabc77-be13-448e-8643-625e9ff8d1e0?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1780 data item (항목) 사용 허용
+															1781 group (그룹)
+														1782 data item (항목) 1.35.9
+															1783 group (그룹)
+														1784 data item (항목) 미확인
+															1785 group (그룹)
+														1786 data item (항목) 2
+															1787 group (그룹)
+														1788 data item (항목) 2048
+															1789 group (그룹)
+														1790 data item (항목) x86_64
+															1791 group (그룹)
+														1792 data item (항목) 13-Zone
+															1793 hyperlink (링크) 13-Zone Description: f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f Value: http://10.10.13.10:8080/client/#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f
+														1794 data item (항목)
+													1795 data item (행)
+														1796 data item (항목) 1.36.5
+															1797 image (그래픽)
+															1798 hyperlink (링크) 1.36.5 Value: http://10.10.13.10:8080/client/#/kubernetesiso/441b3f20-0a40-48dd-becb-1573c6059867?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1799 data item (항목) 사용 허용
+															1800 group (그룹)
+														1801 data item (항목) 1.36.5
+															1802 group (그룹)
+														1803 data item (항목) 미확인
+															1804 group (그룹)
+														1805 data item (항목) 2
+															1806 group (그룹)
+														1807 data item (항목) 2048
+															1808 group (그룹)
+														1809 data item (항목) x86_64
+															1810 group (그룹)
+														1811 data item (항목) 13-Zone
+															1812 hyperlink (링크) 13-Zone Description: f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f Value: http://10.10.13.10:8080/client/#/zone/f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f
+														1813 data item (항목)
+													1814 data item (행)
+														1815 data item (항목) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-
+															1816 image (그래픽)
+															1817 hyperlink (링크) qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE- Value: http://10.10.13.10:8080/client/#/kubernetesiso/8f773b4a-8802-40ea-88e6-76d2b8141e29?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1818 data item (항목) 사용 허용
+															1819 group (그룹)
+														1820 data item (항목) 1.36.72
+															1821 group (그룹)
+														1822 data item (항목) 미확인
+															1823 group (그룹)
+														1824 data item (항목) 2
+															1825 group (그룹)
+														1826 data item (항목) 2048
+															1827 group (그룹)
+														1828 data item (항목) x86_64
+															1829 group (그룹)
+														1830 data item (항목) 모든 Zone
+															1831 group (그룹)
+														1832 data item (항목)
+													1833 data item (행)
+														1834 data item (항목) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-
+															1835 image (그래픽)
+															1836 hyperlink (링크) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ- Value: http://10.10.13.10:8080/client/#/kubernetesiso/29ce330b-a632-445e-b687-a6eacffa5523?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+														1837 data item (항목) 사용 허용
+															1838 group (그룹)
+														1839 data item (항목) 1.36.74
+															1840 group (그룹)
+														1841 data item (항목) 미확인
+															1842 group (그룹)
+														1843 data item (항목) 2
+															1844 group (그룹)
+														1845 data item (항목) 2048
+															1846 group (그룹)
+														1847 data item (항목) x86_64
+															1848 group (그룹)
+														1849 data item (항목) 모든 Zone
+															1850 group (그룹)
+														1851 data item (항목)
+											1759 list (LIST)
+												1760 list item (목록 항목) 전체 4 개 항목 중 1-4 표시
+												1761 list item (목록 항목) (disabled) 이전 페이지 Description: 이전 페이지
+													1762 button (단추) (disabled) left
+														1763 image (그래픽) left
+												1852 list item (목록 항목) 1 Description: 1
+													1853 text (텍스트) 1
+												1766 list item (목록 항목) (disabled) 다음 페이지 Description: 다음 페이지
+													1767 button (단추) (disabled) right
+														1768 image (그래픽) right
+												1769 list item (목록 항목) 20 / 쪽
+													1770 group (그룹)
+														1771 group (그룹)
+															1772 combo box (콤보 상자) ID: rc_select_1
+															1773 text (텍스트) 20 / 쪽
+										1774 group (섹션 바닥글)
+										1864 text (경고)
+											1865 image (그래픽) exclamation-circle
+											1866 text (텍스트) 조치가 필요한 경보
+											1867 text (텍스트) (2건)
+											1868 text (텍스트) -
+											1869 text (텍스트) 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+											1870 button (단추) 세부 경보 내용 확인
+											1871 button (단추) 경보 규칙으로 이동
+											1872 button (단추) 닫기
+												1873 image (그래픽) close

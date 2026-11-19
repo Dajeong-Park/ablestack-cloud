@@ -1,0 +1,18 @@
+{
+  "head": "6186960c08786c099aaedac9ecbc13d831cb823f",
+  "backup": "/var/tmp/kiso1702-backup-nwyk82ho",
+  "files": [
+    "css/kiso-breadcrumb.bbcc604a0e92.css",
+    "index.html"
+  ],
+  "count": 2,
+  "overwritten": [
+    "index.html"
+  ],
+  "preservedOldFiles": 7220,
+  "indexSha256": "79434dc25bc4ff62dfe16e16135318c289107c6b820c37afad57a2bfcb3af436",
+  "protectedPreserved": true,
+  "backendAndPidPreserved": true,
+  "staticHttpHashesVerified": true,
+  "deploymentType": "UI static delta only"
+}

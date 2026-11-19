@@ -1,0 +1,6 @@
+{
+  "command": "deleteKubernetesSupportedVersion",
+  "stage": "Response",
+  "id": "e2d3daa1-f13b-4ad0-82fe-3ae6cee9920e",
+  "syntheticTransportFailure": true
+}

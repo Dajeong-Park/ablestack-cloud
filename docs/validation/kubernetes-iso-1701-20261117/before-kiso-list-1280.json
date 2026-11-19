@@ -1,0 +1,78 @@
+{
+  "breadcrumb": 122,
+  "headers": [
+    {
+      "height": 47,
+      "text": "이름",
+      "width": 75
+    },
+    {
+      "height": 47,
+      "text": "상태",
+      "width": 113
+    },
+    {
+      "height": 47,
+      "text": "시맨틱 버전",
+      "width": 131
+    },
+    {
+      "height": 47,
+      "text": "ISO 상태",
+      "width": 90
+    },
+    {
+      "height": 47,
+      "text": "최소 CPU 코어",
+      "width": 154
+    },
+    {
+      "height": 47,
+      "text": "최소 메모리(MB)",
+      "width": 171
+    },
+    {
+      "height": 47,
+      "text": "CPU 아키텍처",
+      "width": 129
+    },
+    {
+      "height": 47,
+      "text": "Zone",
+      "width": 90
+    },
+    {
+      "height": 47,
+      "text": "",
+      "width": 36
+    }
+  ],
+  "pageOverflow": false,
+  "toolbar": [
+    {
+      "name": "쿠버네티스 버전 추가",
+      "right": 947.59375,
+      "width": 179.59375,
+      "x": 768
+    },
+    {
+      "name": "로컬에서 Kubernetes 버전 추가",
+      "right": 984.59375,
+      "width": 32,
+      "x": 952.59375
+    },
+    {
+      "name": "고급 검색",
+      "right": 821,
+      "width": 46,
+      "x": 775
+    },
+    {
+      "name": null,
+      "right": 1232,
+      "width": 32,
+      "x": 1200
+    }
+  ],
+  "width": 1280
+}

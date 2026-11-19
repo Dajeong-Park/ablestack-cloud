@@ -1,0 +1,72 @@
+[
+  {
+    "command": "listGuiThemes",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listApis",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listUsers",
+    "method": "GET",
+    "params": {
+      "id": "85f461e9-4669-479c-8ec6-0854000fbafe"
+    }
+  },
+  {
+    "command": "listUsers",
+    "method": "GET",
+    "params": {
+      "id": "85f461e9-4669-479c-8ec6-0854000fbafe"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listCapabilities",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listUsers",
+    "method": "GET",
+    "params": {
+      "id": "85f461e9-4669-479c-8ec6-0854000fbafe"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "id": "30438d8d-9cad-4275-8e0f-5e1a4514f824"
+    }
+  },
+  {
+    "command": "listIsos",
+    "method": "GET",
+    "params": {
+      "id": "392298e1-67b8-42a7-b227-b6ad543c51f4",
+      "page": "1",
+      "pagesize": "500",
+      "isofilter": "executable",
+      "showunique": "false"
+    }
+  },
+  {
+    "command": "listIsos",
+    "method": "GET",
+    "params": {
+      "id": "392298e1-67b8-42a7-b227-b6ad543c51f4",
+      "page": "1",
+      "pagesize": "500",
+      "isofilter": "executable",
+      "showunique": "false"
+    }
+  }
+]

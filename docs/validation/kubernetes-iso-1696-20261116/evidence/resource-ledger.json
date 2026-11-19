@@ -1,0 +1,159 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "results": [
+    {
+      "case": "global-default-min-md5",
+      "id": "4038f67b-e55f-43d0-adb7-a33f492fa4ec",
+      "isoId": "0385a623-71f6-4cd2-8744-c8cd8aabefa6",
+      "name": "v1.11.0",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "0385a623-71f6-4cd2-8744-c8cd8aabefa6",
+        "Zone": "모든 Zones",
+        "아이디": "4038f67b-e55f-43d0-adb7-a33f492fa4ec",
+        "이름": "v1.11.0",
+        "직접 다운로드": "아니오"
+      },
+      "expected": {
+        "version": "1.11.0",
+        "name": "v1.11.0",
+        "zone": "all",
+        "arch": "x86_64",
+        "directdownload": false,
+        "checksum": "d69f7a4a251dcc299db705d6a9ebbcdf"
+      },
+      "cleanup": "parent and linked ISO deleted via UI; final catalog2/ISO8 original IDs verified",
+      "parentDetail": "이름\n\nv1.11.0\n시맨틱 버전\n\n1.11.0\n오토스케일링 지원\n\nfalse\nISO\n\n0385a623-71f6-4cd2-8744-c8cd8aabefa6\n연결된 ISO\n\nv1.11.0-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\nfalse\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 7:57:27\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso",
+      "isoDetail": "이름\n\nv1.11.0-Kubernetes-Binaries-ISO\n아이디\n\n0385a623-71f6-4cd2-8744-c8cd8aabefa6\n설명\n\nv1.11.0-Kubernetes-Binaries-ISO\n체크섬\n\nd69f7a4a251dcc299db705d6a9ebbcdf\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 7:57:27\nURL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso",
+      "ready": true
+    },
+    {
+      "case": "specific-arm-sha256-default-name",
+      "id": "eb329187-5cba-4670-88fa-66dd086ded38",
+      "isoId": "824f84af-3046-4b2e-8a11-03fdbfaa9d80",
+      "name": "v1.30.9601-13-Zone",
+      "fields": {
+        "CPU 아키텍처": "aarch64",
+        "ISO": "824f84af-3046-4b2e-8a11-03fdbfaa9d80",
+        "Zone": "13-Zone",
+        "아이디": "eb329187-5cba-4670-88fa-66dd086ded38",
+        "이름": "v1.30.9601-13-Zone",
+        "직접 다운로드": "아니오"
+      },
+      "expected": {
+        "version": "1.30.9601",
+        "name": "v1.30.9601-13-Zone",
+        "zone": "13-Zone",
+        "arch": "aarch64",
+        "directdownload": false,
+        "checksum": "60c79acb32d39da837de5db98ca37cf19901c9f1d7bbff93ba586b195f9e73fe",
+        "boot": "NOT_RUN: catalog metadata only"
+      },
+      "cleanup": "parent and linked ISO deleted via UI; final catalog2/ISO8 original IDs verified",
+      "ready": true,
+      "parentDetail": "이름\n\nv1.30.9601-13-Zone\n시맨틱 버전\n\n1.30.9601\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n824f84af-3046-4b2e-8a11-03fdbfaa9d80\n연결된 ISO\n\nv1.30.9601-13-Zone-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\naarch64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 8:01:43\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso",
+      "isoDetail": "이름\n\nv1.30.9601-13-Zone-Kubernetes-Binaries-ISO\n아이디\n\n824f84af-3046-4b2e-8a11-03fdbfaa9d80\n설명\n\nv1.30.9601-13-Zone-Kubernetes-Binaries-ISO\n체크섬\n\n60c79acb32d39da837de5db98ca37cf19901c9f1d7bbff93ba586b195f9e73fe\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\naarch64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 8:01:43\nURL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso"
+    },
+    {
+      "case": "specific-direct-true-sha512",
+      "id": "a6bd480f-66fb-4c5f-a93e-da601a1fc077",
+      "isoId": "0085543b-1578-4ba3-9846-8283350bd6ee",
+      "name": "qa-kiso1696-direct-kvm",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "0085543b-1578-4ba3-9846-8283350bd6ee",
+        "Zone": "13-Zone",
+        "아이디": "a6bd480f-66fb-4c5f-a93e-da601a1fc077",
+        "이름": "qa-kiso1696-direct-kvm",
+        "직접 다운로드": "예"
+      },
+      "expected": {
+        "version": "1.30.9602",
+        "zone": "13-Zone",
+        "arch": "x86_64",
+        "directdownload": true,
+        "checksum": "a6292e2ea8f5f952a8f8e41578de126b8b23becfdbd3aabc056203a495f36196f469eda92badef8e1bfa109f9e3f685a606a6ef379e58a6ffd75d4e6e3854dc0",
+        "primaryTransfer": "NOT_RUN: preparation only"
+      },
+      "cleanup": "parent and linked ISO deleted via UI; final catalog2/ISO8 original IDs verified",
+      "ready": true,
+      "parentDetail": "이름\n\nqa-kiso1696-direct-kvm\n시맨틱 버전\n\n1.30.9602\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n0085543b-1578-4ba3-9846-8283350bd6ee\n연결된 ISO\n\nqa-kiso1696-direct-kvm-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 8:03:53\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso",
+      "isoDetail": "이름\n\nqa-kiso1696-direct-kvm-Kubernetes-Binaries-ISO\n아이디\n\n0085543b-1578-4ba3-9846-8283350bd6ee\n설명\n\nqa-kiso1696-direct-kvm-Kubernetes-Binaries-ISO\n체크섬\n\na6292e2ea8f5f952a8f8e41578de126b8b23becfdbd3aabc056203a495f36196f469eda92badef8e1bfa109f9e3f685a606a6ef379e58a6ffd75d4e6e3854dc0\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n예\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 8:03:53\nURL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso"
+    },
+    {
+      "case": "bad-digest-valid-format",
+      "id": "876fa20b-cd3f-4334-b1b7-657d58db4619",
+      "isoId": "4f226726-888a-4217-b035-a5705edaef43",
+      "name": "qa-kiso1696-bad-digest",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "4f226726-888a-4217-b035-a5705edaef43",
+        "Zone": "모든 Zones",
+        "아이디": "876fa20b-cd3f-4334-b1b7-657d58db4619",
+        "이름": "qa-kiso1696-bad-digest",
+        "직접 다운로드": "아니오"
+      },
+      "expected": {
+        "version": "1.30.9603",
+        "zone": "all",
+        "arch": "x86_64",
+        "directdownload": false,
+        "negative": "valid syntax with intentionally wrong content digest"
+      },
+      "cleanup": "parent and linked ISO deleted via UI; final catalog2/ISO8 original IDs verified",
+      "failureView": "쿠버네티스 버전 추가\n등록 요청이 접수되었습니다. 연결 ISO의 준비 상태를 확인하세요.\n이름\tqa-kiso1696-bad-digest\n아이디\t876fa20b-cd3f-4334-b1b7-657d58db4619\nISO\t4f226726-888a-4217-b035-a5705edaef43\nZone\t모든 Zones\nCPU 아키텍처\tx86_64\n직접 다운로드\t아니오\n연결 ISO 준비에 실패했습니다. 기존 항목에서 원인을 확인하고 필요한 자원을 정리하세요.\nFailed post download script: checksum \"{SHA-256}60c79acb32d39da837de5db98ca37cf19901c9f1d7bbff93ba586b195f9e73fe\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\"\nSecondary Storage: DOWNLOAD_ERROR\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "ready": false,
+      "readOnlyRetries": {
+        "checks": 3,
+        "registrationPosts": 0,
+        "truncated": false
+      },
+      "parentDetail": "이름\n\nqa-kiso1696-bad-digest\n시맨틱 버전\n\n1.30.9603\n오토스케일링 지원\n\ntrue\nISO\n\n4f226726-888a-4217-b035-a5705edaef43\n연결된 ISO\n\nqa-kiso1696-bad-digest-Kubernetes-Binaries-ISO\nISO 상태\n\nAllocated\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 8:05:58\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso",
+      "isoDetail": "이름\n\nqa-kiso1696-bad-digest-Kubernetes-Binaries-ISO\n아이디\n\n4f226726-888a-4217-b035-a5705edaef43\n설명\n\nqa-kiso1696-bad-digest-Kubernetes-Binaries-ISO\n체크섬\n\n0000000000000000000000000000000000000000000000000000000000000000\nOS 유형\n\nNone\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n아니오\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 8:05:58\nURL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/contract.iso"
+    },
+    {
+      "case": "source-http404-empty-checksum",
+      "id": "a34aea12-5052-4a66-8add-aa4b35f7d392",
+      "isoId": "bfcb931a-89d7-4f98-8a06-adff179c19f3",
+      "name": "qa-kiso1696-url404",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "bfcb931a-89d7-4f98-8a06-adff179c19f3",
+        "Zone": "13-Zone",
+        "아이디": "a34aea12-5052-4a66-8add-aa4b35f7d392",
+        "이름": "qa-kiso1696-url404",
+        "직접 다운로드": "아니오"
+      },
+      "expected": {
+        "version": "1.30.9604",
+        "zone": "13-Zone",
+        "arch": "x86_64",
+        "directdownload": false,
+        "checksum": "empty optional",
+        "negative": "HTTP404 source"
+      },
+      "cleanup": "parent and linked ISO deleted via UI; final catalog2/ISO8 original IDs verified",
+      "failureView": "쿠버네티스 버전 추가\n등록 요청이 접수되었습니다. 연결 ISO의 준비 상태를 확인하세요.\n이름\tqa-kiso1696-url404\n아이디\ta34aea12-5052-4a66-8add-aa4b35f7d392\nISO\tbfcb931a-89d7-4f98-8a06-adff179c19f3\nZone\t13-Zone\nCPU 아키텍처\tx86_64\n직접 다운로드\t아니오\n연결 ISO 준비에 실패했습니다. 기존 항목에서 원인을 확인하고 필요한 자원을 정리하세요.\nHTTP Server returned 404 (expected 200 OK)\nSecondary Storage: DOWNLOAD_ERROR\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "ready": false,
+      "parentDetail": "이름\n\nqa-kiso1696-url404\n시맨틱 버전\n\n1.30.9604\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\nbfcb931a-89d7-4f98-8a06-adff179c19f3\n연결된 ISO\n\nqa-kiso1696-url404-Kubernetes-Binaries-ISO\nISO 상태\n\nAllocated\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 8:08:22\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/missing.iso",
+      "isoDetail": "이름\n\nqa-kiso1696-url404-Kubernetes-Binaries-ISO\n아이디\n\nbfcb931a-89d7-4f98-8a06-adff179c19f3\n설명\n\nqa-kiso1696-url404-Kubernetes-Binaries-ISO\nOS 유형\n\nNone\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n아니오\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 8:08:22\nURL\n\nhttp://10.10.13.10:8080/client/qa-kiso1696-20261116/missing.iso"
+    }
+  ]
+}
