@@ -129,6 +129,7 @@ SQL `KILL QUERY`는 실행되지 않았다. 권한·전역 DB 보호 설정을 �
 [전 상태](evidence/db-before-fault.json) /
 [실패 후 상태](evidence/db-after-fault.json) /
 [유한 시간 잠금 제어](evidence/row-lock-control.json) /
+[행 잠금 재현 소스](KM1728RowHold.java.txt) /
 [기계 검증 요약](evidence/verified-summary.json).
 
 단위 시험은 DAO update=false/persist=null/unchecked DB 실패,
@@ -164,7 +165,7 @@ mold.service를 정지한 뒤 백업 JAR를 원래 경로·소유자·mode·SELi
 - 기본 HSM UUID `bc91cad9-e49f-400f-bbc0-1f047202631f`, database/Disabled/public 상태 복원.
 - 시험 row lock 해제, 시험 trigger 없음, 진행 중 API job 0.
 - temporary helper/패치 파일은 서버 /tmp에서 정리했고 원래 배포 JAR 백업만 보관.
-- 기존 정상 pseudo dispatcher 두 개는 일반 관리 서버 내부 작업으로 관측했으며 임의 삭제하지 않았다.
+- 기존 pseudo dispatcher 두 개는 일반 관리 서버 내부 작업으로 관측했으며 임의 삭제하지 않았다.
 - 감사 이벤트·삭제된 시험 키/버전/provider의 soft-delete 이력은 정상 이력으로 남는다.
   테이블 전체가 빈 상태라고 보고하지 않는다.
 

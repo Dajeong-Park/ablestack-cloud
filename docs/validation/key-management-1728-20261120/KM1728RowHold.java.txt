@@ -1,0 +1,64 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
+import com.cloud.utils.crypt.EncryptionSecretKeyChecker;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Properties;
+
+public class KM1728RowHold {
+    public static void main(String[] args) throws Exception {
+        if(args.length!=1 || !args[0].matches("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"))
+            throw new IllegalArgumentException("Test UUID required");
+        Properties p=new Properties();
+        try(InputStream in=Files.newInputStream(Path.of("/etc/cloudstack/management/db.properties"))){p.load(in);}
+        EncryptionSecretKeyChecker.initEncryptor(Files.readString(Path.of("/etc/cloudstack/management/key")).trim());
+        EncryptionSecretKeyChecker.decryptAnyProperties(p);
+        String url="jdbc:mysql://"+p.getProperty("db.cloud.host","localhost")+":"+p.getProperty("db.cloud.port","3306")+"/"+p.getProperty("db.cloud.name","cloud")+"?useSSL=false&allowPublicKeyRetrieval=true";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        try(Connection connection=DriverManager.getConnection(url,p.getProperty("db.cloud.username"),p.getProperty("db.cloud.password"))){
+            long timeout;
+            try(Statement statement=connection.createStatement();ResultSet result=statement.executeQuery("SELECT @@GLOBAL.innodb_lock_wait_timeout")){
+                result.next();timeout=result.getLong(1);
+            }
+            if(timeout<1 || timeout>90)throw new IllegalStateException("Unexpected lock timeout; abort before acquiring row lock");
+            connection.setAutoCommit(false);
+            try {
+                try(PreparedStatement lock=connection.prepareStatement("SELECT id,name FROM kms_keys WHERE uuid=? AND removed IS NULL FOR UPDATE")){
+                    lock.setString(1,args[0]);
+                    try(ResultSet result=lock.executeQuery()){
+                        if(!result.next() || !result.getString("name").startsWith("qa-km1728-"))
+                            throw new IllegalStateException("Not an owned live test key");
+                    }
+                }
+                System.out.println("ROW_LOCK_HELD uuid="+args[0]+" db_timeout_seconds="+timeout+" hold_seconds="+(timeout+20));
+                System.out.flush();
+                Thread.sleep((timeout+20)*1000);
+            } finally {
+                connection.rollback();
+                System.out.println("ROW_LOCK_RELEASED uuid="+args[0]);
+                System.out.flush();
+            }
+        }
+    }
+}

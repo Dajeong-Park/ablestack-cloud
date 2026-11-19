@@ -32,8 +32,12 @@
     "sha256": "31ad55974bfe1df934033c5b48576796a6d64b45d1a7aeb25ccf2e0e1185a327"
   },
   "README.ko.md": {
-    "bytes": 10952,
-    "sha256": "aef55c8a1f9666b718d33ce7892c58594eb2470e16bf117a9348dbad93c3b931"
+    "bytes": 10998,
+    "sha256": "15885288a074548870f6fdd9d5a0439d67c514d9abcf96f7a71f907a9a8afa1b"
+  },
+  "KM1728RowHold.java.txt": {
+    "bytes": 3468,
+    "sha256": "cebaf1285aac9eddc482350148807cbcb08840fb83ab758eadedd97074736e38"
   },
   "evidence/deployment.json": {
     "bytes": 1170,
