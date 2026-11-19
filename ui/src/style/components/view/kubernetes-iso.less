@@ -44,7 +44,18 @@
     align-items:center;
     gap:8px;
   }
-  .breadcrumb .breadcrumb-controls > a { margin-right:0 !important; }
+  .breadcrumb .ant-breadcrumb-link > a,
+  .breadcrumb .breadcrumb-controls > a {
+    display:inline-flex;
+    align-items:center;
+    position:static;
+    font-size:inherit;
+    line-height:inherit;
+  }
+  .breadcrumb .breadcrumb-controls > .ant-btn,
+  .breadcrumb .breadcrumb-controls > .ant-select,
+  .breadcrumb .breadcrumb-controls > .ant-switch,
+  .breadcrumb .breadcrumb-controls > a { margin:0 !important; }
   .kubernetes-iso-breadcrumb-name {
     display:block;
     min-width:0;
