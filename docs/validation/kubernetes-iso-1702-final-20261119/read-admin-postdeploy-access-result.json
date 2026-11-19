@@ -1,0 +1,35 @@
+{
+  "begin": {
+    "path": "/var/log/cloudstack/management/access.log",
+    "inode": 33558753,
+    "offset": 692962200,
+    "utc": "2026-11-18T15:09:46.112386+00:00",
+    "scope": "KISO -> child ISO -> VM list/detail after optional-query correction; dashboard startup excluded and recorded separately"
+  },
+  "endUtc": "2026-11-18T15:13:31.657547+00:00",
+  "inode": 33558753,
+  "endOffset": 693029887,
+  "completeLines": true,
+  "scope": "all management HTTP API requests; no credential or query values retained",
+  "apiRequests": 229,
+  "commands": {
+    "readyForShutdown": 90,
+    "listKubernetesSupportedVersions": 37,
+    "listHostsMetrics": 21,
+    "getWallAlertAvailability": 8,
+    "listVirtualMachines": 23,
+    "listWallAlertRules": 8,
+    "listWallAlertSilences": 8,
+    "listZones": 5,
+    "listResourceIcon": 13,
+    "listIsos": 7,
+    "listTags": 3,
+    "listOsTypes": 2,
+    "listAccounts": 3,
+    "listAnnotations": 1
+  },
+  "httpErrors": {},
+  "allApiPosts": 0,
+  "vmMetricsRequests": 0,
+  "kisoWriteRequests": 0
+}

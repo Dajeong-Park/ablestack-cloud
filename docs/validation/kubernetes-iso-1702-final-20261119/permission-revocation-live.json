@@ -1,0 +1,29 @@
+{
+  "account": "qa-kiso1702-admin",
+  "roleId": "4ed7d328-714f-473c-9dd6-519d81db877f",
+  "api": "addKubernetesSupportedVersion",
+  "formOpenedWhileAllowed": true,
+  "validInputsPrepared": true,
+  "attemptedName": "qa-kiso1702-revoked-url-no-resource",
+  "roleRevokeUiSubmitted": true,
+  "staleFormSubmit": "PASS denied by stored policy; safe uncertain receipt, no repeat submit; result reads + exact name count0",
+  "revokedApiPolicyUi": "1702-local-only-role-policy-deny-last",
+  "policyNow": "URL explicit deny + local allow before wildcard deny",
+  "submittedUtc": "2026-11-18T15:25:54.192861+00:00",
+  "serverCommandObservation": "url-revoke-server-command-observation.json",
+  "serverApiAvailability": "addkubernetessupportedversion not available after stored deny",
+  "nativeResult": "uncertain phase prevents repeat registration; existing-result read only",
+  "countAfterStaleSubmit": 5,
+  "baselineCount": 5,
+  "repeatSubmitOffered": false,
+  "readResultCheckUsed": true,
+  "attemptNameKeywordCount": 0,
+  "absenceUi": true,
+  "evidence": [
+    "1702-url-dialog-before-live-permission-revoke",
+    "1702-local-only-role-policy-deny-last",
+    "1702-stale-url-submit-safe-uncertain-no-repeat",
+    "1702-url-revoke-read-results-no-new-submit",
+    "1702-revoked-url-no-resource-count-zero"
+  ]
+}

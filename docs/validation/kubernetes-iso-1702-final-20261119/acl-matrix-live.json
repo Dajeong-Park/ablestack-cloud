@@ -1,0 +1,267 @@
+{
+  "actors": [
+    {
+      "actor": "Domain Admin",
+      "account": "qa-kiso1702-da",
+      "domain": "qa-kiso1702",
+      "catalogCount": 4,
+      "detail": true,
+      "zoneReady": "1/1",
+      "linkedIsoRead": true,
+      "urlVisible": false,
+      "urlRegister": false,
+      "localRegister": false,
+      "changeState": false,
+      "delete": false,
+      "evidence": [
+        "1702-domain-admin-readonly-catalog",
+        "1702-domain-admin-detail-no-mutations",
+        "1702-domain-admin-zone-ready-no-write"
+      ]
+    },
+    {
+      "actor": "User",
+      "account": "qa-kiso1702-user",
+      "domain": "qa-kiso1702",
+      "catalogCount": 4,
+      "detail": true,
+      "zoneReady": "1/1",
+      "linkedIsoRead": true,
+      "urlVisible": false,
+      "urlRegister": false,
+      "localRegister": false,
+      "changeState": false,
+      "delete": false,
+      "evidence": [
+        "1702-user-catalog-no-write",
+        "1702-user-detail-ready-no-mutations"
+      ]
+    },
+    {
+      "actor": "Read-Only User - Default",
+      "account": "qa-kiso1702-user",
+      "storedRoleId": "60f61c91-bd56-11f1-b573-002481560363",
+      "roleChangedInUi": true,
+      "catalogAllowed": false,
+      "detailAfterRoleChange": "denied; previous data cleared",
+      "refresh": "catalog menu removed; dashboard redirect",
+      "catalogGrantProof": "UI Role Rules exact search listKubernetesSupportedVersions -> no stored rule; existing role left unchanged",
+      "evidence": [
+        "1702-readonly-user-role-stored",
+        "1702-role-change-clears-previous-user-data",
+        "1702-readonly-user-stored-no-kiso-grant"
+      ]
+    },
+    {
+      "actor": "Root Read-Only Admin",
+      "account": "qa-kiso1702-admin",
+      "roleId": "4ed7d328-714f-473c-9dd6-519d81db877f",
+      "same14ReadGrants": true,
+      "vmMetricsGrant": false,
+      "kisoWriteGrants": false,
+      "catalogCount": 4,
+      "detail": true,
+      "zoneReady": "1/1",
+      "linkedIsoRead": true,
+      "urlVisible": true,
+      "ordinaryVmCount": 104,
+      "ordinaryVmFirstPageRows": 20,
+      "vmDetail": true,
+      "postdeployApiRequests": 229,
+      "postdeployHttpErrors": 0,
+      "vmMetricsRequests": 0,
+      "kisoWriteRequests": 0,
+      "optionalDeniedReadsAfterCorrection": 0,
+      "evidence": [
+        "1702-postdeploy-read-admin-catalog",
+        "1702-postdeploy-read-admin-detail-ready",
+        "1702-postdeploy-read-admin-linked-iso-ready",
+        "1702-postdeploy-read-admin-vms104-no-metrics",
+        "1702-postdeploy-read-admin-vm-detail-no-denied-reads"
+      ]
+    },
+    {
+      "actor": "Admin URL-only",
+      "account": "qa-kiso1702-admin",
+      "urlRegisterUi": true,
+      "localRegisterUi": false,
+      "stateAndDeleteGrant": false,
+      "storedPolicy": "14 reads + addKubernetesSupportedVersion allow before wildcard deny",
+      "evidence": [
+        "1702-url-only-role-policy-deny-last",
+        "1702-url-only-admin-no-local-button",
+        "1702-official-url421-ready",
+        "1702-url421-parent-ready-no-state-delete"
+      ],
+      "registration": "PASS official 828588032-byte ISO on actual 4.21 uploader; Ready 1/1",
+      "noStateDeleteUi": true
+    },
+    {
+      "actor": "Admin local-only",
+      "account": "qa-kiso1702-admin",
+      "localRegisterUi": true,
+      "urlRegisterUi": false,
+      "stateAndDeleteGrant": false,
+      "policy": "14 reads + local upload allow + URL explicit deny + wildcard deny last",
+      "evidence": [
+        "1702-local-only-role-policy-deny-last",
+        "1702-local-only-admin-no-url-button",
+        "1702-official-local421-ready",
+        "1702-local421-parent-add-audit-completed",
+        "1702-local421-child-checksum-size-arch"
+      ],
+      "registration": "4.21 official ISO real local upload + Ready + ADD + saved child checksum/size/arch PASS; 4.23 pending"
+    },
+    {
+      "actor": "Resource Admin",
+      "account": "qa-kiso1702-ra",
+      "catalogCount": 6,
+      "detail": true,
+      "zoneReady": "1/1",
+      "linkedIsoRead": true,
+      "urlVisible": false,
+      "urlRegister": false,
+      "localRegister": false,
+      "changeState": false,
+      "delete": false,
+      "evidence": [
+        "1702-resource-admin-catalog-six-no-write",
+        "1702-resource-admin-detail-no-root-url-no-write",
+        "1702-resource-admin-zone-ready-no-write"
+      ]
+    },
+    {
+      "actor": "Private catalog-only User and independent ISO read",
+      "account": "qa-kiso1702-user",
+      "catalogDetail": true,
+      "noIsoGrant": "permission denied, no ISO link; not missing resource",
+      "isoOnlyGrant": "Ready 1/1 and child link; Zone text without Zone link/expand",
+      "liveIsoRevoke": "Native refresh cleared prior Ready and child link; catalog preserved",
+      "vmMetricsGrant": false,
+      "writes": false,
+      "evidence": [
+        "1702-catalog-only-user-detail-iso-permission-denied",
+        "1702-catalog-only-user-zone-denied-not-missing",
+        "1702-user-iso-only-grant-deny-last",
+        "1702-user-iso-only-zone-ready-without-zone-grant",
+        "1702-user-iso-grant-revoked-deny-last",
+        "1702-user-live-iso-revoke-clears-ready-keeps-catalog"
+      ]
+    },
+    {
+      "actor": "Admin state allowed delete denied",
+      "account": "qa-kiso1702-admin",
+      "stateChangeAllowed": true,
+      "deleteAllowed": false,
+      "actualChange": "qa-kiso1702-url423-official Enabled -> Disabled, saved and Ready1/1 preserved",
+      "evidence": [
+        "1702-state-allow-delete-deny-policy",
+        "1702-state-only-action-no-delete",
+        "1702-state-only-disabled-saved-ready-preserved"
+      ]
+    },
+    {
+      "actor": "Admin delete allowed state denied",
+      "account": "qa-kiso1702-admin",
+      "stateChangeAllowed": false,
+      "deleteAllowed": true,
+      "actualDelete": "qa-kiso1702-url423-official cascade completed; catalog8->7",
+      "latestServerReferences": "no blocking references; checked again at deletion",
+      "evidence": [
+        "1702-delete-only-action-no-state-management",
+        "1702-delete-only-server-reference-check",
+        "1702-delete-only-completed-catalog-count-seven"
+      ]
+    }
+  ],
+  "deployment": {
+    "head": "e6a579404d476d52101157f10cfccdc6b811195b",
+    "files": 5,
+    "backendRestarted": false,
+    "hostAgentRestarted": false
+  },
+  "roleChange": {
+    "account": "qa-kiso1702-user",
+    "from": "User",
+    "to": "Read-Only User - Default",
+    "cachedDetailCleared": true,
+    "newCapabilityReloadRemovedMenu": true,
+    "evidence": [
+      "1702-role-change-clears-previous-user-data",
+      "1702-readonly-user-no-catalog-capability"
+    ]
+  },
+  "restrictedRoleTransitions": [
+    {
+      "phase": "read-only",
+      "reads": 14,
+      "writes": [],
+      "wildcard": "deny"
+    },
+    {
+      "phase": "URL-only",
+      "reads": 14,
+      "writes": [
+        "addKubernetesSupportedVersion"
+      ],
+      "wildcard": "deny last",
+      "policyUi": "1702-url-only-role-policy-deny-last"
+    },
+    {
+      "phase": "local-only",
+      "reads": 14,
+      "writes": [
+        "getUploadParamsForKubernetesSupportedVersion"
+      ],
+      "explicitDeny": [
+        "addKubernetesSupportedVersion"
+      ],
+      "wildcard": "deny last",
+      "policyUi": "1702-local-only-role-policy-deny-last"
+    },
+    {
+      "phase": "delete allowed state denied",
+      "additionalAllows": [
+        "deleteKubernetesSupportedVersion",
+        "queryAsyncJobResult"
+      ],
+      "explicitDeny": [
+        "updateKubernetesSupportedVersion",
+        "addKubernetesSupportedVersion"
+      ],
+      "wildcard": "deny last",
+      "execution": "actual delete still pending UI recovery"
+    }
+  ],
+  "privateUserRolePlan": {
+    "name": "qa-kiso1702-catalog-role",
+    "type": "User",
+    "ispublic": false,
+    "allow": [
+      "listApis",
+      "listCapabilities",
+      "listUsers",
+      "listKubernetesSupportedVersions"
+    ],
+    "deny": "* last",
+    "accountAssignment": "PASS saved and persisted then independent child grant/revoke tested; account/role cleaned",
+    "independentChildRead": "later add listIsos only; Zone/VM Metrics/writes remain denied"
+  },
+  "projectContext": {
+    "originalProjects": 0,
+    "testProject": "2c919ce7-e1a8-4fa2-9277-d7775a7cfebd",
+    "defaultKeywordCount": 5,
+    "projectGlobalCatalogCount": 7,
+    "oldDefaultOwnerDiscarded": true,
+    "oldKeywordCleared": true,
+    "defaultScopeRestored": true,
+    "projectDeletedUi": true,
+    "finalProjectCount": 0,
+    "evidence": [
+      "1702-default-context-keyword-five",
+      "1702-project-context-discards-old-search-global-count-seven",
+      "1702-test-project-cleaned-count-zero"
+    ]
+  },
+  "aclCompleteUi": true
+}

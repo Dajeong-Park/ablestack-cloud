@@ -17,9 +17,9 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# #1707·#1702 통합 UI 검증 중간 결과
+# #1707·#1702 통합 UI 검증 중간 결과 (당시 기록)
 
-2026-11-19 현재 **진행 중**입니다. #1707·#1702·Epic #1692는 OPEN이며 PR #1703은 Draft입니다. 남은 삭제 ACL·최종 UI 회귀·정리가 끝나기 전에 완료로 처리하지 않습니다.
+최종 검증과 정리 결과는 [최종 보고서](../kubernetes-iso-1702-final-20261119/README.ko.md)를 참조하세요. 아래는2026-11-19 중간 점검 당시 **진행 중** 기록입니다. #1707·#1702·Epic #1692는 OPEN이며 PR #1703은 Draft입니다. 남은 삭제 ACL·최종 UI 회귀·정리가 끝나기 전에 완료로 처리하지 않습니다.
 
 ## 확인한 결과
 

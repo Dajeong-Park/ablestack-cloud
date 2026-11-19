@@ -1,0 +1,18 @@
+{
+  "oldHead": "c6207d9dd9b2f71dbc0b87194f2f7a951ff7eef1",
+  "base": "055ea57b238746c65b66cc5600215b10f0087b23",
+  "rebasedHead": "847fe82285756cede12d430c37efa6782ca1bf6c",
+  "commitsPreserved": 43,
+  "conflictResolvedCommits": 5,
+  "sameReadonlyFourProductFiles": true,
+  "baseDivergence": "0 0",
+  "tests": {
+    "suites": 30,
+    "passed": 471,
+    "failed": 0
+  },
+  "eslintFiles": 7,
+  "eslintExit": 0,
+  "newProductDeploymentRequired": false,
+  "reason": "ASN guards/imports/translations are retained on current upstream; KISO/VM deployed behavior unchanged, no unrelated ASN deployment to13"
+}
