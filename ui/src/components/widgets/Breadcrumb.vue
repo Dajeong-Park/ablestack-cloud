@@ -43,7 +43,7 @@
           <span tabindex="0" class="kubernetes-iso-breadcrumb-name">{{ resource.name || $route.params.id }}</span>
         </keyboard-tooltip>
         <label v-else>
-          {{ isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
+          {{ s2sGatewayRoute($route) ? gatewayName(resource) : isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
         </label>
       </span>
       <span v-else>
@@ -79,7 +79,8 @@ import { documentationUrl } from '@/utils/cniFileImport'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpListLocation } from '@/utils/publicIpSearch'
-import { s2sGatewayListLocation } from '@/utils/s2sGatewaySearch'
+import { gatewayName } from '@/utils/s2sGateway'
+import { s2sGatewayListLocation, s2sGatewayRoute } from '@/utils/s2sGatewaySearch'
 import { vnfListLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -111,6 +112,8 @@ export default {
     }
   },
   methods: {
+    gatewayName,
+    s2sGatewayRoute,
     vmDisplayName,
     isVmIdentityRoute,
     documentationUrl,

@@ -60,7 +60,7 @@ import { getAPI, postAPI } from '@/api'
 import eventBus from '@/config/eventBus'
 import MoldDialog from '@/components/network/VpcDialog'
 import { createJobTracker } from '@/utils/jobTracker'
-import { vpcVpnApis, vpcVpnContext, vpcVpnOwner, vpcVpnIps, vpcVpnSameOwner } from '@/utils/vpcVpn'
+import { vpcVpnApis, vpcVpnContext, vpcVpnOwner, vpcVpnIps, vpcVpnSameOwner, vpnJobMatches } from '@/utils/vpcVpn'
 
 export default {
   name: 'VpcVpnCreate',
@@ -101,7 +101,7 @@ export default {
       query: async id => {
         const json = await getAPI('queryAsyncJobResult', { jobid: id, ignoreproject: true }, { preserveOnFailure: true, timeout: 15000 })
         const job = json.queryasyncjobresultresponse
-        if (!job || job.jobid !== id || (job.cmd && job.cmd.split('.').pop().toLowerCase() !== this.command.toLowerCase() + 'cmd')) throw new Error(this.$t('message.vpc.vpn.job.scope'))
+        if (!vpnJobMatches(job, id, this.command)) throw new Error(this.$t('message.vpc.vpn.job.scope'))
         if (job.jobstatus === 1) {
           const row = job.jobresult?.[this.kind === 'gateway' ? 'vpngateway' : 'vpnconnection']
           if (!row?.id || (this.entityId && row.id !== this.entityId) || !vpcVpnSameOwner(row, this.resource) || (this.kind === 'gateway' ? row.vpcid !== this.resource.id : row.s2svpngatewayid !== this.target?.gateway || row.s2scustomergatewayid !== this.target?.customer)) throw new Error(this.$t('message.vpc.vpn.job.scope'))

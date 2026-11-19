@@ -12215,5 +12215,11 @@
   "message.s2s.gateway.search.missing": "The selected target is unavailable or inaccessible.",
   "message.s2s.gateway.search.lookup": "Unable to verify the search target. Check the conditions or retry.",
   "message.s2s.gateway.search.checking": "Verifying search targets.",
-  "message.s2s.gateway.search.unverified": "Needs verification"
+  "message.s2s.gateway.search.unverified": "Needs verification",
+  "message.s2s.gateway.lookup.failed": "Unable to retrieve VPN data. Existing data is retained. Please retry.",
+  "message.s2s.gateway.context.changed": "The VPN target or ownership context has changed. Refresh the data.",
+  "message.s2s.gateway.permission": "VPN access is unavailable in this ownership context.",
+  "message.s2s.gateway.create": "Select the VPC for the VPN gateway.",
+  "message.s2s.gateway.delete": "Delete the selected VPN gateway. Existing connections may prevent deletion; site-to-site VPN traffic is affected.",
+  "label.vpn.connections": "VPN connections"
 }

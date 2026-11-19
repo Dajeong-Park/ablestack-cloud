@@ -1094,8 +1094,12 @@ export default {
       title: 'label.site.to.site.vpn',
       icon: 'lock-outlined',
       permission: ['listVpnGateways'],
-      columns: ['publicip', 'account', 'domain'],
-      details: ['publicip', 'account', 'domain'],
+      columns: ['publicip', 'vpcname', 'account', 'domain', 'project'],
+      details: () => ['id', 'publicip', 'vpcid', 'account', 'domain', 'project', ...(store.getters.userInfo?.roletype === 'Admin' ? ['fordisplay'] : [])],
+      tabs: [
+        { name: 'details', component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue'))) },
+        { name: 'vpn.connections', show: () => 'listVpnConnections' in store.getters.apis, component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sVpnConnectionsTab.vue'))) }
+      ],
       actions: [
         {
           api: 'createVpnGateway',
@@ -1104,7 +1108,9 @@ export default {
           docHelp: 'adminguide/networking_and_traffic.html#creating-a-vpn-gateway-for-the-vpc',
           listView: true,
           show: isZoneCreated,
-          args: ['vpcid']
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sGatewayDialog.vue')))
         },
         {
           api: 'deleteVpnGateway',
@@ -1112,7 +1118,10 @@ export default {
           label: 'label.delete.vpn.gateway',
           message: 'message.delete.vpn.gateway',
           docHelp: 'adminguide/networking_and_traffic.html#restarting-and-removing-a-vpn-connection',
-          dataView: true
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sGatewayDialog.vue')))
         }
       ]
     },

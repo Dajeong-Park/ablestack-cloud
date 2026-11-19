@@ -861,6 +861,7 @@
     <div
       :style="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 'margin-top: 24px; margin-bottom: 12px' : null"
     >
+      <a-alert v-if="s2sGatewayRoute($route) && dataView && listRefreshError" type="error" show-icon :message="$t(s2sGatewaySearchFailure === 'permission' || s2sGatewaySearchFailure === 'scope' ? 'message.s2s.gateway.search.' + s2sGatewaySearchFailure : resource.id ? 'message.list.refresh.stale' : 'error.fetching.data')"><template #description><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="s2sGatewaySearchFailure && s2sGatewayListRoute($route)" class="s2s-gateway-search-error" type="error" show-icon :message="$t('message.s2s.gateway.search.' + s2sGatewaySearchFailure)"><template #description><a-button @click="onSearch({ s2sGatewaySearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="asnSearchFailure && $route.meta?.name === 'asnumbers'" class="asn-search-error" type="error" show-icon :message="$t('message.asn.search.' + asnSearchFailure)"><template #description><a-button @click="onSearch({ asnSearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="publicIpSearchFailure && $route.meta?.name === 'publicip' && !dataView" class="public-ip-search-error" type="error" show-icon :message="$t(publicIpSearchFailure)"><template #description><a-button @click="onSearch({ filter: 'allocated', state: 'Allocated', projectid: publicIpProject($store.getters) })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
@@ -906,14 +907,14 @@
           v-if="$route.path.startsWith('/publicip')"
         ></slot>
         <resource-view
-          v-else-if="!templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
+          v-else-if="(!s2sGatewayRoute($route) || resource.id || loading) && !templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
-          :readFailed="(isVpcUi || ['ilb', 'vm', 'vnfapp'].includes($route.meta?.name)) && listRefreshError"
-          :readyForActions="$route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
+          :readFailed="(isVpcUi || ['ilb', 'vm', 'vnfapp', 's2svpn'].includes($route.meta?.name)) && listRefreshError"
+          :readyForActions="$route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp', 's2svpn'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
-          :quiet-refresh="isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
+          :quiet-refresh="s2sGatewayRoute($route) || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
@@ -942,7 +943,7 @@
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
-          :tableScroll="asnSearchAuth ? { x: 1640 } : undefined"
+          :tableScroll="asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -1065,7 +1066,8 @@ import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentit
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
-import { s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery } from '@/utils/s2sGatewaySearch'
+import { readGatewayDetail } from '@/utils/s2sGateway'
+import { s2sGatewayListLocation, s2sGatewayProject, s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery } from '@/utils/s2sGatewaySearch'
 import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
 import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
@@ -1576,6 +1578,7 @@ export default {
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
+      if (s2sGatewayRoute(this.$route)) return columns.filter(column => column.key !== 'project' || s2sGatewayProject(this.$store.getters) !== '0')
       if (!asnRoute(this.$route)) return columns
       return columns.map(column => column.key === 'filtercolumn' ? column : ({ ...column, title: this.$t(column.key === 'allocated' ? 'label.asn.allocatedat' : 'label.' + column.key.toLowerCase()), width: ['asnumber', 'allocationstate'].includes(column.key) ? 140 : column.key === 'releasereason' ? 230 : 160 }))
     },
@@ -1743,6 +1746,7 @@ export default {
     }
   },
   methods: {
+    s2sGatewayRoute,
     s2sGatewayListRoute,
     publicIpProject,
     vmDisplayName,
@@ -1851,7 +1855,7 @@ export default {
         routeKey = JSON.stringify([this.$route.path, Object.entries(this.$route.query || {}).filter(([key]) => !['tab', 'browserPath'].includes(key)).sort(([a], [b]) => a.localeCompare(b))])
       } else if ((storageUiRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route)) && this.$route.params?.id) {
         routeKey = storageDetailRouteKey(this.$route)
-      } else if (['template', 'iso'].includes(this.$route.meta?.name) && this.$route.params?.id) {
+      } else if (['template', 'iso', 's2svpn'].includes(this.$route.meta?.name) && this.$route.params?.id) {
         const query = { ...this.$route.query }; delete query.tab
         routeKey = JSON.stringify([this.$route.path, query])
       } else if (this.$route.meta?.name === 'cniconfiguration' && this.$route.params?.id) {
@@ -2651,7 +2655,7 @@ export default {
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
       if (kubernetesIsoQuery) params = kubernetesIsoReadParams(params, this.$route.params?.id)
-      const response = s2sGatewayListRoute(this.$route) ? readS2sGatewayQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+      const response = s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : s2sGatewayListRoute(this.$route) ? readS2sGatewayQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2867,11 +2871,11 @@ export default {
           if (isAutoScheduled) throw error
           return
         }
-        if (s2sGatewayListRoute(this.$route)) {
+        if (s2sGatewayRoute(this.$route)) {
           const denied = [401, 403].includes(Number(error?.response?.status))
           const reason = denied ? 'permission' : ['permission', 'scope', 'missing', 'uuid', 'unsupported', 'invalid', 'account'].includes(error?.message) ? error.message : 'lookup'
           this.s2sGatewaySearchFailure = reason; this.listRefreshError = true; this.resetSelection(); this.$refs.listview && this.$refs.listview.resetSelection()
-          if (!sameList || ['permission', 'scope'].includes(reason)) { this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null }
+          if (!sameList || ['permission', 'scope', 'missing', 'invalid'].includes(reason)) { this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null }
           return
         }
         if (asnRoute(this.$route)) {
@@ -2946,6 +2950,10 @@ export default {
       return request
     },
     refreshActionData (result) {
+      if (s2sGatewayRoute(this.$route)) {
+        if (this.currentAction?.api === 'deleteVpnGateway' && this.dataView && result?.removed?.includes(this.resource.id)) return
+        return this.fetchData({ irefresh: true })
+      }
       if (this.currentAction?.networkDeletionTargets) {
         if (this.dataView && result?.removed?.includes(this.$route.params?.id)) return
         return this.fetchData({ irefresh: true })
@@ -2959,6 +2967,9 @@ export default {
       return this.fetchData(result)
     },
     closeAction (result) {
+      const deletedGatewayDetail = s2sGatewayRoute(this.$route) && this.currentAction?.api === 'deleteVpnGateway' && this.dataView && result?.removed?.includes(this.$route.params?.id)
+      const gatewayLocation = deletedGatewayDetail ? s2sGatewayListLocation(this.$route, this.$store.getters) : null
+      if (deletedGatewayDetail) { this.listRequestVersion++; this.listRequestPending = false; this.listLoadedScope = null; this.resource = {}; this.items = []; this.itemCount = 0; this.resetSelection() }
       const deletedKubernetesIso = this.$route.meta?.name === 'kubernetesiso' && this.currentAction?.api === 'deleteKubernetesSupportedVersion' && result?.removed?.includes(this.resource?.id)
       const kubernetesIsoLocation = deletedKubernetesIso ? kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token) : null
       if (deletedKubernetesIso) {
@@ -2976,7 +2987,7 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
-      const guardedDialog = this.$route.meta?.name === 'kubernetesiso' || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = ['kubernetesiso', 's2svpn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3020,6 +3031,7 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
+      if (deletedGatewayDetail) this.$router.replace(gatewayLocation)
       if (deletedNetworkDetail) this.$router.replace(networkLocation || { path: '/guestnetwork' })
       else if (networkDeletion && result?.started) this.$nextTick(() => this.fetchData({ irefresh: true }))
       if (deletedCniDetail) this.$router.replace(cniLocation || { path: '/cniconfiguration' })

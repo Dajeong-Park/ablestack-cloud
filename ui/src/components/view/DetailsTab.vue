@@ -50,11 +50,11 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 'vm-details-list': ['vm', 'vnfapp', 'publicip'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 'vm-details-list': ['vm', 'vnfapp', 'publicip', 's2svpn'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item))">
+      <a-list-item v-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -64,7 +64,8 @@
           <a-tooltip v-if="['volume', 'snapshot', 'template', 'iso'].includes($route.meta.name) && item === 'savingrate'"><template #title>{{ $t('message.savingrate') }}</template><QuestionCircleOutlined style="margin-left: 8px;"/></a-tooltip>
           <a-tooltip v-if="$route.meta.name === 'storagepool' && item === 'disksizeallocated'" :title="$t('message.storage.allocated.meaning')"><info-circle-outlined style="margin-left: 8px" /></a-tooltip>
           <br/>
-          <public-ip-detail-value v-if="$route.meta.name === 'publicip' && publicIpDetailFields.includes(item)" :resource="dataResource" :field="item" />
+          <S2sGatewayValue v-if="$route.meta.name === 's2svpn'" :resource="dataResource" :field="item" />
+          <public-ip-detail-value v-else-if="$route.meta.name === 'publicip' && publicIpDetailFields.includes(item)" :resource="dataResource" :field="item" />
           <iso-detail-value v-else-if="$route.meta.name === 'iso' && presentedIsoValue(item)" :field="item" :value="dataResource[item]" :label="$t(getDetailTitle(item))" />
           <template-detail-value
             v-else-if="$route.meta.name === 'template' && presentedTemplateValue(item)"
@@ -412,6 +413,7 @@ display-text />
 </template>
 
 <script>
+import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { l2ConfigDrive, l2PvlanDetails } from '@/utils/l2Network'
 import { sharedScopeLabel } from '@/utils/sharedNetwork'
@@ -449,6 +451,7 @@ import VnfAccessNotice from '@/components/compute/VnfAccessNotice'
 export default {
   name: 'DetailsTab',
   components: {
+    S2sGatewayValue,
     PublicIpDetailValue,
     VnfAccessNotice,
     InternalLbRules,
@@ -650,7 +653,7 @@ export default {
         }
       }
 
-      detailsKeys = this.projectname ? [...detailsKeys.filter(x => x !== 'account'), 'projectname'] : detailsKeys
+      detailsKeys = this.projectname && this.$route.meta.name !== 's2svpn' ? [...detailsKeys.filter(x => x !== 'account'), 'projectname'] : detailsKeys
       if (this.l2Network) {
         const l3Fields = ['vpcid', 'cidr', 'ip6cidr', 'netmask', 'gateway', 'asnumber', 'aclname', 'restartrequired',
           'reservediprange', 'redundantrouter', 'networkdomain', 'egressdefaultpolicy', 'ip4routing', 'ip6firewall',
