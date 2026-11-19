@@ -18,20 +18,6 @@
 name: Build
 
 on:
-  workflow_dispatch:
-    inputs:
-      ref:
-        description: Source commit or branch to build
-        required: false
-        type: string
-      scope:
-        description: Validation scope
-        required: true
-        default: full
-        type: choice
-        options:
-          - full
-          - kms
   workflow_call:
     inputs:
       ref:
@@ -46,15 +32,7 @@ permissions:
   contents: read
 
 jobs:
-  kms:
-    if: github.event_name == 'workflow_dispatch' && inputs.scope == 'kms'
-    permissions:
-      contents: write
-    uses: ./.github/workflows/kms-validation.yml
-    with:
-      source_ref: ${{ inputs.ref || github.ref }}
   build:
-    if: inputs.scope != 'kms'
     runs-on: ubuntu-22.04
     env:
       MAVEN_OPTS: >-
