@@ -1,0 +1,842 @@
+[
+  {
+    "time": 1795077348018,
+    "page": "main",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077348041,
+    "page": "main",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349080,
+    "page": "main",
+    "method": "GET",
+    "command": "listOauthProvider",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349310,
+    "page": "main",
+    "method": "POST",
+    "command": "login",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349397,
+    "page": "main",
+    "method": "GET",
+    "command": "listUsers",
+    "id": "6fb85c33-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077349530,
+    "page": "main",
+    "method": "GET",
+    "command": "listApis",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349903,
+    "page": "main",
+    "method": "GET",
+    "command": "listZones",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349904,
+    "page": "main",
+    "method": "GET",
+    "command": "listNetworks",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349905,
+    "page": "main",
+    "method": "GET",
+    "command": "listVPCs",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349966,
+    "page": "main",
+    "method": "GET",
+    "command": "listCapabilities",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349973,
+    "page": "main",
+    "method": "GET",
+    "command": "listNetworkServiceProviders",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349974,
+    "page": "main",
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349977,
+    "page": "main",
+    "method": "GET",
+    "command": "listLdapConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349979,
+    "page": "main",
+    "method": "GET",
+    "command": "cloudianIsEnabled",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077349979,
+    "page": "main",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077350945,
+    "page": "main",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077350946,
+    "page": "main",
+    "method": "GET",
+    "command": "listUsers",
+    "id": "6fb85c33-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077350947,
+    "page": "main",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077350947,
+    "page": "main",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077350949,
+    "page": "main",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077351096,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077351126,
+    "page": "main",
+    "method": "GET",
+    "command": "listProjects",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077351127,
+    "page": "main",
+    "method": "GET",
+    "command": "getWallAlertAvailability",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077351136,
+    "page": "main",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077351144,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077351162,
+    "page": "main",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077351169,
+    "page": "main",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077351908,
+    "page": "main",
+    "method": "GET",
+    "command": "listWallAlertRules",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077352127,
+    "page": "main",
+    "method": "GET",
+    "command": "listHostsMetrics",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077352736,
+    "page": "main",
+    "method": "GET",
+    "command": "listVirtualMachines",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077352775,
+    "page": "main",
+    "method": "GET",
+    "command": "listWallAlertSilences",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077354795,
+    "page": "main",
+    "method": "POST",
+    "command": "createDomain",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077354955,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077355007,
+    "page": "main",
+    "method": "GET",
+    "command": "readyForShutdown",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077355051,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomainChildren",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077355221,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077355243,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077355500,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077355501,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077355611,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077356090,
+    "page": "main",
+    "method": "GET",
+    "command": "listAccounts",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077356128,
+    "page": "main",
+    "method": "GET",
+    "command": "listVirtualMachines",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077357957,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077357974,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077358763,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listUsers",
+    "id": "6fb85c33-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077358763,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listUsers",
+    "id": "6fb85c33-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077358881,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listApis",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359350,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listZones",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359351,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listNetworks",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359352,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listVPCs",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359391,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listCapabilities",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359407,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359408,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "cloudianIsEnabled",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359409,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listNetworkServiceProviders",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359410,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listLdapConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077359411,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360005,
+    "page": "main",
+    "method": "GET",
+    "command": "readyForShutdown",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360146,
+    "page": "main",
+    "method": "GET",
+    "command": "listWallAlertRules",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360418,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360442,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listUsers",
+    "id": "6fb85c33-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077360443,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360451,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360452,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listConfigurations",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360457,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listProjects",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360569,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077360590,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "getWallAlertAvailability",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360591,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077360600,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360610,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360625,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listGuiThemes",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360735,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listWallAlertRules",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077360984,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listHostsMetrics",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077361696,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listVirtualMachines",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077361698,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listAccounts",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077361708,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listVirtualMachines",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077361809,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listWallAlertSilences",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077362245,
+    "page": "main",
+    "method": "POST",
+    "command": "deleteDomain",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077362264,
+    "page": "main",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077364431,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "readyForShutdown",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077365006,
+    "page": "main",
+    "method": "GET",
+    "command": "readyForShutdown",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077365284,
+    "page": "main",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077365572,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077365665,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077365689,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077366555,
+    "page": "stale-delete",
+    "method": "POST",
+    "command": "deleteDomain",
+    "id": "2ec9a020-66eb-416c-acec-c0bf58a03135",
+    "status": 200
+  },
+  {
+    "time": 1795077366567,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077367211,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077367357,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077367385,
+    "page": "stale-delete",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077369735,
+    "page": "main",
+    "method": "POST",
+    "command": "createDomain",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077369881,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077369984,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomainChildren",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077370018,
+    "page": "main",
+    "method": "GET",
+    "command": "readyForShutdown",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077370144,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "349835b5-089d-42ce-bad3-bafaa6cb9688",
+    "status": 200
+  },
+  {
+    "time": 1795077370152,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077372078,
+    "page": "main",
+    "method": "GET",
+    "command": "listAccounts",
+    "id": "349835b5-089d-42ce-bad3-bafaa6cb9688",
+    "status": 200
+  },
+  {
+    "time": 1795077372108,
+    "page": "main",
+    "method": "GET",
+    "command": "listVirtualMachines",
+    "id": "349835b5-089d-42ce-bad3-bafaa6cb9688",
+    "status": 200
+  },
+  {
+    "time": 1795077372393,
+    "page": "main",
+    "method": "POST",
+    "command": "deleteDomain",
+    "id": "349835b5-089d-42ce-bad3-bafaa6cb9688",
+    "status": 200
+  },
+  {
+    "time": 1795077372407,
+    "page": "main",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077375007,
+    "page": "main",
+    "method": "GET",
+    "command": "readyForShutdown",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077375426,
+    "page": "main",
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077375517,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  },
+  {
+    "time": 1795077375611,
+    "page": "main",
+    "method": "GET",
+    "command": "listTags",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077376567,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "",
+    "status": 200
+  },
+  {
+    "time": 1795077377414,
+    "page": "main",
+    "method": "GET",
+    "command": "listDomains",
+    "id": "47178e2f-bd56-11f1-b573-002481560363",
+    "status": 200
+  }
+]

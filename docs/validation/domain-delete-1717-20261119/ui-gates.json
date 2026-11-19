@@ -1,0 +1,19 @@
+{
+  "deployedBundleLoaded": true,
+  "browser": "130.0.6723.31",
+  "detailDeleteClickTime": 1795077362173,
+  "detailDeletionReturnedRoot": true,
+  "detailDeletedIdRereads": 0,
+  "detailRootReads": 1,
+  "realDeleteRejection": "Failed to delete domain 15, domain not found",
+  "realFailureVisibleInCurrentDialog": true,
+  "pendingImpactUiObserved": true,
+  "pendingImpactRequestCancelled": 1,
+  "treeDeleteClickTime": 1795077372298,
+  "treeDeletionReturnedRoot": true,
+  "treeDeletedIdRereads": 0,
+  "cleanupUi": true,
+  "pageErrors": [],
+  "observedApiRequests": 105,
+  "complete": true
+}

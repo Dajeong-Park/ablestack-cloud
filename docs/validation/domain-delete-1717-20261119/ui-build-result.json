@@ -1,0 +1,12 @@
+{
+  "exitCode": 0,
+  "seconds": 828.9,
+  "productHead": "42c472907d9714f2fbb07a69e81262e5851bef10",
+  "input": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "buildCommand": "Vue CLI standard production build; qualified public configuration retained",
+  "changedSources": [
+    "ui/src/views/iam/DomainView.vue",
+    "ui/src/components/view/DomainDeleteConfirm.vue",
+    "ui/src/components/view/TreeView.vue"
+  ]
+}
