@@ -185,6 +185,41 @@ public class NetBackupChainRetentionTest {
         assertEquals(later.toString(), state(child).protectedUntil);
     }
 
+    @Test public void dailyEightPointChainsKeepTheirNativeRetentionWhenTheNextFullStarts() {
+        Instant firstDay = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        for (int retentionDays : new int[]{14, 60}) {
+            long firstId = retentionDays * 100L;
+            BackupVO full = point(firstId, null, firstDay.plusSeconds(retentionDays * 86400L));
+            protection.protect(full, 0, true);
+            java.util.List<BackupVO> chain = new java.util.ArrayList<>();
+            chain.add(full);
+            BackupVO previous = full;
+            for (int day = 1; day < 8; day++) {
+                Instant nativeDate = firstDay.plusSeconds((retentionDays + day) * 86400L);
+                BackupVO child = point(firstId + day, previous, nativeDate);
+                protection.protect(child, 0, true);
+                chain.add(child);
+                for (BackupVO required : chain) { assertExpirations(required, nativeDate); }
+                assertEquals(nativeDate.toString(), state(child).protectedUntil);
+                state(child).copies.values().forEach(copy -> assertEquals(nativeDate.toString(), copy.original));
+                previous = child;
+            }
+            Instant lastRequired = firstDay.plusSeconds((retentionDays + 7) * 86400L);
+            BackupVO nextFull = point(firstId + 8, null, firstDay.plusSeconds((retentionDays + 8) * 86400L));
+            protection.protect(nextFull, 0, true);
+            org.mockito.Mockito.clearInvocations(client);
+            for (int recheck = 0; recheck < 3; recheck++) {
+                protection.protect(previous, 0, true);
+                protection.protect(full, 0, true);
+            }
+            verify(client, never()).extendImageRetention(any(), anyBoolean(), anyString(), anyInt(), any());
+            for (BackupVO required : chain) { assertExpirations(required, lastRequired); }
+            state(full).copies.values().forEach(copy ->
+                    assertEquals(firstDay.plusSeconds(retentionDays * 86400L).toString(), copy.original));
+            assertExpirations(nextFull, firstDay.plusSeconds((retentionDays + 8) * 86400L));
+        }
+    }
+
     @Test public void approvedTicketResumesWithoutCreatingAnotherApprovalRequest() {
         BackupVO full = point(1, null, early);
         BackupVO child = point(2, full, later);
