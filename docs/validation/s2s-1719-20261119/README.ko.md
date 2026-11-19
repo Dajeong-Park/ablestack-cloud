@@ -1,3 +1,22 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 # S2S-01 / #1719 VPN 게이트웨이 검색 구현 검증
 
 대상: Epic #1718의 첫 하위 이슈 #1719. 기준 소스 dhslove ablestack-europa `055ea57b238746c65b66cc5600215b10f0087b23`, 작업 브랜치 `dhslove/epic-1718-s2svpn`.
@@ -32,7 +51,7 @@ python3 docs/validation/s2s-1719-20261119/checkstyle-changed.py
 - API/server 모듈 빌드 성공. 실제 JDBC/DAO fixture 4개 + 기존 VPN 서비스 45개 = 49개 통과.
 - 변경 Java 4파일 Checkstyle 0건. 변경 UI/새 시험 파일 lint 통과.
 - UI 신규 검색 및 인접 공통 경로 7 suite 70개 통과(권한 소멸/역할 전환/프로젝트 라우트 회귀 포함).
-- UI production 빌드 성공. 최종 UI 소스는 `c112f240e56`이며 배포 payload/source hash는 `ui-final-manifest.json`과 일치한다.
+- UI production 빌드 성공. 최초 기능/스타일 검증 UI 소스는 `c112f240e56`이며 `ui-final-manifest.json`에 기록했다. 최신 기준 통합 후 배포한 최종 UI는 `78749177a19`이며 `ui-integration-manifest.json`과 일치한다.
 
 ## 배포 보존
 
@@ -73,3 +92,17 @@ UI는 `/usr/share/cloudstack-management/webapp`에 정적 파일 허용 목록�
 최종 기본 목록은 양쪽 GW 0건이다. UI에서 빈 목록과 원래 다크 테마/기본 프로젝트 복원을 확인하고 viewport override를 해제했다. 관리 서버는 active, HTTP 200, WEB-INF 존재, 호스트 3대씩 Up/Enabled, runtime 클래스 hash 일치를 재확인했다.
 
 #1719만 구현 완료 대상으로 보고한다. 다음 순서는 P2 #1720 `updateVpnGateway` 비동기 결과 반환/실패 계약이며 구현하지 않고 대기한다. PR 병합은 실행하지 않는다.
+
+## 최신 기준 통합·추가 검증
+
+PR 등록 시 작업 중 병합된 최신 Europa `61d39d7cd2dd6b1caaa6634eef16e8757f1cc05a`(KISO #1703)와 충돌이 발견되어 `78749177a19`에서 병합했다. 충돌 5파일의 양쪽 검색 분기·목록 복귀·문맥 가드·번역을 보존했다. PR의 기준 대비 변경은 #1719 소스/증거로 한정된다.
+
+- VPN 소유 Java 4파일, 검색 helper/컴포넌트와 테마 CSS는 최초 배포본과 바이트가 같다. Java를 다시 변경하거나 서버 JAR를 재배포하지 않았으며 기존 runtime 클래스 hash를 재확인했다.
+- 공통 UI 통합 검증은 기존 70개에 KISO 검색/레이아웃·읽기 전용 VM 경계 시험을 추가한 **10 suite 98개 통과**, 충돌/공유 UI 파일 lint·production build 성공이다. `ui-integration-tests.log`, `ui-integration-lint.log`, `ui-integration-build.log` 참조.
+- 통합 UI를 양쪽에 정적 자산만 다시 배포했다. WEB-INF/config/JAR/PID를 보존했고 HTTP 200을 확인했다. `31/32-ui-integration-deployment.log`, `ui-integration-manifest.json` 참조.
+- 기존 프로젝트의 게이트웨이로 추가 **API 7개씩 총 14개** 읽기 전용 재확인과 실제 UI 프로젝트 전환·IP 검색 1건·미일치 0건·상세/breadcrumb 조건 복귀·고급 검색을 확인했다. 기존 자원은 변경하지 않고 기본 프로젝트·다크/viewport를 복원했다. `31/32-integration-api.json`, `ui-integration-evidence.json`, `screenshots/31/32-postmerge-search.jpg` 참조.
+- 앞의 전체 VM 스타일 행렬은 통합 전 기능 검증본의 증거다. 통합에서 VPN 전용 폼/helper/테마 CSS는 그대로 보존했고, 통합 후에는 충돌한 공통 읽기/복귀 경로를 집중 재검증했다. 최신 통합본에서 해당 행렬 전체를 새로 실행했다고 주장하지 않는다.
+
+원격 CI는 별도다. `78749177a19`의 충돌 검사는 통과했다. [License Check](https://github.com/ablecloud-team/ablestack-cloud/actions/runs/44483800654)는 4,077개 기존 파일로 실패했다. 해당 모든 파일이 최신 기준 브랜치에도 존재하고 blob hash가 같음을 대조했으며 이번 변경 파일의 신규 지적은 0건이다(`ci-license-baseline.json`). Lint는 보고 시점 진행 중이므로 전체 CI 성공이나 병합 완료를 주장하지 않는다. 전체 Cloud 빌드/수동 Actions는 실행하지 않았다.
+
+텍스트 로그/증거는 LF와 행 끝 공백만 정규화했다. 캡처는 원본 JPEG를 유지했다.
