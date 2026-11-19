@@ -1,0 +1,147 @@
+[
+  {
+    "step": "create-128",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/98863536-7f91-4d6e-9773-d0a6116848cd",
+    "text": "/KMS 키/qa-km1728-128-20261120업데이트\n작업\nqa-km1728-128-20261120\n1\n아이디\n98863536-7f91-4d6e-9773-d0a6116848cd \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:57:27\n볼륨 보기\n상세\n이벤트\n아이디\n\n98863536-7f91-4d6e-9773-d0a6116848cd\n이름\n\nqa-km1728-128-20261120\n버전\n\n1\nKEK 라벨\n\nvolume-kek-1-2-988635367f914d6e9773d0a6116848cd-v1\n키 비트\n\n128\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:57:27\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "create-192",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/776e86ac-6f77-409f-950f-f9a8f01fff24",
+    "text": "/KMS 키/qa-km1728-192-20261120업데이트\n작업\nqa-km1728-192-20261120\n1\n아이디\n776e86ac-6f77-409f-950f-f9a8f01fff24 \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:58:09\n볼륨 보기\n상세\n이벤트\n아이디\n\n776e86ac-6f77-409f-950f-f9a8f01fff24\n이름\n\nqa-km1728-192-20261120\n버전\n\n1\nKEK 라벨\n\nvolume-kek-1-2-776e86ac6f77409f950ff9a8f01fff24-v1\n키 비트\n\n192\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:58:09\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "create-256",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n1\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\nKM-01 회전 정합성 검증용\n버전\n\n1\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v1\n키 비트\n\n256\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "rotate-256-to-128-v2",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n2\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\nKM-01 회전 정합성 검증용\n버전\n\n2\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v2\n키 비트\n\n128\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "update-response-preserves-128-disabled",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n2\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n2\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v2\n키 비트\n\n128\n활성화\n\nfalse\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "disabled-key-rejected",
+    "error": "KMS key is not enabled: KMSKey {\"accountId\":2,\"enabled\":false,\"id\":2,\"name\":\"qa-km1728-256-20261120\",\"purpose\":\"VOLUME_ENCRYPTION\",\"uuid\":\"08c6b1e5-71e2-4f7e-8d33-56452173a38f\",\"zoneId\":1}"
+  },
+  {
+    "step": "disabled-key-remains-v2-128",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n2\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n2\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v2\n키 비트\n\n128\n활성화\n\nfalse\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "reenabled-key-v2-128",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n2\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n2\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v2\n키 비트\n\n128\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "invalid-129-rejected",
+    "error": "Failed to rotate KMS key: Invalid parameter: Key size must be 128, 192, or 256 bits"
+  },
+  {
+    "step": "invalid-129-remains-v2-128",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n2\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n2\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v2\n키 비트\n\n128\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "rotate-128-to-192-v3",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n3\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n3\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v3\n키 비트\n\n192\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "rotate-omitted-length-keeps-192-v4",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n4\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n4\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v4\n키 비트\n\n192\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "rotate-192-to-256-v5",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n5\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n5\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v5\n키 비트\n\n256\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "profile-disabled-with-test-keys",
+    "url": "http://10.10.13.10:8080/client/#/hsmprofile/bc91cad9-e49f-400f-bbc0-1f047202631f",
+    "text": "/HSM 프로파일/HSM Database Provider업데이트\n작업\nHSM Database Provider\n아이디\nbc91cad9-e49f-400f-bbc0-1f047202631f \n계정\nsystem\n도메인\nROOT\n생성일\n2026. 10. 1. 오후 3:20:17\nKMS 키 보기\n상세\n이벤트\n아이디\n\nbc91cad9-e49f-400f-bbc0-1f047202631f\n이름\n\nHSM Database Provider\n프로토콜\n\ndatabase\n활성화\n\nfalse\n공개\n\ntrue\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 10. 1. 오후 3:20:17"
+  },
+  {
+    "step": "disabled-current-profile-rejected-with-target-omitted",
+    "error": "HSM profile is not enabled: HSM Database Provider"
+  },
+  {
+    "step": "disabled-profile-remains-v5-256",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n5\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n5\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v5\n키 비트\n\n256\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "profile-reenabled-for-fault-recovery",
+    "url": "http://10.10.13.10:8080/client/#/hsmprofile/bc91cad9-e49f-400f-bbc0-1f047202631f",
+    "text": "/HSM 프로파일/HSM Database Provider업데이트\n작업\nHSM Database Provider\n아이디\nbc91cad9-e49f-400f-bbc0-1f047202631f \n계정\nsystem\n도메인\nROOT\n생성일\n2026. 10. 1. 오후 3:20:17\nKMS 키 보기\n상세\n이벤트\n아이디\n\nbc91cad9-e49f-400f-bbc0-1f047202631f\n이름\n\nHSM Database Provider\n프로토콜\n\ndatabase\n활성화\n\ntrue\n공개\n\ntrue\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 10. 1. 오후 3:20:17"
+  },
+  {
+    "step": "create-omitted-default-256",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/82513fa6-23a9-4feb-a6ed-e81436e9d93d",
+    "text": "/KMS 키/qa-km1728-default-20261120업데이트\n작업\nqa-km1728-default-20261120\n1\n아이디\n82513fa6-23a9-4feb-a6ed-e81436e9d93d \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 1:10:44\n볼륨 보기\n상세\n이벤트\n아이디\n\n82513fa6-23a9-4feb-a6ed-e81436e9d93d\n이름\n\nqa-km1728-default-20261120\n버전\n\n1\nKEK 라벨\n\nvolume-kek-1-2-82513fa623a94feba6ede81436e9d93d-v1\n키 비트\n\n256\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 1:10:44\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "real-database-lockwait-timeout",
+    "error": "Failed to rotate KMS key: Transient error: KMS operation failed: Unable to persist on DB, due to: Lock wait timeout exceeded; try restarting transaction"
+  },
+  {
+    "step": "db-failure-v5-256-preserved",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n5\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n5\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v5\n키 비트\n\n256\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "bounded-row-lock-db-failure",
+    "error": "Failed to rotate KMS key: Transient error: KMS operation failed: Unable to persist on DB, due to: Lock wait timeout exceeded; try restarting transaction"
+  },
+  {
+    "step": "bounded-db-failure-v5-256-preserved",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n5\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n5\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v5\n키 비트\n\n256\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "db-recovery-retry-success-v6-128",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n6\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n6\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v6\n키 비트\n\n128\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "restart-and-relogin-preserve-v6-128",
+    "url": "http://10.10.13.10:8080/client/#/kmskey/08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "text": "/KMS 키/qa-km1728-256-20261120업데이트\n작업\nqa-km1728-256-20261120\n6\n아이디\n08c6b1e5-71e2-4f7e-8d33-56452173a38f \nHSM 프로파일\nHSM Database Provider\nZone\n13-Zone\n계정\nadmin\n도메인\nROOT\n생성일\n2026. 11. 20. 오전 12:56:31\n볼륨 보기\n상세\n이벤트\n아이디\n\n08c6b1e5-71e2-4f7e-8d33-56452173a38f\n이름\n\nqa-km1728-256-20261120\n설명\n\n회전 후 128비트 수정 응답 확인\n버전\n\n6\nKEK 라벨\n\nvolume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v6\n키 비트\n\n128\n활성화\n\ntrue\n계정\n\nadmin\n도메인\n\nROOT\n생성일\n\n2026. 11. 20. 오전 12:56:31\nHSM 프로파일\n\nHSM Database Provider"
+  },
+  {
+    "step": "delete-main-test-key",
+    "id": "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "ui": "success notification observed"
+  },
+  {
+    "step": "delete-128-test-key",
+    "id": "98863536-7f91-4d6e-9773-d0a6116848cd",
+    "ui": "success notification observed"
+  },
+  {
+    "step": "delete-192-test-key",
+    "id": "776e86ac-6f77-409f-950f-f9a8f01fff24",
+    "ui": "success notification observed"
+  },
+  {
+    "step": "delete-default-test-key",
+    "id": "82513fa6-23a9-4feb-a6ed-e81436e9d93d",
+    "ui": "success notification observed"
+  },
+  {
+    "step": "final-kms-list-empty",
+    "url": "http://10.10.13.10:8080/client/#/kmskey",
+    "text": "/KMS 키업데이트\n프로젝트\nKMS 키 생성\n\t\n이름\n\t\n활성화\n\t\nHSM 프로파일\n\t\n계정\n\t\n도메인\n\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "step": "default-hsm-restored-disabled",
+    "url": "http://10.10.13.10:8080/client/#/hsmprofile/bc91cad9-e49f-400f-bbc0-1f047202631f",
+    "text": "/HSM 프로파일/HSM Database Provider업데이트\n작업\nHSM Database Provider\n아이디\nbc91cad9-e49f-400f-bbc0-1f047202631f \n계정\nsystem\n도메인\nROOT\n생성일\n2026. 10. 1. 오후 3:20:17\nKMS 키 보기\n상세\n이벤트\n아이디\n\nbc91cad9-e49f-400f-bbc0-1f047202631f\n이름\n\nHSM Database Provider\n프로토콜\n\ndatabase\n활성화\n\nfalse\n공개\n\ntrue\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 10. 1. 오후 3:20:17"
+  }
+]

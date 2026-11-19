@@ -1,0 +1,30 @@
+{
+  "expected_db_failure_pass": true,
+  "preserved_metadata": [
+    "08c6b1e5-71e2-4f7e-8d33-56452173a38f",
+    "256",
+    "volume-kek-1-2-08c6b1e571e24f7e8d3356452173a38f-v5",
+    "5",
+    "database",
+    "256"
+  ],
+  "failed_new_kek_rows_removed": 2,
+  "new_version_after_failure": false,
+  "restart_preserved_bits": 128,
+  "restart_preserved_version": 6,
+  "cleanup": {
+    "active_kms_keys": 0,
+    "active_test_provider_keys": 0,
+    "test_wrapped_keys": 0,
+    "test_volume_references": 0,
+    "default_hsm_enabled": false
+  },
+  "source_build_commit": "5e058ec22328c43f3b0d9f20ab0e980cffe00d91",
+  "changed_checkstyle_violations": 0,
+  "baseline_checkstyle": {
+    "api": 46,
+    "engine_schema": 15,
+    "unchanged_from_base": true
+  },
+  "scope": "KMS metadata/UI verification; actual HSM and encrypted volume data-plane remain #1025"
+}
