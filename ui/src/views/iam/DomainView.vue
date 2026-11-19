@@ -96,13 +96,15 @@
     <domain-delete-confirm
     v-if="showDeleteConfirm"
     :domain="deleteDomainResource"
-    @close="showDeleteConfirm = false"
+    :deleting="domainDeletePending"
+    :deletion-error="domainDeleteError"
+    @close="closeDeleteConfirm"
     @confirm="confirmDeleteDomain" />
   </div>
 </template>
 
 <script>
-import { getAPI, callAPI } from '@/api'
+import { getAPI, callAPI, postAPI } from '@/api'
 import store from '@/store'
 import { mixinDevice } from '@/utils/mixin.js'
 
@@ -140,7 +142,14 @@ export default {
       treeDeletedKey: null,
       detailActionsVisible: false,
       showDeleteConfirm: false,
-      deleteDomainResource: null
+      deleteDomainResource: null,
+      domainDeletePending: false,
+      domainDeleteError: '',
+      domainDeleteReturning: false,
+      domainDisposed: false,
+      domainRequestGeneration: 0,
+      domainRequestAbort: null,
+      domainIconRefresh: null
     }
   },
   computed: {
@@ -178,23 +187,26 @@ export default {
     next()
   },
   beforeRouteLeave (to, from, next) {
+    this.invalidateDomainRead()
     this.changeDomainStore({})
     next()
   },
   created () {
     this.domainStore = store.getters.domainStore
     this.fetchData()
-    eventBus.on('refresh-domain-icon', () => {
+    this.domainIconRefresh = () => {
       if (this.$showIcon()) {
         this.fetchData()
       }
-    })
+    }
+    eventBus.on('refresh-domain-icon', this.domainIconRefresh)
   },
+  beforeUnmount () { this.domainDisposed = true; this.invalidateDomainRead(); eventBus.off('refresh-domain-icon', this.domainIconRefresh) },
   watch: {
     '$route' (to, from) {
       // When the route changes from /domain/:id to /domain or vice versa, the component is not destroyed and created again
     // So, we need to watch the route params to fetch the data again to update the component
-      if (to.path.startsWith('/domain') && from.params.id !== to.params.id) {
+      if (!this.domainDeleteReturning && to.path.startsWith('/domain') && from.params.id !== to.params.id) {
         this.fetchData()
       }
     }
@@ -216,7 +228,9 @@ export default {
       this.treeDeletedKey = null
       this.treeDeletedKey = action.api === 'deleteDomain' ? this.resource.key : null
       if (action.api === 'deleteDomain') {
-        this.deleteDomainResource = this.resource
+        if (this.domainDeletePending) return
+        this.deleteDomainResource = { ...this.resource }
+        this.domainDeleteError = ''
         this.showDeleteConfirm = true
         return
       }
@@ -257,7 +271,14 @@ export default {
       }
       this.action.loading = false
     },
+    domainReadScope () { return JSON.stringify([this.$route.fullPath, this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) },
+    invalidateDomainRead () { this.domainRequestGeneration++; if (this.domainRequestAbort) this.domainRequestAbort.abort(); this.domainRequestAbort = null },
     fetchData () {
+      if (this.domainDisposed || this.domainDeleteReturning || !this.$route.path.startsWith('/domain')) return Promise.resolve()
+      this.invalidateDomainRead()
+      const generation = this.domainRequestGeneration; const scope = this.domainReadScope()
+      const current = () => !this.domainDisposed && generation === this.domainRequestGeneration && scope === this.domainReadScope()
+      this.domainRequestAbort = new AbortController()
       this.treeData = []
       this.treeSelected = {}
       const params = { listall: true }
@@ -272,34 +293,38 @@ export default {
 
       this.loading = true
       params.showicon = true
-      getAPI('listDomains', params).then(json => {
+      return getAPI('listDomains', params, { preserveOnFailure: true, timeout: 20000, signal: this.domainRequestAbort.signal }).then(json => {
+        if (!current()) return
         const domains = json.listdomainsresponse.domain || []
         this.treeData = this.generateTreeData(domains)
         this.resource = domains[0] || {}
         this.treeSelected = domains[0] || {}
       }).catch(error => {
-        if ([401].includes(error.response.status)) {
+        if (!current()) return
+        const status = error.response?.status
+        if ([401].includes(status)) {
           return
         }
 
         this.$notification.error({
           message: this.$t('message.request.failed'),
-          description: error.response.headers['x-description'],
+          description: error.response?.headers?.['x-description'] || this.$t('message.request.failed'),
           duration: 0
         })
 
-        if ([405].includes(error.response.status)) {
+        if ([405].includes(status)) {
           this.$router.push({ path: '/dashboard' })
         }
 
-        if ([430, 431, 432].includes(error.response.status)) {
+        if ([430, 431, 432].includes(status)) {
           this.$router.push({ path: '/dashboard' })
         }
 
-        if ([530, 531, 532, 533, 534, 535, 536, 537].includes(error.response.status)) {
+        if ([530, 531, 532, 533, 534, 535, 536, 537].includes(status)) {
           this.$router.push({ path: '/dashboard' })
         }
       }).finally(f => {
+        if (!current()) return
         this.loading = false
       })
     },
@@ -351,6 +376,7 @@ export default {
     },
     generateTreeData (treeData) {
       const result = []
+      if (!treeData.length) return result
       const rootItem = treeData
 
       rootItem[0].title = rootItem[0].title ? rootItem[0].title : rootItem[0].name
@@ -376,41 +402,50 @@ export default {
     closeAction () {
       this.showAction = false
     },
-    confirmDeleteDomain () {
-      const domain = this.deleteDomainResource
-      const params = { id: domain.id, cleanup: true }
-
-      callAPI('deleteDomain', params).then(json => {
-        const jobId = json.deletedomainresponse.jobid
-
-        this.$pollJob({
+    closeDeleteConfirm () {
+      if (this.domainDeletePending) return
+      this.showDeleteConfirm = false; this.deleteDomainResource = null; this.domainDeleteError = ''
+    },
+    async returnAfterDomainDeletion () {
+      this.domainDeleteReturning = true
+      this.invalidateDomainRead()
+      this.showDeleteConfirm = false; this.deleteDomainResource = null
+      this.resource = {}; this.treeData = []; this.treeSelected = {}; this.treeDeletedKey = null
+      this.changeDomainStore({ treeSelected: {}, expands: [], isExpand: false })
+      try {
+        await this.$router.replace({ path: '/domain' })
+        if (this.domainDisposed || this.$route.path !== '/domain') return
+        this.treeViewKey++
+      } finally { this.domainDeleteReturning = false }
+      if (!this.domainDisposed && this.$route.path === '/domain') await this.fetchData()
+    },
+    async confirmDeleteDomain () {
+      if (this.domainDeletePending || !this.deleteDomainResource?.id) return
+      const domain = { ...this.deleteDomainResource }; const scope = this.domainReadScope()
+      const current = () => !this.domainDisposed && scope === this.domainReadScope() && this.deleteDomainResource?.id === domain.id
+      this.domainDeletePending = true; this.domainDeleteError = ''
+      try {
+        const json = await postAPI('deleteDomain', { id: domain.id, cleanup: true }, { preserveOnFailure: true, timeout: 20000 })
+        const jobId = json?.deletedomainresponse?.jobid
+        if (!jobId) throw new Error('Missing domain deletion job')
+        const result = await this.$pollJob({
           jobId,
           title: this.$t('label.action.delete.domain'),
           description: domain.name,
           loadingMessage: `${this.$t('label.action.delete.domain')} ${domain.name}`,
           successMessage: `${this.$t('label.action.delete.domain')} ${domain.name}`,
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          successMethod: () => {
-            this.$router.replace({ path: '/domain' })
-            this.resource = {}
-            this.treeSelected = {}
-            this.treeDeletedKey = null
-            this.treeViewKey += 1
-            this.$nextTick(() => {
-              this.fetchData()
-            })
-          }
+          catchMessage: this.$t('error.fetching.async.job.result')
         })
-      }).catch(error => {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error.response?.headers['x-description'] || this.$t('message.request.failed')
-        })
-      }).finally(() => {
-        this.showDeleteConfirm = false
-        this.deleteDomainResource = null
-        this.treeDeletedKey = null
-      })
+        if (!current()) return
+        if (result.jobstatus === 1) await this.returnAfterDomainDeletion()
+        else this.domainDeleteError = result.jobresult?.errortext || this.$t('message.request.failed')
+      } catch (error) {
+        if (!current()) return
+        this.domainDeleteError = Object.values(error.response?.data || {}).find(body => body?.errortext)?.errortext ||
+          error.response?.headers?.['x-description'] || this.$t('message.request.failed')
+      } finally {
+        if (!this.domainDisposed) this.domainDeletePending = false
+      }
     },
     forceRerender () {
       this.treeViewKey += 1
