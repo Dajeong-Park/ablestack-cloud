@@ -1,0 +1,38 @@
+[
+  {
+    "name": "kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.iso",
+    "size": 828588032,
+    "sha256": "9434a2fc7a0f26999f5c623d1140d013dc38a1488ab4adc6f12c5f2f23e43678",
+    "url": "https://github.com/ablecloud-team/ablestack-kubernetes-iso/releases/download/k8s-v1.34.9-mold-cks-amd64-r1-b55ee065/kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.iso"
+  },
+  {
+    "name": "kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.manifest.json",
+    "size": 17398,
+    "sha256": "cf780060a1ddb585f299fb90e243d36d1cef04be5e0d91c86d3dd84ce348f243",
+    "url": "https://github.com/ablecloud-team/ablestack-kubernetes-iso/releases/download/k8s-v1.34.9-mold-cks-amd64-r1-b55ee065/kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.manifest.json"
+  },
+  {
+    "name": "kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.registration.json",
+    "size": 771,
+    "sha256": "65ef5871e528ebdb06815d8aaf1f3beef6f852b1fe515b75c29afa4a4c86f276",
+    "url": "https://github.com/ablecloud-team/ablestack-kubernetes-iso/releases/download/k8s-v1.34.9-mold-cks-amd64-r1-b55ee065/kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.registration.json"
+  },
+  {
+    "name": "kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.iso",
+    "size": 832905216,
+    "sha256": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+    "url": "https://github.com/ablecloud-team/ablestack-kubernetes-iso/releases/download/k8s-v1.34.12-mold-cks-amd64-r1-b55ee065/kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.iso"
+  },
+  {
+    "name": "kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.manifest.json",
+    "size": 17412,
+    "sha256": "f2a3d7363119fc446ae8f22cbdf492b5a624cd1743fdd009ff216c5222e356cc",
+    "url": "https://github.com/ablecloud-team/ablestack-kubernetes-iso/releases/download/k8s-v1.34.12-mold-cks-amd64-r1-b55ee065/kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.manifest.json"
+  },
+  {
+    "name": "kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.registration.json",
+    "size": 776,
+    "sha256": "39c0803ff33fc34bfc0c77463d71d031b833da72d32a2a6c507e407a37ef3a74",
+    "url": "https://github.com/ablecloud-team/ablestack-kubernetes-iso/releases/download/k8s-v1.34.12-mold-cks-amd64-r1-b55ee065/kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.registration.json"
+  }
+]

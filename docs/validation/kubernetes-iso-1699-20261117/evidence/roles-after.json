@@ -1,0 +1,38 @@
+[
+  {
+    "id": "5da3668a-bd56-11f1-b573-002481560363",
+    "text": "Root AdminAdminDefault root admin role정상"
+  },
+  {
+    "id": "5da3706e-bd56-11f1-b573-002481560363",
+    "text": "Resource AdminResourceAdminDefault resource admin role정상"
+  },
+  {
+    "id": "5da377cd-bd56-11f1-b573-002481560363",
+    "text": "Domain AdminDomainAdminDefault domain admin role정상"
+  },
+  {
+    "id": "5da37de6-bd56-11f1-b573-002481560363",
+    "text": "UserUserDefault user role정상"
+  },
+  {
+    "id": "60f6159f-bd56-11f1-b573-002481560363",
+    "text": "Read-Only Admin - DefaultAdminDefault read-only admin role정상"
+  },
+  {
+    "id": "60f61c91-bd56-11f1-b573-002481560363",
+    "text": "Read-Only User - DefaultUserDefault read-only user role정상"
+  },
+  {
+    "id": "60f623a9-bd56-11f1-b573-002481560363",
+    "text": "Support Admin - DefaultAdminDefault support admin role정상"
+  },
+  {
+    "id": "60f62932-bd56-11f1-b573-002481560363",
+    "text": "Support User - DefaultUserDefault support user role정상"
+  },
+  {
+    "id": "ed343b96-45d7-44be-aeea-59087fe25d1b",
+    "text": "Project Kubernetes Service RoleUserProject Kubernetes Service Role정상"
+  }
+]

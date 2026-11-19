@@ -1,0 +1,19 @@
+{
+  "recordedAtUtc": "2026-11-18T11:01:24.323098+00:00",
+  "issue": 1701,
+  "validationComplete": true,
+  "readyToClose": true,
+  "productHead": "d4ccbe39956f9412cfb5be411033df141583b335",
+  "indexSha256": "e39ac0bb82fa486d8013b694f819a9a2a9d31cca07c2605069832066fc3e67d5",
+  "correctedEventUiVerified": true,
+  "lightFinalUiVisuallyVerified": true,
+  "darkFinalUiVerified": true,
+  "cloudTestResourcesRemaining": 0,
+  "httpFixtureDirectoryAbsent": true,
+  "darkThemeRestored": true,
+  "browserAuxiliaryTabCleanupVerified": false,
+  "chromeWindowSizeRestored": false,
+  "browserLimitation": "URL confirmation guard stopped input while attempting to select an auxiliary QA tab after product validation and cloud cleanup were complete",
+  "nextIssue": 1702,
+  "pinUiPrerequisiteIssue": 1707
+}

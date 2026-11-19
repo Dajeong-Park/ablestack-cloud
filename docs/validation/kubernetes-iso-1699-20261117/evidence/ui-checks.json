@@ -1,0 +1,122 @@
+[
+  {
+    "label": "list-scope-and-independent-state",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=0c9857c8310c4265466c870a12c3468fac24c19a9dd3e193b1ac74dac4cb5965",
+    "text": "/쿠버네티스 ISO업데이트\n쿠버네티스 버전 추가\n\t\n이름\n\t\n상태\n\t\n시맨틱 버전\n\tISO 상태\t\n최소 CPU 코어\n\t\n최소 메모리(MB)\n\tCPU 아키텍처\tZone\t\n\n1.35.9\t\n사용 허용\n\t1.35.9\t\n미확인\n\t2\t2048\tx86_64\t13-Zone\t\n1.36.5\t\n사용 허용\n\t1.36.5\t\n미확인\n\t2\t2048\tx86_64\t13-Zone\t\nqa-kiso1699-global-ready\t\n사용 허용\n\t1.40.1\t\n미확인\n\t4\t3072\taarch64\t모든 Zone\t\nqa-kiso1699-checksum-error\t\n사용 허용\n\t1.12.99\t\n미확인\n\t2\t2048\tx86_64\t13-Zone\t\nqa-kiso1699-direct\t\n사용 중지\n\t1.40.4\t\n미확인\n\t2\t2048\tx86_64\t13-Zone\t\n전체 5 개 항목 중 1-5 표시\n1\n20 / 쪽"
+  },
+  {
+    "label": "root-global-detail",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%220c9857c8310c4265466c870a12c3468fac24c19a9dd3e193b1ac74dac4cb5965%22}&kisoowner=0c9857c8310c4265466c870a12c3468fac24c19a9dd3e193b1ac74dac4cb5965",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n이름\nqa-kiso1699-global-ready\n아이디\n\n30438d8d-9cad-4275-8e0f-5e1a4514f824\n시맨틱 버전\n1.40.1\n버전 사용 설정\n\n사용 허용\n등록 범위\n모든 Zone\nZone ID\n\n—\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n연결 ISO ID\n\n392298e1-67b8-42a7-b227-b6ad543c51f4\nISO 가용성\n\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\nISO 등록 상태\n등록됨\nCPU 아키텍처\naarch64\n최소 CPU 코어\n4\n최소 메모리(MB)\n3072\nHA 지원\n예\n오토스케일링 지원\n예\n직접 다운로드\n아니오\n생성일\n2026. 11. 17. 오전 6:22:34\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1699-20261117/ready.iso?qa=1699&name=global-ready"
+  },
+  {
+    "label": "actual-checksum-failure",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/6766f9d7-194a-43a3-8d74-da0615a74146?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-checksum-error업데이트\n작업\nqa-kiso1699-checksum-error\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n6766f9d7-194a-43a3-8d74-da0615a74146 \nISO 가용성\n다운로드/업로드 실패\n조회한 ISO Zone 준비: 0/1\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\"\nSecondary Storage: 실패\nZone에서 원인 확인\n등록 범위\n13-Zone\n연결된 ISO\nqa-kiso1699-checksum-error-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:38\n상세\nZone\n이벤트\n업데이트\n등록 범위: 13-Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n다운로드/업로드 실패\n\t아니오\t\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\" · Secondary Storage: 실패\n\tISO 보기\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "actual-store-expansion",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/6766f9d7-194a-43a3-8d74-da0615a74146?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-checksum-error업데이트\n작업\nqa-kiso1699-checksum-error\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n6766f9d7-194a-43a3-8d74-da0615a74146 \nISO 가용성\n다운로드/업로드 실패\n조회한 ISO Zone 준비: 0/1\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\"\nSecondary Storage: 실패\nZone에서 원인 확인\n등록 범위\n13-Zone\n연결된 ISO\nqa-kiso1699-checksum-error-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:38\n상세\nZone\n이벤트\n업데이트\n등록 범위: 13-Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n다운로드/업로드 실패\n\t아니오\t\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\" · Secondary Storage: 실패\n\tISO 보기\n\n2차 스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t실패\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "failure-detail-booleans",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/6766f9d7-194a-43a3-8d74-da0615a74146?tab=details",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-checksum-error업데이트\n작업\nqa-kiso1699-checksum-error\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n6766f9d7-194a-43a3-8d74-da0615a74146 \nISO 가용성\n다운로드/업로드 실패\n조회한 ISO Zone 준비: 0/1\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\"\nSecondary Storage: 실패\nZone에서 원인 확인\n등록 범위\n13-Zone\n연결된 ISO\nqa-kiso1699-checksum-error-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:38\n상세\nZone\n이벤트\n이름\nqa-kiso1699-checksum-error\n아이디\n\n6766f9d7-194a-43a3-8d74-da0615a74146\n시맨틱 버전\n1.12.99\n버전 사용 설정\n\n사용 허용\n등록 범위\n13-Zone\nZone ID\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\n연결된 ISO\nqa-kiso1699-checksum-error-Kubernetes-Binaries-ISO\n연결 ISO ID\n\neb59eb04-e4ec-4e32-8a59-d41ec84373c5\nISO 가용성\n\n다운로드/업로드 실패\n조회한 ISO Zone 준비: 0/1\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\"\nSecondary Storage: 실패\nZone에서 원인 확인\nISO 등록 상태\n할당됨\nCPU 아키텍처\nx86_64\n최소 CPU 코어\n2\n최소 메모리(MB)\n2048\nHA 지원\n아니오\n오토스케일링 지원\n아니오\n직접 다운로드\n아니오\n생성일\n2026. 11. 17. 오전 6:22:38\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1699-20261117/ready.iso?qa=1699&name=checksum-error"
+  },
+  {
+    "label": "disabled-version-ready-iso",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/bf45c463-ff01-48b3-857e-1d291e152e67",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-direct업데이트\n작업\nqa-kiso1699-direct\nx86_64\n버전 사용 설정\n사용 중지\n아이디\nbf45c463-ff01-48b3-857e-1d291e152e67 \nISO 가용성\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\n등록 범위\n13-Zone\n연결된 ISO\nqa-kiso1699-direct-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:52\n상세\nZone\n이벤트\n이름\nqa-kiso1699-direct\n아이디\n\nbf45c463-ff01-48b3-857e-1d291e152e67\n시맨틱 버전\n1.40.4\n버전 사용 설정\n\n사용 중지\n등록 범위\n13-Zone\nZone ID\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\n연결된 ISO\nqa-kiso1699-direct-Kubernetes-Binaries-ISO\n연결 ISO ID\n\nec3bac14-81a6-4182-b33f-097414c77f5a\nISO 가용성\n\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\nISO 등록 상태\n등록됨\nCPU 아키텍처\nx86_64\n최소 CPU 코어\n2\n최소 메모리(MB)\n2048\nHA 지원\n예\n오토스케일링 지원\n예\n직접 다운로드\n예\n생성일\n2026. 11. 17. 오전 6:22:52\nISO URL\n\nhttp://10.10.13.10:8080/client/qa-kiso1699-20261117/ready.iso?qa=1699&name=direct"
+  },
+  {
+    "label": "actual-transfer-route-failure",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/83e22979-574c-4818-99d6-23090122201a?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-progress업데이트\n작업\nqa-kiso1699-progress\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n83e22979-574c-4818-99d6-23090122201a \nISO 가용성\n다운로드/업로드 실패\n조회한 ISO Zone 준비: 0/1\nNo route to host\nSecondary Storage: 실패\nZone에서 원인 확인\n등록 범위\n13-Zone\n연결된 ISO\nqa-kiso1699-progress-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 7:11:16\n상세\nZone\n이벤트\n업데이트\n등록 범위: 13-Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n다운로드/업로드 실패\n\t아니오\t\nNo route to host · Secondary Storage: 실패\n\tISO 보기\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "actual-transfer-in-progress",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/90c7c3d8-ab9a-4a77-bc53-db4c84f84f13?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-progress-large업데이트\n작업\nqa-kiso1699-progress-large\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n90c7c3d8-ab9a-4a77-bc53-db4c84f84f13 \nISO 가용성\n이미지 전송/준비 중\n조회한 ISO Zone 준비: 0/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-progress-large-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 7:18:24\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n이미지 전송/준비 중\n\t아니오\t\n—\n\tISO 보기\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "catalog-only-detail",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n조회 권한 없음Zone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이름\nqa-kiso1699-global-ready\n아이디\n\n30438d8d-9cad-4275-8e0f-5e1a4514f824\n시맨틱 버전\n1.40.1\n버전 사용 설정\n\n사용 허용\n등록 범위\n모든 Zone\nZone ID\n\n—\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n연결 ISO ID\n\n392298e1-67b8-42a7-b227-b6ad543c51f4\nISO 가용성\n\n조회 권한 없음Zone에서 원인 확인\nISO 등록 상태\n등록됨\nCPU 아키텍처\naarch64\n최소 CPU 코어\n4\n최소 메모리(MB)\n3072\nHA 지원\n예\n오토스케일링 지원\n예\n직접 다운로드\n아니오\n생성일\n2026. 11. 17. 오전 6:22:34"
+  },
+  {
+    "label": "catalog-only-zone",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n조회 권한 없음Zone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n업데이트\n등록 범위: 모든 Zone\n연결 ISO를 조회할 권한이 없습니다. 버전 카탈로그 정보는 계속 확인할 수 있습니다."
+  },
+  {
+    "label": "catalog-only-reload",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=details",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n조회 권한 없음Zone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이름\nqa-kiso1699-global-ready\n아이디\n\n30438d8d-9cad-4275-8e0f-5e1a4514f824\n시맨틱 버전\n1.40.1\n버전 사용 설정\n\n사용 허용\n등록 범위\n모든 Zone\nZone ID\n\n—\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n연결 ISO ID\n\n392298e1-67b8-42a7-b227-b6ad543c51f4\nISO 가용성\n\n조회 권한 없음Zone에서 원인 확인\nISO 등록 상태\n등록됨\nCPU 아키텍처\naarch64\n최소 CPU 코어\n4\n최소 메모리(MB)\n3072\nHA 지원\n예\n오토스케일링 지원\n예\n직접 다운로드\n아니오\n생성일\n2026. 11. 17. 오전 6:22:34"
+  },
+  {
+    "label": "iso-read-role-zones",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\t13-Zone\t\n사용 가능\n\t예\t\n—\n\tISO 보기\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "iso-read-role-reload",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=details",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이름\nqa-kiso1699-global-ready\n아이디\n\n30438d8d-9cad-4275-8e0f-5e1a4514f824\n시맨틱 버전\n1.40.1\n버전 사용 설정\n\n사용 허용\n등록 범위\n모든 Zone\nZone ID\n\n—\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n연결 ISO ID\n\n392298e1-67b8-42a7-b227-b6ad543c51f4\nISO 가용성\n\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\nISO 등록 상태\n등록됨\nCPU 아키텍처\naarch64\n최소 CPU 코어\n4\n최소 메모리(MB)\n3072\nHA 지원\n예\n오토스케일링 지원\n예\n직접 다운로드\n아니오\n생성일\n2026. 11. 17. 오전 6:22:34"
+  },
+  {
+    "label": "synthetic-partial-zones-dark",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n일부 Zone 사용 가능\n조회한 ISO Zone 준비: 1/2\nChecksum error https://example.invalid/iso token=[redacted]\n합성 저장소 B: 실패\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n사용 가능\n\t예\t\n—\n\tISO 보기\n\n\t합성 검증 Zone\t\n다운로드/업로드 실패\n\t아니오\t\nChecksum error https://example.invalid/iso token=[redacted] · 합성 저장소 B: 실패\n\tISO 보기\n전체 2 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "synthetic-partial-zones-light",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n일부 Zone 사용 가능\n조회한 ISO Zone 준비: 1/2\nChecksum error https://example.invalid/iso token=[redacted]\n합성 저장소 B: 실패\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n사용 가능\n\t예\t\n—\n\tISO 보기\n\n\t합성 검증 Zone\t\n다운로드/업로드 실패\n\t아니오\t\nChecksum error https://example.invalid/iso token=[redacted] · 합성 저장소 B: 실패\n\tISO 보기\n전체 2 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "synthetic-invalid",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n응답 확인 필요Zone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\nISO 조회 응답을 확인할 수 없습니다. 새로고침해 다시 조회하세요."
+  },
+  {
+    "label": "synthetic-network",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n연결 실패Zone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\nISO 가용성 조회에 연결하지 못했습니다. 다시 시도하세요."
+  },
+  {
+    "label": "synthetic-server-denied",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n조회 권한 없음Zone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n연결 ISO를 조회할 권한이 없습니다. 버전 카탈로그 정보는 계속 확인할 수 있습니다."
+  },
+  {
+    "label": "read-retry-recovered",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n사용 가능\n\t예\t\n—\n\tISO 보기\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "old-resource-read-discarded",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/6766f9d7-194a-43a3-8d74-da0615a74146?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-checksum-error업데이트\n작업\nqa-kiso1699-checksum-error\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n6766f9d7-194a-43a3-8d74-da0615a74146 \nISO 가용성\n다운로드/업로드 실패\n조회한 ISO Zone 준비: 0/1\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\"\nSecondary Storage: 실패\nZone에서 원인 확인\n등록 범위\n13-Zone\n연결된 ISO\nqa-kiso1699-checksum-error-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:38\n상세\nZone\n이벤트\n업데이트\n등록 범위: 13-Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n다운로드/업로드 실패\n\t아니오\t\nFailed post download script: checksum \"{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46\" didn't match the given value, \"{SHA-256}0000000000000000000000000000000000000000000000000000000000000000\" · Secondary Storage: 실패\n\tISO 보기\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "final-deployment-normal",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n사용 가능\n\t예\t\n—\n\tISO 보기\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "final-empty-component",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/30438d8d-9cad-4275-8e0f-5e1a4514f824?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-global-ready업데이트\n작업\nqa-kiso1699-global-ready\naarch64\n버전 사용 설정\n사용 허용\n아이디\n30438d8d-9cad-4275-8e0f-5e1a4514f824 \nISO 가용성\n조회된 ISO Zone 없음Zone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-global-ready-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 6:22:34\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\n허용된 범위에서 조회된 ISO Zone이 없습니다."
+  },
+  {
+    "label": "final-progress-before-complete",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/2b07a242-837a-4b47-88a9-ac88b08b7b48?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-completion업데이트\n작업\nqa-kiso1699-completion\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n2b07a242-837a-4b47-88a9-ac88b08b7b48 \nISO 가용성\n이미지 전송/준비 중\n조회한 ISO Zone 준비: 0/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-completion-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 7:48:50\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n이미지 전송/준비 중\n\t아니오\t\n—\n\tISO 보기\n\n2차 스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t전송 중\n전체 1 개 항목\n1\n20 / 쪽"
+  },
+  {
+    "label": "final-completion-expansion-retained",
+    "url": "http://10.10.13.10:8080/client/#/kubernetesiso/2b07a242-837a-4b47-88a9-ac88b08b7b48?tab=zones",
+    "text": "/쿠버네티스 ISO/qa-kiso1699-completion업데이트\n작업\nqa-kiso1699-completion\nx86_64\n버전 사용 설정\n사용 허용\n아이디\n2b07a242-837a-4b47-88a9-ac88b08b7b48 \nISO 가용성\n사용 가능\n조회한 ISO Zone 준비: 1/1\nZone에서 원인 확인\n등록 범위\n모든 Zone\n연결된 ISO\nqa-kiso1699-completion-Kubernetes-Binaries-ISO\n생성일\n2026. 11. 17. 오전 7:48:50\n상세\nZone\n이벤트\n업데이트\n등록 범위: 모든 Zone\n\tZone\tISO 가용성\t준비\t원인\t작업\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\n\n\t13-Zone\t\n사용 가능\n\t예\t\n—\n\tISO 보기\n\n2차 스토리지\n스토리지\t다운로드 진행률\t다운로드 상태\n\n \n\t\n \n\t\n \n\n\nSecondary Storage\n\t\n\t다운로드 완료\n전체 1 개 항목\n1\n20 / 쪽"
+  }
+]

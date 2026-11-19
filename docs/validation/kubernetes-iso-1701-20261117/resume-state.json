@@ -1,0 +1,28 @@
+{
+  "recordedAtUtc": "2026-11-17T06:04:26.740211+00:00",
+  "issueState": "OPEN",
+  "epicCompletedChildren": 7,
+  "epicTotalChildren": 9,
+  "prDraft": true,
+  "productHead": "eb790ccf174eafca7f06ac17fc7e491f660fa869",
+  "deployedFinalIndexSha256": "56dcd47216e95fe2d09fd7b6ca88a82ac95d89f98bedc4628db69eb8770293ea",
+  "finalUiVerified": false,
+  "computerUseBlock": "Windows browser URL could not be determined with sufficient confidence to enforce policy",
+  "remainingVersionIds": [
+    "8f773b4a-8802-40ea-88e6-76d2b8141e29",
+    "29ce330b-a632-445e-b687-a6eacffa5523"
+  ],
+  "remainingIsoIds": [
+    "49819ec0-6527-40fc-91ce-236b9ab30c47",
+    "ebdfe97a-e42e-418d-a072-f732bd9b1cf4"
+  ],
+  "fixtureDirectory": "/usr/share/cloudstack-management/webapp/qa-kiso1701-20261117/",
+  "restoreUi": {
+    "theme": "dark",
+    "viewport": "reset"
+  },
+  "debtsOpen": [
+    926,
+    1044
+  ]
+}

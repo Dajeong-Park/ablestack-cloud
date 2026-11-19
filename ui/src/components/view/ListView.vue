@@ -16,15 +16,15 @@
 // under the License.
 
 <template>
-  <div class="list-view-table-wrapper" :class="{ 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy' }" @contextmenu="handleGlobalContextMenu">
+  <div class="list-view-table-wrapper" :class="{ 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="isKubernetesIsoMainList ? 0 : undefined" :role="isKubernetesIsoMainList ? 'region' : undefined" :aria-label="isKubernetesIsoMainList ? $t('label.kubernetes.isos') : undefined" @keydown="scrollKubernetesIsoTable" @contextmenu="handleGlobalContextMenu">
     <a-table
       size="middle"
       :loading="loading"
       :locale="emptyText ? { emptyText } : undefined"
-      :columns="isOrderUpdatable() ? columns : columns.filter(x => x.dataIndex !== 'order')"
+      :columns="displayColumns"
       :dataSource="items"
-      :tableLayout="isIsoMainList ? 'fixed' : undefined"
-      :scroll="tableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
+      :tableLayout="isIsoMainList || isKubernetesIsoMainList ? 'fixed' : undefined"
+      :scroll="tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
       :rowSelection="explicitlyAllowRowSelection || enableGroupAction() || $route.name === 'event' ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({ disabled: selectionDisabled(record) }), columnWidth: 30} : null"
@@ -54,13 +54,23 @@
         </a-menu>
       </div>
     </template>
-    <template v-if="isIsoMainList" #headerCell="{ column }">
-      <a-tooltip v-if="column.sorter" :title="$t('message.iso.search.sort.page')" :trigger="['hover', 'focus']"><span tabindex="0">{{ column.title }}</span></a-tooltip>
+    <template v-if="isIsoMainList || isKubernetesIsoMainList" #headerCell="{ column }">
+      <a-popover v-if="isKubernetesIsoMainList && column.key === 'filtercolumn'" :visible="columnPickerVisible" @update:visible="columnPickerVisibility" trigger="click" placement="bottomRight">
+        <template #content>
+          <div ref="columnPickerContent" @vue:mounted="columnPickerContentMounted" class="kubernetes-iso-column-picker" role="group" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker">
+            <a-checkbox v-for="key in columnKeys" :key="getColumnKey(key)" :checked="selectedColumns.includes(getColumnKey(key))" @change="updateSelectedColumns(key)">{{ $t('label.' + String(getColumnTitle(key)).toLowerCase()) }}</a-checkbox>
+          </div>
+        </template>
+        <a-button ref="columnPickerTrigger" type="text" size="small" class="kubernetes-iso-columns-trigger" :aria-expanded="columnPickerVisible" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker"><filter-outlined /></a-button>
+      </a-popover>
+      <keyboard-tooltip v-else-if="isKubernetesIsoMainList && typeof column.title === 'string' && column.title" :title="column.title"><span tabindex="0" class="kubernetes-iso-header-text">{{ column.title }}</span></keyboard-tooltip>
+      <a-tooltip v-else-if="column.sorter" :title="$t('message.iso.search.sort.page')" :trigger="['hover', 'focus']"><span tabindex="0">{{ column.title }}</span></a-tooltip>
       <span v-else>{{ column.title }}</span>
     </template>
     <template #bodyCell="{ column, text, record }">
       <AsnListCell v-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
+      <KubernetesIsoListCell v-else-if="isKubernetesIsoMainList && ['state', 'isostate', 'zonename', 'semanticversion', 'mincpunumber', 'minmemory', 'arch'].includes(column.key)" :resource="record" :field="column.key" />
       <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
@@ -91,7 +101,9 @@
           </span>
           <os-logo v-else :osId="record.ostypeid" :osName="record.osdisplayname" size="xl" />
         </span>
-        <span style="min-width: 120px">
+        <span
+          :class="{ 'template-name-cell': (isTemplateMainList || isKubernetesIsoMainList) && record.id }"
+          :style="{ minWidth: (isTemplateMainList || isKubernetesIsoMainList) && record.id ? 0 : '120px' }">
           <QuickView
             style="margin-left: 5px"
             :actions="actions"
@@ -110,7 +122,10 @@
               @onClick="changeProject(record)"
             />
           </span>
-          <span v-if="($route.name === 'kubernetes' || $showIcon()) && !['vm', 'vnfapp'].includes($route.path.split('/')[1])" style="margin-right: 5px">
+          <span
+            v-if="($route.name === 'kubernetes' || isKubernetesIsoMainList || $showIcon()) && !['vm', 'vnfapp'].includes($route.path.split('/')[1])"
+            :class="{ 'template-name-icon': (isTemplateMainList || isKubernetesIsoMainList) && record.id }"
+            style="margin-right: 5px">
             <resource-icon v-if="$showIcon() && record.icon && record.icon.base64image" :image="record.icon.base64image" size="2x"/>
             <os-logo v-else-if="record.ostypename || ['guestoscategory'].includes($route.path.split('/')[1])" :osName="record.ostypename || record.name" size="xl" />
             <render-icon v-else-if="typeof $route.meta.icon ==='string'" style="font-size: 16px;" :icon="$route.meta.icon"/>
@@ -118,6 +133,7 @@
           </span>
           <span
             v-else
+            :class="{ 'template-name-icon': (isTemplateMainList || isKubernetesIsoMainList) && record.id }"
             :style="{ 'margin-right': record.ostypename ? '5px' : '0' }"
           >
             <os-logo
@@ -126,11 +142,16 @@
               size="xl"
             />
           </span>
-          <span v-if="$route.meta?.name === 'template' && !resourcePath && record.id" class="template-primary-name">
+          <span v-if="isTemplateMainList && record.id" class="template-primary-name">
             <a-tooltip :title="text" :trigger="['hover', 'focus']" placement="topLeft">
               <router-link class="template-name-link" :to="templateDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
             </a-tooltip>
-            <router-link v-if="record.hasannotations" :to="templateDetailLocation($route, record, $store.getters, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
+            <router-link v-if="record.hasannotations" class="template-name-comment" :aria-label="$t('label.comments')" :to="templateDetailLocation($route, record, $store.getters, 'comments')"><message-filled size="small" /></router-link>
+          </span>
+          <span v-else-if="isKubernetesIsoMainList && record.id" class="template-primary-name">
+            <keyboard-tooltip :title="text" :trigger="['hover', 'focus']" placement="topLeft">
+              <router-link class="template-name-link" :to="kubernetesIsoDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+            </keyboard-tooltip>
           </span>
           <span v-else-if="isSshKeyPairList">
             <router-link :to="sshKeyPairLink(record)">{{ text }}</router-link>
@@ -1246,6 +1267,7 @@
 
 <script>
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { kubernetesIsoDetailLocation } from '@/utils/kubernetesIsoSearch'
 import { templateDetailLocation } from '@/utils/templateSearch'
 import IsoListCell from '@/components/view/IsoListCell'
 import { networkDetailLocation } from '@/utils/guestNetworkSearch'
@@ -1262,6 +1284,8 @@ import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
+import KubernetesIsoListCell from '@/components/widgets/KubernetesIsoListCell'
+import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import CloneFlattenControl from '@/components/widgets/CloneFlattenControl'
 import { getFastClonePhase, getFastClonePhaseLabel, getFastClonePhaseColor } from '@/utils/fastClone'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
@@ -1298,6 +1322,8 @@ export default {
   name: 'ListView',
   components: {
     TemplateAvailability,
+    KubernetesIsoListCell,
+    KeyboardTooltip,
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
@@ -1420,6 +1446,7 @@ export default {
       usageTypeMap: {},
       resourceIdToValidLinksMap: {},
       listDayOfWeek: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+      columnPickerVisible: false,
       contextQuickViewVisible: false,
       contextQuickViewRecord: null,
       contextQuickViewPosition: {
@@ -1450,6 +1477,7 @@ export default {
       this.closeContextQuickView()
     },
     '$route.fullPath' () {
+      this.columnPickerVisible = false
       // Clear selection when navigating between routes or revisiting list screens
       this.resetSelection()
       this.closeContextQuickView()
@@ -1459,6 +1487,23 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id && !this.resourcePath },
+    displayColumns () {
+      const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.dataIndex !== 'order')
+      if (!this.isKubernetesIsoMainList) return columns
+      const widths = { name: this.$store.getters.device === 'mobile' ? 280 : 420, state: 112, semanticversion: 144, isostate: 128, mincpunumber: 128, minmemory: 168, arch: 128, zonename: 180, filtercolumn: 36 }
+      return columns.map(column => ({
+        ...column,
+        width: widths[column.key] || 128,
+        ellipsis: column.key === 'filtercolumn' ? false : { showTitle: false },
+        ...(column.key === 'filtercolumn' ? { customFilterDropdown: false } : {}),
+        customHeaderCell: (...args) => ({ ...(column.customHeaderCell?.(...args) || {}), title: typeof column.title === 'string' ? column.title : undefined })
+      }))
+    },
+    kubernetesIsoTableScroll () {
+      return this.isKubernetesIsoMainList ? { x: this.displayColumns.reduce((total, column) => total + column.width, 0) } : null
+    },
+    isTemplateMainList () { return this.$route.meta?.name === 'template' && !this.resourcePath },
     isIsoMainList () { return this.$route.meta?.name === 'iso' && !this.resourcePath },
     isoTableScroll () {
       if (!this.isIsoMainList) return null
@@ -1540,6 +1585,34 @@ export default {
     vmDisplayName,
     isVmIdentityRoute,
     templateDetailLocation,
+    columnPickerContentMounted (vnode) {
+      const input = vnode.el?.querySelector('input')
+      if (this.columnPickerVisible && input) input.focus()
+    },
+    columnPickerVisibility (visible) {
+      this.columnPickerVisible = visible
+      if (visible) {
+        this.$nextTick(() => requestAnimationFrame(() => requestAnimationFrame(() => {
+          const input = this.$refs.columnPickerContent?.querySelector('input')
+          if (this.columnPickerVisible && input) input.focus()
+        })))
+      }
+    },
+    closeColumnPicker () {
+      this.columnPickerVisible = false
+      this.$nextTick(() => {
+        const trigger = this.$refs.columnPickerTrigger?.$el
+        if (trigger) trigger.focus()
+      })
+    },
+    scrollKubernetesIsoTable (event) {
+      if (!this.isKubernetesIsoMainList || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+      const scroller = event.currentTarget.querySelector('.ant-table-content')
+      if (!scroller) return
+      event.preventDefault()
+      scroller.scrollLeft = event.key === 'Home' ? 0 : event.key === 'End' ? scroller.scrollWidth - scroller.clientWidth : scroller.scrollLeft + (event.key === 'ArrowRight' ? 120 : -120)
+    },
+    kubernetesIsoDetailLocation,
     networkTypeLabel,
     policyVolumePath,
     policyInterval,
@@ -2249,7 +2322,23 @@ export default {
 </style>
 
 <style scoped>
-.template-primary-name { display: inline-flex; align-items: center; width: calc(100% - 32px); min-width: 0; vertical-align: middle; }
-.template-primary-name :deep(.template-name-link) { display: block; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.template-primary-name > a:not(.template-name-link) { flex: none; }
+.template-name-cell { display: flex; align-items: center; width: 100%; }
+.template-name-icon { display: inline-flex; flex: 0 0 24px; align-items: center; justify-content: center; width: 24px; }
+.template-name-icon :deep(svg), .template-name-icon :deep(img), .template-name-icon :deep(.ant-avatar) { max-width: 24px; max-height: 24px; }
+.template-primary-name { display: flex; flex: 1 1 0; align-items: center; min-width: 0; }
+.template-primary-name :deep(.template-name-link) { display: block; flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.template-name-comment { display: inline-flex; flex: 0 0 22px; align-items: center; justify-content: flex-end; width: 22px; }
+</style>
+
+<style scoped>
+.kubernetes-iso-list-table { min-width:0; max-width:100%; }
+.kubernetes-iso-list-table:focus-visible { outline:2px solid var(--ui-focus); outline-offset:2px; }
+.kubernetes-iso-columns-trigger { width:24px; min-width:24px; padding:0; color:var(--ui-text-secondary); }
+.kubernetes-iso-list-table :deep(th:last-child) { padding-left:4px; padding-right:4px; }
+.kubernetes-iso-column-picker { display:grid; gap:8px; min-width:180px; max-width:calc(100vw - 48px); }
+.kubernetes-iso-column-picker :deep(.ant-checkbox-wrapper) { margin-left:0; }
+.kubernetes-iso-header-text { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.kubernetes-iso-list-table :deep(th), .kubernetes-iso-list-table :deep(td) { white-space:nowrap; }
+.kubernetes-iso-list-table :deep(.ant-table-column-title) { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.kubernetes-iso-list-table :deep(.ant-table-cell) { overflow:hidden; }
 </style>

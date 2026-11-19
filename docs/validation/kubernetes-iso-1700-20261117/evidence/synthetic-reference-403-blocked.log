@@ -1,0 +1,243 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+  - superscript:
+    - paragraph: "3"
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "쿠버네티스 ISO":
+    - /url: "#/kubernetesiso"
+  - text: /
+  - generic: qa-kiso1700-delete-ready
+  - link "question-circle":
+    - /url: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions
+    - img "question-circle":
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - heading "qa-kiso1700-delete-ready" [level=4]
+  - generic: x86_64
+  - separator
+  - generic: 버전 사용 설정
+  - generic "사용 허용":
+    - generic: 사용 허용
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "8fdbadde-fd29-40a6-b819-18c334f2907c":
+    - /url: javascript:;
+  - generic: ISO 가용성
+  - 'generic "사용 가능 ISO 등록 상태: Ready"':
+    - generic: 사용 가능
+    - generic: "조회한 ISO Zone 준비: 1/1"
+    - button "Zone에서 원인 확인":
+      - generic: Zone에서 원인 확인
+  - generic: 등록 범위
+  - text: 모든 Zone
+  - generic: 연결된 ISO
+  - link "qa-kiso1700-delete-ready-Kubernetes-Binaries-ISO":
+    - /url: "#/iso/d43119ed-2ace-4fdc-8c45-a284de6d6c4e"
+  - generic: 생성일
+  - img "calendar":
+  - text: 2026. 11. 17. 오전 10:40:33
+  - tablist:
+    - tab "상세" [selected]
+    - tab "Zone"
+    - tab "이벤트"
+  - tabpanel "상세":
+    - list:
+      - strong: 이름
+      - text: qa-kiso1700-delete-ready
+      - strong: 아이디
+      - generic: 8fdbadde-fd29-40a6-b819-18c334f2907c
+      - button "복사 아이디":
+        - img "copy":
+      - strong: 시맨틱 버전
+      - text: 1.35.72
+      - strong: 버전 사용 설정
+      - generic "사용 허용":
+        - generic: 사용 허용
+      - strong: 등록 범위
+      - text: 모든 Zone
+      - strong: Zone ID
+      - generic: —
+      - strong: 연결된 ISO
+      - link "qa-kiso1700-delete-ready-Kubernetes-Binaries-ISO":
+        - /url: "#/iso/d43119ed-2ace-4fdc-8c45-a284de6d6c4e"
+      - strong: 연결 ISO ID
+      - generic: d43119ed-2ace-4fdc-8c45-a284de6d6c4e
+      - button "복사 연결 ISO ID":
+        - img "copy":
+      - strong: ISO 가용성
+      - 'generic "사용 가능 ISO 등록 상태: Ready"':
+        - generic: 사용 가능
+        - generic: "조회한 ISO Zone 준비: 1/1"
+        - button "Zone에서 원인 확인":
+          - generic: Zone에서 원인 확인
+      - strong: ISO 등록 상태
+      - text: 등록됨
+      - strong: CPU 아키텍처
+      - text: x86_64
+      - strong: 최소 CPU 코어
+      - text: "2"
+      - strong: 최소 메모리(MB)
+      - text: "2048"
+      - strong: HA 지원
+      - text: 예
+      - strong: 오토스케일링 지원
+      - text: 예
+      - strong: 직접 다운로드
+      - text: 아니오
+      - strong: 생성일
+      - text: 2026. 11. 17. 오전 10:40:33
+      - strong: ISO URL
+      - generic: http://10.10.13.10:8080/client/qa-kiso1700-20261117/ready.iso
+      - button "복사 ISO URL":
+        - img "copy":
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (2건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "쿠버네티스 버전 삭제":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: 쿠버네티스 버전 삭제
+    - alert:
+      - img "close-circle":
+      - generic: 쿠버네티스 ISO를 조회하거나 이 작업을 실행할 권한이 없습니다.
+    - term: 이름
+    - definition: qa-kiso1700-delete-ready
+    - term: 시맨틱 버전
+    - definition: 1.35.72
+    - term: 아이디
+    - definition: 8fdbadde-fd29-40a6-b819-18c334f2907c
+    - term: 상태
+    - definition: 활성화
+    - term: 연결 ISO ID
+    - definition: d43119ed-2ace-4fdc-8c45-a284de6d6c4e
+    - term: 삭제 참조
+    - definition: 삭제 참조를 확인하지 못했습니다. 다시 조회해 주세요.
+    - alert:
+      - img "exclamation-circle":
+      - generic: 이 버전과 연결된 Kubernetes 바이너리 ISO를 함께 삭제합니다. ISO 삭제에 실패하면 버전은 보존됩니다.
+    - button "취소":
+      - generic: 취소
+    - button "업데이트":
+      - generic: 업데이트
+    - button "삭제" [disabled]:
+      - generic: 삭제

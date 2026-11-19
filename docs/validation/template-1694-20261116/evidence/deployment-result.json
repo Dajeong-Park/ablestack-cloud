@@ -1,0 +1,46 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "head": "f79f1ae75244e4fe3c003ce304e8bf8085b07520",
+  "root": "/usr/share/cloudstack-management/webapp",
+  "backup": "/var/tmp/template1694-backup-nl18i_3f",
+  "files": [
+    "js/app.f55c66b5.js",
+    "js/chunk-aeede570.6104745d.js",
+    "css/chunk-aeede570.4c1c8760.css",
+    "css/app.1256dd27.css",
+    "index.html"
+  ],
+  "count": 5,
+  "overwritten": [
+    "index.html"
+  ],
+  "addedFromInitialBaseline": 4,
+  "newAssetsThisStep": 2,
+  "reusedHashedAssets": [
+    "js/chunk-aeede570.6104745d.js",
+    "css/chunk-aeede570.4c1c8760.css"
+  ],
+  "preservedOldFiles": 7145,
+  "indexSha256": "882d9ac877c6aaa545d46305374f77a17c089007c189320d947063dcfbffee7e",
+  "protectedPreserved": true,
+  "backendAndPidPreserved": true,
+  "staticHttpHashesVerified": true,
+  "deploymentType": "UI static delta only"
+}

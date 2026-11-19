@@ -1,0 +1,7 @@
+{
+  "controlledResponseHold": true,
+  "latestUiState": "Disabled",
+  "duplicateReceiptCleared": true,
+  "errorcode": 530,
+  "errortext": "Kubernetes version state changed; reload and review the current state"
+}

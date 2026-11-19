@@ -1,0 +1,14 @@
+{
+  "fixtureRemoved": true,
+  "fixtureHttpStatus": 404,
+  "protected": {
+    "config.json": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+    "WEB-INF/web.xml": "04772d62c28054b1947a84e7b83f2f7c0ab343dc457f0b5e730a631d2ef08c25",
+    "color.less": "b4828a78c5034913ce0f62a6315e0303ae63a154d2ecf8ce9e1ad0c4c170b8f0"
+  },
+  "backendJarSha256": "55f802d2b22c9d4d471644c6157781cc2604e27d4ba0d7b055e4a934bb1d6171",
+  "moldPid": "2860414",
+  "moldService": "active",
+  "staticFiles": 7197,
+  "allStaticFilesMatchManifest": true
+}

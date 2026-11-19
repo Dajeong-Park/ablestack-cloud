@@ -1,0 +1,111 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "files": [
+    "docs/design/kubernetes-iso-1692/api-contract.ko.md",
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/api/index.js",
+    "ui/src/config/section/image.js",
+    "ui/src/store/modules/user.js",
+    "ui/src/utils/kubernetesIsoCapabilities.js",
+    "ui/src/utils/kubernetesIsoModel.js",
+    "ui/src/views/AutogenView.vue",
+    "ui/src/views/image/AddKubernetesSupportedVersion.vue",
+    "ui/src/views/image/UpdateKubernetesSupportedVersion.vue",
+    "ui/tests/unit/api/index.spec.js",
+    "ui/tests/unit/optionalDiscovery.spec.js",
+    "ui/tests/unit/utils/kubernetesIsoModel.spec.js",
+    "ui/tests/unit/views/KubernetesIsoRead.spec.js"
+  ],
+  "results": [
+    {
+      "hook": "oxipng",
+      "exit": 0
+    },
+    {
+      "hook": "insert-license",
+      "exit": 0
+    },
+    {
+      "hook": "check-case-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-illegal-windows-names",
+      "exit": 0
+    },
+    {
+      "hook": "check-merge-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "check-vcs-permalinks",
+      "exit": 0
+    },
+    {
+      "hook": "destroyed-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "detect-aws-credentials",
+      "exit": 0
+    },
+    {
+      "hook": "detect-private-key",
+      "exit": 0
+    },
+    {
+      "hook": "end-of-file-fixer",
+      "exit": 0
+    },
+    {
+      "hook": "fix-byte-order-marker",
+      "exit": 0
+    },
+    {
+      "hook": "forbid-submodules",
+      "exit": 0
+    },
+    {
+      "hook": "mixed-line-ending",
+      "exit": 0
+    },
+    {
+      "hook": "trailing-whitespace",
+      "exit": 0
+    },
+    {
+      "hook": "gitleaks",
+      "exit": 0
+    },
+    {
+      "hook": "codespell",
+      "exit": 0
+    },
+    {
+      "hook": "markdownlint",
+      "exit": 0
+    }
+  ]
+}

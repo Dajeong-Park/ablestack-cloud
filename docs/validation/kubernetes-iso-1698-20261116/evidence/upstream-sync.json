@@ -1,0 +1,17 @@
+{
+  "beforeBase": "b777311a708e0e652f05025fecb2660dfa90f74d",
+  "afterBase": "985aad7fdba2ae600cfbc9920fa8f346ab930875",
+  "upstreamCommitsReceived": 53,
+  "beforeHead": "826e5f0957a",
+  "afterHead": "2d39020c7807fab079145891baf27ccf8dcb9df4",
+  "baseUpstreamDivergence": [
+    "0",
+    "0"
+  ],
+  "preservedAreas": [
+    "publicIpFieldLabel and template getImage",
+    "PublicIpSearch and KubernetesIsoSearch",
+    "public IP and KISO breadcrumb return",
+    "public IP and KISO security/list/read scopes"
+  ]
+}

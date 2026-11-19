@@ -1,0 +1,234 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "results": [
+    {
+      "case": "421-x86-md5",
+      "id": "72d031fa-2ecc-4631-9e52-b4ef708aa319",
+      "isoId": "6d171337-5768-43f4-82e3-435b6ab31008",
+      "name": "qa-kiso1697-421-x86",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "6d171337-5768-43f4-82e3-435b6ab31008",
+        "아이디": "72d031fa-2ecc-4631-9e52-b4ef708aa319",
+        "이름": "qa-kiso1697-421-x86"
+      },
+      "expected": {
+        "arch": "x86_64",
+        "runtime": "4.21",
+        "checksum": "7332ea417340c275060b3954a1abe7a7"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n이름\tqa-kiso1697-421-x86\n아이디\t72d031fa-2ecc-4631-9e52-b4ef708aa319\nISO\t6d171337-5768-43f4-82e3-435b6ab31008\nCPU 아키텍처\tx86_64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "parentDetail": "이름\n\nqa-kiso1697-421-x86\n시맨틱 버전\n\n1.30.9701\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n6d171337-5768-43f4-82e3-435b6ab31008\n연결된 ISO\n\nqa-kiso1697-421-x86-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:11:15",
+      "parentEvents": "업데이트\n열 선택\n레벨\n\t\n유형\n\t\n상태\n\t\n사용자 이름\n\t\n계정\n\t\n도메인\n\t\n생성일\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nINFO\tKUBERNETES.VERSION.ADD\t\n완료\n\tadmin\tadmin\tROOT\t2026. 11. 16. 오후 9:11:15\n전체 1개 항목 중 1-1 표시\n1\n10 / 쪽",
+      "isoDetail": "이름\n\nqa-kiso1697-421-x86-Kubernetes-Binaries-ISO\n아이디\n\n6d171337-5768-43f4-82e3-435b6ab31008\n설명\n\nqa-kiso1697-421-x86-Kubernetes-Binaries-ISO\n체크섬\n\n7332ea417340c275060b3954a1abe7a7\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 9:11:15",
+      "ready": true
+    },
+    {
+      "case": "421-arm-sha256",
+      "id": "103c82e3-5792-4e65-8d44-2b85ee90771c",
+      "isoId": "1cd9567a-72fa-4c03-95e1-648d9adac1d9",
+      "name": "qa-kiso1697-421-arm",
+      "fields": {
+        "CPU 아키텍처": "aarch64",
+        "ISO": "1cd9567a-72fa-4c03-95e1-648d9adac1d9",
+        "아이디": "103c82e3-5792-4e65-8d44-2b85ee90771c",
+        "이름": "qa-kiso1697-421-arm"
+      },
+      "expected": {
+        "arch": "aarch64",
+        "runtime": "4.21",
+        "checksum": "81674774b8646f7b0d52281f9655f5ec507e5b977497b76a7717d8ef27d425b9",
+        "boot": "NOT_RUN"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n이름\tqa-kiso1697-421-arm\n아이디\t103c82e3-5792-4e65-8d44-2b85ee90771c\nISO\t1cd9567a-72fa-4c03-95e1-648d9adac1d9\nCPU 아키텍처\taarch64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "parentDetail": "이름\n\nqa-kiso1697-421-arm\n시맨틱 버전\n\n1.30.9702\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n1cd9567a-72fa-4c03-95e1-648d9adac1d9\n연결된 ISO\n\nqa-kiso1697-421-arm-Kubernetes-Binaries-ISO\nISO 상태\n\nAllocated\nCPU 아키텍처\n\naarch64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:13:42",
+      "parentEvents": "업데이트\n열 선택\n레벨\n\t\n유형\n\t\n상태\n\t\n사용자 이름\n\t\n계정\n\t\n도메인\n\t\n생성일\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nINFO\tKUBERNETES.VERSION.ADD\t\n완료\n\tadmin\tadmin\tROOT\t2026. 11. 16. 오후 9:13:42\n전체 1개 항목 중 1-1 표시\n1\n10 / 쪽",
+      "isoDetail": "이름\n\nqa-kiso1697-421-arm-Kubernetes-Binaries-ISO\n아이디\n\n1cd9567a-72fa-4c03-95e1-648d9adac1d9\n설명\n\nqa-kiso1697-421-arm-Kubernetes-Binaries-ISO\n체크섬\n\n81674774b8646f7b0d52281f9655f5ec507e5b977497b76a7717d8ef27d425b9\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\naarch64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 9:13:42",
+      "ready": true
+    },
+    {
+      "case": "423-x86-md5",
+      "id": "3187bc32-17d0-48ab-a3ca-f7d5e6f08cf1",
+      "isoId": "5f972f6d-0c72-48e3-864f-a4e9e9dc7a7e",
+      "name": "qa-kiso1697-423-x86",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "5f972f6d-0c72-48e3-864f-a4e9e9dc7a7e",
+        "아이디": "3187bc32-17d0-48ab-a3ca-f7d5e6f08cf1",
+        "이름": "qa-kiso1697-423-x86"
+      },
+      "expected": {
+        "arch": "x86_64",
+        "runtime": "4.23",
+        "checksum": "7332ea417340c275060b3954a1abe7a7"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n이름\tqa-kiso1697-423-x86\n아이디\t3187bc32-17d0-48ab-a3ca-f7d5e6f08cf1\nISO\t5f972f6d-0c72-48e3-864f-a4e9e9dc7a7e\nCPU 아키텍처\tx86_64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "parentDetail": "이름\n\nqa-kiso1697-423-x86\n시맨틱 버전\n\n1.30.9703\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n5f972f6d-0c72-48e3-864f-a4e9e9dc7a7e\n연결된 ISO\n\nqa-kiso1697-423-x86-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:16:20",
+      "parentEvents": "업데이트\n열 선택\n레벨\n\t\n유형\n\t\n상태\n\t\n사용자 이름\n\t\n계정\n\t\n도메인\n\t\n생성일\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nINFO\tKUBERNETES.VERSION.ADD\t\n완료\n\tadmin\tadmin\tROOT\t2026. 11. 16. 오후 9:16:20\n전체 1개 항목 중 1-1 표시\n1\n10 / 쪽",
+      "isoDetail": "이름\n\nqa-kiso1697-423-x86-Kubernetes-Binaries-ISO\n아이디\n\n5f972f6d-0c72-48e3-864f-a4e9e9dc7a7e\n설명\n\nqa-kiso1697-423-x86-Kubernetes-Binaries-ISO\n체크섬\n\n7332ea417340c275060b3954a1abe7a7\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 9:16:20",
+      "childEvents": "업데이트\n열 선택\n레벨\n\t\n유형\n\t\n상태\n\t\n사용자 이름\n\t\n계정\n\t\n도메인\n\t\n생성일\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nINFO\tISO 생성\t\n상태 확인 필요\n\tadmin\t\nadmin\n\tROOT\t2026. 11. 16. 오후 9:16:20\n전체 1개 항목 중 1-1 표시\n1\n10 / 쪽",
+      "ready": true
+    },
+    {
+      "case": "423-arm-sha256",
+      "id": "ce21c0df-7a32-488e-a87b-8f4680048dc1",
+      "isoId": "ee41f68c-f27e-43d2-b90a-ebd3c13a83fd",
+      "name": "qa-kiso1697-423-arm",
+      "fields": {
+        "CPU 아키텍처": "aarch64",
+        "ISO": "ee41f68c-f27e-43d2-b90a-ebd3c13a83fd",
+        "아이디": "ce21c0df-7a32-488e-a87b-8f4680048dc1",
+        "이름": "qa-kiso1697-423-arm"
+      },
+      "expected": {
+        "arch": "aarch64",
+        "runtime": "4.23",
+        "checksum": "81674774b8646f7b0d52281f9655f5ec507e5b977497b76a7717d8ef27d425b9",
+        "boot": "NOT_RUN"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n이름\tqa-kiso1697-423-arm\n아이디\tce21c0df-7a32-488e-a87b-8f4680048dc1\nISO\tee41f68c-f27e-43d2-b90a-ebd3c13a83fd\nCPU 아키텍처\taarch64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "parentDetail": "이름\n\nqa-kiso1697-423-arm\n시맨틱 버전\n\n1.30.9704\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\nee41f68c-f27e-43d2-b90a-ebd3c13a83fd\n연결된 ISO\n\nqa-kiso1697-423-arm-Kubernetes-Binaries-ISO\nISO 상태\n\nAllocated\nCPU 아키텍처\n\naarch64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:17:27",
+      "parentEvents": "업데이트\n열 선택\n레벨\n\t\n유형\n\t\n상태\n\t\n사용자 이름\n\t\n계정\n\t\n도메인\n\t\n생성일\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nINFO\tKUBERNETES.VERSION.ADD\t\n완료\n\tadmin\tadmin\tROOT\t2026. 11. 16. 오후 9:17:27\n전체 1개 항목 중 1-1 표시\n1\n10 / 쪽",
+      "isoDetail": "이름\n\nqa-kiso1697-423-arm-Kubernetes-Binaries-ISO\n아이디\n\nee41f68c-f27e-43d2-b90a-ebd3c13a83fd\n설명\n\nqa-kiso1697-423-arm-Kubernetes-Binaries-ISO\n체크섬\n\n81674774b8646f7b0d52281f9655f5ec507e5b977497b76a7717d8ef27d425b9\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\naarch64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 9:17:27",
+      "ready": true
+    },
+    {
+      "case": "423-bad-digest",
+      "id": "39f98104-4996-40fb-9fb2-c41cf5f11004",
+      "isoId": "de01bea1-adc1-4a82-930a-b713ff1601f0",
+      "name": "qa-kiso1697-bad-digest",
+      "fields": {
+        "CPU 아키텍처": "aarch64",
+        "ISO": "de01bea1-adc1-4a82-930a-b713ff1601f0",
+        "아이디": "39f98104-4996-40fb-9fb2-c41cf5f11004",
+        "이름": "qa-kiso1697-bad-digest"
+      },
+      "expected": {
+        "arch": "aarch64",
+        "runtime": "4.23",
+        "negative": "valid-format wrong SHA-256"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n이름\tqa-kiso1697-bad-digest\n아이디\t39f98104-4996-40fb-9fb2-c41cf5f11004\nISO\tde01bea1-adc1-4a82-930a-b713ff1601f0\nCPU 아키텍처\taarch64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "parentDetail": "이름\n\nqa-kiso1697-bad-digest\n시맨틱 버전\n\n1.30.9705\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\nde01bea1-adc1-4a82-930a-b713ff1601f0\n연결된 ISO\n\nqa-kiso1697-bad-digest-Kubernetes-Binaries-ISO\nISO 상태\n\nFailed\nCPU 아키텍처\n\naarch64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:18:09",
+      "isoDetail": "이름\n\nqa-kiso1697-bad-digest-Kubernetes-Binaries-ISO\n아이디\n\nde01bea1-adc1-4a82-930a-b713ff1601f0\n설명\n\nqa-kiso1697-bad-digest-Kubernetes-Binaries-ISO\n체크섬\n\n0000000000000000000000000000000000000000000000000000000000000000\nOS 유형\n\nNone\nCPU 아키텍처\n\naarch64\n부팅 가능\n아니오\n준비\n아니오\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 9:18:09"
+    },
+    {
+      "case": "423-interrupted",
+      "id": "0092c661-c72e-403c-bf81-6bad2adbd1f8",
+      "isoId": "218fcc6c-272d-4b4c-8ef0-019c1e29c828",
+      "name": "qa-kiso1697-interrupt",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "218fcc6c-272d-4b4c-8ef0-019c1e29c828",
+        "아이디": "0092c661-c72e-403c-bf81-6bad2adbd1f8",
+        "이름": "qa-kiso1697-interrupt"
+      },
+      "expected": {
+        "runtime": "4.23",
+        "arch": "x86_64",
+        "negative": "actual UI AbortController interruption with32KiB/s throttle"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n연결 ISO 준비에 실패했습니다. 기존 항목에서 원인을 확인하고 필요한 자원을 정리하세요.\n이름\tqa-kiso1697-interrupt\n아이디\t0092c661-c72e-403c-bf81-6bad2adbd1f8\nISO\t218fcc6c-272d-4b4c-8ef0-019c1e29c828\nCPU 아키텍처\tx86_64\nSecondary Storage: DOWNLOAD_ERROR\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "repeatObservation": {
+        "checks": 3,
+        "postRequests": 0,
+        "truncated": false,
+        "networkThrottleRestored": true
+      }
+    },
+    {
+      "case": "423-preflight-retry-before-expiry",
+      "id": "98acc5e2-f4a6-40e3-8305-683fa2de8dec",
+      "isoId": "82a27903-7d3e-4ea8-9675-0e7c42c0ba28",
+      "name": "qa-kiso1697-expiry",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "82a27903-7d3e-4ea8-9675-0e7c42c0ba28",
+        "아이디": "98acc5e2-f4a6-40e3-8305-683fa2de8dec",
+        "이름": "qa-kiso1697-expiry"
+      },
+      "expected": {
+        "arch": "x86_64",
+        "runtime": "4.23",
+        "note": "retry before the1-minute deadline; not counted as expiry PASS"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n이름\tqa-kiso1697-expiry\n아이디\t98acc5e2-f4a6-40e3-8305-683fa2de8dec\nISO\t82a27903-7d3e-4ea8-9675-0e7c42c0ba28\nCPU 아키텍처\tx86_64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "parentDetail": "이름\n\nqa-kiso1697-expiry\n시맨틱 버전\n\n1.30.9707\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n82a27903-7d3e-4ea8-9675-0e7c42c0ba28\n연결된 ISO\n\nqa-kiso1697-expiry-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:20:42"
+    },
+    {
+      "case": "423-real-expiry",
+      "id": "3cbc99e0-d398-4f1f-9674-58edd05e5ba4",
+      "isoId": "d4a18e6f-418e-40bd-8d1c-767b2e8ac429",
+      "name": "qa-kiso1697-real-expiry",
+      "fields": {
+        "CPU 아키텍처": "x86_64",
+        "ISO": "d4a18e6f-418e-40bd-8d1c-767b2e8ac429",
+        "아이디": "3cbc99e0-d398-4f1f-9674-58edd05e5ba4",
+        "이름": "qa-kiso1697-real-expiry"
+      },
+      "expected": {
+        "runtime": "4.23",
+        "negative": "actual1-minute ticket expired; waited94sec",
+        "proof": {
+          "waitSeconds": 94,
+          "postRequests": 0,
+          "truncated": false,
+          "globalSettingRestoredTo": 60,
+          "temporaryBlockedUrlsCleared": true
+        }
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n서버에서 ISO를 준비하고 있습니다. 상태를 다시 확인하거나 등록한 ISO를 여세요.\n이름\tqa-kiso1697-real-expiry\n아이디\t3cbc99e0-d398-4f1f-9674-58edd05e5ba4\nISO\td4a18e6f-418e-40bd-8d1c-767b2e8ac429\nCPU 아키텍처\tx86_64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "parentDetail": "이름\n\nqa-kiso1697-real-expiry\n시맨틱 버전\n\n1.30.9708\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\nd4a18e6f-418e-40bd-8d1c-767b2e8ac429\n연결된 ISO\n\nqa-kiso1697-real-expiry-Kubernetes-Binaries-ISO\nISO 상태\n\nAllocated\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:23:03",
+      "isoDetail": "이름\n\nqa-kiso1697-real-expiry-Kubernetes-Binaries-ISO\n아이디\n\nd4a18e6f-418e-40bd-8d1c-767b2e8ac429\n설명\n\nqa-kiso1697-real-expiry-Kubernetes-Binaries-ISO\n체크섬\n\n7332ea417340c275060b3954a1abe7a7\nOS 유형\n\nNone\nCPU 아키텍처\n\nx86_64\n부팅 가능\n아니오\n준비\n아니오\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 9:23:03",
+      "parentIdRecoveredFromUiList": true
+    },
+    {
+      "case": "423-final-completion",
+      "id": "b84fba99-8ce6-4a33-96b0-1dcde04c9721",
+      "isoId": "87c3d8cf-59d8-4700-927d-5c4c6f5f8050",
+      "name": "qa-kiso1697-final-completion",
+      "fields": {
+        "CPU 아키텍처": "aarch64",
+        "ISO": "87c3d8cf-59d8-4700-927d-5c4c6f5f8050",
+        "아이디": "b84fba99-8ce6-4a33-96b0-1dcde04c9721",
+        "이름": "qa-kiso1697-final-completion"
+      },
+      "expected": {
+        "runtime": "4.23",
+        "arch": "aarch64",
+        "checksum": "81674774b8646f7b0d52281f9655f5ec507e5b977497b76a7717d8ef27d425b9"
+      },
+      "phaseText": "로컬에서 Kubernetes 버전 추가\n전송과 연결 ISO 준비 상태를 확인했습니다. 버전 상세의 이벤트에서 등록 감사 기록을 확인할 수 있습니다.\n이름\tqa-kiso1697-final-completion\n아이디\tb84fba99-8ce6-4a33-96b0-1dcde04c9721\nISO\t87c3d8cf-59d8-4700-927d-5c4c6f5f8050\nCPU 아키텍처\taarch64\n닫기\n등록 결과 확인\nISO\n쿠버네티스 ISO",
+      "cleanup": "parent and linked ISO deleted through UI; final ISO8 verified",
+      "ready": true,
+      "parentDetail": "이름\n\nqa-kiso1697-final-completion\n시맨틱 버전\n\n1.30.9709\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n87c3d8cf-59d8-4700-927d-5c4c6f5f8050\n연결된 ISO\n\nqa-kiso1697-final-completion-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\naarch64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 9:31:27",
+      "parentEvents": "업데이트\n열 선택\n레벨\n\t\n유형\n\t\n상태\n\t\n사용자 이름\n\t\n계정\n\t\n도메인\n\t\n생성일\n\n\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\t\n \n\nINFO\tKUBERNETES.VERSION.ADD\t\n완료\n\tadmin\tadmin\tROOT\t2026. 11. 16. 오후 9:31:27\n전체 1개 항목 중 1-1 표시\n1\n10 / 쪽",
+      "isoDetail": "이름\n\nqa-kiso1697-final-completion-Kubernetes-Binaries-ISO\n아이디\n\n87c3d8cf-59d8-4700-927d-5c4c6f5f8050\n설명\n\nqa-kiso1697-final-completion-Kubernetes-Binaries-ISO\n체크섬\n\n81674774b8646f7b0d52281f9655f5ec507e5b977497b76a7717d8ef27d425b9\nOS 유형\n\nNone\n크기\n1.36 MiB\nCPU 아키텍처\n\naarch64\n부팅 가능\n아니오\n준비\n예\n비밀번호 관리 사용\n아니오\n직접 다운로드\n아니오\n추출 가능\n아니오\n공개\n예\n추천\n아니오\n동적으로 확장 가능\n아니오\n계정\n\nsystem\n도메인\n\nROOT\n생성일\n\n2026. 11. 16. 오후 9:31:27"
+    }
+  ]
+}

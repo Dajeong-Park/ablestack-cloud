@@ -1,0 +1,76 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.12s
+
+docs/validation/kubernetes-iso-1701-close-20261118/iso-identity-comparison.json
+docs/validation/kubernetes-iso-1701-final-20261118/README.ko.md
+docs/validation/kubernetes-iso-1701-close-20261118/systemvm-originals-running-423.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/delete-failed-target-confirmation.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/delete-ready-target-confirmation.log
+docs/validation/kubernetes-iso-1701-close-20261118/final-detail-dark-narrow.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/final-detail-dark-narrow.log
+docs/validation/kubernetes-iso-1701-close-20261118/after-failed-version-deletion.log
+docs/validation/kubernetes-iso-1701-close-20261118/ci-prior-report-comparison.json
+docs/validation/kubernetes-iso-1701-close-20261118/iso-restored-eight-no-test-items.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/original-cks-clusters-preserved.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/delete-ready-target-confirmation.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/catalog-identity-comparison.json
+docs/validation/kubernetes-iso-1701-20261117/README.ko.md
+docs/validation/kubernetes-iso-1701-close-20261118/resource-ledger-final.json
+docs/validation/kubernetes-iso-1701-close-20261118/README.ko.md
+docs/validation/kubernetes-iso-1701-close-20261118/final-main-dark-narrow.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/catalog-restored-two-originals.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/resource-counts.json
+docs/validation/kubernetes-iso-1701-close-20261118/final-main-light-pass.log
+docs/validation/kubernetes-iso-1701-close-20261118/final-main-light-pass.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/final-main-dark-narrow.log
+docs/validation/kubernetes-iso-1701-close-20261118/corrected-events-dark-pass.log
+docs/validation/kubernetes-iso-1701-close-20261118/fixture-cleanup-final.json
+docs/validation/kubernetes-iso-1701-close-20261118/corrected-events-dark-pass.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/corrected-events-light-pass.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/original-cks-clusters-preserved.log
+docs/validation/kubernetes-iso-1701-close-20261118/transcript-publication-audit.json
+docs/validation/kubernetes-iso-1701-close-20261118/catalog-restored-dark-desktop.log
+docs/validation/kubernetes-iso-1701-close-20261118/systemvm-originals-running-423.log
+docs/validation/kubernetes-iso-1701-close-20261118/after-failed-version-deletion.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/catalog-restored-dark-desktop.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/final-status.json
+docs/validation/kubernetes-iso-1701-close-20261118/catalog-restored-two-originals.log
+docs/validation/kubernetes-iso-1701-close-20261118/delete-failed-target-confirmation.log
+docs/validation/kubernetes-iso-1701-close-20261118/live-index.json
+docs/validation/kubernetes-iso-1701-close-20261118/final-failure-detail-light.log
+docs/validation/kubernetes-iso-1701-close-20261118/final-failure-detail-light.jpg
+docs/validation/kubernetes-iso-1701-close-20261118/corrected-events-light-pass.log
+docs/validation/kubernetes-iso-1701-close-20261118/iso-restored-eight-no-test-items.log
+docs/validation/kubernetes-iso-1701-close-20261118/runtime-final.json
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files........................(no files to check)Skipped
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

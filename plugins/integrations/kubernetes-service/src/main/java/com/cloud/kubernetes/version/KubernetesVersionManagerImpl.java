@@ -186,7 +186,7 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
         return versions;
     }
 
-    private GetUploadParamsResponse registerKubernetesVersionIsoForUpload(final Long zoneId, final String versionName, final String isoChecksum) {
+    private GetUploadParamsResponse registerKubernetesVersionIsoForUpload(final Long zoneId, final String versionName, final String isoChecksum, CPU.CPUArch arch) {
         CallContext.register(CallContext.current(), ApiCommandResourceType.Iso);
         String isoName = String.format("%s-Kubernetes-Binaries-ISO", versionName);
         GetUploadParamsForIsoCmd uploadIso = new GetUploadParamsForIsoCmd();
@@ -197,6 +197,7 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
             uploadIso.setZoneId(zoneId);
         }
         uploadIso.setDisplayText(isoName);
+        uploadIso.setArch(arch.getType());
         uploadIso.setBootable(false);
         if (StringUtils.isNotEmpty(isoChecksum)) {
             uploadIso.setChecksum(isoChecksum);
@@ -331,10 +332,10 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
             }
             minimumSemanticVersion = minVersion.getSemanticVersion();
         }
-        Filter searchFilter = new Filter(KubernetesSupportedVersionVO.class, "id", true, cmd.getStartIndex(), cmd.getPageSizeVal());
+        // Fetch the eligible catalog before numeric filtering, global sorting and paging.
+        Filter searchFilter = new Filter(KubernetesSupportedVersionVO.class, "id", true, null, null);
         SearchBuilder<KubernetesSupportedVersionVO> sb = kubernetesSupportedVersionDao.createSearchBuilder();
         sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
-        sb.and("keyword", sb.entity().getName(), SearchCriteria.Op.LIKE);
         if (StringUtils.isNotBlank(arch)) {
             SearchBuilder<VMTemplateVO> isoSearch = templateDao.createSearchBuilder();
             isoSearch.and("arch", isoSearch.entity().getArch(), SearchCriteria.Op.EQ);
@@ -353,19 +354,41 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
             scc.addOr("zoneId", SearchCriteria.Op.NULL);
             sc.addAnd("zoneId", SearchCriteria.Op.SC, scc);
         }
-        if(keyword != null){
-            sc.addOr("uuid", SearchCriteria.Op.LIKE, "%" + keyword + "%");
-            sc.setParameters("keyword", "%" + keyword + "%");
+        if (keyword != null) {
+            SearchCriteria<KubernetesSupportedVersionVO> names = kubernetesSupportedVersionDao.createSearchCriteria();
+            names.addOr("name", SearchCriteria.Op.LIKE, "%" + keyword + "%");
+            names.addOr("uuid", SearchCriteria.Op.LIKE, "%" + keyword + "%");
+            sc.addAnd("name", SearchCriteria.Op.SC, names);
         }
         if (StringUtils.isNotBlank(arch)) {
             sc.setJoinParameters("isoSearch", "arch", arch);
         }
         Pair<List<KubernetesSupportedVersionVO>, Integer> versionsAndCount =
                 kubernetesSupportedVersionDao.searchAndCount(sc, searchFilter);
-        List<KubernetesSupportedVersionVO> versions =
-                filterKubernetesSupportedVersions(versionsAndCount.first(), minimumSemanticVersion);
+        Pair<List<KubernetesSupportedVersionVO>, Integer> page = KubernetesVersionCatalog.page(versionsAndCount.first(),
+                minimumSemanticVersion, cmd.getStartIndex(), cmd.getPageSizeVal(), cmd.getSortKey(), cmd.getSortOrder());
+        if (cmd.getShowReferences()) {
+            if (versionId == null || !accountManager.isRootAdmin(CallContext.current().getCallingAccountId())) {
+                throw new InvalidParameterValueException("Deletion reference checks require a single ID and a root administrator");
+            }
+            return KubernetesVersionReferences.withLock(versionId, () -> createDeletionReferenceResponse(versionId));
+        }
+        return createKubernetesSupportedVersionListResponse(page.first(), page.second());
+    }
 
-        return createKubernetesSupportedVersionListResponse(versions, versionsAndCount.second());
+    // A fresh lock-protected snapshot is advisory; deletion takes the same lock and
+    // checks again. Never infer global non-reference from a caller-filtered cluster list.
+    protected ListResponse<KubernetesSupportedVersionResponse> createDeletionReferenceResponse(long versionId) {
+        KubernetesSupportedVersionVO current = kubernetesSupportedVersionDao.findById(versionId);
+        List<KubernetesSupportedVersionResponse> records = new ArrayList<>();
+        if (current != null) {
+            KubernetesSupportedVersionResponse record = createKubernetesSupportedVersionResponse(current, true);
+            record.setDeletionReferences(isKubernetesVersionReferenced(current));
+            records.add(record);
+        }
+        ListResponse<KubernetesSupportedVersionResponse> response = new ListResponse<>();
+        response.setResponses(records, records.size());
+        return response;
     }
 
     private void validateKubernetesSupportedVersion(Long zoneId, String semanticVersion, Integer minimumCpu,
@@ -464,6 +487,8 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
     }
 
     @Override
+    @ActionEvent(eventType = KubernetesVersionEventTypes.EVENT_KUBERNETES_VERSION_ADD,
+            eventDescription = "Registering Kubernetes supported version for local upload")
     public GetUploadParamsResponse registerKubernetesSupportedVersionForPostUpload(GetUploadParamsForKubernetesSupportedVersionCmd cmd) {
         if (!KubernetesClusterService.KubernetesServiceEnabled.value()) {
             throw new CloudRuntimeException("Kubernetes Service plugin is disabled");
@@ -477,7 +502,8 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
 
         validateKubernetesSupportedVersion(zoneId, semanticVersion, minimumCpu, minimumRamSize, false);
 
-        GetUploadParamsResponse response = registerKubernetesVersionIsoForUpload(zoneId, name, isoChecksum);
+        CPU.CPUArch arch = cmd.getArch();
+        GetUploadParamsResponse response = registerKubernetesVersionIsoForUpload(zoneId, name, isoChecksum, arch);
 
         VMTemplateVO template = templateDao.findByUuid(response.getId().toString());
         KubernetesSupportedVersionVO supportedVersionVO = new KubernetesSupportedVersionVO(name, semanticVersion, template.getId(), zoneId, minimumCpu, minimumRamSize);
@@ -570,6 +596,9 @@ public class KubernetesVersionManagerImpl extends ManagerBase implements Kuberne
         KubernetesSupportedVersionVO version = kubernetesSupportedVersionDao.findById(versionId);
         if (version == null) {
             throw new InvalidParameterValueException("Invalid Kubernetes version id specified");
+        }
+        if (cmd.getExpectedState() != null && !version.getState().name().equals(cmd.getExpectedState())) {
+            throw new InvalidParameterValueException("Kubernetes version state changed; reload and review the current state");
         }
         try {
             state = KubernetesSupportedVersion.State.valueOf(cmd.getState());

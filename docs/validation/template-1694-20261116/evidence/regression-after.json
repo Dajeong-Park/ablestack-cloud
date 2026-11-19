@@ -1,0 +1,154 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "vnf": {
+    "templateClasses": 0,
+    "total": "전체 0 개 항목 중 0-0 표시"
+  },
+  "iso": {
+    "rows": [
+      {
+        "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+        "name": "vmware-tools.iso"
+      },
+      {
+        "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+        "name": "xs-tools.iso"
+      },
+      {
+        "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+        "name": "1.35.9-Kubernetes-Binaries-ISO"
+      },
+      {
+        "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+        "name": "1.36.5-Kubernetes-Binaries-ISO"
+      },
+      {
+        "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+        "name": "Rocky-10.0-x86_64-dvd1.iso"
+      },
+      {
+        "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+        "name": "Windows Server 2025 x86_64 DVD"
+      },
+      {
+        "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+        "name": "VirtIO Windows Driver 0.1.302"
+      },
+      {
+        "id": "367c88cb-4947-452f-9429-54a19885adf4",
+        "name": "ABLESTACK-Diplo-v4.2.1.iso"
+      }
+    ],
+    "templateClasses": 0,
+    "total": "전체 8 개 항목 중 1-8 표시"
+  },
+  "vm": {
+    "rows": [
+      {
+        "id": "9f3bf7a1-c5b2-45ba-ba06-1e466d09b364",
+        "name": "VM-9f3bf7a1-c5b2-45ba-ba06-1e466d09b364"
+      },
+      {
+        "id": "0b2f79de-3690-4495-9817-d0708ea9e0ce",
+        "name": "koral1-control-1a0fa38f3d4"
+      },
+      {
+        "id": "7e405db7-0b13-4f64-97c2-485a154bafed",
+        "name": "koral1-node-1a0fa391956"
+      },
+      {
+        "id": "0bcf54c2-77d4-4262-9fc5-529ef4220b89",
+        "name": "koral3-control-1a0fb462779"
+      },
+      {
+        "id": "ff833368-71d9-4407-a57c-2eb54fa9897a",
+        "name": "koral3-control-1a0fb464d99"
+      },
+      {
+        "id": "76be772d-570c-4011-b624-45e081dec551",
+        "name": "koral3-node-1a0fb46766a"
+      },
+      {
+        "id": "f7678d77-9e69-4e0b-8adf-40acf8cf2070",
+        "name": "koral3-node-1a0fb469c58"
+      },
+      {
+        "id": "3cf3fed4-8a42-4eab-a570-948428c3d62b",
+        "name": "VM-3cf3fed4-8a42-4eab-a570-948428c3d62b"
+      },
+      {
+        "id": "1aa29f80-626d-45c4-8ba7-80e98b28986a",
+        "name": "VM-1aa29f80-626d-45c4-8ba7-80e98b28986a"
+      },
+      {
+        "id": "8a2ef0b9-9663-47b5-b3ab-ea4c58d7f706",
+        "name": "sharedfs-epic1438-basic-nfs-20261021-01-1a15cfe505a"
+      },
+      {
+        "id": "59ec6dc7-fdc2-4f78-bd3a-a21db4ebee4f",
+        "name": "sharedfs-epic1438-1439-nfs-20261021-01-1a15d2a1a6a"
+      },
+      {
+        "id": "8b4fa66a-434a-4248-98f1-a98cf081f752",
+        "name": "sharedfs-epic1438-1440-nfs-20261021-01-1a15da8bc0d"
+      },
+      {
+        "id": "fd6ecae3-ef41-40c0-bfa9-acf88b67b6e5",
+        "name": "epic1438-1440-client-20261021-01"
+      },
+      {
+        "id": "b6a39a5d-c451-4b60-9a68-3e4d102a4ea4",
+        "name": "sharedfs-epic1438-1441-fixed-sfs-20261021-01-1a15e4f639c"
+      },
+      {
+        "id": "92d99386-9157-4abe-b427-98829770a15d",
+        "name": "sharedfs-epic1438-1441-free-sfs-20261021-01-1a15e541b95"
+      },
+      {
+        "id": "d5b1c41d-f023-4efe-9195-6c2d55b760b8",
+        "name": "sharedfs-epic1438-1441-range-sfs-20261021-01-1a15e563e0f"
+      },
+      {
+        "id": "b7cafa18-d952-4579-98f8-9d913d67a7fc",
+        "name": "epic1438-1442-client-20261021-01"
+      },
+      {
+        "id": "0685be9d-b958-3d2a-a9ef-9e53a7c9ba07",
+        "name": "sharedfs-0685be9d-b958-3d2a-a9ef-9e53a7c9ba07"
+      },
+      {
+        "id": "fe723777-4be1-461b-8c8d-7f399d34bc29",
+        "name": "epic1438-1442-posix-client-20261022-01"
+      },
+      {
+        "id": "634178d0-3d06-31ec-84d3-9ec113093025",
+        "name": "sharedfs-634178d0-3d06-31ec-84d3-9ec113093025"
+      }
+    ],
+    "templateClasses": 0,
+    "total": "전체 103 개 항목 중 1-20 표시"
+  },
+  "detail": {
+    "heading": "VM-9f3bf7a1-c5b2-45ba-ba06-1e466d09b364",
+    "templateClasses": 0
+  },
+  "isoRowsPreserved": true,
+  "vmRowsPreserved": true
+}

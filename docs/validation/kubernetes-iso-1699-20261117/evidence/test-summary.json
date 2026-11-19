@@ -1,0 +1,14 @@
+{
+  "combined-canonical.json": {
+    "numPassedTests": 275,
+    "numFailedTests": 0,
+    "numPassedTestSuites": 16,
+    "numFailedTestSuites": 0
+  },
+  "combined-operating.json": {
+    "numPassedTests": 229,
+    "numFailedTests": 0,
+    "numPassedTestSuites": 13,
+    "numFailedTestSuites": 0
+  }
+}

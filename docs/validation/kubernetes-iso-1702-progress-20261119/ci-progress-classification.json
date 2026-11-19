@@ -1,0 +1,51 @@
+{
+  "lintRun": "44435512553",
+  "licenseRun": "44435512509",
+  "sameFailureGroups": true,
+  "failedGroups": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "licenseCounts": [
+    [
+      "4077",
+      "4077"
+    ]
+  ],
+  "fullCiGreen": false,
+  "changedPaths": [
+    "docs/validation/kubernetes-iso-1702-progress-20261119/resource-ledger-progress.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/1702-systemvm421-running-native-version-proof.jpg",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/uploads-progress.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/ssvm421-before-local-runtime.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/ssvm423-runtime.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/1702-local421-parent-add-audit-completed.jpg",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/gates-progress.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/1702-local421-child-checksum-size-arch.jpg",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/deployment-result.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/read-admin-postdeploy-access-result.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/private-zone-empty-inventory.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/ci-product-classification.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/1702-user-catalog-only-policy-deny-last.jpg",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/1702-official-local421-ready.jpg",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/postdeploy-readonly-boundary.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/1702-resource-admin-account-created.jpg",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/native-evidence-manifest.json",
+    "docs/validation/kubernetes-iso-1702-progress-20261119/README.ko.md"
+  ],
+  "changedPathDiagnostics": []
+}

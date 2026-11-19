@@ -22,6 +22,7 @@ import { isoBoolean, isoRegistrationCapability, canIsoAction } from '@/utils/iso
 import { canManageImagePermissions } from '@/utils/imagePermissions'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
 import { isZoneCreated } from '@/utils/zone'
+import { canKubernetesIsoAction } from '@/utils/kubernetesIsoCapabilities'
 import kubernetesIcon from '@/assets/icons/kubernetes.svg?inline'
 
 export default {
@@ -346,13 +347,17 @@ export default {
       icon: kubernetesIcon,
       docHelp: 'plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions',
       permission: ['listKubernetesSupportedVersions'],
-      searchFilters: ['zoneid', 'minimumsemanticversion', 'arch'],
+      searchFilters: ['zoneid', 'minimumsemanticversion', 'minimumkubernetesversionid', 'arch'],
       columns: ['name', 'state', 'semanticversion', 'isostate', 'mincpunumber', 'minmemory', 'arch', 'zonename'],
-      details: ['name', 'semanticversion', 'supportsautoscaling', 'zoneid', 'zonename', 'isoid', 'isoname', 'isostate', 'arch', 'mincpunumber', 'minmemory', 'supportsha', 'state', 'created', 'isourl'],
+      details: () => ['name', 'id', 'semanticversion', 'state', 'zoneid', 'zonename', 'isoname', 'isoid', 'isostate', 'arch', 'mincpunumber', 'minmemory', 'supportsha', 'supportsautoscaling', 'directdownload', 'created', ...(store.getters.userInfo?.roletype === 'Admin' ? ['isourl'] : [])],
       tabs: [
         {
           name: 'details',
-          component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/KubernetesIsoDetails.vue')))
+        },
+        {
+          name: 'zones',
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/KubernetesIsoZones.vue')))
         },
         {
           name: 'events',
@@ -364,27 +369,28 @@ export default {
       actions: [
         {
           api: 'addKubernetesSupportedVersion',
-          dialogWidth: 1000,
+          selfManagedDialog: true,
           icon: 'plus-outlined',
           label: 'label.kubernetes.version.add',
           listView: true,
           popup: true,
-          show: isZoneCreated,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/image/AddKubernetesSupportedVersion.vue')))
+          show: (record, getters) => canKubernetesIsoAction('url', record, getters),
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/RegisterKubernetesIso.vue')))
         },
         {
           api: 'getUploadParamsForKubernetesSupportedVersion',
-          dialogWidth: 1000,
+          selfManagedDialog: true,
           icon: 'cloud-upload-outlined',
           label: 'label.kubernetes.version.from.local',
           listView: true,
           popup: true,
-          show: isZoneCreated,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/image/AddKubernetesSupportedVersion.vue')))
+          show: (record, getters) => isZoneCreated() && canKubernetesIsoAction('local', record, getters),
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/UploadKubernetesIso.vue')))
         },
         {
           api: 'updateKubernetesSupportedVersion',
-          dialogWidth: 1000,
+          show: (record, getters) => canKubernetesIsoAction('update', record, getters),
+          selfManagedDialog: true,
           icon: 'edit-outlined',
           label: 'label.kubernetes.version.update',
           dataView: true,
@@ -393,9 +399,12 @@ export default {
         },
         {
           api: 'deleteKubernetesSupportedVersion',
+          show: (record, getters) => canKubernetesIsoAction('delete', record, getters),
           icon: 'delete-outlined',
           label: 'label.kubernetes.version.delete',
-          message: 'message.kubernetes.version.delete',
+          selfManagedDialog: true,
+          popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/image/UpdateKubernetesSupportedVersion.vue'))),
           dataView: true
         }
       ]

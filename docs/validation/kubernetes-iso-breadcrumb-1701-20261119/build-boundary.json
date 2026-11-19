@@ -1,0 +1,9 @@
+{
+  "base": "055ea57b238746c65b66cc5600215b10f0087b23",
+  "qualifiedPreviousProduct": "e6a579404d476d52101157f10cfccdc6b811195b",
+  "input": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "inputFiles": 1120,
+  "onlyChange": "src/style/components/view/kubernetes-iso.less",
+  "sourceSha256": "13f8f890caccaac5603eacc8d56752c607f778e1d55ed162955ef60c5fa0a67e",
+  "otherOperatingAndVnfDifferencesPreserved": true
+}

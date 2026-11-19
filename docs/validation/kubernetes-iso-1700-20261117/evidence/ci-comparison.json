@@ -1,0 +1,49 @@
+{
+  "head": "83fff5f7dc4cf8d03151651fb7f3e7957887eb6b",
+  "run": 43998546585,
+  "failedHookCount": 16,
+  "failedHooks": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "separateDebt": [
+    926,
+    1044
+  ],
+  "latestProductHead": "df0382b42e4a7e8607795474d5c4d8980914aa7b",
+  "correctedRatUnknown": 4077,
+  "finalProductLintRun": 44004399151,
+  "finalProductFailedHookCount": 16,
+  "finalProductFailedHooks": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ]
+}

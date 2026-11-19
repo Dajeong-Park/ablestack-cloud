@@ -1,0 +1,41 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+# #1700 상태 변경·참조 보호·연쇄 삭제 구현
+
+상위 Epic #1692 · PR #1703 · 선행 #1695/#1699 · 후속 #1701/#1702.
+
+## 동작과 경계
+- VM 표준 MoldDialog(md, 720px) 안에 대상명·시맨틱 버전·ID·현재 상태와 변경할 상태를 표시한다.
+- 상태 변경 직전 서버 값을 재조회한다. 상태/연결 ISO가 바뀌면 재선택하며, expectedstate 조건을 기존 버전 잠금 안에서 비교해 마지막 순간의 동시 변경도 거부한다. 기존 API 호출자는 이 선택 인자를 생략할 수 있다.
+- 삭제는 버전과 연결 ISO의 영향을 함께 안내한다. listKubernetesSupportedVersions의 showreferences=true는 단일 ID와 Root 관리자에게만 허용하며, 잠금 안에서 최신 버전과 기존 참조 검사 결과를 읽는다. 참조 없음/참조 중/조회 실패를 구분하고, 구형 서버·불완전 응답·권한 부족에서는 삭제하지 않는다.
+- 실제 삭제의 current cluster, unfinished upgrade source/target pin, legacy partial-node 검사와 ISO 우선 삭제/실패 시 버전 보존은 변경하지 않는다. 참조 중인 버전의 Disabled 전환은 허용한다.
+- 삭제 jobid를 추적하고 완료 후 부모 버전을 다시 조회한다. 자식 ISO 삭제 실패로 작업이 실패하면 보존된 버전·최신 참조를 확인한 뒤 재시도할 수 있다.
+- 유실된 응답·불완전 jobid·결과 조회 실패는 중복 전송을 차단한다. 세션 범위의 단방향 해시 키와 ID/작업/상태/jobid만 탭의 sessionStorage에 보관해 창 재열기와 새로고침에도 결과를 재확인한다. 비밀번호·토큰·API 키·원문 권한 문맥은 저장하지 않는다.
+- 성공 후 목록 복귀와 데이터 재조회, 취소/Esc/원래 작업 버튼 초점 복귀를 공통 화면에 연결한다.
+
+## 배포
+기존 운영 UI 빌드 입력을 유지하면서 해당 변경만 적용한다. 서버는 관리 JAR의 변경 메서드/필드가 있는 기존 클래스 4개만 병합한다. 나머지 JAR 엔트리, VM/네트워크 화면의 기존 운영 차이, 설정, DB 스키마, 호스트 에이전트는 유지한다. 해시·PID·백업·HTTP 파일 해시로 배포 경계를 검증한다.
+
+## 검증 계획
+단위/회귀: 동시 상태 변경, 권한 상실과 늦은 응답, 이중 제출, 응답 유실 후 결과 확인, 불완전/다른 job, 참조 조회 실패, ISO 실패 후 보존/재시도, legacy/source/target 보호.
+
+13번 UI: 전용 버전·클러스터·VM만 사용해 Enabled↔Disabled, 참조 중 삭제 차단, 미완료 업그레이드 보호, 연결 ISO 사용 중 삭제 실패와 해제 후 재시도, 목록 복귀·이벤트, 라이트/다크/좁은 화면·키보드를 검증하고 자원을 정리한다.
+
+CI 부채 #926/#1044는 별도 OPEN으로 관리하며 전체 CI 통과로 표현하지 않는다. 실제 결과는 최종 검증 보고서에 별도로 기록한다.

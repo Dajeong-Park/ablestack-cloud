@@ -1,0 +1,93 @@
+{
+  "files": [
+    "docs/design/kubernetes-iso-1692/implementation-1700.ko.md",
+    "plugins/integrations/kubernetes-service/src/main/java/com/cloud/kubernetes/version/KubernetesVersionManagerImpl.java",
+    "plugins/integrations/kubernetes-service/src/main/java/org/apache/cloudstack/api/command/admin/kubernetes/version/UpdateKubernetesSupportedVersionCmd.java",
+    "plugins/integrations/kubernetes-service/src/main/java/org/apache/cloudstack/api/command/user/kubernetes/version/ListKubernetesSupportedVersionsCmd.java",
+    "plugins/integrations/kubernetes-service/src/main/java/org/apache/cloudstack/api/response/KubernetesSupportedVersionResponse.java",
+    "plugins/integrations/kubernetes-service/src/test/java/com/cloud/kubernetes/version/KubernetesVersionDeletionReferenceTest.java",
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/config/section/image.js",
+    "ui/src/utils/kubernetesIsoModel.js",
+    "ui/src/utils/kubernetesIsoMutation.js",
+    "ui/src/views/AutogenView.vue",
+    "ui/src/views/image/UpdateKubernetesSupportedVersion.vue",
+    "ui/tests/unit/utils/kubernetesIsoMutation.spec.js",
+    "ui/tests/unit/views/image/KubernetesIsoMutation.spec.js"
+  ],
+  "results": [
+    {
+      "hook": "oxipng",
+      "exit": 0
+    },
+    {
+      "hook": "insert-license",
+      "exit": 0
+    },
+    {
+      "hook": "check-case-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-illegal-windows-names",
+      "exit": 0
+    },
+    {
+      "hook": "check-merge-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "check-vcs-permalinks",
+      "exit": 0
+    },
+    {
+      "hook": "destroyed-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "detect-aws-credentials",
+      "exit": 0
+    },
+    {
+      "hook": "detect-private-key",
+      "exit": 0
+    },
+    {
+      "hook": "end-of-file-fixer",
+      "exit": 0
+    },
+    {
+      "hook": "fix-byte-order-marker",
+      "exit": 0
+    },
+    {
+      "hook": "forbid-submodules",
+      "exit": 0
+    },
+    {
+      "hook": "mixed-line-ending",
+      "exit": 0
+    },
+    {
+      "hook": "trailing-whitespace",
+      "exit": 0
+    },
+    {
+      "hook": "gitleaks",
+      "exit": 0
+    },
+    {
+      "hook": "codespell",
+      "exit": 0
+    },
+    {
+      "hook": "markdownlint",
+      "exit": 0
+    }
+  ]
+}

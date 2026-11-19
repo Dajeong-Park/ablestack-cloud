@@ -1,0 +1,176 @@
+[
+  {
+    "file": "1707-official-cluster-running.jpg",
+    "sha256": "bf09c41f72b3bdbb55f09e4406b692dc2de837faf69dde615f3df3854646c934",
+    "bytes": 152080,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-source-pin-delete-blocked-real-upgrade.jpg",
+    "sha256": "611002a4b5c07759711c04bdbd9efde038f712abc635990c90257522fa4f1b1b",
+    "bytes": 140550,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-target-pin-delete-blocked-real-upgrade.jpg",
+    "sha256": "bb28f13aa91991f351ef177ef0236fde63e52c4a7f3f2875d58a8123518bd71c",
+    "bytes": 139387,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-two-real-nodes-v13412-running.jpg",
+    "sha256": "b1168dc6956710bb9b3a36d8dae1da36fa368a232ce9b8e324205bd1cb97a1cf",
+    "bytes": 152416,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-source-pin-cleared-after-real-upgrade.jpg",
+    "sha256": "4db2dadfb454d642c70d06b193062c9fce4480877ccf69284247e409d1d96372",
+    "bytes": 138809,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-target-pin-cleared-after-cks-cleanup.jpg",
+    "sha256": "42898fce515b9a996875a5b92ed00ffff4f5ce137cd8debd8c146cb39071257d",
+    "bytes": 137883,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-final-systemvm423-and-original-console-running.jpg",
+    "sha256": "345074cb3f0216ac09d253125513d1c1f96608b49406976cb118adba067cdca1",
+    "bytes": 123603,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-url423-ready-parent-add-event-completed.jpg",
+    "sha256": "45c79d21758d2e576889837f5467573bf4518fb76fdf186939a28e710d9b1221",
+    "bytes": 134915,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-url423-child-ready-size-sha-arch.jpg",
+    "sha256": "1c11d9e3a7d5edf290dde7def63571f7ed84475c66e232710e999562b8f627a4",
+    "bytes": 148305,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-local423-ready-one-of-one.jpg",
+    "sha256": "5b603731967b1ab9fdd496219c11ada48b45e505e2fd6efc8abc15799250bd3f",
+    "bytes": 135290,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-local423-child-ready-size-sha-arch.jpg",
+    "sha256": "ec6b1f93e0f674841b89c156e31a9938a293f9f11c90c315da92040eaed63e70",
+    "bytes": 148492,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-resource-admin-zone-ready-no-write.jpg",
+    "sha256": "f43050777539c6dbc62bad50fc53ccd5dcfb7adb184c29fa59abfc1616a1bdb0",
+    "bytes": 122926,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-catalog-only-user-zone-denied-not-missing.jpg",
+    "sha256": "d1111a7859c968697835182f1fe25a534e6a7f05ba56ecf209eae23b8b4d669c",
+    "bytes": 91262,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-user-iso-only-zone-ready-without-zone-grant.jpg",
+    "sha256": "a1b051d5f8dfcf1509a7465fd582d54ec937c49417e0befbb7e43ffde864b95f",
+    "bytes": 95163,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-user-live-iso-revoke-clears-ready-keeps-catalog.jpg",
+    "sha256": "ae0bb4e843794d7e51b67d6e2141607db2b9d0cdebb428a4a10c97a60876ddf2",
+    "bytes": 58242,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-state-only-disabled-saved-ready-preserved.jpg",
+    "sha256": "ccdb4b2988efa765e631894dfcc7eecd5e55b8d280f7ab4bddddc5bb7e7c1f69",
+    "bytes": 59744,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-delete-only-action-no-state-management.jpg",
+    "sha256": "6aa75e31ce4eb6ce5e2613218c91cc38662300cd1538c6bfe14f870600924e4e",
+    "bytes": 59863,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-delete-only-completed-catalog-count-seven.jpg",
+    "sha256": "0809f49e51fdf8678b7a3a3fab014725b5a0c5b18ebb6d9e8b0b8ee671b3dee1",
+    "bytes": 64844,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-project-context-discards-old-search-global-count-seven.jpg",
+    "sha256": "6873151c6a43984c1524f90d6fe00eb8547089d764b4802a246452ae76266ce6",
+    "bytes": 156318,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-final-dark-kiso-original-two.jpg",
+    "sha256": "4fc0e63d3838b693bc25a5da43deb11ab1d84d2b401069e8cb8902bca36549cd",
+    "bytes": 125357,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-all-test-isos-cleaned-original-eight.jpg",
+    "sha256": "fbe3b89a2a260fbd2dfc36b1b09415fd02c9b0f0795b9c7c163fee1e34d9083d",
+    "bytes": 160993,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-all-test-accounts-cleaned-original-three.jpg",
+    "sha256": "0dbce37d03cd3fa053eb7744dd375338ae8746fc383fe6f48bf954a0f8ebea98",
+    "bytes": 111793,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-test-roles-cleaned-original-nine.jpg",
+    "sha256": "c1e65f9472454f60690a2fbed4620be7e88805050171ff960aaafc5a43dfc9f8",
+    "bytes": 137465,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-original-koral1-koral3-two-stopped-preserved.jpg",
+    "sha256": "a8bdec39082f01c528d4c9d667a725c86962d9e942df22286f71d767c4603b8e",
+    "bytes": 125376,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-test-project-cleaned-count-zero.jpg",
+    "sha256": "1a32135981c5abfe4b09c057f3eeafa78b415d707d09090b324f19657c1a35f0",
+    "bytes": 101784,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-test-domain-cleaned-root-only.jpg",
+    "sha256": "ee8c5aa31e2fb57ccd5d270e7e44bf3785f180db52ac94b3c3c9393cb732eaf5",
+    "bytes": 117988,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-ubuntu-os-template-name-single-line-visible.jpg",
+    "sha256": "f5728aa48bbad076d616ea322ab39f65ebe21fba21ba60b26789109971fdc9c1",
+    "bytes": 207220,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-domain-delete-completed-with-stale-requery-toast.jpg",
+    "sha256": "5d71a5784d81873b271c788b94f00364b9dcdcec958a16905ad05539a69edf32",
+    "bytes": 178800,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-final-network-search-zero.jpg",
+    "sha256": "6b63bd5533e419686536cfa003f961c9674840e5b2f6ad8064b288b8fae9571c",
+    "bytes": 122392,
+    "pixelsEdited": false
+  }
+]

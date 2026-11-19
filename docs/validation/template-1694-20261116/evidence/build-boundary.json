@@ -1,0 +1,40 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "operatingInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "originalInputBackup": "/tmp/template-1694-20261116/original-operating-context",
+  "sourceBase": "b777311a708e0e652f05025fecb2660dfa90f74d",
+  "sourceHead": "f79f1ae75244e4fe3c003ce304e8bf8085b07520",
+  "productInputDelta": [
+    "src/components/view/InfoCard.vue",
+    "src/components/view/ListView.vue",
+    "src/utils/templateSearch.js"
+  ],
+  "operatingInputFiles": 1096,
+  "patchedSourceSha256": "f7bf1da873b93d0377e1faf70c57f1e936430c3833457274ba943359e65a34b6",
+  "changedSourceHashes": {
+    "src/components/view/ListView.vue": "f7bf1da873b93d0377e1faf70c57f1e936430c3833457274ba943359e65a34b6",
+    "src/utils/templateSearch.js": "4a1836944bf682810c5dba392de1bdf4dff7ec979bf6e5addd75671ee9b0b5e1",
+    "src/components/view/InfoCard.vue": "7c4b188975f4652317781dc02dd3d7656ff6fa0f21fcee717e3d843807dfbc9f"
+  },
+  "lockfileSha256": "23379939285231d360907e8d7242206efd5359654b9903614788040680133ffc",
+  "contextPolicy": "same absolute operating build path preserves webpack module/chunk identifiers",
+  "configPolicy": "generated docHelpMappings only; live config never deployed"
+}

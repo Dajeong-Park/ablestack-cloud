@@ -1,0 +1,7 @@
+{
+  "agentJar": "cloud-agent-4.21.0.0-Mold.Diplo-202609221440.jar",
+  "secondaryJar": "cloud-secondary-storage-4.21.0.0-Mold.Diplo-202609221440.jar",
+  "secondarySha256": "d5f6dbcf45df292dcfb1d12d84e30ee14f41cb4a9e70f0a1ff82aa62b9c78667",
+  "cloudService": "active",
+  "jarCount": 29
+}

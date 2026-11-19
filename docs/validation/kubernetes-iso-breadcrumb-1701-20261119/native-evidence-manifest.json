@@ -1,0 +1,92 @@
+[
+  {
+    "file": "1701-breadcrumb-before-detail-value-lowered.jpg",
+    "sha256": "ff7b0787565b00d8f08c95ed933efb133c15e036e03c1473503dd370f769a39d",
+    "bytes": 145362,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-before-long-dark-811.jpg",
+    "sha256": "345e3e1f212e26b355edf3a8741a20d399051c8e6f6ae4df31efbff737892aaf",
+    "bytes": 92079,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-cleanup-original-isos-eight.jpg",
+    "sha256": "c3c7603bdcecfca7a9f6750e2da143397faabd77a2192323c65455c7c22f4c45",
+    "bytes": 174814,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-cleanup-original-two.jpg",
+    "sha256": "f04abc8b779bb338cd4abc280173f6be372c7828736aa81420b02d9af7590983",
+    "bytes": 125279,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-dark-811-tooltip.jpg",
+    "sha256": "59036c780f0bd527c3a4a1bac061ebaae98ff8e2df063f01de28775885c3c4cb",
+    "bytes": 100059,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-dark-811.jpg",
+    "sha256": "76bd7d0dfa8138057280312834695c06de6ae57ff4c38ea583e19799af93a7c4",
+    "bytes": 93326,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-dark-desktop.jpg",
+    "sha256": "5707abccb3aa97e3ae47edba6f07ed9888548a20a9ba51066453f03512d4982a",
+    "bytes": 175056,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-full-tooltip.jpg",
+    "sha256": "ef38e3ae59039474ab7b463c758244bd073d1f74eb464cd0e1f21f67562633af",
+    "bytes": 189045,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-keyboard-focus-tooltip.jpg",
+    "sha256": "aa0ba4b68c0f88cedaf5eb0e1cfc5c52b61e575fb357f44e3c21bf8121d7f952",
+    "bytes": 190595,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-light-811.jpg",
+    "sha256": "d4d39c24debf40170bb8645419739ab0f15f1e88637d791ec4c9ac4474a03a16",
+    "bytes": 99964,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-light-desktop.jpg",
+    "sha256": "7143672b31d8e16f1a037a24b15446721e9963a78356fb6c62147d531a6fe881",
+    "bytes": 179859,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-final-short-dark-desktop.jpg",
+    "sha256": "7a8d76fdd6b6c6ca9d14fae2a1958859d4f158ca86a04958a4513815e9119171",
+    "bytes": 145215,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-long-name-fixture-accepted.jpg",
+    "sha256": "969d2d1b2655e4fe0b20e2ae6c027b5f0b1e5b8cbc85eab42142dae00a3a4001",
+    "bytes": 91654,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-vm-detail-standard.jpg",
+    "sha256": "c1ddef3820e67f3b086365051ee0be23d8531e9f4e28a1391b63be2f90fbe3f2",
+    "bytes": 149631,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1701-breadcrumb-vm-list-standard.jpg",
+    "sha256": "47168a1c22e9f80c215623ad3bf18283429e834ec571c17959cbc5dd376a5850",
+    "bytes": 183365,
+    "pixelsEdited": false
+  }
+]

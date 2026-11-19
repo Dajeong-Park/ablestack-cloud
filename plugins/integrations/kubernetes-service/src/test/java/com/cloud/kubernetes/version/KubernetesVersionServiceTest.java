@@ -161,6 +161,7 @@ public class KubernetesVersionServiceTest {
             final SearchCriteria<KubernetesSupportedVersionVO> versionSearchCriteria = Mockito.mock(SearchCriteria.class);
             when(callContextMock.getCallingAccount()).thenReturn(accountMock);
             ListKubernetesSupportedVersionsCmd cmd = Mockito.mock(ListKubernetesSupportedVersionsCmd.class);
+            when(cmd.getPageSizeVal()).thenReturn(20L);
             List<KubernetesSupportedVersionVO> versionVOs = new ArrayList<>();
             KubernetesSupportedVersionVO versionVO = Mockito.mock(KubernetesSupportedVersionVO.class);
             when(versionVO.getSemanticVersion()).thenReturn(KubernetesVersionService.MIN_KUBERNETES_VERSION);
@@ -182,6 +183,7 @@ public class KubernetesVersionServiceTest {
         try (MockedStatic<CallContext> callContextMockedStatic = Mockito.mockStatic(CallContext.class)) {
             callContextMockedStatic.when(CallContext::current).thenReturn(callContextMock);
             ListKubernetesSupportedVersionsCmd cmd = Mockito.mock(ListKubernetesSupportedVersionsCmd.class);
+            when(cmd.getPageSizeVal()).thenReturn(20L);
             List<KubernetesSupportedVersionVO> versionVOs = new ArrayList<>();
             KubernetesSupportedVersionVO versionVO = Mockito.mock(KubernetesSupportedVersionVO.class);
             when(versionVO.getSemanticVersion()).thenReturn(KubernetesVersionService.MIN_KUBERNETES_VERSION);
@@ -202,6 +204,7 @@ public class KubernetesVersionServiceTest {
         try (MockedStatic<CallContext> callContextMockedStatic = Mockito.mockStatic(CallContext.class)) {
             callContextMockedStatic.when(CallContext::current).thenReturn(callContextMock);
             ListKubernetesSupportedVersionsCmd cmd = Mockito.mock(ListKubernetesSupportedVersionsCmd.class);
+            when(cmd.getPageSizeVal()).thenReturn(20L);
             List<KubernetesSupportedVersionVO> versionVOs = new ArrayList<>();
             KubernetesSupportedVersionVO versionVO = Mockito.mock(KubernetesSupportedVersionVO.class);
             when(versionVO.getSemanticVersion()).thenReturn(KubernetesVersionService.MIN_KUBERNETES_VERSION);

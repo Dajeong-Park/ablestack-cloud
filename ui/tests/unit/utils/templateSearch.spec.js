@@ -55,3 +55,8 @@ test('response contract guards catch ignored booleans and linked UUID filters', 
   expect(templateFilterMismatch([{ userdataid: 'other' }], { userdataid: id })).toBe(true)
   expect(templateFilterMismatch([{}], { forcks: 'false' })).toBe(true)
 })
+
+test.each(['showIcon', 'showicon'].flatMap(key => [true, false].map(value => [key, value])))('icon lookup %s=%s survives list and detail normalization', (key, value) => {
+  expect(templateRequestParams({ [key]: value, keyword: 'image' })).toMatchObject({ showicon: value, keyword: 'image' })
+  expect(templateRequestParams({ id, [key]: value, page: 3 }, true, getters)).toEqual({ id, templatefilter: 'all', showicon: value })
+})

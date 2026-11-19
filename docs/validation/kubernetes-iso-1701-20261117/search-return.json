@@ -1,0 +1,4 @@
+{
+  "before": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1701&page=1&pagesize=20&kisoowner=2362fcd5bfe721a6f9ae93c7a0f0329232a57195d80f93136624789b07268726",
+  "after": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=qa-kiso1701&page=1&pagesize=20&kisoowner=2362fcd5bfe721a6f9ae93c7a0f0329232a57195d80f93136624789b07268726"
+}

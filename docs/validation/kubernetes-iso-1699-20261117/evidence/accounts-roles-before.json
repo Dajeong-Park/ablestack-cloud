@@ -1,0 +1,54 @@
+{
+  "accounts": [
+    {
+      "id": "6fb7f5cb-bd56-11f1-b573-002481560363",
+      "text": "admin정상Root AdminAdminROOT"
+    },
+    {
+      "id": "030e6e48-30c3-4b2e-b926-20ed7a275e97",
+      "text": "baremetal-system-account정상UserUserROOT"
+    },
+    {
+      "id": "8762c972-0820-4967-aabd-1c0ac719c7dc",
+      "text": "epic898-config-denied-1791388603비활성화UserUserROOT"
+    }
+  ],
+  "roles": [
+    {
+      "id": "5da3668a-bd56-11f1-b573-002481560363",
+      "text": "Root AdminAdminDefault root admin role정상"
+    },
+    {
+      "id": "5da3706e-bd56-11f1-b573-002481560363",
+      "text": "Resource AdminResourceAdminDefault resource admin role정상"
+    },
+    {
+      "id": "5da377cd-bd56-11f1-b573-002481560363",
+      "text": "Domain AdminDomainAdminDefault domain admin role정상"
+    },
+    {
+      "id": "5da37de6-bd56-11f1-b573-002481560363",
+      "text": "UserUserDefault user role정상"
+    },
+    {
+      "id": "60f6159f-bd56-11f1-b573-002481560363",
+      "text": "Read-Only Admin - DefaultAdminDefault read-only admin role정상"
+    },
+    {
+      "id": "60f61c91-bd56-11f1-b573-002481560363",
+      "text": "Read-Only User - DefaultUserDefault read-only user role정상"
+    },
+    {
+      "id": "60f623a9-bd56-11f1-b573-002481560363",
+      "text": "Support Admin - DefaultAdminDefault support admin role정상"
+    },
+    {
+      "id": "60f62932-bd56-11f1-b573-002481560363",
+      "text": "Support User - DefaultUserDefault support user role정상"
+    },
+    {
+      "id": "ed343b96-45d7-44be-aeea-59087fe25d1b",
+      "text": "Project Kubernetes Service RoleUserProject Kubernetes Service Role정상"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "catalog": 2,
+  "iso": 8,
+  "templates": 48,
+  "roles": 9,
+  "accounts": 3,
+  "guestVms": 102,
+  "systemVms": 2,
+  "hosts": 3,
+  "systemVmVersion": "4.23.0.0",
+  "systemVmNames": [
+    "v-245-VM",
+    "s-263-VM"
+  ],
+  "kubernetesClusters": 2,
+  "clusterNames": [
+    "koral1",
+    "koral3"
+  ]
+}

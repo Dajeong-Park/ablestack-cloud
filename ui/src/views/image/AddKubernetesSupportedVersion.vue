@@ -17,6 +17,7 @@
 
 <template>
   <div class="form-layout" v-ctrl-enter="handleSubmit">
+    <a-alert v-if="!registrationCapability.available" type="error" show-icon :message="$t('message.kubernetes.iso.read.forbidden')" />
     <span v-if="uploadPercentage > 0">
       <loading-outlined />
       {{ $t('message.upload.file.processing') }}
@@ -128,7 +129,8 @@
         </a-form-item>
         <a-form-item
           name="arch"
-          ref="arch">
+          ref="arch"
+          v-if="registrationCapability.parameters.arch">
           <template #label>
             <tooltip-label :title="$t('label.arch')" :tooltip="apiParams.arch.description"/>
           </template>
@@ -148,7 +150,7 @@
 
         <div :span="24" class="action-button">
           <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+          <a-button :loading="loading" :disabled="!registrationCapability.available" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
         </div>
       </a-form>
     </a-spin>
@@ -161,6 +163,8 @@ import { getAPI, postAPI } from '@/api'
 import { axios } from '../../utils/request'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import { kubernetesIsoCapability, kubernetesIsoMode, kubernetesIsoParameterHelp, kubernetesIsoRegistrationParams, kubernetesIsoContext } from '@/utils/kubernetesIsoCapabilities'
+import { kubernetesIsoUploadResponse, kubernetesIsoWriteResponse } from '@/utils/kubernetesIsoModel'
 
 export default {
   name: 'AddKubernetesSupportedVersion',
@@ -186,11 +190,11 @@ export default {
       lastNonEdgeDirectDownloadUserSelection: false,
       architectureTypes: {},
       uploadPercentage: 0,
-      currentForm: ['plus-outlined', 'PlusOutlined'].includes(this.action.currentAction.icon) ? 'Create' : 'Upload'
+      currentForm: kubernetesIsoMode(this.action) === 'url' ? 'Create' : 'Upload'
     }
   },
   beforeCreate () {
-    this.apiParams = this.$getApiParams('addKubernetesSupportedVersion')
+    this.apiParams = kubernetesIsoParameterHelp(kubernetesIsoCapability(kubernetesIsoMode(this.action), this.$store.getters).parameters)
   },
   created () {
     if (this.$store.getters.userInfo.roletype === 'Admin' && this.currentForm === 'Create') {
@@ -203,6 +207,16 @@ export default {
     }
     this.initForm()
     this.fetchData()
+  },
+  computed: {
+    registrationCapability () { return kubernetesIsoCapability(kubernetesIsoMode(this.action), this.$store.getters) },
+    registrationContext () { return kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token) }
+  },
+  watch: {
+    registrationContext: {
+      flush: 'sync',
+      handler () { this.uploadParams = null; this.fileList = []; this.loading = false; this.closeAction() }
+    }
   },
   methods: {
     initForm () {
@@ -245,6 +259,7 @@ export default {
       })
     },
     fetchData () {
+      if (!this.registrationCapability.available) return
       this.architectureTypes.opts = this.$fetchCpuArchitectureTypes()
       this.fetchZoneData()
     },
@@ -255,15 +270,19 @@ export default {
       return array !== null && array !== undefined && Array.isArray(array) && array.length > 0
     },
     fetchZoneData () {
+      if (!('listZones' in (this.$store.getters.apis || {}))) return
+      const context = this.registrationContext
       const params = {}
       params.showicon = true
       this.zoneLoading = true
       getAPI('listZones', params).then(json => {
-        const listZones = json.listzonesresponse.zone
+        if (context !== this.registrationContext) return
+        const listZones = json.listzonesresponse?.zone
         if (listZones) {
           this.zones = this.zones.concat(listZones)
         }
       }).finally(() => {
+        if (context !== this.registrationContext) return
         this.zoneLoading = false
         if (this.arrayHasItems(this.zones)) {
           this.form.zoneid = (this.zones[0].id ? this.zones[0].id : '')
@@ -291,32 +310,28 @@ export default {
     },
     handleSubmit (e) {
       e.preventDefault()
-      if (this.loading) return
-      this.formRef.value.validate().then(() => {
+      if (this.loading || !this.registrationCapability.available) return
+      const context = this.registrationContext
+      const current = () => context === this.registrationContext && this.registrationCapability.available
+      return this.formRef.value.validate().then(() => {
+        if (!current()) return
         const values = toRaw(this.form)
         this.loading = true
-        const params = {}
-        const customCheckParams = ['mincpunumber', 'minmemory']
-        for (const key in values) {
-          if (!customCheckParams.includes(key) && values[key]) {
-            params[key] = values[key]
-          }
-        }
-        if (this.isValidValueForKey(values, 'mincpunumber') && values.mincpunumber > 0) {
-          params.mincpunumber = values.mincpunumber
-        }
-        if (this.isValidValueForKey(values, 'minmemory') && values.minmemory > 0) {
-          params.minmemory = values.minmemory
-        }
+        const params = kubernetesIsoRegistrationParams(kubernetesIsoMode(this.action), values, this.$store.getters)
+        const options = { preserveOnFailure: true, readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) }
 
         if (this.currentForm === 'Create') {
-          postAPI('addKubernetesSupportedVersion', params).then(json => {
+          return postAPI('addKubernetesSupportedVersion', params, options).then(json => {
+            if (!current()) return
+            kubernetesIsoWriteResponse(json, 'url', this.$store.getters)
             this.$message.success(`${this.$t('message.success.add.kuberversion')}: ${values.semanticversion}`)
             this.$emit('refresh-data')
             this.closeAction()
           }).catch(error => {
+            if (!current()) return
             this.$notifyError(error)
           }).finally(() => {
+            if (!current()) return
             this.loading = false
           })
         } else {
@@ -325,8 +340,9 @@ export default {
           }
           params.format = 'ISO'
           this.loading = true
-          postAPI('getUploadParamsForKubernetesSupportedVersion', params).then(json => {
-            this.uploadParams = (json.getuploadparamsforkubernetessupportedversionresponse && json.getuploadparamsforkubernetessupportedversionresponse.getuploadparams) ? json.getuploadparamsforkubernetessupportedversionresponse.getuploadparams : ''
+          return postAPI('getUploadParamsForKubernetesSupportedVersion', params, options).then(json => {
+            if (!current()) return
+            this.uploadParams = kubernetesIsoUploadResponse(json)
             const response = this.handleUpload()
             if (response === 'upload successful') {
               this.$notification.success({
@@ -335,14 +351,19 @@ export default {
               })
             }
           }).catch(error => {
+            if (!current()) return
             this.$notifyError(error)
           }).finally(() => {
+            if (!current()) return
             this.loading = false
             this.$emit('refresh-data')
           })
         }
       }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+        this.loading = false
+        if (!current()) return
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+        else this.$notifyError(error)
       })
     },
     closeAction () {

@@ -98,6 +98,19 @@ public class KubernetesSupportedVersionResponse extends BaseResponse {
     @Param(description = "KVM Only: true if the ISO for the Kubernetes supported version is directly downloaded to Primary Storage bypassing Secondary Storage", since = "4.18.2")
     private Boolean directDownload;
 
+    @SerializedName("referenceschecked")
+    @Param(description = "Whether all deletion references were checked for this single version (Root only)")
+    private Boolean referencesChecked;
+
+    @SerializedName("isreferenced")
+    @Param(description = "Whether current clusters or unfinished upgrades protect this version (Root only)")
+    private Boolean referenced;
+
+    public void setDeletionReferences(boolean referenced) {
+        this.referencesChecked = true;
+        this.referenced = referenced;
+    }
+
     public String getId() {
         return id;
     }

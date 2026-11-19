@@ -1,0 +1,102 @@
+[
+  {
+    "hook": "identity",
+    "exitCode": 0
+  },
+  {
+    "hook": "check-hooks-apply",
+    "exitCode": 0
+  },
+  {
+    "hook": "doctoc",
+    "exitCode": 0
+  },
+  {
+    "hook": "oxipng",
+    "exitCode": 0
+  },
+  {
+    "hook": "gitleaks",
+    "exitCode": 0
+  },
+  {
+    "hook": "insert-license",
+    "exitCode": 0
+  },
+  {
+    "hook": "check-case-conflict",
+    "exitCode": 0
+  },
+  {
+    "hook": "check-illegal-windows-names",
+    "exitCode": 0
+  },
+  {
+    "hook": "check-merge-conflict",
+    "exitCode": 0
+  },
+  {
+    "hook": "check-shebang-scripts-are-executable",
+    "exitCode": 0
+  },
+  {
+    "hook": "check-symlinks",
+    "exitCode": 0
+  },
+  {
+    "hook": "check-vcs-permalinks",
+    "exitCode": 0
+  },
+  {
+    "hook": "destroyed-symlinks",
+    "exitCode": 0
+  },
+  {
+    "hook": "detect-aws-credentials",
+    "exitCode": 0
+  },
+  {
+    "hook": "detect-private-key",
+    "exitCode": 0
+  },
+  {
+    "hook": "end-of-file-fixer",
+    "exitCode": 0
+  },
+  {
+    "hook": "file-contents-sorter",
+    "exitCode": 0
+  },
+  {
+    "hook": "fix-byte-order-marker",
+    "exitCode": 0
+  },
+  {
+    "hook": "forbid-submodules",
+    "exitCode": 0
+  },
+  {
+    "hook": "mixed-line-ending",
+    "exitCode": 0
+  },
+  {
+    "hook": "trailing-whitespace",
+    "exitCode": 0
+  },
+  {
+    "hook": "codespell",
+    "exitCode": 0
+  },
+  {
+    "hook": "flake8",
+    "exitCode": 0
+  },
+  {
+    "hook": "markdownlint",
+    "exitCode": 0
+  },
+  {
+    "hook": "chmod",
+    "exitCode": 0
+  }
+]

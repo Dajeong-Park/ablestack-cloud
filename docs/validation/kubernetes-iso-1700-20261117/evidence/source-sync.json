@@ -1,0 +1,11 @@
+{
+  "base": "10150bdead45260b58313879d27402383b6b9bf8",
+  "originBase": "10150bdead45260b58313879d27402383b6b9bf8",
+  "upstreamBase": "10150bdead45260b58313879d27402383b6b9bf8",
+  "productHead": "df0382b42e4a7e8607795474d5c4d8980914aa7b",
+  "baseDivergence": [
+    "0",
+    "0"
+  ],
+  "feature": "dhslove/epic-1692-ui-design"
+}

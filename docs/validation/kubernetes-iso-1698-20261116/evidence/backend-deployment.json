@@ -1,0 +1,22 @@
+{
+  "productHead": "ff63d35973a0c3bb2587b68159bb8fef12a14c62",
+  "path": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "backup": "/var/tmp/kiso1698-backend-backup-6wp438f4",
+  "beforeJarSha256": "8f977468de9fb0b15f2e8652dfc5dbdb687e86388485b75cbbd3b57c37bd7909",
+  "afterJarSha256": "91e9485ec6f14495fbcdab0e4505e1ce844cbc391a6138e230af6f6a19e2bcda",
+  "changedExistingEntries": [
+    "org/apache/cloudstack/api/command/user/kubernetes/version/ListKubernetesSupportedVersionsCmd.class",
+    "com/cloud/kubernetes/version/KubernetesVersionManagerImpl.class"
+  ],
+  "addedEntries": [
+    "com/cloud/kubernetes/version/KubernetesVersionCatalog$1.class",
+    "com/cloud/kubernetes/version/KubernetesVersionCatalog.class"
+  ],
+  "otherJarEntriesPreserved": true,
+  "oldPid": "2784306",
+  "newPid": "2791059",
+  "serviceActive": "active",
+  "restartSeconds": 31.8,
+  "schemaChanged": false,
+  "hostAgentsChanged": false
+}
