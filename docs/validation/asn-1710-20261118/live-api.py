@@ -60,7 +60,7 @@ def run(cluster,keep=False):
   first=lookup(asnumber='4200000000',page=1,pagesize=1);second=lookup(asnumber='4200000000',page=2,pagesize=1)
   record('exact-page-total',len(rows(first,'asnumber'))==1 and not rows(second,'asnumber') and body(first)['count']==body(second)['count']==1,{'first':first,'second':second})
   first=lookup(page=1,pagesize=2);second=lookup(page=2,pagesize=2)
-  record('list-page-total',len(rows(first,'asnumber'))==len(rows(second,'asnumber'))==2 and body(first)['count']==body(second)['count']==6 and not ({n['id'] for n in rows(first,'asnumber')}&{n['id'] for n in rows(second,'asnumber')}),{'first':first,'second':second})
+  record('list-page-total',len(rows(first,'asnumber'))==len(rows(second,'asnumber'))==2 and body(first)['count']==body(second)['count']==6 and not ({n['id'] for n in rows(first,'asnumber')} & {n['id'] for n in rows(second,'asnumber')}),{'first':first,'second':second})
   record('invalid-does-not-change-fixture',len(rows(lookup(),'asnumber'))==6 and len(rows(m.call('listASNRanges',{'zoneid':zone}),'asnumberrange'))==2)
   observed={'cluster':cluster,'zoneid':zone,'ranges':fixtures,'numbers':rows(lookup(),'asnumber'),'keywordHigh':rows(lookup(keyword='4200000000'),'asnumber'),'keywordLow':rows(lookup(keyword='64512'),'asnumber')}
   if keep:(OUT/f'{cluster}-ui-fixtures.json').write_text(json.dumps(observed,ensure_ascii=False,indent=2))

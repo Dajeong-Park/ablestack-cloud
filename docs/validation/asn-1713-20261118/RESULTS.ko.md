@@ -1,11 +1,21 @@
-<!-- Licensed to the Apache Software Foundation (ASF) under one or more
-contributor license agreements. See the NOTICE file distributed with this
-work for additional information regarding copyright ownership. The ASF
-licenses this file under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License. You may
-obtain a copy at http://www.apache.org/licenses/LICENSE-2.0 . Unless required
-by applicable law or agreed to in writing, software distributed under the
-License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS. -->
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
 
 # 실제 UI·API 통합 결과
 
@@ -49,6 +59,5 @@ specifyasnumber=true 망/VPC 거부, false 성공, Free no-op, 누락/불명 참
 대표 화면은 screenshots/, 전체 검사 요약은 EVIDENCE.json, 상세 화면의 치수·footer·대비 표본은 matrix-curated.json을 참조한다. 원시 요청/전체 자원 목록은 인증값을 제외한 로컬 증적으로 보관하며 커밋에는 필요한 요약만 포함한다. 요청 부재 판정은 같은 구간의 정상 GET과 함께 확인했으며, 수집이 비어 있던 예비 구간을 0 POST 증거로 사용하지 않았다.
 
 임시 테마는 양쪽 원래 라이트로 되돌렸고 viewport override를 해제했다. 최종 적용 UI·API·정리 상태와 runtime hash는 BUILD.ko.md/EVIDENCE.json에 기록한다.
-
 
 시각 행렬의 CSS·배치는 최종 번들과 동일하다. 이후 선택 초기화와 삭제 후 전용 오류 안내 보정은 최종 번들을 다시 로드해 별도로 재검증했다.
