@@ -42,7 +42,7 @@
         </template>
       </a-input-search>
     </span>
-    <span class="asn-search-chips">
+    <span v-if="chips.length" class="asn-search-chips">
       <a-tag v-for="chip in chips" :key="chip.key" closable @close.prevent="remove(chip.key)"><span :title="chip.value">{{ chip.label }}: {{ chip.value }}</span></a-tag>
     </span>
     <span v-if="validationError || verification" role="status" class="asn-search-verification">{{ $t('message.asn.search.' + (validationError || verification)) }}</span>
@@ -94,8 +94,7 @@ export default {
 }
 </script>
 <style scoped>
-.asn-search-control { display: inline-flex; flex-direction: column; min-width: 0; max-width: 100%; }
-.asn-search-control .input-search { width: 240px; max-width: 100%; }
+.asn-search-control { display: table-cell; width: 100%; line-height: 31px; min-width: 0; max-width: 100%; }
 .asn-search-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 .asn-search-chips :deep(.ant-tag) { max-width: 100%; white-space: normal; overflow-wrap: anywhere; color: var(--ui-text-primary); background: var(--ui-bg-elevated); border-color: var(--ui-border-strong); }
 .asn-search-verification { color: var(--ui-text-secondary); overflow-wrap: anywhere; }

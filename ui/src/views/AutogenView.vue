@@ -161,7 +161,7 @@
               <template #icon><reload-outlined /></template>
               {{ $t('label.refresh') }}
             </a-button>
-            <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="!listRequestPending && !listRefreshError && !asnSearchFailure && listLoadedScope === listScope()" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
+            <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="asnListReady" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <search-view
               v-if="!dataView"
               :searchFilters="searchFilters"
@@ -860,7 +860,6 @@
     <div
       :style="this.$store.getters.maintenanceInitiated || this.$store.getters.shutdownTriggered ? 'margin-top: 24px; margin-bottom: 12px' : null"
     >
-      <a-alert v-if="asnSearchAuth && !items.length && !listRequestPending && !listRefreshError && !asnSearchFailure" class="asn-list-guidance" type="info" show-icon :message="$t('message.asn.management.empty')" />
       <a-alert v-if="asnSearchFailure && $route.meta?.name === 'asnumbers'" class="asn-search-error" type="error" show-icon :message="$t('message.asn.search.' + asnSearchFailure)"><template #description><a-button @click="onSearch({ asnSearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="publicIpSearchFailure && $route.meta?.name === 'publicip' && !dataView" class="public-ip-search-error" type="error" show-icon :message="$t(publicIpSearchFailure)"><template #description><a-button @click="onSearch({ filter: 'allocated', state: 'Allocated', projectid: publicIpProject($store.getters) })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="vnfSearchFailure && $route.meta?.name === 'vnfapp'" class="vnf-search-error" type="error" show-icon :message="$t(vnfSearchFailure)"><template #description><a-button @click="onSearch({})">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
@@ -932,11 +931,11 @@
         <p v-else-if="listRefreshError && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
-          :emptyText="asnSearchAuth ? $t(asnSearchFailure ? 'message.asn.search.lookup' : listRequestPending ? 'label.loading' : 'label.no.data') : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
+          :emptyText="asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
           :items="items"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
-          :selectionDisabled="record => (asnSearchAuth && (listRequestPending || listRefreshError || !!asnSearchFailure)) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
+          :selectionDisabled="record => (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
           :tableScroll="asnSearchAuth ? { x: 1640 } : undefined"
           :keyboardContextMenu="isSnapshotList"
@@ -1523,6 +1522,8 @@ export default {
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
     asnSearchAuth () { return asnRoute(this.$route) ? asnAuth(this.$store) : '' },
+    asnListReady () { return !!this.asnSearchAuth && !this.listRefreshError && !this.asnSearchFailure && this.listLoadedScope === this.listScope() },
+    asnListEmptyText () { return this.$t(this.asnSearchFailure ? 'message.asn.search.lookup' : this.listRequestPending && this.listLoadedScope !== this.listScope() ? 'label.loading' : 'label.no.data') },
     isPublicIpUi () { return publicIpRoute(this.$route) },
     publicIpDetail () { return this.$route.meta?.name === 'publicip' && !!this.$route.params?.id },
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
@@ -2969,7 +2970,7 @@ export default {
     },
     onRowSelectionChange (selection) {
       if (asnRoute(this.$route)) {
-        if (this.listRequestPending) return
+        if (this.listRequestPending && this.listLoadedScope !== this.listScope()) return
         if (this.listRefreshError || this.asnSearchFailure) { this.resetSelection(); return }
         selection = [...new Set(selection || [])].filter(id => this.items.some(row => listRowKey(row) === id))
       }

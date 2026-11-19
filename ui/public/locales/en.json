@@ -12095,7 +12095,6 @@
   "message.asn.management.permission": "Range read permissions and the default view are required.",
   "message.asn.management.nozone": "No eligible Routed Zone is available.",
   "message.asn.management.lookup": "The Zone or Routed support could not be verified. Conditions are retained. Retry the lookup.",
-  "message.asn.management.empty": "Manage ASN ranges to register available numbers. Allocation is performed by dynamic routing settings on a network or VPC.",
   "message.asn.release.eligible": "Eligible for release",
   "message.asn.release.notallocated": "An available number has no allocation to release.",
   "message.asn.release.requiredbyoffering": "The connected network or VPC offering requires this ASN.",

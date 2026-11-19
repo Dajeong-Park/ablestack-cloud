@@ -27,7 +27,7 @@
       :loading="fetchLoading"
       :locale="{ emptyText: $t(listRefreshFailed ? 'message.asn.range.lookup.failed' : 'label.no.data') }"
       rowKey="id"
-      bordered
+      size="middle"
       :scroll="{ x: 800 }"
       :dataSource="asnRanges"
       :columns="columns"
@@ -300,7 +300,15 @@ export default {
 .asn-range-toolbar h3 { margin: 0; color: var(--ui-text-primary); }
 .asn-return-link { display: inline-block; margin-bottom: 12px; }
 .asn-range-tab { color: var(--ui-text-primary); }
-.asn-range-tab :deep(.ant-table) { color: var(--ui-text-primary); }
+.asn-range-tab :deep(.ant-table) { color: var(--ui-text-secondary); }
+.asn-range-tab :deep(.ant-table-container),
+.asn-range-tab :deep(.ant-table-content),
+.asn-range-tab :deep(th),
+.asn-range-tab :deep(td) { border-color: var(--ui-border) !important; }
+.asn-range-tab :deep(.ant-table-thead > tr > th) { color: var(--ui-text-secondary); background: var(--ui-bg-elevated) !important; }
+.asn-range-tab :deep(.ant-table-thead > tr > th::before) { background: var(--ui-border) !important; }
+.asn-range-tab :deep(.ant-table-tbody > tr > td) { color: var(--ui-text-secondary); background: var(--ui-bg-surface); }
+.asn-range-tab :deep(.ant-table-tbody > tr:hover > td) { background: var(--ui-bg-hover) !important; }
 .asn-range-create :deep(.ant-form-item-extra) { color: var(--ui-text-secondary); }
 .asn-range-notice { margin-bottom: 16px; }
 .asn-range-create :deep(.ant-checkbox-wrapper) { display: block; margin: 12px 0; }

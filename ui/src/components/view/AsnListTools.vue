@@ -7,12 +7,12 @@ obtain a copy at http://www.apache.org/licenses/LICENSE-2.0 . Unless required
 by applicable law or agreed to in writing, software distributed under the
 License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS. -->
 <template>
-  <span class="asn-list-tools">
+  <span class="row-action-button asn-list-tools">
     <a-tooltip :title="rangeAllowed ? '' : $t('message.asn.management.permission')">
-      <span><a-button ref="rangeButton" type="primary" :disabled="!rangeAllowed" :loading="checking" @click="openRanges"><setting-outlined />{{ $t('label.asn.manage') }}</a-button></span>
+      <span><a-button ref="rangeButton" type="primary" shape="round" :disabled="!rangeAllowed" :loading="checking" @click="openRanges"><setting-outlined />{{ $t('label.asn.manage') }}</a-button></span>
     </a-tooltip>
-    <a-tooltip v-if="canRelease" :title="$t('message.asn.release.' + releaseReason)">
-      <span><a-button ref="releaseButton" danger :disabled="!ready || selected.length !== 1 || releaseReason !== 'eligible'" @click="openRelease"><disconnect-outlined />{{ $t('label.action.release.asnumber') }}</a-button></span>
+    <a-tooltip v-if="canRelease" :title="$t('label.action.release.asnumber') + ' · ' + $t('message.asn.release.' + releaseReason)">
+      <span><a-button ref="releaseButton" shape="circle" danger :aria-label="$t('label.action.release.asnumber')" :disabled="!ready || selected.length !== 1 || releaseReason !== 'eligible'" @click="openRelease"><disconnect-outlined /></a-button></span>
     </a-tooltip>
     <AsnReleaseDialog v-if="target" :key="operationKey" :target="target" :context="$route.fullPath" :operation-key="operationKey" @cancel="closeRelease" @complete="completeRelease" />
     <MoldDialog v-if="rangeVisible" :visible="true" size="sm" formActions focusGuard :title="$t('label.asn.manage')" @cancel="closeRanges">
@@ -99,7 +99,7 @@ export default {
 }
 </script>
 <style scoped>
-.asn-list-tools { display: inline-flex; flex-wrap: wrap; gap: 8px; margin: 0 0 5px 8px; vertical-align: top; }
+.asn-list-tools { display: inline-flex; align-items: center; gap: 5px; margin-right: 10px; }
 .asn-zone-form { color: var(--ui-text-primary); }
 .asn-zone-option { white-space: normal; overflow-wrap: anywhere; }
 </style>
