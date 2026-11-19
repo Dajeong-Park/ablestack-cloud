@@ -164,9 +164,15 @@ public class NetBackupScheduleModeGuard extends ManagerBase {
         for (BackupVO backup : backupDao.listAllIncludingRemoved()) {
             BackupOfferingVO offering = offerings.get(backup.getBackupOfferingId());
             if (offering == null || !BackupProviderNameUtils.isNetBackupFamily(offering.getProvider())) { continue; }
-            if (backup.getStatus() == null) { throw blocked("UNCONFIRMED", backup.getUuid()); }
-            if (ACTIVE.contains(backup.getStatus())) { throw blocked("BACKUP_BUSY", backup.getUuid()); }
             backupDao.loadDetails(backup);
+            // Legacy deletion did not always settle the historical status. Keep checking
+            // its cleanup/restore markers and admissions, but do not treat that status as
+            // live work. Current volume/start ownership must still be checked normally.
+            boolean removedLegacyHistory = backup.getRemoved() != null
+                    && StringUtils.isBlank(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY))
+                    && StringUtils.isBlank(backup.getDetail(ThirdPartyBackupStart.DETAIL_KEY));
+            if (!removedLegacyHistory && backup.getStatus() == null) { throw blocked("UNCONFIRMED", backup.getUuid()); }
+            if (!removedLegacyHistory && ACTIVE.contains(backup.getStatus())) { throw blocked("BACKUP_BUSY", backup.getUuid()); }
             String restore = backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_STATE_DETAIL);
             if ((StringUtils.isNotBlank(restore) && !TERMINAL.contains(restore))
                     || (StringUtils.isBlank(restore) && StringUtils.isNotBlank(backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL)))

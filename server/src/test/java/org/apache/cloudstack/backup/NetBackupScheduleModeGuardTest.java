@@ -30,6 +30,7 @@ import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import java.util.Date;
 import javax.inject.Provider;
 import org.junit.After;
 import org.junit.Before;
@@ -161,6 +162,46 @@ public class NetBackupScheduleModeGuardTest {
         when(backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_ID_DETAIL)).thenReturn("old-restore");
         assertEquals("saved", guard.update("false", () -> "saved"));
         verify(backups, never()).remove(any(Long.class));
+    }
+    @Test public void removedLegacyHistoryDoesNotBlockModeOrHookChangesWithStaleActiveStatus() {
+        BackupVO backup = backup("ablestack-netbackup", Backup.Status.BackingUp);
+        when(backup.getRemoved()).thenReturn(new Date(1));
+        for (Backup.Status status : List.of(Backup.Status.Allocated, Backup.Status.Queued, Backup.Status.BackingUp,
+                Backup.Status.ReadyForImageTransfer, Backup.Status.FinalizingImageTransfer, Backup.Status.Restoring)) {
+            when(backup.getStatus()).thenReturn(status);
+            assertEquals("saved", guard.update("false", () -> "saved"));
+            assertEquals("saved", guard.withIdleHosts(value -> "saved"));
+        }
+        verify(backups, never()).remove(any(Long.class));
+    }
+    @Test public void removedCurrentVolumeOrStartOwnershipStillBlocksChanges() {
+        BackupVO backup = backup("ablestack-netbackup", Backup.Status.BackingUp);
+        when(backup.getRemoved()).thenReturn(new Date(1));
+        when(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY)).thenReturn(ThirdPartyBackupManifest.VOLUME_MODE);
+        denied("BACKUP_BUSY");
+        when(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY)).thenReturn(null);
+        when(backup.getDetail(ThirdPartyBackupStart.DETAIL_KEY)).thenReturn("{\"state\":\"DISPATCHED\"}");
+        denied("BACKUP_BUSY");
+    }
+    @Test public void removedLegacyHistoryStillBlocksUnfinishedCleanupAndRestore() {
+        BackupVO backup = backup("ablestack-netbackup", Backup.Status.BackingUp);
+        when(backup.getRemoved()).thenReturn(new Date(1));
+        when(backup.getDetail(ThirdPartyBackupManifest.SOURCE_CLEANUP_STATE_KEY)).thenReturn("WAITING");
+        denied("CLEANUP_PENDING");
+        when(backup.getDetail(ThirdPartyBackupManifest.SOURCE_CLEANUP_STATE_KEY)).thenReturn("COMPLETED");
+        when(backup.getDetail(AblestackBackupFrameworkUtils.RESTORE_JOB_STATE_DETAIL)).thenReturn("RUNNING");
+        denied("CLEANUP_PENDING");
+    }
+    @Test public void removedLegacyHistoryStillBlocksUnreleasedAdmissions() {
+        BackupVO backup = backup("ablestack-netbackup", Backup.Status.BackingUp);
+        when(backup.getRemoved()).thenReturn(new Date(1));
+        BackupDetailVO detail = mock(BackupDetailVO.class);
+        when(detail.getResourceId()).thenReturn(7L);
+        when(details.findDetails(ThirdPartyBackupAdmission.BACKUP_KEY)).thenReturn(List.of(detail));
+        when(detail.getValue()).thenReturn("{\"state\":\"ADMITTED\"}");
+        denied("BACKUP_BUSY");
+        when(detail.getValue()).thenReturn("{\"state\":\"RELEASED\"}");
+        assertEquals("saved", guard.update("false", () -> "saved"));
     }
     @Test public void otherProvidersDoNotBlockNetBackupModeChanges() {
         backup("ablestack-veeam", Backup.Status.BackingUp);
