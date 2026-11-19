@@ -41,7 +41,8 @@
       "id": "4ed7d328-714f-473c-9dd6-519d81db877f",
       "name": "qa-kiso1702-read-admin-role",
       "cleanup": "pending",
-      "policyPhase": "14 reads + local upload allow; URL explicitly deny; wildcard deny last; state/delete/VM Metrics denied"
+      "policyPhase": "14 reads + local upload allow; URL explicitly deny; wildcard deny last; state/delete/VM Metrics denied",
+      "status": "Current delete phase:14 reads + local allow + delete allow + queryAsyncJobResult allow; URL/state/Metrics deny; wildcard deny last. Actual delete still pending"
     },
     {
       "type": "catalog",
@@ -77,10 +78,10 @@
       "type": "account",
       "name": "qa-kiso1702-user",
       "id": "40a76174-5461-419f-9b8f-d5c1bfbf8739",
-      "role": "Read-Only User - Default",
+      "role": "qa-kiso1702-catalog-role",
       "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
       "cleanup": "pending",
-      "roleId": "60f61c91-bd56-11f1-b573-002481560363"
+      "roleId": "138759de-7f4a-4389-bc75-c79313dcfec9"
     },
     {
       "type": "catalog",
@@ -98,7 +99,8 @@
       "allocationstate": "Disabled",
       "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
       "purpose": "ACL control-plane fixture only, no physical multi-Zone claim",
-      "cleanup": "pending UI delete"
+      "cleanup": "DONE native UI deleted; absence/list count confirmed",
+      "status": "deleted"
     },
     {
       "type": "catalog",
@@ -117,7 +119,8 @@
       "roleId": "5da3706e-bd56-11f1-b573-002481560363",
       "domainId": "4ceea692-8cab-43b1-a61f-4fb4df2f1529",
       "createdVia": "UI after approved Disabled private Zone fixture",
-      "cleanup": "pending"
+      "cleanup": "DONE native UI deleted; absence/list count confirmed",
+      "status": "deleted"
     },
     {
       "type": "role",
@@ -125,7 +128,68 @@
       "id": "138759de-7f4a-4389-bc75-c79313dcfec9",
       "typeName": "User",
       "ispublic": false,
-      "status": "4 read allow + wildcard deny last verified in native UI; private User",
+      "status": "Private User role saved and assigned; independent listIsos allow then live revoke PASS; current four reads + explicit ISO deny + wildcard deny",
+      "cleanup": "pending"
+    },
+    {
+      "type": "catalog",
+      "family": "4.23",
+      "method": "URL",
+      "name": "qa-kiso1702-url423-official",
+      "version": "1.34.12",
+      "sha256": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+      "bytes": 832905216,
+      "arch": "x86_64",
+      "scope": "13-Zone",
+      "actor": "Root Admin",
+      "id": "dccd8fb2-8d9f-4363-a7b9-116611acfb5a",
+      "isoId": "21be9ee4-3e8e-4b59-9c9e-a709fe058630",
+      "acceptedUi": true,
+      "status": "PASS native UI real transfer + Ready1/1 + parent ADD Completed1 + exact child SHA/bytes/arch",
+      "evidence": [
+        "1702-url423-official-accepted-not-ready",
+        "1702-url423-ready-parent-add-event-completed",
+        "1702-url423-child-ready-size-sha-arch"
+      ],
+      "readyUi": true,
+      "parentArch": "x86_64",
+      "childArch": "x86_64",
+      "childSizeUi": "794.32 MiB",
+      "exactBytesUi": 832905216,
+      "childChecksumExact": true,
+      "parentEvent": "KUBERNETES.VERSION.ADD Completed1",
+      "cleanup": "pending"
+    },
+    {
+      "type": "catalog",
+      "family": "4.23",
+      "method": "local",
+      "name": "qa-kiso1702-local423-official",
+      "version": "1.34.12",
+      "sha256": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+      "bytes": 832905216,
+      "arch": "x86_64",
+      "scope": "13-Zone",
+      "actor": "Root Admin",
+      "id": "4203ba5f-adbe-4ec9-85a2-8a1e2a061bda",
+      "isoId": "fd6a5670-c7e9-4f12-abc5-5504717abe04",
+      "status": "PASS native UI real transfer + Ready1/1 + parent ADD Completed1 + exact child SHA/bytes/arch",
+      "evidence": [
+        "1702-local423-official-selected-before-submit",
+        "1702-local423-preflight-failed-unused-ticket",
+        "1702-local423-parent-add-event-completed",
+        "1702-local423-child-ready-size-sha-arch",
+        "1702-local423-file-transferred-server-preparing",
+        "1702-local423-ready-one-of-one"
+      ],
+      "readyUi": true,
+      "parentArch": "x86_64",
+      "childArch": "x86_64",
+      "childSizeUi": "794.32 MiB",
+      "exactBytesUi": 832905216,
+      "childChecksumExact": true,
+      "parentEvent": "KUBERNETES.VERSION.ADD Completed1",
+      "sameUnusedTicketRetry": true,
       "cleanup": "pending"
     }
   ],
@@ -133,7 +197,7 @@
     "preservedConsoleId": "147cd89a-9b5b-4bcd-a0ca-a1ac88584578",
     "initialSecondaryId": "6f8eee76-dd70-42b1-b501-ab3d68815d8d",
     "initialSecondaryName": "s-263-VM",
-    "status": "new s-2714.23 actual Cloud JAR/service active verified; UI Agent Up proof and uploads next",
+    "status": "PASS new s-271 native Running/Agent Up4.23 plus actual JAR4.23; official URL/local Ready and saved values verified",
     "restoreRequired": false,
     "runtime421Name": "s-270-VM",
     "host421": "10.10.13.1",
@@ -147,7 +211,7 @@
     "runtime423Id": "0e7d4563-a48d-4602-ae5c-758008e4530b",
     "runtime423Host": "10.10.13.1",
     "runtime423LinkLocal": "169.254.177.128",
-    "new423UiAndUploadsRequired": true
+    "new423UiAndUploadsRequired": false
   },
   "rejectedAttempts": [
     {
@@ -158,12 +222,15 @@
     }
   ],
   "uiControlBlock": {
-    "utc": "2026-11-19T01:07:54.612670+00:00",
-    "capture": "CreateForMonitor 0x80070057 after fresh window retry",
-    "activation": "GetCursorPos access denied 0x80070005 after fresh binding retry",
+    "utc": "2026-11-19T05:08:20.339595+00:00",
+    "capture": "encode latest capture frame failed: window crop is outside captured monitor after fresh returned-window selection retry",
     "userRestoreRequested": true,
-    "lastIntendedAction": "cancel unsaved qa-kiso1702-user role edit; activation failed before a confirmed cancellation",
-    "accountRoleSaveSubmitted": false,
+    "lastIntendedAction": "open delete-only KISO action menu; no delete submitted",
+    "accountRoleSaveSubmitted": true,
     "uiOnlyBusinessPrinciplePreserved": true
+  },
+  "cleanup": {
+    "resourceAdmin": "UI disabled then deleted ed23ad1e-b92c-4640-88ab-45cadf336993; account list6",
+    "privateZone": "UI deleted empty Disabled8b842cb8-bdcc-4d48-86a8-16be87716219; original13-Zone count1 confirmed"
   }
 }

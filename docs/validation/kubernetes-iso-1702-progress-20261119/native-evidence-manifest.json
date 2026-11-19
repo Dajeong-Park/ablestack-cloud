@@ -34,5 +34,65 @@
     "sha256": "52df95295b159d8c02c1f5a1a8531afb95fcd2f37e0c7eb08cdabd8a662ec7d1",
     "bytes": 127617,
     "pixelsEdited": false
+  },
+  {
+    "file": "1702-new-systemvm423-running-agent-up.jpg",
+    "sha256": "e0dbe766db66ae3485548fbb52227e90edc396b923787eb7f4eba807057a09cb",
+    "bytes": 119356,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-url423-ready-parent-add-event-completed.jpg",
+    "sha256": "45c79d21758d2e576889837f5467573bf4518fb76fdf186939a28e710d9b1221",
+    "bytes": 134915,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-url423-child-ready-size-sha-arch.jpg",
+    "sha256": "1c11d9e3a7d5edf290dde7def63571f7ed84475c66e232710e999562b8f627a4",
+    "bytes": 148305,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-local423-ready-one-of-one.jpg",
+    "sha256": "5b603731967b1ab9fdd496219c11ada48b45e505e2fd6efc8abc15799250bd3f",
+    "bytes": 135290,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-local423-child-ready-size-sha-arch.jpg",
+    "sha256": "ec6b1f93e0f674841b89c156e31a9938a293f9f11c90c315da92040eaed63e70",
+    "bytes": 148492,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-resource-admin-zone-ready-no-write.jpg",
+    "sha256": "f43050777539c6dbc62bad50fc53ccd5dcfb7adb184c29fa59abfc1616a1bdb0",
+    "bytes": 122926,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-user-iso-only-zone-ready-without-zone-grant.jpg",
+    "sha256": "a1b051d5f8dfcf1509a7465fd582d54ec937c49417e0befbb7e43ffde864b95f",
+    "bytes": 95163,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-user-live-iso-revoke-clears-ready-keeps-catalog.jpg",
+    "sha256": "ae0bb4e843794d7e51b67d6e2141607db2b9d0cdebb428a4a10c97a60876ddf2",
+    "bytes": 58242,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-private-zone-cleaned-original-zone-preserved.jpg",
+    "sha256": "1b9d3e961c66ad3be6e9508fdf0e7ac023d96f97878ea284e5298b83c8224a02",
+    "bytes": 97049,
+    "pixelsEdited": false
+  },
+  {
+    "file": "1702-state-only-disabled-saved-ready-preserved.jpg",
+    "sha256": "ccdb4b2988efa765e631894dfcc7eecd5e55b8d280f7ab4bddddc5bb7e7c1f69",
+    "bytes": 59744,
+    "pixelsEdited": false
   }
 ]

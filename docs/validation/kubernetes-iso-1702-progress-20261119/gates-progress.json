@@ -2,12 +2,12 @@
   "productHead": "e6a579404d476d52101157f10cfccdc6b811195b",
   "providerCreateUpgradeAndPinUi": "PASS official Europa1.34.9->1.34.12",
   "uploader421UrlLocalUi": "PASS actual official828588032 bytes + Ready + parent ADD + saved child values",
-  "new423Runtime": "PASS new s-271 actual4.23 Cloud JAR/service; native Agent Up proof and uploads pending",
+  "new423Runtime": "PASS new s-271 native Running/Agent Up4.23 and actual JAR4.23",
   "aclComplete": false,
   "cleanupComplete": false,
-  "userCatalogRoleAssigned": false,
-  "resourceAdminUiLoginTested": false,
-  "uiControlBlocked": "CreateForMonitor0x80070057 / GetCursorPos access denied0x80070005 after fresh-window recovery retries",
+  "userCatalogRoleAssigned": true,
+  "resourceAdminUiLoginTested": true,
+  "uiControlBlocked": "encode latest capture frame failed: window crop is outside captured monitor after fresh selection retry",
   "issuesStillOpen": [
     1707,
     1702,
@@ -16,5 +16,9 @@
   "ciDebtsOpen": [
     926,
     1044
-  ]
+  ],
+  "uploader423UrlLocalUi": "PASS official832905216bytes + Ready1/1 + exact SHA/arch + ADD Completed1 each",
+  "independentIsoReadAndLiveRevokeUi": true,
+  "stateOnlyUi": "PASS actual Disabled saved, Ready preserved; delete absent",
+  "resourceAdminAndPrivateZoneCleanup": "PASS UI deleted both; original13-Zone count1"
 }
