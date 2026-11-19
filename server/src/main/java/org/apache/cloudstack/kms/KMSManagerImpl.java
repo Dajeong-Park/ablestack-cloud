@@ -766,11 +766,10 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             final Integer oldKeyBits = kmsKey.getKeyBits();
             final Long oldProfileId = kmsKey.getHsmProfileId();
             final String previousKekLabel = kmsKey.getKekLabel();
-            String newKekId = retryOperation(
-                    () -> provider.createKek(kmsKey.getPurpose(), finalNewKekLabel, keyBits, newProfileId));
-
             KMSKekVersionVO previousActive = kmsKekVersionDao.getActiveVersion(kmsKey.getId());
             KMSKekVersionVO.Status previousActiveStatus = previousActive == null ? null : previousActive.getStatus();
+            String newKekId = retryOperation(
+                    () -> provider.createKek(kmsKey.getPurpose(), finalNewKekLabel, keyBits, newProfileId));
             KMSKekVersionVO newVersion;
             try {
                 newVersion = Transaction

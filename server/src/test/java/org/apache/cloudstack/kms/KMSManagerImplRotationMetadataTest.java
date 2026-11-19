@@ -283,6 +283,14 @@ public class KMSManagerImplRotationMetadataTest {
     }
 
     @Test
+    public void metadataReadFailureDoesNotCreateAnOrphanKek() {
+        when(versions.getActiveVersion(5L)).thenReturn(original).thenThrow(new IllegalStateException("read failure"));
+        assertThrows(KMSException.class, () -> manager.rotateKMSKey(command(128, null)));
+        verify(provider, never()).createKek(any(), anyString(), anyInt(), anyLong());
+        assertOriginalMetadata();
+    }
+
+    @Test
     public void providerFailureLeavesOriginalMetadataAndVersionsUntouched() {
         when(provider.createKek(any(), anyString(), anyInt(), anyLong()))
                 .thenThrow(KMSException.kekOperationFailed("provider unavailable", null));
