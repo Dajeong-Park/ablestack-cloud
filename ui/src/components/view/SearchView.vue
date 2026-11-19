@@ -16,7 +16,8 @@
 // under the License.
 
 <template>
-  <PublicIpSearch v-if="apiName === 'listPublicIpAddresses'" @search="$emit('search', $event)" />
+  <AsnSearch v-if="apiName === 'listASNumbers'" :validation-error="asnSearchFailure" @search="$emit('search', $event)" />
+  <PublicIpSearch v-else-if="apiName === 'listPublicIpAddresses'" @search="$emit('search', $event)" />
   <SnapshotSearch v-else-if="apiName === 'listSnapshots'" @search="$emit('search', $event)" />
   <SnapshotPolicySearch v-else-if="apiName === 'listSnapshotPolicies'" @search="$emit('search', $event)" />
   <span v-else :style="styleSearch">
@@ -208,6 +209,7 @@ import { isAdmin } from '@/role'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import Status from '@/components/widgets/Status'
+import AsnSearch from '@/components/view/AsnSearch'
 import PublicIpSearch from '@/components/view/PublicIpSearch'
 import SnapshotSearch from '@/components/view/SnapshotSearch'
 import SnapshotPolicySearch from '@/components/view/SnapshotPolicySearch'
@@ -226,12 +228,14 @@ export default {
     Status,
     SnapshotSearch,
     PublicIpSearch,
+    AsnSearch,
     SnapshotPolicySearch,
     VolumeSearchSelect,
     NetworkSearchSelect,
     VnfSearchSelect
   },
   props: {
+    asnSearchFailure: { type: String, default: '' },
     searchFilters: {
       type: Array,
       default: () => []
