@@ -31,21 +31,25 @@ jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 jest.mock('uuid', () => ({ v4: () => '00000000-0000-4000-8000-000000000001' }))
 jest.mock('@/utils/jobTracker', () => ({ createJobTracker: jest.fn(options => ({ clear: jest.fn(), track: jest.fn(async id => { try { return await options.query(id) } catch (_) { return { jobstatus: null, trackingStatus: 'unknown' } } }) })) }))
 
-const vpc = { id: 'vpc', name: 'Target VPC', state: 'Enabled', account: 'owner', domainid: 'domain', domain: 'ROOT' }
+const vpc = { id: 'vpc', vpcofferingid: 'offering', zoneid: 'zone', name: 'Target VPC', state: 'Enabled', account: 'owner', domainid: 'domain', domain: 'ROOT' }
 const gateway = { id: '00000000-0000-4000-8000-000000000002', vpcid: 'vpc', vpcname: 'Target VPC', publicip: '192.0.2.1', account: 'owner', domainid: 'domain', domain: 'ROOT', fordisplay: true }
+const offering = { id: 'offering', service: [{ name: 'Vpn', provider: [{ name: 'VpcVirtualRouter' }] }, { name: 'SourceNat', provider: [{ name: 'VpcVirtualRouter' }] }] }
+const ip = { id: 'ip', vpcid: 'vpc', ipaddress: '192.0.2.1', account: 'owner', domainid: 'domain', zoneid: 'zone', state: 'Allocated', issourcenat: true, isstaticnat: false, hasrules: false, forprovider: false }
 const connection = { id: 'connection', publicip: '192.0.2.1', gateway: '198.51.100.1', s2svpngatewayid: gateway.id, account: 'owner', domainid: 'domain', state: 'Disconnected', ipsecpsk: 'never-retain-this' }
 const form = { setup (_, { slots, expose }) { expose({ validate: () => Promise.resolve() }); return () => h('form', slots.default?.()) } }
 const button = { props: ['disabled'], setup (props, { slots }) { return () => h('button', { disabled: props.disabled }, slots.default?.()) } }
 const dialog = { setup (_, { slots }) { return () => h('section', slots.default?.()) } }
 let wrappers, mode, outcome, created, readFailure, queryFailure
 const drain = async () => { for (let i = 0; i < 15; i++) { await Promise.resolve(); await nextTick() } }
-function getters () { return reactive({ project: {}, userInfo: { id: 'user', account: 'owner', domainid: 'domain', roleid: 'role', roletype: 'Admin' }, apis: Object.fromEntries(['listVpnGateways', 'listVPCs', 'listVpnConnections', 'queryAsyncJobResult', 'createVpnGateway', 'deleteVpnGateway'].map(api => [api, {}])) }) }
+function getters () { return reactive({ project: {}, userInfo: { id: 'user', account: 'owner', domainid: 'domain', roleid: 'role', roletype: 'Admin' }, apis: Object.fromEntries(['listVpnGateways', 'listVPCs', 'listVPCOfferings', 'listPublicIpAddresses', 'listVpnConnections', 'queryAsyncJobResult', 'createVpnGateway', 'deleteVpnGateway'].map(api => [api, {}])) }) }
 function lookup (command, params) {
   if (command === 'queryAsyncJobResult') {
     if (queryFailure) return Promise.reject(Error('query unavailable'))
     return Promise.resolve({ queryasyncjobresultresponse: { jobid: params.jobid, cmd: mode === 'create' ? 'CreateVpnGatewayCmd' : 'DeleteVpnGatewayCmd', jobstatus: outcome, jobresult: outcome === 2 ? { errorcode: 431, errortext: 'Duplicate gateway' } : mode === 'create' ? { vpngateway: { ...gateway } } : { success: true } } })
   }
-  if (readFailure === command) return Promise.reject(Error('lookup unavailable'))
+  if (readFailure === command && (command !== 'listVpnGateways' || mode === 'delete' || created)) return Promise.reject(Error('lookup unavailable'))
+  if (command === 'listVPCOfferings') return Promise.resolve({ listvpcofferingsresponse: { vpcoffering: [offering] } })
+  if (command === 'listPublicIpAddresses') return Promise.resolve({ listpublicipaddressesresponse: { publicipaddress: [ip] } })
   const [field, rows] = command === 'listVPCs' ? ['vpc', [vpc]] : command === 'listVpnConnections' ? ['vpnconnection', [connection]] : ['vpngateway', created ? [gateway] : []]
   return Promise.resolve({ [command.toLowerCase() + 'response']: { [field]: rows } })
 }
@@ -53,7 +57,7 @@ async function open (type = 'create') {
   mode = type; created = type === 'delete'
   const access = getters(); const route = reactive({ path: type === 'create' ? '/s2svpn' : '/s2svpn/' + gateway.id, fullPath: '/s2svpn', meta: { name: 's2svpn' }, params: { id: type === 'delete' ? gateway.id : undefined } }); const state = reactive({ user: { token: 'never-persist-session' } })
   const w = shallowMount(Dialog, { props: { resource: type === 'delete' ? { ...gateway } : {}, currentAction: { api: type === 'create' ? 'createVpnGateway' : 'deleteVpnGateway', label: 'label.' + type } }, global: { mocks: { $t: key => key, $route: route, $store: { getters: access, state } }, stubs: { MoldDialog: dialog, MoldDialogActions: { render () { return h('footer', this.$slots.default?.()) } }, AButton: button, AForm: form } } })
-  wrappers.push(w); await drain(); w.vm.draft.vpcid = 'vpc'; return { w, access, route, state }
+  wrappers.push(w); await drain(); w.vm.draft.vpcid = 'vpc'; await drain(); return { w, access, route, state }
 }
 beforeEach(() => {
   wrappers = []; mode = 'create'; outcome = 1; created = false; readFailure = ''; queryFailure = false; jest.clearAllMocks(); sessionStorage.clear()
@@ -146,7 +150,7 @@ test.each(['create', 'delete'])('%s failed readback after a successful POST rema
 })
 test('unknown receipt resumes after reopening without another POST', async () => {
   const { w } = await open(); queryFailure = true; await w.vm.submit(); const key = w.vm.entryKey
-  w.vm.close(); w.unmount(); expect(JSON.parse(sessionStorage.getItem(key)).target).toEqual({ vpcid: 'vpc', account: 'owner', domainid: 'domain' })
+  w.vm.close(); w.unmount(); expect(JSON.parse(sessionStorage.getItem(key)).target).toEqual({ vpcid: 'vpc', account: 'owner', domainid: 'domain', ipaddressid: 'ip', publicip: '192.0.2.1' })
   queryFailure = false; created = true; mode = 'create'
   getAPI.mockImplementation((api, params) => api === 'listVpnGateways' ? Promise.resolve({ listvpngatewaysresponse: { vpngateway: [gateway] } }) : lookup(api, params))
   const { w: reopened } = await open(); await drain(); expect(reopened.vm.closed).toBe(true); expect(reopened.emitted('refresh-data')).toHaveLength(1); expect(postAPI).toHaveBeenCalledTimes(1)
@@ -185,4 +189,46 @@ test('deleting an exact-ID search target clears only that stale filter', () => {
   const location = { path: '/s2svpn', query: { id: gateway.id, projectid: '0', vpcid: 'vpc', page: '3', pagesize: '20' } }
   expect(gatewayDeletedListLocation(location, gateway.id)).toEqual({ path: '/s2svpn', query: { projectid: '0', vpcid: 'vpc', page: '1', pagesize: '20' } })
   expect(gatewayDeletedListLocation(location, 'other')).toBe(location)
+})
+
+test('new create flow forwards only the required Source NAT IP ID', async () => {
+  const { w } = await open(); expect(w.vm.selection.fixed).toBe(true); expect(w.vm.draft.ipaddressid).toBe('ip')
+  await w.vm.submit(); expect(postAPI.mock.calls[0][1].ipaddressid).toBe('ip')
+  expect(postAPI.mock.calls[0][1].fordisplay).toBeUndefined()
+})
+test('tampered or changed IP is rejected before mutation, preserving the VPC', async () => {
+  const { w } = await open(); w.vm.draft.ipaddressid = 'foreign'; await w.vm.submit()
+  expect(postAPI).not.toHaveBeenCalled(); expect(w.vm.selectionError).toContain('ip.changed'); expect(w.vm.draft.vpcid).toBe('vpc')
+})
+test('a new gateway appearing before submission is blocked without sending a POST', async () => {
+  const { w } = await open(); created = true; await w.vm.submit()
+  expect(postAPI).not.toHaveBeenCalled(); expect(w.vm.selectionError).toContain('exists'); expect(w.vm.draft.vpcid).toBe('vpc')
+  await w.vm.load(); expect(w.vm.candidates[0].reason).toBe('exists'); expect(w.vm.selection).toBeNull()
+})
+test('IP read failure blocks stale selection, then reload preserves the VPC and allows one submission', async () => {
+  const { w } = await open()
+  getAPI.mockImplementation((command, params) => command === 'listPublicIpAddresses' ? Promise.reject(Error('IP unavailable')) : lookup(command, params))
+  await w.vm.load(); expect(w.vm.selection).toBeNull(); expect(w.vm.selectionError).toContain('IP unavailable'); await w.vm.submit(); expect(postAPI).not.toHaveBeenCalled()
+  getAPI.mockImplementation(lookup); await w.vm.load(); expect(w.vm.draft.vpcid).toBe('vpc'); await w.vm.submit(); expect(postAPI).toHaveBeenCalledTimes(1)
+})
+test('missing creation lookup permission blocks the form before candidates are fetched', async () => {
+  const { w, access } = await open(); delete access.apis.listPublicIpAddresses; await drain()
+  expect(w.vm.closed).toBe(true); expect(w.vm.draft.ipaddressid).toBe(''); expect(w.vm.selection).toBeNull(); expect(postAPI).not.toHaveBeenCalled()
+})
+test('selection changes immediately clear the old IP and discard a late old-IP response', async () => {
+  const { w } = await open(); let release
+  getAPI.mockImplementation((command, params) => command === 'listPublicIpAddresses' ? new Promise(resolve => { release = resolve }) : lookup(command, params))
+  const pending = w.vm.loadSelection(); await drain(); expect(release).toBeDefined()
+  w.vm.draft.vpcid = ''; expect(w.vm.draft.ipaddressid).toBe(''); expect(w.vm.selection).toBeNull()
+  release({ listpublicipaddressesresponse: { publicipaddress: [ip] } }); await pending; expect(w.vm.selection).toBeNull(); expect(w.vm.draft.ipaddressid).toBe('')
+})
+test('router automatic allocation omits ipaddressid and still uses final job/readback confirmation', async () => {
+  const { w } = await open()
+  getAPI.mockImplementation((command, params) => command === 'listVPCOfferings' ? Promise.resolve({ listvpcofferingsresponse: { vpcoffering: [{ ...offering, service: [offering.service[0]] }] } }) : command === 'listPublicIpAddresses' ? Promise.resolve({ listpublicipaddressesresponse: {} }) : lookup(command, params))
+  await w.vm.load(); expect(w.vm.draft.ipaddressid).toBe('auto'); await w.vm.submit(); expect(postAPI.mock.calls[0][1].ipaddressid).toBeUndefined(); expect(w.vm.phase).toBe('succeeded')
+})
+test('a foreign public IP in a successful job cannot confirm the explicit Source NAT target', async () => {
+  const { w } = await open()
+  getAPI.mockImplementation((command, params) => command === 'queryAsyncJobResult' ? Promise.resolve({ queryasyncjobresultresponse: { jobid: params.jobid, cmd: 'CreateVpnGatewayCmd', jobstatus: 1, jobresult: { vpngateway: { ...gateway, publicip: 'foreign' } } } }) : lookup(command, params))
+  await w.vm.submit(); expect(w.vm.phase).toBe('unknown'); expect(w.vm.closed).toBe(false)
 })

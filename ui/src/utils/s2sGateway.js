@@ -40,7 +40,7 @@ export async function gatewayRows (api, command, field, params, current = () => 
     rows.push(...batch)
     if (batch.length < 100) return rows
   }
-  throw Error('message.s2s.gateway.lookup.failed')
+  throw Error('message.s2s.gateway.lookup.limit')
 }
 export async function readGatewayDetail (api, route, getters, current) {
   if (!getters.userInfo?.id || !('listVpnGateways' in (getters.apis || {}))) throw Error('permission')
