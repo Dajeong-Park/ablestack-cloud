@@ -17,6 +17,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+> 추가 breadcrumb 정렬 보정의 최종 배포·UI 검증·정리는 [후속 최종 보고서](../kubernetes-iso-breadcrumb-1701-20261119/README.ko.md)를 참조하세요. 아래 배포 수치는 통합 검증 당시 기록입니다.
+
 # #1707·#1702 / Epic #1692 최종 UI 검증
 
 13번 단일 KVM/x86_64 환경의 합의된 완료 범위에서 실계정 ACL, 실제4.21→새4.23 URL/로컬 전송, 공식 Europa CKS 생성·업그레이드와 실제 pin 보호를 검증했습니다. 시험 자원은 UI로 삭제하고 원래 목록·식별자를 대조했습니다. PR #1703의 검토 및 이슈 종료 근거입니다. 병합은 수행하지 않았습니다.
@@ -106,7 +108,7 @@ URL grant가 있을 때 열린 유효 양식에서 실제 권한을 회수한 �
 
 ## 배포·최신 기준 동기화·검사
 
-13번에 필요한 정적5개만 배포했습니다. index SHA-256은 `bcaabb92d96f142499de4bc8a47ef21bf97c93b862d9072f9078ee8cc2456ae1`입니다. 최종 정적7219개 전체 기대 해시, 기존 비index7214개와 보호 설정을 확인했습니다. 관리 JAR `55f802d2b22c9d4d471644c6157781cc2604e27d4ba0d7b055e4a934bb1d6171`/PID2860414를 보존했고 Backend/DB 스키마/Host Agent 재시작은 없습니다. 호스트3개 factory는 원래4.23 해시로 복원됐고 Agent PID3개도 동일합니다.
+13번에 필요한 정적5개만 배포했습니다. index SHA-256은 `bcaabb92d96f142499de4bc8a47ef21bf97c93b862d9072f9078ee8cc2456ae1`입니다. 통합 검증 당시 정적7219개 전체 기대 해시, 기존 비index7214개와 보호 설정을 확인했습니다. 관리 JAR `55f802d2b22c9d4d471644c6157781cc2604e27d4ba0d7b055e4a934bb1d6171`/PID2860414를 보존했고 Backend/DB 스키마/Host Agent 재시작은 없습니다. 호스트3개 factory는 원래4.23 해시로 복원됐고 Agent PID3개도 동일합니다.
 
 배포 제품 출처는 `e6a579404d476d52101157f10cfccdc6b811195b`입니다. 최종 기준 동기화에서 upstream AS 번호 변경8개를 먼저 로컬 `ablestack-europa`에 fast-forward해 `055ea57b238746c65b66cc5600215b10f0087b23`/0·0을 확인한 뒤43개 작업 커밋을 재정렬했습니다. 번역과 공통 검색/목록/요청 소유 범위 충돌5개 커밋을 해결해 ASN 처리와 KISO 처리를 모두 보존했습니다.
 
