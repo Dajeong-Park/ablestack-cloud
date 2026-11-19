@@ -66,9 +66,11 @@ export default {
     auth: { flush: 'sync', handler () { this.visible = false; this.form = {}; this.blocked = {}; this.labels = {}; this.generation++; this.verify() } },
     '$route.fullPath': { immediate: true, handler () { this.visible = false; this.keyword = this.$route.query.keyword || this.$route.query.q || ''; this.verify() } }
   },
-  beforeUnmount () { this.disposed = true; this.version++ },
+  mounted () { window.addEventListener('resize', this.resized) },
+  beforeUnmount () { window.removeEventListener('resize', this.resized); this.disposed = true; this.version++ },
   methods: {
     config: s2sGatewayPickerConfig,
+    resized () { if (this.visible) this.closeSearch() },
     async verify () {
       const version = ++this.version; const auth = this.auth
       const current = () => !this.disposed && version === this.version && auth === this.auth

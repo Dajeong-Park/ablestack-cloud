@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': s2sGatewayListRoute($route) || !!asnSearchAuth || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': s2sGatewayListRoute($route) || !!asnSearchAuth || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -930,7 +930,7 @@
         <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
           <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
-        <p v-else-if="listRefreshError && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
+        <p v-else-if="listRefreshError && (!s2sGatewayListRoute($route) || items.length > 0) && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
           :emptyText="s2sGatewayListRoute($route) && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"

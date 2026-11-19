@@ -69,7 +69,7 @@ export const s2sGatewayPickerConfig = kind => pickers[kind]
 export function s2sGatewayPickerParams (kind, scope, supported) {
   const params = { listall: true, ignoreproject: true }
   if (kind !== 'domainid' && scope.domainid) params.domainid = scope.domainid
-  if (kind === 'account') params.isrecursive = false
+  if (kind === 'account') { params.listall = false; params.isrecursive = false }
   if (kind === 'vpcid') {
     if (scope.account) params.account = scope.account
     if (scope.projectid && scope.projectid !== '0') params.projectid = scope.projectid
@@ -94,7 +94,7 @@ export async function s2sGatewaySelection (api, query, getters, current = () => 
     const config = pickers[kind]
     if (!(config.api in (getters.apis || {}))) throw Error('permission')
     const scope = { listall: true, ignoreproject: true, page: 1, pagesize: 20 }
-    if (kind === 'account') { scope.name = query.account; scope.domainid = query.domainid; scope.isrecursive = false } else scope.id = query[kind]
+    if (kind === 'account') { scope.listall = false; scope.name = query.account; scope.domainid = query.domainid; scope.isrecursive = false } else scope.id = query[kind]
     if (kind === 'vpcid') Object.assign(scope, s2sGatewayParams(query), { id: query.vpcid, page: 1, pagesize: 20 })
     // Gateway-specific filters are not listVPCs parameters.
     if (kind === 'vpcid') { delete scope.keyword; delete scope.vpcid }

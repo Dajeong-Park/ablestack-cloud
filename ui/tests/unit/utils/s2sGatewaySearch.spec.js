@@ -67,3 +67,10 @@ test('paged candidates retain owner scope and metadata cannot silently remove a 
   expect(() => readS2sGatewayCandidates({ listvpcsresponse: { count: 1, vpc: [{ id: vpc, projectid: project }] } }, 'vpcid', {})).toThrow('scope')
   expect(() => readS2sGatewayCandidates({ listaccountsresponse: { count: 1, account: [{ id: id(8), domainid: id(9), name: 'owner' }] } }, 'account', { domainid: domain })).toThrow('scope')
 })
+
+test('account candidates and exact lookup do not enable listall recursive-domain semantics', async () => {
+  expect(s2sGatewayPickerParams('account', { domainid: domain }, { domainid: {}, listall: {}, isrecursive: {} })).toMatchObject({ domainid: domain, listall: false, isrecursive: false })
+  const read = jest.fn().mockResolvedValueOnce({ listdomainsresponse: { count: 1, domain: [{ id: domain, name: 'ROOT' }] } }).mockResolvedValueOnce({ listaccountsresponse: { count: 1, account: [{ id: id(8), name: 'owner', domainid: domain }] } })
+  expect(await s2sGatewaySelection(read, { domainid: domain, account: 'owner' }, getters)).toEqual({ domainid: 'ROOT', account: 'owner' })
+  expect(read.mock.calls[1][1]).toMatchObject({ listall: false, isrecursive: false, name: 'owner', domainid: domain })
+})
