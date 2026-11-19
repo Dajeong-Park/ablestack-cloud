@@ -3595,6 +3595,8 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                             start.cancelReason = "Host engine termination confirmed; staging cleanup and capacity release are pending";
                             saveBackupStart(terminalBackup.getId(), start);
                         }
+                    } else if ("ablestack-netbackup".equals(manifest.getProvider())) {
+                        scheduleFailedBackupRecordCleanup(terminalBackup);
                     }
                     return true;
                 });
@@ -4068,6 +4070,7 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
     private void reconcileFailedBackup(BackupVO backup, Host host, ThirdPartyBackupManifest manifest, Transfer transfer) {
         boolean physicalCleanupCompleted = "COMPLETED".equals(backup.getDetail(ThirdPartyBackupManifest.CLEANUP_STATE_KEY));
         try {
+            if ("ablestack-netbackup".equals(manifest.getProvider())) { scheduleFailedBackupRecordCleanup(backup); }
             if (Backup.Status.Canceled.equals(backup.getStatus()) && StringUtils.isBlank(backup.getDetail("thirdparty.volume.failure"))) {
                 notifyFailure(transfer, backup);
                 backupDetailsDao.addDetail(backup.getId(), "thirdparty.volume.failure", "Backup canceled by operator", false);
@@ -4171,6 +4174,13 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                 saveCleanupState(backup.getId(), "WAITING", StringUtils.defaultString(e.getMessage()));
             }
             logger.debug("Failed volume backup [{}] cleanup is pending: {}", backup.getUuid(), e.getMessage());
+        }
+    }
+
+    private void scheduleFailedBackupRecordCleanup(BackupVO backup) {
+        if (StringUtils.isBlank(backup.getDetail(ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY))) {
+            backupDetailsDao.addDetail(backup.getId(), ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY, "WAITING", false);
+            backup.getDetails().put(ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY, "WAITING");
         }
     }
 

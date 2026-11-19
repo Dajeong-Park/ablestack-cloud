@@ -17,7 +17,9 @@
 package org.apache.cloudstack.backup;
 
 import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
+import com.cloud.storage.Volume;
 import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -26,6 +28,32 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ThirdPartyFailedBackupDependencyTest {
+    @Test public void missingFailedNetBackupJobCleanupIsRetriedWithoutChangingOtherProviders() {
+        Map<String, String> details = new HashMap<>();
+        details.put(ThirdPartyBackupManifest.MODE_KEY, ThirdPartyBackupManifest.VOLUME_MODE);
+        details.put(ThirdPartyBackupManifest.CLEANUP_STATE_KEY, "COMPLETED");
+        details.put(ThirdPartyBackupAdmission.BACKUP_KEY,
+                "{\"jobId\":\"failed-point\",\"state\":\"RELEASED\"}");
+        Backup backup = mock(Backup.class);
+        when(backup.getUuid()).thenReturn("failed-point");
+        when(backup.getDetail(anyString())).thenAnswer(call -> details.get(call.getArgument(0)));
+        for (String provider : new String[] {"ablestack-netbackup", "ablestack-veeam", "ablestack-commvault"}) {
+            ThirdPartyBackupManifest manifest = ThirdPartyBackupManifest.create(provider, "failed-point", "vm-1",
+                    "2026.11.19.10.01.01", "FULL", "host-1", "/stage/" + provider + "/vm-1/2026.11.19.10.01.01", "QCOW2",
+                    Collections.singletonList(new Backup.VolumeInfo("volume-1", "root.qcow2", Volume.Type.ROOT,
+                            1073741824L, 0L, null, null, null)), null, null);
+            details.put(ThirdPartyBackupManifest.DETAIL_KEY, manifest.toJson());
+            for (Backup.Status status : new Backup.Status[] {Backup.Status.Failed, Backup.Status.Error, Backup.Status.Canceled}) {
+                when(backup.getStatus()).thenReturn(status);
+                details.remove(ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY);
+                if ("ablestack-netbackup".equals(provider)) { assertTrue(ThirdPartyBackupVolumeService.needsBackupCleanup(backup)); }
+                else { assertFalse(ThirdPartyBackupVolumeService.needsBackupCleanup(backup)); }
+                details.put(ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY, "COMPLETED");
+                assertFalse(ThirdPartyBackupVolumeService.needsBackupCleanup(backup));
+            }
+        }
+    }
+
     @Test public void closedFailureHistoryDoesNotOwnParentButUnconfirmedReadersRemainProtected() {
         Map<String, String> details = new HashMap<>();
         details.put(ThirdPartyBackupManifest.CLEANUP_STATE_KEY, "COMPLETED");

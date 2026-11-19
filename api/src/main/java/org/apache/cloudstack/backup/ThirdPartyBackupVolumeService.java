@@ -46,6 +46,17 @@ public interface ThirdPartyBackupVolumeService {
         if (java.util.Set.of("WAITING", "RUNNING").contains(
                 org.apache.commons.lang3.StringUtils.defaultString(backup.getDetail(ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY)))) { return true; }
         if (!"COMPLETED".equals(backup.getDetail(ThirdPartyBackupManifest.CLEANUP_STATE_KEY))) { return true; }
+        if (StringUtils.isBlank(backup.getDetail(ThirdPartyBackupManifest.JOB_CLEANUP_STATE_KEY))
+                && backup.getStatus() != null
+                && java.util.Set.of(Backup.Status.Failed, Backup.Status.Error, Backup.Status.Canceled).contains(backup.getStatus())
+                && ThirdPartyBackupManifest.VOLUME_MODE.equals(backup.getDetail(ThirdPartyBackupManifest.MODE_KEY))) {
+            // Older NetBackup failures released staging without scheduling Host record cleanup.
+            // Keep reconciling until the Host acknowledges it; missing evidence is not completion.
+            try {
+                if ("ablestack-netbackup".equals(ThirdPartyBackupManifest.fromJson(
+                        backup.getDetail(ThirdPartyBackupManifest.DETAIL_KEY)).getProvider())) { return true; }
+            } catch (RuntimeException error) { return true; }
+        }
         String json = backup.getDetail(ThirdPartyBackupAdmission.BACKUP_KEY);
         if (json == null || json.isBlank()) { return false; }
         try {
