@@ -104,7 +104,7 @@
 <script>
 import { mixinDevice } from '@/utils/mixin.js'
 import store from '@/store'
-import { callAPI } from '@/api'
+import { callAPI, getAPI } from '@/api'
 import DetailsTab from '@/components/view/DetailsTab'
 import ResourceView from '@/components/view/ResourceView'
 import ResourceLayout from '@/layouts/ResourceLayout'
@@ -173,6 +173,10 @@ export default {
   data () {
     return {
       detailLoading: false,
+      domainTreeDisposed: false,
+      domainDetailGeneration: 0,
+      domainDetailAbort: null,
+      domainIconRefresh: null,
       loadingSearch: false,
       tabActive: 'details',
       selectedTreeKey: '',
@@ -202,9 +206,12 @@ export default {
     this.metaName = this.$route.meta.name
     this.apiList = this.$route.meta.permission[0] ? this.$route.meta.permission[0] : ''
     this.apiChildren = this.$route.meta.permission[1] ? this.$route.meta.permission[1] : ''
-    eventBus.on('refresh-domain-icon', () => {
-      this.getDetailResource(this.selectedTreeKey)
-    })
+    this.domainIconRefresh = () => { if (!this.domainTreeDisposed) this.getDetailResource(this.selectedTreeKey) }
+    eventBus.on('refresh-domain-icon', this.domainIconRefresh)
+  },
+  beforeUnmount () {
+    this.domainTreeDisposed = true; this.domainDetailGeneration++; if (this.domainDetailAbort) this.domainDetailAbort.abort()
+    eventBus.off('refresh-domain-icon', this.domainIconRefresh)
   },
   watch: {
     loading () {
@@ -233,7 +240,10 @@ export default {
           this.selectedTreeKey = this.resource.key
           this.$emit('change-resource', this.resource)
           if (resourceKeys.filter(x => x.endsWith('limit')).length === 0) {
-            setTimeout(() => { this.getDetailResource(this.resource.id) })
+            const id = this.resource.id
+            setTimeout(() => {
+              if (this.metaName !== 'domain' || (!this.domainTreeDisposed && id === this.resource.id)) this.getDetailResource(id)
+            })
           }
 
           // set default expand
@@ -395,7 +405,9 @@ export default {
 
       this.defaultSelected = []
       this.defaultSelected.push(this.selectedTreeKey)
-      const resource = await this.getDetailResource(this.selectedTreeKey)
+      const selectedKey = this.selectedTreeKey
+      const resource = await this.getDetailResource(selectedKey)
+      if (this.metaName === 'domain' && (this.domainTreeDisposed || selectedKey !== this.selectedTreeKey || !resource)) return
       this.resource = await this.createResourceData(resource)
       const index = this.treeVerticalData.findIndex(item => item.key === this.selectedTreeKey)
       this.treeVerticalData[index] = this.resource
@@ -488,6 +500,7 @@ export default {
       this.$emit('change-tree-store', treeStore)
     },
     getDetailResource (selectedKey) {
+      if (this.metaName === 'domain') return this.getDomainDetail(selectedKey)
       return new Promise(resolve => {
         // set api name and parameter
         const apiName = this.$route.meta.permission[0]
@@ -510,6 +523,23 @@ export default {
           this.detailLoading = false
         })
       })
+    },
+    async getDomainDetail (id) {
+      if (this.domainTreeDisposed || !id) return
+      if (this.domainDetailAbort) this.domainDetailAbort.abort()
+      this.domainDetailAbort = new AbortController()
+      const generation = ++this.domainDetailGeneration
+      const scope = JSON.stringify([this.$route.fullPath, this.$store.state?.user?.token, this.$store.getters.userInfo?.id])
+      const current = () => !this.domainTreeDisposed && generation === this.domainDetailGeneration &&
+        scope === JSON.stringify([this.$route.fullPath, this.$store.state?.user?.token, this.$store.getters.userInfo?.id])
+      this.detailLoading = true
+      try {
+        const json = await getAPI(this.$route.meta.permission[0], { id, listAll: true, showicon: true, page: 1, pageSize: 1 },
+          { preserveOnFailure: true, timeout: 20000, signal: this.domainDetailAbort.signal })
+        if (current()) return this.getResponseJsonData(json)?.[0]
+      } catch (error) {
+        if (current()) this.$notification.error({ message: this.$t('message.request.failed'), description: error.response?.headers?.['x-description'] || this.$t('message.request.failed') })
+      } finally { if (current()) this.detailLoading = false }
     },
     getResponseJsonData (json) {
       let responseName
