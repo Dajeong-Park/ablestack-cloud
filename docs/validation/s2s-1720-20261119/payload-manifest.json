@@ -1,0 +1,25 @@
+{
+  "baseSource": "61d39d7cd2dd6b1caaa6634eef16e8757f1cc05a",
+  "classes": {
+    "org/apache/cloudstack/api/command/user/vpn/UpdateVpnGatewayCmd.class": "44fab23a3bd1da902f4d99ee99f754f1caca876f02f773c0414b79040b3238ed"
+  },
+  "preservation": {
+    "baseSource": "61d39d7cd2dd6b1caaa6634eef16e8757f1cc05a",
+    "classMajor": 55,
+    "class": "org/apache/cloudstack/api/command/user/vpn/UpdateVpnGatewayCmd.class",
+    "classSha256": "44fab23a3bd1da902f4d99ee99f754f1caca876f02f773c0414b79040b3238ed",
+    "checks": [
+      {
+        "cluster": 31,
+        "result": "PASS: module-built class preserves 7 unrelated method bodies, class/API/parameter contracts; only execute logic and ID description differ"
+      },
+      {
+        "cluster": 32,
+        "result": "PASS: module-built class preserves 7 unrelated method bodies, class/API/parameter contracts; only execute logic and ID description differ"
+      }
+    ],
+    "bytecodeVerification": "24 JUnit tests with -Xverify:all passed",
+    "moduleJarContainsExactClass": true
+  },
+  "javaPayloadSha256": "796d8f25a6a58555dc9beac953b1db606d316059218cf6253bc8769015af5102"
+}
