@@ -1,0 +1,94 @@
+[
+  {
+    "kind": "version",
+    "name": "qa-kiso1700-state-ref",
+    "id": "eeb13fd3-c94c-42d3-9129-c570a3aedb64",
+    "isoid": "91ff1714-5beb-4336-a364-4e5741cf9523",
+    "version": "1.35.71",
+    "deleted": true
+  },
+  {
+    "kind": "version",
+    "name": "qa-kiso1700-delete-ready",
+    "id": "8fdbadde-fd29-40a6-b819-18c334f2907c",
+    "isoid": "d43119ed-2ace-4fdc-8c45-a284de6d6c4e",
+    "version": "1.35.72",
+    "deleted": true
+  },
+  {
+    "kind": "cluster",
+    "name": "qa-kiso1700-upgrade",
+    "id": "de53c0a8-db4f-4997-b71b-3b4c05f23c6b",
+    "type": "CloudManaged",
+    "sourceVersion": "b5fabc77-be13-448e-8643-625e9ff8d1e0",
+    "deleted": true
+  },
+  {
+    "kind": "cluster",
+    "name": "qa-kiso1700-current-reference",
+    "id": "326f91a0-cbeb-40b3-8e2e-debb534c4bfe",
+    "type": "ExternalManaged",
+    "sourceVersion": "eeb13fd3-c94c-42d3-9129-c570a3aedb64",
+    "deleted": true
+  },
+  {
+    "kind": "vm",
+    "name": "qa-kiso1700-upgrade-control-1a1e733de0f",
+    "id": "95b25ddd-604f-44fb-8ad8-88ac108fe297",
+    "cluster": "de53c0a8-db4f-4997-b71b-3b4c05f23c6b",
+    "deleted": true
+  },
+  {
+    "kind": "vm",
+    "name": "qa-kiso1700-upgrade-node-1a1e73408da",
+    "id": "5b3e0414-e117-4c71-8ef9-027bff3b9f93",
+    "cluster": "de53c0a8-db4f-4997-b71b-3b4c05f23c6b",
+    "deleted": true
+  },
+  {
+    "kind": "network",
+    "name": "qa-kiso1700-upgrade-network",
+    "id": "c10895b4-5ce4-424f-8161-97b4b9b3c534",
+    "cluster": "de53c0a8-db4f-4997-b71b-3b4c05f23c6b",
+    "deleted": true
+  },
+  {
+    "kind": "publicip",
+    "id": "14c350c5-f202-43f0-a6ab-26036ded5ccb",
+    "address": "10.10.13.29",
+    "cluster": "de53c0a8-db4f-4997-b71b-3b4c05f23c6b",
+    "returned": true,
+    "state": "Available"
+  },
+  {
+    "kind": "version",
+    "name": "qa-kiso1700-lost-receipt",
+    "id": "b86ee829-34fa-4a43-ab5a-4a6377e41077",
+    "isoid": "33e11244-00eb-49dd-af3f-25da900c334b",
+    "version": "1.35.73",
+    "deleted": true
+  },
+  {
+    "kind": "role",
+    "name": "qa-kiso1700-write-role",
+    "id": "29e7dfd4-b2e8-4133-9176-7efe4dbe2d2a",
+    "type": "Admin",
+    "public": false,
+    "deleted": true
+  },
+  {
+    "kind": "account",
+    "name": "qa-kiso1700-write",
+    "id": "4d5dadc5-4aa6-4549-bf43-399779d8ef44",
+    "role": "29e7dfd4-b2e8-4133-9176-7efe4dbe2d2a",
+    "deleted": true
+  },
+  {
+    "kind": "version",
+    "name": "qa-kiso1700-acl-receipt",
+    "id": "e2d3daa1-f13b-4ad0-82fe-3ae6cee9920e",
+    "isoid": "2a6100b7-9c93-4568-ad58-5295f8cda987",
+    "version": "1.35.74",
+    "deleted": true
+  }
+]

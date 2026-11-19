@@ -1,0 +1,36 @@
+{
+  "head": "b0bcd8c2153e7e8d0432b35f191b16091e6e6117",
+  "lintRun": 44471964262,
+  "same16Groups": true,
+  "failedGroups": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "actualAdditionalChangedPathDiagnostics": [],
+  "licenseRun": 44471964175,
+  "licenseCounts": [
+    [
+      "4077",
+      "4077"
+    ]
+  ],
+  "debtsOpen": [
+    926,
+    1044
+  ],
+  "fullCiGreen": false
+}

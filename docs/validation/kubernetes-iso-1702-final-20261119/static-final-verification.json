@@ -1,0 +1,10 @@
+{
+  "filesVerified": 7219,
+  "originalNonIndexPreserved": 7214,
+  "deltaFiles": 5,
+  "indexSha256": "bcaabb92d96f142499de4bc8a47ef21bf97c93b862d9072f9078ee8cc2456ae1",
+  "protectedPreserved": true,
+  "backendJarSha256": "55f802d2b22c9d4d471644c6157781cc2604e27d4ba0d7b055e4a934bb1d6171",
+  "moldPid": "2860414",
+  "backendAndPidPreserved": true
+}

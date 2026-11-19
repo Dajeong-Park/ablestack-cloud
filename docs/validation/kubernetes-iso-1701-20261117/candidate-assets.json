@@ -1,0 +1,17 @@
+{
+  "files": {
+    "js/app.227b8030.js": {
+      "sha256": "1a2d7f59861ea60e077f00f6d740cec24f00b0677069b4565536e84ee3dc01c7",
+      "size": 2056402
+    },
+    "css/app.1a2043f7.css": {
+      "sha256": "8e335e9235b2e5ee5ee69ca059e58a6bc0f77d7c21fee47cebc77df10d490fc2",
+      "size": 354842
+    },
+    "index.html": {
+      "sha256": "56dcd47216e95fe2d09fd7b6ca88a82ac95d89f98bedc4628db69eb8770293ea",
+      "size": 40359
+    }
+  },
+  "count": 3
+}

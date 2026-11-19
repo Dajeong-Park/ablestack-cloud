@@ -1,0 +1,42 @@
+[
+  {
+    "kind": "version",
+    "name": "qa-kiso1701-우분투-쿠버네티스-한글-긴이름-가나다라마ABCDE-가나다라마ABCDE-가나다라마ABCDE-",
+    "id": "8f773b4a-8802-40ea-88e6-76d2b8141e29",
+    "isoid": "49819ec0-6527-40fc-91ce-236b9ab30c47",
+    "version": "1.36.72"
+  },
+  {
+    "kind": "version",
+    "name": "qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-",
+    "id": "29ce330b-a632-445e-b687-a6eacffa5523",
+    "isoid": "ebdfe97a-e42e-418d-a072-f732bd9b1cf4",
+    "version": "1.36.74",
+    "expected": "checksum failure"
+  },
+  {
+    "kind": "template",
+    "name": "qa-kiso1701-template-Ubuntu-긴이름-Primary-Name-Primary-Name-Primary-Name-Primary-Name-Primary-Name-Primary-Name-Primary-Name-Primary-Name-Primary-Name-",
+    "id": "8b663eaa-7d9d-47cd-9376-3564ac4749fb",
+    "fixture": "empty QCOW2; Ubuntu metadata for icon layout only",
+    "commentRemoved": true,
+    "iconRemoved": true,
+    "deleted": true
+  },
+  {
+    "kind": "kubernetesiso",
+    "id": "1919e370-4ea6-4653-a369-333403317d5e",
+    "isoid": "376c395f-2049-4213-8a33-f55550617e5a",
+    "name": "qa-kiso1701-url-recovered",
+    "semanticversion": "1.36.75",
+    "deleted": true
+  },
+  {
+    "kind": "kubernetesiso",
+    "id": "2f6952f9-efec-48dc-9be9-50d7bb0f08db",
+    "isoid": "9258423c-1c5b-4003-869f-ccd0f70090ab",
+    "name": "qa-kiso1701-local-style",
+    "semanticversion": "1.36.76",
+    "deleted": true
+  }
+]

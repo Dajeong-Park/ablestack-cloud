@@ -71,9 +71,38 @@ public class ListKubernetesSupportedVersionsCmd extends BaseListCmd {
             since = "4.20")
     private String arch;
 
+    @Parameter(name = "sortkey", type = CommandType.STRING,
+            description = "Catalog sort field: name, semanticversion, state, mincpunumber or minmemory")
+    private String sortKey;
+
+    @Parameter(name = "sortorder", type = CommandType.STRING, description = "Catalog sort direction: asc or desc")
+    private String sortOrder;
+
+    public String getSortKey() {
+        if (StringUtils.isNotEmpty(sortKey) && !java.util.Arrays.asList("name", "semanticversion", "state", "mincpunumber", "minmemory").contains(sortKey)) {
+            throw new IllegalArgumentException("Unsupported Kubernetes version sort field");
+        }
+        return sortKey;
+    }
+
+    public String getSortOrder() {
+        if (StringUtils.isNotEmpty(sortOrder) && !java.util.Arrays.asList("asc", "desc").contains(sortOrder)) {
+            throw new IllegalArgumentException("Unsupported Kubernetes version sort direction");
+        }
+        return sortOrder;
+    }
+
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
+    @Parameter(name = "showreferences", type = CommandType.BOOLEAN,
+            description = "Root administrators only: include deletion references for a single ID")
+    private Boolean showReferences;
+
+    public boolean getShowReferences() {
+        return Boolean.TRUE.equals(showReferences);
+    }
+
     public Long getId() {
         return id;
     }

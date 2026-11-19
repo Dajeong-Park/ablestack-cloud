@@ -19,6 +19,7 @@ import { validateLinksAsync } from '@/utils/links'
 import { getAPI } from '@/api'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
+const canRead = api => ['listTemplates', 'listIsos'].includes(api)
 const router = { resolve: jest.fn(() => ({ matched: [{ redirect: undefined }] })) }
 
 describe('VM image link validation', () => {
@@ -28,19 +29,19 @@ describe('VM image link validation', () => {
     ['QCOW2', 'listTemplates', 'templatefilter', 'listtemplatesresponse', 'template', '/template/image-id']
   ])('uses the matching API for %s images', async (format, api, filter, response, item, path) => {
     getAPI.mockResolvedValue({ [response]: { [item]: [{ id: 'image-id' }] } })
-    const links = await validateLinksAsync(router, false, { templateid: 'image-id', templateformat: format })
+    const links = await validateLinksAsync(router, false, { templateid: 'image-id', templateformat: format }, canRead)
     expect(links.template).toBe(true)
     expect(router.resolve).toHaveBeenCalledWith(path)
     expect(getAPI).toHaveBeenCalledWith(api, { [filter]: 'executable', listAll: true, id: 'image-id' })
   })
   it('validates an attached ISO separately', async () => {
     getAPI.mockResolvedValue({ listisosresponse: { iso: [{ id: 'attached' }] } })
-    expect((await validateLinksAsync(router, false, { isoid: 'attached' })).iso).toBe(true)
+    expect((await validateLinksAsync(router, false, { isoid: 'attached' }, canRead)).iso).toBe(true)
     expect(getAPI).toHaveBeenCalledWith('listIsos', { isofilter: 'executable', listAll: true, id: 'attached' })
   })
   it('keeps unavailable images unlinked', async () => {
     getAPI.mockRejectedValue(new Error('not accessible'))
-    expect((await validateLinksAsync(router, false, { templateid: 'missing' })).template).toBe(false)
+    expect((await validateLinksAsync(router, false, { templateid: 'missing' }, canRead)).template).toBe(false)
   })
   it('does not fetch links for a static resource', async () => {
     await validateLinksAsync(router, true, { templateid: 'image-id' })

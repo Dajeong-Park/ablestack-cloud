@@ -1,0 +1,12 @@
+{
+  "canonicalControlsClass": true,
+  "operatingControlsClass": false,
+  "bothSupportedByFinalControlsSelector": ".ant-breadcrumb-link > span:last-child",
+  "sourceInputFiles": 1120,
+  "onlyChangedInput": [
+    "src/style/components/view/kubernetes-iso.less"
+  ],
+  "finalSourceSha256": "a40373895ff37322f5f38c6acbb270e4020adefaa90ff11e4c62ca1a4a084b4a",
+  "sourceHead": "6186960c08786c099aaedac9ecbc13d831cb823f",
+  "vmCommonComponentAndApiCodeChanged": false
+}

@@ -1,0 +1,4 @@
+[
+  "com/cloud/kubernetes/version/KubernetesVersionManagerImpl unrelatedMethodsPreserved=26",
+  "org/apache/cloudstack/api/command/user/kubernetes/version/ListKubernetesSupportedVersionsCmd unrelatedMethodsPreserved=7"
+]

@@ -1,0 +1,220 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "results": [
+    {
+      "field": "mincpunumber",
+      "value": "1",
+      "errors": [
+        {
+          "field": "form_item_mincpunumber",
+          "message": "CPU는 2~2147483647 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "mincpunumber",
+      "value": "2.5",
+      "errors": [
+        {
+          "field": "form_item_mincpunumber",
+          "message": "CPU는 2~2147483647 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "mincpunumber",
+      "value": "NaN",
+      "errors": [
+        {
+          "field": "form_item_mincpunumber",
+          "message": "CPU는 2~2147483647 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "mincpunumber",
+      "value": "2147483648",
+      "errors": [
+        {
+          "field": "form_item_mincpunumber",
+          "message": "CPU는 2~2147483647 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "minmemory",
+      "value": "2047",
+      "errors": [
+        {
+          "field": "form_item_minmemory",
+          "message": "메모리는 2048~2147483647MB 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "minmemory",
+      "value": "2048.5",
+      "errors": [
+        {
+          "field": "form_item_minmemory",
+          "message": "메모리는 2048~2147483647MB 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "minmemory",
+      "value": "NaN",
+      "errors": [
+        {
+          "field": "form_item_minmemory",
+          "message": "메모리는 2048~2147483647MB 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "minmemory",
+      "value": "2147483648",
+      "errors": [
+        {
+          "field": "form_item_minmemory",
+          "message": "메모리는 2048~2147483647MB 범위의 정수로 입력하세요."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "semanticversion",
+      "value": "1.10.99",
+      "errors": [
+        {
+          "field": "form_item_semanticversion",
+          "message": "1.11.0 이상인 숫자 버전을 입력하세요. 각 숫자는 2147483647 이하여야 합니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "semanticversion",
+      "value": "1.30",
+      "errors": [
+        {
+          "field": "form_item_semanticversion",
+          "message": "1.11.0 이상인 숫자 버전을 입력하세요. 각 숫자는 2147483647 이하여야 합니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "semanticversion",
+      "value": "1.30.0-rc1",
+      "errors": [
+        {
+          "field": "form_item_semanticversion",
+          "message": "1.11.0 이상인 숫자 버전을 입력하세요. 각 숫자는 2147483647 이하여야 합니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "url",
+      "value": "ftp://example.test/a.iso",
+      "errors": [
+        {
+          "field": "form_item_url",
+          "message": "http, https 또는 file 주소와 .iso·압축 ISO·.metalink 경로를 입력하세요. 공백이나 잘못된 인코딩은 사용할 수 없습니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "url",
+      "value": "https://example.test/a.qcow2",
+      "errors": [
+        {
+          "field": "form_item_url",
+          "message": "http, https 또는 file 주소와 .iso·압축 ISO·.metalink 경로를 입력하세요. 공백이나 잘못된 인코딩은 사용할 수 없습니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "url",
+      "value": "https://example.test/bad%GG.iso",
+      "errors": [
+        {
+          "field": "form_item_url",
+          "message": "http, https 또는 file 주소와 .iso·압축 ISO·.metalink 경로를 입력하세요. 공백이나 잘못된 인코딩은 사용할 수 없습니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "checksum",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000",
+      "errors": [
+        {
+          "field": "form_item_checksum",
+          "message": "체크섬 알고리즘·16진수·길이를 확인하세요. 접두어가 없으면 MD5 32자리입니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "checksum",
+      "value": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "errors": [
+        {
+          "field": "form_item_checksum",
+          "message": "체크섬 알고리즘·16진수·길이를 확인하세요. 접두어가 없으면 MD5 32자리입니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "checksum",
+      "value": "{SHA-256}000000000000000000000000000000000000000000000000000000000000000",
+      "errors": [
+        {
+          "field": "form_item_checksum",
+          "message": "체크섬 알고리즘·16진수·길이를 확인하세요. 접두어가 없으면 MD5 32자리입니다."
+        }
+      ],
+      "pass": true
+    },
+    {
+      "field": "checksum",
+      "value": "{UNKNOWN}abcd",
+      "errors": [
+        {
+          "field": "form_item_checksum",
+          "message": "체크섬 알고리즘·16진수·길이를 확인하세요. 접두어가 없으면 MD5 32자리입니다."
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,435 @@
+Accessibility document subtree; unrelated Chrome toolbar omitted.
+								27057 document (문서) ISO - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/iso?isofilter=all&filter=all&page=1&pagesize=20&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]] ID: RootWebArea
+									27079 group (그룹)
+										27521 image (라벨이 없는 그래픽)
+										27083 menu (메뉴)
+											27084 menu item (메뉴 항목) dashboard 대시보드
+												27085 hyperlink (링크) dashboard 대시보드 Value: http://10.10.13.10:8080/client/#/dashboard
+													27086 image (그래픽) dashboard
+											27087 group (그룹)
+												27088 image (그래픽) cloud
+												27089 group (그룹)
+													27090 text (텍스트) 컴퓨트
+											27091 group (그룹)
+												27092 image (그래픽) hdd
+												27093 group (그룹)
+													27094 text (텍스트) 스토리지
+											27095 group (그룹)
+												27096 image (그래픽) wifi
+												27097 group (그룹)
+													27098 text (텍스트) 네트워크
+											27099 group (그룹)
+												27100 image (그래픽) picture
+												27101 group (그룹)
+													27102 text (텍스트) 이미지
+											27522 list (LIST) ID: sub_menu_4_$$_/image-popup
+												27523 menu item (메뉴 항목) save 템플릿
+													27524 hyperlink (링크) save 템플릿 Value: http://10.10.13.10:8080/client/#/template
+														27525 image (그래픽) save
+												27526 menu item (메뉴 항목) usb ISO
+													27527 hyperlink (링크) usb ISO Value: http://10.10.13.10:8080/client/#/iso
+														27528 image (그래픽) usb
+												27529 menu item (메뉴 항목) 쿠버네티스 ISO
+													27530 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+														27531 image (그래픽)
+											27103 group (그룹)
+												27104 image (그래픽) lock
+												27105 group (그룹)
+													27106 text (텍스트) 키 관리
+											27107 menu item (메뉴 항목) schedule 이벤트
+												27108 hyperlink (링크) schedule 이벤트 Value: http://10.10.13.10:8080/client/#/event
+													27109 image (그래픽) schedule
+											27110 menu item (메뉴 항목) project 프로젝트
+												27111 hyperlink (링크) project 프로젝트 Value: http://10.10.13.10:8080/client/#/project
+													27112 image (그래픽) project
+											27113 menu item (메뉴 항목) idcard 역할
+												27114 hyperlink (링크) idcard 역할 Value: http://10.10.13.10:8080/client/#/role
+													27115 image (그래픽) idcard
+											27116 menu item (메뉴 항목) team 계정
+												27117 hyperlink (링크) team 계정 Value: http://10.10.13.10:8080/client/#/account
+													27118 image (그래픽) team
+											27119 menu item (메뉴 항목) block 도메인
+												27120 hyperlink (링크) block 도메인 Value: http://10.10.13.10:8080/client/#/domain
+													27121 image (그래픽) block
+											27122 group (그룹)
+												27123 image (그래픽) bank
+												27124 group (그룹)
+													27125 text (텍스트) 인프라스트럭쳐
+											27126 group (그룹)
+												27127 image (그래픽) shopping
+												27128 group (그룹)
+													27129 text (텍스트) 서비스 오퍼링
+											27130 group (그룹)
+												27131 image (그래픽) setting
+												27132 group (그룹)
+													27133 text (텍스트) 구성
+											27134 menu item (메뉴 항목) appstore-add 확장
+												27135 hyperlink (링크) appstore-add 확장 Value: http://10.10.13.10:8080/client/#/extension
+													27136 image (그래픽) appstore-add
+											27137 group (그룹)
+												27138 image (그래픽) tool
+												27139 group (그룹)
+													27140 text (텍스트) 도구
+											27141 menu item (메뉴 항목) read API 문서
+												27142 hyperlink (링크) read API 문서 Value: http://10.10.13.10:8080/client/#/apidocs/
+													27143 image (그래픽) read
+										27144 group (섹션 헤더)
+											27145 text (텍스트) 페이지 스타일 설정
+											27146 button (단추) 닫기
+												27147 image (그래픽) close
+										27148 text (제목) 페이지 스타일 설정
+										27149 group (그룹)
+											27150 image (그래픽)
+											27151 radio button (라디오 단추) (selectable, settable, string)
+											28563 text (텍스트)
+											27712 image (그래픽) check
+										27153 group (그룹)
+											27154 image (그래픽)
+											27155 radio button (라디오 단추) (selectable, settable, string)
+											28564 text (텍스트)
+										27158 text (제목) 테마 색상
+										27159 group (그룹)
+											27160 radio button (라디오 단추) (selectable, settable, string)
+											28565 text (텍스트)
+											27162 image (그래픽) check
+										27163 group (그룹)
+											27164 radio button (라디오 단추) (selectable, settable, string)
+											28566 text (텍스트)
+										27166 group (그룹)
+											27167 radio button (라디오 단추) (selectable, settable, string)
+											28567 text (텍스트)
+										27169 group (그룹)
+											27170 radio button (라디오 단추) (selectable, settable, string)
+											28568 text (텍스트)
+										27172 group (그룹)
+											27173 radio button (라디오 단추) (selectable, settable, string)
+											28569 text (텍스트)
+										27175 group (그룹)
+											27176 radio button (라디오 단추) (selectable, settable, string)
+											28570 text (텍스트)
+										27178 group (그룹)
+											27179 radio button (라디오 단추) (selectable, settable, string)
+											28571 text (텍스트)
+										27181 group (그룹)
+											27182 radio button (라디오 단추) (selectable, settable, string)
+											28572 text (텍스트)
+										27184 separator (구분 기호)
+										27185 text (제목) 네비게이션 설정
+										27186 list item (목록 항목) 배경색
+											27187 text (텍스트) 배경색
+											27188 button (color picker) (settable, string) Value: 100% red 100% green 100% blue
+										27189 list item (목록 항목) 텍스트 색상
+											27190 text (텍스트) 텍스트 색상
+											27191 button (color picker) (settable, string) Value: 0% red 0% green 0% blue
+										27192 separator (구분 기호)
+										27193 text (경고)
+											27194 image (그래픽) exclamation-circle
+											27195 text (텍스트) 설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+										27196 button (단추) download 세팅값 다운로드(json)
+											27197 image (그래픽) download
+										27198 button (단추) undo 기본값으로 재설정
+											27199 image (그래픽) undo
+										27200 group (섹션 헤더)
+											27542 image (그래픽) menu-fold
+											27202 text (텍스트) 프로젝트
+											27203 group (그룹)
+												27204 group (그룹)
+													27205 combo box (콤보 상자) (settable, string) 프로젝트 ID: project-selector-1
+													27206 image (그래픽) project
+													27207 text (텍스트) 기본 보기
+											27543 button (단추) 생성 down
+												27544 image (그래픽) down
+											27208 group (그룹)
+												27209 image (그래픽) translation
+											27210 button (단추) 알림
+												27211 image (그래픽) bell
+											27212 group (그룹)
+												27213 text (텍스트) AC
+												27214 text (텍스트) admin cloud
+										27215 group (기본)
+											27216 hyperlink (링크) home Value: http://10.10.13.10:8080/client/#/
+												27217 image (그래픽) home
+											27218 text (텍스트) /
+											27219 hyperlink (링크) ISO Value: http://10.10.13.10:8080/client/#/iso
+											28401 hyperlink (링크) question-circle Value: http://docs.ablecloud.io/latest/adminguide/templates.html#working-with-isos
+												28402 image (그래픽) question-circle
+											28403 button (단추) reload 업데이트
+												28573 image (그래픽) reload
+											28521 text (텍스트) 필터링 기준
+											28522 group (그룹)
+												28523 group (그룹)
+													28524 combo box (콤보 상자) (settable, string) 필터링 기준 ID: template-filter-1
+													28525 text (텍스트) 모두
+											28526 button (전환) (settable, string) 프로젝트
+											28406 button (단추) ISO 등록
+												28407 image (그래픽) plus
+											28408 button (단추) 로컬에서 ISO 업로드
+												28409 image (그래픽) cloud-upload
+											28527 button (단추) 고급 검색
+												28528 image (그래픽) filter
+											28529 group (그룹)
+												28530 text field (편집) (settable, string) 검색 Description: 검색
+											28531 button (단추) search
+												28532 image (그래픽) search
+											28418 table (TABLE)
+												28419 data item (행)
+													28420 data item (열 머리글) 이름 caret-up caret-down
+														28421 group (그룹)
+															28534 group (그룹)
+															28423 image (그래픽) caret-up
+															28424 image (그래픽) caret-down
+													28425 data item (열 머리글) 상태 caret-up caret-down
+														28426 group (그룹)
+															28535 group (그룹)
+															28428 image (그래픽) caret-up
+															28429 image (그래픽) caret-down
+													28536 data item (열 머리글) OS 유형 caret-up caret-down
+														28537 group (그룹)
+															28538 group (그룹)
+															28539 image (그래픽) caret-up
+															28540 image (그래픽) caret-down
+													28447 data item (열 머리글) CPU 아키텍처 caret-up caret-down
+														28541 group (그룹)
+															28542 group (그룹)
+															28543 image (그래픽) caret-up
+															28544 image (그래픽) caret-down
+													28545 data item (열 머리글) 크기 caret-up caret-down
+														28546 group (그룹)
+															28547 group (그룹)
+															28548 image (그래픽) caret-up
+															28549 image (그래픽) caret-down
+													28550 data item (열 머리글) 계정 caret-up caret-down
+														28551 group (그룹)
+															28552 group (그룹)
+															28553 image (그래픽) caret-up
+															28554 image (그래픽) caret-down
+													28555 data item (열 머리글) 순서
+													28451 data item (열 머리글) filter
+														28556 button (단추) filter
+															28557 image (그래픽) filter
+												28574 data item (행)
+													28575 data item (항목) vmware-tools.iso
+														28576 hyperlink (링크) vmware-tools.iso Value: http://10.10.13.10:8080/client/#/iso/71ed0193-510e-4d01-8faa-f1fb3faa7b1a?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28577 data item (항목) 사용 가능
+														28578 group (그룹) 사용 가능
+															28579 group (그룹) Description: 사용 가능 조회된 정보 기준
+													28580 data item (항목) CentOS 4.5 (32-bit)
+														28581 group (그룹) CentOS 4.5 (32-bit)
+													28582 data item (항목) x86_64
+														28583 group (그룹) x86_64
+													28584 data item (항목) —
+														28585 group (그룹) —
+													28586 data item (항목) system
+														28587 group (그룹) system
+															28588 hyperlink (링크) system Value: http://10.10.13.10:8080/client/#/account?name=system&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28589 data item (항목) double-left double-right caret-up caret-down
+														28590 button (단추) double-left
+															28591 image (그래픽) double-left
+														28592 button (단추) double-right
+															28593 image (그래픽) double-right
+														28594 button (단추) caret-up
+															28595 image (그래픽) caret-up
+														28596 button (단추) caret-down
+															28597 image (그래픽) caret-down
+													28598 data item (항목)
+												28599 data item (행)
+													28600 data item (항목) xs-tools.iso
+														28601 hyperlink (링크) xs-tools.iso Value: http://10.10.13.10:8080/client/#/iso/98432634-54c7-485f-aa24-e6e2cea40980?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28602 data item (항목) 사용 가능
+														28603 group (그룹) 사용 가능
+															28604 group (그룹) Description: 사용 가능 조회된 정보 기준
+													28605 data item (항목) CentOS 4.5 (32-bit)
+														28606 group (그룹) CentOS 4.5 (32-bit)
+													28607 data item (항목) x86_64
+														28608 group (그룹) x86_64
+													28609 data item (항목) —
+														28610 group (그룹) —
+													28611 data item (항목) system
+														28612 group (그룹) system
+															28613 hyperlink (링크) system Value: http://10.10.13.10:8080/client/#/account?name=system&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28614 data item (항목) double-left double-right caret-up caret-down
+														28615 button (단추) double-left
+															28616 image (그래픽) double-left
+														28617 button (단추) double-right
+															28618 image (그래픽) double-right
+														28619 button (단추) caret-up
+															28620 image (그래픽) caret-up
+														28621 button (단추) caret-down
+															28622 image (그래픽) caret-down
+													28623 data item (항목)
+												28624 data item (행)
+													28625 data item (항목) 1.35.9-Kubernetes-Binaries-ISO
+														28626 hyperlink (링크) 1.35.9-Kubernetes-Binaries-ISO Value: http://10.10.13.10:8080/client/#/iso/dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28627 data item (항목) 사용 가능 조회 Zone: 13-Zone
+														28628 group (그룹) 사용 가능 조회 Zone: 13-Zone
+															28629 group (그룹) Description: 사용 가능 조회 Zone: 13-Zone
+													28630 data item (항목) None
+														28631 group (그룹) None
+													28632 data item (항목) x86_64
+														28633 group (그룹) x86_64
+													28634 data item (항목) 0.94 GiB
+														28635 group (그룹) 0.94 GiB
+													28636 data item (항목) system
+														28637 group (그룹) system
+															28638 hyperlink (링크) system Value: http://10.10.13.10:8080/client/#/account?name=system&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28639 data item (항목) double-left double-right caret-up caret-down
+														28640 button (단추) double-left
+															28641 image (그래픽) double-left
+														28642 button (단추) double-right
+															28643 image (그래픽) double-right
+														28644 button (단추) caret-up
+															28645 image (그래픽) caret-up
+														28646 button (단추) caret-down
+															28647 image (그래픽) caret-down
+													28648 data item (항목)
+												28649 data item (행)
+													28650 data item (항목) 1.36.5-Kubernetes-Binaries-ISO
+														28651 hyperlink (링크) 1.36.5-Kubernetes-Binaries-ISO Value: http://10.10.13.10:8080/client/#/iso/192d3383-74a4-4969-8f37-5af00aa90b95?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28652 data item (항목) 사용 가능 조회 Zone: 13-Zone
+														28653 group (그룹) 사용 가능 조회 Zone: 13-Zone
+															28654 group (그룹) Description: 사용 가능 조회 Zone: 13-Zone
+													28655 data item (항목) None
+														28656 group (그룹) None
+													28657 data item (항목) x86_64
+														28658 group (그룹) x86_64
+													28659 data item (항목) 0.96 GiB
+														28660 group (그룹) 0.96 GiB
+													28661 data item (항목) system
+														28662 group (그룹) system
+															28663 hyperlink (링크) system Value: http://10.10.13.10:8080/client/#/account?name=system&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28664 data item (항목) double-left double-right caret-up caret-down
+														28665 button (단추) double-left
+															28666 image (그래픽) double-left
+														28667 button (단추) double-right
+															28668 image (그래픽) double-right
+														28669 button (단추) caret-up
+															28670 image (그래픽) caret-up
+														28671 button (단추) caret-down
+															28672 image (그래픽) caret-down
+													28673 data item (항목)
+												28674 data item (행)
+													28675 data item (항목) Rocky-10.0-x86_64-dvd1.iso
+														28676 hyperlink (링크) Rocky-10.0-x86_64-dvd1.iso Value: http://10.10.13.10:8080/client/#/iso/5836b8f6-9336-4766-8f77-e39218f6e826?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28677 data item (항목) 사용 가능 조회 Zone: 13-Zone
+														28678 group (그룹) 사용 가능 조회 Zone: 13-Zone
+															28679 group (그룹) Description: 사용 가능 조회 Zone: 13-Zone
+													28680 data item (항목) Rocky Linux 9
+														28681 group (그룹) Rocky Linux 9
+													28682 data item (항목) x86_64
+														28683 group (그룹) x86_64
+													28684 data item (항목) 7.13 GiB
+														28685 group (그룹) 7.13 GiB
+													28686 data item (항목) admin
+														28687 group (그룹) admin
+															28688 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28689 data item (항목) double-left double-right caret-up caret-down
+														28690 button (단추) double-left
+															28691 image (그래픽) double-left
+														28692 button (단추) double-right
+															28693 image (그래픽) double-right
+														28694 button (단추) caret-up
+															28695 image (그래픽) caret-up
+														28696 button (단추) caret-down
+															28697 image (그래픽) caret-down
+													28698 data item (항목)
+												28699 data item (행)
+													28700 data item (항목) Windows Server 2025 x86_64 DVD
+														28701 hyperlink (링크) Windows Server 2025 x86_64 DVD Value: http://10.10.13.10:8080/client/#/iso/7a3959a8-a533-4bd9-a009-6bce3efe61d9?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28702 data item (항목) 사용 가능 조회 Zone: 13-Zone
+														28703 group (그룹) 사용 가능 조회 Zone: 13-Zone
+															28704 group (그룹) Description: 사용 가능 조회 Zone: 13-Zone
+													28705 data item (항목) Windows Server 2025 (64-bit)
+														28706 group (그룹) Windows Server 2025 (64-bit)
+													28707 data item (항목) x86_64
+														28708 group (그룹) x86_64
+													28709 data item (항목) 7.59 GiB
+														28710 group (그룹) 7.59 GiB
+													28711 data item (항목) admin
+														28712 group (그룹) admin
+															28713 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28714 data item (항목) double-left double-right caret-up caret-down
+														28715 button (단추) double-left
+															28716 image (그래픽) double-left
+														28717 button (단추) double-right
+															28718 image (그래픽) double-right
+														28719 button (단추) caret-up
+															28720 image (그래픽) caret-up
+														28721 button (단추) caret-down
+															28722 image (그래픽) caret-down
+													28723 data item (항목)
+												28724 data item (행)
+													28725 data item (항목) VirtIO Windows Driver 0.1.302
+														28726 hyperlink (링크) VirtIO Windows Driver 0.1.302 Value: http://10.10.13.10:8080/client/#/iso/ca2894d4-2ca0-4027-ace7-6e78a096fad4?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28727 data item (항목) 사용 가능 조회 Zone: 13-Zone
+														28728 group (그룹) 사용 가능 조회 Zone: 13-Zone
+															28729 group (그룹) Description: 사용 가능 조회 Zone: 13-Zone
+													28730 data item (항목) None
+														28731 group (그룹) None
+													28732 data item (항목) x86_64
+														28733 group (그룹) x86_64
+													28734 data item (항목) 0.82 GiB
+														28735 group (그룹) 0.82 GiB
+													28736 data item (항목) admin
+														28737 group (그룹) admin
+															28738 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28739 data item (항목) double-left double-right caret-up caret-down
+														28740 button (단추) double-left
+															28741 image (그래픽) double-left
+														28742 button (단추) double-right
+															28743 image (그래픽) double-right
+														28744 button (단추) caret-up
+															28745 image (그래픽) caret-up
+														28746 button (단추) caret-down
+															28747 image (그래픽) caret-down
+													28748 data item (항목)
+												28749 data item (행)
+													28750 data item (항목) ABLESTACK-Diplo-v4.2.1.iso
+														28751 hyperlink (링크) ABLESTACK-Diplo-v4.2.1.iso Value: http://10.10.13.10:8080/client/#/iso/367c88cb-4947-452f-9429-54a19885adf4?isoreturn={%22isofilter%22:%22all%22,%22filter%22:%22all%22,%22page%22:%221%22,%22pagesize%22:%2220%22,%22isoowner%22:%22[%5C%226fb85c33-bd56-11f1-b573-002481560363%5C%22,%5C%225da3668a-bd56-11f1-b573-002481560363%5C%22,%5C%22Admin%5C%22,%5C%22admin%5C%22,%5C%2247178e2f-bd56-11f1-b573-002481560363%5C%22,%5C%22%5C%22,false,true,[%5C%22arch%5C%22,%5C%22bootable%5C%22,%5C%22hypervisor%5C%22,%5C%22imagestoreid%5C%22,%5C%22ispublic%5C%22,%5C%22isready%5C%22,%5C%22name%5C%22,%5C%22oscategoryid%5C%22,%5C%22storageid%5C%22,%5C%22tags%5C%22,%5C%22userdataid%5C%22,%5C%22zoneid%5C%22]]%22}&isoowner=[%226fb85c33-bd56-11f1-b573-002481560363%22,%225da3668a-bd56-11f1-b573-002481560363%22,%22Admin%22,%22admin%22,%2247178e2f-bd56-11f1-b573-002481560363%22,%22%22,false,true,[%22arch%22,%22bootable%22,%22hypervisor%22,%22imagestoreid%22,%22ispublic%22,%22isready%22,%22name%22,%22oscategoryid%22,%22storageid%22,%22tags%22,%22userdataid%22,%22zoneid%22]]
+													28752 data item (항목) 사용 가능 조회 Zone: 13-Zone
+														28753 group (그룹) 사용 가능 조회 Zone: 13-Zone
+															28754 group (그룹) Description: 사용 가능 조회 Zone: 13-Zone
+													28755 data item (항목) Ubuntu 24.04 LTS
+														28756 group (그룹) Ubuntu 24.04 LTS
+													28757 data item (항목) x86_64
+														28758 group (그룹) x86_64
+													28759 data item (항목) 22.46 GiB
+														28760 group (그룹) 22.46 GiB
+													28761 data item (항목) admin
+														28762 group (그룹) admin
+															28763 hyperlink (링크) admin Value: http://10.10.13.10:8080/client/#/account?name=admin&domainid=47178e2f-bd56-11f1-b573-002481560363&dataView=true
+													28764 data item (항목) double-left double-right caret-up caret-down
+														28765 button (단추) double-left
+															28766 image (그래픽) double-left
+														28767 button (단추) double-right
+															28768 image (그래픽) double-right
+														28769 button (단추) caret-up
+															28770 image (그래픽) caret-up
+														28771 button (단추) caret-down
+															28772 image (그래픽) caret-down
+													28773 data item (항목)
+											28457 list (LIST)
+												28458 list item (목록 항목) 전체 8 개 항목 중 1-8 표시
+												28459 list item (목록 항목) (disabled) 이전 페이지 Description: 이전 페이지
+													28460 button (단추) (disabled) left
+														28461 image (그래픽) left
+												28774 list item (목록 항목) 1 Description: 1
+													28775 text (텍스트) 1
+												28464 list item (목록 항목) (disabled) 다음 페이지 Description: 다음 페이지
+													28465 button (단추) (disabled) right
+														28466 image (그래픽) right
+												28467 list item (목록 항목) 20 / 쪽
+													28468 group (그룹)
+														28469 group (그룹)
+															28470 combo box (콤보 상자) ID: rc_select_5
+															28471 text (텍스트) 20 / 쪽
+										27291 group (섹션 바닥글)
+										27381 text (경고)
+											27382 image (그래픽) exclamation-circle
+											27383 text (텍스트) 조치가 필요한 경보
+											27384 text (텍스트) (1건)
+											27385 text (텍스트) -
+											27386 text (텍스트) 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+											27387 button (단추) 세부 경보 내용 확인
+											27388 button (단추) 경보 규칙으로 이동
+											27389 button (단추) 닫기
+												27390 image (그래픽) close

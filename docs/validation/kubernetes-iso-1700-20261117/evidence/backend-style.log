@@ -1,0 +1,24 @@
+[INFO] Scanning for projects...
+[WARNING]
+[WARNING] Some problems were encountered while building the effective model for org.apache.cloudstack:cloud-plugin-hypervisor-kvm:jar:4.23.0.0
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.json:json:jar -> duplicate declaration of version (?) @ line 130, column 21
+[WARNING]
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING]
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING]
+[INFO]
+[INFO] --< org.apache.cloudstack:cloud-plugin-integrations-kubernetes-service >--
+[INFO] Building Apache CloudStack Plugin - Kubernetes Service 4.23.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-checkstyle-plugin:3.6.0:check (default-cli) @ cloud-plugin-integrations-kubernetes-service ---
+[INFO] Starting audit...
+Audit done.
+[INFO] You have 0 Checkstyle violations.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.061 s
+[INFO] Finished at: 2026-11-17T11:17:51+09:00
+[INFO] ------------------------------------------------------------------------

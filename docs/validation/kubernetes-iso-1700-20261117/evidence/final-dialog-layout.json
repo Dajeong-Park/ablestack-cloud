@@ -1,0 +1,29 @@
+[
+  {
+    "theme": "light",
+    "viewport": 390,
+    "width": 366,
+    "overflow": false
+  },
+  {
+    "background": "rgb(34, 40, 47)",
+    "overflow": false,
+    "theme": "dark",
+    "viewport": 390,
+    "width": 366
+  },
+  {
+    "background": "rgb(34, 40, 47)",
+    "overflow": false,
+    "theme": "dark",
+    "viewport": 768,
+    "width": 720
+  },
+  {
+    "background": "rgb(34, 40, 47)",
+    "overflow": false,
+    "theme": "dark",
+    "viewport": 1280,
+    "width": 720
+  }
+]

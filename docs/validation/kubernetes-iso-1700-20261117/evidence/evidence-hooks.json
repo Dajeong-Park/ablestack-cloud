@@ -1,0 +1,154 @@
+{
+  "files": [
+    "docs/validation/kubernetes-iso-1700-20261117/README.ko.md",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-after-metadata-refresh.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-after-metadata-refresh.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-allowed-update.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-delete-allowed-baseline.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-delete-revoked.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-delete-revoked.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-delete-revoked.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-denial-parent-child-preserved.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-read-revoked-blocked.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-read-revoked-blocked.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-update-revoked.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-update-revoked.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/acl-update-revoked.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/atomic-conflict-corrected.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/atomic-conflict-corrected.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/backend-deployment.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/backend-patch.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/backend-style.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/backend-tests.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/browser-cleanup.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/build-boundary.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/ci-comparison.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/concurrent-change-detected.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/delete-retry-success-list.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/deleted-child-iso-zero.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/deployment-result-correction-1.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/deployment-result-first.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/deployment-result.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-catalog-preserved.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-catalog.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-delete-dark-1280.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-delete-dark-390.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-delete-dark-768.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-delete-light-390.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-dialog-layout.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-public-ip-returned.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-reconciled-reopen.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-test-accounts-zero.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-test-catalog-zero.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-test-isos-zero.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-test-networks-zero.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-test-roles-zero.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-test-vms-zero.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-ui-inventory.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-uncertain-selection-after-reload.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/final-uncertain-selection-after-reload.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/fixture-cleanup-runtime-final.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/full-ui-lint.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/iso-detached-success.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/iso-in-use-delete-trace.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/iso-in-use-parent-preserved.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/iso-in-use-parent-preserved.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/lost-delete-reconciled-search-return.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/lost-delete-reconciled-search-return.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/lost-delete-response-blocked.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/lost-delete-response-blocked.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/lost-delete-response-case.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/managed-fixture-error.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/original-clusters-preserved.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/provider-error.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/provider-issue.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/reference-blocked-dark.jpg",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/reference-blocked-dark.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/referenced-disabled-success.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/regression-canonical.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/regression-operating.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/resource-ledger.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/runtime-verification.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/scoped-hooks.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/scoped-hooks.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/synthetic-incomplete-reference-blocked.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/synthetic-reference-403-blocked.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/synthetic-reference-503-blocked.log",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/test-summary.json",
+    "docs/validation/kubernetes-iso-1700-20261117/evidence/ui-build-result.json"
+  ],
+  "results": [
+    {
+      "hook": "oxipng",
+      "exit": 0
+    },
+    {
+      "hook": "insert-license",
+      "exit": 0
+    },
+    {
+      "hook": "check-case-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-illegal-windows-names",
+      "exit": 0
+    },
+    {
+      "hook": "check-merge-conflict",
+      "exit": 0
+    },
+    {
+      "hook": "check-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "check-vcs-permalinks",
+      "exit": 0
+    },
+    {
+      "hook": "destroyed-symlinks",
+      "exit": 0
+    },
+    {
+      "hook": "detect-aws-credentials",
+      "exit": 0
+    },
+    {
+      "hook": "detect-private-key",
+      "exit": 0
+    },
+    {
+      "hook": "end-of-file-fixer",
+      "exit": 0
+    },
+    {
+      "hook": "fix-byte-order-marker",
+      "exit": 0
+    },
+    {
+      "hook": "forbid-submodules",
+      "exit": 0
+    },
+    {
+      "hook": "mixed-line-ending",
+      "exit": 0
+    },
+    {
+      "hook": "trailing-whitespace",
+      "exit": 0
+    },
+    {
+      "hook": "gitleaks",
+      "exit": 0
+    },
+    {
+      "hook": "codespell",
+      "exit": 0
+    },
+    {
+      "hook": "markdownlint",
+      "exit": 0
+    }
+  ]
+}

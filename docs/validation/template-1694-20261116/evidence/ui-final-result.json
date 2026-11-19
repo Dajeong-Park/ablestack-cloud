@@ -1,0 +1,440 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "cases": [
+    {
+      "case": "UI01",
+      "result": "PASS",
+      "check": "final app.f55c66b5 renders template detail with uploaded icon",
+      "heroImageCount": 1
+    },
+    {
+      "case": "UI02",
+      "result": "PASS",
+      "check": "actual uploaded icon24 + comment22 + name328 within384; keyboard focus and pointer hover show full original name"
+    },
+    {
+      "case": "UI03",
+      "result": "PASS",
+      "check": "comment link opens the original template comments tab and own QA marker"
+    },
+    {
+      "case": "UI04",
+      "result": "PASS",
+      "check": "48 rows × light/dark ×1440/1280/810/390; viewport innerWidth verified; one-line name and <=24px icon; no geometry failures"
+    },
+    {
+      "case": "UI05",
+      "result": "PASS",
+      "check": "ISO8 and VM103 first20 IDs/names preserved; VNF0; template-specific class absent; VM detail heading rendered"
+    },
+    {
+      "case": "UI06",
+      "result": "PASS",
+      "check": "QA icon and annotation deleted via UI; template48 IDs/name/state/OS/arch/type preserved; original Ubuntu icon restored"
+    }
+  ],
+  "templateRowsPreserved": true,
+  "rows": [
+    {
+      "arch": "x86_64",
+      "id": "6a8ad0f8-ccf0-429d-a1eb-d7fa2f6ec669",
+      "name": "systemvmtemplate-x86_64-kvm-Europa-202609091134",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "ad371aa1-504d-41ef-8de8-bc99eef9594c",
+      "name": "Rocky9",
+      "os": "Rocky Linux 9",
+      "state": "사용 가능",
+      "type": "USER"
+    },
+    {
+      "arch": "x86_64",
+      "id": "e07d9ce2-92ef-43d5-95bd-38c7a95c026b",
+      "name": "Windows Server 2025 x86_64 Base Image",
+      "os": "Windows Server 2025 (64-bit)",
+      "state": "사용 가능",
+      "type": "USER"
+    },
+    {
+      "arch": "x86_64",
+      "id": "3eacdc88-f0e8-40af-9a01-073670449bfb",
+      "name": "Europa-SystemVM-248653b58920-20261021",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "c16a3592-dbab-49ae-8006-5230b4a73898",
+      "name": "Europa-SystemVM-1442-15ea52315437-20261022",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "c83b4e03-272a-4c51-a4a0-cf93cd758501",
+      "name": "Europa-SystemVM-1443-b3dbcd8c3790-20261022",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "2a8fa5b1-faac-4576-a2cd-14c1938bebd8",
+      "name": "Europa-SystemVM-1443-static-cf5351e05570-20261023",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "f6ae443d-9965-4f86-bd22-043c94dbcae6",
+      "name": "Europa-SystemVM-1443-observation-3214dfed5c93-20261023",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "3854fd59-b92b-4f72-a6e3-f64296345c0a",
+      "name": "Europa-SystemVM-1444-config-20261024",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "c0dea1a6-14f8-441d-a308-0f1571d22931",
+      "name": "Europa-SystemVM-1444-nvme-identity-20261024",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "9d08b23b-4b06-4f24-9588-6bccbbbafe1f",
+      "name": "Europa-SystemVM-1445-preflight-20261024",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "c408e951-89a0-42f3-8075-a5e4dd3f9bfa",
+      "name": "Europa-SystemVM-1448-network-20261026",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "a567da21-34bb-4989-95f6-22e7a88fbaef",
+      "name": "Windows-Server-2025-x86-64-Cloud-Image.qcow2",
+      "os": "Windows Server 2025 (64-bit)",
+      "state": "사용 가능",
+      "type": "USER"
+    },
+    {
+      "arch": "x86_64",
+      "id": "d5b4c21d-aae5-46ab-9c01-57f8833b6af6",
+      "name": "Europa-SystemVM-1450-nfs-posix-20261027",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "다운로드/업로드 실패",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "ee2be8d7-6b18-417b-b2a7-a52c7bc14758",
+      "name": "Europa-SystemVM-1450-nfs-posix-sha256",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "dc9b8417-2ed3-4709-a880-75d9890014f8",
+      "name": "Europa-SystemVM-1450-deferred-posix-r4",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "001babbd-3064-4806-9b99-58819da17eb2",
+      "name": "Europa-SystemVM-1451-nfs-idmapping-20261027",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "97e5d8ff-4c4d-4524-9bb1-543020957f7c",
+      "name": "Europa-SystemVM-1451-bootstrap-20261028-r4",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "8754cfc3-811c-4309-95ec-c8aaf66854c8",
+      "name": "Europa-SystemVM-1452-posix-20261028-r1",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "c4c9bb14-2279-4332-b794-e388159d11a7",
+      "name": "Europa-SystemVM-1453-inheritance-20261029-r1",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "a58eb2fc-d0bd-4fe7-90c4-d0fa8a61b53f",
+      "name": "Europa-SystemVM-1453-inheritance-20261029-r2",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "d7bd9659-0507-4daf-b066-0870e1b1fb8b",
+      "name": "Epic1438-1453-AD-Base-Debian12-r2",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "USER"
+    },
+    {
+      "arch": "x86_64",
+      "id": "996873e8-06eb-4576-a621-1938caa47571",
+      "name": "Europa-SystemVM-1453-inheritance-20261030-r3",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "35e94228-f5c9-4add-900c-64a476cb3069",
+      "name": "Europa-SystemVM-1453-AD-20261030-r4",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "01ba45ea-5399-43ab-a557-5a6408cfacfd",
+      "name": "Europa-SystemVM-1453-AD-20261030-r5",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "01fce13f-9941-43cf-8cd8-32fbdd116f30",
+      "name": "Europa-SystemVM-1453-Winbind-20261031-r6",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "7778f99f-753d-466f-ba2b-bfe230cffd72",
+      "name": "Europa-SystemVM-1454-creation-20261031-r2",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "e3d6c230-c4f3-4570-b70f-e5512ff61222",
+      "name": "Europa-SystemVM-1456-fixed-identity-20261101",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "다운로드/업로드 실패",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "d2fd805e-2130-4489-9599-960d9c4c5bd1",
+      "name": "Europa-SystemVM-1458-capacity-20261103",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "785174bf-8307-4bfc-b6a4-c1a82d329a77",
+      "name": "Europa-SystemVM-1459-boot-20261103",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "cbf05dba-47eb-40d9-b9f1-b6768eb3fc30",
+      "name": "Europa-SystemVM-1459-snapshotid-20261103",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "812855e7-af75-44f9-9cde-9ae4ff5ca240",
+      "name": "Europa-SystemVM-1460-client2-7dd8406-20261105",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "2bd1e6f7-204f-4bc7-a626-0a99409b60d1",
+      "name": "Europa-SystemVM-1460-client4-0fff973-20261105",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "4a0178ad-4508-4457-90f7-31a8b3e225e1",
+      "name": "winvm",
+      "os": "Windows 11 (64-bit)",
+      "state": "사용 가능",
+      "type": "USER"
+    },
+    {
+      "arch": "x86_64",
+      "id": "ca22fbb3-e7e8-41c7-8a13-fcd7c560561c",
+      "name": "Europa-SystemVM-1462-restore2-c6c067d",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "ba1eb406-9fa9-417a-aef7-6a25d2a3aa9a",
+      "name": "Europa-SystemVM-1462-parent-2bafdcd",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "c82ce724-7b1f-4479-bb0c-4e73824a0c10",
+      "name": "Europa-SystemVM-1462-binding-421f410f",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "2924ccf5-efa6-4661-b09f-5e319f5585df",
+      "name": "Europa-SystemVM-1462-nfsref-fbba6c13",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "56fd5f0d-d7c2-4e72-8a60-dcba3171dba3",
+      "name": "epic1438-1464-compute-r2",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SHAREDFS"
+    },
+    {
+      "arch": "x86_64",
+      "id": "8629e9e2-2fd7-45f7-97e4-874a8f7098c2",
+      "name": "Europa-SharedFS-1465-posixacl6-20261110",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SHAREDFS"
+    },
+    {
+      "arch": "x86_64",
+      "id": "f06cf5d8-dbc1-4e6c-b4de-c90c51699c14",
+      "name": "issue1436-rocky9-uefi-verified",
+      "os": "Rocky Linux 9",
+      "state": "사용 가능",
+      "type": "USER"
+    },
+    {
+      "arch": "x86_64",
+      "id": "35fa8b86-943e-44b7-8a5c-ffc2bb825550",
+      "name": "Epic1438-SharedFS-regular-20261111",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SHAREDFS"
+    },
+    {
+      "arch": "x86_64",
+      "id": "ff842161-b253-4006-954c-e7e90e2ad724",
+      "name": "Europa-SystemVM-8ad2d1e-20261112",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "e0dd091f-82ae-4a32-a19d-d7d95f0d950d",
+      "name": "Europa-SharedFS-8ad2d1e-20261112",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SHAREDFS"
+    },
+    {
+      "arch": "x86_64",
+      "id": "1feac62d-67e0-499b-94f1-eb36651ad6f8",
+      "name": "Europa-SystemVM-4.23-T34-20261113",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "8f89a05f-45b0-495f-b437-c8e002464992",
+      "name": "SystemVM Template (KVM)",
+      "os": "Debian GNU/Linux 5.0 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "460c3e5f-a873-4ca1-8242-a96d92eae233",
+      "name": "Europa-SystemVM-4.21-ISO1667-Recovery-20261115",
+      "os": "Debian GNU/Linux 12 (64-bit)",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    },
+    {
+      "arch": "x86_64",
+      "id": "1cce97d2-a4b6-49c7-871a-3f52d70ce858",
+      "name": "Europa-SystemVM-4.23-ISO1667-20261115",
+      "os": "Ubuntu 24.04 LTS",
+      "state": "사용 가능",
+      "type": "SYSTEM"
+    }
+  ]
+}

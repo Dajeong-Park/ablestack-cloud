@@ -1,0 +1,37 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "baseJarSha256": "a130cccd3c545afc44afcd641b22ef49af99bbc3b83e8ffbee1c3a0af4852443",
+  "classes": {
+    "com/cloud/kubernetes/version/KubernetesVersionManagerImpl.class": {
+      "before": "83f7c3c8cc89676304d3b4b2c0d96158f9809a22b8fe7e3e3e43629a0b59cb0c",
+      "after": "4e1f42b68021294999be149a11d5644fe5d0a35c46431c8b32925da5a6ab2554",
+      "major": 55,
+      "methods": "registerKubernetesVersionIsoForUpload,registerKubernetesSupportedVersionForPostUpload"
+    },
+    "org/apache/cloudstack/api/command/admin/kubernetes/version/GetUploadParamsForKubernetesSupportedVersionCmd.class": {
+      "before": "0f74059e14cff2070ae4b53913e0e192df09da72ddec2237c9c1209af212de07",
+      "after": "86086eded59e34f37262f791c4f8b4b4010beca5d64308e8eacabf5dc6d9ed73",
+      "major": 55,
+      "methods": "getArch,execute"
+    }
+  },
+  "productHead": "722613a3c8c875b3706a5ed9fa4436cb13e0c09e",
+  "patchedJarSha256": "8f977468de9fb0b15f2e8652dfc5dbdb687e86388485b75cbbd3b57c37bd7909"
+}

@@ -1,0 +1,28 @@
+{
+  "baseJarSha256": "8f977468de9fb0b15f2e8652dfc5dbdb687e86388485b75cbbd3b57c37bd7909",
+  "productHead": "ff63d35973a0c3bb2587b68159bb8fef12a14c62",
+  "classes": {
+    "com/cloud/kubernetes/version/KubernetesVersionManagerImpl.class": {
+      "before": "4e1f42b68021294999be149a11d5644fe5d0a35c46431c8b32925da5a6ab2554",
+      "after": "379db89c24d4ba032032cd01becae2737ba506d5a4e3f2a9fc72b3b3cf37fe54",
+      "major": 55,
+      "methods": "listKubernetesSupportedVersions"
+    },
+    "org/apache/cloudstack/api/command/user/kubernetes/version/ListKubernetesSupportedVersionsCmd.class": {
+      "before": "bff766e5c678e66a276133e53aa8a1524b9f564634425613672ebc934c9c342a",
+      "after": "b7a75b28c6ba45a2d24e57a0d7ccdb6d80a3de6949f8d98b630c857d81ea6d4c",
+      "major": 55,
+      "methods": "getSortKey,getSortOrder"
+    },
+    "com/cloud/kubernetes/version/KubernetesVersionCatalog$1.class": {
+      "before": null,
+      "after": "278da3f4be7e15139dda1a3e20abb6ee28e14e2f2a90bca1b882f20ae16504da",
+      "major": 55
+    },
+    "com/cloud/kubernetes/version/KubernetesVersionCatalog.class": {
+      "before": null,
+      "after": "587adf54282d95de086193aa4a0e9742e82d39726aab69a3ea6b77f4428bf5f4",
+      "major": 55
+    }
+  }
+}

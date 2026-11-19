@@ -1,0 +1,15 @@
+{
+  "files": [
+    {
+      "name": "kubernetes-v1.34.9-mold-cks-amd64-r1-b55ee065.iso",
+      "sha256BeforeDelete": "9434a2fc7a0f26999f5c623d1140d013dc38a1488ab4adc6f12c5f2f23e43678",
+      "httpStatusAfterDelete": 404
+    },
+    {
+      "name": "kubernetes-v1.34.12-mold-cks-amd64-r1-b55ee065.iso",
+      "sha256BeforeDelete": "304235dd49d7dfd39f2299436e4238a57354244c0132a26b97a1c91116278f14",
+      "httpStatusAfterDelete": 404
+    }
+  ],
+  "directoryAbsent": true
+}

@@ -1,0 +1,58 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "results": [
+    {
+      "id": "5da3668a-bd56-11f1-b573-002481560363",
+      "text": "Root AdminAdminDefault root admin role정상"
+    },
+    {
+      "id": "5da3706e-bd56-11f1-b573-002481560363",
+      "text": "Resource AdminResourceAdminDefault resource admin role정상"
+    },
+    {
+      "id": "5da377cd-bd56-11f1-b573-002481560363",
+      "text": "Domain AdminDomainAdminDefault domain admin role정상"
+    },
+    {
+      "id": "5da37de6-bd56-11f1-b573-002481560363",
+      "text": "UserUserDefault user role정상"
+    },
+    {
+      "id": "60f6159f-bd56-11f1-b573-002481560363",
+      "text": "Read-Only Admin - DefaultAdminDefault read-only admin role정상"
+    },
+    {
+      "id": "60f61c91-bd56-11f1-b573-002481560363",
+      "text": "Read-Only User - DefaultUserDefault read-only user role정상"
+    },
+    {
+      "id": "60f623a9-bd56-11f1-b573-002481560363",
+      "text": "Support Admin - DefaultAdminDefault support admin role정상"
+    },
+    {
+      "id": "60f62932-bd56-11f1-b573-002481560363",
+      "text": "Support User - DefaultUserDefault support user role정상"
+    },
+    {
+      "id": "ed343b96-45d7-44be-aeea-59087fe25d1b",
+      "text": "Project Kubernetes Service RoleUserProject Kubernetes Service Role정상"
+    }
+  ]
+}

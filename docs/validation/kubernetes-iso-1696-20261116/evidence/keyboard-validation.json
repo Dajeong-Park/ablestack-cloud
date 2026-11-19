@@ -1,0 +1,30 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "enterValidation": true,
+  "messages": [
+    "1.11.0 이상인 숫자 버전을 입력하세요. 각 숫자는 2147483647 이하여야 합니다.",
+    "http, https 또는 file 주소와 .iso·압축 ISO·.metalink 경로를 입력하세요. 공백이나 잘못된 인코딩은 사용할 수 없습니다."
+  ],
+  "focus": {
+    "label": "쿠버네티스 버전 추가",
+    "tag": "BUTTON",
+    "text": "쿠버네티스 버전 추가"
+  }
+}

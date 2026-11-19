@@ -1,0 +1,319 @@
+Accessibility document subtree; unrelated Chrome toolbar omitted.
+								27057 document (문서) 쿠버네티스 ISO - ABLESTACK-Mold Value: http://10.10.13.10:8080/client/#/kubernetesiso/29ce330b-a632-445e-b687-a6eacffa5523?kisoreturn={%22page%22:%221%22,%22pagesize%22:%2220%22,%22kisoowner%22:%22a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57%22}&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57 ID: RootWebArea
+									27079 group (그룹)
+										27521 image (라벨이 없는 그래픽)
+										27083 menu (메뉴)
+											27084 menu item (메뉴 항목) dashboard 대시보드
+												27085 hyperlink (링크) dashboard 대시보드 Value: http://10.10.13.10:8080/client/#/dashboard
+													27086 image (그래픽) dashboard
+											27087 group (그룹)
+												27088 image (그래픽) cloud
+												27089 group (그룹)
+													27090 text (텍스트) 컴퓨트
+											27091 group (그룹)
+												27092 image (그래픽) hdd
+												27093 group (그룹)
+													27094 text (텍스트) 스토리지
+											27095 group (그룹)
+												27096 image (그래픽) wifi
+												27097 group (그룹)
+													27098 text (텍스트) 네트워크
+											27099 group (그룹)
+												27100 image (그래픽) picture
+												27101 group (그룹)
+													27102 text (텍스트) 이미지
+											27522 list (LIST) ID: sub_menu_4_$$_/image-popup
+												27523 menu item (메뉴 항목) save 템플릿
+													27524 hyperlink (링크) save 템플릿 Value: http://10.10.13.10:8080/client/#/template
+														27525 image (그래픽) save
+												27526 menu item (메뉴 항목) usb ISO
+													27527 hyperlink (링크) usb ISO Value: http://10.10.13.10:8080/client/#/iso
+														27528 image (그래픽) usb
+												27529 menu item (메뉴 항목) 쿠버네티스 ISO
+													27530 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso
+														27531 image (그래픽)
+											27103 group (그룹)
+												27104 image (그래픽) lock
+												27105 group (그룹)
+													27106 text (텍스트) 키 관리
+											27107 menu item (메뉴 항목) schedule 이벤트
+												27108 hyperlink (링크) schedule 이벤트 Value: http://10.10.13.10:8080/client/#/event
+													27109 image (그래픽) schedule
+											27110 menu item (메뉴 항목) project 프로젝트
+												27111 hyperlink (링크) project 프로젝트 Value: http://10.10.13.10:8080/client/#/project
+													27112 image (그래픽) project
+											27113 menu item (메뉴 항목) idcard 역할
+												27114 hyperlink (링크) idcard 역할 Value: http://10.10.13.10:8080/client/#/role
+													27115 image (그래픽) idcard
+											27116 menu item (메뉴 항목) team 계정
+												27117 hyperlink (링크) team 계정 Value: http://10.10.13.10:8080/client/#/account
+													27118 image (그래픽) team
+											27119 menu item (메뉴 항목) block 도메인
+												27120 hyperlink (링크) block 도메인 Value: http://10.10.13.10:8080/client/#/domain
+													27121 image (그래픽) block
+											27122 group (그룹)
+												27123 image (그래픽) bank
+												27124 group (그룹)
+													27125 text (텍스트) 인프라스트럭쳐
+											27126 group (그룹)
+												27127 image (그래픽) shopping
+												27128 group (그룹)
+													27129 text (텍스트) 서비스 오퍼링
+											27130 group (그룹)
+												27131 image (그래픽) setting
+												27132 group (그룹)
+													27133 text (텍스트) 구성
+											27134 menu item (메뉴 항목) appstore-add 확장
+												27135 hyperlink (링크) appstore-add 확장 Value: http://10.10.13.10:8080/client/#/extension
+													27136 image (그래픽) appstore-add
+											27137 group (그룹)
+												27138 image (그래픽) tool
+												27139 group (그룹)
+													27140 text (텍스트) 도구
+											27141 menu item (메뉴 항목) read API 문서
+												27142 hyperlink (링크) read API 문서 Value: http://10.10.13.10:8080/client/#/apidocs/
+													27143 image (그래픽) read
+										27144 group (섹션 헤더)
+											27145 text (텍스트) 페이지 스타일 설정
+											27146 button (단추) 닫기
+												27147 image (그래픽) close
+										27148 text (제목) 페이지 스타일 설정
+										27149 group (그룹)
+											27150 image (그래픽)
+											27151 radio button (라디오 단추) (selectable, settable, string)
+											27728 text (텍스트)
+											27712 image (그래픽) check
+										27153 group (그룹)
+											27154 image (그래픽)
+											27155 radio button (라디오 단추) (selectable, settable, string)
+											27713 text (텍스트)
+										27158 text (제목) 테마 색상
+										27159 group (그룹)
+											27160 radio button (라디오 단추) (selectable, settable, string)
+											27714 text (텍스트)
+											27162 image (그래픽) check
+										27163 group (그룹)
+											27164 radio button (라디오 단추) (selectable, settable, string)
+											27715 text (텍스트)
+										27166 group (그룹)
+											27167 radio button (라디오 단추) (selectable, settable, string)
+											27716 text (텍스트)
+										27169 group (그룹)
+											27170 radio button (라디오 단추) (selectable, settable, string)
+											27717 text (텍스트)
+										27172 group (그룹)
+											27173 radio button (라디오 단추) (selectable, settable, string)
+											27718 text (텍스트)
+										27175 group (그룹)
+											27176 radio button (라디오 단추) (selectable, settable, string)
+											27719 text (텍스트)
+										27178 group (그룹)
+											27179 radio button (라디오 단추) (selectable, settable, string)
+											27720 text (텍스트)
+										27181 group (그룹)
+											27182 radio button (라디오 단추) (selectable, settable, string)
+											27721 text (텍스트)
+										27184 separator (구분 기호)
+										27185 text (제목) 네비게이션 설정
+										27186 list item (목록 항목) 배경색
+											27187 text (텍스트) 배경색
+											27188 button (color picker) (settable, string) Value: 100% red 100% green 100% blue
+										27189 list item (목록 항목) 텍스트 색상
+											27190 text (텍스트) 텍스트 색상
+											27191 button (color picker) (settable, string) Value: 0% red 0% green 0% blue
+										27192 separator (구분 기호)
+										27193 text (경고)
+											27194 image (그래픽) exclamation-circle
+											27195 text (텍스트) 설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요.
+										27196 button (단추) download 세팅값 다운로드(json)
+											27197 image (그래픽) download
+										27198 button (단추) undo 기본값으로 재설정
+											27199 image (그래픽) undo
+										27200 group (섹션 헤더)
+											27542 image (그래픽) menu-fold
+											27202 text (텍스트) 프로젝트
+											27203 group (그룹)
+												27204 group (그룹)
+													27205 combo box (콤보 상자) (settable, string) 프로젝트 ID: project-selector-1
+													27206 image (그래픽) project
+													27207 text (텍스트) 기본 보기
+											27543 button (단추) 생성 down
+												27544 image (그래픽) down
+											27208 group (그룹)
+												27209 image (그래픽) translation
+											27210 button (단추) 알림
+												27211 image (그래픽) bell
+											27212 group (그룹)
+												27213 text (텍스트) AC
+												27214 text (텍스트) admin cloud
+										27215 group (기본)
+											27216 hyperlink (링크) home Value: http://10.10.13.10:8080/client/#/
+												27217 image (그래픽) home
+											27218 text (텍스트) /
+											27219 hyperlink (링크) 쿠버네티스 ISO Value: http://10.10.13.10:8080/client/#/kubernetesiso?page=1&pagesize=20&kisoowner=a99b2ac25447d347d51d82ea5db1453478f306b209ae3e516ca4dfa210610f57
+											27909 text (텍스트) /
+											27910 group (그룹)
+												27922 text (텍스트) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-
+											27912 hyperlink (링크) question-circle Value: http://docs.ablecloud.io/latest/plugins/cloudstack-kubernetes-service.html#kubernetes-supported-versions
+												27913 image (그래픽) question-circle
+											27914 button (단추) reload 업데이트
+												27923 image (그래픽) reload
+											27916 group (그룹)
+											27924 button (단추) down 작업
+												27925 image (그래픽) down
+											27918 group (그룹)
+												27919 image (그래픽)
+											27926 text (제목) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-
+											27927 text (텍스트) x86_64
+											27921 separator (구분 기호)
+											27928 text (텍스트) 버전 사용 설정
+											27929 text (텍스트) 사용 허용
+											27930 text (텍스트) 아이디
+											27931 group (그룹)
+												27932 button (단추) 아이디 복사
+													27933 image (그래픽) barcode
+											27934 group (그룹)
+												27935 hyperlink (링크) 29ce330b-a632-445e-b687-a6eacffa5523 Value: javascript:;
+											27936 text (텍스트) ISO 가용성
+											27937 group (그룹) Description: 다운로드/업로드 실패 Failed post download script: checksum "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46" didn't match the given value, "{SHA-256}0000000000000000000000000000000000000000000000000000000000000000" Secondary Storage: 실패 ISO 등록 상태: Allocated
+												27938 text (텍스트) 다운로드/업로드 실패
+												28030 text (텍스트) 조회한 ISO Zone 준비: 0/1
+												28031 text (텍스트) Failed post download script: checksum "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46" didn't match the given value, "{SHA-256}0000000000000000000000000000000000000000000000000000000000000000"
+												28032 text (텍스트) Secondary Storage: 실패
+												27939 button (단추) Zone에서 원인 확인
+											27940 text (텍스트) 등록 범위
+											27941 text (텍스트) 모든 Zone
+											27942 text (텍스트) 연결된 ISO
+											28033 hyperlink (링크) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ--Kubernetes-Binaries-ISO Value: http://10.10.13.10:8080/client/#/iso/ebdfe97a-e42e-418d-a072-f732bd9b1cf4
+											27944 text (텍스트) 생성일
+											27945 image (그래픽) calendar
+											27946 text (텍스트) 2026. 11. 17. 오후 1:37:05
+											27947 tab (Tab)
+												27948 group (그룹)
+													27949 tab item (탭 항목) (selectable) 상세 ID: rc-tabs-2-tab-details
+												27950 group (그룹)
+													27951 tab item (탭 항목) (selectable) Zone ID: rc-tabs-2-tab-zones
+												27952 group (그룹)
+													27953 tab item (탭 항목) (selectable) 이벤트 ID: rc-tabs-2-tab-events
+											27954 pane (탭 패널) 상세 ID: rc-tabs-2-panel-details
+												27955 list (LIST)
+													27956 list item (목록 항목) 이름 qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-
+														27957 text (텍스트) 이름
+														27958 text (텍스트)
+														27959 text (텍스트) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-
+													27960 list item (목록 항목) 아이디 29ce330b-a632-445e-b687-a6eacffa5523
+														27961 text (텍스트) 아이디
+														27962 group (그룹)
+															27963 button (단추) 복사 아이디
+																27964 image (그래픽) copy
+													27965 list item (목록 항목) 시맨틱 버전 1.36.74
+														27966 text (텍스트) 시맨틱 버전
+														27967 text (텍스트)
+														27968 text (텍스트) 1.36.74
+													27969 list item (목록 항목) 버전 사용 설정 사용 허용
+														27970 text (텍스트) 버전 사용 설정
+														27971 text (텍스트) 사용 허용
+													27972 list item (목록 항목) 등록 범위 모든 Zone
+														27973 text (텍스트) 등록 범위
+														27974 text (텍스트)
+														27975 text (텍스트) 모든 Zone
+													27976 list item (목록 항목) Zone ID —
+														27977 text (텍스트) Zone ID
+													27978 list item (목록 항목) 연결된 ISO qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ--Kubernetes-Binaries-ISO
+														27979 text (텍스트) 연결된 ISO
+														27980 text (텍스트)
+														28034 hyperlink (링크) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ--Kubernetes-Binaries-ISO Value: http://10.10.13.10:8080/client/#/iso/ebdfe97a-e42e-418d-a072-f732bd9b1cf4
+													27982 list item (목록 항목) 연결 ISO ID ebdfe97a-e42e-418d-a072-f732bd9b1cf4
+														27983 text (텍스트) 연결 ISO ID
+														27984 group (그룹)
+															27985 button (단추) 복사 연결 ISO ID
+																27986 image (그래픽) copy
+													27987 list item (목록 항목) ISO 가용성 다운로드/업로드 실패조회한 ISO Zone 준비: 0/1Failed post download script: checksum "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46" didn't match the given value, "{SHA-256}0000000000000000000000000000000000000000000000000000000000000000"Secondary Storage: 실패Zone에서 원인 확인
+														27988 text (텍스트) ISO 가용성
+														27989 group (그룹) Description: 다운로드/업로드 실패 Failed post download script: checksum "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46" didn't match the given value, "{SHA-256}0000000000000000000000000000000000000000000000000000000000000000" Secondary Storage: 실패 ISO 등록 상태: Allocated
+															27990 text (텍스트) 다운로드/업로드 실패
+															28035 text (텍스트) 조회한 ISO Zone 준비: 0/1
+															28036 text (텍스트) Failed post download script: checksum "{SHA-256}52f55567e16b6bce822fc62657a68c883ec738e6d11cb2b1d8f70c2bb09ddf46" didn't match the given value, "{SHA-256}0000000000000000000000000000000000000000000000000000000000000000"
+															28037 text (텍스트) Secondary Storage: 실패
+															27991 button (단추) Zone에서 원인 확인
+													27992 list item (목록 항목) ISO 등록 상태 할당됨
+														27993 text (텍스트) ISO 등록 상태
+														27994 text (텍스트)
+														27995 group (그룹)
+															27996 text (텍스트) 할당됨
+													27997 list item (목록 항목) CPU 아키텍처 x86_64
+														27998 text (텍스트) CPU 아키텍처
+														27999 text (텍스트)
+														28000 text (텍스트) x86_64
+													28001 list item (목록 항목) 최소 CPU 코어 2
+														28002 text (텍스트) 최소 CPU 코어
+														28003 text (텍스트)
+														28004 text (텍스트) 2
+													28005 list item (목록 항목) 최소 메모리(MB) 2048
+														28006 text (텍스트) 최소 메모리(MB)
+														28007 text (텍스트)
+														28008 text (텍스트) 2048
+													28009 list item (목록 항목) HA 지원 예
+														28010 text (텍스트) HA 지원
+														28011 text (텍스트)
+														28012 text (텍스트) 예
+													28013 list item (목록 항목) 오토스케일링 지원 예
+														28014 text (텍스트) 오토스케일링 지원
+														28015 text (텍스트)
+														28016 text (텍스트) 예
+													28017 list item (목록 항목) 직접 다운로드 아니오
+														28018 text (텍스트) 직접 다운로드
+														28019 text (텍스트)
+														28020 text (텍스트) 아니오
+													28021 list item (목록 항목) 생성일 2026. 11. 17. 오후 1:37:05
+														28022 text (텍스트) 생성일
+														28023 text (텍스트)
+														28024 text (텍스트) 2026. 11. 17. 오후 1:37:05
+													28025 list item (목록 항목) ISO URL http://10.10.13.10:8080/client/qa-kiso1701-20261117/ready.iso?case=style-value-style-value-style-value-style-value-style-value-style-value-style-value-style-value-style-value-style-value-
+														28026 text (텍스트) ISO URL
+														28027 group (그룹)
+															28028 button (단추) 복사 ISO URL
+																28029 image (그래픽) copy
+										27291 group (섹션 바닥글)
+										27381 text (경고)
+											27382 image (그래픽) exclamation-circle
+											27383 text (텍스트) 조치가 필요한 경보
+											27384 text (텍스트) (1건)
+											27385 text (텍스트) -
+											27386 text (텍스트) 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+											27387 button (단추) 세부 경보 내용 확인
+											27388 button (단추) 경보 규칙으로 이동
+											27389 button (단추) 닫기
+												27390 image (그래픽) close
+										28049 window (대화 상자) 쿠버네티스 버전 삭제 Secondary Actions: Raise
+											28050 document (문서)
+												28081 group (그룹)
+												28051 button (단추) Close
+													28052 image (그래픽) close
+												28053 text (텍스트) 쿠버네티스 버전 삭제
+												28054 group (그룹)
+													28055 list (LIST)
+														28056 list item (용어) 이름
+															28057 text (텍스트) 이름
+														28058 text (텍스트) qa-kiso1701-English-Long-Name-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-ABCDEFGHIJKLMNOPQRSTUVWXYZ-
+														28059 list item (용어) 시맨틱 버전
+															28060 text (텍스트) 시맨틱 버전
+														28061 text (텍스트) 1.36.74
+														28062 list item (용어) 아이디
+															28063 text (텍스트) 아이디
+														28064 text (텍스트) 29ce330b-a632-445e-b687-a6eacffa5523
+														28065 list item (용어) 상태
+															28066 text (텍스트) 상태
+														28067 text (텍스트) 사용 허용
+														28068 list item (용어) 연결 ISO ID
+															28069 text (텍스트) 연결 ISO ID
+														28070 text (텍스트) ebdfe97a-e42e-418d-a072-f732bd9b1cf4
+														28071 list item (용어) 삭제 참조
+															28072 text (텍스트) 삭제 참조
+														28073 text (텍스트) 현재 삭제를 차단하는 참조가 없습니다. 삭제 시 서버에서 다시 확인합니다.
+													28074 text (경고)
+														28075 image (그래픽) exclamation-circle
+														28076 text (텍스트) 이 버전과 연결된 Kubernetes 바이너리 ISO를 함께 삭제합니다. ISO 삭제에 실패하면 버전은 보존됩니다.
+												28077 button (단추) 취소
+												28078 button (단추) 업데이트
+												28080 button (단추) 삭제

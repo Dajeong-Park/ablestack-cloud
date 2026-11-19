@@ -1,0 +1,33 @@
+{
+  "agentJar": "cloud-agent-4.23.0.0.jar",
+  "secondaryJar": "cloud-secondary-storage-4.23.0.0.jar",
+  "secondarySha256": "a7c075a5936b2d7bf6a9e6453fc25d247ac0a7b33cdd91046469ca1e28ff27a3",
+  "cloudService": "active",
+  "cloudJarVersions": [
+    "cloud-framework-rest-4.23.0.0.jar",
+    "cloud-framework-extensions-4.23.0.0.jar",
+    "cloud-framework-ipc-4.23.0.0.jar",
+    "cloud-framework-jobs-4.23.0.0.jar",
+    "cloud-console-proxy-4.23.0.0.jar",
+    "cloud-framework-direct-download-4.23.0.0.jar",
+    "cloud-api-4.23.0.0.jar",
+    "cloud-engine-components-api-4.23.0.0.jar",
+    "cloud-framework-cluster-4.23.0.0.jar",
+    "cloud-framework-events-4.23.0.0.jar",
+    "cloud-framework-security-4.23.0.0.jar",
+    "cloud-secondary-storage-4.23.0.0.jar",
+    "cloud-framework-ca-4.23.0.0.jar",
+    "cloud-agent-4.23.0.0.jar",
+    "cloud-core-4.23.0.0.jar",
+    "cloud-utils-4.23.0.0.jar",
+    "cloud-engine-schema-4.23.0.0.jar",
+    "cloud-framework-managed-context-4.23.0.0.jar",
+    "cloud-framework-agent-lb-4.23.0.0.jar",
+    "cloud-engine-storage-configdrive-4.23.0.0.jar",
+    "cloud-framework-db-4.23.0.0.jar",
+    "cloud-server-4.23.0.0.jar",
+    "cloud-framework-kms-4.23.0.0.jar",
+    "cloud-framework-config-4.23.0.0.jar",
+    "cloud-engine-api-4.23.0.0.jar"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "sourceBase": "10150bdead45260b58313879d27402383b6b9bf8",
+  "productHead": "df0382b42e4a7e8607795474d5c4d8980914aa7b",
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "inputDelta": [
+    "src/views/image/UpdateKubernetesSupportedVersion.vue",
+    "src/utils/kubernetesIsoMutation.js",
+    "src/utils/kubernetesIsoModel.js",
+    "src/config/section/image.js",
+    "src/views/AutogenView.vue",
+    "public/locales/en.json",
+    "public/locales/ko_KR.json"
+  ],
+  "canonicalSourceHashes": {
+    "src/views/image/UpdateKubernetesSupportedVersion.vue": "bdac9bd03ea9117fb595252ba71e28d7c43ed4118491e24d351785f5833a92ba",
+    "src/utils/kubernetesIsoMutation.js": "a4731f38fea8ab7d4ce5fa5f2134bfffd0e299cf26af87fca884976119656a54",
+    "src/utils/kubernetesIsoModel.js": "98cd2f3840ffde25ad49bf94e37cdf13a114c7f938e990053fe4b414da626a37",
+    "src/config/section/image.js": "5356108b9950f34952676daf2948a3817c88414d62394c5910ab739009e55f35",
+    "src/views/AutogenView.vue": "722ff5904300767f919fcfa2968789b4e7cb79a2810c8113442d6dfa88bb4efa",
+    "public/locales/en.json": "5991300e9d9122752166f798b3d43e6b0ab40764f0d4ef91ef08fba2b66b2ec9",
+    "public/locales/ko_KR.json": "9da2ef6acdbb141c2451a27a47ff473a365358fcd303f63dfc42ae931adef5b2"
+  },
+  "operatingSourceHashes": {
+    "src/views/image/UpdateKubernetesSupportedVersion.vue": "bdac9bd03ea9117fb595252ba71e28d7c43ed4118491e24d351785f5833a92ba",
+    "src/utils/kubernetesIsoMutation.js": "a4731f38fea8ab7d4ce5fa5f2134bfffd0e299cf26af87fca884976119656a54",
+    "src/utils/kubernetesIsoModel.js": "98cd2f3840ffde25ad49bf94e37cdf13a114c7f938e990053fe4b414da626a37",
+    "src/config/section/image.js": "5356108b9950f34952676daf2948a3817c88414d62394c5910ab739009e55f35",
+    "src/views/AutogenView.vue": "1a5a6a9cfefee554121f993da899dd8b3b3c0667b6ad450cc208aa3f32247b33",
+    "public/locales/en.json": "2bae7225bddc979aebaa5e9f17706dd84e31fd0d77ac13a68aa93ffd4fa23f65",
+    "public/locales/ko_KR.json": "80eb18997e8c7742465705e0c2c11ade7e6b2f2a1a6a7cb8adea80581d417f6c"
+  },
+  "intentionalOperatingDifferences": [
+    "src/views/AutogenView.vue",
+    "public/locales/en.json",
+    "public/locales/ko_KR.json"
+  ]
+}

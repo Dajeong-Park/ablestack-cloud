@@ -1,0 +1,11 @@
+{
+  "returnCode": 0,
+  "seconds": 885.1,
+  "sourceHead": "826e5f0957add73f9fef04ac73dc3b63f1576602",
+  "inputDelta": [
+    "src/components/view/KubernetesIsoSearch.vue",
+    "public/locales/en.json",
+    "public/locales/ko_KR.json"
+  ],
+  "sameOperatingContext": true
+}

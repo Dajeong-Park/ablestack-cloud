@@ -1,0 +1,50 @@
+{
+  "baseline": {
+    "baseHead": "41430f68a87ddd2ad642f3d652ca67e12d3178bb",
+    "lintRun": 43887924186,
+    "failedHooks": [
+      "run oxipng...............................................................Failed",
+      "add license for all Markdown files.......................................Failed",
+      "add license for all properties files.....................................Failed",
+      "add license for all Shell files..........................................Failed",
+      "add license for all SQL files............................................Failed",
+      "add license for all Vue files............................................Failed",
+      "add license for all YAML files...........................................Failed",
+      "check that scripts with shebangs are executable..........................Failed",
+      "check for broken symlinks................................................Failed",
+      "fix end of files.........................................................Failed",
+      "fix utf-8 byte order marker..............................................Failed",
+      "mixed line ending........................................................Failed",
+      "trim trailing whitespace.................................................Failed",
+      "run codespell............................................................Failed",
+      "flake8...................................................................Failed",
+      "run markdownlint.........................................................Failed"
+    ],
+    "failedHookCount": 16,
+    "licenseRun": 43887923996,
+    "unapproved": 4077
+  },
+  "productHead": "052e9cd806318ad29a0a051d5a5f90c50f7b3c75",
+  "lint": {
+    "run": 43971488435,
+    "status": "COMPLETED",
+    "conclusion": "FAILURE",
+    "failedHookCount": 16,
+    "sameFailedHooks": true,
+    "changedPathDiagnostics": {}
+  },
+  "license": {
+    "run": 43971488513,
+    "unapproved": 4077,
+    "sameBaseline": true
+  },
+  "mergeable": true,
+  "documentHead": {
+    "head": "17982649fb98b4d36ad85f089a67fff4eb27c8ea",
+    "lintRun": 43975490923,
+    "failedHookCount": 16,
+    "sameFailedHooks": true,
+    "licenseRun": 43975490941,
+    "unapproved": 4077
+  }
+}

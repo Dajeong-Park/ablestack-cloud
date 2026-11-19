@@ -1,0 +1,67 @@
+{
+  "sourceBase": "41430f68a87ddd2ad642f3d652ca67e12d3178bb",
+  "productHead": "65256978e8f626c2ee7b45ec8e28591438bc7123",
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "inputDelta": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/components/view/InfoCard.vue",
+    "src/components/view/ListView.vue",
+    "src/components/view/ResourceView.vue",
+    "src/config/section/image.js",
+    "src/utils/kubernetesIsoModel.js",
+    "src/components/view/KubernetesIsoSummary.vue",
+    "src/components/widgets/KubernetesIsoListCell.vue",
+    "src/components/widgets/KubernetesIsoScope.vue",
+    "src/components/widgets/KubernetesIsoStatus.vue",
+    "src/utils/kubernetesIsoDetails.js",
+    "src/views/image/KubernetesIsoDetails.vue",
+    "src/views/image/KubernetesIsoZones.vue"
+  ],
+  "canonicalSourceHashes": {
+    "public/locales/en.json": "0c04e5ba0c9443a926c317493bea2f92048da298e40858bd2bb785922cf5f6bd",
+    "public/locales/ko_KR.json": "51c46225eee5df4db70b7b4efe3ea115aea046ceda5d34c3c03982112195aac9",
+    "src/components/view/InfoCard.vue": "76dff5f6f3b5fcd7498b80eb93f2a757b4063f73ebd529f70a8d22a190815f8a",
+    "src/components/view/ListView.vue": "05c4f02701a75d94b95968c6bbdc2fe828f1446600c6f8643c6f8cb2e530c243",
+    "src/components/view/ResourceView.vue": "ec508defc3c5c2e30e35a1f927b8065ab6e5067a3b48165945898c8edb6d80bf",
+    "src/config/section/image.js": "2f23ffd397353f4d2e3332c9e1156444f3261503349605ed6a3e54ee245e73f0",
+    "src/utils/kubernetesIsoModel.js": "6ebd85d7bc2417313c5249411981a63fdbd5a012a78d78d818027c41adb791f4",
+    "src/components/view/KubernetesIsoSummary.vue": "9836233e005c4c720b93b71adcceb645b961ae6022573966fc794bbb045f71a7",
+    "src/components/widgets/KubernetesIsoListCell.vue": "138b3fee9e5fa2326b241fb288fee0c73c5a1063b2b99cfeced8620ff2c9cbba",
+    "src/components/widgets/KubernetesIsoScope.vue": "ba78ee3650ba969cbbb397a606b33e787a813fa6758be99502a719bf5da6def3",
+    "src/components/widgets/KubernetesIsoStatus.vue": "a5840797a0c6e03b46e20529eee7eab8d88ad1c65e81371ca55899bf50b1f613",
+    "src/utils/kubernetesIsoDetails.js": "45cca76a2dbb40c6d10fbf38e41d37a5f7c1f8220e219c0ac5a2686838fb6999",
+    "src/views/image/KubernetesIsoDetails.vue": "362beeecd7dfd4332053b616beafcc847ffb2b0eb05eae2d32db669eea5ffcd4",
+    "src/views/image/KubernetesIsoZones.vue": "149e7a9e816d86d81b7c6632453e0869acd9e5a30bb0f932c13adf9e842fb5f6"
+  },
+  "operatingSourceHashes": {
+    "public/locales/en.json": "15cf21bf56de84b4c2bd9af4ef476e464834eb26850d1b7f47757103360f105a",
+    "public/locales/ko_KR.json": "e1e5569bdb2a28f92962053ea7a18e72e796d6ea4e1a5b839a4550b82db0b54e",
+    "src/components/view/InfoCard.vue": "35e6dc1676256c118304f41af25a5a342df1ed23a2f41b9c01cef381054080e6",
+    "src/components/view/ListView.vue": "f4b1cea47c4c0ba8779ed8ac92416ae76e7c3963e66037b7a0848493cb6e7d85",
+    "src/components/view/ResourceView.vue": "6f472e9acd1b6fa428ce6b1ca0ba1d0d04808a0545d45229fdb4f674729a940a",
+    "src/config/section/image.js": "2f23ffd397353f4d2e3332c9e1156444f3261503349605ed6a3e54ee245e73f0",
+    "src/utils/kubernetesIsoModel.js": "6ebd85d7bc2417313c5249411981a63fdbd5a012a78d78d818027c41adb791f4",
+    "src/components/view/KubernetesIsoSummary.vue": "9836233e005c4c720b93b71adcceb645b961ae6022573966fc794bbb045f71a7",
+    "src/components/widgets/KubernetesIsoListCell.vue": "138b3fee9e5fa2326b241fb288fee0c73c5a1063b2b99cfeced8620ff2c9cbba",
+    "src/components/widgets/KubernetesIsoScope.vue": "ba78ee3650ba969cbbb397a606b33e787a813fa6758be99502a719bf5da6def3",
+    "src/components/widgets/KubernetesIsoStatus.vue": "a5840797a0c6e03b46e20529eee7eab8d88ad1c65e81371ca55899bf50b1f613",
+    "src/utils/kubernetesIsoDetails.js": "45cca76a2dbb40c6d10fbf38e41d37a5f7c1f8220e219c0ac5a2686838fb6999",
+    "src/views/image/KubernetesIsoDetails.vue": "362beeecd7dfd4332053b616beafcc847ffb2b0eb05eae2d32db669eea5ffcd4",
+    "src/views/image/KubernetesIsoZones.vue": "149e7a9e816d86d81b7c6632453e0869acd9e5a30bb0f932c13adf9e842fb5f6"
+  },
+  "retainedPriorInputs": {
+    "src/components/view/KubernetesIsoSearch.vue": "6f081ae73716e48c9ed84870a53c2eac354970d989ffd588b11d7b07da7358d4",
+    "src/components/view/SearchView.vue": "59e03bedf296a001c2dcf88323a0d2efbc473090fc5db4db2b5fcbd7c85596f6",
+    "src/components/widgets/Breadcrumb.vue": "e4e52855fc8cd7649740029996484dc3dd61153f1f7a0336e691d86276f297d7",
+    "src/utils/kubernetesIsoSearch.js": "88014d5a8caea191685d57c692501ebcc96bc0d8b831445d6821ab0c97d16ff5",
+    "src/views/AutogenView.vue": "b92ac2d6296da28962ec9c1cacd0bfdd2efd3d0b78e8a39838e560cbb9ef8ffd"
+  },
+  "intentionalOperatingDifferences": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/components/view/InfoCard.vue",
+    "src/components/view/ListView.vue",
+    "src/components/view/ResourceView.vue"
+  ]
+}

@@ -1,0 +1,48 @@
+identity.................................................................Passed
+- hook id: identity
+- duration: 0.07s
+
+docs/validation/kubernetes-iso-1701-final-20261118/README.ko.md
+docs/validation/kubernetes-iso-1701-final-20261118/final-list-dark-native.log
+docs/validation/kubernetes-iso-1701-final-20261118/dark-link-color-token-verified.log
+docs/validation/kubernetes-iso-1701-final-20261118/dark-link-computed.log
+docs/validation/kubernetes-iso-1701-final-20261118/before-cell-correction-events-dark.log
+docs/validation/kubernetes-iso-1701-final-20261118/native-state-escape-returned.log
+docs/validation/kubernetes-iso-1701-final-20261118/native-state-tab-cancel-focus.log
+docs/validation/kubernetes-iso-1701-final-20261118/native-escape-focus-enter-reopened-actions.log
+docs/validation/kubernetes-iso-1701-final-20261118/final-detail-dark-native.log
+docs/validation/kubernetes-iso-1701-final-20261118/dark-link-computed-visible.log
+docs/validation/kubernetes-iso-1701-final-20261118/transcript-publication-audit.json
+docs/validation/kubernetes-iso-1701-final-20261118/fresh-list-dark-console.log
+docs/validation/kubernetes-iso-1701-final-20261118/native-state-down-enter-selected.log
+
+Check hooks apply to the repository..................(no files to check)Skipped
+Add TOC for Markdown files...........................(no files to check)Skipped
+run oxipng...........................................(no files to check)Skipped
+run gitleaks.............................................................Passed
+add license for all cfg files........................(no files to check)Skipped
+add license for all Markdown files.......................................Passed
+add license for all properties files.................(no files to check)Skipped
+add license for all Shell files......................(no files to check)Skipped
+add license for all SQL files........................(no files to check)Skipped
+add license for all Vue files........................(no files to check)Skipped
+add license for all YAML files.......................(no files to check)Skipped
+check for case conflicts.................................................Passed
+check illegal windows names..........................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check that scripts with shebangs are executable......(no files to check)Skipped
+check for broken symlinks............................(no files to check)Skipped
+check vcs permalinks.....................................................Passed
+detect destroyed symlinks................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+file contents sorter.................................(no files to check)Skipped
+fix utf-8 byte order marker..............................................Passed
+forbid submodules....................................(no files to check)Skipped
+mixed line ending........................................................Passed
+trim trailing whitespace.................................................Passed
+run codespell............................................................Passed
+flake8...............................................(no files to check)Skipped
+run markdownlint.........................................................Passed
+run yamllint.........................................(no files to check)Skipped

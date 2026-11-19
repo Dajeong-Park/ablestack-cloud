@@ -1,0 +1,20 @@
+{
+  "account": {
+    "name": "qa-kiso1698-read",
+    "id": "c034827a-bc2d-4ae9-a1eb-a53007173449",
+    "cleanup": "pending"
+  },
+  "role": {
+    "name": "qa-kiso1698-read-role",
+    "id": "c3f43981-07bd-4e6b-a3a0-2b89e982a694",
+    "cleanup": "pending"
+  },
+  "permissions": [
+    "listApis",
+    "listCapabilities",
+    "listUsers",
+    "listKubernetesSupportedVersions",
+    "listZones"
+  ],
+  "denied": "all other commands"
+}

@@ -1,0 +1,46 @@
+{
+  "ui": {
+    "unit-final.json": {
+      "numPassedTests": 163,
+      "numFailedTests": 0,
+      "numPassedTestSuites": 8,
+      "numFailedTestSuites": 0
+    },
+    "operating-unit.json": {
+      "numPassedTests": 163,
+      "numFailedTests": 0,
+      "numPassedTestSuites": 8,
+      "numFailedTestSuites": 0
+    }
+  },
+  "backend": {
+    "suites": 4,
+    "tests": 25,
+    "failures": 0,
+    "changedJavaCheckstyleViolations": 0
+  },
+  "uiOwnerFix": {
+    "owner-unit.json": {
+      "numPassedTests": 163,
+      "numFailedTests": 0,
+      "numPassedTestSuites": 8,
+      "numFailedTestSuites": 0
+    },
+    "owner-operating-unit.json": {
+      "numPassedTests": 163,
+      "numFailedTests": 0,
+      "numPassedTestSuites": 8,
+      "numFailedTestSuites": 0
+    },
+    "rebased-ui.json": {
+      "numPassedTests": 219,
+      "numFailedTests": 0,
+      "numPassedTestSuites": 12,
+      "numFailedTestSuites": 0
+    }
+  },
+  "sourceLint": {
+    "ownerComponent": "PASS",
+    "rebasedConflictFiles": "PASS"
+  }
+}

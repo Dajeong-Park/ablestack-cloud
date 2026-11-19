@@ -1,0 +1,9 @@
+{
+  "actor": "qa-kiso1700-write",
+  "operation": "deleteKubernetesSupportedVersion",
+  "revokedVia": "admin UI role permission confirmed deny",
+  "target": "e2d3daa1-f13b-4ad0-82fe-3ae6cee9920e",
+  "errorcode": 432,
+  "errortext": "The API [deleteKubernetesSupportedVersion] does not exist or is not available for the account qa-kiso1700-write.",
+  "asyncJobStarted": false
+}

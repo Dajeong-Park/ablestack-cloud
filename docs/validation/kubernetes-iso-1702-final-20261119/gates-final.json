@@ -1,0 +1,33 @@
+{
+  "nativeUiScope": "13 single KVM/x86_64; real accounts; Root/default+project",
+  "aclComplete": true,
+  "official421UrlLocal": true,
+  "officialNew423UrlLocal": true,
+  "realCksUpgradePins": true,
+  "cleanupCompleteUi": true,
+  "testCatalogPairsDeleted": 6,
+  "allOriginalUiCountsPreserved": true,
+  "httpFiles404AndDirectoryAbsent": true,
+  "threeFactoriesRestoredAgentPidsUnchanged": true,
+  "staticFiles7219ExpectedHashes": true,
+  "managementBackendAndPidUnchanged": true,
+  "focusedRebaseUiTests": {
+    "suites": 30,
+    "passed": 471,
+    "failed": 0
+  },
+  "eslint7FilesExit": 0,
+  "newCommonUiFollowup": 1717,
+  "ciDebtsRemainSeparate": [
+    926,
+    1044
+  ],
+  "notRun": [
+    "physical multi Zone",
+    "Edge",
+    "non KVM",
+    "ARM/s390x boot",
+    "terminal failed upgrade"
+  ],
+  "issueCloseAfterPrFinalResult": true
+}

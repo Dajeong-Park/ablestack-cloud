@@ -1,0 +1,61 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "sourceBase": "273e0e40a7ab52f79820f652f13600067a622310",
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "inputDelta": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/api/index.js",
+    "src/config/section/image.js",
+    "src/store/modules/user.js",
+    "src/utils/kubernetesIsoCapabilities.js",
+    "src/utils/kubernetesIsoModel.js",
+    "src/views/AutogenView.vue",
+    "src/views/image/AddKubernetesSupportedVersion.vue",
+    "src/views/image/UpdateKubernetesSupportedVersion.vue"
+  ],
+  "operatingSourceHashes": {
+    "public/locales/en.json": "1404b23c244cbcf69e1f90400584aa28cdeea35485fc139634331fe96913cf4c",
+    "public/locales/ko_KR.json": "1e497dc8812b827ed63ab6cd6137b65333135b633ebb7925c8fab5d1bae0df3e",
+    "src/api/index.js": "054df0e24a8acdd2e45451c8bb0ae735a7f0c66e6f6a650a0b5789b3d7c47de0",
+    "src/config/section/image.js": "90fce0ad81de744299c43c8df6d440a72787b6c8d99a00da74f6fdcf92ffd127",
+    "src/utils/kubernetesIsoCapabilities.js": "834b712e549f5b954d998c67800635cb1e41b83f37391fc7241405c7ffc4ad04",
+    "src/utils/kubernetesIsoModel.js": "620fb856c30e8d8c1832a1fca8f22564d0fb05f8560aedd4aeae06353bfef670",
+    "src/views/AutogenView.vue": "59d3366e7b8eefb0d3cbe28598d384fa0479eec3c1a696a54e2762ea93ed227e",
+    "src/views/image/AddKubernetesSupportedVersion.vue": "5647b886d657b692780f735f45c268522550a4ee080f7da2220e445bf14e4735",
+    "src/views/image/UpdateKubernetesSupportedVersion.vue": "46e50ea1797faec6a763f86dfc5c26b2520bf2c1b89b27713275482162b639d5",
+    "src/store/modules/user.js": "1497dbdf7252eb79726745df63da5d0618322fb39196d42491d1f49ca6281c12"
+  },
+  "canonicalSourceHashes": {
+    "public/locales/en.json": "11d16bec4583f60c091360a646f045761de9757ea8df00375df0fc626461c8a8",
+    "public/locales/ko_KR.json": "8c744c9e3bfbc1d9929c70ed21a4982a8f63c4812ce09293bcb1b27003a31ee2",
+    "src/api/index.js": "054df0e24a8acdd2e45451c8bb0ae735a7f0c66e6f6a650a0b5789b3d7c47de0",
+    "src/config/section/image.js": "90fce0ad81de744299c43c8df6d440a72787b6c8d99a00da74f6fdcf92ffd127",
+    "src/utils/kubernetesIsoCapabilities.js": "834b712e549f5b954d998c67800635cb1e41b83f37391fc7241405c7ffc4ad04",
+    "src/utils/kubernetesIsoModel.js": "620fb856c30e8d8c1832a1fca8f22564d0fb05f8560aedd4aeae06353bfef670",
+    "src/views/AutogenView.vue": "75ce18d0ab7f351b81ff90175df7da373a12c8a71ea12fc7ea8642d19c65b938",
+    "src/views/image/AddKubernetesSupportedVersion.vue": "5647b886d657b692780f735f45c268522550a4ee080f7da2220e445bf14e4735",
+    "src/views/image/UpdateKubernetesSupportedVersion.vue": "46e50ea1797faec6a763f86dfc5c26b2520bf2c1b89b27713275482162b639d5",
+    "src/store/modules/user.js": "1497dbdf7252eb79726745df63da5d0618322fb39196d42491d1f49ca6281c12"
+  },
+  "otherInputsPreserved": 1088,
+  "contextResolution": "preserved operating AutogenView and locale differences; applied only catalog patch and7 message keys per locale",
+  "productHead": "b1dd77b5e65cd72d02441031d42d952307c769f9"
+}

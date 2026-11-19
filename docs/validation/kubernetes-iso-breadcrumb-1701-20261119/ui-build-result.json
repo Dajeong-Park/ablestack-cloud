@@ -1,0 +1,7 @@
+{
+  "exitCode": 0,
+  "seconds": 757.1,
+  "onlySourceChange": "src/style/components/view/kubernetes-iso.less",
+  "sourceSha256": "13f8f890caccaac5603eacc8d56752c607f778e1d55ed162955ef60c5fa0a67e",
+  "runtimeBuildCompatibility": "existing Webpack4 Node20 legacy provider flag; operating crypto settings unchanged"
+}

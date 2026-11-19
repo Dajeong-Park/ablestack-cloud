@@ -17,10 +17,12 @@
 
 import { getAPI } from '@/api'
 
-async function isValidObject (apiName, id, params) {
+async function isValidObject (apiName, id, params, canRead) {
+  if (!canRead(apiName)) return false
   try {
     const allParams = { ...params, listAll: true, id }
     const json = await getAPI(apiName, allParams)
+    if (!canRead(apiName)) return false
     const responseName = Object.keys(json).find(key => key.endsWith('response')) || apiName.toLowerCase() + 'response'
     const response = json?.[responseName]
     if (!response) {
@@ -56,7 +58,7 @@ export function validateLinks (router, isStatic, resource) {
   return validLinks
 }
 
-export async function validateLinksAsync (router, isStatic, resource) {
+export async function validateLinksAsync (router, isStatic, resource, canRead = () => false) {
   const validLinks = {
     volume: false,
     template: false,
@@ -82,7 +84,7 @@ export async function validateLinksAsync (router, isStatic, resource) {
     if (router.resolve(templatePath).matched[0].redirect !== '/exception/404') {
       pendingChecks.push(
         isValidObject(isIso ? 'listIsos' : 'listTemplates', resource.templateid,
-          isIso ? { isofilter: 'executable' } : { templatefilter: 'executable' }).then(result => {
+          isIso ? { isofilter: 'executable' } : { templatefilter: 'executable' }, canRead).then(result => {
           validLinks.template = result
         })
       )
@@ -93,7 +95,7 @@ export async function validateLinksAsync (router, isStatic, resource) {
     const isoPath = '/iso/' + resource.isoid
     if (router.resolve(isoPath).matched[0].redirect !== '/exception/404') {
       pendingChecks.push(
-        isValidObject('listIsos', resource.isoid, { isofilter: 'executable' }).then(result => {
+        isValidObject('listIsos', resource.isoid, { isofilter: 'executable' }, canRead).then(result => {
           validLinks.iso = result
         })
       )

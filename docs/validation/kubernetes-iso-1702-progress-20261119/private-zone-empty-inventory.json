@@ -1,0 +1,12 @@
+{
+  "zoneId": "8b842cb8-bdcc-4d48-86a8-16be87716219",
+  "allocationstate": "Disabled",
+  "setupExceptionOnly": true,
+  "counts": {
+    "listHosts": 0,
+    "listPods": 0,
+    "listPhysicalNetworks": 0,
+    "listStoragePools": 0,
+    "listImageStores": 0
+  }
+}

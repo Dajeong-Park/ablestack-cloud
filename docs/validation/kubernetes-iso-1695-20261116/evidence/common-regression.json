@@ -1,0 +1,274 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "template": {
+    "ellipsis": "ellipsis",
+    "name": "Europa-SystemVM-4.23-ISO1667-20261115",
+    "rows": 48,
+    "whiteSpace": "nowrap",
+    "width": 350
+  },
+  "iso": [
+    {
+      "id": "71ed0193-510e-4d01-8faa-f1fb3faa7b1a",
+      "text": "vmware-tools.iso"
+    },
+    {
+      "id": "98432634-54c7-485f-aa24-e6e2cea40980",
+      "text": "xs-tools.iso"
+    },
+    {
+      "id": "dfe8bda9-fb51-4c0d-aa45-4c34a7306fa0",
+      "text": "1.35.9-Kubernetes-Binaries-ISO"
+    },
+    {
+      "id": "192d3383-74a4-4969-8f37-5af00aa90b95",
+      "text": "1.36.5-Kubernetes-Binaries-ISO"
+    },
+    {
+      "id": "5836b8f6-9336-4766-8f77-e39218f6e826",
+      "text": "Rocky-10.0-x86_64-dvd1.iso"
+    },
+    {
+      "id": "7a3959a8-a533-4bd9-a009-6bce3efe61d9",
+      "text": "Windows Server 2025 x86_64 DVD"
+    },
+    {
+      "id": "ca2894d4-2ca0-4027-ace7-6e78a096fad4",
+      "text": "VirtIO Windows Driver 0.1.302"
+    },
+    {
+      "id": "367c88cb-4947-452f-9429-54a19885adf4",
+      "text": "ABLESTACK-Diplo-v4.2.1.iso"
+    }
+  ],
+  "isoIdsNamesPreserved": true,
+  "vm": {
+    "rows": [
+      {
+        "id": "9f3bf7a1-c5b2-45ba-ba06-1e466d09b364",
+        "name": "VM-9f3bf7a1-c5b2-45ba-ba06-1e466d09b364"
+      },
+      {
+        "id": "0b2f79de-3690-4495-9817-d0708ea9e0ce",
+        "name": "koral1-control-1a0fa38f3d4"
+      },
+      {
+        "id": "7e405db7-0b13-4f64-97c2-485a154bafed",
+        "name": "koral1-node-1a0fa391956"
+      },
+      {
+        "id": "0bcf54c2-77d4-4262-9fc5-529ef4220b89",
+        "name": "koral3-control-1a0fb462779"
+      },
+      {
+        "id": "ff833368-71d9-4407-a57c-2eb54fa9897a",
+        "name": "koral3-control-1a0fb464d99"
+      },
+      {
+        "id": "76be772d-570c-4011-b624-45e081dec551",
+        "name": "koral3-node-1a0fb46766a"
+      },
+      {
+        "id": "f7678d77-9e69-4e0b-8adf-40acf8cf2070",
+        "name": "koral3-node-1a0fb469c58"
+      },
+      {
+        "id": "3cf3fed4-8a42-4eab-a570-948428c3d62b",
+        "name": "VM-3cf3fed4-8a42-4eab-a570-948428c3d62b"
+      },
+      {
+        "id": "1aa29f80-626d-45c4-8ba7-80e98b28986a",
+        "name": "VM-1aa29f80-626d-45c4-8ba7-80e98b28986a"
+      },
+      {
+        "id": "8a2ef0b9-9663-47b5-b3ab-ea4c58d7f706",
+        "name": "sharedfs-epic1438-basic-nfs-20261021-01-1a15cfe505a"
+      },
+      {
+        "id": "59ec6dc7-fdc2-4f78-bd3a-a21db4ebee4f",
+        "name": "sharedfs-epic1438-1439-nfs-20261021-01-1a15d2a1a6a"
+      },
+      {
+        "id": "8b4fa66a-434a-4248-98f1-a98cf081f752",
+        "name": "sharedfs-epic1438-1440-nfs-20261021-01-1a15da8bc0d"
+      },
+      {
+        "id": "fd6ecae3-ef41-40c0-bfa9-acf88b67b6e5",
+        "name": "epic1438-1440-client-20261021-01"
+      },
+      {
+        "id": "b6a39a5d-c451-4b60-9a68-3e4d102a4ea4",
+        "name": "sharedfs-epic1438-1441-fixed-sfs-20261021-01-1a15e4f639c"
+      },
+      {
+        "id": "92d99386-9157-4abe-b427-98829770a15d",
+        "name": "sharedfs-epic1438-1441-free-sfs-20261021-01-1a15e541b95"
+      },
+      {
+        "id": "d5b1c41d-f023-4efe-9195-6c2d55b760b8",
+        "name": "sharedfs-epic1438-1441-range-sfs-20261021-01-1a15e563e0f"
+      },
+      {
+        "id": "b7cafa18-d952-4579-98f8-9d913d67a7fc",
+        "name": "epic1438-1442-client-20261021-01"
+      },
+      {
+        "id": "0685be9d-b958-3d2a-a9ef-9e53a7c9ba07",
+        "name": "sharedfs-0685be9d-b958-3d2a-a9ef-9e53a7c9ba07"
+      },
+      {
+        "id": "fe723777-4be1-461b-8c8d-7f399d34bc29",
+        "name": "epic1438-1442-posix-client-20261022-01"
+      },
+      {
+        "id": "634178d0-3d06-31ec-84d3-9ec113093025",
+        "name": "sharedfs-634178d0-3d06-31ec-84d3-9ec113093025"
+      },
+      {
+        "id": "38e1cc60-9de7-3241-a62c-ec9aff998d21",
+        "name": "sharedfs-38e1cc60-9de7-3241-a62c-ec9aff998d21"
+      },
+      {
+        "id": "76c59df9-91c4-3a51-8511-f483a61a3cd8",
+        "name": "sharedfs-76c59df9-91c4-3a51-8511-f483a61a3cd8"
+      },
+      {
+        "id": "a14c8a94-8c5c-3675-b036-652cbb92d15a",
+        "name": "sharedfs-a14c8a94-8c5c-3675-b036-652cbb92d15a"
+      },
+      {
+        "id": "268b256e-bfd2-4a3f-9a3b-ce3f0ad78ecc",
+        "name": "epic1438-1443-client-20261022-01"
+      },
+      {
+        "id": "8144aac2-225b-3b0f-95ae-f2d490d4ef76",
+        "name": "sharedfs-8144aac2-225b-3b0f-95ae-f2d490d4ef76"
+      },
+      {
+        "id": "0c9f5ce2-2328-33a1-a290-b0d6a6619ba5",
+        "name": "sharedfs-0c9f5ce2-2328-33a1-a290-b0d6a6619ba5"
+      },
+      {
+        "id": "82d4cd90-adcb-463f-8456-270896a60241",
+        "name": "rocky9-vm"
+      },
+      {
+        "id": "5d261ca7-7c62-34a0-bf9d-4a18c91464d0",
+        "name": "sharedfs-5d261ca7-7c62-34a0-bf9d-4a18c91464d0"
+      },
+      {
+        "id": "591b5440-9448-387d-92db-076533aa2ce6",
+        "name": "sharedfs-591b5440-9448-387d-92db-076533aa2ce6"
+      },
+      {
+        "id": "8bea5d1f-10e8-34c8-b2e2-371d2fc774a6",
+        "name": "sharedfs-8bea5d1f-10e8-34c8-b2e2-371d2fc774a6"
+      },
+      {
+        "id": "2f9185c4-b7e8-3c85-b308-8333b966cc22",
+        "name": "sharedfs-2f9185c4-b7e8-3c85-b308-8333b966cc22"
+      },
+      {
+        "id": "166c890d-0a65-36ee-ac16-8788fd1dedf2",
+        "name": "sharedfs-166c890d-0a65-36ee-ac16-8788fd1dedf2"
+      },
+      {
+        "id": "867bfbfb-e370-345d-b5f9-ccd20d044219",
+        "name": "sharedfs-867bfbfb-e370-345d-b5f9-ccd20d044219"
+      },
+      {
+        "id": "fa4905f9-8fa9-339e-8244-e7b78fb3a97e",
+        "name": "sharedfs-fa4905f9-8fa9-339e-8244-e7b78fb3a97e"
+      },
+      {
+        "id": "e4c02b82-7699-36c8-9164-2d6464001414",
+        "name": "sharedfs-e4c02b82-7699-36c8-9164-2d6464001414"
+      },
+      {
+        "id": "fdba1e19-3901-3a3e-a4a9-50b2e715f3e7",
+        "name": "sharedfs-fdba1e19-3901-3a3e-a4a9-50b2e715f3e7"
+      },
+      {
+        "id": "afd9de68-a79a-4cdb-9313-fb8d524bc9ad",
+        "name": "sharedv-1"
+      },
+      {
+        "id": "e7663bfe-bcd1-419a-bfee-d71c019143dd",
+        "name": "sharedv-2"
+      },
+      {
+        "id": "0dda1117-3d88-49a4-9907-84dec6d984f1",
+        "name": "win-tj-vm-1"
+      },
+      {
+        "id": "d75f6f4e-65d9-4ba6-9e12-011380ce2097",
+        "name": "win-tj-vm-2"
+      },
+      {
+        "id": "b23c2c64-416d-4ced-9d04-cc461f2fb655",
+        "name": "win-tj-1-1"
+      },
+      {
+        "id": "54e25bcb-4b3c-4988-b7f2-2bb2b5bff5d0",
+        "name": "win-tj-1-2"
+      },
+      {
+        "id": "6a242483-68d2-3d75-b444-f281f31b41c8",
+        "name": "sharedfs-6a242483-68d2-3d75-b444-f281f31b41c8"
+      },
+      {
+        "id": "fcbb55c6-c422-3a0d-9cd5-4a9d94b8a643",
+        "name": "sharedfs-fcbb55c6-c422-3a0d-9cd5-4a9d94b8a643"
+      },
+      {
+        "id": "18421be4-0d77-4cb9-a4e9-0458be6bb94d",
+        "name": "nas-linux"
+      },
+      {
+        "id": "fd21e974-b7ef-3ac9-9772-da9335a1b25c",
+        "name": "sharedfs-fd21e974-b7ef-3ac9-9772-da9335a1b25c"
+      },
+      {
+        "id": "8a93eeda-2421-43ed-9c60-a6d4f1c075c4",
+        "name": "epic1438-1451-client-20261027-1"
+      },
+      {
+        "id": "4fcfcf64-ef2a-42e7-8067-b31e0810b1cf",
+        "name": "epic1438-1451-client-20261027-2"
+      },
+      {
+        "id": "936fd57c-386a-384d-be07-368844b41b61",
+        "name": "sharedfs-936fd57c-386a-384d-be07-368844b41b61"
+      },
+      {
+        "id": "0c69f62a-2186-3e35-b379-d129399f0a3c",
+        "name": "sharedfs-0c69f62a-2186-3e35-b379-d129399f0a3c"
+      }
+    ],
+    "total": "전체 102 개 항목 중 1-50 표시"
+  },
+  "vmFirst20Preserved": true,
+  "vmHeading": "VM-9f3bf7a1-c5b2-45ba-ba06-1e466d09b364",
+  "vmCountNote": "Current UI total102; previous task historical total103. No VM write operations in this task.",
+  "vnf": {
+    "total": "전체 0 개 항목 중 0-0 표시",
+    "heading": "VNF 기기"
+  }
+}

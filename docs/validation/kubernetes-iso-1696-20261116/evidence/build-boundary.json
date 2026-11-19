@@ -1,0 +1,46 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "sourceBase": "4b9c5ac2af81dd38439569d60ec5b51a93118694",
+  "productHead": "03fb81531ffe7f19a6f8625a30f0600df7c49f82",
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "inputDelta": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/config/section/image.js",
+    "src/utils/kubernetesIsoRegistration.js",
+    "src/views/image/RegisterKubernetesIso.vue"
+  ],
+  "otherInputsPreserved": 1095,
+  "operatingSourceHashes": {
+    "public/locales/en.json": "f36d31dde08342962531422dc5eb82b035be20a8a10ecc4c33aeba30303c0d8c",
+    "public/locales/ko_KR.json": "c660581a37d74ae7b06b6c9fd723123e78c924097d0eaf14f19321dd52b31adc",
+    "src/config/section/image.js": "8968e4ea6e4bfd8b733bf2c2acd242f0ffdac63c38b13aae6cf360e10655ec3c",
+    "src/utils/kubernetesIsoRegistration.js": "a29d03638ba80ec4fa835dca257336a47ca32f1a64dff30e836e949cfee5bde6",
+    "src/views/image/RegisterKubernetesIso.vue": "dc209cf36c0fae024c78b8fdfae50b6e85b76e93ffa61d472785140989e969e6"
+  },
+  "canonicalSourceHashes": {
+    "public/locales/en.json": "2e1c60ad63aea683b74085bf9dfb569c3b4d565a61370335959059d60e87d69d",
+    "public/locales/ko_KR.json": "4bda67938d14026bd7a321fd9185da1c892e8b21c6e8fcefbce9df7ead337bcf",
+    "src/config/section/image.js": "8968e4ea6e4bfd8b733bf2c2acd242f0ffdac63c38b13aae6cf360e10655ec3c",
+    "src/utils/kubernetesIsoRegistration.js": "a29d03638ba80ec4fa835dca257336a47ca32f1a64dff30e836e949cfee5bde6",
+    "src/views/image/RegisterKubernetesIso.vue": "dc209cf36c0fae024c78b8fdfae50b6e85b76e93ffa61d472785140989e969e6"
+  },
+  "operatingPatchAppliedExactly": true
+}

@@ -28,12 +28,12 @@ import org.apache.cloudstack.api.AbstractGetUploadParamsCmd;
 import org.apache.cloudstack.api.ApiCommandResourceType;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.ApiErrorCode;
+import com.cloud.cpu.CPU;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ResponseObject;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.command.admin.AdminCmd;
 import org.apache.cloudstack.api.response.GetUploadParamsResponse;
-import org.apache.cloudstack.api.response.KubernetesSupportedVersionResponse;
 import org.apache.cloudstack.context.CallContext;
 import org.apache.commons.lang3.StringUtils;
 
@@ -41,7 +41,7 @@ import javax.inject.Inject;
 
 @APICommand(name = "getUploadParamsForKubernetesSupportedVersion",
         description = "Upload a supported Kubernetes version",
-        responseObject = KubernetesSupportedVersionResponse.class,
+        responseObject = GetUploadParamsResponse.class,
         responseView = ResponseObject.ResponseView.Full,
         entityType = {KubernetesSupportedVersion.class},
         authorized = {RoleType.Admin})
@@ -68,6 +68,17 @@ public class GetUploadParamsForKubernetesSupportedVersionCmd extends AbstractGet
     @Parameter(name = ApiConstants.MIN_MEMORY, type = CommandType.INTEGER, required = true,
             description = "the minimum RAM size in MB to be set with the Kubernetes version")
     private Integer minimumRamSize;
+
+    @Parameter(name = ApiConstants.ARCH, type = CommandType.STRING,
+            description = "the CPU arch of the Kubernetes ISO. Valid options are: x86_64, aarch64, s390x")
+    private String arch;
+
+    public CPU.CPUArch getArch() {
+        if (StringUtils.isNotBlank(arch) && !java.util.Arrays.asList("x86_64", "aarch64", "s390x").contains(arch)) {
+            throw new InvalidParameterValueException("Unsupported Kubernetes ISO arch: " + arch);
+        }
+        return CPU.CPUArch.fromType(arch);
+    }
 
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
@@ -110,7 +121,7 @@ public class GetUploadParamsForKubernetesSupportedVersionCmd extends AbstractGet
     /////////////////////////////////////////////////////
     @Override
     public void execute() throws ServerApiException, ConcurrentOperationException {
-        if (getZoneId() <= 0) {
+        if (getZoneId() == null || getZoneId() <= 0) {
             throw new ServerApiException(ApiErrorCode.PARAM_ERROR, "Invalid zoneid");
         }
         try {

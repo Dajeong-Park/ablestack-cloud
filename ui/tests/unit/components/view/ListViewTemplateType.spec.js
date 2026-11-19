@@ -21,16 +21,17 @@ import ListView from '@/components/view/ListView'
 import { getAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn().mockResolvedValue({}) }))
 const id = '11111111-1111-4111-8111-111111111111'
-function cell (path, type, key = 'templatetype', name = 'Image') {
-  const record = { id, name, templatetype: type, account: 'admin', domainid: id, zoneid: id, zonename: 'Zone' }
+function cell (path, type, key = 'templatetype', name = 'Image', params = {}, extraRecord = {}) {
+  const record = { id, name, templatetype: type, account: 'admin', domainid: id, zoneid: id, zonename: 'Zone', ...extraRecord }
   const push = jest.fn()
   const wrapper = shallowMount(ListView, {
     props: { columns: [{ key, dataIndex: key }], items: [record] },
     global: {
       provide: { parentFetchData: jest.fn(), parentToggleLoading: jest.fn() },
-      mocks: { $route: { name: path.slice(1), path, meta: { name: path.slice(1) } }, $router: { push, resolve: () => ({ matched: [{}] }) }, $store: { getters: { apis: {}, userInfo: { roletype: 'Admin' } } }, $t: k => k, $showIcon: () => false },
+      mocks: { $route: { name: path.slice(1), path, params, meta: { name: path.slice(1) } }, $router: { push, resolve: () => ({ matched: [{}] }) }, $store: { getters: { apis: {}, userInfo: { roletype: 'Admin' } } }, $t: k => k, $showIcon: () => false },
       stubs: {
         'a-table': { render () { return h('div', this.$slots.bodyCell({ column: { key }, text: record[key], record })) } },
+        KeyboardTooltip: { props: ['title'], render () { return h('span', { 'data-tooltip': this.title }, this.$slots.default()) } },
         'a-tooltip': { props: ['title'], render () { return h('span', { 'data-tooltip': this.title }, this.$slots.default()) } },
         'a-tag': { render () { return h('span', this.$slots.default()) } },
         'router-link': { props: ['to'], render () { return h('a', { href: this.to.path }, this.$slots.default()) } }
@@ -62,4 +63,63 @@ test('template names remain complete link text and full hover content', () => {
 test('template table reserves primary name space and leaves other resources unchanged', () => {
   const ctx = { $route: { meta: { name: 'template' } }, resourcePath: '', columns: [{ key: 'name' }, { key: 'state', width: 140 }, { key: 'ostypename', width: 180 }], isOrderUpdatable: () => true }
   expect(ListView.computed.templateTableScroll.call(ctx)).toEqual({ x: 720 }); ctx.$route.meta.name = 'vm'; expect(ListView.computed.templateTableScroll.call(ctx)).toBeNull()
+})
+
+test('KISO names use the fixed icon slot and preserve the complete keyboard tooltip and scoped return link', () => {
+  const name = '우분투-긴-카탈로그-이름-Long-name-'.repeat(5)
+  const { wrapper } = cell('/kubernetesiso', 'USER', 'name', name)
+  expect(wrapper.find('.template-name-icon').exists()).toBe(true)
+  expect(wrapper.find('.template-name-link').text()).toBe(name)
+  expect(wrapper.find('[data-tooltip]').attributes('data-tooltip')).toBe(name)
+  expect(wrapper.find('a').attributes('href')).toContain('/kubernetesiso/' + id)
+  expect(wrapper.find('.list-view-table-wrapper').attributes('role')).toBe('region')
+  wrapper.unmount()
+})
+test.each(['desktop', 'mobile'])('KISO %s columns reserve the largest width for the name and preserve sort/selection metadata', device => {
+  const sorter = jest.fn()
+  const columns = [{ key: 'name', dataIndex: 'name', sorter }, { key: 'state', dataIndex: 'state' }, { key: 'minmemory', dataIndex: 'minmemory' }, { key: 'zonename', dataIndex: 'zonename' }, { key: 'order', dataIndex: 'order' }]
+  const ctx = { columns, isOrderUpdatable: () => false, isKubernetesIsoMainList: true, $store: { getters: { device } } }
+  const result = ListView.computed.displayColumns.call(ctx)
+  expect(result.map(c => c.key)).toEqual(['name', 'state', 'minmemory', 'zonename'])
+  expect(result[0].width).toBeGreaterThan(Math.max(...result.slice(1).map(c => c.width)))
+  expect(result[0].sorter).toBe(sorter)
+  expect(columns[0]).not.toHaveProperty('width')
+  expect(ListView.computed.kubernetesIsoTableScroll.call({ ...ctx, displayColumns: result }).x).toBe(result.reduce((sum, c) => sum + c.width, 0))
+  ctx.isKubernetesIsoMainList = false
+  expect(ListView.computed.displayColumns.call(ctx)[0]).toBe(columns[0])
+})
+
+test('KISO column picker follows explicit visibility updates and returns focus on Escape', async () => {
+  const input = { focus: jest.fn() }
+  const trigger = { focus: jest.fn() }
+  const ctx = { columnPickerVisible: false, $refs: { columnPickerContent: { querySelector: () => input }, columnPickerTrigger: { $el: trigger } }, $nextTick: fn => fn() }
+  const original = global.requestAnimationFrame
+  global.requestAnimationFrame = fn => fn()
+  try {
+    ListView.methods.columnPickerVisibility.call(ctx, true)
+    expect(ctx.columnPickerVisible).toBe(true)
+    expect(input.focus).toHaveBeenCalledTimes(1)
+    ListView.methods.closeColumnPicker.call(ctx)
+    expect(ctx.columnPickerVisible).toBe(false)
+    expect(trigger.focus).toHaveBeenCalledTimes(1)
+  } finally { global.requestAnimationFrame = original }
+})
+
+test('KISO main table rules never apply to the nested detail event table', () => {
+  expect(ListView.computed.isKubernetesIsoMainList.call({ $route: { meta: { name: 'kubernetesiso' }, params: { id } }, resourcePath: '' })).toBe(false)
+  expect(ListView.computed.isKubernetesIsoMainList.call({ $route: { meta: { name: 'kubernetesiso' }, params: {} }, resourcePath: '' })).toBe(true)
+})
+
+test('a Completed detail event uses the standard event Status component instead of a version badge', () => {
+  const { wrapper } = cell('/kubernetesiso', 'USER', 'state', 'event', { id }, { state: 'Completed' })
+  expect(wrapper.findComponent({ name: 'KubernetesIsoListCell' }).exists()).toBe(false)
+  expect(wrapper.findComponent({ name: 'Status' }).props('text')).toBe('Completed')
+  expect(wrapper.find('.list-view-table-wrapper').attributes('role')).toBeUndefined()
+  wrapper.unmount()
+})
+test('the KISO main list still renders its Enabled version through the catalog status cell', () => {
+  const { wrapper } = cell('/kubernetesiso', 'USER', 'state', 'version', {}, { state: 'Enabled' })
+  expect(wrapper.findComponent({ name: 'KubernetesIsoListCell' }).props('field')).toBe('state')
+  expect(wrapper.findComponent({ name: 'Status' }).exists()).toBe(false)
+  wrapper.unmount()
 })

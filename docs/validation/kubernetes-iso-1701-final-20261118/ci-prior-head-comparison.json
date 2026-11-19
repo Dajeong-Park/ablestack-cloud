@@ -1,0 +1,82 @@
+{
+  "baselineLint": 44014220817,
+  "productLint": 44022837072,
+  "baselineCommit": "3c735ecafc82124b3b116c82a1962eb1a65fc46c",
+  "productCommit": "a374df51ab1cad156915b608f0443ef5ed021268",
+  "baseline": {
+    "failedHooks": [
+      "run oxipng",
+      "add license for all Markdown files",
+      "add license for all properties files",
+      "add license for all Shell files",
+      "add license for all SQL files",
+      "add license for all Vue files",
+      "add license for all YAML files",
+      "check that scripts with shebangs are executable",
+      "check for broken symlinks",
+      "fix end of files",
+      "fix utf-8 byte order marker",
+      "mixed line ending",
+      "trim trailing whitespace",
+      "run codespell",
+      "flake8",
+      "run markdownlint"
+    ],
+    "changedPathDiagnostics": []
+  },
+  "product": {
+    "failedHooks": [
+      "run oxipng",
+      "add license for all Markdown files",
+      "add license for all properties files",
+      "add license for all Shell files",
+      "add license for all SQL files",
+      "add license for all Vue files",
+      "add license for all YAML files",
+      "check that scripts with shebangs are executable",
+      "check for broken symlinks",
+      "fix end of files",
+      "fix utf-8 byte order marker",
+      "mixed line ending",
+      "trim trailing whitespace",
+      "run codespell",
+      "flake8",
+      "run markdownlint"
+    ],
+    "changedPathDiagnostics": []
+  },
+  "sameFailedHooks": true,
+  "newFailedHooks": [],
+  "license": {
+    "baseRun": 44014251931,
+    "productRun": 44022837107,
+    "baseUnknown": 4077,
+    "productUnknown": 4077
+  },
+  "debts": [
+    926,
+    1044
+  ],
+  "resumedHead": "1856e358e4f88ec5c124eec6b505cb117cfba894",
+  "resumedLint": 44028573282,
+  "resumedLicense": 44028573251,
+  "resumedFailedHooks": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "sameResumedBaseline": true
+}

@@ -1,0 +1,63 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "baseHead": "4b9c5ac2af81dd38439569d60ec5b51a93118694",
+  "baseRun": 43829815640,
+  "productHead": "03fb81531ffe7f19a6f8625a30f0600df7c49f82",
+  "productRun": 43850364428,
+  "failedHookCount": 16,
+  "failedHooksEqual": true,
+  "failedHooks": [
+    "run oxipng",
+    "add license for all Markdown files",
+    "add license for all properties files",
+    "add license for all Shell files",
+    "add license for all SQL files",
+    "add license for all Vue files",
+    "add license for all YAML files",
+    "check that scripts with shebangs are executable",
+    "check for broken symlinks",
+    "fix end of files",
+    "fix utf-8 byte order marker",
+    "mixed line ending",
+    "trim trailing whitespace",
+    "run codespell",
+    "flake8",
+    "run markdownlint"
+  ],
+  "changedPaths": [
+    "docs/design/kubernetes-iso-1692/url-registration.ko.md",
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/config/section/image.js",
+    "ui/src/utils/kubernetesIsoRegistration.js",
+    "ui/src/views/image/RegisterKubernetesIso.vue",
+    "ui/tests/unit/utils/kubernetesIsoRegistration.spec.js",
+    "ui/tests/unit/views/image/KubernetesIsoRegistration.spec.js"
+  ],
+  "changedPathAddedDiagnostics": [],
+  "licenseRun": 43850364280,
+  "unknown": 4077,
+  "unapproved": 4077,
+  "wholeCiPass": false,
+  "debtIssues": [
+    926,
+    1044
+  ]
+}

@@ -1,0 +1,99 @@
+[
+  {
+    "name": "qa-kiso1698-sort-9",
+    "version": "1.29.9",
+    "specific": true,
+    "id": "42dd7ef5-c792-4dfc-8473-e10a0fec152e",
+    "isoId": "3388fd64-d69c-4a44-9153-4905373302f3",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-sort-10",
+    "version": "1.29.10",
+    "specific": true,
+    "id": "71ee2178-afa4-4ccd-a595-fa258f40d73c",
+    "isoId": "6fcdc129-007a-4cdd-b1ab-c000240ec04b",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-sort-11",
+    "version": "1.29.11",
+    "specific": true,
+    "id": "edbe46a0-67a7-438b-a935-89ad06533a36",
+    "isoId": "a088c88f-2633-4c3d-bda8-815cd7deec85",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-low-04",
+    "version": "1.30.4",
+    "specific": false,
+    "id": "e4aa5f9b-f09a-48d8-bf47-76c411f984d3",
+    "isoId": "a5499d7e-29a1-4f66-87a9-59f5192d7e37",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-low-05",
+    "version": "1.30.5",
+    "specific": true,
+    "id": "ea7acb7a-6596-4e05-86da-b3f6634a2410",
+    "isoId": "faffe74e-4101-4f7c-856a-df578834171d",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-low-06",
+    "version": "1.30.6",
+    "specific": false,
+    "id": "47a9a8ac-20eb-41b9-8a82-9482467e7c7a",
+    "isoId": "ec4d8b53-3599-4e2d-af10-fa77185081c5",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-low-07",
+    "version": "1.30.7",
+    "specific": true,
+    "id": "cbc1dc2d-ef9b-4ef3-8c14-5ebe776d2c48",
+    "isoId": "828c8105-aebb-4376-a33a-f0d8c1ee90f1",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-low-08",
+    "version": "1.30.8",
+    "specific": false,
+    "id": "8e485eac-eab2-412e-ac9d-639afb234103",
+    "isoId": "f0d52735-633a-44fb-b393-1b585101d584",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-low-09",
+    "version": "1.30.9",
+    "specific": true,
+    "id": "79ef880b-e49b-4021-b31d-2bcd90a8d2cf",
+    "isoId": "95a4d1b4-3b83-40a0-84c2-6f3c46be0b07",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-low-10",
+    "version": "1.30.10",
+    "specific": false,
+    "id": "040f297d-9772-4af7-a5d7-20e7a6afc136",
+    "isoId": "081ca32a-0563-4d15-9729-5c8d11f7da8a",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-high-arm",
+    "version": "1.36.1",
+    "specific": true,
+    "arch": "aarch64",
+    "id": "12a075b0-490a-4217-9229-6199c82b00b7",
+    "isoId": "625ac81e-06c4-4a71-acfa-2cfe7ba3f2cc",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "name": "qa-kiso1698-page-high-global",
+    "version": "1.36.2",
+    "specific": false,
+    "id": "76570195-a102-4b4d-98ba-4c570261c4ea",
+    "isoId": "80214513-2395-4171-a3d2-c433d5116c86",
+    "cleanup": "deleted-ui"
+  }
+]

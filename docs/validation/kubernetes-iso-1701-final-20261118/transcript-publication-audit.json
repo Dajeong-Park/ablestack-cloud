@@ -1,0 +1,57 @@
+[
+  {
+    "file": "dark-link-color-token-verified.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "0391a6c9454eabab595dfb5372b4ecb9e2eb5efddc544f2a19edb1399d5d54ec"
+  },
+  {
+    "file": "final-list-dark-native.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "b276d1b1ced9416e26fb92a609a392f9aca79bb8b6a53c09f1a06467c3de9ba0"
+  },
+  {
+    "file": "dark-link-computed-visible.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "1b751d6720ff2fa0447997671cb99ba5042baef79289fa9342669bf4a9e89330"
+  },
+  {
+    "file": "native-state-tab-cancel-focus.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "b295e63ec3eb9e101311ce742c40813ed62d121423581cb58c8af6458a33f915"
+  },
+  {
+    "file": "before-cell-correction-events-dark.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "3ca6fa4fa4b6680252f5641667aae2f4128bb39f06c432f4c75bddc8c04eb67a"
+  },
+  {
+    "file": "native-escape-focus-enter-reopened-actions.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "41e99451f200372e8a3731743d52fd52b10be2c3f3ff839ac97a55329858cabb"
+  },
+  {
+    "file": "final-detail-dark-native.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "eb97f26a5c03cf4490566fde62ff7d518c459b1c76aaea2b54a14e6ff5fbf0c1"
+  },
+  {
+    "file": "native-state-down-enter-selected.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "e1ed971b6304da6e0215f0f5572edb9b0e31e0a55ff969a33c80861a4129bda8"
+  },
+  {
+    "file": "native-state-escape-returned.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "4d1d9e95dcd00799a8a56569979756a15dc226d7de4aa0b083209b56a82f43c2"
+  },
+  {
+    "file": "fresh-list-dark-console.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "ba3bca1204e54e397a8693d46e32fcb8e90e1c1edf615f3881dc4d323c052c96"
+  },
+  {
+    "file": "dark-link-computed.log",
+    "omittedUnrelatedChromeToolbar": true,
+    "sha256": "5e38a27deb4191f132823cd97014dacec60f0d2f2ff3b8669c8532c8fd0e2960"
+  }
+]

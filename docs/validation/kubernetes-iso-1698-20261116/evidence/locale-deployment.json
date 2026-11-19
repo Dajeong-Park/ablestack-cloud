@@ -1,0 +1,17 @@
+{
+  "head": "10366f30b2f0a587cb69a23f6bd2a665c1e05fbb",
+  "files": {
+    "locales/en.json": {
+      "sha256": "0540f1dc0d83f2cf7747fca061d26d85192fcbb041e2cc4bd6fb976eaad2d13a",
+      "beforeSha256": "034e5c7aef1893e928dc50177f34a38112c86a54e4452738fb5a2c23ab09a6c5"
+    },
+    "locales/ko_KR.json": {
+      "sha256": "6d4e5ba0e92abdb3623a56cfd363868249e2ac61aeb120fc6612405975844909",
+      "beforeSha256": "666eaed1422af44eebb4091f3dae4a8da09a3332213838d8b24c648a96001f57"
+    }
+  },
+  "backup": "/var/tmp/kiso1698-locales-backup-22j065lw",
+  "unchangedOtherAssets": 7170,
+  "indexBackendPidProtectedPreserved": true,
+  "httpHashesVerified": true
+}

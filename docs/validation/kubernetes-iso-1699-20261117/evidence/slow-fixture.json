@@ -1,0 +1,9 @@
+{
+  "pid": 2839831,
+  "script": "/var/tmp/qa-kiso1699-slow.py",
+  "url": "http://10.10.13.10:8619/slow.iso",
+  "bytesPerChunk": 8192,
+  "delaySeconds": 0.75,
+  "ttlSeconds": 900,
+  "headVerified": true
+}

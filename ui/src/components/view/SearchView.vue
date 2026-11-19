@@ -17,6 +17,7 @@
 
 <template>
   <AsnSearch v-if="apiName === 'listASNumbers'" :validation-error="asnSearchFailure" @search="$emit('search', $event)" />
+  <KubernetesIsoSearch v-else-if="apiName === 'listKubernetesSupportedVersions'" @search="$emit('search', $event)" />
   <PublicIpSearch v-else-if="apiName === 'listPublicIpAddresses'" @search="$emit('search', $event)" />
   <SnapshotSearch v-else-if="apiName === 'listSnapshots'" @search="$emit('search', $event)" />
   <SnapshotPolicySearch v-else-if="apiName === 'listSnapshotPolicies'" @search="$emit('search', $event)" />
@@ -202,6 +203,7 @@
 </template>
 
 <script>
+import KubernetesIsoSearch from '@/components/view/KubernetesIsoSearch'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI } from '@/api'
 import { sourceToken } from '@/utils/request'
@@ -223,6 +225,7 @@ import { affinityOwnerOptions, affinityTypeOptions } from '@/utils/affinityGroup
 export default {
   name: 'SearchView',
   components: {
+    KubernetesIsoSearch,
     TooltipButton,
     ResourceIcon,
     Status,

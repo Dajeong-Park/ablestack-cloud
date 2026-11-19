@@ -1,0 +1,46 @@
+{
+  "sourceBase": "24c9b1a034f3e4ab0f5ba1a1e575ff00b7c394f0",
+  "productHead": "ff63d35973a0c3bb2587b68159bb8fef12a14c62",
+  "buildInput": "/root/work/.build-iso-vnf-sync-20261116-bm2k765y/ui",
+  "inputDelta": [
+    "public/locales/en.json",
+    "public/locales/ko_KR.json",
+    "src/components/view/KubernetesIsoSearch.vue",
+    "src/components/view/ListView.vue",
+    "src/components/view/ResourceView.vue",
+    "src/components/view/SearchView.vue",
+    "src/components/widgets/Breadcrumb.vue",
+    "src/config/section/image.js",
+    "src/utils/kubernetesIsoModel.js",
+    "src/utils/kubernetesIsoSearch.js",
+    "src/views/AutogenView.vue"
+  ],
+  "operatingSourceHashes": {
+    "public/locales/en.json": "034e5c7aef1893e928dc50177f34a38112c86a54e4452738fb5a2c23ab09a6c5",
+    "public/locales/ko_KR.json": "666eaed1422af44eebb4091f3dae4a8da09a3332213838d8b24c648a96001f57",
+    "src/components/view/KubernetesIsoSearch.vue": "1aad9e866bc9a449c70b083ba25f37c2f2b031082df7cd8ab55eb2fadc888786",
+    "src/components/view/ListView.vue": "14ede87e00fd88b3c50e2d47d1ba9a81ff6754529238639d87146083ad63b008",
+    "src/components/view/ResourceView.vue": "e60fe27aa97f16baf82bc5e4a306440a8af28e8a7081225afc50521979cfaa19",
+    "src/components/view/SearchView.vue": "59e03bedf296a001c2dcf88323a0d2efbc473090fc5db4db2b5fcbd7c85596f6",
+    "src/components/widgets/Breadcrumb.vue": "e4e52855fc8cd7649740029996484dc3dd61153f1f7a0336e691d86276f297d7",
+    "src/config/section/image.js": "d598ed81ad371ed4dd9e2932b7fb1e2370a19d89b0ed2a553784b4dcb7b523f1",
+    "src/utils/kubernetesIsoModel.js": "274f80998ef80f5bd40b54813a55dbdbf65a565cb2c72da47b785855128fb74d",
+    "src/utils/kubernetesIsoSearch.js": "88014d5a8caea191685d57c692501ebcc96bc0d8b831445d6821ab0c97d16ff5",
+    "src/views/AutogenView.vue": "b92ac2d6296da28962ec9c1cacd0bfdd2efd3d0b78e8a39838e560cbb9ef8ffd"
+  },
+  "canonicalSourceHashes": {
+    "public/locales/en.json": "5aead71c74d3a684550a52e4c61615258d65114c38f7ca5f7531c7f3632b9ce8",
+    "public/locales/ko_KR.json": "b250104941c15bde1656d59ace8954cd37ac1e1146c11d0fdcb6513716b790ed",
+    "src/components/view/KubernetesIsoSearch.vue": "1aad9e866bc9a449c70b083ba25f37c2f2b031082df7cd8ab55eb2fadc888786",
+    "src/components/view/ListView.vue": "14ede87e00fd88b3c50e2d47d1ba9a81ff6754529238639d87146083ad63b008",
+    "src/components/view/ResourceView.vue": "a9a5968d550e534af7fd02fe763de5f443326f8340c2f585986fa59cbd6bfe8c",
+    "src/components/view/SearchView.vue": "59e03bedf296a001c2dcf88323a0d2efbc473090fc5db4db2b5fcbd7c85596f6",
+    "src/components/widgets/Breadcrumb.vue": "42065d3d07dffe06f2ecc511c71b73e078577ece976e96e16effa068866fedbf",
+    "src/config/section/image.js": "d598ed81ad371ed4dd9e2932b7fb1e2370a19d89b0ed2a553784b4dcb7b523f1",
+    "src/utils/kubernetesIsoModel.js": "274f80998ef80f5bd40b54813a55dbdbf65a565cb2c72da47b785855128fb74d",
+    "src/utils/kubernetesIsoSearch.js": "88014d5a8caea191685d57c692501ebcc96bc0d8b831445d6821ab0c97d16ff5",
+    "src/views/AutogenView.vue": "8ac85ffac5e13126ba4b92e8fcfd8aca033b7ac444a38991d3abc7aa5a887f4d"
+  },
+  "otherInputsPreserved": 1093,
+  "operatingDiffResolution": "preserved unrelated VPC differences in ResourceView/Breadcrumb; only catalog router branch added"
+}

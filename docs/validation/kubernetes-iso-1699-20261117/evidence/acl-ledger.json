@@ -1,0 +1,30 @@
+[
+  {
+    "name": "qa-kiso1699-catalog-role",
+    "href": "http://10.10.13.10:8080/client/#/role/f9ca2513-b400-4969-8a01-6dd05e22fa2d",
+    "cleanup": "deleted-ui",
+    "type": "User",
+    "public": false
+  },
+  {
+    "name": "qa-kiso1699-iso-role",
+    "href": "http://10.10.13.10:8080/client/#/role/d82ba70a-6a9e-46fd-a21c-f0e129dbd32e",
+    "cleanup": "deleted-ui",
+    "type": "User",
+    "public": false
+  },
+  {
+    "kind": "account",
+    "name": "qa-kiso1699-catalog",
+    "role": "qa-kiso1699-catalog-role",
+    "href": "http://10.10.13.10:8080/client/#/account/67f4acca-96d2-4e07-9079-67d2ba41aaf5",
+    "cleanup": "deleted-ui"
+  },
+  {
+    "kind": "account",
+    "name": "qa-kiso1699-iso",
+    "role": "qa-kiso1699-iso-role",
+    "href": "http://10.10.13.10:8080/client/#/account/1bdc5555-a664-4028-8ace-a892d4362197",
+    "cleanup": "deleted-ui"
+  }
+]

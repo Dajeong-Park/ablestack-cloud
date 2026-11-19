@@ -1,0 +1,213 @@
+{
+  "_license": [
+    "Licensed to the Apache Software Foundation (ASF) under one",
+    "or more contributor license agreements.  See the NOTICE file",
+    "distributed with this work for additional information",
+    "regarding copyright ownership.  The ASF licenses this file",
+    "to you under the Apache License, Version 2.0 (the",
+    "\"License\"); you may not use this file except in compliance",
+    "with the License.  You may obtain a copy of the License at",
+    "",
+    "  http://www.apache.org/licenses/LICENSE-2.0",
+    "",
+    "Unless required by applicable law or agreed to in writing,",
+    "software distributed under the License is distributed on an",
+    "\"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY",
+    "KIND, either express or implied.  See the License for the",
+    "specific language governing permissions and limitations",
+    "under the License."
+  ],
+  "checkedAtUtc": "2026-11-16T03:28:46.053691+00:00",
+  "finalOutcome": "PASS",
+  "passedGroups": 20,
+  "passedObservations": 21,
+  "resolvedFindings": 2,
+  "unresolvedFindings": 0,
+  "surface": "user-opened in-app browser tab 4",
+  "url": "http://127.0.0.1:8769/docs/design/kubernetes-iso-1692/mockup.html",
+  "actions": "Browser Use locator keyboard inputs and read-only DOM focus checks",
+  "crossPageNavigation": false,
+  "sameUrlReloads": true,
+  "scope": "documentation-only mockup; no Mold API or operating resource mutation",
+  "initialFindings": [
+    "modal Tab boundary lost focus",
+    "selected tab lost focus after render"
+  ],
+  "corrections": [
+    "explicit modal focus loop excluding disabled controls",
+    "preserve focus on selected tab after render",
+    "versioned script URL for reloaded static mockup"
+  ],
+  "results": [
+    {
+      "case": "K01",
+      "action": "갱신 버튼에서 Tab",
+      "result": "PASS",
+      "focus": "URL 등록 버튼"
+    },
+    {
+      "case": "K02",
+      "action": "등록 버튼에서 Enter",
+      "result": "PASS",
+      "dialog": "URL 등록",
+      "focus": "대화상자 닫기"
+    },
+    {
+      "case": "K03",
+      "action": "닫기 버튼에서 Tab",
+      "result": "PASS",
+      "focus": "시맨틱 버전 입력"
+    },
+    {
+      "case": "K04",
+      "action": "입력 필드에서 Shift+Tab",
+      "result": "PASS",
+      "focus": "대화상자 닫기"
+    },
+    {
+      "case": "K05",
+      "action": "URL 등록 입력에서 Escape",
+      "result": "PASS",
+      "dialogClosed": true,
+      "returnedFocus": "URL 등록 버튼"
+    },
+    {
+      "case": "K06",
+      "action": "로컬 등록 Enter 제출(파일 없음)",
+      "result": "PASS",
+      "dialogRetained": true,
+      "fileError": "ISO 파일 1개를 선택하십시오.",
+      "focus": "등록 버튼"
+    },
+    {
+      "case": "K07-initial",
+      "action": "로컬 등록 마지막 버튼에서 Tab",
+      "result": "NEEDS_FIX",
+      "observedActiveTag": "BODY",
+      "note": "모달 경계의 명시적 초점 순환 필요",
+      "resolvedBy": [
+        "K07-reverse-final",
+        "K07-forward-final"
+      ]
+    },
+    {
+      "case": "K08",
+      "action": "로컬 등록 Escape",
+      "result": "PASS",
+      "returnedFocus": "로컬 등록 버튼"
+    },
+    {
+      "case": "K07-reverse-final",
+      "action": "로컬 모달 첫 요소에서 Shift+Tab",
+      "result": "PASS",
+      "focus": "등록 버튼",
+      "note": "버전이 갱신된 보정 스크립트로 재검증"
+    },
+    {
+      "case": "K07-forward-final",
+      "action": "로컬 모달 마지막 요소에서 Tab",
+      "result": "PASS",
+      "focus": "대화상자 닫기"
+    },
+    {
+      "case": "K09",
+      "action": "로컬 모달 취소 Enter",
+      "result": "PASS",
+      "returnedFocus": "로컬 등록 버튼"
+    },
+    {
+      "case": "K10",
+      "action": "고급 검색 Enter 제출",
+      "result": "PASS",
+      "count": 1,
+      "returnedFocus": "고급 검색 버튼"
+    },
+    {
+      "case": "K11-initial",
+      "action": "Zone 탭 Enter 선택",
+      "result": "NEEDS_FIX",
+      "selected": "Zone",
+      "observedActiveTag": "BODY",
+      "note": "재렌더 후 선택 탭 초점 보존 필요",
+      "resolvedBy": [
+        "K11-final"
+      ]
+    },
+    {
+      "case": "K11-final",
+      "action": "상세에서 Tab 후 Zone Enter",
+      "result": "PASS",
+      "selected": "Zone",
+      "focus": "tab-zones"
+    },
+    {
+      "case": "K12",
+      "action": "Zone에서 Tab 후 이벤트 Enter",
+      "result": "PASS",
+      "selected": "이벤트",
+      "focus": "tab-events"
+    },
+    {
+      "case": "K13",
+      "action": "상태 선택 Tab/ArrowDown/Tab/Tab/Enter 저장",
+      "result": "PASS",
+      "savedText": "사용 안 함",
+      "returnedFocus": "버전 관리 버튼",
+      "scope": "메모리 내 목업 데이터만"
+    },
+    {
+      "case": "K14",
+      "action": "참조 중 삭제 모달 Shift+Tab/Tab 순환",
+      "result": "PASS",
+      "disabledDeleteSkipped": true,
+      "lastFocusable": "취소",
+      "firstFocusable": "닫기"
+    },
+    {
+      "case": "K15",
+      "action": "참조 중 삭제 모달 Escape",
+      "result": "PASS",
+      "returnedFocus": "삭제 버튼"
+    },
+    {
+      "case": "K16",
+      "action": "라이트 URL 모달 Enter/Shift+Tab/Tab/Escape",
+      "result": "PASS",
+      "loop": [
+        "등록",
+        "닫기"
+      ],
+      "returnedFocus": "URL 등록 버튼"
+    },
+    {
+      "case": "K17",
+      "action": "고급 검색 Escape",
+      "result": "PASS",
+      "returnedFocus": "고급 검색 버튼"
+    },
+    {
+      "case": "K18",
+      "action": "최종 로컬 모달 파일 없는 Enter 제출 후 Escape",
+      "result": "PASS",
+      "fileError": "ISO 파일 1개를 선택하십시오.",
+      "returnedFocus": "로컬 등록 버튼"
+    },
+    {
+      "case": "K19",
+      "action": "모달 닫기 버튼 Enter",
+      "result": "PASS",
+      "returnedFocus": "로컬 등록 버튼"
+    },
+    {
+      "case": "K20",
+      "action": "상태 변경 모달 Escape",
+      "result": "PASS",
+      "returnedFocus": "버전 관리 버튼"
+    }
+  ],
+  "finalFocus": {
+    "activeText": "＋ 쿠버네티스 버전 추가",
+    "dialogOpen": false,
+    "rows": 4
+  }
+}

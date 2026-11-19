@@ -1,0 +1,19 @@
+{
+  "actor": "qa-kiso1702-admin",
+  "keyword": "qa-kiso",
+  "keywordOnlyCount": 2,
+  "zoneId": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+  "arch": "x86_64",
+  "minimumSemanticVersion": "1.34.10",
+  "combinedCount": 1,
+  "matchedVersion": "1.34.12",
+  "nativeEnterSearch": true,
+  "nativeEscapePopover": true,
+  "detailAndReturn": "PASS native breadcrumb; keyword/Zone/arch/minimum/page/pagesize and count 1 preserved",
+  "evidence": [
+    "1702-search-keyword-zone-arch-min-semver-count-one",
+    "1702-search-breadcrumb-return-preserved",
+    "1702-old-role-owner-return-state-discarded"
+  ],
+  "oldRoleOwnerReturn": "PASS prior read-only owner URL discarded after API policy changed; keyword/Zone/arch/min-version reset, full count5"
+}

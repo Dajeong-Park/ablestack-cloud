@@ -1,0 +1,10 @@
+{
+  "indexSha256": "e39ac0bb82fa486d8013b694f819a9a2a9d31cca07c2605069832066fc3e67d5",
+  "expected": "e39ac0bb82fa486d8013b694f819a9a2a9d31cca07c2605069832066fc3e67d5",
+  "appAssets": [
+    "css/app.db04de3e.css",
+    "js/app.ef81ff75.js",
+    "css/app.db04de3e.css",
+    "js/app.ef81ff75.js"
+  ]
+}

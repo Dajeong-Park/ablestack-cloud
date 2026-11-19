@@ -1,0 +1,720 @@
+[
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "arch": "x86_64",
+      "minimumkubernetesversionid": "71ee2178-afa4-4ccd-a595-fa258f40d73c",
+      "sortkey": "semanticversion",
+      "sortorder": "desc",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "id": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "50"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "arch": "x86_64",
+      "minimumkubernetesversionid": "71ee2178-afa4-4ccd-a595-fa258f40d73c",
+      "sortkey": "semanticversion",
+      "sortorder": "desc",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "arch": "x86_64",
+      "minimumsemanticversion": "1.10.0",
+      "sortkey": "semanticversion",
+      "sortorder": "desc",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "id": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "zoneid": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f",
+      "arch": "x86_64",
+      "minimumsemanticversion": "2.0.0",
+      "sortkey": "semanticversion",
+      "sortorder": "desc",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "id": "f4fd8c56-ed31-4dfd-bf3c-10e3000fd10f"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "minimumkubernetesversionid": "00000000-0000-0000-0000-000000000001",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "minimumkubernetesversionid": "00000000-0000-0000-0000-000000000001",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "minimumkubernetesversionid": "00000000-0000-0000-0000-000000000001",
+      "page": "1",
+      "pagesize": "20"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listWallAlertRules",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "command": "listWallAlertSilences",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "1000"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "99",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "2",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.36",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listWallAlertRules",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "command": "listWallAlertSilences",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "1000"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.35",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "1.36",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "2",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listWallAlertRules",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "command": "listVirtualMachines",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "command": "listWallAlertSilences",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "1000"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "getWallAlertAvailability",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listWallAlertRules",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "200"
+    }
+  },
+  {
+    "command": "listWallAlertSilences",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "1000"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "2",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "2",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "2",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "2",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listKubernetesSupportedVersions",
+    "method": "GET",
+    "params": {
+      "keyword": "qa-kiso1698",
+      "page": "1",
+      "pagesize": "10"
+    }
+  },
+  {
+    "command": "readyForShutdown",
+    "method": "GET",
+    "params": {}
+  },
+  {
+    "command": "listHostsMetrics",
+    "method": "GET",
+    "params": {}
+  }
+]

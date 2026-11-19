@@ -1,0 +1,7 @@
+{
+  "largeFileRemoved": true,
+  "slowScriptRemoved": true,
+  "slowLogRemoved": true,
+  "slowPortClosed": true,
+  "retainedSmallFixture": true
+}

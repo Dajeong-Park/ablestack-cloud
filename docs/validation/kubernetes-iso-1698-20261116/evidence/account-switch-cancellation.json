@@ -1,0 +1,16 @@
+{
+  "oldReadNetworkIds": [
+    "46988.7223"
+  ],
+  "failed": [
+    {
+      "requestId": "46988.7223",
+      "canceled": true,
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "newUrl": "http://10.10.13.10:8080/client/#/kubernetesiso?keyword=1.36&page=1&pagesize=20&kisoowner=0c9857c8310c4265466c870a12c3468fac24c19a9dd3e193b1ac74dac4cb5965",
+  "rows": [
+    "1.36.5정상1.36.5Ready22048x86_6413-Zone"
+  ]
+}

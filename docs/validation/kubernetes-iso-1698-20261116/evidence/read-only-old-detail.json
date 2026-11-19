@@ -1,0 +1,6 @@
+{
+  "url": "http://10.10.13.10:8080/client/#/kubernetesiso/42dd7ef5-c792-4dfc-8473-e10a0fec152e",
+  "breadcrumb": "#/kubernetesiso",
+  "writeButtons": 0,
+  "mainText": "/쿠버네티스 ISO/qa-kiso1698-sort-9업데이트\nqa-kiso1698-sort-9\nx86_64\n상태\n정상\n아이디\n42dd7ef5-c792-4dfc-8473-e10a0fec152e \n연결된 ISO\nqa-kiso1698-sort-9-Kubernetes-Binaries-ISO\nZone\n13-Zone\n생성일\n2026. 11. 16. 오후 10:37:42\n상세\n이름\n\nqa-kiso1698-sort-9\n시맨틱 버전\n\n1.29.9\n오토스케일링 지원\n\ntrue\nZone\n\nf4fd8c56-ed31-4dfd-bf3c-10e3000fd10f\nZone\n\n13-Zone\nISO\n\n3388fd64-d69c-4a44-9153-4905373302f3\n연결된 ISO\n\nqa-kiso1698-sort-9-Kubernetes-Binaries-ISO\nISO 상태\n\nReady\nCPU 아키텍처\n\nx86_64\n최소 CPU 코어\n\n2\n최소 메모리(MB)\n\n2048\nHA 지원\n\ntrue\n상태\n\nEnabled\n생성일\n\n2026. 11. 16. 오후 10:37:42"
+}
