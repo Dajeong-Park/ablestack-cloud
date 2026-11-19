@@ -266,12 +266,12 @@ public interface BackupManager extends BackupService, Configurable, PluggableSer
             true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
 
     ConfigKey<Integer> ThirdPartyStagingConcurrentCluster = new ConfigKey<>("Advanced", Integer.class,
-            "backup.thirdparty.staging.concurrent.jobs.per.cluster", "4",
+            "backup.thirdparty.staging.concurrent.jobs.per.cluster", "1",
             "Maximum concurrent volume staging Backup and Restore jobs combined in one cluster.",
             true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
 
     ConfigKey<Integer> ThirdPartyStagingConcurrentTotal = new ConfigKey<>("Advanced", Integer.class,
-            "backup.thirdparty.staging.concurrent.jobs.total", "4",
+            "backup.thirdparty.staging.concurrent.jobs.total", "1",
             "Maximum concurrent Backup and Restore jobs combined across all Hosts and all three ABLESTACK third-party providers using common staging.",
             true, ConfigKey.Scope.Global, BackupFrameworkEnabled.key());
 

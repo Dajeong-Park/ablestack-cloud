@@ -1225,7 +1225,7 @@ Hook은 실제 볼륨 백업 완료를 기다리지 않고 대상 목록의 접�
 | Storage unit / `Maximum concurrent jobs` | 같은 저장소를 사용하는 모든 Host·정책이 공유한다. Host 4대와 저장소 하나를 기준으로 ① `1`, ② `4`, ③ `8`을 시작값으로 한다. bootstrap용 슬롯을 별도로 더하지 않는다. 다른 작업도 같은 저장소를 사용하면 공유 사용량을 함께 검토한다. |
 | Policy Attributes / `Allow multiple data streams` | 해제한다. 전송 한 건의 정확한 파일 목록과 Job·Backup ID를 연결하며 여러 스트림으로 나뉜 모호한 결과는 완료로 처리하지 않는다. |
 | Mold / `backup.thirdparty.staging.concurrent.jobs.per.host` | 기본 `1`이다. NetBackup 제한을 올려도 이 값이 `1`이면 Host 내 VM 스테이징은 하나씩 진행한다. 여러 볼륨을 가진 VM 한 개의 볼륨은 계속 순차 처리된다. |
-| Mold / `backup.thirdparty.staging.concurrent.jobs.per.cluster`, `.total` | 기본값은 각각 `4`, `4`이며 백업·복원과 다른 third-party 공급자도 함께 사용하는 제한이다. Host 제한·스테이징 여유 공간과 함께 조정한다. |
+| Mold / `backup.thirdparty.staging.concurrent.jobs.per.cluster`, `.total` | 기본값은 각각 `1`, `1`이다. 백업·복원과 다른 third-party 공급자도 함께 사용하는 제한이며, Host별 병렬 검증 시 목표 동시 Host 수에 맞춰 명시적으로 조정한다. |
 | Mold / `backup.thirdparty.staging.queue.timeout`, `backup.data.operation.timeout` | 각각 스테이징 입장 대기와 실제 처리 대기·전송 시간을 고려한다. NetBackup 자원 대기로 전송이 길어지면 활성 VM이 Host 슬롯을 계속 보유하고 다음 VM은 스테이징 큐 만료로 실패할 수 있다. |
 
 전체 순차 운영은 Mold `1 / 1 / 1`, Host별 병렬 운영은 `1 / 4 / 4`를 예시로 하며 두 경우 모두 Host 정책 제한은 `1`이다.
@@ -2673,11 +2673,13 @@ Commvault·NetBackup·Veeam의 백업과 복원은 공통 스테이징을 함께
 | 글로벌 설정 | 기본값 | 적용 범위 |
 | --- | --- | --- |
 | `backup.thirdparty.staging.concurrent.jobs.per.host` | `1` | Host 하나에서 동시에 실행하는 백업·복원의 합 |
-| `backup.thirdparty.staging.concurrent.jobs.per.cluster` | `4` | Cluster 하나에서 동시에 실행하는 백업·복원의 합 |
-| `backup.thirdparty.staging.concurrent.jobs.total` | `4` | 세 솔루션과 모든 Host를 합친 동시 백업·복원 수 |
+| `backup.thirdparty.staging.concurrent.jobs.per.cluster` | `1` | Cluster 하나에서 동시에 실행하는 백업·복원의 합 |
+| `backup.thirdparty.staging.concurrent.jobs.total` | `1` | 세 솔루션과 모든 Host를 합친 동시 백업·복원 수 |
 | `backup.thirdparty.staging.queue.timeout` | `14400`초(4시간) | 새 작업이 실행 허용을 기다릴 수 있는 시간 |
 
-기본 설정에서는 같은 Host의 작업은 하나씩 실행하고, 여러 Host에서는 Cluster·전체 제한과 용량 범위 안에서 병렬로 실행한다.
+기본 `1 / 1 / 1`은 공통 스테이징 전체에서 백업·복원을 하나씩 실행한다.
+Host별 병렬 검증은 클러스터 하나의 Host 수가 H인 경우 `1 / H / H`로 명시적으로 조정하며,
+Host 4대의 예시는 `1 / 4 / 4`다. 코드 기본값과 운영 서버에 저장된 병렬 설정값을 구분한다.
 같은 Host에서 둘 이상 실행하려면 Host 제한을 조정하고 Cluster·전체 제한 및 각 작업의 필요 공간도 함께 확보한다.
 GFS2·NFS를 공유하는 Host들은 같은 파일시스템의 예약분을 함께 계산한다.
 `LOCAL`은 Host별 공간을 검사하되 Host·Cluster·전체 동시 실행 수 제한은 공통으로 적용한다.
@@ -2793,8 +2795,8 @@ VM 개수·가상 디스크의 표시 용량만으로 시간을 정하지 않고
 | `backup.thirdparty.staging.queue.timeout` / Global | `14400`초 (4시간) | 초기에는 유지. 가장 늦게 슬롯을 얻을 VM의 예상 대기가 4시간에 접근·초과하면 반드시 재산정. 백업·복원 및 다른 공통 제공자의 기존 대기도 포함 |
 | `backup.data.operation.timeout` / Global | `43200`초 (12시간) | 초기에는 유지. 백업의 볼륨별 생성·전송 및 복원의 파일별 다운로드·FULL 변환·증분 적용 중 가장 오래 걸리는 개별 단계를 기준으로 재산정. 앞선 단계의 시간은 다음 단계 제한을 소비하지 않음 |
 | `backup.thirdparty.staging.concurrent.jobs.per.host` / Global | `1` | 첫 검증은 1 유지. 같은 Host의 백업·복원 VM 작업 합계. VM 하나의 모든 볼륨이 슬롯 1개를 공유하며 볼륨은 순차 처리 |
-| `backup.thirdparty.staging.concurrent.jobs.per.cluster` / Global | `4` | Host·스토리지 분산과 다른 백업·복원의 슬롯 사용을 보며 유지/조정. 각 Cluster의 상한을 Global에서 지정하는 값이며 Cluster 범위 override를 뜻하지 않음 |
-| `backup.thirdparty.staging.concurrent.jobs.total` / Global | `4` | 공통 스테이징을 쓰는 모든 Host·솔루션의 백업·복원 합계 상한. Host 제한과 실제 저장소 처리능력보다 크게 잡아도 그만큼 실행되지 않음 |
+| `backup.thirdparty.staging.concurrent.jobs.per.cluster` / Global | `1` | 초기에는 전체 순차 검증. Host별 병렬 검증 시 목표 동시 Host 수로 조정. 각 Cluster의 상한을 Global에서 지정하는 값이며 Cluster 범위 override를 뜻하지 않음 |
+| `backup.thirdparty.staging.concurrent.jobs.total` / Global | `1` | 초기에는 전체 순차 검증. Host별 병렬 검증 시 목표 전체 동시 Host 수로 조정. 모든 공통 솔루션의 백업·복원을 합산하며 저장소 처리능력도 함께 확인 |
 | `backup.qos.bandwidth.limit.mbps` / Global | `0` (제한 없음) | 운영 VM의 디스크 부하를 측정해 필요한 경우 제한. NetBackup 전송 네트워크 전체에 대한 속도 제한으로 해석하지 않음. 속도를 낮추면 데이터·큐 시간을 다시 계산 |
 | `backup.thirdparty.staging.capacity.buffer.percent` / Global | `20`% | 초기 유지. 작업별 스테이징 예약과 실제 여유 공간을 확인. 용량 부족을 피하려고 여유율을 낮추기보다 공간 확보·병렬도 축소 검토 |
 | `backup.restore.primary.storage.capacity.buffer.percent` / Global | `20`% | 초기 유지. 복원 준비 볼륨과 원본 보존·롤백 공간을 포함한 기본스토리지 여유 확인. 최소 10 GiB 여유 조건도 별도로 적용 |
