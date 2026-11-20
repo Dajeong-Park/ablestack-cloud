@@ -44,9 +44,16 @@ export function migrationSupported (apis) {
   return ['kmsmigrationkeyid', 'kmsmigrationeligible'].every(p => fields.includes(p)) &&
     ['migrateVolumesToKMS', 'listKMSKeys', 'queryAsyncJobResult'].every(p => p in (apis || {}))
 }
-export function migrationPreflight (ids, rows) {
+export function migrationPreflight (ids, rows, target) {
   const map = new Map(rows.map(row => [row.id, row]))
-  return ids.length > 0 && ids.every(id => map.get(id)?.kmsmigrationeligible === true && map.get(id)?.kmsmigrationreason === 'ELIGIBLE_LEGACY')
+  return ids.length > 0 && ids.every(id => {
+    const row = map.get(id)
+    if (row?.kmsmigrationeligible !== true || row.kmsmigrationreason !== 'ELIGIBLE_LEGACY') return false
+    if (!target) return true
+    if (row.projectid && row.projectid !== target.projectid) return false
+    if (!target.projectid && row.account && row.account !== target.account) return false
+    return ['domainid', 'zoneid'].every(field => !row[field] || row[field] === target[field])
+  })
 }
 export function migrationOutcome (row, targetId) {
   if (!row) return 'unknown'

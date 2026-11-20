@@ -11,12 +11,9 @@ CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 -->
 <template>
-  <MoldDialog size="xl" :title="$t('label.migrate.volumes.to.kms')" :closable="!busy" :keyboard="!busy" focus-guard @cancel="close">
-    <a-descriptions :column="1" bordered size="small">
-      <a-descriptions-item :label="$t('label.kmskeyid')">{{ target.name }} · {{ target.id }}</a-descriptions-item>
-      <a-descriptions-item :label="$t('label.account')">{{ target.project || target.account }} / {{ target.domain }} / {{ target.zonename }}</a-descriptions-item>
-    </a-descriptions>
-    <a-alert type="info" show-icon :message="$t('message.kms.migration.scope')" />
+  <MoldDialog size="xl" :title="$t('label.migrate.volumes.to.kms')" form-actions focus-guard @cancel="close">
+    <KmsTargetSummary :target="target" />
+    <a-alert type="info" show-icon :message="$t('message.kms.migration.scope')" :description="$t('message.kms.risk.migration')" />
     <a-alert v-if="error" type="error" show-icon :message="error" role="alert" />
     <KmsAvailabilityNotice v-if="!started && availability" :reason="availability" :loading="loading" hsm-help refreshable @refresh="load" />
     <div class="mold-dialog-toolbar kms-migration-toolbar">
@@ -50,21 +47,30 @@ size="small"
         <template v-else>{{ record[column.key] || '—' }}</template>
       </template>
     </a-table>
+    <section v-if="selected.length && !started" class="kms-migration-summary" aria-labelledby="kms-migration-selection">
+      <h4 id="kms-migration-selection">{{ $t('label.kms.risk.selectedVolumes', { count: selected.length }) }}</h4>
+      <ul>
+        <li v-for="id in selected" :key="id">{{ kmsReferenceName(selectedRows[id]?.name, id) }}</li>
+      </ul>
+    </section>
     <template v-if="started">
       <a-alert :type="resultType" show-icon :message="resultText" role="status" />
       <a-table :columns="resultColumns" :data-source="results" row-key="id" :pagination="false" size="small">
         <template #bodyCell="{ column, record }"><template v-if="column.key === 'status'">{{ $t('label.kms.migration.result.' + record.status) }}</template><template v-else>{{ record[column.key] }}</template></template>
       </a-table>
     </template>
-    <template #footer>
-      <a-button :disabled="busy" @click="close">{{ $t(started ? 'label.close' : 'label.cancel') }}</a-button>
+    <MoldDialogActions :busy="busy">
+      <a-button ref="cancel" :disabled="busy" @click="close">{{ $t(started ? 'label.close' : 'label.cancel') }}</a-button>
       <a-button v-if="started" :disabled="busy || !valid" :loading="busy" @click="checkResult">{{ $t('label.kms.migration.check') }}</a-button>
       <a-button v-else type="primary" :disabled="!canSubmit" :loading="busy" @click="submit">{{ $t('label.migrate.volumes.to.kms') }}</a-button>
-    </template>
+    </MoldDialogActions>
   </MoldDialog>
 </template>
 <script>
 import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import KmsTargetSummary from '@/components/view/KmsTargetSummary'
+import { kmsReferenceName, kmsRiskTargetChanged } from '@/utils/kmsRisk'
 import KmsAvailabilityNotice from '@/components/view/KmsAvailabilityNotice'
 import { kmsAuth, kmsLookup } from '@/utils/kmsSearch'
 import { actionAvailability, kmsAvailabilityFailure } from '@/utils/kmsAvailability'
@@ -73,7 +79,7 @@ import { migrationIdentity, migrationParams, migrationList, migrationSupported, 
 
 export default {
   name: 'MigrateVolumesToKMS',
-  components: { MoldDialog, KmsAvailabilityNotice },
+  components: { MoldDialog, MoldDialogActions, KmsAvailabilityNotice, KmsTargetSummary },
   props: { resource: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
   data () {
@@ -81,6 +87,7 @@ export default {
   },
   computed: {
     valid () { return !this.disposed && this.originalScope === this.scope() && migrationIdentity(this.resource) === migrationIdentity(this.target) && migrationSupported(this.$store.getters.apis) && this.$store.getters.userInfo?.roletype === 'Admin' },
+    blocksNavigation () { return this.busy && this.valid },
     availability () {
       if (this.targetReason) return this.targetReason
       const g = this.$store.getters
@@ -105,9 +112,14 @@ export default {
   watch: {
     scopeStamp () { this.generation++; this.selected = []; this.selectedRows = {}; this.rows = []; this.error = ''; this.loading = false; this.candidateState = 'stale'; this.targetReason = 'stale' }
   },
-  mounted () { this.originalScope = this.scope(); this.load() },
+  mounted () {
+    this.originalScope = this.scope()
+    this.load()
+    this.$nextTick(() => this.$refs.cancel?.$el?.focus())
+  },
   beforeUnmount () { this.disposed = true; this.generation++ },
   methods: {
+    kmsReferenceName,
     scope () { return JSON.stringify([kmsAuth(this.$store.getters, this.$store.state?.user?.token), this.$route?.fullPath || this.$route?.path]) },
     reason (value) { return this.$t('label.kms.migration.reason.' + value) },
     close () { if (!this.busy) this.$emit('close-action') },
@@ -127,6 +139,7 @@ export default {
       const g = this.$store.getters
       const reason = actionAvailability('migrateVolumesToKMS', { resource: list[0], scope: { role: g.userInfo?.roletype }, apis: g.apis })
       if (reason) throw new Error(reason)
+      if (kmsRiskTargetChanged(this.target, list[0])) throw new Error('stale')
       if (list[0].hsmprofileid) {
         const projectid = list[0].projectid
         const scope = { lookupId: list[0].hsmprofileid }
@@ -197,7 +210,7 @@ export default {
       try {
         await this.targetCheck()
         const rows = await this.selectedCandidates(ids)
-        if (!this.valid || !migrationPreflight(ids, rows)) throw new Error('PREFLIGHT_FAILED')
+        if (!this.valid || !migrationPreflight(ids, rows, this.target)) throw new Error('PREFLIGHT_FAILED')
       } catch (error) {
         if (this.valid) {
           this.showCandidateFailure(error)
@@ -248,6 +261,8 @@ export default {
 .kms-migration-toolbar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
 .kms-migration-toolbar .ant-input-search { width: 220px; }
 .kms-filter-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.kms-migration-summary { margin-top: 16px; overflow-wrap: anywhere; }
+.kms-migration-summary ul { margin-bottom: 0; padding-inline-start: 20px; }
 .kms-volume-id { font-size: 12px; overflow-wrap: anywhere; opacity: .8; }
 .ant-alert { margin-top: 12px; }
 </style>
