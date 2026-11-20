@@ -1,0 +1,36 @@
+{
+  "apiModulePackage": "PASS",
+  "unitTests": {
+    "before": {
+      "tests": 24,
+      "failures": 12,
+      "errors": 0
+    },
+    "after": {
+      "tests": 24,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "changedJavaCheckstyle": {
+    "files": 2,
+    "status": "PASS"
+  },
+  "bytecodeVerification": {
+    "flag": "-Xverify:all",
+    "tests": 24,
+    "status": "PASS"
+  },
+  "fullCloudBuildRun": false,
+  "uiChangedOrBuilt": false,
+  "manualGitHubActionsRun": false,
+  "nullRuntimeInjection": false,
+  "liveUniqueChecksPerCluster": 31,
+  "liveExecutionsPerCluster": 32,
+  "uiFlowsPerCluster": 4,
+  "evidencePythonFlake8": {
+    "files": 6,
+    "status": "PASS",
+    "config": ".github/linters/.flake8"
+  }
+}

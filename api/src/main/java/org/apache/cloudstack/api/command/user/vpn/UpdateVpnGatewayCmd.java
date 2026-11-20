@@ -19,8 +19,10 @@ package org.apache.cloudstack.api.command.user.vpn;
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiConstants;
+import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.BaseAsyncCustomIdCmd;
 import org.apache.cloudstack.api.Parameter;
+import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.Site2SiteVpnGatewayResponse;
 
 import com.cloud.event.EventTypes;
@@ -35,7 +37,7 @@ public class UpdateVpnGatewayCmd extends BaseAsyncCustomIdCmd {
     /////////////////////////////////////////////////////
     //////////////// API parameters /////////////////////
     /////////////////////////////////////////////////////
-    @Parameter(name = ApiConstants.ID, type = CommandType.UUID, entityType = Site2SiteVpnGatewayResponse.class, required = true, description = "ID of customer gateway")
+    @Parameter(name = ApiConstants.ID, type = CommandType.UUID, entityType = Site2SiteVpnGatewayResponse.class, required = true, description = "ID of the site-to-site VPN local gateway")
     private Long id;
 
     @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "An optional field, whether to the display the VPN to the end User or not", since = "4.4", authorized = {RoleType.Admin})
@@ -80,6 +82,9 @@ public class UpdateVpnGatewayCmd extends BaseAsyncCustomIdCmd {
         if (result != null) {
             Site2SiteVpnGatewayResponse response = _responseGenerator.createSite2SiteVpnGatewayResponse(result);
             response.setResponseName(getCommandName());
+            setResponseObject(response);
+        } else {
+            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Failed to update site-to-site VPN gateway");
         }
     }
 

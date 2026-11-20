@@ -1,0 +1,266 @@
+{
+  "status": "PASS",
+  "preservationFields": [
+    "id",
+    "name",
+    "account",
+    "domainid",
+    "projectid",
+    "publicip",
+    "ipaddress",
+    "vpcid",
+    "cidr",
+    "zoneid",
+    "fordisplay",
+    "state",
+    "type",
+    "issourcenat",
+    "isstaticnat",
+    "networkid",
+    "virtualmachineid"
+  ],
+  "checks": [
+    {
+      "scope": "default",
+      "api": "listVPCs",
+      "count": 2,
+      "preserved": true
+    },
+    {
+      "scope": "default",
+      "api": "listProjects",
+      "count": 7,
+      "preserved": true
+    },
+    {
+      "scope": "default",
+      "api": "listAccounts",
+      "count": 26,
+      "preserved": true
+    },
+    {
+      "scope": "default",
+      "api": "listVpnGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "default",
+      "api": "listVpnConnections",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "default",
+      "api": "listVpnCustomerGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "default",
+      "api": "listPublicIpAddresses",
+      "count": 24,
+      "preserved": true
+    },
+    {
+      "scope": "73cac73e-ab37-417c-91dd-793de797e8f4",
+      "api": "listVPCs",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "73cac73e-ab37-417c-91dd-793de797e8f4",
+      "api": "listVpnGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "73cac73e-ab37-417c-91dd-793de797e8f4",
+      "api": "listVpnConnections",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "73cac73e-ab37-417c-91dd-793de797e8f4",
+      "api": "listVpnCustomerGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "d629aa4e-eb4a-43fb-abf6-45ad86cae21c",
+      "api": "listVPCs",
+      "count": 1,
+      "preserved": true
+    },
+    {
+      "scope": "d629aa4e-eb4a-43fb-abf6-45ad86cae21c",
+      "api": "listVpnGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "d629aa4e-eb4a-43fb-abf6-45ad86cae21c",
+      "api": "listVpnConnections",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "d629aa4e-eb4a-43fb-abf6-45ad86cae21c",
+      "api": "listVpnCustomerGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+      "api": "listVPCs",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+      "api": "listVpnGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+      "api": "listVpnConnections",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "94bc0ded-ace2-4dd8-b1d6-dab52fe07af5",
+      "api": "listVpnCustomerGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "fb318714-bc01-4be5-9e33-0f49a7013127",
+      "api": "listVPCs",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "fb318714-bc01-4be5-9e33-0f49a7013127",
+      "api": "listVpnGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "fb318714-bc01-4be5-9e33-0f49a7013127",
+      "api": "listVpnConnections",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "fb318714-bc01-4be5-9e33-0f49a7013127",
+      "api": "listVpnCustomerGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "api": "listVPCs",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "api": "listVpnGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "api": "listVpnConnections",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "ded3436a-00a8-4043-990d-69200d9a321b",
+      "api": "listVpnCustomerGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "api": "listVPCs",
+      "count": 1,
+      "preserved": true
+    },
+    {
+      "scope": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "api": "listVpnGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "api": "listVpnConnections",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "dc9a2e6e-c977-44c2-b87c-dcf3d8e70687",
+      "api": "listVpnCustomerGateways",
+      "count": 0,
+      "preserved": true
+    },
+    {
+      "scope": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "api": "listVPCs",
+      "count": 1,
+      "preserved": true
+    },
+    {
+      "scope": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "api": "listVpnGateways",
+      "count": 1,
+      "preserved": true
+    },
+    {
+      "scope": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "api": "listVpnConnections",
+      "count": 1,
+      "preserved": true
+    },
+    {
+      "scope": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "api": "listVpnCustomerGateways",
+      "count": 1,
+      "preserved": true
+    }
+  ],
+  "routingHosts": [
+    {
+      "id": "159baf9a-89ad-4a94-91dc-e7395a670bf4",
+      "name": "ablecube31-1",
+      "state": "Up",
+      "resourcestate": "Enabled"
+    },
+    {
+      "id": "3fb147f3-aea4-4f65-b8c6-e7192ea26138",
+      "name": "ablecube31-2",
+      "state": "Up",
+      "resourcestate": "Enabled"
+    },
+    {
+      "id": "384871b9-7c75-4717-a673-e96a76abeb71",
+      "name": "ablecube31-3",
+      "state": "Up",
+      "resourcestate": "Enabled"
+    }
+  ],
+  "runtime": {
+    "jarSha256": "78be7a8014f90e44bbd077a59750b9aec64363ee4e8d6b106b37935fc2910295",
+    "classSha256": "44fab23a3bd1da902f4d99ee99f754f1caca876f02f773c0414b79040b3238ed",
+    "indexSha256": "e202f82f036ddbac127246f4f207787a130c1265147528ed820ac4bbf3133f9a",
+    "configSha256": "b7de5f6a1f7a3a17310ee7d34ca801bb316fc6f841039f865fbabf154cd59a13",
+    "webInf": true,
+    "http": "200",
+    "service": "active",
+    "pid": "2852430",
+    "recentLogClassLoadingFailures": []
+  },
+  "dedicatedFixturesRemaining": 0
+}

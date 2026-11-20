@@ -1,0 +1,1327 @@
+[
+  {
+    "name": "account-false",
+    "request": {
+      "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+      "fordisplay": "false"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "b849c4bf-bd0c-4fcf-a3a7-ed8bb05b24b4"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:20+0900",
+        "completed": "2026-11-19T17:24:20+0900",
+        "jobid": "b849c4bf-bd0c-4fcf-a3a7-ed8bb05b24b4",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "account-omitted-preserves-false",
+    "request": {
+      "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "83b70409-e5e9-41ce-8877-5e2bb749b07b"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:21+0900",
+        "completed": "2026-11-19T17:24:21+0900",
+        "jobid": "83b70409-e5e9-41ce-8877-5e2bb749b07b",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "account-true",
+    "request": {
+      "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+      "fordisplay": "true"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "177cbe8d-c169-44d4-8c6a-20cda354b279"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:22+0900",
+        "completed": "2026-11-19T17:24:22+0900",
+        "jobid": "177cbe8d-c169-44d4-8c6a-20cda354b279",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "account-omitted-preserves-true",
+    "request": {
+      "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "0f5111b1-bf47-4a53-9d79-361e8386b1aa"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:23+0900",
+        "completed": "2026-11-19T17:24:23+0900",
+        "jobid": "0f5111b1-bf47-4a53-9d79-361e8386b1aa",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "account-custom-false",
+    "request": {
+      "id": "644647d3-b867-4af6-b0fd-5c93ca3e748a",
+      "fordisplay": "false",
+      "customid": "b5d52f33-3fb7-5de3-8253-1a95e3e92de9"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "2652aa86-55c7-4d5b-9348-59be185c3a3d"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "b5d52f33-3fb7-5de3-8253-1a95e3e92de9",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:24+0900",
+        "completed": "2026-11-19T17:24:24+0900",
+        "jobid": "2652aa86-55c7-4d5b-9348-59be185c3a3d",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "b5d52f33-3fb7-5de3-8253-1a95e3e92de9",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "account-custom-false-old-id",
+    "response": {
+      "listvpngatewaysresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command listvpngateways due to invalid value. Invalid parameter id value=644647d3-b867-4af6-b0fd-5c93ca3e748a due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "account-custom-omitted-preserves-false",
+    "request": {
+      "id": "b5d52f33-3fb7-5de3-8253-1a95e3e92de9",
+      "customid": "7f0c79cc-3a1e-506b-b4d5-2dea80a913b2"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "d748c225-21c0-4865-9bb3-b40f75351dde"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "7f0c79cc-3a1e-506b-b4d5-2dea80a913b2",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:25+0900",
+        "completed": "2026-11-19T17:24:25+0900",
+        "jobid": "d748c225-21c0-4865-9bb3-b40f75351dde",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "7f0c79cc-3a1e-506b-b4d5-2dea80a913b2",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "account-custom-omitted-preserves-false-old-id",
+    "response": {
+      "listvpngatewaysresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command listvpngateways due to invalid value. Invalid parameter id value=b5d52f33-3fb7-5de3-8253-1a95e3e92de9 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "account-custom-true",
+    "request": {
+      "id": "7f0c79cc-3a1e-506b-b4d5-2dea80a913b2",
+      "fordisplay": "true",
+      "customid": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "477495bd-5cf4-4e01-a841-5743dbf7e19e"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:26+0900",
+        "completed": "2026-11-19T17:24:26+0900",
+        "jobid": "477495bd-5cf4-4e01-a841-5743dbf7e19e",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "account-custom-true-old-id",
+    "response": {
+      "listvpngatewaysresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command listvpngateways due to invalid value. Invalid parameter id value=7f0c79cc-3a1e-506b-b4d5-2dea80a913b2 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "account-omitted-after-custom",
+    "request": {
+      "id": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "7563aa02-0066-4806-bca2-5cfde031c65a"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:27+0900",
+        "completed": "2026-11-19T17:24:28+0900",
+        "jobid": "7563aa02-0066-4806-bca2-5cfde031c65a",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "account-duplicate-customid",
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 431,
+        "jobresulttype": "object",
+        "jobresult": {
+          "errorcode": 431,
+          "errortext": "UUID: 93de796c-726d-40c8-8b76-ee05e2bef1c3 already exists so can't create/update with custom id"
+        },
+        "created": "2026-11-19T17:24:29+0900",
+        "completed": "2026-11-19T17:24:29+0900",
+        "jobid": "6ddc10ce-cba7-4efe-949f-7f448cdd7787",
+        "jobstatus": 2
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "account-invalid-customid",
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 431,
+        "jobresulttype": "object",
+        "jobresult": {
+          "errorcode": 431,
+          "errortext": "UUID: not-a-uuid doesn't follow the UUID format"
+        },
+        "created": "2026-11-19T17:24:29+0900",
+        "completed": "2026-11-19T17:24:29+0900",
+        "jobid": "570cae32-9317-455e-9de0-8047982baa1c",
+        "jobstatus": 2
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "project-false",
+    "request": {
+      "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+      "fordisplay": "false"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "9cc9aa71-3eb2-4b8a-93cc-8adc239078b2"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:29+0900",
+        "completed": "2026-11-19T17:24:29+0900",
+        "jobid": "9cc9aa71-3eb2-4b8a-93cc-8adc239078b2",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "project-omitted-preserves-false",
+    "request": {
+      "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "27ae1be1-a0f4-4528-973e-09f6ac8f63eb"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:30+0900",
+        "completed": "2026-11-19T17:24:30+0900",
+        "jobid": "27ae1be1-a0f4-4528-973e-09f6ac8f63eb",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "project-true",
+    "request": {
+      "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+      "fordisplay": "true"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "91840005-039f-4b48-989a-027653db3d08"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:31+0900",
+        "completed": "2026-11-19T17:24:31+0900",
+        "jobid": "91840005-039f-4b48-989a-027653db3d08",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "project-omitted-preserves-true",
+    "request": {
+      "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "71bea256-6778-40a5-b686-32ff3a94a869"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:32+0900",
+        "completed": "2026-11-19T17:24:32+0900",
+        "jobid": "71bea256-6778-40a5-b686-32ff3a94a869",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "project-custom-false",
+    "request": {
+      "id": "93de796c-726d-40c8-8b76-ee05e2bef1c3",
+      "fordisplay": "false",
+      "customid": "b62dd3cc-6277-5bea-96ce-1759dd0c1124"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "9d34436a-f581-4a30-9459-95aa80c2f2aa"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "b62dd3cc-6277-5bea-96ce-1759dd0c1124",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:33+0900",
+        "completed": "2026-11-19T17:24:33+0900",
+        "jobid": "9d34436a-f581-4a30-9459-95aa80c2f2aa",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "b62dd3cc-6277-5bea-96ce-1759dd0c1124",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "project-custom-false-old-id",
+    "response": {
+      "listvpngatewaysresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command listvpngateways due to invalid value. Invalid parameter id value=93de796c-726d-40c8-8b76-ee05e2bef1c3 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "project-custom-omitted-preserves-false",
+    "request": {
+      "id": "b62dd3cc-6277-5bea-96ce-1759dd0c1124",
+      "customid": "eaaa8cf0-dc8f-5880-ad1e-10d18561425d"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "29483d6a-0de6-4edc-a01d-8c4b58012a7e"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "eaaa8cf0-dc8f-5880-ad1e-10d18561425d",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": false
+          }
+        },
+        "created": "2026-11-19T17:24:34+0900",
+        "completed": "2026-11-19T17:24:34+0900",
+        "jobid": "29483d6a-0de6-4edc-a01d-8c4b58012a7e",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "eaaa8cf0-dc8f-5880-ad1e-10d18561425d",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": false
+      }
+    ],
+    "defaultCount": 0,
+    "status": "PASS"
+  },
+  {
+    "name": "project-custom-omitted-preserves-false-old-id",
+    "response": {
+      "listvpngatewaysresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command listvpngateways due to invalid value. Invalid parameter id value=b62dd3cc-6277-5bea-96ce-1759dd0c1124 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "project-custom-true",
+    "request": {
+      "id": "eaaa8cf0-dc8f-5880-ad1e-10d18561425d",
+      "fordisplay": "true",
+      "customid": "d92cfbcf-a65d-55a4-a95f-b82398f5c643"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "a7c37991-10e1-46c6-b0b7-7335d4819435"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "d92cfbcf-a65d-55a4-a95f-b82398f5c643",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:35+0900",
+        "completed": "2026-11-19T17:24:35+0900",
+        "jobid": "a7c37991-10e1-46c6-b0b7-7335d4819435",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "d92cfbcf-a65d-55a4-a95f-b82398f5c643",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "project-custom-true-old-id",
+    "response": {
+      "listvpngatewaysresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command listvpngateways due to invalid value. Invalid parameter id value=eaaa8cf0-dc8f-5880-ad1e-10d18561425d due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "project-omitted-after-custom",
+    "request": {
+      "id": "d92cfbcf-a65d-55a4-a95f-b82398f5c643"
+    },
+    "accepted": {
+      "updatevpngatewayresponse": {
+        "jobid": "ef2485fa-f58d-4a41-91c1-d299fe4f7c84"
+      }
+    },
+    "final": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "d92cfbcf-a65d-55a4-a95f-b82398f5c643",
+            "publicip": "10.10.31.107",
+            "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+            "vpcname": "qa-s2s1720-31-project",
+            "account": "PrjAcct-qa-s2s1720-31-project-1",
+            "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+            "project": "qa-s2s1720-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "created": "2026-11-19T17:24:36+0900",
+        "completed": "2026-11-19T17:24:36+0900",
+        "jobid": "ef2485fa-f58d-4a41-91c1-d299fe4f7c84",
+        "jobstatus": 1
+      }
+    },
+    "requery": [
+      {
+        "id": "d92cfbcf-a65d-55a4-a95f-b82398f5c643",
+        "publicip": "10.10.31.107",
+        "vpcid": "0fbdf5d1-3bcc-4611-953f-cfb8116f4433",
+        "vpcname": "qa-s2s1720-31-project",
+        "account": "PrjAcct-qa-s2s1720-31-project-1",
+        "projectid": "d65b8bba-c017-4106-b9f9-5d3d32364ab6",
+        "project": "qa-s2s1720-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      }
+    ],
+    "defaultCount": 1,
+    "status": "PASS"
+  },
+  {
+    "name": "project-duplicate-customid",
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 431,
+        "jobresulttype": "object",
+        "jobresult": {
+          "errorcode": 431,
+          "errortext": "UUID: 8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381 already exists so can't create/update with custom id"
+        },
+        "created": "2026-11-19T17:24:37+0900",
+        "completed": "2026-11-19T17:24:37+0900",
+        "jobid": "966ec90d-2e4e-4e18-8dbc-4ea401541005",
+        "jobstatus": 2
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "project-invalid-customid",
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 431,
+        "jobresulttype": "object",
+        "jobresult": {
+          "errorcode": 431,
+          "errortext": "UUID: not-a-uuid doesn't follow the UUID format"
+        },
+        "created": "2026-11-19T17:24:37+0900",
+        "completed": "2026-11-19T17:24:37+0900",
+        "jobid": "5534e147-c4b4-4ae1-87b6-a607d76a8c82",
+        "jobstatus": 2
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "missing-target",
+    "response": {
+      "updatevpngatewayresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command updatevpngateway due to invalid value. Invalid parameter id value=5923efb7-adba-4006-be37-845d6efc80ca due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "missing-target",
+    "response": {
+      "updatevpngatewayresponse": {
+        "uuidList": [],
+        "errorcode": 431,
+        "cserrorcode": 9999,
+        "errortext": "Unable to execute API command updatevpngateway due to invalid value. Invalid parameter id value=7b7250a0-09fe-444a-9cd8-55c3fd061152 due to incorrect long value format, or entity does not exist or due to incorrect parameter annotation for the field in api cmd class."
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "regular-user-response-field-hidden",
+    "response": [
+      {
+        "id": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381",
+        "publicip": "10.10.31.105",
+        "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+        "vpcname": "qa-s2s1720-31-account",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT"
+      }
+    ],
+    "status": "PASS"
+  },
+  {
+    "name": "regular-user-foreign-resource-denied",
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "69c5a5bc-7cff-46e2-a0b7-49ec8de4dba4",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "66295bfe-6326-4c21-8d9b-20f80f89e164",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 530,
+        "jobresulttype": "object",
+        "jobresult": {
+          "errorcode": 530,
+          "errortext": "Caller does not have permission to operate with provided resource."
+        },
+        "created": "2026-11-19T17:24:59+0900",
+        "completed": "2026-11-19T17:24:59+0900",
+        "jobid": "e3bb803f-fc46-4451-af82-4795442c7938",
+        "jobstatus": 2
+      }
+    },
+    "status": "PASS"
+  },
+  {
+    "name": "regular-user-admin-only-parameters-preserved",
+    "response": {
+      "queryasyncjobresultresponse": {
+        "accountid": "69c5a5bc-7cff-46e2-a0b7-49ec8de4dba4",
+        "account": "qa-s2s1720-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "66295bfe-6326-4c21-8d9b-20f80f89e164",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "8e0e29f8-61a5-5ec8-8fcd-84ebf47ea381",
+            "publicip": "10.10.31.105",
+            "vpcid": "d59f563a-06e8-4917-a613-9fda8b7149dc",
+            "vpcname": "qa-s2s1720-31-account",
+            "account": "qa-s2s1720-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT"
+          }
+        },
+        "created": "2026-11-19T17:25:00+0900",
+        "completed": "2026-11-19T17:25:00+0900",
+        "jobid": "8687bc2b-bf6d-4591-8ccd-648e54067728",
+        "jobstatus": 1
+      }
+    },
+    "outcome": "unauthorized parameters ignored by existing BaseCmd policy",
+    "status": "PASS"
+  },
+  {
+    "name": "id-description",
+    "contract": {
+      "name": "updateVpnGateway",
+      "description": "Updates site to site VPN local gateway",
+      "since": "4.4",
+      "isasync": true,
+      "related": "",
+      "params": [
+        {
+          "name": "id",
+          "description": "ID of the site-to-site VPN local gateway",
+          "type": "uuid",
+          "length": 255,
+          "required": true,
+          "related": "updateVpnGateway"
+        },
+        {
+          "name": "customid",
+          "description": "An optional field, in case you want to set a custom id to the resource. Allowed to Root Admins only",
+          "type": "string",
+          "length": 255,
+          "required": false,
+          "since": "4.4"
+        },
+        {
+          "name": "fordisplay",
+          "description": "An optional field, whether to the display the VPN to the end User or not",
+          "type": "boolean",
+          "length": 255,
+          "required": false,
+          "since": "4.4"
+        }
+      ],
+      "response": [
+        {
+          "name": "fordisplay",
+          "description": "Is VPN gateway for display to the regular user",
+          "type": "boolean"
+        },
+        {
+          "name": "id",
+          "description": "The VPN gateway ID",
+          "type": "string"
+        },
+        {
+          "name": "publicip",
+          "description": "The public IP address",
+          "type": "string"
+        },
+        {
+          "name": "project",
+          "description": "The project name",
+          "type": "string"
+        },
+        {
+          "name": "jobstatus",
+          "description": "The current status of the latest async job acting on this object",
+          "type": "integer"
+        },
+        {
+          "name": "domain",
+          "description": "The domain name of the owner",
+          "type": "string"
+        },
+        {
+          "name": "vpcid",
+          "description": "The VPC id of this gateway",
+          "type": "string"
+        },
+        {
+          "name": "projectid",
+          "description": "The project id",
+          "type": "string"
+        },
+        {
+          "name": "removed",
+          "description": "The date and time the host was removed",
+          "type": "date"
+        },
+        {
+          "name": "account",
+          "description": "The owner",
+          "type": "string"
+        },
+        {},
+        {
+          "name": "domainid",
+          "description": "The domain id of the owner",
+          "type": "string"
+        },
+        {
+          "name": "jobid",
+          "description": "The UUID of the latest async job acting on this object",
+          "type": "string"
+        },
+        {
+          "name": "vpcname",
+          "description": "The VPC name of this gateway",
+          "type": "string"
+        },
+        {
+          "name": "domainpath",
+          "description": "the domain path of the owner",
+          "type": "string"
+        },
+        {}
+      ],
+      "httprequesttype": "POST"
+    },
+    "status": "PASS"
+  }
+]
