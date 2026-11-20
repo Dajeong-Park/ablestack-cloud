@@ -1,0 +1,38 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "vpcid": "cc51f7b6-e369-48e9-8c07-7536d665cc06"
+      }
+    },
+    {
+      "method": "POST",
+      "command": "deleteVpnGateway",
+      "params": {
+        "id": "cf3b4f07-69a5-472f-8f1f-c79904d12a44",
+        "customjobid": "99f4428b-7276-441e-b371-eee6e0c2bcc4"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "99f4428b-7276-441e-b371-eee6e0c2bcc4"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "vpcid": "cc51f7b6-e369-48e9-8c07-7536d665cc06"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {}
+    }
+  ]
+}

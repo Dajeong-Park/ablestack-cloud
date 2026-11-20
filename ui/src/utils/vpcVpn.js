@@ -34,3 +34,7 @@ export function vpcVpnSameOwner (row, resource) {
   if ((row.projectid || '') !== (resource.projectid || '')) return false
   return !!resource.projectid || ((!row.account || row.account === resource.account) && (!row.domainid || row.domainid === resource.domainid))
 }
+
+export function vpnJobMatches (job, id, command) {
+  return !!job && job.jobid === id && (!job.cmd || job.cmd.split('.').pop().toLowerCase() === command.toLowerCase() + 'cmd')
+}

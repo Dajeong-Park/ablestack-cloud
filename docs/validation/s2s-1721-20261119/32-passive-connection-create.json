@@ -1,0 +1,47 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+    "account": "admin",
+    "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+    "domainpath": "ROOT",
+    "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+    "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnConnectionCmd",
+    "jobprocstatus": 0,
+    "jobresultcode": 0,
+    "jobresulttype": "object",
+    "jobresult": {
+      "vpnconnection": {
+        "id": "cdbc028a-c4a9-4566-aa7c-b5cb0d1f45f4",
+        "s2svpngatewayid": "c37537aa-8b2e-4bf3-adb1-0beeb70b58cc",
+        "publicip": "10.10.32.170",
+        "s2scustomergatewayid": "eed6757c-c322-4c5d-82ea-a7259eecd085",
+        "gateway": "203.0.113.32",
+        "cidrlist": "10.227.32.0/24",
+        "ipsecpsk": "[redacted]",
+        "ikepolicy": "aes256-sha256;modp2048",
+        "esppolicy": "aes256-sha256",
+        "ikelifetime": 86400,
+        "esplifetime": 3600,
+        "dpd": false,
+        "forceencap": false,
+        "state": "Disconnected",
+        "passive": true,
+        "account": "PrjAcct-qa-s2s1721-32-project-1",
+        "projectid": "4ad8e05a-6075-4532-809a-f5f5b2e69933",
+        "project": "qa-s2s1721-32-project",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "created": "2026-11-19T23:34:40+0900",
+        "fordisplay": true,
+        "splitconnections": false,
+        "ikeversion": "ikev2"
+      }
+    },
+    "jobinstancetype": "None",
+    "created": "2026-11-19T23:34:40+0900",
+    "completed": "2026-11-19T23:34:43+0900",
+    "jobid": "4c628ee0-9030-4991-ad40-729817452939",
+    "jobstatus": 1
+  }
+}

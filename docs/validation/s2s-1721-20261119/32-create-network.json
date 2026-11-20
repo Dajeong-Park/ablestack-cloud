@@ -1,0 +1,53 @@
+{
+  "controlledQueryResponses": 3,
+  "requests": [
+    {
+      "method": "POST",
+      "command": "createVpnGateway",
+      "params": {
+        "vpcid": "cc51f7b6-e369-48e9-8c07-7536d665cc06",
+        "customjobid": "f3c81dc2-3d7c-4ec9-9e64-4ef7ae0238f2"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "f3c81dc2-3d7c-4ec9-9e64-4ef7ae0238f2"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "f3c81dc2-3d7c-4ec9-9e64-4ef7ae0238f2"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "f3c81dc2-3d7c-4ec9-9e64-4ef7ae0238f2"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "f3c81dc2-3d7c-4ec9-9e64-4ef7ae0238f2"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "vpcid": "cc51f7b6-e369-48e9-8c07-7536d665cc06"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {}
+    }
+  ]
+}
