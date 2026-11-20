@@ -68,7 +68,7 @@ public class LibvirtAblestackNasDataOperationTimeoutTest {
 
     @Test public void offlineRawWorkerAllowsEachVolumesFullBudgetAndPreservesTheCapturedDataLimit() throws Exception {
         var resource = Mockito.mock(LibvirtComputingResource.class);
-        Mockito.when(resource.getAbleCvtBackupPath()).thenReturn("/scripts/ablestack_cvtbackup.sh");
+        Mockito.when(resource.getThirdPartyVolumeBackupPath()).thenReturn("/scripts/thirdparty_volume_backup.py");
         var helper = Mockito.spy(new LibvirtAblestackNasBackupHelper(resource));
         var paths = List.of("/primary/root.raw", "/primary/data.raw");
         Mockito.doReturn(paths).when(helper).resolveDiskPaths(anyList(), anyList());

@@ -42,10 +42,10 @@ public class LibvirtNetBackupHostConfigurationCommandWrapper
         boolean accepted = false;
         try {
             if (!Set.of("STATUS", "CHECK", "APPLY", "HOOK_TIMEOUT_CHECK", "HOOK_TIMEOUT_APPLY", "HOOK_TIMEOUT_RECOVER",
-                    "HOOK_TIMEOUT_ROLLBACK", "HOOK_TIMEOUT_COMMIT").contains(command.getAction()) || StringUtils.isBlank(resource.getAbleCvtBackupPath())) {
+                    "HOOK_TIMEOUT_ROLLBACK", "HOOK_TIMEOUT_COMMIT").contains(command.getAction()) || StringUtils.isBlank(resource.getThirdPartyVolumeBackupPath())) {
                 return new Answer(command, false, "Invalid NetBackup configuration action or missing script directory");
             }
-            Path helper = Path.of(resource.getAbleCvtBackupPath()).resolveSibling("netbackup_host_configuration.py");
+            Path helper = Path.of(resource.getThirdPartyVolumeBackupPath()).resolveSibling("netbackup_host_configuration.py");
             if (!Files.isRegularFile(helper)) { return new Answer(command, false, "NetBackup Host configuration helper is not installed"); }
             Script script = new Script(true, "/usr/bin/python3", command.getAction().startsWith("HOOK_TIMEOUT_") ? 180000 : 30000, logger);
             script.setAvoidLoggingCommand(true);

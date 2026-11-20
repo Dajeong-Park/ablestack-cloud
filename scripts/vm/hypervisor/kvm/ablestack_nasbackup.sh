@@ -770,12 +770,80 @@ redefine_checkpoint_if_needed() {
   if virsh -c qemu:///system checkpoint-info --domain "$vm_name" --checkpointname "$PARENT_CHECKPOINT_NAME" > /dev/null 2>&1; then
     return 0
   fi
-  local redefine_output=""
-  if ! redefine_output=$(virsh -c qemu:///system checkpoint-create --domain "$vm_name" --xmlfile "$checkpoint_file" --redefine 2>&1); then
-    log -ne "FAILED checkpoint redefine vm=[$vm_name] checkpoint=[$PARENT_CHECKPOINT_NAME] output=[${redefine_output:-Unknown error}]"
-    echo "Failed to redefine checkpoint $PARENT_CHECKPOINT_NAME on domain $vm_name: ${redefine_output:-Unknown error}"
+  local known_checkpoints checkpoint_chain checkpoint_name redefine_output
+  if ! known_checkpoints=$(virsh -c qemu:///system checkpoint-list --domain "$vm_name" --name 2>&1); then
+    log -ne "FAILED checkpoint inventory vm=[$vm_name] output=[$known_checkpoints]"
+    echo "Failed to list checkpoints on domain $vm_name: $known_checkpoints"
     return 1
   fi
+  # A stopped backup creates checkpoint metadata on its temporary domain. After
+  # the real VM starts again, restore missing ancestors before the selected point.
+  # Ancestor XML may be stored in an earlier backup directory of this same VM.
+  if ! checkpoint_chain=$(python3 - "$checkpoint_file" "$PARENT_CHECKPOINT_NAME" "$known_checkpoints" 2>&1 <<'PY'
+import re
+import sys
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+selected = Path(sys.argv[1]).resolve()
+expected = sys.argv[2]
+known = set(sys.argv[3].splitlines())
+vm_root = selected.parent.parent.parent
+visiting, visited, ordered = set(), set(), []
+
+def metadata(path, name):
+    root = ET.parse(path).getroot()
+    if root.tag != 'domaincheckpoint' or root.findtext('name') != name:
+        raise ValueError('Checkpoint XML identity differs from ' + name)
+    return (root.findtext('parent/name') or '').strip()
+
+def visit(name, path=None):
+    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*', name):
+        raise ValueError('Invalid checkpoint name: ' + name)
+    if name in visiting:
+        raise ValueError('Checkpoint parent cycle at ' + name)
+    if name in known or name in visited:
+        return
+    if path is None:
+        sibling = selected.parent / (name + '.xml')
+        candidates = [sibling] if sibling.is_file() else sorted(vm_root.glob('*/checkpoints/' + name + '.xml'))
+        if not candidates:
+            raise ValueError('Missing parent checkpoint XML ' + name)
+        parents = {metadata(candidate, name) for candidate in candidates}
+        if len(parents) != 1:
+            raise ValueError('Conflicting parent checkpoint XML ' + name)
+        path = candidates[0].resolve()
+    if not path.is_relative_to(vm_root) or any(c in str(path) for c in '\t\n\r'):
+        raise ValueError('Checkpoint XML path is outside the VM backup directory')
+    visiting.add(name)
+    parent = metadata(path, name)
+    if parent:
+        visit(parent)
+    visiting.remove(name)
+    visited.add(name)
+    ordered.append((name, str(path)))
+
+try:
+    visit(expected, selected)
+    for name, path in ordered:
+        print(name + '\t' + path)
+except (OSError, ValueError, ET.ParseError, RecursionError) as error:
+    print(str(error), file=sys.stderr)
+    sys.exit(1)
+PY
+  ); then
+    log -ne "FAILED checkpoint ancestry vm=[$vm_name] checkpoint=[$PARENT_CHECKPOINT_NAME] output=[$checkpoint_chain]"
+    echo "Failed to prepare checkpoint chain $PARENT_CHECKPOINT_NAME on domain $vm_name: $checkpoint_chain"
+    return 1
+  fi
+  while IFS=$'\t' read -r checkpoint_name checkpoint_file; do
+    [[ -z "$checkpoint_name" ]] && continue
+    if ! redefine_output=$(virsh -c qemu:///system checkpoint-create --domain "$vm_name" --xmlfile "$checkpoint_file" --redefine 2>&1); then
+      log -ne "FAILED checkpoint redefine vm=[$vm_name] checkpoint=[$checkpoint_name] output=[${redefine_output:-Unknown error}]"
+      echo "Failed to redefine checkpoint $checkpoint_name on domain $vm_name: ${redefine_output:-Unknown error}"
+      return 1
+    fi
+  done <<< "$checkpoint_chain"
 }
 
 parent_qcow2_bitmap_exists_on_all_disks() {

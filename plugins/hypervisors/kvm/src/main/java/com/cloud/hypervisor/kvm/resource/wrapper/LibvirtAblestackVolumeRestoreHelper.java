@@ -337,7 +337,7 @@ final class LibvirtAblestackVolumeRestoreHelper {
                 cleanupStagingDirectory(plan.manifest.getProvider(), plan.jobId, destination, root.resolve(plan.manifest.getProvider()));
             }
             if (Files.exists(capacityPlan)) {
-                Path script = Path.of(resource.getAbleCvtBackupPath()).getParent().resolve("thirdparty_restore_capacity.py");
+                Path script = Path.of(resource.getThirdPartyVolumeBackupPath()).getParent().resolve("thirdparty_restore_capacity.py");
                 new LibvirtAblestackVolumeRestoreHelper(plan, logger).capacity(script, capacityPlan, "release");
             }
             if ("ablestack-netbackup".equals(plan.manifest.getProvider())) {
@@ -405,7 +405,7 @@ final class LibvirtAblestackVolumeRestoreHelper {
                 throw new CloudRuntimeException("Streaming RBD diff restore requires an RBD primary destination");
             }
         }
-        Path capacityScript = Path.of(resource.getAbleCvtBackupPath()).getParent().resolve("thirdparty_restore_capacity.py");
+        Path capacityScript = Path.of(resource.getThirdPartyVolumeBackupPath()).getParent().resolve("thirdparty_restore_capacity.py");
         Path capacityPlan = job.resolve("restore-capacity-plan.json");
         boolean reserved = false;
         boolean completed = false;

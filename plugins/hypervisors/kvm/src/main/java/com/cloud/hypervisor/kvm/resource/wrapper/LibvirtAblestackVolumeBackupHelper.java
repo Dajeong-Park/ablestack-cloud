@@ -29,11 +29,35 @@ import com.cloud.storage.Storage;
 import com.cloud.utils.exception.CloudRuntimeException;
 import com.google.gson.Gson;
 import org.apache.cloudstack.backup.AblestackBackupFrameworkUtils;
+import org.apache.cloudstack.backup.AblestackCommvaultTakeBackupCommand;
+import org.apache.cloudstack.backup.AblestackNetBackupTakeBackupCommand;
+import org.apache.cloudstack.backup.AblestackVeeamTakeBackupCommand;
 import org.apache.cloudstack.backup.ThirdPartyBackupManifest;
 import org.apache.cloudstack.storage.to.PrimaryDataStoreTO;
 
 final class LibvirtAblestackVolumeBackupHelper {
     private LibvirtAblestackVolumeBackupHelper() { }
+
+    static String[] buildCommand(LibvirtComputingResource resource, AblestackCommvaultTakeBackupCommand command) {
+        return buildCommand(resource, command.getVolumeStagingManifest(), command.getBackupPath(),
+                command.getVolumePools(), command.getVolumePaths(), command.getCheckpointName(), command.getParentCheckpointName(),
+                command.getParentCheckpointXmlChain(), command.getQuiesce(), command.getTimeout(), command.getStagingBufferPercent(),
+                command.getBandwidthLimitMbps(), command.getStagingQueueTimeout());
+    }
+
+    static String[] buildCommand(LibvirtComputingResource resource, AblestackNetBackupTakeBackupCommand command) {
+        return buildCommand(resource, command.getVolumeStagingManifest(), command.getBackupPath(),
+                command.getVolumePools(), command.getVolumePaths(), command.getCheckpointName(), command.getParentCheckpointName(),
+                command.getParentCheckpointXmlChain(), command.getQuiesce(), command.getTimeout(), command.getStagingBufferPercent(),
+                null, command.getStagingQueueTimeout());
+    }
+
+    static String[] buildCommand(LibvirtComputingResource resource, AblestackVeeamTakeBackupCommand command) {
+        return buildCommand(resource, command.getVolumeStagingManifest(), command.getBackupPath(),
+                command.getVolumePools(), command.getVolumePaths(), command.getCheckpointName(), command.getParentCheckpointName(),
+                command.getParentCheckpointXmlChain(), command.getQuiesce(), command.getTimeout(), command.getStagingBufferPercent(),
+                command.getBandwidthLimitMbps(), command.getStagingQueueTimeout());
+    }
 
     static String[] buildCommand(LibvirtComputingResource resource, String manifestJson, String backupPath,
             List<PrimaryDataStoreTO> pools, List<String> paths, String checkpoint, String parentCheckpoint,
@@ -59,7 +83,7 @@ final class LibvirtAblestackVolumeBackupHelper {
                     || manifest.getVolumes().size() != paths.size()) {
                 throw new CloudRuntimeException("Invalid source volume staging plan");
             }
-            Path script = Path.of(resource.getAbleCvtBackupPath()).getParent().resolve("thirdparty_volume_backup.py");
+            Path script = Path.of(resource.getThirdPartyVolumeBackupPath());
             Path supervisor = script.resolveSibling("ablestack_backup_progress.py");
             if (!Files.isRegularFile(script) || !Files.isRegularFile(supervisor)) {
                 throw new CloudRuntimeException("Volume backup script is not installed on the host");

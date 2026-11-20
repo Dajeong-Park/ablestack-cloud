@@ -45,8 +45,8 @@ public class LibvirtDetachedBackupConfigurationTest {
     @Test
     public void freshDetachedResourceFindsBackupAndCapacityScripts() throws Exception {
         Path scripts = folder.newFolder("kvm").toPath();
-        for (String script : new String[] {"ablestack_nasbackup.sh", "ablestack_cvtbackup.sh",
-                "ablestack_netbackup.sh", "ablestack_veeam.sh", "thirdparty_restore_capacity.py"}) {
+        for (String script : new String[] {"ablestack_nasbackup.sh", "thirdparty_volume_backup.py",
+                "thirdparty_backup_cleanup.sh", "thirdparty_restore_capacity.py"}) {
             Files.createFile(scripts.resolve(script));
         }
         Connect connection = mock(Connect.class);
@@ -55,7 +55,7 @@ public class LibvirtDetachedBackupConfigurationTest {
         when(connection.getLibVirVersion()).thenReturn(10000000L);
         when(connection.getVersion()).thenReturn(9000000L);
         LibvirtComputingResource resource = new LibvirtComputingResource();
-        assertNull(resource.getAbleCvtBackupPath());
+        assertNull(resource.getThirdPartyVolumeBackupPath());
         try (MockedStatic<AgentPropertiesFileHandler> properties = Mockito.mockStatic(AgentPropertiesFileHandler.class, Mockito.CALLS_REAL_METHODS);
                 MockedStatic<LibvirtConnection> libvirt = Mockito.mockStatic(LibvirtConnection.class);
                 MockedConstruction<KVMHAMonitor> monitor = Mockito.mockConstruction(KVMHAMonitor.class);
@@ -67,18 +67,16 @@ public class LibvirtDetachedBackupConfigurationTest {
             assertEquals(9000000L, resource.getHypervisorQemuVersion());
             resource.validateLibvirtAndQemuVersionForIncrementalSnapshots();
             assertEquals(scripts.resolve("ablestack_nasbackup.sh").toString(), resource.getAbleNasBackupPath());
-            assertEquals(scripts.resolve("ablestack_cvtbackup.sh").toString(), resource.getAbleCvtBackupPath());
-            assertEquals(scripts.resolve("ablestack_netbackup.sh").toString(), resource.getAbleNetBackupPath());
-            assertEquals(scripts.resolve("ablestack_veeam.sh").toString(), resource.getAbleVeeamPath());
-            assertTrue(Files.isRegularFile(Path.of(resource.getAbleCvtBackupPath()).resolveSibling("thirdparty_restore_capacity.py")));
+            assertEquals(scripts.resolve("thirdparty_volume_backup.py").toString(), resource.getThirdPartyVolumeBackupPath());
+            assertTrue(Files.isRegularFile(Path.of(resource.getThirdPartyVolumeBackupPath()).resolveSibling("thirdparty_restore_capacity.py")));
         }
     }
 
     @Test
     public void detachedResourceStillRejectsUnsupportedIncrementalVersions() throws Exception {
         Path scripts = folder.newFolder("old-hypervisor").toPath();
-        for (String script : new String[] {"ablestack_nasbackup.sh", "ablestack_cvtbackup.sh",
-                "ablestack_netbackup.sh", "ablestack_veeam.sh"}) {
+        for (String script : new String[] {"ablestack_nasbackup.sh", "thirdparty_volume_backup.py",
+                "thirdparty_backup_cleanup.sh"}) {
             Files.createFile(scripts.resolve(script));
         }
         Connect connection = mock(Connect.class);
@@ -107,7 +105,7 @@ public class LibvirtDetachedBackupConfigurationTest {
         try (MockedStatic<AgentPropertiesFileHandler> properties = Mockito.mockStatic(AgentPropertiesFileHandler.class, Mockito.CALLS_REAL_METHODS);
                 MockedStatic<LibvirtConnection> libvirt = Mockito.mockStatic(LibvirtConnection.class)) {
             properties.when(() -> AgentPropertiesFileHandler.getPropertyValue(AgentProperties.KVM_SCRIPTS_DIR)).thenReturn(scripts.toString());
-            assertEquals("Unable to find ablestack_cvtbackup.sh",
+            assertEquals("Unable to find thirdparty_volume_backup.py",
                     assertThrows(ConfigurationException.class, resource::configureForDetachedBackupJob).getMessage());
             libvirt.verifyNoInteractions();
         }

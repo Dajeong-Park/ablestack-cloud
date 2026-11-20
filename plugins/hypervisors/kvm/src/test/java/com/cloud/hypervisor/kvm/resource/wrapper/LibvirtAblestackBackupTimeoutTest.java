@@ -36,10 +36,61 @@ import static org.mockito.ArgumentMatchers.eq;
 
 public class LibvirtAblestackBackupTimeoutTest {
     @Test
+    public void providerDeletionUsesTheCleanupScriptAndPreservesSourceMetadata() {
+        var resource = Mockito.mock(LibvirtComputingResource.class);
+        Mockito.when(resource.getThirdPartyVolumeBackupPath()).thenReturn("/scripts/thirdparty_volume_backup.py");
+        for (String provider : new String[]{"ablestack-commvault", "ablestack-netbackup", "ablestack-veeam"}) {
+            var command = new AblestackDeleteBackupCommand("/stage/backup", "NFS", "nas:/backup", "", false);
+            command.setBackupProvider(provider);
+            command.setVmName("vm");
+            command.setCheckpointName("checkpoint");
+            command.setCleanupCheckpointNames("retired");
+            command.setDiskPaths("rbd:pool/image");
+            command.setTimeout(43200);
+            try (var cleanup = Mockito.mockStatic(LibvirtAblestackStagingCleanup.class);
+                    var scripts = Mockito.mockStatic(Script.class)) {
+                scripts.when(() -> Script.executePipedCommands(anyList(), eq(43200000L))).thenAnswer(invocation -> {
+                    java.util.List<String[]> calls = invocation.getArgument(0);
+                    assertEquals(1, calls.size());
+                    java.util.List<String> arguments = java.util.Arrays.asList(calls.get(0));
+                    assertEquals(java.util.List.of("/scripts/thirdparty_backup_cleanup.sh", "--provider",
+                            provider,
+                            "-p", "/stage/backup", "-v", "vm", "-x", "false", "-c", "checkpoint", "-C", "retired",
+                            "-d", "rbd:pool/image"), arguments);
+                    return new Pair<>(0, "Deleted");
+                });
+                assertTrue(new LibvirtAblestackDeleteBackupCommandWrapper().execute(command, resource).getResult());
+            }
+        }
+    }
+
+    @Test
+    public void cloudStackVeeamCannotUseAblestackCleanupOrFallBackToNas() {
+        var resource = Mockito.mock(LibvirtComputingResource.class);
+        for (String provider : new String[]{"veeam", "VEEAM", "other-provider"}) {
+            var command = new AblestackDeleteBackupCommand("/stage/backup", "NFS", "nas:/backup", "", false);
+            command.setBackupProvider(provider);
+            command.setTimeout(43200);
+            try (var cleanup = Mockito.mockStatic(LibvirtAblestackStagingCleanup.class);
+                    var scripts = Mockito.mockStatic(Script.class)) {
+                var answer = new LibvirtAblestackDeleteBackupCommandWrapper().execute(command, resource);
+                assertFalse(answer.getResult());
+                assertEquals("Unsupported ABLESTACK backup provider: " + provider, answer.getDetails());
+                cleanup.verifyNoInteractions();
+                scripts.verifyNoInteractions();
+                Mockito.verifyNoInteractions(resource);
+            }
+        }
+    }
+
+    @Test
     public void stagingWorkersReceiveDataTimeoutInsteadOfResponseOverride() {
         var resource = Mockito.mock(LibvirtComputingResource.class);
         AtomicInteger built = new AtomicInteger();
         try (var workers = Mockito.mockStatic(LibvirtAblestackVolumeBackupHelper.class, invocation -> {
+            if (invocation.getArguments().length == 2) {
+                return invocation.callRealMethod();
+            }
             assertEquals(43200, invocation.<Integer>getArgument(9).intValue());
             built.incrementAndGet();
             return new String[] {"worker"};
@@ -48,19 +99,19 @@ public class LibvirtAblestackBackupTimeoutTest {
             commvault.setVolumeStagingManifest("{}");
             commvault.setTimeout(43200);
             commvault.setWait(30);
-            new LibvirtAblestackCommvaultBackupHelper(resource).buildDetachedBackupScriptCommand(commvault);
+            LibvirtAblestackVolumeBackupHelper.buildCommand(resource, commvault);
 
             var netbackup = new AblestackNetBackupTakeBackupCommand("vm", "backup");
             netbackup.setVolumeStagingManifest("{}");
             netbackup.setTimeout(43200);
             netbackup.setWait(30);
-            new LibvirtAblestackNetBackupHelper(resource).buildDetachedBackupScriptCommand(netbackup);
+            LibvirtAblestackVolumeBackupHelper.buildCommand(resource, netbackup);
 
             var veeam = new AblestackVeeamTakeBackupCommand("vm", "backup");
             veeam.setVolumeStagingManifest("{}");
             veeam.setTimeout(43200);
             veeam.setWait(30);
-            new LibvirtAblestackVeeamHelper(resource).buildDetachedBackupScriptCommand(veeam);
+            LibvirtAblestackVolumeBackupHelper.buildCommand(resource, veeam);
         }
         assertEquals(3, built.get());
     }

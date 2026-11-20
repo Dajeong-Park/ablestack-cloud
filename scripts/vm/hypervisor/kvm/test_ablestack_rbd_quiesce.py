@@ -16,7 +16,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-"""Exercise the four ABLESTACK RBD scripts with real quiesce/exit logic and fake IO."""
+"""Exercise the NAS RBD script with real quiesce/exit logic and fake IO."""
 import os
 from pathlib import Path
 import subprocess
@@ -24,7 +24,7 @@ import tempfile
 import unittest
 
 
-SCRIPTS = ("ablestack_nasbackup.sh", "ablestack_cvtbackup.sh", "ablestack_netbackup.sh", "ablestack_veeam.sh")
+SCRIPTS = ("ablestack_nasbackup.sh",)
 
 
 class RbdQuiesceScriptTest(unittest.TestCase):

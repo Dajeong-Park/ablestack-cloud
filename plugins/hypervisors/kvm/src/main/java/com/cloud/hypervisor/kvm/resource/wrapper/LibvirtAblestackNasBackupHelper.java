@@ -377,7 +377,7 @@ class LibvirtAblestackNasBackupHelper {
             payload.put("bandwidth", command.getBandwidthLimitMbps() == null ? 0 : command.getBandwidthLimitMbps());
             payloadFile = Files.createTempFile("ablestack-offline-raw-", ".json");
             Files.writeString(payloadFile, new com.google.gson.Gson().toJson(payload));
-            Path helper = Path.of(resource.getAbleCvtBackupPath()).getParent().resolve("ablestack_shared_raw.py");
+            Path helper = Path.of(resource.getThirdPartyVolumeBackupPath()).getParent().resolve("ablestack_shared_raw.py");
             var result = Script.executePipedCommands(List.<String[]>of(new String[] {"python3", helper.toString(),
                     "--action", "EXPORT_NAS", "--plan-file", payloadFile.toString()}),
                     workerTimeoutMillis(command.getTimeout() > 0 ? command.getTimeout() : 43200, sources.size(), command.getMountTimeout()));
