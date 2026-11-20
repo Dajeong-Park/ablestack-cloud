@@ -664,7 +664,9 @@ final class LibvirtAblestackVolumeRestoreHelper {
             if (pool == null) {
                 try (FileChannel channel = FileChannel.open(Path.of(prepared), StandardOpenOption.WRITE)) { channel.force(true); }
             }
-        } catch (Exception e) { throw new CloudRuntimeException("Unable to prepare restored volume " + volume.uuid, e); }
+        } catch (Exception e) {
+            throw new CloudRuntimeException("Unable to prepare restored volume " + volume.uuid + ": " + e.getMessage(), e);
+        }
     }
 
     private long targetBytes(int index, ThirdPartyBackupManifest.Volume volume) {

@@ -21,6 +21,8 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import org.apache.cloudstack.storage.to.PrimaryDataStoreTO;
+import org.apache.cloudstack.utils.qemu.QemuImg;
 import org.apache.cloudstack.backup.ThirdPartyBackupManifest;
 import org.apache.cloudstack.backup.ThirdPartyBackupRestore;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +32,7 @@ import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 import org.springframework.test.util.ReflectionTestUtils;
 import com.cloud.utils.exception.CloudRuntimeException;
+import com.cloud.hypervisor.kvm.storage.KVMStoragePoolManager;
 import com.google.gson.Gson;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -97,6 +100,28 @@ public class LibvirtAblestackVolumeRestoreTimeoutTest {
         var helper = helper("ablestack-netbackup", job, folder.newFolder().toPath());
         try (var runner = Mockito.mockStatic(LibvirtAblestackAsyncBackupRunner.class)) {
             assertTrue(assertThrows(CloudRuntimeException.class, () -> fetch(helper)).getMessage().contains("Timed out"));
+            assertEquals(Boolean.TRUE, ReflectionTestUtils.getField(helper, "transferUncertain"));
+            assertTrue(Files.exists(job.resolve("volume-restore-request.json")));
+        }
+    }
+
+    @Test public void volumePreparationRetainsTheTimeoutReasonForTheVmRestoreResult() throws Exception {
+        Path job = folder.newFolder().toPath();
+        var helper = helper("ablestack-netbackup", job, folder.newFolder().toPath());
+        var volume = new ThirdPartyBackupManifest.Volume();
+        volume.uuid = "source-volume";
+        var artifact = new ThirdPartyBackupManifest.Artifact();
+        artifact.path = "/backup/disk.qcow2";
+        volume.chain = List.of(artifact);
+        try (var runner = Mockito.mockStatic(LibvirtAblestackAsyncBackupRunner.class);
+                var files = Mockito.mockStatic(LibvirtAblestackFileRestoreHelper.class)) {
+            files.when(() -> LibvirtAblestackFileRestoreHelper.getFileVolumeFormat(Mockito.any(), Mockito.anyString()))
+                    .thenReturn(QemuImg.PhysicalDiskFormat.QCOW2);
+            CloudRuntimeException failure = assertThrows(CloudRuntimeException.class, () -> ReflectionTestUtils.invokeMethod(helper,
+                    "prepareVolume", Mockito.mock(KVMStoragePoolManager.class), volume, Mockito.mock(PrimaryDataStoreTO.class),
+                    "/primary/original", "/primary/prepared", 0));
+            assertTrue(failure.getMessage().contains("source-volume"));
+            assertTrue(failure.getMessage().contains("Timed out waiting for external volume restore"));
             assertEquals(Boolean.TRUE, ReflectionTestUtils.getField(helper, "transferUncertain"));
             assertTrue(Files.exists(job.resolve("volume-restore-request.json")));
         }
