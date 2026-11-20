@@ -17,13 +17,14 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { kmsDetails, kmsSearchFields } from '@/utils/kmsSearch'
 
 export default {
   name: 'kms',
   title: 'label.kms',
   icon: 'lock-outlined',
   show: () => {
-    return ['Admin'].includes(store.getters.userInfo.roletype) || store.getters.features.hashsmprofiles
+    return ['listKMSKeys', 'listHSMProfiles'].some(api => api in store.getters.apis)
   },
   children: [
     {
@@ -43,14 +44,7 @@ export default {
         fields.push('domainpath')
         return fields
       },
-      details: () => {
-        const fields = ['id', 'name', 'description', 'version']
-        if (['Admin'].includes(store.getters.userInfo.roletype)) {
-          fields.push('keklabel')
-        }
-        fields.push('keybits', 'enabled', 'account', 'domainpath', 'project', 'created', 'hsmprofile')
-        return fields
-      },
+      details: () => kmsDetails('kmskey', store.getters.userInfo.roletype),
       related: [
         {
           name: 'volume',
@@ -72,13 +66,7 @@ export default {
           }
         }
       ],
-      searchFilters: () => {
-        var filters = ['zoneid', 'hsmprofileid']
-        if (store.getters.userInfo.roletype === 'Admin') {
-          filters.push('domainid', 'account', 'projectid')
-        }
-        return filters
-      },
+      searchFilters: () => kmsSearchFields('listKMSKeys', store.getters),
       actions: [
         {
           api: 'createKMSKey',
@@ -163,10 +151,9 @@ export default {
       title: 'label.hsm.profile',
       icon: 'safety-outlined',
       permission: ['listHSMProfiles'],
-      show: () => { return ['Admin'].includes(store.getters.userInfo.roletype) },
       resourceType: 'HSMProfile',
       columns: () => {
-        const fields = ['name', 'enabled', 'ispublic']
+        const fields = ['name', 'protocol', 'enabled', 'ispublic']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
           fields.push('account')
         }
@@ -176,7 +163,7 @@ export default {
         fields.push('domainpath')
         return fields
       },
-      details: ['id', 'name', 'description', 'protocol', 'enabled', 'ispublic', 'account', 'domainpath', 'project', 'created', 'details'],
+      details: () => kmsDetails('hsmprofile', store.getters.userInfo.roletype),
       related: [
         {
           name: 'kmskey',
@@ -198,13 +185,7 @@ export default {
           }
         }
       ],
-      searchFilters: () => {
-        var filters = ['zoneid']
-        if (store.getters.userInfo.roletype === 'Admin') {
-          filters.push('domainid', 'account', 'projectid')
-        }
-        return filters
-      },
+      searchFilters: () => kmsSearchFields('listHSMProfiles', store.getters),
       actions: [
         {
           api: 'createHSMProfile',

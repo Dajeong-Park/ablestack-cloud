@@ -189,6 +189,16 @@
       </a-card>
     </div>
 
+    <a-alert v-if="kmsListRoute($route) && kmsSearchNotice" type="info" show-icon :message="$t('message.kms.search.filters.cleared')" />
+    <a-alert v-if="kmsListRoute($route) && kmsSearchError" type="error" show-icon :message="$t('message.kms.search.' + kmsSearchError)">
+      <template #description>
+        <a-space>
+          <a-button size="small" @click="onSearch({})">{{ $t('label.reset') }}</a-button>
+          <a-button size="small" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button>
+        </a-space>
+      </template>
+    </a-alert>
+
     <div v-show="showAction">
       <component
         v-if="showAction && currentAction.selfManagedDialog"
@@ -936,10 +946,10 @@
         <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
           <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
-        <p v-else-if="listRefreshError && (!s2sGatewayListRoute($route) || items.length > 0) && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
+        <p v-else-if="listRefreshError && !kmsListRoute($route) && (!s2sGatewayListRoute($route) || items.length > 0) && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
-          :emptyText="s2sGatewayListRoute($route) && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
+          :emptyText="kmsListRoute($route) ? $t(kmsSearchError ? 'message.kms.search.' + kmsSearchError : listRequestPending ? 'label.loading' : 'message.kms.search.empty') : s2sGatewayListRoute($route) && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
           :items="items"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
@@ -1069,6 +1079,7 @@ import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentit
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
+import { kmsRoute, kmsListRoute, kmsListApi, kmsAuth, kmsProjectScope, kmsQuery, kmsSearchQuery, kmsParams, readKmsPage } from '@/utils/kmsSearch'
 import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
 import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
 import { s2sGatewayListLocation, s2sGatewayProject, s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery } from '@/utils/s2sGatewaySearch'
@@ -1188,6 +1199,8 @@ export default {
       listRefreshError: false,
       vnfSearchFailure: '',
       s2sGatewaySearchFailure: '',
+      kmsSearchError: '',
+      kmsSearchNotice: false,
       asnSearchFailure: '',
       publicIpSearchFailure: '',
       publicIpProjectSync: false,
@@ -1331,7 +1344,7 @@ export default {
 
     this.currentPath = this.$route.fullPath
     this.fetchData()
-    if (!asnRoute(this.$route) && !s2sGatewayRoute(this.$route) && 'projectid' in this.$route.query && this.$route.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(this.$route)) {
+    if (!asnRoute(this.$route) && !s2sGatewayRoute(this.$route) && !kmsRoute(this.$route) && 'projectid' in this.$route.query && this.$route.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(this.$route)) {
       this.switchProject(this.$route.query.projectid)
     }
     this.setModalWidthByScreen()
@@ -1362,6 +1375,22 @@ export default {
     next()
   },
   watch: {
+    kmsSearchAuth: {
+      flush: 'sync',
+      handler (value, previous) {
+        if (!kmsRoute(this.$route)) return
+        this.invalidateKmsResults()
+        if (kmsListRoute(this.$route) && previous && value !== previous) {
+          this.kmsSearchNotice = true
+          const query = kmsQuery({}, kmsListApi(this.$route), this.$store.getters, this.pageSize)
+          if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) {
+            this.$router.replace({ query })
+            return
+          }
+        }
+        this.fetchData()
+      }
+    },
     s2sGatewaySearchAuth: {
       flush: 'sync',
       handler (value, old) {
@@ -1502,7 +1531,7 @@ export default {
         this.clearAutoRefresh()
         this.fetchData()
         this.scheduleAutoRefresh()
-        if (!s2sGatewayRoute(to) && 'projectid' in to.query && to.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(to)) {
+        if (!s2sGatewayRoute(to) && !kmsRoute(to) && 'projectid' in to.query && to.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(to)) {
           this.switchProject(to.query.projectid)
         }
       }
@@ -1574,6 +1603,7 @@ export default {
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
+    kmsSearchAuth () { return kmsRoute(this.$route) ? kmsAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
     s2sGatewaySearchAuth () { return s2sGatewayRoute(this.$route) ? s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
     asnSearchAuth () { return asnRoute(this.$route) ? asnAuth(this.$store) : '' },
     asnListReady () { return !!this.asnSearchAuth && !this.listRefreshError && !this.asnSearchFailure && this.listLoadedScope === this.listScope() },
@@ -1627,6 +1657,7 @@ export default {
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
       for (const filter in queryParams) {
+        if (kmsListRoute(this.$route) && filter === 'projectid' && kmsProjectScope(this.$store.getters)) continue
         if (['sortkey', 'sortorder', 'kisoowner', 'kisoreturn'].includes(filter) || publicIpRoute(this.$route) && filter === 'filter') continue
         if (this.$route.name === 'vmsnapshot' && filter === 'filter') {
           continue
@@ -1758,6 +1789,7 @@ export default {
   methods: {
     s2sGatewayRoute,
     s2sGatewayListRoute,
+    kmsListRoute,
     publicIpProject,
     publicIpDefaultFilter,
     vmDisplayName,
@@ -2043,7 +2075,36 @@ export default {
       this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
       if (this.$refs.listview) this.$refs.listview.resetSelection()
     },
+    invalidateKmsResults () {
+      this.listRequestVersion++
+      this.listRequestPending = false
+      this.listRefreshQueued = false
+      this.listLoadedScope = null
+      this.items = []
+      this.itemCount = 0
+      this.resource = {}
+      this.loading = false
+      this.resetSelection()
+      if (this.$refs.listview) this.$refs.listview.resetSelection()
+    },
     fetchData (params = {}) {
+      const kmsList = kmsListRoute(this.$route)
+      if (kmsList) {
+        const api = kmsListApi(this.$route)
+        if (!(api in this.$store.getters.apis)) {
+          this.invalidateKmsResults()
+          this.kmsSearchError = 'forbidden'
+          return
+        }
+        const raw = this.$route.query
+        const query = kmsQuery(raw, api, this.$store.getters, this.getValidPageSize(this.pageSize))
+        if (JSON.stringify(query) !== JSON.stringify(raw)) {
+          this.kmsSearchNotice = Object.keys(raw).some(key => !['page', 'pagesize', 'q', 'keyword'].includes(key) && raw[key] !== query[key])
+          this.invalidateKmsResults()
+          return this.$router.replace({ query })
+        }
+        this.kmsSearchError = ''
+      }
       if (s2sGatewayListRoute(this.$route)) {
         this.dataView = false
         const query = s2sGatewayQuery(this.$route.query, this.getValidPageSize(this.pageSize), this.$store.getters)
@@ -2260,7 +2321,7 @@ export default {
       if (kubernetesIsoQuery && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
       }
-      if ((publicIpList || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || s2sGatewayListRoute(this.$route)) && !this.dataView) && !sameList) {
+      if ((kmsList || publicIpList || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || s2sGatewayListRoute(this.$route)) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -2620,6 +2681,11 @@ export default {
       if (customParamHandler && typeof customParamHandler === 'function') {
         params = customParamHandler(params, this.$route.query)
       }
+      if (kmsList) {
+        params = kmsParams(this.$route.query)
+        this.columns = this.columns.map(column => ({ ...column, sorter: false }))
+        this.allColumns = this.allColumns.map(column => ({ ...column, sorter: false }))
+      }
       if (s2sGatewayListRoute(this.$route)) { params = s2sGatewayParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
@@ -2667,7 +2733,7 @@ export default {
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
       if (kubernetesIsoQuery) params = kubernetesIsoReadParams(params, this.$route.params?.id)
-      const response = s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope(), this.$getApiParams('listVpnGateways')) : s2sGatewayListRoute(this.$route) ? readS2sGatewayQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+      const response = kmsList ? readKmsPage(getAPI, requestApi, params, () => version === this.listRequestVersion && scope === this.listScope()) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope(), this.$getApiParams('listVpnGateways')) : s2sGatewayListRoute(this.$route) ? readS2sGatewayQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2881,6 +2947,15 @@ export default {
             this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
           }
           if (isAutoScheduled) throw error
+          return
+        }
+        if (kmsList) {
+          const denied = [401, 403].includes(Number(error?.response?.status))
+          this.kmsSearchError = denied ? 'forbidden' : error?.message === 'profile' ? 'profile' : 'failed'
+          this.listRefreshError = true
+          this.items = []
+          this.itemCount = 0
+          this.listLoadedScope = null
           return
         }
         if (s2sGatewayRoute(this.$route)) {
@@ -3097,6 +3172,14 @@ export default {
       this.closeAction()
     },
     removeFilter (filter) {
+      if (kmsListRoute(this.$route)) {
+        const raw = { ...this.$route.query, page: '1' }
+        delete raw[filter.key]
+        const query = kmsQuery(raw, kmsListApi(this.$route), this.$store.getters, this.pageSize)
+        this.kmsSearchNotice = false
+        this.$router.push({ query })
+        return
+      }
       if (this.isIsoList && filter.key === 'isofilter') { this.changeFilter(['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo?.roletype) ? 'all' : 'self'); return }
       const queryParams = Object.assign({}, this.$route.query)
       if (filter.isTag) {
@@ -4258,6 +4341,13 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (kmsListRoute(this.$route)) {
+        const query = kmsSearchQuery(this.$route.query, opts || {}, kmsListApi(this.$route), this.$store.getters, this.pageSize)
+        this.kmsSearchNotice = false
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) this.fetchData({ irefresh: true })
+        else this.$router.push({ query })
+        return
+      }
       if (s2sGatewayListRoute(this.$route)) {
         const query = s2sGatewaySearchQuery(this.$route.query, opts || {}, this.pageSize, this.$store.getters)
         this.searchParams = {}; this.resetSelection(); this.$refs.listview && this.$refs.listview.resetSelection()

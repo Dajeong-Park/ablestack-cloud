@@ -54,7 +54,18 @@
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
-      <a-list-item v-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
+      <a-list-item v-if="kmsRoute($route) && ['algorithm', 'keybits', 'vendorname', 'protocol', 'enabled', 'hsmzonescope', 'hsmownerscope', 'state'].includes(item)">
+        <div class="kms-metadata">
+          <strong>{{ $t(item === 'state' ? 'label.hsm.connection.state' : 'label.' + item) }}</strong>
+          <div v-if="item === 'enabled'">{{ $t(dataResource.enabled === true ? 'label.enabled' : dataResource.enabled === false ? 'label.disabled' : 'label.unknown') }}</div>
+          <div v-else-if="item === 'hsmzonescope'">{{ $t(dataResource.zoneid ? 'label.hsm.create.zone.specific' : 'label.hsm.create.zone.global') }}</div>
+          <div v-else-if="item === 'hsmownerscope'">{{ hsmOwnerScope(dataResource) ? $t('label.hsm.create.scope.' + hsmOwnerScope(dataResource)) : $t('label.unknown') }}</div>
+          <div v-else-if="item === 'protocol'">{{ kmsProtocolOptions($store.getters.features, dataResource.protocol).find(provider => provider.id === dataResource.protocol)?.name || $t('label.unknown') }}</div>
+          <div v-else-if="item === 'vendorname'">{{ dataResource.vendor || dataResource.vendorname || $t('label.unknown') }}</div>
+          <div v-else>{{ dataResource[item] ?? $t(item === 'state' ? 'label.hsm.connection.unavailable' : 'label.unknown') }}</div>
+        </div>
+      </a-list-item>
+      <a-list-item v-else-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -414,6 +425,7 @@ display-text />
 
 <script>
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
+import { kmsRoute, hsmOwnerScope, kmsProtocolOptions } from '@/utils/kmsSearch'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { l2ConfigDrive, l2PvlanDetails } from '@/utils/l2Network'
 import { sharedScopeLabel } from '@/utils/sharedNetwork'
@@ -609,6 +621,9 @@ export default {
     }
   },
   methods: {
+    kmsRoute,
+    hsmOwnerScope,
+    kmsProtocolOptions,
     creationVmOsName,
     vmBooleanLabel,
     networkTypeLabel,
@@ -931,4 +946,8 @@ export default {
   margin-bottom: 16px;
   overflow-wrap: anywhere;
 }
+</style>
+
+<style scoped>
+.kms-metadata { min-width: 0; overflow-wrap: anywhere; }
 </style>

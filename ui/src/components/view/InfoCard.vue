@@ -102,7 +102,7 @@
                     {{ resource.scope }}
                   </a-tag>
                   <a-tag v-if="resource.version">
-                    {{ resource.version }}
+                    {{ $route.meta.name === 'kmskey' ? $t('label.kms.current.version', { version: resource.version }) : resource.version }}
                   </a-tag>
                   <a-tag v-if="resource.internetprotocol && ['IPv6', 'DualStack'].includes(resource.internetprotocol)">
                     {{ resource.internetprotocol ? $t('label.ip.v4.v6') : resource.internetprotocol }}

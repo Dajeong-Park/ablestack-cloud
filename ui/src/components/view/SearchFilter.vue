@@ -24,7 +24,7 @@
       v-for="filter in this.searchFilters"
       :key="filter.key + filter.value"
     >
-      <a-col v-if="!['page', 'pagesize', 'q', 'keyword', 'tags', 'projectid', 'sortkey', 'sortorder'].includes(filter.key)">
+      <a-col v-if="(kms && filter.key === 'projectid') || !['page', 'pagesize', 'q', 'keyword', 'tags', 'projectid', 'sortkey', 'sortorder'].includes(filter.key)">
         <a-tag
           v-if="!filter.isTag"
           closable
@@ -57,6 +57,7 @@
 <script>
 
 import { getAPI } from '@/api'
+import { kmsApis, kmsBooleans, kmsProtocolOptions } from '@/utils/kmsSearch'
 import { publicIpState } from '@/utils/publicIpPresentation'
 import { publicIpPickerConfig } from '@/utils/publicIpSearch'
 import { affinityPolicy } from '@/utils/affinityGroupPresentation'
@@ -189,6 +190,7 @@ export default {
     }
   },
   computed: {
+    kms () { return kmsApis.includes(this.apiName) },
     lookupScope () { return JSON.stringify([this.$store?.getters?.userInfo?.id, this.$store?.getters?.userInfo?.roletype, this.$store?.getters?.userInfo?.roleid, Object.keys(this.$store?.getters?.apis || {}).sort(), this.$store?.state?.user?.token, this.$store?.getters?.project?.id, this.$route.query?.projectid, this.$route.path, this.apiName]) }
   },
   beforeUnmount () { this.filterVersion++ },
@@ -208,6 +210,16 @@ export default {
       const version = ++this.filterVersion
       const scope = this.lookupScope
       const cloned = filters.map(filter => ({ ...filter, rawValue: filter.value }))
+      if (this.kms) {
+        this.searchFilters = cloned.map(filter => {
+          if (kmsBooleans.includes(filter.key)) return { ...filter, value: this.$t(filter.rawValue === 'true' ? 'label.yes' : 'label.no') }
+          if (filter.key === 'protocol') {
+            return { ...filter, value: kmsProtocolOptions(this.$store.getters.features, filter.value).find(p => p.id === filter.value)?.name || filter.value }
+          }
+          return filter
+        })
+        return
+      }
       // Keep the submitted UUID instead of looking up names in an unrelated owner.
       if (this.apiName === 'listPublicIpAddresses') {
         this.searchFilters = cloned.filter(f => f.key !== 'filter').map(f => ({ ...f, value: f.key === 'state' ? this.$t(publicIpState(f.value).key) : ['true', 'false', 'all'].includes(String(f.value)) ? this.$t(String(f.value) === 'all' ? 'label.all' : String(f.value) === 'true' ? 'label.yes' : 'label.no') : f.value }))
@@ -231,6 +243,7 @@ export default {
       return (text.length <= length) ? text : (text.substring(0, length - 3) + '...')
     },
     retrieveFieldLabel (fieldName) {
+      if (this.kms && fieldName === 'projectid') return this.$t('label.project')
       if (this.apiName === 'listPublicIpAddresses') return this.$t(publicIpPickerConfig(fieldName)?.label || (fieldName === 'fordisplay' ? 'label.public.ip.display' : 'label.' + fieldName))
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (this.apiName === 'listIsos' && fieldName === 'isofilter') return this.$t('label.filterby')
