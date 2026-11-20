@@ -23,7 +23,6 @@
 </template>
 <script>
 import { getAPI } from '@/api'
-import { gatewayDisplayAdmin } from '@/utils/s2sGatewayDisplay'
 import { s2sGatewayAuth, s2sGatewayFields, s2sGatewayPickerConfig, s2sGatewayQuery, s2sGatewayError, s2sGatewaySelection } from '@/utils/s2sGatewaySearch'
 export default {
   name: 'S2sGatewayFilterChips',
@@ -32,8 +31,7 @@ export default {
   data () { return { labels: {}, verification: '', version: 0, disposed: false } },
   computed: {
     auth () { return s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token) },
-    displayAdmin () { return gatewayDisplayAdmin(this.$store.getters) },
-    chips () { return [...(this.displayAdmin ? [{ key: 'fordisplay', label: this.$t('label.s2s.display.filter'), value: this.$t(this.$route.query.fordisplay === 'false' ? 'label.s2s.display.hidden' : 'label.s2s.display.visible') }] : []), ...s2sGatewayFields.filter(key => this.$route.query[key]).map(key => ({ key, label: this.$t(key === 'id' ? 'label.id' : this.config(key).label), value: (!this.validationError && this.labels[key]) || String(this.$route.query[key]) + (key !== 'id' && (this.verification || this.validationError) ? ' · ' + this.$t('message.s2s.gateway.search.unverified') : '') }))] }
+    chips () { return s2sGatewayFields.filter(key => this.$route.query[key]).map(key => ({ key, label: this.$t(key === 'id' ? 'label.id' : this.config(key).label), value: (!this.validationError && this.labels[key]) || String(this.$route.query[key]) + (key !== 'id' && (this.verification || this.validationError) ? ' · ' + this.$t('message.s2s.gateway.search.unverified') : '') })) }
   },
   watch: {
     auth: { flush: 'sync', handler () { this.labels = {}; this.verify() } },
@@ -45,10 +43,11 @@ export default {
     async verify () {
       const version = ++this.version; const auth = this.auth
       const current = () => !this.disposed && version === this.version && auth === this.auth
-      this.labels = {}; this.verification = 'checking'
+      this.labels = {}; this.verification = s2sGatewayFields.some(key => this.$route.query[key]) ? 'checking' : ''
       const query = s2sGatewayQuery(this.$route.query, 20, this.$store.getters)
       const error = s2sGatewayError(query, this.$store.getters, this.$getApiParams('listVpnGateways'))
-      if (error) { this.verification = error; return }
+      if (error) { if (this.chips.length) this.verification = error; return }
+      if (!this.chips.length) return
       try { const labels = await s2sGatewaySelection(getAPI, query, this.$store.getters, current); if (current()) { this.labels = labels; this.verification = '' } } catch (error) { if (current()) this.verification = ['permission', 'scope', 'missing'].includes(error.message) ? error.message : 'lookup' }
     },
     remove (key) {

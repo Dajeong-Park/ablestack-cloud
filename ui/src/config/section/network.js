@@ -1090,6 +1090,8 @@ export default {
     },
     {
       name: 's2svpn',
+      filters: () => store.getters.userInfo?.roletype === 'Admin' ? ['true', 'false'] : [],
+      filterLabels: { true: 'label.s2s.display.visible', false: 'label.s2s.display.hidden' },
       searchFilters: ['keyword', 'id', 'vpcid', 'domainid', 'account'],
       title: 'label.site.to.site.vpn',
       icon: 'lock-outlined',

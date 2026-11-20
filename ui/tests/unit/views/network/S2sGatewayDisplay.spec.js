@@ -40,7 +40,7 @@ let wrappers, display, exists, command, posted, status, queryLost, readLost, mal
 const drain = async () => { for (let i = 0; i < 20; i++) { await Promise.resolve(); await nextTick() } }
 const apis = ['listVpnGateways', 'queryAsyncJobResult', 'updateVpnGateway', 'createVpnGateway', 'deleteVpnGateway', 'listVPCs', 'listVPCOfferings', 'listPublicIpAddresses']
 const access = role => reactive({ project: {}, userInfo: { id: 'admin', roleid: 'role', roletype: role, domainid: domain, account: 'owner' }, apis: Object.fromEntries(apis.map(name => [name, {}])) })
-const supported = { id: {}, vpcid: {}, account: {}, domainid: {}, projectid: {}, keyword: {}, fordisplay: {} }
+const supported = { id: {}, vpcid: {}, account: {}, domainid: {}, projectid: {}, keyword: {}, fordisplay: {}, displayall: {} }
 function lookup (api, params) {
   if (api === 'queryAsyncJobResult') {
     if (queryLost) return Promise.reject(Error('job query lost'))
@@ -153,7 +153,7 @@ test('Root hidden list/detail/breadcrumb preserve one explicit filter and never 
   expect(readS2sGatewayPage({ listvpngatewaysresponse: { count: 1, vpngateway: [{ ...gateway, fordisplay: false }] } }, { fordisplay: 'false' }).count).toBe(1)
   expect(() => readS2sGatewayPage({ listvpngatewaysresponse: { count: 1, vpngateway: [gateway] } }, { fordisplay: 'false' })).toThrow('scope')
 })
-test.each(['all', 'FALSE', '0', ''])('invalid display filter %s cannot broaden scope', value => expect(gatewayDisplayError({ fordisplay: value }, access('Admin'), supported)).toBe('invalid'))
+test.each(['invalid', 'FALSE', '0', ''])('invalid display filter %s cannot broaden scope', value => expect(gatewayDisplayError({ fordisplay: value }, access('Admin'), supported)).toBe('invalid'))
 test('hidden detail cannot cross the global project or ignore missing display API support', async () => {
   await expect(readGatewayDetail(getAPI, { params: { id }, query: { projectid: project, fordisplay: 'false' } }, access('Admin'), () => true, supported)).rejects.toThrow('scope')
   await expect(readGatewayDetail(getAPI, { params: { id }, query: { fordisplay: 'false' } }, access('Admin'), () => true, {})).rejects.toThrow('unsupported'); expect(getAPI).not.toHaveBeenCalled()
@@ -180,6 +180,23 @@ test.each(['same', 'path', 'project', 'identity'])('completed display navigation
   if (change === 'project') getters.project = { id: project }
   if (change === 'identity') vm.s2sGatewaySearchAuth = 'other-auth'
   Autogen.methods.closeAction.call(vm, result)
-  if (change === 'same') expect(vm.$router.replace).toHaveBeenCalledWith(expect.objectContaining({ path: '/s2svpn', query: expect.objectContaining({ fordisplay: 'false', id }) }))
+  if (change === 'same') expect(vm.$router.replace).toHaveBeenCalledWith(expect.objectContaining({ path: '/s2svpn', query: expect.objectContaining({ fordisplay: 'all', id }) }))
   else expect(vm.$router.replace).not.toHaveBeenCalled()
+})
+
+test('Root all uses one server query and preserves all across hidden detail/breadcrumb and completed changes', async () => {
+  const getters = access('Admin'); const query = s2sGatewayQuery({}, 20, getters)
+  expect(query.fordisplay).toBe('all'); expect(s2sGatewayError(query, getters, supported)).toBe('')
+  const params = s2sGatewayParams(query); expect(params.displayall).toBe(true); expect(params.fordisplay).toBeUndefined()
+  const hidden = { ...gateway, fordisplay: false }
+  expect(readS2sGatewayPage({ listvpngatewaysresponse: { count: 2, vpngateway: [gateway, { ...hidden, id: vpcid }] } }, params).count).toBe(2)
+  const detail = s2sGatewayDetailLocation({ query }, hidden, getters)
+  expect(detail.query.fordisplay).toBe('false'); expect(s2sGatewayListLocation(detail, getters).query.fordisplay).toBe('all')
+  expect(gatewayDisplayListLocation({}, getters, { query }, false, id, gateway).query.fordisplay).toBe('all')
+  expect(s2sGatewayError(query, getters, { fordisplay: {} })).toBe('unsupported')
+})
+test.each(['User', 'DomainAdmin'])('%s cannot acquire all through a direct UI URL', role => {
+  const getters = access(role)
+  expect(gatewayDisplayError({ fordisplay: 'all' }, getters, supported)).toBe('permission')
+  expect(s2sGatewayParams(s2sGatewayQuery({}, 20, getters)).displayall).toBeUndefined()
 })

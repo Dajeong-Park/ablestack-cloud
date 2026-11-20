@@ -24,12 +24,6 @@
             <template #content>
               <a-form v-if="visible" :model="form" class="s2s-gateway-search-form" layout="vertical" @finish="apply" @keydown.ctrl.enter.prevent="apply" @keydown.esc.stop.prevent="closeSearch">
                 <a-alert v-if="error" role="alert" type="error" show-icon :message="$t('message.s2s.gateway.search.' + error)" />
-                <a-form-item v-if="displayAdmin" :label="$t('label.s2s.display.filter')" :extra="$t('message.s2s.display.scope')" html-for="s2s-gateway-search-display">
-                  <a-select id="s2s-gateway-search-display" v-model:value="form.fordisplay" :aria-label="$t('label.s2s.display.filter')">
-                    <a-select-option value="true">{{ $t('label.s2s.display.visible') }}</a-select-option>
-                    <a-select-option value="false">{{ $t('label.s2s.display.hidden') }}</a-select-option>
-                  </a-select>
-                </a-form-item>
                 <a-form-item :label="$t('label.id')" html-for="s2s-gateway-search-id">
                   <a-input id="s2s-gateway-search-id" ref="idInput" v-model:value="form.id" :placeholder="$t('message.s2s.gateway.search.id')" />
                 </a-form-item>
@@ -50,7 +44,6 @@
   </span>
 </template>
 <script>
-import { gatewayDisplayAdmin } from '@/utils/s2sGatewayDisplay'
 import S2sGatewaySearchSelect from './S2sGatewaySearchSelect'
 import { s2sGatewayAuth, s2sGatewayPickerConfig, s2sGatewayQuery, s2sGatewayError } from '@/utils/s2sGatewaySearch'
 export default {
@@ -61,9 +54,8 @@ export default {
   data () { return { keyword: '', form: {}, visible: false, error: '', blocked: {}, generation: 0, disposed: false } },
   computed: {
     auth () { return s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token) },
-    displayAdmin () { return gatewayDisplayAdmin(this.$store.getters) },
     pickers () { return ['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo?.roletype) ? ['domainid', 'account', 'vpcid'] : ['vpcid'] },
-    filtered () { return this.displayAdmin || ['id', 'domainid', 'account', 'vpcid'].some(key => this.$route.query[key]) }
+    filtered () { return ['id', 'domainid', 'account', 'vpcid'].some(key => this.$route.query[key]) }
   },
   watch: {
     auth: { flush: 'sync', handler () { this.visible = false; this.form = {}; this.blocked = {}; this.generation++ } },

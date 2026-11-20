@@ -17,6 +17,7 @@
 
 import Select from '@/components/view/S2sGatewaySearchSelect.vue'
 import Search from '@/components/view/S2sGatewayFilterChips.vue'
+import Controls from '@/components/view/S2sGatewaySearch.vue'
 import { getAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
 const id = '11111111-1111-4111-8111-111111111111'
@@ -50,4 +51,14 @@ test('removing a domain chip clears dependent owner/VPC filters while retaining 
   Search.methods.remove.call(c, 'domainid')
   expect(c.$emit).toHaveBeenCalledWith('search', { s2sGatewaySearch: { fordisplay: 'false', keyword: 'match' } })
   expect(c.$route.query.domainid).toBe(id)
+})
+
+test.each(['all', 'true', 'false'])('breadcrumb display selection %s never creates a lower filter chip', value => {
+  const c = { $route: { query: { fordisplay: value } }, $t: key => key }
+  expect(Search.computed.chips.call(c)).toEqual([])
+})
+
+test('default all does not mark advanced search as an active user filter', () => {
+  expect(Controls.computed.filtered.call({ $route: { query: { fordisplay: 'all' } } })).toBe(false)
+  expect(Controls.computed.filtered.call({ $route: { query: { fordisplay: 'false' } } })).toBe(false)
 })

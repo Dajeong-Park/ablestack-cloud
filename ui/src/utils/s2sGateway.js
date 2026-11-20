@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { gatewayDisplayAdmin, gatewayDisplayError } from '@/utils/s2sGatewayDisplay'
+import { gatewayDisplayAdmin, gatewayDisplayError, gatewayDisplayParams } from '@/utils/s2sGatewayDisplay'
 import { vpcVpnOwner, vpcVpnSameOwner } from '@/utils/vpcVpn'
 
 export const gatewayName = row => row?.publicip || row?.vpcname || row?.id || '-'
@@ -43,19 +43,19 @@ export async function gatewayRows (api, command, field, params, current = () => 
   }
   throw Error('message.s2s.gateway.lookup.limit')
 }
-export async function readGatewayDetail (api, route, getters, current, supported = { fordisplay: true }) {
+export async function readGatewayDetail (api, route, getters, current, supported = { fordisplay: true, displayall: true }) {
   if (!getters.userInfo?.id || !('listVpnGateways' in (getters.apis || {}))) throw Error('permission')
   const project = String(getters.project?.id || (getters.listAllProjects ? '-1' : '0'))
   if (route.query?.projectid !== undefined && route.query.projectid !== project) throw Error('scope')
-  const display = route.query?.fordisplay ?? (gatewayDisplayAdmin(getters) ? 'true' : undefined)
-  const displayQuery = display === undefined ? {} : { fordisplay: display }
-  const displayError = gatewayDisplayError(displayQuery, getters, supported)
+  const display = route.query?.fordisplay ?? (gatewayDisplayAdmin(getters) ? 'all' : undefined)
+  const displayQuery = gatewayDisplayParams(display)
+  const displayError = gatewayDisplayError(display === undefined ? {} : { fordisplay: display }, getters, supported)
   if (displayError) throw Error(displayError)
   if (!/^[\da-f-]{36}$/i.test(route.params?.id)) throw Error('invalid')
   const rows = await gatewayRows(api, 'listVpnGateways', 'vpngateway', { ...displayQuery, id: route.params.id, ...(project === '0' ? {} : { projectid: project }) }, current)
   if (rows.length !== 1) throw Error('missing')
   const row = rows[0]
-  if (display === 'false' ? row.fordisplay !== false : row.fordisplay === false) throw Error('scope')
+  if (display !== 'all' && (display === 'false' ? row.fordisplay !== false : row.fordisplay === false)) throw Error('scope')
   if (row.id !== route.params.id || project === '0' && row.projectid || !['0', '-1'].includes(project) && row.projectid !== project) throw Error('scope')
   if (getters.userInfo.roletype === 'User' && !row.projectid && (row.account !== getters.userInfo.account || row.domainid !== getters.userInfo.domainid)) throw Error('permission')
   return { listvpngatewaysresponse: { count: 1, vpngateway: rows } }

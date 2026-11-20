@@ -19,8 +19,11 @@ export const gatewayDisplayAdmin = getters => getters.userInfo?.roletype === 'Ad
 export function gatewayDisplayError (query, getters, supported) {
   if (!Object.prototype.hasOwnProperty.call(query, 'fordisplay')) return ''
   if (!gatewayDisplayAdmin(getters)) return 'permission'
-  if (!['true', 'false'].includes(query.fordisplay)) return 'invalid'
-  return supported.fordisplay ? '' : 'unsupported'
+  if (!['all', 'true', 'false'].includes(query.fordisplay)) return 'invalid'
+  return (query.fordisplay === 'all' ? supported.displayall : supported.fordisplay) ? '' : 'unsupported'
+}
+export function gatewayDisplayParams (value) {
+  return value === 'all' ? { displayall: true } : value === undefined ? {} : { fordisplay: value }
 }
 export function gatewayDisplayMatches (row, value) {
   return typeof value !== 'boolean' || row.fordisplay === value
@@ -28,7 +31,7 @@ export function gatewayDisplayMatches (row, value) {
 export function gatewayDisplayListLocation (route, getters, listLocation, value, id, target = {}) {
   if (!gatewayDisplayAdmin(getters) || typeof value !== 'boolean') return null
   if (String(target.projectid || '0') !== String(getters.project?.id || '0')) return null
-  const query = { ...listLocation.query, fordisplay: String(value), id, page: '1' }
+  const query = { ...listLocation.query, fordisplay: listLocation.query.fordisplay === 'all' ? 'all' : String(value), id, page: '1' }
   if (target.vpcid) query.vpcid = target.vpcid
   if (target.projectid) { query.projectid = target.projectid; delete query.account; delete query.domainid } else if (target.account && target.domainid) { query.projectid = '0'; query.account = target.account; query.domainid = target.domainid }
   // A changed display setting must remain findable even if a former keyword

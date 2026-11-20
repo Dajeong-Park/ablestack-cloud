@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { gatewayDisplayAdmin, gatewayDisplayError } from '@/utils/s2sGatewayDisplay'
+import { gatewayDisplayAdmin, gatewayDisplayError, gatewayDisplayParams } from '@/utils/s2sGatewayDisplay'
 
 export const s2sGatewayFields = ['id', 'vpcid', 'domainid', 'account']
 const keys = [...s2sGatewayFields, 'keyword', 'q', 'projectid', 'page', 'pagesize', 'fordisplay']
@@ -34,7 +34,7 @@ export function s2sGatewayQuery (raw = {}, size = 20, getters = {}) {
   query.projectid = Array.isArray(raw.projectid) ? raw.projectid : String(raw.projectid || s2sGatewayProject(getters))
   if (uuid(query.projectid)) query.projectid = query.projectid.toLowerCase()
   const number = (value, fallback, max) => Array.isArray(value) ? value : /^\d+$/.test(String(value)) && Number(value) > 0 && Number(value) <= max ? String(Number(value)) : String(fallback)
-  if (gatewayDisplayAdmin(getters) && query.fordisplay === undefined) query.fordisplay = 'true'
+  if (gatewayDisplayAdmin(getters) && query.fordisplay === undefined) query.fordisplay = 'all'
   query.page = number(raw.page, 1, 2147483647)
   query.pagesize = number(raw.pagesize, size, 500)
   return query
@@ -62,6 +62,8 @@ export function s2sGatewaySearchQuery (current, values = {}, size, getters) {
 }
 export function s2sGatewayParams (query) {
   const params = { ...Object.fromEntries(Object.entries(query).filter(([key]) => [...s2sGatewayFields, 'keyword', 'projectid', 'page', 'pagesize', 'fordisplay'].includes(key))), listall: true, ignoreproject: true }
+  Object.assign(params, gatewayDisplayParams(query.fordisplay))
+  if (query.fordisplay === 'all') delete params.fordisplay
   if (params.projectid === '0') delete params.projectid
   return params
 }
@@ -118,7 +120,7 @@ export function readS2sGatewayPage (json, params) {
   if (!data || data.errorcode || data.vpngateway !== undefined && !Array.isArray(data.vpngateway)) throw Error('response')
   const rows = data.vpngateway || []; const count = data.count === undefined && !rows.length ? 0 : Number(data.count)
   if (!Number.isSafeInteger(count) || count < rows.length || count < 0 || new Set(rows.map(row => row.id)).size !== rows.length || rows.some(row => !uuid(row.id))) throw Error('response')
-  if (rows.some(row => ['id', 'vpcid', 'domainid', 'account'].some(key => params[key] && row[key] !== params[key]) || params.projectid && params.projectid !== '-1' && row.projectid !== params.projectid || !params.projectid && !!row.projectid || (params.fordisplay === 'false' ? row.fordisplay !== false : row.fordisplay === false))) throw Error('scope')
+  if (rows.some(row => ['id', 'vpcid', 'domainid', 'account'].some(key => params[key] && row[key] !== params[key]) || params.projectid && params.projectid !== '-1' && row.projectid !== params.projectid || !params.projectid && !!row.projectid || (!params.displayall && (params.fordisplay === 'false' ? row.fordisplay !== false : row.fordisplay === false)))) throw Error('scope')
   return { rows, count }
 }
 export async function readS2sGatewayQuery (api, params, getters, current) {
@@ -137,6 +139,6 @@ export function s2sGatewayListLocation (route, getters) {
   let saved = {}
   try { if (typeof route.query?.s2sreturn === 'string' && route.query.s2sreturn.length < 8192) { const value = JSON.parse(route.query.s2sreturn); if (value?.owner === returnOwner(getters) && value.query && typeof value.query === 'object' && !Array.isArray(value.query)) saved = value.query } } catch (_) {}
   if (saved.projectid !== s2sGatewayProject(getters)) saved = {}
-  if (gatewayDisplayAdmin(getters) && ['true', 'false'].includes(route.query?.fordisplay)) saved = { ...saved, fordisplay: route.query.fordisplay }
+  if (!Object.keys(saved).length && (!route.query?.projectid || route.query.projectid === s2sGatewayProject(getters)) && gatewayDisplayAdmin(getters) && ['true', 'false'].includes(route.query?.fordisplay)) saved = { ...saved, fordisplay: route.query.fordisplay }
   return { path: '/s2svpn', query: s2sGatewayQuery(saved, 20, getters) }
 }

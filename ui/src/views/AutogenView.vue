@@ -38,7 +38,7 @@
                   <template #icon><reload-outlined /></template>
                   {{ $t('label.refresh') }}
                 </a-button>
-                <label v-if="isTemplateList || isIsoList || (isPublicIpUi && !dataView && filters?.length > 0)" :for="isPublicIpUi ? 'public-ip-state-filter' : templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
+                <label v-if="isTemplateList || isIsoList || (s2sGatewayListRoute($route) && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sGatewayListRoute($route) ? 's2s-gateway-display-filter' : isPublicIpUi ? 'public-ip-state-filter' : templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
                 <a-tooltip placement="right">
                   <template #title>
                     {{ $t('label.filterby') }}
@@ -46,7 +46,8 @@
                   <a-select
                     v-if="!dataView && filters && filters.length > 0"
                     :placeholder="$t('label.filterby')"
-                    :id="isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined"
+                    :aria-label="s2sGatewayListRoute($route) ? $t('label.s2s.display.filter') : undefined"
+                    :id="s2sGatewayListRoute($route) ? 's2s-gateway-display-filter' : isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined"
                     :value="filterValue"
                     style="min-width: 100px; margin-left: 10px; margin-bottom: 5px"
                     size=small
@@ -60,7 +61,7 @@
                     <template #suffixIcon><filter-outlined class="ant-select-suffix" /></template>
                     <a-select-option
                       v-if="(['Admin', 'DomainAdmin'].includes($store.getters.userInfo.roletype) || (isIsoList && $store.getters.userInfo.roletype === 'ResourceAdmin')) &&
-                      ['vm', 'iso', 'template', 'pod', 'cluster', 'host', 'systemvm', 'router', 'storagepool', 'kubernetes', 'computeoffering', 'systemoffering', 'diskoffering', 'sharedfs', 'extension', 'alertRules'].includes($route.name) ||
+                      ['vm', 'iso', 'template', 'pod', 'cluster', 'host', 'systemvm', 'router', 'storagepool', 'kubernetes', 'computeoffering', 'systemoffering', 'diskoffering', 'sharedfs', 'extension', 'alertRules', 's2svpn'].includes($route.name) ||
                       ['account'].includes($route.name)"
                       key="all"
                       :label="$t('label.all')"
@@ -1666,6 +1667,7 @@ export default {
       }).map(String)
     },
     filterValue () {
+      if (s2sGatewayListRoute(this.$route)) return this.$route.query.fordisplay || 'all'
       if (asnRoute(this.$route)) return this.$route.query.filter || 'all'
       if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || 'Allocated').toLowerCase()
       if (vnfRoute(this.$route)) return String(this.$route.query.state || 'all').toLowerCase()
@@ -4096,6 +4098,7 @@ export default {
       return this.$t(key)
     },
     changeFilter (filter) {
+      if (s2sGatewayListRoute(this.$route)) { this.onSearch({ s2sGatewaySearch: { ...this.$route.query, fordisplay: filter } }); return }
       if (asnRoute(this.$route)) { const query = { ...this.$route.query, filter }; delete query.isallocated; this.onSearch(query); return }
       if (publicIpRoute(this.$route)) {
         const query = { ...this.$route.query, filter }; delete query.state
