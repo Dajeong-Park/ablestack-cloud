@@ -1,0 +1,33 @@
+{
+  "base": "ebce1bfb72a22e2f0d6a21e6b553b152240f07a1",
+  "implementation": "75896d31b6f5dc16cd7562429e02455dfa2a6aea",
+  "tests": 87,
+  "suites": 4,
+  "changed_eslint_errors": 0,
+  "playwright_13_scenarios": 3,
+  "deployment": {
+    "files": 698,
+    "changed_existing": 1,
+    "added_files": 3,
+    "config_preserved": true
+  },
+  "ui_index_sha256": "185cc34c40caf6a5db62ba1b60e0a0af11e4043db3bc7e6df146e6442e78fbd6",
+  "ui_archive_sha256": "ded85693f1b6c297d4b5ac56c555254283d97897cf1ffd40238ce2959ff69f8b",
+  "runtime": {
+    "exit_code": 0,
+    "stdout": "active\n57db6a6337f225917f0b5e53a1a1381a1a2291263f1f18a4ad74d48c8083170b  /usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar\n185cc34c40caf6a5db62ba1b60e0a0af11e4043db3bc7e6df146e6442e78fbd6  /usr/share/cloudstack-management/webapp/index.html\n{\"profiles\":0,\"keys\":0,\"projects\":0,\"accounts\":0,\"original_disabled_profile\":1}\n",
+    "stderr": ""
+  },
+  "source_hashes": {
+    "ui/public/locales/en.json": "5e0fc8c995906e5695d27ba177259b6cf1500d08b19675e2a62efebbcea21b20",
+    "ui/public/locales/ko_KR.json": "1886f933643be369a979f39a1e5a2bad5f087f741eb9d490a93ae9d9e9c2f8b5",
+    "ui/src/config/section/kms.js": "da827193c7a9497e350625041785927e991edb3388a9d800c389657cdc26cea4",
+    "ui/src/utils/hsmProfileCreation.js": "cc3d03243f3c833a7e6085e7fa46f4215af93a0501ed8dd8533e620219c6239b",
+    "ui/src/utils/kmsOperation.js": "81130af767540f9800ffad190d9fcb9eae2ce68ce54451470aa5ed995424fdfd",
+    "ui/src/views/AutogenView.vue": "e1f8489afdaa537f88f18de041535b949fda4eb4c4fae6dd9b5edd12852b21e9",
+    "ui/src/views/infra/CreateHSMProfile.vue": "2ceb25b1a122e96adc3a26e20cdfd4787e7ea10f432600cdd9b37a446fd57081",
+    "ui/src/views/infra/KmsOperationDialog.vue": "10fd62af0de0f9a6e6e37fc32617c64190834ed1708831d3775dbd951ba3a601",
+    "ui/tests/unit/utils/kmsOperation.spec.js": "eb136a5870faf9c07dd1d1d518707f45e74898637b89e5d14a7a572037e5868a",
+    "ui/tests/unit/views/infra/CreateHSMProfile.spec.js": "855cb3b3ae34e16da899a5270cecb370f10495f4e38e19dfcad3b5f27ac5ea9c"
+  }
+}
