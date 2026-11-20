@@ -28,7 +28,7 @@ focus-guard
     <a-alert v-if="!allowed" type="warning" show-icon :message="$t('message.s2s.gateway.permission')" />
     <a-alert v-if="error" type="error" show-icon :message="error" role="alert" />
     <a-alert v-if="jobId" :type="busy ? 'info' : 'warning'" show-icon :message="$t(confirmed ? 'message.s2s.display.confirmed.readback' : busy ? 'message.vpc.vpn.pending' : 'message.vpc.vpn.unknown')" :description="jobId" role="status" />
-    <p>{{ $t(mode === 'create' ? 'message.s2s.gateway.create' : mode === 'update' ? 'message.s2s.display.scope' : 'message.s2s.gateway.delete') }}</p>
+    <p v-if="mode !== 'update'">{{ $t(mode === 'create' ? 'message.s2s.gateway.create' : 'message.s2s.gateway.delete') }}</p>
     <a-form ref="form" :model="draft" layout="vertical" @keydown.ctrl.enter.prevent="!$event.repeat && submit()" @finish="submit">
       <template v-if="mode === 'create'">
         <a-form-item :label="$t('label.vpc')" :extra="$t('message.s2s.create.vpc.help')" name="vpcid" :rules="[{ required: true, message: $t('label.required') }]">
@@ -207,7 +207,7 @@ export default {
             const created = result.jobresult.vpngateway
             if (!rows.some(row => row.id === created.id && row.vpcid === this.target.vpcid && gatewaySameOwner(row, this.target) && row.publicip === created.publicip && gatewayDisplayMatches(row, this.target.fordisplay))) throw Error('message.s2s.gateway.context.changed')
           } else if (rows.some(row => row.id === this.target.id)) throw Error('message.s2s.gateway.context.changed')
-          this.phase = 'succeeded'; this.clearReceipt(); this.closed = true; const completed = { removed: this.mode === 'delete' ? [this.target.id] : [], ...(this.mode === 'update' || this.mode === 'create' && this.target.fordisplay === false ? { displayChanged: true, id: result.jobresult.vpngateway.id, fordisplay: this.target.fordisplay, target: this.target, auth: s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token), originPath: this.$route.fullPath } : {}) }; this.$emit('refresh-data', completed); this.$emit('close-action', completed); return
+          this.phase = 'succeeded'; this.clearReceipt(); this.closed = true; const completed = { removed: this.mode === 'delete' ? [this.target.id] : [], ...(this.mode !== 'delete' && typeof this.target.fordisplay === 'boolean' ? { displayChanged: true, id: result.jobresult.vpngateway.id, fordisplay: this.target.fordisplay, target: this.target, auth: s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token), originPath: this.$route.fullPath } : {}) }; this.$emit('refresh-data', completed); this.$emit('close-action', completed); return
         } catch (error) { if (this.current()) this.error = this.message(error) }
       }
       if (this.current()) { this.phase = 'unknown'; if (!this.error) this.error = this.$t('message.vpc.vpn.unknown') }

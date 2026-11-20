@@ -129,9 +129,9 @@ test('unknown update resumes after reopen without another mutation', async () =>
   const { w } = await open(); w.vm.draft.fordisplay = false; queryLost = true; await w.vm.submit(); w.vm.close(); w.unmount()
   queryLost = false; const { w: second } = await open(); await drain(); expect(second.vm.phase).toBe('succeeded'); expect(postAPI).toHaveBeenCalledTimes(1)
 })
-test('Root hidden create carries false through request, job, readback and completion location', async () => {
-  exists = false; const { w } = await open('create'); w.vm.draft.fordisplay = false; await w.vm.submit()
-  expect(postAPI.mock.calls[0][1]).toMatchObject({ vpcid, ipaddressid: 'ip', fordisplay: false }); expect(w.vm.phase).toBe('succeeded'); expect(w.emitted('close-action')[0][0]).toMatchObject({ displayChanged: true, fordisplay: false, id })
+test.each([true, false])('Root create %s confirms request, job, readback and the matching display list', async value => {
+  exists = false; const { w, route } = await open('create'); route.query.fordisplay = 'false'; w.vm.draft.fordisplay = value; await w.vm.submit()
+  expect(postAPI.mock.calls[0][1]).toMatchObject({ vpcid, ipaddressid: 'ip', fordisplay: value }); expect(w.vm.phase).toBe('succeeded'); expect(w.emitted('close-action')[0][0]).toMatchObject({ displayChanged: true, fordisplay: value, id })
 })
 test.each(['User', 'DomainAdmin'])('%s never sees or submits administrator display settings', async role => {
   const update = await open('update', role); expect(update.w.vm.allowed).toBe(false); expect(update.w.vm.displayOption).toBe(false); expect(getAPI).not.toHaveBeenCalled()
