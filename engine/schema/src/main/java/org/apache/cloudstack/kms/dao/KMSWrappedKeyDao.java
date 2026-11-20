@@ -26,6 +26,8 @@ public interface KMSWrappedKeyDao extends GenericDao<KMSWrappedKeyVO, Long> {
 
     long countByKmsKeyId(Long kmsKeyId);
 
+    long countByHsmProfileId(long profileId);
+
     /**
      * Limited variant for batch processing during key rotation
      */

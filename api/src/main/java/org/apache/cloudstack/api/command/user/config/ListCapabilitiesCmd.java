@@ -17,12 +17,21 @@
 package org.apache.cloudstack.api.command.user.config;
 
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.TreeMap;
+import javax.inject.Inject;
 
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.response.CapabilitiesResponse;
+import org.apache.cloudstack.api.response.KMSProviderResponse;
+import org.apache.cloudstack.framework.kms.KMSProvider;
+import org.apache.cloudstack.kms.KMSManager;
 import org.apache.cloudstack.api.response.DomainResponse;
 import org.apache.cloudstack.config.ApiServiceConfiguration;
 
@@ -31,6 +40,36 @@ import com.cloud.user.Account;
 @APICommand(name = "listCapabilities", description = "Lists capabilities", responseObject = CapabilitiesResponse.class,
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
 public class ListCapabilitiesCmd extends BaseCmd {
+
+    @Inject
+    private KMSManager kmsManager;
+
+    List<KMSProviderResponse> loadedKmsProviders() {
+        try {
+            List<? extends KMSProvider> providers = kmsManager == null ? null : kmsManager.listKMSProviders();
+            if (providers == null) {
+                return Collections.emptyList();
+            }
+            Map<String, KMSProviderResponse> result = new TreeMap<>();
+            for (KMSProvider provider : providers) {
+                String name = provider == null ? null : provider.getProviderName();
+                if (name == null) {
+                    continue;
+                }
+                String protocol = name.trim().toLowerCase(Locale.ROOT);
+                if (!protocol.matches("[a-z0-9][a-z0-9_.-]*")) {
+                    continue;
+                }
+                String displayName = "pkcs11".equals(protocol) ? "PKCS#11" : "database".equals(protocol) ? "Database" : protocol;
+                result.put(protocol, new KMSProviderResponse(protocol, displayName));
+            }
+            return new ArrayList<>(result.values());
+        } catch (Exception ignored) {
+            // Provider discovery is optional; never break login or include provider exceptions containing credentials.
+            logger.warn("Unable to enumerate loaded KMS providers");
+            return Collections.emptyList();
+        }
+    }
 
     @Parameter(name = ApiConstants.DOMAIN_ID,
             type = CommandType.UUID,
@@ -52,6 +91,7 @@ public class ListCapabilitiesCmd extends BaseCmd {
     public void execute() {
         Map<String, Object> capabilities = _mgr.listCapabilities(this);
         CapabilitiesResponse response = new CapabilitiesResponse();
+        response.setKmsProviders(loadedKmsProviders());
         response.setSnapshotPolicyMax(snapshotPolicyMaxima());
         response.setUserDataMaxLength((Integer) capabilities.get("userdatamaxlength"));
         response.setSecurityGroupsEnabled((Boolean)capabilities.get("securityGroupsEnabled"));

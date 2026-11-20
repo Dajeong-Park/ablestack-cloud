@@ -1,0 +1,21 @@
+{
+  "jar_before_sha256": "9a08a406e369ef14be9ce23e97eb9a0ed6cf4181973311895767babc0cd12430",
+  "jar_after_sha256": "57db6a6337f225917f0b5e53a1a1381a1a2291263f1f18a4ad74d48c8083170b",
+  "changed_entries": [
+    "org/apache/cloudstack/api/command/user/config/ListCapabilitiesCmd.class",
+    "org/apache/cloudstack/api/response/CapabilitiesResponse.class",
+    "com/cloud/api/ApiServlet.class",
+    "com/cloud/api/ApiServlet$2.class",
+    "com/cloud/api/ApiSensitiveParamUtils.class",
+    "com/cloud/api/ApiServlet$1.class"
+  ],
+  "added_entries": [
+    "org/apache/cloudstack/api/response/KMSProviderResponse.class"
+  ],
+  "unchanged_entries": 92934,
+  "source_classes_match": true,
+  "ui_files_verified": 692,
+  "ui_index_sha256": "8588fda2394003d0f737af1fd57aa010837a4ac1be0e0c5f98682f4d1adfa5cd",
+  "ui_config_sha256_preserved": "71c175523a2e251faf574bd5d977c37e81d21c9cc0b8a98dfb1642c6b8a448d7",
+  "mold_active": "active"
+}

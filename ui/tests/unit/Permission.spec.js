@@ -39,3 +39,21 @@ describe('SAML management server cookie', () => {
     expect(next).toHaveBeenCalled()
   })
 })
+
+it('keeps the KMS return entry while removing the outer login query on reload', () => {
+  const { href } = window.location
+  const original = window.history.state
+  const state = { current: '/hsmprofile/test-id', kmsReturn: { kind: 'hsmprofile', query: { page: '2' } } }
+  const next = jest.fn()
+  Cookies.get.mockReturnValue(undefined)
+  try {
+    window.history.replaceState(state, '', '/?code=temporary#/hsmprofile/test-id')
+    router.beforeEach.mock.calls[0][0]({ path: state.current, meta: {} }, {}, next)
+    expect(window.location.search).toBe('')
+    expect(window.location.hash).toBe('#/hsmprofile/test-id')
+    expect(window.history.state).toEqual(state)
+    expect(next).toHaveBeenCalled()
+  } finally {
+    window.history.replaceState(original, '', href)
+  }
+})

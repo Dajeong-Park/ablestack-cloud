@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <resource-layout :wide="wideLayout" :class="{ 's2s-gateway-resource': $route.meta?.name === 's2svpn', 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
+  <resource-layout :wide="wideLayout" :class="{ 'kms-resource': kmsDetailRoute($route), 's2s-gateway-resource': $route.meta?.name === 's2svpn', 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
     <template #left>
       <slot name="info-card">
         <info-card
@@ -111,6 +111,7 @@ import StorageSnapshotSummary from '@/views/storage/StorageSnapshotSummary'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
 import ResourceLayout from '@/layouts/ResourceLayout'
 import { getAPI } from '@/api'
+import { kmsDetailRoute, kmsRouteHistory } from '@/utils/kmsNavigation'
 import { templateObservationContext } from '@/utils/templateAvailability'
 import { mixinDevice } from '@/utils/mixin.js'
 
@@ -226,6 +227,7 @@ export default {
     window.removeEventListener('popstate', this.setActiveTab)
   },
   methods: {
+    kmsDetailRoute,
     refreshKubernetesIsoAvailability () { return this.$refs.kubernetesIsoSummary?.refresh() },
     acceptKubernetesIsoObservation (value) {
       if (this.$route.meta?.name === 'kubernetesiso' && value?.versionid === this.resource.id && value?.isoid === this.resource.isoid && value.context === this.kubernetesIsoContext) this.kubernetesIsoObservation = value
@@ -259,6 +261,12 @@ export default {
       this.wideLayout = false
       const query = Object.assign({}, this.$route.query)
       query.tab = key
+      const historyState = this.$router?.options?.history?.state
+      if (kmsDetailRoute(this.$route) || (this.$route.meta?.name === 'volume' && historyState?.kmsRelatedReturn)) {
+        this.$router.push({ path: this.$route.path, query, state: kmsRouteHistory(historyState) })
+        this.$emit('onTabChange', key)
+        return
+      }
       if (networkTabRoute(this.$route) || ['kubernetesiso', 'template', 'iso', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name)) {
         this.$router.push({ path: this.$route.path, query })
         this.$emit('onTabChange', key)
@@ -302,7 +310,7 @@ export default {
     setActiveTab () {
       const requestedTab = this.$route.query.tab || this.historyTab
       const network = networkTabRoute(this.$route)
-      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : ['kubernetesiso', 'template', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
+      const available = network ? uniqueTabs(this.tabs).filter(tab => !this.networkTabsReady || this.showTab(tab)) : kmsDetailRoute(this.$route) || ['kubernetesiso', 'template', 'ssh', 'userdata', 'cniconfiguration', 'affinitygroup', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) ? this.tabs.filter(tab => this.showTab(tab)) : this.tabs
       const selected = network ? selectedNetworkTab(available, requestedTab) : available.find(tab => tab.name === requestedTab) || available[0]
       this.activeTab = selected ? selected.name : ''
       // Invalid library deep links use the visible fallback tab in the URL too.
@@ -311,7 +319,7 @@ export default {
       // canonicalize its URL.
       const routeTabs = this.$route.meta?.tabs
       const ownsRouteTabs = (this.$route.meta?.name === 'publicip' || !routeTabs) || (routeTabs.length === this.tabs.length && routeTabs.every((tab, index) => tab.name === this.tabs[index].name))
-      if (ownsRouteTabs && ((network && this.networkTabsReady) || this.templateTabsReady || ['kubernetesiso', 'userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
+      if (ownsRouteTabs && ((network && this.networkTabsReady) || this.templateTabsReady || kmsDetailRoute(this.$route) || ['kubernetesiso', 'userdata', 'cniconfiguration', 'volume', 'computeoffering', 'diskoffering', 'vpcoffering', 'privategw', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name)) && this.$route.query.tab && selected && requestedTab !== selected.name) {
         if (this.$route.meta?.name === 'guestnetwork' && conditionalGuestTab(requestedTab)) {
           this.conditionalTabNotice = guestFeatureStatus(requestedTab, this.resource, this.$store.getters)
         } else if (this.$route.meta?.name === 'guestnetwork' && this.resource.type === 'L2' &&
@@ -346,4 +354,12 @@ export default {
 :deep(.resource-content-card .ant-spin-container) {
   background: var(--ui-bg-surface);
 }
+</style>
+
+<style scoped>
+.kms-resource :deep(.resource-content-card),
+.kms-resource :deep(.ant-tabs),
+.kms-resource :deep(.ant-tabs-content-holder),
+.kms-resource :deep(.ant-tabs-tabpane) { min-width: 0; max-width: 100%; }
+.kms-resource :deep(.ant-list-item) { overflow-wrap: anywhere; }
 </style>

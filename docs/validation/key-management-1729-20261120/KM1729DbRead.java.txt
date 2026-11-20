@@ -1,0 +1,44 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+import com.cloud.utils.crypt.EncryptionSecretKeyChecker;
+import java.nio.file.*;
+import java.io.*;
+import java.sql.*;
+import java.util.Properties;
+public class KM1729DbRead {
+ public static void main(String[] args) throws Exception {
+  Properties p=new Properties();
+  try(InputStream in=Files.newInputStream(Path.of("/etc/cloudstack/management/db.properties"))){p.load(in);}
+  EncryptionSecretKeyChecker.initEncryptor(Files.readString(Path.of("/etc/cloudstack/management/key")).trim());
+  EncryptionSecretKeyChecker.decryptAnyProperties(p);
+  String url="jdbc:mysql://"+p.getProperty("db.cloud.host","localhost")+":"+p.getProperty("db.cloud.port","3306")+"/"+p.getProperty("db.cloud.name","cloud")+"?useSSL=false&allowPublicKeyRetrieval=true";
+  try(Connection c=DriverManager.getConnection(url,p.getProperty("db.cloud.username"),p.getProperty("db.cloud.password"));Statement s=c.createStatement()){
+   for(String q:new String[]{
+    "SELECT v.uuid,v.name,v.state,v.encrypt_format,v.account_id,v.data_center_id,v.removed,(v.passphrase_id IS NOT NULL) AS legacy_reference,(p.id IS NOT NULL) AS legacy_exists,(v.kms_wrapped_key_id IS NOT NULL) AS wrapped_reference,k.uuid AS kms_key_uuid FROM volumes v LEFT JOIN passphrase p ON p.id=v.passphrase_id LEFT JOIN kms_keys k ON k.id=v.kms_key_id WHERE v.encrypt_format IS NOT NULL OR v.name LIKE 'qa-km1729-%'",
+    "SELECT uuid,name,enabled FROM kms_keys WHERE name LIKE 'qa-km1729-%' AND removed IS NULL",
+    "SELECT COUNT(*) AS active_all_keys FROM kms_keys WHERE removed IS NULL",
+    "SELECT COUNT(*) AS active_qa_keys FROM kms_keys WHERE name LIKE 'qa-km1729-%' AND removed IS NULL",
+    "SELECT COUNT(DISTINCT d.id) AS active_qa_provider_keys FROM kms_database_kek_objects d JOIN kms_keys k ON d.label LIKE CONCAT('%',REPLACE(k.uuid,'-',''),'-v%') WHERE k.name LIKE 'qa-km1729-%' AND d.removed IS NULL",
+    "SELECT COUNT(*) AS qa_wrapped_references FROM kms_wrapped_key WHERE kms_key_id IN (SELECT id FROM kms_keys WHERE name LIKE 'qa-km1729-%')",
+    "SELECT COUNT(*) AS qa_volume_references FROM volumes WHERE kms_key_id IN (SELECT id FROM kms_keys WHERE name LIKE 'qa-km1729-%')",
+    "SELECT uuid,name,protocol,enabled,is_public FROM kms_hsm_profiles WHERE uuid='bc91cad9-e49f-400f-bbc0-1f047202631f'",
+    "SELECT COUNT(*) AS pending_api_jobs FROM async_job WHERE removed IS NULL AND job_status=0 AND job_cmd IS NOT NULL"}){
+     try(ResultSet r=s.executeQuery(q)){ResultSetMetaData m=r.getMetaData();int n=m.getColumnCount();for(int i=1;i<=n;i++)System.out.print((i==1?"":"\t")+m.getColumnLabel(i));System.out.println();while(r.next()){for(int i=1;i<=n;i++)System.out.print((i==1?"":"\t")+r.getObject(i));System.out.println();}}
+   }
+  }
+ }
+}

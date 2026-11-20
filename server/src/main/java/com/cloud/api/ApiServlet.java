@@ -90,6 +90,7 @@ public class ApiServlet extends HttpServlet {
     public static final Pattern GET_REQUEST_COMMANDS = Pattern.compile("^(get|list|query|find)(\\w+)+$");
     private static final HashSet<String> POST_REQUESTS_TO_DISABLE_LOGGING = new HashSet<>(Set.of(
             "login",
+            "createhsmprofile",
             "oauthlogin",
             "createaccount",
             "createuser",
@@ -238,7 +239,7 @@ public class ApiServlet extends HttpServlet {
         // logging the request start and end in management log for easy debugging
         String reqStr = "";
         boolean bucketCredentialCommand = command != null && BUCKET_CREDENTIAL_COMMANDS.contains(command.toLowerCase(java.util.Locale.ROOT));
-        String cleanQueryString = bucketCredentialCommand ? command : StringUtils.cleanString(req.getQueryString());
+        String cleanQueryString = safeQueryForLog(command, req.getQueryString());
         if (bucketCredentialCommand) {
             resp.setHeader("Cache-Control", "no-store, private, max-age=0");
             resp.setHeader("Pragma", "no-cache");
@@ -761,6 +762,14 @@ public class ApiServlet extends HttpServlet {
         return null;
     }
 
+    static String safeQueryForLog(String command, String query) {
+        if (command != null && ("createHSMProfile".equalsIgnoreCase(command)
+                || BUCKET_CREDENTIAL_COMMANDS.contains(command.toLowerCase(java.util.Locale.ROOT)))) {
+            return command;
+        }
+        return StringUtils.cleanString(query);
+    }
+
     private String getCleanParamsString(Map<String, String[]> reqParams) {
         if (MapUtils.isEmpty(reqParams)) {
             return "";
@@ -775,7 +784,8 @@ public class ApiServlet extends HttpServlet {
             cleanParamsString.append(reqParam.getKey());
             cleanParamsString.append("=");
 
-            if (reqParam.getKey().toLowerCase().contains("password")
+            if (ApiSensitiveParamUtils.isSensitiveParameter(reqParam.getKey())
+                    || reqParam.getKey().toLowerCase().contains("password")
                     || reqParam.getKey().toLowerCase().contains("privatekey")
                     || reqParam.getKey().toLowerCase().contains("accesskey")
                     || reqParam.getKey().toLowerCase().contains("secretkey")) {

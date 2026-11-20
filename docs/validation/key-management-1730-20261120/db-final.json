@@ -1,0 +1,118 @@
+{
+  "profiles": [
+    {
+      "uuid": "5102b008-4e88-44c2-b95b-d56127d4c794",
+      "name": "qa-km1730-account-db",
+      "protocol": "database",
+      "account_id": "2",
+      "domain_id": "1",
+      "account_name": "admin",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
+    },
+    {
+      "uuid": "09e6916c-d1cf-40c8-9a24-d178e9a1b3d9",
+      "name": "qa-km1730-account-db",
+      "protocol": "database",
+      "account_id": "2",
+      "domain_id": "1",
+      "account_name": "admin",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
+    },
+    {
+      "uuid": "486170d3-be4f-4bd0-8a55-a8e930009c2a",
+      "name": "qa-km1730-project-db",
+      "protocol": "database",
+      "account_id": "66",
+      "domain_id": "1",
+      "zone_id": "1",
+      "account_name": "PrjAcct-qa-km1730-project-1",
+      "domain_name": "ROOT",
+      "project_uuid": "1c2d0afb-0f66-47c8-84fa-39cb4e6378da",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
+    },
+    {
+      "uuid": "543d2e93-2700-4bee-9930-0ed556c09f56",
+      "name": "qa-km1730-domain-pkcs",
+      "protocol": "pkcs11",
+      "domain_id": "1",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
+    },
+    {
+      "uuid": "76189ba9-f015-4abe-a0b9-6b766cbc0392",
+      "name": "qa-km1730-public-pkcs",
+      "protocol": "pkcs11",
+      "account_id": "2",
+      "domain_id": "1",
+      "account_name": "admin",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": true,
+      "removed": true
+    },
+    {
+      "uuid": "7c53078d-979e-4dad-96db-075987bcf819",
+      "name": "qa-km1730-pin-check",
+      "protocol": "pkcs11",
+      "account_id": "2",
+      "domain_id": "1",
+      "account_name": "admin",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
+    },
+    {
+      "uuid": "9b9385f0-20b2-414f-8d7f-a987e697f75a",
+      "name": "qa-km1730-pin-check",
+      "protocol": "pkcs11",
+      "account_id": "2",
+      "domain_id": "1",
+      "account_name": "admin",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
+    },
+    {
+      "uuid": "20bb2306-06e6-40a9-877d-94b84b92185e",
+      "name": "qa-km1730-pin-check",
+      "protocol": "pkcs11",
+      "account_id": "2",
+      "domain_id": "1",
+      "account_name": "admin",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
+    }
+  ],
+  "active_test_profiles": 0,
+  "test_detail_rows": 0,
+  "active_test_projects": 0,
+  "active_stale_projects": 0,
+  "failed_fixture_profiles": 0,
+  "active_kms_keys": 0,
+  "test_key_references": 0,
+  "fault_trigger_count": 0,
+  "pending_api_jobs": 0,
+  "non_test_profiles": [
+    {
+      "uuid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+      "name": "HSM Database Provider",
+      "protocol": "database",
+      "enabled": false,
+      "is_public": true
+    }
+  ]
+}

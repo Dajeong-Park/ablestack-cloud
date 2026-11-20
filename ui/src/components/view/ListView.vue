@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div class="list-view-table-wrapper" :class="{ 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="scrollRegionLabel ? 0 : undefined" :role="scrollRegionLabel ? 'region' : undefined" :aria-label="scrollRegionLabel" @keydown="scrollListTable" @contextmenu="handleGlobalContextMenu">
+  <div class="list-view-table-wrapper" :class="{ 'kms-table': kmsTable, 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="scrollRegionLabel ? 0 : undefined" :role="scrollRegionLabel ? 'region' : undefined" :aria-label="scrollRegionLabel" @keydown="scrollWideTable" @contextmenu="handleGlobalContextMenu">
     <a-table
       size="middle"
       :loading="loading"
@@ -24,7 +24,7 @@
       :columns="displayColumns"
       :dataSource="items"
       :tableLayout="isIsoMainList || scrollRegionLabel ? 'fixed' : undefined"
-      :scroll="tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
+      :scroll="kmsTableScroll || tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
       :rowSelection="explicitlyAllowRowSelection || enableGroupAction() || $route.name === 'event' ? {selectedRowKeys: selectedRowKeys, onChange: onSelectChange, getCheckboxProps: record => ({ disabled: selectionDisabled(record) }), columnWidth: 30} : null"
@@ -54,7 +54,7 @@
         </a-menu>
       </div>
     </template>
-    <template v-if="isIsoMainList || isKubernetesIsoMainList" #headerCell="{ column }">
+    <template v-if="isIsoMainList || isKubernetesIsoMainList || kmsTable" #headerCell="{ column }">
       <a-popover v-if="isKubernetesIsoMainList && column.key === 'filtercolumn'" :visible="columnPickerVisible" @update:visible="columnPickerVisibility" trigger="click" placement="bottomRight">
         <template #content>
           <div ref="columnPickerContent" @vue:mounted="columnPickerContentMounted" class="kubernetes-iso-column-picker" role="group" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker">
@@ -64,11 +64,16 @@
         <a-button ref="columnPickerTrigger" type="text" size="small" class="kubernetes-iso-columns-trigger" :aria-expanded="columnPickerVisible" :aria-label="$t('label.select.columns')" @keydown.esc.stop.prevent="closeColumnPicker"><filter-outlined /></a-button>
       </a-popover>
       <keyboard-tooltip v-else-if="isKubernetesIsoMainList && typeof column.title === 'string' && column.title" :title="column.title"><span tabindex="0" class="kubernetes-iso-header-text">{{ column.title }}</span></keyboard-tooltip>
+      <TableOverflowText v-else-if="kmsTable && column.key !== 'filtercolumn'" :text="column.title" />
       <a-tooltip v-else-if="column.sorter" :title="$t('message.iso.search.sort.page')" :trigger="['hover', 'focus']"><span tabindex="0">{{ column.title }}</span></a-tooltip>
       <span v-else>{{ column.title }}</span>
     </template>
     <template #bodyCell="{ column, text, record }">
-      <AsnListCell v-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
+      <TableOverflowText v-if="kmsTable && column.key !== 'filtercolumn'" :text="kmsValue(column.key, text)" :location="kmsCellLink(column.key, record)">
+        <Status v-if="['enabled', 'state'].includes(column.key) && text != null" :text="String(text)" :display-label="kmsValue(column.key, text)" display-text />
+        <template v-else>{{ kmsValue(column.key, text) }}</template>
+      </TableOverflowText>
+      <AsnListCell v-else-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
       <S2sGatewayValue v-else-if="$route.meta?.name === 's2svpn' && ['publicip','vpcname','account','domain','project'].includes(column.key)" :resource="record" :field="column.key" list />
       <KubernetesIsoListCell v-else-if="isKubernetesIsoMainList && ['state', 'isostate', 'zonename', 'semanticversion', 'mincpunumber', 'minmemory', 'arch'].includes(column.key)" :resource="record" :field="column.key" />
@@ -166,7 +171,8 @@
             <router-link :to="networkDetailLocation($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
-          <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="{ path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
+          <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
             <span v-if="record.id">
               <router-link :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
@@ -1277,6 +1283,10 @@
 <script>
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { kmsDetailLocation } from '@/utils/kmsNavigation'
+import { kmsListRoute } from '@/utils/kmsSearch'
+import { kmsCellLabel, kmsTableColumns } from '@/utils/kmsPresentation'
+import TableOverflowText from '@/components/view/TableOverflowText'
 import { kubernetesIsoDetailLocation } from '@/utils/kubernetesIsoSearch'
 import { templateDetailLocation } from '@/utils/templateSearch'
 import IsoListCell from '@/components/view/IsoListCell'
@@ -1337,6 +1347,7 @@ export default {
     TemplateAvailability,
     KubernetesIsoListCell,
     KeyboardTooltip,
+    TableOverflowText,
     InternalLbRules,
     VpnPsk,
     NetworkIpVmLink,
@@ -1365,7 +1376,9 @@ export default {
   },
   props: {
     tableScroll: { type: Object, default: null },
+    kmsTable: { type: Boolean, default: false },
     resourcePath: { type: String, default: '' },
+    resourceLink: { type: Function, default: null },
     selectionDisabled: { type: Function, default: () => false },
     keyboardContextMenu: { type: Boolean, default: false },
     columns: {
@@ -1501,12 +1514,14 @@ export default {
   },
   computed: {
     scrollRegionLabel () {
+      if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
       if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
       return vpnConnectionListRoute(this.$route) ? this.$t('label.site.to.site.vpn.connections') : undefined
     },
     isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id && !this.resourcePath },
     displayColumns () {
       const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.dataIndex !== 'order')
+      if (this.kmsTable) return kmsTableColumns(columns)
       if (!this.isKubernetesIsoMainList) return columns
       const widths = { name: this.$store.getters.device === 'mobile' ? 280 : 420, state: 112, semanticversion: 144, isostate: 128, mincpunumber: 128, minmemory: 168, arch: 128, zonename: 180, filtercolumn: 36 }
       return columns.map(column => ({
@@ -1516,6 +1531,9 @@ export default {
         ...(column.key === 'filtercolumn' ? { customFilterDropdown: false } : {}),
         customHeaderCell: (...args) => ({ ...(column.customHeaderCell?.(...args) || {}), title: typeof column.title === 'string' ? column.title : undefined })
       }))
+    },
+    kmsTableScroll () {
+      return this.kmsTable ? { ...this.tableScroll, x: this.displayColumns.reduce((total, column) => total + column.width, 0) } : null
     },
     kubernetesIsoTableScroll () {
       return this.isKubernetesIsoMainList ? { x: this.displayColumns.reduce((total, column) => total + column.width, 0) } : null
@@ -1627,14 +1645,16 @@ export default {
         if (trigger) trigger.focus()
       })
     },
-    scrollListTable (event) {
+    scrollWideTable (event) {
       if (!this.scrollRegionLabel || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
-      const scroller = event.currentTarget.querySelector('.ant-table-content')
+      const scroller = event.currentTarget.querySelector(this.kmsTable ? '.ant-table-body, .ant-table-content' : '.ant-table-content')
       if (!scroller) return
       event.preventDefault()
       scroller.scrollLeft = event.key === 'Home' ? 0 : event.key === 'End' ? scroller.scrollWidth - scroller.clientWidth : scroller.scrollLeft + (event.key === 'ArrowRight' ? 120 : -120)
     },
     kubernetesIsoDetailLocation,
+    kmsListRoute,
+    kmsDetailLocation,
     networkTypeLabel,
     policyVolumePath,
     policyInterval,
@@ -1644,6 +1664,28 @@ export default {
     snapshotListSizeValue,
     snapshotListInterval,
     volumeVmPath,
+    kmsValue (field, value) {
+      return kmsCellLabel(field, value, this.$t, this.$te, this.$bytesToHumanReadableSize, this.$store.getters.features)
+    },
+    kmsCellLink (field, row) {
+      if (field === 'name' && row.id) {
+        if (this.resourcePath) return this.resourceLink ? this.resourceLink(row) : { path: this.resourcePath + '/' + row.id }
+        return kmsDetailLocation(this.$route, row, this.$store.getters, this.$store.state?.user?.token)
+      }
+      if (field === 'vmname') {
+        const path = volumeVmPath(row, this.$router)
+        return path ? { path } : null
+      }
+      const targets = {
+        hsmprofile: ['hsmprofile', row.hsmprofileid, 'listHSMProfiles'],
+        account: ['account', row.accountid, 'listAccounts'],
+        domainpath: ['domain', row.domainid, 'listDomains'],
+        project: ['project', row.projectid, 'listProjects'],
+        zonename: ['zone', row.zoneid, 'listZones']
+      }
+      const [path, id, api] = targets[field] || []
+      return id && api in this.$store.getters.apis ? { path: '/' + path + '/' + id } : null
+    },
     cniDetailLink,
     networkDetailLocation,
     sshKeyPairLink,
@@ -2358,6 +2400,11 @@ export default {
 .kubernetes-iso-columns-trigger { width:24px; min-width:24px; padding:0; color:var(--ui-text-secondary); }
 .kubernetes-iso-list-table :deep(th:last-child) { padding-left:4px; padding-right:4px; }
 .kubernetes-iso-column-picker { display:grid; gap:8px; min-width:180px; max-width:calc(100vw - 48px); }
+.kms-table { min-width: 0; max-width: 100%; }
+.kms-table:focus-visible { outline: 2px solid var(--ui-focus); outline-offset: 2px; }
+.kms-table :deep(.ant-table-cell) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kms-table :deep(.ant-table-column-title) { min-width: 0; }
+.kms-table :deep(a.table-overflow-text) { color: var(--ui-link); }
 .kubernetes-iso-column-picker :deep(.ant-checkbox-wrapper) { margin-left:0; }
 .kubernetes-iso-header-text { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .kubernetes-iso-list-table :deep(th), .kubernetes-iso-list-table :deep(td) { white-space:nowrap; }

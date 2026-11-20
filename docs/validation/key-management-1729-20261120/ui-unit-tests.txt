@@ -1,0 +1,51 @@
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runTestsByPath tests/unit/views/compute/MigrateVolumesToKMS.spec.js --runInBand --coverage=false
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS tests/unit/views/compute/MigrateVolumesToKMS.spec.js
+  ✓ account and project scope derive only from target (5ms)
+  ✓ old or unknown server fails closed {} (4ms)
+  ✓ old or unknown server fails closed {"listvolumesresponse":{"count":1,"volume":[{"id":"v"}]}} (1ms)
+  ✓ old or unknown server fails closed {"listvolumesresponse":{"count":1,"volume":[{"id":"v1","name":"V","kmsmigrationeligible":true,"kmsmigrationreason":"FUTURE"}]}} (1ms)
+  ✓ canonical empty list envelope is zero candidates and never implies eligibility (1ms)
+  ✓ old API schema blocks even an empty candidate response (2ms)
+  ✓ missing selected UUID and changed eligibility block preflight (1ms)
+  ✓ page selection retains only seen eligible UUIDs (2ms)
+  ✓ pagination and search stay on server (2ms)
+  ✓ delayed old page cannot replace newer page (1ms)
+  ✓ pre-submit missing never sends POST (1ms)
+  ✓ pre-submit ineligible never sends POST (1ms)
+  ✓ pre-submit error never sends POST (1ms)
+  ✓ pre-submit target never sends POST (1ms)
+  ✓ whole success or partial failure is re-observed and never retried (1) (2ms)
+  ✓ whole success or partial failure is re-observed and never retried (2) (1ms)
+  ✓ lost POST response stays unknown even after observing key connection (1ms)
+  ✓ zero migrated receipt has no positive success indication (1ms)
+  ✓ other key or missing resource has unknown outcome
+  ✓ detail action keeps the target in a dialog without routing or generic candidate requests (3ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       20 passed, 20 total
+Snapshots:   0 total
+Time:        11.176s
+Ran all test suites within paths "tests/unit/views/compute/MigrateVolumesToKMS.spec.js".

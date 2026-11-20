@@ -43,7 +43,7 @@
           <span tabindex="0" class="kubernetes-iso-breadcrumb-name">{{ resource.name || $route.params.id }}</span>
         </keyboard-tooltip>
         <span v-else-if="vpnConnectionRoute($route)" class="s2s-connection-breadcrumb-name">{{ vpnConnectionName(resource, $route.params.id) }}</span>
-        <label v-else>
+        <label v-else :class="{ 'kms-breadcrumb-name': kmsDetailRoute($route) }">
           {{ s2sGatewayRoute($route) ? gatewayName(resource) : isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
         </label>
       </span>
@@ -63,6 +63,9 @@
             <QuestionCircleOutlined />
           </a>
         </a-tooltip>
+        <router-link v-if="kmsParentLocation" :to="kmsParentLocation" class="kms-parent-link">
+          {{ $t('message.kms.related.back') }}
+        </router-link>
         <slot name="end">
         </slot>
       </span>
@@ -83,6 +86,8 @@ import { publicIpListLocation } from '@/utils/publicIpSearch'
 import { gatewayName } from '@/utils/s2sGateway'
 import { s2sGatewayListLocation, s2sGatewayRoute, vpnConnectionApi, vpnConnectionName, vpnConnectionRoute } from '@/utils/s2sGatewaySearch'
 import { vnfListLocation } from '@/utils/vnfSearch'
+import { kmsDetailRoute, kmsListLocation } from '@/utils/kmsNavigation'
+import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
 
 export default {
   name: 'Breadcrumb',
@@ -103,6 +108,13 @@ export default {
         '/tungstenpolicyset', '/tungstenroutingpolicy', '/firewallrule', '/tungstenfirewallpolicy']
     }
   },
+  computed: {
+    kmsParentLocation () {
+      if (!['volume', 'kmskey'].includes(this.$route.meta?.name) || !this.$route.params?.id) return null
+      const state = this.$router?.options?.history?.state
+      return state?.kmsRelatedReturn ? kmsRelatedParentLocation(this.$route, state, this.$store.getters, this.$store.state?.user?.token) : null
+    }
+  },
   created () {
     this.getBreadcrumb()
   },
@@ -120,7 +132,11 @@ export default {
     vmDisplayName,
     isVmIdentityRoute,
     documentationUrl,
+    kmsDetailRoute,
     breadcrumbLocation (item) {
+      if (kmsDetailRoute(this.$route) && item.path === '/' + this.$route.meta.name) {
+        return kmsListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
+      }
       if (item.path === '/s2svpnconn' && this.$route.meta?.name === 's2svpnconn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters, vpnConnectionApi)
       if (item.path === '/s2svpn' && this.$route.meta?.name === 's2svpn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters)
       if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token)
@@ -162,4 +178,9 @@ export default {
 .ant-breadcrumb .anticon {
   vertical-align: text-bottom;
 }
+.kms-breadcrumb-name {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.kms-parent-link { margin-inline-end: 8px; }
 </style>

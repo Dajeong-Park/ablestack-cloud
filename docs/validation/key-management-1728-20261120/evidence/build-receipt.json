@@ -1,0 +1,84 @@
+{
+  "source_commit": "5e058ec22328c43f3b0d9f20ab0e980cffe00d91",
+  "build_scope": "WSL development focused validation",
+  "suites": [
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplRotationMetadataTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyRotationTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplAccessTest",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyLifecycleTest",
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplRetryTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyCreationTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplHSMTest",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplMigrationTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "totals": {
+    "tests": 108,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "classes": {
+    "org/apache/cloudstack/kms/KMSManagerImpl$KmsOperation.class": {
+      "sha256": "520e2751f3aaa2c6b3326c494afbfe5bac28ee287615bb7f4fa304483f0b1ae9",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManagerImpl.class": {
+      "sha256": "6576da511f0fe49c15afb97f83e7ee8ccca5e09350abfa5f82b25a5fc4bd4a80",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManagerImpl$1.class": {
+      "sha256": "b205b8c48e97fded6637a48464f2264bdc29f8031c3e92a8168a5e96d4c90494",
+      "major": 55
+    }
+  },
+  "patch_sha256": "c6ba8560d8207d1109efd911e3c76cbb9ab9300356fe4b7282ccf97594784f48",
+  "server_jar_sha256": "a5a375b29422941f77827ab0f595edd962e1400a9c96df2a0fe7df7555681dc6"
+}

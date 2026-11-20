@@ -63,7 +63,10 @@ router.beforeEach((to, from, next) => {
       urlParams.delete('code')
     }
     currentURL.search = ''
-    window.history.replaceState(null, null, currentURL.toString())
+    // Keep KMS list-return state when cleaning the outer login URL.
+    const kmsHistoryEntry = /^#\/(?:kmskey|hsmprofile)(?:[/?]|$)/.test(currentURL.hash) ||
+      (/^#\/volume\//.test(currentURL.hash) && window.history.state?.kmsRelatedReturn)
+    window.history.replaceState(kmsHistoryEntry ? window.history.state : null, null, currentURL.toString())
     if (to.path === '/user/login') {
       next({ path: '/dashboard' })
       NProgress.done()

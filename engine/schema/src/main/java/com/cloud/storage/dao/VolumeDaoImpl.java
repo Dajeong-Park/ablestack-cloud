@@ -1060,10 +1060,19 @@ public class VolumeDaoImpl extends GenericDaoBase<VolumeVO, Long> implements Vol
 
     @Override
     public boolean existsWithKmsKey(long kmsKeyId) {
+        return findOneBy(activeKmsVolumes(kmsKeyId)) != null;
+    }
+
+    @Override
+    public long countWithKmsKey(long kmsKeyId) {
+        return getCount(activeKmsVolumes(kmsKeyId));
+    }
+
+    private SearchCriteria<VolumeVO> activeKmsVolumes(long kmsKeyId) {
         SearchCriteria<VolumeVO> sc = AllFieldsSearch.create();
         sc.setParameters("kmsKeyId", kmsKeyId);
         sc.setParameters("notDestroyed", Volume.State.Expunged, Volume.State.Destroy);
-        return findOneBy(sc) != null;
+        return sc;
     }
 
     @Override

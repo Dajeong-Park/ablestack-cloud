@@ -192,6 +192,8 @@ public interface VolumeDao extends GenericDao<VolumeVO, Long>, StateDao<Volume.S
 
     boolean existsWithKmsKey(long kmsKeyId);
 
+    long countWithKmsKey(long kmsKeyId);
+
     /**
      *  Retrieves volume by its externalId
      *

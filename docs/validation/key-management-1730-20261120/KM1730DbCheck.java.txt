@@ -1,0 +1,125 @@
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+import com.cloud.utils.crypt.EncryptionSecretKeyChecker;
+import com.cloud.utils.crypt.DBEncryptionUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.nio.file.*;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+import java.security.MessageDigest;
+import java.nio.charset.StandardCharsets;
+public class KM1730DbCheck {
+ static String sha(String value)throws Exception{
+  return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(value.getBytes(StandardCharsets.UTF_8)));
+ }
+ static long count(Statement s,String sql)throws Exception{try(ResultSet r=s.executeQuery(sql)){r.next();return r.getLong(1);}}
+ public static void main(String[] args)throws Exception{
+  Properties p=new Properties();
+  try(InputStream in=Files.newInputStream(Path.of("/etc/cloudstack/management/db.properties"))){p.load(in);}
+  EncryptionSecretKeyChecker.initEncryptor(Files.readString(Path.of("/etc/cloudstack/management/key")).trim());
+  EncryptionSecretKeyChecker.decryptAnyProperties(p);
+  String url="jdbc:mysql://"+p.getProperty("db.cloud.host","localhost")+":"+p.getProperty("db.cloud.port","3306")+"/"+p.getProperty("db.cloud.name","cloud")+"?useSSL=false&allowPublicKeyRetrieval=true";
+  Map<String,Object> output=new LinkedHashMap<>();
+  try(Connection c=DriverManager.getConnection(url,p.getProperty("db.cloud.username"),p.getProperty("db.cloud.password"));Statement s=c.createStatement()){
+   String trigger="qa_km1730_profile_failure",name="qa-km1730-failure";
+   List<Map<String,Object>> profiles=new ArrayList<>();
+   try(ResultSet r=s.executeQuery("SELECT p.uuid,p.name,p.protocol,p.account_id,p.domain_id,p.zone_id,p.enabled,p.is_public,p.removed,a.account_name,d.name AS domain_name,pr.uuid AS project_uuid FROM kms_hsm_profiles p LEFT JOIN account a ON a.id=p.account_id LEFT JOIN domain d ON d.id=p.domain_id LEFT JOIN projects pr ON pr.project_account_id=p.account_id WHERE p.name LIKE 'qa-km1730-%' ORDER BY p.id")){
+    while(r.next()){
+     Map<String,Object> row=new LinkedHashMap<>();
+     for(String key:new String[]{"uuid","name","protocol","account_id","domain_id","zone_id","account_name","domain_name","project_uuid"})row.put(key,r.getString(key));
+     row.put("enabled",r.getBoolean("enabled"));row.put("is_public",r.getBoolean("is_public"));row.put("removed",r.getTimestamp("removed")!=null);profiles.add(row);
+    }
+   }
+   output.put("profiles",profiles);
+   output.put("active_test_profiles",count(s,"SELECT COUNT(*) FROM kms_hsm_profiles WHERE name LIKE 'qa-km1730-%' AND removed IS NULL"));
+   output.put("test_detail_rows",count(s,"SELECT COUNT(*) FROM kms_hsm_profile_details WHERE profile_id IN (SELECT id FROM kms_hsm_profiles WHERE name LIKE 'qa-km1730-%')"));
+   output.put("active_test_projects",count(s,"SELECT COUNT(*) FROM projects WHERE name='qa-km1730-project' AND removed IS NULL"));
+   output.put("active_stale_projects",count(s,"SELECT COUNT(*) FROM projects WHERE name=\u0027qa-km1730-stale\u0027 AND removed IS NULL"));
+   output.put("failed_fixture_profiles",count(s,"SELECT COUNT(*) FROM kms_hsm_profiles WHERE name=\u0027qa-km1730-failure\u0027 AND removed IS NULL"));
+   output.put("active_kms_keys",count(s,"SELECT COUNT(*) FROM kms_keys WHERE removed IS NULL"));
+   output.put("test_key_references",count(s,"SELECT COUNT(*) FROM kms_keys WHERE hsm_profile_id IN (SELECT id FROM kms_hsm_profiles WHERE name LIKE 'qa-km1730-%')"));
+   output.put("fault_trigger_count",count(s,"SELECT COUNT(*) FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA=DATABASE() AND TRIGGER_NAME='"+trigger+"'"));
+   output.put("pending_api_jobs",count(s,"SELECT COUNT(*) FROM async_job WHERE removed IS NULL AND job_status=0 AND job_cmd IS NOT NULL"));
+   List<Map<String,Object>> defaults=new ArrayList<>();
+   try(ResultSet r=s.executeQuery("SELECT uuid,name,protocol,enabled,is_public FROM kms_hsm_profiles WHERE name NOT LIKE 'qa-km1730-%' AND removed IS NULL")){
+    while(r.next()){Map<String,Object> row=new LinkedHashMap<>();for(String key:new String[]{"uuid","name","protocol"})row.put(key,r.getString(key));row.put("enabled",r.getBoolean("enabled"));row.put("is_public",r.getBoolean("is_public"));defaults.add(row);}
+   }
+   output.put("non_test_profiles",defaults);
+   if(args.length>0 && args[0].equals("verify-pin")){
+    Map<String,String> expected=new Gson().fromJson(Files.readString(Path.of("/tmp/km1730-pin-expectations.json")),new TypeToken<Map<String,String>>(){}.getType());
+    List<Map<String,Object>> checks=new ArrayList<>();
+    try(ResultSet r=s.executeQuery("SELECT p.name,d.value FROM kms_hsm_profiles p JOIN kms_hsm_profile_details d ON d.profile_id=p.id WHERE p.name LIKE 'qa-km1730-%' AND p.removed IS NULL AND d.name='pin'")){
+     while(r.next()){
+      Map<String,Object> check=new LinkedHashMap<>();String profile=r.getString(1),ciphertext=r.getString(2);check.put("profile",profile);
+      if(!expected.containsKey(profile)){check.put("expected_digest_present",false);checks.add(check);continue;}
+      try{
+       String pin=DBEncryptionUtil.decrypt(ciphertext);
+       boolean matches=sha(pin).equals(expected.get(profile));
+       check.put("decrypted_value_matches_expected",matches);
+       check.put("stored_value_differs_from_plaintext",!ciphertext.equals(pin));
+       boolean found=false;
+       if(matches){
+        Path log=Path.of("/var/log/cloudstack/management/management-server.log");
+        try(RandomAccessFile f=new RandomAccessFile(log.toFile(),"r")){
+         long start=Math.max(0,f.length()-64L*1024*1024);f.seek(start);byte[] bytes=new byte[(int)(f.length()-start)];f.readFully(bytes);
+         String logText=new String(bytes,StandardCharsets.UTF_8);found=logText.contains(pin);
+         List<Map<String,String>> metadata=new ArrayList<>();
+         String[] logLines=logText.split("\\n");
+         for(int lineIndex=0;lineIndex<logLines.length;lineIndex++)if(logLines[lineIndex].contains(pin)){
+          String line=logLines[lineIndex];
+          Map<String,String> item=new LinkedHashMap<>();
+          java.util.regex.Matcher matcher=java.util.regex.Pattern.compile("^(.*?)\\s+(TRACE|DEBUG|INFO|WARN|ERROR)\\s+\\[([^\\]]+)\\]").matcher(line);
+          if(matcher.find()){item.put("time",matcher.group(1));item.put("level",matcher.group(2));item.put("logger",matcher.group(3));}
+          else item.put("format","unrecognized");
+          item.put("contains_create_command",String.valueOf(line.contains("createHSMProfile")));
+          Set<String> loggers=new TreeSet<>();
+          for(int previous=Math.max(0,lineIndex-12);previous<=lineIndex;previous++){
+           java.util.regex.Matcher brackets=java.util.regex.Pattern.compile("\\[([A-Za-z][A-Za-z0-9_$]*(?:\\.[A-Za-z0-9_$]+)+)\\]").matcher(logLines[previous]);
+           while(brackets.find())loggers.add(brackets.group(1));
+          }
+          item.put("nearby_loggers",String.join(",",loggers));
+          metadata.add(item);
+         }
+         check.put("matching_log_metadata",metadata);
+         Map<String,Boolean> digestMatches=new LinkedHashMap<>();
+         Map<String,String> digestNames=new HashMap<>();
+         for(Map.Entry<String,String> entry:expected.entrySet()){digestMatches.put(entry.getKey(),false);digestNames.put(entry.getValue(),entry.getKey());}
+         java.util.regex.Matcher candidates=java.util.regex.Pattern.compile("(?<![a-f0-9])[a-f0-9]{40}(?![a-f0-9])").matcher(logText);
+         while(candidates.find()){
+          String known=digestNames.get(sha(candidates.group()));
+          if(known!=null)digestMatches.put(known,true);
+         }
+         check.put("test_digest_plaintext_found_in_log",digestMatches);
+         check.put("server_log_scan_bytes",bytes.length);
+         Arrays.fill(bytes,(byte)0);
+
+        }
+       }
+       check.put("plaintext_found_in_scanned_server_log",found);
+       pin=null;
+      }catch(Exception ignored){check.put("verification_error",true);}
+      checks.add(check);
+     }
+    }
+    output.put("pin_checks",checks);
+   }
+  }
+  System.out.println(new Gson().toJson(output));
+ }
+}

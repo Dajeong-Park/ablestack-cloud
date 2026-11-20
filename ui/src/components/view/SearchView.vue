@@ -64,6 +64,7 @@
                   :name="field.name"
                   :key="index"
                   :label="retrieveFieldLabel(field.name)"
+                  :html-for="isKmsSearch ? 'kms-filter-' + field.name : undefined"
                   :extra="['listTemplates', 'listIsos'].includes(apiName) && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
                   <VnfSearchSelect
                     v-if="isVnfSearch && vnfPickerKinds.includes(field.name)"
@@ -88,6 +89,8 @@
                   <a-select
                     allowClear
                     v-else-if="field.type==='list'"
+                    :id="isKmsSearch ? 'kms-filter-' + field.name : undefined"
+                    :get-popup-container="isKmsSearch ? filterPopupContainer : undefined"
                     v-model:value="form[field.name]"
                     showSearch
                     :dropdownMatchSelectWidth="false"
@@ -98,8 +101,8 @@
                     @search="searchVmOptions($event, field)"
                     @popupScroll="moreVmOptions($event, field)"
                     :loading="field.loading"
-                    :disabled="apiName === 'listAffinityGroups' && (field.loading || !!field.error || (field.name === 'account' && !form.domainid))"
-                    :placeholder="isGuestNetworkSearch && field.name === 'forvpc' ? $t('label.all') : apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
+                    :disabled="isKmsSearch && (field.loading || field.name === 'account' && (!form.domainid || !!form.projectid) || ['domainid', 'account'].includes(field.name) && !!form.projectid) || apiName === 'listAffinityGroups' && (field.loading || !!field.error || (field.name === 'account' && !form.domainid))"
+                    :placeholder="isKmsSearch && kmsBooleans.includes(field.name) ? $t('label.all') : isGuestNetworkSearch && field.name === 'forvpc' ? $t('label.all') : apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
                     @input="field.name === 'virtualmachineid' && $route.name === 'vmsnapshot' ? null : onchange($event, field.name)"
                     @change="onSelectFieldChange(field.name)">
                     <a-select-option
@@ -156,8 +159,10 @@
                   />
                   <a-auto-complete
                     v-else-if="field.type==='autocomplete'"
+                    :id="isKmsSearch ? 'kms-filter-' + field.name : undefined"
+                    :get-popup-container="isKmsSearch ? filterPopupContainer : undefined"
                     v-model:value="form[field.name]"
-                    :placeholder="$t('message.error.input.value')"
+                    :placeholder="isKmsSearch ? $t('label.all') : $t('message.error.input.value')"
                     :options="field.opts"
                     :filterOption="(inputValue, option) => {
                       return option.value.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1
@@ -206,6 +211,7 @@
 <script>
 import KubernetesIsoSearch from '@/components/view/KubernetesIsoSearch'
 import { ref, reactive, toRaw } from 'vue'
+import { kmsApis, kmsBooleans, kmsLookup, kmsProjectScope, kmsProtocolOptions } from '@/utils/kmsSearch'
 import { getAPI } from '@/api'
 import { sourceToken } from '@/utils/request'
 import { isAdmin } from '@/role'
@@ -276,7 +282,9 @@ export default {
       volumeLookupReset: 0,
       volumeLookupBlocked: true,
       vnfPickerKinds,
-      vnfBlocked: {}
+      vnfBlocked: {},
+      kmsBooleans,
+      kmsLookupVersion: {}
     }
   },
   created () {
@@ -308,6 +316,7 @@ export default {
         this.fillFormFieldValues()
         this.fetchAffinityFilters(this.fields.map(field => field.name))
       }
+      if (this.isKmsSearch && this.visibleFilter) this.initFormFieldData()
       if (this.isVnfSearch && this.visibleFilter) { this.fillFormFieldValues(); this.vnfBlocked = {}; this.volumeLookupReset++ }
     }
   },
@@ -319,6 +328,7 @@ export default {
     this.updateIsFiltered()
   },
   computed: {
+    isKmsSearch () { return kmsApis.includes(this.apiName) },
     isVnfSearch () { return this.apiName === 'listVnfAppliances' },
     vnfSearchContext () { return this.isVnfSearch ? vnfAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
     vnfScope () { return { ...Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])), projectid: this.$route.query.projectid || vnfProject(this.$store.getters) } },
@@ -348,6 +358,7 @@ export default {
     }
   },
   methods: {
+    filterPopupContainer (trigger) { return trigger.parentElement },
     async searchVmOptions (keyword, field) {
       if (field.name !== 'virtualmachineid' || this.$route.name !== 'vmsnapshot') return
       this.vmOptionKeyword = keyword; this.vmOptionPage = 1
@@ -372,6 +383,19 @@ export default {
       this.fetchDynamicFieldData(fieldname, event.target.value)
     },
     onSelectFieldChange (fieldname) {
+      if (this.isKmsSearch) {
+        if (fieldname === 'domainid') {
+          this.form.account = undefined
+          this.fetchKmsFields(['account'])
+        }
+        if (fieldname === 'projectid') {
+          this.form.account = undefined
+          this.form.domainid = undefined
+          this.form.hsmprofileid = undefined
+          this.fetchKmsFields(['account', 'hsmprofileid'])
+        }
+        return
+      }
       if (this.isVnfSearch) {
         if (fieldname === 'zoneid') ['networkid', 'templateid', 'serviceofferingid'].forEach(k => { this.form[k] = undefined })
         if (fieldname === 'domainid') ['account', 'networkid', 'templateid', 'groupid', 'serviceofferingid'].forEach(k => { this.form[k] = undefined })
@@ -406,6 +430,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.isKmsSearch && fieldName === 'projectid') return this.$t('label.project')
       if (this.isVnfSearch && vnfPickerConfig(fieldName)) return this.$t(vnfPickerConfig(fieldName).label)
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
@@ -447,7 +472,7 @@ export default {
         if (item === 'account' && !('listAccounts' in this.$store.getters.apis)) {
           return true
         }
-        if (item === 'account' && !('addAccountToProject' in this.$store.getters.apis || 'createAccount' in this.$store.getters.apis)) {
+        if (!this.isKmsSearch && item === 'account' && !('addAccountToProject' in this.$store.getters.apis || 'createAccount' in this.$store.getters.apis)) {
           return true
         }
         if (item === 'podid' && !('listPods' in this.$store.getters.apis)) {
@@ -498,6 +523,8 @@ export default {
           type = 'list'
         }
         if ((this.apiName === 'listTemplates' && ['isready', 'forcks'].includes(item)) || (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(item))) type = 'list'
+        if (this.isKmsSearch && [...kmsBooleans, 'projectid'].includes(item)) type = 'list'
+        if (this.isKmsSearch && item === 'protocol') type = 'autocomplete'
         this.fields.push({
           type: type,
           name: item,
@@ -1120,12 +1147,44 @@ export default {
     },
     initFormFieldData () {
       const arrayField = this.initFields()
+      if (this.isKmsSearch) {
+        this.fillFormFieldValues()
+        this.fetchKmsFields(arrayField)
+        return
+      }
       if (['listTemplates', 'listIsos'].includes(this.apiName)) this.rules.userdataid = [{ validator: async (rule, value) => { if (value && !this.$isValidUuid(value)) throw new Error(this.$t('message.template.search.userdataid')) } }]
       if (this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
 
       this.fetchDynamicFieldData(arrayField)
+    },
+    async fetchKmsFields (names) {
+      const scope = { domainid: this.form.domainid, projectid: this.form.projectid || kmsProjectScope(this.$store.getters) }
+      await Promise.all(this.fields.filter(field => names.includes(field.name)).map(async field => {
+        const name = field.name
+        if (kmsBooleans.includes(name)) {
+          field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }]
+          return
+        }
+        if (name === 'protocol') {
+          field.opts = kmsProtocolOptions(this.$store.getters.features, this.form.protocol).map(p => ({ value: p.id, label: p.name }))
+          return
+        }
+        const generation = (this.kmsLookupVersion[name] || 0) + 1
+        this.kmsLookupVersion[name] = generation
+        const current = () => this.visibleFilter && this.fields.includes(field) && generation === this.kmsLookupVersion[name]
+        field.loading = true
+        field.opts = []
+        try {
+          const rows = await kmsLookup(getAPI, name, scope, current)
+          if (current()) field.opts = this.sortArray(rows)
+        } catch (_) {
+          if (current()) this.$message.error(this.$t('error.fetching.data'))
+        } finally {
+          if (current()) field.loading = false
+        }
+      }))
     },
     sortArray (data, key = 'name') {
       if (!data) {
@@ -1913,6 +1972,12 @@ export default {
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isKmsSearch) {
+        this.visibleFilter = false
+        this.searchQuery = ''
+        this.$emit('search', {})
+        return
+      }
       if (this.isVnfSearch) { this.vnfBlocked = {}; this.form = reactive({}); this.visibleFilter = false; this.searchQuery = ''; this.$emit('search', {}); return }
       this.volumeLookupReset++
       this.formRef.value.resetFields()
@@ -1972,6 +2037,11 @@ export default {
             this.paramsFilter['tags[0].value'] = this.inputValue
           }
         }
+        if (this.isKmsSearch) {
+          this.visibleFilter = false
+          this.$emit('search', { kmsAdvanced: this.paramsFilter })
+          return
+        }
         if (this.isVnfSearch) {
           if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
           this.visibleFilter = false
@@ -1987,7 +2057,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true

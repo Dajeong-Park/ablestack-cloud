@@ -574,6 +574,9 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
     VolumeDao volumeDao;
 
     @Inject
+    org.apache.cloudstack.kms.KMSManager kmsManager;
+
+    @Inject
     ResourceIconDao resourceIconDao;
 
     @Inject
@@ -2716,6 +2719,14 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         List<VolumeResponse> volumeResponses = ViewResponseHelper.createVolumeResponse(respView, result.first().toArray(new VolumeJoinVO[0]));
 
+        if (cmd.getKmsMigrationKeyId() != null) {
+            org.apache.cloudstack.kms.KMSKey target = kmsManager.getVolumeMigrationTarget(cmd.getKmsMigrationKeyId());
+            for (VolumeResponse item : volumeResponses) {
+                result.first().stream().filter(row -> row.getUuid().equals(item.getId())).findFirst()
+                        .ifPresent(row -> item.setKmsMigrationContext(kmsManager.getVolumeMigrationReason(row.getId(), target)));
+            }
+        }
+
         if (cmd.isIncludeSnapshotContext()) {
             for (VolumeResponse item : volumeResponses) {
                 result.first().stream().filter(row -> row.getUuid().equals(item.getId())).findFirst()
@@ -2784,6 +2795,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
     }
     private Pair<List<Long>, Integer> searchForVolumeIdsAndCount(ListVolumesCmd cmd) {
 
+        if (cmd.getKmsMigrationEligible() != null && cmd.getKmsMigrationKeyId() == null) {
+            throw new InvalidParameterValueException("kmsmigrationeligible requires kmsmigrationkeyid");
+        }
+        checkVolumeMigrationPermission(cmd);
+        org.apache.cloudstack.kms.KMSKey migrationTarget = cmd.getKmsMigrationKeyId() == null ? null
+                : kmsManager.getVolumeMigrationTarget(cmd.getKmsMigrationKeyId());
+
         Account caller = CallContext.current().getCallingAccount();
         List<Long> permittedAccounts = new ArrayList<>();
 
@@ -2826,6 +2844,19 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         SearchBuilder<VolumeVO> volumeSearchBuilder = volumeDao.createSearchBuilder();
         volumeSearchBuilder.select(null, Func.DISTINCT, volumeSearchBuilder.entity().getId()); // select distinct
+        List<Long> migrationIds = null;
+        if (migrationTarget != null) {
+            volumeSearchBuilder.and("migrationAccount", volumeSearchBuilder.entity().getAccountId(), Op.EQ);
+            volumeSearchBuilder.and("migrationZone", volumeSearchBuilder.entity().getDataCenterId(), Op.EQ);
+            if (cmd.getKmsMigrationEligible() != null) {
+                migrationIds = kmsManager.listVolumeMigrationEligibleIds(migrationTarget);
+                if (migrationIds.isEmpty()) {
+                    migrationIds = Collections.singletonList(-1L);
+                }
+                volumeSearchBuilder.and("migrationIds", volumeSearchBuilder.entity().getId(),
+                        cmd.getKmsMigrationEligible() ? Op.IN : Op.NIN);
+            }
+        }
         accountMgr.buildACLSearchBuilder(volumeSearchBuilder, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
         if (CollectionUtils.isNotEmpty(ids)) {
@@ -2919,6 +2950,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         // now set the SC criteria...
         SearchCriteria<VolumeVO> sc = volumeSearchBuilder.create();
+        if (migrationTarget != null) {
+            sc.setParameters("migrationAccount", migrationTarget.getAccountId());
+            sc.setParameters("migrationZone", migrationTarget.getZoneId());
+            if (migrationIds != null) {
+                sc.setParameters("migrationIds", migrationIds.toArray());
+            }
+        }
         accountMgr.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
         if (keyword != null) {
@@ -3002,6 +3040,13 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         return new Pair<>(vmIds, count);
     }
 
+
+    void checkVolumeMigrationPermission(ListVolumesCmd cmd) {
+        if (cmd.getKmsMigrationKeyId() != null) {
+            String apiKey = cmd.getFullUrlParams() == null ? null : cmd.getFullUrlParams().get(ApiConstants.API_KEY);
+            accountMgr.checkApiAccessForUser(CallContext.current().getCallingUser(), "migrateVolumesToKMS", apiKey);
+        }
+    }
 
     private boolean shouldListSystemVms(ListVolumesCmd cmd, Long callerId) {
         return Boolean.TRUE.equals(cmd.getListSystemVms()) && accountMgr.isRootAdmin(callerId);
