@@ -50,6 +50,10 @@ public class ListVpnGatewaysCmd extends BaseListProjectAndAccountResourcesCmd {
     @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "List resources by display flag; only ROOT admin is eligible to pass this parameter", since = "4.4", authorized = {RoleType.Admin})
     private Boolean display;
 
+    @Parameter(name = "displayall", type = CommandType.BOOLEAN,
+            description = "Include both display flag values. Mutually exclusive with fordisplay; ROOT admin only.", authorized = {RoleType.Admin})
+    private Boolean displayAll;
+
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
@@ -64,6 +68,12 @@ public class ListVpnGatewaysCmd extends BaseListProjectAndAccountResourcesCmd {
 
     @Override
     public Boolean getDisplay() {
+        if (Boolean.TRUE.equals(displayAll)) {
+            if (display != null) {
+                throw new com.cloud.exception.InvalidParameterValueException("displayall and fordisplay are mutually exclusive");
+            }
+            return null;
+        }
         if (display != null) {
             return display;
         }

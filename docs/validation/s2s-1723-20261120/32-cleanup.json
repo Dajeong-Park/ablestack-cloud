@@ -1,0 +1,401 @@
+{
+  "cluster": 32,
+  "operations": [
+    {
+      "command": "deleteVpnGateway",
+      "params": {
+        "id": "46c77ef3-b3bb-4136-a52a-9a7c64f53d08",
+        "account": "qa-s2s1723-32-user",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      },
+      "receipt": {
+        "deletevpngatewayresponse": {
+          "jobid": "2f494b85-e780-4e02-a948-fe26fa109dee"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpn.DeleteVpnGatewayCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "created": "2026-11-20T13:21:33+0900",
+          "completed": "2026-11-20T13:21:33+0900",
+          "jobid": "2f494b85-e780-4e02-a948-fe26fa109dee",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteVPC",
+      "params": {
+        "id": "097cd6a9-ac7d-4c0b-a836-60e7132d42ce",
+        "account": "qa-s2s1723-32-user",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      },
+      "receipt": {
+        "deletevpcresponse": {
+          "jobid": "2904bf62-89e9-4403-9fc3-d46d0a9c9125"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "jobinstancetype": "Vpc",
+          "created": "2026-11-20T13:21:34+0900",
+          "completed": "2026-11-20T13:21:39+0900",
+          "jobid": "2904bf62-89e9-4403-9fc3-d46d0a9c9125",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteVpnGateway",
+      "params": {
+        "id": "265a680a-cb84-45de-9140-a7e0ed68de40",
+        "account": "qa-s2s1723-32-user",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      },
+      "receipt": {
+        "deletevpngatewayresponse": {
+          "jobid": "c153f023-bfcf-457f-a9eb-687ec83f8288"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpn.DeleteVpnGatewayCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "created": "2026-11-20T13:21:40+0900",
+          "completed": "2026-11-20T13:21:40+0900",
+          "jobid": "c153f023-bfcf-457f-a9eb-687ec83f8288",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteVPC",
+      "params": {
+        "id": "004ca104-4a0e-4377-be95-1694f1184db3",
+        "account": "qa-s2s1723-32-user",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      },
+      "receipt": {
+        "deletevpcresponse": {
+          "jobid": "6e8c662a-5866-444a-9ef9-7adae52d8ae2"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "jobinstancetype": "Vpc",
+          "created": "2026-11-20T13:21:41+0900",
+          "completed": "2026-11-20T13:21:45+0900",
+          "jobid": "6e8c662a-5866-444a-9ef9-7adae52d8ae2",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteVpnGateway",
+      "params": {
+        "id": "06d30d72-8aa1-48cb-ad49-ede9ed6ee839",
+        "account": "qa-s2s1723-32-domainadmin",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      },
+      "receipt": {
+        "deletevpngatewayresponse": {
+          "jobid": "f22bfa36-b2be-4cb8-af56-a556e9656cbc"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpn.DeleteVpnGatewayCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "created": "2026-11-20T13:21:47+0900",
+          "completed": "2026-11-20T13:21:47+0900",
+          "jobid": "f22bfa36-b2be-4cb8-af56-a556e9656cbc",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteVPC",
+      "params": {
+        "id": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+        "account": "qa-s2s1723-32-domainadmin",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      },
+      "receipt": {
+        "deletevpcresponse": {
+          "jobid": "9c1b02f0-1272-46b1-bfe9-bbdd9a6ed878"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "jobinstancetype": "Vpc",
+          "created": "2026-11-20T13:21:48+0900",
+          "completed": "2026-11-20T13:21:54+0900",
+          "jobid": "9c1b02f0-1272-46b1-bfe9-bbdd9a6ed878",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteVpnGateway",
+      "params": {
+        "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+        "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc"
+      },
+      "receipt": {
+        "deletevpngatewayresponse": {
+          "jobid": "e9b5c477-eefd-4fa7-a053-92ae5d99e4a1"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpn.DeleteVpnGatewayCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "created": "2026-11-20T13:21:54+0900",
+          "completed": "2026-11-20T13:21:54+0900",
+          "jobid": "e9b5c477-eefd-4fa7-a053-92ae5d99e4a1",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteVPC",
+      "params": {
+        "id": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+        "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc"
+      },
+      "receipt": {
+        "deletevpcresponse": {
+          "jobid": "10909987-9061-454d-9145-19c7f81e0954"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.vpc.DeleteVPCCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "jobinstancetype": "Vpc",
+          "created": "2026-11-20T13:21:55+0900",
+          "completed": "2026-11-20T13:21:59+0900",
+          "jobid": "10909987-9061-454d-9145-19c7f81e0954",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteProject",
+      "params": {
+        "id": "394c63f3-ae8c-4110-a099-9beacd17bcbc"
+      },
+      "receipt": {
+        "deleteprojectresponse": {
+          "jobid": "903c0fac-efda-4718-97bb-1c8c2f129dbf"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.user.project.DeleteProjectCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "created": "2026-11-20T13:22:00+0900",
+          "completed": "2026-11-20T13:22:00+0900",
+          "jobid": "903c0fac-efda-4718-97bb-1c8c2f129dbf",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteAccount",
+      "params": {
+        "id": "a3462da1-01e1-4d5a-9072-b6f8226861f8"
+      },
+      "receipt": {
+        "deleteaccountresponse": {
+          "jobid": "cf585751-6781-48b0-a1b3-169b547b042d"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.admin.account.DeleteAccountCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "jobinstancetype": "Account",
+          "jobinstanceid": "a3462da1-01e1-4d5a-9072-b6f8226861f8",
+          "created": "2026-11-20T13:22:01+0900",
+          "completed": "2026-11-20T13:22:01+0900",
+          "jobid": "cf585751-6781-48b0-a1b3-169b547b042d",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteAccount",
+      "params": {
+        "id": "47e77887-4dc9-4743-b966-d0df28adab37"
+      },
+      "receipt": {
+        "deleteaccountresponse": {
+          "jobid": "262a7158-f7bd-43b3-bf81-f9a0ce5b548c"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.admin.account.DeleteAccountCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "jobinstancetype": "Account",
+          "jobinstanceid": "47e77887-4dc9-4743-b966-d0df28adab37",
+          "created": "2026-11-20T13:22:02+0900",
+          "completed": "2026-11-20T13:22:02+0900",
+          "jobid": "262a7158-f7bd-43b3-bf81-f9a0ce5b548c",
+          "jobstatus": 1
+        }
+      }
+    },
+    {
+      "command": "deleteDomain",
+      "params": {
+        "id": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      },
+      "receipt": {
+        "deletedomainresponse": {
+          "jobid": "ef1f30f9-60b0-4ed3-8b7f-3f93a937b9e5"
+        }
+      },
+      "result": {
+        "queryasyncjobresultresponse": {
+          "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+          "account": "admin",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "domainpath": "ROOT",
+          "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+          "cmd": "org.apache.cloudstack.api.command.admin.domain.DeleteDomainCmd",
+          "jobprocstatus": 0,
+          "jobresultcode": 0,
+          "jobresulttype": "object",
+          "jobresult": {
+            "success": true
+          },
+          "jobinstancetype": "Domain",
+          "created": "2026-11-20T13:22:03+0900",
+          "completed": "2026-11-20T13:22:03+0900",
+          "jobid": "ef1f30f9-60b0-4ed3-8b7f-3f93a937b9e5",
+          "jobstatus": 1
+        }
+      }
+    }
+  ],
+  "finished": true
+}

@@ -38,7 +38,7 @@
                   <template #icon><reload-outlined /></template>
                   {{ $t('label.refresh') }}
                 </a-button>
-                <label v-if="isTemplateList || isIsoList || (isPublicIpUi && !dataView && filters?.length > 0)" :for="isPublicIpUi ? 'public-ip-state-filter' : templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
+                <label v-if="isTemplateList || isIsoList || (s2sGatewayListRoute($route) && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sGatewayListRoute($route) ? 's2s-gateway-display-filter' : isPublicIpUi ? 'public-ip-state-filter' : templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
                 <a-tooltip placement="right">
                   <template #title>
                     {{ $t('label.filterby') }}
@@ -46,7 +46,8 @@
                   <a-select
                     v-if="!dataView && filters && filters.length > 0"
                     :placeholder="$t('label.filterby')"
-                    :id="isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined"
+                    :aria-label="s2sGatewayListRoute($route) ? $t('label.s2s.display.filter') : undefined"
+                    :id="s2sGatewayListRoute($route) ? 's2s-gateway-display-filter' : isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined"
                     :value="filterValue"
                     style="min-width: 100px; margin-left: 10px; margin-bottom: 5px"
                     size=small
@@ -60,7 +61,7 @@
                     <template #suffixIcon><filter-outlined class="ant-select-suffix" /></template>
                     <a-select-option
                       v-if="(['Admin', 'DomainAdmin'].includes($store.getters.userInfo.roletype) || (isIsoList && $store.getters.userInfo.roletype === 'ResourceAdmin')) &&
-                      ['vm', 'iso', 'template', 'pod', 'cluster', 'host', 'systemvm', 'router', 'storagepool', 'kubernetes', 'computeoffering', 'systemoffering', 'diskoffering', 'sharedfs', 'extension', 'alertRules'].includes($route.name) ||
+                      ['vm', 'iso', 'template', 'pod', 'cluster', 'host', 'systemvm', 'router', 'storagepool', 'kubernetes', 'computeoffering', 'systemoffering', 'diskoffering', 'sharedfs', 'extension', 'alertRules', 's2svpn'].includes($route.name) ||
                       ['account'].includes($route.name)"
                       key="all"
                       :label="$t('label.all')"
@@ -174,6 +175,7 @@
             />
           </a-col>
         </a-row>
+        <S2sGatewayFilterChips v-if="s2sGatewayListRoute($route)" :validation-error="s2sGatewaySearchFailure" @search="onSearch" />
         <a-row
           v-if="showSearchFilters"
           style="min-height: 36px; padding-top: 12px; padding-left: 12px;"
@@ -1001,6 +1003,7 @@ import { kubernetesIsoListQuery, kubernetesIsoListLocation, kubernetesIsoListOwn
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
+import S2sGatewayFilterChips from '@/components/view/S2sGatewayFilterChips'
 import BucketStoreFilter from '@/components/view/BucketStoreFilter'
 import '@/style/components/view/autoscale.less'
 import '@/style/components/view/objectStorage.less'
@@ -1066,6 +1069,7 @@ import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentit
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
+import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
 import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
 import { s2sGatewayListLocation, s2sGatewayProject, s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery } from '@/utils/s2sGatewaySearch'
 import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
@@ -1094,6 +1098,7 @@ export default {
     InstanceGroupQueryStatus,
     SearchView,
     SearchFilter,
+    S2sGatewayFilterChips,
     BulkActionProgress,
     TooltipLabel,
     OsLogo,
@@ -1662,6 +1667,7 @@ export default {
       }).map(String)
     },
     filterValue () {
+      if (s2sGatewayListRoute(this.$route)) return this.$route.query.fordisplay || 'all'
       if (asnRoute(this.$route)) return this.$route.query.filter || 'all'
       if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || 'Allocated').toLowerCase()
       if (vnfRoute(this.$route)) return String(this.$route.query.state || 'all').toLowerCase()
@@ -2656,7 +2662,7 @@ export default {
       if (guestNetworkRoute(this.$route)) { delete params.sortkey; delete params.sortorder }
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
       if (kubernetesIsoQuery) params = kubernetesIsoReadParams(params, this.$route.params?.id)
-      const response = s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : s2sGatewayListRoute(this.$route) ? readS2sGatewayQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+      const response = s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope(), this.$getApiParams('listVpnGateways')) : s2sGatewayListRoute(this.$route) ? readS2sGatewayQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2952,6 +2958,7 @@ export default {
     },
     refreshActionData (result) {
       if (s2sGatewayRoute(this.$route)) {
+        if (result?.displayChanged) return
         if (this.currentAction?.api === 'deleteVpnGateway' && this.dataView && result?.removed?.includes(this.resource.id)) return
         return this.fetchData({ irefresh: true })
       }
@@ -2968,6 +2975,8 @@ export default {
       return this.fetchData(result)
     },
     closeAction (result) {
+      const changedGatewayDisplay = s2sGatewayRoute(this.$route) && ['updateVpnGateway', 'createVpnGateway'].includes(this.currentAction?.api) && result?.displayChanged && result.originPath === this.$route.fullPath && result.auth === this.s2sGatewaySearchAuth
+      const displayLocation = changedGatewayDisplay ? gatewayDisplayListLocation(this.$route, this.$store.getters, s2sGatewayListLocation(this.$route, this.$store.getters), result.fordisplay, result.id, result.target) : null
       const deletedGatewayDetail = s2sGatewayRoute(this.$route) && this.currentAction?.api === 'deleteVpnGateway' && this.dataView && result?.removed?.includes(this.$route.params?.id)
       const gatewayLocation = deletedGatewayDetail ? gatewayDeletedListLocation(s2sGatewayListLocation(this.$route, this.$store.getters), this.$route.params.id) : null
       if (deletedGatewayDetail) { this.listRequestVersion++; this.listRequestPending = false; this.listLoadedScope = null; this.resource = {}; this.items = []; this.itemCount = 0; this.resetSelection() }
@@ -3032,6 +3041,14 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
+      if (displayLocation) {
+        this.$message.success(this.$t(result.fordisplay ? 'message.s2s.display.shown' : 'message.s2s.display.hidden'))
+        const query = this.$route.query || {}; const next = displayLocation.query || {}
+        const sameList = this.$route.path === displayLocation.path && Object.keys(query).length === Object.keys(next).length && Object.keys(next).every(key => String(query[key]) === String(next[key]))
+        if (sameList) {
+          this.$nextTick(() => { if (this.$route.fullPath === result.originPath && result.auth === this.s2sGatewaySearchAuth) this.fetchData({ irefresh: true }) })
+        } else this.$router.replace(displayLocation)
+      }
       if (deletedGatewayDetail) this.$router.replace(gatewayLocation)
       if (deletedNetworkDetail) this.$router.replace(networkLocation || { path: '/guestnetwork' })
       else if (networkDeletion && result?.started) this.$nextTick(() => this.fetchData({ irefresh: true }))
@@ -4088,6 +4105,7 @@ export default {
       return this.$t(key)
     },
     changeFilter (filter) {
+      if (s2sGatewayListRoute(this.$route)) { this.onSearch({ s2sGatewaySearch: { ...this.$route.query, fordisplay: filter } }); return }
       if (asnRoute(this.$route)) { const query = { ...this.$route.query, filter }; delete query.isallocated; this.onSearch(query); return }
       if (publicIpRoute(this.$route)) {
         const query = { ...this.$route.query, filter }; delete query.state

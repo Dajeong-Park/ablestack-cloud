@@ -1,0 +1,266 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - text: 대시보드
+    - img "cloud":
+    - text: 컴퓨트
+    - img "hdd":
+    - text: 스토리지
+    - img "wifi":
+    - text: 네트워크
+    - list:
+      - menuitem "apartment 가상머신용 네트워크":
+        - link "apartment 가상머신용 네트워크":
+          - /url: "#/guestnetwork"
+          - img "apartment":
+          - text: 가상머신용 네트워크
+      - menuitem "deployment-unit VPC":
+        - link "deployment-unit VPC":
+          - /url: "#/vpc"
+          - img "deployment-unit":
+          - text: VPC
+      - menuitem "gateway VNF 기기":
+        - link "gateway VNF 기기":
+          - /url: "#/vnfapp"
+          - img "gateway":
+          - text: VNF 기기
+      - menuitem "environment Public IP 주소":
+        - link "environment Public IP 주소":
+          - /url: "#/publicip"
+          - img "environment":
+          - text: Public IP 주소
+      - menuitem "partition AS 번호":
+        - link "partition AS 번호":
+          - /url: "#/asnumbers"
+          - img "partition":
+          - text: AS 번호
+      - menuitem "lock 사이트간 사설네트워크(VPN)":
+        - link "lock 사이트간 사설네트워크(VPN)":
+          - /url: "#/s2svpn"
+          - img "lock":
+          - text: 사이트간 사설네트워크(VPN)
+      - menuitem "sync 사이트 간 VPN 연결":
+        - link "sync 사이트 간 VPN 연결":
+          - /url: "#/s2svpnconn"
+          - img "sync":
+          - text: 사이트 간 VPN 연결
+      - menuitem "bars 네트워크 ACL":
+        - link "bars 네트워크 ACL":
+          - /url: "#/acllist"
+          - img "bars":
+          - text: 네트워크 ACL
+      - menuitem "user-switch VPN 사용자":
+        - link "user-switch VPN 사용자":
+          - /url: "#/vpnuser"
+          - img "user-switch":
+          - text: VPN 사용자
+      - menuitem "lock VPN 고객 게이트웨이":
+        - link "lock VPN 고객 게이트웨이":
+          - /url: "#/vpncustomergateway"
+          - img "lock":
+          - text: VPN 고객 게이트웨이
+      - menuitem "folder 게스트 VLAN":
+        - link "folder 게스트 VLAN":
+          - /url: "#/guestvlans"
+          - img "folder":
+          - text: 게스트 VLAN
+      - menuitem "pic-center IPv4 서브넷":
+        - link "pic-center IPv4 서브넷":
+          - /url: "#/ipv4subnets"
+          - img "pic-center":
+          - text: IPv4 서브넷
+      - menuitem "apartment DNS 영역":
+        - link "apartment DNS 영역":
+          - /url: "#/dnszone"
+          - img "apartment":
+          - text: DNS 영역
+      - menuitem "cloud-server DNS 서버":
+        - link "cloud-server DNS 서버":
+          - /url: "#/dnsserver"
+          - img "cloud-server":
+          - text: DNS 서버
+    - img "picture":
+    - text: 이미지
+    - img "lock":
+    - text: 키 관리
+    - img "safety-certificate":
+    - text: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - text: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - text: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - text: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - text: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - text: 도메인
+    - img "bank":
+    - text: 인프라스트럭쳐
+    - img "shopping":
+    - text: 서비스 오퍼링
+    - img "setting":
+    - text: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - text: 확장
+    - img "tool":
+    - text: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - text: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-fold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- button "생성 down":
+  - generic: 생성
+  - img "down":
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn"
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "VPN 게이트웨이 추가":
+    - img "plus":
+    - generic: VPN 게이트웨이 추가
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색":
+    - /placeholder: 공인 IP, 게이트웨이 ID 또는 VPC 이름 검색
+  - button "search":
+    - img "search":
+  - text: "표시 범위: 표시 대상"
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "Public IP 주소 VPC 계정 도메인 filter":
+        - columnheader "Public IP 주소"
+        - columnheader "VPC"
+        - columnheader "계정"
+        - columnheader "도메인"
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "데이터 없음":
+        - cell "데이터 없음":
+          - paragraph: 데이터 없음
+  - list:
+    - listitem: 전체 0 개 항목 중 0-0 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- img "check-circle":
+- text: 사용 가능한 모든 기능을 발견했습니다!
+- dialog "VPN 게이트웨이 추가":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: VPN 게이트웨이 추가
+    - paragraph: VPN 게이트웨이를 추가할 VPC를 선택하세요.
+    - generic "VPC": "* VPC"
+    - generic "VPC":
+      - combobox "* VPC"
+      - strong: qa-s2s1723-31-global
+      - generic: 8f55e6d0-6062-4a48-a9a2-ecca26571640
+      - generic: qa-s2s1723-31-user · Zone
+    - generic: VPN 게이트웨이가 없는 VPC를 선택하세요. 이름·ID·소유 범위·Zone으로 대상을 구분합니다.
+    - generic "Public IP 주소": "* Public IP 주소"
+    - textbox "Public IP 주소": 10.10.31.105
+    - generic: 956b6cb3-4bf8-41e4-b6df-12911f30e625
+    - generic: 이 VPC는 VpcVirtualRouter의 Source NAT IP를 사용합니다. 표시된 필수 IP를 다른 공인 IP로 변경할 수 없습니다.
+    - button "업데이트":
+      - generic: 업데이트
+    - generic "사용자에게 표시"
+    - switch "사용자에게 표시" [active]
+    - generic: 자원 조회 시 표시 여부를 설정합니다. VPN 연결을 활성화·차단하거나 터널 상태를 변경하지 않습니다. Root 관리자만 변경할 수 있습니다.
+    - term: VPC
+    - definition: qa-s2s1723-31-global
+    - term: 아이디
+    - definition: 8f55e6d0-6062-4a48-a9a2-ecca26571640
+    - term: Zone
+    - definition: Zone
+    - term: 계정
+    - definition: qa-s2s1723-31-user
+    - term: 도메인
+    - definition: qa-s2s1723-31-domain
+    - button "취소":
+      - generic: 취소
+    - button "VPN 게이트웨이 추가":
+      - generic: VPN 게이트웨이 추가

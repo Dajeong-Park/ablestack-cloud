@@ -1,0 +1,20 @@
+{
+  "note": "보류 중 클라이언트의 15초 사전 조회 제한이 먼저 만료됨. UI update POST가 없는 사전 검증 실패이며 실제 수정 POST 거부 시험으로 계산하지 않음.",
+  "requests": [
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "id": "f2a2cb76-79a1-40b0-83af-e89518c386a6",
+        "fordisplay": "true",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 9427,
+      "failed": true
+    }
+  ]
+}

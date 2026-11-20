@@ -15,8 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { gatewayDisplayAdmin, gatewayDisplayError, gatewayDisplayParams } from '@/utils/s2sGatewayDisplay'
+
 export const s2sGatewayFields = ['id', 'vpcid', 'domainid', 'account']
-const keys = [...s2sGatewayFields, 'keyword', 'q', 'projectid', 'page', 'pagesize']
+const keys = [...s2sGatewayFields, 'keyword', 'q', 'projectid', 'page', 'pagesize', 'fordisplay']
 const uuid = value => typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value)
 const present = value => value !== undefined && value !== null && value !== ''
 export const s2sGatewayRoute = route => (route?.meta?.name || route?.name) === 's2svpn'
@@ -32,6 +34,7 @@ export function s2sGatewayQuery (raw = {}, size = 20, getters = {}) {
   query.projectid = Array.isArray(raw.projectid) ? raw.projectid : String(raw.projectid || s2sGatewayProject(getters))
   if (uuid(query.projectid)) query.projectid = query.projectid.toLowerCase()
   const number = (value, fallback, max) => Array.isArray(value) ? value : /^\d+$/.test(String(value)) && Number(value) > 0 && Number(value) <= max ? String(Number(value)) : String(fallback)
+  if (gatewayDisplayAdmin(getters) && query.fordisplay === undefined) query.fordisplay = 'all'
   query.page = number(raw.page, 1, 2147483647)
   query.pagesize = number(raw.pagesize, size, 500)
   return query
@@ -40,6 +43,8 @@ export function s2sGatewayError (query, getters, supported = {}) {
   if (!getters.userInfo?.id || !('listVpnGateways' in (getters.apis || {}))) return 'permission'
   if (Object.entries(query).some(([key, value]) => !keys.includes(key) || typeof value !== 'string')) return 'invalid'
   if (query.projectid !== s2sGatewayProject(getters)) return 'scope'
+  const displayError = gatewayDisplayError(query, getters, supported)
+  if (displayError) return displayError
   if (['id', 'vpcid', 'domainid'].some(key => query[key] && !uuid(query[key])) || !['0', '-1'].includes(query.projectid) && !uuid(query.projectid)) return 'uuid'
   if (query.account && !query.domainid) return 'account'
   if (query.keyword?.length > 255 || query.account?.length > 255) return 'invalid'
@@ -56,7 +61,9 @@ export function s2sGatewaySearchQuery (current, values = {}, size, getters) {
   return s2sGatewayQuery({ ...query, page: '1', pagesize: String(size) }, size, getters)
 }
 export function s2sGatewayParams (query) {
-  const params = { ...Object.fromEntries(Object.entries(query).filter(([key]) => [...s2sGatewayFields, 'keyword', 'projectid', 'page', 'pagesize'].includes(key))), listall: true, ignoreproject: true }
+  const params = { ...Object.fromEntries(Object.entries(query).filter(([key]) => [...s2sGatewayFields, 'keyword', 'projectid', 'page', 'pagesize', 'fordisplay'].includes(key))), listall: true, ignoreproject: true }
+  Object.assign(params, gatewayDisplayParams(query.fordisplay))
+  if (query.fordisplay === 'all') delete params.fordisplay
   if (params.projectid === '0') delete params.projectid
   return params
 }
@@ -97,7 +104,7 @@ export async function s2sGatewaySelection (api, query, getters, current = () => 
     if (kind === 'account') { scope.listall = false; scope.name = query.account; scope.domainid = query.domainid; scope.isrecursive = false } else scope.id = query[kind]
     if (kind === 'vpcid') Object.assign(scope, s2sGatewayParams(query), { id: query.vpcid, page: 1, pagesize: 20 })
     // Gateway-specific filters are not listVPCs parameters.
-    if (kind === 'vpcid') { delete scope.keyword; delete scope.vpcid }
+    if (kind === 'vpcid') { delete scope.keyword; delete scope.vpcid; delete scope.fordisplay }
     if (!current()) throw Error('stale')
     const json = await api(config.api, scope, { preserveOnFailure: true, timeout: 20000 })
     if (!current()) throw Error('stale')
@@ -113,7 +120,7 @@ export function readS2sGatewayPage (json, params) {
   if (!data || data.errorcode || data.vpngateway !== undefined && !Array.isArray(data.vpngateway)) throw Error('response')
   const rows = data.vpngateway || []; const count = data.count === undefined && !rows.length ? 0 : Number(data.count)
   if (!Number.isSafeInteger(count) || count < rows.length || count < 0 || new Set(rows.map(row => row.id)).size !== rows.length || rows.some(row => !uuid(row.id))) throw Error('response')
-  if (rows.some(row => ['id', 'vpcid', 'domainid', 'account'].some(key => params[key] && row[key] !== params[key]) || params.projectid && params.projectid !== '-1' && row.projectid !== params.projectid || !params.projectid && !!row.projectid || row.fordisplay === false)) throw Error('scope')
+  if (rows.some(row => ['id', 'vpcid', 'domainid', 'account'].some(key => params[key] && row[key] !== params[key]) || params.projectid && params.projectid !== '-1' && row.projectid !== params.projectid || !params.projectid && !!row.projectid || (!params.displayall && (params.fordisplay === 'false' ? row.fordisplay !== false : row.fordisplay === false)))) throw Error('scope')
   return { rows, count }
 }
 export async function readS2sGatewayQuery (api, params, getters, current) {
@@ -126,11 +133,12 @@ export async function readS2sGatewayQuery (api, params, getters, current) {
 }
 const returnOwner = getters => JSON.stringify([getters.userInfo?.id, getters.userInfo?.roleid, getters.userInfo?.roletype, getters.userInfo?.domainid, s2sGatewayProject(getters)])
 export function s2sGatewayDetailLocation (route, row, getters) {
-  return { path: '/s2svpn/' + row.id, query: { s2sreturn: JSON.stringify({ query: route.query, owner: returnOwner(getters) }) } }
+  return { path: '/s2svpn/' + row.id, query: { projectid: s2sGatewayProject(getters), ...(gatewayDisplayAdmin(getters) ? { fordisplay: String(row.fordisplay !== false) } : {}), s2sreturn: JSON.stringify({ query: route.query, owner: returnOwner(getters) }) } }
 }
 export function s2sGatewayListLocation (route, getters) {
   let saved = {}
   try { if (typeof route.query?.s2sreturn === 'string' && route.query.s2sreturn.length < 8192) { const value = JSON.parse(route.query.s2sreturn); if (value?.owner === returnOwner(getters) && value.query && typeof value.query === 'object' && !Array.isArray(value.query)) saved = value.query } } catch (_) {}
   if (saved.projectid !== s2sGatewayProject(getters)) saved = {}
+  if (!Object.keys(saved).length && (!route.query?.projectid || route.query.projectid === s2sGatewayProject(getters)) && gatewayDisplayAdmin(getters) && ['true', 'false'].includes(route.query?.fordisplay)) saved = { ...saved, fordisplay: route.query.fordisplay }
   return { path: '/s2svpn', query: s2sGatewayQuery(saved, 20, getters) }
 }

@@ -12236,5 +12236,17 @@
   "label.s2s.create.ip.auto": "Automatic allocation by the server",
   "message.s2s.create.ip.auto": "A new public IP may be allocated to the VPC. Capacity and quota are checked by the server.",
   "message.s2s.create.ip.changed": "The selected IP is no longer eligible. Refresh and select it again.",
-  "message.s2s.gateway.lookup.limit": "The lookup limit was reached. Narrow the account or project scope and refresh."
+  "message.s2s.gateway.lookup.limit": "The lookup limit was reached. Narrow the account or project scope and refresh.",
+  "label.s2s.display.filter": "Display scope",
+  "label.s2s.display.visible": "Displayed",
+  "label.s2s.display.hidden": "Hidden",
+  "label.s2s.display.option": "Display to users",
+  "label.s2s.display.current": "Current display setting",
+  "label.s2s.display.edit": "Edit display setting",
+  "message.s2s.display.scope": "This controls visibility in resource queries. It does not enable, disable or change the VPN tunnel. Only Root administrators can change this setting.",
+  "message.s2s.display.unchanged": "This is the current setting. No update request will be sent.",
+  "message.s2s.display.unverified": "The current display setting could not be verified. Refresh the resource before editing it.",
+  "message.s2s.display.confirmed.readback": "The operation completed, but the updated resource still needs verification. Recheck the same job; do not submit it again.",
+  "message.s2s.display.hidden": "Changed to hidden. The gateway is shown in the Hidden list.",
+  "message.s2s.display.shown": "Changed to displayed. The gateway is shown in the Displayed list."
 }

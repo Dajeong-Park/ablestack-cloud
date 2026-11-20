@@ -1,0 +1,137 @@
+{
+  "note": "Recovered complete buffered events from before the single create POST; no mutation repeated. Restricted-role result intentionally omits administrator-only fordisplay.",
+  "requests": [
+    {
+      "command": "createVpnGateway",
+      "method": "POST",
+      "params": {
+        "vpcid": "a59d992b-3579-492c-ac87-83511f8f4a0a",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "customjobid": "6beb801d-e55b-480f-bd01-e0ef18088396",
+        "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb"
+      },
+      "sequence": 34852,
+      "http": 200,
+      "response": {
+        "jobid": "6beb801d-e55b-480f-bd01-e0ef18088396"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "params": {
+        "jobid": "6beb801d-e55b-480f-bd01-e0ef18088396"
+      },
+      "sequence": 34859,
+      "http": 200,
+      "response": {
+        "jobid": "6beb801d-e55b-480f-bd01-e0ef18088396",
+        "jobstatus": 1,
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+        "gateway": {
+          "id": "8ffa4323-22bb-4a3a-91ce-0d0534276f2a",
+          "vpcid": "a59d992b-3579-492c-ac87-83511f8f4a0a",
+          "publicip": "10.10.31.107",
+          "account": "qa-s2s1723-31-user",
+          "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7"
+        }
+      }
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "vpcid": "a59d992b-3579-492c-ac87-83511f8f4a0a",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 34866,
+      "http": 200,
+      "response": {
+        "count": 1,
+        "rows": [
+          {
+            "id": "8ffa4323-22bb-4a3a-91ce-0d0534276f2a",
+            "vpcid": "a59d992b-3579-492c-ac87-83511f8f4a0a",
+            "publicip": "10.10.31.107",
+            "account": "qa-s2s1723-31-user",
+            "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7"
+          }
+        ]
+      }
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true"
+      },
+      "sequence": 34873,
+      "http": 200,
+      "response": {
+        "count": 1,
+        "rows": [
+          {
+            "id": "8ffa4323-22bb-4a3a-91ce-0d0534276f2a",
+            "vpcid": "a59d992b-3579-492c-ac87-83511f8f4a0a",
+            "publicip": "10.10.31.107",
+            "account": "qa-s2s1723-31-user",
+            "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7"
+          }
+        ]
+      }
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true"
+      },
+      "sequence": 34882,
+      "http": 200,
+      "response": {
+        "count": 1,
+        "rows": [
+          {
+            "id": "8ffa4323-22bb-4a3a-91ce-0d0534276f2a",
+            "vpcid": "a59d992b-3579-492c-ac87-83511f8f4a0a",
+            "publicip": "10.10.31.107",
+            "account": "qa-s2s1723-31-user",
+            "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7"
+          }
+        ]
+      }
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true"
+      },
+      "sequence": 34889,
+      "http": 200,
+      "response": {
+        "count": 1,
+        "rows": [
+          {
+            "id": "8ffa4323-22bb-4a3a-91ce-0d0534276f2a",
+            "vpcid": "a59d992b-3579-492c-ac87-83511f8f4a0a",
+            "publicip": "10.10.31.107",
+            "account": "qa-s2s1723-31-user",
+            "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7"
+          }
+        ]
+      }
+    }
+  ]
+}

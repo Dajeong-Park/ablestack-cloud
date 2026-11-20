@@ -1,0 +1,17 @@
+{
+  "class": "org/apache/cloudstack/api/command/user/vpn/ListVpnGatewaysCmd.class",
+  "classMajor": 55,
+  "classSha256": "ccb742259e1df91c32ce75725b0e4824a8d23eb6de7a71c9ddb0c57eae4626b3",
+  "checks": [
+    {
+      "cluster": 31,
+      "result": "PASS: only displayAll field/API metadata and getDisplay logic change; all existing methods/fields/contracts preserved"
+    },
+    {
+      "cluster": 32,
+      "result": "PASS: only displayAll field/API metadata and getDisplay logic change; all existing methods/fields/contracts preserved"
+    }
+  ],
+  "moduleJarContainsExactClass": true,
+  "bytecodeVerification": "5 tests PASS -Xverify:all"
+}

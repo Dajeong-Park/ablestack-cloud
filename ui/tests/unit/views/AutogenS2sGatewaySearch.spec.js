@@ -21,7 +21,7 @@ function route (raw = {}) { const query = s2sGatewayQuery(raw, 20, store.getters
 beforeEach(() => {
   jest.clearAllMocks()
   store.state = { user: { token: 'session' } }; store.getters = { defaultListViewPageSize: 20, userInfo: { id: 'admin', roletype: 'Admin', domainid: id }, project: {}, apis: { listVpnGateways: {} }, customColumns: {}, metrics: false, listAllProjects: false }
-  c = { $store: store, $router: { replace: jest.fn(), push: jest.fn() }, $refs: { listview: { resetSelection: jest.fn() } }, $emit: jest.fn(), $t: key => key, $getApiParams: () => Object.fromEntries(['id', 'vpcid', 'keyword', 'domainid', 'account', 'projectid', 'page', 'pagesize', 'listall'].map(k => [k, {}])), $showIcon: () => false, $i18n: { locale: 'ko_KR' }, $message: { info: jest.fn(), error: jest.fn() }, $notifyError: jest.fn(), $nextTick: fn => fn() }
+  c = { $store: store, $router: { replace: jest.fn(), push: jest.fn() }, $refs: { listview: { resetSelection: jest.fn() } }, $emit: jest.fn(), $t: key => key, $getApiParams: () => Object.fromEntries(['id', 'vpcid', 'keyword', 'domainid', 'account', 'projectid', 'page', 'pagesize', 'listall', 'fordisplay', 'displayall'].map(k => [k, {}])), $showIcon: () => false, $i18n: { locale: 'ko_KR' }, $message: { info: jest.fn(), error: jest.fn() }, $notifyError: jest.fn(), $nextTick: fn => fn() }
   route(); Object.assign(c, Autogen.data.call(c)); Object.entries(Autogen.methods).forEach(([key, fn]) => { c[key] = fn.bind(c) }); c.dataView = false; c.updateSelectedColumns = jest.fn()
   for (const key of ['publicIpDetail', 'publicIpAuth', 'asnSearchAuth', 's2sGatewaySearchAuth']) Object.defineProperty(c, key, { get: () => Autogen.computed[key].call(c) })
   getAPI.mockResolvedValue(reply(linked))
@@ -45,7 +45,7 @@ test('a foreign project URL is blocked and a real project switch discards the pr
   const next = '22222222-2222-4222-8222-222222222222'; route({ projectid: next }); await c.fetchData(); expect(c.s2sGatewaySearchFailure).toBe('scope'); expect(getAPI).not.toHaveBeenCalled()
   route({ keyword: 'old' }); const before = c.s2sGatewaySearchAuth; store.getters.project = { id: next }
   Autogen.watch.s2sGatewaySearchAuth.handler.call(c, c.s2sGatewaySearchAuth, before)
-  expect(c.$router.replace.mock.calls[0][0].query).toEqual({ projectid: next, page: '1', pagesize: '20' }); expect(c.items).toEqual([])
+  expect(c.$router.replace.mock.calls[0][0].query).toEqual({ projectid: next, fordisplay: 'all', page: '1', pagesize: '20' }); expect(c.items).toEqual([])
 })
 
 test('canonical project URL updates never change the global project or create duplicate filter chips', () => {
@@ -68,4 +68,11 @@ test('role and session changes discard the previous applied search', () => {
   route({ keyword: 'owner-specific', id }); const before = c.s2sGatewaySearchAuth; store.getters.userInfo.roletype = 'DomainAdmin'
   Autogen.watch.s2sGatewaySearchAuth.handler.call(c, c.s2sGatewaySearchAuth, before)
   expect(c.$router.replace.mock.calls[0][0].query).toEqual({ projectid: '0', page: '1', pagesize: '20' }); expect(c.items).toEqual([])
+})
+
+test('breadcrumb display selector preserves owner and keyword and resets only pagination', () => {
+  route({ fordisplay: 'all', page: '3', keyword: 'chosen', domainid: id, account: 'admin' })
+  expect(Autogen.computed.filterValue.call(c)).toBe('all')
+  c.onSearch = jest.fn(); Autogen.methods.changeFilter.call(c, 'false')
+  expect(c.onSearch).toHaveBeenCalledWith({ s2sGatewaySearch: expect.objectContaining({ fordisplay: 'false', keyword: 'chosen', account: 'admin', domainid: id }) })
 })

@@ -16,7 +16,8 @@
 // under the License.
 
 import Select from '@/components/view/S2sGatewaySearchSelect.vue'
-import Search from '@/components/view/S2sGatewaySearch.vue'
+import Search from '@/components/view/S2sGatewayFilterChips.vue'
+import Controls from '@/components/view/S2sGatewaySearch.vue'
 import { getAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
 const id = '11111111-1111-4111-8111-111111111111'
@@ -43,4 +44,21 @@ test('refresh failure invalidates a previously verified chip without clearing th
   const c = { $route: { query: { vpcid: id } }, labels: { vpcid: 'VPC' }, verification: '', validationError: '', config: () => ({ label: 'label.vpc' }), $t: key => key }
   expect(Search.computed.chips.call(c)[0].value).toBe('VPC'); c.validationError = 'lookup'
   expect(Search.computed.chips.call(c)[0].value).toContain(id); expect(c.$route.query.vpcid).toBe(id)
+})
+
+test('removing a domain chip clears dependent owner/VPC filters while retaining display and keyword', () => {
+  const c = { $route: { query: { domainid: id, account: 'same-name', vpcid: id, fordisplay: 'false', keyword: 'match' } }, $emit: jest.fn() }
+  Search.methods.remove.call(c, 'domainid')
+  expect(c.$emit).toHaveBeenCalledWith('search', { s2sGatewaySearch: { fordisplay: 'false', keyword: 'match' } })
+  expect(c.$route.query.domainid).toBe(id)
+})
+
+test.each(['all', 'true', 'false'])('breadcrumb display selection %s never creates a lower filter chip', value => {
+  const c = { $route: { query: { fordisplay: value } }, $t: key => key }
+  expect(Search.computed.chips.call(c)).toEqual([])
+})
+
+test('default all does not mark advanced search as an active user filter', () => {
+  expect(Controls.computed.filtered.call({ $route: { query: { fordisplay: 'all' } } })).toBe(false)
+  expect(Controls.computed.filtered.call({ $route: { query: { fordisplay: 'false' } } })).toBe(false)
 })

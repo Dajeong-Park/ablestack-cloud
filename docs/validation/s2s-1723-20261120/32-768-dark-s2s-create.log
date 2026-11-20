@@ -1,0 +1,212 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio
+- radio [checked]
+- img "check":
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox [disabled]: "#ffffff"
+- generic: 텍스트 색상
+- textbox [disabled]: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn"
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "VPN 게이트웨이 추가":
+    - img "plus":
+    - generic: VPN 게이트웨이 추가
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색":
+    - /placeholder: 공인 IP, 게이트웨이 ID 또는 VPC 이름 검색
+  - button "search":
+    - img "search":
+  - text: "표시 범위: 숨김"
+  - img "close":
+  - table:
+    - rowgroup:
+      - row "Public IP 주소 VPC 계정 도메인 filter":
+        - columnheader "Public IP 주소"
+        - columnheader "VPC"
+        - columnheader "계정"
+        - columnheader "도메인"
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "10.10.32.165 qa-s2s1723-32-global qa-s2s1723-32-user qa-s2s1723-32-domain":
+        - cell "10.10.32.165":
+          - link "10.10.32.165":
+            - /url: "#/s2svpn/46c77ef3-b3bb-4136-a52a-9a7c64f53d08?projectid=0&fordisplay=false&s2sreturn={%22query%22:{%22projectid%22:%220%22,%22fordisplay%22:%22false%22,%22page%22:%221%22,%22pagesize%22:%2220%22},%22owner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%220%5C%22]%22}"
+        - cell "qa-s2s1723-32-global":
+          - link "qa-s2s1723-32-global":
+            - /url: "#/vpc/097cd6a9-ac7d-4c0b-a836-60e7132d42ce"
+        - cell "qa-s2s1723-32-user":
+          - link "qa-s2s1723-32-user":
+            - /url: "#/account?name=qa-s2s1723-32-user&domainid=27dc4ede-ce95-45a7-a650-33dbcd7b1e27&dataView=true"
+        - cell "qa-s2s1723-32-domain":
+          - link "qa-s2s1723-32-domain":
+            - /url: "#/domain/27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+        - cell
+  - list:
+    - listitem: 전체 1 개 항목 중 1-1 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (3건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "VPN 게이트웨이 추가":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: VPN 게이트웨이 추가
+    - paragraph: VPN 게이트웨이를 추가할 VPC를 선택하세요.
+    - generic "VPC": "* VPC"
+    - generic "VPC":
+      - generic: 004ca104-4a0e-4377-be95-1694f1184db3
+      - combobox "* VPC" [active]
+      - strong: qa-s2s1723-32-user
+      - generic: 004ca104-4a0e-4377-be95-1694f1184db3
+      - generic: qa-s2s1723-32-user · Zone
+    - generic: VPN 게이트웨이가 없는 VPC를 선택하세요. 이름·ID·소유 범위·Zone으로 대상을 구분합니다.
+    - generic "Public IP 주소": "* Public IP 주소"
+    - textbox "Public IP 주소": 10.10.32.170
+    - generic: d670d49c-497f-46fe-940a-45c83202a1d7
+    - generic: 이 VPC는 VpcVirtualRouter의 Source NAT IP를 사용합니다. 표시된 필수 IP를 다른 공인 IP로 변경할 수 없습니다.
+    - button "업데이트":
+      - generic: 업데이트
+    - generic "사용자에게 표시"
+    - switch "사용자에게 표시" [checked]
+    - generic: 자원 조회 시 표시 여부를 설정합니다. VPN 연결을 활성화·차단하거나 터널 상태를 변경하지 않습니다. Root 관리자만 변경할 수 있습니다.
+    - term: VPC
+    - definition: qa-s2s1723-32-user
+    - term: 아이디
+    - definition: 004ca104-4a0e-4377-be95-1694f1184db3
+    - term: Zone
+    - definition: Zone
+    - term: 계정
+    - definition: qa-s2s1723-32-user
+    - term: 도메인
+    - definition: qa-s2s1723-32-domain
+    - button "취소":
+      - generic: 취소
+    - button "VPN 게이트웨이 추가":
+      - generic: VPN 게이트웨이 추가

@@ -91,7 +91,7 @@ UI는 `/usr/share/cloudstack-management/webapp`에 정적 파일 허용 목록�
 
 최종 기본 목록은 양쪽 GW 0건이다. UI에서 빈 목록과 원래 다크 테마/기본 프로젝트 복원을 확인하고 viewport override를 해제했다. 관리 서버는 active, HTTP 200, WEB-INF 존재, 호스트 3대씩 Up/Enabled, runtime 클래스 hash 일치를 재확인했다.
 
-#1719만 구현 완료 대상으로 보고한다. 다음 순서는 P2 #1720 `updateVpnGateway` 비동기 결과 반환/실패 계약이며 구현하지 않고 대기한다. PR 병합은 실행하지 않는다.
+이슈 #1719만 구현 완료 대상으로 보고한다. 다음 순서는 P2 #1720 `updateVpnGateway` 비동기 결과 반환/실패 계약이며 구현하지 않고 대기한다. PR 병합은 실행하지 않는다.
 
 ## 최신 기준 통합·추가 검증
 

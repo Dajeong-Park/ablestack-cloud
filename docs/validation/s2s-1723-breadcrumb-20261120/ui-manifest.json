@@ -1,0 +1,41 @@
+{
+  "buildCommit": "76ada6219bd53a9d3745980fa67196f0537bd807",
+  "sourceBase": "e5e696490ae34f46f9f2953b34519cb6fa3c0948",
+  "backendChanged": false,
+  "changedModules": [
+    "ui"
+  ],
+  "productionSourceMap": false,
+  "uglifySourceMap": false,
+  "sourceSha256": {
+    "ui/public/locales/en.json": "6775052ceb2786bda9d91771593140ee3651092517c773107208d0363fbe7c34",
+    "ui/public/locales/ko_KR.json": "fc59f8a25cb6e515e650e363ac83484b7f5a015bcdde8021561361ae17862463",
+    "ui/src/components/view/S2sGatewayFilterChips.vue": "b2454f816fb8145b78abc5ef4f52eeee860306d6082227d394e63805108e97e0",
+    "ui/src/components/view/S2sGatewaySearch.vue": "4582bc617d99fc3209cd48c25eea81cfd98afc4ce19b10458a8e43639a807e54",
+    "ui/src/config/section/network.js": "3b57a497f961a3af31e9ba088a6449883d04bb092073c9c380a22956387b26c5",
+    "ui/src/style/components/view/list-toolbar.css": "d230099d2bcb43216a44173af896ecb2a7267e60e4798a6261e6bbe821765819",
+    "ui/src/utils/s2sGateway.js": "8fda8ba80d16f38998d9d5b14447b4a208f23a781b4f1ed528fd8cb3a6daf37f",
+    "ui/src/utils/s2sGatewayDisplay.js": "41c011f9935d8665fee4e5ed76ce5ff06af0b373aa42d63455a2fb8dc46aa0c3",
+    "ui/src/utils/s2sGatewaySearch.js": "fe3d1d4ed4c779d1902ec82409979acd47dd6031483556ab4c5ae9644acb88ab",
+    "ui/src/views/AutogenView.vue": "fa60149b12d7cbf89d72bae28c568ff2ab352732c18cadbb8e62e1e7c691ef53",
+    "ui/src/views/network/S2sGatewayDialog.vue": "ff95b079c898c479d5f0f43841d39daaaefdf4a1d6064aaac60b609cee141ac5",
+    "ui/tests/unit/components/S2sGatewaySearch.spec.js": "da4acf89880fabb357c03c9ddd978d767507d4459205c89a49d9c00d6ad32953",
+    "ui/tests/unit/utils/s2sGatewaySearch.spec.js": "6bc3174cb50e18c3e517b36f645fe9ee949320985a889efe2e56dbc801b2aba8",
+    "ui/tests/unit/views/AutogenS2sGatewaySearch.spec.js": "608a06d803eeee20903c73bf3b9ab2573f309ff92da44dd0e1e36270ca006cd4",
+    "ui/tests/unit/views/network/S2sGatewayDisplay.spec.js": "f0b8511653e0971f0134a21588d8a0866a9e8a4d3ed5fae2a4fcb76f417e4df9"
+  },
+  "markers": [
+    "label.s2s.display.edit",
+    "s2s-gateway-filter-row",
+    "s2s-gateway-search-control",
+    "s2s-dialog-context",
+    "s2s-connections-toolbar",
+    "asn-search-control",
+    "blockingLoadingState",
+    "fetchSyncProgress",
+    "extractJobId"
+  ],
+  "uiPayloadSha256": "79ba71ec552004efe6b5dbd1ffb1bf4ae3d4d0f868aca72ed60265dadb8facdc",
+  "indexSha256": "a5ca8715ebf063e19d83e12974e336624e537dc4e949ae414efe8cde71333efc",
+  "buildConfigSha256": "a0f7b7f8c8574039ad68da01a986ead6a7450ec4aa9e3f37855851ff9589f23a"
+}

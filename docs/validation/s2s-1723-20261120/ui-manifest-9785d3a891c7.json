@@ -1,0 +1,37 @@
+{
+  "buildCommit": "9785d3a891c78be5275d9acf9bc4e1f98dd04c74",
+  "sourceBase": "e5e696490ae34f46f9f2953b34519cb6fa3c0948",
+  "backendChanged": false,
+  "changedModules": [
+    "ui"
+  ],
+  "productionSourceMap": false,
+  "uglifySourceMap": false,
+  "sourceSha256": {
+    "ui/public/locales/en.json": "6775052ceb2786bda9d91771593140ee3651092517c773107208d0363fbe7c34",
+    "ui/public/locales/ko_KR.json": "fc59f8a25cb6e515e650e363ac83484b7f5a015bcdde8021561361ae17862463",
+    "ui/src/components/view/S2sGatewaySearch.vue": "e5698782dfde0e57e5112039af4337323c3c7b96a5f9495266661c69de5432b0",
+    "ui/src/config/section/network.js": "3b57a497f961a3af31e9ba088a6449883d04bb092073c9c380a22956387b26c5",
+    "ui/src/utils/s2sGateway.js": "8fda8ba80d16f38998d9d5b14447b4a208f23a781b4f1ed528fd8cb3a6daf37f",
+    "ui/src/utils/s2sGatewayDisplay.js": "41c011f9935d8665fee4e5ed76ce5ff06af0b373aa42d63455a2fb8dc46aa0c3",
+    "ui/src/utils/s2sGatewaySearch.js": "fe3d1d4ed4c779d1902ec82409979acd47dd6031483556ab4c5ae9644acb88ab",
+    "ui/src/views/AutogenView.vue": "32f05965ab7193a7f347e64cd8cf58655c4a9af86e7fd8388c81a72b067ddfe1",
+    "ui/src/views/network/S2sGatewayDialog.vue": "82f53fe0a69dcdc9cf6ef7e742a800a2d9d865a5df22f3d1ab8d0fe23dd77412",
+    "ui/tests/unit/utils/s2sGatewaySearch.spec.js": "6bc3174cb50e18c3e517b36f645fe9ee949320985a889efe2e56dbc801b2aba8",
+    "ui/tests/unit/views/AutogenS2sGatewaySearch.spec.js": "608a06d803eeee20903c73bf3b9ab2573f309ff92da44dd0e1e36270ca006cd4",
+    "ui/tests/unit/views/network/S2sGatewayDisplay.spec.js": "e14c2af05637f109f6d4e29d7d2ae734d3126484f9f11f8f36250f702a72c6fe"
+  },
+  "markers": [
+    "label.s2s.display.edit",
+    "s2s-gateway-search-control",
+    "s2s-dialog-context",
+    "s2s-connections-toolbar",
+    "asn-search-control",
+    "blockingLoadingState",
+    "fetchSyncProgress",
+    "extractJobId"
+  ],
+  "uiPayloadSha256": "f14e6c64b67ea15a40084b24b5f3c7031e286cb57d5d764431a41e939642416d",
+  "indexSha256": "ddb87548fc1c352cde86a2e1bcb6b8d4d89e27376d627beeb102be6b6d5746ee",
+  "buildConfigSha256": "a0f7b7f8c8574039ad68da01a986ead6a7450ec4aa9e3f37855851ff9589f23a"
+}

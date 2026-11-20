@@ -1,0 +1,101 @@
+{
+  "note": "통제 응답으로 최종 job2 UI만 검증. update mutation은 서버로 전달하지 않음.",
+  "control": [
+    {
+      "command": "listVpnGateways",
+      "action": "forward",
+      "params": {
+        "id": "f2a2cb76-79a1-40b0-83af-e89518c386a6",
+        "fordisplay": "true",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      }
+    },
+    {
+      "command": "updateVpnGateway",
+      "action": "controlled-receipt-without-mutation",
+      "params": {
+        "id": "f2a2cb76-79a1-40b0-83af-e89518c386a6",
+        "fordisplay": "false",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "customjobid": "9db2c485-a179-4e6a-b714-0c0404e5cbc9"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "action": "controlled-job2",
+      "params": {
+        "jobid": "9db2c485-a179-4e6a-b714-0c0404e5cbc9"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "action": "forward",
+      "params": {}
+    }
+  ],
+  "requests": [
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "id": "f2a2cb76-79a1-40b0-83af-e89518c386a6",
+        "fordisplay": "true",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 9309,
+      "http": 200,
+      "response": {
+        "count": 1,
+        "rows": [
+          {
+            "id": "f2a2cb76-79a1-40b0-83af-e89518c386a6",
+            "vpcid": "8f55e6d0-6062-4a48-a9a2-ecca26571640",
+            "publicip": "10.10.31.105",
+            "account": "qa-s2s1723-31-user",
+            "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    {
+      "command": "updateVpnGateway",
+      "method": "POST",
+      "params": {
+        "id": "f2a2cb76-79a1-40b0-83af-e89518c386a6",
+        "fordisplay": "false",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "customjobid": "9db2c485-a179-4e6a-b714-0c0404e5cbc9"
+      },
+      "sequence": 9314,
+      "http": 200,
+      "response": {
+        "jobid": "9db2c485-a179-4e6a-b714-0c0404e5cbc9"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "params": {
+        "jobid": "9db2c485-a179-4e6a-b714-0c0404e5cbc9"
+      },
+      "sequence": 9320,
+      "http": 200,
+      "response": {
+        "jobid": "9db2c485-a179-4e6a-b714-0c0404e5cbc9",
+        "jobstatus": 2,
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd"
+      }
+    }
+  ]
+}
