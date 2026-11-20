@@ -62,6 +62,9 @@
             <QuestionCircleOutlined />
           </a>
         </a-tooltip>
+        <router-link v-if="kmsParentLocation" :to="kmsParentLocation" class="kms-parent-link">
+          {{ $t('message.kms.related.back') }}
+        </router-link>
         <slot name="end">
         </slot>
       </span>
@@ -83,6 +86,7 @@ import { gatewayName } from '@/utils/s2sGateway'
 import { s2sGatewayListLocation, s2sGatewayRoute } from '@/utils/s2sGatewaySearch'
 import { vnfListLocation } from '@/utils/vnfSearch'
 import { kmsDetailRoute, kmsListLocation } from '@/utils/kmsNavigation'
+import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
 
 export default {
   name: 'Breadcrumb',
@@ -101,6 +105,13 @@ export default {
       breadList: [],
       tungstenPaths: ['/tungstennetworkroutertable', '/tungstenpolicy', '/tungsteninterfaceroutertable',
         '/tungstenpolicyset', '/tungstenroutingpolicy', '/firewallrule', '/tungstenfirewallpolicy']
+    }
+  },
+  computed: {
+    kmsParentLocation () {
+      if (!['volume', 'kmskey'].includes(this.$route.meta?.name) || !this.$route.params?.id) return null
+      const state = this.$router?.options?.history?.state
+      return state?.kmsRelatedReturn ? kmsRelatedParentLocation(this.$route, state, this.$store.getters, this.$store.state?.user?.token) : null
     }
   },
   created () {
@@ -160,4 +171,5 @@ export default {
   white-space: normal;
   overflow-wrap: anywhere;
 }
+.kms-parent-link { margin-inline-end: 8px; }
 </style>

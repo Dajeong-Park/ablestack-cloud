@@ -111,7 +111,7 @@ import StorageSnapshotSummary from '@/views/storage/StorageSnapshotSummary'
 import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
 import ResourceLayout from '@/layouts/ResourceLayout'
 import { getAPI } from '@/api'
-import { kmsDetailRoute } from '@/utils/kmsNavigation'
+import { kmsDetailRoute, kmsRouteHistory } from '@/utils/kmsNavigation'
 import { templateObservationContext } from '@/utils/templateAvailability'
 import { mixinDevice } from '@/utils/mixin.js'
 
@@ -260,9 +260,9 @@ export default {
       this.wideLayout = false
       const query = Object.assign({}, this.$route.query)
       query.tab = key
-      if (kmsDetailRoute(this.$route)) {
-        const kmsReturn = this.$router.options.history.state?.kmsReturn || null
-        this.$router.push({ path: this.$route.path, query, state: { kmsReturn } })
+      const historyState = this.$router?.options?.history?.state
+      if (kmsDetailRoute(this.$route) || (this.$route.meta?.name === 'volume' && historyState?.kmsRelatedReturn)) {
+        this.$router.push({ path: this.$route.path, query, state: kmsRouteHistory(historyState) })
         this.$emit('onTabChange', key)
         return
       }

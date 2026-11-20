@@ -21,7 +21,11 @@ import { readKmsResource } from './kmsOperation'
 
 const kindOf = route => route.meta?.name || route.name
 const isUuid = value => typeof value === 'string' && /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(value)
-const ownerOf = (getters, token) => hash.sha256().update(kmsAuth(getters, token)).digest('hex')
+export const kmsHistoryOwner = (getters, token) => hash.sha256().update(kmsAuth(getters, token)).digest('hex')
+
+export function kmsRouteHistory (state) {
+  return { kmsReturn: state?.kmsReturn || null, ...(state?.kmsRelatedReturn ? { kmsRelatedReturn: state.kmsRelatedReturn } : {}) }
+}
 
 export const kmsDetailRoute = route => kmsRoute(route) && !!route.params?.id
 
@@ -30,7 +34,7 @@ export function kmsDetailLocation (route, row, getters, token) {
   const query = isUuid(row.projectid) ? { projectid: row.projectid } : {}
   const location = { path: '/' + kind + '/' + row.id, query }
   if (kmsListRoute(route) && getters.userInfo?.id && token) {
-    location.state = { kmsReturn: { kind, id: row.id, owner: ownerOf(getters, token), query: kmsQuery(route.query, kmsListApi(route), getters) } }
+    location.state = { kmsReturn: { kind, id: row.id, owner: kmsHistoryOwner(getters, token), query: kmsQuery(route.query, kmsListApi(route), getters) } }
   }
   return location
 }
@@ -39,7 +43,7 @@ export function kmsListLocation (route, historyState, getters, token, size = get
   const kind = kindOf(route)
   const saved = historyState?.kmsReturn
   const matches = kmsDetailRoute(route) && getters.userInfo?.id && token && saved?.kind === kind &&
-    saved.id === route.params.id && saved.owner === ownerOf(getters, token)
+    saved.id === route.params.id && saved.owner === kmsHistoryOwner(getters, token)
   const query = kmsQuery(matches ? saved.query || {} : {}, kmsListApi(route), getters, size)
   return { path: '/' + kind, query, state: { kmsReturn: null } }
 }

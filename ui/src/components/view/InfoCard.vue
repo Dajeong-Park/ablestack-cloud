@@ -1167,6 +1167,7 @@
 </template>
 
 <script>
+import { kmsRelations, kmsRelatedFilter } from '@/utils/kmsRelated'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
@@ -1646,6 +1647,8 @@ export default {
       return ['Admin'].includes(this.$store.getters.userInfo.roletype)
     },
     getRouterQuery (item) {
+      const kind = this.$route.meta?.name
+      if (kmsRelations[kind]?.filter === item.param) return kmsRelatedFilter(kind, this.resource, this.$store.getters)
       if (item.param === 'networkofferingid' && item.name === 'guestnetwork') return offeringNetworkQuery(this.resource, this.$route, this.$store.getters)
       const query = {}
       if (item.value) {

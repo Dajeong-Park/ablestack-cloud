@@ -258,7 +258,7 @@ public class KMSManagerImplHSMTest {
         when(hsmProfileDao.findById(profileId)).thenReturn(profile);
 
         when(kmsKeyDao.countByHsmProfileId(profileId)).thenReturn(0L);
-        when(kmsKekVersionDao.listByHsmProfileId(profileId)).thenReturn(Collections.emptyList());
+        when(kmsWrappedKeyDao.countByHsmProfileId(profileId)).thenReturn(0L);
 
         KMSProvider kmsProvider = mock(KMSProvider.class);
         doReturn(kmsProvider).when(kmsManager).getKMSProvider("database");

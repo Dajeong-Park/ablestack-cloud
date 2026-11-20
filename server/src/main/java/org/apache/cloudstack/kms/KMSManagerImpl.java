@@ -52,6 +52,8 @@ import com.cloud.utils.db.TransactionCallback;
 import com.cloud.utils.db.TransactionCallbackWithException;
 import com.cloud.utils.exception.CloudRuntimeException;
 import org.apache.cloudstack.api.ApiCommandResourceType;
+import org.apache.cloudstack.api.ApiConstants;
+import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.command.admin.kms.MigrateVolumesToKMSCmd;
 import org.apache.cloudstack.api.command.user.kms.CreateKMSKeyCmd;
 import org.apache.cloudstack.api.command.user.kms.DeleteKMSKeyCmd;
@@ -522,7 +524,11 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
         List<KMSKeyResponse> responses = new ArrayList<>();
         for (KMSKey key : keys) {
-            responses.add(createKMSKeyResponse(key));
+            KMSKeyResponse response = createKMSKeyResponse(key);
+            if (cmd.getId() != null) {
+                populateKeyUsage(response, key, caller, cmd);
+            }
+            responses.add(response);
         }
 
         ListResponse<KMSKeyResponse> listResponse = new ListResponse<>();
@@ -1297,7 +1303,11 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             // If the profile is owned by the user, they should see full details even if it
             // is a system profile
             boolean limited = profile.getIsPublic() && !isRootAdmin && profile.getAccountId() != caller.getId();
-            responses.add(createHSMProfileResponse(profile, limited, isRootAdmin));
+            HSMProfileResponse response = createHSMProfileResponse(profile, limited, isRootAdmin);
+            if (cmd.getId() != null) {
+                populateProfileUsage(response, profile, isRootAdmin && !limited, cmd);
+            }
+            responses.add(response);
         }
 
         ListResponse<HSMProfileResponse> listResponse = new ListResponse<>();
@@ -1467,21 +1477,12 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                             "Please delete or reassign those keys first.", profile.getName(), keyCount));
         }
 
-        // Check if any KEK versions reference this HSM profile
-        List<KMSKekVersionVO> kekVersions = kmsKekVersionDao.listByHsmProfileId(profile.getId());
-        if (!kekVersions.isEmpty()) {
-            // Check if any wrapped keys are using these KEK versions
-            long wrappedKeyCount = 0;
-            for (KMSKekVersionVO kekVersion : kekVersions) {
-                wrappedKeyCount += kmsWrappedKeyDao.countByKekVersionId(kekVersion.getId());
-            }
-            if (wrappedKeyCount > 0) {
-                throw new InvalidParameterValueException(
-                        String.format("Cannot delete HSM profile '%s': it is referenced by %d wrapped key(s) " +
-                                        "through KEK versions. Please wait for key rotation to complete or delete those"
-                                        + " volumes first.",
-                                profile.getName(), wrappedKeyCount));
-            }
+        long wrappedKeyCount = kmsWrappedKeyDao.countByHsmProfileId(profile.getId());
+        if (wrappedKeyCount > 0) {
+            throw new InvalidParameterValueException(
+                    String.format("Cannot delete HSM profile '%s': it is referenced by %d wrapped key(s) "
+                                    + "through KEK versions. Please wait for key rotation to complete or delete those volumes first.",
+                            profile.getName(), wrappedKeyCount));
         }
 
         getKMSProvider(profile.getProtocol()).invalidateProfileCache(profile.getId());
@@ -1520,6 +1521,30 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
     @Override
     public HSMProfileResponse createHSMProfileResponse(HSMProfile profile) {
         return createHSMProfileResponse(profile, false, false);
+    }
+
+    void populateKeyUsage(KMSKeyResponse response, KMSKey key, Account caller, BaseCmd cmd) {
+        if ((accountManager.isRootAdmin(caller.getId()) || caller.getId() == key.getAccountId())
+                && canReadUsage(cmd, "listVolumes")) {
+            response.setUsage(volumeDao.countWithKmsKey(key.getId()), kmsWrappedKeyDao.countByKmsKeyId(key.getId()));
+        }
+    }
+
+    void populateProfileUsage(HSMProfileResponse response, HSMProfile profile, boolean unrestrictedAdmin, BaseCmd cmd) {
+        // Public and shared profiles can hold references owned by other accounts.
+        if (unrestrictedAdmin && canReadUsage(cmd, "listKMSKeys")) {
+            response.setUsage(kmsKeyDao.countByHsmProfileId(profile.getId()), kmsWrappedKeyDao.countByHsmProfileId(profile.getId()));
+        }
+    }
+
+    private boolean canReadUsage(BaseCmd cmd, String relatedApi) {
+        String apiKey = cmd.getFullUrlParams() == null ? null : cmd.getFullUrlParams().get(ApiConstants.API_KEY);
+        try {
+            accountManager.checkApiAccessForUser(CallContext.current().getCallingUser(), relatedApi, apiKey);
+            return true;
+        } catch (PermissionDeniedException ignored) {
+            return false;
+        }
     }
 
     private boolean isSystemDatabaseProfile(HSMProfile profile) {

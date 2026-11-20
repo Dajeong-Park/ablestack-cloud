@@ -167,7 +167,7 @@
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
-          <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="{ path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
+          <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
             <span v-if="record.id">
               <router-link :to="{ path: $route.path + '/' + record.id }">{{ text }}</router-link>
@@ -961,8 +961,14 @@
         <status v-else :text="record.current ? record.current.toString() : 'false'" />
       </template>
       <template v-if="column.key === 'enabled'">
-        <status :text="record.enabled ? record.enabled.toString() : 'false'" />
-        {{ record.enabled ? 'Enabled' : 'Disabled' }}
+        <template v-if="resourcePath === '/kmskey' && $route.meta?.name === 'hsmprofile'">
+          <status v-if="typeof record.enabled === 'boolean'" :text="String(record.enabled)" display-text :display-label="$t(record.enabled ? 'label.enabled' : 'label.disabled')" />
+          <span v-else>—</span>
+        </template>
+        <template v-else>
+          <status :text="record.enabled ? record.enabled.toString() : 'false'" />
+          {{ record.enabled ? 'Enabled' : 'Disabled' }}
+        </template>
       </template>
       <template v-if="$route.meta?.name === 'publicip' && ['allocated', 'issystem', 'issourcenat', 'isstaticnat', 'fordisplay'].includes(column.key)"><public-ip-detail-value :resource="record" :field="column.key" compact /></template>
       <template
@@ -1360,6 +1366,7 @@ export default {
   props: {
     tableScroll: { type: Object, default: null },
     resourcePath: { type: String, default: '' },
+    resourceLink: { type: Function, default: null },
     selectionDisabled: { type: Function, default: () => false },
     keyboardContextMenu: { type: Boolean, default: false },
     columns: {

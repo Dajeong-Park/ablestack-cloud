@@ -34,6 +34,10 @@ public class HSMProfileResponse extends BaseResponse implements ControlledViewEn
     @Param(description = "the ID of the HSM profile")
     private String id;
 
+    @SerializedName("usage")
+    @Param(description = "Current keys and wrapped-key references through this profile's KEK versions checked by profile deletion")
+    private Map<String, Long> usage;
+
     @SerializedName(ApiConstants.NAME)
     @Param(description = "the name of the HSM profile")
     private String name;
@@ -191,6 +195,14 @@ public class HSMProfileResponse extends BaseResponse implements ControlledViewEn
 
     public void setDetails(Map<String, String> details) {
         this.details = details;
+    }
+
+    public Map<String, Long> getUsage() {
+        return usage;
+    }
+
+    public void setUsage(long keyCount, long versionWrappedKeyCount) {
+        usage = Map.of("kmskeycount", keyCount, "versionwrappedkeycount", versionWrappedKeyCount);
     }
 
     public String getId() {

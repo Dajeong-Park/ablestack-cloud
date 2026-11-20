@@ -29,6 +29,7 @@ const availability = api => {
   }
 }
 
+const relatedTab = shallowRef(defineAsyncComponent(() => import('@/views/infra/KmsRelatedResources.vue')))
 const operationDialog = shallowRef(defineAsyncComponent(() => import('@/views/infra/KmsOperationDialog.vue')))
 
 export default {
@@ -68,6 +69,11 @@ export default {
         {
           name: 'details',
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+        },
+        {
+          name: 'kms.used.volumes',
+          component: relatedTab,
+          show: () => 'listVolumes' in store.getters.apis
         },
         {
           name: 'events',
@@ -171,6 +177,11 @@ export default {
         {
           name: 'details',
           component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+        },
+        {
+          name: 'kms.related.keys',
+          component: relatedTab,
+          show: () => 'listKMSKeys' in store.getters.apis
         },
         {
           name: 'events',
