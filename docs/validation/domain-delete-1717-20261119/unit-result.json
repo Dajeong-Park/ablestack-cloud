@@ -1,0 +1,9 @@
+{
+  "head": "42c472907d9714f2fbb07a69e81262e5851bef10",
+  "exitCode": 0,
+  "suites": 1,
+  "tests": 16,
+  "seconds": 28.3,
+  "coverage": "focused run; no whole-repository coverage scan",
+  "forceExit": false
+}

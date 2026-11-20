@@ -1,0 +1,21 @@
+{
+  "head": "42c472907d9714f2fbb07a69e81262e5851bef10",
+  "backup": "/var/tmp/domain1717-backup-q9ui5bor",
+  "files": [
+    "js/app.39167b5e.js",
+    "js/chunk-4d5ece0a.6a0336a8.js",
+    "css/chunk-4d5ece0a.7120b5a4.css",
+    "css/app.98a40780.css",
+    "index.html"
+  ],
+  "count": 5,
+  "overwritten": [
+    "index.html"
+  ],
+  "preservedOldFiles": 7221,
+  "indexSha256": "eaf3bca66efcd4d3f2b2bed0870189bd83e71b26a53ce89b9839596041a0d5ae",
+  "protectedPreserved": true,
+  "backendAndPidPreserved": true,
+  "staticHttpHashesVerified": true,
+  "deploymentType": "UI static delta only"
+}

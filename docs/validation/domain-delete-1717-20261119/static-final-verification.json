@@ -1,0 +1,11 @@
+{
+  "head": "42c472907d9714f2fbb07a69e81262e5851bef10",
+  "files": 7226,
+  "allExpectedHashesMatch": true,
+  "protectedPreserved": true,
+  "moldPid": "2860414",
+  "backendJarSha256": "55f802d2b22c9d4d471644c6157781cc2604e27d4ba0d7b055e4a934bb1d6171",
+  "indexSha256": "eaf3bca66efcd4d3f2b2bed0870189bd83e71b26a53ce89b9839596041a0d5ae",
+  "backup": "/var/tmp/domain1717-backup-q9ui5bor",
+  "utc": "2026-11-19T08:38:54.949905+00:00"
+}
