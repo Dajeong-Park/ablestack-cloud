@@ -1,0 +1,607 @@
+[
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "createHSMProfile",
+    "status": 200,
+    "params": {
+      "name": "qa-km1733-profile",
+      "protocol": "database"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {
+      "id": "7d34173f-027a-4e3a-864d-88d96a6ac315"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "createHSMProfile",
+    "status": 200,
+    "params": {
+      "name": "qa-km1733-pkcs",
+      "protocol": "pkcs11"
+    },
+    "detailKeys": [
+      "details[0].library",
+      "details[0].slot_list_index"
+    ]
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {
+      "id": "8e7ab743-8e86-4f21-86a1-aa03e368d0ac"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "createKMSKey",
+    "status": 200,
+    "params": {
+      "name": "qa-km1733-key",
+      "keybits": "256",
+      "hsmprofileid": "7d34173f-027a-4e3a-864d-88d96a6ac315"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "updateKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7",
+      "name": "qa-km1733-key",
+      "enabled": "false"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "rotateKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7",
+      "keybits": "128"
+    },
+    "detailKeys": [],
+    "jobId": "98e9bf69-1097-42db-b591-7326798b134c"
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "status": 200,
+    "params": {
+      "jobid": "98e9bf69-1097-42db-b591-7326798b134c"
+    },
+    "detailKeys": [],
+    "jobId": "98e9bf69-1097-42db-b591-7326798b134c",
+    "jobStatus": 2
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "updateKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7",
+      "name": "qa-km1733-key",
+      "enabled": "true"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "rotateKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7",
+      "keybits": "128"
+    },
+    "detailKeys": [],
+    "jobId": "560a071a-c2b8-4e65-988d-91342818e954"
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "status": 200,
+    "params": {
+      "jobid": "560a071a-c2b8-4e65-988d-91342818e954"
+    },
+    "detailKeys": [],
+    "jobId": "560a071a-c2b8-4e65-988d-91342818e954",
+    "jobStatus": 1
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "rotateKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7",
+      "keybits": "192"
+    },
+    "detailKeys": [],
+    "jobId": "7bebcfc6-e43d-4f47-bb1b-8cbbbc6dadf6"
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "status": 200,
+    "params": {
+      "jobid": "7bebcfc6-e43d-4f47-bb1b-8cbbbc6dadf6"
+    },
+    "detailKeys": [],
+    "jobId": "7bebcfc6-e43d-4f47-bb1b-8cbbbc6dadf6",
+    "jobStatus": 1
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "rotateKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7",
+      "keybits": "256"
+    },
+    "detailKeys": [],
+    "jobId": "0ce4bd88-1b59-4448-9606-310dc8632a29"
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "status": 200,
+    "params": {
+      "jobid": "0ce4bd88-1b59-4448-9606-310dc8632a29"
+    },
+    "detailKeys": [],
+    "jobId": "0ce4bd88-1b59-4448-9606-310dc8632a29",
+    "jobStatus": 1
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "rotateKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": [],
+    "jobId": "98a1490c-2b71-4799-a8ae-618654850874"
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "status": 200,
+    "params": {
+      "jobid": "98a1490c-2b71-4799-a8ae-618654850874"
+    },
+    "detailKeys": [],
+    "jobId": "98a1490c-2b71-4799-a8ae-618654850874",
+    "jobStatus": 1
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {
+      "id": "7d34173f-027a-4e3a-864d-88d96a6ac315"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "deleteHSMProfile",
+    "status": 431,
+    "params": {
+      "id": "7d34173f-027a-4e3a-864d-88d96a6ac315"
+    },
+    "detailKeys": [],
+    "apiErrorCode": 431
+  },
+  {
+    "method": "POST",
+    "command": "deleteKMSKey",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": [],
+    "jobId": "ad78ee14-8674-4a44-b001-35996c4e2263"
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "status": 200,
+    "params": {
+      "jobid": "ad78ee14-8674-4a44-b001-35996c4e2263"
+    },
+    "detailKeys": [],
+    "jobId": "ad78ee14-8674-4a44-b001-35996c4e2263",
+    "jobStatus": 0
+  },
+  {
+    "method": "GET",
+    "command": "queryAsyncJobResult",
+    "status": 200,
+    "params": {
+      "jobid": "ad78ee14-8674-4a44-b001-35996c4e2263"
+    },
+    "detailKeys": [],
+    "jobId": "ad78ee14-8674-4a44-b001-35996c4e2263",
+    "jobStatus": 1
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {
+      "id": "4dafc1c0-fd74-44a6-a35e-072b613c23d7"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listKMSKeys",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "deleteHSMProfile",
+    "status": 200,
+    "params": {
+      "id": "7d34173f-027a-4e3a-864d-88d96a6ac315"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {
+      "id": "7d34173f-027a-4e3a-864d-88d96a6ac315"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {
+      "id": "8e7ab743-8e86-4f21-86a1-aa03e368d0ac"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "POST",
+    "command": "deleteHSMProfile",
+    "status": 200,
+    "params": {
+      "id": "8e7ab743-8e86-4f21-86a1-aa03e368d0ac"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {
+      "id": "8e7ab743-8e86-4f21-86a1-aa03e368d0ac"
+    },
+    "detailKeys": []
+  },
+  {
+    "method": "GET",
+    "command": "listHSMProfiles",
+    "status": 200,
+    "params": {},
+    "detailKeys": []
+  }
+]

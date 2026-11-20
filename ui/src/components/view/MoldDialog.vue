@@ -22,7 +22,14 @@ for the specific language governing permissions and limitations. -->
     :closable="$attrs.closable !== false && !formBusy"
     :keyboard="$attrs.keyboard !== false && !formBusy"
     @cancel="!formBusy && $emit('cancel')">
-    <template #title><slot name="title">{{ title }}</slot></template>
+    <template #title>
+      <slot name="title">
+        {{ title }}
+        <a v-if="docHelp" class="mold-dialog-help" :href="documentationUrl($config.docBase, docHelp, $i18n.locale)" target="_blank" rel="noopener noreferrer" :aria-label="$t('label.open.documentation')">
+          <question-circle-outlined />
+        </a>
+      </slot>
+    </template>
     <div v-if="focusGuard" ref="focusContent" tabindex="-1" class="mold-dialog-focus-content"><slot /></div>
     <slot v-else />
     <template #footer><slot name="footer"><div v-if="formActions" ref="footerTarget" class="mold-dialog-form-actions" /><a-button v-else @click="$emit('cancel')">{{ $t('label.close') }}</a-button></slot></template>
@@ -30,10 +37,11 @@ for the specific language governing permissions and limitations. -->
 </template>
 <script>
 import { computed, provide, reactive, shallowRef, watch, onBeforeUnmount } from 'vue'
+import { documentationUrl } from '@/utils/cniFileImport'
 export default {
   name: 'MoldDialog',
   inheritAttrs: false,
-  props: { visible: { type: Boolean, default: true }, title: { type: String, default: '' }, width: { type: [Number, String], default: 760 }, size: { type: String, default: '', validator: value => ['', 'sm', 'md', 'lg', 'xl'].includes(value) }, formActions: { type: Boolean, default: false }, focusGuard: { type: Boolean, default: false } },
+  props: { visible: { type: Boolean, default: true }, title: { type: String, default: '' }, docHelp: { type: String, default: '' }, width: { type: [Number, String], default: 760 }, size: { type: String, default: '', validator: value => ['', 'sm', 'md', 'lg', 'xl'].includes(value) }, formActions: { type: Boolean, default: false }, focusGuard: { type: Boolean, default: false } },
   setup (props) {
     const footerTarget = shallowRef(null)
     const focusContent = shallowRef(null)
@@ -56,10 +64,13 @@ export default {
     return { footerTarget, focusContent, formBusy: computed(() => busyOwners.size > 0) }
   },
   emits: ['cancel'],
+  methods: { documentationUrl },
   computed: { dialogWidth () { return { sm: 480, md: 720, lg: 960, xl: 1120 }[this.size] || this.width } }
 }
 </script>
 
 <style scoped>
+.mold-dialog-help { margin-inline-start: 8px; color: var(--ui-link); }
+.mold-dialog-help:focus-visible { outline: 2px solid var(--ui-focus); outline-offset: 2px; }
 .mold-dialog-focus-content { min-width: 0; outline: none; }
 </style>

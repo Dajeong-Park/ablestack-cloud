@@ -1,0 +1,6 @@
+{
+  "baselineHsm": true,
+  "zeroEnabled": true,
+  "metadata": true,
+  "zeroKeys": true
+}

@@ -28,6 +28,7 @@ import org.apache.cloudstack.api.EntityReference;
 import org.apache.cloudstack.kms.KMSKey;
 
 import java.util.Date;
+import java.util.Map;
 
 @EntityReference(value = KMSKey.class)
 public class KMSKeyResponse extends BaseResponse implements ControlledViewEntityResponse {
@@ -35,6 +36,10 @@ public class KMSKeyResponse extends BaseResponse implements ControlledViewEntity
     @SerializedName(ApiConstants.ID)
     @Param(description = "the UUID of the key")
     private String id;
+
+    @SerializedName("usage")
+    @Param(description = "Live volume and wrapped-key references checked by key deletion")
+    private Map<String, Long> usage;
 
     @SerializedName(ApiConstants.NAME)
     @Param(description = "the name of the key")
@@ -111,6 +116,14 @@ public class KMSKeyResponse extends BaseResponse implements ControlledViewEntity
     @SerializedName(ApiConstants.KEK_LABEL)
     @Param(description = "the provider-specific KEK label (admin only)", authorized = { RoleType.Admin })
     private String kekLabel;
+
+    public Map<String, Long> getUsage() {
+        return usage;
+    }
+
+    public void setUsage(long volumeCount, long wrappedKeyCount) {
+        usage = Map.of("volumecount", volumeCount, "wrappedkeycount", wrappedKeyCount);
+    }
 
     public String getId() {
         return id;

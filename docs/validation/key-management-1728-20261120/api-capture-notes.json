@@ -1,0 +1,3 @@
+{
+  "note": "Selected UI-originated requests/responses only; early network buffer entries are not included. UI DOM records and DB snapshots cover the full documented test sequence. HTTP 200 async acceptance is not job success. No session/password/PIN values are retained."
+}

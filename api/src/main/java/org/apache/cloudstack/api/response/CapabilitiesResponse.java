@@ -17,6 +17,7 @@
 package org.apache.cloudstack.api.response;
 
 import java.util.Map;
+import java.util.List;
 
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.api.ApiConstants;
@@ -27,6 +28,15 @@ import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("unused")
 public class CapabilitiesResponse extends BaseResponse {
+    @SerializedName("kmsproviders")
+    @Param(description = "Loaded KMS provider protocol identifiers; contains no connection details or credentials",
+            responseObject = KMSProviderResponse.class)
+    private List<KMSProviderResponse> kmsProviders;
+
+    public void setKmsProviders(List<KMSProviderResponse> kmsProviders) {
+        this.kmsProviders = kmsProviders;
+    }
+
     @SerializedName("snapshotpolicymax")
     @Param(description = "Applied maximum snapshot policy retention by interval; zero disables that interval")
     private Map<String, Integer> snapshotPolicyMax;

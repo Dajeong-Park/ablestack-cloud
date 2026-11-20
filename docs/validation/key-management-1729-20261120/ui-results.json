@@ -1,0 +1,56 @@
+{
+  "cluster": "13",
+  "target_key_uuid": "c5fafd0f-c395-4237-bba1-083eb74e8ec5",
+  "hsm_profile_uuid": "bc91cad9-e49f-400f-bbc0-1f047202631f",
+  "live_ui": {
+    "fixed_target_account_domain_zone": "PASS",
+    "all_candidates_count": 176,
+    "pages_tested": [
+      1,
+      2
+    ],
+    "page_uuid_overlap": 0,
+    "plaintext_checkboxes_disabled": "PASS",
+    "search_name": "ROOT-241",
+    "search_count": 1,
+    "eligible_filter_count": 0,
+    "eligible_empty_error_alerts": 0,
+    "ineligible_filtered_search_count": 1,
+    "disabled_hsm_refresh_blocked": "PASS",
+    "disabled_key_blocked": "PASS",
+    "cancel_preserves_detail_route": "PASS",
+    "cancel_reopen_clears_search": "PASS",
+    "filter_accessible_label": "PASS",
+    "horizontal_reason_column_access": "PASS",
+    "common_vm_mold_dialog_fixed_footer": "PASS",
+    "theme": "original dark",
+    "viewport": "original browser size, no override",
+    "captured_migration_post_count": 0,
+    "capture_scope": "Selected UI-origin list/preflight/result-observation calls; credentials and unrelated requests excluded"
+  },
+  "focused_tests": {
+    "backend": 119,
+    "backend_suites": 9,
+    "ui": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "changed_java_checkstyle": 0,
+    "changed_ui_eslint": 0
+  },
+  "cleanup": {
+    "test_key_removed": true,
+    "active_test_provider_keys": 0,
+    "wrapped_references": 0,
+    "volume_references": 0,
+    "default_hsm_enabled": false,
+    "pending_api_jobs": 0
+  },
+  "real_encrypted_volume_migration": {
+    "status": "NOT_RUN",
+    "reason": "No encrypted volume exists and Europa UI disables encrypted deployment in current HCI(RBD) environment",
+    "user_decision": "2026-11-20: complete this issue with UI validation if encrypted volume operations are unavailable",
+    "physical_acceptance_issue": 1025
+  },
+  "guest_data_io_and_real_hsm": "NOT_RUN; existing #1025 acceptance retained"
+}

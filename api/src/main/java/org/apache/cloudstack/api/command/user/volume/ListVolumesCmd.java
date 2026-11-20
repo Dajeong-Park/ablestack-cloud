@@ -100,6 +100,22 @@ public class ListVolumesCmd extends BaseListRetrieveOnlyResourceCountCmd impleme
     @Parameter(name = ApiConstants.KMS_KEY_ID, type = CommandType.UUID, entityType = KMSKeyResponse.class, description = "List volumes by KMS Key", since = "4.23")
     private Long kmsKeyId;
 
+    @Parameter(name = "kmsmigrationkeyid", type = CommandType.UUID, entityType = KMSKeyResponse.class,
+            authorized = {RoleType.Admin}, description = "Target KMS key for migration candidates; preserves volume ACL and key ownership/zone")
+    private Long kmsMigrationKeyId;
+
+    @Parameter(name = "kmsmigrationeligible", type = CommandType.BOOLEAN, authorized = {RoleType.Admin},
+            description = "Filter migration eligibility before pagination; requires kmsmigrationkeyid")
+    private Boolean kmsMigrationEligible;
+
+    public Long getKmsMigrationKeyId() {
+        return kmsMigrationKeyId;
+    }
+
+    public Boolean getKmsMigrationEligible() {
+        return kmsMigrationEligible;
+    }
+
     @Parameter(name = ApiConstants.DISPLAY_VOLUME, type = CommandType.BOOLEAN, description = "List resources by display flag; only ROOT admin is eligible to pass this parameter", since = "4.4", authorized = {
             RoleType.Admin})
     private Boolean display;

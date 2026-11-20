@@ -1,0 +1,164 @@
+{
+  "base": "41fe8cb0dd0c05e95c4ef6d110dafc26b85a01e2",
+  "preimplementation_head": "b0d9518ac037f4180fb08cc91b9c4f648ce04f4c",
+  "working_tree_diff_sha256": "63da9fe23a3014ce6dd6ca44c24fd18598afbbcea6e6b677459279cd7580b705",
+  "classes": {
+    "org/apache/cloudstack/api/command/user/config/ListCapabilitiesCmd.class": {
+      "sha256": "5a4ad498227302d254101047c3ed7bd52fae73be9d2c2703ec2114e394a0d5a5",
+      "major": 55
+    },
+    "org/apache/cloudstack/api/response/CapabilitiesResponse.class": {
+      "sha256": "2fa6b5d4bfa90555039a21785f853e0ca97aeeef87cd01aeb3cb950406a7a973",
+      "major": 55
+    },
+    "org/apache/cloudstack/api/response/KMSProviderResponse.class": {
+      "sha256": "21ef6df41c82f01ecae1c599f849522208d52a7d2cf09bb3e30c2d3844c8b610",
+      "major": 55
+    },
+    "com/cloud/api/ApiServlet.class": {
+      "sha256": "dd6432be19e52abae5273e7876dd0d522d866522d9a8f3cf315f9ae3b099c68b",
+      "major": 55
+    },
+    "com/cloud/api/ApiServlet$2.class": {
+      "sha256": "d8554bfe7bab4ad2ee54bd4280b6d888a107351b1a406ba778979fe336f5bd2a",
+      "major": 55
+    },
+    "com/cloud/api/ApiServlet$1.class": {
+      "sha256": "9c6f1cee408936fa4e98af20adabfc010d1ea71c1ce815a7b4ba3bff67da453d",
+      "major": 55
+    },
+    "com/cloud/api/ApiSensitiveParamUtils.class": {
+      "sha256": "45334126422059ea5a969b3e9e911371ae1a1405f11aabdbea75404b66b17206",
+      "major": 55
+    }
+  },
+  "patch_sha256": "ea84d87b610be1cf781f3f8f71fad9c9d381bb6e25960b913d285ff385a5f8b0",
+  "totals": {
+    "tests": 181,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "org.apache.cloudstack.api.command.user.config.CapabilitiesKMSProvidersTest",
+      "module": "api",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.api.command.user.config.CapabilitiesSnapshotPolicyTest",
+      "module": "api",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplRotationMetadataTest",
+      "module": "server",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyRotationTest",
+      "module": "server",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.api.query.QueryManagerKMSMigrationPermissionTest",
+      "module": "server",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.api.ApiSensitiveParamUtilsTest",
+      "module": "server",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplAccessTest",
+      "module": "server",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.api.ApiServletTest",
+      "module": "server",
+      "tests": 33,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyLifecycleTest",
+      "module": "server",
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplRetryTest",
+      "module": "server",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyCreationTest",
+      "module": "server",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplHSMTest",
+      "module": "server",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplMigrationTest",
+      "module": "server",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.provider.DatabaseKMSProviderTest",
+      "module": "plugins/kms/database",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.provider.pkcs11.PKCS11HSMProviderTest",
+      "module": "plugins/kms/pkcs11",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

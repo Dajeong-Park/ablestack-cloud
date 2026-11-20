@@ -62,6 +62,21 @@ describe('ResourceView resource navigation', () => {
     expect(router.currentRoute.value.path).toBe('/affinitygroup/group')
     expect(router.currentRoute.value.query).toEqual({ keyword: 'kept', tab: 'instances' })
   })
+  it('keeps the KMS return entry when tab navigation goes through the router', () => {
+    const kmsReturn = { kind: 'kmskey', query: { page: '2' } }
+    const vm = {
+      $route: { path: '/kmskey/key', params: { id: 'key' }, meta: { name: 'kmskey' }, query: { projectid: 'project' } },
+      $router: { push: jest.fn(), options: { history: { state: { kmsReturn } } } },
+      $emit: jest.fn()
+    }
+    ResourceView.methods.onTabChange.call(vm, 'events')
+    expect(vm.$router.push).toHaveBeenCalledWith({
+      path: '/kmskey/key',
+      query: { projectid: 'project', tab: 'events' },
+      state: { kmsReturn }
+    })
+  })
+
   it('affinity tab-only navigation preserves loaded data and selection but owner changes requery', () => {
     const vm = { resetSelection: jest.fn(), clearAutoRefresh: jest.fn(), fetchData: jest.fn(), scheduleAutoRefresh: jest.fn() }
     const from = { path: '/affinitygroup/group', fullPath: '/affinitygroup/group', params: { id: 'group' }, meta: { name: 'affinitygroup' }, query: {} }
@@ -90,9 +105,9 @@ describe('ResourceView resource navigation', () => {
     expect(vm.fetchData).toHaveBeenCalledTimes(refresh ? 1 : 0)
   })
 
-  it('isolates general detail by path and SSH or snapshot detail by verified identity scope', () => {
+  it('isolates general detail by path and KMS, SSH or snapshot detail by verified identity scope', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '../../../../src/views/AutogenView.vue'), 'utf8')
-    expect(source).toMatch(/<resource-view\s+v-else(?:-if="[^"]*")?\s+:key="isSshKeyPairDetail \|\| isSnapshotDetail \|\| isPolicyDetail \? listScope\(\) : \$route.path"/)
+    expect(source).toMatch(/<resource-view\s+v-else(?:-if="[^"]*")?\s+:key="isKmsDetail \|\| isSshKeyPairDetail \|\| isSnapshotDetail \|\| isPolicyDetail \? listScope\(\) : \$route.path"/)
   })
 
   it.each([

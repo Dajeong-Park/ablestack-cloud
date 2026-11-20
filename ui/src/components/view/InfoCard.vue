@@ -18,7 +18,7 @@
   <a-spin :spinning="loading">
     <a-card
       class="spin-content"
-      :class="{ 'template-info-card': $route.meta.name === 'template' }"
+      :class="{ 'template-info-card': $route.meta.name === 'template' || kmsDetailRoute($route), 'kms-info-card': kmsDetailRoute($route) }"
       :bordered="bordered"
       :title="title"
       @contextmenu="handleContextMenu">
@@ -102,7 +102,7 @@
                     {{ resource.scope }}
                   </a-tag>
                   <a-tag v-if="resource.version">
-                    {{ resource.version }}
+                    {{ $route.meta.name === 'kmskey' ? $t('label.kms.current.version', { version: resource.version }) : resource.version }}
                   </a-tag>
                   <a-tag v-if="resource.internetprotocol && ['IPv6', 'DualStack'].includes(resource.internetprotocol)">
                     {{ resource.internetprotocol ? $t('label.ip.v4.v6') : resource.internetprotocol }}
@@ -127,7 +127,13 @@
 
             <a-divider/>
 
-            <div class="resource-detail-item" v-if="(resource.state || resource.status || (['template', 'iso', 'publicip', 'kubernetesiso'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
+            <div v-if="kmsDetailRoute($route) && typeof resource.enabled === 'boolean'" class="resource-detail-item">
+              <div class="resource-detail-item__label">{{ $t('label.status') }}</div>
+              <div class="resource-detail-item__details">
+                <status :text="String(resource.enabled)" :display-label="$t(resource.enabled ? 'label.enabled' : 'label.disabled')" display-text />
+              </div>
+            </div>
+            <div class="resource-detail-item" v-else-if="(resource.state || resource.status || (['template', 'iso', 'publicip', 'kubernetesiso'].includes($route.meta.name) && resource.id)) && !['zone', 'keypair'].includes($route.meta.name)">
           <div class="resource-detail-item__label">{{ $t($route.meta.name === 'kubernetesiso' ? 'label.kubernetes.iso.version.state' : 'label.status') }}</div>
           <div class="resource-detail-item__details">
             <kubernetes-iso-status v-if="$route.meta.name === 'kubernetesiso'" :resource="resource" mode="version" />
@@ -1167,6 +1173,8 @@
 </template>
 
 <script>
+import { kmsRelations, kmsRelatedFilter } from '@/utils/kmsRelated'
+import { kmsDetailRoute } from '@/utils/kmsNavigation'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { vmNetworkAccessMixin } from '@/utils/vmNetworkAccess'
@@ -1437,6 +1445,7 @@ export default {
     }
   },
   methods: {
+    kmsDetailRoute,
     publicIpFieldLabel,
     getImage (image) {
       return image || this.resource?.icon?.base64image || this.resource?.resourceIcon?.base64image || null
@@ -1646,6 +1655,8 @@ export default {
       return ['Admin'].includes(this.$store.getters.userInfo.roletype)
     },
     getRouterQuery (item) {
+      const kind = this.$route.meta?.name
+      if (kmsRelations[kind]?.filter === item.param) return kmsRelatedFilter(kind, this.resource, this.$store.getters)
       if (item.param === 'networkofferingid' && item.name === 'guestnetwork') return offeringNetworkQuery(this.resource, this.$route, this.$store.getters)
       const query = {}
       if (item.value) {
@@ -1696,6 +1707,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.kms-info-card .name { overflow-wrap: anywhere; }
+.kms-info-card .resource-detail-item__details a { color: var(--ui-link); }
 .template-info-card .card-content { min-width: 0; }
 .template-info-card .resource-details__name > div:last-child { min-width: 0; }
 .template-info-card .resource-detail-item__details { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }

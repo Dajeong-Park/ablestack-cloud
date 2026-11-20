@@ -1,0 +1,118 @@
+{
+  "source_commit": "9a61267c6a8b9611a6c21321d4c265f467c16d5e",
+  "working_tree_diff_sha256": "4b02c3f109463dcde3459fcd7b1c727f7278961a551e9d276b9dbd6d67c160b3",
+  "totals": {
+    "tests": 119,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplRotationMetadataTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyRotationTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.cloud.api.query.QueryManagerKMSMigrationPermissionTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplAccessTest",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyLifecycleTest",
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplRetryTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplKeyCreationTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplHSMTest",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "org.apache.cloudstack.kms.KMSManagerImplMigrationTest",
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "classes": {
+    "org/apache/cloudstack/api/command/admin/kms/MigrateVolumesToKMSCmd.class": {
+      "sha256": "40af1bd8a1e24c516f0868fb79b2202810e1d358fc8a7646d32a4f6f5287c731",
+      "major": 55
+    },
+    "org/apache/cloudstack/api/command/user/volume/ListVolumesCmd.class": {
+      "sha256": "28538c5ea464901eccaae43c391fc5a4a4672d46a274359089e96cdfe53a55b9",
+      "major": 55
+    },
+    "org/apache/cloudstack/api/response/VolumeResponse.class": {
+      "sha256": "213b1949fc4f090722be4190dbd62ac97e13f73aaf973e269892438e9c5609e9",
+      "major": 55
+    },
+    "org/apache/cloudstack/api/response/KMSMigrationResponse.class": {
+      "sha256": "b9f3b7d4fe8b0f606dc6408bf48e4402e174e3e4d3e8f6f300f3e24832749889",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManager.class": {
+      "sha256": "2df51a7ca7cd843487b3db86df2c91dcd80210f120e13244c05cc60c98733e97",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManagerImpl$KmsOperation.class": {
+      "sha256": "520e2751f3aaa2c6b3326c494afbfe5bac28ee287615bb7f4fa304483f0b1ae9",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManagerImpl.class": {
+      "sha256": "36e1baa8bc4985dcf916c4238997e86506d09de177eeeecb61ca63583edcec0c",
+      "major": 55
+    },
+    "org/apache/cloudstack/kms/KMSManagerImpl$1.class": {
+      "sha256": "085fa0d88a23976b54913cf5fbea9e90cacac5fb5f0c310cdc71145557bcb24c",
+      "major": 55
+    },
+    "com/cloud/api/query/QueryManagerImpl$1.class": {
+      "sha256": "ec57b93d2dcef73539b362aa178c6be7d548e3ec9d8b2b8126ca02ec40d033f6",
+      "major": 55
+    },
+    "com/cloud/api/query/QueryManagerImpl.class": {
+      "sha256": "1b38c06d5c57615e9a5d1b0b28d2d356c75e9ea9fdf998d3831f190bfdf727e6",
+      "major": 55
+    }
+  },
+  "patch_sha256": "b8ab6ea26804dc4a47158ccd1991ae8786a80c07494e8efa2dd6f42d2155b575"
+}

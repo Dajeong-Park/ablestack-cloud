@@ -1,0 +1,38 @@
+{
+  "base": "ebce1bfb72a22e2f0d6a21e6b553b152240f07a1",
+  "implementation": "fb9f33fbb2c0e0b73bc4092df9d9cd30a146af37",
+  "tests": 87,
+  "suites": 5,
+  "modified_ui_eslint_errors": 0,
+  "runtime": {
+    "exit_code": 0,
+    "stdout": "active\n57db6a6337f225917f0b5e53a1a1381a1a2291263f1f18a4ad74d48c8083170b  /usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar\n72d2ef30f82c33098b5426fcf4c6ee7a51d25537ce56ed7f1685d4e7cda90cbd  /usr/share/cloudstack-management/webapp/index.html\n{\"profiles\":0,\"keys\":0,\"projects\":0,\"accounts\":0,\"original_disabled_profile\":1}\n",
+    "stderr": ""
+  },
+  "deployment": {
+    "files": 696,
+    "changed_existing": 4,
+    "added_files": 13,
+    "config_preserved": true
+  },
+  "ui_index_sha256": "72d2ef30f82c33098b5426fcf4c6ee7a51d25537ce56ed7f1685d4e7cda90cbd",
+  "ui_archive_sha256": "17c8c3c515efc803fd104be3a14ccc2adba1c3dd8c419db3951a31e3c84a0796",
+  "final_checks": {
+    "baselineHsm": true,
+    "zeroEnabled": true,
+    "metadata": true,
+    "zeroKeys": true
+  },
+  "source": {
+    "ui/public/locales/en.json": "623f7c1e1b2abbf2c1c3bc53fa57481938080cbf98f25bb33d911c7a87400751",
+    "ui/public/locales/ko_KR.json": "c156d3ca2302bd88e59974a3801e745ca7f0d0b788181afb3b4b50207dc45022",
+    "ui/src/components/view/DetailsTab.vue": "c8d669b259eeaad7bdcbc1788f3af7c1196b7b39462c3d45028b13a1f71cb75f",
+    "ui/src/components/view/InfoCard.vue": "9cc141ee75e36191b66b05da613836c6be2721f909b032572cf2266abe2e703c",
+    "ui/src/components/view/SearchFilter.vue": "b21a7a037069ec3b680cee809bcbedce97dbcb4e815514761dcc5bcd24f31ee9",
+    "ui/src/components/view/SearchView.vue": "9f2b17165f0e751fb93daaa225b55252c8e0507d7bb33ba614e81f2db79a421f",
+    "ui/src/config/section/kms.js": "c1bd786b69dd851917798c6460febd318d7aadc63d24377ebc5b027a979bb366",
+    "ui/src/utils/kmsSearch.js": "b6ce681553084038f6edbf1a6af064fdfc479263631cdaa5ec3989a01d2f9fd7",
+    "ui/src/views/AutogenView.vue": "a82dfac2a460da90ac699d1b4ab1a5ef5b8bc91b3e8ba435297c821496ce01a4",
+    "ui/tests/unit/utils/kmsSearch.spec.js": "396a18cfb7a4f4312e9b214ec7f10226b0b658aade9c9e8c1a9224f3136569ce"
+  }
+}

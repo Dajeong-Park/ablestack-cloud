@@ -52,6 +52,8 @@ import com.cloud.utils.db.TransactionCallback;
 import com.cloud.utils.db.TransactionCallbackWithException;
 import com.cloud.utils.exception.CloudRuntimeException;
 import org.apache.cloudstack.api.ApiCommandResourceType;
+import org.apache.cloudstack.api.ApiConstants;
+import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.command.admin.kms.MigrateVolumesToKMSCmd;
 import org.apache.cloudstack.api.command.user.kms.CreateKMSKeyCmd;
 import org.apache.cloudstack.api.command.user.kms.DeleteKMSKeyCmd;
@@ -522,7 +524,11 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
         List<KMSKeyResponse> responses = new ArrayList<>();
         for (KMSKey key : keys) {
-            responses.add(createKMSKeyResponse(key));
+            KMSKeyResponse response = createKMSKeyResponse(key);
+            if (cmd.getId() != null) {
+                populateKeyUsage(response, key, caller, cmd);
+            }
+            responses.add(response);
         }
 
         ListResponse<KMSKeyResponse> listResponse = new ListResponse<>();
@@ -701,17 +707,12 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             throw new InvalidParameterValueException("KMS key is not enabled: " + kmsKey);
         }
 
-        HSMProfileVO profile = null;
-        if (hsmProfileId != null) {
-            profile = hsmProfileDao.findById(hsmProfileId);
-            if (profile == null) {
-                throw new InvalidParameterValueException("Target HSM Profile not found: " + hsmProfileId);
-            }
-            checkHSMProfileAccess(caller, profile, false);
-            validateProfileScopeForOwner(profile, kmsKey.getAccountId(), kmsKey.getDomainId());
-            if (!profile.isEnabled()) {
-                throw new InvalidParameterValueException("HSM profile is not enabled: " + profile.getName());
-            }
+        Long targetProfileId = hsmProfileId != null ? hsmProfileId : kmsKey.getHsmProfileId();
+        HSMProfileVO profile = getHSMProfile(targetProfileId);
+        checkHSMProfileAccess(caller, profile, false);
+        validateProfileScopeForOwner(profile, kmsKey.getAccountId(), kmsKey.getDomainId());
+        if (!profile.isEnabled()) {
+            throw new InvalidParameterValueException("HSM profile is not enabled: " + profile.getName());
         }
 
         int newKeyBits = keyBits != null ? keyBits : kmsKey.getKeyBits();
@@ -737,12 +738,18 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
     String rotateKek(KMSKeyVO kmsKey, String oldKekLabel, String newKekLabel, int keyBits,
                      HSMProfileVO newHSMProfile) throws KMSException {
+        if (keyBits != 128 && keyBits != 192 && keyBits != 256) {
+            throw KMSException.invalidParameter("Key size must be 128, 192, or 256 bits");
+        }
         if (StringUtils.isEmpty(oldKekLabel)) {
             throw KMSException.invalidParameter("oldKekLabel must be specified");
         }
 
         if (newHSMProfile == null) {
             newHSMProfile = hsmProfileDao.findById(kmsKey.getHsmProfileId());
+        }
+        if (newHSMProfile == null || !newHSMProfile.isEnabled()) {
+            throw KMSException.invalidParameter("An enabled HSM profile is required for KEK rotation");
         }
 
         KMSProvider provider = getKMSProvider(newHSMProfile.getProtocol());
@@ -762,11 +769,16 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             String finalNewKekLabel = newKekLabel;
             Long newProfileId = newHSMProfile.getId();
             final HSMProfileVO finalHSMProfile = newHSMProfile;
+            final Integer oldKeyBits = kmsKey.getKeyBits();
+            final Long oldProfileId = kmsKey.getHsmProfileId();
+            final String previousKekLabel = kmsKey.getKekLabel();
+            KMSKekVersionVO previousActive = kmsKekVersionDao.getActiveVersion(kmsKey.getId());
+            KMSKekVersionVO.Status previousActiveStatus = previousActive == null ? null : previousActive.getStatus();
             String newKekId = retryOperation(
                     () -> provider.createKek(kmsKey.getPurpose(), finalNewKekLabel, keyBits, newProfileId));
-
+            KMSKekVersionVO newVersion;
             try {
-                KMSKekVersionVO newVersion = Transaction
+                newVersion = Transaction
                         .execute((TransactionCallbackWithException<KMSKekVersionVO, KMSException>) status -> {
                             newVersionEntity.setKmsKeyId(kmsKey.getId());
                             newVersionEntity.setHsmProfileId(newProfileId);
@@ -778,16 +790,20 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                                 logger.info("Updated KMS key {} to use HSM profile {}", kmsKey, finalHSMProfile);
                             }
                             kmsKey.setKekLabel(finalNewKekLabel);
-                            kmsKeyDao.update(kmsKey.getId(), kmsKey);
+                            kmsKey.setKeyBits(keyBits);
+                            if (!kmsKeyDao.update(kmsKey.getId(), kmsKey)) {
+                                throw KMSException.kekOperationFailed("Failed to save rotated KMS key metadata", null);
+                            }
                             return version;
                         });
-
-                logger.info("KEK rotation: KMS key {} now has {} versions (active: v{}, previous: v{})",
-                        kmsKey, newVersion.getVersionNumber(), newVersion.getVersionNumber(),
-                        newVersion.getVersionNumber() - 1);
-
-                return newKekId;
-            } catch (KMSException e) {
+            } catch (Exception e) {
+                // The transaction rolls back persisted rows; also restore the caller's detached entity.
+                kmsKey.setKeyBits(oldKeyBits);
+                kmsKey.setHsmProfileId(oldProfileId);
+                kmsKey.setKekLabel(previousKekLabel);
+                if (previousActive != null) {
+                    previousActive.setStatus(previousActiveStatus);
+                }
                 logger.error(
                         "Database update failed during KEK rotation for kmsKey {}. Attempting to delete orphaned KEK "
                                 + "{} from provider {}",
@@ -805,6 +821,11 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                 throw e;
             }
 
+            logger.info("KEK rotation: KMS key {} now has {} versions (active: v{}, previous: v{})",
+                    kmsKey, newVersion.getVersionNumber(), newVersion.getVersionNumber(),
+                    newVersion.getVersionNumber() - 1);
+            return newKekId;
+
         } catch (Exception e) {
             logger.error("KEK rotation failed for kmsKey {}: {}", kmsKey, e.getMessage());
             throw handleKmsException(e);
@@ -819,16 +840,29 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                 .orElse(0) + 1;
 
         KMSKekVersionVO currentActive = kmsKekVersionDao.getActiveVersion(newVersion.getKmsKeyId());
-        if (currentActive != null) {
-            currentActive.setStatus(KMSKekVersionVO.Status.Previous);
-            kmsKekVersionDao.update(currentActive.getId(), currentActive);
-        }
+        KMSKekVersionVO.Status previousStatus = currentActive == null ? null : currentActive.getStatus();
+        try {
+            if (currentActive != null) {
+                currentActive.setStatus(KMSKekVersionVO.Status.Previous);
+                if (!kmsKekVersionDao.update(currentActive.getId(), currentActive)) {
+                    throw KMSException.kekOperationFailed("Failed to update previous KEK version", null);
+                }
+            }
 
-        newVersion.setVersionNumber(nextVersion);
-        newVersion.setStatus(KMSKekVersionVO.Status.Active);
-        newVersion = kmsKekVersionDao.persist(newVersion);
-        logger.info("Created KEK version {} for KMS key {}", nextVersion, newVersion.getKmsKeyId());
-        return newVersion;
+            newVersion.setVersionNumber(nextVersion);
+            newVersion.setStatus(KMSKekVersionVO.Status.Active);
+            newVersion = kmsKekVersionDao.persist(newVersion);
+            if (newVersion == null) {
+                throw KMSException.kekOperationFailed("Failed to persist new KEK version", null);
+            }
+            logger.info("Created KEK version {} for KMS key {}", nextVersion, newVersion.getKmsKeyId());
+            return newVersion;
+        } catch (RuntimeException e) {
+            if (currentActive != null) {
+                currentActive.setStatus(previousStatus);
+            }
+            throw e;
+        }
     }
 
     @Override
@@ -856,7 +890,7 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             throw new InvalidParameterValueException("kmsKeyId must be specified");
         }
 
-        KMSKeyVO kmsKey = findKMSKeyAndCheckAccess(kmsKeyId, caller);
+        KMSKeyVO kmsKey = (KMSKeyVO) getVolumeMigrationTarget(kmsKeyId);
 
         if (!kmsKey.isEnabled()) {
             throw new InvalidParameterValueException("KMS key is not enabled: " + kmsKey.getUuid());
@@ -882,6 +916,9 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
         Long accountId = null;
         if (accountName != null) {
             accountId = accountManager.finalizeAccountId(accountName, domainId, null, true);
+            if (!Objects.equals(accountId, kmsKey.getAccountId())) {
+                throw new InvalidParameterValueException("Requested account must match the target KMS key");
+            }
         }
 
         int successCount = 0;
@@ -891,10 +928,17 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
         List<VolumeVO> volumes;
         volumes = volumeDao.listByIds(volumeIds);
+        if (volumes.size() != volumeIds.stream().distinct().count()) {
+            throw new InvalidParameterValueException("One or more selected volumes no longer exist");
+        }
         accountManager.checkAccess(caller, null, true, volumes.toArray(new Volume[0]));
 
         List<String> mismatchedVolumeUuids = new ArrayList<>();
         for (VolumeVO volume : volumes) {
+            String reason = migrationReason(volume, kmsKey);
+            if (!"ELIGIBLE_LEGACY".equals(reason) && !isAlreadyOnTarget(volume, kmsKey)) {
+                throw new InvalidParameterValueException("Volume " + volume.getUuid() + " cannot migrate: " + reason);
+            }
             if (volume.getAccountId() != kmsKey.getAccountId()) {
                 mismatchedVolumeUuids.add(volume.getUuid());
             }
@@ -920,14 +964,95 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             }
         }
 
-        String details = String.format("Migrated %d volumes to KMS key: %s (uuid: %s). Success: %d, Failures: %d",
-                successCount + failureCount, kmsKey.getName(), kmsKey.getUuid(), successCount, failureCount);
+        String details = String.format("KMS key %s (uuid: %s). Requested: %d, Migrated: %d, Skipped: %d, Failures: %d",
+                kmsKey.getName(), kmsKey.getUuid(), volumes.size(), successCount,
+                volumes.size() - successCount - failureCount, failureCount);
         logger.info(details);
         CallContext.current().setEventDetails(details);
         if (failureCount > 0) {
             throw KMSException.wrapUnwrapFailed(details, null);
         }
         return successCount;
+    }
+
+    @Override
+    public KMSKey getVolumeMigrationTarget(Long keyId) {
+        Account caller = CallContext.current().getCallingAccount();
+        if (!accountManager.isRootAdmin(caller.getId())) {
+            throw new PermissionDeniedException("Only root administrators may inspect migration candidates");
+        }
+        accountManager.checkApiAccessForUser(CallContext.current().getCallingUser(), "migrateVolumesToKMS", null);
+        KMSKeyVO key = findKMSKeyAndCheckAccess(keyId, caller);
+        if (key.getRemoved() != null || !key.isEnabled() || key.getZoneId() == null
+                || key.getPurpose() != KeyPurpose.VOLUME_ENCRYPTION) {
+            throw new InvalidParameterValueException("Target key must be enabled, zone-scoped and for volume encryption");
+        }
+        if (key.getHsmProfileId() != null) {
+            HSMProfileVO profile = getHSMProfile(key.getHsmProfileId());
+            if (!profile.isEnabled()) {
+                throw new InvalidParameterValueException("Target HSM profile is disabled");
+            }
+        }
+        getActiveKekVersion(keyId);
+        return key;
+    }
+
+    @Override
+    public List<Long> listVolumeMigrationEligibleIds(KMSKey key) {
+        // Project resources are owned by the project's account. Never widen this to the caller's account.
+        SearchBuilder<VolumeVO> sb = volumeDao.createSearchBuilder();
+        sb.select(null, SearchCriteria.Func.DISTINCT, sb.entity().getId());
+        sb.and("account", sb.entity().getAccountId(), SearchCriteria.Op.EQ);
+        sb.and("zone", sb.entity().getDataCenterId(), SearchCriteria.Op.EQ);
+        sb.and("encrypted", sb.entity().getEncryptFormat(), SearchCriteria.Op.NNULL);
+        sb.and("key", sb.entity().getKmsKeyId(), SearchCriteria.Op.NULL);
+        sb.and("wrapped", sb.entity().getKmsWrappedKeyId(), SearchCriteria.Op.NULL);
+        sb.and("state", sb.entity().getState(), SearchCriteria.Op.EQ);
+        SearchBuilder<PassphraseVO> legacy = passphraseDao.createSearchBuilder();
+        sb.join("legacy", legacy, sb.entity().getPassphraseId(), legacy.entity().getId(),
+                com.cloud.utils.db.JoinBuilder.JoinType.INNER);
+        SearchCriteria<VolumeVO> sc = sb.create();
+        sc.setParameters("account", key.getAccountId());
+        sc.setParameters("zone", key.getZoneId());
+        sc.setParameters("state", Volume.State.Ready);
+        return volumeDao.search(sc, null).stream().map(VolumeVO::getId).collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public String getVolumeMigrationReason(Long volumeId, KMSKey key) {
+        VolumeVO volume = volumeDao.findById(volumeId);
+        if (volume != null) {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, false, volume);
+        }
+        return migrationReason(volume, key);
+    }
+
+    private boolean isAlreadyOnTarget(VolumeVO volume, KMSKey key) {
+        return volume.getRemoved() == null && volume.getAccountId() == key.getAccountId()
+                && Objects.equals(volume.getDataCenterId(), key.getZoneId())
+                && Objects.equals(volume.getKmsKeyId(), key.getId()) && volume.getKmsWrappedKeyId() != null;
+    }
+
+    String migrationReason(VolumeVO volume, KMSKey key) {
+        if (volume == null || volume.getRemoved() != null) {
+            return "NOT_FOUND";
+        }
+        if (volume.getAccountId() != key.getAccountId() || !Objects.equals(volume.getDataCenterId(), key.getZoneId())) {
+            return "SCOPE_MISMATCH";
+        }
+        if (volume.getKmsKeyId() != null || volume.getKmsWrappedKeyId() != null) {
+            return "ALREADY_KMS";
+        }
+        if (volume.getEncryptFormat() == null) {
+            return "NOT_ENCRYPTED";
+        }
+        if (volume.getState() != Volume.State.Ready) {
+            return "UNSUPPORTED_STATE";
+        }
+        if (volume.getPassphraseId() == null || passphraseDao.findById(volume.getPassphraseId()) == null) {
+            return "LEGACY_KEY_UNAVAILABLE";
+        }
+        return "ELIGIBLE_LEGACY";
     }
 
     boolean migrateVolumeToKmsKey(KMSProvider provider, VolumeVO requestedVolume, KMSKey kmsKey,
@@ -942,8 +1067,13 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                     || !Objects.equals(volume.getDataCenterId(), kmsKey.getZoneId())) {
                 throw new InvalidParameterValueException("Volume and KMS key must belong to the same account and zone");
             }
-            if (volume.getKmsWrappedKeyId() != null || volume.getPassphraseId() == null) {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, volume);
+            if (isAlreadyOnTarget(volume, kmsKey)) {
                 return false;
+            }
+            String reason = migrationReason(volume, kmsKey);
+            if (!"ELIGIBLE_LEGACY".equals(reason)) {
+                throw new InvalidParameterValueException("Volume cannot migrate: " + reason);
             }
             PassphraseVO passphrase = passphraseDao.findById(volume.getPassphraseId());
             if (passphrase == null) {
@@ -1173,7 +1303,11 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             // If the profile is owned by the user, they should see full details even if it
             // is a system profile
             boolean limited = profile.getIsPublic() && !isRootAdmin && profile.getAccountId() != caller.getId();
-            responses.add(createHSMProfileResponse(profile, limited));
+            HSMProfileResponse response = createHSMProfileResponse(profile, limited, isRootAdmin);
+            if (cmd.getId() != null) {
+                populateProfileUsage(response, profile, isRootAdmin && !limited, cmd);
+            }
+            responses.add(response);
         }
 
         ListResponse<HSMProfileResponse> listResponse = new ListResponse<>();
@@ -1332,8 +1466,7 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
         Account caller = CallContext.current().getCallingAccount();
         checkHSMProfileAccess(caller, profile, true);
 
-        if (profile.getProtocol().equals(DATABASE_PROVIDER_NAME)
-                && profile.getAccountId() == Account.ACCOUNT_ID_SYSTEM) {
+        if (isSystemDatabaseProfile(profile)) {
             throw new InvalidParameterValueException("Default database HSM profile cannot be deleted");
         }
 
@@ -1344,21 +1477,12 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                             "Please delete or reassign those keys first.", profile.getName(), keyCount));
         }
 
-        // Check if any KEK versions reference this HSM profile
-        List<KMSKekVersionVO> kekVersions = kmsKekVersionDao.listByHsmProfileId(profile.getId());
-        if (!kekVersions.isEmpty()) {
-            // Check if any wrapped keys are using these KEK versions
-            long wrappedKeyCount = 0;
-            for (KMSKekVersionVO kekVersion : kekVersions) {
-                wrappedKeyCount += kmsWrappedKeyDao.countByKekVersionId(kekVersion.getId());
-            }
-            if (wrappedKeyCount > 0) {
-                throw new InvalidParameterValueException(
-                        String.format("Cannot delete HSM profile '%s': it is referenced by %d wrapped key(s) " +
-                                        "through KEK versions. Please wait for key rotation to complete or delete those"
-                                        + " volumes first.",
-                                profile.getName(), wrappedKeyCount));
-            }
+        long wrappedKeyCount = kmsWrappedKeyDao.countByHsmProfileId(profile.getId());
+        if (wrappedKeyCount > 0) {
+            throw new InvalidParameterValueException(
+                    String.format("Cannot delete HSM profile '%s': it is referenced by %d wrapped key(s) "
+                                    + "through KEK versions. Please wait for key rotation to complete or delete those volumes first.",
+                            profile.getName(), wrappedKeyCount));
         }
 
         getKMSProvider(profile.getProtocol()).invalidateProfileCache(profile.getId());
@@ -1396,15 +1520,47 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
     @Override
     public HSMProfileResponse createHSMProfileResponse(HSMProfile profile) {
-        return createHSMProfileResponse(profile, false);
+        return createHSMProfileResponse(profile, false, false);
     }
 
-    private HSMProfileResponse createHSMProfileResponse(HSMProfile profile, boolean limited) {
+    void populateKeyUsage(KMSKeyResponse response, KMSKey key, Account caller, BaseCmd cmd) {
+        if ((accountManager.isRootAdmin(caller.getId()) || caller.getId() == key.getAccountId())
+                && canReadUsage(cmd, "listVolumes")) {
+            response.setUsage(volumeDao.countWithKmsKey(key.getId()), kmsWrappedKeyDao.countByKmsKeyId(key.getId()));
+        }
+    }
+
+    void populateProfileUsage(HSMProfileResponse response, HSMProfile profile, boolean unrestrictedAdmin, BaseCmd cmd) {
+        // Public and shared profiles can hold references owned by other accounts.
+        if (unrestrictedAdmin && canReadUsage(cmd, "listKMSKeys")) {
+            response.setUsage(kmsKeyDao.countByHsmProfileId(profile.getId()), kmsWrappedKeyDao.countByHsmProfileId(profile.getId()));
+        }
+    }
+
+    private boolean canReadUsage(BaseCmd cmd, String relatedApi) {
+        String apiKey = cmd.getFullUrlParams() == null ? null : cmd.getFullUrlParams().get(ApiConstants.API_KEY);
+        try {
+            accountManager.checkApiAccessForUser(CallContext.current().getCallingUser(), relatedApi, apiKey);
+            return true;
+        } catch (PermissionDeniedException ignored) {
+            return false;
+        }
+    }
+
+    private boolean isSystemDatabaseProfile(HSMProfile profile) {
+        return DATABASE_PROVIDER_NAME.equals(profile.getProtocol()) && profile.getAccountId() == Account.ACCOUNT_ID_SYSTEM;
+    }
+
+    private HSMProfileResponse createHSMProfileResponse(HSMProfile profile, boolean limited, boolean adminView) {
         HSMProfileResponse response = new HSMProfileResponse();
         response.setId(profile.getUuid());
         response.setName(profile.getName());
         response.setVendorName(profile.getVendorName());
         response.setIsPublic(profile.getIsPublic());
+        if (adminView) {
+            boolean protectedProfile = isSystemDatabaseProfile(profile);
+            response.setDeleteProtection(protectedProfile, protectedProfile ? "SYSTEM_DATABASE_PROFILE" : null);
+        }
 
         if (profile.getZoneId() != null) {
             DataCenterVO zone = dataCenterDao.findById(profile.getZoneId());
