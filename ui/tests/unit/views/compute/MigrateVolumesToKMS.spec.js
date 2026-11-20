@@ -25,12 +25,13 @@ const target = { id: 'key', name: 'K', accountid: 'owner', account: 'A', domaini
 const volume = { id: 'v1', name: 'V', kmsmigrationeligible: true, kmsmigrationreason: 'ELIGIBLE_LEGACY' }
 const response = rows => ({ listvolumesresponse: { count: rows.length, volume: rows } })
 function model () {
-  const apis = { listVolumes: { params: ['kmsmigrationkeyid', 'kmsmigrationeligible'].map(name => ({ name })) }, listKMSKeys: {}, migrateVolumesToKMS: {}, queryAsyncJobResult: {} }
+  const apis = { listVolumes: { params: ['kmsmigrationkeyid', 'kmsmigrationeligible'].map(name => ({ name })) }, listKMSKeys: {}, listHSMProfiles: {}, migrateVolumesToKMS: {}, queryAsyncJobResult: {} }
   const c = { resource: { ...target }, $store: { getters: { apis, userInfo: { id: 'admin', roletype: 'Admin' }, project: {} }, state: { user: { token: 'session' } } }, $route: { path: '/kmskey/key' }, $t: key => key, $emit: jest.fn() }
   Object.assign(c, Migration.data.call(c))
   for (const [key, method] of Object.entries(Migration.methods)) c[key] = method.bind(c)
   for (const [key, getter] of Object.entries(Migration.computed)) Object.defineProperty(c, key, { get: () => getter.call(c) })
   c.originalScope = c.scope()
+  c.candidateState = 'ready'
   return c
 }
 beforeEach(() => { jest.clearAllMocks(); getAPI.mockImplementation(async api => api === 'listKMSKeys' ? { listkmskeysresponse: { count: 1, kmskey: [target] } } : response([volume])) })
@@ -65,12 +66,15 @@ test('page selection retains only seen eligible UUIDs', () => {
 test('pagination and search stay on server', async () => {
   const c = model(); c.page = 3; c.keyword = 'disk'; c.filter = 'ineligible'
   await c.load()
-  expect(getAPI).toHaveBeenLastCalledWith('listVolumes', expect.objectContaining({ page: 3, pagesize: 10, keyword: 'disk', kmsmigrationeligible: false }), expect.any(Object))
+  expect(getAPI).toHaveBeenCalledWith('listVolumes', expect.objectContaining({ page: 3, pagesize: 10, keyword: 'disk', kmsmigrationeligible: false }), expect.any(Object))
+  expect(getAPI).toHaveBeenCalledWith('listVolumes', expect.objectContaining({ page: 1, pagesize: 1, kmsmigrationeligible: true }), expect.any(Object))
 })
 test('delayed old page cannot replace newer page', async () => {
-  const c = model(); let resolveRequest
-  getAPI.mockImplementation(api => api === 'listKMSKeys' ? Promise.resolve({ listkmskeysresponse: { kmskey: [target] } }) : new Promise(resolve => { resolveRequest = resolve }))
-  const old = c.load(); await Promise.resolve(); await Promise.resolve()
+  const c = model(); let resolveRequest, startRequest
+  c.filter = 'eligible'
+  const started = new Promise(resolve => { startRequest = resolve })
+  getAPI.mockImplementation(api => api === 'listKMSKeys' ? Promise.resolve({ listkmskeysresponse: { kmskey: [target] } }) : new Promise(resolve => { resolveRequest = resolve; startRequest() }))
+  const old = c.load(); await started
   getAPI.mockResolvedValue(response([{ ...volume, id: 'new' }]))
   c.targetCheck = jest.fn()
   await c.load()

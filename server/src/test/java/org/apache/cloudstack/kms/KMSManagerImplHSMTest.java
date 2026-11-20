@@ -220,6 +220,30 @@ public class KMSManagerImplHSMTest {
         }
     }
 
+    @Test
+    public void testDeleteProtectionExposedOnlyForAdministratorListView() {
+        HSMProfileVO profile = mock(HSMProfileVO.class);
+        when(profile.getName()).thenReturn("HSM Database Provider");
+        when(profile.getProtocol()).thenReturn("database");
+        when(profile.getAccountId()).thenReturn(Account.ACCOUNT_ID_SYSTEM);
+        when(hsmProfileDetailsDao.listByProfileId(profile.getId())).thenReturn(Collections.emptyList());
+
+        try (MockedStatic<ApiResponseHelper> ignored = Mockito.mockStatic(ApiResponseHelper.class)) {
+            HSMProfileResponse admin = ReflectionTestUtils.invokeMethod(kmsManager, "createHSMProfileResponse", profile, false, true);
+            assertEquals(Boolean.TRUE, ReflectionTestUtils.getField(admin, "deleteProtected"));
+            assertEquals("SYSTEM_DATABASE_PROFILE", ReflectionTestUtils.getField(admin, "deleteReason"));
+
+            HSMProfileResponse restricted = ReflectionTestUtils.invokeMethod(kmsManager, "createHSMProfileResponse", profile, true, false);
+            assertEquals(null, ReflectionTestUtils.getField(restricted, "deleteProtected"));
+            assertEquals(null, ReflectionTestUtils.getField(restricted, "deleteReason"));
+
+            when(profile.getAccountId()).thenReturn(2L);
+            HSMProfileResponse sameName = ReflectionTestUtils.invokeMethod(kmsManager, "createHSMProfileResponse", profile, false, true);
+            assertEquals(Boolean.FALSE, ReflectionTestUtils.getField(sameName, "deleteProtected"));
+            assertEquals(null, ReflectionTestUtils.getField(sameName, "deleteReason"));
+        }
+    }
+
     /**
      * Test: an admin-created (non-system) database profile with no keys can be deleted.
      */

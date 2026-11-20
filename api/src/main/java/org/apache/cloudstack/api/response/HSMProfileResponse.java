@@ -94,6 +94,19 @@ public class HSMProfileResponse extends BaseResponse implements ControlledViewEn
     @Param(description = "whether this is a system HSM profile available to all users globally")
     private Boolean isPublic;
 
+    @SerializedName("deleteprotected")
+    @Param(description = "Whether the system HSM policy protects this profile from deletion (administrator view)")
+    private Boolean deleteProtected;
+
+    @SerializedName("deletereason")
+    @Param(description = "Machine-readable reason for system HSM deletion protection")
+    private String deleteReason;
+
+    public void setDeleteProtection(boolean protectedProfile, String reason) {
+        deleteProtected = protectedProfile;
+        deleteReason = reason;
+    }
+
     @SerializedName(ApiConstants.CREATED)
     @Param(description = "the date the HSM profile was created")
     private Date created;

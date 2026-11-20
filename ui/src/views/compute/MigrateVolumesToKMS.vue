@@ -18,6 +18,7 @@ specific language governing permissions and limitations under the License.
     </a-descriptions>
     <a-alert type="info" show-icon :message="$t('message.kms.migration.scope')" />
     <a-alert v-if="error" type="error" show-icon :message="error" role="alert" />
+    <KmsAvailabilityNotice v-if="!started && availability" :reason="availability" :loading="loading" hsm-help refreshable @refresh="load" />
     <div class="mold-dialog-toolbar kms-migration-toolbar">
       <strong>{{ $t('label.kms.migration.volumes') }}</strong>
       <span role="status">{{ $t('label.total') }} {{ total }} · {{ $t('label.selected') }} {{ selected.length }}</span>
@@ -28,7 +29,9 @@ specific language governing permissions and limitations under the License.
         <a-select-option value="eligible">{{ $t('label.kms.migration.eligible') }}</a-select-option>
         <a-select-option value="ineligible">{{ $t('label.kms.migration.ineligible') }}</a-select-option>
       </a-select>
-      <a-button :disabled="busy || started" @click="load">{{ $t('label.refresh') }}</a-button>
+      <a-button v-if="!availability" :loading="loading" :disabled="loading || busy || started" @click="load">
+        <template #icon><reload-outlined /></template>{{ $t('label.refresh') }}
+      </a-button>
     </div>
     <a-table
 :columns="columns"
@@ -62,20 +65,33 @@ size="small"
 </template>
 <script>
 import MoldDialog from '@/components/view/MoldDialog'
+import KmsAvailabilityNotice from '@/components/view/KmsAvailabilityNotice'
+import { kmsAuth, kmsLookup } from '@/utils/kmsSearch'
+import { actionAvailability, kmsAvailabilityFailure } from '@/utils/kmsAvailability'
 import { getAPI, postAPI } from '@/api'
 import { migrationIdentity, migrationParams, migrationList, migrationSupported, migrationPreflight, migrationOutcome } from '@/utils/kmsVolumeMigration'
 
 export default {
   name: 'MigrateVolumesToKMS',
-  components: { MoldDialog },
+  components: { MoldDialog, KmsAvailabilityNotice },
   props: { resource: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
   data () {
-    return { target: Object.freeze({ ...this.resource }), rows: [], selected: [], selectedRows: {}, total: 0, page: 1, keyword: '', filter: 'all', loading: false, busy: false, started: false, error: '', results: [], receipt: null, jobId: null, terminal: 'unknown', disposed: false, generation: 0, originalScope: '' }
+    return { target: Object.freeze({ ...this.resource }), rows: [], selected: [], selectedRows: {}, total: 0, page: 1, keyword: '', filter: 'all', loading: false, busy: false, started: false, error: '', results: [], receipt: null, jobId: null, terminal: 'unknown', disposed: false, generation: 0, originalScope: '', candidateState: 'loading', targetReason: '' }
   },
   computed: {
     valid () { return !this.disposed && this.originalScope === this.scope() && migrationIdentity(this.resource) === migrationIdentity(this.target) && migrationSupported(this.$store.getters.apis) && this.$store.getters.userInfo?.roletype === 'Admin' },
-    canSubmit () { return this.valid && !this.busy && !this.loading && !this.started && !this.error && this.selected.length > 0 },
+    availability () {
+      if (this.targetReason) return this.targetReason
+      const g = this.$store.getters
+      return actionAvailability('migrateVolumesToKMS', {
+        resource: this.target,
+        scope: { current: !this.disposed && this.originalScope === this.scope(), role: g.userInfo?.roletype },
+        apis: g.apis,
+        candidate: this.candidateState
+      })
+    },
+    canSubmit () { return this.valid && !this.availability && !this.busy && !this.loading && !this.started && !this.error && this.selected.length > 0 },
     selection () { return { selectedRowKeys: this.selected, preserveSelectedRowKeys: true, getCheckboxProps: row => ({ disabled: this.busy || this.loading || row.kmsmigrationeligible !== true }), onChange: this.select } },
     columns () { return [['name', 245], ['vmname', 140], ['size', 90], ['encryptformat', 100], ['kmskey', 150], ['state', 100], ['kmsmigrationreason', 190]].map(([key, width]) => ({ key, dataIndex: key, width, title: this.$t({ name: 'label.name', vmname: 'label.vm', size: 'label.size', encryptformat: 'label.encryption', kmskey: 'label.kmskeyid', state: 'label.state', kmsmigrationreason: 'label.kms.migration.reason' }[key]) })) },
     resultColumns () { return ['name', 'id', 'status'].map(key => ({ key, dataIndex: key, title: this.$t(key === 'status' ? 'label.operation.status' : 'label.' + key) })) },
@@ -87,12 +103,12 @@ export default {
     scopeStamp () { return this.scope() + migrationIdentity(this.resource) }
   },
   watch: {
-    scopeStamp () { this.generation++; this.selected = []; this.selectedRows = {}; this.rows = []; this.error = this.$t('message.kms.migration.context.changed') }
+    scopeStamp () { this.generation++; this.selected = []; this.selectedRows = {}; this.rows = []; this.error = ''; this.loading = false; this.candidateState = 'stale'; this.targetReason = 'stale' }
   },
   mounted () { this.originalScope = this.scope(); this.load() },
   beforeUnmount () { this.disposed = true; this.generation++ },
   methods: {
-    scope () { const g = this.$store.getters; return JSON.stringify([g.userInfo?.id, g.userInfo?.roleid, this.$store.state?.user?.token, g.project?.id, this.$route?.path]) },
+    scope () { return JSON.stringify([kmsAuth(this.$store.getters, this.$store.state?.user?.token), this.$route?.fullPath || this.$route?.path]) },
     reason (value) { return this.$t('label.kms.migration.reason.' + value) },
     close () { if (!this.busy) this.$emit('close-action') },
     select (ids, records) {
@@ -104,25 +120,64 @@ export default {
     search () { this.page = 1; this.load() },
     changePage (pagination) { this.page = pagination.current; this.load() },
     async targetCheck () {
-      if (!this.valid) throw new Error('CONTEXT_CHANGED')
+      if (!this.valid) throw new Error('stale')
       const response = await getAPI('listKMSKeys', { id: this.target.id, listall: true, ignoreproject: true, ...(this.target.projectid ? { projectid: this.target.projectid } : {}) }, { preserveOnFailure: true, timeout: 15000 })
       const list = response?.listkmskeysresponse?.kmskey || []
-      if (list.length !== 1 || migrationIdentity(list[0]) !== migrationIdentity(this.target) || list[0].enabled !== true || !this.valid) throw new Error('CONTEXT_CHANGED')
-      // The candidate endpoint also revalidates the current profile, active KEK and migration API permission.
+      if (list.length !== 1 || migrationIdentity(list[0]) !== migrationIdentity(this.target) || !this.valid) throw new Error('stale')
+      const g = this.$store.getters
+      const reason = actionAvailability('migrateVolumesToKMS', { resource: list[0], scope: { role: g.userInfo?.roletype }, apis: g.apis })
+      if (reason) throw new Error(reason)
+      if (list[0].hsmprofileid) {
+        const projectid = list[0].projectid
+        const scope = { lookupId: list[0].hsmprofileid }
+        // A project key can use an eligible global or project profile.
+        const groups = await Promise.all([
+          kmsLookup(getAPI, 'hsmprofileid', scope, () => this.valid),
+          ...(projectid ? [kmsLookup(getAPI, 'hsmprofileid', { ...scope, projectid }, () => this.valid)] : [])
+        ])
+        if (!this.valid) throw new Error('stale')
+        const profile = groups.flat().find(item => item.id === list[0].hsmprofileid)
+        if (!profile) throw new Error('profileMissing')
+        if (profile.enabled !== true) throw new Error('profileDisabled')
+      }
+      // listVolumes remains authoritative for the active KEK and per-volume eligibility.
     },
     async candidates (extra) { return migrationList(await getAPI('listVolumes', migrationParams(this.target, extra), { preserveOnFailure: true, timeout: 15000 })) },
     async load () {
+      if (this.busy || this.started) return
       const request = ++this.generation
       this.loading = true
       this.error = ''
+      this.targetReason = ''
+      this.candidateState = 'loading'
+      const current = () => this.valid && request === this.generation
       try {
         await this.targetCheck()
+        if (!current()) return
         const extra = { page: this.page, pagesize: 10, ...(this.keyword ? { keyword: this.keyword } : {}) }
         if (this.filter !== 'all') extra.kmsmigrationeligible = this.filter === 'eligible'
-        const list = await this.candidates(extra)
-        if (!this.valid || request !== this.generation) return
-        this.rows = list.rows; this.total = list.count
-      } catch (error) { if (!this.disposed && request === this.generation) { this.rows = []; this.total = 0; this.error = this.$t(error.message === 'CONTEXT_UNSUPPORTED' ? 'message.kms.migration.unsupported' : 'message.kms.migration.preflight') } } finally { if (request === this.generation) this.loading = false }
+        const hasEligibilityCount = this.filter === 'eligible' && !this.keyword
+        const [list, eligible] = await Promise.all([
+          this.candidates(extra),
+          ...(hasEligibilityCount ? [] : [this.candidates({ kmsmigrationeligible: true, page: 1, pagesize: 1 })])
+        ])
+        if (!current()) return
+        this.rows = list.rows
+        this.total = list.count
+        this.candidateState = (eligible || list).count > 0 ? 'ready' : 'empty'
+      } catch (error) {
+        if (!this.disposed && request === this.generation) {
+          this.rows = []
+          this.total = 0
+          this.showCandidateFailure(error)
+        }
+      } finally { if (request === this.generation) this.loading = false }
+    },
+    showCandidateFailure (error) {
+      const reason = error.message
+      if (['stale', 'keyDisabled', 'profileDisabled', 'profileMissing', 'forbidden'].includes(reason)) this.targetReason = reason
+      else this.candidateState = kmsAvailabilityFailure(error)
+      if (reason === 'CONTEXT_UNSUPPORTED') this.error = this.$t('message.kms.migration.unsupported')
     },
     async selectedCandidates (ids) {
       const rows = []
@@ -144,7 +199,12 @@ export default {
         const rows = await this.selectedCandidates(ids)
         if (!this.valid || !migrationPreflight(ids, rows)) throw new Error('PREFLIGHT_FAILED')
       } catch (error) {
-        this.error = this.$t('message.kms.migration.preflight'); this.busy = false; return
+        if (this.valid) {
+          this.showCandidateFailure(error)
+          this.error = this.$t('message.kms.migration.preflight')
+        }
+        this.busy = false
+        return
       }
       this.started = true
       this.results = ids.map(id => ({ id, name: this.selectedRows[id]?.name, status: 'unknown' }))

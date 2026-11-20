@@ -28,7 +28,7 @@ specific language governing permissions and limitations under the License.
       </a-form-item>
       <template v-if="creating">
         <a-form-item :label="$t('label.zone')" html-for="kms-operation-zone" required :validate-status="fieldError === 'zoneid' ? 'error' : undefined">
-          <a-select id="kms-operation-zone" v-model:value="form.zoneid" :options="options.zones" :disabled="locked || loading" />
+          <a-select id="kms-operation-zone" v-model:value="form.zoneid" :options="options.zones" :disabled="locked || loading" @change="clearProfile" />
         </a-form-item>
         <template v-if="chooseOwner">
           <a-form-item :label="$t('label.project')" html-for="kms-operation-project">
@@ -39,14 +39,14 @@ specific language governing permissions and limitations under the License.
               <a-select id="kms-operation-domain" v-model:value="form.domainid" :options="options.domains" :disabled="locked || loading" allow-clear @change="changeDomain" />
             </a-form-item>
             <a-form-item :label="$t('label.account')" html-for="kms-operation-account" :required="!!form.domainid" :validate-status="fieldError === 'account' ? 'error' : undefined">
-              <a-select id="kms-operation-account" v-model:value="form.account" :options="options.accounts" :disabled="locked || accountLoading || !form.domainid" allow-clear />
+              <a-select id="kms-operation-account" v-model:value="form.account" :options="options.accounts" :disabled="locked || accountLoading || !form.domainid" allow-clear @change="clearProfile" />
             </a-form-item>
           </template>
         </template>
       </template>
       <template v-if="creating || rotating">
         <a-form-item :label="$t('label.hsm.profile')" html-for="kms-operation-profile" :required="creating" :validate-status="fieldError === 'hsmprofileid' ? 'error' : undefined">
-          <a-select id="kms-operation-profile" v-model:value="form.hsmprofileid" :options="profileOptions" :disabled="locked || loading" :allow-clear="rotating" :placeholder="rotating ? $t('label.kms.operation.keep.profile') : undefined" />
+          <a-select id="kms-operation-profile" v-model:value="form.hsmprofileid" :options="profileOptions" :disabled="locked || loading" @change="availabilityError = ''" :allow-clear="rotating" :placeholder="rotating ? $t('label.kms.operation.keep.profile') : undefined" />
         </a-form-item>
         <a-form-item :label="$t('label.keybits')" html-for="kms-operation-bits" required :validate-status="fieldError === 'keybits' ? 'error' : undefined">
           <a-select id="kms-operation-bits" v-model:value="form.keybits" :options="bitOptions" :disabled="locked" />
@@ -54,9 +54,15 @@ specific language governing permissions and limitations under the License.
       </template>
     </a-form>
     <a-alert v-else class="kms-operation-form" type="warning" show-icon :message="$t(currentAction.message)" />
-    <a-alert v-if="lookupError" class="kms-operation-form" type="warning" show-icon :message="$t('message.kms.operation.lookup')">
-      <template #description><a-button size="small" :disabled="locked || loading" @click="load">{{ $t('label.refresh') }}</a-button></template>
-    </a-alert>
+    <a-alert v-if="updating && target.enabled && !form.enabled" class="kms-operation-form" type="warning" show-icon :message="$t('message.kms.availability.disableWarning')" />
+    <KmsAvailabilityNotice
+v-if="availabilityNotice"
+      class="kms-operation-form"
+:reason="availabilityNotice"
+:loading="loading || busy"
+:refreshable="creating || rotating || api === 'deleteHSMProfile'"
+:hsm-help="creating || rotating"
+@refresh="load" />
     <div v-if="status" ref="status" tabindex="-1" class="kms-operation-form">
       <a-alert show-icon :type="statusType" :role="statusType === 'error' ? 'alert' : 'status'" :message="status" />
       <div v-if="operation.jobId" class="kms-operation-id">{{ $t('label.jobid') }} {{ operation.jobId }}</div>
@@ -66,7 +72,7 @@ specific language governing permissions and limitations under the License.
       <a-space>
         <a-button :disabled="busy" @click="close">{{ $t(operation.phase === 'succeeded' || operation.phase === 'unknown' ? 'label.close' : 'label.cancel') }}</a-button>
         <a-button v-if="operation.phase === 'unknown'" :disabled="!valid" type="primary" @click="check">{{ $t('label.kms.migration.check') }}</a-button>
-        <a-button v-else-if="operation.phase !== 'succeeded'" :disabled="!valid || loading || accountLoading || lookupError" :loading="busy" type="primary" :danger="deleting" @click="submit">
+        <a-button v-else-if="operation.phase !== 'succeeded'" :disabled="!valid || loading || accountLoading || !!blockingAvailability" :loading="busy" type="primary" :danger="deleting" @click="submit">
           {{ $t(operation.phase === 'failed' ? 'label.retry' : 'label.ok') }}
         </a-button>
       </a-space>
@@ -76,13 +82,15 @@ specific language governing permissions and limitations under the License.
 
 <script>
 import MoldDialog from '@/components/view/MoldDialog'
+import KmsAvailabilityNotice from '@/components/view/KmsAvailabilityNotice'
 import { getAPI, postAPI } from '@/api'
 import { kmsAuth, kmsLookup, kmsListPage } from '@/utils/kmsSearch'
+import { actionAvailability, hsmCandidateReason, kmsAvailabilityFailure, projectOwner, sameKmsOwner, loadScopedHsmCandidates, readHsmCandidate } from '@/utils/kmsAvailability'
 import { kmsKeyBits, kmsOperationState, kmsOperationBusy, discardKmsOperation, keyBitsParams, readKmsResource, kmsResourceMatch, kmsReadScope, safeKmsObservation, submitKmsOperation, verifyKmsOperation } from '@/utils/kmsOperation'
 
 export default {
   name: 'KmsOperationDialog',
-  components: { MoldDialog },
+  components: { MoldDialog, KmsAvailabilityNotice },
   props: { currentAction: { type: Object, required: true } },
   emits: ['close-action', 'refresh-data'],
   data () {
@@ -93,7 +101,9 @@ export default {
       operation: kmsOperationState(),
       options: { zones: [], profiles: [], projects: [], domains: [], accounts: [] },
       loading: false,
-      lookupError: false,
+      candidateState: 'loading',
+      availabilityError: '',
+      latest: null,
       accountLoading: false,
       invalidated: false,
       accountVersion: 0,
@@ -126,10 +136,43 @@ export default {
       const options = kmsKeyBits.map(value => ({ value, label: String(value) }))
       return this.rotating ? [{ value: 'keep', label: this.$t('label.kms.operation.keep.bits') }, ...options] : options
     },
+    owner () {
+      if (!this.creating) return this.latest || this.target
+      const g = this.$store.getters
+      const project = this.form.projectid && (this.options.projects.find(item => item.value === this.form.projectid)?.owner || (g.project?.id === this.form.projectid ? g.project : { id: this.form.projectid }))
+      const target = projectOwner(g, project)
+      if (!project && this.form.domainid && this.form.account) Object.assign(target, { domainid: this.form.domainid, account: this.form.account })
+      return { ...target, zoneid: this.form.zoneid }
+    },
+    eligibleProfiles () {
+      return this.options.profiles.filter(profile => !hsmCandidateReason(profile, this.owner))
+    },
+    availabilityReason () {
+      return actionAvailability(this.api, {
+        resource: this.latest || this.target,
+        scope: { current: this.initialScope === this.scope && !this.invalidated, role: this.$store.getters.userInfo?.roletype },
+        apis: this.$store.getters.apis
+      })
+    },
+    blockingAvailability () {
+      if (this.availabilityError) return this.availabilityError
+      if (this.availabilityReason) return this.availabilityReason
+      if (!this.creating && !this.rotating && this.api !== 'deleteHSMProfile') return ''
+      if (this.candidateState !== 'ready') return this.candidateState
+      if (!this.creating && !this.rotating) return ''
+      if (!this.eligibleProfiles.length) return 'empty'
+      if (!this.form.hsmprofileid && this.rotating) {
+        const currentProfile = this.options.profiles.find(profile => profile.id === (this.latest || this.target).hsmprofileid)
+        return hsmCandidateReason(currentProfile, this.owner)
+      }
+      if (this.form.hsmprofileid) {
+        return hsmCandidateReason(this.options.profiles.find(profile => profile.id === this.form.hsmprofileid), this.owner)
+      }
+      return ''
+    },
+    availabilityNotice () { return this.blockingAvailability },
     profileOptions () {
-      const zone = this.creating ? this.form.zoneid : this.target.zoneid
-      return this.options.profiles.filter(item => item.enabled === true && (!item.zoneid || !zone || item.zoneid === zone))
-        .map(item => ({ value: item.id, label: item.name }))
+      return this.eligibleProfiles.map(item => ({ value: item.id, label: item.name }))
     },
     status () {
       if (!this.valid) return this.$t('message.kms.operation.context')
@@ -153,12 +196,18 @@ export default {
   methods: {
     invalidate () {
       this.invalidated = true
+      this.candidateState = 'stale'
+      this.availabilityError = ''
+      this.options.profiles = []
+      this.form.hsmprofileid = undefined
       discardKmsOperation(this.operation)
     },
     async load () {
-      if (!this.valid || this.loading || (!this.creating && !this.rotating)) return
+      if (!this.valid || this.loading || this.busy || (!this.creating && !this.rotating && this.api !== 'deleteHSMProfile')) return
       this.loading = true
-      this.lookupError = false
+      this.candidateState = 'loading'
+      this.availabilityError = ''
+      this.options.profiles = []
       const jobs = []
       if (this.creating) jobs.push(['zoneid', 'zones'])
       if (this.chooseOwner) {
@@ -167,20 +216,24 @@ export default {
         if (apis.listDomains && apis.listAccounts) jobs.push(['domainid', 'domains'])
       }
       try {
-        const loadChoices = jobs.map(async ([field, key]) => {
+        await Promise.all(jobs.map(async ([field, key]) => {
           const rows = await kmsLookup(getAPI, field, {}, () => this.valid)
-          if (this.valid) this.options[key] = rows.map(item => ({ value: item.id, label: item.path || item.name }))
-        })
+          if (this.valid) this.options[key] = rows.map(item => ({ value: item.id, label: item.path || item.name, owner: { id: item.id, domainid: item.domainid } }))
+        }))
         const current = () => this.valid
         const projectid = this.creating ? this.form.projectid : this.target.projectid
-        const profiles = Promise.all([
-          kmsLookup(getAPI, 'hsmprofileid', {}, current),
-          ...(projectid ? [kmsLookup(getAPI, 'hsmprofileid', { projectid }, current)] : [])
-        ]).then(groups => {
-          if (current()) this.options.profiles = [...new Map(groups.flat().map(row => [row.id, row])).values()]
-        })
-        await Promise.all([...loadChoices, profiles])
-      } catch (_) { if (this.valid) this.lookupError = true } finally { this.loading = false }
+        if (this.rotating || this.api === 'deleteHSMProfile') {
+          this.latest = await this.readCurrentTarget()
+          if (!this.valid || this.availabilityReason) return
+        }
+        if (this.creating || this.rotating) {
+          const profiles = await loadScopedHsmCandidates(getAPI, projectid, current)
+          if (current()) this.options.profiles = profiles
+        }
+        if (current()) this.candidateState = 'ready'
+      } catch (error) {
+        if (this.valid) this.candidateState = error.message === 'STALE_TARGET' ? 'stale' : kmsAvailabilityFailure(error)
+      } finally { this.loading = false }
     },
     changeProject () {
       this.accountVersion++
@@ -188,10 +241,15 @@ export default {
       this.form.domainid = undefined
       this.form.account = undefined
       this.options.accounts = []
-      this.form.hsmprofileid = undefined
+      this.clearProfile()
       this.load()
     },
+    clearProfile () {
+      this.form.hsmprofileid = undefined
+      this.availabilityError = ''
+    },
     async changeDomain () {
+      this.clearProfile()
       const generation = ++this.accountVersion
       this.form.account = undefined
       this.options.accounts = []
@@ -200,7 +258,35 @@ export default {
       try {
         const rows = await kmsLookup(getAPI, 'account', { domainid: this.form.domainid }, current)
         if (current()) this.options.accounts = rows.map(item => ({ value: item.name, label: item.name }))
-      } catch (_) { if (current()) this.lookupError = true } finally { if (current()) this.accountLoading = false }
+      } catch (error) { if (current()) this.availabilityError = kmsAvailabilityFailure(error) } finally { if (current()) this.accountLoading = false }
+    },
+    async readCurrentTarget () {
+      const latest = await readKmsResource(getAPI, this.listApi, kmsReadScope(this.target), this.target.id, true)
+      if (!this.valid || !sameKmsOwner(latest, this.target)) throw new Error('STALE_TARGET')
+      return latest
+    },
+    async verifyAvailability (params) {
+      const current = () => this.valid
+      let resource = this.target
+      try {
+        if (this.target.id) {
+          resource = await this.readCurrentTarget()
+          this.latest = resource
+        }
+        const scope = { current: current(), role: this.$store.getters.userInfo?.roletype, owner: this.owner }
+        let reason = actionAvailability(this.api, { resource, scope, apis: this.$store.getters.apis })
+        if (!reason && (this.creating || this.rotating)) {
+          const profileId = params.hsmprofileid || resource.hsmprofileid
+          const selected = this.options.profiles.find(profile => profile.id === profileId)
+          const profile = await readHsmCandidate(getAPI, selected || (profileId ? { id: profileId, projectid: resource.projectid } : null), current)
+          reason = hsmCandidateReason(profile, scope.owner)
+        }
+        if (current() && reason) this.availabilityError = reason
+      } catch (error) {
+        if (current()) this.availabilityError = error.message === 'STALE_TARGET' ? 'stale' : kmsAvailabilityFailure(error)
+      }
+      if (!current() || this.availabilityError) throw new Error('AVAILABILITY')
+      if (this.rotating) this.before = resource
     },
     validation (field) {
       this.fieldError = field
@@ -208,6 +294,7 @@ export default {
     },
     async prepare () {
       this.fieldError = ''
+      this.availabilityError = ''
       const params = { ignoreproject: true }
       if (this.target.id) params.id = this.target.id
       if (this.editingMetadata) {
@@ -231,7 +318,7 @@ export default {
       this.expected = { ...params }
       // Keep the target's owner even if the header's project selector changes.
       if (this.target.id && this.target.projectid) params.projectid = this.target.projectid
-      if (this.rotating) this.before = await readKmsResource(getAPI, this.listApi, kmsReadScope(this.target), this.target.id)
+      await this.verifyAvailability(params)
       return params
     },
     operationOptions () {
@@ -259,7 +346,7 @@ export default {
       }
     },
     async submit () {
-      if (this.locked || this.loading || this.accountLoading || this.lookupError) return
+      if (this.locked || this.loading || this.accountLoading || this.blockingAvailability) return
       await submitKmsOperation(this.operation, this.operationOptions())
       if (this.valid && this.operation.phase === 'succeeded' && !this.deleting) this.$emit('refresh-data')
     },

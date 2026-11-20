@@ -19,6 +19,16 @@ import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { kmsDetails, kmsSearchFields } from '@/utils/kmsSearch'
 
+import { actionAvailability, kmsAvailabilityLabel } from '@/utils/kmsAvailability'
+
+const availability = api => {
+  const reason = (resource, getters) => actionAvailability(api, { resource, scope: { role: getters.userInfo?.roletype }, apis: getters.apis })
+  return {
+    disabled: (resource, getters) => !!reason(resource, getters),
+    tooltip: (resource, getters) => kmsAvailabilityLabel(reason(resource, getters))
+  }
+}
+
 const operationDialog = shallowRef(defineAsyncComponent(() => import('@/views/infra/KmsOperationDialog.vue')))
 
 export default {
@@ -72,6 +82,7 @@ export default {
       actions: [
         {
           api: 'createKMSKey',
+          ...availability('createKMSKey'),
           icon: 'plus-outlined',
           label: 'label.create.kms.key',
           docHelp: 'adminguide/kms.html#creating-a-kms-key',
@@ -83,6 +94,7 @@ export default {
         },
         {
           api: 'updateKMSKey',
+          ...availability('updateKMSKey'),
           icon: 'edit-outlined',
           label: 'label.update.kms.key',
           dataView: true,
@@ -92,6 +104,7 @@ export default {
         },
         {
           api: 'rotateKMSKey',
+          ...availability('rotateKMSKey'),
           icon: 'sync-outlined',
           docHelp: 'adminguide/kms.html#rotating-a-kms-key',
           label: 'label.rotate.kms.key',
@@ -102,6 +115,7 @@ export default {
         },
         {
           api: 'migrateVolumesToKMS',
+          ...availability('migrateVolumesToKMS'),
           icon: 'swap-outlined',
           docHelp: 'adminguide/kms.html#migrating-existing-volumes-to-kms',
           label: 'label.migrate.volumes.to.kms',
@@ -117,6 +131,7 @@ export default {
         },
         {
           api: 'deleteKMSKey',
+          ...availability('deleteKMSKey'),
           icon: 'delete-outlined',
           label: 'label.delete.kms.key',
           message: 'message.action.delete.kms.key',
@@ -170,6 +185,7 @@ export default {
       actions: [
         {
           api: 'createHSMProfile',
+          ...availability('createHSMProfile'),
           icon: 'plus-outlined',
           docHelp: 'adminguide/kms.html#adding-an-hsm-profile',
           label: 'label.create.hsmprofile',
@@ -185,6 +201,7 @@ export default {
         },
         {
           api: 'updateHSMProfile',
+          ...availability('updateHSMProfile'),
           icon: 'edit-outlined',
           label: 'label.update.hsm.profile',
           dataView: true,
@@ -197,6 +214,7 @@ export default {
         },
         {
           api: 'deleteHSMProfile',
+          ...availability('deleteHSMProfile'),
           icon: 'delete-outlined',
           label: 'label.delete.hsm.profile',
           message: 'message.action.delete.hsm.profile',

@@ -1080,6 +1080,7 @@ import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
 import { kmsOperationApis } from '@/utils/kmsOperation'
+import { availabilityActions, actionAvailability, kmsAvailabilityLabel } from '@/utils/kmsAvailability'
 import { kmsRoute, kmsListRoute, kmsListApi, kmsAuth, kmsProjectScope, kmsQuery, kmsSearchQuery, kmsParams, readKmsPage } from '@/utils/kmsSearch'
 import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
 import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
@@ -3256,6 +3257,14 @@ export default {
         ['listSnapshotPolicies', 'listVolumes', 'createSnapshotPolicy'].every(api => api in (this.$store.getters.apis || {}))
     },
     execAction (action, isGroupAction) {
+      if (availabilityActions.includes(action.api)) {
+        const getters = this.$store.getters
+        const reason = actionAvailability(action.api, { resource: action.resource || this.resource, scope: { role: getters.userInfo?.roletype }, apis: getters.apis })
+        if (reason) {
+          if (this.$message) this.$message.info(this.$t(kmsAvailabilityLabel(reason)))
+          return
+        }
+      }
       if (this.$route.meta?.name === 'kubernetesiso') {
         const operation = Object.keys(kubernetesIsoApis).find(key => kubernetesIsoApis[key] === action.api)
         if (!canKubernetesIsoAction(operation, action.resource || this.resource, this.$store.getters) || this.kubernetesIsoReadError || this.listRequestPending || this.listLoadedScope !== this.listScope()) return

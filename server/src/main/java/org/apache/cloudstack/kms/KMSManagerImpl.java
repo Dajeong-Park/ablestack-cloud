@@ -1297,7 +1297,7 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             // If the profile is owned by the user, they should see full details even if it
             // is a system profile
             boolean limited = profile.getIsPublic() && !isRootAdmin && profile.getAccountId() != caller.getId();
-            responses.add(createHSMProfileResponse(profile, limited));
+            responses.add(createHSMProfileResponse(profile, limited, isRootAdmin));
         }
 
         ListResponse<HSMProfileResponse> listResponse = new ListResponse<>();
@@ -1456,8 +1456,7 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
         Account caller = CallContext.current().getCallingAccount();
         checkHSMProfileAccess(caller, profile, true);
 
-        if (profile.getProtocol().equals(DATABASE_PROVIDER_NAME)
-                && profile.getAccountId() == Account.ACCOUNT_ID_SYSTEM) {
+        if (isSystemDatabaseProfile(profile)) {
             throw new InvalidParameterValueException("Default database HSM profile cannot be deleted");
         }
 
@@ -1520,15 +1519,23 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
     @Override
     public HSMProfileResponse createHSMProfileResponse(HSMProfile profile) {
-        return createHSMProfileResponse(profile, false);
+        return createHSMProfileResponse(profile, false, false);
     }
 
-    private HSMProfileResponse createHSMProfileResponse(HSMProfile profile, boolean limited) {
+    private boolean isSystemDatabaseProfile(HSMProfile profile) {
+        return DATABASE_PROVIDER_NAME.equals(profile.getProtocol()) && profile.getAccountId() == Account.ACCOUNT_ID_SYSTEM;
+    }
+
+    private HSMProfileResponse createHSMProfileResponse(HSMProfile profile, boolean limited, boolean adminView) {
         HSMProfileResponse response = new HSMProfileResponse();
         response.setId(profile.getUuid());
         response.setName(profile.getName());
         response.setVendorName(profile.getVendorName());
         response.setIsPublic(profile.getIsPublic());
+        if (adminView) {
+            boolean protectedProfile = isSystemDatabaseProfile(profile);
+            response.setDeleteProtection(protectedProfile, protectedProfile ? "SYSTEM_DATABASE_PROFILE" : null);
+        }
 
         if (profile.getZoneId() != null) {
             DataCenterVO zone = dataCenterDao.findById(profile.getZoneId());
