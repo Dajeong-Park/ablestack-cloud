@@ -26,7 +26,7 @@ import { getAPI } from '@/api'
 import { s2sGatewayAuth, s2sGatewayFields, s2sGatewayPickerConfig, s2sGatewayQuery, s2sGatewayError, s2sGatewaySelection } from '@/utils/s2sGatewaySearch'
 export default {
   name: 'S2sGatewayFilterChips',
-  props: { validationError: { type: String, default: '' } },
+  props: { validationError: { type: String, default: '' }, apiName: { type: String, default: 'listVpnGateways' } },
   emits: ['search'],
   data () { return { labels: {}, verification: '', version: 0, disposed: false } },
   computed: {
@@ -44,8 +44,8 @@ export default {
       const version = ++this.version; const auth = this.auth
       const current = () => !this.disposed && version === this.version && auth === this.auth
       this.labels = {}; this.verification = s2sGatewayFields.some(key => this.$route.query[key]) ? 'checking' : ''
-      const query = s2sGatewayQuery(this.$route.query, 20, this.$store.getters)
-      const error = s2sGatewayError(query, this.$store.getters, this.$getApiParams('listVpnGateways'))
+      const query = s2sGatewayQuery(this.$route.query, 20, this.$store.getters, this.apiName)
+      const error = s2sGatewayError(query, this.$store.getters, this.$getApiParams(this.apiName), this.apiName)
       if (error) { if (this.chips.length) this.verification = error; return }
       if (!this.chips.length) return
       try { const labels = await s2sGatewaySelection(getAPI, query, this.$store.getters, current); if (current()) { this.labels = labels; this.verification = '' } } catch (error) { if (current()) this.verification = ['permission', 'scope', 'missing'].includes(error.message) ? error.message : 'lookup' }

@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { vpnConnectionDisplaySupported } from '@/utils/s2sConnection'
 import { shallowRef, defineAsyncComponent } from 'vue'
 import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
 import { vmStoredUserDataAction, vmVbmcAction, vmUnmanageAction, vmCloneAction } from '@/config/section/vmCommonActions'
@@ -1139,12 +1140,17 @@ export default {
     },
     {
       name: 's2svpnconn',
+      filters: () => vpnConnectionDisplaySupported(store.getters) ? ['all', 'true', 'false'] : [],
+      filterLabels: { true: 'label.s2s.display.visible', false: 'label.s2s.display.hidden' },
       title: 'label.site.to.site.vpn.connections',
       docHelp: 'adminguide/networking_and_traffic.html#setting-up-a-site-to-site-vpn-connection',
       icon: 'sync-outlined',
       permission: ['listVpnConnections'],
       columns: ['publicip', 'state', 'gateway', 'ipsecpsk', 'ikepolicy', 'esppolicy'],
-      details: ['publicip', 'gateway', 'passive', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'esppolicy', 'ikelifetime', 'ikeversion', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'created'],
+      tabs: ['details', 's2s.connection.crypto'].map(name => ({
+        name,
+        component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDetails.vue')))
+      })),
       actions: [
         {
           api: 'createVpnConnection',
@@ -1152,15 +1158,20 @@ export default {
           label: 'label.create.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#creating-a-vpn-connection',
           listView: true,
-          args: ['s2scustomergatewayid', 's2svpngatewayid', 'passive'],
-          mapping: {
-            s2scustomergatewayid: {
-              api: 'listVpnCustomerGateways'
-            },
-            s2svpngatewayid: {
-              api: 'listVpnGateways'
-            }
-          }
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
+        },
+        {
+          api: 'updateVpnConnection',
+          icon: 'edit-outlined',
+          label: 'label.s2s.display.edit',
+          docHelp: 'adminguide/networking_and_traffic.html#setting-up-a-site-to-site-vpn-connection',
+          dataView: true,
+          show: (row, getters) => vpnConnectionDisplaySupported(getters) && vpnConnectionDisplaySupported(getters, 'updateVpnConnection') && typeof row.fordisplay === 'boolean',
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         },
         {
           api: 'resetVpnConnection',
@@ -1168,7 +1179,10 @@ export default {
           label: 'label.reset.vpn.connection',
           message: 'message.reset.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#restarting-and-removing-a-vpn-connection',
-          dataView: true
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         },
         {
           api: 'deleteVpnConnection',
@@ -1176,7 +1190,10 @@ export default {
           label: 'label.delete.vpn.connection',
           message: 'message.delete.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#restarting-and-removing-a-vpn-connection',
-          dataView: true
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         }
       ]
     },

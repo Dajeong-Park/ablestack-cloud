@@ -16,14 +16,14 @@
 // under the License.
 
 <template>
-  <div class="list-view-table-wrapper" :class="{ 'kms-table': kmsTable, 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="isKubernetesIsoMainList || kmsTable ? 0 : undefined" :role="isKubernetesIsoMainList || kmsTable ? 'region' : undefined" :aria-label="kmsTable ? $t(resourcePath === '/volume' ? 'label.volumes' : resourcePath === '/kmskey' ? 'label.kms.keys' : $route.meta.title) : isKubernetesIsoMainList ? $t('label.kubernetes.isos') : undefined" @keydown="scrollWideTable" @contextmenu="handleGlobalContextMenu">
+  <div class="list-view-table-wrapper" :class="{ 'kms-table': kmsTable, 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="scrollRegionLabel ? 0 : undefined" :role="scrollRegionLabel ? 'region' : undefined" :aria-label="scrollRegionLabel" @keydown="scrollWideTable" @contextmenu="handleGlobalContextMenu">
     <a-table
       size="middle"
       :loading="loading"
       :locale="emptyText ? { emptyText } : undefined"
       :columns="displayColumns"
       :dataSource="items"
-      :tableLayout="isIsoMainList || isKubernetesIsoMainList || kmsTable ? 'fixed' : undefined"
+      :tableLayout="isIsoMainList || scrollRegionLabel ? 'fixed' : undefined"
       :scroll="kmsTableScroll || tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
@@ -461,9 +461,16 @@
           :to="{ path: '/publicip' + '/' + record.publicipid }"
         >{{ text }}</router-link>
         <router-link
+          v-else-if="$route.meta?.name === 's2svpnconn'"
+          :to="vpnConnectionDetailLocation($route, record, $store.getters)"
+        >{{ text || record.id }}</router-link>
+        <router-link
           v-else
           :to="$route.meta?.name === 's2svpn' ? s2sGatewayDetailLocation($route, record, $store.getters) : { path: $route.path + '/' + record.id }"
         >{{ text }}</router-link>
+        <span v-if="$route.meta?.name === 's2svpnconn' && record.fordisplay === false && vpnConnectionDisplaySupported($store.getters)" class="s2s-connection-hidden">
+          {{ $t('label.s2s.display.hidden') }}
+        </span>
       </template>
       <template v-if="column.key === 'traffictype'">
         {{ text }}
@@ -575,7 +582,8 @@
       </template>
       <template v-if="column.key === 'state'">
         <span class="list-state-with-flatten">
-          <public-ip-status v-if="$route.meta?.name === 'publicip'" :value="text" />
+          <status v-if="vpnConnectionListRoute($route)" :text="text || ''" :display-label="$t(vpnConnectionState(record))" display-text />
+          <public-ip-status v-else-if="$route.meta?.name === 'publicip'" :value="text" />
           <template-availability v-else-if="['template', 'iso'].includes($route.meta?.name)" :kind="$route.meta.name" :record="record" compact single-line />
           <status v-else-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
           <status v-else :text="text ? text : ''" :displayLabel="column.stateLabel ? column.stateLabel(record) : ''" displayText />
@@ -1295,6 +1303,7 @@ import { getAPI, postAPI } from '@/api'
 import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
+import { vpnConnectionDisplaySupported, vpnConnectionState } from '@/utils/s2sConnection'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import KubernetesIsoListCell from '@/components/widgets/KubernetesIsoListCell'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
@@ -1328,7 +1337,7 @@ import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySum
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
-import { s2sGatewayDetailLocation } from '@/utils/s2sGatewaySearch'
+import { s2sGatewayDetailLocation, vpnConnectionDetailLocation, vpnConnectionListRoute } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -1504,6 +1513,11 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    scrollRegionLabel () {
+      if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
+      if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
+      return vpnConnectionListRoute(this.$route) ? this.$t('label.site.to.site.vpn.connections') : undefined
+    },
     isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id && !this.resourcePath },
     displayColumns () {
       const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.dataIndex !== 'order')
@@ -1601,7 +1615,11 @@ export default {
     }
   },
   methods: {
+    vpnConnectionListRoute,
+    vpnConnectionState,
+    vpnConnectionDisplaySupported,
     s2sGatewayDetailLocation,
+    vpnConnectionDetailLocation,
     vnfDetailLocation,
     publicIpDetailLocation,
     vmDisplayName,
@@ -1628,7 +1646,7 @@ export default {
       })
     },
     scrollWideTable (event) {
-      if ((!this.isKubernetesIsoMainList && !this.kmsTable) || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+      if (!this.scrollRegionLabel || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
       const scroller = event.currentTarget.querySelector(this.kmsTable ? '.ant-table-body, .ant-table-content' : '.ant-table-content')
       if (!scroller) return
       event.preventDefault()

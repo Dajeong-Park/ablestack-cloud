@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { s2sGatewayQuery as query, s2sGatewayError as error, s2sGatewayParams as params, s2sGatewaySearchQuery as search, s2sGatewayListLocation, s2sGatewayDetailLocation, readS2sGatewayPage, readS2sGatewayQuery, s2sGatewaySelection, s2sGatewayPickerParams, readS2sGatewayCandidates } from '@/utils/s2sGatewaySearch'
+import { s2sGatewayQuery as query, s2sGatewayError as error, s2sGatewayParams as params, s2sGatewaySearchQuery as search, s2sGatewayListLocation, s2sGatewayDetailLocation, readS2sGatewayPage, readS2sGatewayQuery, s2sGatewaySelection, s2sGatewayPickerParams, readS2sGatewayCandidates, vpnConnectionApi, vpnConnectionDetailLocation, readVpnConnectionQuery } from '@/utils/s2sGatewaySearch'
 const id = n => String(n).padStart(8, '0') + '-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
 const gateway = id(1); const vpc = id(2); const domain = id(3); const project = id(4)
 const support = Object.fromEntries(['id', 'vpcid', 'domainid', 'account', 'keyword', 'projectid', 'page', 'pagesize', 'listall', 'fordisplay', 'displayall'].map(k => [k, {}]))
@@ -73,4 +73,79 @@ test('account candidates and exact lookup do not enable listall recursive-domain
   const read = jest.fn().mockResolvedValueOnce({ listdomainsresponse: { count: 1, domain: [{ id: domain, name: 'ROOT' }] } }).mockResolvedValueOnce({ listaccountsresponse: { count: 1, account: [{ id: id(8), name: 'owner', domainid: domain }] } })
   expect(await s2sGatewaySelection(read, { domainid: domain, account: 'owner' }, getters)).toEqual({ domainid: 'ROOT', account: 'owner' })
   expect(read.mock.calls[1][1]).toMatchObject({ listall: false, isrecursive: false, name: 'owner', domainid: domain })
+})
+
+const connectionGetters = { ...getters, apis: { ...getters.apis, [vpnConnectionApi]: {} } }
+const connectionFields = { id: {}, vpcid: {}, keyword: {}, projectid: {}, domainid: {}, account: {}, excludeprojectresources: {} }
+
+test('VPN connection query preserves AND filters and resets pagination when searching', () => {
+  const initial = query({ id: id(1), vpcid: vpc, keyword: '192.0.2', page: '4' }, 20, connectionGetters, vpnConnectionApi)
+  const updated = search(initial, { searchQuery: 'peer' }, 20, connectionGetters, vpnConnectionApi)
+  expect(updated).toMatchObject({ keyword: 'peer', id: id(1), vpcid: vpc, page: '1', projectid: '0' })
+  expect(error(updated, connectionGetters, connectionFields, vpnConnectionApi)).toBe('')
+  expect(params(updated, vpnConnectionApi)).toMatchObject({ id: id(1), vpcid: vpc, keyword: 'peer', excludeprojectresources: true })
+  expect(params(updated, vpnConnectionApi)).not.toHaveProperty('fordisplay')
+  expect(params(updated, vpnConnectionApi)).not.toHaveProperty('projectid')
+  expect(search(updated, { searchQuery: '' }, 20, connectionGetters, vpnConnectionApi)).not.toHaveProperty('keyword')
+})
+
+test('VPN connection detail returns to the same filtered page only in the original scope', () => {
+  const scoped = { ...connectionGetters, project: { id: project } }
+  const source = query({ keyword: 'peer', vpcid: vpc, page: '2' }, 20, scoped, vpnConnectionApi)
+  const detail = vpnConnectionDetailLocation({ query: source }, { id: id(1) }, scoped)
+  expect(detail).toMatchObject({ path: '/s2svpnconn/' + id(1), query: { projectid: project } })
+  expect(s2sGatewayListLocation(detail, scoped, vpnConnectionApi)).toEqual({ path: '/s2svpnconn', query: source })
+  expect(s2sGatewayListLocation(detail, connectionGetters, vpnConnectionApi)).toEqual({ path: '/s2svpnconn', query: { projectid: '0', page: '1', pagesize: '20' } })
+  expect(error({ ...source, account: 'owner', domainid: domain }, scoped, connectionFields, vpnConnectionApi)).toBe('account.project')
+})
+
+test('VPN connection read does not apply a VPC found in another project', async () => {
+  const read = jest.fn().mockResolvedValue({ listvpcsresponse: { count: 1, vpc: [{ id: vpc, projectid: project }] } })
+  await expect(readVpnConnectionQuery(read, { vpcid: vpc, excludeprojectresources: true }, connectionGetters, () => true)).rejects.toThrow('scope')
+  expect(read).toHaveBeenCalledTimes(1)
+  expect(read.mock.calls[0][1]).not.toHaveProperty('excludeprojectresources')
+})
+
+test('VPN connection UUID bookmarks retain API-authorized access while explicit list scopes stay isolated', async () => {
+  const row = { id: id(1), projectid: project }
+  const response = { listvpnconnectionsresponse: { count: 1, vpnconnection: [row] } }
+  const read = jest.fn().mockResolvedValue(response)
+  await expect(readVpnConnectionQuery(read, { id: row.id }, connectionGetters, () => true)).resolves.toEqual(response)
+  await expect(readVpnConnectionQuery(read, { id: row.id, excludeprojectresources: true }, connectionGetters, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(read, { id: row.id, projectid: id(9) }, connectionGetters, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(read, { id: id(9) }, connectionGetters, () => true)).rejects.toThrow('scope')
+})
+
+const displayFields = { ...connectionFields, displayall: {}, fordisplay: {} }
+const displayGetters = {
+  ...connectionGetters,
+  apis: { ...connectionGetters.apis, [vpnConnectionApi]: { params: Object.keys(displayFields).map(name => ({ name })) } }
+}
+
+test('connection visibility uses one server-side selector and preserves scope and explicit filters', () => {
+  const all = query({ keyword: 'peer', pagesize: '1', page: '2' }, 20, displayGetters, vpnConnectionApi)
+  expect(error(all, displayGetters, displayFields, vpnConnectionApi)).toBe('')
+  expect(params(all, vpnConnectionApi)).toEqual({
+    displayall: true, keyword: 'peer', page: '2', pagesize: '1', listall: true, ignoreproject: true
+  })
+  const hidden = search(all, { s2sGatewaySearch: { ...all, fordisplay: 'false' } }, 1, displayGetters, vpnConnectionApi)
+  expect(params(hidden, vpnConnectionApi)).toMatchObject({ fordisplay: 'false', keyword: 'peer', page: '1' })
+  expect(params(hidden, vpnConnectionApi)).not.toHaveProperty('displayall')
+  expect(search(hidden, { s2sGatewaySearch: {} }, 1, displayGetters, vpnConnectionApi)).toMatchObject({ fordisplay: 'false', page: '1' })
+  const detail = vpnConnectionDetailLocation({ query: hidden }, { id: id(1) }, displayGetters)
+  expect(s2sGatewayListLocation(detail, displayGetters, vpnConnectionApi).query).toEqual(hidden)
+})
+
+test('normal roles cannot initiate or receive hidden connection reads', async () => {
+  const restricted = { ...displayGetters, userInfo: { ...displayGetters.userInfo, roletype: 'DomainAdmin' } }
+  const normal = query({}, 20, restricted, vpnConnectionApi)
+  expect(normal).not.toHaveProperty('fordisplay')
+  expect(error({ ...normal, fordisplay: 'false' }, restricted, displayFields, vpnConnectionApi)).toBe('permission')
+  const api = jest.fn().mockResolvedValue({ listvpnconnectionsresponse: { count: 1, vpnconnection: [{ id: id(1), fordisplay: false }] } })
+  await expect(readVpnConnectionQuery(api, { displayall: true }, restricted, () => true)).rejects.toThrow('permission')
+  expect(api).not.toHaveBeenCalled()
+  await expect(readVpnConnectionQuery(api, {}, restricted, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(api, { fordisplay: 'true' }, displayGetters, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(api, { fordisplay: 'false' }, displayGetters, () => true)).resolves.toMatchObject({ listvpnconnectionsresponse: { count: 1 } })
+  await expect(readVpnConnectionQuery(api, { displayall: true }, displayGetters, () => true)).resolves.toMatchObject({ listvpnconnectionsresponse: { count: 1 } })
 })
