@@ -1,0 +1,12 @@
+MainPID=2843011
+ActiveState=active
+STATIC_FILES_BACKED_UP=1
+c4580e67ea13c29009e3fba939c2cee910e4240df26d4ce17c0f97c081b7e4d5  index.html
+823a9320c51a852e0ec522b97d9fe86c9a60080fe2595da5b18efa4e04b9b53d  /home/ablecloud/s2s1719-ui.tgz
+BACKUP=/root/s2s1719-ui-20261119-073303
+SERVER_CONFIG_PRESERVED=1
+HTTP=200
+WEB_INF=present
+MainPID=2843011
+ActiveState=active
+0400ac7bee7268c3358d5347270d73f7f82551117022ca411edd59e5f3560f68  /usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar

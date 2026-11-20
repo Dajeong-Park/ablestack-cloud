@@ -1,0 +1,82 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "command": "listVPCs",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "id": "41fe0031-3f58-4776-a2be-0823f61dde6b"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "49767c4b-61bd-4535-9957-af9908e220f1"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+        "fordisplay": "true"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+        "fordisplay": "false"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listPublicIpAddresses",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b"
+      }
+    },
+    {
+      "method": "POST",
+      "command": "createVpnGateway",
+      "params": {
+        "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+        "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "customjobid": "85e45060-cc7b-4fc9-9f1e-c73f7dc8bb64"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "85e45060-cc7b-4fc9-9f1e-c73f7dc8bb64"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+        "fordisplay": "true"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {}
+    }
+  ]
+}

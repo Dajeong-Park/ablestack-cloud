@@ -1,0 +1,22 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "account": "admin",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domainpath": "ROOT",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "cmd": "org.apache.cloudstack.api.command.admin.account.DeleteAccountCmd",
+    "jobprocstatus": 0,
+    "jobresultcode": 0,
+    "jobresulttype": "object",
+    "jobresult": {
+      "success": true
+    },
+    "jobinstancetype": "Account",
+    "jobinstanceid": "9d1f0c6a-b52a-4876-890d-1a22fd6ef02f",
+    "created": "2026-11-19T16:18:31+0900",
+    "completed": "2026-11-19T16:18:31+0900",
+    "jobid": "cb836a9d-d842-4516-8753-854e2c27bd89",
+    "jobstatus": 1
+  }
+}

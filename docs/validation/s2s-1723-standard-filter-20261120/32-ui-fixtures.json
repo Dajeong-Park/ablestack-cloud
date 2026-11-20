@@ -1,0 +1,38 @@
+{
+  "cluster": 32,
+  "domainPath": "/qa-s2s1723-standard-32-domain",
+  "userName": "qa-s2s1723-standard-32-user",
+  "domainAdminName": "qa-s2s1723-standard-32-domainadmin",
+  "projectName": "qa-s2s1723-standard-32-project",
+  "projectId": "d160c0b5-7203-4f20-8987-d6f05a2daa35",
+  "rows": [
+    {
+      "scope": "global",
+      "vpcid": "8200123d-9f6e-47a0-9e9c-893daedbd549",
+      "name": "qa-s2s1723-standard-32-global",
+      "ip": "10.10.32.165",
+      "gatewayId": "6f25602f-e602-4eca-ba41-14407d257a58"
+    },
+    {
+      "scope": "user",
+      "vpcid": "3f99baf0-561e-4599-9f4c-7a5fa421d2d0",
+      "name": "qa-s2s1723-standard-32-user",
+      "ip": "10.10.32.170",
+      "gatewayId": null
+    },
+    {
+      "scope": "domainadmin",
+      "vpcid": "34a9af2d-5b96-4223-8696-11778f641879",
+      "name": "qa-s2s1723-standard-32-domainadmin",
+      "ip": "10.10.32.164",
+      "gatewayId": "db5b688c-286b-42de-8f7e-456c16eed8d2"
+    },
+    {
+      "scope": "project",
+      "vpcid": "5895334d-247c-4e1b-9f8a-4cb6e617bcc8",
+      "name": "qa-s2s1723-standard-32-project",
+      "ip": "10.10.32.163",
+      "gatewayId": "02f37f38-f25a-4dab-aecd-4d9776b0f0b8"
+    }
+  ]
+}

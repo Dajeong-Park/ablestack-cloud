@@ -1,0 +1,6 @@
+{
+  "classSha256": "d55596c5577806457b1b93c096c150495b2be58fae76215e279753abb01d73d6",
+  "packageClassBytesEqual": true,
+  "methodBytecodeUnchangedVsBothRuntimeClasses": true,
+  "changedClass": "org/apache/cloudstack/api/command/user/vpn/CreateVpnGatewayCmd.class"
+}

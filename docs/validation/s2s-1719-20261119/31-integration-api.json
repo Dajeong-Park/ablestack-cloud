@@ -1,0 +1,121 @@
+[
+  {
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "dd3acff3-3f1f-44ba-bd8d-55d44c854d88",
+            "publicip": "10.10.31.146",
+            "vpcid": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+            "vpcname": "qa-gn1569-31-svc-review",
+            "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "keyword": "10.10.31.146"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "dd3acff3-3f1f-44ba-bd8d-55d44c854d88",
+            "publicip": "10.10.31.146",
+            "vpcid": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+            "vpcname": "qa-gn1569-31-svc-review",
+            "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "keyword": "DD3ACFF3-3F1F-44BA-BD8D-55D44C854D88"
+    },
+    "response": {
+      "listvpngatewaysresponse": {
+        "count": 1,
+        "vpngateway": [
+          {
+            "id": "dd3acff3-3f1f-44ba-bd8d-55d44c854d88",
+            "publicip": "10.10.31.146",
+            "vpcid": "86950275-e6b6-4790-8bc9-bee82ab173c7",
+            "vpcname": "qa-gn1569-31-svc-review",
+            "account": "PrjAcct-qa-gn1569-31-shared-reg-105",
+            "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+            "project": "qa-gn1569-31-shared-reg",
+            "domainid": "f3772036-4b8f-41fd-83f2-b71751950364",
+            "domain": "qa-gn1569-31-domain",
+            "domainpath": "ROOT/qa-gn1569-31-domain",
+            "fordisplay": true
+          }
+        ]
+      }
+    },
+    "passed": true
+  },
+  {
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "keyword": "s2s1719-no-match"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "params": {
+      "projectid": "59614883-4085-4a76-99da-b8a1e3a78eed",
+      "id": "dd3acff3-3f1f-44ba-bd8d-55d44c854d88",
+      "keyword": "s2s1719-no-match"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "params": {
+      "keyword": "10.10.31.146"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  },
+  {
+    "params": {
+      "keyword": "qa-s2s1719-31"
+    },
+    "response": {
+      "listvpngatewaysresponse": {}
+    },
+    "passed": true
+  }
+]

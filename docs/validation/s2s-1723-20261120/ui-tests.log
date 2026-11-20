@@ -1,0 +1,20 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --runInBand --coverage=false --silent --runTestsByPath tests/unit/views/network/S2sGatewayDisplay.spec.js tests/unit/views/network/S2sGateway.spec.js tests/unit/views/network/S2sGatewayCreate.spec.js tests/unit/utils/s2sGatewaySearch.spec.js tests/unit/views/AutogenS2sGatewaySearch.spec.js tests/unit/components/S2sGatewaySearch.spec.js tests/unit/views/network/VpcVpnCreate.spec.js tests/unit/components/view/ResourceView.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS tests/unit/views/network/S2sGatewayDisplay.spec.js (5.118s)
+PASS tests/unit/views/network/S2sGateway.spec.js
+PASS tests/unit/components/view/ResourceView.spec.js
+PASS tests/unit/views/network/VpcVpnCreate.spec.js
+PASS tests/unit/views/AutogenS2sGatewaySearch.spec.js
+PASS tests/unit/views/network/S2sGatewayCreate.spec.js
+PASS tests/unit/utils/s2sGatewaySearch.spec.js
+PASS tests/unit/components/S2sGatewaySearch.spec.js
+
+Test Suites: 8 passed, 8 total
+Tests:       212 passed, 212 total
+Snapshots:   0 total
+Time:        18.787s

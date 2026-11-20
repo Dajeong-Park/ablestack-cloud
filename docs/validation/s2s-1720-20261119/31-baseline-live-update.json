@@ -1,0 +1,16 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "account": "admin",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domainpath": "ROOT",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+    "jobprocstatus": 0,
+    "jobresultcode": 0,
+    "created": "2026-11-19T17:20:43+0900",
+    "completed": "2026-11-19T17:20:43+0900",
+    "jobid": "465a797a-1df4-407d-81f3-7563263a3138",
+    "jobstatus": 1
+  }
+}

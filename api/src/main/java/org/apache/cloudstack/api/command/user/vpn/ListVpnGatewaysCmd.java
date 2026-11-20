@@ -32,7 +32,7 @@ import org.apache.cloudstack.api.response.VpcResponse;
 import com.cloud.network.Site2SiteVpnGateway;
 import com.cloud.utils.Pair;
 
-@APICommand(name = "listVpnGateways", description = "Lists site 2 site VPN gateways", responseObject = Site2SiteVpnGatewayResponse.class, entityType = {Site2SiteVpnGateway.class},
+@APICommand(name = "listVpnGateways", description = "Lists site 2 site VPN gateways. Keyword matches a literal substring of the public IP, gateway UUID or VPC name.", responseObject = Site2SiteVpnGatewayResponse.class, entityType = {Site2SiteVpnGateway.class},
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
 public class ListVpnGatewaysCmd extends BaseListProjectAndAccountResourcesCmd {
 
@@ -50,6 +50,10 @@ public class ListVpnGatewaysCmd extends BaseListProjectAndAccountResourcesCmd {
     @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "List resources by display flag; only ROOT admin is eligible to pass this parameter", since = "4.4", authorized = {RoleType.Admin})
     private Boolean display;
 
+    @Parameter(name = "displayall", type = CommandType.BOOLEAN,
+            description = "Include both display flag values. Mutually exclusive with fordisplay; ROOT admin only.", authorized = {RoleType.Admin})
+    private Boolean displayAll;
+
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
@@ -64,6 +68,12 @@ public class ListVpnGatewaysCmd extends BaseListProjectAndAccountResourcesCmd {
 
     @Override
     public Boolean getDisplay() {
+        if (Boolean.TRUE.equals(displayAll)) {
+            if (display != null) {
+                throw new com.cloud.exception.InvalidParameterValueException("displayall and fordisplay are mutually exclusive");
+            }
+            return null;
+        }
         if (display != null) {
             return display;
         }

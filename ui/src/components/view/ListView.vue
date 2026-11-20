@@ -70,6 +70,7 @@
     <template #bodyCell="{ column, text, record }">
       <AsnListCell v-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
+      <S2sGatewayValue v-else-if="$route.meta?.name === 's2svpn' && ['publicip','vpcname','account','domain','project'].includes(column.key)" :resource="record" :field="column.key" list />
       <KubernetesIsoListCell v-else-if="isKubernetesIsoMainList && ['state', 'isostate', 'zonename', 'semanticversion', 'mincpunumber', 'minmemory', 'arch'].includes(column.key)" :resource="record" :field="column.key" />
       <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
@@ -455,7 +456,7 @@
         >{{ text }}</router-link>
         <router-link
           v-else
-          :to="{ path: $route.path + '/' + record.id }"
+          :to="$route.meta?.name === 's2svpn' ? s2sGatewayDetailLocation($route, record, $store.getters) : { path: $route.path + '/' + record.id }"
         >{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'traffictype'">
@@ -1266,6 +1267,7 @@
 </template>
 
 <script>
+import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { kubernetesIsoDetailLocation } from '@/utils/kubernetesIsoSearch'
 import { templateDetailLocation } from '@/utils/templateSearch'
@@ -1316,11 +1318,13 @@ import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySum
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
+import { s2sGatewayDetailLocation } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
   name: 'ListView',
   components: {
+    S2sGatewayValue,
     TemplateAvailability,
     KubernetesIsoListCell,
     KeyboardTooltip,
@@ -1580,6 +1584,7 @@ export default {
     }
   },
   methods: {
+    s2sGatewayDetailLocation,
     vnfDetailLocation,
     publicIpDetailLocation,
     vmDisplayName,

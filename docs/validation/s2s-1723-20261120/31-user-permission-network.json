@@ -1,0 +1,18 @@
+{
+  "cluster": 31,
+  "role": "user",
+  "denied": [
+    {
+      "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&fordisplay=false",
+      "gatewayReads": 0,
+      "permissionError": true,
+      "requests": []
+    },
+    {
+      "url": "http://10.10.31.10:8080/client/#/s2svpn/7f84a240-6f54-4672-a194-dc86e12894d0?projectid=0&fordisplay=false",
+      "gatewayReads": 0,
+      "permissionError": true,
+      "requests": []
+    }
+  ]
+}

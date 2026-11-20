@@ -1,0 +1,32 @@
+{
+  "command": "deleteVpnGateway",
+  "params": {
+    "id": "64cbe30b-eb9a-4fdb-9ad1-763691756ae6",
+    "customjobid": "97e99b52-62f7-487f-981b-20845ad767ac"
+  },
+  "accepted": {
+    "deletevpngatewayresponse": {
+      "jobid": "97e99b52-62f7-487f-981b-20845ad767ac"
+    }
+  },
+  "final": {
+    "queryasyncjobresultresponse": {
+      "accountid": "6d3ebcb0-b23b-11f1-990e-0024811f8935",
+      "account": "admin",
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "domainpath": "ROOT",
+      "userid": "6d3f209b-b23b-11f1-990e-0024811f8935",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.DeleteVpnGatewayCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-20T01:16:01+0900",
+      "completed": "2026-11-20T01:16:02+0900",
+      "jobid": "97e99b52-62f7-487f-981b-20845ad767ac",
+      "jobstatus": 1
+    }
+  }
+}

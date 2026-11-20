@@ -1,0 +1,170 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn?projectid=0&fordisplay=false&page=1&pagesize=20"
+  - text: /
+  - generic: 10.10.32.165
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "lock":
+  - heading "10.10.32.165" [level=4]
+  - separator
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "46c77ef3-b3bb-4136-a52a-9a7c64f53d08":
+    - /url: javascript:;
+  - generic: Public IP 주소
+  - img "gateway":
+  - link "10.10.32.165":
+    - /url: javascript:;
+  - generic: VPC
+  - img "deployment-unit":
+  - link "qa-s2s1723-32-global":
+    - /url: "#/vpc/097cd6a9-ac7d-4c0b-a836-60e7132d42ce"
+  - generic: 계정
+  - img "user":
+  - link "qa-s2s1723-32-user":
+    - /url: "#/account?name=qa-s2s1723-32-user&domainid=27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+  - generic: 도메인
+  - img "block":
+  - link "qa-s2s1723-32-domain":
+    - /url: "#/domain/27dc4ede-ce95-45a7-a650-33dbcd7b1e27?tab=details"
+  - tablist:
+    - tab "상세" [selected]
+    - tab "VPN 연결"
+  - tabpanel "상세":
+    - list:
+      - strong: 아이디
+      - link "46c77ef3-b3bb-4136-a52a-9a7c64f53d08":
+        - /url: javascript:;
+      - strong: Public IP 주소
+      - text: 10.10.32.165
+      - strong: VPC
+      - link "qa-s2s1723-32-global":
+        - /url: "#/vpc/097cd6a9-ac7d-4c0b-a836-60e7132d42ce"
+      - strong: 계정
+      - link "qa-s2s1723-32-user":
+        - /url: "#/account?name=qa-s2s1723-32-user&domainid=27dc4ede-ce95-45a7-a650-33dbcd7b1e27&dataView=true"
+      - strong: 도메인
+      - link "qa-s2s1723-32-domain":
+        - /url: "#/domain/27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+      - strong: 프로젝트
+      - text: "-"
+      - strong: 사용자 표시
+      - text: 아니오
+- alert:
+  - img "info-circle":
+  - generic: Wall 모니터링 상태를 확인할 수 없습니다. 경보 정보가 최신 상태가 아닐 수 있습니다. Mold의 다른 기능은 계속 이용할 수 있습니다.
+  - button "close":
+    - img "close":

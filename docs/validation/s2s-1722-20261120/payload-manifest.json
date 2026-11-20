@@ -1,0 +1,13 @@
+{
+  "baseSource": "e4ed59452bb7d72800444f66ba1fd7c8bb49eecc",
+  "classes": {
+    "org/apache/cloudstack/api/command/user/vpn/CreateVpnGatewayCmd.class": "d55596c5577806457b1b93c096c150495b2be58fae76215e279753abb01d73d6"
+  },
+  "preservation": {
+    "classSha256": "d55596c5577806457b1b93c096c150495b2be58fae76215e279753abb01d73d6",
+    "packageClassBytesEqual": true,
+    "methodBytecodeUnchangedVsBothRuntimeClasses": true,
+    "changedClass": "org/apache/cloudstack/api/command/user/vpn/CreateVpnGatewayCmd.class"
+  },
+  "javaPayloadSha256": "862d60e0490c85a596dbd69d46c93a302ae331614c587e23362eb9402eac6596"
+}

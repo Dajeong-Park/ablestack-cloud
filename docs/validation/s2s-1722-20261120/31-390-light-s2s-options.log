@@ -1,0 +1,127 @@
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn"
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - switch "프로젝트":
+    - generic: 프로젝트
+  - button "VPN 게이트웨이 추가":
+    - img "plus":
+    - generic: VPN 게이트웨이 추가
+  - button "고급 검색":
+    - img "filter":
+  - textbox "검색":
+    - /placeholder: 공인 IP, 게이트웨이 ID 또는 VPC 이름 검색
+  - button "search":
+    - img "search":
+  - table:
+    - rowgroup:
+      - row "Public IP 주소 VPC 계정 도메인 filter":
+        - columnheader "Public IP 주소"
+        - columnheader "VPC"
+        - columnheader "계정"
+        - columnheader "도메인"
+        - columnheader "filter":
+          - button "filter":
+            - img "filter":
+    - rowgroup:
+      - row "데이터 없음":
+        - cell "데이터 없음":
+          - paragraph: 데이터 없음
+  - list:
+    - listitem: 전체 0 개 항목 중 0-0 표시
+    - listitem "이전 페이지":
+      - button "left" [disabled]:
+        - img "left":
+    - listitem "1":
+      - generic: "1"
+    - listitem "다음 페이지":
+      - button "right" [disabled]:
+        - img "right":
+    - combobox
+    - generic: 20 / 쪽
+- dialog "VPN 게이트웨이 추가":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: VPN 게이트웨이 추가
+    - paragraph: VPN 게이트웨이를 추가할 VPC를 선택하세요.
+    - generic "VPC": "* VPC"
+    - generic "VPC":
+      - combobox "* VPC" [expanded] [active]:
+        - listbox:
+          - option "20a887e5-d287-4da7-aa4b-8dbc645f04f5"
+          - option "41fe0031-3f58-4776-a2be-0823f61dde6b"
+          - option "16125a08-19e3-4072-adf9-b1c32af1211b"
+    - generic: VPN 게이트웨이가 없는 VPC를 선택하세요. 이름·ID·소유 범위·Zone으로 대상을 구분합니다.
+    - button "업데이트":
+      - generic: 업데이트
+    - button "취소":
+      - generic: 취소
+    - button "VPN 게이트웨이 추가" [disabled]:
+      - generic: VPN 게이트웨이 추가
+- strong: qa-s2s1722-31-novpn
+- generic: 20a887e5-d287-4da7-aa4b-8dbc645f04f5
+- generic: qa-s2s1722-31-user · Zone
+- generic: 이 제공자 조합은 이 생성창에서 지원하지 않습니다.
+- strong: qa-s2s1722-31-source
+- generic: 41fe0031-3f58-4776-a2be-0823f61dde6b
+- generic: qa-s2s1722-31-user · Zone
+- strong: qa-s2s1722-31-hidden
+- generic: 16125a08-19e3-4072-adf9-b1c32af1211b
+- generic: qa-s2s1722-31-user · Zone
+- generic: 이미 VPN 게이트웨이가 있는 VPC입니다.
+- strong: qa-gn1569-31-reg-vpc
+- generic: 876d40cb-64e6-42a8-a5d4-1122c7c0f1b8
+- generic: qa-gn1569-31-owner · Zone
+- strong: rt1230-offline-custom-cni-r29-vpc
+- generic: 2c41c280-c915-4952-ab59-a527bf248c94
+- generic: k1230-20261006 · Zone

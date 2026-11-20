@@ -1,0 +1,188 @@
+{
+  "status": "PASS",
+  "created": [
+    {
+      "scope": "source",
+      "request": {
+        "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+        "ipaddressid": "15759fa1-ca4c-4054-82b2-47dfb03c3afb",
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "customjobid": "85e45060-cc7b-4fc9-9f1e-c73f7dc8bb64"
+      },
+      "final": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "fbd4b5fe-a9fb-47d3-aedd-253e9aefd24d",
+            "publicip": "10.10.31.107",
+            "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+            "vpcname": "qa-s2s1722-31-source",
+            "account": "qa-s2s1722-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-20T01:28:49+0900",
+        "completed": "2026-11-20T01:28:49+0900",
+        "jobid": "85e45060-cc7b-4fc9-9f1e-c73f7dc8bb64",
+        "jobstatus": 1
+      },
+      "requery": [
+        {
+          "id": "fbd4b5fe-a9fb-47d3-aedd-253e9aefd24d",
+          "publicip": "10.10.31.107",
+          "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+          "vpcname": "qa-s2s1722-31-source",
+          "account": "qa-s2s1722-31-user",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "fordisplay": true
+        }
+      ]
+    },
+    {
+      "scope": "project",
+      "request": {
+        "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3",
+        "ipaddressid": "3aab3764-2ead-49a8-9289-b758bb2490ec",
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+        "customjobid": "82f7d7da-e9d5-4aff-af25-8e5499f20959"
+      },
+      "final": {
+        "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+        "account": "admin",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "76e0bf0c-c774-4587-8682-b3b1d6dddd59",
+            "publicip": "10.10.31.113",
+            "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3",
+            "vpcname": "qa-s2s1722-31-project",
+            "account": "PrjAcct-qa-s2s1722-31-project-1",
+            "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+            "project": "qa-s2s1722-31-project",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-20T01:27:08+0900",
+        "completed": "2026-11-20T01:27:08+0900",
+        "jobid": "82f7d7da-e9d5-4aff-af25-8e5499f20959",
+        "jobstatus": 1
+      },
+      "requery": [
+        {
+          "id": "76e0bf0c-c774-4587-8682-b3b1d6dddd59",
+          "publicip": "10.10.31.113",
+          "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3",
+          "vpcname": "qa-s2s1722-31-project",
+          "account": "PrjAcct-qa-s2s1722-31-project-1",
+          "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+          "project": "qa-s2s1722-31-project",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "fordisplay": true
+        }
+      ]
+    },
+    {
+      "scope": "hidden",
+      "request": {
+        "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b",
+        "ipaddressid": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "customjobid": "c66ee02c-d3a6-4233-b4bc-5a778c1fa13f"
+      },
+      "final": {
+        "accountid": "38629de4-b8d3-46a7-98a4-6bdfe0aecee4",
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domainpath": "ROOT",
+        "userid": "a7a02588-f8ae-4d06-8c83-0f3a6be94809",
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+        "jobprocstatus": 0,
+        "jobresultcode": 0,
+        "jobresulttype": "object",
+        "jobresult": {
+          "vpngateway": {
+            "id": "8536d229-ef98-43df-ac7a-0712f0f87064",
+            "publicip": "10.10.31.105",
+            "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b",
+            "vpcname": "qa-s2s1722-31-hidden",
+            "account": "qa-s2s1722-31-user",
+            "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+            "domain": "ROOT",
+            "domainpath": "ROOT",
+            "fordisplay": true
+          }
+        },
+        "jobinstancetype": "None",
+        "created": "2026-11-20T01:33:43+0900",
+        "completed": "2026-11-20T01:33:43+0900",
+        "jobid": "c66ee02c-d3a6-4233-b4bc-5a778c1fa13f",
+        "jobstatus": 1
+      },
+      "requery": [
+        {
+          "id": "8536d229-ef98-43df-ac7a-0712f0f87064",
+          "publicip": "10.10.31.105",
+          "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b",
+          "vpcname": "qa-s2s1722-31-hidden",
+          "account": "qa-s2s1722-31-user",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "fordisplay": true
+        }
+      ]
+    }
+  ],
+  "userScope": [
+    {
+      "id": "8536d229-ef98-43df-ac7a-0712f0f87064",
+      "publicip": "10.10.31.105",
+      "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b",
+      "vpcname": "qa-s2s1722-31-hidden",
+      "account": "qa-s2s1722-31-user",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT"
+    },
+    {
+      "id": "fbd4b5fe-a9fb-47d3-aedd-253e9aefd24d",
+      "publicip": "10.10.31.107",
+      "vpcid": "41fe0031-3f58-4776-a2be-0823f61dde6b",
+      "vpcname": "qa-s2s1722-31-source",
+      "account": "qa-s2s1722-31-user",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domain": "ROOT",
+      "domainpath": "ROOT"
+    }
+  ],
+  "userNoRootArguments": true,
+  "raceUiCreatePosts": 0
+}

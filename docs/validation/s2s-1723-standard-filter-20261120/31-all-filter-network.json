@@ -1,0 +1,45 @@
+{
+  "requests": [
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true",
+        "displayall": "true"
+      },
+      "sequence": 847,
+      "http": 200,
+      "response": {
+        "count": 3,
+        "rows": [
+          {
+            "id": "ebf5ed14-a0ef-4601-8948-2df6e1d7bd88",
+            "vpcid": "a5a96521-5297-4ca3-bca4-95ddd6780979",
+            "publicip": "10.10.31.107",
+            "account": "qa-s2s1723-standard-31-user",
+            "domainid": "dcdf8e51-0748-4331-bc8a-05c5188eed0f",
+            "fordisplay": false
+          },
+          {
+            "id": "4a4080a9-f1f6-4c3c-bfad-bc217b2a0031",
+            "vpcid": "1224889e-7d75-46d5-9468-d17848fce7e1",
+            "publicip": "10.10.31.110",
+            "account": "qa-s2s1723-standard-31-domainadmin",
+            "domainid": "dcdf8e51-0748-4331-bc8a-05c5188eed0f",
+            "fordisplay": true
+          },
+          {
+            "id": "eca0a7c7-0910-4500-972b-b6c10d11cdfd",
+            "vpcid": "7c39723d-3619-4d47-b7c5-b596c1b10104",
+            "publicip": "10.10.31.105",
+            "account": "qa-s2s1723-standard-31-user",
+            "domainid": "dcdf8e51-0748-4331-bc8a-05c5188eed0f",
+            "fordisplay": true
+          }
+        ]
+      }
+    }
+  ]
+}

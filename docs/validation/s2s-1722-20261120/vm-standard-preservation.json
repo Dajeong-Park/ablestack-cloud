@@ -1,0 +1,17 @@
+{
+  "ui/src/components/view/MoldDialog.vue": "a4fd69c07742503a4d4f261f0af449dbc550b24e",
+  "ui/src/components/view/MoldDialogActions.vue": "5599bde1e184f4d8c365941c0908db4730e034dd",
+  "ui/src/layouts/ResourceLayout.vue": "d163c792bfbdad2bd65f1359c01f774f33074daa",
+  "ui/src/components/view/InfoCard.vue": "ed704cc28b8bdbafcf4d85d8db3989bf3b585e3f",
+  "ui/src/components/view/ResourceView.vue": "fefe8cd1f460953d80324860a18db9482300d3cc",
+  "ui/src/components/view/DetailsTab.vue": "d8df2458ceccce24f12efc20317048119d892d69",
+  "ui/src/components/view/ListView.vue": "843f3c44036f2462fb2d0017b2d0fcd58721a053",
+  "ui/src/components/widgets/Breadcrumb.vue": "f49e70fa62a4f7ea286d77bfd255581f87c577ae",
+  "ui/src/views/compute/InstanceTab.vue": "e89bcf95d45cebcebe71b087cbb45a7faa4b5811",
+  "ui/src/style/theme/components.less": "4a37d7c77dc0d99461990cdf80cd858330ea20af",
+  "ui/src/style/vars.less": "fdb364ed475594bb2040e5f342e2dbc886198c91",
+  "ui/src/style/dark-mode.less": "1349b740b9ef3b5e86edf857e2233071017ff906",
+  "ui/src/style/components/view/list-toolbar.css": "0166be85cec7a2f11766c9baf0e3e38e65a3aefb",
+  "enExistingLocaleKeysPreserved": 12223,
+  "ko_KRExistingLocaleKeysPreserved": 12231
+}

@@ -1,0 +1,41 @@
+{
+  "account": "qa-s2s1719-32-reader",
+  "checks": [
+    {
+      "params": {
+        "keyword": "10.10.32.165"
+      },
+      "response": {
+        "listvpngatewaysresponse": {}
+      },
+      "passed": true
+    },
+    {
+      "params": {
+        "keyword": "5e2f1ef5-fea2-4a22-a144-59116d37d8a1"
+      },
+      "response": {
+        "listvpngatewaysresponse": {}
+      },
+      "passed": true
+    },
+    {
+      "params": {
+        "keyword": "한글"
+      },
+      "response": {
+        "listvpngatewaysresponse": {}
+      },
+      "passed": true
+    },
+    {
+      "params": {
+        "keyword": "%"
+      },
+      "response": {
+        "listvpngatewaysresponse": {}
+      },
+      "passed": true
+    }
+  ]
+}

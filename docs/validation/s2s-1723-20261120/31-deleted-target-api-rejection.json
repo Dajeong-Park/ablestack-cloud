@@ -1,0 +1,24 @@
+{
+  "note": "삭제된 전용 GW의 실제 API 호출은 비동기 접수 후 실패했다. 즉시 거부로 예상한 SDK가 receipt 보관 전에 중단해, 추가 mutation 없이 관리 서버 로컬 DB에서 최근 유일한 실패 update job UUID만 읽어 API 재조회했다. UI 보류 시도는 먼저 timeout돼 실제 UI 수정 POST 거부로 계산하지 않는다.",
+  "finalJob": {
+    "queryasyncjobresultresponse": {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 431,
+      "jobresulttype": "object",
+      "jobresult": {
+        "errorcode": 431,
+        "errortext": "Fail to find vpn gateway with 18"
+      },
+      "created": "2026-11-20T12:39:50+0900",
+      "completed": "2026-11-20T12:39:50+0900",
+      "jobid": "b2a2bd84-5830-4e3c-8b49-92344041be5d",
+      "jobstatus": 2
+    }
+  }
+}

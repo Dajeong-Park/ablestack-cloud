@@ -1,0 +1,104 @@
+{
+  "source": "86acfe2a247",
+  "unchangedPostCount": 0,
+  "mutationDelivered": false,
+  "noticeCount": 0,
+  "control": [
+    {
+      "command": "listVpnGateways",
+      "action": "forward",
+      "params": {
+        "id": "7f84a240-6f54-4672-a194-dc86e12894d0",
+        "fordisplay": "false",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      }
+    },
+    {
+      "command": "updateVpnGateway",
+      "action": "controlled-receipt-without-mutation",
+      "params": {
+        "id": "7f84a240-6f54-4672-a194-dc86e12894d0",
+        "fordisplay": "true",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "customjobid": "535147ce-fe3c-4546-8581-12c3146ac24c"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "action": "controlled-job2",
+      "params": {
+        "jobid": "535147ce-fe3c-4546-8581-12c3146ac24c"
+      }
+    },
+    {
+      "command": "readyForShutdown",
+      "action": "forward",
+      "params": {}
+    }
+  ],
+  "requests": [
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "id": "7f84a240-6f54-4672-a194-dc86e12894d0",
+        "fordisplay": "false",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 17152,
+      "http": 200,
+      "response": {
+        "count": 1,
+        "rows": [
+          {
+            "id": "7f84a240-6f54-4672-a194-dc86e12894d0",
+            "vpcid": "8f55e6d0-6062-4a48-a9a2-ecca26571640",
+            "publicip": "10.10.31.105",
+            "account": "qa-s2s1723-31-user",
+            "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+            "fordisplay": false
+          }
+        ]
+      }
+    },
+    {
+      "command": "updateVpnGateway",
+      "method": "POST",
+      "params": {
+        "id": "7f84a240-6f54-4672-a194-dc86e12894d0",
+        "fordisplay": "true",
+        "account": "qa-s2s1723-31-user",
+        "domainid": "9bebefdf-af80-4123-865e-6f9354b07cf7",
+        "customjobid": "535147ce-fe3c-4546-8581-12c3146ac24c"
+      },
+      "sequence": 17158,
+      "http": 200,
+      "response": {
+        "jobid": "535147ce-fe3c-4546-8581-12c3146ac24c"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "params": {
+        "jobid": "535147ce-fe3c-4546-8581-12c3146ac24c"
+      },
+      "sequence": 17164,
+      "http": 200,
+      "response": {
+        "jobid": "535147ce-fe3c-4546-8581-12c3146ac24c",
+        "jobstatus": 2,
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd"
+      }
+    }
+  ]
+}

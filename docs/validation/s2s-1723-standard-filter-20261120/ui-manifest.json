@@ -1,0 +1,43 @@
+{
+  "buildCommit": "b62e9fbcac4eaf5789d9d8c609599da5baeee26c",
+  "sourceBase": "e5e696490ae34f46f9f2953b34519cb6fa3c0948",
+  "backendChanged": true,
+  "changedModules": [
+    "api",
+    "ui"
+  ],
+  "productionSourceMap": false,
+  "uglifySourceMap": false,
+  "sourceSha256": {
+    "ui/public/locales/en.json": "6775052ceb2786bda9d91771593140ee3651092517c773107208d0363fbe7c34",
+    "ui/public/locales/ko_KR.json": "fc59f8a25cb6e515e650e363ac83484b7f5a015bcdde8021561361ae17862463",
+    "ui/src/components/view/S2sGatewayFilterChips.vue": "5aea9ca52085b07e968ef4769f3f680487dd20912ff8adc4b310822f7f19f2e0",
+    "ui/src/components/view/S2sGatewaySearch.vue": "296aefa6b0be753ec3f886fdd3336744e3db5473d14ac268acfa945e6f6452af",
+    "ui/src/config/section/network.js": "970355b8ac380dc056224c0d70ddd21c1a9be211f70b96339dc2586816be8fc8",
+    "ui/src/style/components/view/list-toolbar.css": "d230099d2bcb43216a44173af896ecb2a7267e60e4798a6261e6bbe821765819",
+    "ui/src/utils/s2sGateway.js": "4e00ac4033d5cf0372c355d464353722a1aa498ee28baf2b2396c83a73a5811c",
+    "ui/src/utils/s2sGatewayDisplay.js": "309686fb995cae111ec5c7be9c5f9ad9d7111b9e250e778c33c8a7da75636751",
+    "ui/src/utils/s2sGatewaySearch.js": "d077dba945fd7a16c4f2af1d9857ad18885a4d2e5d27ef8f8d9dac0209e47255",
+    "ui/src/views/AutogenView.vue": "fa547affbc4b95d0d5309aa923eb1fe81f101e66da948f4168a647dc750045b4",
+    "ui/src/views/network/S2sGatewayDialog.vue": "ff95b079c898c479d5f0f43841d39daaaefdf4a1d6064aaac60b609cee141ac5",
+    "ui/tests/unit/components/S2sGatewaySearch.spec.js": "cdf6290084a534f1ec289cf779c5c4e27ebd864b689f157e79d61fec12f85402",
+    "ui/tests/unit/utils/s2sGatewaySearch.spec.js": "e6999f6ad3f507a60c1d9c2f0a847ed65c4b33c7c06cc4babf8cd05c7ce3e966",
+    "ui/tests/unit/views/AutogenS2sGatewaySearch.spec.js": "495e8cc21bed1a87b36d5d607ee80fe705f79e5fe28f5edf6da5bb4196711cd7",
+    "ui/tests/unit/views/network/S2sGatewayDisplay.spec.js": "c33c248eb6a0c23b19f1514d59918bd91a8b59c40f392ef9eef51c90fc281900"
+  },
+  "markers": [
+    "label.s2s.display.edit",
+    "s2s-gateway-display-filter",
+    "s2s-gateway-filter-row",
+    "s2s-gateway-search-control",
+    "s2s-dialog-context",
+    "s2s-connections-toolbar",
+    "asn-search-control",
+    "blockingLoadingState",
+    "fetchSyncProgress",
+    "extractJobId"
+  ],
+  "uiPayloadSha256": "e264833b8241eea800ec7b214008918c57bd446232aef937337f25a9ddcba329",
+  "indexSha256": "0050406a212bf60643c1771511cda8c5b7d6048df24a78370ffb032e31a7d30b",
+  "buildConfigSha256": "a0f7b7f8c8574039ad68da01a986ead6a7450ec4aa9e3f37855851ff9589f23a"
+}

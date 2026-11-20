@@ -1,0 +1,135 @@
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "프로젝트 네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#001529"
+- generic: 텍스트 색상
+- textbox: "#ffffff"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: qa-gn1569-31-shared-reg
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn?fordisplay=true&projectid=59614883-4085-4a76-99da-b8a1e3a78eed&page=1&pagesize=20"
+  - text: /
+  - generic: 10.10.31.146
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "lock":
+  - heading "10.10.31.146" [level=4]
+  - separator
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "dd3acff3-3f1f-44ba-bd8d-55d44c854d88":
+    - /url: javascript:;
+  - generic: 프로젝트
+  - img "project":
+  - link "qa-gn1569-31-shared-reg":
+    - /url: "#/project/59614883-4085-4a76-99da-b8a1e3a78eed"
+  - generic: Public IP 주소
+  - img "gateway":
+  - link "10.10.31.146":
+    - /url: javascript:;
+  - generic: VPC
+  - img "deployment-unit":
+  - link "qa-gn1569-31-svc-review":
+    - /url: "#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7"
+  - generic: 도메인
+  - img "block":
+  - link "qa-gn1569-31-domain":
+    - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+  - tablist:
+    - tab "상세" [selected]
+    - tab "VPN 연결"
+  - tabpanel "상세":
+    - list:
+      - strong: 아이디
+      - link "dd3acff3-3f1f-44ba-bd8d-55d44c854d88":
+        - /url: javascript:;
+      - strong: Public IP 주소
+      - text: 10.10.31.146
+      - strong: VPC
+      - link "qa-gn1569-31-svc-review":
+        - /url: "#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7"
+      - strong: 계정
+      - link "qa-gn1569-31-shared-reg (프로젝트)":
+        - /url: "#/project/59614883-4085-4a76-99da-b8a1e3a78eed"
+      - strong: 도메인
+      - link "qa-gn1569-31-domain":
+        - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364"
+      - strong: 프로젝트
+      - link "qa-gn1569-31-shared-reg":
+        - /url: "#/project/59614883-4085-4a76-99da-b8a1e3a78eed"
+      - strong: 사용자 표시
+      - text: 예
+- dialog "표시 설정 수정":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: 표시 설정 수정
+    - button "업데이트":
+      - generic: 업데이트
+    - alert:
+      - img "info-circle":
+      - generic: 현재 설정과 같습니다. 변경 요청을 전송하지 않습니다.
+    - generic "사용자에게 표시"
+    - switch "사용자에게 표시" [checked]
+    - generic: 자원 조회 시 표시 여부를 설정합니다. VPN 연결을 활성화·차단하거나 터널 상태를 변경하지 않습니다. Root 관리자만 변경할 수 있습니다.
+    - term: VPN 게이트웨이
+    - definition: 10.10.31.146
+    - term: 아이디
+    - definition: dd3acff3-3f1f-44ba-bd8d-55d44c854d88
+    - term: VPC
+    - definition: qa-gn1569-31-svc-review
+    - term: 프로젝트
+    - definition: qa-gn1569-31-shared-reg
+    - term: 도메인
+    - definition: qa-gn1569-31-domain
+    - term: 현재 표시 설정
+    - definition: 표시 대상
+    - button "취소":
+      - generic: 취소
+    - button "표시 설정 수정" [disabled]:
+      - generic: 표시 설정 수정

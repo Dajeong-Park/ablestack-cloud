@@ -1,0 +1,16 @@
+
+Oops! Something went wrong! :(
+
+ESLint: 6.8.0.
+
+ESLint couldn't find the plugin "eslint-plugin-vue".
+
+(The package "eslint-plugin-vue" was not found when loaded as a Node module from the directory "/home/ablecloud/work/dhslove/cloud-s2s-1721".)
+
+It's likely that the plugin isn't installed correctly. Try reinstalling by running the following:
+
+    npm install eslint-plugin-vue@latest --save-dev
+
+The plugin "eslint-plugin-vue" was referenced from the config file in "ui/package.json".
+
+If you still can't figure out the problem, please stop by https://gitter.im/eslint/eslint to chat with the team.

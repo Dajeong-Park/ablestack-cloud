@@ -1,0 +1,121 @@
+{
+  "status": "PASS",
+  "scope": [
+    {
+      "scope": "account",
+      "gateway": {
+        "id": "9b367b0c-fae5-4129-bab2-e849bd4f1588",
+        "publicip": "10.10.31.105",
+        "vpcid": "cb113972-9e11-437b-8c8d-8ea7e5ec9b9a",
+        "vpcname": "qa-s2s1721-31-account",
+        "account": "qa-s2s1721-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      },
+      "connections": [],
+      "liveGatewayCount": 0,
+      "phase": "after UI deletion"
+    },
+    {
+      "scope": "project",
+      "gateway": {
+        "id": "03b6a107-0bd9-4947-99a8-bb34752859af",
+        "publicip": "10.10.31.107",
+        "vpcid": "bc8abeae-61c9-4920-bbac-2db8154b8e49",
+        "vpcname": "qa-s2s1721-31-project",
+        "account": "PrjAcct-qa-s2s1721-31-project-1",
+        "projectid": "58babfc8-221e-43fe-9a9a-8adc6ac10ae5",
+        "project": "qa-s2s1721-31-project",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "domain": "ROOT",
+        "domainpath": "ROOT",
+        "fordisplay": true
+      },
+      "connections": [
+        {
+          "id": "00a03c80-c544-4c16-97ee-21065f798714",
+          "s2svpngatewayid": "03b6a107-0bd9-4947-99a8-bb34752859af",
+          "publicip": "10.10.31.107",
+          "s2scustomergatewayid": "0b942eca-6c61-419d-9fb2-76b270ad9120",
+          "gateway": "203.0.113.31",
+          "cidrlist": "10.227.31.0/24",
+          "ipsecpsk": "[redacted]",
+          "ikepolicy": "aes256-sha256;modp2048",
+          "esppolicy": "aes256-sha256",
+          "ikelifetime": 86400,
+          "esplifetime": 3600,
+          "dpd": false,
+          "forceencap": false,
+          "state": "Disconnected",
+          "passive": true,
+          "account": "PrjAcct-qa-s2s1721-31-project-1",
+          "projectid": "58babfc8-221e-43fe-9a9a-8adc6ac10ae5",
+          "project": "qa-s2s1721-31-project",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "created": "2026-11-19T23:34:40+0900",
+          "fordisplay": true,
+          "splitconnections": false,
+          "ikeversion": "ikev2"
+        }
+      ],
+      "liveGatewayCount": 1,
+      "phase": "live project fixture"
+    }
+  ],
+  "regularUserOwnScope": [],
+  "createdUiJobFinal": [
+    {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "vpngateway": {
+          "id": "9b367b0c-fae5-4129-bab2-e849bd4f1588",
+          "publicip": "10.10.31.105",
+          "vpcid": "cb113972-9e11-437b-8c8d-8ea7e5ec9b9a",
+          "vpcname": "qa-s2s1721-31-account",
+          "account": "qa-s2s1721-31-user",
+          "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+          "domain": "ROOT",
+          "domainpath": "ROOT",
+          "fordisplay": true
+        }
+      },
+      "jobinstancetype": "None",
+      "created": "2026-11-20T00:11:19+0900",
+      "completed": "2026-11-20T00:11:19+0900",
+      "jobid": "cccf27f1-2f62-4571-9f74-4a79f0d5d0c0",
+      "jobstatus": 1
+    }
+  ],
+  "deletedUiJobFinal": [
+    {
+      "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+      "account": "admin",
+      "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+      "domainpath": "ROOT",
+      "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.DeleteVpnGatewayCmd",
+      "jobprocstatus": 0,
+      "jobresultcode": 0,
+      "jobresulttype": "object",
+      "jobresult": {
+        "success": true
+      },
+      "created": "2026-11-20T00:32:52+0900",
+      "completed": "2026-11-20T00:32:52+0900",
+      "jobid": "6625e9d4-a178-4e8c-a5de-1315f64f8257",
+      "jobstatus": 1
+    }
+  ]
+}

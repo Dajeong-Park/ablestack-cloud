@@ -1,0 +1,467 @@
+{
+  "listVPCs": {
+    "before": [
+      {
+        "id": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "name": "AS-PROD-32-AS01-VPC",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "cidr": "172.30.32.0/16",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      }
+    ],
+    "after": [
+      {
+        "id": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "name": "AS-PROD-32-AS01-VPC",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "cidr": "172.30.32.0/16",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      }
+    ],
+    "preserved": true
+  },
+  "listVpnGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "listVpnConnections": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "listVpnCustomerGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "listPublicIpAddresses": {
+    "before": [
+      {
+        "id": "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+        "ipaddress": "10.10.32.166",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "078a87ba-8a96-4292-8f33-03163f599ef9",
+        "ipaddress": "10.10.32.144",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "282aad30-4938-4de3-8412-d3098f4f4caf",
+        "ipaddress": "10.10.32.168",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+        "ipaddress": "10.10.32.5",
+        "account": "system",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+        "ipaddress": "10.10.32.102",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+        "ipaddress": "10.10.32.6",
+        "account": "system",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+        "ipaddress": "10.10.32.167",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "c7e46392-cbcd-4503-a810-606b5afaa884",
+        "ipaddress": "10.10.32.143",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+        "ipaddress": "10.10.32.101",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6",
+        "ipaddress": "10.10.32.169",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      }
+    ],
+    "after": [
+      {
+        "id": "04de4618-4265-4bfc-9b4c-95bc88ac1c2c",
+        "ipaddress": "10.10.32.166",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "078a87ba-8a96-4292-8f33-03163f599ef9",
+        "ipaddress": "10.10.32.144",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "282aad30-4938-4de3-8412-d3098f4f4caf",
+        "ipaddress": "10.10.32.168",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "7c65bf2e-fbda-4ad1-a044-9d38e61c03a2",
+        "ipaddress": "10.10.32.5",
+        "account": "system",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "7f24ac97-2e82-40f9-8e8a-6264a1144038",
+        "ipaddress": "10.10.32.102",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "9064a919-9683-41ea-bfe5-ef3732e07eb2",
+        "ipaddress": "10.10.32.6",
+        "account": "system",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "9715ee32-e444-47ca-aa5c-bf7e8633dbd3",
+        "ipaddress": "10.10.32.167",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": false,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "c7e46392-cbcd-4503-a810-606b5afaa884",
+        "ipaddress": "10.10.32.143",
+        "account": "admin",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "d035d9a6-cb42-438f-893b-3353d20423e9",
+        "ipaddress": "10.10.32.101",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "vpcid": "b8d2a843-3310-46c3-9d64-aed4d5684721",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      },
+      {
+        "id": "d82e3f23-29e2-4b44-a85c-6c8821f2a4f6",
+        "ipaddress": "10.10.32.169",
+        "account": "epic1346-as01-user32",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "networkid": "4216b0b3-d054-46ab-88dd-9d025a1f3eb5",
+        "issourcenat": true,
+        "isstaticnat": false,
+        "fordisplay": true
+      }
+    ],
+    "preserved": true
+  },
+  "a8c89140-8cd3-41c8-b799-ccd4f348af9d:listVPCs": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "a8c89140-8cd3-41c8-b799-ccd4f348af9d:listVpnGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "a8c89140-8cd3-41c8-b799-ccd4f348af9d:listVpnConnections": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "a8c89140-8cd3-41c8-b799-ccd4f348af9d:listVpnCustomerGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "5481b3bb-b5cb-4999-a1d8-fde5fcf64241:listVPCs": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "5481b3bb-b5cb-4999-a1d8-fde5fcf64241:listVpnGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "5481b3bb-b5cb-4999-a1d8-fde5fcf64241:listVpnConnections": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "5481b3bb-b5cb-4999-a1d8-fde5fcf64241:listVpnCustomerGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "97f62088-fc46-4d21-acfa-fa47a2d137b1:listVPCs": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "97f62088-fc46-4d21-acfa-fa47a2d137b1:listVpnGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "97f62088-fc46-4d21-acfa-fa47a2d137b1:listVpnConnections": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "97f62088-fc46-4d21-acfa-fa47a2d137b1:listVpnCustomerGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "f794c1da-2d1a-4918-92ca-ed192dcdb5df:listVPCs": {
+    "before": [
+      {
+        "id": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "name": "qa-gn1569-32-cond-vpc",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "cidr": "10.243.32.0/24",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      }
+    ],
+    "after": [
+      {
+        "id": "87964ae1-ca02-4224-aa97-126f63b15620",
+        "name": "qa-gn1569-32-cond-vpc",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "cidr": "10.243.32.0/24",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      }
+    ],
+    "preserved": true
+  },
+  "f794c1da-2d1a-4918-92ca-ed192dcdb5df:listVpnGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "f794c1da-2d1a-4918-92ca-ed192dcdb5df:listVpnConnections": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "f794c1da-2d1a-4918-92ca-ed192dcdb5df:listVpnCustomerGateways": {
+    "before": [],
+    "after": [],
+    "preserved": true
+  },
+  "cf5ec6b5-b522-4c18-ab90-a395012607c1:listVPCs": {
+    "before": [
+      {
+        "id": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+        "name": "qa-gn1569-32-svc-review",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "cidr": "10.239.32.0/24",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      },
+      {
+        "id": "91c180fc-6f94-4a64-a875-49697b0f3266",
+        "name": "qa-gn1569-32-lb-int-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "cidr": "10.236.32.0/24",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      }
+    ],
+    "after": [
+      {
+        "id": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+        "name": "qa-gn1569-32-svc-review",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "cidr": "10.239.32.0/24",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      },
+      {
+        "id": "91c180fc-6f94-4a64-a875-49697b0f3266",
+        "name": "qa-gn1569-32-lb-int-reg",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "cidr": "10.236.32.0/24",
+        "fordisplay": true,
+        "vpcofferingid": "a77c3f64-5bb4-4b69-9811-5cc09a231c43"
+      }
+    ],
+    "preserved": true
+  },
+  "cf5ec6b5-b522-4c18-ab90-a395012607c1:listVpnGateways": {
+    "before": [
+      {
+        "id": "d0baefe3-b928-4515-b307-6b34e7a82680",
+        "vpcid": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+        "publicip": "10.10.32.151",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "fordisplay": true
+      }
+    ],
+    "after": [
+      {
+        "id": "d0baefe3-b928-4515-b307-6b34e7a82680",
+        "vpcid": "545de2b6-04d7-4815-b8d2-8a29e96d94f1",
+        "publicip": "10.10.32.151",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "fordisplay": true
+      }
+    ],
+    "preserved": true
+  },
+  "cf5ec6b5-b522-4c18-ab90-a395012607c1:listVpnConnections": {
+    "before": [
+      {
+        "id": "89e9cb02-102d-4db2-81e1-014744f38675",
+        "s2svpngatewayid": "d0baefe3-b928-4515-b307-6b34e7a82680",
+        "s2scustomergatewayid": "7ef8f752-4744-4085-b016-11e159c0ff72",
+        "passive": false,
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "fordisplay": true
+      }
+    ],
+    "after": [
+      {
+        "id": "89e9cb02-102d-4db2-81e1-014744f38675",
+        "s2svpngatewayid": "d0baefe3-b928-4515-b307-6b34e7a82680",
+        "s2scustomergatewayid": "7ef8f752-4744-4085-b016-11e159c0ff72",
+        "passive": false,
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1",
+        "fordisplay": true
+      }
+    ],
+    "preserved": true
+  },
+  "cf5ec6b5-b522-4c18-ab90-a395012607c1:listVpnCustomerGateways": {
+    "before": [
+      {
+        "id": "7ef8f752-4744-4085-b016-11e159c0ff72",
+        "name": "qa-gn1569-32-s2s-peer-31",
+        "gateway": "10.10.31.146",
+        "cidrlist": "10.239.31.0/24",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    ],
+    "after": [
+      {
+        "id": "7ef8f752-4744-4085-b016-11e159c0ff72",
+        "name": "qa-gn1569-32-s2s-peer-31",
+        "gateway": "10.10.31.146",
+        "cidrlist": "10.239.31.0/24",
+        "account": "PrjAcct-qa-gn1569-32-shared-reg-64",
+        "domainid": "a051d20d-2c05-43d5-833e-e231a80b12f7",
+        "projectid": "cf5ec6b5-b522-4c18-ab90-a395012607c1"
+      }
+    ],
+    "preserved": true
+  }
+}

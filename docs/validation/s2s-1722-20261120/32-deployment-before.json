@@ -1,0 +1,15 @@
+{
+  "jar": "/usr/share/cloudstack-management/lib/cloudstack-4.23.0.0-ABLESTACK.Mold.jar",
+  "jar_sha256": "c0d14a2a1dea30943f0cc9692c9180f06e47adff90d51369fee3f3d45ac3b657",
+  "class_sha256": {
+    "org/apache/cloudstack/api/command/user/vpn/CreateVpnGatewayCmd.class": "7507f69dab8c3c7404c2f8bca45d90065bb55634dc428d378135eee8b62c4e1d",
+    "org/apache/cloudstack/api/command/user/vpn/UpdateVpnGatewayCmd.class": "44fab23a3bd1da902f4d99ee99f754f1caca876f02f773c0414b79040b3238ed"
+  },
+  "ui_index_sha256": "8b152ba74dadfe7a765101bb9ec01fc266bdd5a1874714b99c9ebc448963c1a5",
+  "web_inf_exists": true,
+  "meta_inf_exists": false,
+  "config_sha256": "56e421a72d76daa8dcd007eb0e8669ee2951f3940e02b00e4123c0cf9c2a03ff",
+  "http": "200",
+  "service": "active",
+  "pid": "3173376"
+}

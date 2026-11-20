@@ -1,0 +1,59 @@
+{
+  "cases": [
+    {
+      "cluster": 31,
+      "case": "fordisplay=false -> refresh -> empty default list",
+      "status": "PASS"
+    },
+    {
+      "cluster": 32,
+      "case": "fordisplay=false -> refresh -> empty default list",
+      "status": "PASS"
+    },
+    {
+      "cluster": 31,
+      "case": "fordisplay=true -> refresh -> account-owned gateway returns",
+      "status": "PASS"
+    },
+    {
+      "cluster": 32,
+      "case": "fordisplay=true -> refresh -> account-owned gateway returns",
+      "status": "PASS"
+    },
+    {
+      "cluster": 31,
+      "case": "new custom UUID detail + refresh retains actual owner/VPC/IP",
+      "status": "PASS",
+      "viewport": {
+        "bodyClass": "dark-mode",
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "cluster": 32,
+      "case": "new custom UUID detail + refresh retains actual owner/VPC/IP",
+      "status": "PASS",
+      "viewport": {
+        "bodyClass": "dark-mode",
+        "height": 720,
+        "width": 1280
+      }
+    },
+    {
+      "cluster": 31,
+      "case": "breadcrumb return preserves default ownership and pagination",
+      "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "status": "PASS"
+    },
+    {
+      "cluster": 32,
+      "case": "breadcrumb return preserves default ownership and pagination",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "status": "PASS"
+    }
+  ],
+  "uiChanges": false,
+  "vmStyleScope": "No UI is added or modified in backend-only #1720; full VM comparison remains #1721/#1723",
+  "themeAndViewportChanged": false
+}

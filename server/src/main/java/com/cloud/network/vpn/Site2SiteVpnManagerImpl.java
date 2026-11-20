@@ -944,6 +944,7 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
         sb.and("vpcId", sb.entity().getVpcId(), SearchCriteria.Op.EQ);
         sb.and("display", sb.entity().isDisplay(), SearchCriteria.Op.EQ);
 
+        SearchCriteria<Site2SiteVpnGatewayVO> keyword = Site2SiteVpnGatewaySearch.keyword(sb, _vpnGatewayDao, _ipAddressDao, _vpcDao, cmd.getKeyword());
         SearchCriteria<Site2SiteVpnGatewayVO> sc = sb.create();
         _accountMgr.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
@@ -957,6 +958,10 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
 
         if (vpcId != null) {
             sc.addAnd("vpcId", SearchCriteria.Op.EQ, vpcId);
+        }
+
+        if (keyword != null) {
+            sc.addAnd("id", SearchCriteria.Op.SC, keyword);
         }
 
         Pair<List<Site2SiteVpnGatewayVO>, Integer> result = _vpnGatewayDao.searchAndCount(sc, searchFilter);
