@@ -166,6 +166,7 @@
             <router-link :to="networkDetailLocation($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
+          <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="{ path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
             <span v-if="record.id">
@@ -1269,6 +1270,8 @@
 <script>
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
+import { kmsDetailLocation } from '@/utils/kmsNavigation'
+import { kmsListRoute } from '@/utils/kmsSearch'
 import { kubernetesIsoDetailLocation } from '@/utils/kubernetesIsoSearch'
 import { templateDetailLocation } from '@/utils/templateSearch'
 import IsoListCell from '@/components/view/IsoListCell'
@@ -1618,6 +1621,8 @@ export default {
       scroller.scrollLeft = event.key === 'Home' ? 0 : event.key === 'End' ? scroller.scrollWidth - scroller.clientWidth : scroller.scrollLeft + (event.key === 'ArrowRight' ? 120 : -120)
     },
     kubernetesIsoDetailLocation,
+    kmsListRoute,
+    kmsDetailLocation,
     networkTypeLabel,
     policyVolumePath,
     policyInterval,

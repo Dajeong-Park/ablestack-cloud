@@ -70,8 +70,8 @@ export async function readKmsResource (get, api, scope, id, allowAbsent = false)
     const json = await get(api, { ...scope, id, listall: true, ignoreproject: true }, readOptions)
     const { rows, count } = kmsListPage(json, api)
     if (count === 0 && allowAbsent) return null
-    if (count !== 1 || rows.length !== 1 || rows[0].id !== id ||
-        (scope.projectid && rows[0].projectid !== scope.projectid)) throw new Error('INVALID_TARGET')
+    const wrongProject = scope.projectid === '-1' ? !rows[0]?.projectid : scope.projectid && rows[0]?.projectid !== scope.projectid
+    if (count !== 1 || rows.length !== 1 || rows[0].id !== id || wrongProject) throw new Error('INVALID_TARGET')
     return rows[0]
   } catch (error) {
     const code = Number(error?.response?.status)

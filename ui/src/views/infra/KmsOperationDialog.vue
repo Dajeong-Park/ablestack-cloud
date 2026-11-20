@@ -359,7 +359,7 @@ export default {
       if (this.busy && this.valid) return
       const removed = this.valid && this.deleting && this.operation.phase === 'succeeded' ? this.target.id : null
       this.invalidate()
-      this.$emit('close-action', removed ? { kmsRemoved: removed } : undefined)
+      this.$emit('close-action', removed ? { kmsRemoved: removed, kmsNavigationScope: this.currentAction.kmsNavigationScope } : undefined)
     }
   }
 }
