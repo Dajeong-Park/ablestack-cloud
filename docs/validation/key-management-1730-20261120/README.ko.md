@@ -22,9 +22,9 @@ under the License.
 ## 결과
 
 HSM 생성 전용 폼, 실제 provider 발견, 소유/존 범위 정규화와 PIN 처리·진단 로그 마스킹을 구현했다.
-WSL **181 tests / 15 suites**, UI 단위 **56 tests / 2 suites**, 실패·오류·skip 0.
+WSL **181 tests / 15 suites**, UI 단위 **58 tests / 2 suites**, 실패·오류·skip 0.
 변경 Java 10개 Checkstyle 0, UI 6개 ESLint 0. backend/UI의 기존 KM-01·KM-02와 provider 회귀를 포함한다.
-UI 신규 HSM 시험은 36건이며, 기존 볼륨 전환 20건을 함께 검증했다.
+UI 신규 HSM 시험은 38건이며, 기존 볼륨 전환 20건을 함께 검증했다.
 
 ## 실제 UI
 
@@ -41,7 +41,7 @@ UI 신규 HSM 시험은 36건이며, 기존 볼륨 전환 20건을 함께 검증
 | 실패 | 선택한 빈 프로젝트를 다른 UI 탭에서 삭제 후 생성 실패. 이름 등 유지/PIN 폐기/원시 오류 미표시 |
 | 상세/수정 | 저장 PIN은 *****. 수정 폼은 name/enabled만 있고 PIN/details 수정 없음 |
 | 저장 요약 | UUID/실제 전송 범위만 표시. 저장과 실제 연결·인증을 구분 |
-| 정리 | 시험 프로파일 7개(초기 재검증 2개 포함), 프로젝트 2개 삭제. 기본 HSM Disabled 보존 |
+| 정리 | 시험 프로파일 8개(재검증 3개 포함), 프로젝트 2개 삭제. 기본 HSM Disabled 보존 |
 
 주요 화면:
 [Database 폼](01-database-account-form.jpg) · [계정 저장](02-account-save-result.jpg) ·
@@ -64,6 +64,10 @@ UI 신규 HSM 시험은 36건이며, 기존 볼륨 전환 20건을 함께 검증
 
 [수정 전 합성 관측 메타데이터](pin-log-before-metadata.json) ·
 [수정 후 암호화/로그 검사](pin-check-after.json) · [범위별 DB 대조](db-before-cleanup.json)
+
+제출 시점 PIN은 요청 함수 안에만 임시 보관해 provider 조회 중 화면 값이 초기화되어도 승인된 입력을 잃지 않게 했다.
+문맥이 바뀌면 POST하지 않고, 어떤 종료 경로에서도 임시 값을 폐기한다.
+[최종 제출 경로 저장·로그 대조](submission-pin-check.json) · [최종 저장 화면](14-submission-pin-result.jpg) · [재검증 정리](15-submission-check-cleanup.jpg)
 
 ## 증거 범위
 

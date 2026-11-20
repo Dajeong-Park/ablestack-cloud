@@ -26,7 +26,7 @@ PASS tests/unit/views/infra/CreateHSMProfile.spec.js
 PASS tests/unit/views/compute/MigrateVolumesToKMS.spec.js
 
 Test Suites: 2 passed, 2 total
-Tests:       56 passed, 56 total
+Tests:       58 passed, 58 total
 Snapshots:   0 total
-Time:        11.391s
+Time:        12.728s
 Ran all test suites within paths "tests/unit/views/infra/CreateHSMProfile.spec.js", "tests/unit/views/compute/MigrateVolumesToKMS.spec.js".

@@ -119,6 +119,21 @@ test('success keeps only safe summary and immediately discards PIN', async () =>
   expect(c.pin).toBe(''); expect(c.showPin).toBe(false); expect(c.saved.id).toBe('new'); expect(c.saved.details).toBeUndefined()
   expect(c.$emit).toHaveBeenCalledWith('refresh-data')
 })
+test('an authorized submit preserves its input if the visible PIN is cleared during provider preflight', async () => {
+  const c = model(); c.pin = 'example'; let sent
+  getAPI.mockImplementation(async () => { c.clearPin(); return capability })
+  postAPI.mockImplementation(async (api, params) => { sent = { ...params }; return { createhsmprofileresponse: { hsmprofile: { id: 'new' } } } })
+  await c.submit()
+  expect(sent['details[0].pin']).toBe('example')
+  expect(c.pin).toBe('')
+})
+test('a changed session during provider preflight never sends the captured PIN', async () => {
+  const c = model(); c.pin = 'example'
+  getAPI.mockImplementation(async () => { c.$store.state.user.token = 'new'; Create.watch.scopeStamp.call(c); return capability })
+  await c.submit()
+  expect(postAPI).not.toHaveBeenCalled()
+  expect(c.pin).toBe('')
+})
 test.each([400, 530])('failure %i preserves nonsecret fields but never PIN or raw error text', async status => {
   const c = model(); c.pin = 'example'
   postAPI.mockRejectedValue({ response: { status, data: { errorresponse: { errortext: 'example' } } } })

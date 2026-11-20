@@ -197,6 +197,8 @@ export default {
     },
     async submit () {
       if (!this.canSubmit) return
+      let submittedPin = this.pin
+      this.clearPin()
       this.busy = true; this.error = ''
       let params
       let discovered = false
@@ -205,7 +207,8 @@ export default {
         if (!this.valid) throw new Error('CONTEXT_CHANGED')
         discovered = true
         this.providers = providers
-        params = hsmCreateParams(this.form, providers, this.lists, this.pin)
+        params = hsmCreateParams(this.form, providers, this.lists, submittedPin)
+        submittedPin = ''
         const owner = params.account || this.projects.find(p => p.id === params.projectid)?.name || this.domains.find(d => d.id === params.domainid)?.name
         const summary = { name: params.name, protocol: params.protocol, owner: [this.$t('label.hsm.create.scope.' + this.form.ownerScope), owner].filter(Boolean).join(' / '), zone: params.zoneid ? this.zones.find(z => z.id === params.zoneid)?.name : this.$t('label.hsm.create.zone.global') }
         this.unknown = true
@@ -225,7 +228,7 @@ export default {
           if (error?.response?.status >= 400 && error.response.status < 500) this.unknown = false
           this.error = this.$t(this.unknown ? 'message.hsm.create.unknown' : 'message.hsm.create.failed')
         }
-      } finally { this.clearPin(); if (params) delete params['details[0].pin']; this.busy = false }
+      } finally { submittedPin = ''; this.clearPin(); if (params) delete params['details[0].pin']; this.busy = false }
     }
   }
 }

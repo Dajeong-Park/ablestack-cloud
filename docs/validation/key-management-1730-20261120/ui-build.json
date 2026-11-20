@@ -4,7 +4,7 @@
   "minification": false,
   "source_maps": false,
   "static_files": 692,
-  "index_sha256": "844a21f65792d125caa5698bc92b6a13958b0760e90eea88cb90f2bd005b5c50",
-  "archive_sha256": "3435a1aa6170cbeb696180c6b61ba344b8b9d7e9969b4341f773690a652cdb7e",
+  "index_sha256": "8588fda2394003d0f737af1fd57aa010837a4ac1be0e0c5f98682f4d1adfa5cd",
+  "archive_sha256": "90b5d719874bb97b3996b8b48146620b7c48a41e03bcc9e37d528df36d44dbf2",
   "release_policy": "GitHub Actions remains mandatory for release builds"
 }

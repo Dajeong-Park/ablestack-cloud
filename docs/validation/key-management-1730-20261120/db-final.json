@@ -83,6 +83,18 @@
       "enabled": true,
       "is_public": false,
       "removed": true
+    },
+    {
+      "uuid": "20bb2306-06e6-40a9-877d-94b84b92185e",
+      "name": "qa-km1730-pin-check",
+      "protocol": "pkcs11",
+      "account_id": "2",
+      "domain_id": "1",
+      "account_name": "admin",
+      "domain_name": "ROOT",
+      "enabled": true,
+      "is_public": false,
+      "removed": true
     }
   ],
   "active_test_profiles": 0,

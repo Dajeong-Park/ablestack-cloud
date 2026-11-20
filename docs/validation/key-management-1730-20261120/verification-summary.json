@@ -1,9 +1,9 @@
 {
   "backend_tests": 181,
   "backend_suites": 15,
-  "ui_tests": 56,
+  "ui_tests": 58,
   "ui_suites": 2,
-  "new_ui_hsm_tests": 36,
+  "new_ui_hsm_tests": 38,
   "java_changed_files_checkstyle": 10,
   "java_checkstyle_violations": 0,
   "ui_changed_files_eslint": 6,
@@ -18,7 +18,7 @@
     "global",
     "13-Zone"
   ],
-  "profiles_created_and_removed": 7,
+  "profiles_created_and_removed": 8,
   "projects_created_and_removed": 2,
   "stale_project_failure_row_count": 0,
   "fake_pin_encrypted_roundtrip": true,
@@ -28,5 +28,7 @@
   "actual_hsm_connection_authentication": "NOT_RUN; fake values and non-connecting metadata profiles only; #1025 retained",
   "storage_verification": "Component Storage.setItem/debug-output spies and source review; raw browser storage reading is unsupported by UI tool",
   "network_capture": "Selected UI-origin calls only. Sensitive input/navigation reset the observer; trace is not a complete session capture. UI saved-card/detail UUIDs and read-only DB observations corroborate scope/result.",
-  "historical_log_policy": "Synthetic pre-fix test marker metadata retained; existing operator logs were not edited or deleted."
+  "historical_log_policy": "Synthetic pre-fix test marker metadata retained; existing operator logs were not edited or deleted.",
+  "submission_pin_snapshot_during_preflight": true,
+  "changed_preflight_session_blocks_post": true
 }
