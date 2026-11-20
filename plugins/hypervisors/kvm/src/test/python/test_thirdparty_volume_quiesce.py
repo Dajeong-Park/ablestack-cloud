@@ -31,6 +31,60 @@ import thirdparty_primary_capacity as capacity
 
 
 class VolumeQuiesceTest(unittest.TestCase):
+    def test_real_transfer_ack_keeps_host_quiesce_evidence_for_final_metadata(self):
+        with tempfile.TemporaryDirectory() as directory:
+            job = Path(directory)
+            payload = job / "disk.raw"
+            payload.write_bytes(b"payload")
+            artifact = {"backupUuid": "backup-1", "path": str(payload), "size": 7}
+            quiesce = {"requested": True, "status": "VERIFIED"}
+            manifest = {"backupUuid": "backup-1", "guestQuiesce": quiesce,
+                        "volumes": [{"chain": [artifact]}]}
+            plan = {"manifest": manifest, "backupPath": directory, "vmName": "i-2-1-VM", "timeout": 300,
+                    "providerStep": "NETBACKUP_TRANSFER"}
+            backup.atomic(job / "volume-plan.json", plan)
+            controller = json.loads(json.dumps(manifest))
+            controller.pop("guestQuiesce")  # The previous controller acknowledged only artifact/catalog fields.
+            controller["volumes"][0]["chain"][0].update(completed=True, externalId="host_123")
+            backup.atomic(job / "volume-ack-0.json", controller)
+            engine = backup.Backup(job / "volume-plan.json")
+            requests = []
+            original = backup.atomic
+
+            def capture(path, value):
+                if Path(path).name == "volume-request.json":
+                    requests.append(json.loads(json.dumps(value)))
+                return original(path, value)
+
+            with mock.patch.object(engine, "progress"), mock.patch.object(engine, "check_cancel"), \
+                    mock.patch.object(backup, "atomic", side_effect=capture):
+                engine.transfer(0, artifact)
+            self.assertEqual(quiesce, requests[0]["guestQuiesce"])
+            self.assertEqual(quiesce, engine.manifest["guestQuiesce"])
+            self.assertFalse(payload.exists())
+
+    def test_conflicting_ack_keeps_the_original_payload_and_quiesce_result(self):
+        with tempfile.TemporaryDirectory() as directory:
+            job = Path(directory)
+            payload = job / "disk.raw"
+            payload.write_bytes(b"payload")
+            artifact = {"backupUuid": "backup-1", "path": str(payload), "size": 7}
+            quiesce = {"requested": True, "status": "VERIFIED"}
+            manifest = {"backupUuid": "backup-1", "guestQuiesce": quiesce,
+                        "volumes": [{"chain": [artifact]}]}
+            backup.atomic(job / "volume-plan.json", {"manifest": manifest, "backupPath": directory,
+                          "vmName": "i-2-1-VM", "timeout": 300, "providerStep": "NETBACKUP_TRANSFER"})
+            controller = json.loads(json.dumps(manifest))
+            controller["guestQuiesce"] = {"requested": False, "status": "NOT_REQUESTED"}
+            controller["volumes"][0]["chain"][0].update(completed=True, externalId="host_123")
+            backup.atomic(job / "volume-ack-0.json", controller)
+            engine = backup.Backup(job / "volume-plan.json")
+            with mock.patch.object(engine, "progress"), mock.patch.object(engine, "check_cancel"), \
+                    self.assertRaisesRegex(RuntimeError, "changed the guest quiesce result"):
+                engine.transfer(0, artifact)
+            self.assertEqual(quiesce, engine.manifest["guestQuiesce"])
+            self.assertEqual(b"payload", payload.read_bytes())
+
     def exercise(self, provider="ablestack-netbackup", rbd=True, quiesce=True,
                  agent_error=False, source_error=False, stopped=False, fault=None, error=None):
         with tempfile.TemporaryDirectory() as directory:

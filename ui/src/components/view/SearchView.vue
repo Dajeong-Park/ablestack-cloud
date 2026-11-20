@@ -98,7 +98,7 @@
                     @popupScroll="moreVmOptions($event, field)"
                     :loading="field.loading"
                     :disabled="apiName === 'listAffinityGroups' && (field.loading || !!field.error || (field.name === 'account' && !form.domainid))"
-                    :placeholder="isGuestNetworkSearch && field.name === 'forvpc' ? $t('label.all') : apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
+                    :placeholder="(isGuestNetworkSearch && field.name === 'forvpc') || (apiName === 'listBackupSchedule' && ['quiescevm', 'intervaltype'].includes(field.name)) ? $t('label.all') : apiName === 'listAffinityGroups' && field.name === 'account' && !form.domainid ? $t('message.affinity.search.account.domain') : undefined"
                     @input="field.name === 'virtualmachineid' && $route.name === 'vmsnapshot' ? null : onchange($event, field.name)"
                     @change="onSelectFieldChange(field.name)">
                     <a-select-option
@@ -300,6 +300,7 @@ export default {
       }
       this.updateIsFiltered()
       if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
+      if (['listBackups', 'listBackupSchedule'].includes(this.apiName) && this.visibleFilter) this.fillFormFieldValues()
       if (this.apiName === 'listAffinityGroups' && to?.meta?.name === 'affinitygroup' && this.visibleFilter) {
         this.fillFormFieldValues()
         this.fetchAffinityFilters(this.fields.map(field => field.name))
@@ -402,6 +403,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listBackups' && fieldName === 'virtualmachineid') return this.$t('label.virtualmachinename')
       if (this.isVnfSearch && vnfPickerConfig(fieldName)) return this.$t(vnfPickerConfig(fieldName).label)
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
       if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
@@ -494,6 +496,7 @@ export default {
           type = 'list'
         }
         if ((this.apiName === 'listTemplates' && ['isready', 'forcks'].includes(item)) || (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(item))) type = 'list'
+        if (this.apiName === 'listBackupSchedule' && ['quiescevm', 'intervaltype'].includes(item)) type = 'list'
         this.fields.push({
           type: type,
           name: item,
@@ -505,6 +508,10 @@ export default {
       return arrayField
     },
     fetchStaticFieldData (arrayField) {
+      if (this.apiName === 'listBackupSchedule') {
+        this.fields.filter(field => field.name === 'quiescevm').forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
+        this.fields.filter(field => field.name === 'intervaltype').forEach(field => { field.opts = ['HOURLY', 'DAILY', 'WEEKLY', 'MONTHLY'].map(id => ({ id, name: 'label.' + id.toLowerCase() })) })
+      }
       if (this.isVnfSearch) { const state = this.fields.find(field => field.name === 'state'); if (state) state.opts = vnfStates(this.$store.getters).map(id => ({ id, name: 'state.' + id.toLowerCase() })); return }
       if (this.apiName === 'listIsos') this.fields.filter(field => ['bootable', 'isready', 'ispublic'].includes(field.name)).forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
       if (this.apiName === 'listTemplates') {
@@ -1117,7 +1124,7 @@ export default {
     initFormFieldData () {
       const arrayField = this.initFields()
       if (['listTemplates', 'listIsos'].includes(this.apiName)) this.rules.userdataid = [{ validator: async (rule, value) => { if (value && !this.$isValidUuid(value)) throw new Error(this.$t('message.template.search.userdataid')) } }]
-      if (this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
+      if (this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listBackups', 'listBackupSchedule'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
 

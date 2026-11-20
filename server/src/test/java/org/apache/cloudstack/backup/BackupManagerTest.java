@@ -3504,6 +3504,7 @@ public class BackupManagerTest {
         ListBackupScheduleCmd cmd = Mockito.mock(ListBackupScheduleCmd.class);
         Mockito.when(cmd.getVmId()).thenReturn(vmId);
         Mockito.when(cmd.getId()).thenReturn(1L);
+        Mockito.when(cmd.getQuiesceVM()).thenReturn(null);
 
         // Mock VM for validation
         VMInstanceVO vm = Mockito.mock(VMInstanceVO.class);
@@ -3539,6 +3540,7 @@ public class BackupManagerTest {
         ListBackupScheduleCmd cmd = Mockito.mock(ListBackupScheduleCmd.class);
         Mockito.when(cmd.getVmId()).thenReturn(vmId);
         Mockito.when(cmd.getId()).thenReturn(1L);
+        Mockito.when(cmd.getQuiesceVM()).thenReturn(null);
 
         // Mock VM for validation
         VMInstanceVO vm = Mockito.mock(VMInstanceVO.class);

@@ -604,8 +604,12 @@ class Backup:
 
     def transfer(self, index, artifact, metadata=False):
         self.progress("METADATA_TRANSFER" if metadata else self.plan["providerStep"], index)
-        atomic(self.job / "volume-request.json", {"index": index, "metadata": metadata,
-                                                 "artifact": artifact, "backupUuid": self.manifest["backupUuid"]})
+        request = {"index": index, "metadata": metadata,
+                   "artifact": artifact, "backupUuid": self.manifest["backupUuid"]}
+        quiesce = self.manifest.get("guestQuiesce")
+        if quiesce is not None:
+            request["guestQuiesce"] = quiesce
+        atomic(self.job / "volume-request.json", request)
         deadline = time.monotonic() + self.timeout
         ack = self.job / ("volume-ack-" + str(index) + ".json")
         while not ack.is_file():
@@ -622,6 +626,12 @@ class Backup:
         if (any(confirmed.get(key) != artifact.get(key) for key in ("path", "backupUuid"))
                 or (not metadata and confirmed.get("size") != artifact.get("size"))):
             raise RuntimeError("External confirmation differs from the requested artifact")
+        # Older controllers acknowledge only catalog/artifact fields. Do not lose
+        # the actual Host freeze result before the final metadata is backed up.
+        if quiesce is not None:
+            if updated.get("guestQuiesce") not in (None, quiesce):
+                raise RuntimeError("External confirmation changed the guest quiesce result")
+            updated["guestQuiesce"] = quiesce
         self.manifest = updated
         if metadata:
             validate_completed_transfers(self.plan, updated)
@@ -671,6 +681,9 @@ class Backup:
             with contextlib.suppress(RuntimeError):
                 atomic(self.root / (command + ".xml"), run(["virsh", "-c", "qemu:///system", command, self.vm]))
         if self.offline:
+            self.manifest["guestQuiesce"] = {
+                "requested": bool(self.plan.get("quiesce")),
+                "status": "NOT_APPLICABLE" if self.plan.get("quiesce") else "NOT_REQUESTED"}
             self.execute_offline()
             return
         self.capture_domain_configuration()

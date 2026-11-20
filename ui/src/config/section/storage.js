@@ -673,7 +673,7 @@ export default {
       columns: ['name', 'status', 'compressionstatus', 'validationstatus', 'size', 'virtualsize', 'virtualmachinename', 'backupofferingname', 'intervaltype', 'type', 'created', 'account', 'domain', 'zone'],
       details: ['name', 'description', 'virtualmachinename', 'id', 'intervaltype', 'type', 'externalid', 'size', 'virtualsize', 'volumes', 'backupofferingname', 'backupjobdetails', 'restorejobid', 'restorejobstate', 'restorejobdetails', 'restorejoblogpath', 'zone', 'account', 'domain', 'created'],
       searchFilters: () => {
-        var filters = ['name', 'zoneid', 'domainid', 'account', 'backupofferingname', 'status']
+        var filters = ['name', 'virtualmachineid', 'zoneid', 'domainid', 'account', 'backupofferingname', 'status']
         return filters
       },
       tabs: [
@@ -851,10 +851,10 @@ export default {
       resourceType: 'backupSchedule',
       params: { listall: true },
       columns: () => {
-        var fields = ['intervaltype', 'maxbackups', 'schedule', 'timezone', 'virtualmachinename']
+        var fields = ['intervaltype', 'maxbackups', 'schedule', 'timezone', 'virtualmachinename', 'quiescevm']
         return fields
       },
-      searchFilters: ['virtualmachineid'],
+      searchFilters: ['virtualmachineid', 'intervaltype', 'quiescevm'],
       actions: [
         {
           api: 'createBackupSchedule',

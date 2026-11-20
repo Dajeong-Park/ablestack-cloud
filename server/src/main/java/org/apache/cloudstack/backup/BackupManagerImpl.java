@@ -1209,6 +1209,12 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         Account caller = CallContext.current().getCallingAccount();
         Long id = cmd.getId();
         Long vmId = cmd.getVmId();
+        Boolean quiesceVM = cmd.getQuiesceVM();
+        String requestedIntervalType = StringUtils.trimToNull(cmd.getIntervalType());
+        DateUtil.IntervalType intervalType = DateUtil.IntervalType.getIntervalType(requestedIntervalType);
+        if (requestedIntervalType != null && intervalType == null) {
+            throw new InvalidParameterValueException("Invalid backup schedule interval type. Valid values are HOURLY, DAILY, WEEKLY and MONTHLY.");
+        }
         List<Long> permittedAccounts = new ArrayList<>();
         Long domainId = null;
         Boolean isRecursive = null;
@@ -1234,6 +1240,7 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         accountManager.buildACLSearchBuilder(searchBuilder, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
         searchBuilder.and("id", searchBuilder.entity().getId(), SearchCriteria.Op.EQ);
+        searchBuilder.and("intervalType", searchBuilder.entity().getScheduleType(), SearchCriteria.Op.EQ);
         if (vmId != null) {
             searchBuilder.and("vmId", searchBuilder.entity().getVmId(), SearchCriteria.Op.EQ);
         }
@@ -1246,8 +1253,20 @@ public class BackupManagerImpl extends ManagerBase implements BackupManager {
         SearchCriteria<BackupScheduleVO> sc = searchBuilder.create();
         accountManager.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
+        if (quiesceVM != null) {
+            SearchCriteria<BackupScheduleVO> quiesceSearch = backupScheduleDao.createSearchCriteria();
+            quiesceSearch.addAnd("quiesceVM", SearchCriteria.Op.EQ, quiesceVM);
+            if (!quiesceVM) {
+                quiesceSearch.addOr("quiesceVM", SearchCriteria.Op.NULL);
+            }
+            sc.addAnd("quiesceVM", SearchCriteria.Op.SC, quiesceSearch);
+        }
+
         if (id != null) {
             sc.setParameters("id", id);
+        }
+        if (intervalType != null) {
+            sc.setParameters("intervalType", (short) intervalType.ordinal());
         }
         if (vmId != null) {
             sc.setParameters("vmId", vmId);

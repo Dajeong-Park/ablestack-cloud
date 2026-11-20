@@ -3700,6 +3700,11 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
                 }
                 artifact.size = requested.size;
             }
+            String requestedQuiesce = tracked.getDetail(AblestackBackupFrameworkUtils.BACKUP_QUIESCE_DETAIL);
+            if (mergeGuestQuiesce(manifest, StringUtils.isBlank(requestedQuiesce) ? null : Boolean.valueOf(requestedQuiesce),
+                    request.get("guestQuiesce"))) {
+                saveVolumeManifest(tracked, manifest);
+            }
             // An exact artifact request also proves the preparation gate was passed,
             // including older Agents that do not report a specific export step.
             clearBackupPreparationDetails(tracked);
@@ -3857,6 +3862,27 @@ public class ThirdPartyBackupVolumeServiceImpl extends ManagerBase implements Th
             backupDetailsDao.removeDetail(backup.getId(), ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY);
             backup.getDetails().remove(ThirdPartyBackupManifest.PREPARATION_DETAILS_KEY);
         }
+    }
+
+    /** Preserve the actual Host result across artifact acknowledgments and controller recovery. */
+    static boolean mergeGuestQuiesce(ThirdPartyBackupManifest manifest, Boolean requested, Object value) {
+        if (value == null) { return false; } // Existing Agents do not send this optional evidence.
+        ThirdPartyBackupManifest.GuestQuiesce reported = new Gson().fromJson(new Gson().toJson(value),
+                ThirdPartyBackupManifest.GuestQuiesce.class);
+        if (reported == null || (requested != null && requested.booleanValue() != reported.requested)
+                || (reported.requested ? !java.util.Set.of("VERIFIED", "NOT_APPLICABLE").contains(StringUtils.defaultString(reported.status))
+                        : !"NOT_REQUESTED".equals(reported.status))) {
+            throw new CloudRuntimeException("Host guest quiesce result differs from the backup request");
+        }
+        ThirdPartyBackupManifest.GuestQuiesce previous = manifest.getGuestQuiesce();
+        if (previous != null) {
+            if (previous.requested != reported.requested || !java.util.Objects.equals(previous.status, reported.status)) {
+                throw new CloudRuntimeException("Host guest quiesce result changed between backup artifacts");
+            }
+            return false;
+        }
+        manifest.setGuestQuiesce(reported);
+        return true;
     }
 
     /** Detail-only writes must not depend on an UPDATE of the unchanged backups row. */

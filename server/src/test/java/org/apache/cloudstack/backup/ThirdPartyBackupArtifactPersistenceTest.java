@@ -148,6 +148,42 @@ public class ThirdPartyBackupArtifactPersistenceTest {
     }
 
     @Test
+    public void artifactAcknowledgmentPersistsAndReturnsTheHostsActualQuiesceResult() throws Exception {
+        prepare("ablestack-netbackup");
+        loaded.put(AblestackBackupFrameworkUtils.BACKUP_QUIESCE_DETAIL, "true");
+        ThirdPartyBackupManifest.Artifact artifact = manifest.getCurrentArtifacts().get(0);
+        String request = new Gson().toJson(Map.of("index", 0, "metadata", false, "backupUuid", JOB_ID,
+                "artifact", artifact, "guestQuiesce", Map.of("requested", true, "status", "VERIFIED")));
+        when(agentManager.send(eq(HOST_ID), any(AblestackVolumeStagingCommand.class))).thenAnswer(invocation -> {
+            AblestackVolumeStagingCommand command = invocation.getArgument(1);
+            return new Answer(command, true, "STATUS".equals(command.getAction()) ? request : "ok");
+        });
+        ThirdPartyBackupVolumeService.Transfer transfer = mock(ThirdPartyBackupVolumeService.Transfer.class);
+        when(transfer.backup(any(), eq(false))).thenAnswer(invocation -> {
+            assertEquals("VERIFIED", ThirdPartyBackupManifest.fromJson(persisted.get(ThirdPartyBackupManifest.DETAIL_KEY))
+                    .getGuestQuiesce().status);
+            ThirdPartyBackupManifest.Artifact accepted = invocation.getArgument(0);
+            accepted.jobId = "123";
+            accepted.externalId = "point-123";
+            accepted.completed = true;
+            return accepted;
+        });
+        GlobalLock lock = mock(GlobalLock.class);
+        when(lock.lock(Mockito.anyInt())).thenReturn(true);
+        try (MockedStatic<GlobalLock> locks = Mockito.mockStatic(GlobalLock.class)) {
+            locks.when(() -> GlobalLock.getInternLock(anyString())).thenReturn(lock);
+            assertTrue(service.reconcile(backup, host, transfer));
+        }
+        ThirdPartyBackupManifest recovered = ThirdPartyBackupManifest.fromJson(persisted.get(ThirdPartyBackupManifest.DETAIL_KEY));
+        assertTrue(recovered.getGuestQuiesce().requested);
+        assertEquals("VERIFIED", recovered.getGuestQuiesce().status);
+        verify(agentManager).send(eq(HOST_ID), Mockito.<Command>argThat(command -> command instanceof AblestackVolumeStagingCommand
+                && "ACK".equals(((AblestackVolumeStagingCommand) command).getAction())
+                && "VERIFIED".equals(ThirdPartyBackupManifest.fromJson(((AblestackVolumeStagingCommand) command).getManifest())
+                        .getGuestQuiesce().status)));
+    }
+
+    @Test
     public void backupPlanPersistsItsMountSnapshotBeforeHostDispatch() throws Exception {
         assertBackupPlanPersistence(com.cloud.vm.VirtualMachine.State.Running, "QCOW2");
     }
