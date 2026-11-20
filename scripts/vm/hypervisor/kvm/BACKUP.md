@@ -3420,7 +3420,7 @@ VM·볼륨 후처리 완료도 기다려야 한다. 최초 기동 오류를 숨�
 `restore-baseline.json`, `data-timeout.json`, `data-timeout-evidence.json`,
 `retention-rejection.json`, `restore-boundary-observations.jsonl`에 보존한다.
 
-**quiesce·thaw 보완본 배포 후 추가할 실서버 시험**
+**quiesce·thaw 실서버 시험의 확인 기준**
 
 - 실행 중인 소형 VM: 요청한 freeze 성공과 실제 frozen 상태, 복구 지점 확보 후 thawed 확인, 데이터 전송 전 동결 해제 순서를 같은 작업 UUID로 연결한다.
 - 정지 VM: 불필요한 freeze 없이 백업이 성공하고 기존 정지 상태가 유지되는지 확인한다.
@@ -3433,6 +3433,48 @@ OFF 정책 간격 비교 제어기는 배포 확인과 quiesce 기본 시험의 
 기존 1시간 보존 레벨을 사용한다. 이미지 자연 만료와 실제 여유 용량을 확인한 뒤
 동일 대상의 Full 회차를 15분 간격 시작과 동시 시작으로 비교하고, 종료 후 원래 2시간 보존·ON 제어로 복구한다.
 이는 시험 제어기의 정책 시작 요청 비교이며, NetBackup Frequency·Start Window 자동 기동 검증과 구분한다.
+
+### 2026-11-20 NAS 병행·동결/해제·검색 필터 적용본 검증
+
+`d6589925e7a`(동결·해제), `7808c82ae9b`(NAS 데이터 제한), `fc4b0e22cf3`(검색 필터·동결 결과 보존)
+적용 후 Host 4대의 관련 스크립트 해시와 Management·Agent의 변경 클래스 반영을 확인했다.
+NAS는 별도 소형 VM421(RBD)·VM422(GFS2/QCOW2)로 NetBackup VM410·VM420과 병행했다.
+NAS VM은 각각 20 GiB 루트와 8 GiB 데이터 디스크 2개, 검증용 난수 파일 합계 640 MiB를 사용한다.
+이는 기능·장애 처리 시험이며, 실사용 데이터 100/300/500 GiB의 성능 측정이나 1 Gbps 환경의 처리시간 기준으로 사용하지 않는다.
+공통 데이터 제한·동시 실행 설정과 다른 시험자의 VM은 변경하지 않았다.
+
+| 시험 | 실제 확인 | 판정·남은 항목 |
+| --- | --- | --- |
+| NAS RBD 실행 중 Full·증분·정지 증분 | 백업 `3435/3439/3440` 완료, 실행 중 완료 표식 `quiesce_state=VERIFIED`, 정지 표식 `NOT_APPLICABLE`, 원본 보호 해제 확인 | 통과 |
+| NAS QCOW2 실행 중 Full·증분 | 백업 `3434/3436` 완료, 두 완료 표식 모두 `quiesce_requested=true`, `quiesce_state=VERIFIED` | 통과 |
+| NAS RBD·QCOW2 증분 체인 복원 | 백업 이후 게스트 파일을 추가 변경한 다음 RBD `3439`, QCOW2 `3436`으로 복원. 완료 이벤트·볼륨 Ready·부팅 후 루트/데이터 파일 3개 SHA-256이 선택한 백업 시점과 일치 | 두 방식 통과. NAS 정상 정리는 일시적 복원 상태 필드를 삭제하므로 빈 필드를 실패·진행 중으로 해석하지 않고 정확한 백업 UUID의 완료 이벤트를 함께 확인 |
+| NAS QCOW2 정지 증분 | `3437`이 실제 버전 대신 libvirt/QEMU `0/0`으로 판정돼 실패. 정리 완료·원본 보호 해제 후 자동 Full `3438` 성공 | 결함 확인. 별도 JVM의 버전 초기화와 실패 원인 출력 보완 및 관련 Java 회귀 9건 통과. 이 추가 보완의 서버 적용 후 정지 증분 재검증은 남음. Full 재시도 성공을 정지 증분 통과로 집계하지 않음 |
+| NAS 동결 요청 실패 | VM421 `3444`, VM422 `3443`에서 게스트 hook 종료 코드 23 주입. 백업 실패·정리 완료·게스트 해제·원래 파일 해시 유지 | 두 방식 통과 |
+| NAS 해제 RPC 오류 | 커널 해제 후 hook이 23으로 실패하도록 주입. VM421 `3445`, VM422 `3448`에서 실제 thawed 상태를 확인해 백업 성공, 임시 Agent 설정 원복·해시 유지 | 두 방식 통과. 커널 해제 자체 실패와 구분 |
+| NAS 해제 응답·상태 확인 불가 | VM421 `3446`, VM422 `3449`에서 실제 해제 후 Guest Agent만 최대 180초 정지. 해제 미확정 중 `guest-freeze.pending` 유지, 독립 복구 후 실패 작업 정리·Full `3447/3450` 자동 재시도·해시 유지 | 두 방식 통과. 두 실패 작업 모두 Error·정리 WAITING에서 Failed·정리 COMPLETED로 전환. 커널이 계속 동결된 상태를 강제로 유지한 시험은 아님 |
+| NetBackup GFS2·RBD 동결 결과 보존 | VM410 `3441`, 디스크 3개의 VM420 `3442`에서 전송 확인 이후에도 manifest의 `guestQuiesce={requested:true,status:VERIFIED}` 보존, 백업 완료·정리 COMPLETED·예약 RELEASED | 두 방식 통과. 이전 설치본에서 발견한 ACK 이후 결과 누락과 구분 |
+| 백업·스케줄 검색 필터 | 관리자 API에서 VM·간격·동결 여부 조합 및 VM별 백업 검색 28건 일치, 잘못된 간격 거부. 로컬 UI 13건·스케줄 API 회귀 5건 통과 | 통과. 실서버 비관리자 권한 검증과 미설정 NULL 표본은 이번 관리자 조회로 대체하지 않음 |
+| NAS 데이터 제한 적용 단위 | 다중 볼륨·source guard·공통 동결/해제 Python 70건, NAS 제한·source guard·비동기 실행 Java 31건 통과. 실서버 정지 QCOW2 계획에 데이터 `43200`초·마운트 `30`초·디스크 3개 전달 확인 | 실행 중 QCOW2는 전체 libvirt 작업 한 건, RBD export·공유 RAW 복사는 볼륨별 제한. 합산 시간이 12시간을 넘는 실시간 장기 시험은 이번 소형 VM 시험에 포함하지 않음 |
+
+NetBackup 소형 RBD VM의 동결 실패·동결 전 Agent 무응답·해제 RPC 오류·해제 확인 유실도
+`quiesce-faults.json`의 최종 4개 모드에서 통과했다. 준비 실패나 장애가 실제로 주입되기 전에 복구된 시도는 통과 건수에서 제외했다.
+NAS QCOW2에서 Guest hook 설치가 관찰 제한보다 늦어진 시도는 백업 요청 미접수를 확인한 뒤
+해당 임시 설정을 원복하고 새 프로필로 남은 시험만 재개했다. 이를 제품 백업 실패로 집계하지 않는다.
+
+실행 근거는 Management `/var/tmp/seocho-netbackup-focused-validation-20261120/`의
+`next-build-installed-verification.json`, `nas-runtime-{rbd,qcow2}.json`,
+`nas-quiesce-faults-{rbd,qcow2}.json`, `next-build-netbackup-{gfs,rbd}.json`,
+`next-build-filter-api.json`, `next-build-nas-marker-audit.json`에 보존한다.
+읽기 전용 NAS 점검 후 마운트 해제를 확인했으며, 해당 시점 여유 공간은 약 954 GiB였다.
+QCOW2 정지 Full의 Java 경로 완료 표식에는 현재 VM·checkpoint만 있으므로 이를 동결 VERIFIED 기록으로 대체하지 않는다.
+
+이번 NAS 해제 확인 실패 흐름에서 `Error`는 실패 감지 후 해제·종료·정리 확인을 기다리는 동안 표시됐다.
+이후 `Failed`로 전환된 실제 작업의 정리 상태는 `COMPLETED`였다. 다만 다른 실패 처리 경로에서는
+정리가 끝나지 않아도 `Failed`를 기록할 수 있으므로, 목록 상태만으로 정리 완료를 판단하지 않는다.
+실패 원인·정리 상태·해제 확인 기록을 함께 확인한다.
+
+OFF 정책 간격 비교는 첫 Full 회차 시작 제한인 13시를 넘겨 `SKIPPED_ON_RESUMED`로 종료했다.
+따라서 이번 배포 검증 결과에 OFF 간격 비교 통과를 포함하지 않으며 별도 시험이 남아 있다.
 
 ### 판정 기준과 확인 범위
 

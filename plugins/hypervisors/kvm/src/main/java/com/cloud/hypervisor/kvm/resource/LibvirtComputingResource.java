@@ -840,10 +840,15 @@ public class LibvirtComputingResource extends ServerResourceBase implements Serv
             guestCpuArch = cpuArchOverride;
         }
         try {
-            hypervisorPath = getHypervisorPath(LibvirtConnection.getConnection());
+            final Connect connection = LibvirtConnection.getConnection();
+            hypervisorPath = getHypervisorPath(connection);
+            // A detached worker has not run the Agent's normal host discovery.
+            // Load real versions before applying incremental-backup capability checks.
+            hypervisorLibvirtVersion = connection.getLibVirVersion();
+            hypervisorQemuVersion = connection.getVersion();
         } catch (LibvirtException e) {
             final ConfigurationException configurationException =
-                    new ConfigurationException("Unable to resolve the KVM emulator for detached backup job");
+                    new ConfigurationException("Unable to resolve the KVM emulator or hypervisor versions for detached backup job");
             configurationException.initCause(e);
             throw configurationException;
         }
