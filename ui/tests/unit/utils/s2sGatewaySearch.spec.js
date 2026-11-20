@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { s2sGatewayQuery as query, s2sGatewayError as error, s2sGatewayParams as params, s2sGatewaySearchQuery as search, s2sGatewayListLocation, s2sGatewayDetailLocation, readS2sGatewayPage, readS2sGatewayQuery, s2sGatewaySelection, s2sGatewayPickerParams, readS2sGatewayCandidates } from '@/utils/s2sGatewaySearch'
+import { s2sGatewayQuery as query, s2sGatewayError as error, s2sGatewayParams as params, s2sGatewaySearchQuery as search, s2sGatewayListLocation, s2sGatewayDetailLocation, readS2sGatewayPage, readS2sGatewayQuery, s2sGatewaySelection, s2sGatewayPickerParams, readS2sGatewayCandidates, vpnConnectionApi, vpnConnectionDetailLocation, readVpnConnectionQuery } from '@/utils/s2sGatewaySearch'
 const id = n => String(n).padStart(8, '0') + '-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
 const gateway = id(1); const vpc = id(2); const domain = id(3); const project = id(4)
 const support = Object.fromEntries(['id', 'vpcid', 'domainid', 'account', 'keyword', 'projectid', 'page', 'pagesize', 'listall', 'fordisplay', 'displayall'].map(k => [k, {}]))
@@ -73,4 +73,35 @@ test('account candidates and exact lookup do not enable listall recursive-domain
   const read = jest.fn().mockResolvedValueOnce({ listdomainsresponse: { count: 1, domain: [{ id: domain, name: 'ROOT' }] } }).mockResolvedValueOnce({ listaccountsresponse: { count: 1, account: [{ id: id(8), name: 'owner', domainid: domain }] } })
   expect(await s2sGatewaySelection(read, { domainid: domain, account: 'owner' }, getters)).toEqual({ domainid: 'ROOT', account: 'owner' })
   expect(read.mock.calls[1][1]).toMatchObject({ listall: false, isrecursive: false, name: 'owner', domainid: domain })
+})
+
+const connectionGetters = { ...getters, apis: { ...getters.apis, [vpnConnectionApi]: {} } }
+const connectionFields = { id: {}, vpcid: {}, keyword: {}, projectid: {}, domainid: {}, account: {}, excludeprojectresources: {} }
+
+test('VPN connection query preserves AND filters and resets pagination when searching', () => {
+  const initial = query({ id: id(1), vpcid: vpc, keyword: '192.0.2', page: '4' }, 20, connectionGetters, vpnConnectionApi)
+  const updated = search(initial, { searchQuery: 'peer' }, 20, connectionGetters, vpnConnectionApi)
+  expect(updated).toMatchObject({ keyword: 'peer', id: id(1), vpcid: vpc, page: '1', projectid: '0' })
+  expect(error(updated, connectionGetters, connectionFields, vpnConnectionApi)).toBe('')
+  expect(params(updated, vpnConnectionApi)).toMatchObject({ id: id(1), vpcid: vpc, keyword: 'peer', excludeprojectresources: true })
+  expect(params(updated, vpnConnectionApi)).not.toHaveProperty('fordisplay')
+  expect(params(updated, vpnConnectionApi)).not.toHaveProperty('projectid')
+  expect(search(updated, { searchQuery: '' }, 20, connectionGetters, vpnConnectionApi)).not.toHaveProperty('keyword')
+})
+
+test('VPN connection detail returns to the same filtered page only in the original scope', () => {
+  const scoped = { ...connectionGetters, project: { id: project } }
+  const source = query({ keyword: 'peer', vpcid: vpc, page: '2' }, 20, scoped, vpnConnectionApi)
+  const detail = vpnConnectionDetailLocation({ query: source }, { id: id(1) }, scoped)
+  expect(detail).toMatchObject({ path: '/s2svpnconn/' + id(1), query: { projectid: project } })
+  expect(s2sGatewayListLocation(detail, scoped, vpnConnectionApi)).toEqual({ path: '/s2svpnconn', query: source })
+  expect(s2sGatewayListLocation(detail, connectionGetters, vpnConnectionApi)).toEqual({ path: '/s2svpnconn', query: { projectid: '0', page: '1', pagesize: '20' } })
+  expect(error({ ...source, account: 'owner', domainid: domain }, scoped, connectionFields, vpnConnectionApi)).toBe('account.project')
+})
+
+test('VPN connection read does not apply a VPC found in another project', async () => {
+  const read = jest.fn().mockResolvedValue({ listvpcsresponse: { count: 1, vpc: [{ id: vpc, projectid: project }] } })
+  await expect(readVpnConnectionQuery(read, { vpcid: vpc, excludeprojectresources: true }, connectionGetters, () => true)).rejects.toThrow('scope')
+  expect(read).toHaveBeenCalledTimes(1)
+  expect(read.mock.calls[0][1]).not.toHaveProperty('excludeprojectresources')
 })

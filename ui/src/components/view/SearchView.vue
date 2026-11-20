@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <S2sGatewaySearch v-if="apiName === 'listVpnGateways'" :validation-error="s2sGatewaySearchFailure" @search="$emit('search', $event)" />
+  <S2sGatewaySearch v-if="['listVpnGateways', 'listVpnConnections'].includes(apiName)" :api-name="apiName" :validation-error="s2sGatewaySearchFailure" @search="$emit('search', $event)" />
   <AsnSearch v-else-if="apiName === 'listASNumbers'" :validation-error="asnSearchFailure" @search="$emit('search', $event)" />
   <KubernetesIsoSearch v-else-if="apiName === 'listKubernetesSupportedVersions'" @search="$emit('search', $event)" />
   <PublicIpSearch v-else-if="apiName === 'listPublicIpAddresses'" @search="$emit('search', $event)" />

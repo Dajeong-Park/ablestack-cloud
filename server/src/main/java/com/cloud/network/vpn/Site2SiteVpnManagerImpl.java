@@ -973,6 +973,12 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
         Long id = cmd.getId();
         Long vpcId = cmd.getVpcId();
         Boolean display = cmd.getDisplay();
+        String keyword = cmd.getKeyword() == null ? "" : cmd.getKeyword().trim();
+        boolean hasKeyword = !keyword.isEmpty();
+        Long projectId = cmd.getProjectId();
+        if (cmd.isExcludeProjectResources() && projectId != null) {
+            throw new InvalidParameterValueException("excludeprojectresources cannot be combined with projectid");
+        }
 
         Long domainId = cmd.getDomainId();
         boolean isRecursive = cmd.isRecursive();
@@ -985,7 +991,8 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
         List<Long> permittedAccounts = new ArrayList<>();
 
         Ternary<Long, Boolean, ListProjectResourcesCriteria> domainIdRecursiveListProject = new Ternary<>(domainId, isRecursive, null);
-        _accountMgr.buildACLSearchParameters(caller, id, accountName, cmd.getProjectId(), permittedAccounts, domainIdRecursiveListProject, listAll, false);
+        _accountMgr.buildACLSearchParameters(caller, cmd.isExcludeProjectResources() ? null : id, accountName,
+                projectId, permittedAccounts, domainIdRecursiveListProject, listAll, false);
         domainId = domainIdRecursiveListProject.first();
         isRecursive = domainIdRecursiveListProject.second();
         ListProjectResourcesCriteria listProjectResourcesCriteria = domainIdRecursiveListProject.third();
@@ -997,10 +1004,19 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
         sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
         sb.and("display", sb.entity().isDisplay(), SearchCriteria.Op.EQ);
 
-        if (vpcId != null) {
+        if (vpcId != null || hasKeyword) {
             SearchBuilder<Site2SiteVpnGatewayVO> gwSearch = _vpnGatewayDao.createSearchBuilder();
             gwSearch.and("vpcId", gwSearch.entity().getVpcId(), SearchCriteria.Op.EQ);
-            sb.join("gwSearch", gwSearch, sb.entity().getVpnGatewayId(), gwSearch.entity().getId(), JoinBuilder.JoinType.INNER);
+            if (hasKeyword) {
+                SearchBuilder<IPAddressVO> ipSearch = _ipAddressDao.createSearchBuilder();
+                gwSearch.join("user_ip_address", ipSearch, gwSearch.entity().getAddrId(), ipSearch.entity().getId(), JoinBuilder.JoinType.LEFT);
+            }
+            sb.join("gwSearch", gwSearch, sb.entity().getVpnGatewayId(), gwSearch.entity().getId(),
+                    vpcId != null ? JoinBuilder.JoinType.INNER : JoinBuilder.JoinType.LEFT);
+        }
+        if (hasKeyword) {
+            SearchBuilder<Site2SiteCustomerGatewayVO> peerSearch = _customerGatewayDao.createSearchBuilder();
+            sb.join("s2s_customer_gateway", peerSearch, sb.entity().getCustomerGatewayId(), peerSearch.entity().getId(), JoinBuilder.JoinType.LEFT);
         }
 
         SearchCriteria<Site2SiteVpnConnectionVO> sc = sb.create();
@@ -1017,8 +1033,25 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
             sc.setJoinParameters("gwSearch", "vpcId", vpcId);
         }
 
+        if (hasKeyword) {
+            sc.addAnd("id", SearchCriteria.Op.SC, vpnConnectionKeyword(keyword));
+        }
+
         Pair<List<Site2SiteVpnConnectionVO>, Integer> result = _vpnConnectionDao.searchAndCount(sc, searchFilter);
         return new Pair<>(result.first(), result.second());
+    }
+
+    private SearchCriteria<Site2SiteVpnConnectionVO> vpnConnectionKeyword(String keyword) {
+        String pattern = "%" + keyword.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%";
+        SearchCriteria<Site2SiteVpnConnectionVO> matches = _vpnConnectionDao.createSearchCriteria();
+        matches.addOr("uuid", SearchCriteria.Op.LIKE, pattern);
+        SearchCriteria<IPAddressVO> localIp = _ipAddressDao.createSearchCriteria();
+        localIp.addAnd("address", SearchCriteria.Op.LIKE, pattern);
+        matches.addOr("id", SearchCriteria.Op.SC, localIp);
+        SearchCriteria<Site2SiteCustomerGatewayVO> peer = _customerGatewayDao.createSearchCriteria();
+        peer.addAnd("gatewayIp", SearchCriteria.Op.LIKE, pattern);
+        matches.addOr("id", SearchCriteria.Op.SC, peer);
+        return matches;
     }
 
     @Override

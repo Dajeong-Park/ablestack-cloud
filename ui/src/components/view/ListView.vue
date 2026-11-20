@@ -455,6 +455,10 @@
           :to="{ path: '/publicip' + '/' + record.publicipid }"
         >{{ text }}</router-link>
         <router-link
+          v-else-if="$route.meta?.name === 's2svpnconn'"
+          :to="vpnConnectionDetailLocation($route, record, $store.getters)"
+        >{{ text || record.id }}</router-link>
+        <router-link
           v-else
           :to="$route.meta?.name === 's2svpn' ? s2sGatewayDetailLocation($route, record, $store.getters) : { path: $route.path + '/' + record.id }"
         >{{ text }}</router-link>
@@ -1318,7 +1322,7 @@ import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySum
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
-import { s2sGatewayDetailLocation } from '@/utils/s2sGatewaySearch'
+import { s2sGatewayDetailLocation, vpnConnectionDetailLocation } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -1585,6 +1589,7 @@ export default {
   },
   methods: {
     s2sGatewayDetailLocation,
+    vpnConnectionDetailLocation,
     vnfDetailLocation,
     publicIpDetailLocation,
     vmDisplayName,
