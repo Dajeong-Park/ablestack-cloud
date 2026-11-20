@@ -26,7 +26,7 @@ focus-guard
 :keyboard="!busy"
 @cancel="close">
     <a-alert v-if="!allowed" type="warning" show-icon :message="$t('message.s2s.gateway.permission')" />
-    <a-alert v-if="error" type="error" show-icon :message="error" role="alert" />
+    <a-alert v-if="error && !(jobId && error === $t('message.vpc.vpn.unknown'))" type="error" show-icon :message="error" role="alert" />
     <a-alert v-if="jobId" :type="busy ? 'info' : 'warning'" show-icon :message="$t(confirmed ? 'message.s2s.display.confirmed.readback' : busy ? 'message.vpc.vpn.pending' : 'message.vpc.vpn.unknown')" :description="jobId" role="status" />
     <p v-if="mode !== 'update'">{{ $t(mode === 'create' ? 'message.s2s.gateway.create' : 'message.s2s.gateway.delete') }}</p>
     <a-form ref="form" :model="draft" layout="vertical" @keydown.ctrl.enter.prevent="!$event.repeat && submit()" @finish="submit">

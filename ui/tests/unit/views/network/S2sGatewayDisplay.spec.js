@@ -86,7 +86,7 @@ test('post-success read failure is confirmed-readback, retrying the same job nev
 })
 test('lost job responses recover only the same job ID', async () => {
   const { w } = await open(); w.vm.draft.fordisplay = false; queryLost = true; await w.vm.submit(); const job = w.vm.jobId
-  expect(w.vm.phase).toBe('unknown'); expect(w.vm.confirmed).toBe(false); await w.vm.submit(); expect(postAPI).toHaveBeenCalledTimes(1); expect(w.vm.jobId).toBe(job)
+  expect(w.vm.phase).toBe('unknown'); expect(w.vm.confirmed).toBe(false); expect(w.html().split('message.vpc.vpn.unknown').length - 1).toBe(1); await w.vm.submit(); expect(postAPI).toHaveBeenCalledTimes(1); expect(w.vm.jobId).toBe(job)
   queryLost = false; await w.vm.submit(); expect(w.vm.closed).toBe(true)
 })
 test('lost POST response recovers the preallocated job with one mutation', async () => {
