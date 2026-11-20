@@ -31,14 +31,6 @@ export function gatewayDisplayMatches (row, value) {
 export function gatewayDisplayListLocation (route, getters, listLocation, value, id, target = {}) {
   if (!gatewayDisplayAdmin(getters) || typeof value !== 'boolean') return null
   if (String(target.projectid || '0') !== String(getters.project?.id || '0')) return null
-  if (!listLocation.query.fordisplay || listLocation.query.fordisplay === 'all') {
-    return { path: '/s2svpn', query: { ...listLocation.query, fordisplay: 'all', page: target.id ? listLocation.query.page || '1' : '1' } }
-  }
-  const query = { ...listLocation.query, fordisplay: listLocation.query.fordisplay === 'all' ? 'all' : String(value), id, page: '1' }
-  if (target.vpcid) query.vpcid = target.vpcid
-  if (target.projectid) { query.projectid = target.projectid; delete query.account; delete query.domainid } else if (target.account && target.domainid) { query.projectid = '0'; query.account = target.account; query.domainid = target.domainid }
-  // A changed display setting must remain findable even if a former keyword
-  // excluded it. Keep the validated owner/project/VPC scope from the return URL.
-  delete query.keyword; delete query.q
-  return { path: '/s2svpn', query }
+  const mode = listLocation.query.fordisplay || 'all'
+  return { path: '/s2svpn', query: { ...listLocation.query, fordisplay: mode === 'all' ? 'all' : String(value), page: mode === 'all' && target.id ? listLocation.query.page || '1' : '1' } }
 }

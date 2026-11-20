@@ -158,9 +158,9 @@ test('hidden detail cannot cross the global project or ignore missing display AP
   await expect(readGatewayDetail(getAPI, { params: { id }, query: { projectid: project, fordisplay: 'false' } }, access('Admin'), () => true, supported)).rejects.toThrow('scope')
   await expect(readGatewayDetail(getAPI, { params: { id }, query: { fordisplay: 'false' } }, access('Admin'), () => true, {})).rejects.toThrow('unsupported'); expect(getAPI).not.toHaveBeenCalled()
 })
-test('changed-display location narrows to the actual target owner/ID and clears stale keyword', () => {
+test('changed-display location preserves chosen search fields without inserting identity/owner chips', () => {
   const result = gatewayDisplayListLocation({}, access('Admin'), { query: { keyword: 'old', q: 'old', page: '3', projectid: '0', fordisplay: 'true' } }, false, id, { ...gateway })
-  expect(result).toEqual({ path: '/s2svpn', query: { page: '1', projectid: '0', fordisplay: 'false', id, vpcid, account: 'owner', domainid: domain } })
+  expect(result).toEqual({ path: '/s2svpn', query: { keyword: 'old', q: 'old', page: '1', projectid: '0', fordisplay: 'false' } })
 })
 test('refresh does not invalidate an update dialog before its completed navigation', () => {
   const vm = { $route: { meta: { name: 's2svpn' } }, currentAction: { api: 'updateVpnGateway' }, fetchData: jest.fn() }
@@ -201,10 +201,10 @@ test.each(['User', 'DomainAdmin'])('%s cannot acquire all through a direct UI UR
   expect(s2sGatewayParams(s2sGatewayQuery({}, 20, getters)).displayall).toBeUndefined()
 })
 
-test('success in the default All view never inserts unselected ID/VPC/owner chips', () => {
-  const query = { fordisplay: 'all', projectid: '0', page: '2', pagesize: '20' }
+test.each(['all', 'true', 'false'])('success from %s never inserts unselected ID/VPC/owner chips', mode => {
+  const query = { fordisplay: mode, projectid: '0', page: '2', pagesize: '20' }
   const result = gatewayDisplayListLocation({}, access('Admin'), { query }, false, id, gateway)
-  expect(result.query).toEqual(query)
+  expect(result.query).toEqual({ ...query, fordisplay: mode === 'all' ? 'all' : 'false', page: mode === 'all' ? '2' : '1' })
   expect(result.query.id).toBeUndefined(); expect(result.query.vpcid).toBeUndefined(); expect(result.query.account).toBeUndefined()
 })
 
