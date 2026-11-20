@@ -2989,7 +2989,21 @@ export default {
       const displayLocation = changedGatewayDisplay ? gatewayDisplayListLocation(this.$route, this.$store.getters, s2sGatewayListLocation(this.$route, this.$store.getters), result.fordisplay, result.id, result.target) : null
       const deletedGatewayDetail = s2sGatewayRoute(this.$route) && this.currentAction?.api === 'deleteVpnGateway' && this.dataView && result?.removed?.includes(this.$route.params?.id)
       const gatewayLocation = deletedGatewayDetail ? gatewayDeletedListLocation(s2sGatewayListLocation(this.$route, this.$store.getters), this.$route.params.id) : null
-      if (deletedGatewayDetail) { this.listRequestVersion++; this.listRequestPending = false; this.listLoadedScope = null; this.resource = {}; this.items = []; this.itemCount = 0; this.resetSelection() }
+      const deletedVpnConnectionDetail = this.$route.meta?.name === 's2svpnconn' && this.currentAction?.api === 'deleteVpnConnection' &&
+        this.dataView && result?.removed?.includes(this.$route.params?.id)
+      const vpnConnectionLocation = deletedVpnConnectionDetail
+        ? gatewayDeletedListLocation(s2sGatewayListLocation(this.$route, this.$store.getters, vpnConnectionApi), this.$route.params.id)
+        : null
+      if (vpnConnectionLocation) vpnConnectionLocation.query.page = '1'
+      if (deletedGatewayDetail || deletedVpnConnectionDetail) {
+        this.listRequestVersion++
+        this.listRequestPending = false
+        this.listLoadedScope = null
+        this.resource = {}
+        this.items = []
+        this.itemCount = 0
+        this.resetSelection()
+      }
       const deletedKubernetesIso = this.$route.meta?.name === 'kubernetesiso' && this.currentAction?.api === 'deleteKubernetesSupportedVersion' && result?.removed?.includes(this.resource?.id)
       const kubernetesIsoLocation = deletedKubernetesIso ? kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token) : null
       if (deletedKubernetesIso) {
@@ -3007,7 +3021,7 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
-      const guardedDialog = ['kubernetesiso', 's2svpn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3060,6 +3074,7 @@ export default {
         } else this.$router.replace(displayLocation)
       }
       if (deletedGatewayDetail) this.$router.replace(gatewayLocation)
+      if (vpnConnectionLocation) this.$router.replace(vpnConnectionLocation)
       if (deletedNetworkDetail) this.$router.replace(networkLocation || { path: '/guestnetwork' })
       else if (networkDeletion && result?.started) this.$nextTick(() => this.fetchData({ irefresh: true }))
       if (deletedCniDetail) this.$router.replace(cniLocation || { path: '/cniconfiguration' })

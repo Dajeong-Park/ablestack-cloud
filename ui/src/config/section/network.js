@@ -1152,15 +1152,9 @@ export default {
           label: 'label.create.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#creating-a-vpn-connection',
           listView: true,
-          args: ['s2scustomergatewayid', 's2svpngatewayid', 'passive'],
-          mapping: {
-            s2scustomergatewayid: {
-              api: 'listVpnCustomerGateways'
-            },
-            s2svpngatewayid: {
-              api: 'listVpnGateways'
-            }
-          }
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         },
         {
           api: 'resetVpnConnection',
@@ -1168,7 +1162,10 @@ export default {
           label: 'label.reset.vpn.connection',
           message: 'message.reset.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#restarting-and-removing-a-vpn-connection',
-          dataView: true
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         },
         {
           api: 'deleteVpnConnection',
@@ -1176,7 +1173,10 @@ export default {
           label: 'label.delete.vpn.connection',
           message: 'message.delete.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#restarting-and-removing-a-vpn-connection',
-          dataView: true
+          dataView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
         }
       ]
     },
