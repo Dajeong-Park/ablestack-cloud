@@ -334,17 +334,26 @@ class Backup:
     def freeze_guest(self):
         # Record ownership before freezing; a process crash must not leave the source VM frozen.
         try:
-            state = json.loads(run(["virsh", "-c", "qemu:///system", "qemu-agent-command", self.vm,
-                                    '{"execute":"guest-fsfreeze-status"}'], 30))
-            if state.get("return") != "thawed":
-                return
+            if guest_freeze_state(self.vm) != "thawed":
+                raise RuntimeError("Guest filesystems are already frozen by another owner")
             engine = json.loads(self.engine.read_text())
             engine["freezePending"] = True
             atomic(self.engine, engine)
-            run(["virsh", "-c", "qemu:///system", "qemu-agent-command", self.vm,
-                 '{"execute":"guest-fsfreeze-freeze"}'], 30)
-        except RuntimeError:
-            pass
+            response = json.loads(run(["virsh", "-c", "qemu:///system", "qemu-agent-command", self.vm,
+                                       '{"execute":"guest-fsfreeze-freeze"}'], 10))
+            if (not isinstance(response, dict) or type(response.get("return")) is not int
+                    or response["return"] <= 0 or guest_freeze_state(self.vm) != "frozen"):
+                raise RuntimeError("Guest filesystem freeze was not confirmed")
+            engine["frozenFilesystems"] = response["return"]
+            atomic(self.engine, engine)
+        except (RuntimeError, subprocess.TimeoutExpired, ValueError, TypeError) as exc:
+            raise RuntimeError("GUEST_FREEZE_UNCONFIRMED: Requested filesystem freeze requires a connected "
+                               "QEMU Guest Agent and confirmed thawed-to-frozen transition") from exc
+
+    def verify_guest_frozen(self):
+        if json.loads(self.engine.read_text()).get("freezePending"):
+            if guest_freeze_state(self.vm) != "frozen":
+                raise RuntimeError("GUEST_FREEZE_LOST: Guest filesystems thawed before all recovery points were confirmed")
 
     def thaw_guest(self):
         thaw_owned_guest(self.engine, self.vm)
@@ -361,11 +370,16 @@ class Backup:
                 if not any(s["name"] == parent for s in snapshots):
                     raise RuntimeError("Parent RBD snapshot is missing")
         try:
-            if self.plan.get("quiesce"):
+            if self.plan.get("quiesce") and not guest_is_off_or_absent(self.vm):
                 self.freeze_guest()
             for uri in self.plan["diskPaths"]:
+                self.check_cancel()
+                self.verify_guest_frozen()
                 args, image = self.rbd_command(uri)
-                run(args + ["snap", "create", image + "@" + checkpoint])
+                run(args + ["snap", "create", image + "@" + checkpoint], 30)
+            # In particular, Windows VSS can automatically thaw after 10 seconds.
+            # Never accept a recovery point whose freeze window has already ended.
+            self.verify_guest_frozen()
         finally:
             self.thaw_guest()
         metadata = ("vm_name=%s\nbackup_engine=RBD_DIFF\nbackup_type=%s\ncheckpoint_name=%s\n"
@@ -464,6 +478,7 @@ class Backup:
             run(["virsh", "-c", "qemu:///system", "backup-begin", self.domain,
                  "--backupxml", str(backup_path), "--checkpointxml", str(checkpoint_path)])
             self.pull = True
+            self.verify_guest_frozen()
         finally:
             self.thaw_guest()
         (self.root / "checkpoints").mkdir()
@@ -664,6 +679,11 @@ class Backup:
                 self.begin_rbd()
             else:
                 self.begin_qcow2()
+        engine = json.loads(self.engine.read_text())
+        self.manifest["guestQuiesce"] = {
+            "requested": bool(self.plan.get("quiesce")),
+            "status": "VERIFIED" if engine.get("frozenFilesystems") else
+                      "NOT_APPLICABLE" if self.plan.get("quiesce") else "NOT_REQUESTED"}
         for index, volume in enumerate(self.manifest["volumes"]):
             artifact = volume["chain"][-1]
             target = Path(artifact["path"])
@@ -1076,20 +1096,40 @@ def guest_is_off_or_absent(vm):
         return vm not in run(["virsh", "-c", "qemu:///system", "list", "--all", "--name"], 30).splitlines()
 
 
+def guest_freeze_state(vm):
+    response = json.loads(run(["virsh", "-c", "qemu:///system", "qemu-agent-command", vm,
+                               '{"execute":"guest-fsfreeze-status"}'], 10))
+    if not isinstance(response, dict) or response.get("return") not in ("thawed", "frozen"):
+        raise RuntimeError("Guest filesystem freeze status is unconfirmed")
+    return response["return"]
+
+
 def thaw_owned_guest(receipt, vm):
     if not receipt.exists():
         return
     engine = json.loads(receipt.read_text())
     if engine.get("freezePending"):
-        try:
-            state = json.loads(run(["virsh", "-c", "qemu:///system", "qemu-agent-command", vm,
-                                    '{"execute":"guest-fsfreeze-status"}'], 30))
-            if state.get("return") != "thawed":
+        confirmed = False
+        for _ in range(3):
+            try:
+                if guest_freeze_state(vm) == "thawed":
+                    confirmed = True
+                    break
+            except (RuntimeError, subprocess.TimeoutExpired, ValueError, TypeError):
+                pass
+            # A lost status response must not prevent an owned thaw attempt.
+            try:
                 run(["virsh", "-c", "qemu:///system", "qemu-agent-command", vm,
-                     '{"execute":"guest-fsfreeze-thaw"}'], 30)
-        except (RuntimeError, subprocess.TimeoutExpired):
-            if not guest_is_off_or_absent(vm):
-                raise
+                     '{"execute":"guest-fsfreeze-thaw"}'], 10)
+            except (RuntimeError, subprocess.TimeoutExpired):
+                pass
+        if not confirmed:
+            try:
+                confirmed = guest_freeze_state(vm) == "thawed"
+            except (RuntimeError, subprocess.TimeoutExpired, ValueError, TypeError):
+                pass
+        if not confirmed and not guest_is_off_or_absent(vm):
+            raise RuntimeError("Guest filesystem thaw remains pending; freeze ownership is retained")
         engine["freezePending"] = False
         atomic(receipt, engine)
 

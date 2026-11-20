@@ -268,7 +268,7 @@ backup_running_vm() {
     backup_begin=1;
   fi
 
-  ablestack_thaw_guest || { cleanup; exit 1; }
+  ablestack_finish_guest_quiesce || { cleanup; exit 1; }
 
   if [[ $backup_begin -ne 1 ]]; then
     log -ne "FAILED libvirt backup-begin vm=[$VM] checkpoint=[$CHECKPOINT_NAME] output=[${backup_begin_output:-Unknown error}]"
@@ -333,59 +333,21 @@ backup_rbd_volumes() {
   mark_backup_in_progress
 
   backup_domain_information "$VM"
-  trap 'log -ne "FAILED RBD backup unexpected error line=[$LINENO] op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; cleanup_created_rbd_snapshots' ERR
-  trap 'log -ne "FAILED RBD backup interrupted op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; cleanup_created_rbd_snapshots; exit 1' INT TERM
+  trap 'log -ne "FAILED RBD backup unexpected error line=[$LINENO] op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"; cleanup_created_rbd_snapshots' ERR
+  trap 'log -ne "FAILED RBD backup interrupted op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"; cleanup_created_rbd_snapshots; exit 130' INT
+  trap 'log -ne "FAILED RBD backup interrupted op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"; cleanup_created_rbd_snapshots; exit 143' TERM
 
   local index=0
   local disk_count
   disk_count=$(count_csv_values "$DISK_PATHS")
   [[ "$disk_count" -lt 1 ]] && disk_count=1
-  while IFS= read -r disk; do
-    log -ne "Loop disk raw value=[$disk]"
-    [[ -z "$disk" ]] && continue
-
-    parse_rbd_uri "$disk"
-    log -ne "Parsed disk [$disk] -> RBD_IMAGE=[$RBD_IMAGE], MON=[$RBD_MON_HOST], USER=[$RBD_USER]"
-
-    if [[ -z "$RBD_IMAGE" ]]; then
-      echo "Unable to parse RBD disk path: $disk"
-      cleanup
-      exit 1
-    fi
-
-    build_rbd_cmd
-    log -ne "Built RBD command: ${RBD_CMD[*]}"
-
-    local current_snapshot="${CHECKPOINT_NAME}"
-    log -ne "Preparing RBD snapshot for disk path [$disk], resolved image [$RBD_IMAGE]"
-
-    if ! timeout 30s "${RBD_CMD[@]}" info "$RBD_IMAGE" >> "$logFile" 2>&1; then
-      log -ne "FAILED RBD image access check image=[$RBD_IMAGE] timeout=[30s]"
-      echo "Failed to access RBD image $RBD_IMAGE"
-      cleanup_created_rbd_snapshots
-      cleanup
-      exit 1
-    fi
-
-    if [[ "$BACKUP_TYPE" == "INCREMENTAL" && -n "$PARENT_CHECKPOINT_NAME" ]]; then
-      if ! timeout 30s "${RBD_CMD[@]}" snap ls "$RBD_IMAGE" 2>>"$logFile" | awk 'NR>1 {print $2}' | grep -Fxq "$PARENT_CHECKPOINT_NAME"; then
-        log -ne "FAILED RBD parent snapshot check image=[$RBD_IMAGE] parentSnapshot=[$PARENT_CHECKPOINT_NAME]"
-        echo "Parent RBD snapshot ${RBD_IMAGE}@${PARENT_CHECKPOINT_NAME} not found for incremental backup"
-        cleanup_created_rbd_snapshots
-        cleanup
-        exit 1
-      fi
-    fi
-
-    if ! timeout 30s "${RBD_CMD[@]}" snap create "${RBD_IMAGE}@${current_snapshot}" >> "$logFile" 2>&1; then
-      log -ne "FAILED RBD snapshot create image=[$RBD_IMAGE] snapshot=[$current_snapshot] timeout=[30s]"
-      echo "Failed to create RBD snapshot ${RBD_IMAGE}@${current_snapshot}"
-      cleanup_created_rbd_snapshots
-      cleanup
-      exit 1
-    fi
-    record_created_rbd_snapshot "$disk" "$current_snapshot"
-  done < <(split_csv "$DISK_PATHS")
+  if ! ablestack_prepare_rbd_snapshots; then
+    # Thaw before snapshot cleanup, which can block on unavailable storage.
+    ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"
+    cleanup_created_rbd_snapshots
+    cleanup
+    exit 1
+  fi
 
   # A stopped VM may start only after the entire disk set has an immutable snapshot.
   nas_rbd_snapshots_complete
@@ -740,6 +702,7 @@ mark_backup_in_progress() {
 mark_backup_complete() {
   local tmp_marker="$dest/$COMPLETE_MARKER.tmp"
   printf 'completed_at=%s\nvm=%s\ncheckpoint=%s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$VM" "$CHECKPOINT_NAME" > "$tmp_marker"
+  printf 'quiesce_requested=%s\nquiesce_state=%s\n' "$QUIESCE" "$BACKUP_GUEST_QUIESCE_STATE" >> "$tmp_marker"
   mv -f "$tmp_marker" "$dest/$COMPLETE_MARKER"
   rm -f "$dest/$IN_PROGRESS_MARKER"
   sync "$dest/$COMPLETE_MARKER" 2>/dev/null || true
@@ -999,6 +962,8 @@ checkpoint_name=$checkpoint_name
 parent_checkpoint_name=$parent_checkpoint_name
 disk_paths=$DISK_PATHS
 backup_files=$BACKUP_FILES
+quiesce_requested=$QUIESCE
+quiesce_state=$BACKUP_GUEST_QUIESCE_STATE
 backup_dir=$BACKUP_DIR
 EOF
 

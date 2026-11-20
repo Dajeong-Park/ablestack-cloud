@@ -19,41 +19,155 @@
 LIBVIRT_CONTROL_TIMEOUT_SECONDS="${ABLESTACK_LIBVIRT_CONTROL_TIMEOUT_SECONDS:-30}"
 BACKUP_GUEST_FREEZE_PENDING=0
 BACKUP_JOB_MAY_BE_ACTIVE=0
+BACKUP_GUEST_QUIESCE_STATE=NOT_REQUESTED
 
 virsh() {
   LC_ALL=C timeout -k 5s "${LIBVIRT_CONTROL_TIMEOUT_SECONDS}s" virsh "$@"
 }
 
-ablestack_guest_is_thawed() {
+ablestack_guest_has_freeze_state() {
   local state
   state=$(virsh -c qemu:///system qemu-agent-command "$VM" '{"execute":"guest-fsfreeze-status"}') || return 1
-  python3 -c 'import json,sys; sys.exit(0 if json.load(sys.stdin).get("return") == "thawed" else 1)' <<< "$state"
+  python3 -c 'import json,sys; value=json.load(sys.stdin); sys.exit(0 if isinstance(value, dict) and value.get("return") == sys.argv[1] else 1)' "$1" <<< "$state"
+}
+
+ablestack_guest_is_thawed() {
+  ablestack_guest_has_freeze_state thawed
+}
+
+ablestack_guest_is_off_or_absent() {
+  local state domains
+  if state=$(virsh -c qemu:///system domstate "$VM" 2>/dev/null); then
+    [[ "$state" == "shut off" ]]
+  else
+    domains=$(virsh -c qemu:///system list --all --name) || return 1
+    ! grep -Fxq -- "$VM" <<< "$domains"
+  fi
+}
+
+ablestack_freeze_rbd_guest() {
+  [[ "$QUIESCE" != "true" ]] && return 0
+  local state
+  if state=$(virsh -c qemu:///system domstate "$VM" 2>/dev/null); then
+    if [[ "$state" == "shut off" ]]; then BACKUP_GUEST_QUIESCE_STATE=NOT_APPLICABLE; return 0; fi
+    if [[ "$state" != "running" ]]; then
+      log -ne "FAILED RBD guest state does not permit filesystem freeze vm=[$VM] state=[$state]"
+      return 1
+    fi
+  elif ablestack_guest_is_off_or_absent; then
+    BACKUP_GUEST_QUIESCE_STATE=NOT_APPLICABLE
+    return 0
+  else
+    log -ne "FAILED RBD guest state is unconfirmed vm=[$VM]"
+    return 1
+  fi
+  ablestack_freeze_guest
 }
 
 ablestack_freeze_guest() {
   [[ "$QUIESCE" != "true" ]] && return 0
+  BACKUP_GUEST_QUIESCE_STATE=FAILED
+  if [[ -z "${ABLESTACK_BACKUP_JOB_DIR:-}" || ! -d "$ABLESTACK_BACKUP_JOB_DIR" ]]; then
+    log -ne "FAILED GUEST_FREEZE_UNCONFIRMED vm=[$VM]; durable backup job directory is required"
+    return 1
+  fi
   # Never thaw a filesystem frozen by another operator or job.
   if ! ablestack_guest_is_thawed; then
-    log -ne "WARNING guest quiesce unavailable; no freeze request was sent vm=[$VM]"
-    return 0
+    log -ne "FAILED GUEST_FREEZE_UNCONFIRMED vm=[$VM]; Guest Agent unavailable or filesystems already frozen"
+    return 1
   fi
+  local pending="$ABLESTACK_BACKUP_JOB_DIR/guest-freeze.pending"
+  printf '%s\n' "$VM" > "$pending.tmp" || return 1
+  sync "$pending.tmp" || return 1
+  mv -f "$pending.tmp" "$pending" || return 1
+  sync "$ABLESTACK_BACKUP_JOB_DIR" || return 1
   BACKUP_GUEST_FREEZE_PENDING=1
-  if [[ -n "${ABLESTACK_BACKUP_JOB_DIR:-}" ]]; then
-    printf '%s\n' "$VM" > "$ABLESTACK_BACKUP_JOB_DIR/guest-freeze.pending"
-  fi
-  if ! virsh -c qemu:///system qemu-agent-command "$VM" '{"execute":"guest-fsfreeze-freeze"}'; then
+  local response
+  if ! response=$(virsh -c qemu:///system qemu-agent-command "$VM" '{"execute":"guest-fsfreeze-freeze"}') ||
+      ! python3 -c 'import json,sys; value=json.load(sys.stdin); count=value.get("return") if isinstance(value, dict) else None; sys.exit(0 if type(count) is int and count > 0 else 1)' <<< "$response" ||
+      ! ablestack_guest_has_freeze_state frozen; then
     # A timeout can occur after the guest accepted the freeze request.
+    log -ne "FAILED GUEST_FREEZE_UNCONFIRMED vm=[$VM]; attempting owned thaw"
     ablestack_thaw_guest || return 1
+    return 1
   fi
+  BACKUP_GUEST_QUIESCE_STATE=FROZEN
+  return 0
+}
+
+ablestack_verify_guest_frozen() {
+  [[ "$BACKUP_GUEST_FREEZE_PENDING" -ne 1 ]] && return 0
+  if ! ablestack_guest_has_freeze_state frozen; then
+    BACKUP_GUEST_QUIESCE_STATE=FAILED
+    log -ne "FAILED GUEST_FREEZE_LOST vm=[$VM]; freeze window ended or its status is unconfirmed"
+    return 1
+  fi
+}
+
+ablestack_finish_guest_quiesce() {
+  local result=0
+  ablestack_verify_guest_frozen || result=1
+  ablestack_thaw_guest || return 20
+  if [[ "$result" -eq 0 && "$BACKUP_GUEST_QUIESCE_STATE" == FROZEN ]]; then
+    BACKUP_GUEST_QUIESCE_STATE=VERIFIED
+  fi
+  return "$result"
+}
+
+# Used by the four ABLESTACK providers' directory-based RBD workers. Validate
+# every source before freezing, capture the whole set, then thaw before export.
+ablestack_prepare_rbd_snapshots() {
+  local disk_path result=0
+  while IFS= read -r disk_path; do
+    [[ -z "$disk_path" ]] && continue
+    parse_rbd_uri "$disk_path"
+    build_rbd_cmd
+    if ! timeout 30s "${RBD_CMD[@]}" info "$RBD_IMAGE" >> "$logFile" 2>&1; then
+      log -ne "FAILED RBD image access check image=[$RBD_IMAGE]"
+      return 1
+    fi
+    if [[ "$BACKUP_TYPE" == INCREMENTAL && -n "$PARENT_CHECKPOINT_NAME" ]]; then
+      if ! timeout 30s "${RBD_CMD[@]}" snap ls "$RBD_IMAGE" 2>>"$logFile" | awk 'NR>1 {print $2}' | grep -Fxq "$PARENT_CHECKPOINT_NAME"; then
+        log -ne "FAILED RBD parent snapshot check image=[$RBD_IMAGE] parent=[$PARENT_CHECKPOINT_NAME]"
+        return 1
+      fi
+    fi
+  done < <(split_csv "$DISK_PATHS")
+  ablestack_freeze_rbd_guest || return 1
+  while IFS= read -r disk_path; do
+    [[ -z "$disk_path" ]] && continue
+    ablestack_verify_guest_frozen || { result=1; break; }
+    parse_rbd_uri "$disk_path"
+    build_rbd_cmd
+    if ! timeout -k 5s 30s "${RBD_CMD[@]}" snap create "${RBD_IMAGE}@${CHECKPOINT_NAME}" >> "$logFile" 2>&1; then
+      log -ne "FAILED RBD snapshot create image=[$RBD_IMAGE] checkpoint=[$CHECKPOINT_NAME]"
+      result=1
+      break
+    fi
+    record_created_rbd_snapshot "$disk_path" "$CHECKPOINT_NAME"
+  done < <(split_csv "$DISK_PATHS")
+  if [[ "$result" -eq 0 ]]; then
+    ablestack_finish_guest_quiesce || return $?
+  else
+    ablestack_thaw_guest || return 20
+  fi
+  return "$result"
 }
 
 ablestack_thaw_guest() {
   [[ "$BACKUP_GUEST_FREEZE_PENDING" -ne 1 ]] && return 0
-  if virsh -c qemu:///system qemu-agent-command "$VM" '{"execute":"guest-fsfreeze-thaw"}' || ablestack_guest_is_thawed; then
-    BACKUP_GUEST_FREEZE_PENDING=0
+  local attempt confirmed=false
+  for attempt in 1 2 3; do
+    if ablestack_guest_is_thawed; then confirmed=true; break; fi
+    # Even a failed status request must be followed by an owned thaw attempt.
+    virsh -c qemu:///system qemu-agent-command "$VM" '{"execute":"guest-fsfreeze-thaw"}' ||
+      log -ne "WARNING guest filesystem thaw command failed vm=[$VM] attempt=[$attempt]"
+  done
+  if [[ "$confirmed" == "true" ]] || ablestack_guest_is_thawed || ablestack_guest_is_off_or_absent; then
     if [[ -n "${ABLESTACK_BACKUP_JOB_DIR:-}" ]]; then
-      rm -f "$ABLESTACK_BACKUP_JOB_DIR/guest-freeze.pending"
+      rm -f "$ABLESTACK_BACKUP_JOB_DIR/guest-freeze.pending" || return 1
     fi
+    BACKUP_GUEST_FREEZE_PENDING=0
     return 0
   fi
   log -ne "FAILED guest filesystem thaw remains pending vm=[$VM]; job evidence retained"

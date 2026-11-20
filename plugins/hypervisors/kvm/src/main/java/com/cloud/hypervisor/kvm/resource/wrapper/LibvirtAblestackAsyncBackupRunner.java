@@ -50,6 +50,8 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BooleanSupplier;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 final class LibvirtAblestackAsyncBackupRunner {
@@ -1384,17 +1386,27 @@ final class LibvirtAblestackAsyncBackupRunner {
 
     private static boolean thawGuest(final String vmName) {
         if (safeValue(vmName).isBlank()) { return false; }
-        final Pair<Integer, String> thaw = executeAndCapture("virsh", "-c", "qemu:///system", "qemu-agent-command", vmName,
-                "{\"execute\":\"guest-fsfreeze-thaw\"}");
-        if (thaw.first() == 0) { return true; }
-        final Pair<Integer, String> status = executeAndCapture("virsh", "-c", "qemu:///system", "qemu-agent-command", vmName,
-                "{\"execute\":\"guest-fsfreeze-status\"}");
+        return thawGuest(action -> executeAndCapture(10000, "virsh", "-c", "qemu:///system", "qemu-agent-command", vmName,
+                "{\"execute\":\"" + action + "\"}"), () -> domainIsOffOrAbsent(vmName));
+    }
+
+    static boolean thawGuest(final Function<String, Pair<Integer, String>> guestCommand, final BooleanSupplier offline) {
+        for (int attempt = 0; attempt < 3; attempt++) {
+            if (isGuestThawed(guestCommand.apply("guest-fsfreeze-status"))) { return true; }
+            // A lost status response must not prevent an owned thaw attempt.
+            guestCommand.apply("guest-fsfreeze-thaw");
+        }
+        // A successful command exit alone does not prove that guest IO resumed.
+        return isGuestThawed(guestCommand.apply("guest-fsfreeze-status")) || offline.getAsBoolean();
+    }
+
+    private static boolean isGuestThawed(final Pair<Integer, String> status) {
         if (status.first() == 0) {
             try {
                 return "thawed".equals(new Gson().fromJson(status.second(), com.google.gson.JsonObject.class).get("return").getAsString());
             } catch (RuntimeException ignored) { }
         }
-        return domainIsOffOrAbsent(vmName);
+        return false;
     }
 
     private static String getTracePrefix(final Properties properties) {

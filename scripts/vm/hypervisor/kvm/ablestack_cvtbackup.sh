@@ -457,6 +457,8 @@ checkpoint_name=$checkpoint_name
 parent_checkpoint_name=$parent_checkpoint_name
 disk_paths=$DISK_PATHS
 backup_files=$BACKUP_FILES
+quiesce_requested=$QUIESCE
+quiesce_state=$BACKUP_GUEST_QUIESCE_STATE
 backup_dir=$BACKUP_DIR
 EOF
 
@@ -552,7 +554,7 @@ backup_running_vm() {
     backup_begin=1
   fi
 
-  ablestack_thaw_guest || { cleanup; exit 1; }
+  ablestack_finish_guest_quiesce || { cleanup; exit 1; }
 
   if [[ $backup_begin -ne 1 ]]; then
     log -ne "FAILED libvirt backup-begin vm=[$VM] checkpoint=[$CHECKPOINT_NAME] output=[${backup_begin_output:-Unknown error}]"
@@ -583,49 +585,26 @@ backup_rbd_volumes() {
   mkdir -p "$dest/checkpoints" || { echo "Failed to create backup directory $dest"; exit 1; }
   mark_staging_in_progress
   backup_domain_information "$VM"
-  trap 'log -ne "FAILED RBD backup unexpected error line=[$LINENO] op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; cleanup_created_rbd_snapshots' ERR
-  trap 'log -ne "FAILED RBD backup interrupted op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; cleanup_created_rbd_snapshots; exit 1' INT TERM
+  trap 'log -ne "FAILED RBD backup unexpected error line=[$LINENO] op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"; cleanup_created_rbd_snapshots' ERR
+  trap 'log -ne "FAILED RBD backup interrupted op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"; cleanup_created_rbd_snapshots; exit 130' INT
+  trap 'log -ne "FAILED RBD backup interrupted op=[$OP] vm=[$VM] checkpoint=[$CHECKPOINT_NAME]"; ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"; cleanup_created_rbd_snapshots; exit 143' TERM
   local index=0
   local disk_count
   disk_count=$(count_csv_values "$DISK_PATHS")
   [[ "$disk_count" -lt 1 ]] && disk_count=1
+  if ! ablestack_prepare_rbd_snapshots; then
+    # Thaw before snapshot cleanup, which can block on unavailable storage.
+    ablestack_thaw_guest || exit "$EXIT_CLEANUP_FAILED"
+    cleanup_created_rbd_snapshots
+    cleanup
+    exit 1
+  fi
   while IFS= read -r disk_path; do
     [[ -z "$disk_path" ]] && continue
-    log -ne "Loop disk raw value=[$disk_path]"
     parse_rbd_uri "$disk_path"
     build_rbd_cmd
-    log -ne "Built RBD command: ${RBD_CMD[*]}"
-
     local output_file="$dest/$(get_backup_file_by_index "$index" "${RBD_IMAGE##*/}.raw")"
     local disk_number=$((index + 1))
-    log -ne "Starting RBD backup for disk path [$disk_path], resolved image [$RBD_IMAGE], output [$output_file]"
-
-  if ! timeout 30s "${RBD_CMD[@]}" info "$RBD_IMAGE" >> "$logFile" 2>&1; then
-    log -ne "FAILED RBD image access check image=[$RBD_IMAGE] timeout=[30s]"
-    echo "Failed to access RBD image $RBD_IMAGE"
-    cleanup_created_rbd_snapshots
-    cleanup
-    exit 1
-  fi
-
-  if [[ "$BACKUP_TYPE" == "INCREMENTAL" && -n "$PARENT_CHECKPOINT_NAME" ]]; then
-    if ! timeout 30s "${RBD_CMD[@]}" snap ls "$RBD_IMAGE" 2>>"$logFile" | awk 'NR>1 {print $2}' | grep -Fxq "$PARENT_CHECKPOINT_NAME"; then
-      log -ne "FAILED RBD parent snapshot check image=[$RBD_IMAGE] parentSnapshot=[$PARENT_CHECKPOINT_NAME]"
-      echo "Parent RBD snapshot ${RBD_IMAGE}@${PARENT_CHECKPOINT_NAME} not found for incremental backup"
-      cleanup_created_rbd_snapshots
-      cleanup
-      exit 1
-    fi
-  fi
-
-  if ! timeout 30s "${RBD_CMD[@]}" snap create "${RBD_IMAGE}@${CHECKPOINT_NAME}" >> "$logFile" 2>&1; then
-    log -ne "FAILED RBD snapshot create image=[$RBD_IMAGE] snapshot=[$CHECKPOINT_NAME] timeout=[30s]"
-    echo "Failed to create RBD snapshot ${RBD_IMAGE}@${CHECKPOINT_NAME}"
-    cleanup_created_rbd_snapshots
-    cleanup
-    exit 1
-  fi
-    record_created_rbd_snapshot "$disk_path" "$CHECKPOINT_NAME"
 
     if [[ "$BACKUP_TYPE" == "INCREMENTAL" && -n "$PARENT_CHECKPOINT_NAME" ]]; then
       local export_start

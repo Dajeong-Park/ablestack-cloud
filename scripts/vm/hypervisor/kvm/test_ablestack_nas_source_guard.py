@@ -203,7 +203,7 @@ backup_domain_information() { :; }
 cleanup_created_rbd_snapshots() { :; }
 cleanup_parent_rbd_snapshot_after_success() { :; }
 cleanup() { :; }
-timeout() { shift; "$@"; }
+timeout() { if [[ "$1" == -k ]]; then shift 2; fi; shift; "$@"; }
 rbd() {
   if [[ "$1 $2" == 'snap create' ]]; then
     echo "snapshot:$3" >> "$TEST_DIRECTORY/events"
