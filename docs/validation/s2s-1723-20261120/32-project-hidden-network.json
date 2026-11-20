@@ -1,0 +1,249 @@
+[
+  {
+    "command": "listVpnGateways",
+    "method": "GET",
+    "params": {
+      "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+      "fordisplay": "true",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "page": "1",
+      "pagesize": "100",
+      "listall": "true"
+    },
+    "sequence": 16035,
+    "http": 200,
+    "response": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+          "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+          "publicip": "10.10.32.163",
+          "account": "PrjAcct-qa-s2s1723-32-project-1",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listAccounts",
+    "method": "GET",
+    "params": {
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc"
+    },
+    "sequence": 16048,
+    "http": 200,
+    "response": {}
+  },
+  {
+    "command": "listVpnGateways",
+    "method": "GET",
+    "params": {
+      "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+      "fordisplay": "true",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "page": "1",
+      "pagesize": "100",
+      "listall": "true"
+    },
+    "sequence": 16070,
+    "http": 200,
+    "response": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+          "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+          "publicip": "10.10.32.163",
+          "account": "PrjAcct-qa-s2s1723-32-project-1",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVpnGateways",
+    "method": "GET",
+    "params": {
+      "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+      "fordisplay": "true",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "page": "1",
+      "pagesize": "100",
+      "listall": "true"
+    },
+    "sequence": 16084,
+    "http": 200,
+    "response": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+          "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+          "publicip": "10.10.32.163",
+          "account": "PrjAcct-qa-s2s1723-32-project-1",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+          "fordisplay": true
+        }
+      ]
+    }
+  },
+  {
+    "command": "updateVpnGateway",
+    "method": "POST",
+    "params": {
+      "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+      "fordisplay": "false",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "customjobid": "863bd860-642f-45ce-833b-1a64d7a99459"
+    },
+    "sequence": 16089,
+    "http": 200,
+    "response": {
+      "jobid": "863bd860-642f-45ce-833b-1a64d7a99459"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "863bd860-642f-45ce-833b-1a64d7a99459"
+    },
+    "sequence": 16096,
+    "http": 200,
+    "response": {
+      "jobid": "863bd860-642f-45ce-833b-1a64d7a99459",
+      "jobstatus": 0,
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd"
+    }
+  },
+  {
+    "command": "queryAsyncJobResult",
+    "method": "GET",
+    "params": {
+      "jobid": "863bd860-642f-45ce-833b-1a64d7a99459"
+    },
+    "sequence": 16105,
+    "http": 200,
+    "response": {
+      "jobid": "863bd860-642f-45ce-833b-1a64d7a99459",
+      "jobstatus": 1,
+      "cmd": "org.apache.cloudstack.api.command.user.vpn.UpdateVpnGatewayCmd",
+      "gateway": {
+        "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+        "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+        "publicip": "10.10.32.163",
+        "account": "PrjAcct-qa-s2s1723-32-project-1",
+        "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+        "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+        "fordisplay": false
+      }
+    }
+  },
+  {
+    "command": "listVpnGateways",
+    "method": "GET",
+    "params": {
+      "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+      "fordisplay": "false",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "page": "1",
+      "pagesize": "100",
+      "listall": "true"
+    },
+    "sequence": 16110,
+    "http": 200,
+    "response": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+          "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+          "publicip": "10.10.32.163",
+          "account": "PrjAcct-qa-s2s1723-32-project-1",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+          "fordisplay": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "listVPCs",
+    "method": "GET",
+    "params": {
+      "id": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true"
+    },
+    "sequence": 16123,
+    "http": 200,
+    "response": {
+      "count": 1
+    }
+  },
+  {
+    "command": "listAccounts",
+    "method": "GET",
+    "params": {
+      "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc"
+    },
+    "sequence": 16125,
+    "http": 200,
+    "response": {}
+  },
+  {
+    "command": "listVPCs",
+    "method": "GET",
+    "params": {
+      "id": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true"
+    },
+    "sequence": 16128,
+    "http": 200,
+    "response": {
+      "count": 1
+    }
+  },
+  {
+    "command": "listVpnGateways",
+    "method": "GET",
+    "params": {
+      "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+      "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+      "fordisplay": "false",
+      "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+      "page": "1",
+      "pagesize": "20",
+      "listall": "true"
+    },
+    "sequence": 16152,
+    "http": 200,
+    "response": {
+      "count": 1,
+      "rows": [
+        {
+          "id": "16716d40-93b3-4037-bd3f-6a5aa6e4a1a7",
+          "vpcid": "d88dff5e-0ede-49ca-af11-6b612debaf50",
+          "publicip": "10.10.32.163",
+          "account": "PrjAcct-qa-s2s1723-32-project-1",
+          "domainid": "2246448b-b23b-11f1-990e-0024811f8935",
+          "projectid": "394c63f3-ae8c-4110-a099-9beacd17bcbc",
+          "fordisplay": false
+        }
+      ]
+    }
+  }
+]

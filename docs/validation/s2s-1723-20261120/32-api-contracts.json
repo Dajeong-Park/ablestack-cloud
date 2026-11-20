@@ -1,0 +1,43 @@
+{
+  "listVpnGateways": {
+    "fordisplay": {
+      "name": "fordisplay",
+      "description": "List resources by display flag; only ROOT admin is eligible to pass this parameter",
+      "type": "boolean",
+      "length": 255,
+      "required": false,
+      "since": "4.4"
+    },
+    "httpmethods": null
+  },
+  "createVpnGateway": {
+    "fordisplay": {
+      "name": "fordisplay",
+      "description": "An optional field, whether to the display the VPN to the end User or not",
+      "type": "boolean",
+      "length": 255,
+      "required": false,
+      "since": "4.4"
+    },
+    "httpmethods": null
+  },
+  "updateVpnGateway": {
+    "fordisplay": {
+      "name": "fordisplay",
+      "description": "An optional field, whether to the display the VPN to the end User or not",
+      "type": "boolean",
+      "length": 255,
+      "required": false,
+      "since": "4.4"
+    },
+    "httpmethods": null
+  },
+  "loginDomain": "/qa-s2s1723-32-domain",
+  "user": "[redacted]",
+  "domainadmin": {
+    "login": true,
+    "type": "2",
+    "account": "qa-s2s1723-32-domainadmin",
+    "initialGatewayCount": 0
+  }
+}

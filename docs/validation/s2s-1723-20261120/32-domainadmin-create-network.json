@@ -1,0 +1,164 @@
+{
+  "cluster": 32,
+  "role": "domainadmin",
+  "source": "025ae706601",
+  "requests": [
+    {
+      "command": "listVPCs",
+      "method": "GET",
+      "params": {
+        "id": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+        "account": "qa-s2s1723-32-domainadmin",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 30853,
+      "http": 200,
+      "response": {
+        "count": 1
+      }
+    },
+    {
+      "command": "listVPCOfferings",
+      "method": "GET",
+      "params": {
+        "id": "a77c3f64-5bb4-4b69-9811-5cc09a231c43",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 30858,
+      "http": 200,
+      "response": {
+        "count": 1
+      }
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "vpcid": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+        "account": "qa-s2s1723-32-domainadmin",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 30865,
+      "http": 200,
+      "response": {}
+    },
+    {
+      "command": "listPublicIpAddresses",
+      "method": "GET",
+      "params": {
+        "vpcid": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+        "account": "qa-s2s1723-32-domainadmin",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 30872,
+      "http": 200,
+      "response": {
+        "count": 1
+      }
+    },
+    {
+      "command": "createVpnGateway",
+      "method": "POST",
+      "params": {
+        "vpcid": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+        "account": "qa-s2s1723-32-domainadmin",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27",
+        "customjobid": "40050b4c-af48-4fa4-855b-777199387f70",
+        "ipaddressid": "5b6fd789-f97f-4d64-bbc4-1b465488a45b"
+      },
+      "sequence": 30879,
+      "http": 200,
+      "response": {
+        "jobid": "40050b4c-af48-4fa4-855b-777199387f70"
+      }
+    },
+    {
+      "command": "queryAsyncJobResult",
+      "method": "GET",
+      "params": {
+        "jobid": "40050b4c-af48-4fa4-855b-777199387f70"
+      },
+      "sequence": 30886,
+      "http": 200,
+      "response": {
+        "jobid": "40050b4c-af48-4fa4-855b-777199387f70",
+        "jobstatus": 1,
+        "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+        "gateway": {
+          "id": "06d30d72-8aa1-48cb-ad49-ede9ed6ee839",
+          "vpcid": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+          "publicip": "10.10.32.164",
+          "account": "qa-s2s1723-32-domainadmin",
+          "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+        }
+      }
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "vpcid": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+        "account": "qa-s2s1723-32-domainadmin",
+        "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27",
+        "page": "1",
+        "pagesize": "100",
+        "listall": "true"
+      },
+      "sequence": 30893,
+      "http": 200,
+      "response": {
+        "count": 1,
+        "rows": [
+          {
+            "id": "06d30d72-8aa1-48cb-ad49-ede9ed6ee839",
+            "vpcid": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+            "publicip": "10.10.32.164",
+            "account": "qa-s2s1723-32-domainadmin",
+            "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+          }
+        ]
+      }
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true"
+      },
+      "sequence": 30900,
+      "http": 200,
+      "response": {
+        "count": 2,
+        "rows": [
+          {
+            "id": "06d30d72-8aa1-48cb-ad49-ede9ed6ee839",
+            "vpcid": "3cdd6581-930d-41dc-b1b0-66f7cf8a2702",
+            "publicip": "10.10.32.164",
+            "account": "qa-s2s1723-32-domainadmin",
+            "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+          },
+          {
+            "id": "265a680a-cb84-45de-9140-a7e0ed68de40",
+            "vpcid": "004ca104-4a0e-4377-be95-1694f1184db3",
+            "publicip": "10.10.32.170",
+            "account": "qa-s2s1723-32-user",
+            "domainid": "27dc4ede-ce95-45a7-a650-33dbcd7b1e27"
+          }
+        ]
+      }
+    }
+  ]
+}
