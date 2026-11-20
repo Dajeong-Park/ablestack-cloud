@@ -573,7 +573,8 @@
       </template>
       <template v-if="column.key === 'state'">
         <span class="list-state-with-flatten">
-          <public-ip-status v-if="$route.meta?.name === 'publicip'" :value="text" />
+          <status v-if="vpnConnectionListRoute($route)" :text="text || ''" :display-label="$t(vpnConnectionState(record))" display-text />
+          <public-ip-status v-else-if="$route.meta?.name === 'publicip'" :value="text" />
           <template-availability v-else-if="['template', 'iso'].includes($route.meta?.name)" :kind="$route.meta.name" :record="record" compact single-line />
           <status v-else-if="$route.path.startsWith('/host')" :text="getHostState(record)" displayText />
           <status v-else :text="text ? text : ''" :displayLabel="column.stateLabel ? column.stateLabel(record) : ''" displayText />
@@ -1289,6 +1290,7 @@ import { getAPI, postAPI } from '@/api'
 import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
+import { vpnConnectionState } from '@/utils/s2sConnection'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import KubernetesIsoListCell from '@/components/widgets/KubernetesIsoListCell'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
@@ -1592,6 +1594,8 @@ export default {
     }
   },
   methods: {
+    vpnConnectionListRoute,
+    vpnConnectionState,
     s2sGatewayDetailLocation,
     vpnConnectionDetailLocation,
     vnfDetailLocation,

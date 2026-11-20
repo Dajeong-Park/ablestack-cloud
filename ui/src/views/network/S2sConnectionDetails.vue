@@ -21,7 +21,7 @@
       <a-list-item>
         <div class="s2s-connection-field">
           <strong>{{ $t(labels[field] || 'label.' + field) }}</strong><br />
-          <status v-if="field === 'state' && resource.state" :text="resource.state" display-text />
+          <status v-if="field === 'state'" :text="resource.state || ''" :display-label="$t(vpnConnectionState(resource))" display-text />
           <ul v-else-if="field === 'cidrlist' && cidrs.length">
             <li v-for="cidr in cidrs" :key="cidr">{{ cidr }}</li>
           </ul>
@@ -40,10 +40,11 @@
 <script>
 import Status from '@/components/widgets/Status'
 import VpnPsk from '@/components/network/VpnPsk'
+import { vpnConnectionState, vpnPassive } from '@/utils/s2sConnection'
 
 const connectionFields = ['publicip', 'gateway', 'state', 'passive', 'cidrlist', 'dpd', 'splitconnections', 'forceencap', 'created']
 const cryptoFields = ['ikeversion', 'ikepolicy', 'ikelifetime', 'esppolicy', 'esplifetime', 'ipsecpsk']
-const booleanFields = ['passive', 'dpd', 'splitconnections', 'forceencap']
+const booleanFields = ['dpd', 'splitconnections', 'forceencap']
 
 export default {
   name: 'S2sConnectionDetails',
@@ -56,15 +57,17 @@ export default {
   },
   computed: {
     fields () { return this.tab === 's2s.connection.crypto' ? cryptoFields : connectionFields },
-    labels () { return { publicip: 'label.s2s.connection.local', gateway: 'label.s2s.connection.peer' } },
+    labels () { return { publicip: 'label.s2s.connection.local', gateway: 'label.s2s.connection.peer', passive: 'label.s2s.connection.passive' } },
     cidrs () {
       return [...new Set(String(this.resource.cidrlist || '').split(',').map(cidr => cidr.trim()).filter(Boolean))]
     }
   },
   methods: {
+    vpnConnectionState,
     fieldValue (field) {
       const value = this.resource[field]
       if (value === null || value === undefined || value === '') return '—'
+      if (field === 'passive') return this.$t(vpnPassive(value) ? 'message.s2s.connection.passive.help' : 'label.no')
       if (booleanFields.includes(field)) return this.$t(value === true || value === 'true' ? 'label.yes' : 'label.no')
       return field === 'created' ? this.$toLocaleDate(value) : value
     }
