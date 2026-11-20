@@ -47,7 +47,6 @@
 }
 
 /* Keep the VM toolbar contract: text action first, auxiliary icons after. */
-.s2s-gateway-list-page .autogen-toolbar-actions,
 .volume-list-page .autogen-toolbar-actions {
   display: flex !important;
   flex-wrap: wrap;
@@ -56,14 +55,12 @@
   min-width: 0;
 }
 
-.s2s-gateway-list-page .autogen-toolbar-actions :deep(.row-action-button),
 .volume-list-page .autogen-toolbar-actions :deep(.row-action-button) {
   display: inline-flex !important;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.s2s-gateway-list-page .autogen-toolbar-actions > span:last-child,
 .volume-list-page .autogen-toolbar-actions > span:last-child {
   display: block !important;
   flex: 1 1 180px;
@@ -71,7 +68,6 @@
   width: auto !important;
 }
 
-.s2s-gateway-list-page .autogen-toolbar-actions :deep(.input-search),
 .volume-list-page .autogen-toolbar-actions :deep(.input-search) {
   margin-left: 0;
 }

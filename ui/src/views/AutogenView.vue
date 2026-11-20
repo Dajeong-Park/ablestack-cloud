@@ -174,6 +174,7 @@
             />
           </a-col>
         </a-row>
+        <S2sGatewayFilterChips v-if="s2sGatewayListRoute($route)" :validation-error="s2sGatewaySearchFailure" @search="onSearch" />
         <a-row
           v-if="showSearchFilters"
           style="min-height: 36px; padding-top: 12px; padding-left: 12px;"
@@ -1001,6 +1002,7 @@ import { kubernetesIsoListQuery, kubernetesIsoListLocation, kubernetesIsoListOwn
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
+import S2sGatewayFilterChips from '@/components/view/S2sGatewayFilterChips'
 import BucketStoreFilter from '@/components/view/BucketStoreFilter'
 import '@/style/components/view/autoscale.less'
 import '@/style/components/view/objectStorage.less'
@@ -1095,6 +1097,7 @@ export default {
     InstanceGroupQueryStatus,
     SearchView,
     SearchFilter,
+    S2sGatewayFilterChips,
     BulkActionProgress,
     TooltipLabel,
     OsLogo,
