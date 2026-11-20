@@ -1577,7 +1577,11 @@ export default {
     s2sGatewaySearchAuth () { return s2sGatewayRoute(this.$route) ? s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
     asnSearchAuth () { return asnRoute(this.$route) ? asnAuth(this.$store) : '' },
     asnListReady () { return !!this.asnSearchAuth && !this.listRefreshError && !this.asnSearchFailure && this.listLoadedScope === this.listScope() },
-    asnListEmptyText () { return this.$t(this.asnSearchFailure ? 'message.asn.search.lookup' : this.listRequestPending && this.listLoadedScope !== this.listScope() ? 'label.loading' : 'label.no.data') },
+    asnListEmptyText () {
+      if (this.asnSearchFailure) return this.$t('message.asn.search.lookup')
+      if (this.listRequestPending && this.listLoadedScope !== this.listScope()) return this.$t('label.loading')
+      return ''
+    },
     isPublicIpUi () { return publicIpRoute(this.$route) },
     publicIpDetail () { return this.$route.meta?.name === 'publicip' && !!this.$route.params?.id },
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },

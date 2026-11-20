@@ -64,7 +64,7 @@ test('same-scope refresh keeps selection coherent and replaces eligibility with 
   expect(c.selectedItems[0].releasereason).toBe('notallocated')
 })
 
-test('a delayed empty refresh keeps its empty message and toolbar ready without rebuilding the table', async () => {
+test('a delayed empty refresh keeps the standard empty state and toolbar ready without rebuilding the table', async () => {
   getAPI.mockResolvedValue({ listasnumbersresponse: { count: 0 } })
   await c.fetchData()
   const columns = c.columns
@@ -75,12 +75,12 @@ test('a delayed empty refresh keeps its empty message and toolbar ready without 
   expect(c.listRequestPending).toBe(true)
   expect(c.loading).toBe(false)
   expect(c.asnListReady).toBe(true)
-  expect(c.asnListEmptyText).toBe('label.no.data')
+  expect(c.asnListEmptyText).toBe('')
   expect(c.columns).toBe(columns)
   expect(c.items).toBe(rows)
   pending.resolve({ listasnumbersresponse: { count: 0 } })
   await request
-  expect(c.asnListEmptyText).toBe('label.no.data')
+  expect(c.asnListEmptyText).toBe('')
 })
 
 test('background selection stays usable but initial, changed-scope and failed reads stay guarded', async () => {

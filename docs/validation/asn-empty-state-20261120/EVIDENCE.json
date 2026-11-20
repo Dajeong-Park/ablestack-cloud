@@ -1,0 +1,69 @@
+{
+  "settingsRestored": true,
+  "clusters": {
+    "31": {
+      "apiAssertions": 4,
+      "health": {
+        "jarSha256": "2b14a18f6f400fc409258588d8fcd8088145eea4444e544095ff46d5c9f4fbbc",
+        "indexSha256": "13de00ab5288273c9461159765b8418cb60841f81da62135f07684bbd0f40908",
+        "configSha256": "b7de5f6a1f7a3a17310ee7d34ca801bb316fc6f841039f865fbabf154cd59a13",
+        "mold": "MainPID=2980334\nActiveState=active",
+        "WEB-INF": true,
+        "http": "200",
+        "backup": "/root/asn-empty-20261120-ui-20261120-091938",
+        "staticFilesVerified": true,
+        "serverDirectoryHashesPreserved": true
+      },
+      "refreshStable": true,
+      "lightDarkPassed": true,
+      "apiPassed": true,
+      "vmEmptyComponentMatched": true,
+      "filteredEmptyPassed": true,
+      "delayedResponseMaxMs": 4014.107
+    },
+    "32": {
+      "apiAssertions": 4,
+      "health": {
+        "jarSha256": "f60d7c6798fe92f321a4ceb1fa96fc841ce741ca4a897c5c70a32be7177d25f2",
+        "indexSha256": "13de00ab5288273c9461159765b8418cb60841f81da62135f07684bbd0f40908",
+        "configSha256": "56e421a72d76daa8dcd007eb0e8669ee2951f3940e02b00e4123c0cf9c2a03ff",
+        "mold": "MainPID=3301781\nActiveState=active",
+        "WEB-INF": true,
+        "http": "200",
+        "backup": "/root/asn-empty-20261120-ui-20261120-091958",
+        "staticFilesVerified": true,
+        "serverDirectoryHashesPreserved": true
+      },
+      "refreshStable": true,
+      "lightDarkPassed": true,
+      "apiPassed": true,
+      "vmEmptyComponentMatched": true,
+      "filteredEmptyPassed": true,
+      "delayedResponseMaxMs": 4010.942
+    }
+  },
+  "branch": "dhslove/asn-empty-state-20261120",
+  "sourceCommit": "8bf0e233d1bb42306446b9f405efd4057a11c47f",
+  "baseCommit": "b2e0ff6086ca1813dbddc961d5c35b122aa4a99f",
+  "lint": "passed",
+  "build": {
+    "sourceCommit": "8bf0e233d1bb42306446b9f405efd4057a11c47f",
+    "baseCommit": "b2e0ff6086ca1813dbddc961d5c35b122aa4a99f",
+    "archiveSha256": "b5e7e6898babbd77d2d7dbe76ca6ceb5853589ad218d84a00d2aea557da7008a",
+    "indexSha256": "13de00ab5288273c9461159765b8418cb60841f81da62135f07684bbd0f40908",
+    "sourceMap": false,
+    "sourceHashes": {
+      "ui/src/views/AutogenView.vue": "21b95e325b38806817f8225835fe2efdf13582c42bce42f29495989b3416fd77",
+      "ui/tests/unit/views/AutogenAsnSearch.spec.js": "059e61d1b2ec5c9d52752e1554250678350ef877c00c715d696c5d58d4a6aebe"
+    }
+  },
+  "unitTests": {
+    "suites": 2,
+    "passed": 13
+  },
+  "scope": "UI empty-state follow-up; no backend changes or ISP tests",
+  "resourcesCreated": 0,
+  "uiBuild": "passed",
+  "resourcesDeleted": 0,
+  "date": "2026-11-20"
+}
