@@ -1,0 +1,11 @@
+{
+  "upstream": "61d39d7cd2dd6b1caaa6634eef16e8757f1cc05a",
+  "resolved": [
+    "ui/public/locales/en.json",
+    "ui/public/locales/ko_KR.json",
+    "ui/src/components/view/SearchView.vue",
+    "ui/src/components/widgets/Breadcrumb.vue",
+    "ui/src/views/AutogenView.vue"
+  ],
+  "javaOwnSourcesUnchanged": true
+}

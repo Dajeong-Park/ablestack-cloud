@@ -1,0 +1,180 @@
+[
+  {
+    "cluster": 31,
+    "name": "advanced-button-combined-and-single-chips",
+    "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&vpcid=46981d14-fc3b-44ba-9805-a77282c66301&id=c4ca7148-a3ca-44bd-9d67-496416943b97&q=%ED%95%9C%EA%B8%80",
+    "state": "Browser tab: 4, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&vpcid=46981d14-fc3b-44ba-9805-a77282c66301&id=c4ca7148-a3ca-44bd-9d67-496416943b97&q=%ED%95%9C%EA%B8%80\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 165 button (collapsed) Description: 고급 검색, Secondary Actions: Expand"
+  },
+  {
+    "cluster": 31,
+    "name": "breadcrumb-restored",
+    "sameUrl": true,
+    "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&vpcid=46981d14-fc3b-44ba-9805-a77282c66301&id=c4ca7148-a3ca-44bd-9d67-496416943b97&q=%ED%95%9C%EA%B8%80"
+  },
+  {
+    "cluster": 31,
+    "name": "project-switch-previous-filter-cleared",
+    "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=59614883-4085-4a76-99da-b8a1e3a78eed&page=1&pagesize=20",
+    "state": "Browser tab: 4, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.31.10:8080/client/#/s2svpn?projectid=59614883-4085-4a76-99da-b8a1e3a78eed&page=1&pagesize=20\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 151-172, 174-185, 193-197, 199-203, 323-331, 423, 426-436\n~1 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.31.10:8080/client/#/s2svpn?projectid=59614883-4085-4a76-99da-b8a1e3a78eed&page=1&pagesize=20\n+\t\t\t426 heading 프로젝트 네비게이션 설정, Value: 3\n+\t\t\t\t427 text 프로젝트 네비게이션 설정\n+\t\t\t428 container\n+\t\t\t\t429 container\n+\t\t\t\t\t430 text 배경색\n+\t\t\t\t\t431 color well (settable) #001529\n+\t\t\t\t432 container\n+\t\t\t\t\t433 text 텍스트 색상\n+\t\t\t\t\t434 color well (settable) #ffffff\n~\t\t\t\t139 combo box (collapsed, settable) 프로젝트, ID: project-selector-1, Secondary Actions: Expand\n+\t\t\t435 container\n+\t\t\t\t436 container\n+\t\t\t\t\t437 link Description: home, Value: 10.10.31.10:8080/client/#/\n+\t\t\t\t\t438 text /\n+\t\t\t\t\t439 link Description: 사이트간 사설네트워크(VPN), Value: 10.10.31.10:8080/client/#/s2svpn\n+\t\t\t\t\t440 button reload 업데이트\n+\t\t\t\t\t\t441 image reload\n+\t\t\t\t\t\t442 text 업데이트\n+\t\t\t\t443 button VPN 게이트웨이 추가\n+\t\t\t\t\t444 image plus\n+\t\t\t\t\t445 text VPN 게이트웨이 추가\n+\t\t\t\t446 container\n+\t\t\t\t\t447 button (collapsed) Description: 고급 검색, Secondary Actions: Expand\n+\t\t\t\t\t\t448 image filter\n+\t\t\t\t\t449 text field (settable) 검색\n+\t\t\t\t\t450 button search\n+\t\t\t\t\t\t451 image search\n+\t\t\t452 table\n+\t\t\t\t453 row\n+\t\t\t\t\t454 cell\n+\t\t\t\t\t\t455 text Public IP 주소\n+\t\t\t\t\t456 cell\n+\t\t\t\t\t\t457 text 계정\n+\t\t\t\t\t458 cell\n+\t\t\t\t\t\t459 text 도메인\n+\t\t\t\t\t460 cell\n+\t\t\t\t\t\t461 button filter\n+\t\t\t\t\t\t\t462 image filter\n+\t\t\t\t463 row\n+\t\t\t\t\t464 cell\n+\t\t\t\t\t\t465 link Description: 10.10.31.146, Value: 10.10.31.10:8080/client/#/s2svpn/dd3acff3-3f1f-44ba-bd8d-55d44c854d88?s2sreturn=%7B%2522query%2522:%7B%2522projectid%2522:%252259614883-4085-4a76-99da-b8a1e3a78eed%2522,%2522page%2522:%25221%2522,%2522pagesize%2522:%252220%2522%7D,%2522owner%2522:%2522%5B%255C%2522a75cdd55-b253-11f1-a895-0024814c313f%255C%2522,%255C%252292709d09-b253-11f1-a895-0024814c313f%255C%2522,%255C%2522Admin%255C%2522,%255C%25227ef6b29a-b253-11f1-a895-0024814c313f%255C%2522,%255C%252259614883-4085-4a76-99da-b8a1e3a78eed%255C%2522%5D%2522%7D\n+\t\t\t\t\t466 cell\n+\t\t\t\t\t\t467 text PrjAcct-qa-gn1569-31-shared-reg-105 (프로젝트)\n+\t\t\t\t\t468 cell\n+\t\t\t\t\t\t469 link Description: qa-gn1569-31-domain, Value: 10.10.31.10:8080/client/#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details\n+\t\t\t470 content list\n+\t\t\t\t471 text 전체 1 개 항목 중 1-1 표시\n+\t\t\t\t472 container 이전 페이지\n+\t\t\t\t\t473 button (disabled) left\n+\t\t\t\t\t\t474 image left\n+\t\t\t\t475 text 1\n+\t\t\t\t476 container 다음 페이지\n+\t\t\t\t\t477 button (disabled) right\n+\t\t\t\t\t\t478 image right\n+\t\t\t\t479 container\n+\t\t\t\t\t480 combo box (settable) rc_select_16\n+\t\t\t\t\t481 text 20 / 쪽\nThe focused UI element is 1 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.31.10:8080/client/#/s2svpn?projectid=59614883-4085-4a76-99da-b8a1e3a78eed&page=1&pagesize=20"
+  },
+  {
+    "cluster": 31,
+    "name": "foreign-project-url-blocked",
+    "gatewayRequests": 0,
+    "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&keyword=%ED%95%9C%EA%B8%80",
+    "state": "Browser tab: 4, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.31.10:8080/client/#/s2svpn?projectid=0&keyword=%ED%95%9C%EA%B8%80\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 1 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.31.10:8080/client/#/s2svpn?projectid=0&keyword=%ED%95%9C%EA%B8%80"
+  },
+  {
+    "cluster": 31,
+    "name": "controlled-permission-denial-clears-rows",
+    "state": "Browser tab: 4, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 509 button reload 업데이트"
+  },
+  {
+    "cluster": 32,
+    "name": "keyword-10.10.32.165",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=10.10.32.165&q=10.10.32.165",
+    "state": "Browser tab: 5, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=10.10.32.165&q=10.10.32.165\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 151, 175-188, 194\n~0 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=10.10.32.165&q=10.10.32.165\n+\t\t\t\t\t\t204 image reload\n~\t\t\t\t\t161 text field (settable) Description: 검색, Value: 10.10.32.165\n+\t\t\t\t\t205 button close-circle\n+\t\t\t\t206 row\n+\t\t\t\t\t207 cell\n+\t\t\t\t\t\t208 link Description: 10.10.32.165, Value: 10.10.32.10:8080/client/#/s2svpn/5e2f1ef5-fea2-4a22-a144-59116d37d8a1?s2sreturn=%7B%2522query%2522:%7B%2522projectid%2522:%25220%2522,%2522page%2522:%25221%2522,%2522pagesize%2522:%252220%2522,%2522keyword%2522:%252210.10.32.165%2522,%2522q%2522:%252210.10.32.165%2522%7D,%2522owner%2522:%2522%5B%255C%25226d3f209b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%252249e68247-b23b-11f1-990e-0024811f8935%255C%2522,%255C%2522Admin%255C%2522,%255C%25222246448b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%25220%255C%2522%5D%2522%7D\n+\t\t\t\t\t209 cell\n+\t\t\t\t\t\t210 link Description: admin, Value: 10.10.32.10:8080/client/#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true\n+\t\t\t\t\t211 cell\n+\t\t\t\t\t\t212 link Description: ROOT, Value: 10.10.32.10:8080/client/#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details\n~\t\t\t\t190 text 전체 1 개 항목 중 1-1 표시\n+\t\t\t\t213 text 1\nThe focused UI element is 161 text field (settable) Description: 검색, Value: 10.10.32.165"
+  },
+  {
+    "cluster": 32,
+    "name": "keyword-5E2F1EF5-FEA2-4A22-A144-59116D37D8A1",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=5E2F1EF5-FEA2-4A22-A144-59116D37D8A1&q=5E2F1EF5-FEA2-4A22-A144-59116D37D8A1",
+    "state": "Browser tab: 5, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=5E2F1EF5-FEA2-4A22-A144-59116D37D8A1&q=5E2F1EF5-FEA2-4A22-A144-59116D37D8A1\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 204, 206-213\n~0 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=5E2F1EF5-FEA2-4A22-A144-59116D37D8A1&q=5E2F1EF5-FEA2-4A22-A144-59116D37D8A1\n+\t\t\t\t\t\t206 image reload\n~\t\t\t\t\t161 text field (settable) Description: 검색, Value: 5E2F1EF5-FEA2-4A22-A144-59116D37D8A1\n+\t\t\t\t207 row\n+\t\t\t\t\t208 cell\n+\t\t\t\t\t\t209 link Description: 10.10.32.165, Value: 10.10.32.10:8080/client/#/s2svpn/5e2f1ef5-fea2-4a22-a144-59116d37d8a1?s2sreturn=%7B%2522query%2522:%7B%2522projectid%2522:%25220%2522,%2522page%2522:%25221%2522,%2522pagesize%2522:%252220%2522,%2522keyword%2522:%25225E2F1EF5-FEA2-4A22-A144-59116D37D8A1%2522,%2522q%2522:%25225E2F1EF5-FEA2-4A22-A144-59116D37D8A1%2522%7D,%2522owner%2522:%2522%5B%255C%25226d3f209b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%252249e68247-b23b-11f1-990e-0024811f8935%255C%2522,%255C%2522Admin%255C%2522,%255C%25222246448b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%25220%255C%2522%5D%2522%7D\n+\t\t\t\t\t210 cell\n+\t\t\t\t\t\t211 link Description: admin, Value: 10.10.32.10:8080/client/#/account?name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&dataView=true\n+\t\t\t\t\t212 cell\n+\t\t\t\t\t\t213 link Description: ROOT, Value: 10.10.32.10:8080/client/#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details\n+\t\t\t\t214 text 1\nThe focused UI element is 161 text field (settable) Description: 검색, Value: 5E2F1EF5-FEA2-4A22-A144-59116D37D8A1"
+  },
+  {
+    "cluster": 32,
+    "name": "keyword-한글",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&q=%ED%95%9C%EA%B8%80",
+    "state": "Browser tab: 5, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&q=%ED%95%9C%EA%B8%80\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~0 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&q=%ED%95%9C%EA%B8%80\n~\t\t\t\t\t161 text field (settable) Description: 검색, Value: 한글\n~\t\t\t\t\t\t209 link Description: 10.10.32.165, Value: 10.10.32.10:8080/client/#/s2svpn/5e2f1ef5-fea2-4a22-a144-59116d37d8a1?s2sreturn=%7B%2522query%2522:%7B%2522projectid%2522:%25220%2522,%2522page%2522:%25221%2522,%2522pagesize%2522:%252220%2522,%2522keyword%2522:%2522%25ED%2595%259C%25EA%25B8%2580%2522,%2522q%2522:%2522%25ED%2595%259C%25EA%25B8%2580%2522%7D,%2522owner%2522:%2522%5B%255C%25226d3f209b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%252249e68247-b23b-11f1-990e-0024811f8935%255C%2522,%255C%2522Admin%255C%2522,%255C%25222246448b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%25220%255C%2522%5D%2522%7D\nThe focused UI element is 161 text field (settable) Description: 검색, Value: 한글"
+  },
+  {
+    "cluster": 32,
+    "name": "keyword-%",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%25&q=%25",
+    "state": "Browser tab: 5, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%25&q=%25\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 201-203\n~0 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%25&q=%25\n~\t\t\t\t\t161 text field (settable) Description: 검색, Value: %\n~\t\t\t\t\t\t209 link Description: 10.10.32.165, Value: 10.10.32.10:8080/client/#/s2svpn/5e2f1ef5-fea2-4a22-a144-59116d37d8a1?s2sreturn=%7B%2522query%2522:%7B%2522projectid%2522:%25220%2522,%2522page%2522:%25221%2522,%2522pagesize%2522:%252220%2522,%2522keyword%2522:%2522%2525%2522,%2522q%2522:%2522%2525%2522%7D,%2522owner%2522:%2522%5B%255C%25226d3f209b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%252249e68247-b23b-11f1-990e-0024811f8935%255C%2522,%255C%2522Admin%255C%2522,%255C%25222246448b-b23b-11f1-990e-0024811f8935%255C%2522,%255C%25220%255C%2522%5D%2522%7D\n+\t215 container\n+\t\t216 image exclamation-circle\n+\t\t217 text 조치가 필요한 경보 (3건) - 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.\n+\t\t218 button 세부 경보 내용 확인\n+\t\t219 button 경보 규칙으로 이동\n+\t\t220 button 닫기\n+\t\t\t221 image close\nThe focused UI element is 161 text field (settable) Description: 검색, Value: %"
+  },
+  {
+    "cluster": 32,
+    "name": "keyword-unknown-1719",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=unknown-1719&q=unknown-1719",
+    "state": "Browser tab: 5, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=unknown-1719&q=unknown-1719\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 206-214\n~0 AXWebArea 사이트간 사설네트워크(VPN) - ABLESTACK-Mold, URL: 10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=unknown-1719&q=unknown-1719\n+\t\t\t\t\t\t222 image reload\n~\t\t\t\t\t161 text field (settable) Description: 검색, Value: unknown-1719\n+\t\t\t\t223 row\n+\t\t\t\t\t224 cell\n+\t\t\t\t\t\t225 text 데이터 없음\n~\t\t\t\t190 text 전체 0 개 항목 중 0-0 표시\n+\t\t\t\t226 text 1\nThe focused UI element is 161 text field (settable) Description: 검색, Value: unknown-1719"
+  },
+  {
+    "cluster": 32,
+    "name": "selected-candidate-failure-blocks-submit",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&vpcid=4067985a-1d89-4b16-88ce-d2e506d52bc8&q=%ED%95%9C%EA%B8%80",
+    "state": "Browser tab: 5, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&vpcid=4067985a-1d89-4b16-88ce-d2e506d52bc8&q=%ED%95%9C%EA%B8%80\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 159 button (expanded) Description: 고급 검색, Secondary Actions: Collapse"
+  },
+  {
+    "cluster": 32,
+    "name": "candidate-retry-preserved-filter",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&vpcid=4067985a-1d89-4b16-88ce-d2e506d52bc8&q=%ED%95%9C%EA%B8%80",
+    "state": "Browser tab: 5, Title: \"사이트간 사설네트워크(VPN) - ABLESTACK-Mold\", URL: \"http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&vpcid=4067985a-1d89-4b16-88ce-d2e506d52bc8&q=%ED%95%9C%EA%B8%80\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 159 button (collapsed) Description: 고급 검색, Secondary Actions: Expand"
+  },
+  {
+    "cluster": 32,
+    "name": "controlled-503-retains-two-rows",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\n검색 대상 확인에 실패했습니다. 조건을 확인하거나 다시 조회하세요.\n검색 대상 확인에 실패했습니다. 조건을 확인하거나 다시 조회하세요.\n재설정재시도\n\n목록을 갱신하지 못했습니다. 마지막 정상 데이터를 표시하며 자동으로 다시 시도합니다.\n\nPublic IP 주소\t계정\t도메인\t\n\n10.10.32.170\tadmin\tROOT\t\n10.10.32.165\tadmin\tROOT\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "name": "late-old-response-not-reused",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=unknown-1719&q=unknown-1719",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\nPublic IP 주소\t계정\t도메인\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "name": "page2-breadcrumb-restored",
+    "sameUrl": true,
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=2&pagesize=1&keyword=qa-s2s1719-32&q=qa-s2s1719-32",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\nPublic IP 주소\t계정\t도메인\t\n\n10.10.32.165\tadmin\tROOT\t\n전체 2 개 항목 중 2-2 표시\n1\n2\n1 / 쪽\n이동하기"
+  },
+  {
+    "cluster": 32,
+    "name": "keyword-resets-page1",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=1&keyword=Plain&q=Plain",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\nPublic IP 주소\t계정\t도메인\t\n\n10.10.32.170\tadmin\tROOT\t\n전체 1 개 항목 중 1-1 표시\n1\n1 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "name": "project-switch-clears-filters",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=cf5ec6b5-b522-4c18-ab90-a395012607c1&page=1&pagesize=20",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\nVPN 게이트웨이 추가\n\t\nPublic IP 주소\t계정\t도메인\t\n\n10.10.32.151\tPrjAcct-qa-gn1569-32-shared-reg-64 (프로젝트)\tqa-gn1569-32-domain\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "name": "foreign-project-url-rejected",
+    "gatewayRequests": 0,
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&id=5e2f1ef5-fea2-4a22-a144-59116d37d8a1",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\nVPN 게이트웨이 추가\n\t\n아이디: 5e2f1ef5-fea2-4a22-a144-59116d37d8a1\n현재 프로젝트 또는 소유 범위와 검색 조건이 다릅니다. 조건을 재설정하세요.\n현재 프로젝트 또는 소유 범위와 검색 조건이 다릅니다. 조건을 재설정하세요.\n재설정재시도\nPublic IP 주소\t계정\t도메인\t\n\n현재 프로젝트 또는 소유 범위와 검색 조건이 다릅니다. 조건을 재설정하세요.\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "name": "final-domain-account-query",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&domainid=2246448b-b23b-11f1-990e-0024811f8935&account=admin",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\n도메인: ROOT\n계정: admin\nPublic IP 주소\t계정\t도메인\t\n\n10.10.32.170\tadmin\tROOT\t\n10.10.32.165\tadmin\tROOT\t\n전체 2 개 항목 중 1-2 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 32,
+    "name": "final-account-requests",
+    "requests": [
+      "http://10.10.32.10:8080/client/api/?listall=false&domainid=2246448b-b23b-11f1-990e-0024811f8935&isrecursive=false&page=1&pagesize=20&command=listAccounts&response=json&sessionkey=REDACTED",
+      "http://10.10.32.10:8080/client/api/?listall=false&page=1&pagesize=20&name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&isrecursive=false&command=listAccounts&response=json&sessionkey=REDACTED",
+      "http://10.10.32.10:8080/client/api/?listall=false&page=1&pagesize=20&name=admin&domainid=2246448b-b23b-11f1-990e-0024811f8935&isrecursive=false&command=listAccounts&response=json&sessionkey=REDACTED"
+    ]
+  },
+  {
+    "cluster": 32,
+    "name": "resize-closes-popup-and-retains-query",
+    "expanded": "false",
+    "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&domainid=2246448b-b23b-11f1-990e-0024811f8935&account=admin"
+  },
+  {
+    "cluster": 32,
+    "name": "settings-restored",
+    "theme": "dark-mode",
+    "project": "default"
+  },
+  {
+    "cluster": 31,
+    "name": "final-all-filters",
+    "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&id=c4ca7148-a3ca-44bd-9d67-496416943b97&vpcid=46981d14-fc3b-44ba-9805-a77282c66301&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&account=admin&q=%ED%95%9C%EA%B8%80",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\n아이디: c4ca7148-a3ca-44bd-9d67-496416943b97\nVPC: qa-s2s1719-31-MiX_한글%\\Tail\n도메인: ROOT\n계정: admin\nPublic IP 주소\t계정\t도메인\t\n\n10.10.31.105\tadmin\tROOT\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "name": "final-all-filter-submit",
+    "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20&keyword=%ED%95%9C%EA%B8%80&id=c4ca7148-a3ca-44bd-9d67-496416943b97&vpcid=46981d14-fc3b-44ba-9805-a77282c66301&domainid=7ef6b29a-b253-11f1-a895-0024814c313f&account=admin&q=%ED%95%9C%EA%B8%80",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\n아이디: c4ca7148-a3ca-44bd-9d67-496416943b97\nVPC: qa-s2s1719-31-MiX_한글%\\Tail\n도메인: ROOT\n계정: admin\nPublic IP 주소\t계정\t도메인\t\n\n10.10.31.105\tadmin\tROOT\t\n전체 1 개 항목 중 1-1 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "name": "resize-closes-popup",
+    "expanded": "false"
+  },
+  {
+    "cluster": 31,
+    "name": "invalid-uuid-url-no-request",
+    "gatewayRequests": 0,
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\n아이디: invalid\n올바른 UUID를 입력하세요.\n올바른 UUID를 입력하세요.\n재설정재시도\nPublic IP 주소\t계정\t도메인\t\n\n올바른 UUID를 입력하세요.\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "name": "final-permission-denial-no-stale-notice",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\n이 검색에 필요한 권한이 없습니다.\n이 검색에 필요한 권한이 없습니다.\n재설정재시도\nPublic IP 주소\t계정\t도메인\t\n\n이 검색에 필요한 권한이 없습니다.\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽"
+  },
+  {
+    "cluster": 31,
+    "name": "cleanup-and-settings-restored",
+    "url": "http://10.10.31.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+    "main": "/사이트간 사설네트워크(VPN)업데이트\n프로젝트\nVPN 게이트웨이 추가\n\t\nPublic IP 주소\t계정\t도메인\t\n\n\n\n데이터 없음\n\n전체 0 개 항목 중 0-0 표시\n1\n20 / 쪽",
+    "theme": "dark-mode",
+    "viewport": [
+      1280,
+      720
+    ],
+    "project": "default",
+    "fetchInterception": "cleared"
+  }
+]

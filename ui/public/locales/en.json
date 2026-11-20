@@ -12202,5 +12202,18 @@
   "message.kubernetes.iso.mutation.uncertain": "The request outcome is not confirmed. Duplicate requests are blocked. Use Check result to query the server.",
   "message.kubernetes.iso.mutation.changed": "Server information changed. Review the latest values and select again.",
   "message.kubernetes.iso.mutation.deleted": "The version and linked ISO were deleted.",
-  "message.kubernetes.iso.field.length": "The value exceeds the allowed length."
+  "message.kubernetes.iso.field.length": "The value exceeds the allowed length.",
+  "message.s2s.gateway.search.keyword": "Search public IP, gateway ID or VPC name",
+  "message.s2s.gateway.search.id": "Gateway UUID",
+  "message.s2s.gateway.search.permission": "You do not have permission for this search.",
+  "message.s2s.gateway.search.scope": "Search conditions do not match the current project or owner scope. Reset the conditions.",
+  "message.s2s.gateway.search.uuid": "Enter a valid UUID.",
+  "message.s2s.gateway.search.account": "Select a domain when filtering by account.",
+  "message.s2s.gateway.search.unsupported": "This search condition is not supported by the current API.",
+  "message.s2s.gateway.search.invalid": "Check the format and length of the search conditions.",
+  "message.s2s.gateway.search.response": "The search response could not be verified. Retained data may be stale.",
+  "message.s2s.gateway.search.missing": "The selected target is unavailable or inaccessible.",
+  "message.s2s.gateway.search.lookup": "Unable to verify the search target. Check the conditions or retry.",
+  "message.s2s.gateway.search.checking": "Verifying search targets.",
+  "message.s2s.gateway.search.unverified": "Needs verification"
 }

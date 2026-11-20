@@ -1090,6 +1090,7 @@ export default {
     },
     {
       name: 's2svpn',
+      searchFilters: ['keyword', 'id', 'vpcid', 'domainid', 'account'],
       title: 'label.site.to.site.vpn',
       icon: 'lock-outlined',
       permission: ['listVpnGateways'],

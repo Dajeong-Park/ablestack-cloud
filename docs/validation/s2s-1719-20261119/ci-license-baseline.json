@@ -1,0 +1,27 @@
+{
+  "workflow": "License Check",
+  "url": "https://github.com/ablecloud-team/ablestack-cloud/actions/runs/44483800654",
+  "head": "78749177a19",
+  "base": "61d39d7cd2dd6b1caaa6634eef16e8757f1cc05a",
+  "unapproved": 4077,
+  "changedOrNewUnapproved": [],
+  "allUnapprovedFilesTrackedAndByteIdenticalOnBase": true,
+  "sample": [
+    "ui/src/components/storage/StoragePosixAclFields.vue",
+    "ui/src/components/storage/StorageNfsListenerTable.vue",
+    "ui/src/components/storage/SharedFSTable.vue",
+    "ui/src/components/storage/NfsLocalProbeNotice.vue",
+    "ui/src/components/storage/SharedFSTablePagination.vue",
+    "ui/src/utils/storageNfsListenerPresentation.js",
+    "ui/src/utils/sharedfsPresentation.js",
+    "ui/src/utils/sharedfsBootRecovery.js",
+    "ui/src/utils/sharedfsTable.js",
+    "ui/src/utils/sharedfsNetwork.js",
+    "ui/src/style/components/view/sharedfs.less",
+    "ui/src/views/storage/SharedFSBootRecoverySummary.vue",
+    "ui/src/views/storage/SharedFSBootRecoveryTab.vue",
+    "ui/src/views/storage/SharedFSCapacitySummary.vue",
+    "ui/src/views/storage/SharedFSNetworkStatus.vue"
+  ],
+  "unknownPathListSha256": "98c40f8dc7407648638457cadaacd1e42f7dbfc510cc7c880d9b14969a3a5afb"
+}

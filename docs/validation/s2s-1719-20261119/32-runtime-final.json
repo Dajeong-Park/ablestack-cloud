@@ -1,0 +1,34 @@
+{
+  "runtime": {
+    "jarSha256": "e9cdc4a4fee196a51648558a7310b01f0f88b31f930011deb37f8e678f81c7f5",
+    "classes": {
+      "com/cloud/network/vpn/Site2SiteVpnManagerImpl.class": "25239b7112d4a632f106b151a49568d76197f6ae9c7e001d153c9bb9f57d9103",
+      "org/apache/cloudstack/api/command/user/vpn/ListVpnGatewaysCmd.class": "b184d0045afb8e6346d5c6f0bb65a6c4bf7196811bfb2f271bc3e817e82c3148",
+      "com/cloud/network/vpn/Site2SiteVpnGatewaySearch.class": "3afe9e0203a8014293d2ff063a8a6ca4d0357c70b33435a25aa5af4106684bca"
+    },
+    "WEB-INF": true,
+    "http": "200",
+    "service": "active"
+  },
+  "hosts": [
+    {
+      "id": "bfe795b1-8fde-4361-bd1d-af421ab2bdc5",
+      "name": "ablecube32-1",
+      "state": "Up",
+      "resourceState": "Enabled"
+    },
+    {
+      "id": "a7b3e91f-2248-436b-affb-e3b31b36ed62",
+      "name": "ablecube32-2",
+      "state": "Up",
+      "resourceState": "Enabled"
+    },
+    {
+      "id": "05bc1189-abf8-4ec3-9ef5-02558863b628",
+      "name": "ablecube32-3",
+      "state": "Up",
+      "resourceState": "Enabled"
+    }
+  ],
+  "description": "Lists site 2 site VPN gateways. Keyword matches a literal substring of the public IP, gateway UUID or VPC name."
+}

@@ -16,7 +16,8 @@
 // under the License.
 
 <template>
-  <AsnSearch v-if="apiName === 'listASNumbers'" :validation-error="asnSearchFailure" @search="$emit('search', $event)" />
+  <S2sGatewaySearch v-if="apiName === 'listVpnGateways'" :validation-error="s2sGatewaySearchFailure" @search="$emit('search', $event)" />
+  <AsnSearch v-else-if="apiName === 'listASNumbers'" :validation-error="asnSearchFailure" @search="$emit('search', $event)" />
   <KubernetesIsoSearch v-else-if="apiName === 'listKubernetesSupportedVersions'" @search="$emit('search', $event)" />
   <PublicIpSearch v-else-if="apiName === 'listPublicIpAddresses'" @search="$emit('search', $event)" />
   <SnapshotSearch v-else-if="apiName === 'listSnapshots'" @search="$emit('search', $event)" />
@@ -211,6 +212,7 @@ import { isAdmin } from '@/role'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import Status from '@/components/widgets/Status'
+import S2sGatewaySearch from './S2sGatewaySearch'
 import AsnSearch from '@/components/view/AsnSearch'
 import PublicIpSearch from '@/components/view/PublicIpSearch'
 import SnapshotSearch from '@/components/view/SnapshotSearch'
@@ -231,6 +233,7 @@ export default {
     Status,
     SnapshotSearch,
     PublicIpSearch,
+    S2sGatewaySearch,
     AsnSearch,
     SnapshotPolicySearch,
     VolumeSearchSelect,
@@ -238,6 +241,7 @@ export default {
     VnfSearchSelect
   },
   props: {
+    s2sGatewaySearchFailure: { type: String, default: '' },
     asnSearchFailure: { type: String, default: '' },
     searchFilters: {
       type: Array,

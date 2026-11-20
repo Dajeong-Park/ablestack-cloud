@@ -47,6 +47,7 @@
 }
 
 /* Keep the VM toolbar contract: text action first, auxiliary icons after. */
+.s2s-gateway-list-page .autogen-toolbar-actions,
 .volume-list-page .autogen-toolbar-actions {
   display: flex !important;
   flex-wrap: wrap;
@@ -55,12 +56,14 @@
   min-width: 0;
 }
 
+.s2s-gateway-list-page .autogen-toolbar-actions :deep(.row-action-button),
 .volume-list-page .autogen-toolbar-actions :deep(.row-action-button) {
   display: inline-flex !important;
   flex-wrap: wrap;
   align-items: center;
 }
 
+.s2s-gateway-list-page .autogen-toolbar-actions > span:last-child,
 .volume-list-page .autogen-toolbar-actions > span:last-child {
   display: block !important;
   flex: 1 1 180px;
@@ -68,20 +71,25 @@
   width: auto !important;
 }
 
+.s2s-gateway-list-page .autogen-toolbar-actions :deep(.input-search),
 .volume-list-page .autogen-toolbar-actions :deep(.input-search) {
   margin-left: 0;
 }
 
 /* Match the legacy dark-mode search structure before overriding its important color. */
+.s2s-gateway-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled])),
 .volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled])) {
   color: var(--ui-text-secondary) !important;
 }
 
+.s2s-gateway-list-page .breadcrumb-card :deep(.ant-input-clear-icon),
 .volume-list-page .breadcrumb-card :deep(.ant-input-clear-icon) {
   color: var(--ui-text-muted);
 }
 
+.s2s-gateway-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):hover),
 .volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):hover),
+.s2s-gateway-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):focus),
 .volume-list-page .breadcrumb-card :deep(.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]):focus),
 .volume-list-page .breadcrumb-card :deep(.ant-input-clear-icon:hover) {
   color: var(--ui-link) !important;

@@ -1,0 +1,17 @@
+{
+  "uiPayloadSha256": "823a9320c51a852e0ec522b97d9fe86c9a60080fe2595da5b18efa4e04b9b53d",
+  "sourceCommit": "c112f240e56fd72fa4e9b2f2b0448ee32fcaeaf9",
+  "sourceSha256": {
+    "ui/src/utils/s2sGatewaySearch.js": "e740a7876feb7231c15ec4dd9a8a5cfb68fe9ca93808178760baa801a26810ff",
+    "ui/src/components/view/S2sGatewaySearch.vue": "7f0faf77e9bc2bfc718b29e3dda5b3ccbf7efcb337f29df219af467ec562c733",
+    "ui/src/components/view/S2sGatewaySearchSelect.vue": "1809d2bba039f374e30e0ed2fc0f0deac057ad2a41dd706741616f23767d02f4",
+    "ui/src/views/AutogenView.vue": "b718e0e93fd97892aba7ef72b3106e4f31d17d2784ea7fbec366883c9f0f307d",
+    "ui/src/components/view/SearchView.vue": "e0aec2be7b75754089b297f3966841f46e16ad4023883f1b0c9eba69a10a1735",
+    "ui/src/components/view/ListView.vue": "fea95477184716398c30684567df0b1b2d0cd4611fe398c3680ba9224816c5fd",
+    "ui/src/components/widgets/Breadcrumb.vue": "aa41dc610428fbfc75b2afdcf4af65038f50bb801c18dd4bd84d89daba47a36a",
+    "ui/src/config/section/network.js": "b466f0ff6b7f42a61a7cb56500d71fa47fa93ba413ab6aca3d13708363b51ef3",
+    "ui/public/locales/en.json": "51706f419ba90712475935187b2c871a5df98902a82e68605c0268c8859ea692",
+    "ui/public/locales/ko_KR.json": "30d6214e92f42f241e61574d524e930688880a3e0753eae06e4fb693e80020d9",
+    "ui/src/style/components/view/list-toolbar.css": "d59a85f8d59238da96e750f1b8c3a3979946490fb4c5b6b78306bcffb36f3dc4"
+  }
+}

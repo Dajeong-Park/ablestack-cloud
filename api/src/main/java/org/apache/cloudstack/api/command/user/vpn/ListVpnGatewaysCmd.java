@@ -32,7 +32,7 @@ import org.apache.cloudstack.api.response.VpcResponse;
 import com.cloud.network.Site2SiteVpnGateway;
 import com.cloud.utils.Pair;
 
-@APICommand(name = "listVpnGateways", description = "Lists site 2 site VPN gateways", responseObject = Site2SiteVpnGatewayResponse.class, entityType = {Site2SiteVpnGateway.class},
+@APICommand(name = "listVpnGateways", description = "Lists site 2 site VPN gateways. Keyword matches a literal substring of the public IP, gateway UUID or VPC name.", responseObject = Site2SiteVpnGatewayResponse.class, entityType = {Site2SiteVpnGateway.class},
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
 public class ListVpnGatewaysCmd extends BaseListProjectAndAccountResourcesCmd {
 
