@@ -28,6 +28,11 @@ under the License.
 
 ## 변경 동작
 
+로컬 베이스는 `41fe8cb0dd0c05e95c4ef6d110dafc26b85a01e2`이며 구현 커밋은 `550e094be561073e796dc527f7865f940726891c`이다.
+빌드는 기존 Epic HEAD의 변경 작업 트리에서 수행했고, 최종 소스 16개를 이 구현 커밋의 Git 객체와 hash 대조했다.
+[UI 20건 실행 로그](ui-unit-tests.txt)와 source-files.json이 그 결과를 보존한다.
+
+
 일반 볼륨 목록을 그대로 보여 주던 전환 작업을 전용 대화상자로 바꿨다.
 대상 UUID/계정/도메인/프로젝트/존을 고정하고 서버가 실제 legacy 참조·암호화·Ready·현재 KMS 여부를 판정한다.
 서버가 검색과 적격 필터를 적용한 뒤 count/page를 계산한다. 이전 `kmskeyid`는 현재 연결 키라는 뜻을 유지한다.

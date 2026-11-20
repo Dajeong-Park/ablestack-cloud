@@ -19,5 +19,6 @@
     "ui/src/views/AutogenView.vue": "b3b7bbe44a017376f6e9a3602eed23773ddadd86c32dc27471189591a4ad6a4a",
     "ui/src/views/compute/MigrateVolumesToKMS.vue": "ebcb1640214676f4769754f2a255fde449eab257342c382ca9a8aac8ba2671a8",
     "ui/tests/unit/views/compute/MigrateVolumesToKMS.spec.js": "223f3d649521123a1058da5ee6538c166f5bd034ae3c81e991d3973b176807d5"
-  }
+  },
+  "verified_implementation_commit": "550e094be561073e796dc527f7865f940726891c"
 }
