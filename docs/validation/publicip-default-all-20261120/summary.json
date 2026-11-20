@@ -1,0 +1,135 @@
+{
+  "base": "ebce1bfb72a22e2f0d6a21e6b553b152240f07a1",
+  "productCommit": "8435582bc3beaf646780a47f47eb1b416145895c",
+  "uiTests": {
+    "suites": 10,
+    "tests": 241,
+    "pass": true
+  },
+  "eslintChangedFiles": "PASS",
+  "productionUiBuild": {
+    "success": true,
+    "command": "npm run build",
+    "configuration": "docs/validation/s2s-1723-standard-filter-20261120/build.config.js",
+    "productionSourceMap": false,
+    "minifierSourceMap": false,
+    "seconds": 457.4,
+    "indexSha256": "66d148c365025888725653be46e3cab5823630ba800a2450a74e0d6c6c1ef594",
+    "staticFiles": 721,
+    "sourceConfigRestored": true
+  },
+  "resolvedBuildConfig": {
+    "productionSourceMap": false,
+    "devtool": false,
+    "minimizers": [
+      {
+        "name": "TerserPlugin",
+        "sourceMap": false
+      },
+      {
+        "name": "UglifyJsPlugin",
+        "sourceMap": false
+      }
+    ]
+  },
+  "browser": {
+    "clusters": [
+      31,
+      32
+    ],
+    "cases": [
+      {
+        "cluster": 31,
+        "case": "initial-all-no-state-chip",
+        "pass": true
+      },
+      {
+        "cluster": 31,
+        "case": "reload-all-no-state-chip",
+        "pass": true
+      },
+      {
+        "cluster": 31,
+        "case": "allocated-has-state-chip",
+        "pass": true
+      },
+      {
+        "cluster": 31,
+        "case": "remove-state-chip-restores-all",
+        "pass": true
+      },
+      {
+        "cluster": 31,
+        "case": "invalid-search-reset-all",
+        "pass": true
+      },
+      {
+        "cluster": 32,
+        "case": "initial-all-no-state-chip",
+        "pass": true
+      },
+      {
+        "cluster": 32,
+        "case": "reload-all-no-state-chip",
+        "pass": true
+      },
+      {
+        "cluster": 32,
+        "case": "allocated-has-state-chip",
+        "pass": true
+      },
+      {
+        "cluster": 32,
+        "case": "remove-state-chip-restores-all",
+        "pass": true
+      },
+      {
+        "cluster": 32,
+        "case": "invalid-search-reset-all",
+        "pass": true
+      }
+    ],
+    "passed": true
+  },
+  "browserApi": {
+    "31": {
+      "allCount": 42,
+      "allocatedCount": 24,
+      "allStatesOnFirstPage": [
+        "Allocated",
+        "Free"
+      ],
+      "allReadRequests": 19,
+      "explicitAllocatedRequests": 1,
+      "allHttp200": true,
+      "invalidStateNotSent": true
+    },
+    "32": {
+      "allCount": 93,
+      "allocatedCount": 10,
+      "allStatesOnFirstPage": [
+        "Allocated",
+        "Free"
+      ],
+      "allReadRequests": 6,
+      "explicitAllocatedRequests": 1,
+      "allHttp200": true,
+      "invalidStateNotSent": true
+    }
+  },
+  "ftctl": {
+    "Windows": {
+      "head": "8c0a6d9a0a947311abb0ee6d2604fdcb855906d1",
+      "branch": "feature/ftctl-cloud-integration",
+      "paths": 15950,
+      "unchanged": true
+    },
+    "WSL": {
+      "head": "084d43aa0b37c46a94256fff6fcd966696d9f1b0",
+      "branch": "feature/ftctl-cloud-integration",
+      "paths": 12,
+      "unchanged": true
+    }
+  },
+  "scope": "UI only; local production dist with read-only API proxy to clusters 31 and 32"
+}
