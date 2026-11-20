@@ -20,12 +20,13 @@ export const publicIpStates = ['Allocated', 'Reserved', 'Free', 'Allocating', 'R
 export const publicIpKeys = ['keyword', 'ipaddress', 'zoneid', 'domainid', 'account', 'vlanid', 'vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid', 'issourcenat', 'isstaticnat', 'fordisplay']
 export const publicIpProject = getters => String(getters.project?.id || (getters.listAllProjects ? '-1' : '0'))
 export const publicIpRoot = getters => getters.userInfo?.roletype === 'Admin'
+export const publicIpDefaultFilter = getters => publicIpRoot(getters) ? 'all' : 'allocated'
 const present = v => v !== undefined && v !== null && v !== ''
 const tag = k => /^tags\[\d+\]\.(key|value)$/.test(k)
 const uuid = v => typeof v === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(v)
 export function publicIpQuery (raw = {}, size = 20, getters = {}) {
   const query = Object.fromEntries(Object.entries(raw).filter(([k, v]) => present(v) || tag(k) && k.endsWith('.value') && v === '').map(([k, v]) => [k, typeof v === 'string' ? v.trim() : v]))
-  const state = String(query.state || query.filter || 'Allocated')
+  const state = String(query.state || query.filter || publicIpDefaultFilter(getters))
   query.filter = state.toLowerCase()
   query.state = publicIpStates.find(s => s.toLowerCase() === state.toLowerCase()) || state
   if (state.toLowerCase() === 'all') delete query.state

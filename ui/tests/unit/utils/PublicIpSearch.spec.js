@@ -79,9 +79,10 @@ test('keyword and exact-address input never leave an API-ignored predicate in th
 })
 
 test('allowed User VLAN UUID and explicit empty tag value are retained as server predicates', () => {
-  const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, getters)
+  const user = { ...getters, userInfo: { roletype: 'User' } }
+  const q = publicIpQuery({ vlanid: id, 'tags[0].key': 'empty', 'tags[0].value': '' }, 20, user)
   expect(q['tags[0].value']).toBe(''); expect(publicIpParams(q, getters, supported)['tags[0].value']).toBe('')
-  expect(publicIpSearchError(q, { ...getters, userInfo: { roletype: 'User' } }, supported)).toBe('')
+  expect(publicIpSearchError(q, user, supported)).toBe('')
 })
 
 test('a permitted VLAN filter respects restricted DTO fields without recovering hidden identifiers', () => {
@@ -95,4 +96,31 @@ test('a permitted VLAN filter respects restricted DTO fields without recovering 
 
 test.each([{ account: ['owner', 'other'], domainid: id }, { keyword: ['one', 'two'] }])('repeated URL predicates cannot serialize as ignored API array arguments: %j', values => {
   expect(publicIpSearchError(publicIpQuery(values, 20, getters), getters, supported)).toBe('message.public.ip.search.invalid')
+})
+
+test('Root default lists every address state and keeps the server-side owner scope', () => {
+  const query = publicIpQuery({}, 20, getters)
+  expect(query).toMatchObject({ filter: 'all', projectid: '0', page: '1', pagesize: '20' })
+  expect(query).not.toHaveProperty('state')
+  expect(publicIpSearchError(query, getters, supported)).toBe('')
+  expect(publicIpParams(query, getters, supported)).toMatchObject({ allocatedonly: false, ignoreproject: true, domainid: id, isrecursive: true })
+  expect(publicIpParams(query, getters, supported)).not.toHaveProperty('state')
+})
+
+test.each(['User', 'DomainAdmin'])('%s default stays within its existing state permissions', roletype => {
+  const user = { ...getters, userInfo: { roletype } }
+  const query = publicIpQuery({}, 20, user)
+  expect(query).toMatchObject({ filter: 'allocated', state: 'Allocated' })
+  expect(publicIpSearchError(query, user, supported)).toBe('')
+})
+
+test('Root default survives detail fallback, keyword clearing, paging and project scope', () => {
+  const project = { ...getters, project: { id: other } }
+  const query = publicIpQuery({ keyword: '192.0.2', page: '3', pagesize: '50' }, 20, project)
+  expect(publicIpListLocation({ query: publicIpDetailLocation({ query }, { id }).query }, project).query).toEqual(query)
+  expect(publicIpListLocation({ query: {} }, project).query).toMatchObject({ filter: 'all', projectid: other })
+  const cleared = publicIpSearchQuery(query, { searchQuery: '' }, 50, project)
+  expect(cleared).toMatchObject({ filter: 'all', projectid: other, page: '1', pagesize: '50' })
+  expect(cleared).not.toHaveProperty('state')
+  expect(cleared).not.toHaveProperty('keyword')
 })
