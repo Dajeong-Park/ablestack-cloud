@@ -1,4 +1,8 @@
 {
+  "label.kms.display.filter": "표시 필터",
+  "label.hsm.create.slot.slot": "슬롯 ID",
+  "label.hsm.create.slot.slot_list_index": "슬롯 인덱스",
+  "label.hsm.create.slot.token_label": "토큰 라벨",
   "label.kms.risk.target": "작업 대상",
   "label.kms.risk.requested": "요청한 변경",
   "label.kms.risk.unknown": "확인할 수 없음",

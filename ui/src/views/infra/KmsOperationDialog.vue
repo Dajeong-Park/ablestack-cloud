@@ -11,7 +11,7 @@ CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 -->
 <template>
-  <MoldDialog size="md" :title="$t(currentAction.label)" form-actions focus-guard @cancel="close">
+  <MoldDialog size="md" :title="$t(currentAction.label)" :doc-help="currentAction.docHelp || $route.meta.docHelp || 'adminguide/kms.html'" form-actions focus-guard @cancel="close">
     <KmsTargetSummary v-if="target.id" :target="latest || target" :kind="kind" :show-usage="deleting || disabling" :references="latest" />
     <a-form v-if="!deleting" class="kms-operation-form" layout="vertical" @keydown.ctrl.enter.stop.prevent @submit.prevent="!rotating && !disabling && submit()">
       <a-form-item v-if="editingMetadata" :label="$t('label.name')" html-for="kms-operation-name" required :validate-status="fieldError === 'name' ? 'error' : undefined">
@@ -133,7 +133,7 @@ export default {
       if (this.rotating) return 'label.kms.risk.rotate'
       if (this.disabling) return 'label.disabled'
       if (this.operation.phase === 'failed') return 'label.retry'
-      return this.updating ? 'label.save' : 'label.ok'
+      return this.updating ? 'label.save' : 'label.create'
     },
     requestedBits () { return (this.form.keybits === 'keep' ? (this.latest || this.target).keybits : this.form.keybits) ?? '—' },
     requestedHsm () {
@@ -212,7 +212,7 @@ export default {
   mounted () {
     this.initialScope = this.scope
     this.load()
-    if (this.target.id) this.$nextTick(() => this.$refs.cancel?.$el?.focus())
+    this.$nextTick(() => this.$refs.cancel?.$el?.focus())
   },
   beforeUnmount () { this.invalidate() },
   methods: {

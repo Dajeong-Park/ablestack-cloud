@@ -11,7 +11,7 @@ CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 -->
 <template>
-  <MoldDialog size="md" :title="$t('label.create.hsmprofile')" :closable="!busy" :keyboard="!busy" focus-guard @cancel="close">
+  <MoldDialog size="md" :title="$t('label.create.hsmprofile')" doc-help="adminguide/kms.html#adding-an-hsm-profile" form-actions focus-guard @cancel="close">
     <a-alert type="info" show-icon :message="$t('message.hsm.create.metadata')" />
     <div v-if="error" ref="errorSummary" tabindex="-1"><a-alert :type="unknown ? 'warning' : 'error'" show-icon :message="error" role="alert" /></div>
     <p v-if="busy" role="status">{{ $t('message.kms.operation.' + operation.phase) }}</p>
@@ -61,10 +61,10 @@ specific language governing permissions and limitations under the License.
         <a-form-item :label="$t('label.hsm.create.library')" html-for="hsm-create-library" required><a-input id="hsm-create-library" v-model:value="form.library" :disabled="busy || expired || unknown" /></a-form-item>
         <a-form-item :label="$t('label.hsm.create.slot.mode')" html-for="hsm-create-slot-mode" required>
           <a-select id="hsm-create-slot-mode" v-model:value="form.slotMode" :disabled="busy || expired || unknown" @change="changeSlot">
-            <a-select-option v-for="mode in ['slot', 'slot_list_index', 'token_label']" :key="mode" :value="mode">{{ mode }}</a-select-option>
+            <a-select-option v-for="mode in ['slot', 'slot_list_index', 'token_label']" :key="mode" :value="mode">{{ $t('label.hsm.create.slot.' + mode) }}</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item :label="form.slotMode" :html-for="'hsm-create-' + form.slotMode" required><a-input :id="'hsm-create-' + form.slotMode" v-model:value="form[form.slotMode]" :disabled="busy || expired || unknown" /></a-form-item>
+        <a-form-item :label="$t('label.hsm.create.slot.' + form.slotMode)" :html-for="'hsm-create-' + form.slotMode" required><a-input :id="'hsm-create-' + form.slotMode" v-model:value="form[form.slotMode]" :disabled="busy || expired || unknown" /></a-form-item>
         <a-form-item :label="$t('label.hsm.create.sessions')" html-for="hsm-create-sessions"><a-input id="hsm-create-sessions" v-model:value="form.max_sessions" :disabled="busy || expired || unknown" /></a-form-item>
         <a-form-item label="PIN" html-for="hsm-create-pin">
           <div class="hsm-pin-field" @focusout="hidePinOnExit">
@@ -87,15 +87,16 @@ specific language governing permissions and limitations under the License.
         <a-descriptions-item :label="$t('label.zone')">{{ saved.zone }}</a-descriptions-item>
       </a-descriptions>
     </template>
-    <template #footer>
-      <a-button :disabled="busy" @click="close">{{ $t(saved ? 'label.close' : 'label.cancel') }}</a-button>
-      <a-button v-if="unknown" :disabled="!valid" type="primary" :loading="busy" @click="check">{{ $t('label.kms.migration.check') }}</a-button>
+    <MoldDialogActions :busy="busy">
+      <a-button ref="cancel" :disabled="busy" @click="close">{{ $t(saved ? 'label.close' : 'label.cancel') }}</a-button>
+      <a-button v-if="unknown" :disabled="busy || !valid" type="primary" :loading="busy" @click="check">{{ $t('label.kms.migration.check') }}</a-button>
       <a-button v-else-if="!saved" type="primary" :disabled="!canSubmit" :loading="busy" @click="submit">{{ $t(operation.phase === 'failed' ? 'label.retry' : 'label.create') }}</a-button>
-    </template>
+    </MoldDialogActions>
   </MoldDialog>
 </template>
 <script>
 import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { getAPI, postAPI } from '@/api'
 import { kmsListPage } from '@/utils/kmsSearch'
 import { kmsOperationState, kmsOperationBusy, discardKmsOperation, kmsReadScope, readKmsResource, kmsResourceMatch, submitKmsOperation, verifyKmsOperation } from '@/utils/kmsOperation'
@@ -103,12 +104,13 @@ import { emptyHsmForm, hsmProviders, hsmDefaultProtocol, hsmFormProblem, hsmCrea
 
 export default {
   name: 'CreateHSMProfile',
-  components: { MoldDialog },
+  components: { MoldDialog, MoldDialogActions },
   emits: ['close-action', 'refresh-data'],
   data () {
     return { form: emptyHsmForm(), pin: '', showPin: false, providers: [], domains: [], accounts: [], projects: [], zones: [], operation: kmsOperationState(), summary: null, expected: null, listsLoading: false, accountLoading: false, discoveryError: false, listError: false, error: '', saved: null, disposed: false, expired: false, generation: 0, accountGeneration: 0, session: '' }
   },
   computed: {
+    blocksNavigation () { return this.busy },
     busy () { return this.valid && kmsOperationBusy(this.operation) },
     unknown () { return this.operation.phase === 'unknown' },
     scopeStamp () { const g = this.$store.getters; return JSON.stringify([g.userInfo?.id, g.userInfo?.roleid, g.userInfo?.roletype, this.$store.state?.user?.token, g.project?.id, this.$route?.fullPath || this.$route?.path, ['createHSMProfile', 'listCapabilities', 'listHSMProfiles'].filter(api => api in g.apis)]) },
@@ -124,6 +126,7 @@ export default {
     this.session = this.scopeStamp
     this.loadProviders()
     this.loadLists()
+    this.$nextTick(() => this.$refs.cancel?.$el?.focus())
     window.addEventListener('pagehide', this.clearPin)
     window.addEventListener('blur', this.hidePin)
     document.addEventListener('visibilitychange', this.visibility)

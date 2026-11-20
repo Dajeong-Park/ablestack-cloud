@@ -18,7 +18,8 @@
 <template>
   <a-row
     style="overflow: auto"
-    :wrap="false"
+    :class="{ 'kms-filter-chips': kms }"
+    :wrap="kms"
   >
     <template
       v-for="filter in this.searchFilters"
@@ -625,3 +626,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.kms-filter-chips { row-gap: 4px; }
+.kms-filter-chips :deep(.ant-tag) { max-width: 100%; color: var(--ui-text-primary); background: var(--ui-bg-elevated); border-color: var(--ui-border); }
+.kms-filter-chips :deep(.ant-tag-close-icon) { color: var(--ui-text-secondary); }
+</style>

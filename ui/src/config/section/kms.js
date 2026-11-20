@@ -46,6 +46,7 @@ export default {
       icon: 'file-text-outlined',
       permission: ['listKMSKeys'],
       resourceType: 'KMSKey',
+      docHelp: 'adminguide/kms.html',
       columns: () => {
         const fields = ['name', 'enabled', 'hsmprofile']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {
@@ -154,6 +155,7 @@ export default {
       icon: 'safety-outlined',
       permission: ['listHSMProfiles'],
       resourceType: 'HSMProfile',
+      docHelp: 'adminguide/kms.html',
       columns: () => {
         const fields = ['name', 'protocol', 'enabled', 'ispublic']
         if (['Admin', 'DomainAdmin'].includes(store.getters.userInfo.roletype)) {

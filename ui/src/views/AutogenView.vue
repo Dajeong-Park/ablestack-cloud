@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': s2sGatewayListRoute($route) || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route), 'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': kmsRoute($route) || s2sGatewayListRoute($route) || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -39,6 +39,19 @@
                   {{ $t('label.refresh') }}
                 </a-button>
                 <label v-if="isTemplateList || isIsoList || (s2sGatewayListRoute($route) && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sGatewayListRoute($route) ? 's2s-gateway-display-filter' : isPublicIpUi ? 'public-ip-state-filter' : templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
+                <label v-if="kmsListRoute($route)" for="kms-display-filter" class="template-filter-accessible-label">{{ $t('label.kms.display.filter') }}</label>
+                <a-select
+                  v-if="kmsListRoute($route)"
+                  id="kms-display-filter"
+                  class="kms-display-filter"
+                  :value="$route.query.enabled || 'all'"
+                  size="small"
+                  @change="changeKmsDisplay">
+                  <template #suffixIcon><filter-outlined class="ant-select-suffix" /></template>
+                  <a-select-option value="all">{{ $t('label.all') }}</a-select-option>
+                  <a-select-option value="true">{{ $t('label.enabled') }}</a-select-option>
+                  <a-select-option value="false">{{ $t('label.disabled') }}</a-select-option>
+                </a-select>
                 <a-tooltip placement="right">
                   <template #title>
                     {{ $t('label.filterby') }}
@@ -165,6 +178,7 @@
             <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="asnListReady" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <search-view
               v-if="!dataView"
+              :class="{ 'kms-toolbar-search': kmsListRoute($route) }"
               :searchFilters="searchFilters"
               :searchParams="searchParams"
               :apiName="apiName"
@@ -959,6 +973,7 @@
           :loading="sharedFSContentLoading"
           :emptyText="kmsListRoute($route) ? $t(kmsSearchError ? 'message.kms.search.' + kmsSearchError : listRequestPending ? 'label.loading' : 'message.kms.search.empty') : s2sGatewayListRoute($route) && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
+          :kms-table="kmsListRoute($route)"
           :items="items"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
@@ -1090,6 +1105,7 @@ import AsnListTools from '@/components/view/AsnListTools'
 import { kmsOperationApis } from '@/utils/kmsOperation'
 import { availabilityActions, actionAvailability, kmsAvailabilityLabel } from '@/utils/kmsAvailability'
 import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
+import { kmsDisplayQuery } from '@/utils/kmsPresentation'
 import { kmsDeletionConfirmed, kmsDetailFailure, kmsDetailKey, kmsDetailRoute, kmsListLocation, readKmsDetail } from '@/utils/kmsNavigation'
 import { kmsRoute, kmsListRoute, kmsListApi, kmsAuth, kmsProjectScope, kmsQuery, kmsSearchQuery, kmsParams, readKmsPage } from '@/utils/kmsSearch'
 import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
@@ -1821,6 +1837,7 @@ export default {
     s2sGatewayRoute,
     s2sGatewayListRoute,
     kmsListRoute,
+    kmsRoute,
     publicIpProject,
     publicIpDefaultFilter,
     vmDisplayName,
@@ -3146,7 +3163,8 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
-      const guardedDialog = ['kubernetesiso', 's2svpn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
+      const guardedDialog = kmsDialog || ['kubernetesiso', 's2svpn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3215,6 +3233,7 @@ export default {
         let replacement = (this.isVpcUi || this.isStorageUi || guardedDialog) && originPath === this.$route?.path
           ? (this.$refs?.detailActionsTrigger?.$el || (triggerLabel && Array.from(this.$el?.querySelectorAll('.autogen-toolbar-actions button') || []).find(button => button.getAttribute('aria-label') === triggerLabel)))
           : null
+        if (kmsDialog && !replacement && !trigger?.isConnected) replacement = this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         if (policyDeleteDialog && !replacement && originPath === this.$route?.path) replacement = this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         if (this.isVpcUi && !replacement && originPath === this.$route?.path) replacement = this.$el?.querySelector('.ant-table-row-selected input[type="checkbox"]:not([disabled])') || this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         // A portal menu item may remain connected but hidden after its dropdown closes.
@@ -4296,6 +4315,11 @@ export default {
       const key = this.$route.meta?.filterLabels?.[filter] || ('label.' + (this.$route.name === 'comment' ? 'filter.annotations.' : '') + filter)
       return this.$t(key)
     },
+    changeKmsDisplay (filter) {
+      const raw = kmsDisplayQuery(this.$route.query, filter)
+      const query = kmsQuery(raw, kmsListApi(this.$route), this.$store.getters, this.pageSize)
+      this.$router.push({ query })
+    },
     changeFilter (filter) {
       if (s2sGatewayListRoute(this.$route)) { this.onSearch({ s2sGatewaySearch: { ...this.$route.query, fordisplay: filter } }); return }
       if (asnRoute(this.$route)) { const query = { ...this.$route.query, filter }; delete query.isallocated; this.onSearch(query); return }
@@ -4754,6 +4778,14 @@ export default {
 .runtime-catalog-screen :deep(.autogen-toolbar-actions) { display:flex !important; align-items:center; gap:8px; }
 .runtime-catalog-screen :deep(.autogen-action-dropdown__trigger) { float:none !important; }
 
+.kms-management-page { min-width: 0; max-width: 100%; }
+.kms-display-filter { min-width: 100px; margin-inline-start: 8px; margin-bottom: 5px; }
+.kms-management-page :deep(.ant-breadcrumb) { overflow-wrap: anywhere; }
+.kms-management-page :deep(.breadcrumb-controls) { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: middle; }
+@media (max-width: 767px) {
+  .kms-management-page .breadcrumb-card { margin-inline: -12px; }
+  .kms-list-page .kms-toolbar-search { flex-basis: 100%; }
+}
 .breadcrumb-card {
   margin-left: -24px;
   margin-right: -24px;

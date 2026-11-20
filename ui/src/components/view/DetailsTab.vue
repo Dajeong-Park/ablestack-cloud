@@ -50,14 +50,17 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': ['vm', 'vnfapp', 'publicip', 's2svpn'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
       <a-list-item v-if="kmsRoute($route) && ['algorithm', 'keybits', 'vendorname', 'protocol', 'enabled', 'hsmzonescope', 'hsmownerscope', 'state'].includes(item)">
         <div class="kms-metadata">
           <strong>{{ $t(item === 'state' ? 'label.hsm.connection.state' : 'label.' + item) }}</strong>
-          <div v-if="item === 'enabled'">{{ $t(dataResource.enabled === true ? 'label.enabled' : dataResource.enabled === false ? 'label.disabled' : 'label.unknown') }}</div>
+          <template v-if="item === 'enabled'">
+            <status v-if="typeof dataResource.enabled === 'boolean'" :text="String(dataResource.enabled)" :display-label="$t(dataResource.enabled ? 'label.enabled' : 'label.disabled')" display-text />
+            <div v-else>{{ $t('label.unknown') }}</div>
+          </template>
           <div v-else-if="item === 'hsmzonescope'">{{ $t(dataResource.zoneid ? 'label.hsm.create.zone.specific' : 'label.hsm.create.zone.global') }}</div>
           <div v-else-if="item === 'hsmownerscope'">{{ hsmOwnerScope(dataResource) ? $t('label.hsm.create.scope.' + hsmOwnerScope(dataResource)) : $t('label.unknown') }}</div>
           <div v-else-if="item === 'protocol'">{{ kmsProtocolOptions($store.getters.features, dataResource.protocol).find(provider => provider.id === dataResource.protocol)?.name || $t('label.unknown') }}</div>

@@ -1,4 +1,8 @@
 {
+  "label.kms.display.filter": "Display filter",
+  "label.hsm.create.slot.slot": "Slot ID",
+  "label.hsm.create.slot.slot_list_index": "Slot index",
+  "label.hsm.create.slot.token_label": "Token label",
   "label.kms.risk.target": "Operation target",
   "label.kms.risk.requested": "Requested changes",
   "label.kms.risk.unknown": "Unavailable",

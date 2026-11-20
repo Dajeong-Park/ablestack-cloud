@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <resource-layout :wide="wideLayout" :class="{ 's2s-gateway-resource': $route.meta?.name === 's2svpn', 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
+  <resource-layout :wide="wideLayout" :class="{ 'kms-resource': kmsDetailRoute($route), 's2s-gateway-resource': $route.meta?.name === 's2svpn', 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
     <template #left>
       <slot name="info-card">
         <info-card
@@ -227,6 +227,7 @@ export default {
     window.removeEventListener('popstate', this.setActiveTab)
   },
   methods: {
+    kmsDetailRoute,
     refreshKubernetesIsoAvailability () { return this.$refs.kubernetesIsoSummary?.refresh() },
     acceptKubernetesIsoObservation (value) {
       if (this.$route.meta?.name === 'kubernetesiso' && value?.versionid === this.resource.id && value?.isoid === this.resource.isoid && value.context === this.kubernetesIsoContext) this.kubernetesIsoObservation = value
@@ -353,4 +354,12 @@ export default {
 :deep(.resource-content-card .ant-spin-container) {
   background: var(--ui-bg-surface);
 }
+</style>
+
+<style scoped>
+.kms-resource :deep(.resource-content-card),
+.kms-resource :deep(.ant-tabs),
+.kms-resource :deep(.ant-tabs-content-holder),
+.kms-resource :deep(.ant-tabs-tabpane) { min-width: 0; max-width: 100%; }
+.kms-resource :deep(.ant-list-item) { overflow-wrap: anywhere; }
 </style>

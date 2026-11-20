@@ -34,12 +34,13 @@ for the specific language governing permissions and limitations. -->
     <ListView
       v-else
       :resource-path="'/' + definition.target"
+      kms-table
       :resource-link="resourceLink"
       :items="rows"
       :columns="columns"
       :loading="loading || status === 'loading'"
       :empty-text="$t(status === 'ready' ? 'message.kms.related.empty' : 'label.loading')"
-      :table-scroll="{ x: 1280, y: 440 }" />
+      :table-scroll="{ y: 440 }" />
     <a-pagination
       v-if="status === 'ready'"
       class="detail-tab-pagination"
@@ -153,6 +154,7 @@ export default {
 </script>
 
 <style scoped>
+.kms-related-tab { min-width: 0; max-width: 100%; }
 .kms-related-search { margin-left: auto; max-width: 320px; width: 100%; }
 .kms-usage-summary { margin-bottom: 16px; }
 .kms-usage-summary p:last-child { margin-bottom: 0; }

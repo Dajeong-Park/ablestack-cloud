@@ -11,7 +11,7 @@ CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.
 -->
 <template>
-  <MoldDialog size="xl" :title="$t('label.migrate.volumes.to.kms')" form-actions focus-guard @cancel="close">
+  <MoldDialog size="xl" :title="$t('label.migrate.volumes.to.kms')" doc-help="adminguide/kms.html#migrating-existing-volumes-to-kms" form-actions focus-guard @cancel="close">
     <KmsTargetSummary :target="target" />
     <a-alert type="info" show-icon :message="$t('message.kms.migration.scope')" :description="$t('message.kms.risk.migration')" />
     <a-alert v-if="error" type="error" show-icon :message="error" role="alert" />
