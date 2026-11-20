@@ -1,0 +1,27 @@
+{
+  "buildCommit": "ebe84e0c1fe76768eebab764c4b3c0c37f46bf09",
+  "productionSourceMap": false,
+  "uglifySourceMap": false,
+  "validationBuildConfigSha256": "f9bb345aff921d48712f1c0e5b6a6e2208180c519091e0756745de23f2729c48",
+  "sourceBase": "afbf6f26f14cfdb22cedb65d746c0a3f18784b2e",
+  "upstreamBase": "41fe8cb0dd0c05e95c4ef6d110dafc26b85a01e2",
+  "sourceSha256": {
+    "ui/public/locales/en.json": "3bd2f157a8bf42b3a49ebb875424dccc5f783ccdf51362a8efba88c56b01ab4f",
+    "ui/public/locales/ko_KR.json": "cb76aaf254cc617685bf56bc4b9b803d140947abc6da3a9be5c5e7a5863c4839",
+    "ui/src/utils/s2sGateway.js": "3c1a24b8fe53c35a3b9922b18784bc15e48a91d8f8ac05728b443afc6cb68c58",
+    "ui/src/utils/s2sGatewayCreate.js": "40544efc080c06140c3374fef788a7b93b108b5e0787be5a5e790a41e50fddfe",
+    "ui/src/views/network/S2sGatewayDialog.vue": "57d5f3d51d66cea84c76cc0ca9a0f543f7a370166c8738d120eef62f62f6ef18",
+    "ui/tests/unit/views/network/S2sGateway.spec.js": "5b1ec4635c80fb0f2dcea12dc3e37371ee1c8cc6f49153ae793d192ca0a3bd76",
+    "ui/tests/unit/views/network/S2sGatewayCreate.spec.js": "0da7b932a520230533b7df2c6892838d74e604a927ae349a53b8de3dcb33c5f6",
+    "ui/src/components/view/S2sGatewayValue.vue": "10c48ea0f591809810cee48f62c8cf5ea2c47903fafed229abfa063ac9dcd010",
+    "ui/src/views/network/S2sVpnConnectionsTab.vue": "a90ee0f91995007f6aee8a889573df29dc477bed362feed2e81851b68da2e0b4"
+  },
+  "uiPayloadSha256": "91a09e78484649f4c23ad9a4d15dd9f3a7c3029e3a473670cff1291d3e58b82f",
+  "indexSha256": "c1e8dff222f145658b3100a16309cfb18244712b3601a4ae3c51569c01cabd9e",
+  "backendChanged": true,
+  "changedModules": [
+    "api",
+    "ui"
+  ],
+  "markersVerified": true
+}

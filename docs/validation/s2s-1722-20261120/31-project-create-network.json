@@ -1,0 +1,78 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "command": "listVPCs",
+      "params": {
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+        "id": "84baed12-3409-4151-9a68-d09bd31257f3"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "49767c4b-61bd-4535-9957-af9908e220f1"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+        "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3",
+        "fordisplay": "true"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+        "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3",
+        "fordisplay": "false"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listPublicIpAddresses",
+      "params": {
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+        "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3"
+      }
+    },
+    {
+      "method": "POST",
+      "command": "createVpnGateway",
+      "params": {
+        "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3",
+        "ipaddressid": "3aab3764-2ead-49a8-9289-b758bb2490ec",
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+        "customjobid": "82f7d7da-e9d5-4aff-af25-8e5499f20959"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "queryAsyncJobResult",
+      "params": {
+        "jobid": "82f7d7da-e9d5-4aff-af25-8e5499f20959"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1",
+        "vpcid": "84baed12-3409-4151-9a68-d09bd31257f3",
+        "fordisplay": "true"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "projectid": "9241822c-82d2-406e-bbea-e4eaebb702d1"
+      }
+    }
+  ]
+}

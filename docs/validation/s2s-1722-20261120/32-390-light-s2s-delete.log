@@ -1,0 +1,135 @@
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#ffffff"
+- generic: 텍스트 색상
+- textbox: "#000000"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: 기본 보기
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn?projectid=0&page=1&pagesize=20"
+  - text: /
+  - generic: 10.10.32.170
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "lock":
+  - heading "10.10.32.170" [level=4]
+  - separator
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "c06e94b7-bef4-4f23-8768-029885c1060b":
+    - /url: javascript:;
+  - generic: Public IP 주소
+  - img "gateway":
+  - link "10.10.32.170":
+    - /url: javascript:;
+  - generic: VPC
+  - img "deployment-unit":
+  - link "qa-s2s1722-32-source":
+    - /url: "#/vpc/012ca552-d769-421d-be2b-44d6fe2d8fc0"
+  - generic: 계정
+  - img "user":
+  - link "qa-s2s1722-32-user":
+    - /url: "#/account?name=qa-s2s1722-32-user&domainid=2246448b-b23b-11f1-990e-0024811f8935"
+  - generic: 도메인
+  - img "block":
+  - link "ROOT":
+    - /url: "#/domain/2246448b-b23b-11f1-990e-0024811f8935?tab=details"
+  - tablist:
+    - tab "상세"
+    - tab "VPN 연결" [selected]
+  - tabpanel "VPN 연결":
+    - button "reload 업데이트":
+      - img "reload":
+      - generic: 업데이트
+    - textbox "검색"
+    - button "search":
+      - img "search":
+    - table:
+      - rowgroup:
+        - row "Public IP 주소 게이트웨이 상태 생성일":
+          - columnheader "Public IP 주소"
+          - columnheader "게이트웨이"
+          - columnheader "상태"
+          - columnheader "생성일"
+      - rowgroup:
+        - row "표시할 데이터가 없음":
+          - cell "표시할 데이터가 없음":
+            - generic: 표시할 데이터가 없음
+- alert:
+  - img "exclamation-circle":
+  - generic: 조치가 필요한 경보
+  - generic: (3건)
+  - generic: "-"
+  - generic: 주요 시스템에서 리소스 임계치 초과 또는 상태 변경이 감지되어 확인이 필요합니다.
+  - button "세부 경보 내용 확인":
+    - generic: 세부 경보 내용 확인
+  - button "경보 규칙으로 이동":
+    - generic: 경보 규칙으로 이동
+  - button "닫기":
+    - img "close":
+- dialog "VPN 게이트웨이 삭제":
+  - document:
+    - button "Close":
+      - img "close":
+    - generic: VPN 게이트웨이 삭제
+    - paragraph: 선택한 VPN 게이트웨이를 삭제합니다. 연결이 있으면 삭제가 거부될 수 있으며 사이트간 VPN 통신에 영향을 줍니다.
+    - term: VPN 게이트웨이
+    - definition: 10.10.32.170
+    - term: 아이디
+    - definition: c06e94b7-bef4-4f23-8768-029885c1060b
+    - term: VPC
+    - definition: qa-s2s1722-32-source
+    - term: 계정
+    - definition: qa-s2s1722-32-user
+    - term: 도메인
+    - definition: ROOT
+    - button "취소":
+      - generic: 취소
+    - button "VPN 게이트웨이 삭제":
+      - generic: VPN 게이트웨이 삭제

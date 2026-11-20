@@ -1,0 +1,2446 @@
+{
+  "source": "ebe84e0c1fe76768eebab764c4b3c0c37f46bf09",
+  "purpose": "32번 1280px 캡처의 901px 주기 반복 화상 20장 제외 후 동일 VM 표준과 기존 자원의 읽기 화면에서 재검증. 생성/편집/삭제 제출 없음.",
+  "captures": [
+    {
+      "name": "32-1280-dark-s2s-list-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=cf5ec6b5-b522-4c18-ab90-a395012607c1&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 186
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  color: rgba(0",
+        "height": 720,
+        "modal": [],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(38, 38, 38)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 112.828125,
+          "x": 268,
+          "y": 299
+        },
+        "tableHeader": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 112.828125,
+          "x": 268,
+          "y": 252
+        },
+        "tableScroll": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 94,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 252
+        },
+        "theme": "dark-mode",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-s2s-detail-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn/d0baefe3-b928-4515-b307-6b34e7a82680?s2sreturn={%22query%22:{%22projectid%22:%22cf5ec6b5-b522-4c18-ab90-a395012607c1%22,%22page%22:%221%22,%22pagesize%22:%2220%22},%22owner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%22cf5ec6b5-b522-4c18-ab90-a395012607c1%5C%22]%22}",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 552,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 253
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 69,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 516.65625,
+          "x": 706.328125,
+          "y": 299
+        },
+        "focus": "html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  color: rgba(0",
+        "height": 720,
+        "modal": [],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 482,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100,
+          "x": 582.328125,
+          "y": 299
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableHeader": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableScroll": null,
+        "tabsClass": "ant-tabs ant-tabs-left s2s-gateway-tabs",
+        "theme": "dark-mode",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "18px",
+          "height": 18,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 102.96875,
+          "x": 369,
+          "y": 292.75
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-s2s-connections-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn/d0baefe3-b928-4515-b307-6b34e7a82680?s2sreturn={%22query%22:{%22projectid%22:%22cf5ec6b5-b522-4c18-ab90-a395012607c1%22,%22page%22:%221%22,%22pagesize%22:%2220%22},%22owner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%22cf5ec6b5-b522-4c18-ab90-a395012607c1%5C%22]%22}&tab=vpn.connections",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 303,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 253
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 0,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "focus": "rc-tabs-8-tab-vpn.connections",
+        "height": 720,
+        "modal": [],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 233,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100,
+          "x": 582.328125,
+          "y": 299
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 56,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 402
+        },
+        "tableHeader": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "14px",
+          "height": 55,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 347
+        },
+        "tableScroll": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 121,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 516.65625,
+          "x": 706.328125,
+          "y": 347
+        },
+        "tabsClass": "ant-tabs ant-tabs-left s2s-gateway-tabs",
+        "theme": "dark-mode",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "18px",
+          "height": 18,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 102.96875,
+          "x": 369,
+          "y": 292.75
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-s2s-delete-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn/d0baefe3-b928-4515-b307-6b34e7a82680?s2sreturn={%22query%22:{%22projectid%22:%22cf5ec6b5-b522-4c18-ab90-a395012607c1%22,%22page%22:%221%22,%22pagesize%22:%2220%22},%22owner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%22cf5ec6b5-b522-4c18-ab90-a395012607c1%5C%22]%22}&tab=vpn.connections",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 303,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 253
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 0,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "focus": "",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 360,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 360,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "VPN 게이트웨이 삭제",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 600,
+            "footerPadding": "16px 28px",
+            "footerTop": 535,
+            "height": 482,
+            "labels": [],
+            "readOnlyIps": [],
+            "width": 720
+          }
+        ],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 233,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100,
+          "x": 582.328125,
+          "y": 299
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 56,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 402
+        },
+        "tableHeader": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "14px",
+          "height": 55,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 347
+        },
+        "tableScroll": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 121,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 516.65625,
+          "x": 706.328125,
+          "y": 347
+        },
+        "tabsClass": "ant-tabs ant-tabs-left s2s-gateway-tabs",
+        "theme": "dark-mode ant-scrolling-effect",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "18px",
+          "height": 18,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 102.96875,
+          "x": 369,
+          "y": 292.75
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-vm-detail-recheck",
+      "url": "http://10.10.32.10:8080/client/#/vm/5b77d90b-070b-4087-9f14-5f6a31238d70",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 1425,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 253
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 69,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 516.40625,
+          "x": 706.578125,
+          "y": 299
+        },
+        "focus": "html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  color: rgba(0",
+        "height": 720,
+        "modal": [],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 1355,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100.25,
+          "x": 582.328125,
+          "y": 299
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableHeader": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableScroll": null,
+        "tabsClass": "ant-tabs ant-tabs-left",
+        "theme": "dark-mode",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "18px",
+          "height": 36,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 145.328125,
+          "x": 369,
+          "y": 286.375
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-vm-dialog-recheck",
+      "url": "http://10.10.32.10:8080/client/#/vm/5b77d90b-070b-4087-9f14-5f6a31238d70",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 1425,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 253
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 69,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 516.40625,
+          "x": 706.578125,
+          "y": 299
+        },
+        "focus": "form_item_displayname",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 534,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 773,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 905.234375,
+                "text": "취소",
+                "x": 847.46875
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "확인",
+                "x": 913.234375
+              }
+            ],
+            "footerBottom": 687,
+            "footerPadding": "16px 28px",
+            "footerTop": 622,
+            "height": 656,
+            "labels": [
+              "VM 표시 명",
+              "OS 유형",
+              "동적으로 확장 가능",
+              "HA 활성화",
+              "그룹",
+              "사용자 데이터",
+              "추가 설정",
+              "삭제 보호"
+            ],
+            "readOnlyIps": [],
+            "width": 720
+          }
+        ],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "14px",
+          "height": 1355,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100.25,
+          "x": 582.328125,
+          "y": 299
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableHeader": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableScroll": null,
+        "tabsClass": "ant-tabs ant-tabs-left",
+        "theme": "dark-mode ant-scrolling-effect",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(255, 255, 255, 0.65)",
+          "fontSize": "18px",
+          "height": 36,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 145.328125,
+          "x": 369,
+          "y": 286.375
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-vm-list-recheck",
+      "url": "http://10.10.32.10:8080/client/#/vm",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 56,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "가상머신",
+        "height": 720,
+        "modal": [],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 91,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 32,
+          "x": 268,
+          "y": 458
+        },
+        "tableHeader": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "14px",
+          "height": 179,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 32,
+          "x": 268,
+          "y": 279
+        },
+        "tableScroll": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 2615,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 980,
+          "x": 268,
+          "y": 279
+        },
+        "theme": "dark-mode",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-vm-list-recheck",
+      "url": "http://10.10.32.10:8080/client/#/vm",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 56,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "닫기",
+        "height": 720,
+        "modal": [],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 91,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 32,
+          "x": 268,
+          "y": 458
+        },
+        "tableHeader": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 179,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 32,
+          "x": 268,
+          "y": 279
+        },
+        "tableScroll": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 2615,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 980,
+          "x": 268,
+          "y": 279
+        },
+        "theme": "",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-vm-detail-recheck",
+      "url": "http://10.10.32.10:8080/client/#/vm/5b77d90b-070b-4087-9f14-5f6a31238d70",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 1425,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 253
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 69,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 516.40625,
+          "x": 706.578125,
+          "y": 299
+        },
+        "focus": "html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  color: rgba(0",
+        "height": 720,
+        "modal": [],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 1355,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100.25,
+          "x": 582.328125,
+          "y": 299
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableHeader": {
+          "background": "rgb(250, 250, 250)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableScroll": null,
+        "tabsClass": "ant-tabs ant-tabs-left",
+        "theme": "",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.85)",
+          "fontSize": "18px",
+          "height": 36,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 145.328125,
+          "x": 369,
+          "y": 286.375
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-vm-dialog-recheck",
+      "url": "http://10.10.32.10:8080/client/#/vm/5b77d90b-070b-4087-9f14-5f6a31238d70",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 186
+        },
+        "content": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 1425,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 253
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 69,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 516.40625,
+          "x": 706.578125,
+          "y": 299
+        },
+        "focus": "form_item_displayname",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 534,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 773,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 905.234375,
+                "text": "취소",
+                "x": 847.46875
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "확인",
+                "x": 913.234375
+              }
+            ],
+            "footerBottom": 687,
+            "footerPadding": "16px 28px",
+            "footerTop": 622,
+            "height": 656,
+            "labels": [
+              "VM 표시 명",
+              "OS 유형",
+              "동적으로 확장 가능",
+              "HA 활성화",
+              "그룹",
+              "사용자 데이터",
+              "추가 설정",
+              "삭제 보호"
+            ],
+            "readOnlyIps": [],
+            "width": 720
+          }
+        ],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 1355,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100.25,
+          "x": 582.328125,
+          "y": 299
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 647,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 73
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableHeader": {
+          "background": "rgb(250, 250, 250)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableScroll": null,
+        "tabsClass": "ant-tabs ant-tabs-left",
+        "theme": "ant-scrolling-effect",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.85)",
+          "fontSize": "18px",
+          "height": 36,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 145.328125,
+          "x": 369,
+          "y": 286.375
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-s2s-options-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 159
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "form_item_vpcid",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 208,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 208,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": true,
+                "right": 971,
+                "text": "VPN 게이트웨이 추가",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 524,
+            "footerPadding": "16px 28px",
+            "footerTop": 459,
+            "height": 330,
+            "labels": [
+              "VPC"
+            ],
+            "readOnlyIps": [],
+            "width": 720
+          }
+        ],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 167,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 990,
+          "x": 268,
+          "y": 272
+        },
+        "tableHeader": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 401.296875,
+          "x": 268,
+          "y": 225
+        },
+        "tableScroll": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 214,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 225
+        },
+        "theme": "ant-scrolling-effect",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-s2s-create-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 159
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "form_item_vpcid",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 534,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 610,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "VPN 게이트웨이 추가",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 687,
+            "footerPadding": "16px 28px",
+            "footerTop": 622,
+            "height": 656,
+            "labels": [
+              "VPC",
+              "Public IP 주소"
+            ],
+            "readOnlyIps": [
+              "10.10.32.101"
+            ],
+            "width": 720
+          }
+        ],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 167,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 990,
+          "x": 268,
+          "y": 272
+        },
+        "tableHeader": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 401.296875,
+          "x": 268,
+          "y": 225
+        },
+        "tableScroll": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 214,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 225
+        },
+        "theme": "ant-scrolling-effect",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-s2s-scroll-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 159
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "form_item_vpcid",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 534,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 610,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "VPN 게이트웨이 추가",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 687,
+            "footerPadding": "16px 28px",
+            "footerTop": 622,
+            "height": 656,
+            "labels": [
+              "VPC",
+              "Public IP 주소"
+            ],
+            "readOnlyIps": [
+              "10.10.32.101"
+            ],
+            "width": 720
+          }
+        ],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 167,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 990,
+          "x": 268,
+          "y": 272
+        },
+        "tableHeader": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 401.296875,
+          "x": 268,
+          "y": 225
+        },
+        "tableScroll": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 214,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 225
+        },
+        "theme": "ant-scrolling-effect",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-s2s-list-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=cf5ec6b5-b522-4c18-ab90-a395012607c1&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 159
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  color: rgba(0",
+        "height": 720,
+        "modal": [],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(232, 244, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 112.828125,
+          "x": 268,
+          "y": 272
+        },
+        "tableHeader": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 112.828125,
+          "x": 268,
+          "y": 225
+        },
+        "tableScroll": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 94,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 225
+        },
+        "theme": "",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-s2s-detail-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn/d0baefe3-b928-4515-b307-6b34e7a82680?s2sreturn={%22query%22:{%22projectid%22:%22cf5ec6b5-b522-4c18-ab90-a395012607c1%22,%22page%22:%221%22,%22pagesize%22:%2220%22},%22owner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%22cf5ec6b5-b522-4c18-ab90-a395012607c1%5C%22]%22}",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 159
+        },
+        "content": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 552,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 226
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 69,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 516.65625,
+          "x": 706.328125,
+          "y": 272
+        },
+        "focus": "html {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\nbody {\n  color: rgba(0",
+        "height": 720,
+        "modal": [],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 482,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100,
+          "x": 582.328125,
+          "y": 272
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableHeader": {
+          "background": "rgb(250, 250, 250)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "12px",
+          "height": 0,
+          "lineHeight": "18.858px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "padding": "8px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "tableScroll": null,
+        "tabsClass": "ant-tabs ant-tabs-left s2s-gateway-tabs",
+        "theme": "",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.85)",
+          "fontSize": "18px",
+          "height": 18,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 102.96875,
+          "x": 369,
+          "y": 265.75
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-s2s-connections-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn/d0baefe3-b928-4515-b307-6b34e7a82680?s2sreturn={%22query%22:{%22projectid%22:%22cf5ec6b5-b522-4c18-ab90-a395012607c1%22,%22page%22:%221%22,%22pagesize%22:%2220%22},%22owner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%22cf5ec6b5-b522-4c18-ab90-a395012607c1%5C%22]%22}&tab=vpn.connections",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 159
+        },
+        "content": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 303,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 226
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 0,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "focus": "rc-tabs-11-tab-vpn.connections",
+        "height": 720,
+        "modal": [],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 233,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100,
+          "x": 582.328125,
+          "y": 272
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 56,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 375
+        },
+        "tableHeader": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 55,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 320
+        },
+        "tableScroll": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 121,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 516.65625,
+          "x": 706.328125,
+          "y": 320
+        },
+        "tabsClass": "ant-tabs ant-tabs-left s2s-gateway-tabs",
+        "theme": "",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.85)",
+          "fontSize": "18px",
+          "height": 18,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 102.96875,
+          "x": 369,
+          "y": 265.75
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-light-s2s-delete-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn/d0baefe3-b928-4515-b307-6b34e7a82680?s2sreturn={%22query%22:{%22projectid%22:%22cf5ec6b5-b522-4c18-ab90-a395012607c1%22,%22page%22:%221%22,%22pagesize%22:%2220%22},%22owner%22:%22[%5C%226d3f209b-b23b-11f1-990e-0024811f8935%5C%22,%5C%2249e68247-b23b-11f1-990e-0024811f8935%5C%22,%5C%22Admin%5C%22,%5C%222246448b-b23b-11f1-990e-0024811f8935%5C%22,%5C%22cf5ec6b5-b522-4c18-ab90-a395012607c1%5C%22]%22}&tab=vpn.connections",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 453,
+          "x": 305,
+          "y": 159
+        },
+        "content": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 303,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "24px",
+          "width": 688.65625,
+          "x": 558.328125,
+          "y": 226
+        },
+        "detailRow": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 0,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 0px",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "focus": "",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 360,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 360,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "VPN 게이트웨이 삭제",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 600,
+            "footerPadding": "16px 28px",
+            "footerTop": 535,
+            "height": 482,
+            "labels": [],
+            "readOnlyIps": [],
+            "width": 720
+          }
+        ],
+        "nav": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.65)",
+          "fontSize": "14px",
+          "height": 233,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 100,
+          "x": 582.328125,
+          "y": 272
+        },
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(0, 21, 41)",
+          "color": "rgba(255, 255, 255, 0.68)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 56,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 375
+        },
+        "tableHeader": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 55,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "16px",
+          "width": 180,
+          "x": 706.328125,
+          "y": 320
+        },
+        "tableScroll": {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(75, 85, 99)",
+          "fontSize": "14px",
+          "height": 121,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 516.65625,
+          "x": 706.328125,
+          "y": 320
+        },
+        "tabsClass": "ant-tabs ant-tabs-left s2s-gateway-tabs",
+        "theme": "ant-scrolling-effect",
+        "title": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.85)",
+          "fontSize": "18px",
+          "height": 18,
+          "lineHeight": "18px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 102.96875,
+          "x": 369,
+          "y": 265.75
+        },
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-s2s-options-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 159
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "form_item_vpcid",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 208,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 208,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": true,
+                "right": 971,
+                "text": "VPN 게이트웨이 추가",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 524,
+            "footerPadding": "16px 28px",
+            "footerTop": 459,
+            "height": 330,
+            "labels": [
+              "VPC"
+            ],
+            "readOnlyIps": [],
+            "width": 720
+          }
+        ],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 167,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 990,
+          "x": 268,
+          "y": 272
+        },
+        "tableHeader": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 401.296875,
+          "x": 268,
+          "y": 225
+        },
+        "tableScroll": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 214,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 225
+        },
+        "theme": "dark-mode ant-scrolling-effect",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-s2s-create-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 159
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "form_item_vpcid",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 534,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 610,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "VPN 게이트웨이 추가",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 687,
+            "footerPadding": "16px 28px",
+            "footerTop": 622,
+            "height": 656,
+            "labels": [
+              "VPC",
+              "Public IP 주소"
+            ],
+            "readOnlyIps": [
+              "10.10.32.101"
+            ],
+            "width": 720
+          }
+        ],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 167,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 990,
+          "x": 268,
+          "y": 272
+        },
+        "tableHeader": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 401.296875,
+          "x": 268,
+          "y": 225
+        },
+        "tableScroll": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 214,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 225
+        },
+        "theme": "dark-mode ant-scrolling-effect",
+        "title": null,
+        "width": 1280
+      }
+    },
+    {
+      "name": "32-1280-dark-s2s-scroll-recheck",
+      "url": "http://10.10.32.10:8080/client/#/s2svpn?projectid=0&page=1&pagesize=20",
+      "imageSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "metrics": {
+        "breadcrumb": {
+          "background": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.45)",
+          "fontSize": "14px",
+          "height": 29,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 458,
+          "x": 305,
+          "y": 159
+        },
+        "content": null,
+        "detailRow": null,
+        "focus": "form_item_vpcid",
+        "height": 720,
+        "modal": [
+          {
+            "bodyHeight": 534,
+            "bodyOverflow": "auto",
+            "bodyPadding": "24px 28px",
+            "bodyScrollHeight": 610,
+            "buttons": [
+              {
+                "disabled": false,
+                "right": 806.15625,
+                "text": "취소",
+                "x": 748.390625
+              },
+              {
+                "disabled": false,
+                "right": 971,
+                "text": "VPN 게이트웨이 추가",
+                "x": 814.15625
+              }
+            ],
+            "footerBottom": 687,
+            "footerPadding": "16px 28px",
+            "footerTop": 622,
+            "height": 656,
+            "labels": [
+              "VPC",
+              "Public IP 주소"
+            ],
+            "readOnlyIps": [
+              "10.10.32.101"
+            ],
+            "width": 720
+          }
+        ],
+        "nav": null,
+        "pageWidth": 1270,
+        "sidebar": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 674,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "0px",
+          "width": 256,
+          "x": 0,
+          "y": 46
+        },
+        "tableCell": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 167,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 990,
+          "x": 268,
+          "y": 272
+        },
+        "tableHeader": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgba(255, 255, 255, 0.85)",
+          "fontSize": "14px",
+          "height": 47,
+          "lineHeight": "22.001px",
+          "overflowX": "visible",
+          "overflowY": "visible",
+          "padding": "12px 8px",
+          "width": 401.296875,
+          "x": 268,
+          "y": 225
+        },
+        "tableScroll": {
+          "background": "rgb(34, 40, 47)",
+          "color": "rgb(197, 204, 212)",
+          "fontSize": "14px",
+          "height": 214,
+          "lineHeight": "22.001px",
+          "overflowX": "auto",
+          "overflowY": "hidden",
+          "padding": "0px",
+          "width": 990,
+          "x": 268,
+          "y": 225
+        },
+        "theme": "dark-mode ant-scrolling-effect",
+        "title": null,
+        "width": 1280
+      }
+    }
+  ]
+}

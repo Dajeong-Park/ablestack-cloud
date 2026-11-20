@@ -12229,5 +12229,20 @@
   "message.s2s.gateway.permission": "이 소유 범위의 VPN 기능을 사용할 권한이 없습니다.",
   "message.s2s.gateway.create": "VPN 게이트웨이를 추가할 VPC를 선택하세요.",
   "message.s2s.gateway.delete": "선택한 VPN 게이트웨이를 삭제합니다. 연결이 있으면 삭제가 거부될 수 있으며 사이트간 VPN 통신에 영향을 줍니다.",
-  "label.vpn.connections": "VPN 연결"
+  "label.vpn.connections": "VPN 연결",
+  "message.s2s.create.vpc.help": "VPN 게이트웨이가 없는 VPC를 선택하세요. 이름·ID·소유 범위·Zone으로 대상을 구분합니다.",
+  "message.s2s.create.inactive": "활성 상태의 VPC가 아닙니다.",
+  "message.s2s.create.provider.unknown": "VPC 오퍼링 또는 VPN 제공자를 확인할 수 없어 생성할 수 없습니다.",
+  "message.s2s.create.provider.unsupported": "이 제공자 조합은 이 생성창에서 지원하지 않습니다.",
+  "message.s2s.create.exists": "이미 VPN 게이트웨이가 있는 VPC입니다.",
+  "message.s2s.create.context": "VPC·IP 또는 소유 범위가 변경됐습니다. 새로 조회한 후 선택을 확인하세요.",
+  "message.s2s.create.ip.missing": "할당된 Source NAT IP가 없습니다. VPC를 확인한 후 다시 조회하세요.",
+  "message.s2s.create.ip.ambiguous": "필수 Source NAT 또는 라우터 IP를 하나로 확인할 수 없어 생성할 수 없습니다.",
+  "message.s2s.create.candidates.unavailable": "생성 가능한 VPC가 없습니다. VPC 목록의 사유를 확인하거나 다시 조회하세요.",
+  "message.s2s.create.ip.sourcenat": "이 VPC는 VpcVirtualRouter의 Source NAT IP를 사용합니다. 표시된 필수 IP를 다른 공인 IP로 변경할 수 없습니다.",
+  "message.s2s.create.ip.router": "이 VPC는 Source NAT 없이 VpcVirtualRouter VPN을 사용합니다. 기존 라우터 IP가 있으면 해당 IP를 사용하고, 없으면 자동 할당 또는 사용 가능한 VPC IP를 선택합니다.",
+  "label.s2s.create.ip.auto": "서버에서 공인 IP 자동 할당",
+  "message.s2s.create.ip.auto": "VPC에 새 공인 IP가 할당될 수 있습니다. 서버에서 가용 IP와 할당량을 최종 확인합니다.",
+  "message.s2s.create.ip.changed": "선택한 IP의 적합성이 변경됐습니다. 다시 조회한 후 IP를 선택하세요.",
+  "message.s2s.gateway.lookup.limit": "조회 한도에 도달했습니다. 계정 또는 프로젝트 범위를 줄인 후 다시 조회하세요."
 }

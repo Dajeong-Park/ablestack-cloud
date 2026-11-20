@@ -1,0 +1,107 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "command": "listVPCs",
+      "params": {}
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {}
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "44040cbb-a361-4b94-be82-cc6f9235a495"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "49767c4b-61bd-4535-9957-af9908e220f1"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCs",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "id": "16125a08-19e3-4072-adf9-b1c32af1211b"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "49767c4b-61bd-4535-9957-af9908e220f1"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listPublicIpAddresses",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCs",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "id": "16125a08-19e3-4072-adf9-b1c32af1211b"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVPCOfferings",
+      "params": {
+        "id": "49767c4b-61bd-4535-9957-af9908e220f1"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listVpnGateways",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b"
+      }
+    },
+    {
+      "method": "GET",
+      "command": "listPublicIpAddresses",
+      "params": {
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b"
+      }
+    },
+    {
+      "method": "POST",
+      "command": "createVpnGateway",
+      "params": {
+        "vpcid": "16125a08-19e3-4072-adf9-b1c32af1211b",
+        "ipaddressid": "956b6cb3-4bf8-41e4-b6df-12911f30e625",
+        "account": "qa-s2s1722-31-user",
+        "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+        "customjobid": "7a832d57-885f-4124-b7bd-9060f1909e39"
+      }
+    }
+  ]
+}

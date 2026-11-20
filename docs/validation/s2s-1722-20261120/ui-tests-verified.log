@@ -1,0 +1,738 @@
+
+> cloudstack-ui@4.22.0 test:unit
+> vue-cli-service test:unit --coverage=false --runInBand --runTestsByPath tests/unit/views/network/S2sGatewayCreate.spec.js tests/unit/views/network/S2sGateway.spec.js tests/unit/views/network/VpcVpnCreate.spec.js tests/unit/utils/s2sGatewaySearch.spec.js tests/unit/components/S2sGatewaySearch.spec.js tests/unit/views/AutogenS2sGatewaySearch.spec.js tests/unit/components/view/ResourceView.spec.js
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS tests/unit/views/network/S2sGateway.spec.js (13.325s)
+  ● Console
+
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sGatewayValue resource= {} field="vpcid" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sGatewayValue resource= {} field="vpcname" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sGatewayValue resource= {} field="account" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sGatewayValue resource= {} field="domain" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sGatewayValue resource= {} field="project" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed setting prop "prefix" on <a-input-search-stub>: value undefined is invalid. TypeError: Cannot set property prefix of [object Element] which has only a getter
+          at patchDOMProp (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:280:9)
+          at hostPatchProp (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:412:9)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5082:25)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at mountChildren (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5163:13)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5073:17)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at mountChildren (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5163:13)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5073:17)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at render (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6136:13)
+          at mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4377:25)
+          at Object.mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:1554:23)
+          at mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8236:18)
+          at shallowMount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8252:12)
+          at openTab (/home/ablecloud/work/dhslove/cloud-s2s-1722/ui/tests/unit/views/network/S2sGateway.spec.js:126:13)
+          at Object.<anonymous> (/home/ablecloud/work/dhslove/cloud-s2s-1722/ui/tests/unit/views/network/S2sGateway.spec.js:128:112)
+          at Object.asyncJestTest (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+          at /home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+          at new Promise (<anonymous>)
+          at mapper (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+          at /home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+        at <AInputSearch value="" onUpdate:value=fn aria-label="label.search"  ... >
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed setting prop "prefix" on <a-input-search-stub>: value undefined is invalid. TypeError: Cannot set property prefix of [object Element] which has only a getter
+          at patchDOMProp (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:280:9)
+          at hostPatchProp (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:412:9)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5082:25)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at mountChildren (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5163:13)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5073:17)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at mountChildren (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5163:13)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5073:17)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at render (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6136:13)
+          at mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4377:25)
+          at Object.mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:1554:23)
+          at mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8236:18)
+          at shallowMount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8252:12)
+          at openTab (/home/ablecloud/work/dhslove/cloud-s2s-1722/ui/tests/unit/views/network/S2sGateway.spec.js:126:13)
+          at Object.<anonymous> (/home/ablecloud/work/dhslove/cloud-s2s-1722/ui/tests/unit/views/network/S2sGateway.spec.js:129:121)
+          at Object.asyncJestTest (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+          at /home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+          at new Promise (<anonymous>)
+          at mapper (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+          at /home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+        at <AInputSearch value="" onUpdate:value=fn aria-label="label.search"  ... >
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed setting prop "prefix" on <a-input-search-stub>: value undefined is invalid. TypeError: Cannot set property prefix of [object Element] which has only a getter
+          at patchDOMProp (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:280:9)
+          at hostPatchProp (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:412:9)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5082:25)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at mountChildren (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5163:13)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5073:17)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at mountChildren (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5163:13)
+          at mountElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5073:17)
+          at processElement (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5055:13)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4975:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at ReactiveEffect.fn (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5515:21)
+          at ReactiveEffect.run (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/reactivity/dist/reactivity.cjs.js:189:25)
+          at update (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5622:56)
+          at setupRenderEffect (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5636:9)
+          at mountComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5418:9)
+          at processComponent (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:5376:17)
+          at patch (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4978:21)
+          at render (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:6136:13)
+          at mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:4377:25)
+          at Object.mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-dom/dist/runtime-dom.cjs.js:1554:23)
+          at mount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8236:18)
+          at shallowMount (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8252:12)
+          at openTab (/home/ablecloud/work/dhslove/cloud-s2s-1722/ui/tests/unit/views/network/S2sGateway.spec.js:126:13)
+          at Object.<anonymous> (/home/ablecloud/work/dhslove/cloud-s2s-1722/ui/tests/unit/views/network/S2sGateway.spec.js:160:23)
+          at Object.asyncJestTest (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+          at /home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+          at new Promise (<anonymous>)
+          at mapper (/home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+          at /home/ablecloud/work/issue-1681-vnf-presentation/ui/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+        at <AInputSearch value="" onUpdate:value=fn aria-label="label.search"  ... >
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sVpnConnectionsTab resource= {
+        id: '00000000-0000-4000-8000-000000000002',
+        vpcid: 'vpc',
+        vpcname: 'Target VPC',
+        publicip: '192.0.2.1',
+        account: 'owner',
+        domainid: 'domain',
+        domain: 'ROOT',
+        fordisplay: true
+      } tab="vpn.connections" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sGatewayValue resource= { fordisplay: true } field="fordisplay" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Failed to resolve component: router-link
+      If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement.
+        at <S2sGatewayValue resource= { fordisplay: true } field="fordisplay" ref="VTU_COMPONENT" >
+        at <VTUROOT>
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+PASS tests/unit/views/network/VpcVpnCreate.spec.js (5.423s)
+  ● Console
+
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+PASS tests/unit/views/network/S2sGatewayCreate.spec.js
+PASS tests/unit/components/view/ResourceView.spec.js
+  ● Console
+
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "GroupOutlined" has already been registered in target app.
+    console.warn ../../../issue-1681-vnf-presentation/ui/node_modules/@vue/runtime-core/dist/runtime-core.cjs.js:40
+      [Vue warn]: Component "LaptopOutlined" has already been registered in target app.
+
+PASS tests/unit/utils/s2sGatewaySearch.spec.js
+PASS tests/unit/views/AutogenS2sGatewaySearch.spec.js
+PASS tests/unit/components/S2sGatewaySearch.spec.js
+
+Test Suites: 7 passed, 7 total
+Tests:       169 passed, 169 total
+Snapshots:   0 total
+Time:        31.673s, estimated 62s
+Ran all test suites within paths "tests/unit/views/network/S2sGatewayCreate.spec.js", "tests/unit/views/network/S2sGateway.spec.js", "tests/unit/views/network/VpcVpnCreate.spec.js", "tests/unit/utils/s2sGatewaySearch.spec.js", "tests/unit/components/S2sGatewaySearch.spec.js", "tests/unit/views/AutogenS2sGatewaySearch.spec.js", "tests/unit/components/view/ResourceView.spec.js".

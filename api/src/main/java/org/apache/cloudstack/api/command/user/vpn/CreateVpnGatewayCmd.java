@@ -45,7 +45,7 @@ public class CreateVpnGatewayCmd extends BaseAsyncCreateCmd {
                type = CommandType.UUID,
                entityType = VpcResponse.class,
                required = true,
-               description = "Public IP address id of the VPN gateway")
+               description = "the ID of the VPC for which the site-to-site VPN local gateway is created")
     private Long vpcId;
 
     @Parameter(name = ApiConstants.IP_ADDRESS_ID,

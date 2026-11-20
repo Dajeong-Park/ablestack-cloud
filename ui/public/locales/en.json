@@ -12221,5 +12221,20 @@
   "message.s2s.gateway.permission": "VPN access is unavailable in this ownership context.",
   "message.s2s.gateway.create": "Select the VPC for the VPN gateway.",
   "message.s2s.gateway.delete": "Delete the selected VPN gateway. Existing connections may prevent deletion; site-to-site VPN traffic is affected.",
-  "label.vpn.connections": "VPN connections"
+  "label.vpn.connections": "VPN connections",
+  "message.s2s.create.vpc.help": "Choose a VPC without a VPN gateway. Name, ID, owner and zone identify each candidate.",
+  "message.s2s.create.inactive": "The VPC is not enabled.",
+  "message.s2s.create.provider.unknown": "The VPC offering or VPN provider could not be verified. Creation is blocked.",
+  "message.s2s.create.provider.unsupported": "This provider combination is not supported by this form.",
+  "message.s2s.create.exists": "This VPC already has a VPN gateway.",
+  "message.s2s.create.context": "The VPC, IP or owner changed. Refresh and review the selection.",
+  "message.s2s.create.ip.missing": "No allocated Source NAT IP was found. Refresh after checking the VPC.",
+  "message.s2s.create.ip.ambiguous": "The required Source NAT or router IP cannot be uniquely determined. Creation is blocked.",
+  "message.s2s.create.candidates.unavailable": "No eligible VPC is available. Review the reasons in the VPC list or refresh.",
+  "message.s2s.create.ip.sourcenat": "This VPC uses VpcVirtualRouter with Source NAT. Its Source NAT IP is required and cannot be changed here.",
+  "message.s2s.create.ip.router": "This VPC uses VPN on VpcVirtualRouter without Source NAT. An existing router IP is required; otherwise use automatic allocation or an eligible unused VPC IP.",
+  "label.s2s.create.ip.auto": "Automatic allocation by the server",
+  "message.s2s.create.ip.auto": "A new public IP may be allocated to the VPC. Capacity and quota are checked by the server.",
+  "message.s2s.create.ip.changed": "The selected IP is no longer eligible. Refresh and select it again.",
+  "message.s2s.gateway.lookup.limit": "The lookup limit was reached. Narrow the account or project scope and refresh."
 }

@@ -31,23 +31,39 @@ focus-guard
     <p>{{ $t(mode === 'create' ? 'message.s2s.gateway.create' : 'message.s2s.gateway.delete') }}</p>
     <a-form ref="form" :model="draft" layout="vertical" @keydown.ctrl.enter.prevent="!$event.repeat && submit()" @finish="submit">
       <template v-if="mode === 'create'">
-        <a-form-item :label="$t('label.vpc')" name="vpcid" :rules="[{ required: true, message: $t('label.required') }]">
-          <a-select v-model:value="draft.vpcid" :aria-label="$t('label.vpc')" :loading="loading" :disabled="busy || !!jobId || !allowed" show-search option-filter-prop="label">
-            <a-select-option v-for="vpc in candidates" :key="vpc.id" :value="vpc.id" :label="vpc.name || vpc.id">{{ vpc.name || vpc.id }}</a-select-option>
+        <a-form-item :label="$t('label.vpc')" :extra="$t('message.s2s.create.vpc.help')" name="vpcid" :rules="[{ required: true, message: $t('label.required') }]">
+          <a-select v-model:value="draft.vpcid" :aria-label="$t('label.vpc')" :loading="loading" :disabled="busy || !!jobId || !allowed" :virtual="false" show-search option-filter-prop="label">
+            <a-select-option v-for="vpc in candidates" :key="vpc.id" :value="vpc.id" :label="gatewayCandidateLabel(vpc)" :disabled="!!vpc.reason">
+              <div class="s2s-vpc-option"><strong>{{ vpc.name || vpc.id }}</strong><small>{{ vpc.id }}</small><small>{{ vpc.project || vpc.projectid || vpc.account }} · {{ vpc.zonename || vpc.zoneid || '-' }}</small><small v-if="vpc.reason">{{ $t('message.s2s.create.' + vpc.reason) }}</small></div>
+            </a-select-option>
           </a-select>
         </a-form-item>
-        <a-button :loading="loading" :disabled="busy || !!jobId || !allowed" @click="load">{{ $t('label.refresh') }}</a-button>
+        <a-alert v-if="loaded && candidates.length && !candidates.some(vpc => !vpc.reason) && !loadError" type="info" show-icon :message="$t('message.s2s.create.candidates.unavailable')" />
+        <a-spin :spinning="selectionPending">
+          <a-alert v-if="selectionError && selectionError !== error" type="error" show-icon :message="selectionError" role="alert" />
+          <a-form-item v-if="selection" :label="$t('label.publicip')" :extra="$t('message.s2s.create.ip.' + selection.kind)" name="ipaddressid" :rules="[{ required: true, message: $t('label.required') }]">
+            <a-input v-if="selection.fixed" :value="selection.ips[0].ipaddress" :aria-label="$t('label.publicip')" readonly />
+            <a-select v-else v-model:value="draft.ipaddressid" :aria-label="$t('label.publicip')" :disabled="busy || !!jobId || !allowed" show-search option-filter-prop="label">
+              <a-select-option value="auto" :label="$t('label.s2s.create.ip.auto')">{{ $t('label.s2s.create.ip.auto') }}</a-select-option>
+              <a-select-option v-for="ip in selection.ips" :key="ip.id" :value="ip.id" :label="ip.ipaddress + ' · ' + ip.id">{{ ip.ipaddress }} · {{ ip.id }}</a-select-option>
+            </a-select>
+            <small v-if="draft.ipaddressid !== 'auto'" class="s2s-ip-id">{{ draft.ipaddressid }}</small>
+            <p v-if="draft.ipaddressid === 'auto'">{{ $t('message.s2s.create.ip.auto') }}</p>
+          </a-form-item>
+        </a-spin>
+        <a-button :loading="loading || selectionPending" :disabled="busy || !!jobId || !allowed" @click="load">{{ $t('label.refresh') }}</a-button>
         <a-alert v-if="loaded && !candidates.length && !error" type="info" show-icon :message="$t('label.no.data')" />
       </template>
       <dl v-if="selected" class="s2s-dialog-context">
         <template v-if="mode === 'delete'"><dt>{{ $t('label.vpn.gateway') }}</dt><dd>{{ gatewayName(resource) }}</dd><dt>{{ $t('label.id') }}</dt><dd>{{ resource.id }}</dd></template>
         <dt>{{ $t('label.vpc') }}</dt><dd>{{ selected.name || selected.vpcname || selected.vpcid || selected.id }}</dd>
+        <template v-if="mode === 'create'"><dt>{{ $t('label.id') }}</dt><dd>{{ selected.id }}</dd><dt>{{ $t('label.zone') }}</dt><dd>{{ selected.zonename || selected.zoneid || '-' }}</dd></template>
         <dt>{{ $t(selected.projectid ? 'label.project' : 'label.account') }}</dt><dd>{{ selected.project || selected.projectid || selected.account || '-' }}</dd>
         <dt>{{ $t('label.domain') }}</dt><dd>{{ selected.domain || selected.domainid || '-' }}</dd>
       </dl>
       <MoldDialogActions :busy="busy">
         <a-button :disabled="busy" @click="close">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" :danger="mode === 'delete'" :loading="busy" :disabled="!allowed || busy || (!jobId && (mode === 'create' && (!loaded || !!loadError)))" @click="submit">{{ $t(jobId ? 'label.network.lifecycle.recheck' : currentAction.label) }}</a-button>
+        <a-button type="primary" :danger="mode === 'delete'" :loading="busy" :disabled="!allowed || busy || (!jobId && (mode === 'create' && (!loaded || !!loadError || selectionPending || !selection || !!selectionError)))" @click="submit">{{ $t(jobId ? 'label.network.lifecycle.recheck' : currentAction.label) }}</a-button>
       </MoldDialogActions>
     </a-form>
   </MoldDialog>
@@ -60,13 +76,14 @@ import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { createJobTracker } from '@/utils/jobTracker'
 import { gatewayName, gatewayContext, gatewayOwner, gatewaySameOwner, gatewayApis, gatewayRows } from '@/utils/s2sGateway'
+import { gatewayCreateApis, gatewayCreateCandidates, gatewayCreateSelection, gatewayCandidateLabel } from '@/utils/s2sGatewayCreate'
 import { vpnJobMatches } from '@/utils/vpcVpn'
 export default {
   name: 'S2sGatewayDialog',
   components: { MoldDialog, MoldDialogActions },
   props: { resource: { type: Object, default: () => ({}) }, currentAction: { type: Object, required: true } },
   emits: ['refresh-data', 'close-action'],
-  data () { return { draft: { vpcid: '' }, candidates: [], loaded: false, loading: false, loadError: '', error: '', phase: 'idle', jobId: '', target: null, origin: '', entryKey: '', closed: false, disposed: false, tracker: null } },
+  data () { return { draft: { vpcid: '', ipaddressid: '' }, selection: null, selectionPending: false, selectionError: '', selectionVersion: 0, candidates: [], loaded: false, loading: false, loadError: '', error: '', phase: 'idle', jobId: '', target: null, origin: '', entryKey: '', closed: false, disposed: false, tracker: null } },
   computed: {
     mode () { return this.currentAction.api === 'deleteVpnGateway' ? 'delete' : 'create' },
     command () { return this.mode === 'delete' ? 'deleteVpnGateway' : 'createVpnGateway' },
@@ -75,10 +92,10 @@ export default {
     selected () { return this.mode === 'delete' ? this.resource : this.candidates.find(vpc => vpc.id === this.draft.vpcid) || (this.jobId ? this.target : null) },
     allowed () {
       const project = String(this.$store.getters.project?.id || '0')
-      return this.current() && !!this.$store.getters.userInfo?.id && !!this.$store.state?.user?.token && gatewayApis(this.mode).every(api => api in (this.$store.getters.apis || {})) && (!this.$store.getters.listAllProjects || project !== '0') && (this.mode === 'create' || this.resource.id && (project === '0' ? !this.resource.projectid : project === this.resource.projectid))
+      return this.current() && !!this.$store.getters.userInfo?.id && !!this.$store.state?.user?.token && [...gatewayApis(this.mode), ...(this.mode === 'create' ? gatewayCreateApis : [])].every(api => api in (this.$store.getters.apis || {})) && (!this.$store.getters.listAllProjects || project !== '0') && (this.mode === 'create' || this.resource.id && (project === '0' ? !this.resource.projectid : project === this.resource.projectid))
     }
   },
-  watch: { scope: { flush: 'sync', handler () { this.invalidate() } } },
+  watch: { scope: { flush: 'sync', handler () { this.invalidate() } }, 'draft.vpcid': { flush: 'sync', handler () { this.resetSelection(); if (!this.jobId && !this.loading && this.mode === 'create') this.loadSelection() } } },
   created () {
     this.origin = this.scope
     const user = this.$store.getters.userInfo || {}
@@ -100,7 +117,7 @@ export default {
         if (!vpnJobMatches(job, id, this.command) || !job.cmd || ![0, 1, 2].includes(job.jobstatus)) throw Error(this.$t('message.vpc.vpn.job.scope'))
         if (job.jobstatus === 1 && this.mode === 'create') {
           const row = job.jobresult?.vpngateway
-          if (!row?.id || row.vpcid !== this.target?.vpcid || !gatewaySameOwner(row, this.target)) throw Error(this.$t('message.vpc.vpn.job.scope'))
+          if (!row?.id || row.vpcid !== this.target?.vpcid || !gatewaySameOwner(row, this.target) || this.target.publicip && row.publicip !== this.target.publicip) throw Error(this.$t('message.vpc.vpn.job.scope'))
         }
         if (job.jobstatus === 1 && this.mode === 'delete' && job.jobresult?.success !== true && job.jobresult?.success !== 'true') throw Error(this.$t('message.vpc.vpn.job.scope'))
         return job
@@ -113,21 +130,37 @@ export default {
   beforeUnmount () { this.disposed = true; eventBus.off('project-switch-start', this.invalidate); this.tracker && this.tracker.clear() },
   methods: {
     gatewayName,
+    gatewayCandidateLabel,
     current () { return !this.closed && !this.disposed && this.origin === this.scope },
-    invalidate () { if (this.closed) return; this.closed = true; this.tracker && this.tracker.clear(); this.candidates = []; this.draft.vpcid = ''; this.$emit('close-action') },
+    invalidate () { if (this.closed) return; this.closed = true; this.tracker && this.tracker.clear(); this.candidates = []; this.resetSelection(); this.draft.vpcid = ''; this.$emit('close-action') },
     close () { if (!this.busy) { this.closed = true; this.$emit('close-action') } },
     message (error) { const body = Object.values(error?.response?.data || {}).find(value => value?.errortext); return [body?.errorcode, body?.errortext || (error?.message?.startsWith('message.') ? this.$t(error.message) : error?.message) || this.$t('message.request.failed')].filter(Boolean).join(': ') },
     async rows (command, field, params) { return gatewayRows(getAPI, command, field, params, () => this.current()) },
+    resetSelection () { this.selectionVersion++; this.selection = null; this.selectionError = ''; this.selectionPending = false; this.draft.ipaddressid = '' },
+    async readCreate (command, field, params, version) {
+      return gatewayRows(getAPI, command, field, params, () => this.current() && (version === undefined || version === this.selectionVersion))
+    },
+    async loadSelection () {
+      if (!this.current() || this.busy || this.jobId || !this.allowed || !this.draft.vpcid || this.loadError) return
+      const selected = this.selected
+      if (!selected || selected.reason) { if (selected) this.selectionError = this.$t('message.s2s.create.' + selected.reason); return }
+      const version = ++this.selectionVersion
+      this.selection = null; this.selectionError = ''; this.selectionPending = true; this.draft.ipaddressid = ''
+      try {
+        const state = await gatewayCreateSelection((...args) => this.readCreate(...args, version), selected, this.$store.getters.userInfo.roletype === 'Admin')
+        if (!this.current() || version !== this.selectionVersion) return
+        this.selection = state; this.draft.ipaddressid = state.defaultId
+      } catch (error) { if (this.current() && version === this.selectionVersion) this.selectionError = this.message(error) } finally { if (this.current() && version === this.selectionVersion) this.selectionPending = false }
+    },
     async load () {
       if (this.busy || !this.allowed || this.jobId) return
-      this.loading = true; this.error = ''; this.loadError = ''
+      this.resetSelection(); this.loading = true; this.error = ''; this.loadError = ''
       try {
-        const project = this.$store.getters.project?.id
-        const rows = await this.rows('listVPCs', 'vpc', project && String(project) !== '0' ? { projectid: project } : {})
+        const rows = await gatewayCreateCandidates((...args) => this.readCreate(...args), this.$store.getters)
         if (!this.current()) return
-        if (rows.some(row => project && String(project) !== '0' ? row.projectid !== project : !!row.projectid)) throw Error('message.s2s.gateway.context.changed')
         this.candidates = rows; this.loaded = true
       } catch (error) { if (this.current()) this.error = this.loadError = this.message(error) } finally { if (this.current()) this.loading = false }
+      if (this.current() && !this.loadError) await this.loadSelection()
     },
     persist () { sessionStorage.setItem(this.entryKey, JSON.stringify({ command: this.command, jobId: this.jobId, target: this.target })) },
     clearReceipt () { this.jobId = ''; try { sessionStorage.removeItem(this.entryKey) } catch (_) {} },
@@ -155,7 +188,7 @@ export default {
     async submit () {
       if (this.busy || !this.allowed) return
       if (this.jobId) return this.checkJob()
-      if (this.mode === 'create' && (!this.loaded || this.loadError)) return
+      if (this.mode === 'create' && (!this.loaded || this.loadError || this.selectionPending || !this.selection || this.selectionError)) return
       this.phase = 'validating'; this.error = ''
       try {
         if (this.mode === 'create') await this.$refs.form.validate()
@@ -163,11 +196,13 @@ export default {
         if (this.mode === 'create') {
           const selected = this.selected
           if (!selected) throw Error('message.s2s.gateway.context.changed')
-          const rows = await this.rows('listVPCs', 'vpc', { ...gatewayOwner(selected), id: selected.id })
+          const state = await gatewayCreateSelection((...args) => this.readCreate(...args), selected, this.$store.getters.userInfo.roletype === 'Admin')
           if (!this.current()) return
-          const vpc = rows.find(row => row.id === selected.id && gatewaySameOwner(row, selected))
-          if (!vpc || vpc.state !== 'Enabled') throw Error('message.s2s.gateway.context.changed')
-          this.target = { vpcid: vpc.id, ...gatewayOwner(vpc) }
+          const id = this.draft.ipaddressid
+          const ip = state.ips.find(ip => ip.id === id)
+          if (state.kind !== this.selection.kind || state.fixed && id !== state.defaultId || id !== 'auto' && !ip || id === 'auto' && state.fixed) throw Error('message.s2s.create.ip.changed')
+          this.selection = state
+          this.target = { vpcid: state.vpc.id, ...gatewayOwner(state.vpc), ...(ip ? { ipaddressid: ip.id, publicip: ip.ipaddress } : {}) }
         } else {
           const rows = await this.rows('listVpnGateways', 'vpngateway', { ...gatewayOwner(this.resource), vpcid: this.resource.vpcid, ...(this.$store.getters.userInfo.roletype === 'Admin' ? { fordisplay: this.resource.fordisplay !== false } : {}) })
           if (!this.current()) return
@@ -180,7 +215,7 @@ export default {
         this.phase = 'submitting'
         let json
         try {
-          json = await postAPI(this.command, { ...(this.mode === 'create' ? { vpcid: this.target.vpcid } : { id: this.target.id }), ...gatewayOwner(this.target), ignoreproject: true, customjobid: this.jobId }, { preserveOnFailure: true, timeout: 20000 })
+          json = await postAPI(this.command, { ...(this.mode === 'create' ? { vpcid: this.target.vpcid, ...(this.target.ipaddressid ? { ipaddressid: this.target.ipaddressid } : {}) } : { id: this.target.id }), ...gatewayOwner(this.target), ignoreproject: true, customjobid: this.jobId }, { preserveOnFailure: true, timeout: 20000 })
         } catch (error) {
           if (!this.current()) return
           if (Object.values(error?.response?.data || {}).some(value => value?.errorcode) || [400, 401, 403, 404].includes(error?.response?.status)) this.clearReceipt()
@@ -192,7 +227,7 @@ export default {
         if (receipt?.errorcode) { this.clearReceipt(); throw Error(String(receipt.errorcode) + ': ' + receipt.errortext) }
         if (!receipt?.jobid || !/^[\da-f-]{36}$/i.test(receipt.jobid)) throw Error('message.vpc.vpn.unknown')
         this.jobId = receipt.jobid; this.persist()
-      } catch (error) { if (this.current() && !error?.errorFields) this.error = this.message(error) } finally { if (this.current()) this.phase = this.jobId ? 'unknown' : 'failed' }
+      } catch (error) { if (this.current() && !error?.errorFields) { this.error = this.message(error); if (this.mode === 'create' && this.phase === 'validating') this.selectionError = this.error } } finally { if (this.current()) this.phase = this.jobId ? 'unknown' : 'failed' }
       if (this.current() && this.jobId) return this.checkJob()
     }
   }
@@ -200,6 +235,8 @@ export default {
 </script>
 <style scoped>
 .ant-alert { margin-bottom: 16px; }
+.s2s-ip-id { display: block; overflow-wrap: anywhere; margin-top: 4px; }
+.s2s-vpc-option { display: flex; flex-direction: column; white-space: normal; overflow-wrap: anywhere; }
 .s2s-dialog-context { margin: 16px 0 0; overflow-wrap: anywhere; }
 .s2s-dialog-context dt { font-weight: 600; margin-top: 8px; }
 .s2s-dialog-context dd { margin: 0; }
