@@ -117,20 +117,32 @@ class LibvirtAblestackNasBackupHelper {
         commands.add(scriptCommand);
         final int dataTimeoutSeconds = command.getTimeout();
         final long resourceTimeoutMillis = resource.getCmdsTimeout();
-        final long effectiveTimeoutMillis = dataTimeoutSeconds > 0 ? TimeUnit.SECONDS.toMillis(dataTimeoutSeconds) : resourceTimeoutMillis;
+        final long effectiveDataTimeoutSeconds = dataTimeoutSeconds > 0 ? dataTimeoutSeconds : TimeUnit.MILLISECONDS.toSeconds(resourceTimeoutMillis);
+        // QCOW2 uses one libvirt job for all disks; RBD exports each disk separately.
+        final int dataOperationCount = BackupExecutionMode.RBD.equals(executionMode) ? diskPaths.size() : 1;
+        final long workerTimeoutMillis = workerTimeoutMillis(effectiveDataTimeoutSeconds, dataOperationCount, command.getMountTimeout());
         LOGGER.info(
                 "Executing running VM NAS backup for vm=[{}], dataTimeoutSeconds=[{}], "
-                        + "resourceCmdsTimeoutMillis=[{}], effectiveTimeoutMillis=[{}]",
+                        + "resourceCmdsTimeoutMillis=[{}], workerTimeoutMillis=[{}]",
                 command.getVmName(),
                 dataTimeoutSeconds,
                 resourceTimeoutMillis,
-                effectiveTimeoutMillis
+                workerTimeoutMillis
         );
-        Pair<Integer, String> result = Script.executePipedCommands(commands, effectiveTimeoutMillis);
+        Pair<Integer, String> result = Script.executePipedCommands(commands, workerTimeoutMillis);
         if (result.first() != 0 && BackupExecutionMode.RUNNING.equals(executionMode)) {
             resumeVmIfPaused(command.getVmName());
         }
         return result;
+    }
+
+    /** Worker safety bound only; each data operation enforces its own execution timeout. */
+    static long workerTimeoutMillis(long dataTimeoutSeconds, int dataOperationCount, int mountTimeoutSeconds) {
+        final long count = Math.max(1, dataOperationCount);
+        final long controlAllowanceSeconds = 300;
+        final long workerTimeoutSeconds = count * Math.max(1, dataTimeoutSeconds)
+                + Math.max(controlAllowanceSeconds, mountTimeoutSeconds) + (count + 1) * controlAllowanceSeconds;
+        return TimeUnit.SECONDS.toMillis(workerTimeoutSeconds);
     }
 
     String[] buildDetachedBackupScriptCommand(AblestackNasTakeBackupCommand command) {
@@ -368,7 +380,7 @@ class LibvirtAblestackNasBackupHelper {
             Path helper = Path.of(resource.getAbleCvtBackupPath()).getParent().resolve("ablestack_shared_raw.py");
             var result = Script.executePipedCommands(List.<String[]>of(new String[] {"python3", helper.toString(),
                     "--action", "EXPORT_NAS", "--plan-file", payloadFile.toString()}),
-                    TimeUnit.SECONDS.toMillis(command.getTimeout() > 0 ? command.getTimeout() + 60L : 43260L));
+                    workerTimeoutMillis(command.getTimeout() > 0 ? command.getTimeout() : 43200, sources.size(), command.getMountTimeout()));
             if (result.first() != 0) throw new IOException("Offline RAW export failed: " + result.second());
             markBackupComplete(destination, command);
             return result;

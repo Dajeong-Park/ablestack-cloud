@@ -57,6 +57,7 @@ final class LibvirtAblestackNasSourceHelper {
         payload.put("rbd", plan.sourceIsRbd());
         payload.put("diskPaths", sources);
         payload.put("timeout", command.getTimeout() > 0 ? command.getTimeout() : 43200);
+        payload.put("mountTimeout", command.getMountTimeout());
         if (plan.sourceIsRbd()) {
             if (script == null) { throw new CloudRuntimeException("Protected RBD NAS backup requires its snapshot script"); }
             payload.put("script", script);
