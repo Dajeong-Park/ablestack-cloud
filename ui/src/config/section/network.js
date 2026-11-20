@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { vpnConnectionDisplaySupported } from '@/utils/s2sConnection'
 import { shallowRef, defineAsyncComponent } from 'vue'
 import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
 import { vmStoredUserDataAction, vmVbmcAction, vmUnmanageAction, vmCloneAction } from '@/config/section/vmCommonActions'
@@ -1139,6 +1140,8 @@ export default {
     },
     {
       name: 's2svpnconn',
+      filters: () => vpnConnectionDisplaySupported(store.getters) ? ['all', 'true', 'false'] : [],
+      filterLabels: { true: 'label.s2s.display.visible', false: 'label.s2s.display.hidden' },
       title: 'label.site.to.site.vpn.connections',
       docHelp: 'adminguide/networking_and_traffic.html#setting-up-a-site-to-site-vpn-connection',
       icon: 'sync-outlined',
@@ -1155,6 +1158,17 @@ export default {
           label: 'label.create.vpn.connection',
           docHelp: 'adminguide/networking_and_traffic.html#creating-a-vpn-connection',
           listView: true,
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))
+        },
+        {
+          api: 'updateVpnConnection',
+          icon: 'edit-outlined',
+          label: 'label.s2s.display.edit',
+          docHelp: 'adminguide/networking_and_traffic.html#setting-up-a-site-to-site-vpn-connection',
+          dataView: true,
+          show: (row, getters) => vpnConnectionDisplaySupported(getters) && vpnConnectionDisplaySupported(getters, 'updateVpnConnection') && typeof row.fordisplay === 'boolean',
           popup: true,
           selfManagedDialog: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDialog.vue')))

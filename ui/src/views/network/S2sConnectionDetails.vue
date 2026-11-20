@@ -40,7 +40,7 @@
 <script>
 import Status from '@/components/widgets/Status'
 import VpnPsk from '@/components/network/VpnPsk'
-import { vpnConnectionState, vpnPassive } from '@/utils/s2sConnection'
+import { vpnConnectionDisplayLabel, vpnConnectionDisplaySupported, vpnConnectionState, vpnPassive } from '@/utils/s2sConnection'
 
 const connectionFields = ['publicip', 'gateway', 'state', 'passive', 'cidrlist', 'dpd', 'splitconnections', 'forceencap', 'created']
 const cryptoFields = ['ikeversion', 'ikepolicy', 'ikelifetime', 'esppolicy', 'esplifetime', 'ipsecpsk']
@@ -56,8 +56,11 @@ export default {
     tab: { type: String, required: true }
   },
   computed: {
-    fields () { return this.tab === 's2s.connection.crypto' ? cryptoFields : connectionFields },
-    labels () { return { publicip: 'label.s2s.connection.local', gateway: 'label.s2s.connection.peer', passive: 'label.s2s.connection.passive' } },
+    fields () {
+      if (this.tab === 's2s.connection.crypto') return cryptoFields
+      return vpnConnectionDisplaySupported(this.$store.getters) ? [...connectionFields, 'fordisplay'] : connectionFields
+    },
+    labels () { return { publicip: 'label.s2s.connection.local', gateway: 'label.s2s.connection.peer', passive: 'label.s2s.connection.passive', fordisplay: 'label.s2s.display.current' } },
     cidrs () {
       return [...new Set(String(this.resource.cidrlist || '').split(',').map(cidr => cidr.trim()).filter(Boolean))]
     }
@@ -66,6 +69,7 @@ export default {
     vpnConnectionState,
     fieldValue (field) {
       const value = this.resource[field]
+      if (field === 'fordisplay') return this.$t(vpnConnectionDisplayLabel(value))
       if (value === null || value === undefined || value === '') return '—'
       if (field === 'passive') return this.$t(vpnPassive(value) ? 'message.s2s.connection.passive.help' : 'label.no')
       if (booleanFields.includes(field)) return this.$t(value === true || value === 'true' ? 'label.yes' : 'label.no')

@@ -12214,6 +12214,8 @@
   "label.s2s.connection.local": "로컬 공인 IP",
   "label.s2s.connection.peer": "원격 게이트웨이",
   "label.s2s.connection.crypto": "IKE / ESP",
+  "message.s2s.connection.display.scope": "사용자 목록의 표시 여부를 설정합니다. Root 관리자만 변경할 수 있습니다.",
+  "message.s2s.connection.display.changed": "연결의 표시 설정이 변경되었습니다. 상세 화면을 업데이트한 뒤 수정하세요.",
   "message.s2s.connection.detail.missing": "현재 조회 범위에서 VPN 연결을 찾을 수 없습니다.",
   "label.s2s.connection.passive": "수동 대기",
   "label.s2s.connection.state.waiting": "수동 대기",

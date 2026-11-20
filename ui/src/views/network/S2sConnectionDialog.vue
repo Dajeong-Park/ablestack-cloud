@@ -91,7 +91,7 @@
         <a-button :disabled="busy || !!jobId || !allowed" @click="load">{{ $t('label.refresh') }}</a-button>
       </template>
       <template v-else>
-        <p>{{ $t(currentAction.message) }}</p>
+        <p v-if="currentAction.message">{{ $t(currentAction.message) }}</p>
         <dl class="vpn-connection-target">
           <dt>{{ $t('label.s2s.connection.local') }}</dt>
           <dd>{{ resource.publicip || '—' }}</dd>
@@ -101,15 +101,32 @@
           <dd>{{ resource.project || resource.projectid || resource.account || '—' }}</dd>
           <dt>{{ $t('label.id') }}</dt>
           <dd>{{ resource.id }}</dd>
+          <template v-if="canEditDisplay">
+            <dt>{{ $t('label.s2s.display.current') }}</dt>
+            <dd>{{ $t(vpnConnectionDisplayLabel(resource.fordisplay)) }}</dd>
+          </template>
         </dl>
       </template>
+      <a-form-item v-if="canEditDisplay || canSetCreateDisplay" :label="$t('label.s2s.display.option')" name="fordisplay">
+        <a-switch
+          class="s2s-connection-display-option"
+          :checked="draft.fordisplay !== false"
+          :aria-label="$t('label.s2s.display.option')"
+          aria-describedby="s2s-connection-display-help"
+          :disabled="busy || !!jobId || !allowed"
+          @change="draft.fordisplay = $event" />
+        <template #extra>
+          <p id="s2s-connection-display-help" class="s2s-connection-peer-help">{{ $t('message.s2s.connection.display.scope') }}</p>
+          <p v-if="editingDisplay && !jobId && !displayChanged" class="s2s-connection-peer-help">{{ $t('message.s2s.display.unchanged') }}</p>
+        </template>
+      </a-form-item>
       <MoldDialogActions :busy="busy">
         <a-button :disabled="busy" @click="close">{{ $t('label.cancel') }}</a-button>
         <a-button
           type="primary"
           :danger="deleting && !jobId"
           :loading="busy"
-          :disabled="!allowed || busy || (creating && !jobId && !readyToCreate)"
+          :disabled="!allowed || busy || (!jobId && (creating && !readyToCreate || editingDisplay && !displayChanged))"
           @click="submit">
           {{ $t(jobId ? 'label.network.lifecycle.recheck' : 'label.ok') }}
         </a-button>
@@ -129,10 +146,10 @@ import { createJobTracker } from '@/utils/jobTracker'
 import { gatewayRows } from '@/utils/s2sGateway'
 import { s2sGatewayAuth, s2sGatewayProject } from '@/utils/s2sGatewaySearch'
 import { vpcVpnOwner, vpnJobMatches } from '@/utils/vpcVpn'
-import { vpnCandidate, vpnCandidateChanged, vpnCandidateConflict, vpnCandidateLabel, vpnCandidateOwner } from '@/utils/s2sConnection'
+import { vpnCandidate, vpnCandidateChanged, vpnCandidateConflict, vpnCandidateLabel, vpnCandidateOwner, vpnConnectionDisplayLabel, vpnConnectionDisplaySupported } from '@/utils/s2sConnection'
 
 const validId = value => typeof value === 'string' && /^[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}$/i.test(value)
-const connectionApis = ['createVpnConnection', 'resetVpnConnection', 'deleteVpnConnection']
+const connectionApis = ['createVpnConnection', 'updateVpnConnection', 'resetVpnConnection', 'deleteVpnConnection']
 const isRejectionCode = value => Number(value) >= 400 && Number(value) < 500 && Number(value) !== 408
 const knownRejection = error => isRejectionCode(error?.response?.status) ||
   Object.values(error?.response?.data || {}).some(body => isRejectionCode(body?.errorcode))
@@ -170,11 +187,16 @@ export default {
     command () { return this.currentAction.api },
     creating () { return this.command === 'createVpnConnection' },
     deleting () { return this.command === 'deleteVpnConnection' },
+    editingDisplay () { return this.command === 'updateVpnConnection' },
+    canReadAllDisplays () { return vpnConnectionDisplaySupported(this.$store.getters) },
+    canSetCreateDisplay () { return this.creating && this.canReadAllDisplays && vpnConnectionDisplaySupported(this.$store.getters, this.command) },
+    canEditDisplay () { return this.editingDisplay && this.canReadAllDisplays && vpnConnectionDisplaySupported(this.$store.getters, this.command) && typeof this.resource.fordisplay === 'boolean' },
+    displayChanged () { return typeof this.draft.fordisplay === 'boolean' && this.draft.fordisplay !== this.resource.fordisplay },
     required () { return [{ required: true, message: this.$t('label.required') }] },
     project () { return s2sGatewayProject(this.$store.getters) },
     scope () {
       return JSON.stringify([this.$route.fullPath, this.command, this.creating ? null : this.identity(this.resource),
-        s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token)])
+        this.editingDisplay ? this.resource.fordisplay : null, s2sGatewayAuth(this.$store.getters, this.$store.state?.user?.token)])
     },
     allowed () {
       const getters = this.$store.getters
@@ -182,6 +204,7 @@ export default {
       if (this.creating) apis.push('listVpnGateways', 'listVpnCustomerGateways')
       return this.current() && this.$route.meta?.name === 's2svpnconn' && connectionApis.includes(this.command) &&
         !!getters.userInfo?.id && !!this.$store.state?.user?.token && apis.every(api => api in (getters.apis || {})) &&
+        (!this.editingDisplay || this.canEditDisplay) &&
         (this.creating ? !this.$route.params?.id : validId(this.resource.id) &&
           this.resource.id === this.$route.params?.id && this.inProject(this.resource))
     },
@@ -236,6 +259,7 @@ export default {
     })
     eventBus.on('project-switch-start', this.projectChanged)
     if (!this.allowed) return
+    if (this.editingDisplay) this.draft.fordisplay = this.resource.fordisplay
     this.restoreReceipt()
     if (this.jobId) this.checkJob()
     else if (this.creating) this.load()
@@ -247,6 +271,7 @@ export default {
   },
   methods: {
     documentationUrl,
+    vpnConnectionDisplayLabel,
     current () { return !this.closed && !this.disposed && this.origin === this.scope },
     identity (row) {
       return [row.id, row.s2svpngatewayid, row.s2scustomergatewayid, row.projectid, row.account, row.domainid, row.publicip, row.gateway]
@@ -272,6 +297,10 @@ export default {
       return [body?.errorcode, body?.errortext || detail || this.$t('message.request.failed')].filter(Boolean).join(': ')
     },
     rows (command, field, params) { return gatewayRows(getAPI, command, field, params, () => this.current()) },
+    connectionRows (row) {
+      const visibility = this.canReadAllDisplays ? { displayall: true } : {}
+      return this.rows('listVpnConnections', 'vpnconnection', { ...vpcVpnOwner(row), id: row.id, ...visibility })
+    },
     receiptOption (id) { return id ? [{ value: id, label: id }] : [] },
     conflictText (conflict) {
       return conflict ? this.$t('message.s2s.connection.conflict.' + conflict.code, conflict) : ''
@@ -396,11 +425,18 @@ export default {
         }
         const conflict = vpnCandidateConflict(peer, snapshot.vpcCidr, snapshot.connections)
         if (conflict) throw Error(this.conflictText(conflict))
-        return { s2svpngatewayid, s2scustomergatewayid, passive }
+        const display = this.canSetCreateDisplay && typeof this.draft.fordisplay === 'boolean' ? { fordisplay: this.draft.fordisplay } : {}
+        return { s2svpngatewayid, s2scustomergatewayid, passive, ...display }
       }
-      const rows = await this.rows('listVpnConnections', 'vpnconnection', { ...vpcVpnOwner(this.resource), id: this.resource.id })
+      const rows = await this.connectionRows(this.resource)
       if (rows.length !== 1 || JSON.stringify(this.identity(rows[0])) !== JSON.stringify(this.identity(this.resource))) {
         throw Error('message.vpc.vpn.changed')
+      }
+      if (this.editingDisplay) {
+        if (rows[0].fordisplay !== this.resource.fordisplay || !this.displayChanged) {
+          throw Error('message.s2s.connection.display.changed')
+        }
+        return { id: this.resource.id, fordisplay: this.draft.fordisplay }
       }
       return { id: this.resource.id }
     },
@@ -413,9 +449,13 @@ export default {
         const saved = JSON.parse(sessionStorage.getItem(this.entryKey) || 'null')
         if (!validId(saved?.jobId)) return
         if (this.creating) {
-          const { s2svpngatewayid, s2scustomergatewayid, passive } = saved.draft || {}
+          const { s2svpngatewayid, s2scustomergatewayid, passive, fordisplay } = saved.draft || {}
           if (!validId(s2svpngatewayid) || !validId(s2scustomergatewayid) || typeof passive !== 'boolean') return
-          this.draft = { s2svpngatewayid, s2scustomergatewayid, passive }
+          if (fordisplay !== undefined && typeof fordisplay !== 'boolean') return
+          this.draft = { s2svpngatewayid, s2scustomergatewayid, passive, ...(typeof fordisplay === 'boolean' ? { fordisplay } : {}) }
+        } else if (this.editingDisplay) {
+          if (typeof saved.draft?.fordisplay !== 'boolean') return
+          this.draft.fordisplay = saved.draft.fordisplay
         }
         this.jobId = saved.jobId
         this.phase = 'unknown'
@@ -434,7 +474,7 @@ export default {
     async verifyCompletion (result) {
       if (this.deleting) {
         if (![true, 'true'].includes(result?.success)) throw Error('message.vpc.vpn.job.scope')
-        const rows = await this.rows('listVpnConnections', 'vpnconnection', { ...vpcVpnOwner(this.resource), id: this.resource.id })
+        const rows = await this.connectionRows(this.resource)
         if (rows.length) throw Error('message.vpc.vpn.changed')
         return
       }
@@ -443,8 +483,11 @@ export default {
       if (!validId(row?.id) || !this.inProject(row) ||
         row.s2svpngatewayid !== expected.s2svpngatewayid || row.s2scustomergatewayid !== expected.s2scustomergatewayid ||
         (!this.creating && (row.id !== expected.id || !vpnCandidateOwner(row, expected)))) throw Error('message.vpc.vpn.job.scope')
-      const rows = await this.rows('listVpnConnections', 'vpnconnection', { ...vpcVpnOwner(row), id: row.id })
-      if (rows.length !== 1 || JSON.stringify(this.identity(rows[0])) !== JSON.stringify(this.identity(row))) {
+      const expectedDisplay = this.canSetCreateDisplay || this.canEditDisplay ? this.draft.fordisplay : undefined
+      if (typeof expectedDisplay === 'boolean' && row.fordisplay !== expectedDisplay) throw Error('message.vpc.vpn.job.scope')
+      const rows = await this.connectionRows(row)
+      if (rows.length !== 1 || JSON.stringify(this.identity(rows[0])) !== JSON.stringify(this.identity(row)) ||
+        (typeof expectedDisplay === 'boolean' && rows[0].fordisplay !== expectedDisplay)) {
         throw Error('message.vpc.vpn.changed')
       }
     },
@@ -478,7 +521,7 @@ export default {
     async submit () {
       if (this.busy || !this.allowed) return
       if (this.jobId) return this.checkJob()
-      if (this.creating && !this.readyToCreate) return
+      if (this.creating && !this.readyToCreate || this.editingDisplay && !this.displayChanged) return
       this.phase = 'validating'
       this.error = ''
       try {

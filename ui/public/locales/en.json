@@ -12206,6 +12206,8 @@
   "label.s2s.connection.local": "Local Public IP",
   "label.s2s.connection.peer": "Remote Gateway",
   "label.s2s.connection.crypto": "IKE / ESP",
+  "message.s2s.connection.display.scope": "Controls visibility in user lists. Root administrators can change this setting.",
+  "message.s2s.connection.display.changed": "The connection display setting changed. Refresh the detail before editing.",
   "message.s2s.connection.detail.missing": "The VPN connection is unavailable in the current scope.",
   "label.s2s.connection.passive": "Passive mode",
   "label.s2s.connection.state.waiting": "Waiting for remote peer",

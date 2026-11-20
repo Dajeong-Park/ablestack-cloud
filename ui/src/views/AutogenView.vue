@@ -38,7 +38,7 @@
                   <template #icon><reload-outlined /></template>
                   {{ $t('label.refresh') }}
                 </a-button>
-                <label v-if="isTemplateList || isIsoList || (s2sGatewayListRoute($route) && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sGatewayListRoute($route) ? 's2s-gateway-display-filter' : isPublicIpUi ? 'public-ip-state-filter' : templateFilterId" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
+                <label v-if="isTemplateList || isIsoList || (s2sDisplayFilterId && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sDisplayFilterId || (isPublicIpUi ? 'public-ip-state-filter' : templateFilterId)" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
                 <a-tooltip placement="right">
                   <template #title>
                     {{ $t('label.filterby') }}
@@ -46,8 +46,8 @@
                   <a-select
                     v-if="!dataView && filters && filters.length > 0"
                     :placeholder="$t('label.filterby')"
-                    :aria-label="s2sGatewayListRoute($route) ? $t('label.s2s.display.filter') : undefined"
-                    :id="s2sGatewayListRoute($route) ? 's2s-gateway-display-filter' : isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined"
+                    :aria-label="s2sDisplayFilterId ? $t('label.s2s.display.filter') : undefined"
+                    :id="s2sDisplayFilterId || (isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined)"
                     :value="filterValue"
                     style="min-width: 100px; margin-left: 10px; margin-bottom: 5px"
                     size=small
@@ -1081,6 +1081,7 @@ import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
 import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
 import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
+import { vpnConnectionDisplaySupported } from '@/utils/s2sConnection'
 import { s2sGatewayListLocation, s2sGatewayProject, s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery, vpnConnectionApi, vpnConnectionListRoute, vpnConnectionRoute, readVpnConnectionQuery } from '@/utils/s2sGatewaySearch'
 import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
 import { publicIpRoute, publicIpProject, publicIpDefaultFilter, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
@@ -1694,8 +1695,12 @@ export default {
         return a - b
       }).map(String)
     },
+    s2sDisplayFilterId () {
+      if (s2sGatewayListRoute(this.$route)) return 's2s-gateway-display-filter'
+      return vpnConnectionListRoute(this.$route) && vpnConnectionDisplaySupported(this.$store.getters) ? 's2s-connection-display-filter' : undefined
+    },
     filterValue () {
-      if (s2sGatewayListRoute(this.$route)) return this.$route.query.fordisplay || 'all'
+      if (this.s2sDisplayFilterId) return this.$route.query.fordisplay || 'all'
       if (asnRoute(this.$route)) return this.$route.query.filter || 'all'
       if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || publicIpDefaultFilter(this.$store.getters)).toLowerCase()
       if (vnfRoute(this.$route)) return String(this.$route.query.state || 'all').toLowerCase()
@@ -2656,6 +2661,7 @@ export default {
         // A plain detail bookmark keeps the API's ACL-checked UUID lookup.
         // The account-only list still sends excludeprojectresources.
         delete params.excludeprojectresources
+        if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
@@ -4162,7 +4168,7 @@ export default {
       return this.$t(key)
     },
     changeFilter (filter) {
-      if (s2sGatewayListRoute(this.$route)) { this.onSearch({ s2sGatewaySearch: { ...this.$route.query, fordisplay: filter } }); return }
+      if (this.s2sDisplayFilterId) { this.onSearch({ s2sGatewaySearch: { ...this.$route.query, fordisplay: filter } }); return }
       if (asnRoute(this.$route)) { const query = { ...this.$route.query, filter }; delete query.isallocated; this.onSearch(query); return }
       if (publicIpRoute(this.$route)) {
         const query = { ...this.$route.query, filter }; delete query.state

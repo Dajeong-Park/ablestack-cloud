@@ -23,7 +23,7 @@ beforeEach(() => {
   store.state = { user: { token: 'session' } }; store.getters = { defaultListViewPageSize: 20, userInfo: { id: 'admin', roletype: 'Admin', domainid: id }, project: {}, apis: { listVpnGateways: {} }, customColumns: {}, metrics: false, listAllProjects: false }
   c = { $store: store, $router: { replace: jest.fn(), push: jest.fn() }, $refs: { listview: { resetSelection: jest.fn() } }, $emit: jest.fn(), $t: key => key, $getApiParams: () => Object.fromEntries(['id', 'vpcid', 'keyword', 'domainid', 'account', 'projectid', 'page', 'pagesize', 'listall', 'fordisplay', 'displayall'].map(k => [k, {}])), $showIcon: () => false, $i18n: { locale: 'ko_KR' }, $message: { info: jest.fn(), error: jest.fn() }, $notifyError: jest.fn(), $nextTick: fn => fn() }
   route(); Object.assign(c, Autogen.data.call(c)); Object.entries(Autogen.methods).forEach(([key, fn]) => { c[key] = fn.bind(c) }); c.dataView = false; c.updateSelectedColumns = jest.fn()
-  for (const key of ['publicIpDetail', 'publicIpAuth', 'asnSearchAuth', 'isS2sSearchList', 's2sSearchApi', 's2sGatewaySearchAuth']) Object.defineProperty(c, key, { get: () => Autogen.computed[key].call(c) })
+  for (const key of ['publicIpDetail', 'publicIpAuth', 'asnSearchAuth', 'isS2sSearchList', 's2sSearchApi', 's2sGatewaySearchAuth', 's2sDisplayFilterId']) Object.defineProperty(c, key, { get: () => Autogen.computed[key].call(c) })
   getAPI.mockResolvedValue(reply(linked))
 })
 test('unsupported or invalid filter URL cannot broaden the request', async () => {

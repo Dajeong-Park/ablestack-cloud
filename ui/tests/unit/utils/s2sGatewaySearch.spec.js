@@ -115,3 +115,37 @@ test('VPN connection UUID bookmarks retain API-authorized access while explicit 
   await expect(readVpnConnectionQuery(read, { id: row.id, projectid: id(9) }, connectionGetters, () => true)).rejects.toThrow('scope')
   await expect(readVpnConnectionQuery(read, { id: id(9) }, connectionGetters, () => true)).rejects.toThrow('scope')
 })
+
+const displayFields = { ...connectionFields, displayall: {}, fordisplay: {} }
+const displayGetters = {
+  ...connectionGetters,
+  apis: { ...connectionGetters.apis, [vpnConnectionApi]: { params: Object.keys(displayFields).map(name => ({ name })) } }
+}
+
+test('connection visibility uses one server-side selector and preserves scope and explicit filters', () => {
+  const all = query({ keyword: 'peer', pagesize: '1', page: '2' }, 20, displayGetters, vpnConnectionApi)
+  expect(error(all, displayGetters, displayFields, vpnConnectionApi)).toBe('')
+  expect(params(all, vpnConnectionApi)).toEqual({
+    displayall: true, keyword: 'peer', page: '2', pagesize: '1', listall: true, ignoreproject: true
+  })
+  const hidden = search(all, { s2sGatewaySearch: { ...all, fordisplay: 'false' } }, 1, displayGetters, vpnConnectionApi)
+  expect(params(hidden, vpnConnectionApi)).toMatchObject({ fordisplay: 'false', keyword: 'peer', page: '1' })
+  expect(params(hidden, vpnConnectionApi)).not.toHaveProperty('displayall')
+  expect(search(hidden, { s2sGatewaySearch: {} }, 1, displayGetters, vpnConnectionApi)).toMatchObject({ fordisplay: 'false', page: '1' })
+  const detail = vpnConnectionDetailLocation({ query: hidden }, { id: id(1) }, displayGetters)
+  expect(s2sGatewayListLocation(detail, displayGetters, vpnConnectionApi).query).toEqual(hidden)
+})
+
+test('normal roles cannot initiate or receive hidden connection reads', async () => {
+  const restricted = { ...displayGetters, userInfo: { ...displayGetters.userInfo, roletype: 'DomainAdmin' } }
+  const normal = query({}, 20, restricted, vpnConnectionApi)
+  expect(normal).not.toHaveProperty('fordisplay')
+  expect(error({ ...normal, fordisplay: 'false' }, restricted, displayFields, vpnConnectionApi)).toBe('permission')
+  const api = jest.fn().mockResolvedValue({ listvpnconnectionsresponse: { count: 1, vpnconnection: [{ id: id(1), fordisplay: false }] } })
+  await expect(readVpnConnectionQuery(api, { displayall: true }, restricted, () => true)).rejects.toThrow('permission')
+  expect(api).not.toHaveBeenCalled()
+  await expect(readVpnConnectionQuery(api, {}, restricted, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(api, { fordisplay: 'true' }, displayGetters, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(api, { fordisplay: 'false' }, displayGetters, () => true)).resolves.toMatchObject({ listvpnconnectionsresponse: { count: 1 } })
+  await expect(readVpnConnectionQuery(api, { displayall: true }, displayGetters, () => true)).resolves.toMatchObject({ listvpnconnectionsresponse: { count: 1 } })
+})

@@ -16,6 +16,19 @@
 // under the License.
 
 import { ipv4 } from '@/utils/guestIpRanges'
+import { gatewayDisplayAdmin } from '@/utils/s2sGatewayDisplay'
+
+export function vpnConnectionDisplaySupported (getters, command = 'listVpnConnections') {
+  const params = getters.apis?.[command]?.params || []
+  return gatewayDisplayAdmin(getters) && params.some(param => param.name === 'fordisplay') &&
+    (command !== 'listVpnConnections' || params.some(param => param.name === 'displayall'))
+}
+
+export function vpnConnectionDisplayLabel (value) {
+  if (value === true) return 'label.s2s.display.visible'
+  if (value === false) return 'label.s2s.display.hidden'
+  return 'label.unknown'
+}
 
 export const vpnPassive = value => value === true || value === 'true'
 

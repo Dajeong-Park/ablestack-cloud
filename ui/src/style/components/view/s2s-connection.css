@@ -27,6 +27,11 @@
   overflow-wrap: anywhere;
 }
 
+.s2s-connection-page .s2s-connection-hidden {
+  display: block;
+  color: var(--ui-text-secondary);
+}
+
 .s2s-connection-page .ant-badge-status-default { background-color: var(--ui-text-muted); }
 .s2s-connection-page .ant-badge-status-success { background-color: var(--ui-success-icon); }
 .s2s-connection-page .ant-badge-status-warning { background-color: var(--ui-warning-text); }

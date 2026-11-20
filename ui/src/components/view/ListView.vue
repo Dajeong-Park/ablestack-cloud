@@ -462,6 +462,9 @@
           v-else
           :to="$route.meta?.name === 's2svpn' ? s2sGatewayDetailLocation($route, record, $store.getters) : { path: $route.path + '/' + record.id }"
         >{{ text }}</router-link>
+        <span v-if="$route.meta?.name === 's2svpnconn' && record.fordisplay === false && vpnConnectionDisplaySupported($store.getters)" class="s2s-connection-hidden">
+          {{ $t('label.s2s.display.hidden') }}
+        </span>
       </template>
       <template v-if="column.key === 'traffictype'">
         {{ text }}
@@ -1290,7 +1293,7 @@ import { getAPI, postAPI } from '@/api'
 import BackupProgress from '@/components/view/BackupProgress'
 import OsLogo from '@/components/widgets/OsLogo'
 import Status from '@/components/widgets/Status'
-import { vpnConnectionState } from '@/utils/s2sConnection'
+import { vpnConnectionDisplaySupported, vpnConnectionState } from '@/utils/s2sConnection'
 import TemplateAvailability from '@/components/widgets/TemplateAvailability'
 import KubernetesIsoListCell from '@/components/widgets/KubernetesIsoListCell'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
@@ -1596,6 +1599,7 @@ export default {
   methods: {
     vpnConnectionListRoute,
     vpnConnectionState,
+    vpnConnectionDisplaySupported,
     s2sGatewayDetailLocation,
     vpnConnectionDetailLocation,
     vnfDetailLocation,

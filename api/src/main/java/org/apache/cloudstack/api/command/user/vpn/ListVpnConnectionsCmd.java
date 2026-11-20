@@ -29,6 +29,7 @@ import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.Site2SiteVpnConnectionResponse;
 import org.apache.cloudstack.api.response.VpcResponse;
 
+import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.network.Site2SiteVpnConnection;
 import com.cloud.utils.Pair;
 
@@ -48,6 +49,10 @@ public class ListVpnConnectionsCmd extends BaseListProjectAndAccountResourcesCmd
 
     @Parameter(name = ApiConstants.FOR_DISPLAY, type = CommandType.BOOLEAN, description = "List resources by display flag; only ROOT admin is eligible to pass this parameter", since = "4.4", authorized = {RoleType.Admin})
     private Boolean display;
+
+    @Parameter(name = "displayall", type = CommandType.BOOLEAN,
+            description = "Include both display flag values. Mutually exclusive with fordisplay; ROOT admin only.", authorized = {RoleType.Admin})
+    private Boolean displayAll;
 
     @Parameter(name = "excludeprojectresources", type = CommandType.BOOLEAN,
             description = "Exclude project connections even when filtering by ID. Use without projectid.")
@@ -71,6 +76,12 @@ public class ListVpnConnectionsCmd extends BaseListProjectAndAccountResourcesCmd
 
     @Override
     public Boolean getDisplay() {
+        if (Boolean.TRUE.equals(displayAll)) {
+            if (display != null) {
+                throw new InvalidParameterValueException("displayall and fordisplay are mutually exclusive");
+            }
+            return null;
+        }
         if (display != null) {
             return display;
         }

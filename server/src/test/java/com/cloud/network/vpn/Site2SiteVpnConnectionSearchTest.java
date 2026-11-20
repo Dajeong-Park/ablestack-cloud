@@ -166,6 +166,23 @@ public class Site2SiteVpnConnectionSearchTest {
     }
 
     @Test
+    public void includesHiddenRowsWithinAclAndAppliesDisplayBeforeCountingAndPaging() {
+        ListVpnConnectionsCmd first = command("peer-a", null, 50L, 0, 1);
+        when(first.getDisplay()).thenReturn(null);
+        matches(first, 2, "five");
+        ListVpnConnectionsCmd second = command("peer-a", null, 50L, 1, 1);
+        when(second.getDisplay()).thenReturn(null);
+        matches(second, 2, "one");
+        ListVpnConnectionsCmd hidden = command("peer-a", null, 50L, 0, 20);
+        when(hidden.getDisplay()).thenReturn(false);
+        matches(hidden, 1, "five");
+        matches(command("peer-a", null, 50L, 0, 20), 1, "one");
+        ListVpnConnectionsCmd hiddenById = command(null, 5L, null, 0, 20);
+        when(hiddenById.getDisplay()).thenReturn(null);
+        matches(hiddenById, 1, "five");
+    }
+
+    @Test
     public void preservesLegacyIdLookupAndAllowsExplicitProjectExclusion() {
         ListVpnConnectionsCmd cmd = command(null, 1L, null, 0, 20);
         matches(cmd, 1, "one");
