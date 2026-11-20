@@ -3041,7 +3041,14 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
-      if (displayLocation) { this.$message.success(this.$t(result.fordisplay ? 'message.s2s.display.shown' : 'message.s2s.display.hidden')); this.$router.replace(displayLocation) }
+      if (displayLocation) {
+        this.$message.success(this.$t(result.fordisplay ? 'message.s2s.display.shown' : 'message.s2s.display.hidden'))
+        const query = this.$route.query || {}; const next = displayLocation.query || {}
+        const sameList = this.$route.path === displayLocation.path && Object.keys(query).length === Object.keys(next).length && Object.keys(next).every(key => String(query[key]) === String(next[key]))
+        if (sameList) {
+          this.$nextTick(() => { if (this.$route.fullPath === result.originPath && result.auth === this.s2sGatewaySearchAuth) this.fetchData({ irefresh: true }) })
+        } else this.$router.replace(displayLocation)
+      }
       if (deletedGatewayDetail) this.$router.replace(gatewayLocation)
       if (deletedNetworkDetail) this.$router.replace(networkLocation || { path: '/guestnetwork' })
       else if (networkDeletion && result?.started) this.$nextTick(() => this.fetchData({ irefresh: true }))

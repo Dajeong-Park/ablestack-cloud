@@ -207,3 +207,15 @@ test('success in the default All view never inserts unselected ID/VPC/owner chip
   expect(result.query).toEqual(query)
   expect(result.query.id).toBeUndefined(); expect(result.query.vpcid).toBeUndefined(); expect(result.query.account).toBeUndefined()
 })
+
+test.each(['same', 'path', 'identity'])('same-list create refresh is guarded against %s context changes', change => {
+  const getters = access('Admin'); const query = s2sGatewayQuery({}, 20, getters)
+  const vm = { $route: { path: '/s2svpn', fullPath: '/s2svpn?all', meta: { name: 's2svpn' }, query, params: {} }, $store: { getters }, s2sGatewaySearchAuth: 'auth', currentAction: { api: 'createVpnGateway' }, resource: {}, dataView: false, $router: { replace: jest.fn() }, $nextTick: jest.fn(), fetchData: jest.fn(), listScope: () => 'scope', $message: { success: jest.fn() }, $t: key => key }
+  const result = { displayChanged: true, id, fordisplay: false, target: { ...vpc, vpcid }, originPath: vm.$route.fullPath, auth: 'auth' }
+  Autogen.methods.closeAction.call(vm, result)
+  expect(vm.$router.replace).not.toHaveBeenCalled()
+  if (change === 'path') vm.$route.fullPath = '/vm'
+  if (change === 'identity') vm.s2sGatewaySearchAuth = 'other'
+  vm.$nextTick.mock.calls[0][0]()
+  expect(vm.fetchData).toHaveBeenCalledTimes(change === 'same' ? 1 : 0)
+})
