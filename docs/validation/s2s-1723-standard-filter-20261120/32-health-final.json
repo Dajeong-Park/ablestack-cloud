@@ -1,0 +1,21 @@
+{
+  "jarSha256": "f60d7c6798fe92f321a4ceb1fa96fc841ce741ca4a897c5c70a32be7177d25f2",
+  "indexSha256": "0050406a212bf60643c1771511cda8c5b7d6048df24a78370ffb032e31a7d30b",
+  "configSha256": "56e421a72d76daa8dcd007eb0e8669ee2951f3940e02b00e4123c0cf9c2a03ff",
+  "webInf": true,
+  "http": "200",
+  "pid": "3301781",
+  "service": "active",
+  "classSha256": {
+    "org/apache/cloudstack/api/command/user/vpn/ListVpnGatewaysCmd.class": "ccb742259e1df91c32ce75725b0e4824a8d23eb6de7a71c9ddb0c57eae4626b3",
+    "org/apache/cloudstack/api/command/user/vpn/UpdateVpnGatewayCmd.class": "44fab23a3bd1da902f4d99ee99f754f1caca876f02f773c0414b79040b3238ed",
+    "org/apache/cloudstack/api/command/user/vpn/CreateVpnGatewayCmd.class": "d55596c5577806457b1b93c096c150495b2be58fae76215e279753abb01d73d6"
+  },
+  "journalScope": "mold since 2026-11-20 05:00:00 UTC",
+  "classLoadErrors": {
+    "VerifyError": 0,
+    "NoSuchMethodError": 0,
+    "NoSuchFieldError": 0,
+    "ClassFormatError": 0
+  }
+}

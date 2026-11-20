@@ -1,0 +1,31 @@
+{
+  "queryasyncjobresultresponse": {
+    "accountid": "a75c97c6-b253-11f1-a895-0024814c313f",
+    "account": "admin",
+    "domainid": "7ef6b29a-b253-11f1-a895-0024814c313f",
+    "domainpath": "ROOT",
+    "userid": "a75cdd55-b253-11f1-a895-0024814c313f",
+    "cmd": "org.apache.cloudstack.api.command.user.vpn.CreateVpnGatewayCmd",
+    "jobprocstatus": 0,
+    "jobresultcode": 0,
+    "jobresulttype": "object",
+    "jobresult": {
+      "vpngateway": {
+        "id": "4a4080a9-f1f6-4c3c-bfad-bc217b2a0031",
+        "publicip": "10.10.31.110",
+        "vpcid": "1224889e-7d75-46d5-9468-d17848fce7e1",
+        "vpcname": "qa-s2s1723-standard-31-domainadmin",
+        "account": "qa-s2s1723-standard-31-domainadmin",
+        "domainid": "dcdf8e51-0748-4331-bc8a-05c5188eed0f",
+        "domain": "qa-s2s1723-standard-31-domain",
+        "domainpath": "ROOT/qa-s2s1723-standard-31-domain",
+        "fordisplay": true
+      }
+    },
+    "jobinstancetype": "None",
+    "created": "2026-11-20T14:12:37+0900",
+    "completed": "2026-11-20T14:12:37+0900",
+    "jobid": "19917ff2-7cf0-4e94-8b71-403d08a006b0",
+    "jobstatus": 1
+  }
+}

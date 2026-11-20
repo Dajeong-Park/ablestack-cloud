@@ -1,0 +1,37 @@
+{
+  "requests": [
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "fordisplay": "true",
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true"
+      },
+      "sequence": 862,
+      "http": 200,
+      "response": {
+        "count": 2,
+        "rows": [
+          {
+            "id": "db5b688c-286b-42de-8f7e-456c16eed8d2",
+            "vpcid": "34a9af2d-5b96-4223-8696-11778f641879",
+            "publicip": "10.10.32.164",
+            "account": "qa-s2s1723-standard-32-domainadmin",
+            "domainid": "eadcd76f-d658-4981-9230-f0d4248e9bb3",
+            "fordisplay": true
+          },
+          {
+            "id": "6f25602f-e602-4eca-ba41-14407d257a58",
+            "vpcid": "8200123d-9f6e-47a0-9e9c-893daedbd549",
+            "publicip": "10.10.32.165",
+            "account": "qa-s2s1723-standard-32-user",
+            "domainid": "eadcd76f-d658-4981-9230-f0d4248e9bb3",
+            "fordisplay": true
+          }
+        ]
+      }
+    }
+  ]
+}
