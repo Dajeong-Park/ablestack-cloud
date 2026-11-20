@@ -25,6 +25,27 @@ import java.util.Map;
 public class ApiSensitiveParamUtilsTest {
 
     @Test
+    public void nestedHsmPinIsSensitiveWithoutMatchingUnrelatedPingParameters() {
+        for (String key : new String[]{"pin", "PIN", "details[0].pin", "details[0][pin]", "hsm_pin"}) {
+            Assert.assertTrue(key, ApiSensitiveParamUtils.isSensitiveParameter(key));
+        }
+        for (String key : new String[]{"ping", "pinning", "spinning", "slot_list_index", "library"}) {
+            Assert.assertFalse(key, ApiSensitiveParamUtils.isSensitiveParameter(key));
+        }
+    }
+
+    @Test
+    public void nestedPinRedactionDoesNotMutateTheSubmittedValue() {
+        Map<String, String> params = new LinkedHashMap<>();
+        params.put("details[0].pin", "example");
+        params.put("details[0].slot", "1");
+        Map<String, String> redacted = ApiSensitiveParamUtils.redactValues(params);
+        Assert.assertEquals("******", redacted.get("details[0].pin"));
+        Assert.assertEquals("1", redacted.get("details[0].slot"));
+        Assert.assertEquals("example", params.get("details[0].pin"));
+    }
+
+    @Test
     public void redactValuesMasksSensitiveParametersOnly() {
         Map<String, String> params = new LinkedHashMap<>();
         params.put("host", "https://10.10.132.100:9440");

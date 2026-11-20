@@ -1,0 +1,759 @@
+[
+  {
+    "command": "listCapabilities",
+    "method": "GET",
+    "params": {},
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "providers": [
+        {
+          "protocol": "database",
+          "displayname": "Database"
+        },
+        {
+          "protocol": "pkcs11",
+          "displayname": "PKCS#11"
+        }
+      ]
+    }
+  },
+  {
+    "command": "listZones",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "500"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1
+    }
+  },
+  {
+    "command": "listDomains",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "500"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1
+    }
+  },
+  {
+    "command": "listProjects",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "500"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1
+    }
+  },
+  {
+    "command": "listAccounts",
+    "method": "GET",
+    "params": {
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "page": "1",
+      "pagesize": "500"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 3
+    }
+  },
+  {
+    "command": "listCapabilities",
+    "method": "GET",
+    "params": {},
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "providers": [
+        {
+          "protocol": "database",
+          "displayname": "Database"
+        },
+        {
+          "protocol": "pkcs11",
+          "displayname": "PKCS#11"
+        }
+      ]
+    }
+  },
+  {
+    "command": "createHSMProfile",
+    "method": "POST",
+    "params": {
+      "name": "qa-km1730-account-db",
+      "protocol": "database",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+      "account": "admin",
+      "ispublic": "false"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "profile": {
+        "id": "5102b008-4e88-44c2-b95b-d56127d4c794",
+        "name": "qa-km1730-account-db",
+        "protocol": "database",
+        "ispublic": false,
+        "account": "admin",
+        "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+        "detailKeys": [],
+        "pinMasked": false
+      }
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 2,
+      "profiles": [
+        {
+          "id": "5102b008-4e88-44c2-b95b-d56127d4c794",
+          "name": "qa-km1730-account-db",
+          "protocol": "database",
+          "ispublic": false,
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "pinMasked": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 2,
+      "profiles": [
+        {
+          "id": "5102b008-4e88-44c2-b95b-d56127d4c794",
+          "name": "qa-km1730-account-db",
+          "protocol": "database",
+          "ispublic": false,
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "pinMasked": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 2,
+      "profiles": [
+        {
+          "id": "5102b008-4e88-44c2-b95b-d56127d4c794",
+          "name": "qa-km1730-account-db",
+          "protocol": "database",
+          "ispublic": false,
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "pinMasked": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "id": "5102b008-4e88-44c2-b95b-d56127d4c794",
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": [
+        {
+          "id": "5102b008-4e88-44c2-b95b-d56127d4c794",
+          "name": "qa-km1730-account-db",
+          "protocol": "database",
+          "ispublic": false,
+          "account": "admin",
+          "domainid": "47178e2f-bd56-11f1-b573-002481560363",
+          "pinMasked": false
+        }
+      ]
+    }
+  },
+  {
+    "command": "listAccounts",
+    "method": "GET",
+    "params": {
+      "name": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1
+    }
+  },
+  {
+    "command": "deleteHSMProfile",
+    "method": "POST",
+    "params": {
+      "id": "5102b008-4e88-44c2-b95b-d56127d4c794"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {}
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listAccounts",
+    "method": "GET",
+    "params": {
+      "name": "admin",
+      "domainid": "47178e2f-bd56-11f1-b573-002481560363"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  },
+  {
+    "command": "listHSMProfiles",
+    "method": "GET",
+    "params": {
+      "page": "1",
+      "pagesize": "20"
+    },
+    "detailKeys": [],
+    "pinSent": false,
+    "pinInUrl": false,
+    "httpStatus": 200,
+    "response": {
+      "count": 1,
+      "profiles": []
+    }
+  }
+]

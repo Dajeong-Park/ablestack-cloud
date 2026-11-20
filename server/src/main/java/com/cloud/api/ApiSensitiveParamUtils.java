@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 final class ApiSensitiveParamUtils {
 
@@ -44,8 +45,9 @@ final class ApiSensitiveParamUtils {
         if (StringUtils.isBlank(name)) {
             return false;
         }
-        String lowerName = name.toLowerCase();
-        return SENSITIVE_FIELDS.stream().anyMatch(lowerName::contains);
+        String lowerName = name.toLowerCase(Locale.ROOT);
+        return SENSITIVE_FIELDS.stream().anyMatch(lowerName::contains)
+                || Arrays.stream(lowerName.split("[.\\[\\]_-]+")).anyMatch("pin"::equals);
     }
 
     static String redactValue(String name, String value) {

@@ -1,0 +1,25 @@
+{
+  "base": "41fe8cb0dd0c05e95c4ef6d110dafc26b85a01e2",
+  "preimplementation_head": "b0d9518ac037f4180fb08cc91b9c4f648ce04f4c",
+  "branch": "dhslove/epic-1727-key-management",
+  "files": {
+    "api/src/main/java/org/apache/cloudstack/api/command/user/config/ListCapabilitiesCmd.java": "7b9e2a00218befa5c842a4e5f4c36c474aa47e2f805cfb9bf9296642daba5e89",
+    "api/src/main/java/org/apache/cloudstack/api/response/CapabilitiesResponse.java": "525a8deb242c715f10bfb1d6b7c51d9964f235f91187488b2cfdc12423881f3a",
+    "api/src/main/java/org/apache/cloudstack/api/response/KMSProviderResponse.java": "9b45301a85be390f088ece9c5c5698187ec1a86eaf2af910d080489b67926f6d",
+    "api/src/test/java/org/apache/cloudstack/api/command/user/config/CapabilitiesKMSProvidersTest.java": "9642133342fef8bd0342094d886996debe567f5b251522bf63c461a2bf3f4a2d",
+    "plugins/kms/pkcs11/src/main/java/org/apache/cloudstack/kms/provider/pkcs11/PKCS11HSMProvider.java": "10862894e5e7cd148ef35526f0ca877846f8e88bd680ad1ae6c20ee745c084b2",
+    "plugins/kms/pkcs11/src/test/java/org/apache/cloudstack/kms/provider/pkcs11/PKCS11HSMProviderTest.java": "09a61682fba55d38bcc49a80ffcf80817e9a239406ca0c81438ba13cdccd6785",
+    "server/src/main/java/com/cloud/api/ApiSensitiveParamUtils.java": "e310f6d9759be95d763f4b7cdce0b25c344ba557250092c32063d10c23ab7aa4",
+    "server/src/main/java/com/cloud/api/ApiServlet.java": "b224a0caa6f9c2ca4a8bfb934df691b667ae74b89fd4274d8a257a5431a2dbe8",
+    "server/src/test/java/com/cloud/api/ApiSensitiveParamUtilsTest.java": "044beb77300f6d532e7abeac20afcf3b5001c877d7908876c196042200961493",
+    "server/src/test/java/com/cloud/api/ApiServletTest.java": "402f963eb5d32212a66fe1f2b17ed46f20e611b0c90776ef161dfddd2b3f7ea7",
+    "ui/public/locales/en.json": "482c1bf487c1f549b3e5c064dfd7d3c3d564f52e1102c6ce4335621f05183b14",
+    "ui/public/locales/ko_KR.json": "8bd65f6c8eabae46b955b90a148f423858e9894d8053cf75d0e371d2e2dcdac6",
+    "ui/src/config/section/kms.js": "51c535b2c1cffc90b0a538291f327a596b0b04952d12c0945738b25f23c0abac",
+    "ui/src/utils/hsmProfileCreation.js": "73028ad397b13dc248a403d1c22dcf713db62fb6e3570b816c084f3350f45afc",
+    "ui/src/utils/request.js": "91829c4c5e09a8823fa6b02a7cda9632308afc1f10a38e2f712d694950b37d0c",
+    "ui/src/views/AutogenView.vue": "98d7784757da92ff61c49604b901312bacd7caee15b4bb6d0a09073f2af6a7dc",
+    "ui/src/views/infra/CreateHSMProfile.vue": "dfa241908d8ab318b9d1b9ec609556fa79577e460597799ac17e9c3b03c377e3",
+    "ui/tests/unit/views/infra/CreateHSMProfile.spec.js": "fa55b05488ca263e7b6c2fd9c4b0a302c8201422bfd106ecc0c82494d4518664"
+  }
+}

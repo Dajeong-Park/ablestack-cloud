@@ -33,6 +33,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -67,6 +68,37 @@ public class PKCS11HSMProviderTest {
     @Before
     public void setUp() {
         // Minimal setup
+    }
+
+    @Test
+    public void profileSelectorsAllowMetadataWithoutPinOrConnection() {
+        for (String selector : new String[]{"slot", "slot_list_index", "token_label"}) {
+            Map<String, String> config = new HashMap<>();
+            config.put("library", "/opt/test-only/nonexistent.so");
+            config.put(selector, "token_label".equals(selector) ? "test-token" : "0");
+            provider.validateProfileConfig(config);
+        }
+    }
+
+    @Test
+    public void profileConfigRejectsNegativeIndexAndNonPositiveSessions() {
+        Map<String, String> config = new HashMap<>();
+        config.put("library", "/opt/test-only/nonexistent.so");
+        config.put("slot_list_index", "-1");
+        org.junit.Assert.assertThrows(KMSException.class, () -> provider.validateProfileConfig(config));
+        config.put("slot_list_index", "0");
+        config.put("max_sessions", "0");
+        org.junit.Assert.assertThrows(KMSException.class, () -> provider.validateProfileConfig(config));
+        config.put("max_sessions", "2");
+        provider.validateProfileConfig(config);
+    }
+
+    @Test
+    public void profileConfigRequiresLibraryAndOneSelector() {
+        Map<String, String> config = new HashMap<>();
+        org.junit.Assert.assertThrows(KMSException.class, () -> provider.validateProfileConfig(config));
+        config.put("library", "/opt/test-only/nonexistent.so");
+        org.junit.Assert.assertThrows(KMSException.class, () -> provider.validateProfileConfig(config));
     }
 
     /**

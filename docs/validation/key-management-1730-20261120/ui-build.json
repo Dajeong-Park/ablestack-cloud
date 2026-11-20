@@ -1,0 +1,10 @@
+{
+  "kind": "non-release WSL focused production-mode build",
+  "mode": "production",
+  "minification": false,
+  "source_maps": false,
+  "static_files": 692,
+  "index_sha256": "844a21f65792d125caa5698bc92b6a13958b0760e90eea88cb90f2bd005b5c50",
+  "archive_sha256": "3435a1aa6170cbeb696180c6b61ba344b8b9d7e9969b4341f773690a652cdb7e",
+  "release_policy": "GitHub Actions remains mandatory for release builds"
+}

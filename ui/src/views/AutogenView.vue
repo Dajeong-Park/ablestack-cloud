@@ -3305,6 +3305,13 @@ export default {
         this.showAction = true
         return
       }
+      if (action.api === 'createHSMProfile') {
+        if (!('createHSMProfile' in (this.$store.getters.apis || {}))) return
+        this.currentAction = { ...action, invokedAsGroupAction: false }
+        this.resource = {}
+        this.showAction = true
+        return
+      }
       if (action.api === 'migrateVolumesToKMS') {
         const target = action.resource || this.resource
         if (!target?.id || !('migrateVolumesToKMS' in (this.$store.getters.apis || {}))) return

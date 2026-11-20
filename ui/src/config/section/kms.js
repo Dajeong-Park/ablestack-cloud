@@ -211,22 +211,15 @@ export default {
           icon: 'plus-outlined',
           docHelp: 'adminguide/kms.html#adding-an-hsm-profile',
           label: 'label.create.hsmprofile',
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/infra/CreateHSMProfile.vue'))),
           listView: true,
           popup: true,
           dataView: false,
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
           },
-          args: (record, store, group) => {
-            return ['Admin'].includes(store.userInfo.roletype)
-              ? ['name', 'zoneid', 'vendorname', 'domainid', 'account', 'projectid', 'details', 'ispublic']
-              : ['name', 'zoneid', 'vendorname', 'details']
-          },
-          mapping: {
-            details: {
-              optionalKeys: ['pin', 'library', 'slot', 'slot_list_index', 'token_label']
-            }
-          }
+          args: ['name', 'protocol', 'zoneid', 'vendorname', 'domainid', 'account', 'projectid', 'ispublic', 'details']
         },
         {
           api: 'updateHSMProfile',
