@@ -159,7 +159,7 @@ test('hidden detail cannot cross the global project or ignore missing display AP
   await expect(readGatewayDetail(getAPI, { params: { id }, query: { fordisplay: 'false' } }, access('Admin'), () => true, {})).rejects.toThrow('unsupported'); expect(getAPI).not.toHaveBeenCalled()
 })
 test('changed-display location narrows to the actual target owner/ID and clears stale keyword', () => {
-  const result = gatewayDisplayListLocation({}, access('Admin'), { query: { keyword: 'old', q: 'old', page: '3', projectid: '0' } }, false, id, { ...gateway })
+  const result = gatewayDisplayListLocation({}, access('Admin'), { query: { keyword: 'old', q: 'old', page: '3', projectid: '0', fordisplay: 'true' } }, false, id, { ...gateway })
   expect(result).toEqual({ path: '/s2svpn', query: { page: '1', projectid: '0', fordisplay: 'false', id, vpcid, account: 'owner', domainid: domain } })
 })
 test('refresh does not invalidate an update dialog before its completed navigation', () => {
@@ -180,7 +180,7 @@ test.each(['same', 'path', 'project', 'identity'])('completed display navigation
   if (change === 'project') getters.project = { id: project }
   if (change === 'identity') vm.s2sGatewaySearchAuth = 'other-auth'
   Autogen.methods.closeAction.call(vm, result)
-  if (change === 'same') expect(vm.$router.replace).toHaveBeenCalledWith(expect.objectContaining({ path: '/s2svpn', query: expect.objectContaining({ fordisplay: 'all', id }) }))
+  if (change === 'same') expect(vm.$router.replace).toHaveBeenCalledWith(expect.objectContaining({ path: '/s2svpn', query: expect.objectContaining({ fordisplay: 'all' }) }))
   else expect(vm.$router.replace).not.toHaveBeenCalled()
 })
 
@@ -199,4 +199,11 @@ test.each(['User', 'DomainAdmin'])('%s cannot acquire all through a direct UI UR
   const getters = access(role)
   expect(gatewayDisplayError({ fordisplay: 'all' }, getters, supported)).toBe('permission')
   expect(s2sGatewayParams(s2sGatewayQuery({}, 20, getters)).displayall).toBeUndefined()
+})
+
+test('success in the default All view never inserts unselected ID/VPC/owner chips', () => {
+  const query = { fordisplay: 'all', projectid: '0', page: '2', pagesize: '20' }
+  const result = gatewayDisplayListLocation({}, access('Admin'), { query }, false, id, gateway)
+  expect(result.query).toEqual(query)
+  expect(result.query.id).toBeUndefined(); expect(result.query.vpcid).toBeUndefined(); expect(result.query.account).toBeUndefined()
 })
