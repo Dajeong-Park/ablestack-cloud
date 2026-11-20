@@ -866,7 +866,7 @@
       <a-alert v-if="s2sGatewayRoute($route) && dataView && listRefreshError" type="error" show-icon :message="$t(s2sGatewaySearchFailure === 'permission' || s2sGatewaySearchFailure === 'scope' ? 'message.s2s.gateway.search.' + s2sGatewaySearchFailure : resource.id ? 'message.list.refresh.stale' : 'error.fetching.data')"><template #description><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="s2sGatewaySearchFailure && s2sGatewayListRoute($route)" class="s2s-gateway-search-error" type="error" show-icon :message="$t('message.s2s.gateway.search.' + s2sGatewaySearchFailure)"><template #description><a-button @click="onSearch({ s2sGatewaySearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="asnSearchFailure && $route.meta?.name === 'asnumbers'" class="asn-search-error" type="error" show-icon :message="$t('message.asn.search.' + asnSearchFailure)"><template #description><a-button @click="onSearch({ asnSearch: {} })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
-      <a-alert v-if="publicIpSearchFailure && $route.meta?.name === 'publicip' && !dataView" class="public-ip-search-error" type="error" show-icon :message="$t(publicIpSearchFailure)"><template #description><a-button @click="onSearch({ filter: 'allocated', state: 'Allocated', projectid: publicIpProject($store.getters) })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
+      <a-alert v-if="publicIpSearchFailure && $route.meta?.name === 'publicip' && !dataView" class="public-ip-search-error" type="error" show-icon :message="$t(publicIpSearchFailure)"><template #description><a-button @click="onSearch({ filter: publicIpDefaultFilter($store.getters), projectid: publicIpProject($store.getters) })">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <a-alert v-if="vnfSearchFailure && $route.meta?.name === 'vnfapp'" class="vnf-search-error" type="error" show-icon :message="$t(vnfSearchFailure)"><template #description><a-button @click="onSearch({})">{{ $t('label.reset') }}</a-button><a-button @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template></a-alert>
       <InstanceGroupQueryStatus
         v-if="$route.meta?.name === 'vmgroup'"
@@ -1073,7 +1073,7 @@ import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
 import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
 import { s2sGatewayListLocation, s2sGatewayProject, s2sGatewayRoute, s2sGatewayListRoute, s2sGatewayAuth, s2sGatewayQuery, s2sGatewayError, s2sGatewayParams, s2sGatewaySearchQuery, readS2sGatewayQuery } from '@/utils/s2sGatewaySearch'
 import { asnRoute, asnAuth, asnQuery, asnError, asnParams, asnSearchQuery, readAsnQuery } from '@/utils/asnSearch'
-import { publicIpRoute, publicIpProject, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
+import { publicIpRoute, publicIpProject, publicIpDefaultFilter, publicIpQuery, publicIpSearchQuery, publicIpSearchError, publicIpParams, readPublicIpPage } from '@/utils/publicIpSearch'
 import { vnfRoute, vnfAuth, vnfProject, vnfListQuery, vnfSearchQuery, vnfSearchError, vnfListParams, readVnfPage, vnfStates } from '@/utils/vnfSearch'
 
 let templateFilterSequence = 0
@@ -1669,7 +1669,7 @@ export default {
     filterValue () {
       if (s2sGatewayListRoute(this.$route)) return this.$route.query.fordisplay || 'all'
       if (asnRoute(this.$route)) return this.$route.query.filter || 'all'
-      if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || 'Allocated').toLowerCase()
+      if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || publicIpDefaultFilter(this.$store.getters)).toLowerCase()
       if (vnfRoute(this.$route)) return String(this.$route.query.state || 'all').toLowerCase()
       if (this.$route.meta?.defaultFilter) {
         const value = String(this.$route.query.filter || this.$route.query.state || this.$route.meta.defaultFilter).toLowerCase()
@@ -1683,7 +1683,7 @@ export default {
         return 'all'
       }
       if (['publicip'].includes(routeName)) {
-        return 'allocated'
+        return publicIpDefaultFilter(this.$store.getters)
       }
       if (['volume'].includes(routeName)) {
         return 'user'
@@ -1755,6 +1755,7 @@ export default {
     s2sGatewayRoute,
     s2sGatewayListRoute,
     publicIpProject,
+    publicIpDefaultFilter,
     vmDisplayName,
     isVmIdentityRoute,
     actionFieldDescription (field) {
@@ -3102,7 +3103,7 @@ export default {
         if (publicIpRoute(this.$route)) {
           const children = { zoneid: ['vpcid', 'associatednetworkid', 'networkid', 'physicalnetworkid', 'vlanid'], domainid: ['account', 'vpcid', 'associatednetworkid', 'vlanid'], account: ['vpcid', 'associatednetworkid', 'vlanid'], vpcid: ['associatednetworkid'], networkid: ['vlanid'], physicalnetworkid: ['vlanid'] }
           for (const key of children[filter.key] || []) delete queryParams[key]
-          if (filter.key === 'state') { queryParams.filter = 'allocated'; queryParams.state = 'Allocated' }
+          if (filter.key === 'state') queryParams.filter = publicIpDefaultFilter(this.$store.getters)
         }
         if (this.$route.name === 'snapshot') {
           if (filter.key === 'showunique') delete queryParams.locationtype
