@@ -1,0 +1,171 @@
+- complementary:
+  - menu:
+    - menuitem "dashboard 대시보드":
+      - link "dashboard 대시보드":
+        - /url: "#/dashboard"
+        - img "dashboard":
+        - generic: 대시보드
+    - img "cloud":
+    - generic: 컴퓨트
+    - img "hdd":
+    - generic: 스토리지
+    - img "wifi":
+    - generic: 네트워크
+    - img "picture":
+    - generic: 이미지
+    - img "lock":
+    - generic: 키 관리
+    - img "safety-certificate":
+    - generic: 재해복구
+    - menuitem "schedule 이벤트":
+      - link "schedule 이벤트":
+        - /url: "#/event"
+        - img "schedule":
+        - generic: 이벤트
+    - menuitem "project 프로젝트":
+      - link "project 프로젝트":
+        - /url: "#/project"
+        - img "project":
+        - generic: 프로젝트
+    - menuitem "idcard 역할":
+      - link "idcard 역할":
+        - /url: "#/role"
+        - img "idcard":
+        - generic: 역할
+    - menuitem "team 계정":
+      - link "team 계정":
+        - /url: "#/account"
+        - img "team":
+        - generic: 계정
+    - menuitem "block 도메인":
+      - link "block 도메인":
+        - /url: "#/domain"
+        - img "block":
+        - generic: 도메인
+    - img "bank":
+    - generic: 인프라스트럭쳐
+    - img "shopping":
+    - generic: 서비스 오퍼링
+    - img "setting":
+    - generic: 구성
+    - menuitem "appstore-add 확장":
+      - link "appstore-add 확장":
+        - /url: "#/extension"
+        - img "appstore-add":
+        - generic: 확장
+    - img "tool":
+    - generic: 도구
+    - menuitem "read API 문서":
+      - link "read API 문서":
+        - /url: "#/apidocs/"
+        - img "read":
+        - generic: API 문서
+- generic: 페이지 스타일 설정
+- button "닫기":
+  - img "close":
+- heading "페이지 스타일 설정" [level=3]
+- radio [checked]
+- img "check":
+- radio
+- heading "테마 색상" [level=3]
+- radio
+- img "check"
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- radio
+- separator
+- heading "프로젝트 네비게이션 설정" [level=3]
+- generic: 배경색
+- textbox: "#001529"
+- generic: 텍스트 색상
+- textbox: "#ffffff"
+- separator
+- alert:
+  - img "exclamation-circle":
+  - generic: "설정은 현재 브라우저에서만 볼 수 있습니다. 설정을 적용하려면 JSON 파일을 다운로드하고 경로 `/public/config.json` 아래의 `config.json` 파일의 `theme` 섹션에서 해당 콘텐츠를 교체하세요."
+- button "download 세팅값 다운로드(json)":
+  - img "download":
+  - generic: 세팅값 다운로드(json)
+- button "undo 기본값으로 재설정":
+  - img "undo":
+  - generic: 기본값으로 재설정
+- img "menu-unfold":
+- generic: 프로젝트
+- combobox "프로젝트"
+- img "project":
+- text: qa-gn1569-31-shared-reg
+- img "translation":
+- button "알림":
+  - img "bell":
+- generic: AC
+- generic: admin cloud
+- main:
+  - link "home":
+    - /url: "#/"
+    - img "home":
+  - text: /
+  - link "사이트간 사설네트워크(VPN)":
+    - /url: "#/s2svpn?fordisplay=true&projectid=59614883-4085-4a76-99da-b8a1e3a78eed&page=1&pagesize=20"
+  - text: /
+  - generic: 10.10.31.146
+  - button "reload 업데이트":
+    - img "reload":
+    - generic: 업데이트
+  - button "down 작업":
+    - img "down":
+    - generic: 작업
+  - img "lock":
+  - heading "10.10.31.146" [level=4]
+  - separator
+  - generic: 아이디
+  - button "아이디 복사":
+    - img "barcode":
+  - link "dd3acff3-3f1f-44ba-bd8d-55d44c854d88":
+    - /url: javascript:;
+  - generic: 프로젝트
+  - img "project":
+  - link "qa-gn1569-31-shared-reg":
+    - /url: "#/project/59614883-4085-4a76-99da-b8a1e3a78eed"
+  - generic: Public IP 주소
+  - img "gateway":
+  - link "10.10.31.146":
+    - /url: javascript:;
+  - generic: VPC
+  - img "deployment-unit":
+  - link "qa-gn1569-31-svc-review":
+    - /url: "#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7"
+  - generic: 도메인
+  - img "block":
+  - link "qa-gn1569-31-domain":
+    - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364?tab=details"
+  - tablist:
+    - tab "상세" [selected]
+    - tab "VPN 연결"
+  - tabpanel "상세":
+    - list:
+      - strong: 아이디
+      - link "dd3acff3-3f1f-44ba-bd8d-55d44c854d88":
+        - /url: javascript:;
+      - strong: Public IP 주소
+      - text: 10.10.31.146
+      - strong: VPC
+      - link "qa-gn1569-31-svc-review":
+        - /url: "#/vpc/86950275-e6b6-4790-8bc9-bee82ab173c7"
+      - strong: 계정
+      - link "qa-gn1569-31-shared-reg (프로젝트)":
+        - /url: "#/project/59614883-4085-4a76-99da-b8a1e3a78eed"
+      - strong: 도메인
+      - link "qa-gn1569-31-domain":
+        - /url: "#/domain/f3772036-4b8f-41fd-83f2-b71751950364"
+      - strong: 프로젝트
+      - link "qa-gn1569-31-shared-reg":
+        - /url: "#/project/59614883-4085-4a76-99da-b8a1e3a78eed"
+      - strong: 사용자 표시
+      - text: 예
+- img "check-circle":
+- text: "전환 : \"QA1569 Shared permission consumer\""
+- tooltip "아이디 복사"

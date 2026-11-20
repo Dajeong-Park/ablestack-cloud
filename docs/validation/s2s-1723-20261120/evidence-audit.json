@@ -558,7 +558,7 @@
     "screenshots/32-user-denied-list.png": "133b5d898a556a439c013852d3bdfe6ccf796396508d9241ba45034661d5bf85",
     "screenshots/32-user-search.png": "a260a44ed41ba2e56fed5c7c3b3fa9bbb6520ff8f53f91ef3a47d80840f0c4d4",
     "screenshots/32-wrong-project-hidden-url.png": "8d2ccaac533349c76c34388b4d07c39ed41c6bae8579550ecafbb20c047164ef",
-    "README.ko.md": "c6f799b1fde3deb589a6ac17c7aa6409c16200fc643970d3715254efe1400f70",
+    "README.ko.md": "c256c71ef2342984d24e7dd8264988e2f49d83a4e9dd3d16ec7022f89bf45255",
     "build.config.js": "1c127e9ae1b62fe14cf16e10088900aa7a4e0034ec328c1f46265d234e018981",
     "api_client.py": "d5c1cc32bf360378abb9fe7f02b3e2fc5eacf13f2406ea89e9ef65bc4e8cc27b",
     "audit-matrix.py": "6143f0a4827cf9744d4b23e9db62a3be4a7d6e6c08324a664ee5a98ee8bd0aa5",
@@ -567,5 +567,6 @@
     "preservation.py": "e531bb3e206d98e42aef7bf1c304e32a28764a29d84e29d1fd22f7e9407d9927",
     "deploy-s2s1723-static.sh": "100838ea6c8abb043096717d5db5629126f33e9a1abb2c1bcf1c44a622bb4691"
   },
-  "textNormalization": "UTF-8 without BOM, LF, trailing whitespace removed; native PNG bytes preserved."
+  "textNormalization": "UTF-8 without BOM, LF, trailing whitespace removed; native PNG bytes preserved.",
+  "readmeCorrection": "Breadcrumb internal alignment and dark help text were omitted from prior acceptance; see ../s2s-1723-breadcrumb-20261120/README.ko.md. Native images and previous API evidence unchanged."
 }

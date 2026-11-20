@@ -1,0 +1,30 @@
+{
+  "requests": [
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "fordisplay": "false",
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true"
+      },
+      "sequence": 4997,
+      "http": 200,
+      "response": {}
+    },
+    {
+      "command": "listVpnGateways",
+      "method": "GET",
+      "params": {
+        "fordisplay": "true",
+        "page": "1",
+        "pagesize": "20",
+        "listall": "true"
+      },
+      "sequence": 5020,
+      "http": 200,
+      "response": {}
+    }
+  ]
+}
