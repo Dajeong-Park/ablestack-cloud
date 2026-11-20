@@ -22,10 +22,11 @@ import { hsmProviders, hsmDefaultProtocol, hsmFormProblem, hsmCreateParams, empt
 import { getAPI, postAPI } from '@/api'
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 const capability = { listcapabilitiesresponse: { capability: { kmsproviders: [{ protocol: 'database', displayname: 'Database' }, { protocol: 'pkcs11', displayname: 'PKCS#11' }] } } }
+const createdId = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
 const providers = hsmProviders(capability)
 const lists = { domains: [{ id: 'D', name: 'ROOT' }], accounts: [{ id: 'A', name: 'admin', domainid: 'D' }], zones: [{ id: 'Z', name: 'Zone' }], projects: [{ id: 'P', name: 'Project' }] }
 function model () {
-  const c = { $store: { getters: { apis: { createHSMProfile: {}, listCapabilities: {}, listZones: {}, listDomains: {}, listProjects: {}, listAccounts: {} }, userInfo: { id: 'U', roletype: 'Admin', roleid: 'role', domainid: 'D', account: 'admin' }, project: {} }, state: { user: { token: 'session' } } }, $route: { path: '/hsmprofile', name: 'hsmprofile', meta: { name: 'hsmprofile' }, params: {}, query: {} }, $t: key => key, $emit: jest.fn() }
+  const c = { $store: { getters: { apis: { createHSMProfile: {}, listHSMProfiles: {}, listCapabilities: {}, listZones: {}, listDomains: {}, listProjects: {}, listAccounts: {} }, userInfo: { id: 'U', roletype: 'Admin', roleid: 'role', domainid: 'D', account: 'admin' }, project: {} }, state: { user: { token: 'session' } } }, $route: { path: '/hsmprofile', name: 'hsmprofile', meta: { name: 'hsmprofile' }, params: {}, query: {} }, $t: key => key, $emit: jest.fn() }
   Object.assign(c, Create.data.call(c))
   for (const [key, fn] of Object.entries(Create.methods)) c[key] = fn.bind(c)
   for (const [key, fn] of Object.entries(Create.computed)) Object.defineProperty(c, key, { get: () => fn.call(c) })
@@ -34,7 +35,13 @@ function model () {
   Object.assign(c.form, { name: 'qa-profile', protocol: 'pkcs11', domainid: 'D', account: 'admin', library: '/opt/example.so' })
   return c
 }
-beforeEach(() => { jest.clearAllMocks(); getAPI.mockResolvedValue(capability) })
+function createdProfile (scope = 'account') {
+  return { listhsmprofilesresponse: { count: 1, hsmprofile: [{ id: createdId, name: 'qa-profile', protocol: 'pkcs11', ispublic: scope === 'public', ...(scope === 'account' ? { account: 'admin', domainid: 'D' } : {}) }] } }
+}
+beforeEach(() => {
+  jest.clearAllMocks()
+  getAPI.mockImplementation(api => Promise.resolve(api === 'listHSMProfiles' ? createdProfile() : capability))
+})
 test('only loaded providers are available and PKCS11 is preferred when present', () => {
   expect(providers.map(p => p.protocol)).toEqual(['database', 'pkcs11'])
   expect(hsmDefaultProtocol(providers)).toBe('pkcs11')
@@ -113,16 +120,16 @@ test('discovery failure blocks submission until a verified refresh', async () =>
 })
 test('success keeps only safe summary and immediately discards PIN', async () => {
   const c = model(); c.pin = 'example'; let sent
-  postAPI.mockImplementation(async (api, params) => { sent = { ...params }; return { createhsmprofileresponse: { hsmprofile: { id: 'new', details: { pin: 'untrusted' } } } } })
+  postAPI.mockImplementation(async (api, params) => { sent = { ...params }; return { createhsmprofileresponse: { hsmprofile: { id: createdId, details: { pin: 'untrusted' } } } } })
   await c.submit()
   expect(sent['details[0].pin']).toBe('example')
-  expect(c.pin).toBe(''); expect(c.showPin).toBe(false); expect(c.saved.id).toBe('new'); expect(c.saved.details).toBeUndefined()
+  expect(c.pin).toBe(''); expect(c.showPin).toBe(false); expect(c.saved.id).toBe(createdId); expect(c.saved.details).toBeUndefined()
   expect(c.$emit).toHaveBeenCalledWith('refresh-data')
 })
 test('an authorized submit preserves its input if the visible PIN is cleared during provider preflight', async () => {
   const c = model(); c.pin = 'example'; let sent
-  getAPI.mockImplementation(async () => { c.clearPin(); return capability })
-  postAPI.mockImplementation(async (api, params) => { sent = { ...params }; return { createhsmprofileresponse: { hsmprofile: { id: 'new' } } } })
+  getAPI.mockImplementation(async api => { if (api === 'listHSMProfiles') return createdProfile(); c.clearPin(); return capability })
+  postAPI.mockImplementation(async (api, params) => { sent = { ...params }; return { createhsmprofileresponse: { hsmprofile: { id: createdId } } } })
   await c.submit()
   expect(sent['details[0].pin']).toBe('example')
   expect(c.pin).toBe('')
@@ -148,7 +155,8 @@ test('unmount clears PIN and visibility listeners use the same cleanup callback'
 })
 test('public summary never displays ownership fields excluded from the actual request', async () => {
   const c = model(); c.form.ownerScope = 'public'; c.form.projectid = 'P'
-  postAPI.mockResolvedValue({ createhsmprofileresponse: { hsmprofile: { id: 'new' } } })
+  getAPI.mockImplementation(api => Promise.resolve(api === 'listHSMProfiles' ? createdProfile('public') : capability))
+  postAPI.mockResolvedValue({ createhsmprofileresponse: { hsmprofile: { id: createdId } } })
   await c.submit()
   expect(c.saved.owner).toBe('label.hsm.create.scope.public')
 })

@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { serializeHsmDetails } from './kmsOperation'
+
 const supported = ['pkcs11', 'database']
 export function hsmProviders (json) {
   const list = json?.listcapabilitiesresponse?.capability?.kmsproviders
@@ -59,10 +61,10 @@ export function hsmCreateParams (form, providers, lists, pin) {
   if (form.ownerScope === 'account') params.account = form.account
   if (form.ownerScope === 'project') params.projectid = form.projectid
   if (form.protocol === 'pkcs11') {
-    params['details[0].library'] = form.library.trim()
-    params['details[0].' + form.slotMode] = String(form[form.slotMode]).trim()
-    if (form.max_sessions !== '') params['details[0].max_sessions'] = String(form.max_sessions).trim()
-    if (pin) params['details[0].pin'] = pin
+    const entries = [['library', form.library.trim()], [form.slotMode, String(form[form.slotMode]).trim()]]
+    if (form.max_sessions !== '') entries.push(['max_sessions', String(form.max_sessions).trim()])
+    if (pin) entries.push(['pin', pin])
+    Object.assign(params, serializeHsmDetails(form.protocol, entries))
   }
   return params
 }

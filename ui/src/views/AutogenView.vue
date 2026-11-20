@@ -202,7 +202,7 @@
     <div v-show="showAction">
       <component
         v-if="showAction && currentAction.selfManagedDialog"
-        :key="(currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || currentAction.vnfUnmanageCurrent) ? storageActionGeneration : undefined"
+        :key="(currentAction.kmsTarget || currentAction.storageSnapshotMode || currentAction.policyDeleteDialog || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || currentAction.vnfUnmanageCurrent) ? storageActionGeneration : undefined"
         ref="selfManagedAction"
         :is="currentAction.component"
         :resource="resource"
@@ -1079,6 +1079,7 @@ import { vmDisplayName, isVmIdentityRoute, vmEditScope } from '@/utils/vmIdentit
 import PublicIpReleaseSummary from '@/components/view/PublicIpReleaseSummary'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListTools from '@/components/view/AsnListTools'
+import { kmsOperationApis } from '@/utils/kmsOperation'
 import { kmsRoute, kmsListRoute, kmsListApi, kmsAuth, kmsProjectScope, kmsQuery, kmsSearchQuery, kmsParams, readKmsPage } from '@/utils/kmsSearch'
 import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
 import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
@@ -3055,6 +3056,10 @@ export default {
       return this.fetchData(result)
     },
     closeAction (result) {
+      const deletedKeyResource = kmsOperationApis.includes(this.currentAction?.api) &&
+        result?.kmsRemoved && result.kmsRemoved === this.$route.params?.id
+      const keyResourceList = this.$route.meta?.name === 'hsmprofile' ? '/hsmprofile' : '/kmskey'
+      if (deletedKeyResource) this.invalidateKmsResults()
       const changedGatewayDisplay = s2sGatewayRoute(this.$route) && ['updateVpnGateway', 'createVpnGateway'].includes(this.currentAction?.api) && result?.displayChanged && result.originPath === this.$route.fullPath && result.auth === this.s2sGatewaySearchAuth
       const displayLocation = changedGatewayDisplay ? gatewayDisplayListLocation(this.$route, this.$store.getters, s2sGatewayListLocation(this.$route, this.$store.getters), result.fordisplay, result.id, result.target) : null
       const deletedGatewayDetail = s2sGatewayRoute(this.$route) && this.currentAction?.api === 'deleteVpnGateway' && this.dataView && result?.removed?.includes(this.$route.params?.id)
@@ -3129,6 +3134,7 @@ export default {
           this.$nextTick(() => { if (this.$route.fullPath === result.originPath && result.auth === this.s2sGatewaySearchAuth) this.fetchData({ irefresh: true }) })
         } else this.$router.replace(displayLocation)
       }
+      if (deletedKeyResource) this.$router.replace({ path: keyResourceList })
       if (deletedGatewayDetail) this.$router.replace(gatewayLocation)
       if (deletedNetworkDetail) this.$router.replace(networkLocation || { path: '/guestnetwork' })
       else if (networkDeletion && result?.started) this.$nextTick(() => this.fetchData({ irefresh: true }))
@@ -3385,6 +3391,15 @@ export default {
         const request = { ...action, invokedAsGroupAction: !!isGroupAction }
         this.currentAction = { ...request, sshKeyPairTargets: sshKeyPairDeleteTargets(request, this.selectedItems) }
         this.resource = action.resource || {}
+        this.showAction = true
+        return
+      }
+      if (kmsOperationApis.includes(action.api) && action.api !== 'createHSMProfile') {
+        const target = action.resource || this.resource
+        if (isGroupAction || !(action.api in (this.$store.getters.apis || {})) ||
+            (action.api !== 'createKMSKey' && !target?.id)) return
+        const kmsTarget = action.api === 'createKMSKey' ? {} : target
+        this.currentAction = { ...action, kmsTarget: Object.freeze({ ...kmsTarget }), invokedAsGroupAction: false }
         this.showAction = true
         return
       }

@@ -19,6 +19,8 @@ import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { kmsDetails, kmsSearchFields } from '@/utils/kmsSearch'
 
+const operationDialog = shallowRef(defineAsyncComponent(() => import('@/views/infra/KmsOperationDialog.vue')))
+
 export default {
   name: 'kms',
   title: 'label.kms',
@@ -75,18 +77,9 @@ export default {
           docHelp: 'adminguide/kms.html#creating-a-kms-key',
           listView: true,
           popup: true,
-          dataView: false,
-          args: (record, store, group) => {
-            return ['Admin'].includes(store.userInfo.roletype)
-              ? ['zoneid', 'domainid', 'account', 'projectid', 'name', 'description', 'hsmprofileid', 'keybits']
-              : ['zoneid', 'name', 'description', 'hsmprofileid', 'keybits']
-          },
-          mapping: {
-            hsmprofileid: {
-              api: 'listHSMProfiles',
-              params: (record) => { return { enabled: true } }
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog,
+          dataView: false
         },
         {
           api: 'updateKMSKey',
@@ -94,12 +87,8 @@ export default {
           label: 'label.update.kms.key',
           dataView: true,
           popup: true,
-          args: ['id', 'name', 'description', 'enabled'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog
         },
         {
           api: 'rotateKMSKey',
@@ -108,12 +97,8 @@ export default {
           label: 'label.rotate.kms.key',
           dataView: true,
           popup: true,
-          args: ['id', 'keybits', 'hsmprofileid'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog
         },
         {
           api: 'migrateVolumesToKMS',
@@ -137,12 +122,8 @@ export default {
           message: 'message.action.delete.kms.key',
           dataView: true,
           popup: true,
-          args: ['id'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
-          }
+          selfManagedDialog: true,
+          component: operationDialog
         }
       ]
     },
@@ -208,14 +189,10 @@ export default {
           label: 'label.update.hsm.profile',
           dataView: true,
           popup: true,
+          selfManagedDialog: true,
+          component: operationDialog,
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
-          },
-          args: ['id', 'name', 'enabled'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
           }
         },
         {
@@ -225,14 +202,10 @@ export default {
           message: 'message.action.delete.hsm.profile',
           dataView: true,
           popup: true,
+          selfManagedDialog: true,
+          component: operationDialog,
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
-          },
-          args: ['id'],
-          mapping: {
-            id: {
-              value: (record) => record.id
-            }
           }
         }
       ]
