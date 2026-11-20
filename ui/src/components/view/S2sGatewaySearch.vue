@@ -22,7 +22,7 @@
         <template #addonBefore>
           <a-popover placement="bottomRight" trigger="click" :visible="visible" @visibleChange="open">
             <template #content>
-              <a-form v-if="visible" :model="form" class="storage-standard-search-form guest-network-search-form s2s-gateway-search-form" layout="vertical" @finish="apply" @keydown.ctrl.enter.prevent="apply" @keydown.esc.stop.prevent="closeSearch">
+              <a-form v-if="visible" :model="form" class="s2s-gateway-search-form" layout="vertical" @finish="apply" @keydown.ctrl.enter.prevent="apply" @keydown.esc.stop.prevent="closeSearch">
                 <a-alert v-if="error" role="alert" type="error" show-icon :message="$t('message.s2s.gateway.search.' + error)" />
                 <a-form-item v-if="displayAdmin" :label="$t('label.s2s.display.filter')" :extra="$t('message.s2s.display.scope')" html-for="s2s-gateway-search-display">
                   <a-select id="s2s-gateway-search-display" v-model:value="form.fordisplay" :aria-label="$t('label.s2s.display.filter')">
@@ -109,8 +109,6 @@ export default {
 .s2s-gateway-search-chips :deep(.ant-tag) { max-width: 100%; white-space: normal; overflow-wrap: anywhere; color: var(--ui-text-primary); background: var(--ui-bg-elevated); border-color: var(--ui-border-strong); }
 .s2s-gateway-search-verification { color: var(--ui-text-secondary); overflow-wrap: anywhere; }
 .s2s-gateway-search-form { max-height: 65vh; overflow-y: auto; width: min(340px, calc(100vw - 64px)); scroll-padding-bottom: 48px; }
-.s2s-gateway-search-form :deep(.ant-form-item-label > label) { color: var(--ui-text-primary); }
-.s2s-gateway-search-form :deep(.ant-input), .s2s-gateway-search-form :deep(.ant-select:not(.ant-select-disabled) .ant-select-selector) { color: var(--ui-text-primary); background: var(--ui-bg-input); border-color: var(--ui-border-strong); }
 .s2s-gateway-search-form .filter-group-button { position: sticky; bottom: 0; z-index: 1; display: flex; justify-content: space-between; gap: 8px; background: var(--ui-bg-elevated); border-top: 1px solid var(--ui-border); padding: 8px 0; }
 .s2s-gateway-search-form .filter-group-button :deep(.ant-btn) { position: static; }
 </style>
