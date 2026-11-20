@@ -18,19 +18,19 @@
 import { s2sGatewayQuery as query, s2sGatewayError as error, s2sGatewayParams as params, s2sGatewaySearchQuery as search, s2sGatewayListLocation, s2sGatewayDetailLocation, readS2sGatewayPage, readS2sGatewayQuery, s2sGatewaySelection, s2sGatewayPickerParams, readS2sGatewayCandidates } from '@/utils/s2sGatewaySearch'
 const id = n => String(n).padStart(8, '0') + '-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
 const gateway = id(1); const vpc = id(2); const domain = id(3); const project = id(4)
-const support = Object.fromEntries(['id', 'vpcid', 'domainid', 'account', 'keyword', 'projectid', 'page', 'pagesize', 'listall'].map(k => [k, {}]))
+const support = Object.fromEntries(['id', 'vpcid', 'domainid', 'account', 'keyword', 'projectid', 'page', 'pagesize', 'listall', 'fordisplay'].map(k => [k, {}]))
 const getters = { userInfo: { id: 'admin', roletype: 'Admin', domainid: domain }, project: {}, apis: { listVpnGateways: {}, listVPCs: {}, listDomains: {}, listAccounts: {} } }
 const row = { id: gateway, vpcid: vpc, publicip: '192.0.2.10', account: 'owner', domainid: domain, fordisplay: true }
 const reply = rows => ({ listvpngatewaysresponse: { count: rows.length, vpngateway: rows } })
 test('normalizes case, whitespace, keyword aliases and preserves a canonical paging scope', () => {
   const q = query({ vpcid: vpc.toUpperCase(), keyword: '  서울_%  ', page: '2', pagesize: '1' }, 20, getters)
-  expect(q).toEqual({ vpcid: vpc, keyword: '서울_%', q: '서울_%', projectid: '0', page: '2', pagesize: '1' })
+  expect(q).toEqual({ vpcid: vpc, keyword: '서울_%', q: '서울_%', projectid: '0', fordisplay: 'true', page: '2', pagesize: '1' })
   expect(query(q, 20, getters)).toEqual(q)
-  expect(params(q)).toEqual({ vpcid: vpc, keyword: '서울_%', page: '2', pagesize: '1', listall: true, ignoreproject: true })
+  expect(params(q)).toEqual({ vpcid: vpc, keyword: '서울_%', fordisplay: 'true', page: '2', pagesize: '1', listall: true, ignoreproject: true })
   expect(search(q, { searchQuery: 'other' }, 20, getters)).toMatchObject({ vpcid: vpc, keyword: 'other', page: '1' })
-  expect(search(q, { s2sGatewaySearch: {} }, 20, getters)).toEqual({ projectid: '0', page: '1', pagesize: '20' })
+  expect(search(q, { s2sGatewaySearch: {} }, 20, getters)).toEqual({ projectid: '0', fordisplay: 'true', page: '1', pagesize: '20' })
 })
-test.each([{ id: 'invalid' }, { vpcid: [vpc] }, { page: ['1'] }, { command: 'deleteVpnGateway' }, { fordisplay: 'false' }])('invalid or unsupported URL never becomes an unfiltered request: %j', raw => {
+test.each([{ id: 'invalid' }, { vpcid: [vpc] }, { page: ['1'] }, { command: 'deleteVpnGateway' }, { fordisplay: 'all' }])('invalid or unsupported URL never becomes an unfiltered request: %j', raw => {
   expect(error(query(raw, 20, getters), getters, support)).not.toBe('')
 })
 test('project mismatch, unsupported metadata and owner combinations fail before listing', () => {
@@ -45,7 +45,7 @@ test('detail/breadcrumb keeps list filters and page only in the same selected pr
   expect(s2sGatewayListLocation(detail, getters).query).toEqual(q)
   expect(s2sGatewayListLocation(detail, { ...getters, userInfo: { ...getters.userInfo, id: 'other' } }).query.keyword).toBeUndefined()
   expect(s2sGatewayListLocation(detail, { ...getters, userInfo: { ...getters.userInfo, roletype: 'DomainAdmin' } }).query.keyword).toBeUndefined()
-  expect(s2sGatewayListLocation(detail, { ...getters, project: { id: project } }).query).toEqual({ projectid: project, page: '1', pagesize: '20' })
+  expect(s2sGatewayListLocation(detail, { ...getters, project: { id: project } }).query).toEqual({ projectid: project, fordisplay: 'true', page: '1', pagesize: '20' })
 })
 test('response count, duplicate identity, exact filters and owner/project scope are verified', () => {
   expect(readS2sGatewayPage(reply([row]), { id: gateway }).count).toBe(1)

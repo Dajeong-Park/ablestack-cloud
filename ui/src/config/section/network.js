@@ -1113,6 +1113,16 @@ export default {
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sGatewayDialog.vue')))
         },
         {
+          api: 'updateVpnGateway',
+          icon: 'edit-outlined',
+          label: 'label.s2s.display.edit',
+          dataView: true,
+          show: () => store.getters.userInfo?.roletype === 'Admin',
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sGatewayDialog.vue')))
+        },
+        {
           api: 'deleteVpnGateway',
           icon: 'delete-outlined',
           label: 'label.delete.vpn.gateway',
