@@ -16,14 +16,14 @@
 // under the License.
 
 <template>
-  <div class="list-view-table-wrapper" :class="{ 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="isKubernetesIsoMainList ? 0 : undefined" :role="isKubernetesIsoMainList ? 'region' : undefined" :aria-label="isKubernetesIsoMainList ? $t('label.kubernetes.isos') : undefined" @keydown="scrollKubernetesIsoTable" @contextmenu="handleGlobalContextMenu">
+  <div class="list-view-table-wrapper" :class="{ 'autoscale-list': $route.name === 'autoscalevmgroup', 'snapshot-list-table': $route.name === 'snapshot', 'snapshot-policy-list-table': $route.name === 'snapshotpolicy', 'kubernetes-iso-list-table': isKubernetesIsoMainList }" :tabindex="scrollRegionLabel ? 0 : undefined" :role="scrollRegionLabel ? 'region' : undefined" :aria-label="scrollRegionLabel" @keydown="scrollListTable" @contextmenu="handleGlobalContextMenu">
     <a-table
       size="middle"
       :loading="loading"
       :locale="emptyText ? { emptyText } : undefined"
       :columns="displayColumns"
       :dataSource="items"
-      :tableLayout="isIsoMainList || isKubernetesIsoMainList ? 'fixed' : undefined"
+      :tableLayout="isIsoMainList || scrollRegionLabel ? 'fixed' : undefined"
       :scroll="tableScroll || kubernetesIsoTableScroll || isoTableScroll || templateTableScroll || ($route.name === 'snapshot' ? { x: 1400 } : ['autoscalevmgroup', 'affinitygroup'].includes($route.name) ? { x: 980 } : undefined)"
       :rowKey="listRowKey"
       :pagination="false"
@@ -1322,7 +1322,7 @@ import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySum
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
-import { s2sGatewayDetailLocation, vpnConnectionDetailLocation } from '@/utils/s2sGatewaySearch'
+import { s2sGatewayDetailLocation, vpnConnectionDetailLocation, vpnConnectionListRoute } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
 
 export default {
@@ -1495,6 +1495,10 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    scrollRegionLabel () {
+      if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
+      return vpnConnectionListRoute(this.$route) ? this.$t('label.site.to.site.vpn.connections') : undefined
+    },
     isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id && !this.resourcePath },
     displayColumns () {
       const columns = this.isOrderUpdatable() ? this.columns : this.columns.filter(column => column.dataIndex !== 'order')
@@ -1615,8 +1619,8 @@ export default {
         if (trigger) trigger.focus()
       })
     },
-    scrollKubernetesIsoTable (event) {
-      if (!this.isKubernetesIsoMainList || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+    scrollListTable (event) {
+      if (!this.scrollRegionLabel || event.target !== event.currentTarget || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
       const scroller = event.currentTarget.querySelector('.ant-table-content')
       if (!scroller) return
       event.preventDefault()

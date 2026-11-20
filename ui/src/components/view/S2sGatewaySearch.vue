@@ -20,12 +20,17 @@
     <span class="filter-group">
       <a-input-search v-model:value="keyword" class="input-search" allow-clear :placeholder="$t(isConnection ? 'message.s2s.connection.search.keyword' : 'message.s2s.gateway.search.keyword')" :aria-label="$t('label.search')" @search="$emit('search', { searchQuery: keyword })">
         <template #addonBefore>
-          <a-popover placement="bottomRight" trigger="click" :visible="visible" @visibleChange="open">
+          <a-popover placement="bottomRight" trigger="click" :overlay-class-name="isConnection ? 's2s-connection-search-popover' : undefined" :visible="visible" @visibleChange="open">
             <template #content>
               <a-form v-if="visible" :model="form" class="s2s-gateway-search-form" layout="vertical" @finish="apply" @keydown.ctrl.enter.prevent="apply" @keydown.esc.stop.prevent="closeSearch">
                 <a-alert v-if="error" role="alert" type="error" show-icon :message="$t('message.s2s.gateway.search.' + error)" />
                 <a-form-item :label="$t('label.id')" html-for="s2s-gateway-search-id">
-                  <a-input id="s2s-gateway-search-id" ref="idInput" v-model:value="form.id" :placeholder="$t(isConnection ? 'message.s2s.connection.search.id' : 'message.s2s.gateway.search.id')" />
+                  <a-input
+                    id="s2s-gateway-search-id"
+                    ref="idInput"
+                    v-model:value="form.id"
+                    :placeholder="$t(isConnection ? 'message.s2s.connection.search.id' : 'message.s2s.gateway.search.id')"
+                    @vue:mounted="focusSearchInput" />
                 </a-form-item>
                 <a-form-item v-for="kind in pickers" :key="kind" :label="$t(config(kind).label)" :html-for="'s2s-gateway-search-' + kind">
                   <S2sGatewaySearchSelect :key="kind + ':' + generation" v-model:value="form[kind]" :kind="kind" :scope="form" @update:value="changed(kind)" @blocked="blocked[kind] = $event" />
@@ -70,7 +75,23 @@ export default {
   methods: {
     config: s2sGatewayPickerConfig,
     resized () { if (this.visible) this.closeSearch() },
-    open (value) { if (!value) return this.closeSearch(); this.visible = true; this.form = { ...s2sGatewayQuery(this.$route.query, 20, this.$store.getters, this.apiName) }; this.blocked = {}; this.error = ''; this.generation++; this.$nextTick(() => this.$refs.idInput?.focus()) },
+    open (value) { if (!value) return this.closeSearch(); this.visible = true; this.form = { ...s2sGatewayQuery(this.$route.query, 20, this.$store.getters, this.apiName) }; this.blocked = {}; this.error = ''; this.generation++ },
+    focusSearchInput () {
+      const generation = this.generation
+      const previousFocus = document.activeElement
+      const deadline = performance.now() + 500
+      const focusWhenReady = () => {
+        if (!this.visible || this.disposed || generation !== this.generation) return
+        // The portal can mount before its input is focusable. Do not move focus
+        // if the user has already navigated to another control.
+        const active = document.activeElement
+        if (active !== previousFocus && active !== document.body) return
+        const input = this.$refs.idInput
+        if (input) input.focus()
+        if (document.activeElement !== input?.input && performance.now() < deadline) requestAnimationFrame(focusWhenReady)
+      }
+      requestAnimationFrame(focusWhenReady)
+    },
     closeSearch () { this.visible = false; this.$nextTick(() => { if (!this.disposed && this.$refs.advancedButton?.$el) this.$refs.advancedButton.$el.focus() }) },
     changed (kind) { for (const key of ({ domainid: ['account', 'vpcid'], account: ['vpcid'] }[kind] || [])) { delete this.form[key]; delete this.blocked[key] } },
     apply () {

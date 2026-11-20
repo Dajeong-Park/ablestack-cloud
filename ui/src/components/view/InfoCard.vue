@@ -1209,6 +1209,7 @@ import ActionButton from '@/components/view/ActionButton'
 import ResourceContextMenu from '@/components/view/ResourceContextMenu'
 
 import { gatewayName } from '@/utils/s2sGateway'
+import { vpnConnectionName, vpnConnectionRoute } from '@/utils/s2sGatewaySearch'
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
 
 export default {
@@ -1356,6 +1357,7 @@ export default {
         'RemoteAccessVpn', 'User', 'SnapshotPolicy', 'VpcOffering', 'Domain']
     },
     name () {
+      if (vpnConnectionRoute(this.$route)) return vpnConnectionName(this.resource)
       if (this.$route.meta?.name === 's2svpn') return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       return this.resource.displayname || this.resource.name || this.resource.displaytext || this.resource.username ||

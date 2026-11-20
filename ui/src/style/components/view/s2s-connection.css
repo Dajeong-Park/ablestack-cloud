@@ -1,0 +1,102 @@
+/* Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements. See the NOTICE file for ownership.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+.s2s-connection-page .s2s-connection-breadcrumb-name,
+.s2s-connection-page .resource-details__name .name,
+.s2s-connection-page .resource-detail-item__details {
+  overflow-wrap: anywhere;
+}
+
+.s2s-connection-page .s2s-connection-breadcrumb-name {
+  color: var(--ui-text-primary);
+}
+
+.s2s-connection-page .resource-details__name > div:last-child {
+  min-width: 0;
+}
+
+.s2s-connection-page .ant-table-content th,
+.s2s-connection-page .list-state-with-flatten {
+  white-space: nowrap;
+}
+
+.s2s-connection-page .ant-table-content td {
+  overflow-wrap: anywhere;
+}
+
+.s2s-connection-page .ant-badge-status-default { background-color: var(--ui-text-muted); }
+.s2s-connection-page .ant-badge-status-success { background-color: var(--ui-success-icon); }
+.s2s-connection-page .ant-badge-status-warning { background-color: var(--ui-warning-text); }
+.s2s-connection-page .ant-badge-status-error { background-color: var(--ui-error-icon); }
+.s2s-connection-page .ant-badge-status-processing { background-color: var(--ui-info-icon); }
+.s2s-connection-page .ant-badge-status-processing::after { border-color: var(--ui-info-icon); }
+
+.s2s-connection-page .ant-table-content a,
+.s2s-connection-page .ant-breadcrumb a,
+.s2s-connection-page .resource-detail-item__details a,
+.s2s-connection-page .ant-tabs-tab-active .ant-tabs-tab-btn,
+.s2s-connection-dialog a.s2s-connection-dialog-help {
+  color: var(--ui-link) !important;
+}
+
+.s2s-connection-dialog a.s2s-connection-dialog-help {
+  margin-inline-start: 8px;
+}
+
+.s2s-connection-page .s2s-connection-detail-notice {
+  margin-bottom: 12px;
+}
+
+/* Ant dims the current value while a searchable select retains focus. */
+.s2s-connection-dialog .ant-select:not(.ant-select-disabled) .ant-select-selection-item,
+.s2s-connection-search-popover .ant-select:not(.ant-select-disabled) .ant-select-selection-item {
+  color: var(--ui-text-primary) !important;
+  opacity: 1;
+}
+
+.s2s-connection-dialog .ant-select .ant-select-selection-placeholder,
+.s2s-connection-search-popover .ant-select .ant-select-selection-placeholder,
+.s2s-connection-search-popover .ant-input::placeholder {
+  color: var(--ui-text-muted) !important;
+  opacity: 1;
+}
+
+.s2s-connection-page .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):not([disabled]) {
+  color: var(--ui-text-secondary) !important;
+}
+
+.s2s-connection-page .list-view-table-wrapper:focus-visible,
+.s2s-connection-page a:focus-visible,
+.s2s-connection-page .ant-tabs-tab-btn:focus-visible,
+.s2s-connection-dialog a:focus-visible,
+.s2s-connection-search-popover button:focus-visible,
+.s2s-connection-search-popover input:focus-visible,
+.s2s-connection-search-popover .ant-select-focused .ant-select-selector,
+.s2s-connection-dialog .ant-select-focused .ant-select-selector {
+  outline: 2px solid var(--ui-focus) !important;
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .s2s-connection-page .autogen-toolbar-actions {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .s2s-connection-page .autogen-toolbar-actions > span:last-child {
+    display: block !important;
+    flex: 1 1 180px;
+    width: auto !important;
+    min-width: 0;
+  }
+
+  .s2s-connection-page .autogen-toolbar-actions .input-search {
+    margin-left: 0;
+  }
+}

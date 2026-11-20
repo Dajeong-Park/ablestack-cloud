@@ -105,3 +105,13 @@ test('VPN connection read does not apply a VPC found in another project', async 
   expect(read).toHaveBeenCalledTimes(1)
   expect(read.mock.calls[0][1]).not.toHaveProperty('excludeprojectresources')
 })
+
+test('VPN connection UUID bookmarks retain API-authorized access while explicit list scopes stay isolated', async () => {
+  const row = { id: id(1), projectid: project }
+  const response = { listvpnconnectionsresponse: { count: 1, vpnconnection: [row] } }
+  const read = jest.fn().mockResolvedValue(response)
+  await expect(readVpnConnectionQuery(read, { id: row.id }, connectionGetters, () => true)).resolves.toEqual(response)
+  await expect(readVpnConnectionQuery(read, { id: row.id, excludeprojectresources: true }, connectionGetters, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(read, { id: row.id, projectid: id(9) }, connectionGetters, () => true)).rejects.toThrow('scope')
+  await expect(readVpnConnectionQuery(read, { id: id(9) }, connectionGetters, () => true)).rejects.toThrow('scope')
+})

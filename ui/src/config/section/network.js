@@ -1144,7 +1144,10 @@ export default {
       icon: 'sync-outlined',
       permission: ['listVpnConnections'],
       columns: ['publicip', 'state', 'gateway', 'ipsecpsk', 'ikepolicy', 'esppolicy'],
-      details: ['publicip', 'gateway', 'passive', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'esppolicy', 'ikelifetime', 'ikeversion', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'created'],
+      tabs: ['details', 's2s.connection.crypto'].map(name => ({
+        name,
+        component: shallowRef(defineAsyncComponent(() => import('@/views/network/S2sConnectionDetails.vue')))
+      })),
       actions: [
         {
           api: 'createVpnConnection',

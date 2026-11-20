@@ -25,7 +25,9 @@ const uuid = value => typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-
 const present = value => value !== undefined && value !== null && value !== ''
 export const s2sGatewayRoute = route => (route?.meta?.name || route?.name) === 's2svpn'
 export const s2sGatewayListRoute = route => s2sGatewayRoute(route) && !route?.params?.id
-export const vpnConnectionListRoute = route => (route?.meta?.name || route?.name) === 's2svpnconn' && !route?.params?.id
+export const vpnConnectionRoute = route => (route?.meta?.name || route?.name) === 's2svpnconn'
+export const vpnConnectionListRoute = route => vpnConnectionRoute(route) && !route?.params?.id
+export const vpnConnectionName = (resource = {}, fallback = '') => [resource.publicip, resource.gateway].filter(Boolean).join(' ↔ ') || resource.id || fallback
 export const s2sGatewayProject = getters => String(getters.project?.id || (getters.listAllProjects ? '-1' : '0'))
 export const s2sGatewayAuth = (getters, token) => JSON.stringify([getters.userInfo?.id, getters.userInfo?.roleid, getters.userInfo?.roletype, getters.userInfo?.domainid, token, s2sGatewayProject(getters), Object.keys(getters.apis || {}).sort()])
 export function s2sGatewayQuery (raw = {}, size = 20, getters = {}, api = gatewayApi) {
@@ -157,8 +159,9 @@ export async function readVpnConnectionQuery (api, params, getters, current) {
   const rows = data.vpnconnection || []
   const count = Number(data.count ?? 0)
   if (!Number.isSafeInteger(count) || count < rows.length || new Set(rows.map(row => row.id)).size !== rows.length || rows.some(row => !uuid(row.id))) throw Error('response')
+  const excludeProjects = !params.projectid && (!params.id || params.excludeprojectresources)
   if (rows.some(row => ['id', 'domainid', 'account'].some(key => params[key] && row[key] !== params[key]) ||
-    (params.projectid && params.projectid !== '-1' ? row.projectid !== params.projectid : !params.projectid && !!row.projectid))) throw Error('scope')
+    (params.projectid && params.projectid !== '-1' ? row.projectid !== params.projectid : excludeProjects && !!row.projectid))) throw Error('scope')
   return { listvpnconnectionsresponse: { count, vpnconnection: rows } }
 }
 

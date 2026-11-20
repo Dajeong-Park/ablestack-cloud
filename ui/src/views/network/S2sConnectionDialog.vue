@@ -19,12 +19,25 @@
   <MoldDialog
     :visible="!closed"
     :title="$t(currentAction.label)"
+    class="s2s-connection-dialog"
     size="md"
     form-actions
     focus-guard
     :closable="!busy"
     :keyboard="!busy"
     @cancel="close">
+    <template #title>
+      {{ $t(currentAction.label) }}
+      <a
+        v-if="currentAction.docHelp"
+        class="s2s-connection-dialog-help"
+        :href="documentationUrl($config.docBase, currentAction.docHelp, $i18n.locale)"
+        target="_blank"
+        rel="noopener"
+        :aria-label="$t('label.help')">
+        <question-circle-outlined />
+      </a>
+    </template>
     <a-alert v-if="!allowed" type="warning" show-icon :message="$t('message.s2s.gateway.permission')" />
     <a-alert v-if="statusMessage" type="info" show-icon :message="$t(statusMessage)" :description="jobId || undefined" role="status" />
     <a-alert v-if="phase === 'unknown'" type="warning" show-icon :message="$t('message.vpc.vpn.unknown')" :description="jobId" role="status" />
@@ -38,6 +51,7 @@
             v-model:value="draft.s2scustomergatewayid"
             :aria-label="$t('label.s2scustomergatewayid')"
             :options="peerOptions"
+            :placeholder="$t('label.select')"
             :disabled="fieldsDisabled"
             :loading="loading"
             show-search
@@ -48,6 +62,7 @@
             v-model:value="draft.s2svpngatewayid"
             :aria-label="$t('label.s2svpngatewayid')"
             :options="localOptions"
+            :placeholder="$t('label.select')"
             :disabled="fieldsDisabled"
             :loading="loading"
             show-search
@@ -61,9 +76,9 @@
       <template v-else>
         <p>{{ $t(currentAction.message) }}</p>
         <dl class="vpn-connection-target">
-          <dt>{{ $t('label.publicip') }}</dt>
+          <dt>{{ $t('label.s2s.connection.local') }}</dt>
           <dd>{{ resource.publicip || '—' }}</dd>
-          <dt>{{ $t('label.gateway') }}</dt>
+          <dt>{{ $t('label.s2s.connection.peer') }}</dt>
           <dd>{{ resource.gateway || '—' }}</dd>
           <dt>{{ $t(resource.projectid ? 'label.project' : 'label.account') }}</dt>
           <dd>{{ resource.project || resource.projectid || resource.account || '—' }}</dd>
@@ -92,6 +107,7 @@ import { getAPI, postAPI } from '@/api'
 import eventBus from '@/config/eventBus'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
+import { documentationUrl } from '@/utils/cniFileImport'
 import { createJobTracker } from '@/utils/jobTracker'
 import { gatewayRows } from '@/utils/s2sGateway'
 import { s2sGatewayAuth, s2sGatewayProject } from '@/utils/s2sGatewaySearch'
@@ -115,7 +131,7 @@ export default {
   emits: ['refresh-data', 'close-action'],
   data () {
     return {
-      draft: { s2scustomergatewayid: '', s2svpngatewayid: '', passive: false },
+      draft: { s2scustomergatewayid: undefined, s2svpngatewayid: undefined, passive: false },
       localOptions: [],
       peerOptions: [],
       loaded: false,
@@ -185,6 +201,7 @@ export default {
     this.tracker.clear()
   },
   methods: {
+    documentationUrl,
     current () { return !this.closed && !this.disposed && this.origin === this.scope },
     identity (row) {
       return [row.id, row.s2svpngatewayid, row.s2scustomergatewayid, row.projectid, row.account, row.domainid, row.publicip, row.gateway]
