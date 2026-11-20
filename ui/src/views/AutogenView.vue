@@ -971,7 +971,7 @@
         <p v-else-if="listRefreshError && !kmsListRoute($route) && (!s2sGatewayListRoute($route) || items.length > 0) && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
-          :emptyText="kmsListRoute($route) ? $t(kmsSearchError ? 'message.kms.search.' + kmsSearchError : listRequestPending ? 'label.loading' : 'message.kms.search.empty') : s2sGatewayListRoute($route) && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
+          :emptyText="kmsListRoute($route) ? kmsListEmptyText : s2sGatewayListRoute($route) && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
           :kms-table="kmsListRoute($route)"
           :items="items"
@@ -1644,6 +1644,10 @@ export default {
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
+    kmsListEmptyText () {
+      if (this.kmsSearchError) return this.$t('message.kms.search.' + this.kmsSearchError)
+      return this.listRequestPending ? this.$t('label.loading') : ''
+    },
     isKmsDetail () { return kmsDetailRoute(this.$route) },
     kmsDetailReady () {
       return !this.listRequestPending && !this.kmsDetailError && this.listLoadedScope === this.listScope() &&
