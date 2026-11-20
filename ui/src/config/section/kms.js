@@ -134,26 +134,13 @@ export default {
           label: 'label.migrate.volumes.to.kms',
           message: 'message.action.migrate.volumes.to.kms',
           dataView: true,
+          selfManagedDialog: true,
           popup: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/compute/MigrateVolumesToKMS.vue'))),
           show: (record, store) => {
             return ['Admin'].includes(store.userInfo.roletype)
           },
-          args: (record, store) => {
-            var fields = ['domainid', 'account', 'kmskeyid', 'volumeids']
-            if (!['Admin'].includes(store.userInfo.roletype)) {
-              fields = ['kmskeyid', 'volumeids']
-            }
-            return fields
-          },
-          mapping: {
-            kmskeyid: {
-              value: (record) => record.id
-            },
-            volumeids: {
-              api: 'listVolumes',
-              params: (record) => { return { account: record.account, domainid: record.domainid, zoneid: record.zoneid } }
-            }
-          }
+          args: ['kmskeyid', 'volumeids']
         },
         {
           api: 'deleteKMSKey',

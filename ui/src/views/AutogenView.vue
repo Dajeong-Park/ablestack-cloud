@@ -3305,6 +3305,14 @@ export default {
         this.showAction = true
         return
       }
+      if (action.api === 'migrateVolumesToKMS') {
+        const target = action.resource || this.resource
+        if (!target?.id || !('migrateVolumesToKMS' in (this.$store.getters.apis || {}))) return
+        this.currentAction = { ...action, invokedAsGroupAction: false }
+        this.resource = { ...target }
+        this.showAction = true
+        return
+      }
       if (action.api === 'createVMSnapshot') action = { ...action, resource: Object.freeze({ ...action.resource }) }
       if (action.snapshotMode) {
         this.currentAction = { ...action, invokedAsGroupAction: !!isGroupAction, snapshotTargets: Object.freeze((isGroupAction ? this.selectedItems : [action.resource]).filter(Boolean).map(row => Object.freeze({ ...row }))) }

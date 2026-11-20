@@ -884,7 +884,7 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             throw new InvalidParameterValueException("kmsKeyId must be specified");
         }
 
-        KMSKeyVO kmsKey = findKMSKeyAndCheckAccess(kmsKeyId, caller);
+        KMSKeyVO kmsKey = (KMSKeyVO) getVolumeMigrationTarget(kmsKeyId);
 
         if (!kmsKey.isEnabled()) {
             throw new InvalidParameterValueException("KMS key is not enabled: " + kmsKey.getUuid());
@@ -910,6 +910,9 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
         Long accountId = null;
         if (accountName != null) {
             accountId = accountManager.finalizeAccountId(accountName, domainId, null, true);
+            if (!Objects.equals(accountId, kmsKey.getAccountId())) {
+                throw new InvalidParameterValueException("Requested account must match the target KMS key");
+            }
         }
 
         int successCount = 0;
@@ -919,10 +922,17 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
 
         List<VolumeVO> volumes;
         volumes = volumeDao.listByIds(volumeIds);
+        if (volumes.size() != volumeIds.stream().distinct().count()) {
+            throw new InvalidParameterValueException("One or more selected volumes no longer exist");
+        }
         accountManager.checkAccess(caller, null, true, volumes.toArray(new Volume[0]));
 
         List<String> mismatchedVolumeUuids = new ArrayList<>();
         for (VolumeVO volume : volumes) {
+            String reason = migrationReason(volume, kmsKey);
+            if (!"ELIGIBLE_LEGACY".equals(reason) && !isAlreadyOnTarget(volume, kmsKey)) {
+                throw new InvalidParameterValueException("Volume " + volume.getUuid() + " cannot migrate: " + reason);
+            }
             if (volume.getAccountId() != kmsKey.getAccountId()) {
                 mismatchedVolumeUuids.add(volume.getUuid());
             }
@@ -948,14 +958,95 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
             }
         }
 
-        String details = String.format("Migrated %d volumes to KMS key: %s (uuid: %s). Success: %d, Failures: %d",
-                successCount + failureCount, kmsKey.getName(), kmsKey.getUuid(), successCount, failureCount);
+        String details = String.format("KMS key %s (uuid: %s). Requested: %d, Migrated: %d, Skipped: %d, Failures: %d",
+                kmsKey.getName(), kmsKey.getUuid(), volumes.size(), successCount,
+                volumes.size() - successCount - failureCount, failureCount);
         logger.info(details);
         CallContext.current().setEventDetails(details);
         if (failureCount > 0) {
             throw KMSException.wrapUnwrapFailed(details, null);
         }
         return successCount;
+    }
+
+    @Override
+    public KMSKey getVolumeMigrationTarget(Long keyId) {
+        Account caller = CallContext.current().getCallingAccount();
+        if (!accountManager.isRootAdmin(caller.getId())) {
+            throw new PermissionDeniedException("Only root administrators may inspect migration candidates");
+        }
+        accountManager.checkApiAccessForUser(CallContext.current().getCallingUser(), "migrateVolumesToKMS", null);
+        KMSKeyVO key = findKMSKeyAndCheckAccess(keyId, caller);
+        if (key.getRemoved() != null || !key.isEnabled() || key.getZoneId() == null
+                || key.getPurpose() != KeyPurpose.VOLUME_ENCRYPTION) {
+            throw new InvalidParameterValueException("Target key must be enabled, zone-scoped and for volume encryption");
+        }
+        if (key.getHsmProfileId() != null) {
+            HSMProfileVO profile = getHSMProfile(key.getHsmProfileId());
+            if (!profile.isEnabled()) {
+                throw new InvalidParameterValueException("Target HSM profile is disabled");
+            }
+        }
+        getActiveKekVersion(keyId);
+        return key;
+    }
+
+    @Override
+    public List<Long> listVolumeMigrationEligibleIds(KMSKey key) {
+        // Project resources are owned by the project's account. Never widen this to the caller's account.
+        SearchBuilder<VolumeVO> sb = volumeDao.createSearchBuilder();
+        sb.select(null, SearchCriteria.Func.DISTINCT, sb.entity().getId());
+        sb.and("account", sb.entity().getAccountId(), SearchCriteria.Op.EQ);
+        sb.and("zone", sb.entity().getDataCenterId(), SearchCriteria.Op.EQ);
+        sb.and("encrypted", sb.entity().getEncryptFormat(), SearchCriteria.Op.NNULL);
+        sb.and("key", sb.entity().getKmsKeyId(), SearchCriteria.Op.NULL);
+        sb.and("wrapped", sb.entity().getKmsWrappedKeyId(), SearchCriteria.Op.NULL);
+        sb.and("state", sb.entity().getState(), SearchCriteria.Op.EQ);
+        SearchBuilder<PassphraseVO> legacy = passphraseDao.createSearchBuilder();
+        sb.join("legacy", legacy, sb.entity().getPassphraseId(), legacy.entity().getId(),
+                com.cloud.utils.db.JoinBuilder.JoinType.INNER);
+        SearchCriteria<VolumeVO> sc = sb.create();
+        sc.setParameters("account", key.getAccountId());
+        sc.setParameters("zone", key.getZoneId());
+        sc.setParameters("state", Volume.State.Ready);
+        return volumeDao.search(sc, null).stream().map(VolumeVO::getId).collect(java.util.stream.Collectors.toList());
+    }
+
+    @Override
+    public String getVolumeMigrationReason(Long volumeId, KMSKey key) {
+        VolumeVO volume = volumeDao.findById(volumeId);
+        if (volume != null) {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, false, volume);
+        }
+        return migrationReason(volume, key);
+    }
+
+    private boolean isAlreadyOnTarget(VolumeVO volume, KMSKey key) {
+        return volume.getRemoved() == null && volume.getAccountId() == key.getAccountId()
+                && Objects.equals(volume.getDataCenterId(), key.getZoneId())
+                && Objects.equals(volume.getKmsKeyId(), key.getId()) && volume.getKmsWrappedKeyId() != null;
+    }
+
+    String migrationReason(VolumeVO volume, KMSKey key) {
+        if (volume == null || volume.getRemoved() != null) {
+            return "NOT_FOUND";
+        }
+        if (volume.getAccountId() != key.getAccountId() || !Objects.equals(volume.getDataCenterId(), key.getZoneId())) {
+            return "SCOPE_MISMATCH";
+        }
+        if (volume.getKmsKeyId() != null || volume.getKmsWrappedKeyId() != null) {
+            return "ALREADY_KMS";
+        }
+        if (volume.getEncryptFormat() == null) {
+            return "NOT_ENCRYPTED";
+        }
+        if (volume.getState() != Volume.State.Ready) {
+            return "UNSUPPORTED_STATE";
+        }
+        if (volume.getPassphraseId() == null || passphraseDao.findById(volume.getPassphraseId()) == null) {
+            return "LEGACY_KEY_UNAVAILABLE";
+        }
+        return "ELIGIBLE_LEGACY";
     }
 
     boolean migrateVolumeToKmsKey(KMSProvider provider, VolumeVO requestedVolume, KMSKey kmsKey,
@@ -970,8 +1061,13 @@ public class KMSManagerImpl extends ManagerBase implements KMSManager, Pluggable
                     || !Objects.equals(volume.getDataCenterId(), kmsKey.getZoneId())) {
                 throw new InvalidParameterValueException("Volume and KMS key must belong to the same account and zone");
             }
-            if (volume.getKmsWrappedKeyId() != null || volume.getPassphraseId() == null) {
+            accountManager.checkAccess(CallContext.current().getCallingAccount(), null, true, volume);
+            if (isAlreadyOnTarget(volume, kmsKey)) {
                 return false;
+            }
+            String reason = migrationReason(volume, kmsKey);
+            if (!"ELIGIBLE_LEGACY".equals(reason)) {
+                throw new InvalidParameterValueException("Volume cannot migrate: " + reason);
             }
             PassphraseVO passphrase = passphraseDao.findById(volume.getPassphraseId());
             if (passphrase == null) {

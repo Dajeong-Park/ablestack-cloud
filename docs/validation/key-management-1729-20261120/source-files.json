@@ -1,0 +1,23 @@
+{
+  "local_base": "41fe8cb0dd0c05e95c4ef6d110dafc26b85a01e2",
+  "preimplementation_head": "9a61267c6a8b9611a6c21321d4c265f467c16d5e",
+  "branch": "dhslove/epic-1727-key-management",
+  "files": {
+    "api/src/main/java/org/apache/cloudstack/api/command/admin/kms/MigrateVolumesToKMSCmd.java": "0762d74d78c1e0038498943c02082a9ab1bb1eb9a6ab9520f460830b9e558623",
+    "api/src/main/java/org/apache/cloudstack/api/command/user/volume/ListVolumesCmd.java": "1c393970ec381975bcc1cb7f5f0e6a1e7e02b1b797dea4f01d6797d148ab2568",
+    "api/src/main/java/org/apache/cloudstack/api/response/KMSMigrationResponse.java": "af14230be58c2f8058ca1c9e7958ac402a26615e480a0bdaaa70234ae3e505ba",
+    "api/src/main/java/org/apache/cloudstack/api/response/VolumeResponse.java": "5b25a959009d65d068e9e6db1be360db310591842f07055bff6795262bf7b682",
+    "api/src/main/java/org/apache/cloudstack/kms/KMSManager.java": "3149d570bc1ed25d60cdfc1678d4e6066be8536156826aa50cf99e6de42730de",
+    "server/src/main/java/com/cloud/api/query/QueryManagerImpl.java": "7a4b23b4e186fb49d001df329216c1d41072bb902893f84747196c86da4f0df9",
+    "server/src/main/java/org/apache/cloudstack/kms/KMSManagerImpl.java": "0d8289a6a1a8d314540b91e27b3d445aeeed3797cb78907473381aeea66ea7df",
+    "server/src/test/java/com/cloud/api/query/QueryManagerKMSMigrationPermissionTest.java": "016628a378cacac1e8f1c5203456274d12cf4dfc2cbadd90208abf31e2478b0d",
+    "server/src/test/java/org/apache/cloudstack/kms/KMSManagerImplMigrationTest.java": "3a36c4abbe68ecf77cc5b9e0d1fedbe24bc5d917e8e50eec55edd0dbbcd27c5d",
+    "ui/public/locales/en.json": "62607f7091552f98900d7d82f77437831dabbe6f97171f9ec48cdc3e1f02e119",
+    "ui/public/locales/ko_KR.json": "8866e92328187eeefdd37f191752ff2620adac07ddf9009782897cbbc0c16de1",
+    "ui/src/config/section/kms.js": "bbd7984da6f4fceebb6981b991b9b4b79a930ec63d85301ae8bca51e8466b25f",
+    "ui/src/utils/kmsVolumeMigration.js": "c7a1139b1dce5152c6a5f7c1ebcbe6ca99d8abe2275516e1bbb77c7f2995008e",
+    "ui/src/views/AutogenView.vue": "b3b7bbe44a017376f6e9a3602eed23773ddadd86c32dc27471189591a4ad6a4a",
+    "ui/src/views/compute/MigrateVolumesToKMS.vue": "ebcb1640214676f4769754f2a255fde449eab257342c382ca9a8aac8ba2671a8",
+    "ui/tests/unit/views/compute/MigrateVolumesToKMS.spec.js": "223f3d649521123a1058da5ee6538c166f5bd034ae3c81e991d3973b176807d5"
+  }
+}

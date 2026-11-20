@@ -239,6 +239,12 @@ public interface KMSManager extends Manager, Configurable {
      */
     int migrateVolumesToKMS(MigrateVolumesToKMSCmd cmd) throws KMSException;
 
+    KMSKey getVolumeMigrationTarget(Long keyId);
+
+    List<Long> listVolumeMigrationEligibleIds(KMSKey key);
+
+    String getVolumeMigrationReason(Long volumeId, KMSKey key);
+
     /**
      * Delete all KMS keys owned by an account (called during account cleanup)
      *

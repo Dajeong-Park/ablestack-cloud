@@ -1,0 +1,13 @@
+{
+  "kind": "non-release WSL focused production-mode build",
+  "mode": "production",
+  "minification": false,
+  "source_maps": false,
+  "build_runner": "build-ui-focused.cjs.txt",
+  "rationale": "Local development artifact; release build still requires GitHub Actions",
+  "test_command": "npm run test:unit -- --runTestsByPath tests/unit/views/compute/MigrateVolumesToKMS.spec.js --runInBand --coverage=false",
+  "static_files": 690,
+  "index_sha256": "fddf3888552f9f0fb8d0bbe1308330592b4cf313ae9515d1d717f2ba59844d64",
+  "archive_sha256": "407b793fc303cec0bbc982b800a0891c72bb08df35894b828622c06198d2abd1",
+  "archive_bytes": 8629612
+}

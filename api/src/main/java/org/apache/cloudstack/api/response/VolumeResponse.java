@@ -379,6 +379,19 @@ public class VolumeResponse extends BaseResponseWithTagInformation implements Co
     @Param(description = "Version number of the KMS key used for disk encryption if applicable", since = "4.23.0")
     private Integer kmsKeyVersion;
 
+    @SerializedName("kmsmigrationeligible")
+    @Param(description = "Server migration eligibility; included only with kmsmigrationkeyid")
+    private Boolean kmsMigrationEligible;
+
+    @SerializedName("kmsmigrationreason")
+    @Param(description = "Non-secret reason for migration eligibility")
+    private String kmsMigrationReason;
+
+    public void setKmsMigrationContext(String reason) {
+        kmsMigrationReason = reason;
+        kmsMigrationEligible = "ELIGIBLE_LEGACY".equals(reason);
+    }
+
     public String getPath() {
         return path;
     }
