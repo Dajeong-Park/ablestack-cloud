@@ -44,7 +44,7 @@ under the License.
       </li>
     </ul>
     <template #footer>
-      <a-button :disabled="running" @click="close">{{ $t(started ? 'label.close' : 'label.cancel') }}</a-button>
+      <a-button v-focus="true" :disabled="running" @click="close">{{ $t(started ? 'label.close' : 'label.cancel') }}</a-button>
       <a-button v-if="!started" type="primary" danger @click="submit">{{ $t('label.delete.vpn.user') }}</a-button>
       <a-button v-else-if="canRecheck" type="primary" :loading="running" @click="recheck">{{ $t('message.vpn.user.delete.recheck') }}</a-button>
     </template>
@@ -168,8 +168,6 @@ export default {
 .vpn-user-delete-targets {
   display: grid;
   gap: 12px;
-  max-block-size: 45vh;
-  overflow-y: auto;
   padding-inline-start: 20px;
   overflow-wrap: anywhere;
 }

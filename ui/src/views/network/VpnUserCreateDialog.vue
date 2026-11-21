@@ -21,6 +21,8 @@ under the License.
   <MoldDialog
     class="vpn-user-create-dialog"
     :title="$t('label.add.vpn.user')"
+    :after-close="afterClose"
+    :focus-trigger-after-close="false"
     :closable="!running"
     :keyboard="!running"
     size="md"
@@ -80,6 +82,7 @@ under the License.
         <a-input
           id="vpn-user-add-username"
           ref="usernameInput"
+          v-focus="true"
           v-model:value="form.username"
           :disabled="locked"
           :placeholder="$t('message.vpn.user.add.username.required')"
@@ -122,6 +125,7 @@ const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 export default {
   name: 'VpnUserCreateDialog',
   components: { MoldDialog },
+  props: { afterClose: { type: Function, default: undefined } },
   emits: ['close-action', 'refresh-data'],
   data () {
     return {

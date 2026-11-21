@@ -78,6 +78,19 @@ export default {
   overflow-wrap: anywhere;
 }
 
+.vpn-user-owner a {
+  color: var(--ui-link);
+}
+
+.vpn-user-owner a:focus-visible {
+  outline: 2px solid var(--ui-focus);
+  outline-offset: 2px;
+}
+
+.vpn-user-state :deep(.ant-badge-status-text) {
+  color: var(--ui-text-primary);
+}
+
 .vpn-user-owner-domain {
   color: var(--ui-text-secondary);
 }

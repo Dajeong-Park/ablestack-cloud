@@ -1323,6 +1323,7 @@ export default {
           api: 'removeVpnUser',
           icon: 'delete-outlined',
           label: 'label.delete.vpn.user',
+          toolbarLabel: 'label.vpn.user.delete.selected',
           dataView: true,
           show: (record, store) => canDeleteVpnUsers(store),
           groupAction: true,

@@ -70,7 +70,7 @@
       </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'vpnuser' && dataResource.id">
         <div>
-          <strong>{{ $t(item === 'id' ? 'label.vpn.user.uuid' : getDetailTitle(item)) }}</strong>
+          <strong>{{ $t(item === 'id' ? 'label.vpn.user.uuid' : getDetailTitle(item)) }}</strong><br />
           <VpnUserValue :resource="dataResource" :field="item" />
         </div>
       </a-list-item>
