@@ -22,13 +22,13 @@ export const canDeleteVpnUsers = getters =>
 
 export function vpnUserDeleteTarget (row) {
   if (!isUuid(row?.id) || !row.username) return null
-  const { id, username, projectid, project, account, domainid, domain } = row
+  const { id, username, state, projectid, project, account, domainid, domain, domainpath } = row
   if (projectid || project) {
     if (!isUuid(projectid)) return null
-    return { id, username, projectid, owner: project || projectid }
+    return { id, username, state, projectid, project }
   }
   if (!account || !isUuid(domainid)) return null
-  return { id, username, account, domainid, owner: domain ? `${account} · ${domain}` : `${account} · ${domainid}` }
+  return { id, username, state, account, domainid, domain, domainpath }
 }
 
 export function vpnUserDeleteTargets (ids, rows) {

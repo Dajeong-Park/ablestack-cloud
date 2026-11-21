@@ -785,7 +785,7 @@
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => (isVpnUser && !storageActionReady) || (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
-          :tableScroll="isEventList ? { x: 1210 } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
+          :tableScroll="isEventList ? { x: 1210 } : isVpnUser ? { x: 458 } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -883,6 +883,7 @@ import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
 import { canDeleteVpnUsers, vpnUserDeleteTargets } from '@/utils/vpnUserDeletion'
+import { vpnUserOwner, vpnUserVisibleColumns } from '@/utils/vpnUserPresentation'
 import { canSwitchVpnUserProjects, readVpnUsers, vpnUserListLocation, vpnUserListQuery, vpnUserProject, vpnUserRoute, vpnUserSearchAuth, vpnUserSearchFields, vpnUserSearchQuery } from '@/utils/vpnUserSearch'
 import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
 import { eventArchiveScope, eventDetailKey, eventListLocation, eventProjectScope, eventViewScope, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
@@ -1584,6 +1585,14 @@ export default {
           ...column,
           width: widths[column.key] || 156,
           title: labels[column.key] ? this.$t(labels[column.key]) : column.title
+        }))
+      }
+      if (this.isVpnUser) {
+        const widths = { username: 136, state: 100, owners: 156, filtercolumn: 36 }
+        return columns.map(column => ({
+          ...column,
+          width: widths[column.key],
+          ...(column.key === 'owners' ? { sorter: (a, b) => genericCompare(vpnUserOwner(a).name || '', vpnUserOwner(b).name || '') } : {})
         }))
       }
       if (!asnRoute(this.$route)) return columns
@@ -2571,7 +2580,8 @@ export default {
               const oldDefaults = ['asnumber', 'allocationstate', 'asnrange', 'associatednetworkname', 'vpcname', 'allocated', 'account', 'domain', 'zonename']
               if (JSON.stringify(this.selectedColumns) === JSON.stringify(oldDefaults)) this.selectedColumns = [...defaultColumnKeys]
             }
-            if (this.$store.getters.listAllProjects && !this.projectView && !isoQuery) {
+            if (vpnUser) this.selectedColumns = vpnUserVisibleColumns(this.selectedColumns)
+            if (this.$store.getters.listAllProjects && !this.projectView && !isoQuery && !vpnUser) {
               this.selectedColumns.push('project')
             }
             this.updateSelectedColumns()

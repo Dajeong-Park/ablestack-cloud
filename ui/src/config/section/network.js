@@ -1306,8 +1306,8 @@ export default {
       icon: 'user-switch-outlined',
       permission: ['listVpnUsers'],
       searchFilters: ['username', 'domainid', 'account'],
-      columns: ['username', 'state', 'account', 'domain'],
-      details: ['username', 'state', 'account', 'domain'],
+      columns: ['username', 'state', 'owners'],
+      details: ['state', 'owners', 'id'],
       actions: [
         {
           api: 'addVpnUser',

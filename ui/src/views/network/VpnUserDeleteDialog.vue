@@ -29,9 +29,15 @@ under the License.
     focus-guard
     @cancel="close">
     <p>{{ $t('message.action.delete.vpn.user') }}</p>
+    <p v-if="rows.length > 1" class="vpn-user-delete-count">{{ $t('message.vpn.user.delete.count', [rows.length]) }}</p>
     <ul class="vpn-user-delete-targets" aria-live="polite">
       <li v-for="row in rows" :key="row.id">
-        <strong>{{ row.username }}</strong> · {{ row.owner }}
+        <strong class="vpn-user-delete-name">{{ row.username }}</strong>
+        <VpnUserValue field="owners" :resource="row" plain />
+        <div class="vpn-user-delete-status">
+          <span>{{ $t('label.status') }} ·</span>
+          <VpnUserValue field="state" :resource="row" />
+        </div>
         <a-tag v-if="row.status" :color="statusColors[row.status]">{{ $t(statusLabels[row.status]) }}</a-tag>
         <div v-if="row.error">{{ row.error }}</div>
         <code v-if="row.status === 'unknown' && row.jobId">{{ row.jobId }}</code>
@@ -48,6 +54,7 @@ under the License.
 <script>
 import { getAPI, postAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
+import VpnUserValue from '@/components/widgets/VpnUserValue'
 import { createJobTracker } from '@/utils/jobTracker'
 import { networkError } from '@/utils/networkLifecycle'
 import { vpnUserDeleteParams, vpnUserDeleteTargetExists } from '@/utils/vpnUserDeletion'
@@ -58,7 +65,7 @@ const jobOptions = { preserveOnFailure: true, timeout: 15000 }
 
 export default {
   name: 'VpnUserDeleteDialog',
-  components: { MoldDialog },
+  components: { MoldDialog, VpnUserValue },
   props: {
     targets: { type: Array, required: true },
     current: { type: Function, required: true },
@@ -160,8 +167,21 @@ export default {
 <style scoped>
 .vpn-user-delete-targets {
   display: grid;
-  gap: 8px;
+  gap: 12px;
+  max-block-size: 45vh;
+  overflow-y: auto;
   padding-inline-start: 20px;
   overflow-wrap: anywhere;
+}
+
+.vpn-user-delete-name {
+  display: block;
+}
+
+.vpn-user-delete-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
 }
 </style>
