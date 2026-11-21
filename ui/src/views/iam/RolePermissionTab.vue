@@ -17,8 +17,21 @@
 
 <template>
   <loading-outlined v-if="loadingTable" class="main-loading-spinner" />
-  <div v-else ref="rulesPanel" :aria-busy="busy">
-    <div class="rules-exports">
+  <section v-else ref="rulesPanel" class="role-rules-panel" :aria-busy="busy">
+    <div class="detail-tab-toolbar">
+      <a-button
+        v-if="canWriteRule('createRolePermission')"
+        type="primary"
+        :aria-expanded="showRuleForm"
+        :disabled="locked"
+        @click="showRuleForm = !showRuleForm">
+        <template #icon><plus-outlined /></template>
+        {{ $t('label.add.rule') }}
+      </a-button>
+      <a-button :loading="busy" @click="refresh">
+        <template #icon><reload-outlined /></template>
+        {{ $t('label.refresh') }}
+      </a-button>
       <a-button :disabled="locked || !rules.length" @click="exportRolePermissions('all')">
         <template #icon><download-outlined /></template>
         {{ $t('label.role.csv.export.all', { count: rules.length }) }}
@@ -27,75 +40,54 @@
         <template #icon><download-outlined /></template>
         {{ $t('label.role.csv.export.search', { count: visibleRules.length }) }}
       </a-button>
+      <a-input-search
+        v-model:value="searchRule"
+        class="detail-tab-search"
+        :placeholder="$t('label.rolepermissiontab.searchbar')"
+        :aria-label="$t('label.rolepermissiontab.searchbar')"
+        allow-clear />
     </div>
-    <a-input-search
-      v-model:value="searchRule"
-      :placeholder="$t('label.rolepermissiontab.searchbar')"
-      :aria-label="$t('label.rolepermissiontab.searchbar')"
-      allow-clear
-      style="width: 100%; margin-bottom: 10px"
-    />
-    <a-alert
-      v-if="loadError"
-      class="rules-notice"
-      type="error"
-      show-icon
-      :message="$t('message.role.rules.load.failed')"
-      :description="loadError">
-      <template #action>
-        <a-button size="small" :loading="busy" @click="refresh">{{ $t('label.retry') }}</a-button>
-      </template>
-    </a-alert>
-    <a-alert
-      v-if="!hasWriteActions"
-      class="rules-notice"
-      type="info"
-      show-icon
-      :message="$t('message.role.rules.readonly')" />
-    <a-alert v-if="actionError" class="rules-notice" type="error" show-icon :message="actionError" />
+
+    <a-alert v-if="loadError" class="detail-tab-notice" type="error" show-icon :message="$t('message.role.rules.load.failed')" :description="loadError" />
+    <a-alert v-if="!hasWriteActions" class="detail-tab-notice" type="info" show-icon :message="$t('message.role.rules.readonly')" />
+    <a-alert v-if="actionError" class="detail-tab-notice" type="error" show-icon :message="actionError" />
     <a-alert
       v-if="searchQuery && canWriteRule('updateRolePermission')"
-      class="rules-notice"
+      class="detail-tab-notice"
       type="info"
       show-icon
       :message="$t('message.role.rules.reorder.search')" />
+
+    <a-form v-if="showRuleForm && canWriteRule('createRolePermission')" class="role-rule-form" layout="vertical" @keydown.ctrl.enter.prevent="!$event.repeat && onRuleSave()">
+      <div class="role-rule-fields">
+        <a-form-item :label="$t('label.rule')" html-for="role-rule-name" required :validate-status="newRuleSelectError ? 'error' : ''" :help="newRuleSelectError ? $t('message.error.required.input') : undefined">
+          <a-auto-complete
+            id="role-rule-name"
+            v-model:value="newRule"
+            v-focus="true"
+            :filter-option="filterOption"
+            :options="apiOptions"
+            :disabled="busy"
+            style="width: 100%"
+            @change="newRuleSelectError = false" />
+        </a-form-item>
+        <a-form-item :label="$t('label.permission')" html-for="role-rule-permission">
+          <a-select id="role-rule-permission" v-model:value="newRulePermission" :options="permissionOptions" :disabled="busy" />
+        </a-form-item>
+        <a-form-item :label="$t('label.description')" html-for="role-rule-description">
+          <a-textarea id="role-rule-description" v-model:value="newRuleDescription" :disabled="busy" :auto-size="{ minRows: 1, maxRows: 4 }" />
+        </a-form-item>
+      </div>
+      <a-button type="primary" :disabled="locked" @click="onRuleSave">{{ $t('label.save.new.rule') }}</a-button>
+    </a-form>
+
     <a-spin :spinning="busy">
-      <div class="rules-list ant-list ant-list-bordered">
-        <div v-if="canWriteRule('createRolePermission')" class="rules-table-item ant-list-item">
-          <div class="rules-table__col rules-table__col--grab rules-table__col--grab-empty"></div>
-          <div class="rules-table__col rules-table__col--rule rules-table__col--new">
-            <a-auto-complete
-              v-focus="true"
-              v-model:value="newRule"
-              :filter-option="filterOption"
-              :options="apiOptions"
-              :placeholder="$t('label.rule')"
-              :aria-label="$t('label.rule')"
-              :disabled="busy"
-              :class="{ 'rule-dropdown-error': newRuleSelectError }"
-              @change="newRuleSelectError = false" />
-          </div>
-          <div class="rules-table__col rules-table__col--permission">
-            <a-select
-              v-model:value="newRulePermission"
-              :options="permissionOptions"
-              :aria-label="$t('label.permission')"
-              :disabled="busy"
-              show-search
-              option-filter-prop="label" />
-          </div>
-          <div class="rules-table__col rules-table__col--description">
-            <a-input v-model:value="newRuleDescription" :placeholder="$t('label.description')" :disabled="busy" />
-          </div>
-          <div class="rules-table__col rules-table__col--actions">
-            <tooltip-button
-              tooltipPlacement="bottom"
-              :tooltip="$t('label.save.new.rule')"
-              :disabled="locked"
-              icon="plus-outlined"
-              type="primary"
-              @onClick="onRuleSave" />
-          </div>
+      <div class="role-rule-list">
+        <div v-if="visibleRules.length" class="role-rule-row role-rule-heading" aria-hidden="true">
+          <span>{{ $t('label.rule') }}</span>
+          <span>{{ $t('label.permission') }}</span>
+          <span>{{ $t('label.description') }}</span>
+          <span>{{ $t('label.actions') }}</span>
         </div>
         <p v-if="ready && !visibleRules.length" class="rules-empty" role="status">{{ $t('label.no.data') }}</p>
         <draggable
@@ -104,15 +96,30 @@
           :disabled="!canReorder"
           handle=".drag-handle"
           animation="200"
-          ghostClass="drag-ghost"
-          :component-data="{ type: 'transition' }"
-          item-key="id">
+          ghost-class="drag-ghost"
+          item-key="id"
+          role="list"
+          :aria-label="$t('label.rules')">
           <template #item="{ element, index }">
-            <div class="rules-table-item ant-list-item">
-              <div
-                class="rules-table__col rules-table__col--grab"
-                :class="{ 'rules-table__col--grab-empty': searchQuery || !canWriteRule('updateRolePermission') }"
-                :data-rule-id="element.id">
+            <div class="role-rule-row" role="listitem" :data-rule-id="element.id">
+              <div class="role-rule-name" :title="element.rule">
+                <span class="role-rule-position" :aria-label="$t('label.role.rule.order')">{{ rulePositions.get(element.id) }}</span>
+                <strong>{{ element.rule }}</strong>
+              </div>
+              <div class="role-rule-permission">
+                <a-select
+                  v-if="canWriteRule('updateRolePermission')"
+                  :value="element.permission"
+                  :options="permissionOptions"
+                  :aria-label="$t('label.permission') + ' · ' + element.rule"
+                  :disabled="locked"
+                  @change="onPermissionChange(element, $event)" />
+                <a-tag v-else>{{ $t('label.' + element.permission) }}</a-tag>
+              </div>
+              <div class="role-rule-description">
+                {{ element.description || $t('message.no.description') }}
+              </div>
+              <div class="role-rule-actions" v-if="(!searchQuery && canWriteRule('updateRolePermission')) || canWriteRule('deleteRolePermission')">
                 <span v-if="!searchQuery && canWriteRule('updateRolePermission')" class="rule-order-controls">
                   <drag-outlined class="drag-handle" aria-hidden="true" />
                   <a-button
@@ -131,36 +138,7 @@
                     </template>
                   </a-button>
                 </span>
-              </div>
-              <div class="rules-table__col rules-table__col--rule">
-                {{ element.rule }}
-              </div>
-              <div class="rules-table__col rules-table__col--permission">
-                <a-select
-                  v-if="canWriteRule('updateRolePermission')"
-                  :value="element.permission"
-                  :options="permissionOptions"
-                  :aria-label="$t('label.permission') + ' · ' + element.rule"
-                  :disabled="locked"
-                  show-search
-                  option-filter-prop="label"
-                  @change="onPermissionChange(element, $event)" />
-                <span v-else>{{ $t('label.' + element.permission) }}</span>
-              </div>
-              <div class="rules-table__col rules-table__col--description">
-                <div v-if="element.description">
-                  {{ element.description }}
-                </div>
-                <div v-else class="no-description">
-                  {{ $t('message.no.description') }}
-                </div>
-              </div>
-              <div class="rules-table__col rules-table__col--actions">
-                <rule-delete
-                  v-if="canWriteRule('deleteRolePermission')"
-                  :disabled="locked"
-                  :record="element"
-                  @delete="onRuleDelete(element.id)" />
+                <rule-delete v-if="canWriteRule('deleteRolePermission')" :disabled="locked" :record="element" @delete="onRuleDelete(element.id)" />
               </div>
             </div>
           </template>
@@ -168,14 +146,13 @@
       </div>
     </a-spin>
     <p class="rules-feedback" role="status">{{ announcement }}</p>
-  </div>
+  </section>
 </template>
 
 <script>
 import { getAPI, postAPI } from '@/api'
 import draggable from 'vuedraggable'
 import RuleDelete from './RuleDelete'
-import TooltipButton from '@/components/widgets/TooltipButton'
 import { formatRoleCsv } from '@/utils/roleCsv'
 import { canRoleAction, roleRuleActions } from '@/utils/roleActions'
 
@@ -185,8 +162,7 @@ export default {
   name: 'RolePermissionTab',
   components: {
     RuleDelete,
-    draggable,
-    TooltipButton
+    draggable
   },
   props: {
     resource: {
@@ -204,6 +180,7 @@ export default {
       announcement: '',
       scopeVersion: 0,
       rules: [],
+      showRuleForm: false,
       newRule: '',
       newRulePermission: 'allow',
       newRuleDescription: '',
@@ -229,6 +206,7 @@ export default {
         .sort((a, b) => a.localeCompare(b))
         .map(value => ({ value }))
     },
+    rulePositions () { return new Map(this.rules.map((rule, index) => [rule.id, index + 1])) },
     permissionOptions () {
       return ['allow', 'deny'].map(value => ({ value, label: this.$t('label.' + value) }))
     }
@@ -244,6 +222,7 @@ export default {
           this.loadingTable = true
           this.rules = []
           this.searchRule = ''
+          this.showRuleForm = false
           this.loadError = ''
           this.actionError = ''
           this.announcement = ''
@@ -384,204 +363,48 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  .main-loading-spinner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-  }
-  .rules-exports {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
+<style scoped lang="scss">
+@import '@/style/components/view/DetailTab.scss';
 
-  .rules-notice {
-    margin-bottom: 10px;
-  }
+.role-rules-panel { min-width: 0; container-type: inline-size; }
+.main-loading-spinner { display: flex; justify-content: center; font-size: 30px; }
+.role-rule-form {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid var(--ui-border);
+  border-radius: 6px;
+  background: var(--ui-bg-surface);
+}
+.role-rule-fields { display: grid; gap: 0 12px; }
+.role-rule-form :deep(.ant-form-item) { margin-bottom: 12px; min-width: 0; }
+.role-rule-list { border: 1px solid var(--ui-border); border-radius: 6px; }
+.role-rule-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 8px 12px;
+  padding: 12px;
+  border-bottom: 1px solid var(--ui-border);
+}
+.role-rule-row:last-child { border-bottom: 0; }
+.role-rule-heading { display: none; font-weight: 600; background: var(--ui-bg-surface); }
+.role-rule-name { display: flex; align-items: baseline; gap: 8px; overflow-wrap: anywhere; }
+.role-rule-name strong { min-width: 0; }
+.role-rule-position { color: var(--ui-text-secondary); font-variant-numeric: tabular-nums; }
+.role-rule-permission :deep(.ant-select) { min-width: 74px; }
+.role-rule-description { grid-column: 1 / -1; overflow-wrap: anywhere; white-space: pre-wrap; color: var(--ui-text-secondary); }
+.role-rule-actions { grid-column: 1 / -1; justify-self: end; }
+.role-rule-actions, .rule-order-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+.drag-handle { cursor: grab; padding: 4px; }
+.drag-ghost { opacity: .65; background: var(--ui-bg-surface); }
+.rules-empty { padding: 24px 12px; margin: 0; text-align: center; color: var(--ui-text-secondary); }
+.rules-feedback { margin: 8px 0 0; }
+.rules-feedback:empty { display: none; }
 
-  .rules-empty {
-    padding: 24px 12px;
-    margin: 0;
-    text-align: center;
-    color: var(--ui-text-secondary);
-  }
-
-  .rules-feedback {
-    margin: 8px 0 0;
-
-    &:empty {
-      display: none;
-    }
-  }
-
-  .rules-list {
-    max-height: 600px;
-    overflow: auto;
-  }
-
-  .rules-table {
-
-    &-item {
-      position: relative;
-      display: flex;
-      align-items: stretch;
-      padding: 0;
-      flex-wrap: wrap;
-
-      @media (min-width: 760px) {
-        flex-wrap: nowrap;
-        padding-right: 25px;
-      }
-
-    }
-
-    &__col {
-      display: flex;
-      align-items: center;
-      padding: 15px;
-
-      @media (min-width: 760px) {
-        padding: 15px 0;
-
-        &:not(:first-child) {
-          padding-left: 20px;
-        }
-
-        &:not(:last-child) {
-          border-right: 1px solid #e8e8e8;
-          padding-right: 20px;
-        }
-      }
-
-      &--grab {
-        width: 100%;
-        padding-block: 4px;
-
-        @media (max-width: 759px) {
-          &-empty {
-            display: none;
-          }
-        }
-
-        @media (min-width: 760px) {
-          width: 35px;
-          padding-left: 25px;
-          justify-content: center;
-        }
-
-      }
-
-      &--rule,
-      &--description {
-        word-break: break-all;
-        flex: 1;
-        width: 100%;
-
-        @media (min-width: 760px) {
-          width: auto;
-        }
-
-      }
-
-      &--rule {
-        background-color: rgba(#e6f7ff, 0.7);
-
-        @media (min-width: 760px) {
-          padding-left: 0;
-          background: none;
-        }
-
-      }
-
-      &--permission {
-        justify-content: center;
-        width: 100%;
-
-        .ant-select {
-          width: 100%;
-        }
-
-        @media (min-width: 760px) {
-          width: auto;
-
-          .ant-select {
-            width: auto;
-          }
-
-        }
-
-      }
-
-      &--actions {
-        max-width: 60px;
-        width: 100%;
-        padding-right: 0;
-
-        @media (min-width: 760px) {
-          width: auto;
-          max-width: 70px;
-          padding-right: 15px;
-        }
-
-      }
-
-      &--new {
-        padding-left: 15px;
-        background-color: transparent;
-
-        div {
-          width: 100%;
-        }
-
-      }
-
-    }
-
-  }
-
-  .no-description {
-    opacity: 0.4;
-    font-size: 0.7rem;
-
-    @media (min-width: 760px) {
-      display: none;
-    }
-
-  }
-
-  .rule-order-controls {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    @media (min-width: 760px) {
-      flex-direction: column;
-    }
-  }
-
-  .drag-handle {
-    cursor: grab;
-  }
-
-  .drag-ghost {
-    opacity: 0.5;
-    background: #f0f2f5;
-  }
-
-</style>
-
-<style lang="scss">
-  .rules-table__col--new {
-    .ant-select {
-      width: 100%;
-    }
-  }
-  .rule-dropdown-error {
-    .ant-input {
-      border-color: #ff0000
-    }
-  }
+@container (min-width: 530px) {
+  .role-rule-fields { grid-template-columns: minmax(0, 4fr) minmax(90px, 1fr) minmax(0, 4fr); }
+  .role-rule-row { grid-template-columns: minmax(0, 4fr) minmax(90px, 1fr) minmax(0, 4fr) 130px; align-items: center; }
+  .role-rule-heading { display: grid; border-bottom: 1px solid var(--ui-border); }
+  .role-rule-description, .role-rule-actions { grid-column: auto; }
+}
 </style>

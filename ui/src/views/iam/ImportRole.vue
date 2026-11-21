@@ -96,7 +96,7 @@
           </template>
         </a-alert>
 
-        <div class="action-button">
+        <mold-dialog-actions :busy="loading" @keydown.ctrl.enter.prevent.stop="!$event.repeat && handleSubmit($event)">
           <a-button :disabled="loading" @click="closeAction">{{ $t('label.cancel') }}</a-button>
           <a-button
             v-if="preview"
@@ -107,10 +107,10 @@
             @click="confirmForce">
             {{ $t(preview.role ? 'label.role.csv.replace' : 'label.import.role') }}
           </a-button>
-          <a-button v-else :disabled="!canImport" :loading="loading" type="primary" html-type="submit">
+          <a-button v-else :disabled="!canImport" :loading="loading" type="primary" @click="handleSubmit">
             {{ $t(form.forced ? 'label.role.csv.review' : 'label.import.role') }}
           </a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
     </a-spin>
   </div>
@@ -118,6 +118,7 @@
 
 <script>
 import { getAPI, postAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { parseRoleCsv } from '@/utils/roleCsv'
 import { roleTypes } from '@/utils/roleSearch'
@@ -127,7 +128,7 @@ const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 
 export default {
   name: 'ImportRole',
-  components: { TooltipLabel },
+  components: { TooltipLabel, MoldDialogActions },
   emits: ['close-action', 'refresh-data'],
   data () {
     return {
@@ -306,13 +307,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-  .form-layout {
-    width: 80vw;
-
-    @media (min-width: 700px) {
-      width: 550px;
-    }
-  }
+  .form-layout { min-width: 0; }
 
   .import-notice {
     margin-block: 8px;

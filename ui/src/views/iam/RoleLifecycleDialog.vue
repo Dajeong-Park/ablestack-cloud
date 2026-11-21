@@ -27,7 +27,7 @@
       </template>
     </a-alert>
     <a-alert v-if="error" type="error" show-icon :message="error" />
-    <div class="action-button">
+    <mold-dialog-actions :busy="loading" @keydown.ctrl.enter.prevent.stop="!$event.repeat && confirm()">
       <a-button :disabled="loading" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
       <a-button
         type="primary"
@@ -37,12 +37,13 @@
         @click="confirm">
         {{ $t(currentAction.label) }}
       </a-button>
-    </div>
+    </mold-dialog-actions>
   </div>
 </template>
 
 <script>
 import { getAPI, postAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { canRoleAction, roleActionTarget, roleUsageParams } from '@/utils/roleActions'
 import { roleListLocation } from '@/utils/roleSearch'
 
@@ -50,6 +51,7 @@ const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 
 export default {
   name: 'RoleLifecycleDialog',
+  components: { MoldDialogActions },
   props: {
     resource: { type: Object, required: true },
     currentAction: { type: Object, required: true }
@@ -123,7 +125,7 @@ export default {
 </script>
 
 <style scoped>
-.role-action-confirmation { width: min(32rem, 80vw); }
+.role-action-confirmation { min-width: 0; }
 .role-action-confirmation :deep(.ant-alert) { margin-bottom: 12px; }
 .role-action-confirmation p:last-child { margin-bottom: 0; }
 </style>

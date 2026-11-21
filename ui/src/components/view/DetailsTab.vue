@@ -81,6 +81,14 @@
           <div v-else>{{ typeof dataResource.isdedicated === 'boolean' ? $t(dataResource.isdedicated ? 'label.yes' : 'label.no') : '—' }}</div>
         </div>
       </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'role' && ['isdefault', 'ispublic', 'state'].includes(item)">
+        <div>
+          <strong>{{ $t(item === 'isdefault' ? 'label.role.kind' : 'label.' + item) }}</strong><br />
+          <status v-if="item === 'state'" :text="dataResource.state" :display-label="$t('label.' + dataResource.state)" display-text />
+          <a-tag v-else-if="item === 'isdefault'">{{ $t(dataResource.isdefault ? 'label.default' : 'label.role.kind.custom') }}</a-tag>
+          <a-tag v-else>{{ $t(dataResource.ispublic ? 'label.public' : 'label.role.visibility.private') }}</a-tag>
+        </div>
+      </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'vpnuser' && dataResource.id">
         <div>
           <strong>{{ $t(item === 'id' ? 'label.vpn.user.uuid' : getDetailTitle(item)) }}</strong><br />

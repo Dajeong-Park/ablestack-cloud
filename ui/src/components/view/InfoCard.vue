@@ -86,6 +86,10 @@
                       {{ resource.type }}
                     </span>
                   </a-tag>
+                  <template v-if="$route.meta.name === 'role' && resource.id">
+                    <a-tag>{{ $t(resource.isdefault ? 'label.default' : 'label.role.kind.custom') }}</a-tag>
+                    <a-tag>{{ $t(resource.ispublic ? 'label.public' : 'label.role.visibility.private') }}</a-tag>
+                  </template>
                   <a-tag v-if="resource.issourcenat">
                     {{ $t('label.issourcenat') }}
                   </a-tag>
@@ -161,6 +165,7 @@
               </template>
             </status>
             <status v-else-if="$route.meta.name === 's2svpnconn'" class="status" :text="resource.state || ''" :display-label="$t(vpnConnectionState(resource))" display-text />
+            <status v-else-if="$route.meta.name === 'role'" class="status" :text="resource.state" :display-label="$t('label.' + resource.state)" display-text />
             <status v-else class="status" :text="resource.state || resource.status" displayText/>
           </div>
         </div>

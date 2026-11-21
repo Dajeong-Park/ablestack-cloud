@@ -214,4 +214,22 @@ describe('global role permission editing', () => {
     expect(editor.vm.hasWriteActions).toBe(false)
     expect(editor.vm.visibleRules).toEqual(testRules)
   })
+
+  it('opens the rule form and invokes its save handler from the toolbar workflow', async () => {
+    editor = mountEditor()
+    await flushPromises()
+    const add = editor.findAll('a-button-stub').find(button => button.text() === 'label.add.rule')
+    await add.trigger('click')
+    const save = editor.findAll('a-button-stub').find(button => button.text() === 'label.save.new.rule')
+    await save.trigger('click')
+    expect(editor.vm.newRuleSelectError).toBe(true)
+    expect(postAPI).not.toHaveBeenCalled()
+    await editor.setData({ newRule: 'listAccounts', newRuleDescription: 'Keep this description' })
+    await save.trigger('click')
+    await flushPromises()
+    expect(postAPI.mock.calls[0].slice(0, 2)).toEqual([
+      'createRolePermission',
+      { roleid: 'role', rule: 'listAccounts', permission: 'allow', description: 'Keep this description' }
+    ])
+  })
 })

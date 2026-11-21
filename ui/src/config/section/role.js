@@ -30,7 +30,7 @@ export default {
   permission: ['listRoles', 'listRolePermissions'],
   searchFilters: ['name', 'type', 'state', 'id'],
   columns: ['name', 'type', 'description', 'state'],
-  details: ['name', 'id', 'type', 'description', 'ispublic'],
+  details: ['name', 'id', 'type', 'isdefault', 'state', 'ispublic', 'description'],
   tabs: [{
     name: 'details',
     component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
@@ -56,6 +56,7 @@ export default {
       api: 'importRole',
       icon: 'cloud-upload-outlined',
       label: 'label.import.role',
+      toolbarLabel: 'label.import.role',
       listView: true,
       popup: true,
       component: shallowRef(defineAsyncComponent(() => import('@/views/iam/ImportRole.vue')))
