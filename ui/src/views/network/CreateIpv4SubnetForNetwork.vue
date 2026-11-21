@@ -19,6 +19,7 @@
   <a-spin :spinning="submitting">
     <a-form
       class="form"
+      :disabled="submitting"
       layout="vertical"
       :ref="formRef"
       :model="form"
@@ -83,51 +84,42 @@
           {{ $t(form.zoneid ? 'message.ipv4.subnet.no.parents' : 'message.ipv4.subnet.no.zones') }}
         </div>
       </a-form-item>
-      <a-form-item ref="subnet" name="subnet">
-        <template #label>
-          <tooltip-label :title="$t('label.subnet')" :tooltip="apiParams.subnet.description"/>
-        </template>
-        <a-input
-          v-focus="true"
-          v-model:value="form.subnet"
-          :placeholder="apiParams.subnet.description" />
+      <a-form-item :label="$t('message.ipv4.subnet.create.method')">
+        <a-radio-group v-model:value="form.mode" @change="clearError">
+          <a-radio value="subnet">{{ $t('label.subnet') }}</a-radio>
+          <a-radio value="cidrsize">{{ $t('label.cidrsize') }}</a-radio>
+        </a-radio-group>
       </a-form-item>
-      <a-form-item ref="cidrsize" name="cidrsize">
-        <template #label>
-          <tooltip-label :title="$t('label.cidrsize')" :tooltip="apiParams.cidrsize.description"/>
-        </template>
-        <a-input
-          v-model:value="form.cidrsize"
-          :placeholder="apiParams.cidrsize.description" />
+      <a-form-item v-if="form.mode === 'subnet'" name="subnet" :label="$t('label.subnet')">
+        <a-input v-model:value="form.subnet" placeholder="192.0.2.0/28" />
       </a-form-item>
+      <a-form-item v-else name="cidrsize" :label="$t('label.cidrsize')">
+        <a-input v-model:value="form.cidrsize" inputmode="numeric" placeholder="28" />
+      </a-form-item>
+      <a-alert v-if="submitError" class="lookup-feedback" type="error" show-icon :message="submitError" />
       <div :span="24" class="action-button">
-        <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" ref="submit" :disabled="!canSubmit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+        <a-button :disabled="submitting" @click="closeModal">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" ref="submit" :loading="submitting" :disabled="!canSubmit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
       </div>
     </a-form>
   </a-spin>
 </template>
 
 <script>
-import { ref, reactive, toRaw } from 'vue'
+import { ref, reactive } from 'vue'
 import { getAPI, postAPI } from '@/api'
-import { mixinForm } from '@/utils/mixin'
+import { isValidIPv4Cidr } from '@/utils/util'
+import { networkError } from '@/utils/networkLifecycle'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'CreateIpv4SubnetForNetwork',
-  mixins: [mixinForm],
   components: {
     ResourceIcon,
     TooltipLabel
   },
-  props: {
-    resource: {
-      type: Object,
-      default: () => {}
-    }
-  },
+  emits: ['close-action'],
   data () {
     return {
       zones: [],
@@ -136,20 +128,19 @@ export default {
       parentsLoading: false,
       submitting: false,
       lookupError: '',
+      submitError: '',
+      jobPending: false,
       parentRequest: 0
     }
   },
   computed: {
     canSubmit () {
-      return !this.zonesLoading && !this.parentsLoading && !this.submitting &&
+      return !this.jobPending && !this.zonesLoading && !this.parentsLoading && !this.submitting &&
         !this.lookupError && this.parentSubnets.some(parent => parent.id === this.form.parentid)
     }
   },
   beforeUnmount () {
     this.parentRequest++
-  },
-  beforeCreate () {
-    this.apiParams = this.$getApiParams('createIpv4SubnetForGuestNetwork')
   },
   created () {
     this.initForm()
@@ -158,10 +149,12 @@ export default {
   methods: {
     initForm () {
       this.formRef = ref()
-      this.form = reactive({})
+      this.form = reactive({ mode: 'subnet' })
       this.rules = reactive({
         zoneid: [{ required: true, message: this.$t('message.error.zone') }],
-        parentid: [{ required: true, message: this.$t('message.error.parent.subnet') }]
+        parentid: [{ required: true, message: this.$t('message.error.parent.subnet') }],
+        subnet: [{ validator: (_, value) => this.validateSubnet(value) }],
+        cidrsize: [{ validator: (_, value) => this.validatePrefix(value) }]
       })
     },
     async fetchZones () {
@@ -200,47 +193,67 @@ export default {
     retryLookup () {
       return this.form.zoneid ? this.fetchParentSubnets(this.form.zoneid) : this.fetchZones()
     },
-    handleSubmit () {
-      if (!this.canSubmit) return
-      this.formRef.value.validate().then(() => {
-        if (!this.canSubmit) return
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-        const params = {
-          parentid: values.parentid
-        }
-        if (values.subnet && values.subnet !== '') {
-          params.subnet = values.subnet
-        }
-        if (values.cidrsize && values.cidrsize !== '') {
-          params.cidrsize = values.cidrsize
-        }
-        this.submitting = true
-        postAPI('createIpv4SubnetForGuestNetwork', params).then(response => {
-          this.$pollJob({
-            jobId: response.createipv4subnetforguestnetworkresponse.jobid,
-            title: this.$t('message.success.add.ipv4.subnet.for.guest.network'),
-            description: values.subnet,
-            successMessage: this.$t('message.success.add.ipv4.subnet.for.guest.network'),
-            successMethod: (result) => {
-              this.closeModal()
-            },
-            errorMessage: this.$t('message.add.ipv4.subnet.for.guest.network.failed'),
-            loadingMessage: this.$t('message.add.ipv4.subnet.for.guest.network.processing'),
-            catchMessage: this.$t('error.fetching.async.job.result')
-          })
-          this.closeModal()
-        }).catch(error => {
-          this.$notifyError(error)
-        }).finally(() => {
-          this.submitting = false
-        })
-      }).catch((error) => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
+    clearError () {
+      this.submitError = ''
+      this.formRef.value.clearValidate(['subnet', 'cidrsize'])
+    },
+    validateSubnet (value) {
+      if (this.form.mode !== 'subnet') return Promise.resolve()
+      return isValidIPv4Cidr(null, value?.trim()).catch(() => {
+        throw new Error(this.$t('message.ipv4.subnet.create.invalid.cidr'))
       })
     },
+    validatePrefix (value) {
+      if (this.form.mode !== 'cidrsize') return Promise.resolve()
+      const input = value?.trim()
+      const parent = this.parentSubnets.find(option => option.id === this.form.parentid)
+      const minimum = Number(parent?.subnet.split('/')[1] ?? 0)
+      if (!/^\d{1,2}$/.test(input) || Number(input) < minimum || Number(input) > 32) {
+        return Promise.reject(new Error(this.$t('message.ipv4.subnet.create.invalid.size', [minimum])))
+      }
+      return Promise.resolve()
+    },
+    async handleSubmit () {
+      if (!this.canSubmit) return
+      const parentId = this.form.parentid
+      try {
+        await this.formRef.value.validate()
+      } catch (error) {
+        if (error.errorFields?.length) this.formRef.value.scrollToField(error.errorFields[0].name)
+        return
+      }
+      if (!this.canSubmit || parentId !== this.form.parentid) return
+
+      const mode = this.form.mode
+      const value = this.form[mode].trim()
+      this.submitting = true
+      this.submitError = ''
+      try {
+        const response = await postAPI('createIpv4SubnetForGuestNetwork', { parentid: parentId, [mode]: value }, { preserveOnFailure: true })
+        this.jobPending = true
+        const jobId = response.createipv4subnetforguestnetworkresponse?.jobid
+        const result = jobId && await this.$pollJob({
+          jobId,
+          title: this.$t('label.add.ipv4.subnet'),
+          description: value,
+          successMessage: this.$t('message.success.add.ipv4.subnet'),
+          action: { api: 'createIpv4SubnetForGuestNetwork', suppressErrorNotification: true }
+        })
+        if (result?.jobstatus === 1) this.$emit('close-action')
+        else if (result?.jobstatus === 2) {
+          this.jobPending = false
+          this.submitError = result.jobresult?.errortext || this.$t('message.request.failed')
+        } else this.submitError = this.$t('message.job.result.unknown')
+      } catch (error) {
+        const detail = networkError(error)
+        if (!detail.definitive) this.jobPending = true
+        this.submitError = detail.text || this.$t(this.jobPending ? 'message.job.result.unknown' : 'message.request.failed')
+      } finally {
+        this.submitting = false
+      }
+    },
     closeModal () {
-      this.$emit('close-action')
+      if (!this.submitting) this.$emit('close-action')
     }
   }
 }
