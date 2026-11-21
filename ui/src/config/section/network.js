@@ -39,6 +39,7 @@ import { networkBusy } from '@/utils/networkLifecycle'
 import { canReadNetworkPermissions } from '@/utils/networkPermissions'
 import { vpcRestartParams, vpcRestartReason } from '@/utils/vpcRestart'
 import { vpcMigrationVisible } from '@/utils/vpcMigration'
+import { canDeleteVpnUsers } from '@/utils/vpnUserDeletion'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -1324,30 +1325,11 @@ export default {
           api: 'removeVpnUser',
           icon: 'delete-outlined',
           label: 'label.delete.vpn.user',
-          message: 'message.action.delete.vpn.user',
           dataView: true,
-          args: ['username', 'domainid', 'account'],
-          mapping: {
-            username: {
-              value: (record) => { return record.username }
-            },
-            domainid: {
-              value: (record) => { return record.domainid }
-            },
-            account: {
-              value: (record) => { return record.account }
-            }
-          },
+          show: (record, store) => canDeleteVpnUsers(store),
           groupAction: true,
-          popup: true,
-          groupMap: (selection, values, record) => {
-            return selection.map(x => {
-              const data = record.filter(y => { return y.id === x })
-              return {
-                username: data[0].username, account: data[0].account, domainid: data[0].domainid
-              }
-            })
-          }
+          groupShow: (records, store) => canDeleteVpnUsers(store),
+          popup: true
         }
       ]
     },

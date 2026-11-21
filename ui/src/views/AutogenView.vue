@@ -280,6 +280,15 @@
         :after-close="restoreClosedActionFocus"
         @close="closeAction"
       />
+      <vpn-user-delete-dialog
+        v-else-if="showAction && currentAction.vpnUserDeleteTargets"
+        :key="storageActionGeneration"
+        :targets="currentAction.vpnUserDeleteTargets"
+        :current="currentAction.vpnUserDeleteCurrent"
+        :after-close="restoreClosedActionFocus"
+        @close="finishVpnUserDeletion"
+        @completed="finishVpnUserDeletion(true, true)"
+      />
       <event-mutation-dialog
         v-else-if="showAction && currentAction.eventMutationTargets"
         :key="storageActionGeneration"
@@ -863,6 +872,8 @@ import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
+import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
+import { canDeleteVpnUsers, vpnUserDeleteTargets } from '@/utils/vpnUserDeletion'
 import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
 import { eventArchiveScope, eventDetailKey, eventListLocation, eventProjectScope, eventViewScope, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import { eventCreatedSortQuery, eventSearchQuery } from '@/utils/eventSearch'
@@ -925,6 +936,7 @@ export default {
     MoldDialog,
     EventCsvDialog,
     EventMutationDialog,
+    VpnUserDeleteDialog,
     PublicIpReleaseSummary,
     PublicIpDetailValue,
     VpcActionContext,
@@ -1277,6 +1289,12 @@ export default {
     vmDialogScope () {
       if (this.showAction && this.vmStandardDialog) this.closeAction()
     },
+    vpnUserDeleteScope: {
+      flush: 'sync',
+      handler () {
+        if (this.showAction && this.currentAction.vpnUserDeleteTargets) this.closeAction()
+      }
+    },
     eventActionScope: {
       flush: 'sync',
       handler () {
@@ -1470,6 +1488,13 @@ export default {
       if (id === '0') return this.$t('label.default.view')
       if (id === '-1') return this.$t('label.projects')
       return (project?.id === id ? project.name : this.items.find(row => row.projectid === id)?.project) || this.$t('label.project')
+    },
+    vpnUserDeleteScope () {
+      if (this.$route.meta?.name !== 'vpnuser') return null
+      const getters = this.$store.getters
+      const user = getters.userInfo
+      return JSON.stringify([this.$route.fullPath, getters.project?.id, getters.listAllProjects,
+        user?.id, user?.roleid, user?.roletype, user?.domainid, this.$store.state?.user?.token, canDeleteVpnUsers(getters)])
     },
     eventActionScope () {
       if (this.$route.meta?.name !== 'event') return null
@@ -1798,6 +1823,7 @@ export default {
       }
     },
     listScope () {
+      if (this.vpnUserDeleteScope) return this.vpnUserDeleteScope
       if (this.isKmsDetail) return JSON.stringify([kmsDetailKey(this.$route, this.$store.getters), this.kmsSearchAuth])
       if (kmsListRoute(this.$route)) return JSON.stringify([this.$route.fullPath, this.kmsSearchAuth])
       if (this.$route.meta?.name === 'kubernetesiso') return JSON.stringify([this.$route.fullPath, kubernetesIsoContext(this.$store.getters, this.$store.state?.user?.token)])
@@ -3015,6 +3041,16 @@ export default {
       }
       return this.fetchData(result)
     },
+    finishVpnUserDeletion (refresh, complete = false) {
+      if (!this.currentAction.vpnUserDeleteCurrent?.()) return
+      const deletedDetail = complete && this.dataView
+      this.closeAction()
+      if (!refresh) return
+      this.resetSelection()
+      if (this.$refs.listview) this.$refs.listview.resetSelection()
+      if (deletedDetail) return this.$router.replace('/vpnuser')
+      return this.fetchData({ irefresh: true })
+    },
     finishEventMutation (success) {
       const deletedDetail = success && this.dataView && this.currentAction.api === 'deleteEvents'
       const location = deletedDetail && eventListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token, this.resource)
@@ -3068,7 +3104,7 @@ export default {
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = this.currentAction?.api === 'downloadEvents' || !!this.currentAction?.eventMutationTargets || kmsDialog || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.currentAction?.api === 'downloadEvents' || !!this.currentAction?.eventMutationTargets || !!this.currentAction?.vpnUserDeleteTargets || kmsDialog || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3277,6 +3313,24 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (action.api === 'removeVpnUser') {
+        const scope = this.vpnUserDeleteScope
+        if (!scope || !canDeleteVpnUsers(this.$store.getters)) return
+        const ids = isGroupAction ? this.selectedRowKeys : [this.dataView ? this.$route.params?.id : action.resource?.id]
+        const targets = this.storageActionReady && vpnUserDeleteTargets(ids, this.dataView ? [this.resource] : this.items)
+        if (!targets?.length) {
+          this.$message.warning(this.$t('message.vpn.user.delete.target.changed'))
+          return
+        }
+        const generation = this.storageActionGeneration
+        this.currentAction = {
+          ...action,
+          vpnUserDeleteTargets: targets,
+          vpnUserDeleteCurrent: () => this.showAction && this.storageActionGeneration === generation && scope === this.vpnUserDeleteScope
+        }
+        this.showAction = true
+        return
+      }
       if (isEventMutation(action.api)) {
         if (!this.eventActionScope || !this.storageActionReady) return
         const rows = isGroupAction ? this.selectedItems : [action.resource || this.resource]
