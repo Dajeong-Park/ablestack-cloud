@@ -25,6 +25,7 @@ import { vnfStates } from '@/utils/vnfSearch'
 import tungsten from '@/assets/icons/tungsten.svg?inline'
 import { isAdmin, isAdminOrDomainAdmin } from '@/role'
 import { isZoneCreated } from '@/utils/zone'
+import { canCreateVpnUser } from '@/utils/vpnUserCreation'
 import { escapeHtml } from '@/utils/util'
 import { vueProps } from '@/vue-app'
 import { publicIpFilterLabels } from '@/utils/publicIpPresentation'
@@ -1313,14 +1314,10 @@ export default {
           icon: 'plus-outlined',
           label: 'label.add.vpn.user',
           listView: true,
-          show: isZoneCreated,
-          args: (record, store) => {
-            if (store.userInfo.roletype === 'User') {
-              return ['username', 'password']
-            }
-
-            return ['username', 'password', 'domainid', 'account']
-          }
+          show: (record, store) => isZoneCreated() && canCreateVpnUser(store),
+          popup: true,
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnUserCreateDialog.vue')))
         },
         {
           api: 'removeVpnUser',
