@@ -22,19 +22,18 @@ import com.cloud.exception.InvalidParameterValueException;
 import com.cloud.user.Account;
 import org.apache.cloudstack.api.APICommand;
 import org.apache.cloudstack.api.ApiConstants;
-import org.apache.cloudstack.api.ApiErrorCode;
 import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
-import org.apache.cloudstack.api.ServerApiException;
+import org.apache.cloudstack.api.response.DownloadEventsResponse;
 import org.apache.cloudstack.api.response.EventResponse;
-import org.apache.cloudstack.api.response.SuccessResponse;
 import org.apache.cloudstack.context.CallContext;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.List;
 
-@APICommand(name = "downloadEvents", description = "Download one or more events.", responseObject = SuccessResponse.class, entityType = {Event.class},
-        requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
+@APICommand(name = "downloadEvents", description = "Export events as CSV without changing their archive state.",
+        responseObject = DownloadEventsResponse.class, entityType = {Event.class}, responseHasSensitiveInfo = true)
 public class DownloadEventsCmd extends BaseCmd {
 
     /////////////////////////////////////////////////////
@@ -48,15 +47,15 @@ public class DownloadEventsCmd extends BaseCmd {
             description = "the IDs of the events")
     private List<Long> ids;
 
-    @Parameter(name = ApiConstants.END_DATE, type = BaseCmd.CommandType.DATE, description = "end date range to archive events"
+    @Parameter(name = ApiConstants.END_DATE, type = BaseCmd.CommandType.DATE, description = "End date range to export events"
             + " (including) this date (use format \"yyyy-MM-dd\" or the new format \"yyyy-MM-ddThh:mm:ss\")")
     private Date endDate;
 
-    @Parameter(name = ApiConstants.START_DATE, type = BaseCmd.CommandType.DATE, description = "start date range to archive events"
+    @Parameter(name = ApiConstants.START_DATE, type = BaseCmd.CommandType.DATE, description = "Start date range to export events"
             + " (including) this date (use format \"yyyy-MM-dd\" or the new format \"yyyy-MM-ddThh:mm:ss\")")
     private Date startDate;
 
-    @Parameter(name = ApiConstants.TYPE, type = BaseCmd.CommandType.STRING, description = "archive by event type")
+    @Parameter(name = ApiConstants.TYPE, type = BaseCmd.CommandType.STRING, description = "Export by event type")
     private String type;
 
     /////////////////////////////////////////////////////
@@ -94,17 +93,14 @@ public class DownloadEventsCmd extends BaseCmd {
 
     @Override
     public void execute() {
-        if (ids == null && type == null && endDate == null) {
-            throw new InvalidParameterValueException("either ids, type or enddate must be specified");
-        } else if (startDate != null && endDate == null) {
-            throw new InvalidParameterValueException("enddate must be specified with startdate parameter");
+        if ((ids == null && StringUtils.isBlank(type) && endDate == null) || (ids != null && ids.isEmpty())) {
+            throw new InvalidParameterValueException("Specify event IDs, a type or an end date.");
         }
-        boolean result = _mgr.downloadEvents(this);
-        if (result) {
-            SuccessResponse response = new SuccessResponse(getCommandName());
-            setResponseObject(response);
-        } else {
-            throw new ServerApiException(ApiErrorCode.INTERNAL_ERROR, "Unable to archive Events, one or more parameters has invalid values");
+        if (startDate != null && (endDate == null || startDate.after(endDate))) {
+            throw new InvalidParameterValueException("The end date must be on or after the start date.");
         }
+        DownloadEventsResponse response = _mgr.downloadEvents(this);
+        response.setResponseName(getCommandName());
+        setResponseObject(response);
     }
 }

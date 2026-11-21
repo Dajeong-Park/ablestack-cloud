@@ -236,7 +236,7 @@ public class FtctlServiceImplTest {
         Assert.assertEquals("blockcopy.progress", events.get(1).getEvent());
         Assert.assertEquals("ok", events.get(1).getResult());
         Assert.assertTrue(events.get(1).getDetails().contains("\"percent\":40.0"));
-        Mockito.verify(eventDao, Mockito.never()).listToArchiveOrDeleteEvents(Mockito.any(), Mockito.anyString(), Mockito.any(), Mockito.any(), Mockito.anyList());
+        Mockito.verify(eventDao, Mockito.never()).lockEventsForArchiveOrDelete(Mockito.any(), Mockito.anyString(), Mockito.any(), Mockito.any(), Mockito.anyList());
     }
 
     @Test

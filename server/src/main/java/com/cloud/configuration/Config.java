@@ -1784,7 +1784,7 @@ public enum Config {
     PublishResourceStateEvent("Advanced", ManagementServer.class, Boolean.class, "publish.resource.state.events", "true", "enable or disable publishing of alert events on the event bus", null),
     PublishUsageEvent("Advanced", ManagementServer.class, Boolean.class, "publish.usage.events", "true", "enable or disable publishing of usage events on the event bus", null),
     PublishAsynJobEvent("Advanced", ManagementServer.class, Boolean.class, "publish.async.job.events", "true", "enable or disable publishing of usage events on the event bus", null),
-    EventDeleteEnabled("Advanced", ManagementServer.class, Boolean.class, "event.delete.enabled", "true", "If set to true, the delete event button is enabled", null),
+    EventDeleteEnabled("Advanced", ManagementServer.class, Boolean.class, "event.delete.enabled", "true", "Whether active events may be deleted via the API and UI", null),
 
     // StatsCollector
     StatsOutPutGraphiteHost("Advanced", ManagementServer.class, String.class, "stats.output.uri", "", "URI to additionally send StatsCollector statistics to", null),
