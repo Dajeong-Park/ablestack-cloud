@@ -34,6 +34,12 @@
       :message="result === 'failed' ? errorText : $t('message.vpn.customer.gateway.job.' + result)">
       <template v-if="jobId && result === 'unknown'" #description><code>{{ jobId }}</code></template>
     </a-alert>
+    <a-alert
+      v-if="editing"
+      class="gateway-result"
+      type="info"
+      show-icon
+      :message="$t('message.vpn.customer.gateway.update.impact')" />
     <div :inert="locked || undefined">
       <div v-if="!editing" class="gateway-registration-owner">
         <a-form v-if="!project.id && (allProjects || canChooseAccount)" layout="vertical">

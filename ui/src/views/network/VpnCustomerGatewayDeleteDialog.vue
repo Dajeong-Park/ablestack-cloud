@@ -27,6 +27,7 @@
     :focus-trigger-after-close="false"
     @cancel="close">
     <p>{{ $t('message.delete.vpn.customer.gateway') }}</p>
+    <p>{{ $t('message.vpn.customer.gateway.delete.impact') }}</p>
     <p v-if="rows.length > 1">{{ $t('label.vpn.customer.gateway.delete.count', [rows.length]) }}</p>
     <ul class="vpn-customer-gateway-targets" aria-live="polite">
       <li v-for="row in rows" :key="row.id">

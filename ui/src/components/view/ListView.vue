@@ -178,6 +178,13 @@
             <router-link :to="cniDetailLink($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="cniDetailLink($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
+          <span v-else-if="$route.meta?.name === 'vpncustomergateway' && record.id" class="vpn-customer-gateway-name">
+            <router-link :to="{ path: '/vpncustomergateway/' + record.id, query: $route.query }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/vpncustomergateway/' + record.id, query: { ...$route.query, tab: 'comments' } }"><message-filled /></router-link>
+            <a-tooltip v-if="record.excludedparameters || record.obsoleteparameters" :title="$t('message.vpn.customer.gateway.contains.excluded.obsolete.parameters')">
+              <warning-outlined :style="{ color: $config.theme['@warning-color'] }" />
+            </a-tooltip>
+          </span>
           <span v-else-if="$route.meta?.name === 'guestnetwork' && record.id">
             <router-link :to="networkDetailLocation($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
@@ -254,14 +261,6 @@
               <a-tooltip>
                 <template #title>{{ $t('label.restartrequired') }}</template>
                 <warning-outlined style="color: #f5222d" />
-              </a-tooltip>
-            </span>
-            <span v-else-if="$route.path.startsWith('/vpncustomergateway')">
-              &nbsp;
-              <a-tooltip
-                v-if="record.excludedparameters || record.obsoleteparameters"
-                :title="$t('message.vpn.customer.gateway.contains.excluded.obsolete.parameters')">
-                <warning-outlined :style="{ color: $config.theme['@warning-color'] }" />
               </a-tooltip>
             </span>
           </span>
@@ -2446,5 +2445,6 @@ export default {
 .kubernetes-iso-list-table :deep(.ant-table-column-title) { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .kubernetes-iso-list-table :deep(.ant-table-cell) { overflow:hidden; }
 
-.vpn-user-name { overflow-wrap: anywhere; }
+.vpn-user-name, .vpn-customer-gateway-name { overflow-wrap: anywhere; }
+.vpn-customer-gateway-name > * + * { margin-inline-start: 8px; }
 </style>

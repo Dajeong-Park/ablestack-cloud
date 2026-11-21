@@ -28,6 +28,7 @@
       layout="vertical"
       @finish="handleSubmit"
      >
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.general') }}</h3>
       <a-form-item ref="name" name="name">
         <template #label>
           <tooltip-label :title="$t('label.name')" :tooltip="$t('message.vpn.customer.gateway.form.name')"/>
@@ -63,6 +64,7 @@
           autocomplete="new-password"
           :placeholder="apiParams.ipsecpsk.description" />
       </a-form-item>
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.ike') }}</h3>
       <a-form-item ref="ikeEncryption" name="ikeEncryption" :label="$t('label.ikeencryption')">
         <a-select
           v-model:value="form.ikeEncryption"
@@ -187,6 +189,7 @@
           </span>
         </template>
       </a-form-item>
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.esp') }}</h3>
       <a-form-item ref="espEncryption" name="espEncryption" :label="$t('label.espencryption')">
         <a-select
           v-model:value="form.espEncryption"
@@ -300,6 +303,7 @@
           inputmode="numeric"
           placeholder="3600"/>
       </a-form-item>
+      <h3 class="gateway-form-section">{{ $t('label.vpn.customer.gateway.section.options') }}</h3>
       <a-form-item ref="dpd" name="dpd">
         <template #label>
           <tooltip-label :title="$t('label.dpd')" :tooltip="apiParams.dpd.description"/>
@@ -634,4 +638,9 @@ export default {
 <style lang="scss" scoped>
 .form-layout { min-width: 0; }
 .gateway-policy-error { margin-bottom: 16px; }
+.gateway-form-section {
+  margin-block: 14px 10px;
+  color: var(--ui-text-primary);
+  font-weight: 600;
+}
 </style>
