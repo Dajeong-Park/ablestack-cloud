@@ -215,7 +215,6 @@
             />
           </a-col>
         </a-row>
-        <p v-if="isGuestVlan && !dataView" class="guest-vlan-inventory-scope">{{ $t('label.guest.vlan.inventory') }}</p>
         <S2sGatewayFilterChips v-if="isS2sSearchList" :api-name="s2sSearchApi" :validation-error="s2sGatewaySearchFailure" @search="onSearch" />
         <a-row
           v-if="showSearchFilters"
@@ -5118,9 +5117,6 @@ export default {
 <style scoped src="@/style/components/view/list-toolbar.css" />
 
 <style scoped src="@/style/components/view/vm-acl-standard.css" />
-<style scoped>
-.guest-vlan-inventory-scope { margin: 4px 0 0 12px; color: var(--ui-text-secondary); }
-</style>
 <style scoped src="@/style/components/view/project-standard.css" />
 <style src="@/style/components/view/s2s-connection.css" />
 <style scoped>
