@@ -17,6 +17,7 @@
 
 import VpnCustomerGateway from '@/views/network/VpnCustomerGateway.vue'
 import { getAPI } from '@/api'
+import { gatewayCidrParts, validateGatewayCidrs, validGatewayLifetime, validGatewayPeer } from '@/utils/vpnCustomerGatewayForm'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn() }))
 
@@ -68,5 +69,26 @@ describe('VPN defaults with Europa parameter policy', () => {
     expect(context.form.ikeEncryption).toBe('aes192')
     expect(context.form.espEncryption).toBe('aes128')
     expect(context.form.espHash).toBe('sha512')
+  })
+})
+
+describe('VPN customer gateway input contract', () => {
+  test('accepts IPv4 and DNS names and rejects malformed peers', () => {
+    expect(validGatewayPeer('203.0.113.21')).toBe(true)
+    expect(validGatewayPeer('test-site.example.invalid')).toBe(true)
+    expect(validGatewayPeer('203.0.113.999')).toBe(false)
+    expect(validGatewayPeer('https://test-site.example.invalid')).toBe(false)
+  })
+
+  test('validates all CIDRs and strips separator whitespace', async () => {
+    const raw = ' 192.0.2.0/24, 198.51.100.0/27 '
+    expect(gatewayCidrParts(raw)).toEqual(['192.0.2.0/24', '198.51.100.0/27'])
+    await expect(validateGatewayCidrs(raw)).resolves.toHaveLength(2)
+    await expect(validateGatewayCidrs('192.0.2.0/32, 198.51.100.0/33')).rejects.toThrow()
+  })
+
+  test('accepts default and boundary lifetimes and rejects out-of-range input', () => {
+    expect(['', '0', 3600, '86400'].every(validGatewayLifetime)).toBe(true)
+    expect(['-4', '1.5', '86401'].some(validGatewayLifetime)).toBe(false)
   })
 })
