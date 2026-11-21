@@ -209,6 +209,7 @@
             />
           </a-col>
         </a-row>
+        <p v-if="isGuestVlan && !dataView" class="guest-vlan-inventory-scope">{{ $t('label.guest.vlan.inventory') }}</p>
         <S2sGatewayFilterChips v-if="isS2sSearchList" :api-name="s2sSearchApi" :validation-error="s2sGatewaySearchFailure" @search="onSearch" />
         <a-row
           v-if="showSearchFilters"
@@ -863,6 +864,7 @@ import { kubernetesIsoApis, kubernetesIsoCapability, canKubernetesIsoAction, kub
 import { kubernetesIsoListResponse, kubernetesIsoReadParams, kubernetesIsoFailure } from '@/utils/kubernetesIsoModel'
 import { kubernetesIsoListQuery, kubernetesIsoListLocation, kubernetesIsoListOwner, kubernetesIsoSearchError, kubernetesIsoSearchQuery, kubernetesIsoSortFields, kubernetesIsoFilterMismatch } from '@/utils/kubernetesIsoSearch'
 import { templateListQuery, templateSearchQuery, templateSearchError, templateRequestParams, readTemplateResource, templateOwner, templateListLocation, templateFilterMismatch } from '@/utils/templateSearch'
+import { guestVlanRoute, guestVlanReadParams, guestVlanSearchQuery } from '@/utils/guestVlan'
 import { guestNetworkRoute, networkSearchQuery, readNetworkPage, networkListLocation } from '@/utils/guestNetworkSearch'
 import { networkTabRoute, networkTabRouteKey } from '@/utils/networkTabs'
 import S2sGatewayFilterChips from '@/components/view/S2sGatewayFilterChips'
@@ -1593,6 +1595,7 @@ export default {
     vpnCustomerGatewayActionScope () {
       return this.$route.meta?.name === 'vpncustomergateway' ? vpnCustomerGatewayActionKey(this.$store.getters, this.$route, this.$store.state?.user?.token) : null
     },
+    isGuestVlan () { return guestVlanRoute(this.$route) },
     isVpnCustomerGateway () { return this.$route.meta?.name === 'vpncustomergateway' },
     standardResourceToolbar () { return this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
@@ -1712,6 +1715,7 @@ export default {
       const queryParams = this.isProjectList ? projectSearchQuery(this.$route.query, this.$store.getters) : { ...this.$route.query }
       const activeFilters = []
       for (const filter in queryParams) {
+        if (guestVlanRoute(this.$route) && ['filter', 'allocatedonly'].includes(filter)) continue
         if (isAclListRoute(this.$route) && !['name', 'vpcid'].includes(filter)) continue
         if (this.isEventList && ['timeline', 'startid', 'archived', 'filter', 'projectid'].includes(filter)) continue
         if (kmsListRoute(this.$route) && filter === 'projectid' && kmsProjectScope(this.$store.getters)) continue
@@ -1767,6 +1771,7 @@ export default {
       return isAclListRoute(this.$route) && aclDisplaySupported(this.$store.getters) ? 'acl-display-filter' : undefined
     },
     filterValue () {
+      if (guestVlanRoute(this.$route)) return this.$route.query.allocatedonly === 'true' ? 'allocatedonly' : 'all'
       if (this.aclDisplayFilterId) return aclDisplayValue(this.$route.query.fordisplay) || 'true'
       if (this.isEventList) return eventArchiveScope(this.$route.query, this.isEventTimeline)
       if (this.s2sDisplayFilterId) return this.$route.query.fordisplay || 'all'
@@ -2845,6 +2850,7 @@ export default {
         delete params.excludeprojectresources
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
+      if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
       if (this.isProjectList && this.apiName === 'listProjects') params = projectListParams(this.$route.query, params, this.$store.getters)
@@ -3467,7 +3473,7 @@ export default {
           if (filter.key === 'domainid') delete queryParams.account
         }
         if (guestNetworkRoute(this.$route) && filter.key === 'domainid') delete queryParams.account
-        if (guestNetworkRoute(this.$route) && filter.key === 'zoneid') delete queryParams.physicalnetworkid
+        if ((guestNetworkRoute(this.$route) || guestVlanRoute(this.$route)) && filter.key === 'zoneid') delete queryParams.physicalnetworkid
         if (vnfRoute(this.$route) && filter.key === 'domainid') { delete queryParams.account; delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid; delete queryParams.groupid }
         if (vnfRoute(this.$route) && filter.key === 'zoneid') { delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid }
         if (vnfRoute(this.$route) && filter.key === 'account') { delete queryParams.networkid; delete queryParams.templateid; delete queryParams.serviceofferingid; delete queryParams.groupid }
@@ -4742,6 +4748,11 @@ export default {
       return this.$router.push({ query })
     },
     onSearch (opts) {
+      if (guestVlanRoute(this.$route) && !this.dataView) {
+        const query = guestVlanSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (this.isProjectList) {
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()

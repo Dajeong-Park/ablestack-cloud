@@ -24,3 +24,41 @@ export function guestVlanVpcLocation (network, apis) {
   if (!apis?.listVPCs || !network.vpcid) return null
   return { path: '/vpc/' + network.vpcid, query: { projectid: network.projectid || '0' } }
 }
+
+const vlanAdvancedFields = ['zoneid', 'physicalnetworkid', 'vnet']
+const vlanListFields = [...vlanAdvancedFields, 'keyword', 'q', 'allocatedonly', 'page', 'pagesize']
+
+export function guestVlanRoute (route) {
+  return route.meta?.name === 'guestvlans'
+}
+
+export function guestVlanListQuery (query = {}) {
+  return Object.fromEntries(vlanListFields.filter(key => typeof query[key] === 'string' && query[key]).map(key => [key, query[key]]))
+}
+
+export function guestVlanSearchQuery (current, values, size) {
+  const query = guestVlanListQuery(current)
+  if (Object.prototype.hasOwnProperty.call(values, 'searchQuery')) {
+    delete query.q
+    delete query.keyword
+    const keyword = values.searchQuery?.trim()
+    if (keyword) query.keyword = query.q = keyword
+  } else if (values.guestVlanReset) {
+    for (const key of [...vlanAdvancedFields, 'q', 'keyword', 'allocatedonly']) delete query[key]
+  } else {
+    for (const key of vlanAdvancedFields) {
+      delete query[key]
+      const value = values[key]?.trim()
+      if (value) query[key] = value
+    }
+  }
+  return { ...query, page: '1', pagesize: String(size) }
+}
+
+export function guestVlanReadParams (params) {
+  const { page, pagesize, id } = params
+  if (id) return { id, page: 1, pagesize: 1, ignoreproject: true }
+  const query = guestVlanListQuery(params)
+  delete query.q
+  return { ...query, page, pagesize, ignoreproject: true }
+}

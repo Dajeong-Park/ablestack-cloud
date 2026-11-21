@@ -26,8 +26,8 @@
     <span v-if="!searchFilters || searchFilters.length === 0" style="display: flex;">
       <a-input-search
         v-model:value="searchQuery"
-        :aria-label="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : undefined"
-        :placeholder="apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :aria-label="isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : undefined"
+        :placeholder="isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         allowClear
         @search="onSearch"
       />
@@ -39,8 +39,8 @@
       <a-input-search
         allowClear
         class="input-search"
-        :aria-label="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
-        :placeholder="apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :aria-label="isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
+        :placeholder="isGuestVlanSearch ? $t('label.guest.vlan.search.keyword') : apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         :title="apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
@@ -88,7 +88,7 @@
                     :scope="volumeScope"
                     @blocked="volumeLookupBlocked = $event" />
                   <NetworkSearchSelect
-                    v-else-if="isGuestNetworkSearch && ['networkofferingid', 'physicalnetworkid'].includes(field.name)"
+                    v-else-if="(isGuestNetworkSearch && ['networkofferingid', 'physicalnetworkid'].includes(field.name)) || (isGuestVlanSearch && field.name === 'physicalnetworkid')"
                     :key="field.name + ':' + volumeLookupReset"
                     v-model:value="form[field.name]"
                     :kind="field.name"
@@ -218,7 +218,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -348,7 +348,7 @@ export default {
         this.searchQuery = to.query.q
       }
       this.updateIsFiltered()
-      if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch) this.visibleFilter = false
+      if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch) this.visibleFilter = false
       if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
       if (this.apiName === 'listAffinityGroups' && to?.meta?.name === 'affinitygroup' && this.visibleFilter) {
         this.fillFormFieldValues()
@@ -380,6 +380,7 @@ export default {
     vnfScope () { return { ...Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])), projectid: this.$route.query.projectid || vnfProject(this.$store.getters) } },
     isAclSearch () { return this.apiName === 'listNetworkACLLists' && this.$route.meta?.name === 'acllist' },
     aclVpcScope () { return { projectid: publicIpProject(this.$store.getters) } },
+    isGuestVlanSearch () { return this.apiName === 'listGuestVlans' },
     isGuestNetworkSearch () { return this.apiName === 'listNetworks' && this.$route.meta?.name === 'guestnetwork' },
     networkScope () { return Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])) },
     volumeOwnerContext () {
@@ -457,7 +458,7 @@ export default {
         if (fieldname === 'account') ['networkid', 'templateid', 'groupid', 'serviceofferingid'].forEach(k => { this.form[k] = undefined })
         return
       }
-      if (this.isGuestNetworkSearch && fieldname === 'zoneid') this.form.physicalnetworkid = undefined
+      if ((this.isGuestNetworkSearch || this.isGuestVlanSearch) && fieldname === 'zoneid') this.form.physicalnetworkid = undefined
       if (this.apiName === 'listAffinityGroups') {
         if (fieldname === 'domainid') {
           this.form.account = undefined; this.form.projectid = undefined
@@ -498,6 +499,7 @@ export default {
       if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
       if (this.isGuestNetworkSearch && fieldName === 'keyword') return this.$t('label.name')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')
+      if (this.isGuestVlanSearch && fieldName === 'vnet') return this.$t('label.guest.vlan.search.exact')
       if (fieldName === 'physicalnetworkid') return this.$t('label.physical.network')
       if (fieldName === 'forvpc') return this.$t('label.network.search.forvpc')
       if (this.apiName === 'listAffinityGroups' && fieldName === 'projectid') return this.$t('label.project')
@@ -1267,7 +1269,7 @@ export default {
         return
       }
       if (['listTemplates', 'listIsos'].includes(this.apiName)) this.rules.userdataid = [{ validator: async (rule, value) => { if (value && !this.$isValidUuid(value)) throw new Error(this.$t('message.template.search.userdataid')) } }]
-      if (this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
+      if (this.isGuestVlanSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
 
@@ -2086,6 +2088,12 @@ export default {
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isGuestVlanSearch) {
+        this.visibleFilter = false
+        this.searchQuery = ''
+        this.$emit('search', { guestVlanReset: true })
+        return
+      }
       if (this.isVpnUserSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
@@ -2190,7 +2198,7 @@ export default {
           this.$emit('search', { kmsAdvanced: this.paramsFilter })
           return
         }
-        if (this.isEventSearch || this.isVpnCustomerGatewaySearch) this.visibleFilter = false
+        if (this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch) this.visibleFilter = false
         if (this.isVpnCustomerGatewaySearch && this.paramsFilter.id) this.paramsFilter.id = this.paramsFilter.id.trim()
         if (this.isVnfSearch) {
           if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
@@ -2207,7 +2215,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true
