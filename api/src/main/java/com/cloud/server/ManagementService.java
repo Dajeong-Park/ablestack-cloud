@@ -89,6 +89,7 @@ import org.apache.cloudstack.api.command.user.vm.ListVmDeviceAssignmentsCmd;
 import org.apache.cloudstack.api.command.user.vmgroup.UpdateVMGroupCmd;
 import org.apache.cloudstack.api.response.CreateVhbaDeviceResponse;
 import org.apache.cloudstack.api.response.DeleteVhbaDeviceResponse;
+import org.apache.cloudstack.api.response.DownloadEventsResponse;
 import org.apache.cloudstack.api.response.LicenseCheckerResponse;
 import org.apache.cloudstack.api.response.ListHostDevicesResponse;
 import org.apache.cloudstack.api.response.ListHostHbaDevicesResponse;
@@ -330,7 +331,7 @@ public interface ManagementService {
      * @param cmd
      * @return True on success. False otherwise.
      */
-    boolean downloadEvents(DownloadEventsCmd cmd);
+    DownloadEventsResponse downloadEvents(DownloadEventsCmd cmd);
 
     /**
      * Delete events

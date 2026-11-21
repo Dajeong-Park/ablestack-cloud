@@ -17,6 +17,8 @@
 
 import store from '@/store'
 
+const canExportEvents = () => store.getters.apis.downloadEvents?.response?.some(field => field.name === 'csv')
+
 export default {
   name: 'event',
   title: 'label.events',
@@ -66,18 +68,12 @@ export default {
       api: 'downloadEvents',
       icon: 'download-outlined',
       label: 'label.download.events',
-      message: 'message.confirm.archive.selected.events',
-      docHelp: 'adminguide/events.html#deleting-and-archiving-events-and-alerts',
+      toolbarLabel: 'label.download.csv',
+      docHelp: 'adminguide/events.html',
       dataView: true,
-      successMessage: 'label.event.archived',
       groupAction: true,
-      groupMap: (selection) => { return [{ ids: selection.join(',') }] },
-      args: ['ids'],
-      mapping: {
-        ids: {
-          value: (record) => { return record.id }
-        }
-      }
+      show: canExportEvents,
+      groupShow: canExportEvents
     },
     {
       api: 'deleteEvents',
