@@ -35,10 +35,64 @@
       <template v-if="jobId && result === 'unknown'" #description><code>{{ jobId }}</code></template>
     </a-alert>
     <div :inert="locked || undefined">
+      <div v-if="!editing" class="gateway-registration-owner">
+        <a-form v-if="!project.id && (allProjects || canChooseAccount)" layout="vertical">
+          <a-form-item :label="$t('label.vpn.customer.gateway.owner')" required>
+            <a-select
+              id="cgw-owner-mode"
+              :value="mode || undefined"
+              :placeholder="$t('message.vpn.customer.gateway.owner.select')"
+              :options="ownerModes"
+              @change="selectMode" />
+          </a-form-item>
+          <a-form-item v-if="mode === 'project'" :label="$t('label.project')" required>
+            <a-select
+              id="cgw-owner-project"
+              v-model:value="selectedProject"
+              show-search
+              option-filter-prop="label"
+              :loading="lookup === 'project'"
+              :options="projects.map(row => ({ value: row.id, label: row.name }))" />
+          </a-form-item>
+          <template v-if="mode === 'account'">
+            <a-form-item :label="$t('label.domain')" required>
+              <a-select
+                id="cgw-owner-domain"
+                :value="domainId"
+                show-search
+                option-filter-prop="label"
+                :loading="lookup === 'domain'"
+                :options="domains.map(row => ({ value: row.id, label: row.path || row.name }))"
+                @change="selectDomain" />
+            </a-form-item>
+            <a-form-item :label="$t('label.account')" required>
+              <a-select
+                id="cgw-owner-account"
+                v-model:value="account"
+                show-search
+                option-filter-prop="label"
+                :disabled="!domainId"
+                :loading="lookup === 'account'"
+                :options="accounts.map(row => ({ value: row.name, label: row.name }))" />
+            </a-form-item>
+          </template>
+        </a-form>
+        <a-alert
+          v-if="lookupError"
+          type="error"
+          show-icon
+          :message="$t('message.vpn.customer.gateway.owner.failed')">
+          <template #action><a-button size="small" @click="loadOwners(lookupError)">{{ $t('label.retry') }}</a-button></template>
+        </a-alert>
+        <p v-if="ownerLabel"><strong>{{ $t('label.vpn.customer.gateway.owner') }}</strong> {{ ownerLabel }}</p>
+        <p v-else>{{ $t('message.vpn.customer.gateway.owner.select') }}</p>
+      </div>
       <VpnCustomerGateway
+        v-show="editing || !!owner"
         ref="gateway"
         :initial-values="initialValues"
         :api-params="apiParams"
+        :policy-owner="policyOwner"
         @ready="policyReady = $event"
         @submit="submit"
         @cancel="$emit('close-action')" />
@@ -48,7 +102,7 @@
       <a-button v-if="result === 'unknown' && jobId" type="primary" @click="track(true)">
         {{ $t('label.vpn.customer.gateway.job.recheck') }}
       </a-button>
-      <a-button v-else type="primary" :disabled="locked || !policyReady" :loading="running" @click="$refs.gateway.handleSubmit()">
+      <a-button v-else type="primary" :disabled="locked || !policyReady || !editing && !owner" :loading="running" @click="$refs.gateway.handleSubmit()">
         {{ $t('label.ok') }}
       </a-button>
     </template>
@@ -56,7 +110,9 @@
 </template>
 
 <script>
-import { postAPI } from '@/api'
+import { getAPI, postAPI } from '@/api'
+import { affinityOwnerOptions } from '@/utils/affinityGroupCreation'
+import { networkCollection } from '@/utils/networkLifecycle'
 import MoldDialog from '@/components/view/MoldDialog'
 import VpnCustomerGateway from './VpnCustomerGateway.vue'
 import { gatewayErrorText, gatewayJobTracker, gatewayRequestError, gatewayRequestOptions } from '@/utils/vpnCustomerGatewayJobs'
@@ -77,10 +133,59 @@ export default {
   },
   emits: ['close-action', 'refresh-data'],
   data () {
-    return { result: '', errorText: '', jobId: '', policyReady: false, active: true }
+    return {
+      result: '',
+      errorText: '',
+      jobId: '',
+      policyReady: false,
+      active: true,
+      mode: this.$store.getters.listAllProjects ? '' : 'self',
+      selectedProject: undefined,
+      domainId: undefined,
+      account: undefined,
+      projects: [],
+      domains: [],
+      accounts: [],
+      lookup: '',
+      lookupError: '',
+      ownerLookupVersion: 0
+    }
   },
   computed: {
     editing () { return this.currentAction.api === 'updateVpnCustomerGateway' },
+    project () { return this.$store.getters.project || {} },
+    allProjects () { return !!this.$store.getters.listAllProjects && !this.project.id },
+    canChooseAccount () {
+      const { userInfo, apis } = this.$store.getters
+      return ['Admin', 'DomainAdmin'].includes(userInfo?.roletype) && !!apis.listDomains && !!apis.listAccounts &&
+        !!this.apiParams.account && !!this.apiParams.domainid
+    },
+    ownerModes () {
+      const modes = [{ value: 'self', label: this.$t('label.vpn.customer.gateway.owner.self') }]
+      if (this.allProjects && this.$store.getters.apis.listProjects && this.apiParams.projectid) modes.push({ value: 'project', label: this.$t('label.project') })
+      if (this.canChooseAccount) modes.push({ value: 'account', label: this.$t('label.account') })
+      return modes
+    },
+    owner () {
+      const user = this.$store.getters.userInfo || {}
+      if (this.editing) return null
+      if (this.project.id) return { params: { projectid: this.project.id }, domain: this.project.domainid, label: this.project.name || this.project.id }
+      if (this.mode === 'self') return { params: { ignoreproject: true }, label: [user.domain, user.account].filter(Boolean).join(' / '), domain: user.domainid }
+      if (this.mode === 'project') {
+        const row = this.projects.find(row => row.id === this.selectedProject)
+        if (row) return { params: { projectid: row.id }, domain: row.domainid, label: row.name }
+      }
+      if (this.mode === 'account' && this.canChooseAccount && this.accounts.some(row => row.name === this.account)) {
+        const row = this.domains.find(row => row.id === this.domainId)
+        if (row) return { params: { account: this.account, domainid: row.id, ignoreproject: true }, domain: row.id, label: [row.path || row.name, this.account].join(' / ') }
+      }
+      return null
+    },
+    ownerLabel () { return this.owner?.label },
+    policyOwner () {
+      if (this.editing) return JSON.stringify([this.resource.id, this.resource.domainid])
+      return this.owner ? JSON.stringify([this.owner.params, this.owner.domain]) : ''
+    },
     apiParams () { return this.$getApiParams(this.currentAction.api) },
     running () { return ['submitting', 'pending'].includes(this.result) },
     locked () { return this.running || this.result === 'unknown' },
@@ -111,12 +216,57 @@ export default {
       }
     }
   },
+  watch: {
+    policyOwner: { flush: 'sync', handler () { this.policyReady = false } }
+  },
   created () { this.tracker = gatewayJobTracker() },
   beforeUnmount () {
     this.active = false
     this.tracker.clear()
   },
   methods: {
+    selectMode (mode) {
+      this.ownerLookupVersion++
+      this.mode = mode
+      this.selectedProject = undefined
+      this.domainId = undefined
+      this.account = undefined
+      this.projects = []
+      this.domains = []
+      this.accounts = []
+      this.lookup = ''
+      this.lookupError = ''
+      if (mode === 'project') this.loadOwners('project')
+      if (mode === 'account') this.loadOwners('domain')
+    },
+    selectDomain (domain) {
+      this.domainId = domain
+      this.account = undefined
+      this.accounts = []
+      this.loadOwners('account')
+    },
+    async loadOwners (kind) {
+      const version = ++this.ownerLookupVersion
+      const domain = this.domainId
+      this.lookup = kind
+      this.lookupError = ''
+      const current = () => this.active && version === this.ownerLookupVersion
+      try {
+        if (kind === 'project') {
+          const rows = await networkCollection(getAPI, 'listProjects', 'project', { listall: true, state: 'Active', ignoreproject: true })
+          if (current()) this.projects = rows
+        } else {
+          const rows = await affinityOwnerOptions(getAPI, kind, domain)
+          if (!current()) return
+          if (kind === 'domain') this.domains = rows
+          else this.accounts = rows.filter(row => row.domainid === domain && Number(row.accounttype) !== 5)
+        }
+      } catch (_) {
+        if (current()) this.lookupError = kind
+      } finally {
+        if (current()) this.lookup = ''
+      }
+    },
     close () {
       if (this.running) return
       if (this.result === 'unknown') this.$emit('refresh-data', { irefresh: true })
@@ -144,10 +294,10 @@ export default {
       }
     },
     async submit ({ payload }) {
-      if (!this.active || this.locked || !this.policyReady) return
+      if (!this.active || this.locked || !this.policyReady || !this.editing && !this.owner) return
       this.result = 'submitting'
       this.jobId = ''
-      const request = this.editing ? { ...payload, id: this.resource.id, ignoreproject: true } : payload
+      const request = this.editing ? { ...payload, id: this.resource.id, ignoreproject: true } : { ...payload, ...this.owner.params }
       try {
         const response = await postAPI(this.currentAction.api, request, gatewayRequestOptions)
         if (!this.active) return
@@ -166,5 +316,5 @@ export default {
 </script>
 
 <style scoped>
-.gateway-result { margin-bottom: 16px; }
+.gateway-result, .gateway-registration-owner { margin-bottom: 16px; }
 </style>

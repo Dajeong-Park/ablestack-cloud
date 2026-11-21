@@ -342,6 +342,7 @@ export default {
       type: Object,
       default: () => ({})
     },
+    policyOwner: { type: String, default: '' },
     apiParams: {
       type: Object,
       default: () => {}
@@ -401,7 +402,7 @@ export default {
   created () {
     this.initForm()
     eventBus.on('project-switch-start', this.clearPskAndClose)
-    this.fetchVpnCustomerGatewayParameters()
+    if (this.policyOwner) this.fetchVpnCustomerGatewayParameters()
   },
   beforeUnmount () {
     this.parametersVersion++
@@ -420,6 +421,16 @@ export default {
   },
   watch: {
     policyReady: { immediate: true, handler (ready) { this.$emit('ready', ready) } },
+    policyOwner (owner, previous) {
+      this.parametersVersion++
+      this.loadingParameters = true
+      this.parametersError = false
+      if (previous) {
+        this.form.ipsecpsk = ''
+        this.pskInputVersion++
+      }
+      if (owner) this.fetchVpnCustomerGatewayParameters()
+    },
     pskFormScope: { flush: 'sync', handler () { this.clearPskAndClose() } },
     'initialValues.ipsecpsk' () { this.clearPskAndClose() }
   },
@@ -533,7 +544,8 @@ export default {
       const version = ++this.parametersVersion
       let parameters
       try {
-        const response = await getAPI('listCapabilities', { domainid: this.initialValues.domainid, ignoreproject: true }, gatewayRequestOptions)
+        const domainid = this.policyOwner ? JSON.parse(this.policyOwner)[1] : this.initialValues.domainid
+        const response = await getAPI('listCapabilities', { domainid, ignoreproject: true }, gatewayRequestOptions)
         const capability = response?.listcapabilitiesresponse?.capability
         if (!capability) throw new Error('Missing VPN policy capability')
         parameters = capability.vpncustomergatewayparameters || {}
