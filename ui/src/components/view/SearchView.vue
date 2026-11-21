@@ -27,7 +27,7 @@
       <a-input-search
         v-model:value="searchQuery"
         :aria-label="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : undefined"
-        :placeholder="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :placeholder="apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         allowClear
         @search="onSearch"
       />
@@ -40,7 +40,7 @@
         allowClear
         class="input-search"
         :aria-label="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
-        :placeholder="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :placeholder="apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         :title="apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
@@ -348,7 +348,7 @@ export default {
         this.searchQuery = to.query.q
       }
       this.updateIsFiltered()
-      if (this.isAclSearch || this.isVpnUserSearch) this.visibleFilter = false
+      if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch) this.visibleFilter = false
       if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
       if (this.apiName === 'listAffinityGroups' && to?.meta?.name === 'affinitygroup' && this.visibleFilter) {
         this.fillFormFieldValues()
@@ -368,6 +368,7 @@ export default {
   computed: {
     isKmsSearch () { return kmsApis.includes(this.apiName) },
     isVpnUserSearch () { return this.apiName === 'listVpnUsers' },
+    isVpnCustomerGatewaySearch () { return this.apiName === 'listVpnCustomerGateways' },
     vpnUserFilterContext () {
       return this.isVpnUserSearch
         ? JSON.stringify([vpnUserProject(this.$route.query, this.$store.getters), vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token)])
@@ -484,6 +485,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listVpnCustomerGateways' && fieldName === 'keyword') return this.$t('label.vpn.customer.gateway.search.keyword')
       if (this.isVpnUserSearch && fieldName === 'username') return this.$t('label.vpn.user.search.exact')
       if (this.isVpnUserSearch && fieldName === 'domainid') return this.$t('label.domain')
       if (this.isAclSearch && fieldName === 'name') return this.$t('label.acl.search.exact')
@@ -1166,7 +1168,7 @@ export default {
         if (kmsKeyIndex > -1) {
           this.fields[kmsKeyIndex].loading = false
         }
-        if (!['listTemplates', 'listIsos'].includes(this.apiName) && !this.isGuestNetworkSearch && Array.isArray(arrayField) && !arrayField.includes('volumeid')) {
+        if (!['listTemplates', 'listIsos'].includes(this.apiName) && !this.isGuestNetworkSearch && !this.isVpnCustomerGatewaySearch && Array.isArray(arrayField) && !arrayField.includes('volumeid')) {
           this.fillFormFieldValues()
         }
       })
@@ -1231,6 +1233,17 @@ export default {
     },
     initFormFieldData () {
       const arrayField = this.initFields()
+      if (this.isVpnCustomerGatewaySearch) {
+        this.form = reactive({})
+        this.fillFormFieldValues()
+        this.rules.id = [{
+          validator: async (_, value) => {
+            if (value && !this.$isValidUuid(value.trim())) throw new Error(this.$t('message.error.input.invaliduuid'))
+          }
+        }]
+        this.fetchDynamicFieldData(arrayField)
+        return
+      }
       if (this.isVpnUserSearch) {
         this.form = reactive({})
         this.fillFormFieldValues()
@@ -2177,7 +2190,8 @@ export default {
           this.$emit('search', { kmsAdvanced: this.paramsFilter })
           return
         }
-        if (this.isEventSearch) this.visibleFilter = false
+        if (this.isEventSearch || this.isVpnCustomerGatewaySearch) this.visibleFilter = false
+        if (this.isVpnCustomerGatewaySearch && this.paramsFilter.id) this.paramsFilter.id = this.paramsFilter.id.trim()
         if (this.isVnfSearch) {
           if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
           this.visibleFilter = false
@@ -2193,7 +2207,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isVpnUserSearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true

@@ -1337,21 +1337,14 @@ export default {
       title: 'label.vpncustomergatewayid',
       icon: 'lock-outlined',
       permission: ['listVpnCustomerGateways'],
-      columns: () => {
-        var fields = ['name', 'gateway', 'cidrlist', 'ipsecpsk', 'account']
-        if (store.getters.listAllProjects) {
-          fields.push('project')
-        }
-        fields.push('domain')
-        return fields
-      },
+      columns: ['name', 'gateway', 'project', 'account', 'domain', 'cidrlist'],
       details: ['name', 'id', 'gateway', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'ikelifetime', 'ikeversion', 'esppolicy', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'account', 'domain'],
-      searchFilters: ['keyword', 'domainid', 'account'],
+      searchFilters: ['keyword', 'id', 'domainid', 'account'],
       resourceType: 'VPNCustomerGateway',
       tabs: [
         {
           name: 'details',
-          component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDetails.vue')))
         },
         {
           name: 'events',
@@ -1373,7 +1366,8 @@ export default {
           listView: true,
           popup: true,
           show: isZoneCreated,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/network/CreateVpnCustomerGateway.vue')))
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDialog.vue')))
         },
         {
           api: 'updateVpnCustomerGateway',
@@ -1382,7 +1376,8 @@ export default {
           docHelp: 'adminguide/networking_and_traffic.html#updating-and-removing-a-vpn-customer-gateway',
           dataView: true,
           popup: true,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/network/UpdateVpnCustomerGateway.vue')))
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDialog.vue')))
         },
         {
           api: 'deleteVpnCustomerGateway',
@@ -1392,8 +1387,10 @@ export default {
           docHelp: 'adminguide/networking_and_traffic.html#updating-and-removing-a-vpn-customer-gateway',
           dataView: true,
           groupAction: true,
+          toolbarLabel: 'label.delete.vpn.customer.gateway',
           popup: true,
-          groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDeleteDialog.vue')))
         }
       ]
     },
