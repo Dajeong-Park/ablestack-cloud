@@ -117,6 +117,7 @@ export default {
     resourceTitle () {
       if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
+      if (this.$route.meta?.name === 'ipv4subnets' && this.resource.subnet) return this.resource.subnet
       if (guestVlanRoute(this.$route) && this.resource.vlan) return this.$t('label.vlan') + ' ' + this.resource.vlan
       const row = this.resource
       return row.displayname || row.name || row.displaytext || row.hostname || row.username || row.ipaddress || row.osname || row.osdisplayname || this.$route.params.id

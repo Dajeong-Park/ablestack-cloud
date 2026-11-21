@@ -97,10 +97,10 @@
         <a-input v-model:value="form.cidrsize" inputmode="numeric" placeholder="28" />
       </a-form-item>
       <a-alert v-if="submitError" class="lookup-feedback" type="error" show-icon :message="submitError" />
-      <div :span="24" class="action-button">
+      <MoldDialogActions :busy="submitting">
         <a-button :disabled="submitting" @click="closeModal">{{ $t('label.cancel') }}</a-button>
         <a-button type="primary" ref="submit" :loading="submitting" :disabled="!canSubmit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-      </div>
+      </MoldDialogActions>
     </a-form>
   </a-spin>
 </template>
@@ -110,12 +110,14 @@ import { ref, reactive } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { isValidIPv4Cidr } from '@/utils/util'
 import { networkError } from '@/utils/networkLifecycle'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'CreateIpv4SubnetForNetwork',
   components: {
+    MoldDialogActions,
     ResourceIcon,
     TooltipLabel
   },
@@ -267,12 +269,4 @@ export default {
   margin-top: 8px;
 }
 
-.form {
-  width: 80vw;
-
-  @media (min-width: 500px) {
-    min-width: 400px;
-    width: 100%;
-  }
-}
 </style>

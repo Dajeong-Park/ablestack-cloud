@@ -1564,8 +1564,8 @@ export default {
       title: 'label.ipv4.subnets',
       icon: 'pic-center-outlined',
       permission: ['listIpv4SubnetsForGuestNetwork'],
-      columns: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated'],
-      details: ['subnet', 'zonename', 'zoneid', 'parentsubnet', 'networkname', 'networkid', 'vpcname', 'vpcid', 'created', 'allocated', 'state'],
+      columns: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated', 'state'],
+      details: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated', 'state'],
       searchFilters: ipv4SubnetFilters,
       show: () => {
         if (!store.getters.zones || store.getters.zones.length === 0) {
@@ -1582,6 +1582,7 @@ export default {
           api: 'createIpv4SubnetForGuestNetwork',
           icon: 'plus-outlined',
           label: 'label.add.ipv4.subnet',
+          standardDialogSize: 'md',
           listView: true,
           popup: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/CreateIpv4SubnetForNetwork.vue')))

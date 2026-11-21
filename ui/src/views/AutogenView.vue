@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': isRoleList || isGuestVlan || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': isRoleList || isGuestVlan || isIpv4Subnet || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -258,7 +258,7 @@
           :confirmLoading="actionLoading"
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
-          :focus-guard="isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
+          :focus-guard="isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -787,7 +787,7 @@
           :readyForActions="isKmsDetail ? kmsDetailReady : $route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp', 's2svpn', 's2svpnconn', 'vpncustomergateway'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
-          :quiet-refresh="isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
+          :quiet-refresh="isIpv4Subnet || isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
@@ -814,7 +814,7 @@
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => ((isProjectList || isVpnUser || isVpnCustomerGateway) && !storageActionReady) || (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
-          :tableScroll="isRoleList ? { x: 670 } : isGuestVlan ? { x: presentedColumns.reduce((sum, column) => sum + column.width, 0) } : isProjectList ? { x: projectTableWidth } : isEventList ? { x: 1210 } : isVpnUser ? { x: 458 } : isVpnCustomerGateway ? { x: presentedColumns.reduce((sum, column) => sum + (column.width || 0), 36) } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
+          :tableScroll="isRoleList ? { x: 670 } : isGuestVlan || isIpv4Subnet ? { x: presentedColumns.reduce((sum, column) => sum + column.width, 0) } : isProjectList ? { x: projectTableWidth } : isEventList ? { x: 1210 } : isVpnUser ? { x: 458 } : isVpnCustomerGateway ? { x: presentedColumns.reduce((sum, column) => sum + (column.width || 0), 36) } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -1611,8 +1611,9 @@ export default {
       return this.$route.meta?.name === 'vpncustomergateway' ? vpnCustomerGatewayActionKey(this.$store.getters, this.$route, this.$store.state?.user?.token) : null
     },
     isGuestVlan () { return guestVlanRoute(this.$route) },
+    isIpv4Subnet () { return ipv4SubnetRoute(this.$route) },
     isVpnCustomerGateway () { return this.$route.meta?.name === 'vpncustomergateway' },
-    standardResourceToolbar () { return this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan },
+    standardResourceToolbar () { return this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
     vpnUserDeleteScope () {
@@ -1695,6 +1696,10 @@ export default {
           width: widths[column.key] || 156,
           title: labels[column.key] ? this.$t(labels[column.key]) : column.title
         }))
+      }
+      if (this.isIpv4Subnet) {
+        const widths = { subnet: 152, zonename: 110, parentsubnet: 152, networkname: 166, vpcname: 136, created: 176, allocated: 176, state: 108, filtercolumn: 42 }
+        return columns.map(column => ({ ...column, sorter: false, width: widths[column.key] || 120 }))
       }
       if (this.isGuestVlan) {
         const widths = { vlan: 104, allocationstate: 116, physicalnetworkname: 164, taken: 190, account: 186, project: 174, domain: 136, zonename: 110, 'guest.networks': 240, filtercolumn: 42 }
