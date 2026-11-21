@@ -77,7 +77,7 @@
           <a-switch v-model:checked="form.ispublic" :aria-label="$t('label.ispublic')" :disabled="loading" />
         </a-form-item>
 
-        <a-form-item name="forced">
+        <a-form-item v-if="canReviewForce" name="forced">
           <template #label>
             <tooltip-label :title="$t('label.role.csv.force')" :tooltip="apiParams.forced.description" />
           </template>
@@ -90,6 +90,9 @@
             {{ preview.role
               ? $t('message.role.csv.replace', { name: preview.role.name, type: preview.role.type, old: preview.rules.length, count: csvRules.length })
               : $t('message.role.csv.new', { name: form.name.trim(), type: form.type, count: csvRules.length }) }}
+            <p v-if="preview.role" class="import-impact">
+              {{ $t(preview.role.inuse === true ? 'message.role.usage.linked' : preview.role.inuse === false ? 'message.role.usage.unlinked' : 'message.role.usage.unknown') }}
+            </p>
           </template>
         </a-alert>
 
@@ -98,6 +101,7 @@
           <a-button
             v-if="preview"
             :danger="!!preview.role"
+            :disabled="!canImport"
             :loading="loading"
             type="primary"
             @click="confirmForce">
@@ -117,6 +121,7 @@ import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { parseRoleCsv } from '@/utils/roleCsv'
 import { roleTypes } from '@/utils/roleSearch'
+import { canRoleAction, roleUsageParams } from '@/utils/roleActions'
 
 const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 
@@ -141,7 +146,13 @@ export default {
   },
   computed: {
     locked () { return this.loading || this.reading },
-    canImport () { return !this.locked && !!this.csvRules.length && !this.csvErrors.length },
+    apis () { return this.$store.getters.apis },
+    canWrite () { return canRoleAction('importRole', null, this.apis) },
+    canReviewForce () { return this.canWrite && !!this.apis.listRoles && !!this.apis.listRolePermissions },
+    canImport () {
+      return this.canWrite && (!this.form.forced || this.canReviewForce) &&
+        !this.locked && !!this.csvRules.length && !this.csvErrors.length
+    },
     formRules () {
       return {
         name: [{ required: true, whitespace: true, message: this.$t('message.error.required.input') }],
@@ -220,7 +231,7 @@ export default {
       try {
         await this.$refs.formRef.validate()
         const params = this.importParams()
-        if (!this.active) return
+        if (!this.active || !this.canWrite || (params.forced && !this.canReviewForce)) return
         if (params.forced) {
           this.preview = await this.resolveTarget(params)
         } else {
@@ -240,7 +251,7 @@ export default {
       return params
     },
     async resolveTarget (params) {
-      const result = await getAPI('listRoles', { name: params.name }, requestOptions)
+      const result = await getAPI('listRoles', { name: params.name, ...roleUsageParams(this.apis) }, requestOptions)
       const list = result.listrolesresponse
       const roles = list?.role || []
       const matches = roles.filter(role => role.type === params.type)
@@ -263,7 +274,7 @@ export default {
       this.error = ''
       try {
         const current = await this.resolveTarget(params)
-        if (!this.active || this.preview !== preview) return
+        if (!this.active || !this.canReviewForce || this.preview !== preview) return
         if (JSON.stringify(current) !== JSON.stringify(preview)) {
           this.preview = current
           this.error = this.$t('message.role.csv.changed')
@@ -277,6 +288,7 @@ export default {
       }
     },
     async submitImport (params, expectedRole) {
+      if (!this.active || !this.canWrite || (params.forced && !this.canReviewForce)) return
       const response = await postAPI('importRole', params, requestOptions)
       if (!this.active) return
       const imported = response.importroleresponse?.role
@@ -305,6 +317,8 @@ export default {
   .import-notice {
     margin-block: 8px;
   }
+
+  .import-impact { margin: 8px 0 0; }
 
   .import-errors {
     max-height: 10em;

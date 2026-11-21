@@ -46,16 +46,22 @@
         <a-button size="small" :loading="busy" @click="refresh">{{ $t('label.retry') }}</a-button>
       </template>
     </a-alert>
+    <a-alert
+      v-if="!hasWriteActions"
+      class="rules-notice"
+      type="info"
+      show-icon
+      :message="$t('message.role.rules.readonly')" />
     <a-alert v-if="actionError" class="rules-notice" type="error" show-icon :message="actionError" />
     <a-alert
-      v-if="searchQuery && apis.updateRolePermission"
+      v-if="searchQuery && canWriteRule('updateRolePermission')"
       class="rules-notice"
       type="info"
       show-icon
       :message="$t('message.role.rules.reorder.search')" />
     <a-spin :spinning="busy">
       <div class="rules-list ant-list ant-list-bordered">
-        <div class="rules-table-item ant-list-item">
+        <div v-if="canWriteRule('createRolePermission')" class="rules-table-item ant-list-item">
           <div class="rules-table__col rules-table__col--grab rules-table__col--grab-empty"></div>
           <div class="rules-table__col rules-table__col--rule rules-table__col--new">
             <a-auto-complete
@@ -85,7 +91,7 @@
             <tooltip-button
               tooltipPlacement="bottom"
               :tooltip="$t('label.save.new.rule')"
-              :disabled="locked || !apis.createRolePermission"
+              :disabled="locked"
               icon="plus-outlined"
               type="primary"
               @onClick="onRuleSave" />
@@ -105,9 +111,9 @@
             <div class="rules-table-item ant-list-item">
               <div
                 class="rules-table__col rules-table__col--grab"
-                :class="{ 'rules-table__col--grab-empty': searchQuery || !apis.updateRolePermission }"
+                :class="{ 'rules-table__col--grab-empty': searchQuery || !canWriteRule('updateRolePermission') }"
                 :data-rule-id="element.id">
-                <span v-if="!searchQuery && apis.updateRolePermission" class="rule-order-controls">
+                <span v-if="!searchQuery && canWriteRule('updateRolePermission')" class="rule-order-controls">
                   <drag-outlined class="drag-handle" aria-hidden="true" />
                   <a-button
                     v-for="direction in [-1, 1]"
@@ -131,13 +137,15 @@
               </div>
               <div class="rules-table__col rules-table__col--permission">
                 <a-select
+                  v-if="canWriteRule('updateRolePermission')"
                   :value="element.permission"
                   :options="permissionOptions"
                   :aria-label="$t('label.permission') + ' · ' + element.rule"
-                  :disabled="locked || !apis.updateRolePermission"
+                  :disabled="locked"
                   show-search
                   option-filter-prop="label"
                   @change="onPermissionChange(element, $event)" />
+                <span v-else>{{ $t('label.' + element.permission) }}</span>
               </div>
               <div class="rules-table__col rules-table__col--description">
                 <div v-if="element.description">
@@ -149,7 +157,8 @@
               </div>
               <div class="rules-table__col rules-table__col--actions">
                 <rule-delete
-                  :disabled="locked || !apis.deleteRolePermission"
+                  v-if="canWriteRule('deleteRolePermission')"
+                  :disabled="locked"
                   :record="element"
                   @delete="onRuleDelete(element.id)" />
               </div>
@@ -168,6 +177,7 @@ import draggable from 'vuedraggable'
 import RuleDelete from './RuleDelete'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import { formatRoleCsv } from '@/utils/roleCsv'
+import { canRoleAction, roleRuleActions } from '@/utils/roleActions'
 
 const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 
@@ -210,7 +220,8 @@ export default {
         ? this.rules.filter(rule => rule.rule.toLowerCase().includes(this.searchQuery))
         : this.rules
     },
-    canReorder () { return !this.searchQuery && !this.locked && !!this.apis.updateRolePermission },
+    hasWriteActions () { return roleRuleActions.some(this.canWriteRule) },
+    canReorder () { return !this.searchQuery && !this.locked && this.canWriteRule('updateRolePermission') },
     apiOptions () {
       const existing = new Set(this.rules.map(rule => rule.rule))
       return Object.keys(this.apis)
@@ -246,6 +257,7 @@ export default {
     this.scopeVersion++
   },
   methods: {
+    canWriteRule (command) { return canRoleAction(command, this.resource, this.apis) },
     filterOption (input, option) {
       return option.value.toLowerCase().includes(input.toLowerCase())
     },
@@ -281,7 +293,7 @@ export default {
       }
     },
     async mutate (command, params, onSuccess) {
-      if (this.locked || !this.apis[command]) return
+      if (this.locked || !this.canWriteRule(command)) return
       const version = this.scopeVersion
       this.busy = true
       this.actionError = ''

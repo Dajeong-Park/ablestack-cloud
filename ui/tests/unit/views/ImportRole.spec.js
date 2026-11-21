@@ -38,6 +38,7 @@ function mountImport () {
       renderStubDefaultSlot: true,
       mocks: {
         $t: key => key,
+        $store: { getters: { apis: { importRole: {}, listRoles: {}, listRolePermissions: {} } } },
         $getApiParams: () => Object.fromEntries(['name', 'description', 'type', 'ispublic', 'forced'].map(key => [key, { description: key }])),
         $notification: { success: notice }
       },

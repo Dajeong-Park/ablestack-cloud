@@ -40,6 +40,11 @@
       <p v-html="ip6routes" />
     </template>
   </a-alert>
+  <a-alert
+    v-if="$route.meta.name === 'role' && dataResource.id && (dataResource.isdefault || dataResource.inuse === true)"
+    show-icon
+    type="info"
+    :message="$t(dataResource.isdefault ? 'message.role.details.default' : 'message.role.details.linked')" />
   <VnfAccessNotice v-if="['vm', 'vnfapp'].includes($route.meta.name)" :resource="resource" />
   <PvlanSupportNotice v-if="guestPvlan" :zone-id="dataResource.zoneid" :physical-network-id="dataResource.physicalnetworkid || ''" />
   <a-alert

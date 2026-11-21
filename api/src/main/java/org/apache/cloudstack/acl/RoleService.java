@@ -57,6 +57,8 @@ public interface RoleService {
 
     Role updateRole(Role role, String name, RoleType roleType, String description, Boolean publicRole);
 
+    boolean isRoleInUse(Long roleId);
+
     boolean deleteRole(Role role);
 
     boolean enableRole(Role role);

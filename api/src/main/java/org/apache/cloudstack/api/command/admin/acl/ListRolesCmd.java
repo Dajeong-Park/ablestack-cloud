@@ -58,6 +58,9 @@ public class ListRolesCmd extends BaseListCmd {
     @Parameter(name = ApiConstants.STATE, type = CommandType.STRING, description = "List role by role type status, valid options are: enabled, disabled")
     private String roleState;
 
+    @Parameter(name = "showusage", type = CommandType.BOOLEAN, description = "Include whether each returned role is assigned to an account.")
+    private boolean showUsage;
+
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
@@ -120,6 +123,9 @@ public class ListRolesCmd extends BaseListCmd {
             roleResponse.setIsDefault(role.isDefault());
             roleResponse.setPublicRole(role.isPublicRole());
             roleResponse.setState(role.getState().toString());
+            if (showUsage) {
+                roleResponse.setInUse(roleService.isRoleInUse(role.getId()));
+            }
             roleResponse.setObjectName("role");
             roleResponses.add(roleResponse);
         }

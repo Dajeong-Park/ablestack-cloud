@@ -18,6 +18,9 @@
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { roleTypes } from '@/utils/roleSearch'
+import { canRoleAction, roleEditFields } from '@/utils/roleActions'
+
+const roleLifecycleDialog = shallowRef(defineAsyncComponent(() => import('@/views/iam/RoleLifecycleDialog.vue')))
 
 export default {
   name: 'role',
@@ -61,40 +64,26 @@ export default {
       api: 'enableRole',
       icon: 'play-circle-outlined',
       label: 'label.action.enable.role',
-      message: 'message.enable.role',
       dataView: true,
-      show: (record, store) => {
-        return record.state === 'disabled'
-      },
-      mapping: {
-        id: {
-          value: (record) => { return record.id }
-        }
-      },
-      popup: true
+      show: (record, getters) => canRoleAction('enableRole', record, getters.apis),
+      popup: true,
+      component: roleLifecycleDialog
     },
     {
       api: 'disableRole',
       icon: 'pause-circle-outlined',
       label: 'label.action.disable.role',
-      message: 'message.disable.role',
       dataView: true,
-      show: (record, store) => {
-        return record.state === 'enabled'
-      },
-      mapping: {
-        id: {
-          value: (record) => { return record.id }
-        }
-      },
-      popup: true
+      show: (record, getters) => canRoleAction('disableRole', record, getters.apis),
+      popup: true,
+      component: roleLifecycleDialog
     },
     {
       api: 'updateRole',
       icon: 'edit-outlined',
       label: 'label.edit.role',
       dataView: true,
-      args: (record) => record.isdefault ? ['ispublic'] : ['name', 'description', 'type', 'ispublic'],
+      args: roleEditFields,
       mapping: {
         type: {
           options: roleTypes
@@ -105,8 +94,10 @@ export default {
       api: 'deleteRole',
       icon: 'delete-outlined',
       label: 'label.delete.role',
-      message: 'label.delete.role',
-      dataView: true
+      dataView: true,
+      show: (record, getters) => canRoleAction('deleteRole', record, getters.apis),
+      popup: true,
+      component: roleLifecycleDialog
     }
   ]
 }

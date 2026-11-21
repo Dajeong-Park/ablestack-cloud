@@ -41,7 +41,7 @@ const failure = errortext => ({ response: { data: { error: { errortext } } } })
 
 function mountEditor () {
   return shallowMount(RolePermissionTab, {
-    props: { resource: { id: 'role' } },
+    props: { resource: { id: 'role', isdefault: false } },
     global: {
       mocks: { $t: key => key, $store: { getters: { apis } } },
       renderStubDefaultSlot: true,
@@ -167,7 +167,7 @@ describe('global role permission editing', () => {
     editor = mountEditor()
     await flushPromises()
     await editor.setData({ searchRule: 'zones', newRule: 'listAccounts' })
-    await editor.setProps({ resource: { id: 'role', name: 'refreshed' } })
+    await editor.setProps({ resource: { id: 'role', isdefault: false, name: 'refreshed' } })
     await flushPromises()
     expect(editor.vm.loadError).toBe('Read failed')
     expect(editor.vm.locked).toBe(true)
@@ -200,5 +200,18 @@ describe('global role permission editing', () => {
     expect(editor.vm.searchRule).toBe('')
     expect(editor.vm.newRule).toBe('listHosts')
     expect(editor.vm.locked).toBe(false)
+  })
+  it('blocks rule writes for a default role even when the session has all mutation APIs', async () => {
+    editor = mountEditor()
+    await editor.setProps({ resource: { id: 'role', isdefault: true } })
+    await flushPromises()
+    await editor.setData({ newRule: 'listAccounts' })
+    await editor.vm.onRuleSave()
+    await editor.vm.onRuleDelete(testRules[0].id)
+    await editor.vm.onPermissionChange(testRules[0], 'deny')
+    await editor.vm.changeOrder([...testRules].reverse())
+    expect(postAPI).not.toHaveBeenCalled()
+    expect(editor.vm.hasWriteActions).toBe(false)
+    expect(editor.vm.visibleRules).toEqual(testRules)
   })
 })

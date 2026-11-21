@@ -18,6 +18,8 @@
 package org.apache.cloudstack.acl;
 
 import com.cloud.user.Account;
+import com.cloud.user.AccountVO;
+import com.cloud.user.dao.AccountDao;
 import com.cloud.user.AccountManager;
 import com.cloud.utils.Pair;
 
@@ -50,6 +52,8 @@ public class RoleManagerImplTest {
     private AccountManager accountManagerMock;
     @Mock
     private RoleDao roleDaoMock;
+    @Mock
+    private AccountDao accountDaoMock;
     @Mock
     private RolePermissionsDao rolePermissionsDaoMock;
     @Mock
@@ -421,5 +425,13 @@ public class RoleManagerImplTest {
         Assert.assertEquals(Integer.valueOf(0), result.second());
         Assert.assertTrue(result.first().isEmpty());
         Mockito.verifyNoInteractions(roleDaoMock);
+    }
+
+    @Test
+    public void roleUsageUsesExistingAccountAssignments() {
+        Mockito.doReturn(List.of(Mockito.mock(AccountVO.class))).when(accountDaoMock).findAccountsByRole(15L);
+        Mockito.doReturn(Collections.emptyList()).when(accountDaoMock).findAccountsByRole(16L);
+        Assert.assertTrue(roleManagerImpl.isRoleInUse(15L));
+        Assert.assertFalse(roleManagerImpl.isRoleInUse(16L));
     }
 }

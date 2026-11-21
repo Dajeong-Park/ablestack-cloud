@@ -300,8 +300,7 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
             roleVO.setName(name);
         }
         if (roleType != null) {
-            List<? extends Account> accounts = accountDao.findAccountsByRole(role.getId());
-            if (accounts == null || accounts.isEmpty()) {
+            if (!isRoleInUse(role.getId())) {
                 roleVO.setRoleType(roleType);
             } else {
                 throw new PermissionDeniedException("Found accounts that have role in use, won't allow to change role type");
@@ -320,6 +319,11 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
     }
 
     @Override
+    public boolean isRoleInUse(Long roleId) {
+        return CollectionUtils.isNotEmpty(accountDao.findAccountsByRole(roleId));
+    }
+
+    @Override
     @ActionEvent(eventType = EventTypes.EVENT_ROLE_DELETE, eventDescription = "deleting Role")
     public boolean deleteRole(final Role role) {
         checkCallerAccess();
@@ -329,8 +333,7 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
         if (role.isDefault()) {
             throw new PermissionDeniedException("Default roles cannot be deleted");
         }
-        List<? extends Account> accounts = accountDao.findAccountsByRole(role.getId());
-        if (accounts == null || accounts.size() == 0) {
+        if (!isRoleInUse(role.getId())) {
             return Transaction.execute(new TransactionCallback<Boolean>() {
                 @Override
                 public Boolean doInTransaction(TransactionStatus status) {

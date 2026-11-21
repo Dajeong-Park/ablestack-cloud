@@ -900,6 +900,7 @@ import { genericCompare } from '@/utils/sort.js'
 import { sourceToken } from '@/utils/request'
 import store from '@/store'
 import { projectBulkScope, projectBulkTargets } from '@/utils/projectBulk'
+import { canRoleAction, roleEditFields, roleUsageParams } from '@/utils/roleActions'
 import { applyRoleSearch, roleListParams, roleSearchQuery, roleSortFields } from '@/utils/roleSearch'
 import { applyProjectSearch, projectListParams, projectListScope, projectSearchQuery, projectSortFields, projectStates } from '@/utils/projectSearch'
 import ProjectListSearch from '@/views/project/ProjectListSearch'
@@ -2874,7 +2875,10 @@ export default {
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
-      if (this.isRoleList && this.apiName === 'listRoles') params = roleListParams(this.$route.query, params)
+      if (this.apiName === 'listRoles') {
+        if (this.isRoleList) params = roleListParams(this.$route.query, params)
+        else if (params.id) Object.assign(params, roleUsageParams(this.$store.getters.apis))
+      }
       if (this.isProjectList && this.apiName === 'listProjects') params = projectListParams(this.$route.query, params, this.$store.getters)
       if (vnfRoute(this.$route)) params = vnfListParams(params, this.dataView)
 
@@ -3550,6 +3554,7 @@ export default {
     },
     kmsNavigationScope () { return JSON.stringify([this.$route.fullPath, this.kmsSearchAuth]) },
     execAction (action, isGroupAction) {
+      if (this.$route.meta?.name === 'role' && !canRoleAction(action.api, action.resource || this.resource, this.$store.getters.apis)) return
       if (this.isKmsDetail && !this.kmsDetailReady) return
       if (availabilityActions.includes(action.api)) {
         const getters = this.$store.getters
@@ -4374,6 +4379,8 @@ export default {
       if (isSshKeyPairDetailRoute(this.$route) && !this.canExecuteSshKeyPairAction(this.currentAction)) return
       const sshActionScope = isSshKeyPairDetailRoute(this.$route) ? this.listScope() : null
       const submittedAction = this.currentAction
+      const roleEditId = this.$route.meta?.name === 'role' && submittedAction.api === 'updateRole' ? this.resource.id : null
+      if (roleEditId && !canRoleAction('updateRole', this.resource, this.$store.getters.apis)) return
       const projectScope = this.projectStandardDialog ? this.listScope() : null
       if (projectScope) this.projectActionError = ''
       const vmScope = this.vmStandardDialog ? vmEditScope(this.resource, this.$route, this.$store) : null
@@ -4386,6 +4393,12 @@ export default {
         if (vmScope) this.vmActionValidationPending = false
         if (sshActionScope && (sshActionScope !== this.listScope() || !this.canExecuteSshKeyPairAction(submittedAction))) return
         let values = toRaw(this.form)
+        if (roleEditId) {
+          if (!this.showAction || submittedAction !== this.currentAction || roleEditId !== this.resource.id ||
+            !canRoleAction('updateRole', this.resource, this.$store.getters.apis)) return
+          const fields = roleEditFields(this.resource)
+          values = Object.fromEntries(Object.entries(values).filter(([key]) => fields.includes(key)))
+        }
         const params = {}
         const action = this.currentAction
         if (isVmGroupNameAction(action.api)) {
