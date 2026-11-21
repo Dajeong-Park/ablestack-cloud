@@ -775,13 +775,8 @@
         </a>
         <span v-else>{{ text }}</span>
       </template>
-      <template v-if="column.key === 'subnet'">
-        <a href="javascript:;">
-          <router-link
-            v-if="$route.path === '/ipv4subnets'"
-            :to="{ path: '/ipv4subnets/' + record.id, query: ipv4SubnetListQuery($route.query) }"
-          >{{ text }}</router-link>
-        </a>
+      <template v-if="column.key === 'subnet' && $route.path === '/ipv4subnets'">
+        <router-link :to="{ path: '/ipv4subnets/' + record.id, query: ipv4SubnetListQuery($route.query) }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'hostname'">
         <router-link

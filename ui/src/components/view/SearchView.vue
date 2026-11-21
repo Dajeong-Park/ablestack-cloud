@@ -99,6 +99,7 @@
                     :aria-label="retrieveFieldLabel(field.name)"
                     :options="field.opts.map(option => ({ value: option.id, label: option.name }))"
                     :loading="field.loading"
+                    :get-popup-container="filterPopupContainer"
                     option-filter-prop="label"
                     show-search
                     allow-clear />
@@ -106,7 +107,7 @@
                     allowClear
                     v-else-if="field.type==='list'"
                     :id="isVpnUserSearch ? 'vpn-user-filter-' + field.name : isKmsSearch ? 'kms-filter-' + field.name : undefined"
-                    :get-popup-container="isKmsSearch ? filterPopupContainer : undefined"
+                    :get-popup-container="isKmsSearch || isIpv4SubnetSearch ? filterPopupContainer : undefined"
                     v-model:value="form[field.name]"
                     showSearch
                     :dropdownMatchSelectWidth="false"
@@ -227,7 +228,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents', 'listRoles'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!isIpv4SubnetSearch && !isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents', 'listRoles'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
