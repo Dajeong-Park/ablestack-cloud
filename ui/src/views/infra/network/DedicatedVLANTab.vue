@@ -348,8 +348,8 @@ export default {
       if (this.modal || this.releaseOpen) return
       const trigger = this.dialogTrigger
       this.dialogTrigger = null
-      if (trigger?.isConnected && !trigger.disabled) trigger.focus()
-      else this.$refs.dedicationTrigger?.$el?.focus()
+      const target = trigger?.isConnected && !trigger.disabled ? trigger : this.$refs.dedicationTrigger?.$el
+      if (target) target.focus()
     },
     finishReleaseDialog () {
       if (this.releaseOpen) return
