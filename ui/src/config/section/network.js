@@ -1373,7 +1373,8 @@ export default {
           listView: true,
           popup: true,
           show: isZoneCreated,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/network/CreateVpnCustomerGateway.vue')))
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDialog.vue')))
         },
         {
           api: 'updateVpnCustomerGateway',
@@ -1382,7 +1383,8 @@ export default {
           docHelp: 'adminguide/networking_and_traffic.html#updating-and-removing-a-vpn-customer-gateway',
           dataView: true,
           popup: true,
-          component: shallowRef(defineAsyncComponent(() => import('@/views/network/UpdateVpnCustomerGateway.vue')))
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDialog.vue')))
         },
         {
           api: 'deleteVpnCustomerGateway',
@@ -1393,7 +1395,8 @@ export default {
           dataView: true,
           groupAction: true,
           popup: true,
-          groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/VpnCustomerGatewayDeleteDialog.vue')))
         }
       ]
     },

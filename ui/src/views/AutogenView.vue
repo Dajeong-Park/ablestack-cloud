@@ -232,7 +232,7 @@
         :resource="resource"
         :current-action="currentAction"
         :selected-items="selectedItems"
-        v-bind="isVpnUser && currentAction.api === 'addVpnUser' ? { afterClose: restoreClosedActionFocus } : {}"
+        v-bind="isVpnUser && currentAction.api === 'addVpnUser' || vpnCustomerGatewayActionScope ? { afterClose: restoreClosedActionFocus } : {}"
         dialog-only
         @refresh-data="refreshActionData"
         @close-action="closeAction"
@@ -371,15 +371,6 @@
             <PublicIpReleaseSummary v-if="publicIpReleaseDialog" :resources="currentAction.invokedAsGroupAction ? selectedItems : [currentAction.resource || resource]" />
             <VmSnapshotSummary v-if="currentAction.api === 'createVMSnapshot'" vm-only :snapshot="{ virtualmachineid: currentAction.resource.id, virtualmachinename: currentAction.resource.displayname || currentAction.resource.name, virtualmachineinstancename: currentAction.resource.instancename, virtualmachinestate: currentAction.resource.state }" />
             <InstanceGroupDeleteSummary v-if="currentAction.api === 'deleteInstanceGroup'" :groups="currentAction.vmGroupTargets || []" />
-            <ul v-if="currentAction.vpnCustomerGatewayTargets" class="vpn-customer-gateway-targets">
-              <li v-for="target in currentAction.vpnCustomerGatewayTargets" :key="target.id">
-                <strong>{{ target.name || target.id }}</strong>
-                <span>{{ target.gateway }}</span>
-                <span v-if="target.project || target.account">
-                  {{ target.project || target.account }}<template v-if="target.domain"> · {{ target.domain }}</template>
-                </span>
-              </li>
-            </ul>
             <span v-if="currentAction.message">
               <div v-if="selectedRowKeys.length > 0 && currentAction.invokedAsGroupAction">
                 <a-alert
@@ -409,7 +400,7 @@
                   </template>
                 </a-alert>
               </div>
-              <div v-if="selectedRowKeys.length > 0 && currentAction.invokedAsGroupAction && !currentAction.vpnCustomerGatewayTargets">
+              <div v-if="selectedRowKeys.length > 0 && currentAction.invokedAsGroupAction">
                 <a-divider />
                 <a-table
                   v-if="selectedRowKeys.length > 0 && currentAction.api !== 'deleteInstanceGroup'"
@@ -917,6 +908,7 @@ import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
 import { canDeleteVpnUsers, vpnUserDeleteTargets } from '@/utils/vpnUserDeletion'
+import { vpnCustomerGatewayActionKey } from '@/utils/vpnCustomerGatewayJobs'
 import { vpnUserOwner, vpnUserVisibleColumns } from '@/utils/vpnUserPresentation'
 import { canSwitchVpnUserProjects, readVpnUsers, vpnUserListLocation, vpnUserListQuery, vpnUserProject, vpnUserRoute, vpnUserSearchAuth, vpnUserSearchFields, vpnUserSearchQuery } from '@/utils/vpnUserSearch'
 import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
@@ -1280,6 +1272,12 @@ export default {
     next()
   },
   watch: {
+    vpnCustomerGatewayActionScope: {
+      flush: 'sync',
+      handler (scope, previous) {
+        if (previous && scope !== previous && this.showAction && this.currentAction.vpnCustomerGatewayScope === previous) this.closeAction()
+      }
+    },
     projectSearchScope (value, previous) {
       if (!this.isProjectList || value === previous) return
       this.resetSelection()
@@ -1592,6 +1590,9 @@ export default {
       return (project?.id === id ? project.name : this.items.find(row => row.projectid === id)?.project) || this.$t('label.project')
     },
     isVpnUser () { return vpnUserRoute(this.$route) },
+    vpnCustomerGatewayActionScope () {
+      return this.$route.meta?.name === 'vpncustomergateway' ? vpnCustomerGatewayActionKey(this.$store.getters, this.$route, this.$store.state?.user?.token) : null
+    },
     standardResourceToolbar () { return this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
@@ -3257,6 +3258,8 @@ export default {
     },
     closeAction (result) {
       const refreshProjectBulk = this.currentAction?.projectBulkTargets && result?.refreshProjectList && this.isProjectList
+      const gatewayDeletion = this.vpnCustomerGatewayActionScope && this.currentAction?.vpnCustomerGatewayScope === this.vpnCustomerGatewayActionScope && result?.gatewayDeletion
+      const deletedCustomerGateway = gatewayDeletion && this.dataView && result.removed.includes(this.$route.params.id)
       if (result?.kmsRemoved && !kmsDeletionConfirmed(this.$route, this.currentAction, result, this.kmsNavigationScope())) return
       const keyResourceList = result?.kmsRemoved ? this.currentKmsListLocation() : null
       if (keyResourceList) {
@@ -3301,7 +3304,7 @@ export default {
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const vpnUserDelete = !!this.currentAction?.vpnUserDeleteTargets
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3393,6 +3396,15 @@ export default {
       }
       this.actionFocusReturn = (guardedDialog || this.isVpcUi) ? { restore: restoreFocus } : null
       this.$nextTick(restoreFocus)
+      if (gatewayDeletion) {
+        this.resetSelection()
+        if (this.$refs.listview) this.$refs.listview.resetSelection()
+        if (deletedCustomerGateway) {
+          const { tab, ...query } = this.$route.query
+          return this.$router.replace({ path: '/vpncustomergateway', query })
+        }
+        return this.fetchData({ irefresh: true })
+      }
     },
     restoreClosedActionFocus () {
       const pending = this.actionFocusReturn
@@ -3752,14 +3764,28 @@ export default {
         this.$router.push({ name: action.api, query })
         return
       }
+      if (this.vpnCustomerGatewayActionScope && ['createVpnCustomerGateway', 'updateVpnCustomerGateway', 'deleteVpnCustomerGateway'].includes(action.api)) {
+        const getters = this.$store.getters
+        if (!(action.api in getters.apis) || !getters.apis.queryAsyncJobResult) return
+        const record = action.resource || this.resource
+        if (action.api !== 'createVpnCustomerGateway' && (!this.storageActionReady || !isGroupAction && !record?.id)) return
+        const selection = isGroupAction ? this.selectedItems : [record]
+        if (isGroupAction && (!selection.length || selection.some(row => !this.selectedRowKeys.includes(row.id)))) return
+        const targets = selection.filter(row => row?.id && !row.removed)
+          .map(({ id, name, gateway, project, account, domain }) => Object.freeze({ id, name, gateway, project, account, domain }))
+        if (action.api === 'deleteVpnCustomerGateway' && targets.length !== selection.length) return
+        this.resource = record
+        this.currentAction = {
+          ...action,
+          vpnCustomerGatewayScope: this.vpnCustomerGatewayActionScope,
+          vpnCustomerGatewayTargets: Object.freeze(targets)
+        }
+        this.showAction = true
+        return
+      }
       this.currentAction = {
         ...action,
         invokedAsGroupAction: !!isGroupAction
-      }
-      if (action.api === 'deleteVpnCustomerGateway') {
-        const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
-        this.currentAction.vpnCustomerGatewayTargets = targets.filter(row => row?.id)
-          .map(({ id, name, gateway, project, account, domain }) => ({ id, name, gateway, project, account, domain }))
       }
       if (action.api === 'deleteInstanceGroup') {
         this.currentAction.vmGroupTargets = vmGroupDeleteTargets(this.currentAction, this.selectedItems)
@@ -5050,14 +5076,6 @@ export default {
 </script>
 
 <style scoped src="@/style/components/view/list-toolbar.css" />
-.vpn-customer-gateway-targets {
-  display: grid;
-  gap: 8px;
-  overflow-wrap: anywhere;
-}
-.vpn-customer-gateway-targets li > * {
-  display: block;
-}
 
 <style scoped src="@/style/components/view/vm-acl-standard.css" />
 <style scoped src="@/style/components/view/project-standard.css" />

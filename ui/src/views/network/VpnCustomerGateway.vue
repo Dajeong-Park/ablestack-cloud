@@ -16,6 +16,10 @@
 // under the License.
 <template>
   <div>
+    <a-alert v-if="parametersError" class="gateway-policy-error" type="error" show-icon :message="$t('message.vpn.customer.gateway.policy.failed')">
+      <template #action><a-button size="small" @click="fetchVpnCustomerGatewayParameters">{{ $t('label.retry') }}</a-button></template>
+    </a-alert>
+    <a-spin :spinning="loadingParameters">
     <a-form
       class="form-layout"
       :ref="formRef"
@@ -23,7 +27,6 @@
       :rules="rules"
       layout="vertical"
       @finish="handleSubmit"
-      v-ctrl-enter="handleSubmit"
      >
       <a-form-item ref="name" name="name">
         <template #label>
@@ -313,15 +316,8 @@
         </template>
         <a-switch v-model:checked="form.forceencap"/>
       </a-form-item>
-      <div class="action-button">
-        <a-button @click="$emit('cancel')">
-          {{ $t('label.cancel') }}
-        </a-button>
-        <a-button type="primary" @click="handleSubmit" html-type="submit">
-          {{ $t('label.ok') }}
-        </a-button>
-      </div>
     </a-form>
+    </a-spin>
   </div>
 </template>
 <script>
@@ -331,11 +327,13 @@ import { ref, reactive, toRaw } from 'vue'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { vpnPskContext } from '@/utils/vpnPsk'
+import { gatewayRequestOptions } from '@/utils/vpnCustomerGatewayJobs'
 import eventBus from '@/config/eventBus'
 
 export default {
   name: 'VpnCustomerGateway',
   mixins: [mixinForm],
+  emits: ['cancel', 'ready', 'submit'],
   components: {
     TooltipLabel
   },
@@ -394,7 +392,9 @@ export default {
       obsoleteHashingAlgos: [],
       obsoleteIkeVersions: [],
       obsoleteDhGroups: [],
-      loadingParameters: false,
+      loadingParameters: true,
+      parametersVersion: 0,
+      parametersError: false,
       pskInputVersion: 0
     }
   },
@@ -403,11 +403,23 @@ export default {
     eventBus.on('project-switch-start', this.clearPskAndClose)
     this.fetchVpnCustomerGatewayParameters()
   },
-  beforeUnmount () { eventBus.off('project-switch-start', this.clearPskAndClose) },
+  beforeUnmount () {
+    this.parametersVersion++
+    eventBus.off('project-switch-start', this.clearPskAndClose)
+  },
   computed: {
+    policyReady () {
+      if (this.loadingParameters || this.parametersError) return false
+      const { ikeEncryption, ikeHash, ikeversion, ikeDh, espEncryption, espHash, perfectForwardSecrecy } = this.form
+      return [
+        ['encryption', ikeEncryption], ['hash', ikeHash], ['ikeversion', ikeversion], ['dh', ikeDh],
+        ['encryption', espEncryption], ['hash', espHash], ['dh', perfectForwardSecrecy]
+      ].every(([type, value]) => value && !this.isExcluded(type, value))
+    },
     pskFormScope () { return JSON.stringify([vpnPskContext(this, ['createVpnCustomerGateway', 'updateVpnCustomerGateway']), this.$route.fullPath || this.$route.path, this.initialValues.id]) }
   },
   watch: {
+    policyReady: { immediate: true, handler (ready) { this.$emit('ready', ready) } },
     pskFormScope: { flush: 'sync', handler () { this.clearPskAndClose() } },
     'initialValues.ipsecpsk' () { this.clearPskAndClose() }
   },
@@ -456,9 +468,6 @@ export default {
         ipsecpsk: [{ required: true, message: this.$t('label.required') }]
       })
     },
-    closeModal () {
-      this.$emit('close-action')
-    },
     resetSubmission () {
       this.isSubmitted = false
     },
@@ -490,6 +499,7 @@ export default {
       }
     },
     isExcluded (type, value) {
+      if (!value || this.loadingParameters || this.parametersError) return false
       switch (type) {
         case 'encryption':
           return !this.allowedEncryptionAlgos.some(v => v.toLowerCase() === value)
@@ -519,10 +529,22 @@ export default {
       }
 
       this.loadingParameters = true
-
-      const response = await getAPI('listCapabilities', { domainid: this.initialValues.domainid })
-      const capability = response.listcapabilitiesresponse?.capability || {}
-      const parameters = capability.vpncustomergatewayparameters || {}
+      this.parametersError = false
+      const version = ++this.parametersVersion
+      let parameters
+      try {
+        const response = await getAPI('listCapabilities', { domainid: this.initialValues.domainid, ignoreproject: true }, gatewayRequestOptions)
+        const capability = response?.listcapabilitiesresponse?.capability
+        if (!capability) throw new Error('Missing VPN policy capability')
+        parameters = capability.vpncustomergatewayparameters || {}
+      } catch (_) {
+        if (version === this.parametersVersion) {
+          this.parametersError = true
+          this.loadingParameters = false
+        }
+        return
+      }
+      if (version !== this.parametersVersion) return
 
       const excludedEnc = getParam(parameters, 'excludedEncryptionAlgorithms')
       const excludedHash = getParam(parameters, 'excludedHashingAlgorithms')
@@ -559,48 +581,39 @@ export default {
 
       this.loadingParameters = false
     },
-    handleSubmit (e) {
-      if (e && e.preventDefault) {
-        e.preventDefault()
-      }
-      if (this.isSubmitted) return
-
-      this.formRef.value.validate().then(() => {
-        this.isSubmitted = true
-        const formRaw = toRaw(this.form)
-        const values = this.handleRemoveFields(formRaw)
-        const { ikepolicy, esppolicy } = this.buildPolicies(values)
-
-        const payload = {
-          name: values.name,
-          gateway: values.gateway,
-          cidrlist: values.cidrlist,
-          ipsecpsk: values.ipsecpsk,
-          ikelifetime: values.ikelifetime,
-          esplifetime: values.esplifetime,
-          dpd: values.dpd,
-          forceencap: values.forceencap,
-          ikepolicy: ikepolicy,
-          esppolicy: esppolicy,
-          splitconnections: values.splitconnections,
-          ikeversion: values.ikeversion
-        }
+    async handleSubmit () {
+      if (this.isSubmitted || !this.policyReady) return
+      this.isSubmitted = true
+      try {
+        await this.formRef.value.validate()
+        const values = this.handleRemoveFields(toRaw(this.form))
+        const policies = this.buildPolicies(values)
         this.$emit('submit', {
-          payload,
-          rawValues: values
+          payload: {
+            name: values.name,
+            gateway: values.gateway,
+            cidrlist: values.cidrlist,
+            ipsecpsk: values.ipsecpsk,
+            ikelifetime: values.ikelifetime,
+            esplifetime: values.esplifetime,
+            dpd: values.dpd,
+            forceencap: values.forceencap,
+            splitconnections: values.ikeversion === 'ikev1' ? false : values.splitconnections,
+            ikeversion: values.ikeversion,
+            ...policies
+          }
         })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+      } catch (error) {
+        this.resetSubmission()
+        const field = error.errorFields?.[0]?.name
+        if (field) this.formRef.value.scrollToField(field)
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.form-layout {
-  width: min(500px, calc(100vw - 80px));
-  max-width: 500px;
-  min-width: 0;
-}
+.form-layout { min-width: 0; }
+.gateway-policy-error { margin-bottom: 16px; }
 </style>
