@@ -272,6 +272,8 @@ public class QueryManagerImplTest {
         ListEventsCmd cmd = setupMockListEventsCmd();
         when(cmd.getStartId()).thenReturn(11L);
         when(cmd.isTimeline()).thenReturn(true);
+        when(cmd.isCreatedOrder()).thenReturn(true);
+        when(cmd.isCreatedOrderAscending()).thenReturn(true);
         SearchBuilder<EventVO> builder = eventDao.createSearchBuilder();
         when(builder.and()).thenReturn(builder);
 
@@ -294,6 +296,36 @@ public class QueryManagerImplTest {
                     .thenReturn(List.of(new EventResponse(), new EventResponse()));
             assertEquals(2, (int) queryManager.searchForEvents(cmd).getCount());
             responses.verify(() -> ViewResponseHelper.createEventResponse(rootView, childView));
+        }
+    }
+
+    @Test
+    public void eventCreatedSortKeepsThePageOrderAndTieBreaker() {
+        ListEventsCmd cmd = setupMockListEventsCmd();
+        when(cmd.getStartId()).thenReturn(null);
+        when(cmd.getId()).thenReturn(null);
+        when(cmd.isCreatedOrder()).thenReturn(true);
+        EventVO newest = mock(EventVO.class);
+        EventVO older = mock(EventVO.class);
+        when(newest.getId()).thenReturn(21L);
+        when(older.getId()).thenReturn(20L);
+        when(eventDao.searchAndCount(any(SearchCriteria.class), any(Filter.class))).thenAnswer(call -> {
+            Filter filter = call.getArgument(1);
+            String order = filter.getOrderBy().toLowerCase(java.util.Locale.ROOT);
+            assertTrue(order.contains("created") && order.contains("id") && order.indexOf("created") < order.indexOf("id"));
+            assertEquals(2, order.split("desc", -1).length - 1);
+            return new Pair<>(List.of(newest, older), 2);
+        });
+        EventJoinVO first = mock(EventJoinVO.class);
+        EventJoinVO second = mock(EventJoinVO.class);
+        when(first.getId()).thenReturn(21L);
+        when(second.getId()).thenReturn(20L);
+        when(eventJoinDao.searchByIds(21L, 20L)).thenReturn(List.of(second, first));
+        try (MockedStatic<ViewResponseHelper> responses = Mockito.mockStatic(ViewResponseHelper.class)) {
+            responses.when(() -> ViewResponseHelper.createEventResponse(first, second))
+                    .thenReturn(List.of(new EventResponse(), new EventResponse()));
+            assertEquals(2, (int) queryManager.searchForEvents(cmd).getCount());
+            responses.verify(() -> ViewResponseHelper.createEventResponse(first, second));
         }
     }
 

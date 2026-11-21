@@ -765,7 +765,7 @@
           </template>
         </a-alert>
         <a-alert v-else-if="isEventTimeline" type="info" show-icon :message="$t('label.event.timeline')" :description="$t('message.events.timeline.description', { scope: eventTimelineScopeLabel })" />
-        <a-alert v-else-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
+        <a-alert v-else-if="listRefreshError && (isEventList || $route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
           <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
         <p v-else-if="listRefreshError && !kmsListRoute($route) && (!isS2sSearchList || items.length > 0) && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
@@ -876,6 +876,7 @@ import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
 import { isEventTimelineRoute } from '@/utils/eventTimeline'
+import { eventCreatedSortQuery, eventSearchQuery } from '@/utils/eventSearch'
 import NetworkOperationPolicy from '@/components/view/NetworkOperationPolicy'
 import { storageUiRoute, storageDialogSize, storageDetailRouteKey } from '@/utils/storageUi'
 import { policyDetailRoute, policyDetailPermissions, readPolicyDetail } from '@/utils/snapshotPolicyDetail'
@@ -1458,6 +1459,11 @@ export default {
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
     isEventTimeline () { return isEventTimelineRoute(this.$route) },
+    isEventList () { return this.$route.meta?.name === 'event' && !this.$route.params?.id },
+    eventCreatedSortEnabled () {
+      const params = this.$getApiParams('listEvents')
+      return this.isEventList && !this.isEventTimeline && !!params.sortkey && !!params.sortorder
+    },
     eventTimelineScopeLabel () {
       const { project, listAllProjects } = this.$store.getters
       const id = this.$route.query.projectid || project?.id || (listAllProjects ? '-1' : '0')
@@ -1499,6 +1505,14 @@ export default {
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
       if (this.isEventTimeline) return columns.map(column => ({ ...column, sorter: false, ...(column.key === 'state' ? { width: 112 } : {}) }))
+      if (this.isEventList) {
+        const { sortkey, sortorder } = this.$route.query
+        return columns.map(column => column.key === 'created' ? {
+          ...column,
+          sorter: this.eventCreatedSortEnabled,
+          sortOrder: this.eventCreatedSortEnabled && sortkey === 'created' ? (sortorder === 'asc' ? 'ascend' : 'descend') : null
+        } : column)
+      }
       if (s2sGatewayRoute(this.$route)) return columns.filter(column => column.key !== 'project' || s2sGatewayProject(this.$store.getters) !== '0')
       if (vpnConnectionListRoute(this.$route)) {
         const widths = { publicip: 154, state: 118, gateway: 180, ipsecpsk: 120, ikepolicy: 162, esppolicy: 162, filtercolumn: 42 }
@@ -2201,7 +2215,7 @@ export default {
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
       const publicIpList = this.$route.meta?.name === 'publicip' && !this.$route.params?.id && !this.$route.query?.dataView
-      if (this.isEventTimeline && !sameList) {
+      if (this.isEventList && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -2555,6 +2569,10 @@ export default {
       }
       if (this.$route.meta?.name === 'event' && this.$route.query.projectid) params.projectid = this.$route.query.projectid
       if (this.isEventTimeline) params.timeline = true
+      if (this.isEventList && !this.eventCreatedSortEnabled) {
+        delete params.sortkey
+        delete params.sortorder
+      }
       if ((this.$route.meta?.name === 'event' || snapshotListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && params.projectid === '0') { delete params.projectid; params.ignoreproject = true }
       if (snapshotPolicyListRoute(this.$route)) params = policySearchParams(params)
 
@@ -2636,7 +2654,7 @@ export default {
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
       if (kubernetesIsoQuery) params = kubernetesIsoReadParams(params, this.$route.params?.id)
       const readCurrentScope = () => version === this.listRequestVersion && scope === this.listScope()
-      const response = kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isEventTimeline || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+      const response = kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2818,7 +2836,7 @@ export default {
         }
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
-        if (this.isEventTimeline) {
+        if (this.isEventList) {
           this.listRefreshError = true; this.listLoadedScope = null
           this.items = []; this.resource = {}; this.itemCount = 0
           this.resetSelection()
@@ -4347,6 +4365,12 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (this.isEventList) {
+        const query = eventSearchQuery(this.$route.query, opts)
+        this.searchParams = {}
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (kmsListRoute(this.$route)) {
         const query = kmsSearchQuery(this.$route.query, opts || {}, kmsListApi(this.$route), this.$store.getters, this.pageSize)
         this.kmsSearchNotice = false
@@ -4481,6 +4505,10 @@ export default {
       this.$router.push({ query })
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.eventCreatedSortEnabled && (sorter?.field === 'created' || sorter?.columnKey === 'created')) {
+        const query = eventCreatedSortQuery(this.$route.query, sorter.order)
+        return this.$router.push({ query })
+      }
       if (this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id) {
         const query = { ...this.$route.query, page: '1' }; delete query.sortkey; delete query.sortorder
         if (sorter?.order && kubernetesIsoSortFields.includes(sorter.field)) { query.sortkey = sorter.field; query.sortorder = sorter.order === 'ascend' ? 'asc' : 'desc' }

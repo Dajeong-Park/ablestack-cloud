@@ -949,12 +949,12 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
          * List events has start date filter, there is highly possible cause where no objects loaded
          * and next millisecond new event added and finally we ended up with count = 1 and no ids.
          */
-        if (count == 0 || (!cmd.isTimeline() && idArray.length == 0)) {
+        if (count == 0 || (!cmd.isCreatedOrder() && idArray.length == 0)) {
             count = 0;
         }
 
         List<EventJoinVO> events = _eventJoinDao.searchByIds(idArray);
-        if (cmd.isTimeline()) {
+        if (cmd.isCreatedOrder()) {
             Map<Long, EventJoinVO> byId = events.stream().collect(Collectors.toMap(EventJoinVO::getId, event -> event));
             events = Arrays.stream(idArray).map(byId::get).filter(Objects::nonNull).collect(Collectors.toList());
         }
@@ -1026,13 +1026,16 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             timelineRoot = anchor.getStartId() > 0 ? anchor.getStartId() : anchor.getId();
         }
 
-        Filter searchFilter = new Filter(EventVO.class, timeline ? "createDate" : "id", timeline, cmd.getStartIndex(), cmd.getPageSizeVal());
-        if (timeline) {
-            searchFilter.addOrderBy(EventVO.class, "id", true);
+        final boolean createdOrder = cmd.isCreatedOrder();
+        final boolean ascending = cmd.isCreatedOrderAscending();
+        Filter searchFilter = new Filter(EventVO.class, createdOrder ? "createDate" : "id", ascending,
+                cmd.getStartIndex(), cmd.getPageSizeVal());
+        if (createdOrder) {
+            searchFilter.addOrderBy(EventVO.class, "id", ascending);
         }
 
         SearchBuilder<EventVO> eventSearchBuilder = scopedEventSearchBuilder(domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
-        if (!timeline) {
+        if (!createdOrder) {
             eventSearchBuilder.select(null, Func.DISTINCT, eventSearchBuilder.entity().getId());
         }
         if (timelineRoot != null) {
@@ -1041,6 +1044,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             eventSearchBuilder.cp();
         }
 
+        eventSearchBuilder.and("eventUuid", eventSearchBuilder.entity().getUuid(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("levelL", eventSearchBuilder.entity().getLevel(), SearchCriteria.Op.LIKE);
         eventSearchBuilder.and("levelEQ", eventSearchBuilder.entity().getLevel(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("type", eventSearchBuilder.entity().getType(), SearchCriteria.Op.EQ);
@@ -1065,6 +1069,10 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
 
         if (id != null) {
             sc.setParameters("id", id);
+        }
+
+        if (cmd.getEventUuid() != null) {
+            sc.setParameters("eventUuid", cmd.getEventUuid());
         }
 
         if (timelineRoot != null) {
@@ -1102,7 +1110,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             sc.setParameters("resourceType", resourceType.toString());
         }
 
-        if ((!timeline && id == null) || (timeline && cmd.hasArchivedFilter())) {
+        if (cmd.hasArchivedFilter() || (!timeline && id == null)) {
             sc.setParameters("archived", cmd.getArchived());
         }
 

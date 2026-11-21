@@ -17,6 +17,7 @@
 
 import store from '@/store'
 import { canMutateEvents } from '@/utils/eventActions'
+import { eventSearchKeys } from '@/utils/eventSearch'
 
 const canExportEvents = () => store.getters.apis.downloadEvents?.response?.some(field => field.name === 'csv')
 
@@ -35,7 +36,7 @@ export default {
     return fields
   },
   details: ['username', 'id', 'description', 'resourcetype', 'resourceid', 'state', 'level', 'type', 'account', 'domain', 'created'],
-  searchFilters: ['level', 'domainid', 'account', 'keyword', 'resourcetype', 'state'],
+  searchFilters: eventSearchKeys,
   related: [{
     name: 'event',
     title: 'label.event.timeline',
