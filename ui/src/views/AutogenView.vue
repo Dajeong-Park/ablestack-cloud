@@ -116,6 +116,11 @@
                   @change="(checked, event) => { $store.dispatch('SetMetrics', checked) }"
                 />
                 <BucketStoreFilter v-if="isBucketList" />
+                <a-tag
+                  v-if="(isIsoList || isTemplateList) && $route.query.account && $route.query.account !== '[invalid]' && $route.query.domainid !== '[invalid]'"
+                  :title="$route.query.domainid">
+                  {{ $t('message.image.account.scope', { account: $route.query.account }) }}
+                </a-tag>
                 <a-tag v-if="isEventList && !isEventTimeline && eventScopeDiffers">{{ $t('message.events.scope', { scope: eventTimelineScopeLabel }) }}</a-tag>
                 <a-switch
                   v-if="!isEventTimeline && !projectView && hasProjectId && (!(vpnConnectionRoute($route) || isVpnUser || isVpnCustomerGateway) || !dataView)"
@@ -228,6 +233,13 @@
         </a-row>
       </a-card>
     </div>
+
+    <a-alert
+      v-if="(isIsoList && isoListError) || (isTemplateList && templateFilterError)"
+      class="image-list-query-error"
+      type="error"
+      show-icon
+      :message="$t(isIsoList ? isoListError : templateFilterError)" />
 
     <div v-show="showAction">
       <component
@@ -4716,6 +4728,10 @@ export default {
       }
       if (this.isIsoList) {
         this.$router.push({ query: isoListQuery({ ...this.$route.query, filter, isofilter: filter, page: '1' }, this.pageSize, this.$store.getters) })
+        return
+      }
+      if (this.isTemplateList) {
+        this.$router.push({ query: templateListQuery({ ...this.$route.query, filter, templatefilter: filter, page: '1' }, this.pageSize) })
         return
       }
       const query = Object.assign({}, this.$route.query)

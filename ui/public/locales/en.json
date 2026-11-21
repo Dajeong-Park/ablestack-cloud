@@ -1,4 +1,6 @@
 {
+  "message.image.account.scope": "Owned by account {account}",
+  "message.image.account.scope.invalid": "Select a valid account and domain to view owned images.",
   "message.account.create.options.failed": "Account domains or roles could not be loaded.",
   "message.account.create.confirm.role": "Confirm assigning {role} in {domain}.",
   "message.account.password.policy": "The selected domain controls the password policy.",
