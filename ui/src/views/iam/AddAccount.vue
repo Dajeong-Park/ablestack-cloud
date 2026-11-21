@@ -191,7 +191,7 @@
             </a-select>
           </a-form-item>
         </div>
-        <div :span="24" class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
           <a-button
             :loading="loading"
@@ -199,12 +199,13 @@
             ref="submit"
             type="primary"
             @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { timeZone } from '@/utils/timezone'
@@ -218,6 +219,7 @@ const passwordLengthKeys = ['password.policy.minimum.length', 'password.policy.m
 export default {
   name: 'AddAccountForm',
   components: {
+    MoldDialogActions,
     TooltipLabel,
     ResourceIcon
   },

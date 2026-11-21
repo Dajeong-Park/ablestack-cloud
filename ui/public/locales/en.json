@@ -1,4 +1,8 @@
 {
+  "label.account.role.admin": "Root administrator",
+  "label.account.role.resourceadmin": "Resource administrator",
+  "label.account.role.domainadmin": "Domain administrator",
+  "label.account.role.user": "Standard user",
   "message.account.limit.tag.scope": "0 prevents allocation. -1 is unlimited within the parent limits. Tag limits apply to configured host or storage tags.",
   "message.account.limit.save.result": "Saved {success} limits. {failed} failed.",
   "message.account.settings.scope": "Settings for account {account} in {domain}. Values without an account override inherit their effective settings.",

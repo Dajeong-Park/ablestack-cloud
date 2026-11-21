@@ -136,7 +136,7 @@ export default {
       label: 'label.action.update.resource.count',
       dataView: true,
       popup: true,
-      show: (record, store) => ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype),
+      show: (record, store) => record.state === 'enabled' && ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype),
       component: shallowRef(defineAsyncComponent(() => import('@/views/iam/AccountResourceCount.vue')))
     },
     ...[

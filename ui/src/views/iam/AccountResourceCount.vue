@@ -22,16 +22,18 @@
     :message="$t('message.account.count.scope', { account: resource.name, domain: resource.domainpath || resource.domain })"
     :description="result === null ? $t('message.update.resource.count') : $t('message.account.count.result', { count: result })" />
   <a-alert v-if="error" type="error" show-icon :message="error" />
-  <div class="action-button">
+  <MoldDialogActions :busy="busy">
     <a-button :disabled="busy" @click="$emit('close-action')">{{ $t(result === null ? 'label.cancel' : 'label.close') }}</a-button>
     <a-button v-if="result === null" type="primary" :loading="busy" @click="submit">{{ $t('label.ok') }}</a-button>
-  </div>
+  </MoldDialogActions>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { postAPI } from '@/api'
 
 export default {
+  components: { MoldDialogActions },
   name: 'AccountResourceCount',
   props: { resource: { type: Object, required: true } },
   emits: ['refresh-data', 'close-action'],
@@ -39,8 +41,8 @@ export default {
   activated () { this.result = null; this.error = '' },
   methods: {
     async submit () {
-      const { id, name: account, domainid } = this.resource
-      if (this.busy || !id || !account || !domainid) return
+      const { id, name: account, domainid, state } = this.resource
+      if (this.busy || state !== 'enabled' || !id || !account || !domainid) return
       this.busy = true
       this.error = ''
       try {

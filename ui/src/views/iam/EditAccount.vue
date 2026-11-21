@@ -68,15 +68,16 @@
             <a-radio-button value="DISABLED">{{ $t('label.disabled') }}</a-radio-button>
           </a-radio-group>
         </a-form-item>
-        <div :span="24" class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
           <a-button :loading="loading" :disabled="!changed" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
@@ -84,6 +85,7 @@ import TooltipLabel from '@/components/widgets/TooltipLabel'
 export default {
   name: 'EditAccount',
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {

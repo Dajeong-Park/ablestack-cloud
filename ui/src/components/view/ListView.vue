@@ -607,6 +607,10 @@
           <clone-flatten-control :record="record" @refresh="$emit('refresh')" />
         </span>
       </template>
+      <template v-if="$route.meta?.name === 'account' && column.key === 'roletype' && text">
+        {{ $t('label.account.role.' + text.toLowerCase()) }}
+      </template>
+
       <template v-if="column.key === 'status'">
         <backup-progress
           v-if="isBackupStatusColumn()"

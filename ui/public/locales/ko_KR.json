@@ -1,4 +1,8 @@
 {
+  "label.account.role.admin": "최고 관리자",
+  "label.account.role.resourceadmin": "리소스 관리자",
+  "label.account.role.domainadmin": "도메인 관리자",
+  "label.account.role.user": "일반 사용자",
   "message.account.limit.tag.scope": "0은 자원 할당 금지이며 -1은 상위 한도 범위의 무제한입니다. 설정된 호스트·스토리지 태그에만 태그별 한도를 적용할 수 있습니다.",
   "message.account.limit.save.result": "한도 {success}개 저장, {failed}개 실패",
   "message.account.settings.scope": "{domain} 도메인의 {account} 계정 설정입니다. 계정별로 재정의하지 않은 값에는 상위 설정이 적용됩니다.",

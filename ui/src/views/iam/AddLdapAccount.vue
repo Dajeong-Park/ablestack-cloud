@@ -151,10 +151,10 @@
               </a-form-item>
             </div>
 
-            <div class="action-button">
+            <MoldDialogActions :busy="loading">
               <a-button @click="handleClose">{{ $t('label.close') }}</a-button>
               <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.add') }}</a-button>
-            </div>
+            </MoldDialogActions>
           </a-form>
         </a-card>
       </a-col>
@@ -163,12 +163,14 @@
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { timeZone } from '@/utils/timezone'
 import store from '@/store'
 
 export default {
+  components: { MoldDialogActions },
   name: 'AddLdapAccount',
   data () {
     return {

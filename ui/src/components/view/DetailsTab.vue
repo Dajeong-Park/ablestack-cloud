@@ -321,6 +321,12 @@ display-text />
               </div>
             </div>
           </div>
+          <div v-else-if="$route.meta.name === 'account' && item === 'apikeyaccess' && dataResource[item]">
+            <a-tag>{{ $t(dataResource[item] === 'INHERIT' ? 'label.account.apikey.inherit' : 'label.' + dataResource[item].toLowerCase()) }}</a-tag>
+          </div>
+          <div v-else-if="$route.meta.name === 'account' && item === 'roletype' && dataResource[item]">
+            {{ $t('label.account.role.' + dataResource[item].toLowerCase()) }}
+          </div>
           <div v-else-if="item === 'usersource'">
             {{ $t(getUserSourceLabel(dataResource[item])) }}
           </div>
