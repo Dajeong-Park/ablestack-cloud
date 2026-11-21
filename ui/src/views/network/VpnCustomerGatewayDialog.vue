@@ -88,7 +88,7 @@
           type="error"
           show-icon
           :message="$t('message.vpn.customer.gateway.owner.failed')">
-          <template #action><a-button size="small" @click="loadOwners(lookupError)">{{ $t('label.retry') }}</a-button></template>
+          <template #description><a-button size="small" @click="loadOwners(lookupError)">{{ $t('label.retry') }}</a-button></template>
         </a-alert>
         <p v-if="ownerLabel"><strong>{{ $t('label.vpn.customer.gateway.owner') }}</strong> {{ ownerLabel }}</p>
         <p v-else>{{ $t('message.vpn.customer.gateway.owner.select') }}</p>

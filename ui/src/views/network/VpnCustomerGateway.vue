@@ -17,7 +17,7 @@
 <template>
   <div>
     <a-alert v-if="parametersError" class="gateway-policy-error" type="error" show-icon :message="$t('message.vpn.customer.gateway.policy.failed')">
-      <template #action><a-button size="small" @click="fetchVpnCustomerGatewayParameters">{{ $t('label.retry') }}</a-button></template>
+      <template #description><a-button size="small" @click="fetchVpnCustomerGatewayParameters">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
     <a-spin :spinning="loadingParameters">
     <a-form
