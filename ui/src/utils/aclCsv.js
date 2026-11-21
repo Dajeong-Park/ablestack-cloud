@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { formatCsvRecords, parseCsvRecords } from './csv'
 import { validCidr } from './conditionalFirewallRule'
 
 export const aclCsvFields = {
@@ -52,42 +53,7 @@ export function aclCsvError (row) {
 }
 
 export function parseAclCsv (input) {
-  const text = input.replace(/^\uFEFF/, '') + '\n'
-  const records = []
-  let fields = []
-  let value = ''
-  let quoted = false
-  let closed = false
-  let line = 1
-  let recordLine = 1
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i]
-    if (quoted) {
-      if (ch === '"' && text[i + 1] === '"') { value += ch; i++ } else if (ch === '"') {
-        quoted = false
-        closed = true
-      } else {
-        value += ch
-        if (ch === '\n' || (ch === '\r' && text[i + 1] !== '\n')) line++
-      }
-    } else if (ch === ',' || ch === '\n' || ch === '\r') {
-      fields.push(value)
-      value = ''
-      closed = false
-      if (ch !== ',') {
-        if (fields.length > 1 || fields[0].trim()) records.push({ line: recordLine, fields })
-        fields = []
-        if (ch === '\r' && text[i + 1] === '\n') i++
-        recordLine = ++line
-      }
-    } else if (ch === '"' && !value.trim() && !closed) {
-      quoted = true
-      value = ''
-    } else if ((closed && ch.trim()) || ch === '"') {
-      throw Object.assign(new Error('Invalid ACL CSV quotes'), { line })
-    } else if (!closed) { value += ch }
-  }
-  if (quoted) throw Object.assign(new Error('Unclosed ACL CSV quotes'), { line: recordLine })
+  const records = parseCsvRecords(input)
   const header = records.shift()?.fields.map(field => field.trim().toLowerCase()) || []
   if (!records.length || new Set(header).size !== header.length ||
       !['protocol', 'cidrlist', 'traffictype'].every(field => header.includes(field))) {
@@ -101,12 +67,7 @@ export function parseAclCsv (input) {
 }
 
 export function formatAclCsv (rows) {
-  const keys = Object.keys(aclCsvFields)
-  const escape = value => {
-    const text = String(value ?? '')
-    return /[,\r\n"]/.test(text) ? '"' + text.replace(/"/g, '""') + '"' : text
-  }
-  return '\uFEFF' + [keys.join(','), ...rows.map(row => keys.map(key => escape(row[key])).join(','))].join('\r\n') + '\r\n'
+  return formatCsvRecords(Object.keys(aclCsvFields), rows)
 }
 
 export function aclImportReport (jobResult, submittedRows) {

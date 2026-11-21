@@ -18,10 +18,14 @@
 <template>
   <loading-outlined v-if="loadingTable" class="main-loading-spinner" />
   <div v-else ref="rulesPanel" :aria-busy="busy">
-    <div style="width: 100%; display: flex; margin-bottom: 20px">
-      <a-button type="dashed" @click="exportRolePermissions" style="width: 100%">
+    <div class="rules-exports">
+      <a-button :disabled="locked || !rules.length" @click="exportRolePermissions('all')">
         <template #icon><download-outlined /></template>
-        {{ $t('label.export.rules') }}
+        {{ $t('label.role.csv.export.all', { count: rules.length }) }}
+      </a-button>
+      <a-button v-if="searchQuery" :disabled="locked || !visibleRules.length" @click="exportRolePermissions('search')">
+        <template #icon><download-outlined /></template>
+        {{ $t('label.role.csv.export.search', { count: visibleRules.length }) }}
       </a-button>
     </div>
     <a-input-search
@@ -163,7 +167,7 @@ import { getAPI, postAPI } from '@/api'
 import draggable from 'vuedraggable'
 import RuleDelete from './RuleDelete'
 import TooltipButton from '@/components/widgets/TooltipButton'
-import { toCsv } from '@/utils/util.js'
+import { formatRoleCsv } from '@/utils/roleCsv'
 
 const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 
@@ -350,14 +354,19 @@ export default {
         description: this.newRuleDescription
       }, this.resetNewFields)
     },
-    exportRolePermissions () {
-      const rulesCsvData = toCsv({ keys: ['rule', 'permission', 'description'], data: this.visibleRules })
-      const hiddenElement = document.createElement('a')
-      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(rulesCsvData)
-      hiddenElement.target = '_blank'
-      hiddenElement.download = this.resource.name + '_' + this.resource.type + '.csv'
-      hiddenElement.click()
-      hiddenElement.remove()
+    exportRolePermissions (range) {
+      const rows = range === 'search' ? this.visibleRules : this.rules
+      if (this.locked || !rows.length) return
+      const url = URL.createObjectURL(new Blob([formatRoleCsv(rows)], { type: 'text/csv;charset=utf-8' }))
+      try {
+        const download = document.createElement('a')
+        download.href = url
+        const suffix = range === 'search' ? '-search' : ''
+        download.download = this.resource.name + '_' + this.resource.type + suffix + '.csv'
+        download.click()
+      } finally {
+        setTimeout(() => URL.revokeObjectURL(url), 1000)
+      }
     }
   }
 }
@@ -370,6 +379,13 @@ export default {
     justify-content: center;
     font-size: 30px;
   }
+  .rules-exports {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
   .rules-notice {
     margin-bottom: 10px;
   }
