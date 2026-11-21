@@ -19,9 +19,8 @@
   <a-spin :spinning="fetchLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
     <a-button
-      :disabled="!('dedicateGuestVlanRange' in $store.getters.apis)"
-      type="dashed"
-      style="width: 100%"
+      :disabled="posting || !('dedicateGuestVlanRange' in $store.getters.apis)"
+      type="primary"
       @click="handleOpenModal">
       <template #icon><plus-outlined /></template>
       {{ $t('label.dedicate.vlan.vni.range') }}
@@ -36,20 +35,13 @@
       :rowKey="record => record.id">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'actions'">
-          <a-popconfirm
-            :title="`${$t('label.delete')}?`"
-            @confirm="handleDelete(record)"
-            :okText="$t('label.yes')"
-            :cancelText="$t('label.no')"
-            placement="top"
-          >
-            <tooltip-button
-              :tooltip="$t('label.delete')"
-              :disabled="!('releaseDedicatedGuestVlanRange' in $store.getters.apis)"
-              icon="delete-outlined"
-              type="primary"
-              :danger="true" />
-          </a-popconfirm>
+          <tooltip-button
+            :tooltip="$t('label.delete.dedicated.vlan.range')"
+            :disabled="posting || !('releaseDedicatedGuestVlanRange' in $store.getters.apis)"
+            icon="delete-outlined"
+            type="primary"
+            danger
+            @onClick="openRelease(record)" />
         </template>
       </template>
     </a-table>
@@ -69,20 +61,24 @@
       </template>
     </a-pagination>
 
-    <a-modal
+    <MoldDialog
       :visible="modal"
       :title="$t('label.dedicate.vlan.vni.range')"
-      :maskClosable="false"
-      :footer="null"
-      @cancel="modal = false">
-      <a-spin :spinning="formLoading" v-ctrl-enter="handleSubmit">
+      size="md"
+      focus-guard
+      :closable="!posting"
+      :keyboard="!posting"
+      @cancel="closeDialog">
+      <a-spin :spinning="formLoading">
         <a-form
-          :ref="formRef"
+          ref="dedicationForm"
+          :disabled="posting"
           :model="form"
           :rules="rules"
           @finish="handleSubmit"
           layout="vertical"
          >
+          <p>{{ $t('label.physical.network') }} · {{ resource.name || resource.id }}</p>
           <a-form-item name="range" ref="range" :label="$t('label.vlanrange')">
             <a-input v-model:value="form.range" v-focus="true" />
           </a-form-item>
@@ -90,7 +86,7 @@
           <a-form-item name="scope" ref="scope" :label="$t('label.scope')">
             <a-select
               v-model:value="form.scope"
-              @change="handleScopeChange"
+              @change="fetchOwners"
               showSearch
               optionFilterProp="label"
               :filterOption="(input, option) => {
@@ -103,7 +99,7 @@
 
           <a-form-item name="domain" ref="domain" :label="$t('label.domain')">
             <a-select
-              @change="handleDomainChange"
+              @change="fetchOwners"
               v-model:value="form.domain"
               showSearch
               optionFilterProp="label"
@@ -163,22 +159,43 @@
             </a-select>
           </a-form-item>
 
-          <div :span="24" class="action-button">
-            <a-button @click="modal = false">{{ $t('label.cancel') }}</a-button>
-            <a-button type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-          </div>
         </a-form>
       </a-spin>
-    </a-modal>
+      <template #footer>
+        <a-button :disabled="posting" @click="closeDialog">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" :disabled="formLoading" :loading="posting" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+      </template>
+    </MoldDialog>
+    <MoldDialog
+      v-if="releaseTarget"
+      :visible="releaseOpen"
+      :title="$t('label.delete.dedicated.vlan.range')"
+      size="md"
+      focus-guard
+      :closable="!posting"
+      :keyboard="!posting"
+      :after-close="clearReleaseTarget"
+      @cancel="closeDialog">
+      <a-descriptions :column="1" size="small" bordered>
+        <a-descriptions-item :label="$t('label.physical.network')">{{ resource.name || resource.id }}</a-descriptions-item>
+        <a-descriptions-item :label="$t('label.vlanrange')">{{ releaseTarget.guestvlanrange }}</a-descriptions-item>
+        <a-descriptions-item :label="$t('label.domain')">{{ releaseTarget.domain || '—' }}</a-descriptions-item>
+        <a-descriptions-item :label="$t(releaseTarget.project ? 'label.project' : 'label.account')">{{ releaseTarget.project || releaseTarget.account || '—' }}</a-descriptions-item>
+      </a-descriptions>
+      <template #footer>
+        <a-button :disabled="posting" @click="closeDialog">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" danger :loading="posting" @click="handleDelete">{{ $t('label.delete.dedicated.vlan.range') }}</a-button>
+      </template>
+    </MoldDialog>
   </a-spin>
 </template>
 
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
-import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipButton from '@/components/widgets/TooltipButton'
+import MoldDialog from '@/components/view/MoldDialog'
 import ResourceIcon from '@/components/view/ResourceIcon'
 
 export default {
@@ -186,6 +203,7 @@ export default {
   name: 'DedicatedVLANTab',
   components: {
     TooltipButton,
+    MoldDialog,
     ResourceIcon
   },
   props: {
@@ -198,11 +216,16 @@ export default {
       default: false
     }
   },
-  inject: ['parentStartLoading', 'parentFinishLoading'],
   data () {
     return {
       fetchLoading: false,
       formLoading: false,
+      posting: false,
+      releaseOpen: false,
+      releaseTarget: null,
+      lookupVersion: 0,
+      form: { scope: 'account' },
+      rules: Object.fromEntries(['range', 'domain', 'account', 'project'].map(field => [field, [{ required: true, message: this.$t('label.required') }]])),
       items: [],
       domains: [],
       accounts: [],
@@ -225,6 +248,10 @@ export default {
           dataIndex: 'account'
         },
         {
+          title: this.$t('label.project'),
+          dataIndex: 'project'
+        },
+        {
           key: 'actions',
           title: this.$t('label.actions')
         }
@@ -235,193 +262,144 @@ export default {
     this.fetchData()
   },
   watch: {
-    loading (newData, oldData) {
-      if (!newData && this.resource.id) {
-        this.fetchData()
-      }
+    loading (busy) {
+      if (!busy && this.resource.id) this.fetchData()
+    },
+    'resource.id' () {
+      this.page = 1
+      this.items = []
+      this.totalCount = 0
+      this.closeDialog()
+      if (this.resource.id) this.fetchData()
     }
   },
   methods: {
-    initForm () {
-      this.formRef = ref()
-      this.form = reactive({
-        scope: 'account'
-      })
-      this.rules = reactive({
-        range: [{ required: true, message: this.$t('label.required') }],
-        domain: [{ required: true, message: this.$t('label.required') }],
-        account: [{ required: true, message: this.$t('label.required') }],
-        project: [{ required: true, message: this.$t('label.required') }]
-      })
-    },
-    fetchData () {
-      const listRequest = this.listRequestToken('fetchData')
-      this.formLoading = !listRequest.loaded
-      return getAPI('listDedicatedGuestVlanRanges', {
-        physicalnetworkid: this.resource.id,
-        page: this.page,
-        pageSize: this.pageSize
-      }).then(response => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
+    async fetchData () {
+      if (!this.resource.id) return
+      const request = this.listRequestToken('fetchData')
+      const current = () => this.isListRequestCurrent('fetchData', request)
+      this.fetchLoading = !request.loaded
+      try {
+        const response = await getAPI('listDedicatedGuestVlanRanges', {
+          physicalnetworkid: this.resource.id,
+          page: this.page,
+          pagesize: this.pageSize,
+          ignoreproject: true
+        }, { preserveOnFailure: true })
+        if (!current()) return
         this.items = response.listdedicatedguestvlanrangesresponse.dedicatedguestvlanrange || []
         this.totalCount = response.listdedicatedguestvlanrangesresponse.count || 0
-      }).catch(error => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        listRequest.failed = true
+      } catch (error) {
+        if (!current()) return
+        request.failed = true
         this.listRefreshFailed = true
-        if (listRequest.loaded) return
-
-        this.$notification.error({
-          message: `${this.$t('label.error')} ${error.response.status}`,
-          description: error.response.data.errorresponse.errortext,
-          duration: 0
-        })
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        this.formLoading = false
-        this.parentFinishLoading()
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.formLoading = false
-      })
+        if (!request.loaded) this.$notifyError(error)
+      } finally {
+        if (current()) this.fetchLoading = false
+      }
     },
-    fetchDomains () {
-      getAPI('listDomains', {
-        details: 'min',
-        showicon: true,
-        listAll: true
-      }).then(response => {
-        this.domains = response.listdomainsresponse.domain || []
-        if (this.domains.length > 0) {
-          this.form.domain = this.domains[0].id
-          this.fetchAccounts(this.form.domain)
+    async fetchOwners () {
+      const version = ++this.lookupVersion
+      const { domain, scope } = this.form
+      const current = () => this.modal && version === this.lookupVersion
+      this.accounts = []
+      this.projects = []
+      this.form.account = undefined
+      this.form.project = undefined
+      this.formLoading = !!domain
+      if (!domain) return
+      const isAccount = scope === 'account'
+      const api = isAccount ? 'listAccounts' : 'listProjects'
+      try {
+        const json = await getAPI(api, { domainid: domain, details: 'min', showicon: true, listall: true, ignoreproject: true }, { preserveOnFailure: true })
+        if (!current()) return
+        if (isAccount) {
+          this.accounts = json.listaccountsresponse.account || []
+          this.form.account = this.accounts[0]?.name
         } else {
-          this.form.domain = null
+          this.projects = json.listprojectsresponse.project || []
+          this.form.project = this.projects[0]?.id
         }
-        this.formLoading = false
-      }).catch(error => {
-        this.$notifyError(error)
-        this.formLoading = false
-      })
+      } catch (error) {
+        if (current()) this.$notifyError(error)
+      } finally {
+        if (current()) this.formLoading = false
+      }
     },
-    fetchAccounts (e) {
-      this.formLoading = true
-      getAPI('listAccounts', {
-        domainid: e,
-        details: 'min',
-        showicon: true,
-        listAll: true
-      }).then(response => {
-        this.accounts = response.listaccountsresponse.account
-          ? response.listaccountsresponse.account : []
-        if (this.accounts.length > 0) {
-          this.form.account = this.accounts[0].name
-        } else {
-          this.form.account = null
-        }
-        this.formLoading = false
-      }).catch(error => {
-        this.$notifyError(error)
-        this.formLoading = false
-      })
+    openRelease (item) {
+      if (this.posting || !this.$store.getters.apis.releaseDedicatedGuestVlanRange) return
+      this.releaseTarget = item
+      this.releaseOpen = true
     },
-    fetchProjects (e) {
-      this.formLoading = true
-      getAPI('listProjects', {
-        domainid: e,
-        showicon: true,
-        details: 'min'
-      }).then(response => {
-        this.projects = response.listprojectsresponse.project
-          ? response.listprojectsresponse.project : []
-        if (this.projects.length > 0) {
-          this.form.project = this.projects[0].id
-        } else {
-          this.form.project = null
-        }
-        this.formLoading = false
-      }).catch(error => {
-        this.$notifyError(error)
-        this.formLoading = false
-      })
+    closeDialog () {
+      if (this.posting) return
+      this.modal = false
+      this.releaseOpen = false
+      this.lookupVersion++
+      this.formLoading = false
     },
-    handleDelete (item) {
-      this.parentStartLoading()
-      postAPI('releaseDedicatedGuestVlanRange', {
-        id: item.id
-      }).then(response => {
-        this.$pollJob({
+    clearReleaseTarget () {
+      if (!this.releaseOpen) this.releaseTarget = null
+    },
+    async handleDelete () {
+      const item = this.releaseTarget
+      if (!item?.id || this.posting || !this.$store.getters.apis.releaseDedicatedGuestVlanRange) return
+      this.posting = true
+      try {
+        const response = await postAPI('releaseDedicatedGuestVlanRange', { id: item.id, ignoreproject: true }, { preserveOnFailure: true })
+        const job = await this.$pollJob({
           jobId: response.releasededicatedguestvlanrangeresponse.jobid,
           title: this.$t('label.delete.dedicated.vlan.range'),
-          description: `${this.$t('label.delete.dedicated.vlan.range')} ${item.guestvlanrange} ${this.$t('label.for')} ${item.account}`,
-          successMethod: () => {
-            this.fetchData()
-            this.parentFinishLoading()
-          },
-          errorMessage: this.$t('label.deleting.failed'),
-          errorMethod: () => {
-            this.fetchData()
-            this.parentFinishLoading()
-          },
-          loadingMessage: `${this.$t('label.deleting')} ${item.id}`,
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.fetchData()
-            this.parentFinishLoading()
-          }
+          description: item.guestvlanrange,
+          errorMessage: this.$t('label.deleting.failed')
         })
-      }).catch(error => {
-        console.log(error)
-        this.$message.error(this.$t('message.fail.to.delete'))
-        this.fetchData()
-        this.parentFinishLoading()
-      })
+        if (job?.jobstatus === 1) this.releaseOpen = false
+        await this.fetchData()
+      } catch (error) {
+        this.$notifyError(error)
+      } finally {
+        this.posting = false
+      }
     },
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.formLoading) return
-      this.formRef.value.validate().then(() => {
-        this.formLoading = true
-        this.parentStartLoading()
-        const fieldValues = toRaw(this.form)
-
-        postAPI('dedicateGuestVlanRange', {
+    async handleSubmit () {
+      if (this.formLoading || this.posting || !this.$store.getters.apis.dedicateGuestVlanRange) return
+      this.posting = true
+      try {
+        const values = await this.$refs.dedicationForm.validate()
+        await postAPI('dedicateGuestVlanRange', {
           physicalnetworkid: this.resource.id,
-          vlanrange: fieldValues.range,
-          domainid: fieldValues.domain,
-          account: fieldValues.account,
-          projectid: fieldValues.project
-        }).then(response => {
-          this.modal = false
-          this.fetchData()
-        }).catch(error => {
-          this.$notifyError(error)
-          this.modal = false
-          this.fetchData()
-        })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+          vlanrange: values.range.trim(),
+          domainid: values.domain,
+          ...(values.scope === 'account' ? { account: values.account } : { projectid: values.project }),
+          ignoreproject: true
+        }, { preserveOnFailure: true })
+        this.modal = false
+        await this.fetchData()
+      } catch (error) {
+        if (error.errorFields?.length) this.$refs.dedicationForm.scrollToField(error.errorFields[0].name)
+        else this.$notifyError(error)
+      } finally {
+        this.posting = false
+      }
     },
-    fetchBasedOnScope (e) {
-      if (e === 'account') this.fetchAccounts(this.form.domain)
-      if (e === 'project') this.fetchProjects(this.form.domain)
-    },
-    handleDomainChange () {
-      setTimeout(() => {
-        this.fetchBasedOnScope(this.form.scope)
-      }, 100)
-    },
-    handleScopeChange (e) {
-      this.fetchBasedOnScope(e)
-    },
-    handleOpenModal () {
+    async handleOpenModal () {
+      if (this.posting || !this.$store.getters.apis.dedicateGuestVlanRange) return
+      const version = ++this.lookupVersion
+      this.form = { scope: 'account' }
+      this.domains = []
       this.modal = true
       this.formLoading = true
-      this.initForm()
-      this.fetchDomains()
+      try {
+        const json = await getAPI('listDomains', { details: 'min', showicon: true, listall: true, ignoreproject: true }, { preserveOnFailure: true })
+        if (!this.modal || version !== this.lookupVersion) return
+        this.domains = json.listdomainsresponse.domain || []
+        this.form.domain = this.domains[0]?.id
+        await this.fetchOwners()
+      } catch (error) {
+        if (!this.modal || version !== this.lookupVersion) return
+        this.formLoading = false
+        this.$notifyError(error)
+      }
     },
     handleChangePage (page, pageSize) {
       this.page = page
@@ -437,44 +415,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.list {
-
-  &__label {
-    font-weight: bold;
-  }
-
-  &__col {
-    flex: 1;
-
-    @media (min-width: 480px) {
-      &:not(:last-child) {
-        margin-right: 20px;
-      }
-    }
-  }
-
-  &__item {
-    margin-right: -8px;
-
-    &-outer-container {
-      width: 100%;
-    }
-
-    &-container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-
-      @media (min-width: 480px) {
-        flex-direction: row;
-        margin-bottom: 10px;
-      }
-    }
-  }
-}
-
-.pagination {
-  margin-top: 20px;
-}
+<style scoped>
+.pagination { margin-top: 20px; }
 </style>

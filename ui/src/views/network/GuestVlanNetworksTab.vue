@@ -49,7 +49,7 @@
             <span v-else>{{ text }}</span>
           </template>
           <template v-if="column.dataIndex === 'type' && text">{{ $t(networkTypeLabel(text)) }}</template>
-      <template v-if="column.key === 'vpcname'">
+          <template v-if="column.key === 'vpcname'">
             <router-link v-if="guestVlanVpcLocation(record, $store.getters.apis)" :to="guestVlanVpcLocation(record, $store.getters.apis)">{{ text || record.vpcid }}</router-link>
             <span v-else>{{ text || record.vpcid || '—' }}</span>
           </template>

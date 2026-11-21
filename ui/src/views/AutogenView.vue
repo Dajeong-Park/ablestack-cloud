@@ -137,6 +137,12 @@
             :style="device === 'mobile' ? { float: 'right', 'margin-top': '12px', 'margin-bottom': '-6px', display: 'table' } : { float: 'right', display: 'table', 'margin-top': '6px' }" >
             <slot name="action" v-if="dataView && $route.path.startsWith('/publicip') && $slots.action"></slot>
             <template v-else>
+              <a-button
+                v-if="isGuestVlan && dataView && resource.physicalnetworkid && $store.getters.apis.listPhysicalNetworks && $store.getters.apis.listDedicatedGuestVlanRanges"
+                class="guest-vlan-range-link"
+                @click="$router.push({ path: '/physicalnetwork/' + resource.physicalnetworkid, query: { tab: 'dedicated.vlan.vni.ranges' } })">
+                {{ $t('label.dedicated.vlan.vni.ranges') }}
+              </a-button>
               <a-tooltip v-if="isSnapshotList && 'createSnapshot' in $store.getters.apis && 'listVolumes' in $store.getters.apis" :title="$t('message.snapshot.list.create.volume')">
                 <a-button type="primary" shape="round" @click="$router.push(snapshotSourceVolumeRoute($route))">
                   <plus-outlined /> {{ $t('label.snapshot.list.create') }}
