@@ -62,3 +62,12 @@ export function ipv4SubnetFilterOptions (kind, rows) {
   }
   return [...entries.values()].sort((a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id))
 }
+
+export function ipv4SubnetResourceLocation (row, kind, apis) {
+  const network = kind === 'networkname'
+  const field = network ? 'network' : 'vpc'
+  const id = row[field + 'id']
+  const projectId = row[field + 'projectid']
+  if (!id || !apis?.[network ? 'listNetworks' : 'listVPCs'] || (projectId && !apis.listProjects)) return null
+  return { path: (network ? '/guestnetwork/' : '/vpc/') + id, query: { projectid: projectId || '0' } }
+}

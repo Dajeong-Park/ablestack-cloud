@@ -736,7 +736,8 @@
         <router-link v-if="$route.path === '/guestvlans'" :to="{ path: '/guestvlans/' + record.id, query: guestVlanListQuery($route.query) }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'networkname'">
-        <router-link :to="{ path: '/guestnetwork/' + record.networkid }">{{ text }}</router-link>
+        <Ipv4SubnetResourceLink v-if="$route.meta?.name === 'ipv4subnets'" :record="record" field="networkname" />
+        <router-link v-else :to="{ path: '/guestnetwork/' + record.networkid }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'guestnetworkname'">
         <span v-if="['/router'].includes($route.path) && record.vpcid">
@@ -768,7 +769,8 @@
         <router-link v-else :to="{ path: '/guestnetwork/' + record.associatednetworkid }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'vpcname'">
-        <a v-if="record.vpcid">
+        <Ipv4SubnetResourceLink v-if="$route.meta?.name === 'ipv4subnets'" :record="record" field="vpcname" />
+        <a v-else-if="record.vpcid">
           <router-link :to="{ path: '/vpc/' + record.vpcid }">{{ text || record.vpcid }}</router-link>
         </a>
         <span v-else>{{ text }}</span>
@@ -1297,6 +1299,7 @@
 </template>
 
 <script>
+import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { projectDetailLocation } from '@/utils/projectSearch'
@@ -1368,6 +1371,7 @@ import { vnfDetailLocation } from '@/utils/vnfSearch'
 export default {
   name: 'ListView',
   components: {
+    Ipv4SubnetResourceLink,
     VpnUserValue,
     AclScopeValue,
     S2sGatewayValue,
