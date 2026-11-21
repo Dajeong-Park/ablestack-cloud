@@ -882,7 +882,7 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
         boolean listAll = cmd.listAll();
         long startIndex = cmd.getStartIndex();
         long pageSizeVal = cmd.getPageSizeVal();
-        String keyword = cmd.getKeyword();
+        String keyword = StringUtils.trimToNull(cmd.getKeyword());
 
         Account caller = CallContext.current().getCallingAccount();
         List<Long> permittedAccounts = new ArrayList<>();
@@ -898,16 +898,21 @@ public class Site2SiteVpnManagerImpl extends ManagerBase implements Site2SiteVpn
         _accountMgr.buildACLSearchBuilder(sb, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
         sb.and("id", sb.entity().getId(), SearchCriteria.Op.EQ);
-        sb.and("name", sb.entity().getName(), SearchCriteria.Op.LIKE);
+        if (keyword != null) {
+            sb.and().op("keywordName", sb.entity().getName(), SearchCriteria.Op.LIKE);
+            sb.or("keywordUuid", sb.entity().getUuid(), SearchCriteria.Op.LIKE);
+            sb.cp();
+        }
         SearchCriteria<Site2SiteCustomerGatewayVO> sc = sb.create();
         _accountMgr.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
 
         if (id != null) {
             sc.setParameters("id", id);
         }
-        if(keyword != null && !keyword.isEmpty()){
-            sc.addOr("uuid", SearchCriteria.Op.LIKE, "%" + keyword + "%");
-            sc.setParameters("name", "%" + keyword + "%");
+        if (keyword != null) {
+            String pattern = "%" + keyword + "%";
+            sc.setParameters("keywordName", pattern);
+            sc.setParameters("keywordUuid", pattern);
         }
 
         Pair<List<Site2SiteCustomerGatewayVO>, Integer> result = _customerGatewayDao.searchAndCount(sc, searchFilter);

@@ -1346,7 +1346,7 @@ export default {
         return fields
       },
       details: ['name', 'id', 'gateway', 'cidrlist', 'ipsecpsk', 'ikepolicy', 'ikelifetime', 'ikeversion', 'esppolicy', 'esplifetime', 'dpd', 'splitconnections', 'forceencap', 'account', 'domain'],
-      searchFilters: ['keyword', 'domainid', 'account'],
+      searchFilters: ['keyword', 'id', 'domainid', 'account'],
       resourceType: 'VPNCustomerGateway',
       tabs: [
         {

@@ -3407,6 +3407,7 @@
   "message.action.delete.tungsten.router.table": "이 네트워크에서 라우팅 테이블을 제거할 것인지 확인하십시오.",
   "message.action.delete.volume": "현재 볼륨을 영구 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.<br>참고: 공유 볼륨인 경우 이미지는 삭제되지 않으며, 반드시 수동으로 삭제해야 합니다.",
   "label.vpn.user.scope.all": "모든 프로젝트",
+  "label.vpn.customer.gateway.search.keyword": "게이트웨이 이름 또는 UUID",
   "label.vpn.user.search.keyword": "사용자 이름 일부 또는 UUID",
   "label.vpn.user.search.exact": "정확한 사용자 이름",
   "message.vpn.user.search.account.domain": "먼저 도메인을 선택하세요",

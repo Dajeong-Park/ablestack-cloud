@@ -27,7 +27,7 @@
       <a-input-search
         v-model:value="searchQuery"
         :aria-label="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : undefined"
-        :placeholder="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :placeholder="apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         allowClear
         @search="onSearch"
       />
@@ -40,7 +40,7 @@
         allowClear
         class="input-search"
         :aria-label="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
-        :placeholder="isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :placeholder="apiName === 'listVpnCustomerGateways' ? $t('label.vpn.customer.gateway.search.keyword') : isVpnUserSearch ? $t('label.vpn.user.search.keyword') : isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         :title="apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
@@ -484,6 +484,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.apiName === 'listVpnCustomerGateways' && fieldName === 'keyword') return this.$t('label.vpn.customer.gateway.search.keyword')
       if (this.isVpnUserSearch && fieldName === 'username') return this.$t('label.vpn.user.search.exact')
       if (this.isVpnUserSearch && fieldName === 'domainid') return this.$t('label.domain')
       if (this.isAclSearch && fieldName === 'name') return this.$t('label.acl.search.exact')

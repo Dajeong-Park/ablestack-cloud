@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.cloudstack.api.command.user.vpn.ListVpnCustomerGatewaysCmd;
 import org.apache.cloudstack.api.command.user.vpn.ListVpnConnectionsCmd;
 import org.apache.cloudstack.context.CallContext;
 import org.h2.jdbcx.JdbcDataSource;
@@ -33,6 +34,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.cloud.exception.InvalidParameterValueException;
+import com.cloud.network.Site2SiteCustomerGateway;
 import com.cloud.network.Site2SiteVpnConnection;
 import com.cloud.network.dao.IPAddressDaoImpl;
 import com.cloud.network.dao.Site2SiteCustomerGatewayDaoImpl;
@@ -86,11 +88,19 @@ public class Site2SiteVpnConnectionSearchTest {
                     + "customer_gateway_id BIGINT, state VARCHAR(32), domain_id BIGINT, account_id BIGINT, created TIMESTAMP, "
                     + "removed TIMESTAMP, passive BOOLEAN, display BOOLEAN)");
             sql.execute("CREATE TABLE s2s_vpn_gateway (id BIGINT PRIMARY KEY, addr_id BIGINT, vpc_id BIGINT)");
-            sql.execute("CREATE TABLE s2s_customer_gateway (id BIGINT PRIMARY KEY, gateway_ip VARCHAR_IGNORECASE(255))");
+            sql.execute("CREATE TABLE s2s_customer_gateway (id BIGINT PRIMARY KEY, gateway_ip VARCHAR_IGNORECASE(255), "
+                    + "uuid VARCHAR_IGNORECASE(255), name VARCHAR_IGNORECASE(255), domain_id BIGINT, account_id BIGINT, removed TIMESTAMP, "
+                    + "guest_cidr_list VARCHAR(255), ipsec_psk VARCHAR(255), ike_policy VARCHAR(255), esp_policy VARCHAR(255), "
+                    + "ike_lifetime BIGINT DEFAULT 86400, esp_lifetime BIGINT DEFAULT 3600, dpd BOOLEAN DEFAULT FALSE, "
+                    + "force_encap BOOLEAN DEFAULT FALSE, split_connections BOOLEAN DEFAULT FALSE, ike_version VARCHAR(10))");
             sql.execute("CREATE TABLE user_ip_address (id BIGINT PRIMARY KEY, public_ip_address VARCHAR(40))");
             sql.execute("INSERT INTO s2s_vpn_gateway VALUES (1, 1, 50), (2, 2, 60)");
             sql.execute("INSERT INTO user_ip_address VALUES (1, '192.0.2.10'), (2, '198.51.100.10')");
-            sql.execute("INSERT INTO s2s_customer_gateway VALUES (1, 'peer-a.example'), (2, 'peer_b.example')");
+            sql.execute("INSERT INTO s2s_customer_gateway (id, gateway_ip, uuid, name, domain_id, account_id, removed) VALUES "
+                    + "(1, 'peer-a.example', 'cgw-one', 'fixture-alpha', 10, 100, NULL),"
+                    + "(2, 'peer_b.example', 'cgw-two', 'fixture-beta', 10, 100, NULL),"
+                    + "(3, 'peer-c.example', 'cgw-prior', 'fixture-removed', 10, 100, CURRENT_TIMESTAMP),"
+                    + "(4, 'peer-d.example', 'cgw-other', 'fixture-other', 10, 200, NULL)");
             sql.execute("INSERT INTO s2s_vpn_connection VALUES "
                     + "(1, 'one', 1, 1, 'Connected', 10, 100, NULL, NULL, FALSE, TRUE),"
                     + "(2, 'two', 2, 2, 'Connected', 10, 100, NULL, NULL, FALSE, TRUE),"
@@ -144,6 +154,31 @@ public class Site2SiteVpnConnectionSearchTest {
         Pair<List<? extends Site2SiteVpnConnection>, Integer> found = manager.searchForVpnConnections(cmd);
         assertEquals(List.of(ids), found.first().stream().map(Site2SiteVpnConnection::getUuid).collect(Collectors.toList()));
         assertEquals(Integer.valueOf(count), found.second());
+    }
+
+    private void customerMatches(String keyword, Long id, long start, long size, int count, String... uuids) {
+        ListVpnCustomerGatewaysCmd cmd = mock(ListVpnCustomerGatewaysCmd.class);
+        when(cmd.getKeyword()).thenReturn(keyword);
+        when(cmd.getId()).thenReturn(id);
+        when(cmd.listAll()).thenReturn(true);
+        when(cmd.getStartIndex()).thenReturn(start);
+        when(cmd.getPageSizeVal()).thenReturn(size);
+        Pair<List<? extends Site2SiteCustomerGateway>, Integer> found = manager.searchForCustomerGateways(cmd);
+        assertEquals(List.of(uuids), found.first().stream().map(Site2SiteCustomerGateway::getUuid).collect(Collectors.toList()));
+        assertEquals(Integer.valueOf(count), found.second());
+    }
+
+    @Test
+    public void customerKeywordsPreserveRemovalAndOwnershipForListsAndCounts() {
+        customerMatches("fixture", null, 0, 1, 2, "cgw-two");
+        customerMatches("fixture", null, 1, 1, 2, "cgw-one");
+        customerMatches(" cgw-one ", null, 0, 20, 1, "cgw-one");
+        customerMatches("fixture-removed", null, 0, 20, 0);
+        customerMatches("cgw-prior", null, 0, 20, 0);
+        customerMatches("fixture-other", null, 0, 20, 0);
+        customerMatches("cgw-other", null, 0, 20, 0);
+        customerMatches("fixture", 1L, 0, 20, 1, "cgw-one");
+        customerMatches("fixture-beta", 1L, 0, 20, 0);
     }
 
     @Test
