@@ -729,12 +729,7 @@
         <status :text="text ? text : ''" displayText vmState/>
       </template>
       <template v-if="column.key === 'vlan'">
-        <a href="javascript:;">
-          <router-link
-            v-if="$route.path === '/guestvlans'"
-            :to="{ path: '/guestvlans/' + record.id }"
-          >{{ text }}</router-link>
-        </a>
+        <router-link v-if="$route.path === '/guestvlans'" :to="{ path: '/guestvlans/' + record.id, query: guestVlanListQuery($route.query) }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'networkname'">
         <router-link :to="{ path: '/guestnetwork/' + record.networkid }">{{ text }}</router-link>
@@ -1346,7 +1341,7 @@ import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListCell from '@/components/view/AsnListCell'
-import { guestVlanNetworkLocation } from '@/utils/guestVlan'
+import { guestVlanListQuery, guestVlanNetworkLocation } from '@/utils/guestVlan'
 import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
@@ -1645,6 +1640,7 @@ export default {
   },
   methods: {
     guestVlanNetworkLocation,
+    guestVlanListQuery,
     isEventTimelineRoute,
     isEventDetailRoute,
     eventRowLocation (record) {

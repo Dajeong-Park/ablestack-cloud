@@ -76,6 +76,7 @@ import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import { kubernetesIsoListLocation } from '@/utils/kubernetesIsoSearch'
 import { templateListLocation } from '@/utils/templateSearch'
 import { isoListLocation } from '@/utils/isoSearch'
+import { guestVlanListQuery, guestVlanRoute } from '@/utils/guestVlan'
 import { networkListLocation } from '@/utils/guestNetworkSearch'
 import { documentationUrl } from '@/utils/cniFileImport'
 
@@ -163,6 +164,9 @@ export default {
       if (item.path === '/s2svpn' && this.$route.meta?.name === 's2svpn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters)
       if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (item.path === '/vpnuser' && vpnUserRoute(this.$route) && this.$route.params?.id) return vpnUserListLocation(this.$route, this.$store.getters)
+      if (item.path === '/guestvlans' && guestVlanRoute(this.$route) && this.$route.params?.id) {
+        return { path: item.path, query: guestVlanListQuery(this.$route.query) }
+      }
       if (item.path === '/vpncustomergateway' && this.$route.params?.id) {
         const { tab, ...query } = this.$route.query
         return { path: item.path, query }
