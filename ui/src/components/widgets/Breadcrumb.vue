@@ -36,9 +36,8 @@
         :class="{ 'vm-acl-breadcrumb-current': standardLayout }"
         :aria-current="standardLayout ? 'page' : undefined"
         :title="standardLayout ? resourceTitle : undefined">
-        <span v-if="isEventDetailRoute($route)">{{ resourceTitle }}</span>
         <label
-          v-else-if="'name' in resource &&
+          v-if="'name' in resource &&
             ['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(resource.name)">
           <span>
             {{ $t(resource.name.toLowerCase()) }}
@@ -47,6 +46,7 @@
         <keyboard-tooltip v-else-if="$route.meta?.name === 'kubernetesiso'" :title="resource.name || $route.params.id" :trigger="['hover','focus']">
           <span tabindex="0" class="kubernetes-iso-breadcrumb-name">{{ resource.name || $route.params.id }}</span>
         </keyboard-tooltip>
+        <span v-else-if="isEventDetailRoute($route)" class="event-breadcrumb-title">{{ eventBreadcrumbTitle(resource) || $route.params.id }}</span>
         <span v-else-if="vpnConnectionRoute($route)" class="s2s-connection-breadcrumb-name">{{ vpnConnectionName(resource, $route.params.id) }}</span>
         <label v-else :class="{ 'kms-breadcrumb-name': kmsDetailRoute($route) }">
           {{ resourceTitle }}
@@ -110,7 +110,6 @@ export default {
   },
   computed: {
     resourceTitle () {
-      if (isEventDetailRoute(this.$route)) return eventDisplayTitle(this.resource, this.$t, date => this.$toLocaleDate(date)) || this.$route.params.id
       if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       const row = this.resource
@@ -144,6 +143,7 @@ export default {
     documentationUrl,
     kmsDetailRoute,
     isEventDetailRoute,
+    eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
       if (item.path === '/acllist' && isAclListRoute(this.$route) && this.$route.params?.id) {
         return aclListLocation(this.$route, this.resource, this.$store.getters)
@@ -195,7 +195,8 @@ export default {
 .ant-breadcrumb .anticon {
   vertical-align: text-bottom;
 }
-.kms-breadcrumb-name {
+.kms-breadcrumb-name,
+.event-breadcrumb-title {
   white-space: normal;
   overflow-wrap: anywhere;
 }

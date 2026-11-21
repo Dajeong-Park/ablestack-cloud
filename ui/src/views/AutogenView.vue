@@ -17,15 +17,15 @@
 
 <template>
   <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': isVmUi || isAclUi, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
-    <div class="content-breadcrumb" :class="{ 'standard-breadcrumb': standardBreadcrumb }">
+    <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
           <a-col
-            :class="{ 'vm-acl-breadcrumb-layout': standardBreadcrumb }"
+            :class="{ 'vm-acl-breadcrumb-layout': isVmUi || isAclUi }"
             :span="device === 'mobile' ? 24 : 12"
             style="padding-left: 12px; margin-top: 10px"
           >
-            <breadcrumb :resource="resource" :standard-layout="standardBreadcrumb">
+            <breadcrumb :resource="resource" :standard-layout="isVmUi || isAclUi">
               <template #end>
                 <a-button
                   v-if="$route.meta?.name !== 'runtimebundle'"
@@ -1471,9 +1471,6 @@ export default {
     isGuestNetworkList () { return !this.dataView && guestNetworkRoute(this.$route) },
     isGuestNetworkUi () { return ['guestnetwork', 'networkoffering'].includes(this.$route.meta?.name) },
     isVmUi () { return this.$route.meta?.name === 'vm' },
-    standardBreadcrumb () {
-      return this.isVmUi || this.isAclUi || this.$route.meta?.name === 'event'
-    },
     isVmList () { return !this.dataView && this.isVmUi },
     isAclUi () { return isAclListRoute(this.$route) },
     aclStandardDialog () {
