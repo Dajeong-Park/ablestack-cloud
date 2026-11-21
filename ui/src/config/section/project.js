@@ -17,6 +17,8 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { isProjectAdministrator } from '@/utils/projectMembership'
+import { projectActionReason, projectBulkAvailable } from '@/utils/projectBulk'
 
 export default {
   name: 'project',
@@ -26,8 +28,8 @@ export default {
   permission: ['listProjects'],
   resourceType: 'Project',
   columns: ['name', 'state', 'displaytext', 'account', 'domain'],
-  searchFilters: ['name', 'displaytext', 'domainid', 'account'],
-  details: ['name', 'id', 'displaytext', 'projectaccountname', 'account', 'domain'],
+  searchFilters: ['name', 'displaytext', 'state', 'id', 'domainid', 'account', 'username', 'tags'],
+  details: ['id', 'displaytext', 'projectaccountname'],
   tabs: [
     {
       name: 'details',
@@ -36,15 +38,21 @@ export default {
     {
       name: 'accounts',
       component: shallowRef(defineAsyncComponent(() => import('@/views/project/AccountsTab.vue'))),
-      show: (record, route, user) => { return ['Admin', 'DomainAdmin'].includes(user.roletype) || record.isCurrentUserProjectAdmin }
+      show: (record, route, user) => isProjectAdministrator(record, user)
     },
     {
       name: 'project.roles',
       component: shallowRef(defineAsyncComponent(() => import('@/views/project/iam/ProjectRoleTab.vue'))),
       show: (record, route, user) => {
-        return (['Admin', 'DomainAdmin'].includes(user.roletype) || record.isCurrentUserProjectAdmin) &&
+        return isProjectAdministrator(record, user) &&
         'listProjectRoles' in store.getters.apis
       }
+    },
+    {
+      name: 'project.invitations.outgoing',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/project/InvitationsTemplate.vue'))),
+      show: (record, route, user) => store.getters.features.projectinviterequired &&
+        isProjectAdministrator(record, user) && !!store.getters.apis.listProjectInvitations?.params?.some(param => param.name === 'direction')
     },
     {
       name: 'certificates',
@@ -56,8 +64,8 @@ export default {
     },
     {
       name: 'limits.configure',
-      show: (record, route, user) => { return ['Admin', 'DomainAdmin'].includes(user.roletype) },
-      component: shallowRef(defineAsyncComponent(() => import('@/components/view/ResourceLimitTab.vue')))
+      show: (record, route, user) => ['Admin', 'DomainAdmin'].includes(user.roletype) && !!store.getters.apis.listResourceLimits,
+      component: shallowRef(defineAsyncComponent(() => import('@/views/project/ProjectResourceLimitTab.vue')))
     },
     {
       name: 'events',
@@ -73,12 +81,15 @@ export default {
       label: 'label.new.project',
       docHelp: 'adminguide/projects.html#creating-a-new-project',
       listView: true,
-      args: ['name', 'displaytext']
+      popup: true,
+      selfManagedDialog: true,
+      component: shallowRef(defineAsyncComponent(() => import('@/views/project/CreateProjectDialog.vue')))
     },
     {
       api: 'updateProjectInvitation',
       icon: 'key-outlined',
       label: 'label.enter.token',
+      standardDialogSize: 'sm',
       docHelp: 'adminguide/projects.html#accepting-a-membership-invitation',
       listView: true,
       popup: true,
@@ -89,15 +100,16 @@ export default {
       api: 'listProjectInvitations',
       icon: 'team-outlined',
       label: 'label.project.invitation',
+      standardDialogSize: 'lg',
       docHelp: 'adminguide/projects.html#accepting-a-membership-invitation',
       listView: true,
       popup: true,
       showBadge: true,
       badgeNum: 0,
       param: {
-        state: 'Pending'
+        direction: 'incoming', activeonly: true, ignoreproject: true, page: 1, pagesize: 1
       },
-      show: (record, store) => { return store.features.projectinviterequired },
+      show: (record, store) => store.features.projectinviterequired && !!store.apis.listProjectInvitations?.params?.some(param => param.name === 'direction'),
       component: shallowRef(defineAsyncComponent(() => import('@/views/project/InvitationsTemplate.vue')))
     },
     {
@@ -107,49 +119,32 @@ export default {
       dataView: true,
       args: ['name', 'displaytext'],
       show: (record, store) => {
-        return (['Admin', 'DomainAdmin'].includes(store.userInfo.roletype)) || record.isCurrentUserProjectAdmin
+        return isProjectAdministrator(record, store.userInfo)
       }
     },
-    {
-      api: 'activateProject',
-      icon: 'play-circle-outlined',
-      label: 'label.activate.project',
-      message: 'message.activate.project',
+    ...[
+      { api: 'activateProject', icon: 'play-circle-outlined', label: 'label.activate.project', message: 'message.activate.project', toolbarLabel: 'label.project.bulk.activate' },
+      { api: 'suspendProject', icon: 'pause-circle-outlined', label: 'label.suspend.project', message: 'message.suspend.project', toolbarLabel: 'label.project.bulk.suspend' }
+    ].map(action => ({
+      ...action,
       dataView: true,
-      show: (record, store) => {
-        return ((['Admin', 'DomainAdmin'].includes(store.userInfo.roletype)) || record.isCurrentUserProjectAdmin) && record.state === 'Suspended'
-      },
-      groupAction: true,
       popup: true,
-      groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
-    },
-    {
-      api: 'suspendProject',
-      icon: 'pause-circle-outlined',
-      label: 'label.suspend.project',
-      message: 'message.suspend.project',
-      docHelp: 'adminguide/projects.html#sending-project-membership-invitations',
-      dataView: true,
-      show: (record, store) => {
-        return ((['Admin', 'DomainAdmin'].includes(store.userInfo.roletype)) ||
-        record.isCurrentUserProjectAdmin) && record.state !== 'Suspended'
-      },
       groupAction: true,
-      popup: true,
-      groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
-    },
-    {
-      api: 'addAccountToProject',
+      projectBulkAction: true,
+      show: (record, store) => !projectActionReason(action.api, record, store),
+      groupShow: (rows, store) => projectBulkAvailable(action.api, rows, store)
+    })),
+    ...['addAccountToProject', 'addUserToProject'].map(api => ({
+      api,
       icon: 'user-add-outlined',
-      label: 'label.action.project.add.account',
-      docHelp: 'adminguide/projects.html#adding-project-members-from-the-ui',
+      label: 'label.project.member.add',
       dataView: true,
       popup: true,
-      show: (record, store) => {
-        return (['Admin', 'DomainAdmin'].includes(store.userInfo.roletype)) || record.isCurrentUserProjectAdmin
-      },
+      selfManagedDialog: true,
+      show: (record, store) => record.state === 'Active' && isProjectAdministrator(record, store.userInfo) &&
+        (api === 'addAccountToProject' || !store.apis.addAccountToProject),
       component: shallowRef(defineAsyncComponent(() => import('@/views/project/AddAccountOrUserToProject.vue')))
-    },
+    })),
     {
       api: 'deleteProject',
       icon: 'delete-outlined',
@@ -158,12 +153,14 @@ export default {
       docHelp: 'adminguide/projects.html#suspending-or-deleting-a-project',
       dataView: true,
       show: (record, store) => {
-        return (['Admin', 'DomainAdmin'].includes(store.userInfo.roletype) || record.isCurrentUserProjectAdmin) && record.id !== store.project.id
+        return isProjectAdministrator(record, store.userInfo) && record.id !== store.project.id
       },
       groupAction: true,
+      projectBulkAction: true,
+      toolbarLabel: 'label.project.bulk.delete',
+      groupShow: (rows, store) => projectBulkAvailable('deleteProject', rows, store),
       popup: true,
       requireNameConfirmation: true,
-      groupMap: (selection, values) => { return selection.map(x => { return { id: x, cleanup: values.cleanup || null } }) },
       args: (record, store) => {
         const fields = []
         if (store.apis.deleteProject.params.filter(x => x.name === 'cleanup').length > 0) {

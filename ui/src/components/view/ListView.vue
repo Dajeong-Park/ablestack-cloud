@@ -73,6 +73,11 @@
         <Status v-if="['enabled', 'state'].includes(column.key) && text != null" :text="String(text)" :display-label="kmsValue(column.key, text)" display-text />
         <template v-else>{{ kmsValue(column.key, text) }}</template>
       </TableOverflowText>
+      <TableOverflowText v-else-if="isProjectMainList && column.key === 'displaytext'" :text="text || '—'" />
+      <TableOverflowText
+        v-else-if="isProjectMainList && column.key === 'domain'"
+        :text="text || record.domainid || '—'"
+        :location="record.domainid && $store.getters.apis.listDomains ? { path: '/domain/' + record.domainid, query: { tab: 'details' } } : null" />
       <VpnUserValue v-else-if="$route.meta?.name === 'vpnuser' && ['state', 'owners'].includes(column.key)" :field="column.key" :resource="record" />
       <AsnListCell v-else-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
@@ -113,7 +118,7 @@
           <os-logo v-else :osId="record.ostypeid" :osName="record.osdisplayname" size="xl" />
         </span>
         <span
-          :class="{ 'template-name-cell': (isTemplateMainList || isKubernetesIsoMainList) && record.id }"
+          :class="{ 'template-name-cell': (isTemplateMainList || isKubernetesIsoMainList) && record.id, 'project-list-name-cell': isProjectMainList }"
           :style="{ minWidth: (isTemplateMainList || isKubernetesIsoMainList) && record.id ? 0 : '120px' }">
           <QuickView
             style="margin-left: 5px"
@@ -123,13 +128,14 @@
             @exec-action="$parent.execAction"
           />
           <span
-            v-if="$route.path.startsWith('/project')"
+            v-if="$route.meta?.name === 'project' && !resourcePath && record.id"
             style="margin-right: 5px"
           >
             <tooltip-button
               type="dashed"
               size="small"
               icon="LoginOutlined"
+              :tooltip="$t('label.project.enter.named', { name: record.name })"
               @onClick="changeProject(record)"
             />
           </span>
@@ -177,6 +183,7 @@
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
           <router-link v-else-if="isAclListRoute($route) && !resourcePath && record.id" :to="aclListDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
+          <router-link v-else-if="$route.meta?.name === 'project' && !resourcePath && record.id" class="project-list-name-link" :title="text" :to="projectDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
@@ -1292,6 +1299,7 @@
 
 <script>
 import AclScopeValue from '@/components/view/AclScopeValue'
+import { projectDetailLocation } from '@/utils/projectSearch'
 import { aclDisplayLabel, aclListDetailLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import { eventDetailLocation, eventTypeLabel, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
@@ -1530,7 +1538,9 @@ export default {
     this.getUsageTypes()
   },
   computed: {
+    isProjectMainList () { return this.$route.meta?.name === 'project' && !this.$route.params?.id && !this.resourcePath },
     scrollRegionLabel () {
+      if (this.isProjectMainList) return this.$t('label.projects')
       if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
       if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
       if (this.$route.meta?.name === 'vpnuser') return this.$t('label.vpn.users')
@@ -1648,6 +1658,7 @@ export default {
     vmDisplayName,
     isVmIdentityRoute,
     templateDetailLocation,
+    projectDetailLocation,
     columnPickerContentMounted (vnode) {
       const input = vnode.el?.querySelector('input')
       if (this.columnPickerVisible && input) input.focus()
