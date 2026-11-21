@@ -1,4 +1,10 @@
 {
+  "message.account.create.options.failed": "계정 도메인 또는 역할을 불러오지 못했습니다.",
+  "message.account.create.confirm.role": "{domain} 도메인에 {role} 역할을 부여하는 것을 확인합니다.",
+  "message.account.password.policy": "선택한 도메인의 비밀번호 정책이 적용됩니다.",
+  "message.account.password.minimum": "{count}자 이상 입력하세요.",
+  "message.account.password.maximum": "{count}자 이하로 입력하세요.",
+  "message.account.password.rejected": "선택한 도메인의 비밀번호 정책에 맞지 않습니다. 길이와 문자 종류를 확인하세요.",
   "label.kms.display.filter": "표시 필터",
   "label.hsm.create.slot.slot": "슬롯 ID",
   "label.hsm.create.slot.slot_list_index": "슬롯 인덱스",

@@ -1,4 +1,10 @@
 {
+  "message.account.create.options.failed": "Account domains or roles could not be loaded.",
+  "message.account.create.confirm.role": "Confirm assigning {role} in {domain}.",
+  "message.account.password.policy": "The selected domain controls the password policy.",
+  "message.account.password.minimum": "Use at least {count} characters.",
+  "message.account.password.maximum": "Use at most {count} characters.",
+  "message.account.password.rejected": "The password does not meet the selected domain’s policy. Check the length and character requirements.",
   "label.kms.display.filter": "Display filter",
   "label.hsm.create.slot.slot": "Slot ID",
   "label.hsm.create.slot.slot_list_index": "Slot index",
