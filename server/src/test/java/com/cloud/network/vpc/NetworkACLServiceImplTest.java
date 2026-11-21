@@ -39,6 +39,7 @@ import com.cloud.utils.net.NetUtils;
 import org.apache.cloudstack.acl.SecurityChecker.AccessType;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.command.user.network.CreateNetworkACLCmd;
+import org.apache.cloudstack.api.command.user.network.ImportNetworkACLCmd;
 import org.apache.cloudstack.api.command.user.network.MoveNetworkAclItemCmd;
 import org.apache.cloudstack.api.command.user.network.UpdateNetworkACLItemCmd;
 import org.apache.cloudstack.api.command.user.network.UpdateNetworkACLListCmd;
@@ -1515,4 +1516,46 @@ public class NetworkACLServiceImplTest {
 
         networkAclServiceImpl.validateAclAssociatedToVpc(networkMockVpcMockId, accountMock, SOME_UUID);
     }
+
+    @Test
+    public void importNetworkAclReturnsRowFailuresWithoutDiscardingSuccesses() throws Exception {
+        ImportNetworkACLCmd command = Mockito.mock(ImportNetworkACLCmd.class);
+        Mockito.when(command.getAclId()).thenReturn(42L);
+        Mockito.when(command.isReportDetails()).thenReturn(true);
+        Mockito.doReturn(Map.of("2", Map.of("protocol", "all"), "3", Map.of("number", "30"))).when(command).getRules();
+        NetworkACLItem rule = Mockito.mock(NetworkACLItem.class);
+        Mockito.doReturn(rule).when(networkAclServiceImpl).createNetworkACLItem(Mockito.any());
+        Mockito.doReturn(true).when(networkAclServiceImpl).applyNetworkACL(42L);
+
+        NetworkACLService.ImportResult result = networkAclServiceImpl.importNetworkACLRules(command);
+
+        Assert.assertEquals(List.of(rule), result.getCreatedRules());
+        Assert.assertEquals(Map.of("3", "Protocol is required"), result.getFailedRows());
+        Assert.assertTrue(result.isApplied());
+        Mockito.verify(networkAclServiceImpl).applyNetworkACL(42L);
+    }
+
+    @Test
+    public void importNetworkAclReturnsAllFailuresOnlyWhenRequested() throws Exception {
+        ImportNetworkACLCmd command = Mockito.mock(ImportNetworkACLCmd.class);
+        Mockito.when(command.getAclId()).thenReturn(42L);
+        Mockito.doReturn(Map.of("2", Map.of("number", "30"))).when(command).getRules();
+        Mockito.when(command.isReportDetails()).thenReturn(true);
+
+        NetworkACLService.ImportResult result = networkAclServiceImpl.importNetworkACLRules(command);
+        Assert.assertTrue(result.getCreatedRules().isEmpty());
+        Assert.assertEquals(Map.of("2", "Protocol is required"), result.getFailedRows());
+        Assert.assertFalse(result.isApplied());
+        Mockito.verify(networkAclServiceImpl, Mockito.never()).applyNetworkACL(42L);
+
+        Mockito.when(command.isReportDetails()).thenReturn(false);
+        try {
+            networkAclServiceImpl.importNetworkACLRules(command);
+            Assert.fail("Legacy import must fail when no rules are created");
+        } catch (CloudRuntimeException exception) {
+            Assert.assertEquals("Failed to import any ACL rules.", exception.getMessage());
+        }
+    }
+
+
 }

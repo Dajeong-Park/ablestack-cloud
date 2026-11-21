@@ -19,6 +19,7 @@ package com.cloud.network.vpc;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -1075,43 +1076,54 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
     }
 
     @Override
-    public List<NetworkACLItem> importNetworkACLRules(ImportNetworkACLCmd cmd) throws ResourceUnavailableException {
+    public ImportResult importNetworkACLRules(ImportNetworkACLCmd cmd) throws ResourceUnavailableException {
         long aclId = cmd.getAclId();
-        Map<Object, Object> rules = cmd.getRules();
         List<NetworkACLItem> createdRules = new ArrayList<>();
-        List<String> errors = new ArrayList<>();
-        for (Map.Entry<Object, Object> entry : rules.entrySet()) {
+        Map<String, String> failedRows = new LinkedHashMap<>();
+        for (Map.Entry<?, ?> entry : cmd.getRules().entrySet()) {
+            String index = entry.getKey().toString();
             try {
-                Map<String, Object> ruleMap = (Map<String, Object>) entry.getValue();
-                NetworkACLItem item = createACLRuleFromMap(ruleMap, aclId);
-                createdRules.add(item);
-            } catch (Exception ex) {
-                String error = "Failed to import rule at index " + entry.getKey() + ": " + ex.getMessage();
-                errors.add(error);
-                logger.error(error, ex);
+                if (!(entry.getValue() instanceof Map<?, ?>)) {
+                    throw new InvalidParameterValueException("Expected rule fields");
+                }
+                createdRules.add(createACLRuleFromMap((Map<?, ?>) entry.getValue(), aclId));
+            } catch (RuntimeException ex) {
+                if (cmd.isReportDetails() && !(ex instanceof InvalidParameterValueException)
+                        && !(ex instanceof ServerApiException && ((ServerApiException) ex).getErrorCode() == ApiErrorCode.PARAM_ERROR)) {
+                    throw ex;
+                }
+                failedRows.put(index, ex.getMessage());
+                logger.debug("Failed to import ACL rule at index {}", index, ex);
             }
         }
-        // no rules got imported
-        if (createdRules.isEmpty() && !errors.isEmpty()) {
-            logger.error("Failed to import any ACL rules. Errors: {}", String.join("; ", errors));
-            throw new CloudRuntimeException("Failed to import any ACL rules.");
-        }
 
-        // apply ACL to network
-        if (!createdRules.isEmpty()) {
-            applyNetworkACL(aclId);
+        if (createdRules.isEmpty()) {
+            if (!cmd.isReportDetails()) {
+                throw new CloudRuntimeException("Failed to import any ACL rules.");
+            }
+            return new ImportResult(createdRules, failedRows, false);
         }
-        return createdRules;
+        boolean applied;
+        try {
+            applied = applyNetworkACL(aclId);
+        } catch (ResourceUnavailableException ex) {
+            if (!cmd.isReportDetails()) {
+                throw ex;
+            }
+            logger.warn("Could not apply imported ACL rules to associated resources for ACL {}", aclId, ex);
+            applied = false;
+        }
+        return new ImportResult(createdRules, failedRows, applied);
     }
 
-    private NetworkACLItem createACLRuleFromMap(Map<String, Object> ruleMap, long aclId) {
+    private NetworkACLItem createACLRuleFromMap(Map<?, ?> ruleMap, long aclId) {
         String protocol = (String) ruleMap.get(ApiConstants.PROTOCOL);
         if (protocol == null || protocol.trim().isEmpty()) {
             throw new InvalidParameterValueException("Protocol is required");
         }
-        String action = (String) ruleMap.getOrDefault(ApiConstants.ACTION, "deny");
-        String trafficType = (String) ruleMap.getOrDefault(ApiConstants.TRAFFIC_TYPE, NetworkACLItem.TrafficType.Ingress);
-        String forDisplay = (String) ruleMap.getOrDefault(ApiConstants.FOR_DISPLAY, "true");
+        String action = ruleMap.containsKey(ApiConstants.ACTION) ? (String) ruleMap.get(ApiConstants.ACTION) : "deny";
+        String trafficType = ruleMap.containsKey(ApiConstants.TRAFFIC_TYPE) ? (String) ruleMap.get(ApiConstants.TRAFFIC_TYPE) : TrafficType.Ingress.toString();
+        String forDisplay = ruleMap.containsKey(ApiConstants.FOR_DISPLAY) ? (String) ruleMap.get(ApiConstants.FOR_DISPLAY) : "true";
 
         // Create ACL rule using the service
         CreateNetworkACLCmd cmd = new CreateNetworkACLCmd();
@@ -1140,6 +1152,9 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         }
 
         if (ruleMap.containsKey(ApiConstants.END_PORT)) {
+            if (cmd.getPublicStartPort() == null) {
+                throw new InvalidParameterValueException("A start port is required when an end port is specified");
+            }
             cmd.setPublicEndPort(parseInt(ruleMap.get(ApiConstants.END_PORT)));
         }
 

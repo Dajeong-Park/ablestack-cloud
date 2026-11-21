@@ -79,7 +79,7 @@ export async function discoverAclAccess (get, target, root) {
 
 // Keep a receipt once a job is accepted. A failed poll can be retried without
 // submitting the mutation again. Each await is scoped to the original view.
-export async function runAclWrite ({ get, post, command, params, pending, current, accepted, pause = () => new Promise(resolve => setTimeout(resolve, 750)) }) {
+export async function runAclWrite ({ get, post, command, params, pending, current, accepted, completed = () => {}, pause = () => new Promise(resolve => setTimeout(resolve, 750)) }) {
   if (!current()) return false
   let jobId = pending
   if (!jobId) {
@@ -96,6 +96,7 @@ export async function runAclWrite ({ get, post, command, params, pending, curren
     const job = aclResponse(json, 'queryasyncjobresultresponse')
     if (job.jobid !== jobId) throw new Error('Unexpected ACL job receipt')
     if (job.jobstatus === 1) {
+      completed(job.jobresult)
       accepted(null)
       return true
     }
@@ -108,50 +109,4 @@ export async function runAclWrite ({ get, post, command, params, pending, curren
   }
   if (!current()) return false
   throw new Error('ACL job pending')
-}
-
-const csvFields = ['protocol', 'cidrlist', 'traffictype', 'action', 'number', 'startport', 'endport', 'icmptype', 'icmpcode', 'reason']
-
-export function parseAclCsv (input) {
-  const text = input.replace(/^\uFEFF/, '') + '\n'
-  const rows = []
-  let fields = []
-  let value = ''
-  let quoted = false
-  let closed = false
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i]
-    if (quoted) {
-      if (ch === '"' && text[i + 1] === '"') { value += ch; i++ } else if (ch === '"') {
-        quoted = false
-        closed = true
-      } else { value += ch }
-    } else if (ch === ',' || ch === '\n' || ch === '\r') {
-      fields.push(value.trim())
-      value = ''
-      closed = false
-      if (ch !== ',') {
-        if (fields.some(Boolean)) rows.push(fields)
-        fields = []
-        if (ch === '\r' && text[i + 1] === '\n') i++
-      }
-    } else if (ch === '"' && !value.trim() && !closed) {
-      quoted = true
-      value = ''
-    } else if ((closed && ch.trim()) || ch === '"') {
-      throw new Error('Invalid ACL CSV quotes')
-    } else { value += ch }
-  }
-  const header = rows.shift()?.map(field => field.toLowerCase()) || []
-  const required = ['protocol', 'cidrlist', 'traffictype']
-  if (quoted || !rows.length || new Set(header).size !== header.length || !required.every(field => header.includes(field))) throw new Error('Invalid ACL CSV')
-  return rows.map((fields, key) => {
-    if (fields.length !== header.length || !fields[header.indexOf('protocol')] || !fields[header.indexOf('traffictype')]) throw new Error('Invalid ACL CSV row')
-    const row = { key }
-    header.forEach((name, i) => {
-      const value = fields[i]
-      if (csvFields.includes(name) && value && value !== 'null') row[name] = value
-    })
-    return row
-  })
 }

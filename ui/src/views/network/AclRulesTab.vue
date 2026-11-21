@@ -19,7 +19,21 @@
   <a-spin :spinning="fetchLoading">
     <NetworkRulesToolbar :can-add="can('add')" :loading="fetchLoading" @add="openRule('add')" @refresh="reload">
       <a-button v-if="can('import')" @click="openDialog('import')"><template #icon><upload-outlined /></template>{{ $t('label.acl.import') }}</a-button>
-      <a-button :disabled="!acls.length" @click="exportAclList"><template #icon><download-outlined /></template>{{ $t('label.acl.export') }}</a-button>
+      <a-dropdown :trigger="['click']" @visibleChange="prepareAclExport">
+        <a-button :disabled="!target || fetchLoading" :loading="exporting">
+          <template #icon><download-outlined /></template>{{ $t('label.acl.export') }}
+        </a-button>
+        <template #overlay>
+          <a-menu @click="({ key }) => exportAclList(key)">
+            <a-menu-item key="all" :disabled="!exportTotals.all">
+              {{ $t('label.acl.csv.export.all', { count: exportTotals.all ?? '…' }) }}
+            </a-menu-item>
+            <a-menu-item key="search" :disabled="!exportTotals.search" v-if="appliedSearch">
+              {{ $t('label.acl.csv.export.search', { count: exportTotals.search ?? '…' }) }}
+            </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
       <a-input-search class="network-rules-search" :placeholder="$t('label.search')" v-model:value="searchQuery" @search="fetchData" />
     </NetworkRulesToolbar>
 
@@ -296,7 +310,8 @@ import MoldDialog from '@/components/view/MoldDialog'
 import { getAPI, postAPI } from '@/api'
 import draggable from 'vuedraggable'
 import TooltipButton from '@/components/widgets/TooltipButton'
-import { networkError } from '@/utils/networkLifecycle'
+import { networkCollection, networkError } from '@/utils/networkLifecycle'
+import { formatAclCsv } from '@/utils/aclCsv'
 import { aclCommands, aclDenied, aclRequestOptions, aclResponse, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import ImportNetworkACL from './ImportNetworkACL'
 
@@ -323,6 +338,8 @@ export default {
     target: null,
     access: null,
     notice: null,
+    exportTotals: {},
+    exporting: false,
     searchQuery: '',
     appliedSearch: '',
     acls: [],
@@ -378,6 +395,8 @@ export default {
       this.access = null
       this.acls = []
       this.lastRules = []
+      this.exportTotals = {}
+      this.exporting = false
       this.fetchLoading = false
       this.notice = null
       this.dragScope = null
@@ -663,21 +682,66 @@ export default {
         ![id, previousaclruleid, nextaclruleid].filter(Boolean).every(key => this.lastRules.some(row => row.id === key))) return
       return this.write('move', { id, previousaclruleid, nextaclruleid })
     },
-    exportAclList () {
-      if (!this.active || !this.target || !this.acls.length) return
-      const keys = [...new Set(this.acls.flatMap(item => Object.keys(item)))]
-      const csvValue = value => {
-        const text = String(value ?? '')
-        return /[,\r\n"]/.test(text) ? '"' + text.replace(/"/g, '""') + '"' : text
+    async prepareAclExport (open) {
+      if (!open || !this.target || !this.active || this.fetchLoading || this.exporting) return
+      const scope = this.scope
+      const epoch = this.epoch
+      const read = this.ruleRead
+      const current = () => this.live(scope, epoch) && read === this.ruleRead
+      const params = { ...this.target.params, aclid: this.target.row.id, page: 1, pagesize: 1 }
+      const keyword = this.appliedSearch
+      this.exportTotals = {}
+      const count = async keyword => {
+        const json = await getAPI('listNetworkACLs', { ...params, ...(keyword ? { keyword } : {}) }, aclRequestOptions)
+        const body = aclResponse(json, 'listnetworkaclsresponse')
+        const total = Number(body.count ?? 0)
+        if (!Number.isSafeInteger(total) || total < 0) throw new Error('Invalid ACL export count')
+        return total
       }
-      const csv = [keys.join(','), ...this.acls.map(row => keys.map(key => csvValue(
-        key === 'tags' ? (row.tags || []).map(tag => '(' + tag.key + ',' + tag.value + ')').join('') : row[key]
-      )).join(','))].join('\n') + '\n'
-      const download = document.createElement('a')
-      download.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv)
-      download.download = 'AclRules-' + this.target.row.name + '-' + this.target.row.id + '.csv'
-      download.click()
+      try {
+        const [all, search] = await Promise.all([count(), keyword ? count(keyword) : 0])
+        if (current()) this.exportTotals = { all, search }
+      } catch {
+        if (current()) this.$message.error(this.$t('message.acl.csv.export.failed'))
+      }
     },
+    async exportAclList (range) {
+      if (!this.target || !this.active || this.fetchLoading || this.exporting ||
+          !['all', 'search'].includes(range) || !this.exportTotals[range]) return
+      const scope = this.scope
+      const epoch = this.epoch
+      const read = this.ruleRead
+      const { id, name } = this.target.row
+      const current = () => this.live(scope, epoch) && read === this.ruleRead
+      const params = { ...this.target.params, aclid: id }
+      if (range === 'search') params.keyword = this.appliedSearch
+      const count = this.exportTotals[range]
+      this.exporting = true
+      try {
+        const rows = await networkCollection((api, args) => {
+          if (!current()) throw new Error('ACL export scope changed')
+          return getAPI(api, args, aclRequestOptions)
+        }, 'listNetworkACLs', 'networkacl', params)
+        if (!current()) return
+        if (rows.length !== count || rows.some(row => row.aclid !== id)) throw new Error('ACL export data changed')
+        const csv = formatAclCsv(rows.sort((a, b) => a.number - b.number))
+        const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }))
+        try {
+          const download = document.createElement('a')
+          download.href = url
+          download.download = 'AclRules-' + name + '-' + id + '-' + range + '.csv'
+          download.click()
+        } finally {
+          setTimeout(() => URL.revokeObjectURL(url), 1000)
+        }
+        this.$message.success(this.$t('message.acl.csv.export.success', { count: rows.length }))
+      } catch {
+        if (current()) this.$message.error(this.$t('message.acl.csv.export.failed'))
+      } finally {
+        if (this.live(scope, epoch)) this.exporting = false
+      }
+    },
+
     refreshAfterImport () {
       if (!this.canImport()) return
       this.closeDialog(true)

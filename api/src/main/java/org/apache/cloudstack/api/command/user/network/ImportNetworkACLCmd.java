@@ -27,6 +27,7 @@ import org.apache.cloudstack.api.BaseAsyncCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.ServerApiException;
 import org.apache.cloudstack.api.response.ListResponse;
+import org.apache.cloudstack.api.response.NetworkACLImportResponse;
 import org.apache.cloudstack.api.response.NetworkACLItemResponse;
 import org.apache.cloudstack.api.response.NetworkACLResponse;
 import org.apache.cloudstack.context.CallContext;
@@ -35,6 +36,7 @@ import org.apache.commons.collections.MapUtils;
 import com.cloud.event.EventTypes;
 import com.cloud.exception.ResourceUnavailableException;
 import com.cloud.network.vpc.NetworkACLItem;
+import com.cloud.network.vpc.NetworkACLService.ImportResult;
 import com.cloud.user.Account;
 
 @APICommand(name = "importNetworkACL", description = "Imports Network ACL rules.",
@@ -63,7 +65,11 @@ public class ImportNetworkACLCmd extends BaseAsyncCmd {
                     "&rules[0].description=allow%20web%20traffic&rules[1].id=102&rules[1].protocol=udp&rules[1].traffictype=egress&rules[1].state=enabled" +
                     "&rules[1].cidrlist=10.0.0.0/8&rules[1].tags=db&rules[1].aclid=acl-002&rules[1].aclname=db-acl&rules[1].number=2&rules[1].action=deny" +
                     "&rules[1].fordisplay=false&rules[1].description=deny%20database%20traffic")
-    private Map rules;
+    private Map<?, ?> rules;
+
+    @Parameter(name = "reportdetails", type = CommandType.BOOLEAN,
+            description = "Return created rules, failure reasons keyed by the submitted rule index, counts and the network application result. A completed report may contain zero created rules.")
+    private boolean reportDetails;
 
 
     // ///////////////////////////////////////////////////
@@ -72,8 +78,12 @@ public class ImportNetworkACLCmd extends BaseAsyncCmd {
 
     // Returns map, corresponds to a rule with the details in the keys:
     // id, protocol, startport, endport, traffictype, state, cidrlist, tags, aclid, aclname, number, action, fordisplay, description
-    public Map getRules() {
+    public Map<?, ?> getRules() {
         return rules;
+    }
+
+    public boolean isReportDetails() {
+        return reportDetails;
     }
 
     public Long getAclId() {
@@ -88,14 +98,20 @@ public class ImportNetworkACLCmd extends BaseAsyncCmd {
     @Override
     public void execute() throws ResourceUnavailableException {
         validateParams();
-        List<NetworkACLItem> importedRules = _networkACLService.importNetworkACLRules(this);
-        ListResponse<NetworkACLItemResponse> response = new ListResponse<>();
+        ImportResult result = _networkACLService.importNetworkACLRules(this);
         List<NetworkACLItemResponse> aclResponse = new ArrayList<>();
-        for (NetworkACLItem acl : importedRules) {
-            NetworkACLItemResponse ruleData = _responseGenerator.createNetworkACLItemResponse(acl);
-            aclResponse.add(ruleData);
+        for (NetworkACLItem acl : result.getCreatedRules()) {
+            aclResponse.add(_responseGenerator.createNetworkACLItemResponse(acl));
         }
-        response.setResponses(aclResponse, importedRules.size());
+        if (reportDetails) {
+            NetworkACLImportResponse response = new NetworkACLImportResponse(aclResponse, result.getFailedRows(), result.isApplied());
+            response.setObjectName("networkaclimport");
+            response.setResponseName(getCommandName());
+            setResponseObject(response);
+            return;
+        }
+        ListResponse<NetworkACLItemResponse> response = new ListResponse<>();
+        response.setResponses(aclResponse, aclResponse.size());
         response.setResponseName(getCommandName());
         setResponseObject(response);
     }

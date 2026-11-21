@@ -19,8 +19,9 @@ import { shallowMount, flushPromises } from '@vue/test-utils'
 import { reactive } from 'vue'
 import AclRulesTab from '@/views/network/AclRulesTab.vue'
 import ImportNetworkACL from '@/views/network/ImportNetworkACL.vue'
-import { aclCommands, discoverAclAccess, parseAclCsv, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
+import { aclCommands, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import { getAPI, postAPI } from '@/api'
+import { aclCsvError, formatAclCsv, parseAclCsv } from '@/utils/aclCsv'
 
 jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
@@ -276,7 +277,7 @@ test('CSV validates quoted fields, preserves failed input and ignores stale file
   const wrapper = shallowMount(ImportNetworkACL, { props: { resource: acl, projectArgs: { projectid: 'p1' }, canWrite: () => allowed }, global: mountOptions })
   const vm = wrapper.vm
   await vm.readFile({ name: 'test.csv', text: async () => csv })
-  postAPI.mockRejectedValueOnce(denied(530))
+  postAPI.mockRejectedValueOnce(denied(431))
   await vm.handleSubmit()
   expect(vm.csvData).toHaveLength(1)
   expect(vm.error.message).toBe('message.acl.import.failed')
@@ -288,5 +289,52 @@ test('CSV validates quoted fields, preserves failed input and ignores stale file
   await vm.handleSubmit()
   expect(vm.csvData).toHaveLength(0)
   expect(postAPI).toHaveBeenCalledTimes(1)
+  wrapper.unmount()
+})
+
+test('CSV retains physical line numbers, quotes, multiline reasons and empty fields', () => {
+  const one = { protocol: 'tcp', cidrlist: '192.0.2.0/24,2001:db8::/64', traffictype: 'Ingress', reason: '  "문자",\nthen line  ' }
+  const two = { protocol: 'all', cidrlist: '', traffictype: 'Egress', reason: 'null' }
+  const rows = parseAclCsv(formatAclCsv([one, two]))
+  expect(rows[0]).toMatchObject({ ...one, line: 2 })
+  expect(rows[1]).toMatchObject({ reason: 'null', line: 4 })
+  expect(rows[1]).not.toHaveProperty('cidrlist')
+  expect(rows.map(aclCsvError)).toEqual(['', ''])
+  expect(aclCsvError(parseAclCsv('protocol,cidrlist,traffictype,startport,endport\ntcp,0.0.0.0/0,ingress,65536,65535')[0])).toBe('message.acl.csv.row.ports')
+  expect(aclCsvError(parseAclCsv('protocol,cidrlist,traffictype\nall,invalid,ingress')[0])).toBe('message.acl.csv.row.cidr')
+  expect(aclCsvError(parseAclCsv('protocol,cidrlist,traffictype\nall,invalid,ingress,extra')[0])).toBe('message.acl.csv.row.columns')
+})
+
+test('CSV checks the same pending job and submits only a repaired failed row', async () => {
+  const wrapper = shallowMount(ImportNetworkACL, { props: { resource: acl, projectArgs: {}, canWrite: () => true }, global: mountOptions })
+  const vm = wrapper.vm
+  await vm.readFile({ name: 'rules.csv', text: async () => 'protocol,cidrlist,traffictype,number\nall,192.0.2.1/32,ingress,10\nall,192.0.2.2/32,egress,10' })
+  postAPI.mockResolvedValue({ importnetworkaclresponse: { jobid: 'job' } })
+  getAPI.mockRejectedValueOnce(new Error('poll lost'))
+  await vm.handleSubmit()
+  expect(vm.pending).toBe('job')
+  getAPI.mockResolvedValueOnce({
+    queryasyncjobresultresponse: {
+      jobstatus: 1, jobid: 'job', jobresult: { networkaclimport: { successcount: 1, failurecount: 1, applied: true, importedrules: [{ id: 'new' }], failedrows: { 3: 'Duplicate rule' } } }
+    }
+  })
+  await vm.handleSubmit()
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(vm.report).toEqual({ saved: 1, failed: 1, applied: true })
+  expect(vm.csvData.map(row => row.line)).toEqual([3])
+  vm.editor = { ...vm.csvData[0], number: '30' }
+  vm.saveEdit()
+  getAPI.mockResolvedValueOnce({
+    queryasyncjobresultresponse: {
+      jobstatus: 1, jobid: 'job', jobresult: { networkaclimport: { successcount: 1, failurecount: 0, applied: true, importedrules: [{ id: 'newer' }], failedrows: {} } }
+    }
+  })
+  await vm.handleSubmit()
+  const params = postAPI.mock.calls[1][1]
+  expect(params['rules[3].number']).toBe('30')
+  expect(Object.keys(params).some(key => key.startsWith('rules[2]'))).toBe(false)
+  expect(vm.report).toEqual({ saved: 1, failed: 0, applied: true })
+  vm.closeAction()
+  expect(wrapper.emitted('imported')).toHaveLength(1)
   wrapper.unmount()
 })
