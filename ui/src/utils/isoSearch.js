@@ -16,6 +16,7 @@
 // under the License.
 
 import { isoBoolean, isoAvailability } from './isoModel'
+import { imageAccountScope, invalidImageAccountScope } from './imageAccountScope'
 
 export const isoSearchFields = ['name', 'zoneid', 'tags', 'arch', 'oscategoryid', 'storageid', 'imagestoreid', 'bootable', 'isready', 'ispublic', 'hypervisor', 'userdataid']
 export const isoSortFields = ['name', 'state', 'ostypename', 'arch', 'size', 'account', 'project']
@@ -40,7 +41,8 @@ export function isoListQuery (query = {}, pageSize = 20, getters = {}) {
   const owner = isoListOwner(getters)
   if (query.isoowner !== undefined && query.isoowner !== owner) { query = {}; pageSize = getters.defaultListViewPageSize || 20 }
   const result = {}
-  const filter = query.filter ?? query.isofilter ?? isoDefaultFilter(getters)
+  const filter = query.filter ?? query.isofilter ?? (imageAccountScope(query, 'self').account ? 'self' : isoDefaultFilter(getters))
+  Object.assign(result, imageAccountScope(query, filter))
   result.filter = result.isofilter = scalar(filter) ? String(filter) : '[invalid]'
   const keyword = query.keyword ?? query.q
   if (keyword !== undefined && keyword !== '') result.keyword = result.q = scalar(keyword) ? String(keyword) : '[invalid]'
@@ -71,6 +73,7 @@ export function isoSearchQuery (query, options = {}, pageSize, getters) {
   return isoListQuery({ ...next, page: '1', pagesize: pageSize }, pageSize, getters)
 }
 export function isoSearchError (query, metadata = {}, getters = {}) {
+  if (invalidImageAccountScope(query)) return 'message.image.account.scope.invalid'
   if (!filters.includes(query.isofilter) || (query.isofilter === 'all' && !['Admin', 'DomainAdmin', 'ResourceAdmin'].includes(getters.userInfo?.roletype))) return 'message.iso.search.invalid'
   for (const key of isoSearchFields.filter(k => k !== 'tags')) {
     if (!own(query, key)) continue
@@ -90,7 +93,8 @@ export function isoSearchError (query, metadata = {}, getters = {}) {
   return ''
 }
 export function isoRequestParams (params, detail = false, getters = {}) {
-  const projectid = getters.listAllProjects ? '-1' : getters.project?.id
+  const scopedAccount = !detail && imageAccountScope(params, params.filter ?? params.isofilter ?? 'self').account
+  const projectid = scopedAccount ? undefined : getters.listAllProjects ? '-1' : getters.project?.id
   const showicon = isoBoolean(params.showicon)
   const context = { ignoreproject: true, ...(projectid ? { projectid } : {}), ...(showicon !== undefined ? { showicon } : {}) }
   if (detail) return { id: params.id, listall: true, ...context }

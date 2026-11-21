@@ -15,6 +15,8 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { imageAccountScope, invalidImageAccountScope } from './imageAccountScope'
+
 export const templateSearchFields = ['name', 'zoneid', 'tags', 'arch', 'oscategoryid', 'templatetype', 'extensionid', 'storageid', 'imagestoreid', 'isready', 'hypervisor', 'forcks', 'userdataid']
 const uuid = value => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value)
 const scalar = value => typeof value === 'string' || typeof value === 'boolean' || typeof value === 'number'
@@ -24,6 +26,12 @@ export function templateListQuery (query = {}, pageSize = 20) {
   for (const [key, value] of Object.entries(query)) {
     if (!keys.includes(key) && !/^tags\[\d+\]\.(key|value)$/.test(key)) continue
     if (scalar(value) && String(value) !== '') result[key] = String(value)
+  }
+  const filter = query.filter ?? query.templatefilter ?? 'self'
+  const scope = imageAccountScope(query, filter)
+  if (scope.account) {
+    Object.assign(result, scope, { filter, templatefilter: filter })
+    delete result.projectid
   }
   const page = Number(query.page)
   const size = Number(query.pagesize || pageSize)
@@ -40,6 +48,7 @@ export function templateSearchQuery (query, options, pageSize) {
   return templateListQuery({ ...next, page: '1', pagesize: pageSize })
 }
 export function templateSearchError (query, apiParams = {}) {
+  if (invalidImageAccountScope(query)) return 'message.image.account.scope.invalid'
   for (const key of templateSearchFields.filter(k => k !== 'tags')) {
     if (!(key in query)) continue
     if (!apiParams[key]) return 'message.template.search.unsupported'

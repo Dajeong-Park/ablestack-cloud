@@ -809,6 +809,13 @@ public class ResourceLimitManagerImpl extends ManagerBase implements ResourceLim
         List<String> hostTags = tagsPair.first();
         List<String> storageTags = tagsPair.second();
 
+        if (StringUtils.isNotEmpty(tag)) {
+            limits.addAll(foundLimits);
+            addTaggedResourceLimits(limits, resourceType, isAccount ? ResourceOwnerType.Account : ResourceOwnerType.Domain,
+                    isAccount ? accountId : domainId, hostTags, storageTags);
+            return limits;
+        }
+
         if (resourceType != null) {
             if (foundLimits.isEmpty()) {
                 ResourceOwnerType ownerType = ResourceOwnerType.Domain;
@@ -1005,8 +1012,13 @@ public class ResourceLimitManagerImpl extends ManagerBase implements ResourceLim
             }
 
             if (StringUtils.isNotEmpty(tag)) {
+                if (account.getType() != Account.Type.PROJECT
+                        && !(HostTagsSupportingTypes.contains(resourceType) && getResourceLimitHostTags().contains(tag))
+                        && !(StorageTagsSupportingTypes.contains(resourceType) && getResourceLimitStorageTags().contains(tag))) {
+                    throw new InvalidParameterValueException("The resource limit tag is not configured for this resource type.");
+                }
                 long untaggedLimit = findCorrectResourceLimitForAccount(account, resourceType, null);
-                if (untaggedLimit > 0 && max > untaggedLimit) {
+                if (untaggedLimit >= 0 && max > untaggedLimit) {
                     throw new InvalidParameterValueException(String.format("Maximum untagged resource limit for account %s for resource type %s is %d, please specify a value less than or equal to that",
                             account.getAccountName(), resourceType, untaggedLimit));
                 }

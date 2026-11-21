@@ -165,7 +165,7 @@
               </template>
             </status>
             <status v-else-if="$route.meta.name === 's2svpnconn'" class="status" :text="resource.state || ''" :display-label="$t(vpnConnectionState(resource))" display-text />
-            <status v-else-if="$route.meta.name === 'role'" class="status" :text="resource.state" :display-label="$t('label.' + resource.state)" display-text />
+            <status v-else-if="['role', 'account'].includes($route.meta.name)" class="status" :text="resource.state" :display-label="$t('label.' + resource.state)" display-text />
             <status v-else class="status" :text="resource.state || resource.status" displayText/>
           </div>
         </div>
@@ -191,7 +191,7 @@
             <div class="resource-detail-item" v-if="resource.apikeyaccess && $route.meta.name === 'accountuser'">
               <div class="resource-detail-item__label">{{ $t('label.apikeyaccess') }}</div>
               <div class="resource-detail-item__details">
-                <status class="status" :text="resource.apikeyaccess" displayText/>
+                <status class="status" :text="resource.apikeyaccess" :display-label="$route.meta.name === 'account' ? $t(resource.apikeyaccess === 'INHERIT' ? 'label.account.apikey.inherit' : 'label.' + resource.apikeyaccess.toLowerCase()) : ''" displayText/>
               </div>
             </div>
         <div class="resource-detail-item" v-if="resource.allocationstate">
@@ -1147,7 +1147,7 @@
               {{ resource.leaseexpiryaction }}
             </div>
           </div>
-          <div class="account-center-tags" v-if="$route.meta.related">
+          <div class="account-center-tags" :class="{ 'account-related-actions': $route.meta.name === 'account' }" v-if="$route.meta.related">
             <a-divider/>
             <div v-for="item in $route.meta.related" :key="item.path">
               <router-link
@@ -1799,6 +1799,14 @@ export default {
   }
 }
 
+.account-center-tags.account-related-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  .ant-divider { margin: 8px 0; }
+  a { display: inline-flex; margin: 0; }
+  .ant-btn { margin-right: 0 !important; }
+}
 .user-keys {
   word-wrap: break-word;
 }

@@ -26,9 +26,9 @@
           </template>
         </a-alert>
       </div>
-      <div :span="24" class="actions">
+      <MoldDialogActions>
         <a-button type="primary" @click="closeModal">{{ $t('label.ok') }}</a-button>
-      </div>
+      </MoldDialogActions>
     </template>
     <!-- Show delete form if account is disabled -->
     <delete-account
@@ -39,11 +39,13 @@
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import DeleteAccount from './DeleteAccount.vue'
 
 export default {
   name: 'DeleteAccountWrapper',
   components: {
+    MoldDialogActions,
     DeleteAccount
   },
   props: {

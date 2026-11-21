@@ -382,6 +382,7 @@ export default {
   computed: {
     isKmsSearch () { return kmsApis.includes(this.apiName) },
     isVpnUserSearch () { return this.apiName === 'listVpnUsers' },
+    isAccountSearch () { return this.apiName === 'listAccounts' },
     isRoleSearch () { return this.apiName === 'listRoles' },
     isVpnCustomerGatewaySearch () { return this.apiName === 'listVpnCustomerGateways' },
     vpnUserFilterContext () {
@@ -507,7 +508,8 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
-      if (this.isRoleSearch && fieldName === 'id') return 'UUID'
+      if ((this.isRoleSearch || this.isAccountSearch) && fieldName === 'id') return 'UUID'
+      if (this.isAccountSearch && ['name', 'isrecursive', 'iscleanuprequired'].includes(fieldName)) return this.$t('label.account.search.' + fieldName)
       if (this.apiName === 'listVpnCustomerGateways' && fieldName === 'keyword') return this.$t('label.vpn.customer.gateway.search.keyword')
       if (this.isVpnUserSearch && fieldName === 'username') return this.$t('label.vpn.user.search.exact')
       if (this.isVpnUserSearch && fieldName === 'domainid') return this.$t('label.domain')
@@ -549,6 +551,7 @@ export default {
       this.fields = []
       this.searchFilters.forEach(item => {
         let type = 'input'
+        if (this.isAccountSearch && !this.$getApiParams(this.apiName)?.[item]) return
         if (this.isEventSearch && !this.$getApiParams('listEvents')?.[item]) return
         if (this.isEventSearch && item === 'account' &&
             (this.$route.query.projectid ? this.$route.query.projectid !== '0' : this.$store.getters.project?.id || this.$store.getters.listAllProjects)) return
@@ -613,6 +616,7 @@ export default {
           type = 'list'
         }
         if ((this.apiName === 'listTemplates' && ['isready', 'forcks'].includes(item)) || (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(item))) type = 'list'
+        if (this.isAccountSearch && ['isrecursive', 'iscleanuprequired'].includes(item)) type = 'list'
         if (this.isKmsSearch && [...kmsBooleans, 'projectid'].includes(item)) type = 'list'
         if (this.isKmsSearch && item === 'protocol') type = 'autocomplete'
         if (this.isEventSearch && item === 'type') type = 'autocomplete'
@@ -629,6 +633,11 @@ export default {
     },
     fetchStaticFieldData (arrayField) {
       if (this.isVnfSearch) { const state = this.fields.find(field => field.name === 'state'); if (state) state.opts = vnfStates(this.$store.getters).map(id => ({ id, name: 'state.' + id.toLowerCase() })); return }
+      if (this.isAccountSearch) {
+        this.fields.filter(field => ['isrecursive', 'iscleanuprequired'].includes(field.name)).forEach(field => {
+          field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }]
+        })
+      }
       if (this.apiName === 'listIsos') this.fields.filter(field => ['bootable', 'isready', 'ispublic'].includes(field.name)).forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
       if (this.apiName === 'listTemplates') {
         this.fields.filter(field => ['isready', 'forcks'].includes(field.name)).forEach(field => { field.opts = [{ id: 'true', name: 'label.yes' }, { id: 'false', name: 'label.no' }] })
@@ -1300,6 +1309,14 @@ export default {
         return
       }
       if (['listTemplates', 'listIsos'].includes(this.apiName)) this.rules.userdataid = [{ validator: async (rule, value) => { if (value && !this.$isValidUuid(value)) throw new Error(this.$t('message.template.search.userdataid')) } }]
+      if (this.isAccountSearch) {
+        this.fillFormFieldValues()
+        this.rules.id = [{
+          validator: async (rule, value) => {
+            if (value && !this.$isValidUuid(value.trim())) throw new Error(this.$t('message.error.input.invaliduuid'))
+          }
+        }]
+      }
       if (this.isGuestVlanSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) || arrayField.includes('volumeid')) this.fillFormFieldValues()
 
       this.fetchStaticFieldData(arrayField)
@@ -2247,7 +2264,7 @@ export default {
           this.$emit('search', { roleFilters: this.paramsFilter })
           return
         }
-        if (this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
+        if (this.isAccountSearch || this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
         if (this.isVpnCustomerGatewaySearch && this.paramsFilter.id) this.paramsFilter.id = this.paramsFilter.id.trim()
         if (this.isVnfSearch) {
           if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
@@ -2264,7 +2281,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isIpv4SubnetSearch || this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isAccountSearch || this.isIpv4SubnetSearch || this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true

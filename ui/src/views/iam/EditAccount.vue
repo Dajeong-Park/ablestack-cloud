@@ -32,7 +32,7 @@
             v-model:value="form.newname"
             :placeholder="apiParams.newname.description" />
         </a-form-item>
-        <a-form-item ref="networkdomain" name="networkdomain">
+        <a-form-item ref="networkdomain" name="networkdomain" :extra="$t('message.account.networkdomain.clear')">
           <template #label>
             <tooltip-label :title="$t('label.networkdomain')" :tooltip="apiParams.networkdomain.description"/>
           </template>
@@ -47,6 +47,7 @@
           <a-select
             v-model:value="form.roleid"
             :loading="roleLoading"
+            :disabled="roleUnavailable"
             :placeholder="apiParams.roleid.description"
             v-focus="true"
             showSearch
@@ -54,7 +55,7 @@
             :filterOption="(input, option) => {
               return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }">
-            <a-select-option v-for="role in roles" :key="role.id" :value="role.id">{{ role.name }}</a-select-option>
+            <a-select-option v-for="role in roles" :key="role.id" :value="role.id" :label="role.name">{{ role.name }}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item v-if="isRootAdmin" ref="apikeyaccess" name="apikeyaccess">
@@ -62,27 +63,29 @@
             <tooltip-label :title="$t('label.apikeyaccess')" :tooltip="apiParams.apikeyaccess.description"/>
           </template>
           <a-radio-group v-model:value="form.apikeyaccess" buttonStyle="solid">
-            <a-radio-button value="ENABLED">Enabled</a-radio-button>
-            <a-radio-button value="INHERIT">Inherit</a-radio-button>
-            <a-radio-button value="DISABLED">Disabled</a-radio-button>
+            <a-radio-button value="ENABLED">{{ $t('label.enabled') }}</a-radio-button>
+            <a-radio-button value="INHERIT">{{ $t('label.account.apikey.inherit') }}</a-radio-button>
+            <a-radio-button value="DISABLED">{{ $t('label.disabled') }}</a-radio-button>
           </a-radio-group>
         </a-form-item>
-        <div :span="24" class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
-          <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+          <a-button :loading="loading" :disabled="!changed" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 <script>
-import { ref, reactive, toRaw } from 'vue'
-import { getAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import { ref } from 'vue'
+import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'EditAccount',
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {
@@ -93,8 +96,11 @@ export default {
   },
   data () {
     return {
+      form: {},
+      original: {},
       loading: false,
       roleLoading: false,
+      roleUnavailable: false,
       roles: []
     }
   },
@@ -102,77 +108,75 @@ export default {
     this.apiParams = this.$getApiParams('updateAccount')
   },
   created () {
+    this.formRef = ref()
     this.initForm()
-    this.fetchData()
+    this.fetchRoles()
+  },
+  activated () {
+    this.initForm()
   },
   computed: {
     isRootAdmin () {
       return this.$store.getters.userInfo?.roletype === 'Admin'
+    },
+    changes () {
+      const keys = ['newname', 'networkdomain', 'roleid']
+      if (this.isRootAdmin) keys.push('apikeyaccess')
+      return Object.fromEntries(keys.filter(key => this.form[key] !== undefined && this.form[key] !== this.original[key])
+        .map(key => [key, this.form[key]]))
+    },
+    changed () {
+      return Object.keys(this.changes).length > 0
     }
+  },
+  watch: {
+    'resource.id' () { this.initForm() }
   },
   methods: {
     initForm () {
-      this.formRef = ref()
-      this.form = reactive({})
+      this.original = {
+        newname: this.resource.name,
+        networkdomain: this.resource.networkdomain ?? '',
+        roleid: this.resource.roleid,
+        apikeyaccess: this.resource.apikeyaccess ?? 'INHERIT'
+      }
+      this.form = { ...this.original }
     },
-    fetchData () {
-      this.account = this.resource.name
-      this.domainId = this.resource.domainid
-      this.form.apikeyaccess = this.resource.apikeyaccess
-      this.fetchRoles()
-    },
-    isValidValueForKey (obj, key) {
-      return key in obj && obj[key] != null
-    },
-    fetchRoles () {
+    async fetchRoles () {
       this.roleLoading = true
-      const params = {}
-      params.state = 'enabled'
-      getAPI('listRoles', params).then(response => {
-        this.roles = response.listrolesresponse.role || []
-        this.form.roleid = this.resource.roleid
-      }).finally(() => {
+      try {
+        const response = await getAPI('listRoles', { state: 'enabled', pagesize: 500 }, { preserveOnFailure: true })
+        this.roles = response.listrolesresponse?.role || []
+      } catch (error) {
+        this.roleUnavailable = true
+      } finally {
         this.roleLoading = false
-      })
+      }
     },
-    handleSubmit (e) {
-      e.preventDefault()
-      if (this.loading) return
-      this.formRef.value.validate().then(() => {
-        const values = toRaw(this.form)
-
-        this.loading = true
-        const params = {
-          newname: values.newname,
-          networkdomain: values.networkdomain,
-          roleid: values.roleid,
-          apikeyaccess: values.apikeyaccess,
-          account: this.account,
-          domainid: this.domainId
-        }
-        if (this.isValidValueForKey(values, 'networkdomain') && values.networkdomain.length > 0) {
-          params.networkdomain = values.networkdomain
-        }
-
-        getAPI('updateAccount', params).then(response => {
-          this.$emit('refresh-data')
-          this.$notification.success({
-            message: this.$t('label.edit.account'),
-            description: `${this.$t('message.success.update.account')} ${params.account}`
-          })
-          this.closeAction()
-        }).catch(error => {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: (error.response && error.response.headers && error.response.headers['x-description']) || error.message,
-            duration: 0
-          })
-        }).finally(() => {
-          this.loading = false
+    async handleSubmit (event) {
+      if (typeof event?.preventDefault === 'function') event.preventDefault()
+      if (this.loading || !this.changed || !this.resource.id) return
+      const params = { id: this.resource.id, ...this.changes }
+      if (params.newname !== undefined && !params.newname.trim()) {
+        this.formRef.value.setFields([{ name: 'newname', errors: [this.$t('message.error.required.input')] }])
+        return
+      }
+      this.loading = true
+      try {
+        await postAPI('updateAccount', params, { preserveOnFailure: true })
+        this.$emit('refresh-data')
+        this.$notification.success({
+          message: this.$t('label.edit.account'),
+          description: this.$t('message.success.update.account') + ' ' + (params.newname || this.resource.name)
         })
-      }).catch(error => {
-        this.formRef.value.scrollToField(error.errorFields[0].name)
-      })
+        this.closeAction()
+      } catch (error) {
+        const description = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext ||
+          error.response?.headers?.['x-description'] || error.message
+        this.$notification.error({ message: this.$t('message.request.failed'), description, duration: 0 })
+      } finally {
+        this.loading = false
+      }
     },
     closeAction () {
       this.$emit('close-action')

@@ -17,8 +17,14 @@
 
 <template>
   <div>
+    <a-alert
+      v-if="scopeKey === 'accountid'"
+      type="info"
+      show-icon
+      :message="$t('message.account.settings.scope', { account: resource.name, domain: resource.domainpath || resource.domain || resource.domainid })" />
     <a-col :span="24">
       <a-input-search
+        :class="{ 'account-settings-search': scopeKey === 'accountid' }"
         style="width: 25vw;float: right;margin-bottom: 10px; z-index: 8;"
         :placeholder="$t('label.search')"
         v-model:value="filter"

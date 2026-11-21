@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': isRoleList || isGuestVlan || isIpv4Subnet || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'account-standard-page': isAccountUi, 'account-standard-list': isAccountList, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': isAccountList || isRoleList || isGuestVlan || isIpv4Subnet || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -116,6 +116,11 @@
                   @change="(checked, event) => { $store.dispatch('SetMetrics', checked) }"
                 />
                 <BucketStoreFilter v-if="isBucketList" />
+                <a-tag
+                  v-if="(isIsoList || isTemplateList) && $route.query.account && $route.query.account !== '[invalid]' && $route.query.domainid !== '[invalid]'"
+                  :title="$route.query.domainid">
+                  {{ $t('message.image.account.scope', { account: $route.query.account }) }}
+                </a-tag>
                 <a-tag v-if="isEventList && !isEventTimeline && eventScopeDiffers">{{ $t('message.events.scope', { scope: eventTimelineScopeLabel }) }}</a-tag>
                 <a-switch
                   v-if="!isEventTimeline && !projectView && hasProjectId && (!(vpnConnectionRoute($route) || isVpnUser || isVpnCustomerGateway) || !dataView)"
@@ -204,7 +209,7 @@
             <ProjectListSearch v-if="isProjectList" class="project-toolbar-search" @search="onSearch" />
             <search-view
               v-else-if="!dataView"
-              :class="{ 'kms-toolbar-search': kmsListRoute($route), 'vm-acl-toolbar-search': standardResourceToolbar }"
+              :class="{ 'kms-toolbar-search': kmsListRoute($route), 'vm-acl-toolbar-search': standardResourceToolbar, 'account-toolbar-search': isAccountList }"
               :searchFilters="searchFilters"
               :searchParams="searchParams"
               :apiName="apiName"
@@ -229,6 +234,13 @@
       </a-card>
     </div>
 
+    <a-alert
+      v-if="(isIsoList && isoListError) || (isTemplateList && templateFilterError)"
+      class="image-list-query-error"
+      type="error"
+      show-icon
+      :message="$t(isIsoList ? isoListError : templateFilterError)" />
+
     <div v-show="showAction">
       <component
         v-if="showAction && currentAction.selfManagedDialog"
@@ -243,10 +255,10 @@
         @refresh-data="refreshActionData"
         @close-action="closeAction"
       />
-      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || publicIpStandardDialog) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
+      <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
-          :size="currentAction.standardDialogSize || (vmStandardDialog || roleStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
+          :size="currentAction.standardDialogSize || (vmStandardDialog || roleStandardDialog || accountStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
           class="mold-dialog"
           :class="{ 'object-storage-dialog': isObjectStorageUi, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup', 'storage-standard-dialog': standardActionDialog, 'vpc-standard-dialog': isVpcUi, 'snapshot-standard-dialog': currentAction.snapshotStandardDialog, 'sharedfs-standard-dialog': $route.meta?.name === 'sharedfs' }"
           centered
@@ -258,7 +270,7 @@
           :confirmLoading="actionLoading"
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
-          :focus-guard="isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
+          :focus-guard="isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -276,9 +288,9 @@
             </a>
           </template>
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
-          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || publicIpStandardDialog) ? 1 : undefined">
+          <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog) ? 1 : undefined">
             <component
-              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || publicIpStandardDialog) ? storageActionGeneration : undefined"
+              :key="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog) ? storageActionGeneration : undefined"
               :is="currentAction.component"
               :resource="resource"
               :loading="loading"
@@ -325,17 +337,17 @@
         @refresh="finishEventMutation(false)"
       />
       <component
-        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog || publicIpReleaseDialog) ? 'MoldDialog' : 'a-modal'"
-        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog || publicIpReleaseDialog) ? 'md' : undefined"
+        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog) ? 'MoldDialog' : 'a-modal'"
+        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog) ? 'md' : undefined"
         class="mold-dialog"
-        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog || publicIpReleaseDialog, 'vpc-standard-dialog': isVpcUi, 'acl-standard-dialog': aclStandardDialog, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
+        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog, 'vpc-standard-dialog': isVpcUi, 'acl-standard-dialog': aclStandardDialog, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
           v-else
         :visible="showAction"
-        :closable="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
+        :closable="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
         :maskClosable="false"
         :width="(isBucketGroupDelete || isGuestNetworkDelete || publicIpReleaseDialog || aclStandardDialog) ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
-        :focus-guard="isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog || publicIpReleaseDialog"
-        :keyboard="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
+        :focus-guard="isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog"
+        :keyboard="!(isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
         :after-close="restoreClosedActionFocus"
         :ok-button-props="getOkProps()"
         ok-text="111"
@@ -706,8 +718,8 @@
         <template #footer>
           <a-button
             v-focus="aclDeleteDialog"
-            @click="vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog ? cancelAction() : closeAction()"
-            :disabled="(vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog || publicIpReleaseDialog) && (actionLoading || vmActionValidationPending)">
+            @click="vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog ? cancelAction() : closeAction()"
+            :disabled="(vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || publicIpReleaseDialog) && (actionLoading || vmActionValidationPending)">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
@@ -717,7 +729,7 @@
             :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)"
             :danger="aclDeleteDialog || (projectStandardDialog && currentAction.api === 'deleteProject') || publicIpReleaseDialog || isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'"
             ref="submit">
-            {{ $t(publicIpReleaseDialog ? 'label.public.ip.release.confirm' : (isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || aclStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}
+            {{ $t(publicIpReleaseDialog ? 'label.public.ip.release.confirm' : (isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}
           </a-button>
         </template>
       </component>
@@ -900,8 +912,10 @@ import { mixinDevice } from '@/utils/mixin.js'
 import { genericCompare } from '@/utils/sort.js'
 import { sourceToken } from '@/utils/request'
 import store from '@/store'
+import { accountTransitionAllowed } from '@/utils/accountState'
 import { projectBulkScope, projectBulkTargets } from '@/utils/projectBulk'
 import { canRoleAction, roleEditFields, roleUsageParams } from '@/utils/roleActions'
+import { accountQuery, accountListParams, accountSortFields, applyAccountSearch } from '@/utils/accountSearch'
 import { applyRoleSearch, roleListParams, roleSearchQuery, roleSortFields } from '@/utils/roleSearch'
 import { applyProjectSearch, projectListParams, projectListScope, projectSearchQuery, projectSortFields, projectStates } from '@/utils/projectSearch'
 import ProjectListSearch from '@/views/project/ProjectListSearch'
@@ -1557,6 +1571,11 @@ export default {
         ...projectStates.map(value => ({ value, label: this.$t('state.' + value.toLowerCase()) }))]
     },
     isRoleUi () { return this.$route.meta?.name === 'role' },
+    isAccountUi () { return this.$route.meta?.name === 'account' },
+    isAccountList () { return this.isAccountUi && !this.$route.params?.id },
+    accountStandardDialog () {
+      return this.isAccountUi && ['createAccount', 'ldapCreateAccount', 'updateAccount', 'deleteAccount', 'updateResourceCount', 'uploadSslCert'].includes(this.currentAction?.api)
+    },
     isRoleList () { return this.isRoleUi && !this.dataView },
     roleStandardDialog () {
       return this.isRoleUi && ['createRole', 'importRole', 'updateRole', 'enableRole', 'disableRole', 'deleteRole'].includes(this.currentAction?.api)
@@ -1646,6 +1665,15 @@ export default {
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
+      if (this.isAccountList) {
+        const { sortkey, sortorder } = accountQuery(this.$route.query)
+        return columns.map(column => accountSortFields.includes(column.key) ? {
+          ...column,
+          sorter: (left, right) => String(left[column.key] || '').localeCompare(String(right[column.key] || '')),
+          ...(column.key === 'state' ? { stateLabel: record => this.$t('label.' + record.state) } : {}),
+          sortOrder: sortkey === column.key ? (sortorder === 'asc' ? 'ascend' : 'descend') : null
+        } : column)
+      }
       if (this.isRoleList) {
         const { sortkey, sortorder } = roleSearchQuery(this.$route.query)
         const widths = { name: 224, type: 118, description: 180, state: 104, filtercolumn: 44 }
@@ -1734,7 +1762,7 @@ export default {
     publicIpReleaseDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'releaseIpAddress' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
     publicIpStandardDialog () { return this.$route.meta?.name === 'publicip' && ['reserveIpAddress', 'updateIpAddress'].includes(this.currentAction?.api) },
-    standardActionDialog () { return this.roleStandardDialog || this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
+    standardActionDialog () { return this.roleStandardDialog || this.accountStandardDialog || this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
       return this.isPolicyList && !this.policySearchFailure && this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)
@@ -1823,6 +1851,7 @@ export default {
         const value = String(this.$route.query.filter || this.$route.query.state || this.$route.meta.defaultFilter).toLowerCase()
         return this.filters.includes(value) ? value : this.$route.meta.defaultFilter
       }
+      if (this.isAccountList) return this.$route.query.state || 'all'
       if (this.$route.query.filter) {
         return this.$route.query.filter
       }
@@ -2492,7 +2521,7 @@ export default {
           this.$refs.listview.closeContextQuickView()
         }
       }
-      if ((this.isEventList || this.isProjectList || this.isRoleList) && !sameList) {
+      if ((this.isEventList || this.isProjectList || this.isRoleList || this.isAccountList) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -2895,6 +2924,7 @@ export default {
       if (ipv4SubnetRoute(this.$route)) params = ipv4SubnetReadParams(this.$route.query, params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
+      if (this.isAccountList && this.apiName === 'listAccounts') params = accountListParams(this.$route.query, params)
       if (this.apiName === 'listRoles') {
         if (this.isRoleList) params = roleListParams(this.$route.query, params)
         else if (params.id) Object.assign(params, roleUsageParams(this.$store.getters.apis))
@@ -3324,6 +3354,7 @@ export default {
       return this.fetchData({ irefresh: true })
     },
     closeAction (result) {
+      const refreshAccountList = this.currentAction?.accountTargets && result?.refreshAccountList && this.$route.meta?.name === 'account'
       const refreshProjectBulk = this.currentAction?.projectBulkTargets && result?.refreshProjectList && this.isProjectList
       const gatewayDeletion = this.vpnCustomerGatewayActionScope && this.currentAction?.vpnCustomerGatewayScope === this.vpnCustomerGatewayActionScope && result?.gatewayDeletion
       const deletedCustomerGateway = gatewayDeletion && this.dataView && result.removed.includes(this.$route.params.id)
@@ -3371,7 +3402,7 @@ export default {
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const vpnUserDelete = !!this.currentAction?.vpnUserDeleteTargets
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.accountStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3417,6 +3448,11 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
+      if (refreshAccountList) {
+        this.resetSelection()
+        if (this.$refs.listview) this.$refs.listview.resetSelection()
+        this.fetchData({ irefresh: true })
+      }
       if (refreshProjectBulk) {
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -3623,6 +3659,23 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (action.accountState) {
+        const scope = this.listScope()
+        const generation = this.storageActionGeneration
+        const records = isGroupAction ? this.selectedItems : [action.resource || this.resource]
+        if (!records.some(record => accountTransitionAllowed(action, record, this.$store.getters))) return
+        const selection = JSON.stringify(this.selectedRowKeys)
+        this.currentAction = {
+          ...action,
+          selfManagedDialog: true,
+          component: markRaw(defineAsyncComponent(() => import('@/views/iam/AccountStateDialog.vue'))),
+          accountTargets: records.map(record => ({ ...record })),
+          accountCurrent: () => this.showAction && generation === this.storageActionGeneration &&
+            scope === this.listScope() && selection === JSON.stringify(this.selectedRowKeys)
+        }
+        this.showAction = true
+        return
+      }
       if (isGroupAction && action.projectBulkAction) {
         if (!this.isProjectList || !this.storageActionReady) return
         const targets = projectBulkTargets(action.api, this.selectedRowKeys, this.items, this.$store.getters)
@@ -4698,6 +4751,9 @@ export default {
       this.$router.push({ query })
     },
     changeFilter (filter) {
+      if (this.isAccountList) {
+        return this.$router.push({ query: accountQuery({ ...this.$route.query, state: filter, page: '1' }) })
+      }
       if (isAclListRoute(this.$route)) {
         if (this.aclDisplayFilterId && aclDisplayValue(filter)) this.$router.push({ query: { ...this.$route.query, fordisplay: filter, page: '1' } })
         return
@@ -4716,6 +4772,10 @@ export default {
       }
       if (this.isIsoList) {
         this.$router.push({ query: isoListQuery({ ...this.$route.query, filter, isofilter: filter, page: '1' }, this.pageSize, this.$store.getters) })
+        return
+      }
+      if (this.isTemplateList) {
+        this.$router.push({ query: templateListQuery({ ...this.$route.query, filter, templatefilter: filter, page: '1' }, this.pageSize) })
         return
       }
       const query = Object.assign({}, this.$route.query)
@@ -4843,6 +4903,11 @@ export default {
     onSearch (opts) {
       if (ipv4SubnetRoute(this.$route) && !this.dataView) {
         const query = ipv4SubnetSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
+      if (this.isAccountList) {
+        const query = applyAccountSearch(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
         return this.$router.push({ query })
       }
@@ -5010,9 +5075,13 @@ export default {
       const query = Object.assign({}, this.$route.query)
       query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
-      this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : query })
+      this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : this.isAccountList ? accountQuery(query) : query })
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.isAccountList) {
+        const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
+        return this.$router.replace({ query: accountQuery({ ...this.$route.query, sortkey: sorter?.columnKey, sortorder }) })
+      }
       if (this.isRoleList) {
         const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
         return this.$router.replace({ query: roleSearchQuery({ ...this.$route.query, sortkey: sorter?.columnKey, sortorder }) })
@@ -5342,4 +5411,36 @@ export default {
 .role-standard-page :deep(.ant-table-cell) { overflow-wrap: anywhere; }
 .role-standard-page :deep(.resource-content-card),
 .role-standard-page :deep(.ant-tabs-content-holder) { min-width: 0; }
+</style>
+
+<style scoped lang="less">
+.account-standard-list .autogen-toolbar-actions {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.account-standard-list .autogen-toolbar-actions :deep(.row-action-button) {
+  display: inline-flex !important;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 !important;
+}
+.account-standard-list .account-toolbar-search { flex: 0 1 228px; min-width: 165px; }
+.account-standard-page :deep(.resource-content-card),
+.account-standard-page :deep(.ant-tabs-content-holder) { min-width: 0; }
+.account-standard-page :deep(.resource-details__name h4),
+.account-standard-page :deep(.resource-detail-item) { overflow-wrap: anywhere; }
+.account-standard-page :deep(.account-settings-search) { width: 248px !important; max-width: 100%; }
+@media (max-width: 767px) {
+  .account-standard-page .breadcrumb-card { margin-left: -12px; margin-right: -12px; }
+  .account-standard-list .autogen-toolbar-actions { justify-content: flex-start; }
+  .account-standard-list .account-toolbar-search {
+    display: block !important;
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
 </style>
