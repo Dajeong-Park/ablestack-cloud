@@ -50,7 +50,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -67,6 +67,9 @@
           <div v-else-if="item === 'vendorname'">{{ dataResource.vendor || dataResource.vendorname || $t('label.unknown') }}</div>
           <div v-else>{{ dataResource[item] ?? $t(item === 'state' ? 'label.hsm.connection.unavailable' : 'label.unknown') }}</div>
         </div>
+      </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'acllist' && item === 'scope' && dataResource.id">
+        <div><strong>{{ $t('label.scope') }}</strong><br/><AclScopeValue :resource="dataResource" /></div>
       </a-list-item>
       <a-list-item v-else-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
         <div style="width: 100%">
@@ -93,7 +96,16 @@
             <a-tag :color="dataResource.deleteprotection === true ? 'warning' : dataResource.deleteprotection === false ? 'success' : 'default'">{{ $t('label.vm.protection.' + (resourceReadFailed() ? 'failed' : dataResource.deleteprotection === true ? 'protected' : dataResource.deleteprotection === false ? 'unprotected' : 'unknown')) }}</a-tag>
             <div>{{ $t('message.vm.delete.edit') }}</div>
           </div>
-          <div v-else-if="$route.meta.name === 'acllist' && item === 'fordisplay'">{{ $t(aclDisplayLabel(dataResource.fordisplay)) }}</div>
+          <a-tag v-else-if="$route.meta.name === 'acllist' && item === 'fordisplay'">{{ $t(aclDisplayLabel(dataResource.fordisplay)) }}</a-tag>
+          <div v-else-if="$route.meta.name === 'acllist' && item === 'id'" class="acl-details-id">
+            <span>{{ dataResource.id }}</span>
+            <tooltip-button
+              :tooltip="$t('label.copyid')"
+              icon="copy-outlined"
+              size="small"
+              :copyResource="dataResource.id"
+              @copy-success="$message.success($t('label.copied.clipboard'))" />
+          </div>
           <network-ip-vm-link v-else-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
           <InternalLbRules v-else-if="$route.meta.name === 'ilb' && item === 'loadbalancerrule'" :record="dataResource" :loading="loading" />
           <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
@@ -428,6 +440,7 @@ display-text />
 </template>
 
 <script>
+import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel } from '@/utils/vpcAclAccess'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { kmsRoute, hsmOwnerScope, kmsProtocolOptions } from '@/utils/kmsSearch'
@@ -468,6 +481,7 @@ import VnfAccessNotice from '@/components/compute/VnfAccessNotice'
 export default {
   name: 'DetailsTab',
   components: {
+    AclScopeValue,
     S2sGatewayValue,
     PublicIpDetailValue,
     VnfAccessNotice,

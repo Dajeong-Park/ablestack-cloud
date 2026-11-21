@@ -56,6 +56,8 @@ export function aclDenied (error) {
   return [401, 403].includes(Number(error?.response?.status || error?.code))
 }
 
+export const aclScopeLabel = row => row.isdefault ? 'label.acl.scope.default' : row.vpcid ? 'label.vpc' : 'label.acl.scope.global'
+
 export const isAclListRoute = route => route.meta?.name === 'acllist'
 export const aclDisplayValue = value => ['true', 'false'].includes(String(value)) ? String(value) : undefined
 export const aclDisplayLabel = value => 'label.acl.display.' + (value ? 'visible' : 'hidden')

@@ -77,6 +77,10 @@
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
       <S2sGatewayValue v-else-if="$route.meta?.name === 's2svpn' && ['publicip','vpcname','account','domain','project'].includes(column.key)" :resource="record" :field="column.key" list />
       <KubernetesIsoListCell v-else-if="isKubernetesIsoMainList && ['state', 'isostate', 'zonename', 'semanticversion', 'mincpunumber', 'minmemory', 'arch'].includes(column.key)" :resource="record" :field="column.key" />
+      <AclScopeValue v-else-if="column.key === 'vpcname' && isAclListRoute($route)" :resource="record" />
+      <a-tag v-else-if="column.key === 'fordisplay' && isAclListRoute($route) && typeof text === 'boolean'">
+        {{ $t(aclDisplayLabel(text)) }}
+      </a-tag>
       <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
@@ -90,9 +94,6 @@
       </template>
       <template v-else-if="$route.meta?.name === 'vmgroup' && ['virtualmachinecount', 'virtualmachinestates'].includes(column.key)">
         <InstanceGroupSummary :resource="record" :field="column.key" />
-      </template>
-      <template v-else-if="column.key === 'fordisplay' && isAclListRoute($route)">
-        {{ typeof text === 'boolean' ? $t(aclDisplayLabel(text)) : '–' }}
       </template>
       <template v-else-if="['name', 'provider'].includes(column.key)">
         <span
@@ -1285,6 +1286,7 @@
 </template>
 
 <script>
+import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel, aclListDetailLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
@@ -1348,6 +1350,7 @@ import { vnfDetailLocation } from '@/utils/vnfSearch'
 export default {
   name: 'ListView',
   components: {
+    AclScopeValue,
     S2sGatewayValue,
     TemplateAvailability,
     KubernetesIsoListCell,

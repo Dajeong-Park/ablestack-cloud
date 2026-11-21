@@ -1204,8 +1204,8 @@ export default {
       icon: 'bars-outlined',
       docHelp: 'adminguide/networking_and_traffic.html#configuring-network-access-control-list',
       permission: ['listNetworkACLLists'],
-      columns: getters => ['name', 'description', 'vpcname', ...(aclDisplaySupported(getters) ? ['fordisplay'] : []), 'id'],
-      details: () => ['name', 'description', ...(aclDisplaySupported(store.getters) ? ['fordisplay'] : []), 'id'],
+      columns: getters => ['name', 'description', { field: 'vpcname', customTitle: 'scope' }, ...(aclDisplaySupported(getters) ? ['fordisplay'] : []), 'id'],
+      details: () => ['name', 'scope', 'description', ...(aclDisplaySupported(store.getters) ? ['fordisplay'] : []), 'id'],
       filters: () => aclDisplaySupported(store.getters) ? ['true', 'false'] : [],
       filterLabels: { true: 'label.acl.display.visible', false: 'label.acl.display.hidden' },
       searchFilters: () => ['name', 'vpcid'].filter(field =>

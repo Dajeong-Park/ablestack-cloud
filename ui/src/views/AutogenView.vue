@@ -16,20 +16,21 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'vm-acl-standard': isVmUi || isAclUi, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isAclUi || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
           <a-col
+            :class="{ 'vm-acl-breadcrumb-layout': isVmUi || isAclUi }"
             :span="device === 'mobile' ? 24 : 12"
             style="padding-left: 12px; margin-top: 10px"
           >
-            <breadcrumb :resource="resource">
+            <breadcrumb :resource="resource" :standard-layout="isVmUi || isAclUi">
               <template #end>
                 <a-button
                   v-if="$route.meta?.name !== 'runtimebundle'"
-                  :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((vpnConnectionRoute($route) || ['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList) && listRequestPending)"
-                  :disabled="isSnapshotList && listRequestPending"
+                  :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((vpnConnectionRoute($route) || ['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList || isAclUi) && listRequestPending)"
+                  :disabled="(isSnapshotList || isAclUi) && listRequestPending"
                   style="margin-bottom: 5px"
                   shape="round"
                   size="small"
@@ -39,6 +40,7 @@
                   {{ $t('label.refresh') }}
                 </a-button>
                 <label v-if="isTemplateList || isIsoList || (s2sDisplayFilterId && filters?.length > 0) || (isPublicIpUi && !dataView && filters?.length > 0)" :for="s2sDisplayFilterId || (isPublicIpUi ? 'public-ip-state-filter' : templateFilterId)" class="template-filter-accessible-label">{{ $t('label.filterby') }}</label>
+                <label v-if="aclDisplayFilterId && !dataView" :for="aclDisplayFilterId" class="template-filter-accessible-label">{{ $t('label.acl.display.filter') }}</label>
                 <label v-if="kmsListRoute($route)" for="kms-display-filter" class="template-filter-accessible-label">{{ $t('label.kms.display.filter') }}</label>
                 <a-select
                   v-if="kmsListRoute($route)"
@@ -178,7 +180,7 @@
             <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="asnListReady" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <search-view
               v-if="!dataView"
-              :class="{ 'kms-toolbar-search': kmsListRoute($route) }"
+              :class="{ 'kms-toolbar-search': kmsListRoute($route), 'vm-acl-toolbar-search': isVmUi || isAclUi }"
               :searchFilters="searchFilters"
               :searchParams="searchParams"
               :apiName="apiName"
@@ -516,17 +518,17 @@
         <br />
       </component>
       <component
-        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || publicIpReleaseDialog) ? 'MoldDialog' : 'a-modal'"
-        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || publicIpReleaseDialog) ? 'md' : undefined"
+        :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || aclStandardDialog || publicIpReleaseDialog) ? 'MoldDialog' : 'a-modal'"
+        :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || aclStandardDialog || publicIpReleaseDialog) ? 'md' : undefined"
         class="mold-dialog"
-        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || publicIpReleaseDialog, 'vpc-standard-dialog': isVpcUi, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
+        :class="{ 'storage-standard-dialog': isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || aclStandardDialog || publicIpReleaseDialog, 'vpc-standard-dialog': isVpcUi, 'acl-standard-dialog': aclStandardDialog, 'object-storage-dialog': isBucketGroupDelete, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup' }"
           v-else
         :visible="showAction"
-        :closable="!(isVpcUi || vmStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
+        :closable="!(isVpcUi || vmStandardDialog || aclStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
         :maskClosable="false"
-        :width="(isBucketGroupDelete || isGuestNetworkDelete || publicIpReleaseDialog) ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
-        :focus-guard="isVpcUi || vmStandardDialog || publicIpReleaseDialog"
-        :keyboard="!(isVpcUi || vmStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
+        :width="(isBucketGroupDelete || isGuestNetworkDelete || publicIpReleaseDialog || aclStandardDialog) ? 'min(720px, calc(100vw - 32px))' : (currentAction.invokedAsGroupAction ? modalWidth : 760)"
+        :focus-guard="isVpcUi || vmStandardDialog || aclStandardDialog || publicIpReleaseDialog"
+        :keyboard="!(isVpcUi || vmStandardDialog || aclStandardDialog || publicIpReleaseDialog) || !(actionLoading || vmActionValidationPending)"
         :after-close="restoreClosedActionFocus"
         :ok-button-props="getOkProps()"
         ok-text="111"
@@ -548,6 +550,10 @@
           </a>
         </template>
         <VpcActionContext v-if="isVpcUi && !currentAction.listView" :resources="currentAction.invokedAsGroupAction ? selectedItems : [resource]" />
+        <dl v-if="aclStandardDialog && !currentAction.listView && resource.id" class="acl-action-context">
+          <dt>{{ $t('label.name') }}</dt><dd>{{ resource.name }}</dd>
+          <dt>{{ $t('label.scope') }}</dt><dd><AclScopeValue :resource="resource" :linked="false" /></dd>
+        </dl>
         <a-alert v-if="vmStandardDialog && vmActionError" type="error" show-icon :message="vmActionError" class="vm-action-error" />
         <a-alert v-if="isVpcUi && vpcActionError" type="error" show-icon :message="vpcActionError" style="margin-bottom: 16px" />
         <a-spin
@@ -636,6 +642,7 @@
                 :name="field.name"
                 :ref="field.name"
                 :v-bind="field.name"
+                :extra="currentAction.api === 'createNetworkACLList' && field.name === 'vpcid' ? $t('message.acl.scope.create') : undefined"
                 v-if="!(currentAction.mapping && field.name in currentAction.mapping && currentAction.mapping[field.name].value)"
               >
                 <template #label>
@@ -880,8 +887,21 @@
           </a-form>
         </a-spin>
         <template #footer>
-          <a-button @click="vmStandardDialog ? cancelAction() : closeAction()" :disabled="(vmStandardDialog || publicIpReleaseDialog) && (actionLoading || vmActionValidationPending)">{{ $t('label.cancel') }}</a-button>
-          <a-button type="primary" @click="handleSubmit" :disabled="isSubmitDisabled || (vmStandardDialog && (vmActionValidationPending || vmActionUnknown))" :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)" :danger="publicIpReleaseDialog || isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'" ref="submit">{{ $t(publicIpReleaseDialog ? 'label.public.ip.release.confirm' : (isVpcUi || vmStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}</a-button>
+          <a-button
+            v-focus="aclDeleteDialog"
+            @click="vmStandardDialog || aclStandardDialog ? cancelAction() : closeAction()"
+            :disabled="(vmStandardDialog || aclStandardDialog || publicIpReleaseDialog) && (actionLoading || vmActionValidationPending)">
+            {{ $t('label.cancel') }}
+          </a-button>
+          <a-button
+            type="primary"
+            @click="handleSubmit"
+            :disabled="isSubmitDisabled || (vmStandardDialog && (vmActionValidationPending || vmActionUnknown))"
+            :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)"
+            :danger="aclDeleteDialog || publicIpReleaseDialog || isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'"
+            ref="submit">
+            {{ $t(publicIpReleaseDialog ? 'label.public.ip.release.confirm' : (isVpcUi || vmStandardDialog || aclStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}
+          </a-button>
         </template>
       </component>
     </div>
@@ -903,7 +923,7 @@
       <a-alert v-if="snapshotSearchFailure" class="storage-query-error" type="error" show-icon :message="$t('message.snapshot.search.' + snapshotSearchFailure)" />
       <a-alert v-if="policySearchFailure" class="storage-query-error" type="error" show-icon :message="$t('message.snapshot.policy.search.' + policySearchFailure)" />
       <a-alert v-if="isSnapshotCopyList" class="storage-query-error" type="info" show-icon :message="$t('message.snapshot.search.copy.readonly')" />
-      <a-alert v-if="(isVpcUi || isStorageUi || isSnapshotReadView || publicIpDetail) && listRefreshError" class="storage-query-error" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
+      <a-alert v-if="(isVpcUi || isStorageUi || isSnapshotReadView || publicIpDetail || isAclUi) && listRefreshError" class="storage-query-error" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
         <template #description><p v-if="isSnapshotReadView && snapshotListError">{{ snapshotListError.startsWith('message.') ? $t(snapshotListError) : snapshotListError }}</p><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
       <a-alert v-if="isIsoList && isoListError" type="error" show-icon :message="$t(isoListError)">
@@ -956,7 +976,7 @@
           v-else-if="(!isKmsDetail || (resource.id || loading) && !kmsDetailError) && (!(s2sGatewayRoute($route) || isVpnConnectionDetail) || resource.id || loading) && !templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isKmsDetail || isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
-          :readFailed="(isVpcUi || ['ilb', 'vm', 'vnfapp', 's2svpn', 's2svpnconn'].includes($route.meta?.name)) && listRefreshError"
+          :readFailed="(isVpcUi || isAclUi || ['ilb', 'vm', 'vnfapp', 's2svpn', 's2svpnconn'].includes($route.meta?.name)) && listRefreshError"
           :readyForActions="isKmsDetail ? kmsDetailReady : $route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp', 's2svpn', 's2svpnconn'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
@@ -980,10 +1000,10 @@
         <a-alert v-if="listRefreshError && ($route.name === 'vmsnapshot' || ['cniconfiguration', 'guestnetwork', 'vnfapp'].includes($route.meta?.name))" type="error" show-icon :message="$t(listLoadedScope ? 'message.list.refresh.stale' : 'error.fetching.data')">
           <template #description><a-button size="small" @click="fetchData">{{ $t('label.refresh') }}</a-button></template>
         </a-alert>
-        <p v-else-if="listRefreshError && !kmsListRoute($route) && (!isS2sSearchList || items.length > 0) && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
+        <p v-else-if="listRefreshError && !isAclUi && !kmsListRoute($route) && (!isS2sSearchList || items.length > 0) && !asnSearchAuth && !(isIsoList && isoListError) && !isVpcUi && !isStorageUi && !isSnapshotList && $route.meta?.name !== 'vmgroup'" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
           :loading="sharedFSContentLoading"
-          :emptyText="kmsListRoute($route) ? kmsListEmptyText : isS2sSearchList && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
+          :emptyText="isAclUi && !listRefreshError ? aclEmptyText : kmsListRoute($route) ? kmsListEmptyText : isS2sSearchList && s2sGatewaySearchFailure ? $t('message.s2s.gateway.search.' + s2sGatewaySearchFailure) : asnSearchAuth ? asnListEmptyText : $route.meta?.name === 'vmgroup' ? vmGroupEmptyText : snapshotEmptyText"
           :columns="presentedColumns"
           :kms-table="kmsListRoute($route)"
           :items="items"
@@ -1119,6 +1139,7 @@ import { availabilityActions, actionAvailability, kmsAvailabilityLabel } from '@
 import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
 import { kmsDisplayQuery } from '@/utils/kmsPresentation'
 import { kmsDeletionConfirmed, kmsDetailFailure, kmsDetailKey, kmsDetailRoute, kmsListLocation, readKmsDetail } from '@/utils/kmsNavigation'
+import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplaySupported, aclDisplayValue, aclHasParam, aclListSearchQuery, isAclListRoute, readAclList } from '@/utils/vpcAclAccess'
 import { kmsRoute, kmsListRoute, kmsListApi, kmsAuth, kmsProjectScope, kmsQuery, kmsSearchQuery, kmsParams, readKmsPage } from '@/utils/kmsSearch'
 import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
@@ -1134,6 +1155,7 @@ let templateFilterSequence = 0
 export default {
   name: 'Resource',
   components: {
+    AclScopeValue,
     AsnListTools,
     NetworkOperationPolicy,
     BucketStoreFilter,
@@ -1644,7 +1666,17 @@ export default {
     isVolumeList () { return !this.dataView && this.$route.meta?.name === 'volume' },
     isGuestNetworkList () { return !this.dataView && guestNetworkRoute(this.$route) },
     isGuestNetworkUi () { return ['guestnetwork', 'networkoffering'].includes(this.$route.meta?.name) },
-    isVmList () { return !this.dataView && this.$route.meta?.name === 'vm' },
+    isVmUi () { return this.$route.meta?.name === 'vm' },
+    isVmList () { return !this.dataView && this.isVmUi },
+    isAclUi () { return isAclListRoute(this.$route) },
+    aclStandardDialog () {
+      return this.isAclUi && ['createNetworkACLList', 'updateNetworkACLList', 'deleteNetworkACLList'].includes(this.currentAction?.api)
+    },
+    aclDeleteDialog () { return this.aclStandardDialog && this.currentAction.api === 'deleteNetworkACLList' },
+    aclEmptyText () {
+      const query = this.$route.query
+      return this.$t(query.name || query.vpcid || query.keyword || query.fordisplay === 'false' ? 'message.acl.search.empty' : 'message.acl.list.empty')
+    },
     isBucketList () { return !this.dataView && this.$route.meta?.name === 'buckets' },
     isVpcUi () { return ['vpc', 'vpcoffering', 'privategw'].includes(this.$route.meta?.name) },
     isObjectStorageUi () { return ['buckets', 'objectstore'].includes(this.$route.meta?.name) },
@@ -1820,6 +1852,7 @@ export default {
       return 'self'
     },
     visibleDataViewActions () {
+      if (this.isAclUi && (this.listRefreshError || this.resource?.id !== this.$route.params?.id)) return []
       if (this.isKmsDetail && !this.kmsDetailReady) return []
       const policyBackgroundRead = this.isPolicyDetail && this.listRequestPending && !this.listRefreshError &&
         !!this.resource?.id && this.listLoadedScope === this.listScope()
@@ -1888,6 +1921,9 @@ export default {
     vmDisplayName,
     isVmIdentityRoute,
     actionFieldDescription (field) {
+      if (this.aclStandardDialog && this.currentAction.api === 'createNetworkACLList' && field.name === 'vpcid') {
+        return this.$t('label.acl.scope.pick')
+      }
       const known = ['podid', 'clusterid', 'hostid', 'considerlasthost', 'bootintosetup', 'forced']
       return this.vmStandardDialog && known.includes(field.name) ? this.$t('message.vm.start.' + field.name) : field.description
     },
@@ -2432,7 +2468,7 @@ export default {
       if (kubernetesIsoQuery && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection()
       }
-      if ((kmsList || publicIpList || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || this.isS2sSearchList) && !this.dataView) && !sameList) {
+      if ((kmsList || publicIpList || (this.isAclUi && !this.dataView) || snapshotListRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route) || snapshotPolicyListRoute(this.$route) || (this.isObjectStorageUi || guestNetworkRoute(this.$route) || vnfRoute(this.$route) || this.isS2sSearchList) && !this.dataView) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null
         this.snapshotListError = ''; this.listRefreshError = false
         this.resetSelection()
@@ -3114,6 +3150,7 @@ export default {
           return
         }
         if (publicIpList) { if ([401, 403].includes(Number(error?.response?.status))) { this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection() } this.listRefreshError = true; this.publicIpSearchFailure = 'message.public.ip.search.failed'; if (!isAutoScheduled) this.$notifyError(error); return }
+        if (this.isAclUi) { this.listRefreshError = true; return }
         if (sameList || this.$route.name === 'vmsnapshot') {
           this.listRefreshError = true
           if (isAutoScheduled) throw error
@@ -3240,7 +3277,7 @@ export default {
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = kmsDialog || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = kmsDialog || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3333,7 +3370,7 @@ export default {
     },
     cancelAction () {
       if (this.vmStandardDialog && (this.actionLoading || this.vmActionValidationPending)) return
-      if (this.isVpcUi && this.actionLoading) return
+      if ((this.isVpcUi || this.aclStandardDialog) && this.actionLoading) return
       eventBus.emit('action-closing', { action: this.currentAction })
       this.closeAction()
     },
@@ -4863,6 +4900,7 @@ export default {
 </script>
 
 <style scoped src="@/style/components/view/list-toolbar.css" />
+<style scoped src="@/style/components/view/vm-acl-standard.css" />
 <style src="@/style/components/view/s2s-connection.css" />
 <style scoped src="@/style/components/view/public-ip-breadcrumb.css" />
 

@@ -66,6 +66,12 @@
               </div>
               <slot name="actions">
                 <div class="tags">
+                  <template v-if="$route.meta.name === 'acllist' && resource.id">
+                    <AclScopeValue :resource="resource" />
+                    <a-tag v-if="aclDisplaySupported($store.getters) && typeof resource.fordisplay === 'boolean'">
+                      {{ $t(aclDisplayLabel(resource.fordisplay)) }}
+                    </a-tag>
+                  </template>
                   <a-tag v-if="resource.instancename">
                     {{ resource.instancename }}
                   </a-tag>
@@ -794,7 +800,7 @@
                 <copy-label v-else :label="resource.publicip" />
               </div>
             </div>
-            <div class="resource-detail-item" v-if="$route.meta.name !== 'publicip' && resource.vpcid">
+            <div class="resource-detail-item" v-if="!['publicip', 'acllist'].includes($route.meta.name) && resource.vpcid">
               <div class="resource-detail-item__label">{{ $t('label.vpcname') }}</div>
               <div class="resource-detail-item__details">
                 <span v-if="images.vpc">
@@ -1174,6 +1180,8 @@
 </template>
 
 <script>
+import AclScopeValue from '@/components/view/AclScopeValue'
+import { aclDisplayLabel, aclDisplaySupported } from '@/utils/vpcAclAccess'
 import { kmsRelations, kmsRelatedFilter } from '@/utils/kmsRelated'
 import { kmsDetailRoute } from '@/utils/kmsNavigation'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
@@ -1226,6 +1234,7 @@ export default {
   name: 'InfoCard',
   mixins: [vmNetworkAccessMixin()],
   components: {
+    AclScopeValue,
     PublicIpDetailValue,
     TemplateAvailability,
     KubernetesIsoStatus,
@@ -1449,6 +1458,8 @@ export default {
     }
   },
   methods: {
+    aclDisplayLabel,
+    aclDisplaySupported,
     vpnConnectionState,
     kmsDetailRoute,
     publicIpFieldLabel,
