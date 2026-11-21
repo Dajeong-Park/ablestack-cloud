@@ -55,7 +55,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -98,7 +98,7 @@
       <a-list-item v-else-if="$route.meta.name === 'acllist' && item === 'scope' && dataResource.id">
         <div><strong>{{ $t('label.scope') }}</strong><br/><AclScopeValue :resource="dataResource" /></div>
       </a-list-item>
-      <a-list-item v-else-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
+      <a-list-item v-else-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || ($route.meta.name === 'ipv4subnets' && ((item === 'networkname' && dataResource.networkid) || (item === 'vpcname' && dataResource.vpcid))) || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :
@@ -116,6 +116,8 @@
             :field="item"
             :value="dataResource[item]"
             :label="$t(getDetailTitle(item))" />
+          <status v-else-if="$route.meta.name === 'ipv4subnets' && item === 'state'" :text="dataResource.state" display-text />
+          <span v-else-if="$route.meta.name === 'ipv4subnets' && item === 'allocated'">{{ $toLocaleDate(dataResource.allocated) }}</span>
           <status v-else-if="$route.meta.name === 'event' && item === 'state'" :text="dataResource.state" display-text />
           <div v-else-if="$route.meta.name === 'event' && item === 'type'">{{ eventTypeLabel(dataResource.type, $t) }}</div>
           <status v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['state', 'hostcontrolstate'].includes(item)" :text="String(dataResource[item] || '')" :display-label="dataResource[item] ? '' : $t('label.unknown')" display-text />
@@ -135,6 +137,7 @@
               :copyResource="dataResource.id"
               @copy-success="$message.success($t('label.copied.clipboard'))" />
           </div>
+          <Ipv4SubnetResourceLink v-else-if="$route.meta?.name === 'ipv4subnets' && ['networkname', 'vpcname'].includes(item)" :record="dataResource" :field="item" />
           <network-ip-vm-link v-else-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
           <InternalLbRules v-else-if="$route.meta.name === 'ilb' && item === 'loadbalancerrule'" :record="dataResource" :loading="loading" />
           <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
@@ -469,6 +472,7 @@ display-text />
 </template>
 
 <script>
+import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel } from '@/utils/vpcAclAccess'
 import { eventTypeLabel } from '@/utils/eventTimeline'
@@ -512,6 +516,7 @@ import VnfAccessNotice from '@/components/compute/VnfAccessNotice'
 export default {
   name: 'DetailsTab',
   components: {
+    Ipv4SubnetResourceLink,
     VpnUserValue,
     AclScopeValue,
     S2sGatewayValue,

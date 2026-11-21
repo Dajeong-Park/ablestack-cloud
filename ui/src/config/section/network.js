@@ -41,6 +41,7 @@ import { canReadNetworkPermissions } from '@/utils/networkPermissions'
 import { vpcRestartParams, vpcRestartReason } from '@/utils/vpcRestart'
 import { vpcMigrationVisible } from '@/utils/vpcMigration'
 import { canDeleteVpnUsers } from '@/utils/vpnUserDeletion'
+import { canDeleteIpv4Subnet, ipv4SubnetFilters } from '@/utils/ipv4Subnet'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -1563,9 +1564,9 @@ export default {
       title: 'label.ipv4.subnets',
       icon: 'pic-center-outlined',
       permission: ['listIpv4SubnetsForGuestNetwork'],
-      columns: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated'],
-      details: ['subnet', 'zonename', 'zoneid', 'parentsubnet', 'networkname', 'networkid', 'vpcname', 'vpcid', 'created', 'allocated', 'state'],
-      searchFilters: ['zoneid'],
+      columns: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated', 'state'],
+      details: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated', 'state'],
+      searchFilters: ipv4SubnetFilters,
       show: () => {
         if (!store.getters.zones || store.getters.zones.length === 0) {
           return false
@@ -1581,6 +1582,7 @@ export default {
           api: 'createIpv4SubnetForGuestNetwork',
           icon: 'plus-outlined',
           label: 'label.add.ipv4.subnet',
+          standardDialogSize: 'md',
           listView: true,
           popup: true,
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/CreateIpv4SubnetForNetwork.vue')))
@@ -1589,12 +1591,13 @@ export default {
           api: 'deleteIpv4SubnetForGuestNetwork',
           icon: 'delete-outlined',
           label: 'label.delete.ipv4.subnet',
-          message: 'message.action.delete.ipv4.subnet',
           dataView: true,
-          show: (record) => { return !record.networkid },
+          show: canDeleteIpv4Subnet,
           groupAction: true,
+          groupShow: selection => selection.some(canDeleteIpv4Subnet),
           popup: true,
-          groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/DeleteIpv4Subnet.vue')))
         }
       ]
     },

@@ -50,6 +50,7 @@ import com.cloud.user.Account;
 import com.cloud.user.AccountManager;
 import com.cloud.utils.Pair;
 import com.cloud.utils.component.ComponentLifecycleBase;
+import com.cloud.utils.db.Filter;
 import com.cloud.utils.db.SearchCriteria;
 import com.cloud.utils.db.Transaction;
 import com.cloud.utils.db.TransactionCallbackWithException;
@@ -474,7 +475,7 @@ public class RoutedIpv4ManagerImpl extends ComponentLifecycleBase implements Rou
             return true;
         }
         // check if the subnet is not in use
-        if (!State.Free.equals(mapVO.getState()) || mapVO.getNetworkId() != null) {
+        if (!State.Free.equals(mapVO.getState()) || mapVO.getNetworkId() != null || mapVO.getVpcId() != null) {
             throw new InvalidParameterValueException("Cannot delete the subnet which is in use");
         }
         return ipv4GuestSubnetNetworkMapDao.remove(mapId);
@@ -505,7 +506,7 @@ public class RoutedIpv4ManagerImpl extends ComponentLifecycleBase implements Rou
     }
 
     @Override
-    public List<Ipv4GuestSubnetNetworkMap> listIpv4GuestSubnetsForGuestNetwork(ListIpv4SubnetsForGuestNetworkCmd cmd) {
+    public Pair<List<? extends Ipv4GuestSubnetNetworkMap>, Integer> listIpv4GuestSubnetsForGuestNetwork(ListIpv4SubnetsForGuestNetworkCmd cmd) {
         Long id = cmd.getId();
         Long zoneId = cmd.getZoneId();
         Long parentId = cmd.getParentId();
@@ -514,14 +515,14 @@ public class RoutedIpv4ManagerImpl extends ComponentLifecycleBase implements Rou
         Long networkId = cmd.getNetworkId();
         Long vpcId = cmd.getVpcId();
 
-        SearchCriteria sc = ipv4GuestSubnetNetworkMapDao.createSearchCriteria();
+        SearchCriteria<Ipv4GuestSubnetNetworkMapVO> sc = ipv4GuestSubnetNetworkMapDao.createSearchCriteria();
         if (id != null) {
             sc.addAnd("id", SearchCriteria.Op.EQ, id);
         }
         if (zoneId != null) {
             List<DataCenterIpv4GuestSubnetVO> subnets = dataCenterIpv4GuestSubnetDao.listByDataCenterId(zoneId);
             if (CollectionUtils.isEmpty(subnets)) {
-                return new ArrayList<>();
+                return new Pair<>(Collections.emptyList(), 0);
             }
             List<Long> parentIds = subnets.stream().map(DataCenterIpv4GuestSubnetVO::getId).collect(Collectors.toList());
             sc.addAnd("parentId", SearchCriteria.Op.IN, parentIds.toArray());
@@ -542,7 +543,9 @@ public class RoutedIpv4ManagerImpl extends ComponentLifecycleBase implements Rou
             sc.addAnd("subnet", SearchCriteria.Op.LIKE, "%" + keyword + "%");
         }
 
-        return ipv4GuestSubnetNetworkMapDao.search(sc, null);
+        Filter filter = new Filter(Ipv4GuestSubnetNetworkMapVO.class, "id", true, cmd.getStartIndex(), cmd.getPageSizeVal());
+        Pair<List<Ipv4GuestSubnetNetworkMapVO>, Integer> result = ipv4GuestSubnetNetworkMapDao.searchAndCount(sc, filter);
+        return new Pair<>(result.first(), result.second());
     }
 
     @Override
@@ -557,15 +560,27 @@ public class RoutedIpv4ManagerImpl extends ComponentLifecycleBase implements Rou
         Long zoneId = null;
         if (subnet.getNetworkId() != null) {
             Network network = ApiDBUtils.findNetworkById(subnet.getNetworkId());
-            response.setNetworkId(network.getUuid());
-            response.setNetworkName(network.getName());
-            zoneId = network.getDataCenterId();
+            if (network != null) {
+                response.setNetworkId(network.getUuid());
+                response.setNetworkName(network.getName());
+                Project project = ApiDBUtils.findProjectByProjectAccountId(network.getAccountId());
+                if (project != null) {
+                    response.setNetworkProjectId(project.getUuid());
+                }
+                zoneId = network.getDataCenterId();
+            }
         }
         if (subnet.getVpcId() != null) {
             Vpc vpc = ApiDBUtils.findVpcById(subnet.getVpcId());
-            response.setVpcId(vpc.getUuid());
-            response.setVpcName(vpc.getName());
-            zoneId = vpc.getZoneId();
+            if (vpc != null) {
+                response.setVpcId(vpc.getUuid());
+                response.setVpcName(vpc.getName());
+                Project project = ApiDBUtils.findProjectByProjectAccountId(vpc.getAccountId());
+                if (project != null) {
+                    response.setVpcProjectId(project.getUuid());
+                }
+                zoneId = vpc.getZoneId();
+            }
         }
         if (subnet.getParentId() != null) {
             DataCenterIpv4GuestSubnet parent = dataCenterIpv4GuestSubnetDao.findById(subnet.getParentId());

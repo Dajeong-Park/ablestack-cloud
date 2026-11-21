@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import BreadcrumbControls from '@/components/widgets/BreadcrumbControls'
 import { isProjectDetailRoute, projectListLocation } from '@/utils/projectSearch'
 import { isRoleDetailRoute, roleListLocation } from '@/utils/roleSearch'
@@ -116,6 +117,7 @@ export default {
     resourceTitle () {
       if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
+      if (this.$route.meta?.name === 'ipv4subnets' && this.resource.subnet) return this.resource.subnet
       if (guestVlanRoute(this.$route) && this.resource.vlan) return this.$t('label.vlan') + ' ' + this.resource.vlan
       const row = this.resource
       return row.displayname || row.name || row.displaytext || row.hostname || row.username || row.ipaddress || row.osname || row.osdisplayname || this.$route.params.id
@@ -169,6 +171,7 @@ export default {
       if (item.path === '/s2svpn' && this.$route.meta?.name === 's2svpn' && this.$route.params?.id) return s2sGatewayListLocation(this.$route, this.$store.getters)
       if (item.path === '/kubernetesiso' && this.$route.meta?.name === 'kubernetesiso' && this.$route.params?.id) return kubernetesIsoListLocation(this.$route, this.$store.getters, this.$store.state?.user?.token)
       if (item.path === '/vpnuser' && vpnUserRoute(this.$route) && this.$route.params?.id) return vpnUserListLocation(this.$route, this.$store.getters)
+      if (item.path === '/ipv4subnets' && this.$route.params?.id) return { path: item.path, query: ipv4SubnetListQuery(this.$route.query) }
       if (item.path === '/guestvlans' && guestVlanRoute(this.$route) && this.$route.params?.id) {
         return { path: item.path, query: guestVlanListQuery(this.$route.query) }
       }

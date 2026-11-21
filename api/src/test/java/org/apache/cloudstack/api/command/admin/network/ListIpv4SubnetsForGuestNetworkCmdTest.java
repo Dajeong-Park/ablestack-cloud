@@ -17,6 +17,8 @@
 
 package org.apache.cloudstack.api.command.admin.network;
 
+import com.cloud.utils.Pair;
+
 import org.apache.cloudstack.api.response.Ipv4SubnetForGuestNetworkResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.network.Ipv4GuestSubnetNetworkMap;
@@ -65,19 +67,17 @@ public class ListIpv4SubnetsForGuestNetworkCmdTest {
 
         Ipv4GuestSubnetNetworkMap ipv4GuestSubnetNetworkMap = Mockito.mock(Ipv4GuestSubnetNetworkMap.class);
         List<Ipv4GuestSubnetNetworkMap> ipv4GuestSubnetNetworkMaps = Arrays.asList(ipv4GuestSubnetNetworkMap);
-        Mockito.when(routedIpv4Manager.listIpv4GuestSubnetsForGuestNetwork(cmd)).thenReturn(ipv4GuestSubnetNetworkMaps);
+        Mockito.when(routedIpv4Manager.listIpv4GuestSubnetsForGuestNetwork(cmd)).thenReturn(new Pair<>(ipv4GuestSubnetNetworkMaps, 2));
 
         Ipv4SubnetForGuestNetworkResponse response = Mockito.mock(Ipv4SubnetForGuestNetworkResponse.class);
         Mockito.when(routedIpv4Manager.createIpv4SubnetForGuestNetworkResponse(ipv4GuestSubnetNetworkMap)).thenReturn(response);
 
-        try {
-            cmd.execute();
-        } catch (Exception ignored) {
-        }
+        cmd.execute();
 
         Assert.assertTrue(cmd.getResponseObject() instanceof ListResponse);
         ListResponse listResponse = (ListResponse) cmd.getResponseObject();
-        Assert.assertEquals(1, (int) listResponse.getCount());
+        Assert.assertEquals(2, (int) listResponse.getCount());
+        Assert.assertEquals(1, listResponse.getResponses().size());
         Assert.assertEquals(response, listResponse.getResponses().get(0));
     }
 }

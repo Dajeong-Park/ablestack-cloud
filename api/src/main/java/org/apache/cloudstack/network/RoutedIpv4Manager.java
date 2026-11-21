@@ -118,7 +118,7 @@ public interface RoutedIpv4Manager extends PluggableService, Configurable {
 
     void releaseIpv4SubnetForVpc(long vpcId);
 
-    List<Ipv4GuestSubnetNetworkMap> listIpv4GuestSubnetsForGuestNetwork(ListIpv4SubnetsForGuestNetworkCmd listIpv4SubnetsForGuestNetworkCmd);
+    Pair<List<? extends Ipv4GuestSubnetNetworkMap>, Integer> listIpv4GuestSubnetsForGuestNetwork(ListIpv4SubnetsForGuestNetworkCmd listIpv4SubnetsForGuestNetworkCmd);
 
     Ipv4SubnetForGuestNetworkResponse createIpv4SubnetForGuestNetworkResponse(Ipv4GuestSubnetNetworkMap subnet);
 

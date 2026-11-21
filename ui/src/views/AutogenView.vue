@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': isRoleList || isGuestVlan || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': isRoleList || isGuestVlan || isIpv4Subnet || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -238,7 +238,7 @@
         :resource="resource"
         :current-action="currentAction"
         :selected-items="selectedItems"
-        v-bind="isVpnUser && currentAction.api === 'addVpnUser' || vpnCustomerGatewayActionScope ? { afterClose: restoreClosedActionFocus } : {}"
+        v-bind="isVpnUser && currentAction.api === 'addVpnUser' || vpnCustomerGatewayActionScope || currentAction.ipv4SubnetDeleteTargets ? { afterClose: restoreClosedActionFocus } : {}"
         dialog-only
         @refresh-data="refreshActionData"
         @close-action="closeAction"
@@ -258,7 +258,7 @@
           :confirmLoading="actionLoading"
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
-          :focus-guard="isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
+          :focus-guard="isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -787,7 +787,7 @@
           :readyForActions="isKmsDetail ? kmsDetailReady : $route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp', 's2svpn', 's2svpnconn', 'vpncustomergateway'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
-          :quiet-refresh="isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
+          :quiet-refresh="isIpv4Subnet || isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
@@ -814,7 +814,7 @@
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => ((isProjectList || isVpnUser || isVpnCustomerGateway) && !storageActionReady) || (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
-          :tableScroll="isRoleList ? { x: 670 } : isGuestVlan ? { x: presentedColumns.reduce((sum, column) => sum + column.width, 0) } : isProjectList ? { x: projectTableWidth } : isEventList ? { x: 1210 } : isVpnUser ? { x: 458 } : isVpnCustomerGateway ? { x: presentedColumns.reduce((sum, column) => sum + (column.width || 0), 36) } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
+          :tableScroll="isRoleList ? { x: 670 } : isGuestVlan || isIpv4Subnet ? { x: presentedColumns.reduce((sum, column) => sum + column.width, 0) } : isProjectList ? { x: projectTableWidth } : isEventList ? { x: 1210 } : isVpnUser ? { x: 458 } : isVpnCustomerGateway ? { x: presentedColumns.reduce((sum, column) => sum + (column.width || 0), 36) } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -914,6 +914,7 @@ import ResourceView from '@/components/view/ResourceView'
 import VpcDialog from '@/components/network/VpcDialog'
 import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
+import { canDeleteIpv4Subnet, ipv4SubnetListQuery, ipv4SubnetReadParams, ipv4SubnetRoute, ipv4SubnetSearchQuery } from '@/utils/ipv4Subnet'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
@@ -1482,11 +1483,11 @@ export default {
           this.fetchData({ irefresh: true })
           return
         }
-        if ((storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot' || this.currentAction.projectBulkTargets) && this.showAction) this.closeAction()
+        if ((ipv4SubnetRoute(from) || storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot' || this.currentAction.projectBulkTargets) && this.showAction) this.closeAction()
         this.resetSelection()
         const page = Number(to.query.page)
         this.page = Number.isInteger(page) && page > 0 ? page : 1
-        if ('pagesize' in to.query) this.pageSize = this.getValidPageSize(to.query.pagesize)
+        if ('pagesize' in to.query || ipv4SubnetRoute(to)) this.pageSize = this.getValidPageSize(to.query.pagesize)
         this.itemCount = 0
         this.clearAutoRefresh()
         this.fetchData()
@@ -1610,8 +1611,9 @@ export default {
       return this.$route.meta?.name === 'vpncustomergateway' ? vpnCustomerGatewayActionKey(this.$store.getters, this.$route, this.$store.state?.user?.token) : null
     },
     isGuestVlan () { return guestVlanRoute(this.$route) },
+    isIpv4Subnet () { return ipv4SubnetRoute(this.$route) },
     isVpnCustomerGateway () { return this.$route.meta?.name === 'vpncustomergateway' },
-    standardResourceToolbar () { return this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan },
+    standardResourceToolbar () { return this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
     vpnUserDeleteScope () {
@@ -1694,6 +1696,10 @@ export default {
           width: widths[column.key] || 156,
           title: labels[column.key] ? this.$t(labels[column.key]) : column.title
         }))
+      }
+      if (this.isIpv4Subnet) {
+        const widths = { subnet: 152, zonename: 110, parentsubnet: 152, networkname: 166, vpcname: 136, created: 176, allocated: 176, state: 108, filtercolumn: 42 }
+        return columns.map(column => ({ ...column, sorter: false, width: widths[column.key] || 120 }))
       }
       if (this.isGuestVlan) {
         const widths = { vlan: 104, allocationstate: 116, physicalnetworkname: 164, taken: 190, account: 186, project: 174, domain: 136, zonename: 110, 'guest.networks': 240, filtercolumn: 42 }
@@ -1781,6 +1787,7 @@ export default {
       return activeFilters
     },
     showSearchFilters () {
+      if (ipv4SubnetRoute(this.$route)) return !this.dataView && this.activeFiltersList.some(filter => ['zoneid', 'parentid', 'subnet', 'networkid', 'vpcid'].includes(filter.key))
       if (isAclListRoute(this.$route)) return !this.dataView && this.activeFiltersList.length > 0
       const excludedKeys = ['page', 'pagesize', 'q', 'keyword', 'tags', 'projectid']
       return !this.dataView && this.$config.showSearchFilters && this.activeFiltersList.some(f => !excludedKeys.includes(f.key))
@@ -2885,6 +2892,7 @@ export default {
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
+      if (ipv4SubnetRoute(this.$route)) params = ipv4SubnetReadParams(this.$route.query, params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
       if (this.apiName === 'listRoles') {
@@ -3389,6 +3397,8 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false; this.listLoadedScope = null
         if (deletedCniDetail) { this.resource = {}; this.items = []; this.itemCount = 0 }
       }
+      const subnetDeletion = this.currentAction.api === 'deleteIpv4SubnetForGuestNetwork' && result?.ipv4SubnetDeletion
+      const deletedSubnetDetail = subnetDeletion && this.dataView && result.removed.includes(this.$route.params.id)
       const deletedSshDetail = this.currentAction?.api === 'deleteSSHKeyPair' && isSshKeyPairDetailRoute(this.$route) && result?.removed?.includes(this.resource?.id)
       if (this.currentAction?.api === 'deleteSSHKeyPair' && result?.clearSelection) { this.selectedRowKeys = []; this.selectedItems = [] }
       const deletedUserDataDetail = this.currentAction?.api === 'deleteUserData' && this.dataView && result?.removed?.includes(this.resource?.id)
@@ -3419,6 +3429,12 @@ export default {
         if (sameList) {
           this.$nextTick(() => { if (this.$route.fullPath === result.originPath && result.auth === this.s2sGatewaySearchAuth) this.fetchData({ irefresh: true }) })
         } else this.$router.replace(displayLocation)
+      }
+      if (deletedSubnetDetail) this.$router.replace({ name: 'ipv4subnets', query: ipv4SubnetListQuery(this.$route.query) })
+      else if (subnetDeletion) {
+        this.resetSelection()
+        if (this.$refs.listview) this.$refs.listview.resetSelection()
+        this.fetchData({ irefresh: true })
       }
       if (keyResourceList) this.$router.replace(keyResourceList)
       if (deletedGatewayDetail) this.$router.replace(gatewayLocation)
@@ -3509,6 +3525,11 @@ export default {
           if (filter.key === 'showunique') delete queryParams.locationtype
           if (filter.key === 'snapshottype') delete queryParams.intervaltype
           if (filter.key === 'domainid') delete queryParams.account
+        }
+        if (ipv4SubnetRoute(this.$route) && filter.key === 'zoneid') {
+          delete queryParams.parentid
+          delete queryParams.networkid
+          delete queryParams.vpcid
         }
         if (guestNetworkRoute(this.$route) && filter.key === 'domainid') delete queryParams.account
         if ((guestNetworkRoute(this.$route) || guestVlanRoute(this.$route)) && filter.key === 'zoneid') delete queryParams.physicalnetworkid
@@ -3631,6 +3652,21 @@ export default {
           ...action,
           vpnUserDeleteTargets: targets,
           vpnUserDeleteCurrent: () => this.showAction && this.storageActionGeneration === generation && scope === this.vpnUserDeleteScope
+        }
+        this.showAction = true
+        return
+      }
+      if (action.api === 'deleteIpv4SubnetForGuestNetwork') {
+        const record = this.dataView ? this.resource : action.resource
+        const candidates = isGroupAction ? this.items.filter(row => this.selectedRowKeys.includes(row.id)) : [record]
+        const targets = candidates.filter(canDeleteIpv4Subnet).map(({ id, subnet }) => ({ id, subnet }))
+        if (!targets.length || !this.$store.getters.apis.queryAsyncJobResult) return
+        const generation = this.storageActionGeneration
+        this.currentAction = {
+          ...action,
+          ipv4SubnetDeleteTargets: targets,
+          ipv4SubnetDeleteExcluded: candidates.length - targets.length,
+          ipv4SubnetDeleteCurrent: () => this.showAction && generation === this.storageActionGeneration
         }
         this.showAction = true
         return
@@ -4805,6 +4841,11 @@ export default {
       return this.$router.push({ query })
     },
     onSearch (opts) {
+      if (ipv4SubnetRoute(this.$route) && !this.dataView) {
+        const query = ipv4SubnetSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (this.isRoleList) {
         const query = applyRoleSearch(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
@@ -4967,7 +5008,7 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : query })
     },
@@ -5017,7 +5058,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
