@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <a-spin :spinning="loading">
+  <a-spin :spinning="submitting">
     <a-form
       class="form"
       layout="vertical"
@@ -32,8 +32,9 @@
         </template>
         <a-select
           v-model:value="form.zoneid"
-          :loading="loading"
-          @change="zone => fetchParentSubnets(zone)"
+          :loading="zonesLoading"
+          :disabled="submitting"
+          @change="fetchParentSubnets"
           showSearch
           optionFilterProp="label"
           :filterOption="(input, option) => {
@@ -54,12 +55,13 @@
       </a-form-item>
       <a-form-item ref="parentid" name="parentid">
         <template #label>
-          <tooltip-label :title="$t('label.parentsubnet')" :tooltip="apiParams.parentid.description"/>
+          <tooltip-label :title="$t('label.parentsubnet')"/>
         </template>
         <a-select
           v-model:value="form.parentid"
-          :loading="loading"
-          :placeholder="apiParams.parentid.description || $t('label.parentid')"
+          :loading="parentsLoading"
+          :disabled="submitting || parentsLoading || !parentSubnets.length"
+          :placeholder="$t('message.error.parent.subnet')"
           showSearch
           optionFilterProp="label"
           :filterOption="(input, option) => {
@@ -73,6 +75,13 @@
             {{ parentSubnet.subnet }}
           </a-select-option>
         </a-select>
+        <div v-if="lookupError" class="lookup-feedback">
+          <a-alert type="error" show-icon :message="$t(lookupError)" />
+          <a-button @click="retryLookup">{{ $t('label.retry') }}</a-button>
+        </div>
+        <div v-else-if="!zonesLoading && !parentsLoading && !parentSubnets.length" class="lookup-feedback" role="status">
+          {{ $t(form.zoneid ? 'message.ipv4.subnet.no.parents' : 'message.ipv4.subnet.no.zones') }}
+        </div>
       </a-form-item>
       <a-form-item ref="subnet" name="subnet">
         <template #label>
@@ -93,7 +102,7 @@
       </a-form-item>
       <div :span="24" class="action-button">
         <a-button @click="closeModal">{{ $t('label.cancel') }}</a-button>
-        <a-button type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
+        <a-button type="primary" ref="submit" :disabled="!canSubmit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
       </div>
     </a-form>
   </a-spin>
@@ -123,15 +132,28 @@ export default {
     return {
       zones: [],
       parentSubnets: [],
-      loading: false
+      zonesLoading: false,
+      parentsLoading: false,
+      submitting: false,
+      lookupError: '',
+      parentRequest: 0
     }
+  },
+  computed: {
+    canSubmit () {
+      return !this.zonesLoading && !this.parentsLoading && !this.submitting &&
+        !this.lookupError && this.parentSubnets.some(parent => parent.id === this.form.parentid)
+    }
+  },
+  beforeUnmount () {
+    this.parentRequest++
   },
   beforeCreate () {
     this.apiParams = this.$getApiParams('createIpv4SubnetForGuestNetwork')
   },
   created () {
     this.initForm()
-    this.fetchData()
+    this.fetchZones()
   },
   methods: {
     initForm () {
@@ -142,36 +164,46 @@ export default {
         parentid: [{ required: true, message: this.$t('message.error.parent.subnet') }]
       })
     },
-    fetchData () {
-      this.fetchZones()
-    },
-    fetchZones () {
-      this.loading = true
-      const params = { showicon: true }
-      getAPI('listZones', params).then(json => {
-        this.zones = json.listzonesresponse.zone || []
-        this.zones = this.zones.filter(zone => zone.routedmodeenabled)
-        this.form.zoneid = this.zones[0].id || ''
+    async fetchZones () {
+      this.zonesLoading = true
+      this.lookupError = ''
+      try {
+        const json = await getAPI('listZones', { showicon: true })
+        this.zones = (json.listzonesresponse.zone || []).filter(zone => zone.routedmodeenabled)
+        this.form.zoneid = this.zones[0]?.id
         this.fetchParentSubnets(this.form.zoneid)
-      }).finally(() => {
-        this.loading = false
-      })
-    },
-    fetchParentSubnets (zoneId) {
-      this.loading = true
-      var params = {
-        zoneid: zoneId,
-        listall: true
+      } catch {
+        this.lookupError = 'message.ipv4.subnet.zones.failed'
+      } finally {
+        this.zonesLoading = false
       }
-      getAPI('listIpv4SubnetsForZone', params).then(json => {
-        this.parentSubnets = json.listipv4subnetsforzoneresponse.zoneipv4subnet || []
-      }).finally(() => {
-        this.loading = false
-      })
     },
-    handleSubmit (e) {
-      if (this.loading) return
+    async fetchParentSubnets (zoneId) {
+      const request = ++this.parentRequest
+      this.form.parentid = undefined
+      this.parentSubnets = []
+      this.lookupError = ''
+      this.parentsLoading = Boolean(zoneId)
+      if (!zoneId) return
+
+      try {
+        const json = await getAPI('listIpv4SubnetsForZone', { zoneid: zoneId, listall: true })
+        if (request === this.parentRequest) {
+          this.parentSubnets = json.listipv4subnetsforzoneresponse.zoneipv4subnet || []
+        }
+      } catch {
+        if (request === this.parentRequest) this.lookupError = 'message.ipv4.subnet.parents.failed'
+      } finally {
+        if (request === this.parentRequest) this.parentsLoading = false
+      }
+    },
+    retryLookup () {
+      return this.form.zoneid ? this.fetchParentSubnets(this.form.zoneid) : this.fetchZones()
+    },
+    handleSubmit () {
+      if (!this.canSubmit) return
       this.formRef.value.validate().then(() => {
+        if (!this.canSubmit) return
         const formRaw = toRaw(this.form)
         const values = this.handleRemoveFields(formRaw)
         const params = {
@@ -183,7 +215,7 @@ export default {
         if (values.cidrsize && values.cidrsize !== '') {
           params.cidrsize = values.cidrsize
         }
-        this.loading = true
+        this.submitting = true
         postAPI('createIpv4SubnetForGuestNetwork', params).then(response => {
           this.$pollJob({
             jobId: response.createipv4subnetforguestnetworkresponse.jobid,
@@ -201,7 +233,7 @@ export default {
         }).catch(error => {
           this.$notifyError(error)
         }).finally(() => {
-          this.loading = false
+          this.submitting = false
         })
       }).catch((error) => {
         this.formRef.value.scrollToField(error.errorFields[0].name)
@@ -215,6 +247,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.lookup-feedback {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  margin-top: 8px;
+}
+
 .form {
   width: 80vw;
 
