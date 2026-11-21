@@ -106,10 +106,11 @@
           <a-switch v-model:checked="form.ispublic"/>
         </a-form-item>
 
-        <div :span="24" class="action-button">
+        <a-alert v-if="error" class="role-create-error" type="error" show-icon :message="error" />
+        <mold-dialog-actions :busy="loading" @keydown.ctrl.enter.prevent.stop="!$event.repeat && handleSubmit($event)">
           <a-button @click="closeAction">{{ $t('label.cancel') }}</a-button>
           <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
     </a-spin>
   </div>
@@ -118,20 +119,24 @@
 <script>
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import { roleTypes } from '@/utils/roleSearch'
 
 export default {
   name: 'CreateRole',
   mixins: [mixinForm],
   components: {
-    TooltipLabel
+    TooltipLabel,
+    MoldDialogActions
   },
   data () {
     return {
       roles: [],
-      defaultRoles: ['Admin', 'DomainAdmin', 'User'],
-      loading: false
+      defaultRoles: roleTypes,
+      loading: false,
+      error: ''
     }
   },
   created () {
@@ -167,7 +172,8 @@ export default {
       })
     },
     handleSubmit (e) {
-      e.preventDefault()
+      if (e?.preventDefault) e.preventDefault()
+      this.error = ''
       if (this.loading) return
       this.formRef.value.validate().then(() => {
         const formRaw = toRaw(this.form)
@@ -196,18 +202,19 @@ export default {
     },
     createRole (params) {
       this.loading = true
-      postAPI('createRole', params).then(json => {
+      postAPI('createRole', params, { preserveOnFailure: true }).then(json => {
         const role = json.createroleresponse.role
         if (role) {
           this.$emit('refresh-data')
           this.$notification.success({
-            message: 'Create Role',
-            description: 'Sucessfully created role ' + params.name
+            message: this.$t('label.add.role'),
+            description: this.$t('message.role.create.success', { name: params.name })
           })
         }
         this.closeAction()
       }).catch(error => {
-        this.$notifyError(error)
+        this.error = Object.values(error.response?.data || {}).find(value => value?.errortext)?.errortext ||
+          this.$t('message.request.failed')
       }).finally(() => {
         this.loading = false
       })
@@ -227,11 +234,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-  .form-layout {
-    width: 80vw;
-
-    @media (min-width: 700px) {
-      width: 550px;
-    }
-  }
+  .form-layout { min-width: 0; }
 </style>

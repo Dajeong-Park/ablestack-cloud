@@ -38,5 +38,8 @@ public interface RoleDao extends GenericDao<RoleVO, Long> {
 
     Pair<List<RoleVO>, Integer> listAllRoles(String state, Long startIndex, Long limit, boolean showPrivateRole);
 
+    Pair<List<RoleVO>, Integer> searchRoles(String uuid, String name, String keyword, RoleType type,
+            String state, Long offset, Long limit, boolean rootAdmin);
+
     List<RoleVO> searchByIds(Long... ids);
 }
