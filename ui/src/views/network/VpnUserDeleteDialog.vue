@@ -1,57 +1,21 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
-
-<template>
-  <MoldDialog
-    :visible="true"
-    :title="$t('label.delete.vpn.user')"
-    :after-close="afterClose"
-    :focus-trigger-after-close="false"
-    :closable="!running"
-    :keyboard="!running"
-    size="md"
-    focus-guard
-    @cancel="close">
-    <p>{{ $t('message.action.delete.vpn.user') }}</p>
-    <p v-if="rows.length > 1" class="vpn-user-delete-count">{{ $t('message.vpn.user.delete.count', [rows.length]) }}</p>
-    <ul class="vpn-user-delete-targets" aria-live="polite">
-      <li v-for="row in rows" :key="row.id">
-        <strong class="vpn-user-delete-name">{{ row.username }}</strong>
-        <VpnUserValue field="owners" :resource="row" plain />
-        <div class="vpn-user-delete-status">
-          <span>{{ $t('label.status') }} ·</span>
-          <VpnUserValue field="state" :resource="row" />
-        </div>
-        <a-tag v-if="row.status" :color="statusColors[row.status]">{{ $t(statusLabels[row.status]) }}</a-tag>
-        <div v-if="row.error">{{ row.error }}</div>
-        <code v-if="row.status === 'unknown' && row.jobId">{{ row.jobId }}</code>
-      </li>
-    </ul>
-    <template #footer>
-      <a-button v-focus="true" :disabled="running" @click="close">{{ $t(started ? 'label.close' : 'label.cancel') }}</a-button>
-      <a-button v-if="!started" type="primary" danger @click="submit">{{ $t('label.delete.vpn.user') }}</a-button>
-      <a-button v-else-if="canRecheck" type="primary" :loading="running" @click="recheck">{{ $t('message.vpn.user.delete.recheck') }}</a-button>
-    </template>
-  </MoldDialog>
-</template>
-
 <script>
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
 import { getAPI, postAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
 import VpnUserValue from '@/components/widgets/VpnUserValue'
@@ -163,6 +127,40 @@ export default {
   }
 }
 </script>
+
+<template>
+  <MoldDialog
+    :visible="true"
+    :title="$t('label.delete.vpn.user')"
+    :after-close="afterClose"
+    :focus-trigger-after-close="false"
+    :closable="!running"
+    :keyboard="!running"
+    size="md"
+    focus-guard
+    @cancel="close">
+    <p>{{ $t('message.action.delete.vpn.user') }}</p>
+    <p v-if="rows.length > 1" class="vpn-user-delete-count">{{ $t('message.vpn.user.delete.count', [rows.length]) }}</p>
+    <ul class="vpn-user-delete-targets" aria-live="polite">
+      <li v-for="row in rows" :key="row.id">
+        <strong class="vpn-user-delete-name">{{ row.username }}</strong>
+        <VpnUserValue field="owners" :resource="row" plain />
+        <div class="vpn-user-delete-status">
+          <span>{{ $t('label.status') }} ·</span>
+          <VpnUserValue field="state" :resource="row" />
+        </div>
+        <a-tag v-if="row.status" :color="statusColors[row.status]">{{ $t(statusLabels[row.status]) }}</a-tag>
+        <div v-if="row.error">{{ row.error }}</div>
+        <code v-if="row.status === 'unknown' && row.jobId">{{ row.jobId }}</code>
+      </li>
+    </ul>
+    <template #footer>
+      <a-button v-focus="true" :disabled="running" @click="close">{{ $t(started ? 'label.close' : 'label.cancel') }}</a-button>
+      <a-button v-if="!started" type="primary" danger @click="submit">{{ $t('label.delete.vpn.user') }}</a-button>
+      <a-button v-else-if="canRecheck" type="primary" :loading="running" @click="recheck">{{ $t('message.vpn.user.delete.recheck') }}</a-button>
+    </template>
+  </MoldDialog>
+</template>
 
 <style scoped>
 .vpn-user-delete-targets {

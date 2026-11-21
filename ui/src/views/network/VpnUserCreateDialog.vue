@@ -1,119 +1,21 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
-
-<template>
-  <MoldDialog
-    class="vpn-user-create-dialog"
-    :title="$t('label.add.vpn.user')"
-    :after-close="afterClose"
-    :focus-trigger-after-close="false"
-    :closable="!running"
-    :keyboard="!running"
-    size="md"
-    focus-guard
-    @cancel="close">
-    <a-alert v-if="result" class="vpn-user-create-result" :type="resultType" show-icon :message="$t('message.vpn.user.add.result.' + result)">
-      <template v-if="jobId" #description>
-        <div>{{ $t('label.job.id') }} <code>{{ jobId }}</code></div>
-        <a-button v-if="result === 'unknown'" size="small" @click="recheck">{{ $t('message.vpn.user.delete.recheck') }}</a-button>
-      </template>
-    </a-alert>
-
-    <a-form :model="form" layout="vertical">
-      <a-form-item v-if="canChooseAccount" :label="$t('label.vpn.user.add.owner.type')">
-        <a-radio-group :value="mode" :disabled="locked" :aria-label="$t('label.vpn.user.add.owner.type')" @change="changeMode($event.target.value)">
-          <a-radio value="self">{{ $t('label.vpn.user.add.own.account') }}</a-radio>
-          <a-radio value="account">{{ $t('label.vpn.user.add.other.account') }}</a-radio>
-        </a-radio-group>
-      </a-form-item>
-      <template v-if="choosingAccount">
-        <a-alert v-if="lookupError" class="vpn-user-create-result" type="error" show-icon :message="$t('message.vpn.user.add.lookup.failed')">
-          <template #description><a-button size="small" :disabled="locked" @click="retryOwners">{{ $t('label.retry') }}</a-button></template>
-        </a-alert>
-        <a-form-item :label="$t('label.domain')" :validate-status="errors.domainid ? 'error' : undefined" :help="errorText('domainid')" html-for="vpn-user-add-domain" required>
-          <a-select
-            id="vpn-user-add-domain"
-            :value="domainid"
-            :loading="loading === 'domain'"
-            :disabled="locked || loading === 'domain' || lookupError === 'domain'"
-            :placeholder="$t('message.vpn.user.add.domain.required')"
-            show-search
-            option-filter-prop="label"
-            @change="changeDomain">
-            <a-select-option v-for="row in domains" :key="row.id" :value="row.id" :label="row.path || row.name">{{ row.path || row.name }}</a-select-option>
-          </a-select>
-        </a-form-item>
-        <a-form-item :label="$t('label.account')" :validate-status="errors.account ? 'error' : undefined" :help="errorText('account')" html-for="vpn-user-add-account" required>
-          <a-select
-            id="vpn-user-add-account"
-            :value="account"
-            :loading="loading === 'account'"
-            :disabled="locked || !domainid || !!loading || !!lookupError"
-            :placeholder="$t(domainid ? 'message.vpn.user.add.account.required' : 'message.vpn.user.search.account.domain')"
-            show-search
-            option-filter-prop="label"
-            @change="selectAccount">
-            <a-select-option v-for="row in accounts" :key="row.id" :value="row.name" :label="row.name">{{ row.name }}</a-select-option>
-          </a-select>
-        </a-form-item>
-      </template>
-      <p class="vpn-user-registration-owner" aria-live="polite">
-        <strong>{{ $t('label.vpn.user.add.target') }}</strong>
-        {{ ownerLabel }}
-      </p>
-
-      <a-form-item :label="$t('label.username')" :validate-status="errors.username ? 'error' : undefined" :help="errorText('username')" :extra="errors.username ? undefined : $t('message.vpn.user.add.username.format')" html-for="vpn-user-add-username" required>
-        <a-input
-          id="vpn-user-add-username"
-          ref="usernameInput"
-          v-focus="true"
-          v-model:value="form.username"
-          :disabled="locked"
-          :placeholder="$t('message.vpn.user.add.username.required')"
-          :aria-invalid="!!errors.username"
-          autocomplete="off"
-          @blur="validateCredential('username')"
-          @input="updateCredential('username', $event.target.value)"
-          @keydown.enter.prevent="submit" />
-      </a-form-item>
-      <a-form-item :label="$t('label.password')" :validate-status="errors.password ? 'error' : undefined" :help="errorText('password')" :extra="errors.password ? undefined : $t('message.vpn.user.add.password.format')" html-for="vpn-user-add-password" required>
-        <a-input
-          id="vpn-user-add-password"
-          v-model:value="form.password"
-          type="password"
-          :disabled="locked"
-          :placeholder="$t('message.vpn.user.add.password.required')"
-          :aria-invalid="!!errors.password"
-          autocomplete="new-password"
-          @blur="validateCredential('password')"
-          @input="updateCredential('password', $event.target.value)"
-          @keydown.enter.prevent="submit" />
-      </a-form-item>
-    </a-form>
-    <template #footer>
-      <a-button :disabled="running" @click="close">{{ $t(result === 'unknown' ? 'label.close' : 'label.cancel') }}</a-button>
-      <a-button type="primary" :loading="running" :disabled="locked || !!loading || !!lookupError" @click="submit">{{ $t('label.add') }}</a-button>
-    </template>
-  </MoldDialog>
-</template>
-
 <script>
+// Licensed to the Apache Software Foundation (ASF) under one
+// or more contributor license agreements.  See the NOTICE file
+// distributed with this work for additional information
+// regarding copyright ownership.  The ASF licenses this file
+// to you under the Apache License, Version 2.0 (the
+// "License"); you may not use this file except in compliance
+// with the License.  You may obtain a copy of the License at
+//
+//   http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an
+// "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+// KIND, either express or implied.  See the License for the
+// specific language governing permissions and limitations
+// under the License.
+
 import { getAPI, postAPI } from '@/api'
 import MoldDialog from '@/components/view/MoldDialog'
 import { affinityOwnerOptions } from '@/utils/affinityGroupCreation'
@@ -297,6 +199,102 @@ export default {
   }
 }
 </script>
+
+<template>
+  <MoldDialog
+    class="vpn-user-create-dialog"
+    :title="$t('label.add.vpn.user')"
+    :after-close="afterClose"
+    :focus-trigger-after-close="false"
+    :closable="!running"
+    :keyboard="!running"
+    size="md"
+    focus-guard
+    @cancel="close">
+    <a-alert v-if="result" class="vpn-user-create-result" :type="resultType" show-icon :message="$t('message.vpn.user.add.result.' + result)">
+      <template v-if="jobId" #description>
+        <div>{{ $t('label.job.id') }} <code>{{ jobId }}</code></div>
+        <a-button v-if="result === 'unknown'" size="small" @click="recheck">{{ $t('message.vpn.user.delete.recheck') }}</a-button>
+      </template>
+    </a-alert>
+
+    <a-form :model="form" layout="vertical">
+      <a-form-item v-if="canChooseAccount" :label="$t('label.vpn.user.add.owner.type')">
+        <a-radio-group :value="mode" :disabled="locked" :aria-label="$t('label.vpn.user.add.owner.type')" @change="changeMode($event.target.value)">
+          <a-radio value="self">{{ $t('label.vpn.user.add.own.account') }}</a-radio>
+          <a-radio value="account">{{ $t('label.vpn.user.add.other.account') }}</a-radio>
+        </a-radio-group>
+      </a-form-item>
+      <template v-if="choosingAccount">
+        <a-alert v-if="lookupError" class="vpn-user-create-result" type="error" show-icon :message="$t('message.vpn.user.add.lookup.failed')">
+          <template #description><a-button size="small" :disabled="locked" @click="retryOwners">{{ $t('label.retry') }}</a-button></template>
+        </a-alert>
+        <a-form-item :label="$t('label.domain')" :validate-status="errors.domainid ? 'error' : undefined" :help="errorText('domainid')" html-for="vpn-user-add-domain" required>
+          <a-select
+            id="vpn-user-add-domain"
+            :value="domainid"
+            :loading="loading === 'domain'"
+            :disabled="locked || loading === 'domain' || lookupError === 'domain'"
+            :placeholder="$t('message.vpn.user.add.domain.required')"
+            show-search
+            option-filter-prop="label"
+            @change="changeDomain">
+            <a-select-option v-for="row in domains" :key="row.id" :value="row.id" :label="row.path || row.name">{{ row.path || row.name }}</a-select-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item :label="$t('label.account')" :validate-status="errors.account ? 'error' : undefined" :help="errorText('account')" html-for="vpn-user-add-account" required>
+          <a-select
+            id="vpn-user-add-account"
+            :value="account"
+            :loading="loading === 'account'"
+            :disabled="locked || !domainid || !!loading || !!lookupError"
+            :placeholder="$t(domainid ? 'message.vpn.user.add.account.required' : 'message.vpn.user.search.account.domain')"
+            show-search
+            option-filter-prop="label"
+            @change="selectAccount">
+            <a-select-option v-for="row in accounts" :key="row.id" :value="row.name" :label="row.name">{{ row.name }}</a-select-option>
+          </a-select>
+        </a-form-item>
+      </template>
+      <p class="vpn-user-registration-owner" aria-live="polite">
+        <strong>{{ $t('label.vpn.user.add.target') }}</strong>
+        {{ ownerLabel }}
+      </p>
+
+      <a-form-item :label="$t('label.username')" :validate-status="errors.username ? 'error' : undefined" :help="errorText('username')" :extra="errors.username ? undefined : $t('message.vpn.user.add.username.format')" html-for="vpn-user-add-username" required>
+        <a-input
+          id="vpn-user-add-username"
+          ref="usernameInput"
+          v-focus="true"
+          v-model:value="form.username"
+          :disabled="locked"
+          :placeholder="$t('message.vpn.user.add.username.required')"
+          :aria-invalid="!!errors.username"
+          autocomplete="off"
+          @blur="validateCredential('username')"
+          @input="updateCredential('username', $event.target.value)"
+          @keydown.enter.prevent="submit" />
+      </a-form-item>
+      <a-form-item :label="$t('label.password')" :validate-status="errors.password ? 'error' : undefined" :help="errorText('password')" :extra="errors.password ? undefined : $t('message.vpn.user.add.password.format')" html-for="vpn-user-add-password" required>
+        <a-input
+          id="vpn-user-add-password"
+          v-model:value="form.password"
+          type="password"
+          :disabled="locked"
+          :placeholder="$t('message.vpn.user.add.password.required')"
+          :aria-invalid="!!errors.password"
+          autocomplete="new-password"
+          @blur="validateCredential('password')"
+          @input="updateCredential('password', $event.target.value)"
+          @keydown.enter.prevent="submit" />
+      </a-form-item>
+    </a-form>
+    <template #footer>
+      <a-button :disabled="running" @click="close">{{ $t(result === 'unknown' ? 'label.close' : 'label.cancel') }}</a-button>
+      <a-button type="primary" :loading="running" :disabled="locked || !!loading || !!lookupError" @click="submit">{{ $t('label.add') }}</a-button>
+    </template>
+  </MoldDialog>
+</template>
 
 <style scoped>
 .vpn-user-create-result {
