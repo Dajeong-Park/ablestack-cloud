@@ -17,6 +17,11 @@
 
 <template>
   <div>
+    <a-alert
+      v-if="scopeKey === 'accountid'"
+      type="info"
+      show-icon
+      :message="$t('message.account.settings.scope', { account: resource.name, domain: resource.domainpath || resource.domain || resource.domainid })" />
     <a-col :span="24">
       <a-input-search
         style="width: 25vw;float: right;margin-bottom: 10px; z-index: 8;"

@@ -1,4 +1,9 @@
 {
+  "message.account.limit.tag.scope": "0 prevents allocation. -1 is unlimited within the parent limits. Tag limits apply to configured host or storage tags.",
+  "message.account.limit.save.result": "Saved {success} limits. {failed} failed.",
+  "message.account.settings.scope": "Settings for account {account} in {domain}. Values without an account override inherit their effective settings.",
+  "message.account.count.scope": "Recalculate resource counts for account {account} in {domain}.",
+  "message.account.count.result": "Recalculation completed for {count} resource types.",
   "label.account.search.name": "Name (exact match)",
   "label.account.search.isrecursive": "Include subdomains",
   "label.account.search.iscleanuprequired": "Cleanup required",

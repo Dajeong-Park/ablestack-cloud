@@ -134,18 +134,10 @@ export default {
       api: 'updateResourceCount',
       icon: 'sync-outlined',
       label: 'label.action.update.resource.count',
-      message: 'message.update.resource.count',
       dataView: true,
-      show: (record, store) => { return ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype) },
-      args: ['account', 'domainid'],
-      mapping: {
-        account: {
-          value: (record) => { return record.name }
-        },
-        domainid: {
-          value: (record) => { return record.domainid }
-        }
-      }
+      popup: true,
+      show: (record, store) => ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype),
+      component: shallowRef(defineAsyncComponent(() => import('@/views/iam/AccountResourceCount.vue')))
     },
     ...[
       { api: 'enableAccount', icon: 'play-circle-outlined', accountState: 'enabled', verb: 'enable' },

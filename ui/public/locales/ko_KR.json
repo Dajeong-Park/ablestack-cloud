@@ -1,4 +1,9 @@
 {
+  "message.account.limit.tag.scope": "0은 자원 할당 금지이며 -1은 상위 한도 범위의 무제한입니다. 설정된 호스트·스토리지 태그에만 태그별 한도를 적용할 수 있습니다.",
+  "message.account.limit.save.result": "한도 {success}개 저장, {failed}개 실패",
+  "message.account.settings.scope": "{domain} 도메인의 {account} 계정 설정입니다. 계정별로 재정의하지 않은 값에는 상위 설정이 적용됩니다.",
+  "message.account.count.scope": "{domain} 도메인의 {account} 계정 리소스 수를 다시 계산합니다.",
+  "message.account.count.result": "리소스 유형 {count}개의 집계를 완료했습니다.",
   "label.account.search.name": "이름(정확히 일치)",
   "label.account.search.isrecursive": "하위 도메인 포함",
   "label.account.search.iscleanuprequired": "정리 필요",

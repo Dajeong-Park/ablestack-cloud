@@ -93,7 +93,7 @@
                   @show-zones="$route.meta?.name === 'kubernetesiso' && onTabChange('zones')"
                   @refresh-availability="refreshKubernetesIsoAvailability"
                   @change-resource="$emit('change-resource', $event)"
-                  @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tab.name))) && $emit('refresh')"
+                  @refresh="(['buckets', 'objectstore'].includes($route.meta.name) || ($route.meta.name === 'account' && tab.name === 'limits.configure') || ($route.meta.name === 'template' && ['vnf.settings','settings'].includes(tab.name))) && $emit('refresh')"
                   v-on="$route.meta?.name === 'template' && tab.name === 'zones' ? { 'availability-observed': acceptTemplateObservation, 'operation-retained': value => $emit('template-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : $route.meta?.name === 'iso' && tab.name === 'zones' ? { 'operation-retained': value => $emit('iso-operation-retained',value), 'refresh-parent': () => $emit('refresh') } : {}"
             @wide-layout-change="onWideLayoutChange" />
               </keep-alive>
