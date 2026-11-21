@@ -25,8 +25,7 @@
               <a-form v-if="visible" :model="form" layout="vertical" class="storage-standard-search-form asn-search-form" @finish="apply" @keydown.esc.stop.prevent="closeSearch" @keydown.ctrl.enter.prevent="!$event.repeat && apply()">
                 <a-alert v-if="error" role="alert" type="error" show-icon :message="$t('message.asn.search.' + error)" />
                 <a-form-item :label="$t('label.asn.search.exact')" html-for="asn-search-exact">
-                  <a-input id="asn-search-exact" ref="exactInput" v-model:value="form.asnumber" inputmode="numeric" :aria-describedby="'asn-exact-help'" />
-                  <template #extra><span id="asn-exact-help">{{ $t('message.asn.search.exact') }}</span></template>
+                  <a-input id="asn-search-exact" ref="exactInput" v-model:value="form.asnumber" inputmode="numeric" />
                 </a-form-item>
                 <a-form-item v-for="field in pickers" :key="field" :label="$t(config(field).label)" :html-for="'asn-search-' + field">
                   <AsnSearchSelect :key="field + ':' + generation" v-model:value="form[field]" :kind="field" :scope="form" @update:value="changed(field)" @blocked="blocked[field] = $event" />
@@ -45,7 +44,6 @@
     <span v-if="chips.length" class="asn-search-chips">
       <a-tag v-for="chip in chips" :key="chip.key" closable @close.prevent="remove(chip.key)"><span :title="chip.value">{{ chip.label }}: {{ chip.value }}</span></a-tag>
     </span>
-    <span v-if="validationError || verification" role="status" class="asn-search-verification">{{ $t('message.asn.search.' + (validationError || verification)) }}</span>
   </span>
 </template>
 <script>
@@ -57,10 +55,10 @@ export default {
   components: { AsnSearchSelect },
   props: { validationError: { type: String, default: '' } },
   emits: ['search'],
-  data () { return { keyword: '', form: {}, visible: false, error: '', blocked: {}, labels: {}, verification: '', generation: 0, version: 0, disposed: false, pickers: ['zoneid', 'asnrangeid', 'domainid', 'account', 'vpcid', 'networkid'] } },
+  data () { return { keyword: '', form: {}, visible: false, error: '', blocked: {}, labels: {}, generation: 0, version: 0, disposed: false, pickers: ['zoneid', 'asnrangeid', 'domainid', 'account', 'vpcid', 'networkid'] } },
   computed: {
     auth () { return asnAuth(this.$store) },
-    chips () { return asnFields.filter(k => this.$route.query[k] !== undefined).map(key => ({ key, label: this.$t(key === 'asnumber' ? 'label.asn.search.exact' : asnConfig(key).label), value: (!this.validationError && this.labels[key]) || String(this.$route.query[key]) + (key !== 'asnumber' && (this.validationError || this.verification) ? ' · ' + this.$t('message.asn.search.unverified') : '') })) }
+    chips () { return asnFields.filter(k => this.$route.query[k] !== undefined).map(key => ({ key, label: this.$t(key === 'asnumber' ? 'label.asn.search.exact' : asnConfig(key).label), value: (!this.validationError && this.labels[key]) || String(this.$route.query[key]) })) }
   },
   watch: {
     auth: { flush: 'sync', handler () { this.visible = false; this.form = {}; this.blocked = {}; this.labels = {}; this.generation++; this.verify() } },
@@ -72,8 +70,9 @@ export default {
     async verify () {
       const version = ++this.version; const auth = this.auth; const query = asnQuery(this.$route.query, 20, this.$store.getters)
       const current = () => !this.disposed && version === this.version && auth === this.auth
-      this.labels = {}; this.verification = 'checking'
-      try { const result = await asnSelection(getAPI, query, this.$store.getters, current); if (current()) { this.labels = result.labels; this.verification = '' } } catch (error) { if (current()) this.verification = ['permission', 'project', 'zone', 'domain', 'integer', 'invalid', 'missing', 'combination'].includes(error.message) ? error.message : 'lookup' }
+      this.labels = {}
+      const selection = await asnSelection(getAPI, query, this.$store.getters, current).catch(() => null)
+      if (selection && current()) this.labels = selection.labels
     },
     open (value) { if (!value) { this.closeSearch(); return }; this.visible = true; this.form = { ...asnQuery(this.$route.query, 20, this.$store.getters) }; this.blocked = {}; this.error = ''; this.generation++; this.$nextTick(() => { if (this.$refs.exactInput) this.$refs.exactInput.focus() }) },
     closeSearch () { this.visible = false; this.$nextTick(() => { if (!this.disposed && this.$refs.advancedButton?.$el) this.$refs.advancedButton.$el.focus() }) },
@@ -97,9 +96,7 @@ export default {
 .asn-search-control { display: table-cell; width: 100%; line-height: 31px; min-width: 0; max-width: 100%; }
 .asn-search-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 .asn-search-chips :deep(.ant-tag) { max-width: 100%; white-space: normal; overflow-wrap: anywhere; color: var(--ui-text-primary); background: var(--ui-bg-elevated); border-color: var(--ui-border-strong); }
-.asn-search-verification { color: var(--ui-text-secondary); overflow-wrap: anywhere; }
 .asn-search-form { max-height: 65vh; overflow-y: auto; width: min(340px, calc(100vw - 64px)); scroll-padding-bottom: 48px; }
-.asn-search-form :deep(.ant-form-item-extra) { color: var(--ui-text-secondary); }
 .asn-search-form :deep(.ant-form-item-label > label) { color: var(--ui-text-primary); }
 .asn-search-form :deep(.ant-input), .asn-search-form :deep(.ant-select:not(.ant-select-disabled) .ant-select-selector) { color: var(--ui-text-primary); background: var(--ui-bg-input); border-color: var(--ui-border-strong); }
 .asn-search-form .filter-group-button { position: sticky; bottom: 0; z-index: 1; display: flex; justify-content: space-between; gap: 8px; background: var(--ui-bg-elevated); border-top: 1px solid var(--ui-border); padding: 8px 0; }
