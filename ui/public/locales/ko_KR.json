@@ -6947,6 +6947,8 @@
   "label.use.backup.ip.address": "백업에서 IP 주소 사용",
   "label.use.backup.ip.address.tooltip": "백업 메타데이터에 저장된 동일한 IP/MAC 주소를 사용합니다. IP/MAC 주소가 없으면 명령이 오류를 발생시킵니다.",
   "label.rolepermissiontab.searchbar": "규칙 검색",
+  "message.role.rules.reorder.search": "규칙 순서를 바꾸려면 검색어를 지우세요.",
+  "message.role.rules.load.failed": "역할 규칙을 불러오지 못했습니다.",
   "label.run.custom.action": "작업 실행",
   "label.scheduled": "예약됨",
   "label.select.all": "전체 선택",

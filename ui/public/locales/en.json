@@ -6365,6 +6365,8 @@
   "label.use.backup.ip.address": "Use IP Addresses from Backup",
   "label.use.backup.ip.address.tooltip": "Use the same IP/MAC addresses as stored in the backup metadata. The command will error out if the IP/MAC addresses are not available",
   "label.rolepermissiontab.searchbar": "Search Rule",
+  "message.role.rules.reorder.search": "Clear the search to change the rule order.",
+  "message.role.rules.load.failed": "Unable to load role rules.",
   "label.run.custom.action": "Run Action",
   "label.scheduled": "Scheduled",
   "label.select.all": "Select all",
