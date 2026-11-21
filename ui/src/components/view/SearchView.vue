@@ -66,7 +66,7 @@
                   :key="index"
                   :label="retrieveFieldLabel(field.name)"
                   :html-for="isVpnUserSearch ? 'vpn-user-filter-' + field.name : isAclSearch && field.name === 'vpcid' ? 'pip-search-candidate-vpcid' : isKmsSearch ? 'kms-filter-' + field.name : undefined"
-                  :extra="isVpnUserSearch && field.error ? $t('error.fetching.data') : ['listTemplates', 'listIsos'].includes(apiName) && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
+                  :extra="(isVpnUserSearch || isIpv4SubnetSearch) && field.error ? $t('error.fetching.data') : ['listTemplates', 'listIsos'].includes(apiName) && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
                   <PublicIpSearchSelect
                     v-if="isAclSearch && field.name === 'vpcid'"
                     v-model:value="form.vpcid"
@@ -93,6 +93,14 @@
                     v-model:value="form[field.name]"
                     :kind="field.name"
                     :scope="networkScope" />
+                  <a-select v-else-if="isIpv4SubnetSearch && ipv4SubnetZoneChoices.includes(field.name)"
+                    v-model:value="form[field.name]"
+                    :aria-label="retrieveFieldLabel(field.name)"
+                    :options="field.opts.map(option => ({ value: option.id, label: option.name }))"
+                    :loading="field.loading"
+                    option-filter-prop="label"
+                    show-search
+                    allow-clear />
                   <a-select
                     allowClear
                     v-else-if="field.type==='list'"
@@ -234,6 +242,7 @@ import { roleStates, roleTypes } from '@/utils/roleSearch'
 import KubernetesIsoSearch from '@/components/view/KubernetesIsoSearch'
 import { ref, reactive, toRaw } from 'vue'
 import { kmsApis, kmsBooleans, kmsLookup, kmsProjectScope, kmsProtocolOptions } from '@/utils/kmsSearch'
+import { ipv4SubnetApi, ipv4SubnetFilterLabel, ipv4SubnetFilterOptions, ipv4SubnetZoneChoices } from '@/utils/ipv4Subnet'
 import { getAPI } from '@/api'
 import { eventSearchError } from '@/utils/eventSearch'
 import { vpnUserProject, vpnUserSearchAuth } from '@/utils/vpnUserSearch'
@@ -348,8 +357,9 @@ export default {
       if (to && to.query && 'q' in to.query) {
         this.searchQuery = to.query.q
       }
+      if (this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = to.query.keyword || ''
       this.updateIsFiltered()
-      if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch) this.visibleFilter = false
+      if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
       if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
       if (this.apiName === 'listAffinityGroups' && to?.meta?.name === 'affinitygroup' && this.visibleFilter) {
         this.fillFormFieldValues()
@@ -364,6 +374,7 @@ export default {
     if (this.$route && this.$route.query && 'q' in this.$route.query) {
       this.searchQuery = this.$route.query.q
     }
+    if (this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = this.$route.query.keyword || ''
     this.updateIsFiltered()
   },
   computed: {
@@ -382,6 +393,8 @@ export default {
     vnfScope () { return { ...Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])), projectid: this.$route.query.projectid || vnfProject(this.$store.getters) } },
     isAclSearch () { return this.apiName === 'listNetworkACLLists' && this.$route.meta?.name === 'acllist' },
     aclVpcScope () { return { projectid: publicIpProject(this.$store.getters) } },
+    isIpv4SubnetSearch () { return this.apiName === ipv4SubnetApi },
+    ipv4SubnetZoneChoices () { return ipv4SubnetZoneChoices },
     isGuestVlanSearch () { return this.apiName === 'listGuestVlans' },
     isGuestNetworkSearch () { return this.apiName === 'listNetworks' && this.$route.meta?.name === 'guestnetwork' },
     networkScope () { return Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])) },
@@ -460,6 +473,10 @@ export default {
         if (fieldname === 'account') ['networkid', 'templateid', 'groupid', 'serviceofferingid'].forEach(k => { this.form[k] = undefined })
         return
       }
+      if (this.isIpv4SubnetSearch && fieldname === 'zoneid') {
+        ipv4SubnetZoneChoices.forEach(key => { this.form[key] = undefined })
+        this.fetchIpv4SubnetOptions()
+      }
       if ((this.isGuestNetworkSearch || this.isGuestVlanSearch) && fieldname === 'zoneid') this.form.physicalnetworkid = undefined
       if (this.apiName === 'listAffinityGroups') {
         if (fieldname === 'domainid') {
@@ -502,6 +519,7 @@ export default {
       if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
       if (this.isGuestNetworkSearch && fieldName === 'keyword') return this.$t('label.name')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')
+      if (this.isIpv4SubnetSearch && ipv4SubnetFilterLabel[fieldName]) return this.$t(ipv4SubnetFilterLabel[fieldName])
       if (this.isGuestVlanSearch && fieldName === 'vnet') return this.$t('label.guest.vlan.search.exact')
       if (fieldName === 'physicalnetworkid') return this.$t('label.physical.network')
       if (fieldName === 'forvpc') return this.$t('label.network.search.forvpc')
@@ -1238,6 +1256,13 @@ export default {
     },
     initFormFieldData () {
       const arrayField = this.initFields()
+      if (this.isIpv4SubnetSearch) {
+        this.form = reactive({})
+        this.fillFormFieldValues()
+        this.fetchDynamicFieldData(['zoneid'])
+        this.fetchIpv4SubnetOptions()
+        return
+      }
       if (this.isVpnCustomerGatewaySearch || this.isRoleSearch) {
         this.form = reactive({})
         this.fillFormFieldValues()
@@ -1278,6 +1303,31 @@ export default {
       this.fetchStaticFieldData(arrayField)
 
       this.fetchDynamicFieldData(arrayField)
+    },
+    fetchIpv4SubnetOptions () {
+      const zoneid = this.form.zoneid
+      const scope = zoneid ? { zoneid } : {}
+      const fields = this.fields
+      const request = Symbol('IPv4 subnet options')
+      this.ipv4OptionsRequest = request
+      const current = () => this.visibleFilter && this.fields === fields && this.ipv4OptionsRequest === request
+      const load = async (api, responseKey, kinds, extra) => {
+        const selected = fields.filter(field => kinds.includes(field.name))
+        if (!selected.length) return
+        selected.forEach(field => { field.opts = []; field.loading = true; field.error = false })
+        try {
+          const response = await getAPI(api, { ...scope, ...extra, ignoreproject: true }, { preserveOnFailure: true })
+          if (!current()) return
+          const rows = response[api.toLowerCase() + 'response']?.[responseKey] || []
+          selected.forEach(field => { field.opts = ipv4SubnetFilterOptions(field.name, rows) })
+        } catch {
+          if (current()) selected.forEach(field => { field.error = true })
+        } finally {
+          if (current()) selected.forEach(field => { field.loading = false })
+        }
+      }
+      load('listIpv4SubnetsForZone', 'zoneipv4subnet', ['parentid'], {})
+      load(ipv4SubnetApi, 'ipv4subnetforguestnetwork', ['networkid', 'vpcid'], { pagesize: -1 })
     },
     async fetchKmsFields (names) {
       const scope = { domainid: this.form.domainid, projectid: this.form.projectid || kmsProjectScope(this.$store.getters) }
@@ -2074,6 +2124,12 @@ export default {
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isIpv4SubnetSearch) {
+        this.visibleFilter = false
+        this.searchQuery = ''
+        this.$emit('search', { ipv4SubnetReset: true })
+        return
+      }
       if (this.isGuestVlanSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
@@ -2189,7 +2245,7 @@ export default {
           this.$emit('search', { roleFilters: this.paramsFilter })
           return
         }
-        if (this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch) this.visibleFilter = false
+        if (this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
         if (this.isVpnCustomerGatewaySearch && this.paramsFilter.id) this.paramsFilter.id = this.paramsFilter.id.trim()
         if (this.isVnfSearch) {
           if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
@@ -2206,7 +2262,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isIpv4SubnetSearch || this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true

@@ -1782,6 +1782,7 @@
   "label.ipv4.dns1": "IPv4 DNS1",
   "label.ipv4.dns2": "IPv4 DNS2",
   "label.ipv4.subnets": "IPv4 서브넷",
+  "label.ipv4.subnet.exact": "정확한 CIDR",
   "label.ipv4.subnet.set.reservation.desc": "(선택 사항) 이 IPv4 서브넷과 연관될 도메인 또는 계정을 지정하세요.",
   "label.ipv6.dns1": "IPv6 DNS1",
   "label.ipv6.dns2": "IPv6 DNS2",

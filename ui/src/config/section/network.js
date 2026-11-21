@@ -41,7 +41,7 @@ import { canReadNetworkPermissions } from '@/utils/networkPermissions'
 import { vpcRestartParams, vpcRestartReason } from '@/utils/vpcRestart'
 import { vpcMigrationVisible } from '@/utils/vpcMigration'
 import { canDeleteVpnUsers } from '@/utils/vpnUserDeletion'
-import { canDeleteIpv4Subnet } from '@/utils/ipv4Subnet'
+import { canDeleteIpv4Subnet, ipv4SubnetFilters } from '@/utils/ipv4Subnet'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -1566,7 +1566,7 @@ export default {
       permission: ['listIpv4SubnetsForGuestNetwork'],
       columns: ['subnet', 'zonename', 'parentsubnet', 'networkname', 'vpcname', 'created', 'allocated'],
       details: ['subnet', 'zonename', 'zoneid', 'parentsubnet', 'networkname', 'networkid', 'vpcname', 'vpcid', 'created', 'allocated', 'state'],
-      searchFilters: ['zoneid'],
+      searchFilters: ipv4SubnetFilters,
       show: () => {
         if (!store.getters.zones || store.getters.zones.length === 0) {
           return false

@@ -914,7 +914,7 @@ import ResourceView from '@/components/view/ResourceView'
 import VpcDialog from '@/components/network/VpcDialog'
 import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
-import { canDeleteIpv4Subnet } from '@/utils/ipv4Subnet'
+import { canDeleteIpv4Subnet, ipv4SubnetReadParams, ipv4SubnetRoute, ipv4SubnetSearchQuery } from '@/utils/ipv4Subnet'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
@@ -1483,7 +1483,7 @@ export default {
           this.fetchData({ irefresh: true })
           return
         }
-        if ((storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot' || this.currentAction.projectBulkTargets) && this.showAction) this.closeAction()
+        if ((ipv4SubnetRoute(from) || storageUiRoute(from) || (from.meta?.name || from.name) === 'snapshot' || this.currentAction.projectBulkTargets) && this.showAction) this.closeAction()
         this.resetSelection()
         const page = Number(to.query.page)
         this.page = Number.isInteger(page) && page > 0 ? page : 1
@@ -1782,6 +1782,7 @@ export default {
       return activeFilters
     },
     showSearchFilters () {
+      if (ipv4SubnetRoute(this.$route)) return !this.dataView && this.activeFiltersList.some(filter => ['zoneid', 'parentid', 'subnet', 'networkid', 'vpcid'].includes(filter.key))
       if (isAclListRoute(this.$route)) return !this.dataView && this.activeFiltersList.length > 0
       const excludedKeys = ['page', 'pagesize', 'q', 'keyword', 'tags', 'projectid']
       return !this.dataView && this.$config.showSearchFilters && this.activeFiltersList.some(f => !excludedKeys.includes(f.key))
@@ -2886,6 +2887,7 @@ export default {
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
+      if (ipv4SubnetRoute(this.$route)) params = ipv4SubnetReadParams(this.$route.query, params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
       if (this.apiName === 'listRoles') {
@@ -3518,6 +3520,11 @@ export default {
           if (filter.key === 'showunique') delete queryParams.locationtype
           if (filter.key === 'snapshottype') delete queryParams.intervaltype
           if (filter.key === 'domainid') delete queryParams.account
+        }
+        if (ipv4SubnetRoute(this.$route) && filter.key === 'zoneid') {
+          delete queryParams.parentid
+          delete queryParams.networkid
+          delete queryParams.vpcid
         }
         if (guestNetworkRoute(this.$route) && filter.key === 'domainid') delete queryParams.account
         if ((guestNetworkRoute(this.$route) || guestVlanRoute(this.$route)) && filter.key === 'zoneid') delete queryParams.physicalnetworkid
@@ -4829,6 +4836,11 @@ export default {
       return this.$router.push({ query })
     },
     onSearch (opts) {
+      if (ipv4SubnetRoute(this.$route) && !this.dataView) {
+        const query = ipv4SubnetSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (this.isRoleList) {
         const query = applyRoleSearch(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
@@ -4991,7 +5003,7 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : query })
     },
@@ -5041,7 +5053,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
