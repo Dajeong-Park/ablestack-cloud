@@ -85,10 +85,16 @@ public class EventDaoImpl extends GenericDaoBase<EventVO, Long> implements Event
     }
 
     @Override
-    public List<EventVO> listToArchiveOrDeleteEvents(List<Long> ids, String type, Date startDate, Date endDate, List<Long> accountIds) {
+    public List<EventVO> lockEventsForArchiveOrDelete(List<Long> ids, String type, Date startDate, Date endDate, List<Long> accountIds) {
+        if (accountIds.isEmpty() || (ids != null && ids.isEmpty())) {
+            return List.of();
+        }
         SearchCriteria<EventVO> sc = ToArchiveOrDeleteEventSearch.create();
+        sc.setParameters("accountIds", accountIds.toArray());
         if (ids != null) {
-            sc.setParameters("id", ids.toArray(new Object[ids.size()]));
+            sc.setParameters("id", ids.toArray());
+        } else {
+            sc.setParameters("archived", false);
         }
         if (type != null) {
             sc.setParameters("type", type);
@@ -98,11 +104,7 @@ public class EventDaoImpl extends GenericDaoBase<EventVO, Long> implements Event
         } else if (endDate != null) {
             sc.setParameters("createdDateL", endDate);
         }
-        if (accountIds != null && !accountIds.isEmpty()) {
-            sc.setParameters("accountIds", accountIds.toArray(new Object[accountIds.size()]));
-        }
-        sc.setParameters("archived", false);
-        return search(sc, null);
+        return lockRows(sc, new Filter(EventVO.class, "id", true), true);
     }
 
     @Override

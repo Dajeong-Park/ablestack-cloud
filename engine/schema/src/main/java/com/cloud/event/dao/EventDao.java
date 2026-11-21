@@ -31,7 +31,7 @@ public interface EventDao extends GenericDao<EventVO, Long> {
 
     EventVO findCompletedEvent(long startId);
 
-    public List<EventVO> listToArchiveOrDeleteEvents(List<Long> ids, String type, Date startDate, Date endDate, List<Long> accountIds);
+    List<EventVO> lockEventsForArchiveOrDelete(List<Long> ids, String type, Date startDate, Date endDate, List<Long> accountIds);
 
     boolean existsByTypeAndResourceAndLevel(String type, long resourceId, String resourceType, String level);
 

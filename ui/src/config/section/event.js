@@ -16,6 +16,7 @@
 // under the License.
 
 import store from '@/store'
+import { canMutateEvents } from '@/utils/eventActions'
 
 const canExportEvents = () => store.getters.apis.downloadEvents?.response?.some(field => field.name === 'csv')
 
@@ -48,21 +49,12 @@ export default {
       api: 'archiveEvents',
       icon: 'book-outlined',
       label: 'label.archive.events',
-      message: 'message.confirm.archive.selected.events',
+      toolbarLabel: 'label.archive.events',
       docHelp: 'adminguide/events.html#deleting-and-archiving-events-and-alerts',
       dataView: true,
-      successMessage: 'label.event.archived',
       groupAction: true,
-      groupMap: (selection) => { return [{ ids: selection.join(',') }] },
-      args: ['ids'],
-      mapping: {
-        ids: {
-          value: (record) => { return record.id }
-        }
-      },
-      show: (record) => {
-        return !(record.archived)
-      }
+      show: (record, getters = store.getters) => canMutateEvents('archiveEvents', [record], getters),
+      groupShow: (selection, getters) => canMutateEvents('archiveEvents', selection, getters)
     },
     {
       api: 'downloadEvents',
@@ -79,19 +71,12 @@ export default {
       api: 'deleteEvents',
       icon: 'delete-outlined',
       label: 'label.delete.events',
-      message: 'message.confirm.remove.selected.events',
+      toolbarLabel: 'label.delete.events',
       docHelp: 'adminguide/events.html#deleting-and-archiving-events-and-alerts',
       dataView: true,
-      successMessage: 'label.event.deleted',
       groupAction: true,
-      show: () => { return (store.getters.features.eventdeleteenabled) },
-      groupMap: (selection) => { return [{ ids: selection.join(',') }] },
-      args: ['ids'],
-      mapping: {
-        ids: {
-          value: (record) => { return record.id }
-        }
-      }
+      show: (record, getters = store.getters) => canMutateEvents('deleteEvents', [record], getters),
+      groupShow: (selection, getters) => canMutateEvents('deleteEvents', selection, getters)
     }
   ]
 }

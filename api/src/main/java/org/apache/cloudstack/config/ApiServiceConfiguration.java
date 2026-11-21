@@ -51,7 +51,7 @@ public class ApiServiceConfiguration implements Configurable {
     public static final ConfigKey<Integer> CubePortalPort = new ConfigKey<Integer>("Advanced", Integer.class, "cube.portal.port",
             "9090", "Cube Portal port used by the host action link.", true, ConfigKey.Scope.Global);
     public static final ConfigKey<Boolean> EventDeleteEnabled = new ConfigKey<>("Advanced", Boolean.class, "event.delete.enabled",
-            "false", "true if Event Delete Button is enabled, false otherwise)", false);
+            "false", "Whether active events may be deleted via the API and UI", false);
 
     public static void validateEndpointUrl() {
         String csUrl = getApiServletPathValue();

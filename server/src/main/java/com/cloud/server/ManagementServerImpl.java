@@ -1453,28 +1453,11 @@ public class ManagementServerImpl extends MutualExclusiveIdsManagerBase implemen
 
     @Override
     public boolean archiveEvents(final ArchiveEventsCmd cmd) {
-        final Account caller = getCaller();
-        final List<Long> ids = cmd.getIds();
-        boolean result = true;
-        List<Long> permittedAccountIds = new ArrayList<>();
-
-        if (_accountService.isNormalUser(caller.getId()) || caller.getType() == Account.Type.PROJECT) {
-            permittedAccountIds.add(caller.getId());
-        } else {
-            final DomainVO domain = _domainDao.findById(caller.getDomainId());
-            final List<Long> permittedDomainIds = _domainDao.getDomainChildrenIds(domain.getPath());
-            permittedAccountIds = _accountDao.getAccountIdsForDomains(permittedDomainIds);
-        }
-
-        final List<EventVO> events = _eventDao.listToArchiveOrDeleteEvents(ids, cmd.getType(), cmd.getStartDate(), cmd.getEndDate(), permittedAccountIds);
-        final ControlledEntity[] sameOwnerEvents = events.toArray(new ControlledEntity[events.size()]);
-        _accountMgr.checkAccess(CallContext.current().getCallingAccount(), null, false, sameOwnerEvents);
-
-        if (ids != null && events.size() < ids.size()) {
-            return false;
-        }
-        _eventDao.archiveEvents(events);
-        return result;
+        return Transaction.execute((TransactionCallback<Boolean>) status -> {
+            final List<EventVO> events = lockActiveEventTargets(cmd.getIds(), cmd.getType(), cmd.getStartDate(), cmd.getEndDate(), false);
+            _eventDao.archiveEvents(events);
+            return true;
+        });
     }
 
     @Override
@@ -1520,30 +1503,45 @@ public class ManagementServerImpl extends MutualExclusiveIdsManagerBase implemen
 
     @Override
     public boolean deleteEvents(final DeleteEventsCmd cmd) {
-        final Account caller = getCaller();
-        final List<Long> ids = cmd.getIds();
-        boolean result = true;
-        List<Long> permittedAccountIds = new ArrayList<>();
+        if (!isEventDeletionEnabled()) {
+            throw new PermissionDeniedException("Event deletion is disabled.");
+        }
+        return Transaction.execute((TransactionCallback<Boolean>) status -> {
+            final List<EventVO> events = lockActiveEventTargets(cmd.getIds(), cmd.getType(), cmd.getStartDate(), cmd.getEndDate(), true);
+            for (final EventVO event : events) {
+                if (!_eventDao.remove(event.getId())) {
+                    throw new CloudRuntimeException("Unable to delete the selected events.");
+                }
+            }
+            return true;
+        });
+    }
 
+    List<EventVO> lockActiveEventTargets(List<Long> ids, String type, Date startDate, Date endDate, boolean deleting) {
+        final Account caller = getCaller();
+        final List<Long> accountIds;
         if (_accountMgr.isNormalUser(caller.getId()) || caller.getType() == Account.Type.PROJECT) {
-            permittedAccountIds.add(caller.getId());
+            accountIds = List.of(caller.getId());
         } else {
             final DomainVO domain = _domainDao.findById(caller.getDomainId());
-            final List<Long> permittedDomainIds = _domainDao.getDomainChildrenIds(domain.getPath());
-            permittedAccountIds = _accountDao.getAccountIdsForDomains(permittedDomainIds);
+            accountIds = _accountDao.getAccountIdsForDomains(_domainDao.getDomainChildrenIds(domain.getPath()));
         }
 
-        final List<EventVO> events = _eventDao.listToArchiveOrDeleteEvents(ids, cmd.getType(), cmd.getStartDate(), cmd.getEndDate(), permittedAccountIds);
-        final ControlledEntity[] sameOwnerEvents = events.toArray(new ControlledEntity[events.size()]);
-        _accountMgr.checkAccess(CallContext.current().getCallingAccount(), null, false, sameOwnerEvents);
+        final List<Long> requestedIds = ids == null ? null : ids.stream().distinct().collect(Collectors.toList());
+        final List<EventVO> events = _eventDao.lockEventsForArchiveOrDelete(requestedIds, type, startDate, endDate, accountIds);
+        _accountMgr.checkAccess(caller, null, false, events.toArray(new ControlledEntity[0]));
 
-        if (ids != null && events.size() < ids.size()) {
-            return false;
+        if (requestedIds != null && (requestedIds.isEmpty() || requestedIds.size() != events.size())) {
+            throw new InvalidParameterValueException("One or more selected events are unavailable.");
         }
-        for (final EventVO event : events) {
-            _eventDao.remove(event.getId());
+        if (events.stream().anyMatch(EventVO::getArchived)) {
+            throw new InvalidParameterValueException(deleting ? "Archived events cannot be deleted." : "Archived events cannot be archived again.");
         }
-        return result;
+        return events;
+    }
+
+    private boolean isEventDeletionEnabled() {
+        return Boolean.parseBoolean(_configDao.getValue(ApiServiceConfiguration.EventDeleteEnabled.key()));
     }
 
     @Override
@@ -7868,7 +7866,7 @@ public class ManagementServerImpl extends MutualExclusiveIdsManagerBase implemen
         final boolean disasterRecoveryEnabled = Boolean.parseBoolean(_configDao.getValue("cloud.dr.service.enabled"));
         final String host = _configDao.getValue("host");
         final boolean balancingServiceEnabled = Boolean.parseBoolean(_configDao.getValue("cloud.balancing.service.enabled"));
-        final boolean eventDeleteEnabled = Boolean.parseBoolean(_configDao.getValue("event.delete.enabled"));
+        final boolean eventDeleteEnabled = isEventDeletionEnabled();
         final boolean wallAlertsEnabled = Boolean.parseBoolean(_configDao.getValue("wall.alerts.enable"));
 
         // check if region-wide secondary storage is used

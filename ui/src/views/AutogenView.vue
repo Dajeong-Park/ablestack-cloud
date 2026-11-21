@@ -287,6 +287,17 @@
         :after-close="restoreClosedActionFocus"
         @close="closeAction"
       />
+      <event-mutation-dialog
+        v-else-if="showAction && currentAction.eventMutationTargets"
+        :key="storageActionGeneration"
+        :api="currentAction.api"
+        :targets="currentAction.eventMutationTargets"
+        :doc-help="currentAction.docHelp"
+        :after-close="restoreClosedActionFocus"
+        @close="closeAction"
+        @completed="finishEventMutation(true)"
+        @refresh="finishEventMutation(false)"
+      />
       <component
         :is="isVpcUi ? 'VpcDialog' : (isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || publicIpReleaseDialog) ? 'MoldDialog' : 'a-modal'"
         :size="(isVpcUi || isStorageUi || isBucketGroupDelete || isGuestNetworkDelete || vmStandardDialog || publicIpReleaseDialog) ? 'md' : undefined"
@@ -856,6 +867,8 @@ import VpcDialog from '@/components/network/VpcDialog'
 import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
+import EventMutationDialog from '@/views/event/EventMutationDialog'
+import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
 import NetworkOperationPolicy from '@/components/view/NetworkOperationPolicy'
 import { storageUiRoute, storageDialogSize, storageDetailRouteKey } from '@/utils/storageUi'
 import { policyDetailRoute, policyDetailPermissions, readPolicyDetail } from '@/utils/snapshotPolicyDetail'
@@ -911,6 +924,7 @@ export default {
     Breadcrumb,
     MoldDialog,
     EventCsvDialog,
+    EventMutationDialog,
     PublicIpReleaseSummary,
     PublicIpDetailValue,
     VpcActionContext,
@@ -1265,10 +1279,10 @@ export default {
     vmDialogScope () {
       if (this.showAction && this.vmStandardDialog) this.closeAction()
     },
-    eventDownloadScope: {
+    eventActionScope: {
       flush: 'sync',
       handler () {
-        if (this.showAction && this.currentAction.api === 'downloadEvents') this.closeAction()
+        if (this.showAction && (this.currentAction.api === 'downloadEvents' || this.currentAction.eventMutationTargets)) this.closeAction()
       }
     },
     vnfSearchAuth: {
@@ -1436,10 +1450,11 @@ export default {
     isSnapshotCopyList () { return snapshotCopyList(this.$route) },
     isGuestNetworkDelete () { return this.$route.meta?.name === 'guestnetwork' && this.currentAction.api === 'deleteNetwork' },
     vmDialogScope () { return isVmIdentityRoute(this.$route) ? vmEditScope(this.resource, this.$route, this.$store) : null },
-    eventDownloadScope () {
+    eventActionScope () {
       if (this.$route.meta?.name !== 'event') return null
-      const { apis, project, listAllProjects } = this.$store.getters
-      return JSON.stringify([this.$route.fullPath, project?.id, listAllProjects, this.$store.state?.user?.token, apis.downloadEvents?.response?.some(field => field.name === 'csv')])
+      const { apis, project, listAllProjects, features } = this.$store.getters
+      return JSON.stringify([this.$route.fullPath, project?.id, listAllProjects, this.$store.state?.user?.token,
+        apis.downloadEvents?.response?.some(field => field.name === 'csv'), !!apis.archiveEvents, !!apis.deleteEvents, features?.eventdeleteenabled])
     },
     vmStandardDialog () { return isVmIdentityRoute(this.$route) && ['updateVirtualMachine', 'startVirtualMachine', 'stopVirtualMachine', 'rebootVirtualMachine', 'restoreVirtualMachine', 'recoverVirtualMachine'].includes(this.currentAction?.api) },
     kmsListEmptyText () {
@@ -1616,6 +1631,7 @@ export default {
         if (!action.dataView) {
           return false
         }
+        if (isEventMutation(action.api) && !this.storageActionReady) return false
         return 'show' in action ? action.show(this.resource, this.$store.getters) : true
       }).map(action => policyBackgroundRead ? { ...action, disabled: () => true } : action)
     },
@@ -1628,6 +1644,7 @@ export default {
       }
       const selectionCount = this.selectedRowKeys.length
       return this.actions.filter(action => {
+        if (isEventMutation(action.api) && !this.storageActionReady) return false
         if (!(action.api in this.$store.getters.apis)) {
           return false
         }
@@ -2927,6 +2944,16 @@ export default {
       }
       return this.fetchData(result)
     },
+    finishEventMutation (success) {
+      const deletedDetail = success && this.dataView && this.currentAction.api === 'deleteEvents'
+      this.closeAction()
+      this.resetSelection()
+      if (this.$refs.listview) this.$refs.listview.resetSelection()
+      if (deletedDetail) {
+        return this.$router.replace({ path: '/event' })
+      }
+      return this.fetchData({ irefresh: true })
+    },
     closeAction (result) {
       if (result?.kmsRemoved && !kmsDeletionConfirmed(this.$route, this.currentAction, result, this.kmsNavigationScope())) return
       const keyResourceList = result?.kmsRemoved ? this.currentKmsListLocation() : null
@@ -2971,7 +2998,7 @@ export default {
       }
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = this.currentAction?.api === 'downloadEvents' || kmsDialog || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.currentAction?.api === 'downloadEvents' || !!this.currentAction?.eventMutationTargets || kmsDialog || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3181,6 +3208,17 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (isEventMutation(action.api)) {
+        if (!this.eventActionScope || !this.storageActionReady) return
+        const rows = isGroupAction ? this.selectedItems : [action.resource || this.resource]
+        if (!canMutateEvents(action.api, rows, this.$store.getters)) return
+        if (isGroupAction && (rows.length !== this.selectedRowKeys.length ||
+          rows.some(row => !this.selectedRowKeys.includes(row.id)))) return
+        const targets = rows.map(({ id, type }) => Object.freeze({ id, type }))
+        this.currentAction = { ...action, eventMutationTargets: Object.freeze(targets) }
+        this.showAction = true
+        return
+      }
       if (action.api === 'downloadEvents') {
         const api = this.$store.getters.apis.downloadEvents
         if (!api?.response?.some(field => field.name === 'csv')) return
@@ -3709,7 +3747,7 @@ export default {
       this.message = {}
     },
     handleSubmit (e) {
-      if (this.currentAction.api === 'downloadEvents') return
+      if (this.currentAction.api === 'downloadEvents' || isEventMutation(this.currentAction.api)) return
       if (this.$route.meta?.name === 'kubernetesiso' && !canKubernetesIsoAction(Object.keys(kubernetesIsoApis).find(key => kubernetesIsoApis[key] === this.currentAction?.api), this.resource, this.$store.getters)) return
       if (this.actionLoading || this.isSubmitDisabled || (this.vmStandardDialog && (this.vmActionValidationPending || this.vmActionUnknown))) return
       this.promises = []
