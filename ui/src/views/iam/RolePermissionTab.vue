@@ -87,7 +87,7 @@
               @onClick="onRuleSave" />
           </div>
         </div>
-        <a-empty v-if="ready && !visibleRules.length" :description="$t('label.no.data')" />
+        <p v-if="ready && !visibleRules.length" class="rules-empty" role="status">{{ $t('label.no.data') }}</p>
         <draggable
           :model-value="visibleRules"
           @update:model-value="changeOrder"
@@ -372,6 +372,13 @@ export default {
   }
   .rules-notice {
     margin-bottom: 10px;
+  }
+
+  .rules-empty {
+    padding: 24px 12px;
+    margin: 0;
+    text-align: center;
+    color: var(--ui-text-secondary);
   }
 
   .rules-feedback {

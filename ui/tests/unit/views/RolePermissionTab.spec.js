@@ -46,7 +46,7 @@ function mountEditor () {
       mocks: { $t: key => key, $store: { getters: { apis } } },
       renderStubDefaultSlot: true,
       stubs: [
-        'a-alert', 'a-auto-complete', 'a-button', 'a-empty', 'a-input', 'a-input-search', 'a-select', 'a-spin',
+        'a-alert', 'a-auto-complete', 'a-button', 'a-input', 'a-input-search', 'a-select', 'a-spin',
         'arrow-up-outlined', 'arrow-down-outlined', 'download-outlined', 'drag-outlined', 'loading-outlined'
       ]
     }
@@ -78,7 +78,7 @@ describe('global role permission editing', () => {
     expect(editor.html()).toContain('message.role.rules.reorder.search')
 
     await editor.setData({ searchRule: 'no rule' })
-    expect(editor.find('a-empty-stub').exists()).toBe(true)
+    expect(editor.find('.rules-empty').text()).toBe('label.no.data')
     await editor.setData({ searchRule: '' })
     expect(editor.vm.visibleRules).toHaveLength(3)
   })
