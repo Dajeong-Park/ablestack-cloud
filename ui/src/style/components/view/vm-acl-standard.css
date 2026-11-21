@@ -20,6 +20,10 @@
   gap: 8px 12px;
   padding-inline: 12px;
 }
+/* Reserve the standard action-row height for read-only ACLs. */
+.acl-page .breadcrumb-card :deep(.ant-card-body > .ant-row:first-child) {
+  min-block-size: 32px;
+}
 .vm-acl-standard .breadcrumb-card :deep(.ant-card-body > .ant-row:first-child > .ant-col:first-child) {
   flex: 1 1 22rem;
   max-width: 100%;
