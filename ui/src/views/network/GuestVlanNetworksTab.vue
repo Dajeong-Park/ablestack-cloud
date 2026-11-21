@@ -16,29 +16,43 @@
 // under the License.
 
 <template>
-  <a-table
-    size="small"
-    style="overflow-y: auto"
-    :columns="columns"
-    :dataSource="networks"
-    :rowKey="item => item.id"
-    :pagination="false"
-    :loading="fetchLoading"
-  >
-    <template #bodyCell="{ column, text, record }">
-      <template v-if="column.key === 'name'">
-        <router-link v-if="guestVlanNetworkLocation(record, $store.getters.apis)" :to="guestVlanNetworkLocation(record, $store.getters.apis)">{{ text }}</router-link>
-        <span v-else>{{ text }}</span>
+  <section class="guest-vlan-network-tab" :aria-busy="fetchLoading">
+    <a-alert
+      v-if="listRefreshFailed"
+      class="guest-vlan-network-status"
+      :type="networks.length ? 'warning' : 'error'"
+      :message="$t(networks.length ? 'message.list.refresh.stale' : 'error.fetching.data')"
+      show-icon>
+      <template #action>
+        <a-button size="small" :loading="listRefreshing > 0 || fetchLoading" @click="fetchData">{{ $t('label.retry') }}</a-button>
       </template>
-      <template v-if="column.key === 'vpcname'">
-        <router-link v-if="guestVlanVpcLocation(record, $store.getters.apis)" :to="guestVlanVpcLocation(record, $store.getters.apis)">{{ text || record.vpcid }}</router-link>
-        <span v-else>{{ text || record.vpcid || '—' }}</span>
+    </a-alert>
+    <a-empty v-if="!fetchLoading && !listRefreshFailed && !networks.length" :description="$t(missing ? 'message.guest.vlan.missing' : 'message.guest.vlan.networks.empty')" />
+    <a-table
+      v-else-if="fetchLoading || networks.length"
+      size="small"
+      style="overflow-y: auto"
+      :columns="columns"
+      :dataSource="networks"
+      :rowKey="item => item.id"
+      :pagination="false"
+      :loading="fetchLoading"
+    >
+      <template #bodyCell="{ column, text, record }">
+        <template v-if="column.key === 'name'">
+          <router-link v-if="guestVlanNetworkLocation(record, $store.getters.apis)" :to="guestVlanNetworkLocation(record, $store.getters.apis)">{{ text }}</router-link>
+          <span v-else>{{ text }}</span>
+        </template>
+        <template v-if="column.key === 'vpcname'">
+          <router-link v-if="guestVlanVpcLocation(record, $store.getters.apis)" :to="guestVlanVpcLocation(record, $store.getters.apis)">{{ text || record.vpcid }}</router-link>
+          <span v-else>{{ text || record.vpcid || '—' }}</span>
+        </template>
+        <template v-if="column.key === 'state'">
+          <status :text="record.state" displayText></status>
+        </template>
       </template>
-      <template v-if="column.key === 'state'">
-        <status :text="record.state" displayText></status>
-      </template>
-    </template>
-  </a-table>
+    </a-table>
+  </section>
 </template>
 
 <script>
@@ -49,7 +63,9 @@ import Status from '@/components/widgets/Status'
 import { guestVlanNetworkLocation, guestVlanVpcLocation } from '@/utils/guestVlan'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], {
+    scopeKey: vm => [vm.$route.params?.id, vm.resource.id, vm.$store.state?.user?.token]
+  })],
   name: 'GuestVlanNetworksTab',
   components: {
     Status
@@ -68,6 +84,7 @@ export default {
     return {
       fetchLoading: false,
       networks: [],
+      missing: false,
       columns: [
         {
           key: 'name',
@@ -110,41 +127,42 @@ export default {
     this.fetchData()
   },
   watch: {
-    resource: function (newItem, oldItem) {
-      if (!newItem || !newItem.id) {
-        return
-      }
-      this.fetchData()
+    'resource.id' () {
+      this.networks = []
+      this.missing = false
+      this.listRefreshFailed = false
+      if (this.resource.id) this.fetchData()
+    },
+    loading (busy) {
+      if (!busy && this.resource.id) this.fetchData()
     }
   },
   methods: {
     guestVlanNetworkLocation,
     guestVlanVpcLocation,
-    fetchData () {
-      const listRequest = this.listRequestToken('fetchData')
-      var params = {
-        id: this.resource.id
-      }
-      this.fetchLoading = !listRequest.loaded
-      return getAPI('listGuestVlans', params).then(json => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        this.networks = json.listguestvlansresponse.guestvlan[0].network || []
-      }).catch(error => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        listRequest.failed = true
+    async fetchData () {
+      const id = this.resource.id
+      if (!id || String(id) !== String(this.$route.params.id)) return
+      const request = this.listRequestToken('fetchData')
+      const current = () => this.isListRequestCurrent('fetchData', request)
+      this.fetchLoading = !request.loaded
+      try {
+        const response = await getAPI('listGuestVlans', { id, ignoreproject: true }, { preserveOnFailure: true, timeout: 20000 })
+        if (!current()) return
+        const result = response?.listguestvlansresponse
+        if (!result || result.errorcode || (result.guestvlan != null && !Array.isArray(result.guestvlan))) {
+          throw new Error('Invalid guest VLAN response')
+        }
+        const vlan = result.guestvlan?.find(row => String(row.id) === String(id))
+        this.missing = !vlan
+        this.networks = vlan?.network || []
+      } catch (error) {
+        if (!current()) return
+        request.failed = true
         this.listRefreshFailed = true
-        if (listRequest.loaded) return
-
-        this.$notifyError(error)
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        this.fetchLoading = false
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.fetchLoading = false
-      })
+      } finally {
+        if (current()) this.fetchLoading = false
+      }
     }
   }
 }

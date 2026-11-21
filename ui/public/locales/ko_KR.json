@@ -1599,6 +1599,8 @@
   "label.guest.vlan": "게스트 VLAN",
   "label.guest.vlan.search.keyword": "VLAN/VNI 부분 검색",
   "label.guest.vlan.search.exact": "정확한 VLAN/VNI",
+  "message.guest.vlan.missing": "이 VLAN을 더 이상 조회할 수 없습니다.",
+  "message.guest.vlan.networks.empty": "이 VLAN에 연결된 네트워크가 없습니다.",
   "label.guest.vlan.inventory": "전체 프로젝트의 인프라 인벤토리",
   "label.guestvlanrange": "VLAN 범위",
   "label.guestvmcidr": "CIDR",
