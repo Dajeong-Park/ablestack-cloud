@@ -30,6 +30,10 @@
         <router-link v-if="guestVlanNetworkLocation(record, $store.getters.apis)" :to="guestVlanNetworkLocation(record, $store.getters.apis)">{{ text }}</router-link>
         <span v-else>{{ text }}</span>
       </template>
+      <template v-if="column.key === 'vpcname'">
+        <router-link v-if="guestVlanVpcLocation(record, $store.getters.apis)" :to="guestVlanVpcLocation(record, $store.getters.apis)">{{ text || record.vpcid }}</router-link>
+        <span v-else>{{ text || record.vpcid || '—' }}</span>
+      </template>
       <template v-if="column.key === 'state'">
         <status :text="record.state" displayText></status>
       </template>
@@ -42,7 +46,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI } from '@/api'
 import Status from '@/components/widgets/Status'
-import { guestVlanNetworkLocation } from '@/utils/guestVlan'
+import { guestVlanNetworkLocation, guestVlanVpcLocation } from '@/utils/guestVlan'
 
 export default {
   mixins: [listRefreshMixin(['fetchData'])],
@@ -96,7 +100,8 @@ export default {
         },
         {
           title: this.$t('label.vpc'),
-          dataIndex: 'vpc'
+          key: 'vpcname',
+          dataIndex: 'vpcname'
         }
       ]
     }
@@ -114,6 +119,7 @@ export default {
   },
   methods: {
     guestVlanNetworkLocation,
+    guestVlanVpcLocation,
     fetchData () {
       const listRequest = this.listRequestToken('fetchData')
       var params = {

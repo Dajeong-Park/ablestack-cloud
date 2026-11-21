@@ -2015,7 +2015,10 @@ export default {
         return { props: { type: 'default' } }
       }
     },
-    canonicalNetworkProjectRoute () { return ['guestnetwork', 'networkoffering', 'vnfapp'].includes(this.$route.meta?.name) },
+    canonicalNetworkProjectRoute () {
+      return ['guestnetwork', 'networkoffering', 'vnfapp'].includes(this.$route.meta?.name) ||
+        (this.$route.meta?.name === 'vpc' && this.$route.params?.id && this.$route.query.projectid === '0')
+    },
     async syncSnapshotProject (projectId) {
       // The URL retains the scope. 0 is a UI-only default-view marker, never an API project ID.
       if (typeof projectId !== 'string') return

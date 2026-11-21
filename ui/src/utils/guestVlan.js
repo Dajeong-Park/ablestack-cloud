@@ -19,3 +19,8 @@ export function guestVlanNetworkLocation (network, apis) {
   if (!apis?.listNetworks || network.issystem !== false || !network.id) return null
   return { path: '/guestnetwork/' + network.id, query: { projectid: network.projectid || '0' } }
 }
+
+export function guestVlanVpcLocation (network, apis) {
+  if (!apis?.listVPCs || !network.vpcid) return null
+  return { path: '/vpc/' + network.vpcid, query: { projectid: network.projectid || '0' } }
+}
