@@ -163,7 +163,7 @@ export default {
       this.zonesLoading = true
       this.lookupError = ''
       try {
-        const json = await getAPI('listZones', { showicon: true })
+        const json = await getAPI('listZones', { showicon: true }, { preserveOnFailure: true })
         this.zones = (json.listzonesresponse.zone || []).filter(zone => zone.routedmodeenabled)
         this.form.zoneid = this.zones[0]?.id
         this.fetchParentSubnets(this.form.zoneid)
@@ -182,7 +182,7 @@ export default {
       if (!zoneId) return
 
       try {
-        const json = await getAPI('listIpv4SubnetsForZone', { zoneid: zoneId, listall: true })
+        const json = await getAPI('listIpv4SubnetsForZone', { zoneid: zoneId, listall: true }, { preserveOnFailure: true })
         if (request === this.parentRequest) {
           this.parentSubnets = json.listipv4subnetsforzoneresponse.zoneipv4subnet || []
         }

@@ -93,7 +93,8 @@
                     v-model:value="form[field.name]"
                     :kind="field.name"
                     :scope="networkScope" />
-                  <a-select v-else-if="isIpv4SubnetSearch && ipv4SubnetZoneChoices.includes(field.name)"
+                  <a-select
+                    v-else-if="isIpv4SubnetSearch && ipv4SubnetZoneChoices.includes(field.name)"
                     v-model:value="form[field.name]"
                     :aria-label="retrieveFieldLabel(field.name)"
                     :options="field.opts.map(option => ({ value: option.id, label: option.name }))"

@@ -16,8 +16,14 @@
 // under the License.
 
 <template>
-  <MoldDialog :title="$t('label.delete.ipv4.subnet')" size="md" focus-guard
-    :after-close="afterClose" :closable="!busy" :keyboard="!busy" @cancel="close">
+  <MoldDialog
+    :title="$t('label.delete.ipv4.subnet')"
+    size="md"
+    focus-guard
+    :after-close="afterClose"
+    :closable="!busy"
+    :keyboard="!busy"
+    @cancel="close">
     <p>{{ $t('message.action.delete.ipv4.subnet') }}</p>
     <p v-if="currentAction.ipv4SubnetDeleteExcluded">
       {{ $t('message.ipv4.subnet.delete.selection', [rows.length, currentAction.ipv4SubnetDeleteExcluded]) }}

@@ -3433,7 +3433,7 @@ export default {
       if (deletedSubnetDetail) this.$router.replace({ name: 'ipv4subnets', query: ipv4SubnetListQuery(this.$route.query) })
       else if (subnetDeletion) {
         this.resetSelection()
-        this.$refs.listview?.resetSelection()
+        if (this.$refs.listview) this.$refs.listview.resetSelection()
         this.fetchData({ irefresh: true })
       }
       if (keyResourceList) this.$router.replace(keyResourceList)
