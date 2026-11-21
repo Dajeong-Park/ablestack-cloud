@@ -5157,6 +5157,7 @@ public class ApiResponseHelper implements ResponseGenerator, ResourceIdSupport {
         response.setName(networkACL.getName());
         response.setDescription(networkACL.getDescription());
         response.setForDisplay(networkACL.isDisplay());
+        response.setDefault(NetworkACL.isDefault(networkACL.getId()));
         Vpc vpc = ApiDBUtils.findVpcById(networkACL.getVpcId());
         if (vpc != null) {
             response.setVpcId(vpc.getUuid());

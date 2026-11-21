@@ -66,6 +66,33 @@ export function aclDisplaySupported (getters, command = 'listNetworkACLLists') {
   return getters.userInfo?.roletype === 'Admin' && hasDisplayParam(getters.apis?.[command])
 }
 
+export const aclHasParam = (getters, command, name) =>
+  getters.apis?.[command]?.params?.some(param => param.name === name) === true
+
+export function aclListMutable (row, root) {
+  return !!row?.id && (row.isdefault === false || (row.isdefault == null && !!row.vpcid)) &&
+    (!!row.vpcid || root)
+}
+
+export function aclListSearchQuery (query, opts, pageSize, getters) {
+  const next = { ...query, page: '1', pagesize: String(pageSize) }
+  if ('searchQuery' in opts || opts.aclReset) {
+    delete next.q
+    delete next.keyword
+  }
+  if ('searchQuery' in opts) {
+    const keyword = opts.searchQuery?.trim()
+    if (keyword) next.q = next.keyword = keyword
+  } else {
+    for (const name of ['name', 'vpcid']) {
+      delete next[name]
+      const value = opts.aclAdvanced?.[name]?.trim()
+      if (value && aclHasParam(getters, 'listNetworkACLLists', name)) next[name] = value
+    }
+  }
+  return next
+}
+
 function aclListQuery (query, getters) {
   const result = Object.fromEntries(['q', 'keyword', 'name', 'vpcid', 'page', 'pagesize'].filter(key =>
     typeof query?.[key] === 'string').map(key => [key, query[key]]))
@@ -93,7 +120,7 @@ export async function readAclList (get, params, allowDisplay, detailId, current 
   delete args.aclreturn
   delete args.fordisplay
   if (detailId) {
-    for (const key of ['name', 'keyword', 'vpcid', 'tab']) delete args[key]
+    for (const key of ['name', 'keyword', 'vpcid', 'tab', 'includedefaults']) delete args[key]
     Object.assign(args, { id: detailId, page: 1, pagesize: 1 })
   } else if (display) {
     args.fordisplay = display
@@ -129,8 +156,8 @@ export async function discoverAclAccess (get, target, root) {
   if (!Array.isArray(body.api) || body.api.some(row => typeof row?.name !== 'string')) throw new Error('Invalid ACL API discovery')
   const names = new Set(body.api.map(row => row.name.toLowerCase()))
   const readTags = names.has('listtags')
-  const builtIn = !target.row.vpcid && ['default_allow', 'default_deny'].includes(target.row.name)
-  const write = !builtIn && (root || !!target.row.vpcid) && names.has('queryasyncjobresult')
+  const mayWrite = aclListMutable(target.row, root)
+  const write = mayWrite && names.has('queryasyncjobresult')
   const flags = Object.fromEntries(Object.entries(aclCommands).map(([action, command]) => [
     action,
     names.has(command.toLowerCase()) && (action === 'readTags' || (write && (!action.endsWith('Tag') || readTags)))

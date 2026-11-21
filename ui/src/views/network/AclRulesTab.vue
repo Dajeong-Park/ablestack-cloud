@@ -28,7 +28,7 @@
             <a-menu-item key="all" :disabled="!exportTotals.all">
               {{ $t('label.acl.csv.export.all', { count: exportTotals.all ?? '…' }) }}
             </a-menu-item>
-            <a-menu-item key="search" :disabled="!exportTotals.search" v-if="appliedSearch || appliedRuleDisplay !== 'all'">
+            <a-menu-item key="search" :disabled="!exportTotals.search" v-if="hasRuleSearch">
               {{ $t('label.acl.csv.export.search', { count: exportTotals.search ?? '…' }) }}
             </a-menu-item>
           </a-menu>
@@ -48,12 +48,67 @@
       </a-select>
       <a-input-search
         class="network-rules-search"
-        :placeholder="$t('label.search')"
+        :placeholder="$t('label.acl.rule.search.keyword')"
+        :aria-label="$t('label.acl.rule.search.keyword')"
+        :title="$t('message.acl.rule.search.cidr')"
         v-model:value="searchQuery"
+        allow-clear
         :disabled="busy || pending?.action === 'move'"
-        @search="fetchData" />
+        @search="fetchData">
+        <template v-if="ruleFilterFields.length" #addonBefore>
+          <a-popover placement="bottomRight" trigger="click" :visible="ruleFilterOpen" @visibleChange="openRuleFilters">
+            <template #content>
+              <a-form
+                v-if="ruleFilterOpen"
+                class="acl-rule-filter-form"
+                layout="vertical"
+                :model="ruleFilterForm"
+                @finish="applyRuleFilters"
+                @keydown.esc.stop.prevent="ruleFilterOpen = false">
+                <a-form-item v-for="field in ruleFilterFields" :key="field" :label="$t('label.' + field)" :html-for="'acl-rule-search-' + field">
+                  <a-auto-complete
+                    v-if="field === 'protocol'"
+                    id="acl-rule-search-protocol"
+                    v-model:value="ruleFilterForm.protocol"
+                    allow-clear
+                    :placeholder="$t('label.acl.rule.search.protocol')"
+                    :options="ruleProtocols"
+                    :filter-option="(query, option) => option.value.includes(query.toLowerCase())" />
+                  <a-select
+                    v-else
+                    :id="'acl-rule-search-' + field"
+                    v-model:value="ruleFilterForm[field]"
+                    allow-clear
+                    :placeholder="$t('label.all')">
+                    <a-select-option v-for="value in ruleFilterOptions[field]" :key="value" :value="value">{{ $t('label.' + value) }}</a-select-option>
+                  </a-select>
+                </a-form-item>
+                <p class="acl-rule-filter-help">{{ $t('message.acl.rule.search.cidr') }}</p>
+                <div class="filter-group-button">
+                  <a-button class="filter-group-button-clear" size="small" @click="resetRuleFilters">{{ $t('label.reset') }}</a-button>
+                  <a-button class="filter-group-button-search" type="primary" size="small" html-type="submit">{{ $t('label.search') }}</a-button>
+                </div>
+              </a-form>
+            </template>
+            <a-button
+              class="filter-button"
+              :aria-label="$t('label.advanced.search')"
+              :aria-expanded="ruleFilterOpen"
+              size="small"
+              :disabled="busy || pending?.action === 'move'">
+              <filter-two-tone v-if="hasRuleSearch" />
+              <filter-outlined v-else />
+            </a-button>
+          </a-popover>
+        </template>
+      </a-input-search>
     </NetworkRulesToolbar>
-    <p v-if="canFilterDisplay && ruleCount !== null" class="acl-rule-count" role="status">
+    <div v-if="Object.keys(appliedRuleFilters).length" class="acl-rule-filter-conditions">
+      <a-tag v-for="(value, key) in appliedRuleFilters" :key="key">
+        {{ $t('label.' + key) }} · {{ key === 'protocol' ? value : $t('label.' + value) }}
+      </a-tag>
+    </div>
+    <p v-if="ruleCount !== null" class="acl-rule-count" role="status">
       {{ $t('label.acl.rule.result.count', { count: ruleCount }) }}
     </p>
 
@@ -339,7 +394,7 @@ import draggable from 'vuedraggable'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import { networkCollection, networkError } from '@/utils/networkLifecycle'
 import { formatAclCsv } from '@/utils/aclCsv'
-import { aclCommands, aclDisplayLabel, aclDisplaySupported, aclDisplayValue, aclDenied, aclOrderConflict, aclOrderHash, aclRequestOptions, aclResponse, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
+import { aclCommands, aclDisplayLabel, aclDisplaySupported, aclDisplayValue, aclDenied, aclHasParam, aclOrderConflict, aclOrderHash, aclRequestOptions, aclResponse, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import ImportNetworkACL from './ImportNetworkACL'
 
 const moveActions = [
@@ -377,6 +432,12 @@ export default {
     appliedSearch: '',
     ruleDisplay: 'all',
     appliedRuleDisplay: 'all',
+    ruleFilterOpen: false,
+    ruleFilterForm: {},
+    ruleFilters: {},
+    appliedRuleFilters: {},
+    ruleFilterOptions: { traffictype: ['ingress', 'egress'], action: ['allow', 'deny'] },
+    ruleProtocols: ['tcp', 'udp', 'icmp', 'all'].map(value => ({ value })),
     ruleCount: null,
     acls: [],
     lastRules: [],
@@ -407,6 +468,12 @@ export default {
     dialogTitle () {
       return this.$t(({ add: 'label.add.rule', edit: 'label.edit.rule', tags: 'label.tags', remove: 'label.delete' })[this.dialog?.mode])
     },
+    ruleFilterFields () {
+      return ['traffictype', 'protocol', 'action'].filter(field => aclHasParam(this.$store.getters, 'listNetworkACLs', field))
+    },
+    hasRuleSearch () {
+      return !!this.appliedSearch || this.appliedRuleDisplay !== 'all' || Object.keys(this.appliedRuleFilters).length > 0
+    },
     canFilterDisplay () {
       return aclDisplaySupported(this.$store.getters, 'listNetworkACLs')
     },
@@ -420,11 +487,11 @@ export default {
     },
     canMove () {
       return this.showMoveActions && this.can('move') && !!this.orderHash &&
-        !this.searchQuery && !this.appliedSearch && this.ruleDisplay === 'all' && this.appliedRuleDisplay === 'all' && !this.dialog && !this.busy && !this.pending
+        !this.searchQuery && !this.hasRuleSearch && this.ruleDisplay === 'all' && !Object.keys(this.ruleFilters).length && !this.dialog && !this.busy && !this.pending
     },
     moveHint () {
       if (!this.can('move') || this.notice || this.busy) return ''
-      if (this.searchQuery || this.appliedSearch || this.ruleDisplay !== 'all' || this.appliedRuleDisplay !== 'all') return 'message.acl.order.clear.filters'
+      if (this.searchQuery || this.hasRuleSearch || this.ruleDisplay !== 'all' || Object.keys(this.ruleFilters).length) return 'message.acl.order.clear.filters'
       if (!this.orderHash) return 'message.acl.order.full.required'
       return ''
     },
@@ -434,7 +501,17 @@ export default {
     }
   },
   watch: {
-    scope: { handler () { this.ruleDisplay = 'all'; this.reset(); this.$nextTick(() => { if (this.active && !this.loading) this.reload() }) }, flush: 'sync' },
+    scope: {
+      handler () {
+        this.searchQuery = ''
+        this.ruleDisplay = 'all'
+        this.ruleFilterOpen = false
+        this.ruleFilters = {}
+        this.reset()
+        this.$nextTick(() => { if (this.active && !this.loading) this.reload() })
+      },
+      flush: 'sync'
+    },
     loading (loading) { if (!loading && this.active) this.reload() },
     '$store.getters.apis': { handler () { this.reset(); this.$nextTick(() => { if (this.active && !this.loading) this.reload() }) }, flush: 'sync' }
   },
@@ -450,6 +527,9 @@ export default {
       this.access = null
       this.acls = []
       this.lastRules = []
+      this.appliedSearch = ''
+      this.appliedRuleDisplay = 'all'
+      this.appliedRuleFilters = {}
       this.ruleCount = null
       this.exportTotals = {}
       this.exporting = false
@@ -505,6 +585,22 @@ export default {
         if (current()) this.fetchLoading = false
       }
     },
+    openRuleFilters (open) {
+      if (open) this.ruleFilterForm = { ...this.ruleFilters }
+      this.ruleFilterOpen = open
+    },
+    applyRuleFilters () {
+      this.ruleFilters = Object.fromEntries(this.ruleFilterFields.map(field => [field, this.ruleFilterForm[field]?.trim().toLowerCase()]).filter(([, value]) => value))
+      this.ruleFilterOpen = false
+      return this.fetchData()
+    },
+    resetRuleFilters () {
+      this.ruleFilters = {}
+      this.ruleFilterOpen = false
+      this.searchQuery = ''
+      this.ruleDisplay = 'all'
+      return this.fetchData()
+    },
     changeRuleDisplay (value) {
       if (!this.canFilterDisplay || (value !== 'all' && !aclDisplayValue(value))) return
       this.ruleDisplay = value
@@ -520,10 +616,11 @@ export default {
       const epoch = this.epoch
       const read = ++this.ruleRead
       const current = () => this.live(scope, epoch) && read === this.ruleRead
-      const keyword = this.searchQuery
+      const keyword = this.searchQuery?.trim() || ''
+      const filters = Object.fromEntries(this.ruleFilterFields.filter(field => this.ruleFilters[field]).map(field => [field, this.ruleFilters[field]]))
       const displayParams = this.ruleDisplayParams(this.ruleDisplay)
-      const params = { ...this.target.params, aclid: this.target.row.id, ...displayParams }
-      const unfiltered = !keyword && params.fordisplay == null
+      const params = { ...this.target.params, aclid: this.target.row.id, ...displayParams, ...filters }
+      const unfiltered = !keyword && params.fordisplay == null && !Object.keys(filters).length
       this.fetchLoading = true
       this.orderHash = null
       try {
@@ -545,6 +642,7 @@ export default {
         if (current()) {
           this.appliedSearch = keyword
           this.appliedRuleDisplay = displayParams.fordisplay || 'all'
+          this.appliedRuleFilters = filters
           this.ruleCount = Number.isSafeInteger(count) && count >= rows.length ? count : null
           this.lastRules = rows.slice().sort((a, b) => a.number - b.number)
           this.orderHash = unfiltered ? aclOrderHash(this.lastRules, count, params.aclid) : null
@@ -833,7 +931,6 @@ export default {
       const current = () => this.live(scope, epoch) && read === this.ruleRead
       const params = { ...this.target.params, aclid: this.target.row.id, page: 1, pagesize: 1 }
       const keyword = this.appliedSearch
-      const filtered = keyword || this.appliedRuleDisplay !== 'all'
       this.exportTotals = {}
       const count = async filters => {
         const json = await getAPI('listNetworkACLs', { ...params, ...filters }, aclRequestOptions)
@@ -843,8 +940,8 @@ export default {
         return total
       }
       try {
-        const [all, search] = await Promise.all([count(), filtered
-          ? count({ ...(keyword ? { keyword } : {}), ...this.ruleDisplayParams(this.appliedRuleDisplay) })
+        const [all, search] = await Promise.all([count(), this.hasRuleSearch
+          ? count({ ...this.appliedRuleFilters, ...(keyword ? { keyword } : {}), ...this.ruleDisplayParams(this.appliedRuleDisplay) })
           : 0])
         if (current()) this.exportTotals = { all, search }
       } catch {
@@ -862,7 +959,7 @@ export default {
       const params = { ...this.target.params, aclid: id }
       if (range === 'search') {
         if (this.appliedSearch) params.keyword = this.appliedSearch
-        Object.assign(params, this.ruleDisplayParams(this.appliedRuleDisplay))
+        Object.assign(params, this.appliedRuleFilters, this.ruleDisplayParams(this.appliedRuleDisplay))
       }
       const count = this.exportTotals[range]
       this.exporting = true
@@ -904,6 +1001,10 @@ export default {
 <style lang="scss" scoped>
 .acl-rule-display-filter { min-width: 9rem; }
 .acl-rule-count { margin: 8px 0; }
+.acl-rule-filter-form { width: min(18rem, calc(100vw - 64px)); }
+.acl-rule-filter-form .filter-group-button { display: flex; justify-content: space-between; gap: 8px; }
+.acl-rule-filter-help { color: var(--ui-text-secondary); }
+.acl-rule-filter-conditions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
 
 .acl-access-notice { margin: 12px 0; }
 .acl-order-hint { margin: 12px 0 0; color: var(--ui-text-secondary); }

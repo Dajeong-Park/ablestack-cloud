@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import { aclDisplaySupported } from '@/utils/vpcAclAccess'
+import { aclDisplaySupported, aclHasParam, aclListMutable } from '@/utils/vpcAclAccess'
 import { vpnConnectionDisplaySupported } from '@/utils/s2sConnection'
 import { shallowRef, defineAsyncComponent } from 'vue'
 import { hasVnfReinstallJob } from '@/utils/vnfReinstall'
@@ -1204,10 +1204,12 @@ export default {
       icon: 'bars-outlined',
       docHelp: 'adminguide/networking_and_traffic.html#configuring-network-access-control-list',
       permission: ['listNetworkACLLists'],
-      columns: getters => ['name', 'description', ...(aclDisplaySupported(getters) ? ['fordisplay'] : []), 'id'],
+      columns: getters => ['name', 'description', 'vpcname', ...(aclDisplaySupported(getters) ? ['fordisplay'] : []), 'id'],
       details: () => ['name', 'description', ...(aclDisplaySupported(store.getters) ? ['fordisplay'] : []), 'id'],
       filters: () => aclDisplaySupported(store.getters) ? ['true', 'false'] : [],
       filterLabels: { true: 'label.acl.display.visible', false: 'label.acl.display.hidden' },
+      searchFilters: () => ['name', 'vpcid'].filter(field =>
+        aclHasParam(store.getters, 'listNetworkACLLists', field) && (field !== 'vpcid' || 'listVPCs' in store.getters.apis)),
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
@@ -1231,6 +1233,7 @@ export default {
           icon: 'edit-outlined',
           label: 'label.edit.acl',
           dataView: true,
+          show: (row, getters) => aclListMutable(row, getters.userInfo?.roletype === 'Admin'),
           args: (row, getters) => ['name', 'description',
             ...(aclDisplaySupported(getters, 'updateNetworkACLList') && typeof row?.fordisplay === 'boolean' ? ['fordisplay'] : [])]
         },
@@ -1239,7 +1242,8 @@ export default {
           icon: 'delete-outlined',
           label: 'label.delete.acl',
           message: 'message.confirm.delete.acl',
-          dataView: true
+          dataView: true,
+          show: (row, getters) => aclListMutable(row, getters.userInfo?.roletype === 'Admin')
         }
       ]
     },

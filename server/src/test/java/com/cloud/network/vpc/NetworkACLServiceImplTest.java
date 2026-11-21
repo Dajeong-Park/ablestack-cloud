@@ -115,7 +115,7 @@ public class NetworkACLServiceImplTest {
     private Long networkAclMockId = 5L;
     private Long networkOfferingMockId = 2L;
     private Long networkMockVpcMockId = 3L;
-    private long networkAclListId = 1l;
+    private long networkAclListId = 101L;
     private static final String SOME_UUID = "someUuid";
 
     @Mock
@@ -966,6 +966,14 @@ public class NetworkACLServiceImplTest {
 
         Mockito.verify(networkAclItemVoMock).setIcmpCode(null);
         Mockito.verify(networkAclItemVoMock).setIcmpType(null);
+    }
+
+    @Test(expected = InvalidParameterValueException.class)
+    public void updateDefaultAclRejectsMetadataChanges() {
+        long id = NetworkACL.DEFAULT_DENY;
+        Mockito.when(updateNetworkACLListCmdMock.getId()).thenReturn(id);
+        Mockito.when(networkAclDaoMock.findById(id)).thenReturn(networkACLVOMock);
+        networkAclServiceImpl.updateNetworkACL(updateNetworkACLListCmdMock);
     }
 
     @Test

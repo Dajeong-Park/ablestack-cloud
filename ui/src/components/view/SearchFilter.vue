@@ -274,6 +274,11 @@ export default {
       return this.$t('label.' + fieldName)
     },
     async getSearchFilters (key, value) {
+      if (this.apiName === 'listNetworkACLLists' && this.$route.meta?.name === 'acllist' && key === 'vpcid' &&
+          'listVPCs' in this.$store.getters.apis) {
+        const result = await getAPI('listVPCs', { id: value, listall: true, page: 1, pagesize: 1 }, { preserveOnFailure: true, timeout: 15000 })
+        return result.listvpcsresponse?.vpc?.find(row => row.id === value)?.name || value
+      }
       const val = this.getStaticFieldValue(key, value)
       if (val !== '') {
         return val

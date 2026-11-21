@@ -51,6 +51,14 @@ public class NetworkACLResponse extends BaseResponse {
     @Param(description = "Is ACL for display to the regular user", since = "4.4", authorized = {RoleType.Admin})
     private Boolean forDisplay;
 
+    @SerializedName(ApiConstants.IS_DEFAULT)
+    @Param(description = "Whether this is a built-in default ACL")
+    private Boolean isDefault;
+
+    public void setDefault(boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

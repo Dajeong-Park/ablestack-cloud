@@ -20,7 +20,7 @@ import { reactive } from 'vue'
 import md5 from 'md5'
 import AclRulesTab from '@/views/network/AclRulesTab.vue'
 import ImportNetworkACL from '@/views/network/ImportNetworkACL.vue'
-import { aclCommands, discoverAclAccess, readAclList, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
+import { aclCommands, aclListDetailLocation, aclListLocation, aclListMutable, aclListSearchQuery, discoverAclAccess, readAclList, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import { getAPI, postAPI } from '@/api'
 import { aclCsvError, formatAclCsv, parseAclCsv } from '@/utils/aclCsv'
 
@@ -142,6 +142,33 @@ test.each([
   await vm.submitRule()
   expect(postAPI.mock.calls[0][1]).not.toHaveProperty('fordisplay')
   wrapper.unmount()
+})
+
+test('ACL searches reset the page and preserve independently applied conditions and return context', () => {
+  const getters = {
+    userInfo: { roletype: 'Admin' },
+    apis: { listNetworkACLLists: { params: ['name', 'vpcid', 'fordisplay'].map(name => ({ name })) } }
+  }
+  const initial = { page: '3', pagesize: '5', fordisplay: 'false', q: 'description', keyword: 'description' }
+  const filtered = aclListSearchQuery(initial, { aclAdvanced: { name: ' Exact ', vpcid: 'vpc' } }, 5, getters)
+  expect(filtered).toMatchObject({ page: '1', name: 'Exact', vpcid: 'vpc', keyword: 'description', fordisplay: 'false' })
+  const searched = aclListSearchQuery(filtered, { searchQuery: ' changed ' }, 5, getters)
+  expect(searched).toMatchObject({ q: 'changed', keyword: 'changed', name: 'Exact', vpcid: 'vpc' })
+  const page = { ...searched, page: '2' }
+  const detail = aclListDetailLocation({ query: page }, { id: 'acl' }, getters)
+  expect(aclListLocation(detail, {}, getters).query).toEqual(page)
+  expect(aclListSearchQuery(page, { aclReset: true }, 5, getters)).toEqual({ page: '1', pagesize: '5', fordisplay: 'false' })
+})
+
+test('built-in ACL write protection follows the server flag regardless of name', async () => {
+  const target = { row: { id: 'built-in', name: 'renamed globally', isdefault: true }, params: {} }
+  expect(aclListMutable(target.row, true)).toBe(false)
+  const flags = await discoverAclAccess(() => apis(allApis), target, true)
+  expect(Object.keys(flags).filter(key => flags[key])).toEqual(['readTags'])
+  const custom = { row: { id: 'custom', name: 'default_deny', isdefault: false }, params: {} }
+  expect(aclListMutable(custom.row, true)).toBe(true)
+  expect(aclListMutable(custom.row, false)).toBe(false)
+  expect((await discoverAclAccess(() => apis(allApis), custom, true)).add).toBe(true)
 })
 
 test('hidden list details use an exact fallback only for an authorized scope', async () => {

@@ -188,8 +188,11 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
                 throw new InvalidParameterValueException("Unable to find VPC");
             }
             _accountMgr.checkAccess(caller, null, true, vpc);
-            //Include vpcId 0 to list default ACLs
-            sc.setParameters("vpcId", vpcId, 0);
+            if (cmd.includeDefaults()) {
+                sc.setParameters("vpcId", vpcId, 0);
+            } else {
+                sc.setParameters("vpcId", vpcId);
+            }
         } else {
             //ToDo: Add accountId to network_acl table for permission check
 
@@ -990,6 +993,12 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
     public NetworkACL updateNetworkACL(UpdateNetworkACLListCmd updateNetworkACLListCmd) {
         Long id = updateNetworkACLListCmd.getId();
         NetworkACLVO acl = _networkACLDao.findById(id);
+        if (acl == null) {
+            throw new InvalidParameterValueException("Unable to find specified ACL");
+        }
+        if (isDefaultAcl(id)) {
+            throw new InvalidParameterValueException("Default ACL cannot be modified");
+        }
         Account account = CallContext.current().getCallingAccount();
 
         validateGlobalAclPermissionAndAclAssociatedToVpc(acl, account, "Must be Root Admin to update a global ACL.");
@@ -1415,6 +1424,6 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
     }
 
     protected boolean isDefaultAcl(long aclId) {
-        return aclId == NetworkACL.DEFAULT_ALLOW || aclId == NetworkACL.DEFAULT_DENY;
+        return NetworkACL.isDefault(aclId);
     }
 }

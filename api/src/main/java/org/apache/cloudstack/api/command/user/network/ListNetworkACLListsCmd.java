@@ -49,6 +49,9 @@ public class ListNetworkACLListsCmd extends BaseListProjectAndAccountResourcesCm
     @Parameter(name = ApiConstants.VPC_ID, type = CommandType.UUID, entityType = VpcResponse.class, description = "List network ACLs by VPC ID")
     private Long vpcId;
 
+    @Parameter(name = "includedefaults", type = CommandType.BOOLEAN, description = "Include the shared default ACLs when filtering by VPC ID. Defaults to true.")
+    private Boolean includeDefaults;
+
     @Parameter(name = ApiConstants.NAME, type = CommandType.STRING, description = "List network ACLs by specified name")
     private String name;
 
@@ -69,6 +72,10 @@ public class ListNetworkACLListsCmd extends BaseListProjectAndAccountResourcesCm
 
     public Long getVpcId() {
         return vpcId;
+    }
+
+    public boolean includeDefaults() {
+        return !Boolean.FALSE.equals(includeDefaults);
     }
 
     public String getName() {

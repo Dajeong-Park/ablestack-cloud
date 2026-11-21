@@ -25,6 +25,10 @@ public interface NetworkACL extends InternalIdentity, Identity, Displayable {
     public static final long DEFAULT_DENY = 1;
     public static final long DEFAULT_ALLOW = 2;
 
+    static boolean isDefault(long aclId) {
+        return aclId == DEFAULT_ALLOW || aclId == DEFAULT_DENY;
+    }
+
     String getDescription();
 
     String getUuid();
