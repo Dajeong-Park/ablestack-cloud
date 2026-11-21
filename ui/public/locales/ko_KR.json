@@ -1,4 +1,6 @@
 {
+  "message.account.networkdomain.clear": "이 입력란을 비우면 네트워크 도메인이 제거됩니다.",
+  "label.account.apikey.inherit": "도메인 설정 상속",
   "label.account.action.ready": "실행 가능",
   "label.account.action.skipped": "제외",
   "label.account.action.working": "처리 중",

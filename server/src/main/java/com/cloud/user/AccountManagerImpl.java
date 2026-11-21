@@ -2925,30 +2925,27 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
         validateCallerAccountDetails(details);
 
         boolean success;
-        Account account;
-        if (accountId != null) {
-            account = _accountDao.findById(accountId);
-        } else {
-            account = _accountDao.findEnabledAccount(accountName, domainId);
-        }
-
-        final AccountVO acctForUpdate = _accountDao.findById(account.getId());
-
-        // Check if account exists
+        final Account account = accountId != null
+                ? _accountDao.findById(accountId) : _accountDao.findActiveAccount(accountName, domainId);
         if (account == null || account.getType() == Account.Type.PROJECT) {
-            logger.error("Unable to find account by accountId: {} OR by name: {} in domain {}", accountId, accountName, _domainMgr.getDomain(domainId));
-            throw new InvalidParameterValueException(String.format("Unable to find account by accountId: %d OR by name: %s in domain %s", accountId, accountName, _domainMgr.getDomain(domainId)));
+            throw new InvalidParameterValueException("Unable to find an account for the supplied account ID, name and domain.");
         }
-
-        // Don't allow to modify system account
         if (account.getId() == Account.ACCOUNT_ID_SYSTEM) {
             throw new InvalidParameterValueException("Can not modify system account");
         }
 
-        // Check if user performing the action is allowed to modify this account
+        final Long targetDomainId = account.getDomainId();
         Account caller = getCurrentCallingAccount();
-        checkAccess(caller, _domainMgr.getDomain(account.getDomainId()));
+        checkAccess(caller, _domainMgr.getDomain(targetDomainId));
         verifyCallerPrivilegeForUserOrAccountOperations(account);
+        if (accountId != null && ((domainId != null && !domainId.equals(targetDomainId))
+                || (accountName != null && !accountName.equals(account.getAccountName())))) {
+            throw new InvalidParameterValueException("The account name or domain does not match the account ID.");
+        }
+        final AccountVO acctForUpdate = _accountDao.findById(account.getId());
+        if (acctForUpdate == null) {
+            throw new InvalidParameterValueException("The account is no longer available.");
+        }
 
         validateAndUpdateAccountApiKeyAccess(cmd, acctForUpdate);
 
@@ -2957,15 +2954,15 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
             if (newAccountName.isEmpty()) {
                 throw new InvalidParameterValueException(String.format("The new account name for " +
                         "account '%s' within domain '%s' is empty string. Account will be not renamed.",
-                        account, _domainMgr.getDomain(domainId)));
+                        account, _domainMgr.getDomain(targetDomainId)));
             }
 
             // check if the new proposed account name is absent in the domain
-            Account existingAccount = _accountDao.findActiveAccount(newAccountName, domainId);
+            Account existingAccount = _accountDao.findActiveAccount(newAccountName, targetDomainId);
             if (existingAccount != null && existingAccount.getId() != account.getId()) {
                 throw new InvalidParameterValueException(String.format("The account with the " +
                                 "proposed name '%s' exists in the domain '%s' with existing account %s",
-                        newAccountName, _domainMgr.getDomain(domainId), existingAccount));
+                        newAccountName, _domainMgr.getDomain(targetDomainId), existingAccount));
             }
 
             acctForUpdate.setAccountName(newAccountName);
@@ -2987,7 +2984,7 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
             if (roleNotFound) {
                 throw new InvalidParameterValueException(String.format("Role with ID '%s' is not " +
                         "found or not available for the account '%s' in the domain '%s'.",
-                        roleId, account, _domainMgr.getDomain(domainId)));
+                        roleId, account, _domainMgr.getDomain(targetDomainId)));
             }
 
             Role role = roleService.findRole(roleId);
@@ -3020,7 +3017,7 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
             CallContext.current().putContextParameter(Account.class, account.getUuid());
             return _accountDao.findById(account.getId());
         } else {
-            throw new CloudRuntimeException(String.format("Unable to update account %s by accountId: %d OR by name: %s in domain %d", account, accountId, accountName, domainId));
+            throw new CloudRuntimeException(String.format("Unable to update account %s by accountId: %d OR by name: %s in domain %d", account, accountId, accountName, targetDomainId));
         }
     }
 

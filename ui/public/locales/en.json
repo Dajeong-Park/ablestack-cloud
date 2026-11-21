@@ -1,4 +1,6 @@
 {
+  "message.account.networkdomain.clear": "Clear this field to remove the network domain.",
+  "label.account.apikey.inherit": "Inherit from domain",
   "label.account.action.ready": "Ready",
   "label.account.action.skipped": "Excluded",
   "label.account.action.working": "Processing",
