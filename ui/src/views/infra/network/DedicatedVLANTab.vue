@@ -19,6 +19,7 @@
   <a-spin :spinning="fetchLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
     <a-button
+      ref="dedicationTrigger"
       :disabled="posting || !('dedicateGuestVlanRange' in $store.getters.apis)"
       type="primary"
       @click="handleOpenModal">
@@ -68,6 +69,8 @@
       focus-guard
       :closable="!posting"
       :keyboard="!posting"
+      :after-close="restoreDialogFocus"
+      :focus-trigger-after-close="false"
       @cancel="closeDialog">
       <a-spin :spinning="formLoading">
         <a-form
@@ -174,7 +177,8 @@
       focus-guard
       :closable="!posting"
       :keyboard="!posting"
-      :after-close="clearReleaseTarget"
+      :after-close="finishReleaseDialog"
+      :focus-trigger-after-close="false"
       @cancel="closeDialog">
       <a-descriptions :column="1" size="small" bordered>
         <a-descriptions-item :label="$t('label.physical.network')">{{ resource.name || resource.id }}</a-descriptions-item>
@@ -223,6 +227,7 @@ export default {
       posting: false,
       releaseOpen: false,
       releaseTarget: null,
+      dialogTrigger: null,
       lookupVersion: 0,
       form: { scope: 'account' },
       rules: Object.fromEntries(['range', 'domain', 'account', 'project'].map(field => [field, [{ required: true, message: this.$t('label.required') }]])),
@@ -328,6 +333,7 @@ export default {
     },
     openRelease (item) {
       if (this.posting || !this.$store.getters.apis.releaseDedicatedGuestVlanRange) return
+      this.dialogTrigger = document.activeElement
       this.releaseTarget = item
       this.releaseOpen = true
     },
@@ -338,8 +344,17 @@ export default {
       this.lookupVersion++
       this.formLoading = false
     },
-    clearReleaseTarget () {
-      if (!this.releaseOpen) this.releaseTarget = null
+    restoreDialogFocus () {
+      if (this.modal || this.releaseOpen) return
+      const trigger = this.dialogTrigger
+      this.dialogTrigger = null
+      if (trigger?.isConnected && !trigger.disabled) trigger.focus()
+      else this.$refs.dedicationTrigger?.$el?.focus()
+    },
+    finishReleaseDialog () {
+      if (this.releaseOpen) return
+      this.releaseTarget = null
+      this.restoreDialogFocus()
     },
     async handleDelete () {
       const item = this.releaseTarget
@@ -385,6 +400,7 @@ export default {
     async handleOpenModal () {
       if (this.posting || !this.$store.getters.apis.dedicateGuestVlanRange) return
       const version = ++this.lookupVersion
+      this.dialogTrigger = document.activeElement
       this.form = { scope: 'account' }
       this.domains = []
       this.modal = true
