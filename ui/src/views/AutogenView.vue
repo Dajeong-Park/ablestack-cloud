@@ -371,6 +371,15 @@
             <PublicIpReleaseSummary v-if="publicIpReleaseDialog" :resources="currentAction.invokedAsGroupAction ? selectedItems : [currentAction.resource || resource]" />
             <VmSnapshotSummary v-if="currentAction.api === 'createVMSnapshot'" vm-only :snapshot="{ virtualmachineid: currentAction.resource.id, virtualmachinename: currentAction.resource.displayname || currentAction.resource.name, virtualmachineinstancename: currentAction.resource.instancename, virtualmachinestate: currentAction.resource.state }" />
             <InstanceGroupDeleteSummary v-if="currentAction.api === 'deleteInstanceGroup'" :groups="currentAction.vmGroupTargets || []" />
+            <ul v-if="currentAction.vpnCustomerGatewayTargets" class="vpn-customer-gateway-targets">
+              <li v-for="target in currentAction.vpnCustomerGatewayTargets" :key="target.id">
+                <strong>{{ target.name || target.id }}</strong>
+                <span>{{ target.gateway }}</span>
+                <span v-if="target.project || target.account">
+                  {{ target.project || target.account }}<template v-if="target.domain"> · {{ target.domain }}</template>
+                </span>
+              </li>
+            </ul>
             <span v-if="currentAction.message">
               <div v-if="selectedRowKeys.length > 0 && currentAction.invokedAsGroupAction">
                 <a-alert
@@ -400,7 +409,7 @@
                   </template>
                 </a-alert>
               </div>
-              <div v-if="selectedRowKeys.length > 0 && currentAction.invokedAsGroupAction">
+              <div v-if="selectedRowKeys.length > 0 && currentAction.invokedAsGroupAction && !currentAction.vpnCustomerGatewayTargets">
                 <a-divider />
                 <a-table
                   v-if="selectedRowKeys.length > 0 && currentAction.api !== 'deleteInstanceGroup'"
@@ -3747,6 +3756,11 @@ export default {
         ...action,
         invokedAsGroupAction: !!isGroupAction
       }
+      if (action.api === 'deleteVpnCustomerGateway') {
+        const targets = isGroupAction ? this.selectedItems : [action.resource || this.resource]
+        this.currentAction.vpnCustomerGatewayTargets = targets.filter(row => row?.id)
+          .map(({ id, name, gateway, project, account, domain }) => ({ id, name, gateway, project, account, domain }))
+      }
       if (action.api === 'deleteInstanceGroup') {
         this.currentAction.vmGroupTargets = vmGroupDeleteTargets(this.currentAction, this.selectedItems)
       }
@@ -5036,6 +5050,15 @@ export default {
 </script>
 
 <style scoped src="@/style/components/view/list-toolbar.css" />
+.vpn-customer-gateway-targets {
+  display: grid;
+  gap: 8px;
+  overflow-wrap: anywhere;
+}
+.vpn-customer-gateway-targets li > * {
+  display: block;
+}
+
 <style scoped src="@/style/components/view/vm-acl-standard.css" />
 <style scoped src="@/style/components/view/project-standard.css" />
 <style src="@/style/components/view/s2s-connection.css" />
