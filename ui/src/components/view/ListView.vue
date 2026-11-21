@@ -759,7 +759,8 @@
           v-for="(item, idx) in record.network"
           :key="idx"
         >
-          <router-link :to="{ path: '/guestnetwork/' + item.id }">{{ item.name }}</router-link>
+          <router-link v-if="guestVlanNetworkLocation(item, $store.getters.apis)" :to="guestVlanNetworkLocation(item, $store.getters.apis)">{{ item.name }}</router-link>
+          <span v-else>{{ item.name }}</span>
           <span v-if="idx < (record.network.length - 1)">, </span>
         </template>
       </template>
@@ -1345,6 +1346,7 @@ import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListCell from '@/components/view/AsnListCell'
+import { guestVlanNetworkLocation } from '@/utils/guestVlan'
 import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
@@ -1642,6 +1644,7 @@ export default {
     }
   },
   methods: {
+    guestVlanNetworkLocation,
     isEventTimelineRoute,
     isEventDetailRoute,
     eventRowLocation (record) {

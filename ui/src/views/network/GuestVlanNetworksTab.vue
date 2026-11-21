@@ -27,8 +27,7 @@
   >
     <template #bodyCell="{ column, text, record }">
       <template v-if="column.key === 'name'">
-        <router-link v-if="record.issystem === false && !record.projectid" :to="{ path: '/guestnetwork/' + record.id }" >{{ text }}</router-link>
-        <router-link v-else-if="record.issystem === false && record.projectid" :to="{ path: '/guestnetwork/' + record.id, query: { projectid: record.projectid}}" >{{ text }}</router-link>
+        <router-link v-if="guestVlanNetworkLocation(record, $store.getters.apis)" :to="guestVlanNetworkLocation(record, $store.getters.apis)">{{ text }}</router-link>
         <span v-else>{{ text }}</span>
       </template>
       <template v-if="column.key === 'state'">
@@ -43,6 +42,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI } from '@/api'
 import Status from '@/components/widgets/Status'
+import { guestVlanNetworkLocation } from '@/utils/guestVlan'
 
 export default {
   mixins: [listRefreshMixin(['fetchData'])],
@@ -113,6 +113,7 @@ export default {
     }
   },
   methods: {
+    guestVlanNetworkLocation,
     fetchData () {
       const listRequest = this.listRequestToken('fetchData')
       var params = {
