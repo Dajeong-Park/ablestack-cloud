@@ -232,13 +232,16 @@ public class QueryManagerImplTest {
     @Test
     public void searchForEventsSuccess() {
         ListEventsCmd cmd = setupMockListEventsCmd();
+        when(cmd.getStartId()).thenReturn(null);
         String uuid = UUID.randomUUID().toString();
         Mockito.when(cmd.getResourceId()).thenReturn(uuid);
         Mockito.when(cmd.getResourceType()).thenReturn(ApiCommandResourceType.Network.toString());
         List<EventVO> events = new ArrayList<>();
-        events.add(mock(EventVO.class));
-        events.add(mock(EventVO.class));
-        events.add(mock(EventVO.class));
+        for (long id = 1; id <= 3; id++) {
+            EventVO event = mock(EventVO.class);
+            when(event.getId()).thenReturn(id);
+            events.add(event);
+        }
         Pair<List<EventVO>, Integer> pair = new Pair<>(events, events.size());
 
         List<EventJoinVO> eventJoins = new ArrayList<>();
@@ -252,16 +255,90 @@ public class QueryManagerImplTest {
         Mockito.when(entityManager.findByUuidIncludingRemoved(Network.class, uuid)).thenReturn(network);
         Mockito.doNothing().when(accountManager).checkAccess(account, SecurityChecker.AccessType.ListEntry, true, network);
         Mockito.when(eventDao.searchAndCount(Mockito.any(), Mockito.any(Filter.class))).thenReturn(pair);
-        Mockito.lenient().when(eventJoinDao.searchByIds(Mockito.any())).thenReturn(eventJoins);
+        when(eventJoinDao.searchByIds(1L, 2L, 3L)).thenReturn(eventJoins);
         List<EventResponse> respList = new ArrayList<EventResponse>();
         for (EventJoinVO vt : eventJoins) {
             respList.add(eventJoinDao.newEventResponse(vt));
         }
         try (MockedStatic<ViewResponseHelper> ignored = Mockito.mockStatic(ViewResponseHelper.class)) {
-            Mockito.when(ViewResponseHelper.createEventResponse(Mockito.any())).thenReturn(respList);
+            when(ViewResponseHelper.createEventResponse(eventJoins.toArray(new EventJoinVO[0]))).thenReturn(respList);
             ListResponse<EventResponse> result = queryManager.searchForEvents(cmd);
             Assert.assertEquals((int) result.getCount(), events.size());
         }
+    }
+
+    @Test
+    public void timelineByChildUsesItsOperationAndReturnsTheSelectedPageInOrder() {
+        ListEventsCmd cmd = setupMockListEventsCmd();
+        when(cmd.getStartId()).thenReturn(11L);
+        when(cmd.isTimeline()).thenReturn(true);
+        when(cmd.isCreatedOrder()).thenReturn(true);
+        when(cmd.isCreatedOrderAscending()).thenReturn(true);
+        SearchBuilder<EventVO> builder = eventDao.createSearchBuilder();
+        when(builder.and()).thenReturn(builder);
+
+        EventVO parent = mock(EventVO.class);
+        when(parent.getId()).thenReturn(10L);
+        EventVO child = mock(EventVO.class);
+        when(child.getId()).thenReturn(11L);
+        when(child.getStartId()).thenReturn(10L);
+        when(eventDao.findOneBy(any(SearchCriteria.class))).thenReturn(child);
+        when(eventDao.searchAndCount(any(SearchCriteria.class), any(Filter.class))).thenReturn(new Pair<>(List.of(parent, child), 2));
+
+        EventJoinVO rootView = mock(EventJoinVO.class);
+        EventJoinVO childView = mock(EventJoinVO.class);
+        when(rootView.getId()).thenReturn(10L);
+        when(childView.getId()).thenReturn(11L);
+        when(eventJoinDao.searchByIds(10L, 11L)).thenReturn(List.of(childView, rootView));
+
+        try (MockedStatic<ViewResponseHelper> responses = Mockito.mockStatic(ViewResponseHelper.class)) {
+            responses.when(() -> ViewResponseHelper.createEventResponse(rootView, childView))
+                    .thenReturn(List.of(new EventResponse(), new EventResponse()));
+            assertEquals(2, (int) queryManager.searchForEvents(cmd).getCount());
+            responses.verify(() -> ViewResponseHelper.createEventResponse(rootView, childView));
+        }
+    }
+
+    @Test
+    public void eventCreatedSortKeepsThePageOrderAndTieBreaker() {
+        ListEventsCmd cmd = setupMockListEventsCmd();
+        when(cmd.getStartId()).thenReturn(null);
+        when(cmd.getId()).thenReturn(null);
+        when(cmd.isCreatedOrder()).thenReturn(true);
+        EventVO newest = mock(EventVO.class);
+        EventVO older = mock(EventVO.class);
+        when(newest.getId()).thenReturn(21L);
+        when(older.getId()).thenReturn(20L);
+        when(eventDao.searchAndCount(any(SearchCriteria.class), any(Filter.class))).thenAnswer(call -> {
+            Filter filter = call.getArgument(1);
+            String order = filter.getOrderBy().toLowerCase(java.util.Locale.ROOT);
+            assertTrue(order.contains("created") && order.contains("id") && order.indexOf("created") < order.indexOf("id"));
+            assertEquals(2, order.split("desc", -1).length - 1);
+            return new Pair<>(List.of(newest, older), 2);
+        });
+        EventJoinVO first = mock(EventJoinVO.class);
+        EventJoinVO second = mock(EventJoinVO.class);
+        when(first.getId()).thenReturn(21L);
+        when(second.getId()).thenReturn(20L);
+        when(eventJoinDao.searchByIds(21L, 20L)).thenReturn(List.of(second, first));
+        try (MockedStatic<ViewResponseHelper> responses = Mockito.mockStatic(ViewResponseHelper.class)) {
+            responses.when(() -> ViewResponseHelper.createEventResponse(first, second))
+                    .thenReturn(List.of(new EventResponse(), new EventResponse()));
+            assertEquals(2, (int) queryManager.searchForEvents(cmd).getCount());
+            responses.verify(() -> ViewResponseHelper.createEventResponse(first, second));
+        }
+    }
+
+    @Test
+    public void timelineWithoutAnAccessibleAnchorDoesNotSearchForStages() {
+        ListEventsCmd cmd = setupMockListEventsCmd();
+        when(cmd.getStartId()).thenReturn(11L);
+        when(cmd.isTimeline()).thenReturn(true);
+        try (MockedStatic<ViewResponseHelper> responses = Mockito.mockStatic(ViewResponseHelper.class)) {
+            responses.when(() -> ViewResponseHelper.createEventResponse(Mockito.any())).thenReturn(List.of());
+            assertEquals(0, (int) queryManager.searchForEvents(cmd).getCount());
+        }
+        verify(eventDao, Mockito.never()).searchAndCount(any(SearchCriteria.class), any(Filter.class));
     }
 
     @Test(expected = InvalidParameterValueException.class)

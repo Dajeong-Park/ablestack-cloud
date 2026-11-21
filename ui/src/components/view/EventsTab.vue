@@ -23,9 +23,20 @@
         <a-button :aria-label="$t('label.select.columns')"><template #icon><setting-outlined /></template>{{ $t('label.select.columns') }}</a-button>
         <template #overlay><a-menu><a-menu-item v-for="key in columnKeys" :key="key" @click="updateSelectedColumns(key)"><a-checkbox :checked="selectedColumnKeys.includes(key)" /> {{ $t('label.' + key) }}</a-menu-item></a-menu></template>
       </a-dropdown>
+      <a-select
+        v-if="isOperationTimeline"
+        v-model:value="archiveScope"
+        :aria-label="$t('label.filterby')"
+        style="min-width: 100px"
+        @change="changeArchiveScope">
+        <a-select-option value="all">{{ $t('label.all') }}</a-select-option>
+        <a-select-option value="active">{{ $t('label.active') }}</a-select-option>
+        <a-select-option value="archived">{{ $t('label.archived') }}</a-select-option>
+      </a-select>
       <a-input-search v-model:value="eventSearch" class="detail-tab-search" :placeholder="$t('label.search')" :aria-label="$t('label.detail.tab.events.search')" allow-clear @search="searchEvents" />
     </div>
-    <a-alert v-if="isKubernetesCluster" class="events-order-help" type="info" show-icon :message="$t('message.cks.events.order')" :description="$t('message.cks.events.record.created')" />
+    <a-alert v-if="isOperationTimeline" class="events-order-help" type="info" show-icon :message="$t('message.events.timeline.tab.order')" />
+    <a-alert v-else-if="isKubernetesCluster" class="events-order-help" type="info" show-icon :message="$t('message.cks.events.order')" :description="$t('message.cks.events.record.created')" />
     <a-alert v-if="readError" class="detail-tab-notice" type="error" show-icon :message="$t(readDenied ? 'message.detail.tab.denied' : loadedContext ? 'message.list.refresh.stale' : 'error.fetching.data')">
       <template #description><p>{{ readError.startsWith('message.') ? $t(readError) : readError }}</p><a-button size="small" :disabled="tabLoading || listRefreshing > 0" @click="fetchData">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
@@ -34,6 +45,7 @@ v-if="events.length || (!tabLoading && !readError)"
 :loading="tabLoading"
 :columns="columns"
 :table-scroll="{ x: 980 }"
+:empty-text="isOperationTimeline ? $t('message.events.timeline.empty') : ''"
 :items="events"
 :actions="actions"
 :columnKeys="columnKeys"
@@ -63,6 +75,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import { detailTabContext, detailTabDenied, detailTabError, detailTabProject, readDetailTabPage } from '@/utils/detailTabData'
 import { getAPI } from '@/api'
 import { genericCompare } from '@/utils/sort.js'
+import { eventTimelineQuery } from '@/utils/eventTimeline'
 import ListView from '@/components/view/ListView'
 const EVENTS_TAB_COLUMNS_KEY = 'events_tab_columns'
 export default {
@@ -70,32 +83,49 @@ export default {
   name: 'EventsTab',
   components: { ListView },
   props: { resource: { type: Object, required: true }, resourceType: { type: String, required: true }, loading: { type: Boolean, required: true } },
-  data () { return { tabLoading: false, columnKeys: ['level', 'type', 'state', 'description', 'username', 'account', 'domain', 'created'], selectedColumnKeys: [], columns: [], events: [], actions: [], page: 1, pageSize: 20, totalCount: 0, eventSearch: '', keyword: '', loadedContext: '', readError: '', readDenied: false } },
+  data () { return { tabLoading: false, columnKeys: ['level', 'type', 'state', 'description', 'username', 'account', 'domain', 'created'], selectedColumnKeys: [], columns: [], events: [], actions: [], page: 1, pageSize: 20, totalCount: 0, eventSearch: '', keyword: '', archiveScope: 'all', loadedContext: '', readError: '', readDenied: false } },
   computed: {
     eventContext () { return detailTabContext(this, ['listEvents']) },
+    isOperationTimeline () { return this.resourceType === 'EventTimeline' },
+    eventColumnsKey () { return this.isOperationTimeline ? 'event_timeline_columns' : EVENTS_TAB_COLUMNS_KEY },
     isKubernetesCluster () { return this.resourceType === 'KubernetesCluster' },
     pageSizeOptions () { return [...new Set([10, 20, 50, 100, 200, this.$store.getters.defaultListViewPageSize].filter(n => Number.isInteger(n) && n > 0))].sort((a, b) => a - b).map(String) }
   },
   created () { this.setDefaultColumns(); this.pageSize = Number(this.pageSizeOptions[0]); this.fetchData() },
   watch: {
-    eventContext () { this.events = []; this.totalCount = 0; this.loadedContext = ''; this.readError = ''; this.readDenied = false; this.page = 1; this.keyword = ''; this.eventSearch = ''; this.resetEventSelection(); this.fetchEvents() },
+    eventContext () { this.events = []; this.totalCount = 0; this.loadedContext = ''; this.readError = ''; this.readDenied = false; this.page = 1; this.keyword = ''; this.eventSearch = ''; this.archiveScope = 'all'; this.resetEventSelection(); this.fetchEvents() },
     resource () { this.fetchEvents() }
   },
   methods: {
     resetEventSelection () { if (typeof this.$refs?.listview?.resetSelection === 'function') this.$refs.listview.resetSelection() },
-    setDefaultColumns () { const saved = this.$localStorage.get(EVENTS_TAB_COLUMNS_KEY); this.selectedColumnKeys = Array.isArray(saved) ? this.columnKeys.filter(key => saved.includes(key)) : []; if (!this.selectedColumnKeys.length) this.selectedColumnKeys = this.columnKeys.filter(key => key !== 'description'); this.updateColumns() },
+    setDefaultColumns () { const saved = this.$localStorage.get(this.eventColumnsKey); this.selectedColumnKeys = Array.isArray(saved) ? this.columnKeys.filter(key => saved.includes(key)) : []; if (!this.selectedColumnKeys.length) this.selectedColumnKeys = this.columnKeys.filter(key => key !== 'description'); this.updateColumns() },
     fetchData () { return this.fetchEvents() },
+    timelineTarget () {
+      const { startid, projectid } = eventTimelineQuery(this.resource, this.$route.query.projectid || this.$store.getters.project?.id)
+      return {
+        startid,
+        timeline: true,
+        ...(projectid === '0' ? { ignoreproject: true } : { projectid }),
+        ...(this.archiveScope === 'all' ? {} : { archived: this.archiveScope === 'archived' })
+      }
+    },
+    changeArchiveScope () {
+      this.page = 1
+      this.events = []; this.totalCount = 0; this.loadedContext = ''; this.readError = ''
+      return this.fetchEvents()
+    },
     async fetchEvents () {
       const request = this.listRequestToken('fetchEvents')
       if (!this.resource.id || !('listEvents' in this.$store.getters.apis)) { this.events = []; this.totalCount = 0; this.loadedContext = ''; this.tabLoading = false; return }
       const context = this.eventContext
       this.tabLoading = !request.loaded
       if (!request.loaded) { this.events = []; this.totalCount = 0; this.loadedContext = '' }
-      const params = { page: this.page, pagesize: this.pageSize, resourceid: this.resource.id, resourcetype: this.resourceType, listall: true, ...detailTabProject(this), ...(this.keyword ? { keyword: this.keyword } : {}) }
+      const target = this.isOperationTimeline ? this.timelineTarget() : { resourceid: this.resource.id, resourcetype: this.resourceType, ...detailTabProject(this) }
+      const params = { page: this.page, pagesize: this.pageSize, listall: true, ...target, ...(this.keyword ? { keyword: this.keyword } : {}) }
       try {
         const json = await getAPI('listEvents', params, { preserveOnFailure: true, timeout: 20000 })
         if (!this.isListRequestCurrent('fetchEvents', request)) return
-        const result = readDetailTabPage(json, 'listeventsresponse', 'event', { page: this.page, pageSize: this.pageSize, resourceId: this.resource.id })
+        const result = readDetailTabPage(json, 'listeventsresponse', 'event', { page: this.page, pageSize: this.pageSize, resourceId: this.resource.id, matchResource: !this.isOperationTimeline })
         if (this.page > result.lastPage) { this.page = result.lastPage; return this.fetchEvents() }
         this.events = result.rows; this.totalCount = result.count; this.loadedContext = context; this.readError = ''; this.readDenied = false; this.listRefreshFailed = false
       } catch (error) {
@@ -107,8 +137,8 @@ export default {
     searchEvents () { const keyword = this.eventSearch.trim(); if (keyword === this.keyword && this.page === 1) return this.fetchEvents(); this.keyword = keyword; this.page = 1; this.events = []; this.totalCount = 0; this.loadedContext = ''; this.readError = ''; return this.fetchEvents() },
     changePage (page, pageSize) { this.page = pageSize !== this.pageSize ? 1 : page; this.pageSize = pageSize; return this.fetchData() },
     changePageSize (page, pageSize) { this.page = 1; this.pageSize = pageSize; return this.fetchData() },
-    updateSelectedColumns (key) { if (!this.columnKeys.includes(key)) return; if (this.selectedColumnKeys.includes(key)) { if (this.selectedColumnKeys.length === 1) return; this.selectedColumnKeys = this.selectedColumnKeys.filter(x => x !== key) } else this.selectedColumnKeys.push(key); this.$localStorage.set(EVENTS_TAB_COLUMNS_KEY, this.selectedColumnKeys); this.updateColumns() },
-    updateColumns () { this.columns = this.columnKeys.filter(key => this.selectedColumnKeys.includes(key)).map(key => ({ key, title: this.$t('label.' + key), dataIndex: key, width: { level: 70, type: 170, state: 90, description: 280, username: 120, account: 130, domain: 120, created: 180 }[key], sorter: (a, b) => genericCompare(a[key] || '', b[key] || ''), ...(this.isKubernetesCluster && key === 'created' ? { defaultSortOrder: 'descend' } : {}), ...(this.isKubernetesCluster && key === 'state' ? { stateLabel: record => record.state === 'Created' ? this.$t('state.cks.eventrecord.created') : undefined } : {}) })) }
+    updateSelectedColumns (key) { if (!this.columnKeys.includes(key)) return; if (this.selectedColumnKeys.includes(key)) { if (this.selectedColumnKeys.length === 1) return; this.selectedColumnKeys = this.selectedColumnKeys.filter(x => x !== key) } else this.selectedColumnKeys.push(key); this.$localStorage.set(this.eventColumnsKey, this.selectedColumnKeys); this.updateColumns() },
+    updateColumns () { this.columns = this.columnKeys.filter(key => this.selectedColumnKeys.includes(key)).map(key => ({ key, title: this.$t('label.' + key), dataIndex: key, width: { level: 70, type: 170, state: 90, description: 280, username: 120, account: 130, domain: 120, created: 180 }[key], sorter: this.isOperationTimeline ? false : (a, b) => genericCompare(a[key] || '', b[key] || ''), ...(this.isKubernetesCluster && key === 'created' ? { defaultSortOrder: 'descend' } : {}), ...(this.isKubernetesCluster && key === 'state' ? { stateLabel: record => record.state === 'Created' ? this.$t('state.cks.eventrecord.created') : undefined } : {}) })) }
   }
 }
 </script>

@@ -26,7 +26,7 @@
     <span v-if="!searchFilters || searchFilters.length === 0" style="display: flex;">
       <a-input-search
         v-model:value="searchQuery"
-        :placeholder="apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :placeholder="isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         allowClear
         @search="onSearch"
       />
@@ -38,9 +38,9 @@
       <a-input-search
         allowClear
         class="input-search"
-        :placeholder="apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :placeholder="isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         :title="apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
-        :aria-label="apiName === 'listIsos' ? $t('label.search') : undefined"
+        :aria-label="isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
         <template #addonBefore>
@@ -51,7 +51,7 @@
             <template #content v-if="visibleFilter">
               <a-form
                 style="min-width: 170px"
-                :class="{ 'storage-standard-search-form': ['listTemplates', 'listIsos', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch || isVnfSearch, 'guest-network-search-form': isGuestNetworkSearch || isVnfSearch }"
+                :class="{ 'storage-standard-search-form': ['listTemplates', 'listIsos', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch || isVnfSearch || isEventSearch, 'guest-network-search-form': isGuestNetworkSearch || isVnfSearch || isEventSearch }"
                 :ref="formRef"
                 :model="form"
                 :rules="rules"
@@ -135,9 +135,17 @@
                       </div>
                     </a-select-option>
                   </a-select>
+                  <a-date-picker
+                    v-else-if="field.type === 'eventDate'"
+                    v-model:value="form[field.name]"
+                    value-format="YYYY-MM-DD"
+                    allow-clear
+                    style="width: 100%"
+                    :aria-label="retrieveFieldLabel(field.name)" />
                   <a-input
                     v-else-if="field.type==='input'"
-                    v-model:value="form[field.name]" />
+                    v-model:value="form[field.name]"
+                    :aria-label="isEventSearch ? retrieveFieldLabel(field.name) : undefined" />
                   <div v-else-if="field.type==='tag'">
                     <a-input-group
                       type="text"
@@ -162,16 +170,21 @@
                     :id="isKmsSearch ? 'kms-filter-' + field.name : undefined"
                     :get-popup-container="isKmsSearch ? filterPopupContainer : undefined"
                     v-model:value="form[field.name]"
-                    :placeholder="isKmsSearch ? $t('label.all') : $t('message.error.input.value')"
+                    :placeholder="isEventSearch && field.name === 'type' ? $t('message.events.search.type.placeholder') : isKmsSearch ? $t('label.all') : $t('message.error.input.value')"
+                    :aria-label="isEventSearch ? retrieveFieldLabel(field.name) : undefined"
                     :options="field.opts"
                     :filterOption="(inputValue, option) => {
                       return option.value.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1
                     }" />
+                  <small v-if="isEventSearch && field.name === 'type' && field.eventTypesUnavailable">{{ $t('message.events.search.type.unavailable') }}</small>
+                  <small v-if="isEventSearch && field.name === 'startdate'">{{ $t('message.events.search.date.scope') }}</small>
                   <a-alert v-if="apiName === 'listAffinityGroups' && field.error" type="error" :message="$t('error.fetching.data')">
                     <template #description><a-button size="small" @click="fetchAffinityFilters([field.name])">{{ $t('label.retry') }}</a-button></template>
                   </a-alert>
                 </a-form-item>
-                <div class="filter-group-button">
+                <a-alert v-if="isEventSearch && eventFilterError" type="error" show-icon :message="$t(eventFilterError)" />
+                <div class="filter-group-button" :class="{ 'event-search-actions': isEventSearch }">
+                  <a-button v-if="isEventSearch" size="small" @click="visibleFilter = false">{{ $t('label.cancel') }}</a-button>
                   <a-button
                     class="filter-group-button-clear"
                     type="default"
@@ -197,7 +210,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -213,6 +226,7 @@ import KubernetesIsoSearch from '@/components/view/KubernetesIsoSearch'
 import { ref, reactive, toRaw } from 'vue'
 import { kmsApis, kmsBooleans, kmsLookup, kmsProjectScope, kmsProtocolOptions } from '@/utils/kmsSearch'
 import { getAPI } from '@/api'
+import { eventSearchError } from '@/utils/eventSearch'
 import { sourceToken } from '@/utils/request'
 import { isAdmin } from '@/role'
 import TooltipButton from '@/components/widgets/TooltipButton'
@@ -266,6 +280,7 @@ export default {
     return {
       searchQuery: null,
       paramsFilter: {},
+      eventFilterError: '',
       visibleFilter: false,
       fields: [],
       inputKey: null,
@@ -329,6 +344,7 @@ export default {
   },
   computed: {
     isKmsSearch () { return kmsApis.includes(this.apiName) },
+    isEventSearch () { return this.apiName === 'listEvents' },
     isVnfSearch () { return this.apiName === 'listVnfAppliances' },
     vnfSearchContext () { return this.isVnfSearch ? vnfAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
     vnfScope () { return { ...Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])), projectid: this.$route.query.projectid || vnfProject(this.$store.getters) } },
@@ -413,7 +429,7 @@ export default {
       }
       const fetchAccountOptions = fieldname === 'domainid' && this.fields.some((field) => field.name === 'account')
       if (fetchAccountOptions) {
-        if (this.isGuestNetworkSearch || this.apiName === 'listCniConfiguration') this.form.account = undefined
+        if (this.isEventSearch || this.isGuestNetworkSearch || this.apiName === 'listCniConfiguration') this.form.account = undefined
         this.fetchDynamicFieldData('account')
       }
 
@@ -430,6 +446,9 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.isEventSearch && ['keyword', 'type', 'eventuuid', 'resourceid'].includes(fieldName)) {
+        return this.$t('label.events.search.' + fieldName)
+      }
       if (this.isKmsSearch && fieldName === 'projectid') return this.$t('label.project')
       if (this.isVnfSearch && vnfPickerConfig(fieldName)) return this.$t(vnfPickerConfig(fieldName).label)
       if (this.apiName === 'listVnfAppliances' && fieldName === 'name') return this.$t('label.vm.name')
@@ -462,6 +481,9 @@ export default {
       this.fields = []
       this.searchFilters.forEach(item => {
         let type = 'input'
+        if (this.isEventSearch && !this.$getApiParams('listEvents')?.[item]) return
+        if (this.isEventSearch && item === 'account' &&
+            (this.$route.query.projectid ? this.$route.query.projectid !== '0' : this.$store.getters.project?.id || this.$store.getters.listAllProjects)) return
         if (this.isVnfSearch && !(item === 'tags' ? this.$getApiParams('listVnfAppliances')?.tags : this.$getApiParams('listVnfAppliances')?.[item])) return
         if (this.isVnfSearch && ['account', 'domainid'].includes(item) && (this.$route.query.projectid || vnfProject(this.$store.getters)) !== '0') return
         if (['listTemplates', 'listIsos'].includes(this.apiName) && item !== 'tags' && !this.$getApiParams(this.apiName)?.[item]) return
@@ -525,6 +547,8 @@ export default {
         if ((this.apiName === 'listTemplates' && ['isready', 'forcks'].includes(item)) || (this.apiName === 'listIsos' && ['bootable', 'isready', 'ispublic'].includes(item))) type = 'list'
         if (this.isKmsSearch && [...kmsBooleans, 'projectid'].includes(item)) type = 'list'
         if (this.isKmsSearch && item === 'protocol') type = 'autocomplete'
+        if (this.isEventSearch && item === 'type') type = 'autocomplete'
+        if (this.isEventSearch && ['startdate', 'enddate'].includes(item)) type = 'eventDate'
         this.fields.push({
           type: type,
           name: item,
@@ -1145,8 +1169,30 @@ export default {
         }
       }))
     },
+    async fetchEventTypes (field) {
+      if (!field) return
+      if (!('listEventTypes' in this.$store.getters.apis)) {
+        field.eventTypesUnavailable = true
+        return
+      }
+      try {
+        const response = await getAPI('listEventTypes', {}, { preserveOnFailure: true, timeout: 10000 })
+        if (!this.visibleFilter || !this.fields.includes(field)) return
+        const options = response?.listeventtypesresponse?.eventtype || []
+        field.opts = [...new Set(options.map(option => option.name).filter(Boolean))].sort().map(value => ({ value }))
+        field.eventTypesUnavailable = field.opts.length === 0
+      } catch (_) {
+        if (this.visibleFilter && this.fields.includes(field)) field.eventTypesUnavailable = true
+      }
+    },
     initFormFieldData () {
       const arrayField = this.initFields()
+      if (this.isEventSearch) {
+        this.eventFilterError = ''
+        this.form = reactive({})
+        this.fillFormFieldValues()
+        this.fetchEventTypes(this.fields.find(field => field.name === 'type'))
+      }
       if (this.isKmsSearch) {
         this.fillFormFieldValues()
         this.fetchKmsFields(arrayField)
@@ -1972,6 +2018,13 @@ export default {
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isEventSearch) {
+        this.visibleFilter = false
+        this.searchQuery = ''
+        this.eventFilterError = ''
+        this.$emit('search', {})
+        return
+      }
       if (this.isKmsSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
@@ -2010,6 +2063,10 @@ export default {
       this.$emit('search', this.paramsFilter)
     },
     handleSubmit () {
+      if (this.isEventSearch) {
+        this.eventFilterError = eventSearchError(this.form, this.$isValidUuid)
+        if (this.eventFilterError) return
+      }
       if (this.isVnfSearch) {
         if (Object.values(this.vnfBlocked).some(Boolean)) return
         const error = vnfSearchError({ ...this.form, projectid: this.vnfScope.projectid }, this.$store.getters, this.$getApiParams('listVnfAppliances'))
@@ -2042,6 +2099,7 @@ export default {
           this.$emit('search', { kmsAdvanced: this.paramsFilter })
           return
         }
+        if (this.isEventSearch) this.visibleFilter = false
         if (this.isVnfSearch) {
           if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
           this.visibleFilter = false
@@ -2057,7 +2115,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true
