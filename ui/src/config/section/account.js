@@ -26,7 +26,7 @@ export default {
   docHelp: 'adminguide/accounts.html',
   permission: ['listAccounts'],
   searchFilters: () => {
-    var filters = ['name', 'accounttype', 'domainid']
+    const filters = ['id', 'name', 'accounttype', 'domainid', 'isrecursive', 'iscleanuprequired']
     if (store.getters.userInfo.roletype === 'Admin') {
       filters.push('apikeyaccess')
     }

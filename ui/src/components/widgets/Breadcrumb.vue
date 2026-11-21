@@ -72,6 +72,7 @@
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import BreadcrumbControls from '@/components/widgets/BreadcrumbControls'
 import { isProjectDetailRoute, projectListLocation } from '@/utils/projectSearch'
+import { isAccountDetailRoute, accountListLocation } from '@/utils/accountSearch'
 import { isRoleDetailRoute, roleListLocation } from '@/utils/roleSearch'
 import { aclListLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
@@ -152,6 +153,9 @@ export default {
     isEventDetailRoute,
     eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
+      if (item.path === '/account' && isAccountDetailRoute(this.$route)) {
+        return accountListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
+      }
       if (item.path === '/role' && isRoleDetailRoute(this.$route)) {
         return roleListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
       }

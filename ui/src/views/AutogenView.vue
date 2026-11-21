@@ -915,6 +915,7 @@ import store from '@/store'
 import { accountTransitionAllowed } from '@/utils/accountState'
 import { projectBulkScope, projectBulkTargets } from '@/utils/projectBulk'
 import { canRoleAction, roleEditFields, roleUsageParams } from '@/utils/roleActions'
+import { accountQuery, accountListParams, accountSortFields, applyAccountSearch } from '@/utils/accountSearch'
 import { applyRoleSearch, roleListParams, roleSearchQuery, roleSortFields } from '@/utils/roleSearch'
 import { applyProjectSearch, projectListParams, projectListScope, projectSearchQuery, projectSortFields, projectStates } from '@/utils/projectSearch'
 import ProjectListSearch from '@/views/project/ProjectListSearch'
@@ -1570,6 +1571,7 @@ export default {
         ...projectStates.map(value => ({ value, label: this.$t('state.' + value.toLowerCase()) }))]
     },
     isRoleUi () { return this.$route.meta?.name === 'role' },
+    isAccountList () { return this.$route.meta?.name === 'account' && !this.$route.params?.id },
     isRoleList () { return this.isRoleUi && !this.dataView },
     roleStandardDialog () {
       return this.isRoleUi && ['createRole', 'importRole', 'updateRole', 'enableRole', 'disableRole', 'deleteRole'].includes(this.currentAction?.api)
@@ -1659,6 +1661,14 @@ export default {
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
+      if (this.isAccountList) {
+        const { sortkey, sortorder } = accountQuery(this.$route.query)
+        return columns.map(column => accountSortFields.includes(column.key) ? {
+          ...column,
+          sorter: (left, right) => String(left[column.key] || '').localeCompare(String(right[column.key] || '')),
+          sortOrder: sortkey === column.key ? (sortorder === 'asc' ? 'ascend' : 'descend') : null
+        } : column)
+      }
       if (this.isRoleList) {
         const { sortkey, sortorder } = roleSearchQuery(this.$route.query)
         const widths = { name: 224, type: 118, description: 180, state: 104, filtercolumn: 44 }
@@ -1836,6 +1846,7 @@ export default {
         const value = String(this.$route.query.filter || this.$route.query.state || this.$route.meta.defaultFilter).toLowerCase()
         return this.filters.includes(value) ? value : this.$route.meta.defaultFilter
       }
+      if (this.isAccountList) return this.$route.query.state || 'all'
       if (this.$route.query.filter) {
         return this.$route.query.filter
       }
@@ -2505,7 +2516,7 @@ export default {
           this.$refs.listview.closeContextQuickView()
         }
       }
-      if ((this.isEventList || this.isProjectList || this.isRoleList) && !sameList) {
+      if ((this.isEventList || this.isProjectList || this.isRoleList || this.isAccountList) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -2908,6 +2919,7 @@ export default {
       if (ipv4SubnetRoute(this.$route)) params = ipv4SubnetReadParams(this.$route.query, params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
+      if (this.isAccountList && this.apiName === 'listAccounts') params = accountListParams(this.$route.query, params)
       if (this.apiName === 'listRoles') {
         if (this.isRoleList) params = roleListParams(this.$route.query, params)
         else if (params.id) Object.assign(params, roleUsageParams(this.$store.getters.apis))
@@ -4734,6 +4746,9 @@ export default {
       this.$router.push({ query })
     },
     changeFilter (filter) {
+      if (this.isAccountList) {
+        return this.$router.push({ query: accountQuery({ ...this.$route.query, state: filter, page: '1' }) })
+      }
       if (isAclListRoute(this.$route)) {
         if (this.aclDisplayFilterId && aclDisplayValue(filter)) this.$router.push({ query: { ...this.$route.query, fordisplay: filter, page: '1' } })
         return
@@ -4883,6 +4898,11 @@ export default {
     onSearch (opts) {
       if (ipv4SubnetRoute(this.$route) && !this.dataView) {
         const query = ipv4SubnetSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
+      if (this.isAccountList) {
+        const query = applyAccountSearch(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
         return this.$router.push({ query })
       }
@@ -5050,9 +5070,13 @@ export default {
       const query = Object.assign({}, this.$route.query)
       query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
-      this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : query })
+      this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : this.isAccountList ? accountQuery(query) : query })
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.isAccountList) {
+        const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
+        return this.$router.replace({ query: accountQuery({ ...this.$route.query, sortkey: sorter?.columnKey, sortorder }) })
+      }
       if (this.isRoleList) {
         const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
         return this.$router.replace({ query: roleSearchQuery({ ...this.$route.query, sortkey: sorter?.columnKey, sortorder }) })

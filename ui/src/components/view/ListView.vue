@@ -191,6 +191,7 @@
           </span>
           <router-link v-else-if="isAclListRoute($route) && !resourcePath && record.id" :to="aclListDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'project' && !resourcePath && record.id" class="project-list-name-link" :title="text" :to="projectDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
@@ -1298,6 +1299,7 @@ import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { projectDetailLocation } from '@/utils/projectSearch'
+import { accountDetailLocation } from '@/utils/accountSearch'
 import { roleDetailLocation } from '@/utils/roleSearch'
 import { aclDisplayLabel, aclListDetailLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import { eventDetailLocation, eventTypeLabel, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
@@ -1665,6 +1667,7 @@ export default {
     templateDetailLocation,
     projectDetailLocation,
     roleDetailLocation,
+    accountDetailLocation,
     columnPickerContentMounted (vnode) {
       const input = vnode.el?.querySelector('input')
       if (this.columnPickerVisible && input) input.focus()

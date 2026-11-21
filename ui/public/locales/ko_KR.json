@@ -1,4 +1,7 @@
 {
+  "label.account.search.name": "이름(정확히 일치)",
+  "label.account.search.isrecursive": "하위 도메인 포함",
+  "label.account.search.iscleanuprequired": "정리 필요",
   "message.account.networkdomain.clear": "이 입력란을 비우면 네트워크 도메인이 제거됩니다.",
   "label.account.apikey.inherit": "도메인 설정 상속",
   "label.account.action.ready": "실행 가능",
