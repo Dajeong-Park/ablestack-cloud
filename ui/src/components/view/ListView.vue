@@ -631,6 +631,9 @@
       <template v-if="column.key === 'validationstatus'">
         <status :text="text ? text : $t('label.unknown')" displayText />
       </template>
+      <template v-if="column.key === 'taken' && $route.meta?.name === 'guestvlans'">
+        {{ text ? $toLocaleDate(text) : '—' }}
+      </template>
       <template v-if="column.key === 'allocationstate'">
         <status
           :text="text ? text : ''"
@@ -729,12 +732,7 @@
         <status :text="text ? text : ''" displayText vmState/>
       </template>
       <template v-if="column.key === 'vlan'">
-        <a href="javascript:;">
-          <router-link
-            v-if="$route.path === '/guestvlans'"
-            :to="{ path: '/guestvlans/' + record.id }"
-          >{{ text }}</router-link>
-        </a>
+        <router-link v-if="$route.path === '/guestvlans'" :to="{ path: '/guestvlans/' + record.id, query: guestVlanListQuery($route.query) }">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'networkname'">
         <router-link :to="{ path: '/guestnetwork/' + record.networkid }">{{ text }}</router-link>
@@ -759,7 +757,8 @@
           v-for="(item, idx) in record.network"
           :key="idx"
         >
-          <router-link :to="{ path: '/guestnetwork/' + item.id }">{{ item.name }}</router-link>
+          <router-link v-if="guestVlanNetworkLocation(item, $store.getters.apis)" :to="guestVlanNetworkLocation(item, $store.getters.apis)">{{ item.name }}</router-link>
+          <span v-else>{{ item.name }}</span>
           <span v-if="idx < (record.network.length - 1)">, </span>
         </template>
       </template>
@@ -1345,6 +1344,7 @@ import NetworkIpVmLink from '@/components/widgets/NetworkIpVmLink'
 import PublicIpStatus from '@/components/widgets/PublicIpStatus'
 import PublicIpDetailValue from '@/components/widgets/PublicIpDetailValue'
 import AsnListCell from '@/components/view/AsnListCell'
+import { guestVlanListQuery, guestVlanNetworkLocation } from '@/utils/guestVlan'
 import PublicIpNetworkLink from '@/components/widgets/PublicIpNetworkLink'
 import VpnPsk from '@/components/network/VpnPsk'
 import InternalLbRules from '@/components/network/InternalLbRules'
@@ -1540,6 +1540,7 @@ export default {
     isProjectMainList () { return this.$route.meta?.name === 'project' && !this.$route.params?.id && !this.resourcePath },
     scrollRegionLabel () {
       if (this.isProjectMainList) return this.$t('label.projects')
+      if (this.$route.meta?.name === 'guestvlans' && !this.$route.params?.id) return this.$t('label.guest.vlan')
       if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
       if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
       if (this.$route.meta?.name === 'vpnuser') return this.$t('label.vpn.users')
@@ -1642,6 +1643,8 @@ export default {
     }
   },
   methods: {
+    guestVlanNetworkLocation,
+    guestVlanListQuery,
     isEventTimelineRoute,
     isEventDetailRoute,
     eventRowLocation (record) {

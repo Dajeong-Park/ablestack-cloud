@@ -1547,7 +1547,7 @@ export default {
       filters: ['allocatedonly', 'all'],
       columns: ['vlan', 'allocationstate', 'physicalnetworkname', 'taken', 'account', 'project', 'domain', 'zonename', 'guest.networks'],
       details: ['vlan', 'allocationstate', 'physicalnetworkname', 'taken', 'account', 'project', 'domain', 'isdedicated', 'zonename'],
-      searchFilters: ['zoneid'],
+      searchFilters: () => ['zoneid', ...('listPhysicalNetworks' in store.getters.apis ? ['physicalnetworkid'] : []), 'vnet'],
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))

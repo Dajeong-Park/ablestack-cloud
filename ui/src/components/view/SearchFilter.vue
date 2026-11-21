@@ -253,6 +253,7 @@ export default {
       if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
       if (fieldName === 'forvpc') return this.$t('label.network.search.forvpc')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')
+      if (this.apiName === 'listGuestVlans' && fieldName === 'vnet') return this.$t('label.guest.vlan.search.exact')
       if (fieldName === 'physicalnetworkid') return this.$t('label.physical.network')
       if (this.apiName === 'listSnapshotPolicies' && fieldName === 'fordisplay') return this.$t('label.snapshot.policy.scheduling')
       if (this.apiName === 'listSnapshots') return this.$t(snapshotSearchLabel(fieldName))
@@ -344,7 +345,7 @@ export default {
     },
     async getDynamicFieldValue (key, value) {
       let formattedValue = ''
-      if (this.apiName === 'listNetworks' && ['networkofferingid', 'physicalnetworkid'].includes(key)) {
+      if ((this.apiName === 'listNetworks' && ['networkofferingid', 'physicalnetworkid'].includes(key)) || (this.apiName === 'listGuestVlans' && key === 'physicalnetworkid')) {
         const { api, field } = networkPickerApi(key)
         if (!this.$store.state?.user?.token || !this.$store.getters.apis?.[api]) return value
         const json = await getAPI(api, { ...networkPickerParams(key, this.$route.query), id: value, page: 1, pagesize: 20 }, { preserveOnFailure: true, timeout: 20000 })
