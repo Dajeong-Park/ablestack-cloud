@@ -73,6 +73,7 @@
         <Status v-if="['enabled', 'state'].includes(column.key) && text != null" :text="String(text)" :display-label="kmsValue(column.key, text)" display-text />
         <template v-else>{{ kmsValue(column.key, text) }}</template>
       </TableOverflowText>
+      <VpnUserValue v-else-if="$route.meta?.name === 'vpnuser' && ['state', 'owners'].includes(column.key)" :field="column.key" :resource="record" />
       <AsnListCell v-else-if="$route.meta?.name === 'asnumbers' && column.key !== 'filtercolumn'" :record="record" :field="column.key" />
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
       <S2sGatewayValue v-else-if="$route.meta?.name === 's2svpn' && ['publicip','vpcname','account','domain','project'].includes(column.key)" :resource="record" :field="column.key" list />
@@ -396,7 +397,8 @@
           />
         </span>
         <router-link
-          :to="{ path: $route.path + '/' + record.id }"
+          :class="{ 'vpn-user-name': $route.path === '/vpnuser' }"
+          :to="$route.path === '/vpnuser' ? vpnUserDetailLocation(record) : { path: $route.path + '/' + record.id }"
           v-if="['/accountuser', '/vpnuser'].includes($route.path)"
         >{{ text }}</router-link>
         <router-link
@@ -1347,6 +1349,8 @@ import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import VpnUserValue from '@/components/widgets/VpnUserValue'
+import { vpnUserListQuery } from '@/utils/vpnUserSearch'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
 import { s2sGatewayDetailLocation, vpnConnectionDetailLocation, vpnConnectionListRoute } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
@@ -1354,6 +1358,7 @@ import { vnfDetailLocation } from '@/utils/vnfSearch'
 export default {
   name: 'ListView',
   components: {
+    VpnUserValue,
     AclScopeValue,
     S2sGatewayValue,
     TemplateAvailability,
@@ -1528,6 +1533,7 @@ export default {
     scrollRegionLabel () {
       if (this.kmsTable) return this.$t(this.resourcePath === '/volume' ? 'label.volumes' : this.resourcePath === '/kmskey' ? 'label.kms.keys' : this.$route.meta.title)
       if (this.isKubernetesIsoMainList) return this.$t('label.kubernetes.isos')
+      if (this.$route.meta?.name === 'vpnuser') return this.$t('label.vpn.users')
       return vpnConnectionListRoute(this.$route) ? this.$t('label.site.to.site.vpn.connections') : undefined
     },
     isKubernetesIsoMainList () { return this.$route.meta?.name === 'kubernetesiso' && !this.$route.params?.id && !this.resourcePath },
@@ -1822,6 +1828,9 @@ export default {
           '/tungstenfabric', '/oauthsetting', '/guestos', '/guestoshypervisormapping', '/webhook', 'webhookdeliveries', 'webhookfilters', '/quotatariff', '/sharedfs',
           '/ipv4subnets', '/disasterrecoverycluster', '/managementserver', '/gpucard', '/gpudevices', '/vgpuprofile', '/extension', '/snapshotpolicy', '/backupschedule', '/alertRules', '/alert', '/kmskey', '/hsmprofile', '/dnsserver', '/dnszone', ''].join('|'))
           .test(this.$route.path)
+    },
+    vpnUserDetailLocation (record) {
+      return { path: '/vpnuser/' + record.id, query: vpnUserListQuery(this.$route.query, this.pageSize, this.$store.getters) }
     },
     enableGroupAction () {
       if (this.$route.name === 'snapshotpolicy') return this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)
@@ -2425,4 +2434,6 @@ export default {
 .kubernetes-iso-list-table :deep(th), .kubernetes-iso-list-table :deep(td) { white-space:nowrap; }
 .kubernetes-iso-list-table :deep(.ant-table-column-title) { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .kubernetes-iso-list-table :deep(.ant-table-cell) { overflow:hidden; }
+
+.vpn-user-name { overflow-wrap: anywhere; }
 </style>
