@@ -777,7 +777,7 @@
         <a href="javascript:;">
           <router-link
             v-if="$route.path === '/ipv4subnets'"
-            :to="{ path: '/ipv4subnets/' + record.id }"
+            :to="{ path: '/ipv4subnets/' + record.id, query: ipv4SubnetListQuery($route.query) }"
           >{{ text }}</router-link>
         </a>
       </template>
@@ -1297,6 +1297,7 @@
 </template>
 
 <script>
+import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { projectDetailLocation } from '@/utils/projectSearch'
 import { roleDetailLocation } from '@/utils/roleSearch'
@@ -1645,6 +1646,7 @@ export default {
     }
   },
   methods: {
+    ipv4SubnetListQuery,
     guestVlanNetworkLocation,
     guestVlanListQuery,
     isEventTimelineRoute,
