@@ -876,7 +876,7 @@ import MoldDialog from '@/components/view/MoldDialog'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
-import { eventDetailKey, eventListLocation, eventProjectScope, eventViewScope, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
+import { eventArchiveScope, eventDetailKey, eventListLocation, eventProjectScope, eventViewScope, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import { eventCreatedSortQuery, eventSearchQuery } from '@/utils/eventSearch'
 import NetworkOperationPolicy from '@/components/view/NetworkOperationPolicy'
 import { storageUiRoute, storageDialogSize, storageDetailRouteKey } from '@/utils/storageUi'
@@ -1622,6 +1622,7 @@ export default {
       return vpnConnectionListRoute(this.$route) && vpnConnectionDisplaySupported(this.$store.getters) ? 's2s-connection-display-filter' : undefined
     },
     filterValue () {
+      if (this.isEventList) return eventArchiveScope(this.$route.query, this.isEventTimeline)
       if (this.s2sDisplayFilterId) return this.$route.query.fordisplay || 'all'
       if (asnRoute(this.$route)) return this.$route.query.filter || 'all'
       if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || publicIpDefaultFilter(this.$store.getters)).toLowerCase()
@@ -1633,7 +1634,6 @@ export default {
       if (this.$route.query.filter) {
         return this.$route.query.filter
       }
-      if (this.isEventTimeline) return String(this.$route.query.archived) === 'true' ? 'archived' : this.$route.query.archived !== undefined ? 'active' : 'all'
       const routeName = this.$route.name
       if ((this.projectView && routeName === 'vm') || (['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo.roletype) && ['vm', 'iso', 'template', 'pod', 'cluster', 'host', 'systemvm', 'router', 'storagepool'].includes(routeName)) || ['account', 'guestnetwork', 'guestvlans', 'oauthsetting', 'guestos', 'guestoshypervisormapping', 'kubernetes', 'asnumbers', 'networkoffering', 'extension'].includes(routeName)) {
         return 'all'
@@ -2592,6 +2592,11 @@ export default {
       }
       if (this.$route.meta?.name === 'event' && this.$route.query.projectid) params.projectid = this.$route.query.projectid
       if (this.isEventTimeline) params.timeline = true
+      if (this.isEventList) {
+        const archive = eventArchiveScope(this.$route.query, this.isEventTimeline)
+        if (archive === 'all') delete params.archived
+        else params.archived = archive === 'archived'
+      }
       if (this.isEventList && !this.eventCreatedSortEnabled) {
         delete params.sortkey
         delete params.sortorder

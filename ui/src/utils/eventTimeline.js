@@ -28,6 +28,14 @@ export function isEventTimelineRoute (route) {
   return route.meta?.name === 'event' && !route.params?.id && !!route.query?.startid
 }
 
+export function eventArchiveScope (query, timeline) {
+  const archived = scalar(query.archived)
+  if (archived === 'true' || archived === 'false') return archived === 'true' ? 'archived' : 'active'
+  if (query.filter === 'archived') return 'archived'
+  if (query.filter === 'active' || !timeline) return 'active'
+  return 'all'
+}
+
 export function eventTimelineQuery (event, currentProject) {
   return { startid: event.id, timeline: 'true', projectid: event.projectid || currentProject || '0', page: '1' }
 }
@@ -62,8 +70,6 @@ function eventListQuery (input, projectid) {
     const value = Number(input[key])
     if (Number.isSafeInteger(value) && value > 0) query[key] = String(value)
   }
-  const archived = scalar(input.archived)
-  if (archived === 'true' || archived === 'false') query.archived = archived
   if (isUuid(input.startid)) {
     query.startid = input.startid
     query.timeline = 'true'
@@ -71,8 +77,10 @@ function eventListQuery (input, projectid) {
     query.sortkey = 'created'
     query.sortorder = input.sortorder === 'asc' ? 'asc' : 'desc'
   }
-  if (query.archived === 'true') query.filter = 'archived'
-  else if (query.archived === 'false' || !query.startid) query.filter = 'active'
+  const archive = eventArchiveScope(input, !!query.startid)
+  if (archive !== 'all') query.filter = archive
+  if (archive === 'archived') query.archived = 'true'
+  else if (archive === 'active' && (query.startid || scalar(input.archived) === 'false')) query.archived = 'false'
   return query
 }
 

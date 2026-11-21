@@ -14,7 +14,7 @@
 // KIND, either express or implied. See the License for the
 // specific language governing permissions and limitations
 // under the License.
-import { eventDetailKey, eventDetailLocation, eventDisplayTitle, eventListLocation, eventRouteHistory, eventTimelineQuery, isEventTimelineRoute } from '@/utils/eventTimeline'
+import { eventArchiveScope, eventDetailKey, eventDetailLocation, eventDisplayTitle, eventListLocation, eventRouteHistory, eventTimelineQuery, isEventTimelineRoute } from '@/utils/eventTimeline'
 
 const event = { id: 'stage', parentid: 'parent', archived: true }
 const project = 'e6251bec-c1a3-47a8-a4ee-69418f4e4df0'
@@ -67,4 +67,23 @@ test('return from an all-project timeline retains its anchor and rejects stale c
 test('event title identifies type, target and creation time', () => {
   expect(eventDisplayTitle({ type: 'USER.LOGIN', resourcename: 'sample', created: 'test-date' }, key => key === 'user.login' ? 'Login' : key, () => 'Formatted date'))
     .toBe('Login · sample · Formatted date')
+})
+
+test.each([
+  [{ archived: 'true' }, false, 'archived'],
+  [{ filter: 'archived' }, false, 'archived'],
+  [{ archived: 'false', filter: 'archived' }, true, 'active'],
+  [{ filter: 'active' }, true, 'active'],
+  [{}, true, 'all'],
+  [{}, false, 'active']
+])('resolves the event archive scope for %j with timeline=%s', (query, timeline, expected) => {
+  expect(eventArchiveScope(query, timeline)).toBe(expected)
+})
+
+test('restores canonical archive parameters from legacy archive filter links', () => {
+  const list = { meta: { name: 'event' }, query: { startid: anchor, filter: 'archived', page: '2' } }
+  const detail = eventDetailLocation(event, list, globalView, token)
+  const route = { ...detail, meta: list.meta, params: { id: event.id } }
+  expect(eventListLocation(route, detail.state, globalView, token).query)
+    .toEqual({ projectid: '0', startid: anchor, timeline: 'true', page: '2', filter: 'archived', archived: 'true' })
 })
