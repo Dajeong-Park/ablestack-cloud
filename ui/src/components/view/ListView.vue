@@ -396,7 +396,7 @@
           />
         </span>
         <router-link
-          :to="{ path: $route.path + '/' + record.id }"
+          :to="$route.path === '/vpnuser' ? vpnUserDetailLocation(record) : { path: $route.path + '/' + record.id }"
           v-if="['/accountuser', '/vpnuser'].includes($route.path)"
         >{{ text }}</router-link>
         <router-link
@@ -1347,6 +1347,7 @@ import SharedFSCapacitySummary from '@/views/storage/SharedFSCapacitySummary.vue
 import SharedFSBootRecoverySummary from '@/views/storage/SharedFSBootRecoverySummary.vue'
 
 import { vmDisplayName, isVmIdentityRoute } from '@/utils/vmIdentity'
+import { vpnUserListQuery } from '@/utils/vpnUserSearch'
 import { publicIpDetailLocation } from '@/utils/publicIpSearch'
 import { s2sGatewayDetailLocation, vpnConnectionDetailLocation, vpnConnectionListRoute } from '@/utils/s2sGatewaySearch'
 import { vnfDetailLocation } from '@/utils/vnfSearch'
@@ -1822,6 +1823,9 @@ export default {
           '/tungstenfabric', '/oauthsetting', '/guestos', '/guestoshypervisormapping', '/webhook', 'webhookdeliveries', 'webhookfilters', '/quotatariff', '/sharedfs',
           '/ipv4subnets', '/disasterrecoverycluster', '/managementserver', '/gpucard', '/gpudevices', '/vgpuprofile', '/extension', '/snapshotpolicy', '/backupschedule', '/alertRules', '/alert', '/kmskey', '/hsmprofile', '/dnsserver', '/dnszone', ''].join('|'))
           .test(this.$route.path)
+    },
+    vpnUserDetailLocation (record) {
+      return { path: '/vpnuser/' + record.id, query: vpnUserListQuery(this.$route.query, this.pageSize, this.$store.getters) }
     },
     enableGroupAction () {
       if (this.$route.name === 'snapshotpolicy') return this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)

@@ -30,7 +30,7 @@
                 <a-button
                   v-if="$route.meta?.name !== 'runtimebundle'"
                   :loading="loading || ($route.meta?.name === 'vnfapp' && vnfProjectSync) || ((vpnConnectionRoute($route) || ['vmgroup', 'vnfapp'].includes($route.meta?.name) || isSnapshotList || isAclUi) && listRequestPending)"
-                  :disabled="(isSnapshotList || isAclUi) && listRequestPending"
+                  :disabled="(isSnapshotList || isAclUi) && listRequestPending || isVpnUser && (vpnUserProjectSwitching || listRequestPending)"
                   style="margin-bottom: 5px"
                   shape="round"
                   size="small"
@@ -105,13 +105,18 @@
                   @change="(checked, event) => { $store.dispatch('SetMetrics', checked) }"
                 />
                 <BucketStoreFilter v-if="isBucketList" />
+                <a-tag v-if="isVpnUser" class="vpn-user-scope-label">
+                  {{ $t('label.vpn.user.scope', [vpnUserScopeLabel]) }}
+                </a-tag>
                 <a-tag v-if="isEventList && !isEventTimeline && eventScopeDiffers">{{ $t('message.events.scope', { scope: eventTimelineScopeLabel }) }}</a-tag>
                 <a-switch
-                  v-if="!isEventTimeline && !projectView && hasProjectId && (!vpnConnectionRoute($route) || !dataView)"
+                  v-if="!isEventTimeline && !projectView && hasProjectId && (!(vpnConnectionRoute($route) || isVpnUser) || !dataView)"
                   style="margin-left: 8px; min-height: 23px; margin-bottom: 4px"
                   :checked-children="$t('label.projects')"
                   :un-checked-children="$t('label.projects')"
-                  :checked="isEventList ? eventProjectScope($route, $store.getters) === '-1' : $store.getters.listAllProjects"
+                  :checked="isVpnUser ? vpnUserScope === '-1' : isEventList ? eventProjectScope($route, $store.getters) === '-1' : $store.getters.listAllProjects"
+                  :disabled="isVpnUser && vpnUserProjectSwitching"
+                  :aria-label="isVpnUser ? $t('label.vpn.user.scope.all') : undefined"
                   @change="changeListProjects"
                 />
               </template>
@@ -181,7 +186,7 @@
             <AsnListTools v-if="asnSearchAuth" :selected="selectedItems" :ready="asnListReady" :scope="listScope()" @refresh="resetSelection(); $refs.listview?.resetSelection(); fetchData({ irefresh: true })" />
             <search-view
               v-if="!dataView"
-              :class="{ 'kms-toolbar-search': kmsListRoute($route), 'vm-acl-toolbar-search': isVmUi || isAclUi }"
+              :class="{ 'kms-toolbar-search': kmsListRoute($route), 'vm-acl-toolbar-search': isVmUi || isAclUi || isVpnUser }"
               :searchFilters="searchFilters"
               :searchParams="searchParams"
               :apiName="apiName"
@@ -705,6 +710,9 @@
       <a-alert v-if="dataView && $route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError" type="error" show-icon :message="$t((kubernetesIsoReadError === 'unsupported' ? 'message.kubernetes.iso.search.unsupported' : kubernetesIsoReadError === 'searchInvalid' ? 'message.kubernetes.iso.search.invalid' : 'message.kubernetes.iso.read.' + kubernetesIsoReadError))">
         <template #description><a-button size="small" :disabled="listRequestPending" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
       </a-alert>
+      <a-alert v-if="isVpnUser && listRefreshError" class="vpn-user-read-error" type="error" show-icon :message="$t('message.vpn.user.search.failed')">
+        <template #description><a-button size="small" :disabled="listRequestPending || vpnUserProjectSwitching" @click="fetchData({ irefresh: true })">{{ $t('label.retry') }}</a-button></template>
+      </a-alert>
       <div v-if="dataView">
         <a-alert v-if="isKmsDetail && kmsDetailError" type="error" show-icon :message="$t('message.kms.detail.' + kmsDetailError)">
           <template #description>
@@ -743,7 +751,7 @@
           v-if="$route.path.startsWith('/publicip')"
         ></slot>
         <resource-view
-          v-else-if="(!isKmsDetail || (resource.id || loading) && !kmsDetailError) && (!(s2sGatewayRoute($route) || isVpnConnectionDetail) || resource.id || loading) && !templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
+          v-else-if="(!isKmsDetail || (resource.id || loading) && !kmsDetailError) && (!(s2sGatewayRoute($route) || isVpnConnectionDetail) || resource.id || loading) && (!isVpnUser || !listRefreshError && (resource.id || loading)) && !templateDetailError && !($route.meta?.name === 'kubernetesiso' && kubernetesIsoReadError) && (!(isSnapshotDetail || isPolicyDetail) || resource.id || loading) && (!isSshKeyPairDetail || sshKeyPairDetailVisible) && ($route.meta?.name !== 'vmgroup' || resource.id || loading)"
           :key="isKmsDetail || isSshKeyPairDetail || isSnapshotDetail || isPolicyDetail ? listScope() : $route.path"
           :readPending="listRequestPending"
           :readFailed="(isVpcUi || isAclUi || ['ilb', 'vm', 'vnfapp', 's2svpn', 's2svpnconn'].includes($route.meta?.name)) && listRefreshError"
@@ -769,12 +777,13 @@
         />
         <p v-if="isVmList && listRefreshError" role="status">{{ $t('message.list.refresh.stale') }}</p>
         <list-view
-          :loading="sharedFSContentLoading"
+          v-if="!isVpnUser || !listRefreshError"
+          :loading="sharedFSContentLoading || isVpnUser && vpnUserProjectSwitching"
           :columns="presentedColumns"
           :kms-table="kmsListRoute($route)"
           :items="items"
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
-          :selectionDisabled="record => (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
+          :selectionDisabled="record => (isVpnUser && !storageActionReady) || (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
           :tableScroll="isEventList ? { x: 1210 } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
           :keyboardContextMenu="isSnapshotList"
@@ -789,7 +798,7 @@
           @table-change="handleTableChange"
         />
         <a-pagination
-          v-if="(!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope"
+          v-if="(!isVpnUser || !listRefreshError) && ((!isSnapshotList && !['vmgroup', 'vnfapp'].includes($route.meta?.name)) || listLoadedScope)"
           class="row-element"
           style="margin-top: 10px"
           size="small"
@@ -874,6 +883,7 @@ import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
 import { canDeleteVpnUsers, vpnUserDeleteTargets } from '@/utils/vpnUserDeletion'
+import { canSwitchVpnUserProjects, readVpnUsers, vpnUserListLocation, vpnUserListQuery, vpnUserProject, vpnUserRoute, vpnUserSearchAuth, vpnUserSearchFields, vpnUserSearchQuery } from '@/utils/vpnUserSearch'
 import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
 import { eventArchiveScope, eventDetailKey, eventListLocation, eventProjectScope, eventViewScope, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import { eventCreatedSortQuery, eventSearchQuery } from '@/utils/eventSearch'
@@ -1028,6 +1038,7 @@ export default {
       detailActionsVisible: false,
       autoRefreshTimer: null,
       listRequestVersion: 0,
+      vpnUserProjectSwitching: false,
       listRequestPending: false,
       listRequestScope: null,
       listRequestPromise: null,
@@ -1073,7 +1084,18 @@ export default {
     this.formRef = ref()
     this.form = reactive({})
     this.rules = reactive({})
-    this.onListEvent('project-switch-start', () => { if (s2sGatewayRoute(this.$route) || vpnConnectionRoute(this.$route)) this.rejectS2sGatewaySearch('scope') })
+    this.onListEvent('project-switch-start', () => {
+      if (s2sGatewayRoute(this.$route) || vpnConnectionRoute(this.$route)) this.rejectS2sGatewaySearch('scope')
+      if (this.isVpnUser) {
+        this.vpnUserProjectSwitching = true
+        this.invalidateVpnUserRead()
+      }
+    })
+    this.onListEvent('project-switch-end', () => {
+      if (!this.vpnUserProjectSwitching) return
+      this.vpnUserProjectSwitching = false
+      if (this.isVpnUser) this.fetchData()
+    })
     this.onListEvent('vm-refresh-data', () => {
       if (this.$route.path === '/vm' || this.$route.path.includes('/vm/')) {
         this.fetchData()
@@ -1184,7 +1206,7 @@ export default {
 
     this.currentPath = this.$route.fullPath
     this.fetchData()
-    if (!asnRoute(this.$route) && !s2sGatewayRoute(this.$route) && !vpnConnectionListRoute(this.$route) && !kmsRoute(this.$route) && 'projectid' in this.$route.query && !this.isKmsRelatedVolume(this.$route) && this.$route.meta?.name !== 'affinitygroup' && !isSshKeyPairDetailRoute(this.$route)) {
+    if (!asnRoute(this.$route) && !s2sGatewayRoute(this.$route) && !vpnConnectionListRoute(this.$route) && !kmsRoute(this.$route) && 'projectid' in this.$route.query && !this.isKmsRelatedVolume(this.$route) && this.$route.meta?.name !== 'affinitygroup' && !this.isVpnUser && !isSshKeyPairDetailRoute(this.$route)) {
       this.switchProject(this.$route.query.projectid)
     }
     this.setModalWidthByScreen()
@@ -1288,6 +1310,22 @@ export default {
     },
     vmDialogScope () {
       if (this.showAction && this.vmStandardDialog) this.closeAction()
+    },
+    vpnUserAuth: {
+      flush: 'sync',
+      handler (value, previous) {
+        if (!this.isVpnUser) return
+        this.invalidateVpnUserRead()
+        if (this.vpnUserProjectSwitching) return
+        if (value && previous && this.$store.state?.user?.token) {
+          const query = vpnUserListQuery({ projectid: this.vpnUserScope, pagesize: this.pageSize }, this.pageSize, this.$store.getters)
+          if (this.$route.params?.id || JSON.stringify(query) !== JSON.stringify(this.$route.query)) {
+            this.$router.replace({ path: '/vpnuser', query })
+            return
+          }
+        }
+        this.fetchData()
+      }
     },
     vpnUserDeleteScope: {
       flush: 'sync',
@@ -1417,7 +1455,7 @@ export default {
     },
     '$store.getters.listAllProjects' (enabled) {
       // The synchronous VNF context watcher owns its canonical URL transition.
-      if (this.isEventList || vnfRoute(this.$route) || publicIpRoute(this.$route) || s2sGatewayRoute(this.$route) || this.isS2sSearchList) return
+      if (this.isVpnUser || this.isEventList || vnfRoute(this.$route) || publicIpRoute(this.$route) || s2sGatewayRoute(this.$route) || this.isS2sSearchList) return
       if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || guestNetworkRoute(this.$route)) && !this.$store.getters.project?.id) {
         const projectid = enabled ? '-1' : '0'
         if (this.$route.query.projectid !== projectid) return this.$router.push({ query: { ...this.$route.query, projectid, page: '1' } })
@@ -1489,12 +1527,17 @@ export default {
       if (id === '-1') return this.$t('label.projects')
       return (project?.id === id ? project.name : this.items.find(row => row.projectid === id)?.project) || this.$t('label.project')
     },
+    isVpnUser () { return vpnUserRoute(this.$route) },
+    vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
+    vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
+    vpnUserScopeLabel () {
+      if (this.vpnUserScope === '0') return this.$t('label.default.view')
+      if (this.vpnUserScope === '-1') return this.$t('label.vpn.user.scope.all')
+      const project = this.$store.getters.project
+      return project?.displaytext || project?.name || this.vpnUserScope
+    },
     vpnUserDeleteScope () {
-      if (this.$route.meta?.name !== 'vpnuser') return null
-      const getters = this.$store.getters
-      const user = getters.userInfo
-      return JSON.stringify([this.$route.fullPath, getters.project?.id, getters.listAllProjects,
-        user?.id, user?.roleid, user?.roletype, user?.domainid, this.$store.state?.user?.token, canDeleteVpnUsers(getters)])
+      return this.isVpnUser ? JSON.stringify([this.$route.fullPath, this.vpnUserScope, this.vpnUserAuth]) : null
     },
     eventActionScope () {
       if (this.$route.meta?.name !== 'event') return null
@@ -1659,6 +1702,7 @@ export default {
       return 'self'
     },
     visibleDataViewActions () {
+      if (this.isVpnUser && !this.storageActionReady) return []
       if (this.isAclUi && (this.listRefreshError || this.resource?.id !== this.$route.params?.id)) return []
       if (this.isKmsDetail && !this.kmsDetailReady) return []
       const policyBackgroundRead = this.isPolicyDetail && this.listRequestPending && !this.listRefreshError &&
@@ -1684,6 +1728,7 @@ export default {
       }).map(action => policyBackgroundRead ? { ...action, disabled: () => true } : action)
     },
     visibleListActions () {
+      if (this.isVpnUser && this.vpnUserProjectSwitching) return []
       if (vnfRoute(this.$route) && !this.storageActionReady) return []
       if (this.isObjectStorageUi && !this.storageActionReady) return []
       if (this.isSnapshotCopyList || this.snapshotSearchFailure || this.policySearchFailure || (this.isSnapshotList && !this.storageActionReady) || (this.isPolicyList && this.listLoadedScope !== this.listScope())) return []
@@ -1900,6 +1945,11 @@ export default {
       } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) { if (vnfRoute(this.$route)) this.rejectVnfSearch('message.vnf.search.permission'); this.$notifyError(error) } } finally { if (fromVnf) { this.vnfProjectSync = false; if (retry) this.fetchData() } }
     },
     changeListProjects (enabled) {
+      if (this.isVpnUser) {
+        if (this.projectView || !canSwitchVpnUserProjects(this.$store.getters)) return
+        this.$store.dispatch('SetListAllProjects', enabled)
+        return this.$router.push({ query: vpnUserListQuery({ projectid: enabled ? '-1' : '0', pagesize: this.pageSize }, this.pageSize, this.$store.getters) })
+      }
       if (this.isEventList) {
         const query = { ...this.$route.query, projectid: enabled ? '-1' : '0', page: '1' }
         if (enabled) delete query.account
@@ -1909,6 +1959,7 @@ export default {
       this.$store.dispatch('SetListAllProjects', enabled)
     },
     switchProject (projectId) {
+      if (this.isVpnUser) return
       // Event reads carry their own project scope, without changing the selected project on detail navigation.
       if (this.$route.meta?.name === 'event') return
       // Public IP URLs are validated against the selected scope; the legacy
@@ -2016,7 +2067,43 @@ export default {
       this.resetSelection()
       if (this.$refs.listview) this.$refs.listview.resetSelection()
     },
+    invalidateVpnUserRead () {
+      this.listRequestVersion++
+      this.listRequestPending = false
+      this.listRefreshQueued = false
+      this.loading = false
+      this.items = []
+      this.resource = {}
+      this.itemCount = 0
+      this.listLoadedScope = null
+      this.listRefreshError = false
+      this.searchParams = {}
+      this.resetSelection()
+      if (this.$refs.listview) {
+        this.$refs.listview.resetSelection()
+        this.$refs.listview.closeContextQuickView()
+      }
+      this.detailActionsVisible = false
+      if (this.showAction) this.closeAction()
+    },
     fetchData (params = {}) {
+      const vpnUser = this.isVpnUser
+      if (vpnUser) {
+        if (this.vpnUserProjectSwitching) return
+        this.dataView = !!this.$route.params?.id
+        const getters = this.$store.getters
+        if (!this.$store.state?.user?.token || !getters.apis?.listVpnUsers ||
+            (getters.project?.id && !this.$getApiParams('listVpnUsers').projectid)) {
+          this.invalidateVpnUserRead()
+          this.listRefreshError = true
+          return
+        }
+        const query = vpnUserListQuery(this.$route.query, this.pageSize, getters)
+        if (JSON.stringify(query) !== JSON.stringify(this.$route.query)) {
+          this.invalidateVpnUserRead()
+          return this.$router.replace({ query })
+        }
+      }
       const kmsList = kmsListRoute(this.$route)
       const kmsDetail = this.isKmsDetail
       if (kmsDetail) this.kmsDetailError = ''
@@ -2248,6 +2335,14 @@ export default {
       const version = ++this.listRequestVersion
       const sameList = this.listLoadedScope === scope
       const publicIpList = this.$route.meta?.name === 'publicip' && !this.$route.params?.id && !this.$route.query?.dataView
+      if (vpnUser && !sameList) {
+        this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
+        this.resetSelection()
+        if (this.$refs.listview) {
+          this.$refs.listview.resetSelection()
+          this.$refs.listview.closeContextQuickView()
+        }
+      }
       if (this.isEventList && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
         this.resetSelection()
@@ -2340,8 +2435,9 @@ export default {
         this.searchFilters = this.searchFilters()
       }
 
+      if (vpnUser) this.searchFilters = vpnUserSearchFields(this.vpnUserScope, store.getters)
       this.projectView = this.isEventList ? !['0', '-1'].includes(eventProjectScope(this.$route, store.getters)) : Boolean(store.getters.project && store.getters.project.id)
-      this.hasProjectId = (vpnConnectionListRoute(this.$route) && 'projectid' in this.$getApiParams(vpnConnectionApi)) || ['vm', 'vmgroup', 'ssh', 'affinitygroup', 'userdata', 'cniconfiguration', 'volume', 'snapshot', 'buckets', 'vmsnapshot', 'guestnetwork',
+      this.hasProjectId = vpnUser && canSwitchVpnUserProjects(store.getters) || (vpnConnectionListRoute(this.$route) && 'projectid' in this.$getApiParams(vpnConnectionApi)) || ['vm', 'vmgroup', 'ssh', 'affinitygroup', 'userdata', 'cniconfiguration', 'volume', 'snapshot', 'buckets', 'vmsnapshot', 'guestnetwork',
         'vpc', 'securitygroups', 'publicip', 's2svpn', 'vpncustomergateway', 'template', 'iso', 'event', 'kubernetes', 'sharedfs',
         'autoscalevmgroup', 'vnfapp', 'webhook', 'kmskey', 'hsmprofile', 'snapshotpolicy'].includes(this.$route.name)
 
@@ -2696,9 +2792,11 @@ export default {
         delete params.includedefaults
         if (!this.dataView && params.vpcid && aclHasParam(this.$store.getters, requestApi, 'includedefaults')) params.includedefaults = false
       }
-      const response = isAclListRoute(this.$route)
-        ? readAclList(getAPI, params, aclDisplaySupported(this.$store.getters), this.$route.params.id, readCurrentScope)
-        : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+      const response = vpnUser
+        ? readVpnUsers(getAPI, this.$route.query, this.$route.params?.id)
+        : isAclListRoute(this.$route)
+          ? readAclList(getAPI, params, aclDisplaySupported(this.$store.getters), this.$route.params.id, readCurrentScope)
+          : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : this.isEventList || publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -2958,6 +3056,11 @@ export default {
           return
         }
         if (publicIpList) { if ([401, 403].includes(Number(error?.response?.status))) { this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.resetSelection(); if (this.$refs.listview) this.$refs.listview.resetSelection() } this.listRefreshError = true; this.publicIpSearchFailure = 'message.public.ip.search.failed'; if (!isAutoScheduled) this.$notifyError(error); return }
+        if (vpnUser) {
+          this.invalidateVpnUserRead()
+          this.listRefreshError = true
+          return
+        }
         if (this.isAclUi) { this.listRefreshError = true; return }
         if (sameList || this.$route.name === 'vmsnapshot') {
           this.listRefreshError = true
@@ -3048,7 +3151,7 @@ export default {
       if (!refresh) return
       this.resetSelection()
       if (this.$refs.listview) this.$refs.listview.resetSelection()
-      if (deletedDetail) return this.$router.replace('/vpnuser')
+      if (deletedDetail) return this.$router.replace(vpnUserListLocation(this.$route, this.$store.getters))
       return this.fetchData({ irefresh: true })
     },
     finishEventMutation (success) {
@@ -3202,6 +3305,12 @@ export default {
       this.closeAction()
     },
     removeFilter (filter) {
+      if (this.isVpnUser) {
+        const query = { ...this.$route.query, page: '1' }
+        delete query[filter.key]
+        if (filter.key === 'domainid') delete query.account
+        return this.$router.push({ query: vpnUserListQuery(query, this.pageSize, this.$store.getters) })
+      }
       if (kmsListRoute(this.$route)) {
         const raw = { ...this.$route.query, page: '1' }
         delete raw[filter.key]
@@ -4447,6 +4556,11 @@ export default {
       this.$router.push({ query })
     },
     onSearch (opts) {
+      if (this.isVpnUser && !this.dataView) {
+        const query = vpnUserSearchQuery(this.$route.query, opts || {}, this.pageSize, this.$store.getters)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (isAclListRoute(this.$route) && !this.dataView) {
         const query = aclListSearchQuery(this.$route.query, opts || {}, this.pageSize, this.$store.getters)
         this.resetSelection()
@@ -4587,7 +4701,7 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -4626,7 +4740,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
@@ -4779,6 +4893,10 @@ export default {
 <style scoped src="@/style/components/view/list-toolbar.css" />
 <style scoped src="@/style/components/view/vm-acl-standard.css" />
 <style src="@/style/components/view/s2s-connection.css" />
+<style scoped>
+.vpn-user-scope-label { margin-inline: 8px 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.vpn-user-read-error { margin-block-end: 12px; }
+</style>
 <style scoped src="@/style/components/view/public-ip-breadcrumb.css" />
 
 <style scoped>

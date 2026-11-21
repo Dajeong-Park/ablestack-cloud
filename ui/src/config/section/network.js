@@ -1304,6 +1304,7 @@ export default {
       title: 'label.vpn.users',
       icon: 'user-switch-outlined',
       permission: ['listVpnUsers'],
+      searchFilters: ['username', 'domainid', 'account'],
       columns: ['username', 'state', 'account', 'domain'],
       details: ['username', 'state', 'account', 'domain'],
       actions: [
