@@ -68,10 +68,13 @@ export async function discoverAclAccess (get, target, root) {
   const readTags = names.has('listtags')
   const builtIn = !target.row.vpcid && ['default_allow', 'default_deny'].includes(target.row.name)
   const write = !builtIn && (root || !!target.row.vpcid) && names.has('queryasyncjobresult')
-  return Object.fromEntries(Object.entries(aclCommands).map(([action, command]) => [
+  const flags = Object.fromEntries(Object.entries(aclCommands).map(([action, command]) => [
     action,
     names.has(command.toLowerCase()) && (action === 'readTags' || (write && (!action.endsWith('Tag') || readTags)))
   ]))
+  const editApi = body.api.find(row => row.name.toLowerCase() === aclCommands.edit.toLowerCase())
+  flags.editDisplay = root && flags.edit && editApi?.params?.some(param => param.name === 'fordisplay') === true
+  return flags
 }
 
 // Keep a receipt once a job is accepted. A failed poll can be retried without

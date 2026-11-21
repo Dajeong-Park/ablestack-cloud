@@ -791,8 +791,7 @@ public class NetworkACLServiceImplTest {
         Mockito.when(updateNetworkACLItemCmdMock.getCustomId()).thenReturn(null);
         Mockito.when(updateNetworkACLItemCmdMock.getReason()).thenReturn(null);
 
-        Mockito.when(updateNetworkACLItemCmdMock.isDisplay()).thenReturn(false);
-        Mockito.when(networkAclItemVoMock.isDisplay()).thenReturn(false);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(null);
 
         networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
 
@@ -824,7 +823,7 @@ public class NetworkACLServiceImplTest {
         Mockito.when(updateNetworkACLItemCmdMock.getCustomId()).thenReturn(null);
         Mockito.when(updateNetworkACLItemCmdMock.getReason()).thenReturn(null);
 
-        Mockito.when(updateNetworkACLItemCmdMock.isDisplay()).thenReturn(false);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(null);
         Mockito.when(networkAclItemVoMock.getProtocol()).thenReturn("");
 
         networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
@@ -839,7 +838,7 @@ public class NetworkACLServiceImplTest {
         Mockito.verify(networkAclItemVoMock, Mockito.times(1)).setTrafficType(nullable(TrafficType.class));
         Mockito.verify(networkAclItemVoMock, Mockito.times(0)).setUuid(nullable(String.class));
         Mockito.verify(networkAclItemVoMock, Mockito.times(1)).setReason(nullable(String.class));
-        Mockito.verify(networkAclItemVoMock, Mockito.times(1)).setDisplay(nullable(Boolean.class));
+        Mockito.verify(networkAclItemVoMock, Mockito.never()).setDisplay(Mockito.anyBoolean());
         Mockito.verify(networkAclServiceImpl, Mockito.times(1)).validateAndCreateNetworkAclRuleAction(nullable(String.class));
     }
 
@@ -859,7 +858,7 @@ public class NetworkACLServiceImplTest {
         Mockito.when(updateNetworkACLItemCmdMock.getCustomId()).thenReturn("customUuid");
         Mockito.when(updateNetworkACLItemCmdMock.getReason()).thenReturn("reason");
 
-        Mockito.when(updateNetworkACLItemCmdMock.isDisplay()).thenReturn(true);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(true);
         Mockito.when(networkAclItemVoMock.getProtocol()).thenReturn("");
 
         networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
@@ -876,6 +875,16 @@ public class NetworkACLServiceImplTest {
         Mockito.verify(networkAclItemVoMock).setReason("reason");
         Mockito.verify(networkAclItemVoMock).setDisplay(true);
         Mockito.verify(networkAclServiceImpl).validateAndCreateNetworkAclRuleAction("deny");
+    }
+
+    @Test
+    public void transferDataToNetworkAclRulePojoAppliesExplicitFalseDuringPartialUpdate() {
+        Mockito.when(updateNetworkACLItemCmdMock.isPartialUpgrade()).thenReturn(true);
+        Mockito.when(updateNetworkACLItemCmdMock.getDisplay()).thenReturn(false);
+
+        networkAclServiceImpl.transferDataToNetworkAclRulePojo(updateNetworkACLItemCmdMock, networkAclItemVoMock, networkAclMock);
+
+        Mockito.verify(networkAclItemVoMock).setDisplay(false);
     }
 
     private void setUpdateICMPCodeAndTypeTest(String protocol, Integer icmpCode, Integer icmpType) {

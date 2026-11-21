@@ -883,7 +883,8 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
      *  We transfer the update information form {@link UpdateNetworkACLItemCmd} to the {@link NetworkACLItemVO} POJO passed as parameter.
      *  There is one validation performed here, which is regarding the number of the ACL. We will check if there is already an ACL rule with that number, and if this is the case an {@link InvalidParameterValueException} is thrown.
      *  All of the parameters in {@link UpdateNetworkACLItemCmd} that are not null will be set to their corresponding fields in {@link NetworkACLItemVO}.
-     *  If the parameter {@link UpdateNetworkACLItemCmd#isPartialUpgrade()} returns false, we will use null parameters, which will allow us to completely update the ACL rule.
+     *  If the parameter {@link UpdateNetworkACLItemCmd#isPartialUpgrade()} returns false, omitted rule fields can be cleared.
+     * The display flag is independent of the update mode and changes only when explicitly provided.
      *  However, the number and custom Uuid will never be set to null. Therefore, if it is not a partial upgrade, these values will remain the same.
      *
      *  We use {@link #validateAndCreateNetworkAclRuleAction(String)} when converting an action as {@link String} to its Enum corresponding value.
@@ -929,8 +930,8 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         if (StringUtils.isNotBlank(customId)) {
             networkACLItemVo.setUuid(customId);
         }
-        boolean display = updateNetworkACLItemCmd.isDisplay();
-        if (!isPartialUpgrade || display != networkACLItemVo.isDisplay()) {
+        Boolean display = updateNetworkACLItemCmd.getDisplay();
+        if (display != null) {
             networkACLItemVo.setDisplay(display);
         }
         String reason = updateNetworkACLItemCmd.getReason();

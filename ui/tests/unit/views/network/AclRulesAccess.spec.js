@@ -62,14 +62,15 @@ const mountOptions = {
     'a-input-number': true,
     'a-input': true,
     'a-textarea': true,
+    'a-switch': true,
     'a-space': true
   },
   mocks: { $t: key => key, $message: { success: jest.fn() } },
   config: { warnHandler () {} }
 }
-async function mountTab () {
+async function mountTab (role = 'Admin') {
   const route = reactive({ fullPath: '/acllist/acl?tab=acl.rules', name: 'acllist', params: { id: 'acl' } })
-  const getters = reactive({ token: 'test', apis: {}, project: { id: 'p1' }, userInfo: { id: 'u', roletype: 'Admin' } })
+  const getters = reactive({ token: 'test', apis: {}, project: { id: 'p1' }, userInfo: { id: 'u', roletype: role } })
   const wrapper = shallowMount(AclRulesTab, { props: { resource: acl }, global: { ...mountOptions, mocks: { ...mountOptions.mocks, $route: route, $store: { getters, state: { user: {} } } } } })
   await flushPromises()
   return { wrapper, route, getters }
@@ -86,6 +87,56 @@ test.each(Object.keys(aclCommands).filter(key => key !== 'readTags'))('gates %s 
   expect(access[action]).toBe(false)
   expect(access.readTags).toBe(true)
   expect(Object.keys(access).filter(key => access[key])).toHaveLength(Object.keys(aclCommands).length - 1)
+})
+
+function mockRuleDisplay (value, supported = true) {
+  const rule = { ...rules[0], fordisplay: value }
+  const discovery = apis(allApis)
+  if (supported) discovery.listapisresponse.api.find(api => api.name === aclCommands.edit).params = [{ name: 'fordisplay' }]
+  getAPI.mockImplementation(command => {
+    if (command === 'listApis') return Promise.resolve(discovery)
+    if (command === 'listNetworkACLs') return Promise.resolve({ listnetworkaclsresponse: { networkacl: [rule] } })
+    return defaultGet(command)
+  })
+  return rule
+}
+
+test.each([
+  [false, false, undefined],
+  [true, true, undefined],
+  [true, false, false],
+  [false, true, true]
+])('admin rule edit sends display only when explicitly changed from %s to %s', async (original, edited, expected) => {
+  const rule = mockRuleDisplay(original)
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  await vm.openRule('edit', rule)
+  expect(vm.canEditDisplay).toBe(true)
+  expect(vm.form.fordisplay).toBe(original)
+  vm.form.reason = 'updated'
+  vm.form.fordisplay = edited
+  await vm.submitRule()
+  const params = postAPI.mock.calls[0][1]
+  expect(params).toMatchObject({ id: rule.id, partialupgrade: false, reason: 'updated' })
+  if (expected === undefined) expect(params).not.toHaveProperty('fordisplay')
+  else expect(params.fordisplay).toBe(expected)
+  wrapper.unmount()
+})
+
+test.each([
+  ['User', true, false],
+  ['Admin', false, false],
+  ['Admin', true, undefined]
+])('omits display for %s without field access or a known value', async (role, supported, original) => {
+  const rule = mockRuleDisplay(original, supported)
+  const { wrapper } = await mountTab(role)
+  const vm = wrapper.vm
+  await vm.openRule('edit', rule)
+  expect(vm.canEditDisplay).toBe(false)
+  vm.form.fordisplay = true
+  await vm.submitRule()
+  expect(postAPI.mock.calls[0][1]).not.toHaveProperty('fordisplay')
+  wrapper.unmount()
 })
 
 test('missing discovery or target does not enable writes; direct link uses VPC project', async () => {

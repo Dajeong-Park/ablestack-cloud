@@ -457,6 +457,7 @@
   "label.accounts": "계정",
   "label.accountstate": "계정 상태",
   "label.accounttype": "계정 유형",
+  "label.acl.rule.display": "사용자에게 규칙 표시",
   "label.acl.export": "ACL 내보내기",
   "label.acl.id": "ACL ID",
   "label.acl.list.rules": "ACL 목록 규칙",

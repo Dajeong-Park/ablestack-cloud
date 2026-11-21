@@ -244,7 +244,9 @@
             :autoSize="{ minRows: 2 }"
             :placeholder="$t('label.acl.reason.description')" />
         </a-form-item>
-
+        <a-form-item v-if="canEditDisplay" :label="$t('label.acl.rule.display')" name="fordisplay">
+          <a-switch v-model:checked="form.fordisplay" :aria-label="$t('label.acl.rule.display')" />
+        </a-form-item>
       </a-form>
       <template v-else-if="dialog.mode === 'tags'">
         <a-form
@@ -349,6 +351,10 @@ export default {
     },
     dialogTitle () {
       return this.$t(({ add: 'label.add.rule', edit: 'label.edit.rule', tags: 'label.tags', remove: 'label.delete' })[this.dialog?.mode])
+    },
+    canEditDisplay () {
+      return this.dialog?.mode === 'edit' && this.access?.scope === this.scope &&
+        this.access.flags.editDisplay && typeof this.dialog.item.fordisplay === 'boolean'
     },
     canMove () { return this.can('move') && !this.searchQuery && !this.appliedSearch },
     canImport () {
@@ -484,7 +490,8 @@ export default {
         icmptype: item?.icmptype ?? -1,
         icmpcode: item?.icmpcode ?? -1,
         traffictype: item?.traffictype?.toLowerCase() || 'ingress',
-        reason: item?.reason
+        reason: item?.reason,
+        fordisplay: item?.fordisplay
       }
       this.rules = { protocolnumber: [{ required: true, message: this.$t('label.required') }] }
       if (!('listNetworkProtocols' in this.$store.getters.apis)) return
@@ -541,6 +548,10 @@ export default {
         await this.$refs.ruleForm.validate()
         if (this.dialog !== dialog || !this.can(dialog.mode)) return
         const data = this.getDataFromForm(this.form)
+        const display = this.form.fordisplay
+        if (this.canEditDisplay && typeof display === 'boolean' && display !== dialog.item.fordisplay) {
+          data.fordisplay = display
+        }
         this.busy = false
         return await this.write(dialog.mode, dialog.mode === 'edit'
           ? { ...data, id: dialog.item.id, partialupgrade: false }
