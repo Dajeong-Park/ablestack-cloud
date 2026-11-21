@@ -3393,6 +3393,8 @@
   "message.action.delete.external.load.balancer": "이 외부 로드 밸런서를 제거할 것인지 확인하십시오. 경고: 동일한 외부 로드 밸런서를 다시 추가할 계획이라면 다음에서 사용 데이터를 재설정해야 합니다. 장치.",
   "message.action.delete.ingress.rule": "이 인그레스 규칙을 삭제할 것인지 확인하십시오.",
   "message.action.delete.ipv4.subnet": "이 IPv4 서브넷을 삭제하시겠습니까?",
+  "message.ipv4.subnet.delete.selection": "삭제 가능 {0}건. 사용 중인 {1}건은 제외됩니다.",
+  "message.ipv4.subnet.delete.changed": "현재 이 서브넷을 삭제할 수 없습니다.",
   "message.action.delete.guest.os": "이 게스트 OS를 삭제할 것인지 확인하세요. 시스템 정의 항목은 삭제할 수 없습니다.",
   "message.action.delete.guest.os.hypervisor.mapping": "이 게스트 OS 하이퍼바이저 매핑을 삭제할지 확인하세요. 시스템 정의 항목은 삭제할 수 없습니다.",
   "message.action.delete.instance.group": "선택한 그룹을 삭제하면 그룹 소속 연결과 코멘트가 제거됩니다. 가상머신과 볼륨은 보존되며, 가상머신의 전원 상태와 배치는 바뀌지 않습니다. 이 작업은 되돌릴 수 없습니다.",

@@ -3425,6 +3425,8 @@
   "message.action.delete.external.load.balancer": "Please confirm that you would like to remove this external load balancer. Warning: If you are planning to add back the same external load balancer, you must reset usage data on the device.",
   "message.action.delete.ingress.rule": "Please confirm that you want to delete this ingress rule.",
   "message.action.delete.ipv4.subnet": "Please confirm that you want to delete this IPv4 subnet.",
+  "message.ipv4.subnet.delete.selection": "{0} can be deleted. {1} are excluded because they are in use.",
+  "message.ipv4.subnet.delete.changed": "This subnet is no longer available for deletion.",
   "message.action.delete.guest.os": "Please confirm that you want to delete this guest os. System defined entry cannot be deleted.",
   "message.action.delete.guest.os.hypervisor.mapping": "Please confirm that you want to delete this guest os hypervisor mapping. System defined entry cannot be deleted.",
   "message.action.delete.instance.group": "Deleting the selected groups removes their VM memberships and comments. VMs and volumes are retained; VM power state and placement are unchanged. This action cannot be undone.",

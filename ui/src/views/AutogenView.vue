@@ -238,7 +238,7 @@
         :resource="resource"
         :current-action="currentAction"
         :selected-items="selectedItems"
-        v-bind="isVpnUser && currentAction.api === 'addVpnUser' || vpnCustomerGatewayActionScope ? { afterClose: restoreClosedActionFocus } : {}"
+        v-bind="isVpnUser && currentAction.api === 'addVpnUser' || vpnCustomerGatewayActionScope || currentAction.ipv4SubnetDeleteTargets ? { afterClose: restoreClosedActionFocus } : {}"
         dialog-only
         @refresh-data="refreshActionData"
         @close-action="closeAction"
@@ -914,6 +914,7 @@ import ResourceView from '@/components/view/ResourceView'
 import VpcDialog from '@/components/network/VpcDialog'
 import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
+import { canDeleteIpv4Subnet } from '@/utils/ipv4Subnet'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import VpnUserDeleteDialog from '@/views/network/VpnUserDeleteDialog'
@@ -3389,6 +3390,8 @@ export default {
         this.listRequestVersion++; this.listRequestPending = false; this.listLoadedScope = null
         if (deletedCniDetail) { this.resource = {}; this.items = []; this.itemCount = 0 }
       }
+      const subnetDeletion = this.currentAction.api === 'deleteIpv4SubnetForGuestNetwork' && result?.ipv4SubnetDeletion
+      const deletedSubnetDetail = subnetDeletion && this.dataView && result.removed.includes(this.$route.params.id)
       const deletedSshDetail = this.currentAction?.api === 'deleteSSHKeyPair' && isSshKeyPairDetailRoute(this.$route) && result?.removed?.includes(this.resource?.id)
       if (this.currentAction?.api === 'deleteSSHKeyPair' && result?.clearSelection) { this.selectedRowKeys = []; this.selectedItems = [] }
       const deletedUserDataDetail = this.currentAction?.api === 'deleteUserData' && this.dataView && result?.removed?.includes(this.resource?.id)
@@ -3419,6 +3422,12 @@ export default {
         if (sameList) {
           this.$nextTick(() => { if (this.$route.fullPath === result.originPath && result.auth === this.s2sGatewaySearchAuth) this.fetchData({ irefresh: true }) })
         } else this.$router.replace(displayLocation)
+      }
+      if (deletedSubnetDetail) this.$router.replace({ name: 'ipv4subnets', query: this.$route.query })
+      else if (subnetDeletion) {
+        this.resetSelection()
+        this.$refs.listview?.resetSelection()
+        this.fetchData({ irefresh: true })
       }
       if (keyResourceList) this.$router.replace(keyResourceList)
       if (deletedGatewayDetail) this.$router.replace(gatewayLocation)
@@ -3631,6 +3640,21 @@ export default {
           ...action,
           vpnUserDeleteTargets: targets,
           vpnUserDeleteCurrent: () => this.showAction && this.storageActionGeneration === generation && scope === this.vpnUserDeleteScope
+        }
+        this.showAction = true
+        return
+      }
+      if (action.api === 'deleteIpv4SubnetForGuestNetwork') {
+        const record = this.dataView ? this.resource : action.resource
+        const candidates = isGroupAction ? this.items.filter(row => this.selectedRowKeys.includes(row.id)) : [record]
+        const targets = candidates.filter(canDeleteIpv4Subnet).map(({ id, subnet }) => ({ id, subnet }))
+        if (!targets.length || !this.$store.getters.apis.queryAsyncJobResult) return
+        const generation = this.storageActionGeneration
+        this.currentAction = {
+          ...action,
+          ipv4SubnetDeleteTargets: targets,
+          ipv4SubnetDeleteExcluded: candidates.length - targets.length,
+          ipv4SubnetDeleteCurrent: () => this.showAction && generation === this.storageActionGeneration
         }
         this.showAction = true
         return

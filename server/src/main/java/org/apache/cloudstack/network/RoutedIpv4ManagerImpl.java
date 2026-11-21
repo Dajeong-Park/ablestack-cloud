@@ -474,7 +474,7 @@ public class RoutedIpv4ManagerImpl extends ComponentLifecycleBase implements Rou
             return true;
         }
         // check if the subnet is not in use
-        if (!State.Free.equals(mapVO.getState()) || mapVO.getNetworkId() != null) {
+        if (!State.Free.equals(mapVO.getState()) || mapVO.getNetworkId() != null || mapVO.getVpcId() != null) {
             throw new InvalidParameterValueException("Cannot delete the subnet which is in use");
         }
         return ipv4GuestSubnetNetworkMapDao.remove(mapId);

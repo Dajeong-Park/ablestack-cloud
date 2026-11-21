@@ -41,6 +41,7 @@ import { canReadNetworkPermissions } from '@/utils/networkPermissions'
 import { vpcRestartParams, vpcRestartReason } from '@/utils/vpcRestart'
 import { vpcMigrationVisible } from '@/utils/vpcMigration'
 import { canDeleteVpnUsers } from '@/utils/vpnUserDeletion'
+import { canDeleteIpv4Subnet } from '@/utils/ipv4Subnet'
 
 const activeFastCloneStatuses = ['pending', 'running']
 const fastCloneOperationBlockedLabel = 'message.sharedmountpoint.clone.flatten.in.progress'
@@ -1589,12 +1590,13 @@ export default {
           api: 'deleteIpv4SubnetForGuestNetwork',
           icon: 'delete-outlined',
           label: 'label.delete.ipv4.subnet',
-          message: 'message.action.delete.ipv4.subnet',
           dataView: true,
-          show: (record) => { return !record.networkid },
+          show: canDeleteIpv4Subnet,
           groupAction: true,
+          groupShow: selection => selection.some(canDeleteIpv4Subnet),
           popup: true,
-          groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
+          selfManagedDialog: true,
+          component: shallowRef(defineAsyncComponent(() => import('@/views/network/DeleteIpv4Subnet.vue')))
         }
       ]
     },
