@@ -23,7 +23,7 @@
       :type="networks.length ? 'warning' : 'error'"
       :message="$t(networks.length ? 'message.list.refresh.stale' : 'error.fetching.data')"
       show-icon>
-      <template #action>
+      <template #description>
         <a-button size="small" :loading="listRefreshing > 0 || fetchLoading" @click="fetchData">{{ $t('label.retry') }}</a-button>
       </template>
     </a-alert>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { Empty } from 'ant-design-vue'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI } from '@/api'
@@ -76,6 +77,7 @@ export default {
   })],
   name: 'GuestVlanNetworksTab',
   components: {
+    AEmpty: Empty,
     Status
   },
   props: {
