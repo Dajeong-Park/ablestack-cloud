@@ -20,7 +20,7 @@ import { reactive } from 'vue'
 import md5 from 'md5'
 import AclRulesTab from '@/views/network/AclRulesTab.vue'
 import ImportNetworkACL from '@/views/network/ImportNetworkACL.vue'
-import { aclCommands, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
+import { aclCommands, discoverAclAccess, readAclList, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import { getAPI, postAPI } from '@/api'
 import { aclCsvError, formatAclCsv, parseAclCsv } from '@/utils/aclCsv'
 
@@ -73,9 +73,9 @@ const mountOptions = {
   mocks: { $t: key => key, $message: { success: jest.fn() } },
   config: { warnHandler () {} }
 }
-async function mountTab (role = 'Admin') {
+async function mountTab (role = 'Admin', apiSchema = {}) {
   const route = reactive({ fullPath: '/acllist/acl?tab=acl.rules', name: 'acllist', params: { id: 'acl' } })
-  const getters = reactive({ token: 'test', apis: {}, project: { id: 'p1' }, userInfo: { id: 'u', roletype: role } })
+  const getters = reactive({ token: 'test', apis: apiSchema, project: { id: 'p1' }, userInfo: { id: 'u', roletype: role } })
   const wrapper = shallowMount(AclRulesTab, { props: { resource: acl }, global: { ...mountOptions, mocks: { ...mountOptions.mocks, $route: route, $store: { getters, state: { user: {} } } } } })
   await flushPromises()
   return { wrapper, route, getters }
@@ -116,7 +116,7 @@ test.each([
   const { wrapper } = await mountTab()
   const vm = wrapper.vm
   await vm.openRule('edit', rule)
-  expect(vm.canEditDisplay).toBe(true)
+  expect(vm.canSetDisplay).toBe(true)
   expect(vm.form.fordisplay).toBe(original)
   vm.form.reason = 'updated'
   vm.form.fordisplay = edited
@@ -137,10 +137,58 @@ test.each([
   const { wrapper } = await mountTab(role)
   const vm = wrapper.vm
   await vm.openRule('edit', rule)
-  expect(vm.canEditDisplay).toBe(false)
+  expect(vm.canSetDisplay).toBe(false)
   vm.form.fordisplay = true
   await vm.submitRule()
   expect(postAPI.mock.calls[0][1]).not.toHaveProperty('fordisplay')
+  wrapper.unmount()
+})
+
+test('hidden list details use an exact fallback only for an authorized scope', async () => {
+  const empty = { listnetworkacllistsresponse: { count: 0 } }
+  const hidden = { listnetworkacllistsresponse: { count: 1, networkacllist: [{ ...acl, fordisplay: false }] } }
+  const get = jest.fn().mockResolvedValueOnce(empty).mockResolvedValueOnce(hidden)
+  const context = { aclreturn: '{}', fordisplay: 'false', keyword: 'other', page: 2, projectid: 'p1' }
+  await expect(readAclList(get, context, true, 'acl')).resolves.toBe(hidden)
+  expect(get.mock.calls.map(call => call[1])).toEqual([
+    { projectid: 'p1', id: 'acl', page: 1, pagesize: 1 },
+    { projectid: 'p1', id: 'acl', page: 1, pagesize: 1, fordisplay: false }
+  ])
+  get.mockClear().mockResolvedValue(empty)
+  await expect(readAclList(get, context, false, 'acl')).resolves.toBe(empty)
+  expect(get).toHaveBeenCalledTimes(1)
+  expect(get.mock.calls[0][1]).not.toHaveProperty('fordisplay')
+  await readAclList(get, context, true, 'acl', () => false)
+  expect(get).toHaveBeenCalledTimes(2)
+})
+
+test.each(['Admin', 'DomainAdmin', 'User'])('%s visibility filter and creation use authorized schema', async role => {
+  const display = [{ name: 'fordisplay' }]
+  const schema = { listNetworkACLs: { params: display } }
+  const discovery = apis(allApis)
+  discovery.listapisresponse.api.find(api => api.name === aclCommands.add).params = display
+  getAPI.mockImplementation((command, data) => {
+    if (command === 'listApis') return Promise.resolve(discovery)
+    if (command === 'listNetworkACLs' && data.fordisplay === 'false') return Promise.resolve(listRules([rules[0]]))
+    return defaultGet(command)
+  })
+  const { wrapper } = await mountTab(role, schema)
+  const vm = wrapper.vm
+  const admin = role === 'Admin'
+  expect(vm.ruleCount).toBe(2)
+  await vm.changeRuleDisplay('false')
+  expect(vm.acls).toHaveLength(admin ? 1 : 2)
+  expect(vm.ruleCount).toBe(admin ? 1 : 2)
+  expect(getAPI.mock.calls.filter(([cmd, data]) => cmd === 'listNetworkACLs' && data.fordisplay === 'false')).toHaveLength(admin ? 1 : 0)
+  if (admin) expect(vm.canMove).toBe(false)
+  await vm.openRule('add')
+  expect(vm.canSetDisplay).toBe(admin)
+  expect(vm.form.fordisplay).toBe(true)
+  vm.form.fordisplay = false
+  await vm.submitRule()
+  const params = postAPI.mock.calls[0][1]
+  if (admin) expect(params.fordisplay).toBe(false)
+  else expect(params).not.toHaveProperty('fordisplay')
   wrapper.unmount()
 })
 

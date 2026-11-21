@@ -710,6 +710,7 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         final String trafficType = cmd.getTrafficType();
         final String protocol = cmd.getProtocol();
         final String action = cmd.getAction();
+        final Boolean display = cmd.getDisplayFilter();
         final String keyword = cmd.getKeyword();
         final Map<String, String> tags = cmd.getTags();
         final Account caller = CallContext.current().getCallingAccount();
@@ -722,6 +723,7 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         sb.and("trafficType", sb.entity().getTrafficType(), Op.EQ);
         sb.and("protocol", sb.entity().getProtocol(), Op.EQ);
         sb.and("action", sb.entity().getAction(), Op.EQ);
+        sb.and("display", sb.entity().isDisplay(), Op.EQ);
         sb.and("reason", sb.entity().getReason(), Op.EQ);
 
         if (tags != null && !tags.isEmpty()) {
@@ -816,6 +818,9 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
 
         if (action != null) {
             sc.setParameters("action", action);
+        }
+        if (display != null) {
+            sc.setParameters("display", display);
         }
 
         if (tags != null && !tags.isEmpty()) {

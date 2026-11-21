@@ -91,6 +91,9 @@
       <template v-else-if="$route.meta?.name === 'vmgroup' && ['virtualmachinecount', 'virtualmachinestates'].includes(column.key)">
         <InstanceGroupSummary :resource="record" :field="column.key" />
       </template>
+      <template v-else-if="column.key === 'fordisplay' && isAclListRoute($route)">
+        {{ typeof text === 'boolean' ? $t(aclDisplayLabel(text)) : '–' }}
+      </template>
       <template v-else-if="['name', 'provider'].includes(column.key)">
         <span
           v-if="(resourcePath === '/vm' || ['vm', 'vnfapp'].includes($route.path.split('/')[1]))"
@@ -171,6 +174,7 @@
             <router-link :to="networkDetailLocation($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
+          <router-link v-else-if="isAclListRoute($route) && !resourcePath && record.id" :to="aclListDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
@@ -1281,6 +1285,7 @@
 </template>
 
 <script>
+import { aclDisplayLabel, aclListDetailLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { kmsDetailLocation } from '@/utils/kmsNavigation'
@@ -1653,6 +1658,9 @@ export default {
       scroller.scrollLeft = event.key === 'Home' ? 0 : event.key === 'End' ? scroller.scrollWidth - scroller.clientWidth : scroller.scrollLeft + (event.key === 'ArrowRight' ? 120 : -120)
     },
     kubernetesIsoDetailLocation,
+    aclDisplayLabel,
+    aclListDetailLocation,
+    isAclListRoute,
     kmsListRoute,
     kmsDetailLocation,
     networkTypeLabel,

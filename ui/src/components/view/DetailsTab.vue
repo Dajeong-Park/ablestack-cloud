@@ -93,6 +93,7 @@
             <a-tag :color="dataResource.deleteprotection === true ? 'warning' : dataResource.deleteprotection === false ? 'success' : 'default'">{{ $t('label.vm.protection.' + (resourceReadFailed() ? 'failed' : dataResource.deleteprotection === true ? 'protected' : dataResource.deleteprotection === false ? 'unprotected' : 'unknown')) }}</a-tag>
             <div>{{ $t('message.vm.delete.edit') }}</div>
           </div>
+          <div v-else-if="$route.meta.name === 'acllist' && item === 'fordisplay'">{{ $t(aclDisplayLabel(dataResource.fordisplay)) }}</div>
           <network-ip-vm-link v-else-if="$route.meta.name === 'publicip' && item === 'virtualmachinename'" :record="dataResource" />
           <InternalLbRules v-else-if="$route.meta.name === 'ilb' && item === 'loadbalancerrule'" :record="dataResource" :loading="loading" />
           <div v-else-if="allocationDetails[item]">{{ allocationDetails[item].value }}</div>
@@ -427,6 +428,7 @@ display-text />
 </template>
 
 <script>
+import { aclDisplayLabel } from '@/utils/vpcAclAccess'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { kmsRoute, hsmOwnerScope, kmsProtocolOptions } from '@/utils/kmsSearch'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
@@ -646,6 +648,7 @@ export default {
       }
       this.dataResource.account = projectAdmins.join()
     },
+    aclDisplayLabel,
     presentedTemplateValue,
     presentedIsoValue,
     fetchDetails () {

@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import { aclListLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import { kubernetesIsoListLocation } from '@/utils/kubernetesIsoSearch'
 import { templateListLocation } from '@/utils/templateSearch'
@@ -134,6 +135,9 @@ export default {
     documentationUrl,
     kmsDetailRoute,
     breadcrumbLocation (item) {
+      if (item.path === '/acllist' && isAclListRoute(this.$route) && this.$route.params?.id) {
+        return aclListLocation(this.$route, this.resource, this.$store.getters)
+      }
       if (kmsDetailRoute(this.$route) && item.path === '/' + this.$route.meta.name) {
         return kmsListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
       }

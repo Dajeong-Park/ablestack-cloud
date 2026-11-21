@@ -56,7 +56,57 @@ export function aclDenied (error) {
   return [401, 403].includes(Number(error?.response?.status || error?.code))
 }
 
-export async function resolveAclScope (get, resource, activeProject) {
+export const isAclListRoute = route => route.meta?.name === 'acllist'
+export const aclDisplayValue = value => ['true', 'false'].includes(String(value)) ? String(value) : undefined
+export const aclDisplayLabel = value => 'label.acl.display.' + (value ? 'visible' : 'hidden')
+
+const hasDisplayParam = api => api?.params?.some(param => param.name === 'fordisplay') === true
+
+export function aclDisplaySupported (getters, command = 'listNetworkACLLists') {
+  return getters.userInfo?.roletype === 'Admin' && hasDisplayParam(getters.apis?.[command])
+}
+
+function aclListQuery (query, getters) {
+  const result = Object.fromEntries(['q', 'keyword', 'name', 'vpcid', 'page', 'pagesize'].filter(key =>
+    typeof query?.[key] === 'string').map(key => [key, query[key]]))
+  const display = aclDisplaySupported(getters) && aclDisplayValue(query?.fordisplay)
+  if (display) result.fordisplay = display
+  return result
+}
+
+export function aclListDetailLocation (route, row, getters) {
+  const context = aclListQuery(route.query, getters)
+  return { path: '/acllist/' + encodeURIComponent(row.id), query: { aclreturn: JSON.stringify(context) } }
+}
+
+export function aclListLocation (route, row, getters) {
+  let context
+  try { context = JSON.parse(route.query.aclreturn) } catch { /* Direct detail link. */ }
+  const query = aclListQuery(context, getters)
+  if (!query.fordisplay && row.fordisplay === false && aclDisplaySupported(getters)) query.fordisplay = 'false'
+  return { path: '/acllist', query }
+}
+
+export async function readAclList (get, params, allowDisplay, detailId, current = () => true) {
+  const args = { ...params }
+  const display = allowDisplay && aclDisplayValue(args.fordisplay)
+  delete args.aclreturn
+  delete args.fordisplay
+  if (detailId) {
+    for (const key of ['name', 'keyword', 'vpcid', 'tab']) delete args[key]
+    Object.assign(args, { id: detailId, page: 1, pagesize: 1 })
+  } else if (display) {
+    args.fordisplay = display
+  }
+  const json = await get('listNetworkACLLists', args, aclRequestOptions)
+  const body = aclResponse(json, 'listnetworkacllistsresponse')
+  if (detailId && allowDisplay && current() && !(body.networkacllist || []).length) {
+    return get('listNetworkACLLists', { ...args, fordisplay: false }, aclRequestOptions)
+  }
+  return json
+}
+
+export async function resolveAclScope (get, resource, activeProject, allowDisplay = false, current) {
   let projectId = resource.projectid || activeProject
   // An ACL response has a VPC ID, but usually no project ID. Resolve it before
   // using default-view API metadata for a project ACL reached by a direct link.
@@ -68,7 +118,7 @@ export async function resolveAclScope (get, resource, activeProject) {
   }
   if (activeProject && projectId !== activeProject) return null
   const params = aclProjectArgs(projectId)
-  const json = await get('listNetworkACLLists', { ...params, id: resource.id, listall: true }, aclRequestOptions)
+  const json = await readAclList(get, { ...params, listall: true }, allowDisplay, resource.id, current)
   const row = aclResponse(json, 'listnetworkacllistsresponse').networkacllist?.find(row => row.id === resource.id)
   if (!row || (row.vpcid && row.vpcid !== resource.vpcid)) return null
   return { params, row }
@@ -85,8 +135,10 @@ export async function discoverAclAccess (get, target, root) {
     action,
     names.has(command.toLowerCase()) && (action === 'readTags' || (write && (!action.endsWith('Tag') || readTags)))
   ]))
-  const editApi = body.api.find(row => row.name.toLowerCase() === aclCommands.edit.toLowerCase())
-  flags.editDisplay = root && flags.edit && editApi?.params?.some(param => param.name === 'fordisplay') === true
+  for (const action of ['add', 'edit']) {
+    const api = body.api.find(row => row.name.toLowerCase() === aclCommands[action].toLowerCase())
+    flags[action + 'Display'] = root && flags[action] && hasDisplayParam(api)
+  }
   return flags
 }
 

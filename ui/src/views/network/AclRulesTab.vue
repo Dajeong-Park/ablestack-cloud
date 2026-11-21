@@ -28,12 +28,24 @@
             <a-menu-item key="all" :disabled="!exportTotals.all">
               {{ $t('label.acl.csv.export.all', { count: exportTotals.all ?? '…' }) }}
             </a-menu-item>
-            <a-menu-item key="search" :disabled="!exportTotals.search" v-if="appliedSearch">
+            <a-menu-item key="search" :disabled="!exportTotals.search" v-if="appliedSearch || appliedRuleDisplay !== 'all'">
               {{ $t('label.acl.csv.export.search', { count: exportTotals.search ?? '…' }) }}
             </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
+      <a-select
+        v-if="canFilterDisplay"
+        class="acl-rule-display-filter"
+        :aria-label="$t('label.acl.rule.display.filter')"
+        :value="ruleDisplay"
+        :disabled="!target || busy || pending?.action === 'move'"
+        @change="changeRuleDisplay">
+        <template #suffixIcon><filter-outlined /></template>
+        <a-select-option value="all">{{ $t('label.all') }}</a-select-option>
+        <a-select-option value="true">{{ $t('label.acl.display.visible') }}</a-select-option>
+        <a-select-option value="false">{{ $t('label.acl.display.hidden') }}</a-select-option>
+      </a-select>
       <a-input-search
         class="network-rules-search"
         :placeholder="$t('label.search')"
@@ -41,6 +53,9 @@
         :disabled="busy || pending?.action === 'move'"
         @search="fetchData" />
     </NetworkRulesToolbar>
+    <p v-if="canFilterDisplay && ruleCount !== null" class="acl-rule-count" role="status">
+      {{ $t('label.acl.rule.result.count', { count: ruleCount }) }}
+    </p>
 
     <a-alert v-if="notice" class="acl-access-notice" show-icon :type="notice.type" :message="$t(notice.message)">
       <template v-if="notice.detail || notice.retry || notice.recheck" #description>
@@ -106,6 +121,10 @@
               <div class="list__col">
                 <div class="list__label">{{ $t('label.description') }}</div>
                 <div>{{ element.reason }}</div>
+              </div>
+              <div v-if="canFilterDisplay && typeof element.fordisplay === 'boolean'" class="list__col">
+                <div class="list__label">{{ $t('label.acl.rule.display.filter') }}</div>
+                <div>{{ $t(aclDisplayLabel(element.fordisplay)) }}</div>
               </div>
             </div>
           <div v-if="can('readTags') || can('edit') || can('remove') || showMoveActions" class="list__actions">
@@ -266,7 +285,7 @@
             :autoSize="{ minRows: 2 }"
             :placeholder="$t('label.acl.reason.description')" />
         </a-form-item>
-        <a-form-item v-if="canEditDisplay" :label="$t('label.acl.rule.display')" name="fordisplay">
+        <a-form-item v-if="canSetDisplay" :label="$t('label.acl.rule.display')" name="fordisplay">
           <a-switch v-model:checked="form.fordisplay" :aria-label="$t('label.acl.rule.display')" />
         </a-form-item>
       </a-form>
@@ -320,7 +339,7 @@ import draggable from 'vuedraggable'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import { networkCollection, networkError } from '@/utils/networkLifecycle'
 import { formatAclCsv } from '@/utils/aclCsv'
-import { aclCommands, aclDenied, aclOrderConflict, aclOrderHash, aclRequestOptions, aclResponse, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
+import { aclCommands, aclDisplayLabel, aclDisplaySupported, aclDisplayValue, aclDenied, aclOrderConflict, aclOrderHash, aclRequestOptions, aclResponse, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import ImportNetworkACL from './ImportNetworkACL'
 
 const moveActions = [
@@ -356,6 +375,9 @@ export default {
     exporting: false,
     searchQuery: '',
     appliedSearch: '',
+    ruleDisplay: 'all',
+    appliedRuleDisplay: 'all',
+    ruleCount: null,
     acls: [],
     lastRules: [],
     fetchLoading: false,
@@ -385,20 +407,24 @@ export default {
     dialogTitle () {
       return this.$t(({ add: 'label.add.rule', edit: 'label.edit.rule', tags: 'label.tags', remove: 'label.delete' })[this.dialog?.mode])
     },
-    canEditDisplay () {
-      return this.dialog?.mode === 'edit' && this.access?.scope === this.scope &&
-        this.access.flags.editDisplay && typeof this.dialog.item.fordisplay === 'boolean'
+    canFilterDisplay () {
+      return aclDisplaySupported(this.$store.getters, 'listNetworkACLs')
+    },
+    canSetDisplay () {
+      if (this.access?.scope !== this.scope) return false
+      if (this.dialog?.mode === 'add') return this.access.flags.addDisplay
+      return this.dialog?.mode === 'edit' && this.access.flags.editDisplay && typeof this.dialog.item.fordisplay === 'boolean'
     },
     showMoveActions () {
       return this.access?.scope === this.scope && this.access.flags.move && this.lastRules.length > 1
     },
     canMove () {
       return this.showMoveActions && this.can('move') && !!this.orderHash &&
-        !this.searchQuery && !this.appliedSearch && !this.dialog && !this.busy && !this.pending
+        !this.searchQuery && !this.appliedSearch && this.ruleDisplay === 'all' && this.appliedRuleDisplay === 'all' && !this.dialog && !this.busy && !this.pending
     },
     moveHint () {
       if (!this.can('move') || this.notice || this.busy) return ''
-      if (this.searchQuery || this.appliedSearch) return 'message.acl.order.clear.filters'
+      if (this.searchQuery || this.appliedSearch || this.ruleDisplay !== 'all' || this.appliedRuleDisplay !== 'all') return 'message.acl.order.clear.filters'
       if (!this.orderHash) return 'message.acl.order.full.required'
       return ''
     },
@@ -408,7 +434,7 @@ export default {
     }
   },
   watch: {
-    scope: { handler () { this.reset(); this.$nextTick(() => { if (this.active && !this.loading) this.reload() }) }, flush: 'sync' },
+    scope: { handler () { this.ruleDisplay = 'all'; this.reset(); this.$nextTick(() => { if (this.active && !this.loading) this.reload() }) }, flush: 'sync' },
     loading (loading) { if (!loading && this.active) this.reload() },
     '$store.getters.apis': { handler () { this.reset(); this.$nextTick(() => { if (this.active && !this.loading) this.reload() }) }, flush: 'sync' }
   },
@@ -417,12 +443,14 @@ export default {
   deactivated () { this.active = false; this.reset() },
   beforeUnmount () { this.active = false; this.reset() },
   methods: {
+    aclDisplayLabel,
     reset () {
       this.epoch++
       this.target = null
       this.access = null
       this.acls = []
       this.lastRules = []
+      this.ruleCount = null
       this.exportTotals = {}
       this.exporting = false
       this.fetchLoading = false
@@ -451,7 +479,7 @@ export default {
       const resource = { ...this.resource }
       this.fetchLoading = true
       try {
-        const target = await resolveAclScope(getAPI, resource, project)
+        const target = await resolveAclScope(getAPI, resource, project, aclDisplaySupported(this.$store.getters), current)
         if (!current()) return
         if (!target) {
           this.notice = { type: 'warning', message: 'message.acl.scope.unavailable' }
@@ -477,6 +505,15 @@ export default {
         if (current()) this.fetchLoading = false
       }
     },
+    changeRuleDisplay (value) {
+      if (!this.canFilterDisplay || (value !== 'all' && !aclDisplayValue(value))) return
+      this.ruleDisplay = value
+      return this.fetchData()
+    },
+    ruleDisplayParams (mode) {
+      const display = this.canFilterDisplay && aclDisplayValue(mode)
+      return display ? { fordisplay: display } : {}
+    },
     async fetchData () {
       if (!this.target || !this.active || this.pending?.action === 'move') return
       const scope = this.scope
@@ -484,27 +521,31 @@ export default {
       const read = ++this.ruleRead
       const current = () => this.live(scope, epoch) && read === this.ruleRead
       const keyword = this.searchQuery
-      const params = { ...this.target.params, aclid: this.target.row.id }
+      const displayParams = this.ruleDisplayParams(this.ruleDisplay)
+      const params = { ...this.target.params, aclid: this.target.row.id, ...displayParams }
       const unfiltered = !keyword && params.fordisplay == null
       this.fetchLoading = true
       this.orderHash = null
       try {
-        const json = await getAPI('listNetworkACLs', { ...params, keyword }, aclRequestOptions)
+        const criteria = { ...params, keyword }
+        const json = await getAPI('listNetworkACLs', criteria, aclRequestOptions)
         const body = aclResponse(json, 'listnetworkaclsresponse')
         let rows = body.networkacl || []
         if (!Array.isArray(rows)) throw new Error('Invalid ACL rules')
         const count = Number(body.count ?? (rows.length ? NaN : 0))
-        if (unfiltered && rows.length < count && current()) {
-          // Fetch remaining pages before enabling any move. Keep the visible page if later pages cannot be verified.
+        if (rows.length < count && current()) {
+          // Keep the first page if the remaining pages cannot be verified.
           try {
             rows = await networkCollection((api, args) => {
               if (!current()) throw new Error('ACL rule scope changed')
               return getAPI(api, args, aclRequestOptions)
-            }, 'listNetworkACLs', 'networkacl', params)
+            }, 'listNetworkACLs', 'networkacl', criteria)
           } catch { /* The original result can still be viewed. */ }
         }
         if (current()) {
           this.appliedSearch = keyword
+          this.appliedRuleDisplay = displayParams.fordisplay || 'all'
+          this.ruleCount = Number.isSafeInteger(count) && count >= rows.length ? count : null
           this.lastRules = rows.slice().sort((a, b) => a.number - b.number)
           this.orderHash = unfiltered ? aclOrderHash(this.lastRules, count, params.aclid) : null
           this.acls = this.lastRules.slice()
@@ -554,7 +595,7 @@ export default {
         icmpcode: item?.icmpcode ?? -1,
         traffictype: item?.traffictype?.toLowerCase() || 'ingress',
         reason: item?.reason,
-        fordisplay: item?.fordisplay
+        fordisplay: item ? item.fordisplay : true
       }
       this.rules = { protocolnumber: [{ required: true, message: this.$t('label.required') }] }
       if (!('listNetworkProtocols' in this.$store.getters.apis)) return
@@ -612,7 +653,7 @@ export default {
         if (this.dialog !== dialog || !this.can(dialog.mode)) return
         const data = this.getDataFromForm(this.form)
         const display = this.form.fordisplay
-        if (this.canEditDisplay && typeof display === 'boolean' && display !== dialog.item.fordisplay) {
+        if (this.canSetDisplay && typeof display === 'boolean' && display !== dialog.item?.fordisplay) {
           data.fordisplay = display
         }
         this.busy = false
@@ -792,16 +833,19 @@ export default {
       const current = () => this.live(scope, epoch) && read === this.ruleRead
       const params = { ...this.target.params, aclid: this.target.row.id, page: 1, pagesize: 1 }
       const keyword = this.appliedSearch
+      const filtered = keyword || this.appliedRuleDisplay !== 'all'
       this.exportTotals = {}
-      const count = async keyword => {
-        const json = await getAPI('listNetworkACLs', { ...params, ...(keyword ? { keyword } : {}) }, aclRequestOptions)
+      const count = async filters => {
+        const json = await getAPI('listNetworkACLs', { ...params, ...filters }, aclRequestOptions)
         const body = aclResponse(json, 'listnetworkaclsresponse')
         const total = Number(body.count ?? 0)
         if (!Number.isSafeInteger(total) || total < 0) throw new Error('Invalid ACL export count')
         return total
       }
       try {
-        const [all, search] = await Promise.all([count(), keyword ? count(keyword) : 0])
+        const [all, search] = await Promise.all([count(), filtered
+          ? count({ ...(keyword ? { keyword } : {}), ...this.ruleDisplayParams(this.appliedRuleDisplay) })
+          : 0])
         if (current()) this.exportTotals = { all, search }
       } catch {
         if (current()) this.$message.error(this.$t('message.acl.csv.export.failed'))
@@ -816,7 +860,10 @@ export default {
       const { id, name } = this.target.row
       const current = () => this.live(scope, epoch) && read === this.ruleRead
       const params = { ...this.target.params, aclid: id }
-      if (range === 'search') params.keyword = this.appliedSearch
+      if (range === 'search') {
+        if (this.appliedSearch) params.keyword = this.appliedSearch
+        Object.assign(params, this.ruleDisplayParams(this.appliedRuleDisplay))
+      }
       const count = this.exportTotals[range]
       this.exporting = true
       try {
@@ -855,6 +902,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.acl-rule-display-filter { min-width: 9rem; }
+.acl-rule-count { margin: 8px 0; }
+
 .acl-access-notice { margin: 12px 0; }
 .acl-order-hint { margin: 12px 0 0; color: var(--ui-text-secondary); }
 .list__item:focus { outline: 2px solid var(--ant-primary-color, #1677ff); outline-offset: -2px; }

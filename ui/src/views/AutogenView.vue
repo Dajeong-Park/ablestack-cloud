@@ -59,8 +59,8 @@
                   <a-select
                     v-if="!dataView && filters && filters.length > 0"
                     :placeholder="$t('label.filterby')"
-                    :aria-label="s2sDisplayFilterId ? $t('label.s2s.display.filter') : undefined"
-                    :id="s2sDisplayFilterId || (isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined)"
+                    :aria-label="aclDisplayFilterId ? $t('label.acl.display.filter') : s2sDisplayFilterId ? $t('label.s2s.display.filter') : undefined"
+                    :id="aclDisplayFilterId || s2sDisplayFilterId || (isPublicIpUi ? 'public-ip-state-filter' : (isTemplateList || isIsoList) ? templateFilterId : undefined)"
                     :value="filterValue"
                     style="min-width: 100px; margin-left: 10px; margin-bottom: 5px"
                     size=small
@@ -367,6 +367,7 @@
                 <a-switch
                   v-if="field.type==='boolean'"
                   v-model:checked="form[field.name]"
+                  :aria-label="field.name === 'fordisplay' ? $t('label.fordisplay') : undefined"
                   :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
@@ -658,6 +659,7 @@
                 <a-switch
                   v-if="field.type==='boolean'"
                   v-model:checked="form[field.name]"
+                  :aria-label="field.name === 'fordisplay' ? $t('label.fordisplay') : undefined"
                   :placeholder="actionFieldDescription(field)"
                   v-focus="fieldIndex === firstIndex"
                 />
@@ -1117,6 +1119,7 @@ import { availabilityActions, actionAvailability, kmsAvailabilityLabel } from '@
 import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
 import { kmsDisplayQuery } from '@/utils/kmsPresentation'
 import { kmsDeletionConfirmed, kmsDetailFailure, kmsDetailKey, kmsDetailRoute, kmsListLocation, readKmsDetail } from '@/utils/kmsNavigation'
+import { aclDisplaySupported, aclDisplayValue, isAclListRoute, readAclList } from '@/utils/vpcAclAccess'
 import { kmsRoute, kmsListRoute, kmsListApi, kmsAuth, kmsProjectScope, kmsQuery, kmsSearchQuery, kmsParams, readKmsPage } from '@/utils/kmsSearch'
 import { gatewayDisplayListLocation } from '@/utils/s2sGatewayDisplay'
 import { readGatewayDetail, gatewayVisibleColumns, gatewayDeletedListLocation } from '@/utils/s2sGateway'
@@ -1732,6 +1735,7 @@ export default {
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
       for (const filter in queryParams) {
+        if (isAclListRoute(this.$route) && ['aclreturn', 'fordisplay'].includes(filter)) continue
         if (kmsListRoute(this.$route) && filter === 'projectid' && kmsProjectScope(this.$store.getters)) continue
         if (['sortkey', 'sortorder', 'kisoowner', 'kisoreturn'].includes(filter) || publicIpRoute(this.$route) && filter === 'filter') continue
         if (this.$route.name === 'vmsnapshot' && filter === 'filter') {
@@ -1780,7 +1784,11 @@ export default {
       if (s2sGatewayListRoute(this.$route)) return 's2s-gateway-display-filter'
       return vpnConnectionListRoute(this.$route) && vpnConnectionDisplaySupported(this.$store.getters) ? 's2s-connection-display-filter' : undefined
     },
+    aclDisplayFilterId () {
+      return isAclListRoute(this.$route) && aclDisplaySupported(this.$store.getters) ? 'acl-display-filter' : undefined
+    },
     filterValue () {
+      if (this.aclDisplayFilterId) return aclDisplayValue(this.$route.query.fordisplay) || 'true'
       if (this.s2sDisplayFilterId) return this.$route.query.fordisplay || 'all'
       if (asnRoute(this.$route)) return this.$route.query.filter || 'all'
       if (publicIpRoute(this.$route)) return this.$route.query.filter || String(this.$route.query.state || publicIpDefaultFilter(this.$store.getters)).toLowerCase()
@@ -2846,7 +2854,9 @@ export default {
       if (isoQuery) params = isoRequestParams(params, this.dataView, this.$store.getters)
       if (kubernetesIsoQuery) params = kubernetesIsoReadParams(params, this.$route.params?.id)
       const readCurrentScope = () => version === this.listRequestVersion && scope === this.listScope()
-      const response = kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
+      const response = isAclListRoute(this.$route)
+        ? readAclList(getAPI, params, aclDisplaySupported(this.$store.getters), this.$route.params.id, readCurrentScope)
+        : kmsDetail ? readKmsDetail(getAPI, this.$route, this.$store.getters) : kmsList ? readKmsPage(getAPI, requestApi, params, readCurrentScope) : s2sGatewayRoute(this.$route) && this.dataView ? readGatewayDetail(getAPI, this.$route, this.$store.getters, readCurrentScope, this.$getApiParams('listVpnGateways')) : this.isVpnConnectionDetail || this.isS2sSearchList ? (vpnConnectionRoute(this.$route) ? readVpnConnectionQuery : readS2sGatewayQuery)(getAPI, params, this.$store.getters, readCurrentScope) : asnRoute(this.$route) ? readAsnQuery(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : isoQuery && this.dataView ? readIsoResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : this.publicIpDetail ? readPublicIpDetail(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : templateQuery && this.dataView ? readTemplateResource(getAPI, params, this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope()) : policyDetail ? Promise.resolve().then(() => readPolicyDetail(getAPI, this.$route, this.$store.getters.project, () => version === this.listRequestVersion && scope === this.listScope())) : snapshotDetail ? Promise.resolve().then(() => readSnapshotDetail(getAPI, snapshotDetailParams(this.$route, this.$store.getters.project), this.$store.getters, () => version === this.listRequestVersion && scope === this.listScope())) : publicIpList || isoQuery || kubernetesIsoQuery || vmGroups || sshDetail || templateQuery || cniQuery || ['vm', 'vnfapp'].includes(this.$route.meta?.name) || this.publicIpDetail || this.isObjectStorageUi || storageUiRoute(this.$route) || snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) ? getAPI(requestApi, params, { preserveOnFailure: true, timeout: 20000, ...(kubernetesIsoQuery ? { readScope: JSON.stringify([this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) } : {}) }) : callAPI(requestApi, params)
       const request = response.then(async json => {
         if (templateOperationHeld()) return
         if (version !== this.listRequestVersion || scope !== this.listScope()) return
@@ -3661,6 +3671,10 @@ export default {
       if (action.dataView && listIconForFillValues.includes(action.icon)) {
         this.fillEditFormFieldValues()
       }
+      if (['createNetworkACLList', 'updateNetworkACLList'].includes(action.api) &&
+          this.currentAction.paramFields.some(field => field.name === 'fordisplay')) {
+        this.form.fordisplay = action.api === 'createNetworkACLList' ? true : action.resource.fordisplay
+      }
     },
     rejectActionSchema (api, missingArgs) {
       this.closeAction()
@@ -4186,6 +4200,9 @@ export default {
 
         for (const key in values) {
           const input = values[key]
+          if (key === 'fordisplay' && ['createNetworkACLList', 'updateNetworkACLList'].includes(action.api) &&
+              (!aclDisplaySupported(this.$store.getters, action.api) || typeof input !== 'boolean' ||
+               (action.api === 'updateNetworkACLList' && input === action.resource.fordisplay))) continue
           for (const param of action.params) {
             if (param.name !== key) {
               continue
@@ -4383,6 +4400,10 @@ export default {
       this.$router.push({ query })
     },
     changeFilter (filter) {
+      if (isAclListRoute(this.$route)) {
+        if (this.aclDisplayFilterId && aclDisplayValue(filter)) this.$router.push({ query: { ...this.$route.query, fordisplay: filter, page: '1' } })
+        return
+      }
       if (this.s2sDisplayFilterId) { this.onSearch({ s2sGatewaySearch: { ...this.$route.query, fordisplay: filter } }); return }
       if (asnRoute(this.$route)) { const query = { ...this.$route.query, filter }; delete query.isallocated; this.onSearch(query); return }
       if (publicIpRoute(this.$route)) {
