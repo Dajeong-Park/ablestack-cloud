@@ -1639,6 +1639,7 @@
   "label.guest.vlan.search.exact": "Exact VLAN/VNI",
   "message.guest.vlan.missing": "This VLAN is no longer available.",
   "message.guest.vlan.networks.empty": "No networks are linked to this VLAN.",
+  "label.guest.vlan.taken": "Allocated at",
   "label.guest.vlan.inventory": "Infrastructure inventory across projects",
   "label.guestvlanrange": "VLAN range(s)",
   "label.guestvmcidr": "CIDR",

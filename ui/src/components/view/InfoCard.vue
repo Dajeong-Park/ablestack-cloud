@@ -1383,6 +1383,7 @@ export default {
     name () {
       if (isEventDetailRoute(this.$route)) return eventDisplayTitle(this.resource, this.$t, date => this.$toLocaleDate(date))
       if (vpnConnectionRoute(this.$route)) return vpnConnectionName(this.resource)
+      if (this.$route.meta?.name === 'guestvlans' && this.resource.vlan) return this.$t('label.vlan') + ' ' + this.resource.vlan
       if (this.$route.meta?.name === 's2svpn') return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
       return this.resource.displayname || this.resource.name || this.resource.displaytext || this.resource.username ||

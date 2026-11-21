@@ -50,7 +50,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -66,6 +66,14 @@
           <div v-else-if="item === 'protocol'">{{ kmsProtocolOptions($store.getters.features, dataResource.protocol).find(provider => provider.id === dataResource.protocol)?.name || $t('label.unknown') }}</div>
           <div v-else-if="item === 'vendorname'">{{ dataResource.vendor || dataResource.vendorname || $t('label.unknown') }}</div>
           <div v-else>{{ dataResource[item] ?? $t(item === 'state' ? 'label.hsm.connection.unavailable' : 'label.unknown') }}</div>
+        </div>
+      </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'guestvlans' && ['allocationstate', 'taken', 'isdedicated'].includes(item)">
+        <div>
+          <strong>{{ $t(item === 'taken' ? 'label.guest.vlan.taken' : 'label.' + item) }}</strong>
+          <div v-if="item === 'allocationstate'"><status :text="dataResource.allocationstate || ''" display-text /></div>
+          <div v-else-if="item === 'taken'">{{ dataResource.taken ? $toLocaleDate(dataResource.taken) : '—' }}</div>
+          <div v-else>{{ typeof dataResource.isdedicated === 'boolean' ? $t(dataResource.isdedicated ? 'label.yes' : 'label.no') : '—' }}</div>
         </div>
       </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'vpnuser' && dataResource.id">

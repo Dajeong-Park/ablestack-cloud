@@ -28,30 +28,37 @@
       </template>
     </a-alert>
     <a-empty v-if="!fetchLoading && !listRefreshFailed && !networks.length" :description="$t(missing ? 'message.guest.vlan.missing' : 'message.guest.vlan.networks.empty')" />
-    <a-table
+    <div
       v-else-if="fetchLoading || networks.length"
-      size="small"
-      style="overflow-y: auto"
-      :columns="columns"
-      :dataSource="networks"
-      :rowKey="item => item.id"
-      :pagination="false"
-      :loading="fetchLoading"
-    >
-      <template #bodyCell="{ column, text, record }">
-        <template v-if="column.key === 'name'">
-          <router-link v-if="guestVlanNetworkLocation(record, $store.getters.apis)" :to="guestVlanNetworkLocation(record, $store.getters.apis)">{{ text }}</router-link>
-          <span v-else>{{ text }}</span>
+      tabindex="0"
+      role="region"
+      :aria-label="$t('label.guest.networks')"
+      class="guest-vlan-network-table">
+      <a-table
+        size="small"
+        table-layout="fixed"
+        :columns="columns"
+        :dataSource="networks"
+        :rowKey="item => item.id"
+        :pagination="false"
+        :loading="fetchLoading"
+      >
+        <template #bodyCell="{ column, text, record }">
+          <template v-if="column.key === 'name'">
+            <router-link v-if="guestVlanNetworkLocation(record, $store.getters.apis)" :to="guestVlanNetworkLocation(record, $store.getters.apis)">{{ text }}</router-link>
+            <span v-else>{{ text }}</span>
+          </template>
+          <template v-if="column.dataIndex === 'type' && text">{{ $t(networkTypeLabel(text)) }}</template>
+      <template v-if="column.key === 'vpcname'">
+            <router-link v-if="guestVlanVpcLocation(record, $store.getters.apis)" :to="guestVlanVpcLocation(record, $store.getters.apis)">{{ text || record.vpcid }}</router-link>
+            <span v-else>{{ text || record.vpcid || '—' }}</span>
+          </template>
+          <template v-if="column.key === 'state'">
+            <status :text="record.state" :display-label="$t(networkStateLabel(record.state))" display-text />
+          </template>
         </template>
-        <template v-if="column.key === 'vpcname'">
-          <router-link v-if="guestVlanVpcLocation(record, $store.getters.apis)" :to="guestVlanVpcLocation(record, $store.getters.apis)">{{ text || record.vpcid }}</router-link>
-          <span v-else>{{ text || record.vpcid || '—' }}</span>
-        </template>
-        <template v-if="column.key === 'state'">
-          <status :text="record.state" displayText></status>
-        </template>
-      </template>
-    </a-table>
+      </a-table>
+    </div>
   </section>
 </template>
 
@@ -60,6 +67,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI } from '@/api'
 import Status from '@/components/widgets/Status'
+import { networkStateLabel, networkTypeLabel } from '@/utils/networkLifecycle'
 import { guestVlanNetworkLocation, guestVlanVpcLocation } from '@/utils/guestVlan'
 
 export default {
@@ -138,6 +146,8 @@ export default {
     }
   },
   methods: {
+    networkStateLabel,
+    networkTypeLabel,
     guestVlanNetworkLocation,
     guestVlanVpcLocation,
     async fetchData () {
@@ -167,12 +177,10 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.status {
-  margin-top: -5px;
-
-  &--end {
-    margin-left: 5px;
-  }
-}
+<style scoped>
+.guest-vlan-network-status { margin-bottom: 12px; }
+.guest-vlan-network-table { max-width: 100%; overflow-x: auto; }
+.guest-vlan-network-table:focus-visible { outline: 2px solid var(--ui-focus); outline-offset: -2px; }
+.guest-vlan-network-table :deep(.ant-table) { min-width: 960px; }
+.guest-vlan-network-table :deep(.ant-table-cell) { overflow-wrap: anywhere; }
 </style>
