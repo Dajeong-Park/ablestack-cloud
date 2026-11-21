@@ -15,6 +15,19 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import md5 from 'md5'
+
+export function aclOrderHash (rules, count, aclId) {
+  if (rules.length !== count || !rules.every(row => row.aclid === aclId && row.id && Number.isSafeInteger(row.number))) return null
+  if (new Set(rules.map(row => row.id)).size !== count || new Set(rules.map(row => row.number)).size !== count) return null
+  return md5(rules.map(row => row.id).join(''))
+}
+
+export function aclOrderConflict (error) {
+  return Number(error?.code) === 431 &&
+    error.message === 'It seems that the access control list in the database is not in the state that you used to apply the changed. Could you try it again?'
+}
+
 export const aclCommands = {
   add: 'createNetworkACL',
   edit: 'updateNetworkACLItem',

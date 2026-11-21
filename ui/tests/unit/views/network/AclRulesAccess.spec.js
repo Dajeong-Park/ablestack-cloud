@@ -17,6 +17,7 @@
 
 import { shallowMount, flushPromises } from '@vue/test-utils'
 import { reactive } from 'vue'
+import md5 from 'md5'
 import AclRulesTab from '@/views/network/AclRulesTab.vue'
 import ImportNetworkACL from '@/views/network/ImportNetworkACL.vue'
 import { aclCommands, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
@@ -27,12 +28,15 @@ jest.mock('@/api', () => ({ getAPI: jest.fn(), postAPI: jest.fn() }))
 
 const acl = { id: 'acl', vpcid: 'vpc', name: 'review' }
 const rules = [
-  { id: 'rule1', number: 10, reason: 'original', protocol: 'all', action: 'Deny', traffictype: 'Ingress' },
-  { id: 'rule2', number: 20 }
+  { id: 'rule1', aclid: 'acl', number: 10, reason: 'original', protocol: 'all', action: 'Deny', traffictype: 'Ingress' },
+  { id: 'rule2', aclid: 'acl', number: 20 }
 ]
 const allApis = ['queryAsyncJobResult', ...Object.values(aclCommands)]
 const apis = names => ({ listapisresponse: { api: names.map(name => ({ name })) } })
-const ruleList = { listnetworkaclsresponse: { networkacl: rules } }
+const ruleList = listRules(rules)
+function listRules (networkacl, count = networkacl.length) {
+  return { listnetworkaclsresponse: { count, networkacl } }
+}
 const job = status => ({ queryasyncjobresultresponse: { jobid: 'job', jobstatus: status } })
 const defaultGet = command => Promise.resolve({
   listApis: apis(allApis),
@@ -163,7 +167,7 @@ test('read-only controls and direct handlers send no writes; tags remain readabl
   vm.openDialog('remove', rules[0])
   vm.openDialog('import')
   await vm.changeOrder({ moved: { element: rules[0], newIndex: 1 } })
-  await vm.moveRule('rule1', 'rule2', null)
+  await vm.moveRule('rule1', 1, 'bottom')
   await vm.submitRule()
   expect(vm.dialog).toBeNull()
   vm.openTags(rules[0])
@@ -259,13 +263,75 @@ test('drag and top/bottom use move permission and send the intended neighbors', 
   const { wrapper } = await mountTab()
   const vm = wrapper.vm
   postAPI.mockResolvedValue({ moveNetworkAclItemResponse: { jobid: 'job' } })
-  vm.dragScope = vm.scope
+  vm.dragRead = vm.ruleRead
   vm.acls = [rules[1], rules[0]]
   await vm.changeOrder({ moved: { element: rules[0], newIndex: 1 } })
-  expect(postAPI).toHaveBeenLastCalledWith('moveNetworkAclItem', expect.objectContaining({ id: 'rule1', previousaclruleid: 'rule2', nextaclruleid: undefined, projectid: 'p1' }), expect.anything())
+  expect(postAPI).toHaveBeenLastCalledWith('moveNetworkAclItem', expect.objectContaining({ id: 'rule1', previousaclruleid: 'rule2', nextaclruleid: undefined, projectid: 'p1', aclconsistencyhash: md5('rule1rule2') }), expect.anything())
   vm.searchQuery = 'filtered'
-  await vm.moveRule('rule1', 'rule2', null)
+  await vm.moveRule('rule1', 1, 'bottom')
   expect(postAPI).toHaveBeenCalledTimes(1)
+  wrapper.unmount()
+})
+
+test('a rejected stale move fetches the authoritative order without resubmitting', async () => {
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  postAPI.mockResolvedValue({ moveNetworkAclItemResponse: { jobid: 'job' } })
+  const message = 'It seems that the access control list in the database is not in the state that you used to apply the changed. Could you try it again?'
+  getAPI.mockResolvedValueOnce({
+    queryasyncjobresultresponse: { jobid: 'job', jobstatus: 2, jobresult: { errorcode: 431, errortext: message } }
+  }).mockResolvedValueOnce(listRules([{ ...rules[1], number: 1 }, rules[0]]))
+  await vm.moveRule('rule2', 0, 'top')
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(vm.acls.map(rule => rule.id)).toEqual(['rule2', 'rule1'])
+  expect(vm.orderHash).toBe(md5('rule2rule1'))
+  expect(vm.notice.message).toBe('message.acl.order.conflict')
+  wrapper.unmount()
+})
+
+test('a lost move poll keeps its receipt and checks that job without a second POST', async () => {
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  postAPI.mockResolvedValue({ moveNetworkAclItemResponse: { jobid: 'job' } })
+  getAPI.mockRejectedValueOnce(new Error('lost poll'))
+  await vm.moveRule('rule2', 0, 'top')
+  expect(vm.pending).toMatchObject({ action: 'move', jobId: 'job' })
+  expect(vm.notice.recheck).toBe(true)
+  expect(vm.acls.map(rule => rule.id)).toEqual(['rule1', 'rule2'])
+  expect(vm.openDialog('import')).toBe(false)
+  await vm.moveRule('rule1', 1, 'bottom')
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  await vm.recheck()
+  expect(postAPI).toHaveBeenCalledTimes(1)
+  expect(getAPI).toHaveBeenCalledWith('queryAsyncJobResult', { jobid: 'job', ignoreproject: true }, expect.anything())
+  expect(vm.pending).toBeNull()
+  wrapper.unmount()
+})
+
+test('movement requires all unfiltered ACL rule pages with verifiable order', async () => {
+  const extra = { id: 'rule3', aclid: 'acl', number: 30 }
+  let missingPage = false
+  getAPI.mockImplementation((command, params) => {
+    if (command !== 'listNetworkACLs') return defaultGet(command)
+    if (params.page === 2) return Promise.resolve(listRules(missingPage ? [] : [extra], 3))
+    return Promise.resolve(listRules(rules, 3))
+  })
+  const { wrapper } = await mountTab()
+  const vm = wrapper.vm
+  expect(vm.acls).toHaveLength(3)
+  expect(vm.orderHash).toBe(md5('rule1rule2rule3'))
+  expect(vm.canMove).toBe(true)
+  vm.target.params.fordisplay = false
+  await vm.fetchData()
+  expect(vm.orderHash).toBeNull()
+  expect(vm.canMove).toBe(false)
+  delete vm.target.params.fordisplay
+  missingPage = true
+  await vm.fetchData()
+  expect(vm.acls).toHaveLength(2)
+  expect(vm.moveHint).toBe('message.acl.order.full.required')
+  await vm.moveRule('rule1', 1, 'down')
+  expect(postAPI).not.toHaveBeenCalled()
   wrapper.unmount()
 })
 
