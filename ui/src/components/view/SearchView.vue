@@ -1211,7 +1211,6 @@ export default {
         this.form = reactive({})
         this.fillFormFieldValues()
         this.fetchEventTypes(this.fields.find(field => field.name === 'type'))
-        return
       }
       if (this.isKmsSearch) {
         this.fillFormFieldValues()
