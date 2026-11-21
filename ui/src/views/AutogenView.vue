@@ -912,6 +912,7 @@ import { mixinDevice } from '@/utils/mixin.js'
 import { genericCompare } from '@/utils/sort.js'
 import { sourceToken } from '@/utils/request'
 import store from '@/store'
+import { accountTransitionAllowed } from '@/utils/accountState'
 import { projectBulkScope, projectBulkTargets } from '@/utils/projectBulk'
 import { canRoleAction, roleEditFields, roleUsageParams } from '@/utils/roleActions'
 import { applyRoleSearch, roleListParams, roleSearchQuery, roleSortFields } from '@/utils/roleSearch'
@@ -3336,6 +3337,7 @@ export default {
       return this.fetchData({ irefresh: true })
     },
     closeAction (result) {
+      const refreshAccountList = this.currentAction?.accountTargets && result?.refreshAccountList && this.$route.meta?.name === 'account'
       const refreshProjectBulk = this.currentAction?.projectBulkTargets && result?.refreshProjectList && this.isProjectList
       const gatewayDeletion = this.vpnCustomerGatewayActionScope && this.currentAction?.vpnCustomerGatewayScope === this.vpnCustomerGatewayActionScope && result?.gatewayDeletion
       const deletedCustomerGateway = gatewayDeletion && this.dataView && result.removed.includes(this.$route.params.id)
@@ -3429,6 +3431,11 @@ export default {
       this.showAction = false
       this.currentAction = {}
       this.actionConfirmText = ''
+      if (refreshAccountList) {
+        this.resetSelection()
+        if (this.$refs.listview) this.$refs.listview.resetSelection()
+        this.fetchData({ irefresh: true })
+      }
       if (refreshProjectBulk) {
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -3635,6 +3642,23 @@ export default {
       this.actionTrigger = document.activeElement
       this.actionTriggerLabel = this.actionTrigger?.getAttribute('aria-label')
       this.actionOriginPath = this.$route?.path
+      if (action.accountState) {
+        const scope = this.listScope()
+        const generation = this.storageActionGeneration
+        const records = isGroupAction ? this.selectedItems : [action.resource || this.resource]
+        if (!records.some(record => accountTransitionAllowed(action, record, this.$store.getters))) return
+        const selection = JSON.stringify(this.selectedRowKeys)
+        this.currentAction = {
+          ...action,
+          selfManagedDialog: true,
+          component: markRaw(defineAsyncComponent(() => import('@/views/iam/AccountStateDialog.vue'))),
+          accountTargets: records.map(record => ({ ...record })),
+          accountCurrent: () => this.showAction && generation === this.storageActionGeneration &&
+            scope === this.listScope() && selection === JSON.stringify(this.selectedRowKeys)
+        }
+        this.showAction = true
+        return
+      }
       if (isGroupAction && action.projectBulkAction) {
         if (!this.isProjectList || !this.storageActionReady) return
         const targets = projectBulkTargets(action.api, this.selectedRowKeys, this.items, this.$store.getters)

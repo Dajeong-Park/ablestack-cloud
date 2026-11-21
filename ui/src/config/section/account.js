@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { accountTransitionAllowed } from '@/utils/accountState'
 
 export default {
   name: 'account',
@@ -146,64 +147,21 @@ export default {
         }
       }
     },
-    {
-      api: 'enableAccount',
-      icon: 'play-circle-outlined',
-      label: 'label.action.enable.account',
-      message: 'message.enable.account',
+    ...[
+      { api: 'enableAccount', icon: 'play-circle-outlined', accountState: 'enabled', verb: 'enable' },
+      { api: 'disableAccount', icon: 'pause-circle-outlined', accountState: 'disabled', verb: 'disable' },
+      { api: 'disableAccount', icon: 'LockOutlined', accountState: 'locked', verb: 'lock' }
+    ].map(action => ({
+      ...action,
+      label: 'label.action.' + action.verb + '.account',
+      toolbarLabel: 'label.action.' + action.verb + '.account',
+      message: 'message.' + action.verb + '.account',
       dataView: true,
-      show: (record, store) => {
-        return ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype) && !record.isdefault &&
-          !(record.domain === 'ROOT' && record.name === 'admin' && record.accounttype === 1) &&
-          (record.state === 'disabled' || record.state === 'locked')
-      },
-      params: { lock: 'false' },
       groupAction: true,
       popup: true,
-      groupMap: (selection) => { return selection.map(x => { return { id: x } }) }
-    },
-    {
-      api: 'disableAccount',
-      icon: 'pause-circle-outlined',
-      label: 'label.action.disable.account',
-      message: 'message.disable.account',
-      dataView: true,
-      show: (record, store) => {
-        return ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype) && !record.isdefault &&
-          !(record.domain === 'ROOT' && record.name === 'admin' && record.accounttype === 1) &&
-          record.state === 'enabled'
-      },
-      args: ['lock'],
-      mapping: {
-        lock: {
-          value: (record) => { return false }
-        }
-      },
-      groupAction: true,
-      popup: true,
-      groupMap: (selection) => { return selection.map(x => { return { id: x, lock: false } }) }
-    },
-    {
-      api: 'disableAccount',
-      icon: 'LockOutlined',
-      label: 'label.action.lock.account',
-      message: 'message.lock.account',
-      dataView: true,
-      show: (record, store) => {
-        return ['Admin', 'DomainAdmin'].includes(store.userInfo.roletype) && !record.isdefault &&
-          !(record.domain === 'ROOT' && record.name === 'admin' && record.accounttype === 1) &&
-          record.state === 'enabled'
-      },
-      args: ['lock'],
-      mapping: {
-        lock: {
-          value: (record) => { return true }
-        }
-      },
-      groupAction: true,
-      popup: true,
-      groupMap: (selection) => { return selection.map(x => { return { id: x, lock: true } }) }
-    },
+      show: (record, store) => accountTransitionAllowed(action, record, store),
+      groupShow: (records, store) => records.some(record => accountTransitionAllowed(action, record, store))
+    })),
     {
       api: 'uploadSslCert',
       icon: 'SafetyCertificateOutlined',

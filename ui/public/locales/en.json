@@ -1,4 +1,12 @@
 {
+  "label.account.action.ready": "Ready",
+  "label.account.action.skipped": "Excluded",
+  "label.account.action.working": "Processing",
+  "label.account.action.success": "Succeeded",
+  "label.account.action.failed": "Failed",
+  "label.account.action.unknown": "Result unavailable",
+  "message.account.action.unavailable": "This account cannot take the selected action in its current state or scope.",
+  "message.account.action.scope.changed": "The account selection or scope has changed.",
   "message.image.account.scope": "Owned by account {account}",
   "message.image.account.scope.invalid": "Select a valid account and domain to view owned images.",
   "message.account.create.options.failed": "Account domains or roles could not be loaded.",

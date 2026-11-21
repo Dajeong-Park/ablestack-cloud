@@ -2867,11 +2867,15 @@ public class AccountManagerImpl extends ManagerBase implements AccountManager, M
         checkAccess(caller, AccessType.OperateEntry, true, account);
         verifyCallerPrivilegeForUserOrAccountOperations(account);
 
+        if (account.getState() != State.ENABLED && account.getState() != State.LOCKED) {
+            throw new InvalidParameterValueException("The account must be enabled before it can be locked.");
+        }
+
         if (lockAccount(account.getId())) {
             CallContext.current().putContextParameter(Account.class, account.getUuid());
             return _accountDao.findById(account.getId());
         } else {
-            throw new CloudRuntimeException(String.format("Unable to lock account %s by accountId: %d OR by name: %s in domain %s", account, accountId, accountName, _domainMgr.getDomain(domainId)));
+            throw new CloudRuntimeException(String.format("Unable to lock account %s in domain %s", account, _domainMgr.getDomain(account.getDomainId())));
         }
     }
 
