@@ -15,7 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import hash from 'hash.js'
+import { listSessionScope, resourceDetailLocation, resourceListHistory } from './resourceListHistory'
 
 export const projectStates = ['Active', 'Suspended', 'Disabled']
 export const projectSortFields = ['name', 'state', 'displaytext', 'account', 'domain']
@@ -72,26 +72,15 @@ export function projectListParams (routeQuery, params, getters) {
   }
 }
 
-export function projectListScope (getters, token) {
-  const user = getters.userInfo
-  return token && user?.id ? hash.sha256().update(JSON.stringify([
-    token, user.id, user.roleid, user.roletype, user.domainid, getters.project?.id, getters.listAllProjects
-  ])).digest('hex') : ''
-}
+export const projectListScope = listSessionScope
 
 export function projectDetailLocation (route, record, getters, token) {
-  const path = '/project/' + encodeURIComponent(record.id)
-  const scope = projectListScope(getters, token)
-  return scope && route.meta?.name === 'project' && !route.params?.id
-    ? { path, state: { projectReturn: { id: record.id, scope, query: projectSearchQuery(route.query, getters) } } }
-    : { path }
+  return resourceDetailLocation('project', 'projectReturn', route, record.id,
+    projectListScope(getters, token), projectSearchQuery(route.query, getters))
 }
 
 export function projectRouteHistory (route, history, getters, token) {
-  const saved = history?.projectReturn
-  const scope = projectListScope(getters, token)
-  const valid = scope && isProjectDetailRoute(route) && saved?.id === route.params.id && saved.scope === scope
-  return { projectReturn: valid ? saved : null }
+  return resourceListHistory('project', 'projectReturn', route, history, projectListScope(getters, token))
 }
 
 export function projectListLocation (route, history, getters, token) {

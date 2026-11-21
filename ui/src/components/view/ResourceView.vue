@@ -108,6 +108,7 @@
 <script>
 import '@/style/components/view/template-tabs.less'
 import { isProjectDetailRoute, projectRouteHistory } from '@/utils/projectSearch'
+import { isRoleDetailRoute, roleRouteHistory } from '@/utils/roleSearch'
 import { gatewayContext } from '@/utils/s2sGateway'
 import { networkTabRoute, uniqueTabs, selectedNetworkTab } from '@/utils/networkTabs'
 import { conditionalGuestTab, guestFeatureStatus } from '@/utils/conditionalGuestNetwork'
@@ -282,6 +283,11 @@ export default {
       const query = Object.assign({}, this.$route.query)
       query.tab = key
       const historyState = this.$router?.options?.history?.state
+      if (isRoleDetailRoute(this.$route)) {
+        this.$router.replace({ path: this.$route.path, query, state: roleRouteHistory(this.$route, historyState, this.$store.getters, this.$store.state?.user?.token) })
+        this.$emit('onTabChange', key)
+        return
+      }
       if (isProjectDetailRoute(this.$route)) {
         this.$router.replace({ path: this.$route.path, query, state: projectRouteHistory(this.$route, historyState, this.$store.getters, this.$store.state?.user?.token) })
         this.$emit('onTabChange', key)

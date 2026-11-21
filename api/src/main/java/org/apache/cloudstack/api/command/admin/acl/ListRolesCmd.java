@@ -18,19 +18,19 @@
 package org.apache.cloudstack.api.command.admin.acl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import com.cloud.exception.InvalidParameterValueException;
 import org.apache.cloudstack.acl.Role;
 import org.apache.cloudstack.acl.RoleType;
 import org.apache.cloudstack.api.APICommand;
+import org.apache.cloudstack.api.ApiArgValidator;
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.BaseListCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.response.ListResponse;
 import org.apache.cloudstack.api.response.RoleResponse;
-import org.apache.commons.lang3.StringUtils;
 
 import com.cloud.user.Account;
 import com.cloud.utils.Pair;
@@ -43,8 +43,8 @@ public class ListRolesCmd extends BaseListCmd {
     //////////////// API parameters /////////////////////
     /////////////////////////////////////////////////////
 
-    @Parameter(name = ApiConstants.ID, type = CommandType.UUID, entityType = RoleResponse.class, description = "List role by role ID.")
-    private Long id;
+    @Parameter(name = ApiConstants.ID, type = CommandType.STRING, validations = {ApiArgValidator.UuidString}, description = "List role by role UUID.")
+    private String id;
 
     @Parameter(name = ApiConstants.NAME, type = CommandType.STRING, description = "List role by role name.")
     private String roleName;
@@ -62,7 +62,7 @@ public class ListRolesCmd extends BaseListCmd {
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -75,10 +75,14 @@ public class ListRolesCmd extends BaseListCmd {
     }
 
     public RoleType getRoleType() {
-        if (StringUtils.isNotEmpty(roleType)) {
-            return RoleType.valueOf(roleType);
+        if (roleType == null || roleType.isEmpty()) {
+            return null;
         }
-        return null;
+        try {
+            return RoleType.valueOf(roleType);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidParameterValueException("Unrecognized role type value");
+        }
     }
 
     public Role.State getRoleState() {
@@ -86,7 +90,7 @@ public class ListRolesCmd extends BaseListCmd {
             return null;
         }
         try {
-            return Role.State.valueOf(roleState.toUpperCase());
+            return Role.State.valueOf(roleState.toUpperCase(Locale.ROOT));
         } catch (IllegalArgumentException e) {
             throw new InvalidParameterValueException("Unrecognized role state value");
         }
@@ -126,18 +130,8 @@ public class ListRolesCmd extends BaseListCmd {
 
     @Override
     public void execute() {
-        Pair<List<Role>, Integer> roles;
         Role.State state = getRoleState();
-        String roleStateStr = state != null ? state.toString() : null;
-        if (getId() != null && getId() > 0L) {
-            roles = new Pair<>(Collections.singletonList(roleService.findRole(getId(), true)), 1);
-        } else if (StringUtils.isNotBlank(getName()) || StringUtils.isNotBlank(getKeyword())) {
-            roles = roleService.findRolesByName(getName(), getKeyword(), roleStateStr, getStartIndex(), getPageSizeVal());
-        } else if (getRoleType() != null) {
-            roles = roleService.findRolesByType(getRoleType(), roleStateStr, getStartIndex(), getPageSizeVal());
-        } else {
-            roles = roleService.listRoles(roleStateStr, getStartIndex(), getPageSizeVal());
-        }
-        setupResponse(roles);
+        setupResponse(roleService.searchRoles(getId(), getName(), getKeyword(), getRoleType(),
+                state != null ? state.toString() : null, getStartIndex(), getPageSizeVal()));
     }
 }

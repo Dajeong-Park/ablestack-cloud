@@ -71,6 +71,7 @@
 <script>
 import BreadcrumbControls from '@/components/widgets/BreadcrumbControls'
 import { isProjectDetailRoute, projectListLocation } from '@/utils/projectSearch'
+import { isRoleDetailRoute, roleListLocation } from '@/utils/roleSearch'
 import { aclListLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import { kubernetesIsoListLocation } from '@/utils/kubernetesIsoSearch'
@@ -149,6 +150,9 @@ export default {
     isEventDetailRoute,
     eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
+      if (item.path === '/role' && isRoleDetailRoute(this.$route)) {
+        return roleListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
+      }
       if (item.path === '/project' && isProjectDetailRoute(this.$route)) {
         return projectListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
       }

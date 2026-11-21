@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { roleTypes } from '@/utils/roleSearch'
 
 export default {
   name: 'role',
@@ -24,7 +25,7 @@ export default {
   icon: 'idcard-outlined',
   docHelp: 'adminguide/accounts.html#roles',
   permission: ['listRoles', 'listRolePermissions'],
-  searchFilters: ['name', 'type'],
+  searchFilters: ['name', 'type', 'state', 'id'],
   columns: ['name', 'type', 'description', 'state'],
   details: ['name', 'id', 'type', 'description', 'ispublic'],
   tabs: [{
@@ -96,7 +97,7 @@ export default {
       args: (record) => record.isdefault ? ['ispublic'] : ['name', 'description', 'type', 'ispublic'],
       mapping: {
         type: {
-          options: ['Admin', 'DomainAdmin', 'User']
+          options: roleTypes
         }
       }
     },

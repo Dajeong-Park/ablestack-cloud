@@ -102,6 +102,9 @@ public interface RoleService {
 
     Pair<List<Role>, Integer> findRolesByType(RoleType roleType, String state, Long startIndex, Long limit);
 
+    Pair<List<Role>, Integer> searchRoles(String uuid, String name, String keyword, RoleType type,
+            String state, Long startIndex, Long limit);
+
     List<RolePermission> findAllPermissionsBy(Long roleId);
 
     List<RolePermissionEntity> findAllRolePermissionsEntityBy(Long roleId, boolean considerImplicitRules);

@@ -562,6 +562,32 @@ public class RoleManagerImpl extends ManagerBase implements RoleService, Configu
     }
 
     @Override
+    public Pair<List<Role>, Integer> searchRoles(String uuid, String name, String keyword, RoleType type,
+            String state, Long startIndex, Long limit) {
+        boolean rootAdmin = isCallerRootAdmin();
+        if (!rootAdmin && type == RoleType.Admin) {
+            return new Pair<>(Collections.emptyList(), 0);
+        }
+
+        // UUID and type lookups retain their existing visibility rules. Text searches and the
+        // unfiltered list also apply permission compatibility before computing count and page.
+        boolean checkPermissions = StringUtils.isNotBlank(name) || StringUtils.isNotBlank(keyword)
+                || (uuid == null && type == null);
+        Pair<List<RoleVO>, Integer> matches = roleDao.searchRoles(uuid, name, keyword, type, state,
+                checkPermissions ? null : startIndex, checkPermissions ? null : limit, rootAdmin);
+        if (!checkPermissions) {
+            return new Pair<>(ListUtils.toListOfInterface(matches.first()), matches.second());
+        }
+
+        List<RoleVO> visible = new ArrayList<>(matches.first());
+        removeRolesIfNeeded(visible);
+        int count = visible.size();
+        int from = startIndex == null ? 0 : (int) Math.min(count, startIndex);
+        int size = limit == null ? count - from : (int) Math.min(limit, count - from);
+        return new Pair<>(ListUtils.toListOfInterface(visible.subList(from, from + size)), count);
+    }
+
+    @Override
     public List<RolePermission> findAllPermissionsBy(final Long roleId) {
         List<? extends RolePermission> permissions = rolePermissionsDao.findAllByRoleIdSorted(roleId);
         if (permissions != null) {

@@ -218,7 +218,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents', 'listRoles'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -230,6 +230,7 @@
 </template>
 
 <script>
+import { roleStates, roleTypes } from '@/utils/roleSearch'
 import KubernetesIsoSearch from '@/components/view/KubernetesIsoSearch'
 import { ref, reactive, toRaw } from 'vue'
 import { kmsApis, kmsBooleans, kmsLookup, kmsProjectScope, kmsProtocolOptions } from '@/utils/kmsSearch'
@@ -368,6 +369,7 @@ export default {
   computed: {
     isKmsSearch () { return kmsApis.includes(this.apiName) },
     isVpnUserSearch () { return this.apiName === 'listVpnUsers' },
+    isRoleSearch () { return this.apiName === 'listRoles' },
     isVpnCustomerGatewaySearch () { return this.apiName === 'listVpnCustomerGateways' },
     vpnUserFilterContext () {
       return this.isVpnUserSearch
@@ -486,6 +488,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.isRoleSearch && fieldName === 'id') return 'UUID'
       if (this.apiName === 'listVpnCustomerGateways' && fieldName === 'keyword') return this.$t('label.vpn.customer.gateway.search.keyword')
       if (this.isVpnUserSearch && fieldName === 'username') return this.$t('label.vpn.user.search.exact')
       if (this.isVpnUserSearch && fieldName === 'domainid') return this.$t('label.domain')
@@ -1235,7 +1238,7 @@ export default {
     },
     initFormFieldData () {
       const arrayField = this.initFields()
-      if (this.isVpnCustomerGatewaySearch) {
+      if (this.isVpnCustomerGatewaySearch || this.isRoleSearch) {
         this.form = reactive({})
         this.fillFormFieldValues()
         this.rules.id = [{
@@ -1243,6 +1246,7 @@ export default {
             if (value && !this.$isValidUuid(value.trim())) throw new Error(this.$t('message.error.input.invaliduuid'))
           }
         }]
+        if (this.isRoleSearch) this.fetchStaticFieldData(arrayField)
         this.fetchDynamicFieldData(arrayField)
         return
       }
@@ -1725,26 +1729,7 @@ export default {
       return types
     },
     fetchRoleTypes () {
-      const types = []
-      if (this.apiName.indexOf('listRoles') > -1) {
-        types.push({
-          id: 'Admin',
-          name: 'Admin'
-        })
-        types.push({
-          id: 'ResourceAdmin',
-          name: 'ResourceAdmin'
-        })
-        types.push({
-          id: 'DomainAdmin',
-          name: 'DomainAdmin'
-        })
-        types.push({
-          id: 'User',
-          name: 'User'
-        })
-      }
-      return types
+      return this.isRoleSearch ? roleTypes.map(id => ({ id, name: id })) : []
     },
     fetchScope () {
       const scope = []
@@ -1767,6 +1752,7 @@ export default {
       return scope
     },
     fetchState () {
+      if (this.isRoleSearch) return roleStates.map(id => ({ id, name: 'label.' + id }))
       var state = []
       if (this.apiName === 'listVMSnapshot') {
         state = ['Allocated', 'Creating', 'Ready', 'Reverting', 'Expunging', 'Error'].map(id => ({ id, name: 'state.' + id.toLowerCase() }))
@@ -2106,7 +2092,7 @@ export default {
         this.$emit('search', { aclReset: true })
         return
       }
-      if (this.isEventSearch) {
+      if (this.isEventSearch || this.isRoleSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
         this.eventFilterError = ''
@@ -2198,6 +2184,11 @@ export default {
           this.$emit('search', { kmsAdvanced: this.paramsFilter })
           return
         }
+        if (this.isRoleSearch) {
+          this.visibleFilter = false
+          this.$emit('search', { roleFilters: this.paramsFilter })
+          return
+        }
         if (this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch) this.visibleFilter = false
         if (this.isVpnCustomerGatewaySearch && this.paramsFilter.id) this.paramsFilter.id = this.paramsFilter.id.trim()
         if (this.isVnfSearch) {
@@ -2215,7 +2206,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true

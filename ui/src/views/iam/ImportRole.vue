@@ -64,7 +64,7 @@
             <tooltip-label :title="$t('label.type')" :tooltip="apiParams.type.description" />
           </template>
           <a-select v-model:value="form.type" :placeholder="apiParams.type.description" show-search :disabled="loading">
-            <a-select-option v-for="role in ['Admin', 'DomainAdmin', 'ResourceAdmin', 'User']" :key="role">
+            <a-select-option v-for="role in roleTypes" :key="role">
               {{ role }}
             </a-select-option>
           </a-select>
@@ -116,6 +116,7 @@
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { parseRoleCsv } from '@/utils/roleCsv'
+import { roleTypes } from '@/utils/roleSearch'
 
 const requestOptions = { preserveOnFailure: true, timeout: 15000 }
 
@@ -125,6 +126,7 @@ export default {
   emits: ['close-action', 'refresh-data'],
   data () {
     return {
+      roleTypes,
       form: { name: '', description: undefined, type: undefined, ispublic: true, forced: false },
       fileList: [],
       csvRules: [],

@@ -120,6 +120,7 @@ import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import { roleTypes } from '@/utils/roleSearch'
 
 export default {
   name: 'CreateRole',
@@ -130,7 +131,7 @@ export default {
   data () {
     return {
       roles: [],
-      defaultRoles: ['Admin', 'DomainAdmin', 'User'],
+      defaultRoles: roleTypes,
       loading: false
     }
   },

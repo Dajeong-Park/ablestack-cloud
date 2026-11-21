@@ -139,6 +139,38 @@ public class RoleDaoImpl extends GenericDaoBase<RoleVO, Long> implements RoleDao
     }
 
     @Override
+    public Pair<List<RoleVO>, Integer> searchRoles(String uuid, String name, String keyword, RoleType type,
+            String state, Long offset, Long limit, boolean rootAdmin) {
+        SearchCriteria<RoleVO> criteria = createSearchCriteria();
+        if (!rootAdmin) {
+            criteria.addAnd("publicRole", SearchCriteria.Op.EQ, true);
+            criteria.addAnd("roleType", SearchCriteria.Op.NEQ, RoleType.Admin);
+        }
+        if (StringUtils.isNotBlank(uuid)) {
+            criteria.addAnd("uuid", SearchCriteria.Op.EQ, uuid);
+        }
+        if (StringUtils.isNotBlank(name)) {
+            criteria.addAnd("name", SearchCriteria.Op.LIKE, name);
+        }
+        if (type != null) {
+            criteria.addAnd("roleType", SearchCriteria.Op.EQ, type);
+        }
+        if (state != null) {
+            criteria.addAnd("state", SearchCriteria.Op.EQ, state);
+        }
+        if (StringUtils.isNotBlank(keyword)) {
+            String pattern = "%" + keyword + "%";
+            SearchCriteria<RoleVO> keywordMatch = createSearchCriteria();
+            keywordMatch.addOr("name", SearchCriteria.Op.LIKE, pattern);
+            keywordMatch.addOr("uuid", SearchCriteria.Op.LIKE, pattern);
+            keywordMatch.addOr("roleType", SearchCriteria.Op.LIKE, pattern);
+            keywordMatch.addOr("description", SearchCriteria.Op.LIKE, pattern);
+            criteria.addAnd("name", SearchCriteria.Op.SC, keywordMatch);
+        }
+        return searchAndCount(criteria, new Filter(RoleVO.class, "id", true, offset, limit));
+    }
+
+    @Override
     public List<RoleVO> searchByIds(Long... ids) {
         if (ids == null || ids.length == 0) {
             return Collections.emptyList();

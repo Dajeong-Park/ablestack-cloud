@@ -900,6 +900,7 @@ import { genericCompare } from '@/utils/sort.js'
 import { sourceToken } from '@/utils/request'
 import store from '@/store'
 import { projectBulkScope, projectBulkTargets } from '@/utils/projectBulk'
+import { applyRoleSearch, roleListParams, roleSearchQuery, roleSortFields } from '@/utils/roleSearch'
 import { applyProjectSearch, projectListParams, projectListScope, projectSearchQuery, projectSortFields, projectStates } from '@/utils/projectSearch'
 import ProjectListSearch from '@/views/project/ProjectListSearch'
 import eventBus from '@/config/eventBus'
@@ -1551,6 +1552,7 @@ export default {
       return [{ value: '', label: this.$t('label.all') },
         ...projectStates.map(value => ({ value, label: this.$t('state.' + value.toLowerCase()) }))]
     },
+    isRoleList () { return !this.dataView && this.$route.meta?.name === 'role' },
     isProjectList () { return !this.dataView && this.$route.meta?.name === 'project' },
     projectSearchScope () {
       return this.$route.meta?.name === 'project' ? projectListScope(this.$store.getters, this.$store.state?.user?.token) : ''
@@ -1635,6 +1637,12 @@ export default {
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
+      if (this.isRoleList) {
+        const { sortkey, sortorder } = roleSearchQuery(this.$route.query)
+        return columns.map(column => roleSortFields.includes(column.key)
+          ? { ...column, sortOrder: sortkey === column.key ? (sortorder === 'asc' ? 'ascend' : 'descend') : null }
+          : column)
+      }
       if (this.isProjectList) {
         const { sortkey, sortorder } = projectSearchQuery(this.$route.query, this.$store.getters)
         const sortValue = (record, key) => key === 'account'
@@ -2464,7 +2472,7 @@ export default {
           this.$refs.listview.closeContextQuickView()
         }
       }
-      if ((this.isEventList || this.isProjectList) && !sameList) {
+      if ((this.isEventList || this.isProjectList || this.isRoleList) && !sameList) {
         this.items = []; this.resource = {}; this.itemCount = 0; this.listLoadedScope = null; this.listRefreshError = false
         this.resetSelection()
         if (this.$refs.listview) this.$refs.listview.resetSelection()
@@ -2866,6 +2874,7 @@ export default {
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
+      if (this.isRoleList && this.apiName === 'listRoles') params = roleListParams(this.$route.query, params)
       if (this.isProjectList && this.apiName === 'listProjects') params = projectListParams(this.$route.query, params, this.$store.getters)
       if (vnfRoute(this.$route)) params = vnfListParams(params, this.dataView)
 
@@ -4761,6 +4770,11 @@ export default {
       return this.$router.push({ query })
     },
     onSearch (opts) {
+      if (this.isRoleList) {
+        const query = applyRoleSearch(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (guestVlanRoute(this.$route) && !this.dataView) {
         const query = guestVlanSearchQuery(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
@@ -4918,11 +4932,15 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
-      this.$router.push({ query })
+      this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : query })
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.isRoleList) {
+        const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
+        return this.$router.replace({ query: roleSearchQuery({ ...this.$route.query, sortkey: sorter?.columnKey, sortorder }) })
+      }
       if (this.isProjectList) {
         const query = { ...this.$route.query, sortkey: sorter?.columnKey, sortorder: sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined }
         return this.$router.push({ query: projectSearchQuery(query, this.$store.getters) })
@@ -4960,7 +4978,7 @@ export default {
       this.$router.push({ query: { ...this.$route.query, page: '1', pagesize: String(this.pageSize), sortkey: sorter?.order ? sorter.field : 'created', sortorder: sorter?.order === 'ascend' ? 'asc' : 'desc' } })
     },
     onListPageSizeChange (currentPage, pageSize) {
-      if (!this.isProjectList) this.changePageSize(currentPage, pageSize)
+      if (!this.isProjectList && !this.isRoleList) this.changePageSize(currentPage, pageSize)
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
