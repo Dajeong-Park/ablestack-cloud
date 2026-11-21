@@ -46,6 +46,20 @@ final class EventCsvExport {
     }
 
     private static String quote(Object value) {
-        return "\"" + Objects.toString(value, "").replace("\"", "\"\"") + "\"";
+        String text = Objects.toString(value, "");
+        if (value instanceof String && needsSpreadsheetTextPrefix(text)) {
+            text = "'" + text;
+        }
+        return "\"" + text.replace("\"", "\"\"") + "\"";
+    }
+
+    private static boolean needsSpreadsheetTextPrefix(String text) {
+        if (text.isEmpty()) {
+            return false;
+        }
+        final char first = text.charAt(0);
+        final String trimmed = text.stripLeading();
+        return first == '\t' || first == '\r' || first == '\n'
+                || (!trimmed.isEmpty() && "=+-@＝＋－＠".indexOf(trimmed.charAt(0)) >= 0);
     }
 }

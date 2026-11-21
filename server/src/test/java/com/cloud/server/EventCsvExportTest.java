@@ -51,4 +51,16 @@ public class EventCsvExportTest {
                 + "\"event-2\",\"\",\"\",\"\",\"\",\"owner\",\"\",\"\",\"\",\"\",\"\"\r\n",
                 EventCsvExport.write(List.of(active, archived)));
     }
+
+    @Test
+    public void exportsSpreadsheetFormulaPrefixesAsText() {
+        EventJoinVO event = mock(EventJoinVO.class);
+        when(event.getUserName()).thenReturn("@operator");
+        when(event.getDescription()).thenReturn("  =1+1");
+        when(event.getAccountName()).thenReturn("\t-account");
+        when(event.getResourceType()).thenReturn("＋text");
+        assertEquals(HEADER
+                + "\"\",\"'@operator\",\"\",\"\",\"'  =1+1\",\"'\t-account\",\"\",\"'＋text\",\"\",\"\",\"\"\r\n",
+                EventCsvExport.write(List.of(event)));
+    }
 }

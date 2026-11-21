@@ -29,7 +29,7 @@ public class DownloadEventsResponse extends SuccessResponse {
     private final int count;
 
     @SerializedName("csv")
-    @Param(description = "CSV document text. Encode as UTF-8 when saving to a file.")
+    @Param(description = "CSV document text. Encode as UTF-8 when saving to a file. Text that resembles a spreadsheet formula is prefixed with an apostrophe.")
     private final String csv;
 
     public DownloadEventsResponse(int count, String csv) {

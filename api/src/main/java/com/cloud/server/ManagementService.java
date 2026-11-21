@@ -329,7 +329,7 @@ public interface ManagementService {
     /**
      * Download events
      * @param cmd
-     * @return True on success. False otherwise.
+     * @return CSV export and the number of exported events
      */
     DownloadEventsResponse downloadEvents(DownloadEventsCmd cmd);
 
