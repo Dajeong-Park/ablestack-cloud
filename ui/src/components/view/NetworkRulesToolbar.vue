@@ -18,6 +18,7 @@
 <template>
   <div class="detail-tab-toolbar">
     <a-button v-if="showAdd" type="primary" :disabled="!canAdd || loading" @click="$emit('add')"><template #icon><plus-outlined /></template><slot name="add-label">{{ $t('label.network.rule.add') }}</slot></a-button>
+    <slot name="actions" />
     <a-button :loading="loading" @click="$emit('refresh')"><template #icon><reload-outlined /></template>{{ $t('label.refresh') }}</a-button>
     <slot />
   </div>

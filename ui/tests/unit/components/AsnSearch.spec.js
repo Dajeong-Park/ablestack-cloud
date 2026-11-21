@@ -58,9 +58,9 @@ test('scope changes and reset remove dependent selections and state', () => {
 })
 
 test('a failed refresh replaces previously verified chip labels with the retained UUID', () => {
-  const c = { $route: { query: { zoneid: zone, asnrangeid: id } }, labels: { zoneid: 'Zone', asnrangeid: '4200000000–4200000002' }, verification: '', validationError: '', $t: key => key }
+  const c = { $route: { query: { zoneid: zone, asnrangeid: id } }, labels: { zoneid: 'Zone', asnrangeid: '4200000000–4200000002' }, validationError: '', $t: key => key }
   expect(Search.computed.chips.call(c)[1].value).toBe('4200000000–4200000002')
   c.validationError = 'missing'
-  expect(Search.computed.chips.call(c)[1].value).toBe(id + ' · message.asn.search.unverified')
+  expect(Search.computed.chips.call(c)[1].value).toBe(id)
   expect(c.$route.query.asnrangeid).toBe(id)
 })

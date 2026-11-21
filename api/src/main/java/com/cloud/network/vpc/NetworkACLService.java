@@ -17,6 +17,7 @@
 package com.cloud.network.vpc;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.cloudstack.api.command.user.network.CreateNetworkACLCmd;
 import org.apache.cloudstack.api.command.user.network.ImportNetworkACLCmd;
@@ -100,5 +101,29 @@ public interface NetworkACLService {
 
     NetworkACLItem moveRuleToTheTopInACLList(NetworkACLItem ruleBeingMoved);
 
-    List<NetworkACLItem> importNetworkACLRules(ImportNetworkACLCmd cmd) throws ResourceUnavailableException;
+    final class ImportResult {
+        private final List<NetworkACLItem> createdRules;
+        private final Map<String, String> failedRows;
+        private final boolean applied;
+
+        public ImportResult(List<NetworkACLItem> createdRules, Map<String, String> failedRows, boolean applied) {
+            this.createdRules = createdRules;
+            this.failedRows = failedRows;
+            this.applied = applied;
+        }
+
+        public List<NetworkACLItem> getCreatedRules() {
+            return createdRules;
+        }
+
+        public Map<String, String> getFailedRows() {
+            return failedRows;
+        }
+
+        public boolean isApplied() {
+            return applied;
+        }
+    }
+
+    ImportResult importNetworkACLRules(ImportNetworkACLCmd cmd) throws ResourceUnavailableException;
 }

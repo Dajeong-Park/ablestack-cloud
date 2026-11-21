@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <a-breadcrumb class="breadcrumb">
+  <a-breadcrumb class="breadcrumb" v-bind="$attrs">
     <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
       <router-link
         v-if="item && item.name && !tungstenPaths.includes(item.path)"
@@ -31,7 +31,11 @@
         <render-icon v-if="index == 0" :icon="item.meta.icon" style="font-size: 16px" @click="resetToMainView" />
         {{ $t(item.meta.title) }}
       </router-link>
-      <span v-else-if="$route.params.id">
+      <span
+        v-else-if="$route.params.id"
+        :class="{ 'vm-acl-breadcrumb-current': standardLayout }"
+        :aria-current="standardLayout ? 'page' : undefined"
+        :title="standardLayout ? resourceTitle : undefined">
         <label
           v-if="'name' in resource &&
             ['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(resource.name)">
@@ -45,36 +49,28 @@
         <span v-else-if="isEventDetailRoute($route)" class="event-breadcrumb-title">{{ eventBreadcrumbTitle(resource) || $route.params.id }}</span>
         <span v-else-if="vpnConnectionRoute($route)" class="s2s-connection-breadcrumb-name">{{ vpnConnectionName(resource, $route.params.id) }}</span>
         <label v-else :class="{ 'kms-breadcrumb-name': kmsDetailRoute($route) }">
-          {{ s2sGatewayRoute($route) ? gatewayName(resource) : isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
+          {{ resourceTitle }}
         </label>
       </span>
       <span v-else>
         {{ $t(item.meta.title) }}
       </span>
-      <span v-if="index === (breadList.length - 1)" class="breadcrumb-controls" style="margin-left: 8px">
-        <a-tooltip placement="bottom">
-          <template #title>
-            {{ $t('label.open.documentation') }}
-          </template>
-          <a
-            v-if="item.meta.docHelp"
-            style="margin-right: 12px"
-            :href="documentationUrl($config.docBase, $route.meta.docHelp, $i18n.locale)"
-            target="_blank">
-            <QuestionCircleOutlined />
-          </a>
-        </a-tooltip>
-        <router-link v-if="kmsParentLocation" :to="kmsParentLocation" class="kms-parent-link">
-          {{ $t('message.kms.related.back') }}
-        </router-link>
-        <slot name="end">
-        </slot>
-      </span>
+      <BreadcrumbControls
+        v-if="!standardLayout && index === breadList.length - 1"
+        :doc-url="helpUrl(item)"
+        :parent-location="kmsParentLocation">
+        <template #end><slot name="end" /></template>
+      </BreadcrumbControls>
     </a-breadcrumb-item>
   </a-breadcrumb>
+  <BreadcrumbControls v-if="standardLayout && breadList.length" standard :doc-url="helpUrl(breadList.at(-1))">
+    <template #end><slot name="end" /></template>
+  </BreadcrumbControls>
 </template>
 
 <script>
+import BreadcrumbControls from '@/components/widgets/BreadcrumbControls'
+import { aclListLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import KeyboardTooltip from '@/components/widgets/KeyboardTooltip'
 import { kubernetesIsoListLocation } from '@/utils/kubernetesIsoSearch'
 import { templateListLocation } from '@/utils/templateSearch'
@@ -93,8 +89,10 @@ import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
 
 export default {
   name: 'Breadcrumb',
-  components: { KeyboardTooltip },
+  inheritAttrs: false,
+  components: { BreadcrumbControls, KeyboardTooltip },
   props: {
+    standardLayout: { type: Boolean, default: false },
     resource: {
       type: Object,
       default: function () {
@@ -111,6 +109,12 @@ export default {
     }
   },
   computed: {
+    resourceTitle () {
+      if (s2sGatewayRoute(this.$route)) return gatewayName(this.resource)
+      if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
+      const row = this.resource
+      return row.displayname || row.name || row.displaytext || row.hostname || row.username || row.ipaddress || row.osname || row.osdisplayname || this.$route.params.id
+    },
     kmsParentLocation () {
       if (!['volume', 'kmskey'].includes(this.$route.meta?.name) || !this.$route.params?.id) return null
       const state = this.$router?.options?.history?.state
@@ -127,6 +131,9 @@ export default {
     }
   },
   methods: {
+    helpUrl (item) {
+      return item?.meta?.docHelp ? documentationUrl(this.$config.docBase, this.$route.meta.docHelp, this.$i18n.locale) : ''
+    },
     gatewayName,
     vpnConnectionName,
     vpnConnectionRoute,
@@ -138,6 +145,9 @@ export default {
     isEventDetailRoute,
     eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
+      if (item.path === '/acllist' && isAclListRoute(this.$route) && this.$route.params?.id) {
+        return aclListLocation(this.$route, this.resource, this.$store.getters)
+      }
       if (item.path === '/event' && isEventDetailRoute(this.$route)) {
         return eventListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token, this.resource)
       }

@@ -83,9 +83,9 @@ test('a context menu hidden by pending/error actions does not reopen after recov
 
 test('initial failure is an error state, separate from successful empty results', async () => {
   getAPI.mockRejectedValueOnce({ response: { status: 503 } }); await ctx.fetchData()
-  expect(ctx.listLoadedScope).toBeNull(); expect(Autogen.computed.snapshotEmptyText.call(ctx)).toBe('message.snapshot.list.read.failed')
+  expect(ctx.listLoadedScope).toBeNull(); expect(ctx.listRefreshError).toBe(true)
   getAPI.mockResolvedValue({ listsnapshotsresponse: {} }); await ctx.fetchData()
-  expect(ctx.listLoadedScope).toBe(ctx.listScope()); expect(Autogen.computed.snapshotEmptyText.call(ctx)).toBe('message.snapshot.search.no.results')
+  expect(ctx.listLoadedScope).toBe(ctx.listScope()); expect(ctx.listRefreshError).toBe(false)
 })
 
 test('a reloaded snapshot view restores explicit preferences after the common cache was overwritten', async () => {

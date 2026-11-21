@@ -19,6 +19,7 @@ package com.cloud.network.vpc;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -187,8 +188,11 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
                 throw new InvalidParameterValueException("Unable to find VPC");
             }
             _accountMgr.checkAccess(caller, null, true, vpc);
-            //Include vpcId 0 to list default ACLs
-            sc.setParameters("vpcId", vpcId, 0);
+            if (cmd.includeDefaults()) {
+                sc.setParameters("vpcId", vpcId, 0);
+            } else {
+                sc.setParameters("vpcId", vpcId);
+            }
         } else {
             //ToDo: Add accountId to network_acl table for permission check
 
@@ -709,6 +713,7 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         final String trafficType = cmd.getTrafficType();
         final String protocol = cmd.getProtocol();
         final String action = cmd.getAction();
+        final Boolean display = cmd.getDisplayFilter();
         final String keyword = cmd.getKeyword();
         final Map<String, String> tags = cmd.getTags();
         final Account caller = CallContext.current().getCallingAccount();
@@ -721,6 +726,7 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         sb.and("trafficType", sb.entity().getTrafficType(), Op.EQ);
         sb.and("protocol", sb.entity().getProtocol(), Op.EQ);
         sb.and("action", sb.entity().getAction(), Op.EQ);
+        sb.and("display", sb.entity().isDisplay(), Op.EQ);
         sb.and("reason", sb.entity().getReason(), Op.EQ);
 
         if (tags != null && !tags.isEmpty()) {
@@ -816,6 +822,9 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         if (action != null) {
             sc.setParameters("action", action);
         }
+        if (display != null) {
+            sc.setParameters("display", display);
+        }
 
         if (tags != null && !tags.isEmpty()) {
             int count = 0;
@@ -883,7 +892,8 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
      *  We transfer the update information form {@link UpdateNetworkACLItemCmd} to the {@link NetworkACLItemVO} POJO passed as parameter.
      *  There is one validation performed here, which is regarding the number of the ACL. We will check if there is already an ACL rule with that number, and if this is the case an {@link InvalidParameterValueException} is thrown.
      *  All of the parameters in {@link UpdateNetworkACLItemCmd} that are not null will be set to their corresponding fields in {@link NetworkACLItemVO}.
-     *  If the parameter {@link UpdateNetworkACLItemCmd#isPartialUpgrade()} returns false, we will use null parameters, which will allow us to completely update the ACL rule.
+     *  If the parameter {@link UpdateNetworkACLItemCmd#isPartialUpgrade()} returns false, omitted rule fields can be cleared.
+     * The display flag is independent of the update mode and changes only when explicitly provided.
      *  However, the number and custom Uuid will never be set to null. Therefore, if it is not a partial upgrade, these values will remain the same.
      *
      *  We use {@link #validateAndCreateNetworkAclRuleAction(String)} when converting an action as {@link String} to its Enum corresponding value.
@@ -929,8 +939,8 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         if (StringUtils.isNotBlank(customId)) {
             networkACLItemVo.setUuid(customId);
         }
-        boolean display = updateNetworkACLItemCmd.isDisplay();
-        if (!isPartialUpgrade || display != networkACLItemVo.isDisplay()) {
+        Boolean display = updateNetworkACLItemCmd.getDisplay();
+        if (display != null) {
             networkACLItemVo.setDisplay(display);
         }
         String reason = updateNetworkACLItemCmd.getReason();
@@ -983,6 +993,12 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
     public NetworkACL updateNetworkACL(UpdateNetworkACLListCmd updateNetworkACLListCmd) {
         Long id = updateNetworkACLListCmd.getId();
         NetworkACLVO acl = _networkACLDao.findById(id);
+        if (acl == null) {
+            throw new InvalidParameterValueException("Unable to find specified ACL");
+        }
+        if (isDefaultAcl(id)) {
+            throw new InvalidParameterValueException("Default ACL cannot be modified");
+        }
         Account account = CallContext.current().getCallingAccount();
 
         validateGlobalAclPermissionAndAclAssociatedToVpc(acl, account, "Must be Root Admin to update a global ACL.");
@@ -1074,43 +1090,54 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
     }
 
     @Override
-    public List<NetworkACLItem> importNetworkACLRules(ImportNetworkACLCmd cmd) throws ResourceUnavailableException {
+    public ImportResult importNetworkACLRules(ImportNetworkACLCmd cmd) throws ResourceUnavailableException {
         long aclId = cmd.getAclId();
-        Map<Object, Object> rules = cmd.getRules();
         List<NetworkACLItem> createdRules = new ArrayList<>();
-        List<String> errors = new ArrayList<>();
-        for (Map.Entry<Object, Object> entry : rules.entrySet()) {
+        Map<String, String> failedRows = new LinkedHashMap<>();
+        for (Map.Entry<?, ?> entry : cmd.getRules().entrySet()) {
+            String index = entry.getKey().toString();
             try {
-                Map<String, Object> ruleMap = (Map<String, Object>) entry.getValue();
-                NetworkACLItem item = createACLRuleFromMap(ruleMap, aclId);
-                createdRules.add(item);
-            } catch (Exception ex) {
-                String error = "Failed to import rule at index " + entry.getKey() + ": " + ex.getMessage();
-                errors.add(error);
-                logger.error(error, ex);
+                if (!(entry.getValue() instanceof Map<?, ?>)) {
+                    throw new InvalidParameterValueException("Expected rule fields");
+                }
+                createdRules.add(createACLRuleFromMap((Map<?, ?>) entry.getValue(), aclId));
+            } catch (RuntimeException ex) {
+                if (cmd.isReportDetails() && !(ex instanceof InvalidParameterValueException)
+                        && !(ex instanceof ServerApiException && ((ServerApiException) ex).getErrorCode() == ApiErrorCode.PARAM_ERROR)) {
+                    throw ex;
+                }
+                failedRows.put(index, ex.getMessage());
+                logger.debug("Failed to import ACL rule at index {}", index, ex);
             }
         }
-        // no rules got imported
-        if (createdRules.isEmpty() && !errors.isEmpty()) {
-            logger.error("Failed to import any ACL rules. Errors: {}", String.join("; ", errors));
-            throw new CloudRuntimeException("Failed to import any ACL rules.");
-        }
 
-        // apply ACL to network
-        if (!createdRules.isEmpty()) {
-            applyNetworkACL(aclId);
+        if (createdRules.isEmpty()) {
+            if (!cmd.isReportDetails()) {
+                throw new CloudRuntimeException("Failed to import any ACL rules.");
+            }
+            return new ImportResult(createdRules, failedRows, false);
         }
-        return createdRules;
+        boolean applied;
+        try {
+            applied = applyNetworkACL(aclId);
+        } catch (ResourceUnavailableException ex) {
+            if (!cmd.isReportDetails()) {
+                throw ex;
+            }
+            logger.warn("Could not apply imported ACL rules to associated resources for ACL {}", aclId, ex);
+            applied = false;
+        }
+        return new ImportResult(createdRules, failedRows, applied);
     }
 
-    private NetworkACLItem createACLRuleFromMap(Map<String, Object> ruleMap, long aclId) {
+    private NetworkACLItem createACLRuleFromMap(Map<?, ?> ruleMap, long aclId) {
         String protocol = (String) ruleMap.get(ApiConstants.PROTOCOL);
         if (protocol == null || protocol.trim().isEmpty()) {
             throw new InvalidParameterValueException("Protocol is required");
         }
-        String action = (String) ruleMap.getOrDefault(ApiConstants.ACTION, "deny");
-        String trafficType = (String) ruleMap.getOrDefault(ApiConstants.TRAFFIC_TYPE, NetworkACLItem.TrafficType.Ingress);
-        String forDisplay = (String) ruleMap.getOrDefault(ApiConstants.FOR_DISPLAY, "true");
+        String action = ruleMap.containsKey(ApiConstants.ACTION) ? (String) ruleMap.get(ApiConstants.ACTION) : "deny";
+        String trafficType = ruleMap.containsKey(ApiConstants.TRAFFIC_TYPE) ? (String) ruleMap.get(ApiConstants.TRAFFIC_TYPE) : TrafficType.Ingress.toString();
+        String forDisplay = ruleMap.containsKey(ApiConstants.FOR_DISPLAY) ? (String) ruleMap.get(ApiConstants.FOR_DISPLAY) : "true";
 
         // Create ACL rule using the service
         CreateNetworkACLCmd cmd = new CreateNetworkACLCmd();
@@ -1139,6 +1166,9 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
         }
 
         if (ruleMap.containsKey(ApiConstants.END_PORT)) {
+            if (cmd.getPublicStartPort() == null) {
+                throw new InvalidParameterValueException("A start port is required when an end port is specified");
+            }
             cmd.setPublicEndPort(parseInt(ruleMap.get(ApiConstants.END_PORT)));
         }
 
@@ -1394,6 +1424,6 @@ public class NetworkACLServiceImpl extends ManagerBase implements NetworkACLServ
     }
 
     protected boolean isDefaultAcl(long aclId) {
-        return aclId == NetworkACL.DEFAULT_ALLOW || aclId == NetworkACL.DEFAULT_DENY;
+        return NetworkACL.isDefault(aclId);
     }
 }

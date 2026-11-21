@@ -17,99 +17,213 @@
 
 <template>
   <a-spin :spinning="fetchLoading">
-    <NetworkRulesToolbar :can-add="can('add')" :loading="fetchLoading" @add="openRule('add')" @refresh="reload">
-      <a-button v-if="can('import')" @click="openDialog('import')"><template #icon><upload-outlined /></template>{{ $t('label.acl.import') }}</a-button>
-      <a-button :disabled="!acls.length" @click="exportAclList"><template #icon><download-outlined /></template>{{ $t('label.acl.export') }}</a-button>
-      <a-input-search class="network-rules-search" :placeholder="$t('label.search')" v-model:value="searchQuery" @search="fetchData" />
+    <NetworkRulesToolbar class="acl-rules-toolbar" :can-add="can('add')" :loading="fetchLoading" @add="openRule('add')" @refresh="reload">
+      <template #actions>
+        <a-button v-if="can('import')" @click="openDialog('import')"><template #icon><upload-outlined /></template>{{ $t('label.acl.import') }}</a-button>
+        <a-dropdown :trigger="['click']" @visibleChange="prepareAclExport">
+          <a-button :disabled="!target || fetchLoading" :loading="exporting">
+            <template #icon><download-outlined /></template>{{ $t('label.acl.export') }}
+          </a-button>
+          <template #overlay>
+            <a-menu @click="({ key }) => exportAclList(key)">
+              <a-menu-item key="all" :disabled="!exportTotals.all">
+                {{ $t('label.acl.csv.export.all', { count: exportTotals.all ?? '…' }) }}
+              </a-menu-item>
+              <a-menu-item key="search" :disabled="!exportTotals.search" v-if="hasRuleSearch">
+                {{ $t('label.acl.csv.export.search', { count: exportTotals.search ?? '…' }) }}
+              </a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
+      </template>
+      <a-select
+        v-if="canFilterDisplay"
+        class="acl-rule-display-filter"
+        :aria-label="$t('label.acl.rule.display.filter')"
+        :value="ruleDisplay"
+        :disabled="!target || busy || pending?.action === 'move'"
+        @change="changeRuleDisplay">
+        <template #suffixIcon><filter-outlined /></template>
+        <a-select-option value="all">{{ $t('label.all') }}</a-select-option>
+        <a-select-option value="true">{{ $t('label.acl.display.visible') }}</a-select-option>
+        <a-select-option value="false">{{ $t('label.acl.display.hidden') }}</a-select-option>
+      </a-select>
+      <a-input-search
+        class="network-rules-search"
+        :placeholder="$t('label.acl.rule.search.keyword')"
+        :aria-label="$t('label.acl.rule.search.keyword')"
+        :title="$t('message.acl.rule.search.cidr')"
+        v-model:value="searchQuery"
+        allow-clear
+        :disabled="busy || pending?.action === 'move'"
+        @search="fetchData">
+        <template v-if="ruleFilterFields.length" #addonBefore>
+          <a-popover placement="bottomRight" trigger="click" :visible="ruleFilterOpen" @visibleChange="openRuleFilters">
+            <template #content>
+              <a-form
+                v-if="ruleFilterOpen"
+                class="acl-rule-filter-form"
+                layout="vertical"
+                :model="ruleFilterForm"
+                @finish="applyRuleFilters"
+                @keydown.esc.stop.prevent="ruleFilterOpen = false">
+                <a-form-item v-for="field in ruleFilterFields" :key="field" :label="$t('label.' + field)" :html-for="'acl-rule-search-' + field">
+                  <a-auto-complete
+                    v-if="field === 'protocol'"
+                    id="acl-rule-search-protocol"
+                    v-model:value="ruleFilterForm.protocol"
+                    allow-clear
+                    :placeholder="$t('label.acl.rule.search.protocol')"
+                    :options="ruleProtocols"
+                    :filter-option="(query, option) => option.value.includes(query.toLowerCase())" />
+                  <a-select
+                    v-else
+                    :id="'acl-rule-search-' + field"
+                    v-model:value="ruleFilterForm[field]"
+                    allow-clear
+                    :placeholder="$t('label.all')">
+                    <a-select-option v-for="value in ruleFilterOptions[field]" :key="value" :value="value">{{ $t('label.' + value) }}</a-select-option>
+                  </a-select>
+                </a-form-item>
+                <p class="acl-rule-filter-help">{{ $t('message.acl.rule.search.cidr') }}</p>
+                <div class="filter-group-button">
+                  <a-button class="filter-group-button-clear" size="small" @click="resetRuleFilters">{{ $t('label.reset') }}</a-button>
+                  <a-button class="filter-group-button-search" type="primary" size="small" html-type="submit">{{ $t('label.search') }}</a-button>
+                </div>
+              </a-form>
+            </template>
+            <a-button
+              class="filter-button"
+              :aria-label="$t('label.advanced.search')"
+              :aria-expanded="ruleFilterOpen"
+              size="small"
+              :disabled="busy || pending?.action === 'move'">
+              <filter-two-tone v-if="hasRuleSearch" />
+              <filter-outlined v-else />
+            </a-button>
+          </a-popover>
+        </template>
+      </a-input-search>
     </NetworkRulesToolbar>
+    <div v-if="Object.keys(appliedRuleFilters).length" class="acl-rule-filter-conditions">
+      <a-tag v-for="(value, key) in appliedRuleFilters" :key="key">
+        {{ $t('label.' + key) }} · {{ key === 'protocol' ? value : $t('label.' + value) }}
+      </a-tag>
+    </div>
+    <p v-if="ruleCount !== null" class="acl-rule-count" role="status">
+      {{ $t('label.acl.rule.result.count', { count: ruleCount }) }}
+    </p>
 
     <a-alert v-if="notice" class="acl-access-notice" show-icon :type="notice.type" :message="$t(notice.message)">
-      <template v-if="notice.detail || notice.retry" #description>
+      <template v-if="notice.detail || notice.retry || notice.recheck" #description>
         <p v-if="notice.detail">{{ notice.detail }}</p>
-        <a-button v-if="notice.retry" size="small" @click="reload">{{ $t('label.retry') }}</a-button>
+        <a-button v-if="notice.recheck" size="small" :loading="busy" @click="recheck">{{ $t('label.vmvolume.check') }}</a-button>
+        <a-button v-else-if="notice.retry" size="small" @click="reload">{{ $t('label.retry') }}</a-button>
       </template>
     </a-alert>
 
-    <draggable
-      v-if="acls.length"
-      v-model="acls"
-      class="list"
-      :disabled="!canMove"
-      @start="dragScope = canMove ? scope : null"
-      @change="changeOrder"
-      handle=".drag-handle"
-      animation="200"
-      ghost-class="drag-ghost"
-      item-key="id">
-      <template #item="{element}">
-        <div class="list__item">
-          <div v-if="canMove && acls.length > 1" class="drag-handle" aria-hidden="true"><drag-outlined /></div>
-            <div class="list__container">
-              <div class="list__col">
-                <div class="list__label">{{ $t('label.rule.number') }}</div>
-                <div>{{ element.number }}</div>
-              </div>
-              <div class="list__col">
-                <div class="list__label">{{ $t('label.cidrlist') }}</div>
-                <div>{{ element.cidrlist }}</div>
-              </div>
-              <div class="list__col">
-                <div class="list__label">{{ $t('label.action') }}</div>
-                <div>{{ element.action }}</div>
-              </div>
-              <div class="list__col">
-                <div class="list__label">{{ $t('label.protocol') }}</div>
-                <div>{{ element.protocol }}</div>
-              </div>
-              <div class="list__col" v-if="element.startport !== undefined">
-                <div class="list__label">{{ $t('label.startport') }}</div>
-                <div>{{ element.startport }}</div>
-              </div>
-              <div class="list__col" v-if="element.endport !== undefined">
-                <div class="list__label">{{ $t('label.endport') }}</div>
-                <div>{{ element.endport }}</div>
-              </div>
-              <div class="list__col" v-if="element.icmpcode !== undefined">
-                <div class="list__label">{{ $t('label.icmpcode') }}</div>
-                <div>{{ element.icmpcode }}</div>
-              </div>
-              <div class="list__col" v-if="element.icmptype !== undefined">
-                <div class="list__label">{{ $t('label.icmptype') }}</div>
-                <div>{{ element.icmptype }}</div>
-              </div>
-              <div class="list__col">
-                <div class="list__label">{{ $t('label.traffictype') }}</div>
-                <div>{{ element.traffictype }}</div>
-              </div>
-              <div class="list__col">
-                <div class="list__label">{{ $t('label.description') }}</div>
-                <div>{{ element.reason }}</div>
-              </div>
-            </div>
-          <div v-if="can('readTags') || can('edit') || can('remove') || canMove" class="list__actions">
-            <tooltip-button
-              v-if="canMove && element.id !== acls[0].id"
-              :tooltip="$t('label.move.to.top')"
-              icon="vertical-align-top-outlined"
-              @onClick="moveRule(element.id, null, acls[0].id)" />
-            <tooltip-button
-              v-if="canMove && element.id !== acls[acls.length - 1].id"
-              :tooltip="$t('label.move.to.bottom')"
-              icon="vertical-align-bottom-outlined"
-              @onClick="moveRule(element.id, acls[acls.length - 1].id, null)" />
-            <tooltip-button v-if="can('readTags')" :tooltip="$t('label.tags')" icon="tag-outlined" @onClick="openTags(element)" />
-            <tooltip-button v-if="can('edit')" :tooltip="$t('label.edit')" icon="edit-outlined" @onClick="openRule('edit', element)" />
-            <tooltip-button
-              v-if="can('remove')"
-              :tooltip="$t('label.delete')"
-              icon="delete-outlined"
-              danger
-              @onClick="openDialog('remove', element)" />
-          </div>
-        </div>
-      </template>
-    </draggable>
-    <a-empty v-else-if="!fetchLoading && !notice" />
+    <p v-if="moveHint" class="acl-order-hint">{{ $t(moveHint) }}</p>
+
+    <template v-if="acls.length">
+      <p class="acl-rule-scroll-hint">{{ $t('message.acl.rule.scroll') }}</p>
+      <div class="acl-rule-table-scroll" tabindex="0" role="region" :aria-label="$t('label.acl.rules')">
+        <table class="acl-rule-table" :aria-label="$t('label.acl.rules')">
+          <thead>
+            <tr>
+              <th scope="col">{{ $t('label.rule.number') }}</th>
+              <th scope="col">{{ $t('label.traffictype') }}</th>
+              <th scope="col">{{ $t('label.action') }}</th>
+              <th scope="col">{{ $t('label.protocol') }}</th>
+              <th scope="col" class="acl-rule-cidr">{{ $t('label.cidrlist') }}</th>
+              <th v-if="canFilterDisplay" scope="col">{{ $t('label.acl.rule.display.filter') }}</th>
+              <th scope="col">{{ $t('label.description') }}</th>
+              <th scope="col" class="acl-rule-actions">{{ $t('label.actions') }}</th>
+            </tr>
+          </thead>
+          <draggable
+            v-model="acls"
+            tag="tbody"
+            :disabled="!canMove"
+            @start="dragRead = canMove ? ruleRead : null"
+            @change="changeOrder"
+            handle=".drag-handle"
+            animation="200"
+            ghost-class="drag-ghost"
+            item-key="id">
+            <template #item="{ element, index }">
+              <tr :data-acl-rule-id="element.id" tabindex="-1" :aria-label="$t('label.rule.number') + ' ' + element.number">
+                <th scope="row">
+                  <div class="acl-rule-number">
+                    <span v-if="canMove && acls.length > 1" class="drag-handle" aria-hidden="true"><drag-outlined /></span>
+                    {{ element.number }}
+                  </div>
+                </th>
+                <td>{{ element.traffictype ? $t('label.' + element.traffictype.toLowerCase()) : '—' }}</td>
+                <td><a-tag v-if="element.action">{{ $t('label.' + element.action.toLowerCase()) }}</a-tag><span v-else>—</span></td>
+                <td>
+                  {{ element.protocol }}
+                  <small v-if="element.startport != null" class="acl-rule-protocol">
+                    {{ $t('label.port.range') }} {{ element.startport }}–{{ element.endport ?? element.startport }}
+                  </small>
+                  <small v-if="element.icmptype != null" class="acl-rule-protocol">{{ $t('label.icmptype') }} {{ element.icmptype }}</small>
+                  <small v-if="element.icmpcode != null" class="acl-rule-protocol">{{ $t('label.icmpcode') }} {{ element.icmpcode }}</small>
+                </td>
+                <td class="acl-rule-cidr">
+                  <div v-if="element.cidrlist" class="acl-rule-cidr-value">
+                    <ul>
+                      <li v-for="cidr in cidrValues(element.cidrlist)" :key="cidr"><code>{{ cidr }}</code></li>
+                    </ul>
+                    <tooltip-button
+                      :tooltip="$t('label.acl.copy.cidrs')"
+                      icon="copy-outlined"
+                      size="small"
+                      :copyResource="String(element.cidrlist)"
+                      @copy-success="$message.success($t('label.copied.clipboard'))" />
+                  </div>
+                  <span v-else>—</span>
+                </td>
+                <td v-if="canFilterDisplay">
+                  <a-tag v-if="typeof element.fordisplay === 'boolean'">{{ $t(aclDisplayLabel(element.fordisplay)) }}</a-tag>
+                  <span v-else>—</span>
+                </td>
+                <td class="acl-rule-description">{{ element.reason || '—' }}</td>
+                <td class="acl-rule-actions">
+                  <div class="acl-rule-row-actions">
+                    <a-button v-if="can('edit')" size="small" @click="openRule('edit', element)">{{ $t('label.edit') }}</a-button>
+                    <tooltip-button
+                      :tooltip="$t('label.copyid')"
+                      icon="barcode-outlined"
+                      size="small"
+                      :copyResource="element.id"
+                      @copy-success="$message.success($t('label.copied.clipboard'))" />
+                    <template v-if="showMoveActions">
+                      <tooltip-button
+                        v-for="action in moveActions"
+                        :key="action.position"
+                        :tooltip="$t(action.label)"
+                        :icon="action.icon"
+                        :button-class="'acl-move-' + action.position"
+                        size="small"
+                        :disabled="!canMove || moveIndex(index, action.position) === index"
+                        @onClick="moveRule(element.id, moveIndex(index, action.position), action.position)" />
+                    </template>
+                    <tooltip-button v-if="can('readTags')" :tooltip="$t('label.tags')" icon="tag-outlined" size="small" @onClick="openTags(element)" />
+                    <tooltip-button
+                      v-if="can('remove')"
+                      :tooltip="$t('label.delete')"
+                      icon="delete-outlined"
+                      size="small"
+                      danger
+                      @onClick="openDialog('remove', element)" />
+                  </div>
+                </td>
+              </tr>
+            </template>
+          </draggable>
+        </table>
+      </div>
+    </template>
+    <a-empty v-else-if="!fetchLoading && (!notice || notice.type === 'info')" :description="$t(hasRuleSearch ? 'message.acl.rule.search.empty' : 'message.acl.rule.empty')" />
 
     <MoldDialog
       v-if="dialog && dialog.mode !== 'import'"
@@ -244,7 +358,9 @@
             :autoSize="{ minRows: 2 }"
             :placeholder="$t('label.acl.reason.description')" />
         </a-form-item>
-
+        <a-form-item v-if="canSetDisplay" :label="$t('label.acl.rule.display')" name="fordisplay">
+          <a-switch v-model:checked="form.fordisplay" :aria-label="$t('label.acl.rule.display')" />
+        </a-form-item>
       </a-form>
       <template v-else-if="dialog.mode === 'tags'">
         <a-form
@@ -268,7 +384,7 @@
       <p v-else>{{ $t('message.delete.acl.rule') }}</p>
       <a-alert v-if="dialogError" class="acl-access-notice" show-icon type="error" :message="$t(dialogError.message)" :description="dialogError.detail" />
       <template #footer>
-        <a-button :disabled="busy" @click="closeDialog">{{ $t('label.close') }}</a-button>
+        <a-button :disabled="busy" @click="closeDialog">{{ $t(dialog.mode === 'tags' ? 'label.close' : 'label.cancel') }}</a-button>
         <a-button v-if="blocked" type="primary" @click="reload">{{ $t('label.refresh') }}</a-button>
         <a-button v-else-if="pending" type="primary" :loading="busy" @click="recheck">{{ $t('label.vmvolume.check') }}</a-button>
         <a-button v-else-if="dialog.mode === 'tags' && can('addTag')" type="primary" :loading="busy" :disabled="!tagForm.key.trim() || !tagForm.value.trim()" @click="addTag">{{ $t('label.add') }}</a-button>
@@ -289,27 +405,35 @@
 </template>
 
 <script>
+import { Empty } from 'ant-design-vue'
 import NetworkRulesToolbar from '@/components/view/NetworkRulesToolbar'
 import MoldDialog from '@/components/view/MoldDialog'
 import { getAPI, postAPI } from '@/api'
 import draggable from 'vuedraggable'
 import TooltipButton from '@/components/widgets/TooltipButton'
-import { networkError } from '@/utils/networkLifecycle'
-import { aclCommands, aclDenied, aclRequestOptions, aclResponse, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
+import { networkCollection, networkError } from '@/utils/networkLifecycle'
+import { formatAclCsv } from '@/utils/aclCsv'
+import { aclCommands, aclDisplayLabel, aclDisplaySupported, aclDisplayValue, aclDenied, aclHasParam, aclOrderConflict, aclOrderHash, aclRequestOptions, aclResponse, discoverAclAccess, resolveAclScope, runAclWrite } from '@/utils/vpcAclAccess'
 import ImportNetworkACL from './ImportNetworkACL'
+
+const moveActions = [
+  { position: 'top', label: 'label.move.to.top', icon: 'vertical-align-top-outlined' },
+  { position: 'up', label: 'label.move.up.row', icon: 'up-outlined' },
+  { position: 'down', label: 'label.move.down.row', icon: 'down-outlined' },
+  { position: 'bottom', label: 'label.move.to.bottom', icon: 'vertical-align-bottom-outlined' }
+]
 
 const messages = {
   add: 'message.success.add.rule',
   edit: 'message.success.edit.acl',
   remove: 'message.success.delete.acl.rule',
-  move: 'message.success.move.acl.order',
   addTag: 'message.success.add.tag',
   removeTag: 'message.success.delete.tag'
 }
 
 export default {
   name: 'AclListRulesTab',
-  components: { NetworkRulesToolbar, MoldDialog, draggable, TooltipButton, ImportNetworkACL },
+  components: { AEmpty: Empty, NetworkRulesToolbar, MoldDialog, draggable, TooltipButton, ImportNetworkACL },
   props: {
     resource: { type: Object, required: true },
     loading: { type: Boolean, default: false }
@@ -321,8 +445,19 @@ export default {
     target: null,
     access: null,
     notice: null,
+    exportTotals: {},
+    exporting: false,
     searchQuery: '',
     appliedSearch: '',
+    ruleDisplay: 'all',
+    appliedRuleDisplay: 'all',
+    ruleFilterOpen: false,
+    ruleFilterForm: {},
+    ruleFilters: {},
+    appliedRuleFilters: {},
+    ruleFilterOptions: { traffictype: ['ingress', 'egress'], action: ['allow', 'deny'] },
+    ruleProtocols: ['tcp', 'udp', 'icmp', 'all'].map(value => ({ value })),
+    ruleCount: null,
     acls: [],
     lastRules: [],
     fetchLoading: false,
@@ -339,7 +474,9 @@ export default {
     blocked: false,
     pending: null,
     dialogError: null,
-    dragScope: null
+    dragRead: null,
+    orderHash: null,
+    moveActions
   }),
   computed: {
     scope () {
@@ -350,14 +487,50 @@ export default {
     dialogTitle () {
       return this.$t(({ add: 'label.add.rule', edit: 'label.edit.rule', tags: 'label.tags', remove: 'label.delete' })[this.dialog?.mode])
     },
-    canMove () { return this.can('move') && !this.searchQuery && !this.appliedSearch },
+    ruleFilterFields () {
+      return ['traffictype', 'protocol', 'action'].filter(field => aclHasParam(this.$store.getters, 'listNetworkACLs', field))
+    },
+    hasRuleSearch () {
+      return !!this.appliedSearch || this.appliedRuleDisplay !== 'all' || Object.keys(this.appliedRuleFilters).length > 0
+    },
+    canFilterDisplay () {
+      return aclDisplaySupported(this.$store.getters, 'listNetworkACLs')
+    },
+    canSetDisplay () {
+      if (this.access?.scope !== this.scope) return false
+      if (this.dialog?.mode === 'add') return this.access.flags.addDisplay
+      return this.dialog?.mode === 'edit' && this.access.flags.editDisplay && typeof this.dialog.item.fordisplay === 'boolean'
+    },
+    showMoveActions () {
+      return this.access?.scope === this.scope && this.access.flags.move && this.lastRules.length > 1
+    },
+    canMove () {
+      return this.showMoveActions && this.can('move') && !!this.orderHash &&
+        !this.searchQuery && !this.hasRuleSearch && this.ruleDisplay === 'all' && !Object.keys(this.ruleFilters).length && !this.dialog && !this.busy && !this.pending
+    },
+    moveHint () {
+      if (!this.can('move') || this.notice || this.busy) return ''
+      if (this.searchQuery || this.hasRuleSearch || this.ruleDisplay !== 'all' || Object.keys(this.ruleFilters).length) return 'message.acl.order.clear.filters'
+      if (!this.orderHash) return 'message.acl.order.full.required'
+      return ''
+    },
     canImport () {
       const dialog = this.dialog
       return () => dialog?.mode === 'import' && this.dialog === dialog && dialog.scope === this.scope && this.can('import')
     }
   },
   watch: {
-    scope: { handler () { this.reset(); this.$nextTick(() => { if (this.active && !this.loading) this.reload() }) }, flush: 'sync' },
+    scope: {
+      handler () {
+        this.searchQuery = ''
+        this.ruleDisplay = 'all'
+        this.ruleFilterOpen = false
+        this.ruleFilters = {}
+        this.reset()
+        this.$nextTick(() => { if (this.active && !this.loading) this.reload() })
+      },
+      flush: 'sync'
+    },
     loading (loading) { if (!loading && this.active) this.reload() },
     '$store.getters.apis': { handler () { this.reset(); this.$nextTick(() => { if (this.active && !this.loading) this.reload() }) }, flush: 'sync' }
   },
@@ -366,15 +539,24 @@ export default {
   deactivated () { this.active = false; this.reset() },
   beforeUnmount () { this.active = false; this.reset() },
   methods: {
+    aclDisplayLabel,
+    cidrValues (value) { return [...new Set(String(value).split(',').map(cidr => cidr.trim()).filter(Boolean))] },
     reset () {
       this.epoch++
       this.target = null
       this.access = null
       this.acls = []
       this.lastRules = []
+      this.appliedSearch = ''
+      this.appliedRuleDisplay = 'all'
+      this.appliedRuleFilters = {}
+      this.ruleCount = null
+      this.exportTotals = {}
+      this.exporting = false
       this.fetchLoading = false
       this.notice = null
-      this.dragScope = null
+      this.dragRead = null
+      this.orderHash = null
       this.protocolNumbers = []
       this.icmpTypes = []
       this.closeDialog(true)
@@ -387,7 +569,7 @@ export default {
         this.access.flags[action] && (action === 'readTags' || (!this.blocked && !this.fetchLoading))
     },
     async reload () {
-      if (!this.active || this.loading || !this.resource.id || this.busy ||
+      if (!this.active || this.loading || !this.resource.id || this.busy || this.pending?.action === 'move' ||
         (this.$route.name === 'acllist' && this.$route.params.id !== this.resource.id)) return
       this.reset()
       const scope = this.scope
@@ -397,7 +579,7 @@ export default {
       const resource = { ...this.resource }
       this.fetchLoading = true
       try {
-        const target = await resolveAclScope(getAPI, resource, project)
+        const target = await resolveAclScope(getAPI, resource, project, aclDisplaySupported(this.$store.getters), current)
         if (!current()) return
         if (!target) {
           this.notice = { type: 'warning', message: 'message.acl.scope.unavailable' }
@@ -423,21 +605,67 @@ export default {
         if (current()) this.fetchLoading = false
       }
     },
+    openRuleFilters (open) {
+      if (open) this.ruleFilterForm = { ...this.ruleFilters }
+      this.ruleFilterOpen = open
+    },
+    applyRuleFilters () {
+      this.ruleFilters = Object.fromEntries(this.ruleFilterFields.map(field => [field, this.ruleFilterForm[field]?.trim().toLowerCase()]).filter(([, value]) => value))
+      this.ruleFilterOpen = false
+      return this.fetchData()
+    },
+    resetRuleFilters () {
+      this.ruleFilters = {}
+      this.ruleFilterOpen = false
+      this.searchQuery = ''
+      this.ruleDisplay = 'all'
+      return this.fetchData()
+    },
+    changeRuleDisplay (value) {
+      if (!this.canFilterDisplay || (value !== 'all' && !aclDisplayValue(value))) return
+      this.ruleDisplay = value
+      return this.fetchData()
+    },
+    ruleDisplayParams (mode) {
+      const display = this.canFilterDisplay && aclDisplayValue(mode)
+      return display ? { fordisplay: display } : {}
+    },
     async fetchData () {
-      if (!this.target || !this.active) return
+      if (!this.target || !this.active || this.pending?.action === 'move') return
       const scope = this.scope
       const epoch = this.epoch
       const read = ++this.ruleRead
       const current = () => this.live(scope, epoch) && read === this.ruleRead
-      const keyword = this.searchQuery
+      const keyword = this.searchQuery?.trim() || ''
+      const filters = Object.fromEntries(this.ruleFilterFields.filter(field => this.ruleFilters[field]).map(field => [field, this.ruleFilters[field]]))
+      const displayParams = this.ruleDisplayParams(this.ruleDisplay)
+      const params = { ...this.target.params, aclid: this.target.row.id, ...displayParams, ...filters }
+      const unfiltered = !keyword && params.fordisplay == null && !Object.keys(filters).length
       this.fetchLoading = true
+      this.orderHash = null
       try {
-        const json = await getAPI('listNetworkACLs', { ...this.target.params, aclid: this.target.row.id, keyword }, aclRequestOptions)
-        const rows = aclResponse(json, 'listnetworkaclsresponse').networkacl || []
+        const criteria = { ...params, keyword }
+        const json = await getAPI('listNetworkACLs', criteria, aclRequestOptions)
+        const body = aclResponse(json, 'listnetworkaclsresponse')
+        let rows = body.networkacl || []
         if (!Array.isArray(rows)) throw new Error('Invalid ACL rules')
+        const count = Number(body.count ?? (rows.length ? NaN : 0))
+        if (rows.length < count && current()) {
+          // Keep the first page if the remaining pages cannot be verified.
+          try {
+            rows = await networkCollection((api, args) => {
+              if (!current()) throw new Error('ACL rule scope changed')
+              return getAPI(api, args, aclRequestOptions)
+            }, 'listNetworkACLs', 'networkacl', criteria)
+          } catch { /* The original result can still be viewed. */ }
+        }
         if (current()) {
           this.appliedSearch = keyword
+          this.appliedRuleDisplay = displayParams.fordisplay || 'all'
+          this.appliedRuleFilters = filters
+          this.ruleCount = Number.isSafeInteger(count) && count >= rows.length ? count : null
           this.lastRules = rows.slice().sort((a, b) => a.number - b.number)
+          this.orderHash = unfiltered ? aclOrderHash(this.lastRules, count, params.aclid) : null
           this.acls = this.lastRules.slice()
           return true
         }
@@ -452,7 +680,7 @@ export default {
     },
     openDialog (mode, item) {
       const action = mode === 'tags' ? 'readTags' : mode
-      if (this.dialog || !this.can(action) || (item && !this.acls.some(row => row.id === item.id))) return false
+      if (this.dialog || this.busy || this.pending || !this.can(action) || (item && !this.acls.some(row => row.id === item.id))) return false
       this.dialog = { mode, item, scope: this.scope }
       return true
     },
@@ -484,7 +712,8 @@ export default {
         icmptype: item?.icmptype ?? -1,
         icmpcode: item?.icmpcode ?? -1,
         traffictype: item?.traffictype?.toLowerCase() || 'ingress',
-        reason: item?.reason
+        reason: item?.reason,
+        fordisplay: item ? item.fordisplay : true
       }
       this.rules = { protocolnumber: [{ required: true, message: this.$t('label.required') }] }
       if (!('listNetworkProtocols' in this.$store.getters.apis)) return
@@ -541,6 +770,10 @@ export default {
         await this.$refs.ruleForm.validate()
         if (this.dialog !== dialog || !this.can(dialog.mode)) return
         const data = this.getDataFromForm(this.form)
+        const display = this.form.fordisplay
+        if (this.canSetDisplay && typeof display === 'boolean' && display !== dialog.item?.fordisplay) {
+          data.fordisplay = display
+        }
         this.busy = false
         return await this.write(dialog.mode, dialog.mode === 'edit'
           ? { ...data, id: dialog.item.id, partialupgrade: false }
@@ -594,7 +827,7 @@ export default {
     },
     async write (action, params, receipt = null) {
       if (this.busy || !this.can(action) || (this.pending && !receipt) ||
-        (action === 'move' ? this.dialog : this.dialog?.mode !== (action.endsWith('Tag') ? 'tags' : action))) return
+        this.dialog?.mode !== (action.endsWith('Tag') ? 'tags' : action)) return
       const scope = this.scope
       const epoch = this.epoch
       const dialog = this.dialog
@@ -623,50 +856,158 @@ export default {
         }
       } catch (error) {
         if (!current()) return
-        if (dialog) {
-          this.recordError(error)
-        } else {
-          this.acls = this.lastRules.slice()
-          this.access = null
-          this.notice = { type: 'warning', message: aclDenied(error) ? 'message.acl.access.changed' : 'message.acl.order.failed', detail: networkError(error).text, retry: true }
-        }
+        this.recordError(error)
       } finally {
         if (this.live(scope, epoch)) this.busy = false
       }
     },
     recheck () {
-      if (this.pending) return this.write(this.pending.action, {}, this.pending.jobId)
+      if (!this.pending) return
+      const { action, jobId, focus } = this.pending
+      if (action === 'move') return this.writeMove({}, focus, jobId)
+      return this.write(action, {}, jobId)
     },
-    changeOrder (event) {
-      const scope = this.dragScope
-      this.dragScope = null
-      const moved = event.moved
-      if (!moved || scope !== this.scope || !this.canMove || this.busy) {
-        this.acls = this.lastRules.slice()
-        return
+    changeOrder ({ moved }) {
+      const read = this.dragRead
+      this.dragRead = null
+      this.acls = this.lastRules.slice()
+      if (moved && read === this.ruleRead) return this.moveRule(moved.element.id, moved.newIndex)
+    },
+    moveIndex (index, position) {
+      if (position === 'top') return 0
+      if (position === 'bottom') return this.lastRules.length - 1
+      if (position === 'up') return Math.max(0, index - 1)
+      return Math.min(this.lastRules.length - 1, index + 1)
+    },
+    moveRule (id, index, position) {
+      if (!this.canMove || !Number.isInteger(index) || index < 0 || index >= this.lastRules.length) return
+      const from = this.lastRules.findIndex(row => row.id === id)
+      if (from < 0 || from === index) return
+      const neighbors = this.lastRules.filter(row => row.id !== id)
+      return this.writeMove({
+        id,
+        previousaclruleid: neighbors[index - 1]?.id,
+        nextaclruleid: neighbors[index]?.id,
+        aclconsistencyhash: this.orderHash
+      }, position ? { id, position } : null)
+    },
+    async writeMove (params, focus, receipt) {
+      if (this.busy || this.dialog || !this.can('move') || (receipt ? this.pending?.jobId !== receipt : !this.canMove)) return
+      const scope = this.scope
+      const epoch = this.epoch
+      const current = () => this.live(scope, epoch) && this.can('move') && !this.dialog
+      this.busy = true
+      this.notice = null
+      try {
+        const ok = await runAclWrite({
+          get: getAPI,
+          post: postAPI,
+          command: aclCommands.move,
+          params: { ...params, ...this.target.params },
+          pending: receipt,
+          current,
+          accepted: jobId => { this.pending = jobId ? { jobId, action: 'move', focus } : null }
+        })
+        if (ok && current() && await this.fetchData() && this.live(scope, epoch)) {
+          this.$message.success(this.$t('message.success.move.acl.order'))
+        }
+      } catch (error) {
+        if (!current()) return
+        if (aclDenied(error)) {
+          this.pending = null
+          this.access = null
+          this.orderHash = null
+          this.notice = { type: 'warning', message: 'message.acl.access.changed', retry: true }
+        } else if (this.pending?.action === 'move') {
+          this.notice = { type: 'warning', message: 'message.acl.job.pending', recheck: true }
+        } else if (await this.fetchData() && this.live(scope, epoch)) {
+          this.notice = aclOrderConflict(error)
+            ? { type: 'warning', message: 'message.acl.order.conflict' }
+            : { type: 'warning', message: 'message.acl.order.failed', detail: networkError(error).text, retry: true }
+        }
+      } finally {
+        if (this.live(scope, epoch)) {
+          this.busy = false
+          if (focus && !this.pending) {
+            await this.$nextTick()
+            if (this.live(scope, epoch)) this.focusMovedRule(focus)
+          }
+        }
       }
-      return this.moveRule(moved.element.id, this.acls[moved.newIndex - 1]?.id, this.acls[moved.newIndex + 1]?.id)
     },
-    moveRule (id, previousaclruleid, nextaclruleid) {
-      if (!this.canMove || this.dialog || this.busy || (!previousaclruleid && !nextaclruleid) ||
-        ![id, previousaclruleid, nextaclruleid].filter(Boolean).every(key => this.lastRules.some(row => row.id === key))) return
-      return this.write('move', { id, previousaclruleid, nextaclruleid })
+    focusMovedRule ({ id, position }) {
+      const row = Array.from(this.$el.querySelectorAll('[data-acl-rule-id]')).find(item => item.dataset.aclRuleId === id)
+      if (!row) return
+      const sameAction = row.querySelector('button.acl-move-' + position + ':enabled')
+      const otherAction = row.querySelector('button[class*="acl-move-"]:enabled')
+      const focusTarget = sameAction || otherAction || row
+      focusTarget.focus()
     },
-    exportAclList () {
-      if (!this.active || !this.target || !this.acls.length) return
-      const keys = [...new Set(this.acls.flatMap(item => Object.keys(item)))]
-      const csvValue = value => {
-        const text = String(value ?? '')
-        return /[,\r\n"]/.test(text) ? '"' + text.replace(/"/g, '""') + '"' : text
+    async prepareAclExport (open) {
+      if (!open || !this.target || !this.active || this.fetchLoading || this.exporting) return
+      const scope = this.scope
+      const epoch = this.epoch
+      const read = this.ruleRead
+      const current = () => this.live(scope, epoch) && read === this.ruleRead
+      const params = { ...this.target.params, aclid: this.target.row.id, page: 1, pagesize: 1 }
+      const keyword = this.appliedSearch
+      this.exportTotals = {}
+      const count = async filters => {
+        const json = await getAPI('listNetworkACLs', { ...params, ...filters }, aclRequestOptions)
+        const body = aclResponse(json, 'listnetworkaclsresponse')
+        const total = Number(body.count ?? 0)
+        if (!Number.isSafeInteger(total) || total < 0) throw new Error('Invalid ACL export count')
+        return total
       }
-      const csv = [keys.join(','), ...this.acls.map(row => keys.map(key => csvValue(
-        key === 'tags' ? (row.tags || []).map(tag => '(' + tag.key + ',' + tag.value + ')').join('') : row[key]
-      )).join(','))].join('\n') + '\n'
-      const download = document.createElement('a')
-      download.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv)
-      download.download = 'AclRules-' + this.target.row.name + '-' + this.target.row.id + '.csv'
-      download.click()
+      try {
+        const [all, search] = await Promise.all([count(), this.hasRuleSearch
+          ? count({ ...this.appliedRuleFilters, ...(keyword ? { keyword } : {}), ...this.ruleDisplayParams(this.appliedRuleDisplay) })
+          : 0])
+        if (current()) this.exportTotals = { all, search }
+      } catch {
+        if (current()) this.$message.error(this.$t('message.acl.csv.export.failed'))
+      }
     },
+    async exportAclList (range) {
+      if (!this.target || !this.active || this.fetchLoading || this.exporting ||
+          !['all', 'search'].includes(range) || !this.exportTotals[range]) return
+      const scope = this.scope
+      const epoch = this.epoch
+      const read = this.ruleRead
+      const { id, name } = this.target.row
+      const current = () => this.live(scope, epoch) && read === this.ruleRead
+      const params = { ...this.target.params, aclid: id }
+      if (range === 'search') {
+        if (this.appliedSearch) params.keyword = this.appliedSearch
+        Object.assign(params, this.appliedRuleFilters, this.ruleDisplayParams(this.appliedRuleDisplay))
+      }
+      const count = this.exportTotals[range]
+      this.exporting = true
+      try {
+        const rows = await networkCollection((api, args) => {
+          if (!current()) throw new Error('ACL export scope changed')
+          return getAPI(api, args, aclRequestOptions)
+        }, 'listNetworkACLs', 'networkacl', params)
+        if (!current()) return
+        if (rows.length !== count || rows.some(row => row.aclid !== id)) throw new Error('ACL export data changed')
+        const csv = formatAclCsv(rows.sort((a, b) => a.number - b.number))
+        const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }))
+        try {
+          const download = document.createElement('a')
+          download.href = url
+          download.download = 'AclRules-' + name + '-' + id + '-' + range + '.csv'
+          download.click()
+        } finally {
+          setTimeout(() => URL.revokeObjectURL(url), 1000)
+        }
+        this.$message.success(this.$t('message.acl.csv.export.success', { count: rows.length }))
+      } catch {
+        if (current()) this.$message.error(this.$t('message.acl.csv.export.failed'))
+      } finally {
+        if (this.live(scope, epoch)) this.exporting = false
+      }
+    },
+
     refreshAfterImport () {
       if (!this.canImport()) return
       this.closeDialog(true)
@@ -678,15 +1019,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.acl-rule-display-filter { min-width: 9rem; }
+.acl-rule-count { margin: 8px 0; }
+.acl-rule-filter-form { width: min(18rem, calc(100vw - 64px)); }
+.acl-rule-filter-form .filter-group-button { display: flex; justify-content: space-between; gap: 8px; }
+.acl-rule-filter-help { color: var(--ui-text-secondary); }
+.acl-rule-filter-conditions { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+
 .acl-access-notice { margin: 12px 0; }
-.list {
-  &__item { display: flex; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--ui-border); }
-  &__container { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-  &__col { overflow-wrap: anywhere; }
-  &__label { font-weight: 600; }
-  &__actions { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; }
+.acl-order-hint { margin: 12px 0 0; color: var(--ui-text-secondary); }
+.acl-rule-table-scroll {
+  overflow: auto;
+  max-width: 100%;
+  border: 1px solid var(--ui-border);
+  border-radius: 6px;
 }
-.drag-handle { align-self: flex-start; cursor: grab; padding: 6px; }
+.acl-rule-table {
+  width: 100%;
+  min-width: 52rem;
+  border-collapse: collapse;
+  background: var(--ui-bg-surface);
+  color: var(--ui-text-primary);
+
+  th, td { padding: 8px; vertical-align: top; border-bottom: 1px solid var(--ui-border); text-align: start; }
+  thead th { background: var(--ui-bg-elevated); color: var(--ui-text-secondary); white-space: nowrap; }
+  tbody tr:last-child > * { border-bottom: 0; }
+  tbody tr:hover > *, tbody tr:focus-within > * { background: var(--ui-bg-hover); }
+  tbody tr:focus { outline: 2px solid var(--ui-focus); outline-offset: -2px; }
+  :deep(.ant-tag) { margin-inline-end: 0; }
+}
+.acl-rule-number { display: flex; align-items: center; gap: 4px; }
+.acl-rule-protocol { display: block; white-space: nowrap; color: var(--ui-text-secondary); }
+.acl-rule-cidr-value { display: flex; align-items: flex-start; gap: 8px; }
+.acl-rule-cidr-value ul { margin: 0; padding: 0; list-style: none; }
+.acl-rule-cidr-value code { color: inherit; white-space: nowrap; }
+.acl-rule-description { min-width: 8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.acl-rule-actions { min-width: 11rem; }
+.acl-rule-row-actions { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.acl-rule-scroll-hint { margin: 8px 0; color: var(--ui-text-secondary); }
+.acl-rule-table-scroll:focus-visible,
+.acl-rule-table-scroll :deep(.ant-btn:focus-visible),
+.acl-rules-toolbar :deep(.ant-btn:focus-visible) { outline: 2px solid var(--ui-focus); outline-offset: 2px; }
+.acl-rules-toolbar :deep(.network-rules-search) { min-width: 0; }
+.acl-rules-toolbar :deep(.ant-btn-primary:not(:disabled)) {
+  color: var(--ui-action-primary-text);
+  background: var(--ui-action-primary-bg);
+  border-color: var(--ui-action-primary-bg);
+}
+.acl-rules-toolbar :deep(.ant-btn-primary:not(:disabled):hover) {
+  background: var(--ui-action-primary-hover);
+  border-color: var(--ui-action-primary-hover);
+}
+.drag-handle { cursor: grab; padding: 4px; }
 .drag-ghost { opacity: 0.6; background: var(--ui-bg-elevated); }
 .acl-dialog-context {
   display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 16px;
@@ -694,9 +1078,7 @@ export default {
   border-radius: 8px; color: var(--ui-text-primary);
   dd { margin: 0; overflow-wrap: anywhere; font-weight: 600; }
 }
-@media (max-width: 991px) {
-  .list__item { flex-wrap: wrap; }
-  .list__container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .list__actions { flex-basis: 100%; justify-content: flex-end; }
+@media (max-width: 767px) {
+  .acl-rule-table { min-width: 48rem; }
 }
 </style>

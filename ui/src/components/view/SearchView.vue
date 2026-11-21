@@ -26,7 +26,7 @@
     <span v-if="!searchFilters || searchFilters.length === 0" style="display: flex;">
       <a-input-search
         v-model:value="searchQuery"
-        :placeholder="isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :placeholder="isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         allowClear
         @search="onSearch"
       />
@@ -38,9 +38,9 @@
       <a-input-search
         allowClear
         class="input-search"
-        :placeholder="isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
+        :aria-label="isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
+        :placeholder="isAclSearch ? $t('label.acl.search.keyword') : isEventSearch ? $t('label.events.search.keyword') : apiName === 'listVnfAppliances' ? $t('label.vnf.name.search') : $t('label.search')"
         :title="apiName === 'listIsos' ? $t('message.iso.search.keyword') : undefined"
-        :aria-label="isEventSearch ? $t('label.events.search.keyword') : apiName === 'listIsos' ? $t('label.search') : undefined"
         v-model:value="searchQuery"
         @search="onSearch">
         <template #addonBefore>
@@ -51,7 +51,7 @@
             <template #content v-if="visibleFilter">
               <a-form
                 style="min-width: 170px"
-                :class="{ 'storage-standard-search-form': ['listTemplates', 'listIsos', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch || isVnfSearch || isEventSearch, 'guest-network-search-form': isGuestNetworkSearch || isVnfSearch || isEventSearch }"
+                :class="{ 'acl-list-search-form': isAclSearch, 'storage-standard-search-form': ['listTemplates', 'listIsos', 'listVolumes', 'listServiceOfferings', 'listDiskOfferings'].includes(apiName) || isGuestNetworkSearch || isVnfSearch || isEventSearch, 'guest-network-search-form': isGuestNetworkSearch || isVnfSearch || isEventSearch }"
                 :ref="formRef"
                 :model="form"
                 :rules="rules"
@@ -64,10 +64,16 @@
                   :name="field.name"
                   :key="index"
                   :label="retrieveFieldLabel(field.name)"
-                  :html-for="isKmsSearch ? 'kms-filter-' + field.name : undefined"
+                  :html-for="isAclSearch && field.name === 'vpcid' ? 'pip-search-candidate-vpcid' : isKmsSearch ? 'kms-filter-' + field.name : undefined"
                   :extra="['listTemplates', 'listIsos'].includes(apiName) && ['name', 'isready', 'userdataid'].includes(field.name) ? $t('message.template.search.' + field.name) : undefined">
+                  <PublicIpSearchSelect
+                    v-if="isAclSearch && field.name === 'vpcid'"
+                    v-model:value="form.vpcid"
+                    kind="vpcid"
+                    :scope="aclVpcScope"
+                    @blocked="aclVpcBlocked = $event" />
                   <VnfSearchSelect
-                    v-if="isVnfSearch && vnfPickerKinds.includes(field.name)"
+                    v-else-if="isVnfSearch && vnfPickerKinds.includes(field.name)"
                     :key="field.name + ':' + volumeLookupReset"
                     v-model:value="form[field.name]"
                     :kind="field.name"
@@ -198,7 +204,7 @@
                     type="primary"
                     size="small"
                     ref="submit"
-                    :disabled="(fields.some(field => field.name === 'volumeid') && volumeLookupBlocked) || (isVnfSearch && Object.values(vnfBlocked).some(Boolean))"
+                    :disabled="(fields.some(field => field.name === 'volumeid') && volumeLookupBlocked) || (isVnfSearch && Object.values(vnfBlocked).some(Boolean)) || (isAclSearch && aclVpcBlocked)"
                     html-type="submit">
                     <template #icon><search-outlined /></template>
                     {{ $t('label.search') }}
@@ -210,7 +216,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!isAclSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -235,6 +241,8 @@ import Status from '@/components/widgets/Status'
 import S2sGatewaySearch from './S2sGatewaySearch'
 import AsnSearch from '@/components/view/AsnSearch'
 import PublicIpSearch from '@/components/view/PublicIpSearch'
+import PublicIpSearchSelect from '@/components/view/PublicIpSearchSelect'
+import { publicIpProject } from '@/utils/publicIpSearch'
 import SnapshotSearch from '@/components/view/SnapshotSearch'
 import SnapshotPolicySearch from '@/components/view/SnapshotPolicySearch'
 import VolumeSearchSelect from '@/components/view/VolumeSearchSelect'
@@ -253,6 +261,7 @@ export default {
     Status,
     SnapshotSearch,
     PublicIpSearch,
+    PublicIpSearchSelect,
     S2sGatewaySearch,
     AsnSearch,
     SnapshotPolicySearch,
@@ -282,6 +291,7 @@ export default {
       paramsFilter: {},
       eventFilterError: '',
       visibleFilter: false,
+      aclVpcBlocked: false,
       fields: [],
       inputKey: null,
       inputValue: null,
@@ -326,6 +336,7 @@ export default {
         this.searchQuery = to.query.q
       }
       this.updateIsFiltered()
+      if (this.isAclSearch) this.visibleFilter = false
       if (this.apiName === 'listIsos' && to?.meta?.name === 'iso' && this.visibleFilter) this.fillFormFieldValues()
       if (this.apiName === 'listAffinityGroups' && to?.meta?.name === 'affinitygroup' && this.visibleFilter) {
         this.fillFormFieldValues()
@@ -348,6 +359,8 @@ export default {
     isVnfSearch () { return this.apiName === 'listVnfAppliances' },
     vnfSearchContext () { return this.isVnfSearch ? vnfAuth(this.$store.getters, this.$store.state?.user?.token) : '' },
     vnfScope () { return { ...Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])), projectid: this.$route.query.projectid || vnfProject(this.$store.getters) } },
+    isAclSearch () { return this.apiName === 'listNetworkACLLists' && this.$route.meta?.name === 'acllist' },
+    aclVpcScope () { return { projectid: publicIpProject(this.$store.getters) } },
     isGuestNetworkSearch () { return this.apiName === 'listNetworks' && this.$route.meta?.name === 'guestnetwork' },
     networkScope () { return Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])) },
     volumeOwnerContext () {
@@ -446,6 +459,7 @@ export default {
       this.initFormFieldData()
     },
     retrieveFieldLabel (fieldName) {
+      if (this.isAclSearch && fieldName === 'name') return this.$t('label.acl.search.exact')
       if (this.isEventSearch && ['keyword', 'type', 'eventuuid', 'resourceid'].includes(fieldName)) {
         return this.$t('label.events.search.' + fieldName)
       }
@@ -1187,6 +1201,11 @@ export default {
     },
     initFormFieldData () {
       const arrayField = this.initFields()
+      if (this.isAclSearch) {
+        this.aclVpcBlocked = false
+        this.fillFormFieldValues()
+        return
+      }
       if (this.isEventSearch) {
         this.eventFilterError = ''
         this.form = reactive({})
@@ -2018,6 +2037,12 @@ export default {
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isAclSearch) {
+        this.visibleFilter = false
+        this.searchQuery = ''
+        this.$emit('search', { aclReset: true })
+        return
+      }
       if (this.isEventSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
@@ -2063,6 +2088,12 @@ export default {
       this.$emit('search', this.paramsFilter)
     },
     handleSubmit () {
+      if (this.isAclSearch) {
+        if (this.aclVpcBlocked) return
+        this.visibleFilter = false
+        this.$emit('search', { aclAdvanced: Object.fromEntries(this.fields.map(field => [field.name, this.form[field.name]])) })
+        return
+      }
       if (this.isEventSearch) {
         this.eventFilterError = eventSearchError(this.form, this.$isValidUuid)
         if (this.eventFilterError) return
@@ -2115,7 +2146,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true
@@ -2127,3 +2158,6 @@ export default {
 </script>
 
 <style scoped lang="less" src="@/style/components/view/search-view.less" />
+<style scoped>
+.acl-list-search-form { width: min(20rem, calc(100vw - 64px)); }
+</style>

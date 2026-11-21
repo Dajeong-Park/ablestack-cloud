@@ -77,6 +77,10 @@
       <IsoListCell v-else-if="isIsoMainList && ['name', 'state', 'ostypename', 'arch', 'account', 'project', 'size'].includes(column.key)" :record="record" :field="column.key" />
       <S2sGatewayValue v-else-if="$route.meta?.name === 's2svpn' && ['publicip','vpcname','account','domain','project'].includes(column.key)" :resource="record" :field="column.key" list />
       <KubernetesIsoListCell v-else-if="isKubernetesIsoMainList && ['state', 'isostate', 'zonename', 'semanticversion', 'mincpunumber', 'minmemory', 'arch'].includes(column.key)" :resource="record" :field="column.key" />
+      <AclScopeValue v-else-if="column.key === 'vpcname' && isAclListRoute($route)" :resource="record" />
+      <a-tag v-else-if="column.key === 'fordisplay' && isAclListRoute($route) && typeof text === 'boolean'">
+        {{ $t(aclDisplayLabel(text)) }}
+      </a-tag>
       <template v-else>
       <VpnPsk v-if="column.key === 'ipsecpsk' || column.dataIndex === 'ipsecpsk'" :value="text" masked-only />
       <SharedFSCapacitySummary v-else-if="$route.name === 'sharedfs' && column.key === 'capacity'" :resource="record" mode="list" />
@@ -171,6 +175,7 @@
             <router-link :to="networkDetailLocation($route, record)">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :to="networkDetailLocation($route, record, 'comments')"><message-filled style="padding-left: 10px" size="small" /></router-link>
           </span>
+          <router-link v-else-if="isAclListRoute($route) && !resourcePath && record.id" :to="aclListDetailLocation($route, record, $store.getters)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
@@ -1284,6 +1289,8 @@
 </template>
 
 <script>
+import AclScopeValue from '@/components/view/AclScopeValue'
+import { aclDisplayLabel, aclListDetailLocation, isAclListRoute } from '@/utils/vpcAclAccess'
 import { eventDetailLocation, eventTypeLabel, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
@@ -1347,6 +1354,7 @@ import { vnfDetailLocation } from '@/utils/vnfSearch'
 export default {
   name: 'ListView',
   components: {
+    AclScopeValue,
     S2sGatewayValue,
     TemplateAvailability,
     KubernetesIsoListCell,
@@ -1662,6 +1670,9 @@ export default {
       scroller.scrollLeft = event.key === 'Home' ? 0 : event.key === 'End' ? scroller.scrollWidth - scroller.clientWidth : scroller.scrollLeft + (event.key === 'ArrowRight' ? 120 : -120)
     },
     kubernetesIsoDetailLocation,
+    aclDisplayLabel,
+    aclListDetailLocation,
+    isAclListRoute,
     kmsListRoute,
     kmsDetailLocation,
     networkTypeLabel,
