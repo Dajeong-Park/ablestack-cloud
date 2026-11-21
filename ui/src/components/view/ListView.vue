@@ -310,11 +310,12 @@
         <span
           v-else-if="$route.meta?.name === 'guestnetwork'"
         >{{ $t(networkTypeLabel(text)) }}</span>
+        <router-link v-else-if="$route.meta?.name === 'event' && record.id" :to="eventRowLocation(record)">{{ translateEventType(text) }}</router-link>
         <span
           v-else-if="['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(text)"
         >{{ translateEventType(text) }}</span>
         <span v-else>{{ translateEventType(text) }}</span>
-        <a-tag v-if="record.archived && isEventTimelineRoute($route)" color="orange">{{ $t('label.archived') }}</a-tag>
+        <a-tag v-if="record.archived && (isEventTimelineRoute($route) || isEventDetailRoute($route))" color="orange">{{ $t('label.archived') }}</a-tag>
       </template>
       <template v-if="$route.name === 'snapshot' && column.key === 'intervaltype'"><span>{{ $t(snapshotListInterval(text)) }}</span></template>
       <template v-if="column.key === 'schedule'">
@@ -811,7 +812,8 @@
         </template>
       </template>
       <template v-if="column.key === 'level'">
-        <router-link :to="eventDetailLocation(record, $route)">{{ text }}</router-link>
+        <span v-if="$route.meta?.name === 'event'">{{ text }}</span>
+        <router-link v-else :to="eventRowLocation(record)">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'usageType'">
         {{ usageTypeMap[record.usagetype] }}
@@ -1282,7 +1284,7 @@
 </template>
 
 <script>
-import { eventDetailLocation, isEventTimelineRoute } from '@/utils/eventTimeline'
+import { eventDetailLocation, eventTypeLabel, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { kmsDetailLocation } from '@/utils/kmsNavigation'
@@ -1618,7 +1620,10 @@ export default {
   },
   methods: {
     isEventTimelineRoute,
-    eventDetailLocation,
+    isEventDetailRoute,
+    eventRowLocation (record) {
+      return eventDetailLocation(record, this.$route, this.$store.getters, this.$store.state?.user?.token, this.$router.options.history.state)
+    },
     vpnConnectionListRoute,
     vpnConnectionState,
     vpnConnectionDisplaySupported,
@@ -1713,12 +1718,7 @@ export default {
     },
     listRowKey (record) { return snapshotCopyList(this.$route) ? (record.copy?.id || listRowKey(record)) : listRowKey(record) },
     translateEventType (type) {
-      if (!type || typeof type !== 'string') {
-        return type
-      }
-      const translationKey = type.toLowerCase()
-      const translatedType = this.$t(translationKey)
-      return translatedType === translationKey ? type : translatedType
+      return eventTypeLabel(type, this.$t)
     },
     convertKB (val) {
       if (val < 1024) return `${Number(val).toFixed(2)} KB`

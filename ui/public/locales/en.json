@@ -1468,6 +1468,8 @@
   "label.event.archived": "Event(s) archived",
   "label.event.deleted": "Event(s) deleted",
   "label.event.timeline": "Event timeline",
+  "message.events.scope": "Query scope is {scope}.",
+  "message.events.timeline.tab.order": "Stages are shown in chronological order. All includes archived stages.",
   "label.events.search.keyword": "Event keyword",
   "label.events.search.type": "Event type",
   "label.events.search.eventuuid": "Event UUID",

@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <resource-layout :wide="wideLayout" :class="{ 'kms-resource': kmsDetailRoute($route), 's2s-gateway-resource': $route.meta?.name === 's2svpn', 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
+  <resource-layout :wide="wideLayout" :class="{ 'event-resource': isEventDetailRoute($route), 'kms-resource': kmsDetailRoute($route), 's2s-gateway-resource': $route.meta?.name === 's2svpn', 'autoscale-resource': $route.meta?.name === 'autoscalevmgroup', 'affinity-resource': $route.meta?.name === 'affinitygroup', 'kubernetes-iso-resource': $route.meta?.name === 'kubernetesiso', 'template-resource': ['template', 'iso', 'kubernetesiso'].includes($route.meta?.name) }">
     <template #left>
       <slot name="info-card">
         <info-card
@@ -112,6 +112,7 @@ import GuestNetworkDescription from '@/components/view/GuestNetworkDescription'
 import ResourceLayout from '@/layouts/ResourceLayout'
 import { getAPI } from '@/api'
 import { kmsDetailRoute, kmsRouteHistory } from '@/utils/kmsNavigation'
+import { eventRouteHistory, isEventDetailRoute } from '@/utils/eventTimeline'
 import { templateObservationContext } from '@/utils/templateAvailability'
 import { mixinDevice } from '@/utils/mixin.js'
 
@@ -228,6 +229,7 @@ export default {
   },
   methods: {
     kmsDetailRoute,
+    isEventDetailRoute,
     refreshKubernetesIsoAvailability () { return this.$refs.kubernetesIsoSummary?.refresh() },
     acceptKubernetesIsoObservation (value) {
       if (this.$route.meta?.name === 'kubernetesiso' && value?.versionid === this.resource.id && value?.isoid === this.resource.isoid && value.context === this.kubernetesIsoContext) this.kubernetesIsoObservation = value
@@ -262,6 +264,11 @@ export default {
       const query = Object.assign({}, this.$route.query)
       query.tab = key
       const historyState = this.$router?.options?.history?.state
+      if (isEventDetailRoute(this.$route)) {
+        this.$router.replace({ path: this.$route.path, query, state: eventRouteHistory(this.$route, historyState, this.$store.getters, this.$store.state?.user?.token) })
+        this.$emit('onTabChange', key)
+        return
+      }
       if (kmsDetailRoute(this.$route) || (this.$route.meta?.name === 'volume' && historyState?.kmsRelatedReturn)) {
         this.$router.push({ path: this.$route.path, query, state: kmsRouteHistory(historyState) })
         this.$emit('onTabChange', key)
@@ -336,7 +343,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.template-resource :deep(.resource-content-card .ant-tabs-content-holder) { min-width: 0; }
+.template-resource :deep(.resource-content-card .ant-tabs-content-holder),
+.event-resource :deep(.resource-content-card .ant-tabs-content-holder) { min-width: 0; }
 .template-resource :deep(.resource-content-card .ant-tabs-tabpane) { min-width: 0; }
 /* Match the notice-line spacing and rail minimum of VM InstanceTab. */
 .s2s-gateway-resource :deep(.s2s-gateway-tabs) { margin-top: 22px !important; }

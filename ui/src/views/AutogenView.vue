@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -103,13 +103,14 @@
                   @change="(checked, event) => { $store.dispatch('SetMetrics', checked) }"
                 />
                 <BucketStoreFilter v-if="isBucketList" />
+                <a-tag v-if="isEventList && !isEventTimeline && eventScopeDiffers">{{ $t('message.events.scope', { scope: eventTimelineScopeLabel }) }}</a-tag>
                 <a-switch
                   v-if="!isEventTimeline && !projectView && hasProjectId && (!vpnConnectionRoute($route) || !dataView)"
                   style="margin-left: 8px; min-height: 23px; margin-bottom: 4px"
                   :checked-children="$t('label.projects')"
                   :un-checked-children="$t('label.projects')"
-                  :checked="$store.getters.listAllProjects"
-                  @change="(checked, event) => { $store.dispatch('SetListAllProjects', checked) }"
+                  :checked="isEventList ? eventProjectScope($route, $store.getters) === '-1' : $store.getters.listAllProjects"
+                  @change="changeListProjects"
                 />
               </template>
             </breadcrumb>
@@ -778,7 +779,7 @@
           :actions="(asnSearchAuth && asnSearchFailure) || isSnapshotCopyList || snapshotSearchFailure || policySearchFailure || ((isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           :selectionDisabled="record => (asnSearchAuth && !asnListReady) || (isSnapshotList || isPolicyList || isObjectStorageUi || $route.meta?.name === 'vnfapp') && !storageActionReady"
           :explicitlyAllowRowSelection="policySelectionAvailable || !!asnSearchAuth"
-          :tableScroll="asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
+          :tableScroll="isEventList ? { x: 1210 } : asnSearchAuth ? { x: 1640 } : s2sGatewayListRoute($route) ? { x: 860 } : vpnConnectionListRoute($route) ? { x: vpnConnectionTableWidth } : undefined"
           :keyboardContextMenu="isSnapshotList"
           :currentPage="page"
           :pageSize="pageSize"
@@ -875,7 +876,7 @@ import MoldDialog from '@/components/view/MoldDialog'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
 import { canMutateEvents, isEventMutation } from '@/utils/eventActions'
-import { isEventTimelineRoute } from '@/utils/eventTimeline'
+import { eventDetailKey, eventListLocation, eventProjectScope, eventViewScope, isEventDetailRoute, isEventTimelineRoute } from '@/utils/eventTimeline'
 import { eventCreatedSortQuery, eventSearchQuery } from '@/utils/eventSearch'
 import NetworkOperationPolicy from '@/components/view/NetworkOperationPolicy'
 import { storageUiRoute, storageDialogSize, storageDetailRouteKey } from '@/utils/storageUi'
@@ -1363,6 +1364,7 @@ export default {
     },
     '$route' (to, from) {
       if (to.fullPath !== from.fullPath && !to.path.startsWith('/action/') && (to?.query?.tab !== 'browser' || (to.meta?.name === 'buckets' && to.path !== from.path))) {
+        if (isEventDetailRoute(to) && isEventDetailRoute(from) && eventDetailKey(to) === eventDetailKey(from)) return
         if (vpnConnectionRoute(to) && to.params?.id && storageDetailRouteKey(to) === storageDetailRouteKey(from)) return
         if (kmsDetailRoute(to) && kmsDetailRoute(from) && this.listLoadedScope &&
           kmsDetailKey(to, this.$store.getters) === kmsDetailKey(from, this.$store.getters)) return
@@ -1408,7 +1410,7 @@ export default {
     },
     '$store.getters.listAllProjects' (enabled) {
       // The synchronous VNF context watcher owns its canonical URL transition.
-      if (vnfRoute(this.$route) || publicIpRoute(this.$route) || s2sGatewayRoute(this.$route) || this.isS2sSearchList) return
+      if (this.isEventList || vnfRoute(this.$route) || publicIpRoute(this.$route) || s2sGatewayRoute(this.$route) || this.isS2sSearchList) return
       if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || guestNetworkRoute(this.$route)) && !this.$store.getters.project?.id) {
         const projectid = enabled ? '-1' : '0'
         if (this.$route.query.projectid !== projectid) return this.$router.push({ query: { ...this.$route.query, projectid, page: '1' } })
@@ -1464,6 +1466,9 @@ export default {
       const params = this.$getApiParams('listEvents')
       return this.isEventList && !this.isEventTimeline && !!params.sortkey && !!params.sortorder
     },
+    eventScopeDiffers () {
+      return eventProjectScope(this.$route, this.$store.getters) !== eventViewScope(this.$store.getters)
+    },
     eventTimelineScopeLabel () {
       const { project, listAllProjects } = this.$store.getters
       const id = this.$route.query.projectid || project?.id || (listAllProjects ? '-1' : '0')
@@ -1504,14 +1509,18 @@ export default {
     publicIpAuth () { return publicIpRoute(this.$route) ? publicIpReadAuth(this.$store) : '' },
     presentedColumns () {
       const columns = this.localizePublicIpColumns(this.columns)
-      if (this.isEventTimeline) return columns.map(column => ({ ...column, sorter: false, ...(column.key === 'state' ? { width: 112 } : {}) }))
       if (this.isEventList) {
         const { sortkey, sortorder } = this.$route.query
-        return columns.map(column => column.key === 'created' ? {
+        const widths = { type: 166, level: 70, state: 100, description: 250, resource: 154, username: 114, account: 110, project: 130, domain: 108, created: 180, filtercolumn: 42 }
+        return columns.map(column => ({
           ...column,
-          sorter: this.eventCreatedSortEnabled,
-          sortOrder: this.eventCreatedSortEnabled && sortkey === 'created' ? (sortorder === 'asc' ? 'ascend' : 'descend') : null
-        } : column)
+          width: widths[column.key] || column.width,
+          ...(column.key === 'description' ? { ellipsis: true } : {}),
+          ...(this.isEventTimeline ? { sorter: false } : column.key === 'created' ? {
+            sorter: this.eventCreatedSortEnabled,
+            sortOrder: this.eventCreatedSortEnabled && sortkey === 'created' ? (sortorder === 'asc' ? 'ascend' : 'descend') : null
+          } : {})
+        }))
       }
       if (s2sGatewayRoute(this.$route)) return columns.filter(column => column.key !== 'project' || s2sGatewayProject(this.$store.getters) !== '0')
       if (vpnConnectionListRoute(this.$route)) {
@@ -1563,7 +1572,7 @@ export default {
       const queryParams = Object.assign({}, this.$route.query)
       const activeFilters = []
       for (const filter in queryParams) {
-        if (this.isEventTimeline && ['timeline', 'startid', 'archived', 'filter', 'projectid'].includes(filter)) continue
+        if (this.isEventList && ['timeline', 'startid', 'archived', 'filter', 'projectid'].includes(filter)) continue
         if (kmsListRoute(this.$route) && filter === 'projectid' && kmsProjectScope(this.$store.getters)) continue
         if (['sortkey', 'sortorder', 'kisoowner', 'kisoreturn'].includes(filter) || publicIpRoute(this.$route) && filter === 'filter') continue
         if (this.$route.name === 'vmsnapshot' && filter === 'filter') {
@@ -1703,6 +1712,7 @@ export default {
     }
   },
   methods: {
+    eventProjectScope,
     s2sGatewayRoute,
     s2sGatewayListRoute,
     vpnConnectionRoute,
@@ -1819,6 +1829,8 @@ export default {
         routeKey = JSON.stringify([this.$route.path, Object.entries(this.$route.query || {}).filter(([key]) => !['tab', 'browserPath'].includes(key)).sort(([a], [b]) => a.localeCompare(b))])
       } else if ((this.isVpnConnectionDetail || storageUiRoute(this.$route) || snapshotDetailRoute(this.$route) || policyDetailRoute(this.$route)) && this.$route.params?.id) {
         routeKey = storageDetailRouteKey(this.$route)
+      } else if (isEventDetailRoute(this.$route)) {
+        routeKey = eventDetailKey(this.$route)
       } else if (['template', 'iso', 's2svpn'].includes(this.$route.meta?.name) && this.$route.params?.id) {
         const query = { ...this.$route.query }; delete query.tab
         routeKey = JSON.stringify([this.$route.path, query])
@@ -1876,7 +1888,18 @@ export default {
         this.fetchData({ irefresh: true })
       } catch (error) { if ((snapshotListRoute(this.$route) || snapshotPolicyListRoute(this.$route) || this.canonicalNetworkProjectRoute()) && captured === scope()) { if (vnfRoute(this.$route)) this.rejectVnfSearch('message.vnf.search.permission'); this.$notifyError(error) } } finally { if (fromVnf) { this.vnfProjectSync = false; if (retry) this.fetchData() } }
     },
+    changeListProjects (enabled) {
+      if (this.isEventList) {
+        const query = { ...this.$route.query, projectid: enabled ? '-1' : '0', page: '1' }
+        if (enabled) delete query.account
+        this.$store.dispatch('SetListAllProjects', enabled)
+        return this.$router.push({ query })
+      }
+      this.$store.dispatch('SetListAllProjects', enabled)
+    },
     switchProject (projectId) {
+      // Event reads carry their own project scope, without changing the selected project on detail navigation.
+      if (this.$route.meta?.name === 'event') return
       // Public IP URLs are validated against the selected scope; the legacy
       // switcher removes projectid and would fight canonical query restoration.
       if (publicIpRoute(this.$route) || (this.$route.meta?.name === 's2svpnconn' && projectId === this.$store.getters.project?.id)) return
@@ -2307,7 +2330,7 @@ export default {
         this.searchFilters = this.searchFilters()
       }
 
-      this.projectView = Boolean(store.getters.project && store.getters.project.id)
+      this.projectView = this.isEventList ? !['0', '-1'].includes(eventProjectScope(this.$route, store.getters)) : Boolean(store.getters.project && store.getters.project.id)
       this.hasProjectId = (vpnConnectionListRoute(this.$route) && 'projectid' in this.$getApiParams(vpnConnectionApi)) || ['vm', 'vmgroup', 'ssh', 'affinitygroup', 'userdata', 'cniconfiguration', 'volume', 'snapshot', 'buckets', 'vmsnapshot', 'guestnetwork',
         'vpc', 'securitygroups', 'publicip', 's2svpn', 'vpncustomergateway', 'template', 'iso', 'event', 'kubernetes', 'sharedfs',
         'autoscalevmgroup', 'vnfapp', 'webhook', 'kmskey', 'hsmprofile', 'snapshotpolicy'].includes(this.$route.name)
@@ -2998,12 +3021,11 @@ export default {
     },
     finishEventMutation (success) {
       const deletedDetail = success && this.dataView && this.currentAction.api === 'deleteEvents'
+      const location = deletedDetail && eventListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token, this.resource)
       this.closeAction()
       this.resetSelection()
       if (this.$refs.listview) this.$refs.listview.resetSelection()
-      if (deletedDetail) {
-        return this.$router.replace({ path: '/event' })
-      }
+      if (location) return this.$router.replace(location)
       return this.fetchData({ irefresh: true })
     },
     closeAction (result) {
@@ -4800,4 +4822,10 @@ export default {
 .iso-list-page :deep(.ant-table-cell) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .iso-list-page :deep(.ant-table-thead th) { white-space: nowrap; }
 .iso-list-page :deep(.ant-breadcrumb) { overflow-wrap: anywhere; }
+</style>
+
+<style scoped>
+.event-list-page :deep(.ant-table-cell) { white-space: nowrap; }
+.event-list-page :deep(.ant-table-cell-ellipsis) { overflow: hidden; text-overflow: ellipsis; }
+.event-list-page :deep(.autogen-toolbar-actions) { min-width: 0; }
 </style>

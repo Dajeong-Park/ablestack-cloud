@@ -42,6 +42,7 @@
         <keyboard-tooltip v-else-if="$route.meta?.name === 'kubernetesiso'" :title="resource.name || $route.params.id" :trigger="['hover','focus']">
           <span tabindex="0" class="kubernetes-iso-breadcrumb-name">{{ resource.name || $route.params.id }}</span>
         </keyboard-tooltip>
+        <span v-else-if="isEventDetailRoute($route)" class="event-breadcrumb-title">{{ eventBreadcrumbTitle(resource) || $route.params.id }}</span>
         <span v-else-if="vpnConnectionRoute($route)" class="s2s-connection-breadcrumb-name">{{ vpnConnectionName(resource, $route.params.id) }}</span>
         <label v-else :class="{ 'kms-breadcrumb-name': kmsDetailRoute($route) }">
           {{ s2sGatewayRoute($route) ? gatewayName(resource) : isVmIdentityRoute($route) ? vmDisplayName(resource) : resource.displayname || resource.name || resource.displaytext || resource.hostname || resource.username || resource.ipaddress || resource.osname || resource.osdisplayname || $route.params.id }}
@@ -87,6 +88,7 @@ import { gatewayName } from '@/utils/s2sGateway'
 import { s2sGatewayListLocation, s2sGatewayRoute, vpnConnectionApi, vpnConnectionName, vpnConnectionRoute } from '@/utils/s2sGatewaySearch'
 import { vnfListLocation } from '@/utils/vnfSearch'
 import { kmsDetailRoute, kmsListLocation } from '@/utils/kmsNavigation'
+import { eventDisplayTitle, eventListLocation, isEventDetailRoute } from '@/utils/eventTimeline'
 import { kmsRelatedParentLocation } from '@/utils/kmsRelated'
 
 export default {
@@ -133,7 +135,12 @@ export default {
     isVmIdentityRoute,
     documentationUrl,
     kmsDetailRoute,
+    isEventDetailRoute,
+    eventBreadcrumbTitle (event) { return eventDisplayTitle(event, this.$t, date => this.$toLocaleDate(date)) },
     breadcrumbLocation (item) {
+      if (item.path === '/event' && isEventDetailRoute(this.$route)) {
+        return eventListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token, this.resource)
+      }
       if (kmsDetailRoute(this.$route) && item.path === '/' + this.$route.meta.name) {
         return kmsListLocation(this.$route, this.$router.options.history.state, this.$store.getters, this.$store.state?.user?.token)
       }
@@ -178,7 +185,8 @@ export default {
 .ant-breadcrumb .anticon {
   vertical-align: text-bottom;
 }
-.kms-breadcrumb-name {
+.kms-breadcrumb-name,
+.event-breadcrumb-title {
   white-space: normal;
   overflow-wrap: anywhere;
 }

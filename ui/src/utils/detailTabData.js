@@ -27,7 +27,7 @@ export function detailTabError (error) {
 }
 
 // Reject malformed or mixed-resource pages instead of rendering a false empty result.
-export function readDetailTabPage (json, response, key, { page, pageSize, resourceId, entityType }) {
+export function readDetailTabPage (json, response, key, { page, pageSize, resourceId, entityType, matchResource = true }) {
   const fail = () => { throw new Error('message.detail.tab.incomplete') }
   const data = json?.[response]
   if (!data || (data[key] !== undefined && !Array.isArray(data[key]))) fail()
@@ -36,8 +36,8 @@ export function readDetailTabPage (json, response, key, { page, pageSize, resour
   const ids = new Set()
   for (const row of rows) {
     if (typeof row.id !== 'string' || !row.id || ids.has(row.id) ||
-      (row.resourceid && row.resourceid !== resourceId) ||
-      (row.entityid && row.entityid !== resourceId) ||
+      (matchResource && row.resourceid && row.resourceid !== resourceId) ||
+      (matchResource && row.entityid && row.entityid !== resourceId) ||
       (entityType && row.entitytype && row.entitytype !== entityType)) fail()
     ids.add(row.id)
   }

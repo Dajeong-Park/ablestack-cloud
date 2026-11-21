@@ -18,7 +18,7 @@
   <a-spin :spinning="loading">
     <a-card
       class="spin-content"
-      :class="{ 'template-info-card': $route.meta.name === 'template' || kmsDetailRoute($route), 'kms-info-card': kmsDetailRoute($route) }"
+      :class="{ 'template-info-card': $route.meta.name === 'template' || kmsDetailRoute($route), 'kms-info-card': kmsDetailRoute($route), 'event-info-card': $route.meta.name === 'event' }"
       :bordered="bordered"
       :title="title"
       @contextmenu="handleContextMenu">
@@ -1098,6 +1098,10 @@
                 <span v-else>{{ resource.managementserver || resource.managementserverid }}</span>
               </div>
             </div>
+            <div class="resource-detail-item" v-if="$route.meta?.name === 'event' && resource.username">
+              <div class="resource-detail-item__label">{{ $t('label.username') }}</div>
+              <div class="resource-detail-item__details"><user-outlined />{{ resource.username }}</div>
+            </div>
             <div class="resource-detail-item" v-if="resource.created && !['template', 'iso'].includes($route.path.split('/')[1])">
               <div class="resource-detail-item__label">{{ $t('label.created') }}</div>
               <div class="resource-detail-item__details">
@@ -1174,7 +1178,7 @@
 </template>
 
 <script>
-import { eventTimelineQuery } from '@/utils/eventTimeline'
+import { eventDisplayTitle, eventTimelineQuery, isEventDetailRoute } from '@/utils/eventTimeline'
 import { kmsRelations, kmsRelatedFilter } from '@/utils/kmsRelated'
 import { kmsDetailRoute } from '@/utils/kmsNavigation'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
@@ -1368,6 +1372,7 @@ export default {
         'RemoteAccessVpn', 'User', 'SnapshotPolicy', 'VpcOffering', 'Domain']
     },
     name () {
+      if (isEventDetailRoute(this.$route)) return eventDisplayTitle(this.resource, this.$t, date => this.$toLocaleDate(date))
       if (vpnConnectionRoute(this.$route)) return vpnConnectionName(this.resource)
       if (this.$route.meta?.name === 's2svpn') return gatewayName(this.resource)
       if (isVmIdentityRoute(this.$route)) return vmDisplayName(this.resource)
@@ -1883,3 +1888,7 @@ export default {
 </style>
 
 <style scoped src="@/style/components/view/resource-detail-fields.css"></style>
+
+<style scoped>
+.event-info-card .name { overflow-wrap: anywhere; }
+</style>

@@ -50,7 +50,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'event'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -86,6 +86,8 @@
             :field="item"
             :value="dataResource[item]"
             :label="$t(getDetailTitle(item))" />
+          <status v-else-if="$route.meta.name === 'event' && item === 'state'" :text="dataResource.state" display-text />
+          <div v-else-if="$route.meta.name === 'event' && item === 'type'">{{ eventTypeLabel(dataResource.type, $t) }}</div>
           <status v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['state', 'hostcontrolstate'].includes(item)" :text="String(dataResource[item] || '')" :display-label="dataResource[item] ? '' : $t('label.unknown')" display-text />
           <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && ['ostypename', 'osdisplayname'].includes(item)">{{ creationVmOsName(dataResource, $t) || $t('label.unknown') }}</div>
           <div v-else-if="['vm', 'vnfapp'].includes($route.meta.name) && item !== 'deleteprotection' && (vmBooleanFields.has(item) || typeof dataResource[item] === 'boolean')">{{ $t(vmBooleanLabel(dataResource[item])) }}</div>
@@ -427,6 +429,7 @@ display-text />
 </template>
 
 <script>
+import { eventTypeLabel } from '@/utils/eventTimeline'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { kmsRoute, hsmOwnerScope, kmsProtocolOptions } from '@/utils/kmsSearch'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
@@ -624,6 +627,7 @@ export default {
     }
   },
   methods: {
+    eventTypeLabel,
     kmsRoute,
     hsmOwnerScope,
     kmsProtocolOptions,

@@ -15,6 +15,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import { defineAsyncComponent, shallowRef } from 'vue'
 import store from '@/store'
 import { canMutateEvents } from '@/utils/eventActions'
 import { eventSearchKeys } from '@/utils/eventSearch'
@@ -37,6 +38,10 @@ export default {
   },
   details: ['username', 'id', 'description', 'resourcetype', 'resourceid', 'state', 'level', 'type', 'account', 'domain', 'created'],
   searchFilters: eventSearchKeys,
+  tabs: [
+    { name: 'details', component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue'))) },
+    { name: 'event.timeline', resourceType: 'EventTimeline', component: shallowRef(defineAsyncComponent(() => import('@/components/view/EventsTab.vue'))) }
+  ],
   related: [{
     name: 'event',
     title: 'label.event.timeline',
