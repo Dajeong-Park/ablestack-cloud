@@ -314,6 +314,7 @@
           v-else-if="['USER.LOGIN', 'USER.LOGOUT', 'ROUTER.HEALTH.CHECKS', 'FIREWALL.CLOSE', 'ALERT.SERVICE.DOMAINROUTER'].includes(text)"
         >{{ translateEventType(text) }}</span>
         <span v-else>{{ translateEventType(text) }}</span>
+        <a-tag v-if="record.archived && isEventTimelineRoute($route)" color="orange">{{ $t('label.archived') }}</a-tag>
       </template>
       <template v-if="$route.name === 'snapshot' && column.key === 'intervaltype'"><span>{{ $t(snapshotListInterval(text)) }}</span></template>
       <template v-if="column.key === 'schedule'">
@@ -810,7 +811,7 @@
         </template>
       </template>
       <template v-if="column.key === 'level'">
-        <router-link :to="{ path: '/event/' + record.id }">{{ text }}</router-link>
+        <router-link :to="eventDetailLocation(record, $route)">{{ text }}</router-link>
       </template>
       <template v-if="column.key === 'usageType'">
         {{ usageTypeMap[record.usagetype] }}
@@ -1281,6 +1282,7 @@
 </template>
 
 <script>
+import { eventDetailLocation, isEventTimelineRoute } from '@/utils/eventTimeline'
 import S2sGatewayValue from '@/components/view/S2sGatewayValue'
 import { networkTypeLabel } from '@/utils/networkLifecycle'
 import { kmsDetailLocation } from '@/utils/kmsNavigation'
@@ -1615,6 +1617,8 @@ export default {
     }
   },
   methods: {
+    isEventTimelineRoute,
+    eventDetailLocation,
     vpnConnectionListRoute,
     vpnConnectionState,
     vpnConnectionDisplaySupported,

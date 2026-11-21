@@ -949,11 +949,15 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
          * List events has start date filter, there is highly possible cause where no objects loaded
          * and next millisecond new event added and finally we ended up with count = 1 and no ids.
          */
-        if (count == 0 || idArray.length < 1) {
+        if (count == 0 || (!cmd.isTimeline() && idArray.length == 0)) {
             count = 0;
         }
 
         List<EventJoinVO> events = _eventJoinDao.searchByIds(idArray);
+        if (cmd.isTimeline()) {
+            Map<Long, EventJoinVO> byId = events.stream().collect(Collectors.toMap(EventJoinVO::getId, event -> event));
+            events = Arrays.stream(idArray).map(byId::get).filter(Objects::nonNull).collect(Collectors.toList());
+        }
         return new Pair<>(events, count);
     }
 
@@ -1005,16 +1009,38 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         Boolean isRecursive = domainIdRecursiveListProject.second();
         ListProjectResourcesCriteria listProjectResourcesCriteria = domainIdRecursiveListProject.third();
 
-        Filter searchFilter = new Filter(EventVO.class, "id", false, cmd.getStartIndex(), cmd.getPageSizeVal());
-        // additional order by since createdDate does not have milliseconds
-        // and two events, created within one second can be incorrectly ordered (for example VM.CREATE Completed before Scheduled)
-        // searchFilter.addOrderBy(EventVO.class, "id", false);
+        final boolean timeline = cmd.isTimeline();
+        final Long timelineRoot;
+        if (startId == null) {
+            timelineRoot = null;
+        } else {
+            SearchBuilder<EventVO> anchorBuilder = scopedEventSearchBuilder(domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
+            SearchCriteria<EventVO> anchorCriteria = scopedEventCriteria(anchorBuilder, domainId, isRecursive, permittedAccounts,
+                    listProjectResourcesCriteria, isRootAdmin);
+            anchorCriteria.setParameters("id", startId);
+            EventVO anchor = eventDao.findOneBy(anchorCriteria);
+            if (anchor == null) {
+                return new Pair<>(List.of(), 0);
+            }
+            // The stored numeric parent remains usable even if the parent event has been removed.
+            timelineRoot = anchor.getStartId() > 0 ? anchor.getStartId() : anchor.getId();
+        }
 
-        SearchBuilder<EventVO> eventSearchBuilder = eventDao.createSearchBuilder();
-        eventSearchBuilder.select(null, Func.DISTINCT, eventSearchBuilder.entity().getId());
-        accountMgr.buildACLSearchBuilder(eventSearchBuilder, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
+        Filter searchFilter = new Filter(EventVO.class, timeline ? "createDate" : "id", timeline, cmd.getStartIndex(), cmd.getPageSizeVal());
+        if (timeline) {
+            searchFilter.addOrderBy(EventVO.class, "id", true);
+        }
 
-        eventSearchBuilder.and("id", eventSearchBuilder.entity().getId(), SearchCriteria.Op.EQ);
+        SearchBuilder<EventVO> eventSearchBuilder = scopedEventSearchBuilder(domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
+        if (!timeline) {
+            eventSearchBuilder.select(null, Func.DISTINCT, eventSearchBuilder.entity().getId());
+        }
+        if (timelineRoot != null) {
+            eventSearchBuilder.and().op("timelineRoot", eventSearchBuilder.entity().getId(), SearchCriteria.Op.EQ);
+            eventSearchBuilder.or("timelineStage", eventSearchBuilder.entity().getStartId(), SearchCriteria.Op.EQ);
+            eventSearchBuilder.cp();
+        }
+
         eventSearchBuilder.and("levelL", eventSearchBuilder.entity().getLevel(), SearchCriteria.Op.LIKE);
         eventSearchBuilder.and("levelEQ", eventSearchBuilder.entity().getLevel(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("type", eventSearchBuilder.entity().getType(), SearchCriteria.Op.EQ);
@@ -1022,9 +1048,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
         eventSearchBuilder.and("createDateG", eventSearchBuilder.entity().getCreateDate(), SearchCriteria.Op.GTEQ);
         eventSearchBuilder.and("createDateL", eventSearchBuilder.entity().getCreateDate(), SearchCriteria.Op.LTEQ);
         eventSearchBuilder.and("state", eventSearchBuilder.entity().getState(), SearchCriteria.Op.EQ);
-        eventSearchBuilder.or("startId", eventSearchBuilder.entity().getStartId(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("createDate", eventSearchBuilder.entity().getCreateDate(), SearchCriteria.Op.BETWEEN);
-        eventSearchBuilder.and("displayEvent", eventSearchBuilder.entity().isDisplay(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("archived", eventSearchBuilder.entity().getArchived(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("resourceId", eventSearchBuilder.entity().getResourceId(), SearchCriteria.Op.EQ);
         eventSearchBuilder.and("resourceType", eventSearchBuilder.entity().getResourceType(), SearchCriteria.Op.EQ);
@@ -1036,24 +1060,16 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             eventSearchBuilder.cp();
         }
 
-        SearchCriteria<EventVO> sc = eventSearchBuilder.create();
-        // building ACL condition
-        accountMgr.buildACLSearchCriteria(sc, domainId, isRecursive, permittedAccounts, listProjectResourcesCriteria);
-
-        // For end users display only enabled events
-        if (!accountMgr.isRootAdmin(caller.getId())) {
-            sc.setParameters("displayEvent", true);
-        }
+        SearchCriteria<EventVO> sc = scopedEventCriteria(eventSearchBuilder, domainId, isRecursive, permittedAccounts,
+                listProjectResourcesCriteria, isRootAdmin);
 
         if (id != null) {
             sc.setParameters("id", id);
         }
 
-        if (startId != null) {
-            sc.setParameters("startId", startId);
-            if (id == null) {
-                sc.setParameters("id", startId);
-            }
+        if (timelineRoot != null) {
+            sc.setParameters("timelineRoot", timelineRoot);
+            sc.setParameters("timelineStage", timelineRoot);
         }
 
         if (keyword != null) {
@@ -1086,7 +1102,7 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             sc.setParameters("resourceType", resourceType.toString());
         }
 
-        if (id == null) {
+        if ((!timeline && id == null) || (timeline && cmd.hasArchivedFilter())) {
             sc.setParameters("archived", cmd.getArchived());
         }
 
@@ -1126,6 +1142,25 @@ public class QueryManagerImpl extends MutualExclusiveIdsManagerBase implements Q
             eventPair = new Pair<>(eventIds, count);
         }
         return eventPair;
+    }
+
+    private SearchBuilder<EventVO> scopedEventSearchBuilder(Long domainId, boolean recursive, List<Long> accounts,
+            ListProjectResourcesCriteria projectResources) {
+        SearchBuilder<EventVO> builder = eventDao.createSearchBuilder();
+        accountMgr.buildACLSearchBuilder(builder, domainId, recursive, accounts, projectResources);
+        builder.and("id", builder.entity().getId(), SearchCriteria.Op.EQ);
+        builder.and("displayEvent", builder.entity().isDisplay(), SearchCriteria.Op.EQ);
+        return builder;
+    }
+
+    private SearchCriteria<EventVO> scopedEventCriteria(SearchBuilder<EventVO> builder, Long domainId, boolean recursive,
+            List<Long> accounts, ListProjectResourcesCriteria projectResources, boolean rootAdmin) {
+        SearchCriteria<EventVO> criteria = builder.create();
+        accountMgr.buildACLSearchCriteria(criteria, domainId, recursive, accounts, projectResources);
+        if (!rootAdmin) {
+            criteria.setParameters("displayEvent", true);
+        }
+        return criteria;
     }
 
     @Override

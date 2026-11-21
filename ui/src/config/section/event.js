@@ -39,7 +39,8 @@ export default {
   related: [{
     name: 'event',
     title: 'label.event.timeline',
-    param: 'startid'
+    param: 'startid',
+    show: record => !!record.id
   }],
   filters: () => {
     return ['active', 'archived']

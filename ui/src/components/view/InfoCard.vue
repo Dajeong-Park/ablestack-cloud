@@ -1174,6 +1174,7 @@
 </template>
 
 <script>
+import { eventTimelineQuery } from '@/utils/eventTimeline'
 import { kmsRelations, kmsRelatedFilter } from '@/utils/kmsRelated'
 import { kmsDetailRoute } from '@/utils/kmsNavigation'
 import { isStorageServiceTemplate, canReadTemplateRuntimeCatalog } from '@/utils/templateDetails'
@@ -1661,6 +1662,9 @@ export default {
     },
     getRouterQuery (item) {
       const kind = this.$route.meta?.name
+      if (kind === 'event' && item.name === 'event' && item.param === 'startid') {
+        return eventTimelineQuery(this.resource, this.$route.query.projectid || this.$store.getters.project?.id)
+      }
       if (kmsRelations[kind]?.filter === item.param) return kmsRelatedFilter(kind, this.resource, this.$store.getters)
       if (item.param === 'networkofferingid' && item.name === 'guestnetwork') return offeringNetworkQuery(this.resource, this.$route, this.$store.getters)
       const query = {}

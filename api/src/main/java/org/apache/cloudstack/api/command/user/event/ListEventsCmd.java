@@ -26,6 +26,7 @@ import org.apache.cloudstack.api.response.EventResponse;
 import org.apache.cloudstack.api.response.ListResponse;
 
 import com.cloud.event.Event;
+import com.cloud.exception.InvalidParameterValueException;
 
 @APICommand(name = "listEvents", description = "A command to list events.", responseObject = EventResponse.class, entityType = {Event.class},
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
@@ -61,8 +62,12 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
     @Parameter(name = ApiConstants.TYPE, type = CommandType.STRING, description = "The event type (see event types)")
     private String type;
 
-    @Parameter(name = ApiConstants.START_ID, type = CommandType.UUID, entityType = EventResponse.class, description = "The parent/start ID of the event, when provided this will list all the events with the start/parent ID including the parent event")
+    @Parameter(name = ApiConstants.START_ID, type = CommandType.UUID, entityType = EventResponse.class, description = "An event ID used to find its operation and related stages, including the parent when visible")
     private Long startId;
+
+    @Parameter(name = "timeline", type = CommandType.BOOLEAN, description = "With startid, list the operation in chronological order. "
+            + "When archived is omitted, include active and archived stages.")
+    private Boolean timeline;
 
     @Parameter(name = ApiConstants.RESOURCE_ID, type = CommandType.STRING, description = "The ID of the resource associated with the event", since="4.17.0")
     private String resourceId;
@@ -121,7 +126,15 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
     }
 
     public boolean getArchived() {
-        return archived != null && archived;
+        return Boolean.TRUE.equals(archived);
+    }
+
+    public boolean hasArchivedFilter() {
+        return archived != null;
+    }
+
+    public boolean isTimeline() {
+        return Boolean.TRUE.equals(timeline);
     }
 
     public String getState() {
@@ -134,7 +147,9 @@ public class ListEventsCmd extends BaseListProjectAndAccountResourcesCmd {
 
     @Override
     public void execute() {
-
+        if (isTimeline() && startId == null) {
+            throw new InvalidParameterValueException("startid is required when timeline is true.");
+        }
         ListResponse<EventResponse> response = _queryService.searchForEvents(this);
         response.setResponseName(getCommandName());
         setResponseObject(response);
