@@ -1,4 +1,6 @@
 {
+  "label.dns.zone.associated.networks": "연결된 네트워크",
+  "message.dns.zone.delete.networks": "다음 네트워크와 DNS 영역의 연결이 해제됩니다. {networks}",
   "message.dns.job.no.id": "작업 ID 없이 접수됐을 수 있습니다. 다시 요청하기 전에 리소스 상태를 확인하세요.",
   "message.dns.job.unknown": "작업 {id}의 결과를 확인하지 못했습니다. 작업을 다시 조회하세요.",
   "label.dns.job.recheck": "작업 다시 확인",

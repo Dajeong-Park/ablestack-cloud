@@ -27,6 +27,9 @@
         </a-alert>
       </div>
 
+      <p v-if="resource.associatednetworks?.length || resource.networkname">
+        {{ $t('message.dns.zone.delete.networks', { networks: resource.associatednetworks?.map(network => network.networkname).join(', ') || resource.networkname }) }}
+      </p>
       <div style="margin-bottom: 20px; word-break: break-all;">
         Please type <strong>{{ resource.name }}</strong> to confirm.
       </div>
@@ -73,6 +76,7 @@
 </template>
 
 <script>
+import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { dnsJob } from './dnsJob'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
@@ -111,7 +115,7 @@ export default {
       return this.submitDnsJob('deleteDnsZone', params, 'label.dns.delete.zone', this.resource.name, () => {
         this.closeAction()
         if (this.$route.params.id === params.id) {
-          this.$router.push({ path: '/dnszone' })
+          this.$router.push({ path: '/dnszone', query: dnsZoneListQuery(this.$route.query) })
         } else {
           this.$emit('refresh-data')
         }

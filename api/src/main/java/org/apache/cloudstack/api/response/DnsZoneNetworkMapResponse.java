@@ -54,6 +54,14 @@ public class DnsZoneNetworkMapResponse extends BaseResponse {
         this.dnsZoneId = dnsZoneId;
     }
 
+    @SerializedName(ApiConstants.NETWORK_NAME)
+    @Param(description = "Name of the associated network")
+    private String networkName;
+
+    public void setNetworkName(String networkName) {
+        this.networkName = networkName;
+    }
+
     public void setNetworkId(String networkId) {
         this.networkId = networkId;
     }

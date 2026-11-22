@@ -1606,8 +1606,9 @@ export default {
       title: 'label.dns.zones',
       icon: 'apartment-outlined',
       permission: ['listDnsZones'],
+      searchFilters: () => ['listDnsServers' in store.getters.apis && store.getters.apis.listDnsZones?.params?.some(param => param.name === 'dnsserverid') ? 'dnsserverid' : null].filter(Boolean),
       columns: ['name', 'state', 'type', 'dnsservername', 'account', 'description'],
-      details: ['name', 'id', 'state', 'type', 'dnsservername', 'dnsserverid', 'account', 'domain', 'description'],
+      details: ['name', 'id', 'state', 'type', 'dnsservername', 'account', 'domain', 'associatednetworks', 'description'],
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))

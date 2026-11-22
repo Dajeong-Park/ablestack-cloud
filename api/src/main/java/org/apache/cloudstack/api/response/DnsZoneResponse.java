@@ -17,6 +17,8 @@
 
 package org.apache.cloudstack.api.response;
 
+import java.util.List;
+
 import org.apache.cloudstack.api.ApiConstants;
 import org.apache.cloudstack.api.BaseResponse;
 import org.apache.cloudstack.api.EntityReference;
@@ -66,6 +68,14 @@ public class DnsZoneResponse extends BaseResponse {
     @SerializedName(ApiConstants.NETWORK_NAME)
     @Param(description = "Name of the network this zone is associated with")
     private String networkName;
+
+    @SerializedName("associatednetworks")
+    @Param(description = "Networks associated with this DNS zone that the caller can access", responseObject = DnsZoneNetworkMapResponse.class)
+    private List<DnsZoneNetworkMapResponse> associatedNetworks;
+
+    public void setAssociatedNetworks(List<DnsZoneNetworkMapResponse> associatedNetworks) {
+        this.associatedNetworks = associatedNetworks;
+    }
 
     @SerializedName(ApiConstants.TYPE)
     @Param(description = "The type of the zone (Public/Private)")

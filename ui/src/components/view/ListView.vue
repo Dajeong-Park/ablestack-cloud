@@ -194,6 +194,7 @@
           <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <router-link v-else-if="$route.path === '/dnszone' && !resourcePath && record.id" :to="{ path: '/dnszone/' + record.id, query: dnsZoneListQuery($route.query) }">{{ text }}</router-link>
           <span v-else-if="resourcePath && record.id" class="embedded-resource-name"><router-link :to="resourceLink ? resourceLink(record) : { path: resourcePath === '/vm' ? createPathBasedOnVmType(record.vmtype, record.id) : resourcePath + '/' + record.id }">{{ text }}</router-link></span>
           <span v-else-if="record.hasannotations">
             <span v-if="record.id">
@@ -739,6 +740,10 @@
       </template>
       <template v-if="column.key === 'vlan'">
         <router-link v-if="$route.path === '/guestvlans'" :to="{ path: '/guestvlans/' + record.id, query: guestVlanListQuery($route.query) }">{{ text }}</router-link>
+      </template>
+      <template v-if="column.key === 'dnsservername' && $route.meta?.name === 'dnszone'">
+        <router-link v-if="record.dnsserverid && $store.getters.apis?.listDnsServers" :to="{ path: '/dnsserver/' + record.dnsserverid }">{{ text }}</router-link>
+        <span v-else>{{ text }}</span>
       </template>
       <template v-if="column.key === 'networkname'">
         <Ipv4SubnetResourceLink v-if="$route.meta?.name === 'ipv4subnets'" :record="record" field="networkname" />
@@ -1300,6 +1305,7 @@
 
 <script>
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
+import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { projectDetailLocation } from '@/utils/projectSearch'
@@ -1651,6 +1657,7 @@ export default {
     }
   },
   methods: {
+    dnsZoneListQuery,
     ipv4SubnetListQuery,
     guestVlanNetworkLocation,
     guestVlanListQuery,

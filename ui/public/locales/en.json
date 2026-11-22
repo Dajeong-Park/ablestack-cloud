@@ -1,4 +1,6 @@
 {
+  "label.dns.zone.associated.networks": "Associated networks",
+  "message.dns.zone.delete.networks": "The following networks will be disconnected from this zone: {networks}",
   "message.dns.job.no.id": "The request may have been accepted without a job ID. Check the resource before retrying.",
   "message.dns.job.unknown": "The result of job {id} is unknown. Check the job again.",
   "label.dns.job.recheck": "Check job again",

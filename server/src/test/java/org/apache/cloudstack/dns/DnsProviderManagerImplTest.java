@@ -92,6 +92,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import com.google.gson.Gson;
+
 import com.cloud.domain.dao.DomainDao;
 import com.cloud.event.ActionEventUtils;
 import com.cloud.event.EventTypes;
@@ -616,7 +618,7 @@ public class DnsProviderManagerImplTest {
         when(join.getState()).thenReturn(DnsZone.State.Active);
         when(join.getDescription()).thenReturn("Test zone");
         DnsZoneResponse response = manager.createDnsZoneResponse(join, zoneVO);
-        assertEquals("Public", new com.google.gson.Gson().toJsonTree(response).getAsJsonObject().get("type").getAsString());
+        assertEquals("Public", new Gson().toJsonTree(response).getAsJsonObject().get("type").getAsString());
     }
 
     @Test
@@ -863,7 +865,7 @@ public class DnsProviderManagerImplTest {
 
         ListResponse<DnsZoneResponse> res = manager.listDnsZones(cmd);
         assertEquals(1, res.getCount().intValue());
-        assertEquals("Private", new com.google.gson.Gson().toJsonTree(res.getResponses().get(0)).getAsJsonObject().get("type").getAsString());
+        assertEquals("Private", new Gson().toJsonTree(res.getResponses().get(0)).getAsJsonObject().get("type").getAsString());
     }
 
     @Test(expected = InvalidParameterValueException.class)

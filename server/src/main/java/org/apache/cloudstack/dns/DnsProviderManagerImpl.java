@@ -757,6 +757,30 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         response.setState(zone.getState());
         response.setType(dnsZone.getType());
         response.setDescription(zone.getDescription());
+
+        Account caller = CallContext.current().getCallingAccount();
+        List<DnsZoneNetworkMapResponse> networks = new ArrayList<>();
+        for (DnsZoneNetworkMapVO mapping : dnsZoneNetworkMapDao.listByZoneId(dnsZone.getId())) {
+            NetworkVO network = networkDao.findById(mapping.getNetworkId());
+            if (network == null) {
+                continue;
+            }
+            try {
+                accountMgr.checkAccess(caller, null, true, network);
+            } catch (PermissionDeniedException ignored) {
+                continue;
+            }
+            DnsZoneNetworkMapResponse association = new DnsZoneNetworkMapResponse();
+            association.setNetworkId(network.getUuid());
+            association.setNetworkName(network.getName());
+            association.setSubDomain(mapping.getSubDomain());
+            networks.add(association);
+            if (networks.size() == 1) {
+                response.setNetworkId(network.getUuid());
+                response.setNetworkName(network.getName());
+            }
+        }
+        response.setAssociatedNetworks(networks);
         return response;
     }
 

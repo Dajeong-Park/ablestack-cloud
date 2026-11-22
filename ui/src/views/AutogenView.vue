@@ -928,6 +928,7 @@ import ResourceView from '@/components/view/ResourceView'
 import VpcDialog from '@/components/network/VpcDialog'
 import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
+import { dnsZoneSearchQuery } from '@/utils/dnsZone'
 import { canDeleteIpv4Subnet, ipv4SubnetListQuery, ipv4SubnetReadParams, ipv4SubnetRoute, ipv4SubnetSearchQuery } from '@/utils/ipv4Subnet'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
 import EventMutationDialog from '@/views/event/EventMutationDialog'
@@ -1630,6 +1631,7 @@ export default {
       return this.$route.meta?.name === 'vpncustomergateway' ? vpnCustomerGatewayActionKey(this.$store.getters, this.$route, this.$store.state?.user?.token) : null
     },
     isGuestVlan () { return guestVlanRoute(this.$route) },
+    isDnsZone () { return this.$route.meta?.name === 'dnszone' },
     isIpv4Subnet () { return ipv4SubnetRoute(this.$route) },
     isVpnCustomerGateway () { return this.$route.meta?.name === 'vpncustomergateway' },
     standardResourceToolbar () { return this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet },
@@ -2921,6 +2923,13 @@ export default {
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
+      if (this.isDnsZone) {
+        const id = this.$route.params?.id
+        const { dnsserverid, keyword } = this.$route.query
+        params = id
+          ? { id }
+          : { page: params.page, pagesize: params.pagesize, dnsserverid: dnsserverid || params.dnsserverid, keyword: keyword || params.keyword }
+      }
       if (ipv4SubnetRoute(this.$route)) params = ipv4SubnetReadParams(this.$route.query, params)
       if (asnRoute(this.$route)) { params = asnParams(this.$route.query); this.columns.forEach(column => { column.sorter = false }) }
       if (publicIpList) params = publicIpParams(this.$route.query, this.$store.getters, this.$getApiParams('listPublicIpAddresses'))
@@ -4901,6 +4910,11 @@ export default {
       return this.$router.push({ query })
     },
     onSearch (opts) {
+      if (this.isDnsZone && !this.dataView) {
+        const query = dnsZoneSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (ipv4SubnetRoute(this.$route) && !this.dataView) {
         const query = ipv4SubnetSearchQuery(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
