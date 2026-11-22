@@ -20,15 +20,15 @@
     <div v-if="resourceType === 'Host'" class="host-gpu-layout">
       <GPUDevicesTab ref="devicesTab" :resource="resource" :resource-type="resourceType" :loading="loading" @refresh="refresh(true)">
         <template #actions>
+          <a-button v-if="isAdmin && $store.getters.apis?.createGpuDevice" type="primary" @click="showAddGpuDeviceModal">
+            {{ $t('label.gpu.devices.add') }}
+          </a-button>
           <a-button
             v-if="$store.getters.apis?.discoverGpuDevices"
             :loading="discoveringGpuDevices"
             :disabled="discoveringGpuDevices"
             @click="discoverGpuDevices">
             {{ $t('label.discover.gpu.devices') }}
-          </a-button>
-          <a-button v-if="isAdmin && $store.getters.apis?.createGpuDevice" type="primary" @click="showAddGpuDeviceModal">
-            {{ $t('label.gpu.devices.add') }}
           </a-button>
           <a-button aria-haspopup="dialog" @click="hostSummaryVisible = true">
             {{ $t('label.host.gpu.capacity.summary') }}

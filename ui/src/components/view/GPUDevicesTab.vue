@@ -18,59 +18,25 @@
 <template>
   <div :class="{ 'host-gpu-devices': resourceType === 'Host' }">
     <resource-table-toolbar v-if="resourceType === 'Host'" :loading="listRefreshing > 0" @refresh="refresh">
-      <template #actions>
-        <slot name="actions" />
-        <!-- Bulk GPU Device Actions -->
-        <a-popconfirm
-          v-if="gpuActionAllowed('manageGpuDevice')"
-          :title="$t('message.confirm.manage.gpu.devices', { count: selectedDeviceCount })"
-          @confirm="bulkManageGpuDevices"
-          :disabled="!hasSelectedDevices"
-          :ok-text="$t('label.ok')"
-          :cancel-text="$t('label.cancel')"
-        >
+      <slot name="actions" />
+      <template v-if="selectionActions.length" #actions>
+        <a-dropdown placement="bottomRight" :trigger="['click']" :disabled="!hasSelectedDevices">
           <a-button
-            type="primary"
+            ref="selectionActionsTrigger"
             :disabled="!hasSelectedDevices"
-          >
-            {{ $t('label.gpu.devices.manage') }}
+            :aria-label="$t('label.host.gpu.selection.actions')"
+            aria-haspopup="menu">
+            {{ $t('label.host.gpu.selection.actions') }}
+            <down-outlined />
           </a-button>
-        </a-popconfirm>
-
-        <a-popconfirm
-          v-if="gpuActionAllowed('unmanageGpuDevice')"
-          :title="$t('message.confirm.unmanage.gpu.devices', { count: selectedDeviceCount })"
-          @confirm="bulkUnmanageGpuDevices"
-          :disabled="!hasSelectedDevices"
-          :ok-text="$t('label.ok')"
-          :cancel-text="$t('label.cancel')"
-        >
-          <a-button
-            type="primary"
-            danger
-            :disabled="!hasSelectedDevices"
-          >
-            {{ $t('label.gpu.devices.unmanage') }}
-          </a-button>
-        </a-popconfirm>
-
-        <a-popconfirm
-          v-if="gpuActionAllowed('deleteGpuDevice')"
-          :title="$t('message.confirm.delete.gpu.devices', { count: selectedDeviceCount })"
-          @confirm="bulkDeleteGpuDevices"
-          :disabled="!hasSelectedDevices"
-          :ok-text="$t('label.ok')"
-          :cancel-text="$t('label.cancel')"
-        >
-          <a-button
-            v-if="isAdmin"
-            type="primary"
-            danger
-            :disabled="!hasSelectedDevices"
-          >
-            {{ $t('label.gpu.devices.delete') }}
-          </a-button>
-        </a-popconfirm>
+          <template #overlay>
+            <a-menu @click="confirmSelectionAction">
+              <a-menu-item v-for="action in selectionActions" :key="action.api" :danger="action.danger">
+                {{ $t(action.label) }}
+              </a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
       </template>
     </resource-table-toolbar>
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
@@ -85,7 +51,7 @@
       :defaultExpandAllRows="true"
       :expandedRowKeys="expandedRowKeys"
       @expand="onExpand"
-      :rowSelection="resourceType === 'Host' && isAdmin && ['manageGpuDevice', 'unmanageGpuDevice', 'deleteGpuDevice'].some(gpuActionAllowed) ? {
+      :rowSelection="resourceType === 'Host' && selectionActions.length ? {
         selectedRowKeys: selectedGpuDeviceIds,
         onChange: onGpuDeviceSelectionChange
       } : null"
@@ -195,6 +161,7 @@
             >
               <a-tooltip :title="$t('label.gpu.devices.manage')">
                 <a-button
+                  :aria-label="$t('label.gpu.devices.manage')"
                   type="primary"
                   size="small"
                   shape="circle"
@@ -212,6 +179,7 @@
             >
               <a-tooltip :title="$t('label.gpu.devices.unmanage')">
                 <a-button
+                  :aria-label="$t('label.gpu.devices.unmanage')"
                   size="small"
                   shape="circle"
                 >
@@ -223,6 +191,7 @@
             <!-- Edit Action -->
             <a-tooltip v-if="gpuActionAllowed('updateGpuDevice')" :title="$t('label.edit')">
               <a-button
+                  :aria-label="$t('label.edit')"
                 type="primary"
                 size="small"
                 shape="circle"
@@ -242,6 +211,7 @@
             >
               <a-tooltip :title="$t('label.delete')">
                 <a-button
+                  :aria-label="$t('label.delete')"
                   type="primary"
                   danger
                   size="small"
@@ -349,7 +319,30 @@ import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import { getAPI, postAPI } from '@/api'
 import { genericCompare } from '@/utils/sort.js'
 import Status from '@/components/widgets/Status'
-import { EditOutlined, DeleteOutlined, PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons-vue'
+import { DownOutlined, EditOutlined, DeleteOutlined, PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons-vue'
+
+const gpuSelectionActions = [
+  {
+    api: 'manageGpuDevice',
+    label: 'label.gpu.devices.manage',
+    confirmation: 'message.confirm.manage.gpu.devices',
+    success: 'message.success.manage.gpu.devices'
+  },
+  {
+    api: 'unmanageGpuDevice',
+    label: 'label.gpu.devices.unmanage',
+    confirmation: 'message.confirm.unmanage.gpu.devices',
+    success: 'message.success.unmanage.gpu.devices',
+    danger: true
+  },
+  {
+    api: 'deleteGpuDevice',
+    label: 'label.gpu.devices.delete',
+    confirmation: 'message.confirm.delete.selected.gpu.devices',
+    success: 'message.success.delete.gpu.devices',
+    danger: true
+  }
+]
 
 export default {
   mixins: [listRefreshMixin(['fetchDevicesData'])],
@@ -357,6 +350,7 @@ export default {
   components: {
     ResourceTableToolbar,
     Status,
+    DownOutlined,
     EditOutlined,
     DeleteOutlined,
     PlayCircleOutlined,
@@ -403,8 +397,8 @@ export default {
     hasSelectedDevices () {
       return this.selectedGpuDeviceIds.length > 0
     },
-    selectedDeviceCount () {
-      return this.selectedGpuDeviceIds.length
+    selectionActions () {
+      return this.isAdmin ? gpuSelectionActions.filter(action => this.gpuActionAllowed(action.api)) : []
     },
     isAdmin () {
       return this.$store.getters.userInfo.roletype === 'Admin'
@@ -429,7 +423,11 @@ export default {
   },
   watch: {
     resource: {
-      handler () {
+      handler (resource, previous) {
+        if (this.resourceType === 'Host' && resource.id !== previous?.id) {
+          this.selectedGpuDeviceIds = []
+          this.items = []
+        }
         this.fetchDevicesData()
       }
     }
@@ -456,6 +454,8 @@ export default {
         this.expandedRowKeys = []
         const devices = json?.listgpudevicesresponse?.gpudevice || []
         this.items = this.buildGpuTree(devices)
+        const deviceIds = new Set(devices.map(device => device.id))
+        this.selectedGpuDeviceIds = this.selectedGpuDeviceIds.filter(id => deviceIds.has(id))
       }).catch(error => {
         if (!this.isListRequestCurrent('fetchDevicesData', listRequest)) return
         listRequest.failed = true
@@ -531,23 +531,39 @@ export default {
 
       return treeData
     },
-    validateBulkOperation () {
-      if (this.selectedGpuDeviceIds.length === 0) {
-        this.$notification.warning({
-          message: this.$t('label.warning'),
-          description: this.$t('message.please.select.gpu.devices')
-        })
-        return false
-      }
-      return true
-    },
-    handleBulkOperationSuccess (messageKey, count) {
-      this.$notification.success({
-        message: this.$t('label.success'),
-        description: this.$t(messageKey, { count })
+    confirmSelectionAction ({ key }) {
+      const action = this.selectionActions.find(action => action.api === key)
+      const hostId = this.resource.id
+      const deviceIds = [...this.selectedGpuDeviceIds]
+      if (!action || !hostId || !deviceIds.length) return
+
+      this.$confirm({
+        title: this.$t(action.confirmation, { count: deviceIds.length }),
+        okText: this.$t('label.ok'),
+        cancelText: this.$t('label.cancel'),
+        okType: action.danger ? 'danger' : 'primary',
+        afterClose: () => {
+          const trigger = this.$refs.selectionActionsTrigger?.$el
+          if (trigger && !trigger.disabled) trigger.focus()
+        },
+        onOk: async () => {
+          if (this.resource.id !== hostId || !this.isAdmin || !this.gpuActionAllowed(action.api)) return
+
+          const request = action.api === 'deleteGpuDevice' ? postAPI : getAPI
+          try {
+            await request(action.api, { ids: deviceIds.join(',') }, { preserveOnFailure: true })
+            if (this.resource.id !== hostId) return
+            this.$notification.success({
+              message: this.$t('label.success'),
+              description: this.$t(action.success, { count: deviceIds.length })
+            })
+            this.selectedGpuDeviceIds = this.selectedGpuDeviceIds.filter(id => !deviceIds.includes(id))
+            this.refresh()
+          } catch (error) {
+            this.$notifyError(error)
+          }
+        }
       })
-      this.selectedGpuDeviceIds = []
-      this.refresh()
     },
     updateSelectedColumns (key) {
       if (this.selectedColumnKeys.includes(key)) {
@@ -612,28 +628,6 @@ export default {
     clearAllColumns () {
       this.selectedColumnKeys = []
       this.updateColumns()
-    },
-    bulkManageGpuDevices () {
-      if (!this.validateBulkOperation()) return
-
-      getAPI('manageGpuDevice', {
-        ids: this.selectedGpuDeviceIds.join(',')
-      }).then(() => {
-        this.handleBulkOperationSuccess('message.success.manage.gpu.devices', this.selectedGpuDeviceIds.length)
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
-    bulkUnmanageGpuDevices () {
-      if (!this.validateBulkOperation()) return
-
-      getAPI('unmanageGpuDevice', {
-        ids: this.selectedGpuDeviceIds.join(',')
-      }).then(() => {
-        this.handleBulkOperationSuccess('message.success.unmanage.gpu.devices', this.selectedGpuDeviceIds.length)
-      }).catch(error => {
-        this.$notifyError(error)
-      })
     },
     manageGpuDevice (record) {
       getAPI('manageGpuDevice', {
@@ -852,10 +846,6 @@ export default {
     },
     deleteGpuDevice (record) {
       this.deleteGpuDevices([record.id], 'message.success.delete.gpu.devices')
-    },
-    bulkDeleteGpuDevices () {
-      if (!this.validateBulkOperation()) return
-      this.deleteGpuDevices(this.selectedGpuDeviceIds, 'message.success.delete.gpu.devices')
     },
     deleteGpuDevices (deviceIds, successMessageKey) {
       postAPI('deleteGpuDevice', {
