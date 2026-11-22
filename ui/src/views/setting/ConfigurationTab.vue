@@ -72,17 +72,17 @@
               <a-button size="small" @click="selectedName = ''">{{ $t('label.close') }}</a-button>
             </a-space>
           </template>
-          <a-descriptions size="small" :column="{ xs: 1, sm: 2, xl: 3 }" bordered>
-            <a-descriptions-item :label="$t('label.global.setting.key')">
-              {{ localizedText(selectedSetting, 'displaytext') }}<br />{{ selectedSetting.name }}
-            </a-descriptions-item>
-            <a-descriptions-item :label="$t('label.global.setting.current')">{{ formatConfigurationValue(selectedSetting) }}</a-descriptions-item>
-            <a-descriptions-item :label="$t('label.global.setting.default')">{{ formatConfigurationValue(selectedSetting, 'defaultvalue') }}</a-descriptions-item>
-            <a-descriptions-item :label="$t('label.global.setting.apply')">
-              {{ configurationApplyLabel(selectedSetting) ? $t(configurationApplyLabel(selectedSetting)) : '—' }}
-            </a-descriptions-item>
-            <a-descriptions-item :label="$t('label.description')" :span="2">{{ localizedText(selectedSetting, 'description') || '—' }}</a-descriptions-item>
-          </a-descriptions>
+          <a-list class="configuration-detail-list" size="small" row-key="label" :data-source="selectedSettingDetails">
+            <template #renderItem="{ item }">
+              <a-list-item>
+                <div class="configuration-detail-entry">
+                  <strong>{{ $t(item.label) }}</strong>
+                  <div>{{ item.value }}</div>
+                  <div v-if="item.settingKey">{{ item.settingKey }}</div>
+                </div>
+              </a-list-item>
+            </template>
+          </a-list>
         </a-card>
         <a-spin :spinning="configLoading">
           <a-alert v-if="listRefreshFailed" type="error" show-icon :message="$t('message.error.loading.setting')" />
@@ -244,6 +244,19 @@ export default {
     selectedSetting () {
       return this.config.find(record => record.name === this.selectedName)
     },
+    selectedSettingDetails () {
+      const record = this.selectedSetting
+      if (!record) return []
+
+      const applyLabel = configurationApplyLabel(record)
+      return [
+        { label: 'label.global.setting.key', value: this.localizedText(record, 'displaytext'), settingKey: record.name },
+        { label: 'label.global.setting.current', value: formatConfigurationValue(record) },
+        { label: 'label.global.setting.default', value: formatConfigurationValue(record, 'defaultvalue') },
+        { label: 'label.global.setting.apply', value: applyLabel ? this.$t(applyLabel) : '—' },
+        { label: 'label.description', value: this.localizedText(record, 'description') || '—' }
+      ]
+    },
     dialogRecord () {
       return this.config.find(record => record.name === this.settingDialog?.record.name) || this.settingDialog?.record
     },
@@ -298,7 +311,6 @@ export default {
   },
   methods: {
     formatConfigurationValue,
-    configurationApplyLabel,
     async ensureKoreanCatalog () {
       if (this.$i18n.locale !== 'ko_KR' || this.koreanCatalog) return
       const catalog = await loadKoreanConfigurationCatalog()
@@ -462,6 +474,13 @@ export default {
   .configuration-content,
   .configuration-content :deep(.ant-tabs-content-holder) { min-width: 0; }
   .configuration-detail-card { margin-bottom: 16px; overflow-wrap: anywhere; }
+  .configuration-detail-list :deep(.ant-list-item) {
+    padding: 12px 0;
+    color: var(--ui-text-secondary);
+    border-color: var(--ui-border);
+  }
+  .configuration-detail-entry { min-width: 0; max-width: 100%; }
+  .configuration-detail-entry strong { color: var(--ui-text-primary); }
 
   @media (max-width: 768px) {
     .configuration-search-tools { flex: 1 1 100%; }

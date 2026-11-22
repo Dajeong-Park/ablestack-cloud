@@ -53,6 +53,15 @@ flowchart TD
 
 영어 UI는 DB에서 전달된 API `displaytext`·`description`을 사용한다. 한국어 UI는 `ui/src/locales/global-settings/ko_KR.json`에서 리터럴 설정 키와 필드별로 원문이 일치하는 번역을 선택한다. 일치하는 번역이 없으면 해당 필드에 API의 현재 원문을 표시한다. 분류 라벨은 공통 로캘에 둔다. 초기 수집과 배포 대조에는 설정의 이름·표시명·설명 및 분류 이름만 사용한다. 변경 PR은 한국어 문구와 검수 기준 원문을 함께 갱신한다. [원문·번역 구조와 갱신 규칙](https://github.com/ablecloud-team/ablestack-cloud/issues/1874)
 
+## 글로벌설정 번역 검사와 배포 전 대조
+
+- 번역 파일은 `ui/src/locales/global-settings/ko_KR.json`이다. 키·필드별로 API의 영어 원문과 검수한 한국어를 짝으로 저장한다. 설정을 추가하거나 원문을 바꿀 때 해당 번역을 같은 PR에서 검토한다. 예를 들어 `default.ui.page.size`의 `description`에는 `{ "enSource": "The default pagesize to be used by UI and other clients when making list* API calls", "ko": "UI와 다른 클라이언트가 목록 조회 API(list*)를 호출할 때 사용하는 기본 페이지 크기입니다." }`를 넣는다.
+- 설정 선언과 마이그레이션에서 키, 자료형, 기본값, 적용 범위를 확인한다. 실제 사용 코드에서 단위, 값별 분기, 비활성화 조건, 적용 시점과 재시작 여부를 확인하고 검토한 파일이나 변경 이력을 PR에 남긴다. 지원 버전별 동작이 다르면 해당 버전의 코드와 원문을 확인하고, 동작을 확인하지 못한 원문은 영어 폴백으로 유지한다.
+- 표시명은 짧은 명사구로 쓰고 설명은 완결된 문장으로 쓴다. 제품에서 쓰는 용어인 가상머신, 존, 스토리지 풀과 관리 서버를 일관되게 사용한다. 설정 키, API 이름, 열거형 값과 단위는 원래 의미가 유지되도록 표기한다.
+- WSL의 `ui` 디렉터리에서 `npm run check:global-settings-i18n`을 실행하면 JSON의 키·원문 중복, 누락된 필드와 빈 문구를 검사한다. PR의 Lint 워크플로에서도 같은 검사를 실행한다.
+- 배포 전에는 두 클러스터에서 `listConfigurations`의 `name`, `displaytext`, `description`과 `listConfigurationGroups`의 그룹·하위 그룹 이름을 추출한다. 메타데이터 파일은 `cluster` 문자열, `settings` 배열, `groups` 배열을 담는다. `settings`는 앞서 열거한 세 필드만, `groups`는 `name`과 하위 그룹 문자열 배열인 `subgroups`만 포함한다.
+- `npm run check:global-settings-i18n -- metadata-31.json metadata-32.json`으로 배포 후보를 양쪽 메타데이터에 대조한다. 검사 결과는 클러스터·설정 키·필드별로 누락 또는 원문 불일치를 보여 준다. 둘 이상의 원문이 지원되는 설정은 해당 원문별 번역을 유지한다.
+
 ## 통합 검증
 
 - [ ] 31번 GFS2와 32번 RBD에 동일한 후보 UI를 적용하고, 클러스터별 UI 번들과 API 결과를 기록한다. 변경 범위를 중심으로 관리자 UI에서 전체 목록과 분류 탭을 검증한다.
