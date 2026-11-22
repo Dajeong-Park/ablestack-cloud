@@ -1,4 +1,6 @@
 {
+  "message.dns.provider.load.failed": "DNS 제공자 목록을 조회하지 못했습니다.",
+  "message.dns.provider.empty": "사용할 수 있는 DNS 제공자가 없습니다.",
   "message.dns.server.nameserver.invalid": "올바른 네임서버 호스트 이름을 입력하세요.",
   "message.dns.server.nameserver.duplicate": "같은 네임서버는 한 번만 입력하세요.",
   "message.dns.server.impact.failed": "이 DNS 서버에 연결된 영역을 확인하지 못했습니다.",

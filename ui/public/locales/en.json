@@ -1,4 +1,6 @@
 {
+  "message.dns.provider.load.failed": "Could not load DNS providers.",
+  "message.dns.provider.empty": "No DNS providers are available.",
   "message.dns.server.nameserver.invalid": "Enter a valid nameserver hostname.",
   "message.dns.server.nameserver.duplicate": "Enter each nameserver only once.",
   "message.dns.server.impact.failed": "Could not verify the zones associated with this DNS server.",

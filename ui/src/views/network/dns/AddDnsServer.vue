@@ -57,7 +57,8 @@
           <a-select
             v-model:value="form.provider"
             :placeholder="apiParams.provider?.description || 'Select Provider'"
-            :loading="fetchingProviders"
+            :loading="providerStatus === 'loading'"
+            :disabled="providerStatus !== 'ready'"
             showSearch>
             <a-select-option
               v-for="provider in providers"
@@ -66,6 +67,10 @@
               {{ provider.description || provider.name }}
             </a-select-option>
           </a-select>
+          <a-alert v-if="providerStatus === 'error'" class="provider-status" type="error" show-icon :message="$t('message.dns.provider.load.failed')">
+            <template #description><a-button size="small" @click="fetchProviders">{{ $t('label.retry') }}</a-button></template>
+          </a-alert>
+          <a-alert v-else-if="providerStatus === 'empty'" class="provider-status" type="info" show-icon :message="$t('message.dns.provider.empty')" />
         </a-form-item>
 
         <a-form-item name="port" ref="port">
@@ -146,6 +151,7 @@
           <a-button
             type="primary"
             :loading="loading"
+            :disabled="!providerSelected"
             htmlType="submit">
             {{ $t('label.ok') }}
           </a-button>
@@ -182,8 +188,13 @@ export default {
         pdnsserverid: ''
       },
       rules: {},
-      fetchingProviders: false,
+      providerStatus: 'loading',
       providers: []
+    }
+  },
+  computed: {
+    providerSelected () {
+      return this.providerStatus === 'ready' && this.providers.some(provider => provider.name === this.form.provider)
     }
   },
   created () {
@@ -215,7 +226,7 @@ export default {
   },
   methods: {
     async handleSubmit () {
-      if (this.loading) return
+      if (this.loading || !this.providerSelected || !this.$store.getters.apis?.addDnsServer) return
       try {
         await this.$refs.formRef.validate()
       } catch (error) {
@@ -241,7 +252,7 @@ export default {
         if (this.form.pdnsserverid) {
           params['details[0].pdnsServerId'] = this.form.pdnsserverid?.trim()
         }
-        const response = await postAPI('addDnsServer', params)
+        const response = await postAPI('addDnsServer', params, { preserveOnFailure: true })
         const serverData = response?.adddnsserverresponse?.dnsserver || response?.adddnsserverresponse
         if (!serverData?.id) {
           this.$notification.error({
@@ -272,21 +283,18 @@ export default {
       this.$emit('close-action')
     },
     async fetchProviders () {
-      this.fetchingProviders = true
+      this.providerStatus = 'loading'
       try {
-        const response = await getAPI('listDnsProviders')
-        const listResponse = response?.listdnsprovidersresponse || {}
-        this.providers = Array.isArray(listResponse.dnsprovider) ? listResponse.dnsprovider : []
-        if (!this.form.provider && this.providers.length > 0) {
-          this.form.provider = this.providers[0].name || ''
+        const response = await getAPI('listDnsProviders', { pagesize: -1 }, { preserveOnFailure: true })
+        const body = response?.listdnsprovidersresponse
+        if (!body || body.errorcode) throw new Error('Invalid DNS provider response')
+        this.providers = (body.dnsprovider || []).filter(provider => typeof provider.name === 'string' && provider.name)
+        if (!this.providers.some(provider => provider.name === this.form.provider)) {
+          this.form.provider = this.providers[0]?.name ?? ''
         }
-      } catch (error) {
-        console.error('Failed to fetch DNS providers', error)
-        this.providers = []
-        this.form.provider = ''
-        this.$message.warning('Could not load DNS providers.')
-      } finally {
-        this.fetchingProviders = false
+        this.providerStatus = this.providers.length ? 'ready' : 'empty'
+      } catch {
+        this.providerStatus = 'error'
       }
     },
     validateUrl (rule, value) {
@@ -343,6 +351,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.provider-status { margin-top: 8px; }
 .form-layout {
   width: 80vw;
   @media (min-width: 600px) {
