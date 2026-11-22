@@ -18,7 +18,7 @@
 <template>
   <a-spin :spinning="componentLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <resource-table-toolbar :loading="componentLoading" @refresh="fetchData()">
+    <resource-table-toolbar :loading="componentLoading || listRefreshing > 0" @refresh="fetchData()">
       <a-button
         :disabled="!('createStorageNetworkIpRange' in $store.getters.apis)"
         type="primary"
@@ -137,7 +137,7 @@ import { getAPI, postAPI } from '@/api'
 import TooltipButton from '@/components/widgets/TooltipButton'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], { routeKey: vm => vm.$route.path })],
   name: 'IpRangesTabStorage',
   components: {
     ResourceTableToolbar,

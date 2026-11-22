@@ -19,7 +19,7 @@
   <div class="asn-range-tab">
     <router-link v-if="returnLocation" class="asn-return-link" :to="returnLocation"><arrow-left-outlined /> {{ $t('label.asn.return') }}</router-link>
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <resource-table-toolbar :loading="fetchLoading" @refresh="fetchData()">
+    <resource-table-toolbar :loading="fetchLoading || listRefreshing > 0" @refresh="fetchData()">
       <a-button
         ref="createButton"
         type="primary"

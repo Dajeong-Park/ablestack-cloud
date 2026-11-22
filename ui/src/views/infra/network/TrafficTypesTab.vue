@@ -17,8 +17,9 @@
 
 <template>
   <a-spin :spinning="fetchLoading">
-    <resource-table-toolbar v-if="traffictypes.length" :loading="fetchLoading" @refresh="fetchData()">
+    <resource-table-toolbar v-if="traffictypes.length || listRefreshFailed" :loading="fetchLoading || listRefreshing > 0" @refresh="fetchData()">
       <select
+        v-if="traffictypes.length"
         id="zone-traffic-type"
         class="ant-input traffic-type-select"
         :aria-label="$t('label.traffictype')"
@@ -43,6 +44,7 @@
         </a-popconfirm>
       </template>
     </resource-table-toolbar>
+    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
     <div v-if="selectedTraffic" :key="selectedTraffic.traffictype">
       <div
         v-for="(type, idx) in ['kvmnetworklabel', 'vmwarenetworklabel', 'xennetworklabel', 'hypervnetworklabel', 'ovm3networklabel']"
@@ -91,6 +93,7 @@
 <script>
 import { getAPI, postAPI } from '@/api'
 import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
+import { listRefreshMixin } from '@/utils/listRefreshMixin'
 import IpRangesTabPublic from './IpRangesTabPublic'
 import IpRangesTabManagement from './IpRangesTabManagement'
 import IpRangesTabStorage from './IpRangesTabStorage'
@@ -99,6 +102,7 @@ import { trafficTypeTab } from '@/config/section/infra/phynetworks.js'
 
 export default {
   name: 'TrafficTypesTab',
+  mixins: [listRefreshMixin(['fetchData'], { routeKey: vm => vm.$route.path })],
   components: {
     ResourceTableToolbar,
     IpRangesTabPublic,
@@ -136,6 +140,7 @@ export default {
     }
   },
   watch: {
+    'resource.id' () { this.fetchData() },
     selectedTraffic (traffic) {
       trafficTypeTab.index = Math.max(0, this.traffictypes.indexOf(traffic))
     },
@@ -147,99 +152,72 @@ export default {
   },
   methods: {
     async fetchData () {
-      this.fetchTrafficTypes()
-      this.fetchLoading = true
-      getAPI('listNetworks', {
-        listAll: true,
-        trafficType: 'Public',
-        isSystem: true,
-        zoneId: this.resource.zoneid
-      }).then(json => {
-        if (json.listnetworksresponse && json.listnetworksresponse.network && json.listnetworksresponse.network.length > 0) {
-          this.publicNetwork = json.listnetworksresponse.network[0]
-        } else {
-          this.publicNetwork = {}
-        }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.fetchLoading = false
-      })
-      await this.fetchZones()
-      if (this.networkType === 'Basic') {
-        this.fetchGuestNetwork()
+      const { id, zoneid } = this.resource
+      if (!id || !zoneid) return
+      const request = this.listRequestToken('fetchData')
+      const current = () => this.isListRequestCurrent('fetchData', request)
+      this.fetchLoading = !request.loaded
+      if (!request.loaded) {
+        this.traffictypes = []
+        this.publicNetwork = {}
+        this.guestNetwork = {}
+      }
+      try {
+        const [traffic, zones] = await Promise.all([
+          getAPI('listTrafficTypes', { physicalnetworkid: id }, { preserveOnFailure: true }),
+          getAPI('listZones', { id: zoneid }, { preserveOnFailure: true })
+        ])
+        if (!current()) return
+        const types = traffic.listtraffictypesresponse.traffictype || []
+        const zone = zones.listzonesresponse.zone?.find(item => item.id === zoneid)
+        if (!zone) throw new Error('Zone lookup failed')
+        const [publicNetwork, guestNetwork] = await Promise.allSettled([
+          types.some(type => type.traffictype === 'Public') ? this.fetchTrafficNetwork(zoneid, 'Public') : {},
+          zone.networktype === 'Basic' && types.some(type => type.traffictype === 'Guest') ? this.fetchTrafficNetwork(zoneid, 'Guest') : {}
+        ])
+        if (!current()) return
+        this.traffictypes = types
+        this.networkType = zone.networktype
+        if (publicNetwork.status === 'fulfilled') this.publicNetwork = publicNetwork.value
+        if (guestNetwork.status === 'fulfilled') this.guestNetwork = guestNetwork.value
+        request.failed = publicNetwork.status === 'rejected' || guestNetwork.status === 'rejected'
+        if (request.failed) this.listRefreshFailed = true
+      } catch (error) {
+        if (!current()) return
+        request.failed = true
+        this.listRefreshFailed = true
+        if (!request.loaded) this.$notifyError(error)
+      } finally {
+        if (current()) this.fetchLoading = false
       }
     },
-    fetchTrafficTypes () {
-      this.fetchLoading = true
-      getAPI('listTrafficTypes', { physicalnetworkid: this.resource.id }).then(json => {
-        this.traffictypes = json.listtraffictypesresponse.traffictype || []
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.fetchLoading = false
-      })
-    },
-    fetchZones () {
-      return new Promise((resolve, reject) => {
-        this.fetchLoading = true
-        getAPI('listZones', { id: this.resource.zoneid }).then(json => {
-          const zone = json.listzonesresponse.zone || []
-          this.networkType = zone[0].networktype
-          resolve(this.networkType)
-        }).catch(error => {
-          this.$notifyError(error)
-          reject(error)
-        }).finally(() => {
-          this.fetchLoading = false
-        })
-      })
-    },
-    fetchGuestNetwork () {
-      getAPI('listNetworks', {
+    async fetchTrafficNetwork (zoneId, trafficType) {
+      const response = await getAPI('listNetworks', {
         listAll: true,
-        trafficType: 'Guest',
-        zoneId: this.resource.zoneid
-      }).then(json => {
-        if (json.listnetworksresponse?.network?.length > 0) {
-          this.guestNetwork = json.listnetworksresponse.network[0]
-        } else {
-          this.guestNetwork = {}
-        }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.fetchLoading = false
-      })
+        trafficType,
+        zoneId,
+        ...(trafficType === 'Public' ? { isSystem: true } : {})
+      }, { preserveOnFailure: true })
+      return response.listnetworksresponse.network?.[0] || {}
     },
     deleteTrafficType (trafficType) {
       postAPI('deleteTrafficType', { id: trafficType.id }).then(response => {
+        const jobId = response.deletetraffictyperesponse.jobid
+        if (!jobId) return this.fetchData()
         this.$pollJob({
-          jobId: response.deletetraffictyperesponse.jobid,
+          jobId,
           title: this.$t('label.delete.traffic.type'),
           description: trafficType.traffictype,
           successMessage: this.$t('message.traffic.type.deleted') + ' ' + trafficType.traffictype,
-          successMethod: () => {
-            this.fetchLoading = false
-            this.fetchTrafficTypes()
-          },
+          successMethod: () => this.fetchData(),
           errorMessage: this.$t('message.delete.failed'),
-          errorMethod: () => {
-            this.fetchLoading = false
-            this.fetchTrafficTypes()
-          },
+          errorMethod: () => this.fetchData(),
           loadingMessage: this.$t('message.delete.traffic.type.processing'),
           catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.fetchLoading = false
-            this.fetchTrafficTypes()
-          }
+          catchMethod: () => this.fetchData()
         })
       }).catch(error => {
         this.$notifyError(error)
-      }).finally(() => {
-        this.fetchLoading = false
-        this.fetchTrafficTypes()
       })
     },
     selectTraffic (traffic) {

@@ -18,7 +18,7 @@
 <template>
   <a-spin :spinning="fetchLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <resource-table-toolbar :loading="fetchLoading" @refresh="fetchData()">
+    <resource-table-toolbar :loading="fetchLoading || listRefreshing > 0" @refresh="fetchData()">
       <a-button
         ref="dedicationTrigger"
         :disabled="posting || !('dedicateGuestVlanRange' in $store.getters.apis)"
@@ -207,7 +207,7 @@ import MoldDialog from '@/components/view/MoldDialog'
 import ResourceIcon from '@/components/view/ResourceIcon'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], { routeKey: vm => vm.$route.path })],
   name: 'DedicatedVLANTab',
   components: {
     ResourceTableToolbar,

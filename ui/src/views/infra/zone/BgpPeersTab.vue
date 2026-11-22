@@ -17,7 +17,7 @@
 
 <template>
   <a-spin :spinning="componentLoading">
-    <resource-table-toolbar :loading="componentLoading" @refresh="fetchData()">
+    <resource-table-toolbar :loading="componentLoading || listRefreshing > 0" @refresh="fetchData()">
       <a-button
         v-if="!this.resource.ip4routing"
         :disabled="!('createBgpPeer' in $store.getters.apis)"

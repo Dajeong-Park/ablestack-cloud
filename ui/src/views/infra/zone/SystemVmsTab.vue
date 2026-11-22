@@ -18,7 +18,7 @@
 <template>
   <a-spin :spinning="fetchLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <resource-table-toolbar :loading="fetchLoading" @refresh="fetchData()" />
+    <resource-table-toolbar :loading="fetchLoading || listRefreshing > 0" @refresh="fetchData()" />
     <a-table size="small" row-key="id" :columns="columns" :data-source="vms" :pagination="false" :scroll="{ x: 720 }">
       <template #bodyCell="{ column, record, text }">
         <router-link v-if="column.key === 'name'" :to="{ path: '/systemvm/' + record.id }">{{ text }}</router-link>

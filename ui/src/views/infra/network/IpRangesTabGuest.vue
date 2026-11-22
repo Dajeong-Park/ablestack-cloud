@@ -18,7 +18,7 @@
 <template>
   <a-spin :spinning="componentLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <resource-table-toolbar :loading="componentLoading" @refresh="fetchData()">
+    <resource-table-toolbar :loading="componentLoading || listRefreshing > 0" @refresh="fetchData()">
       <a-button
         :disabled="!('createNetwork' in $store.getters.apis)"
         type="primary"
@@ -66,7 +66,7 @@
     <br>
     <br>
 
-    <resource-table-toolbar :loading="componentLoading" @refresh="fetchIpv6PrefixData()">
+    <resource-table-toolbar :loading="componentLoading || listRefreshing > 0" @refresh="fetchIpv6PrefixData()">
       <a-button
         :disabled="!('createGuestNetworkIpv6Prefix' in $store.getters.apis)"
         type="dashed"
@@ -163,7 +163,7 @@ import ResourceIcon from '@/components/view/ResourceIcon'
 import TooltipButton from '@/components/widgets/TooltipButton'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], { routeKey: vm => vm.$route.path })],
   name: 'IpRangesTabGuest',
   components: {
     ResourceTableToolbar,
@@ -233,7 +233,8 @@ export default {
           title: this.$t('label.actions')
         }
       ],
-      addIpv6PrefixModal: false
+      addIpv6PrefixModal: false,
+      loadedPhysicalNetworkId: ''
     }
   },
   beforeCreate () {
@@ -261,17 +262,27 @@ export default {
       })
     },
     async fetchData () {
+      const { id, zoneid } = this.resource
+      if (!id || !zoneid) return
       const request = this.listRequestToken('fetchData')
-      this.componentLoading = !request.loaded
+      const hasDisplayedData = this.loadedPhysicalNetworkId === id
+      if (this.loadedPhysicalNetworkId && !hasDisplayedData) {
+        this.items = []
+        this.ipv6Prefixes = []
+        this.total = 0
+        this.loadedPhysicalNetworkId = ''
+      }
+      this.componentLoading = !request.loaded && !hasDisplayedData
       try {
         const [networks, prefixes] = await Promise.all([
-          getAPI('listNetworks', { zoneid: this.resource.zoneid, physicalnetworkid: this.resource.id, showicon: true, page: this.page, pagesize: this.pageSize }),
-          getAPI('listGuestNetworkIpv6Prefixes', { zoneid: this.resource.zoneid, page: this.page, pagesize: this.pageSize })
+          getAPI('listNetworks', { zoneid, physicalnetworkid: id, showicon: true, page: this.page, pagesize: this.pageSize }),
+          getAPI('listGuestNetworkIpv6Prefixes', { zoneid, page: this.page, pagesize: this.pageSize })
         ])
         if (!this.isListRequestCurrent('fetchData', request)) return
         this.items = networks?.listnetworksresponse?.network || []
         this.total = networks?.listnetworksresponse?.count || 0
         this.ipv6Prefixes = prefixes?.listguestnetworkipv6prefixesresponse?.guestnetworkipv6prefix || []
+        this.loadedPhysicalNetworkId = id
       } catch (error) {
         if (!this.isListRequestCurrent('fetchData', request)) return
         request.failed = true

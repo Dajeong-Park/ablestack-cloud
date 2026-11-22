@@ -18,7 +18,7 @@
 <template>
   <a-spin :spinning="componentLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <resource-table-toolbar :loading="componentLoading" @refresh="fetchData()">
+    <resource-table-toolbar :loading="componentLoading || listRefreshing > 0" @refresh="fetchData()">
       <a-button
         :disabled="!('createIpv4SubnetForZone' in $store.getters.apis)"
         type="primary"

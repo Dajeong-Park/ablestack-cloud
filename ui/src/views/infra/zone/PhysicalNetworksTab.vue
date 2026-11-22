@@ -18,7 +18,7 @@
 <template>
   <a-spin :spinning="fetchLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <resource-table-toolbar :loading="fetchLoading" @refresh="fetchData()">
+    <resource-table-toolbar :loading="fetchLoading || listRefreshing > 0" @refresh="fetchData()">
       <a-button
         type="primary"
         @click="showAddPhyNetModal"
@@ -182,44 +182,35 @@ export default {
   },
   methods: {
     zoneListQuery,
-    fetchData () {
-      const listRequest = this.listRequestToken('fetchData')
-      this.fetchLoading = !listRequest.loaded
-      return getAPI('listPhysicalNetworks', { zoneid: this.resource.id }).then(json => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        this.networks = json.listphysicalnetworksresponse.physicalnetwork || []
-        this.fetchTrafficLabels()
-      }).catch(error => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        listRequest.failed = true
-        this.listRefreshFailed = true
-        if (listRequest.loaded) return
-
-        this.$notifyError(error)
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.fetchLoading = false
-      })
-    },
-    fetchTrafficLabels () {
-      const promises = []
-      for (const network of this.networks) {
-        promises.push(new Promise((resolve, reject) => {
-          getAPI('listTrafficTypes', { physicalnetworkid: network.id }).then(json => {
-            if (json.listtraffictypesresponse.traffictype) {
-              network.traffictype = json.listtraffictypesresponse.traffictype.filter(e => { return e.traffictype }).map(e => { return e.traffictype }).join(', ')
-            }
-            resolve()
-          }).catch(error => {
-            this.$notifyError(error)
-            reject(error)
-          })
+    async fetchData () {
+      if (!this.resource.id) return
+      const request = this.listRequestToken('fetchData')
+      const current = () => this.isListRequestCurrent('fetchData', request)
+      this.fetchLoading = !request.loaded
+      try {
+        const json = await getAPI('listPhysicalNetworks', { zoneid: this.resource.id }, { preserveOnFailure: true })
+        if (!current()) return
+        const networks = json.listphysicalnetworksresponse.physicalnetwork || []
+        const previous = new Map(request.loaded ? this.networks.map(network => [network.id, network.traffictype]) : [])
+        const labels = await Promise.allSettled(networks.map(network =>
+          getAPI('listTrafficTypes', { physicalnetworkid: network.id }, { preserveOnFailure: true })))
+        if (!current()) return
+        this.networks = networks.map((network, i) => ({
+          ...network,
+          traffictype: labels[i].status === 'fulfilled'
+            ? (labels[i].value.listtraffictypesresponse.traffictype || []).map(type => type.traffictype).filter(Boolean).join(', ')
+            : previous.get(network.id)
         }))
+        request.failed = labels.some(result => result.status === 'rejected')
+        if (request.failed) this.listRefreshFailed = true
+      } catch (error) {
+        if (!current()) return
+        request.failed = true
+        this.listRefreshFailed = true
+        if (!request.loaded) this.$notifyError(error)
+      } finally {
+        if (current()) this.fetchLoading = false
       }
-      Promise.all(promises).finally(() => {
-        this.fetchLoading = false
-      })
     },
     showAddPhyNetModal () {
       this.addPhyNetModal = true

@@ -23,66 +23,113 @@
       show-icon
       :message="$t(providerLoadError)">
       <template #description>
+        <p v-if="providerLoaded">{{ $t('message.zone.service.refresh.stale') }}</p>
         <a-button size="small" :loading="fetchLoading" @click="fetchData">{{ $t('label.retry') }}</a-button>
       </template>
     </a-alert>
-    <a-spin :spinning="fetchLoading">
-      <div v-if="!providerLoadError" class="provider-layout">
-        <div class="provider-list">
-          <resource-table-toolbar
-            v-model:search="providerSearch"
-            searchable
-            :search-label="$t('label.zone.provider.search')"
-            :loading="fetchLoading"
-            @refresh="fetchData()">
-            <div class="provider-state-filter">
-              <label for="zone-provider-state">{{ $t('label.state') }}</label>
-              <a-select
-                id="zone-provider-state"
-                v-model:value="providerFilter"
-                :options="providerStates"
-                :virtual="false" />
-            </div>
-          </resource-table-toolbar>
-          <a-table
-            size="small"
-            row-key="name"
-            :columns="providerColumns"
-            :data-source="fetchLoading ? [] : filteredProviders"
-            :pagination="providerPagination"
-            table-layout="fixed"
-            @change="changeProviderPage">
-            <template #bodyCell="{ column, record }">
-              <a-button
-                v-if="column.key === 'name'"
-                type="link"
-                :aria-current="record.name === activeProvider?.name ? 'true' : undefined"
-                @click="selectProvider(record.name)">
-                {{ record.name }}
-              </a-button>
-              <status v-else-if="record.linked && record.state !== 'unsupported'" :text="record.state" display-text />
-              <span v-else>{{ providerStateLabel(record.state) }}</span>
-            </template>
-          </a-table>
-        </div>
-        <section
-          v-if="activeProvider && !fetchLoading"
-          class="provider-details"
-          :aria-label="activeProvider.name">
-          <h3>{{ activeProvider.name }}</h3>
-          <provider-item
-            :key="activeProvider.name"
-            :loading="loading"
-            :item-nsp="activeProvider.item"
-            :nsp="nsps[activeProvider.name]"
-            :resource-id="resource.id"
-            :zone-id="resource.zoneid" />
-        </section>
+    <a-spin :spinning="fetchLoading && !providerLoaded">
+      <div v-if="providerLoaded || !providerLoadError" class="service-directory">
+        <resource-table-toolbar
+          v-model:search="serviceSearch"
+          searchable
+          :search-label="$t('label.zone.service.search')"
+          :loading="fetchLoading"
+          @refresh="fetchData()">
+          <div class="service-filter">
+            <label for="zone-service-provider-state">{{ $t('label.zone.service.provider.state') }}</label>
+            <a-select
+              id="zone-service-provider-state"
+              v-model:value="serviceFilter"
+              :options="providerStates"
+              :virtual="false" />
+          </div>
+          <template #actions>
+            <a-button :disabled="fetchLoading || !!providerLoadError || !providerRows.length" @click="openProviderManagement">
+              {{ $t('label.zone.provider.management') }}
+            </a-button>
+          </template>
+        </resource-table-toolbar>
+        <a-table
+          size="small"
+          row-key="name"
+          :columns="serviceColumns"
+          :data-source="visibleServices"
+          :pagination="{ pageSize: 6, hideOnSinglePage: true, showSizeChanger: false }"
+          table-layout="fixed">
+          <template #bodyCell="{ column, record }">
+            <a-button v-if="column.key === 'name'" type="link" @click="openService(record.name)">
+              {{ serviceName(record.name) }}
+            </a-button>
+            <span v-else-if="column.key === 'providers'">{{ record.providers.map(provider => provider.name).join(', ') }}</span>
+            <span v-else>{{ record.activeProviders }} / {{ record.providers.length }}</span>
+          </template>
+        </a-table>
       </div>
     </a-spin>
 
+    <mold-dialog
+      :visible="serviceDialogOpen"
+      :title="requestedService ? $t('label.zone.service.details', { service: serviceName(requestedService) }) : $t('label.zone.provider.management')"
+      size="lg"
+      focus-guard
+      :closable="!showFormAction && !actionLoading"
+      :keyboard="!showFormAction && !actionLoading"
+      @cancel="closeServiceDialog">
+      <template v-if="serviceDialogOpen">
+        <a-alert v-if="providerLoadError" type="error" show-icon :message="$t(providerLoadError)">
+          <template #description>
+            <a-button size="small" :loading="fetchLoading" @click="fetchData">{{ $t('label.retry') }}</a-button>
+          </template>
+        </a-alert>
+        <a-spin v-else :spinning="fetchLoading && !providerLoaded">
+          <div v-if="activeProvider">
+            <div class="service-provider-selector">
+              <label for="zone-service-provider">{{ $t('label.provider') }}</label>
+              <a-select
+                id="zone-service-provider"
+                :value="activeProvider.name"
+                :options="providerOptions"
+                :disabled="fetchLoading || showFormAction || actionLoading"
+                show-search
+                option-filter-prop="label"
+                @change="selectProvider" />
+            </div>
+            <section class="provider-details" :aria-label="activeProvider.name">
+              <provider-item
+                :key="resource.id + ':' + activeProvider.name"
+                :loading="actionLoading"
+                :actions-disabled="loading || fetchLoading"
+                :item-nsp="activeProvider.item"
+                :nsp="nsps[activeProvider.name]"
+                :resource-id="resource.id"
+                :zone-id="resource.zoneid" />
+            </section>
+          </div>
+          <a-empty v-else-if="!fetchLoading" :description="$t('message.zone.service.unavailable')" />
+        </a-spin>
+      </template>
+    </mold-dialog>
+
     <div v-if="showFormAction">
-      <keep-alive v-if="currentAction.component">
+      <mold-dialog
+        v-if="currentAction.confirm"
+        :visible="showFormAction"
+        :title="$t(currentAction.label)"
+        size="sm"
+        form-actions
+        focus-guard
+        @cancel="onCloseAction">
+        <p><strong>{{ actionTarget?.name }}</strong></p>
+        <p>{{ $t(currentAction.confirm) }}</p>
+        <p v-if="requestedService">{{ $t('message.zone.service.provider.scope') }}</p>
+        <mold-dialog-actions :busy="actionLoading">
+          <a-button @click="onCloseAction">{{ $t('label.cancel') }}</a-button>
+          <a-button type="primary" :danger="currentAction.label === 'label.disable.provider'" :loading="actionLoading" @click="executeConfirmAction">
+            {{ $t(currentAction.label) }}
+          </a-button>
+        </mold-dialog-actions>
+      </mold-dialog>
+      <keep-alive v-else-if="currentAction.component">
         <mold-dialog
           size="md"
           form-actions
@@ -97,7 +144,7 @@
           <keep-alive>
             <component
               :is="currentAction.component"
-              :resource="nsp"
+              :resource="actionTarget"
               :action="currentAction" />
           </keep-alive>
         </mold-dialog>
@@ -184,10 +231,7 @@ import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import { ref, reactive, toRaw, shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { getAPI, postAPI } from '@/api'
-import Status from '@/components/widgets/Status'
 import ProviderItem from '@/views/infra/network/providers/ProviderItem'
-
-const providerPageSize = 6
 
 export default {
   name: 'ServiceProvidersTab',
@@ -195,7 +239,6 @@ export default {
     MoldDialog,
     MoldDialogActions,
     ResourceTableToolbar,
-    Status,
     ProviderItem
   },
   props: {
@@ -213,20 +256,25 @@ export default {
       nsps: {},
       nsp: {},
       fetchLoading: true,
+      providerLoaded: false,
       providerLoadError: '',
       providerLoadSequence: 0,
       actionLoading: false,
       showFormAction: false,
       currentAction: {},
-      providerSearch: '',
-      providerFilter: 'all',
-      providerPage: 1,
+      actionTarget: null,
+      serviceSearch: '',
+      serviceFilter: 'all',
       registeredExtensions: []
     }
   },
   computed: {
-    providerColumns () {
-      return [{ key: 'name', title: this.$t('label.name') }, { key: 'state', title: this.$t('label.state'), width: '32%' }]
+    serviceColumns () {
+      return [
+        { key: 'name', title: this.$t('label.service'), width: '30%' },
+        { key: 'providers', title: this.$t('label.providers') },
+        { key: 'active', title: this.$t('label.zone.service.active.providers'), width: '26%' }
+      ]
     },
     providerRows () {
       const known = new Map(this.hardcodedNsps.map(item => [item.title, item]))
@@ -244,24 +292,47 @@ export default {
         }
       }).sort((a, b) => Number(b.linked) - Number(a.linked) || a.name.localeCompare(b.name))
     },
+    services () {
+      const services = new Map()
+      for (const provider of this.providerRows) {
+        for (const name of new Set(this.nsps[provider.name]?.servicelist || [])) {
+          if (!services.has(name)) services.set(name, { name, providers: [], activeProviders: 0 })
+          const service = services.get(name)
+          service.providers.push(provider)
+          if (provider.state === 'Enabled') service.activeProviders++
+        }
+      }
+      return [...services.values()].sort((left, right) => this.serviceName(left.name).localeCompare(this.serviceName(right.name)))
+    },
     providerStates () {
-      const states = [...new Set(this.providerRows.map(provider => provider.state))]
+      const states = [...new Set(this.services.flatMap(service => service.providers.map(provider => provider.state)))]
       return [{ value: 'all', label: this.$t('label.all') }, ...states.map(state => ({ value: state, label: this.providerStateLabel(state) }))]
     },
-    filteredProviders () {
-      const search = this.providerSearch.trim().toLowerCase()
-      return this.providerRows.filter(provider =>
-        provider.name.toLowerCase().includes(search) && (this.providerFilter === 'all' || provider.state === this.providerFilter))
+    visibleServices () {
+      const search = this.serviceSearch.trim().toLowerCase()
+      return this.services.filter(service => {
+        const matchesSearch = [service.name, this.serviceName(service.name), ...service.providers.map(provider => provider.name)]
+          .some(name => name.toLowerCase().includes(search))
+        return matchesSearch && (this.serviceFilter === 'all' || service.providers.some(provider => provider.state === this.serviceFilter))
+      })
+    },
+    requestedService () { return typeof this.$route.query.service === 'string' ? this.$route.query.service : '' },
+    requestedProvider () { return typeof this.$route.query.provider === 'string' ? this.$route.query.provider : '' },
+    serviceDialogOpen () {
+      return this.$route.meta?.name === 'physicalnetwork' && this.$route.params?.id === this.resource.id &&
+        this.$route.query.tab === 'network.service.providers' && !!(this.requestedService || this.requestedProvider)
+    },
+    dialogProviders () {
+      if (!this.requestedService) return this.providerRows
+      return this.services.find(service => service.name === this.requestedService)?.providers || []
     },
     activeProvider () {
-      return this.filteredProviders.find(provider => provider.name === this.$route.query.provider) || this.filteredProviders[0]
+      return this.dialogProviders.find(provider => provider.name === this.requestedProvider) ||
+        this.dialogProviders.find(provider => provider.state === 'Enabled') || this.dialogProviders[0]
     },
-    selectedProviderPage () {
-      const index = this.filteredProviders.findIndex(provider => provider.name === this.$route.query.provider)
-      return index < 0 ? 1 : Math.floor(index / providerPageSize) + 1
-    },
-    providerPagination () {
-      return { current: this.providerPage, pageSize: providerPageSize, hideOnSinglePage: true, showSizeChanger: false }
+    activeProviderName () { return this.activeProvider?.name },
+    providerOptions () {
+      return this.dialogProviders.map(provider => ({ value: provider.name, label: provider.name + ' · ' + this.providerStateLabel(provider.state) }))
     },
     hardcodedNsps () {
       return [
@@ -1211,11 +1282,15 @@ export default {
     this.fetchData()
   },
   watch: {
-    providerSearch: 'showSelectedProviderPage',
-    providerFilter: 'showSelectedProviderPage',
-    selectedProviderPage: { immediate: true, handler: 'showSelectedProviderPage' },
-    '$route.query.provider': 'showSelectedProviderPage',
+    serviceDialogOpen (open) {
+      if (!open) this.onCloseAction()
+    },
+    activeProviderName (name) {
+      if (this.actionTarget && this.actionTarget.name !== name) this.onCloseAction()
+    },
     'resource.id' () {
+      this.onCloseAction()
+      this.providerLoaded = false
       this.nsps = {}
       this.registeredExtensions = []
       this.fetchData()
@@ -1245,8 +1320,8 @@ export default {
       if (!this.resource || !('id' in this.resource)) {
         return
       }
-      this.fetchServiceProvider(this.resource.id)
       this.fetchRegisteredExtensions(this.resource.id)
+      return this.fetchServiceProvider(this.resource.id)
     },
     fetchRegisteredExtensions (networkId) {
       // Load NetworkOrchestrator extensions registered to this physical network
@@ -1304,9 +1379,13 @@ export default {
         if (sequence !== this.providerLoadSequence || networkId !== this.resource.id) return
         const providers = json.listnetworkserviceprovidersresponse.networkserviceprovider || []
         this.nsps = Object.fromEntries(providers.map(provider => [provider.name, provider]))
+        this.providerLoaded = true
       } catch (error) {
         if (sequence !== this.providerLoadSequence || networkId !== this.resource.id) return
-        this.nsps = {}
+        if ([401, 403].includes(error.response?.status)) {
+          this.nsps = {}
+          this.providerLoaded = false
+        }
         this.providerLoadError = error.response?.status === 403
           ? 'message.zone.providers.forbidden'
           : 'message.zone.providers.load.failed'
@@ -1323,14 +1402,24 @@ export default {
         unregistered: 'label.not.added'
       }[state] || 'label.unknown')
     },
-    showSelectedProviderPage () {
-      this.providerPage = this.selectedProviderPage
+    serviceName (name) {
+      const key = 'label.' + name.toLowerCase()
+      const label = this.$t(key)
+      return label === key ? name : label
     },
-    changeProviderPage ({ current }) {
-      this.providerPage = current
+    openService (service) {
+      this.$router.push({ query: { ...this.$route.query, service, provider: undefined } })
+    },
+    openProviderManagement () {
+      const provider = this.providerRows.find(row => row.state === 'Enabled') || this.providerRows[0]
+      if (provider) this.$router.push({ query: { ...this.$route.query, service: undefined, provider: provider.name } })
     },
     selectProvider (provider) {
       this.$router.push({ query: { ...this.$route.query, provider } })
+    },
+    closeServiceDialog () {
+      if (this.showFormAction || this.actionLoading) return
+      this.$router.replace({ query: { ...this.$route.query, service: undefined, provider: undefined } })
     },
     setNsp (nsp) {
       this.nsp = nsp
@@ -1341,10 +1430,14 @@ export default {
         return
       }
 
+      const action = this.currentAction
+      const target = this.actionTarget
+      if (this.actionLoading || !target || target.physicalnetworkid !== this.resource.id) return
       this.formRef.value.validate().then(async () => {
+        if (this.actionLoading || action !== this.currentAction || target !== this.actionTarget || target.physicalnetworkid !== this.resource.id) return
         const values = toRaw(this.form)
         const params = {}
-        params.physicalnetworkid = this.nsp.physicalnetworkid
+        params.physicalnetworkid = target.physicalnetworkid
         for (const key in values) {
           const input = values[key]
           for (const param of this.currentAction.fieldParams) {
@@ -1371,15 +1464,15 @@ export default {
         this.actionLoading = true
 
         try {
-          if (!this.nsp.id) {
+          if (!target.id) {
             const serviceParams = {}
-            serviceParams.name = this.nsp.name
-            serviceParams.physicalnetworkid = this.nsp.physicalnetworkid
+            serviceParams.name = target.name
+            serviceParams.physicalnetworkid = target.physicalnetworkid
             const networkServiceProvider = await this.addNetworkServiceProvider(serviceParams)
-            this.nsp = { ...this.nsp, ...networkServiceProvider }
+            Object.assign(target, networkServiceProvider)
           }
-          params.id = this.nsp.id
-          const hasJobId = await this.executeApi(this.currentAction.api, params, this.currentAction.method)
+          params.id = target.id
+          const hasJobId = await this.executeApi(this.currentAction.api, params)
           if (!hasJobId) {
             await this.$message.success('Success')
             await this.fetchData()
@@ -1398,7 +1491,9 @@ export default {
       })
     },
     onCloseAction () {
+      if (this.actionLoading) return
       this.currentAction = {}
+      this.actionTarget = null
       this.showFormAction = false
     },
     addNetworkServiceProvider (args) {
@@ -1437,30 +1532,20 @@ export default {
       })
     },
     executeAction (action) {
-      this.currentAction = action
-      if (this.currentAction.confirm) {
-        this.$confirm({
-          title: this.$t('label.confirmation'),
-          content: this.$t(action.confirm),
-          onOk: this.handleSubmit
-        })
-      } else {
-        this.showFormAction = true
-        if (!action.component) {
-          const apiParams = store.getters.apis[action.api].params || []
-          this.currentAction.fieldParams = action.args.map(arg => {
-            const field = apiParams.filter(param => param.name === arg)[0]
-            if (field.type === 'uuid') {
-              this.listFieldOpts(field)
-            }
-            return field
-          }) || []
-          if (this.currentAction.api === 'addCiscoVnmcResource') {
-            this.currentAction.method = 'POST'
-          }
-          this.setFormRules()
-        }
-      }
+      if (this.showFormAction || this.actionLoading || this.fetchLoading || this.providerLoadError || this.nsp.name !== this.activeProviderName || this.nsp.physicalnetworkid !== this.resource.id) return
+      this.currentAction = { ...action }
+      this.actionTarget = { ...this.nsp }
+      this.showFormAction = true
+      if (action.confirm || action.component) return
+      const apiParams = this.$store.getters.apis[action.api]?.params || []
+      this.currentAction.fieldParams = (action.args || []).map(arg => {
+        const param = apiParams.find(param => param.name === arg)
+        return param ? { ...param } : null
+      }).filter(Boolean)
+      this.currentAction.fieldParams.forEach(field => {
+        if (field.type === 'uuid') this.listFieldOpts(field)
+      })
+      this.setFormRules()
     },
     setFormRules () {
       this.form = reactive({})
@@ -1520,8 +1605,8 @@ export default {
       })
     },
     async executeConfirmAction () {
-      const params = {}
-      params.id = this.nsp.id
+      if (this.actionLoading || !this.actionTarget?.id || this.actionTarget.name !== this.activeProviderName || this.actionTarget.physicalnetworkid !== this.resource.id) return
+      const params = { id: this.actionTarget.id }
       if (this.currentAction.mapping) {
         for (const key in this.currentAction.mapping) {
           if (!this.currentAction.mapping[key].value) {
@@ -1547,57 +1632,58 @@ export default {
         })
       }
     },
-    executeApi (apiName, args, method) {
-      return new Promise((resolve, reject) => {
-        let hasJobId = false
-        let message = ''
-        const promise = postAPI(apiName, args)
-        promise.then(json => {
-          for (const obj in json) {
-            if (obj.includes('response') || obj.includes(apiName)) {
-              for (const res in json[obj]) {
-                if (res === 'jobid') {
-                  this.parentPollActionCompletion(json[obj][res], this.currentAction, this.$t(this.nsp.name))
-                  hasJobId = true
-                  break
-                }
-              }
-              break
-            }
-          }
-
-          resolve(hasJobId)
-        }).catch(error => {
-          message = (error.response && error.response.headers && error.response.headers['x-description']) || error.message
-          reject(message)
+    async executeApi (apiName, args) {
+      const action = this.currentAction
+      const target = this.actionTarget
+      try {
+        const json = await postAPI(apiName, args, { preserveOnFailure: true })
+        const job = Object.entries(json).find(([key, response]) =>
+          (key.includes('response') || key.includes(apiName)) && response?.jobid)?.[1]
+        if (!job) return false
+        if (apiName === 'updateNetworkServiceProvider' && args.state) {
+          const result = await this.$pollJob({
+            jobId: job.jobid,
+            title: this.$t(action.label),
+            name: target.name,
+            showLoading: false
+          })
+          if (result.jobstatus !== 1) throw new Error(result.jobresult?.errortext || this.$t('message.job.result.unknown'))
+          return false
+        }
+        this.parentPollActionCompletion(job.jobid, action, target.name).then(() => {
+          if (target.physicalnetworkid === this.resource.id) this.fetchData()
         })
-      })
+        return true
+      } catch (error) {
+        throw Object.values(error.response?.data || {}).find(response => response?.errortext)?.errortext ||
+          error.response?.headers?.['x-description'] || error.message
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.provider-state-filter {
-  display: inline-flex;
+.service-filter,
+.service-provider-selector {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
-.provider-state-filter :deep(.ant-select) { width: 8rem; }
-.provider-list :deep(.ant-btn-link) {
+.service-filter :deep(.ant-select) { width: 8rem; }
+.service-provider-selector { margin-bottom: 16px; }
+.service-provider-selector :deep(.ant-select) { width: min(100%, 26rem); }
+.service-directory :deep(td),
+.provider-details {
+  overflow-wrap: anywhere;
+}
+.service-directory :deep(.ant-btn-link) {
   height: auto;
   min-height: 32px;
   max-width: 100%;
   padding-inline: 0;
   white-space: normal;
-  overflow-wrap: anywhere;
   text-align: start;
-}
-.provider-list :deep([aria-current='true']) { font-weight: 600; }
-.provider-details {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid var(--ui-border);
-  overflow-wrap: anywhere;
 }
 </style>

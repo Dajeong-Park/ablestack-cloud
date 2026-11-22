@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <resource-table-toolbar :loading="loading" @refresh="provideReload()">
+    <resource-table-toolbar :loading="loading || refreshing" @refresh="provideReload()">
       <strong>{{ $t(title) }}</strong>
     </resource-table-toolbar>
     <a-table
@@ -134,6 +134,7 @@ export default {
   name: 'ProviderListView',
   components: { ResourceTableToolbar, Status, TooltipButton },
   props: {
+    refreshing: { type: Boolean, default: false },
     title: {
       type: String,
       required: true
