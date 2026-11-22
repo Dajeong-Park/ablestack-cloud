@@ -19,42 +19,43 @@
   <a-row :gutter="12">
     <a-col :span="24" class="content-breadcrumb">
       <a-card class="breadcrumb-card">
-        <a-col :span="12" style="display: inline-flex">
-          <breadcrumb style="padding-top: 6px; padding-left: 8px" />
-          <a-button
-            style="margin-left: 12px; margin-top: 4px"
-            :loading="loading"
-            size="small"
-            shape="round"
-            @click="fetchConfigurationData()" >
-            <template #icon><ReloadOutlined /></template>
-            {{ $t('label.refresh') }}
-          </a-button>
-        </a-col>
-        <a-col :span="12" class="configuration-search-tools">
-          <a-popover v-model:visible="filtersOpen" trigger="click" placement="bottomRight">
-            <template #content>
-              <form class="configuration-filters" @submit.prevent="applyFilters">
-                <label for="configuration-name-filter">{{ $t('label.global.setting.key') }}</label>
-                <a-input id="configuration-name-filter" v-model:value="nameDraft" allow-clear />
-                <label for="configuration-category-filter">{{ $t('label.category') }}</label>
-                <a-input id="configuration-category-filter" v-model:value="categoryDraft" allow-clear />
-                <a-button type="primary" html-type="submit">{{ $t('label.apply') }}</a-button>
-              </form>
-            </template>
-            <a-button :aria-label="$t('label.filterby')"><FilterOutlined /></a-button>
-          </a-popover>
-          <a-input-search
-            :placeholder="$t('label.search')"
-            :aria-label="$t('label.search')"
-            v-model:value="filterDraft"
-            allow-clear
-            @search="setConfigurationQuery({ filter: $event, page: 1 })" />
-        </a-col>
+        <div class="configuration-header">
+          <div class="configuration-header-start">
+            <breadcrumb :standard-layout="true" />
+            <a-button
+              :loading="loading || configLoading || listRefreshing > 0"
+              size="small"
+              shape="round"
+              @click="fetchConfigurationData()" >
+              <template #icon><ReloadOutlined /></template>
+              {{ $t('label.refresh') }}
+            </a-button>
+          </div>
+          <div class="configuration-search-tools">
+            <a-popover v-model:visible="filtersOpen" trigger="click" placement="bottomRight">
+              <template #content>
+                <form class="configuration-filters" @submit.prevent="applyFilters">
+                  <label for="configuration-name-filter">{{ $t('label.global.setting.key') }}</label>
+                  <a-input id="configuration-name-filter" v-model:value="nameDraft" allow-clear />
+                  <label for="configuration-category-filter">{{ $t('label.category') }}</label>
+                  <a-input id="configuration-category-filter" v-model:value="categoryDraft" allow-clear />
+                  <a-button type="primary" html-type="submit">{{ $t('label.apply') }}</a-button>
+                </form>
+              </template>
+              <a-button size="small" :aria-label="$t('label.filterby')"><FilterOutlined /></a-button>
+            </a-popover>
+            <a-input-search
+              :placeholder="$t('label.search')"
+              :aria-label="$t('label.search')"
+              v-model:value="filterDraft"
+              allow-clear
+              @search="setConfigurationQuery({ filter: $event, page: 1 })" />
+          </div>
+        </div>
       </a-card>
     </a-col>
     <a-col :span="24">
-      <a-card style="margin-left: 10px;">
+      <a-card class="configuration-content">
         <div v-if="activeFilters.length" class="configuration-active-filters">
           <a-tag
             v-for="condition in activeFilters"
@@ -64,25 +65,44 @@
             {{ $t(condition.label) }} {{ condition.value }}
           </a-tag>
         </div>
+        <a-card v-if="selectedSetting" class="configuration-detail-card" :title="$t('label.global.setting.details')" size="small">
+          <template #extra>
+            <a-space>
+              <a-button v-if="canEditSettings" size="small" @click="openSettingDialog(selectedSetting, 'edit')">{{ $t('label.edit') }}</a-button>
+              <a-button size="small" @click="selectedName = ''">{{ $t('label.close') }}</a-button>
+            </a-space>
+          </template>
+          <a-descriptions size="small" :column="{ xs: 1, sm: 2, xl: 3 }" bordered>
+            <a-descriptions-item :label="$t('label.global.setting.key')">{{ selectedSetting.name }}</a-descriptions-item>
+            <a-descriptions-item :label="$t('label.global.setting.current')">{{ formatConfigurationValue(selectedSetting) }}</a-descriptions-item>
+            <a-descriptions-item :label="$t('label.global.setting.default')">{{ formatConfigurationValue(selectedSetting, 'defaultvalue') }}</a-descriptions-item>
+            <a-descriptions-item :label="$t('label.global.setting.apply')">
+              {{ configurationApplyLabel(selectedSetting) ? $t(configurationApplyLabel(selectedSetting)) : '—' }}
+            </a-descriptions-item>
+            <a-descriptions-item :label="$t('label.description')" :span="2">{{ selectedSetting.description || '—' }}</a-descriptions-item>
+          </a-descriptions>
+        </a-card>
         <a-spin :spinning="configLoading">
           <a-alert v-if="listRefreshFailed" type="error" show-icon :message="$t('message.error.loading.setting')" />
           <a-tabs
             v-if="!listRefreshFailed || config.length > 0"
-            tabPosition="left"
+            :tab-position="isMobile() ? 'top' : 'left'"
             :animated="false"
             :activeKey="this.group || ''"
             @change="changeGroupTab" >
             <a-tab-pane
               key=''
               tab='All Settings' >
-                <ConfigurationTable
-                  :columns="columns"
-                  :config="config"
-                  :count="count"
-                  :page="page"
-                  :pagesize="pagesize"
-                  @change-page="changePage"
-                  @refresh-config="handleConfigRefresh" />
+              <ConfigurationHierarchy
+                v-if="!group"
+                :config="config"
+                :count="count"
+                :page="page"
+                :pagesize="pagesize"
+                @change-page="changePage"
+                @show-setting="selectedName = $event.name"
+                @edit-setting="openSettingDialog($event, 'edit')"
+                @reset-setting="openSettingDialog($event, 'reset')" />
             </a-tab-pane>
             <a-tab-pane
               v-for="(group) in groups"
@@ -98,12 +118,14 @@
                   :tab="subgroup.name" >
                   <ConfigurationHierarchy
                     v-if="group.name === this.group && subgroup.name === this.subgroup"
-                    :columns="columns"
+                    grouped
                     :config="hierarchy"
                     :expanded-row-keys="expandedRows[sectionKey] || []"
                     @update:expanded-row-keys="expandedRows[sectionKey] = $event"
                     @open-parent="openParent"
-                    @refresh-config="handleConfigRefresh" />
+                    @show-setting="selectedName = $event.name"
+                    @edit-setting="openSettingDialog($event, 'edit')"
+                    @reset-setting="openSettingDialog($event, 'reset')" />
                 </a-tab-pane>
               </a-tabs>
             </a-tab-pane>
@@ -111,6 +133,26 @@
         </a-spin>
       </a-card>
     </a-col>
+    <mold-dialog
+      v-if="settingDialog"
+      size="md"
+      form-actions
+      focus-guard
+      :title="$t(settingDialog.mode === 'reset' ? 'label.reset.config.value' : 'label.global.setting.edit')"
+      @cancel="settingDialog = null">
+      <a-descriptions size="small" layout="vertical" :column="{ xs: 1, sm: 3 }">
+        <a-descriptions-item :label="$t('label.global.setting.key')">{{ dialogRecord.name }}</a-descriptions-item>
+        <a-descriptions-item :label="$t('label.global.setting.current')">{{ formatConfigurationValue(dialogRecord) }}</a-descriptions-item>
+        <a-descriptions-item :label="$t('label.global.setting.default')">{{ formatConfigurationValue(dialogRecord, 'defaultvalue') }}</a-descriptions-item>
+      </a-descriptions>
+      <p v-if="dialogRecord.description">{{ dialogRecord.description }}</p>
+      <configuration-value
+        :configrecord="dialogRecord"
+        :dialog-mode="settingDialog.mode"
+        @refresh="handleConfigRefresh"
+        @saved="settingDialog = null"
+        @cancel="settingDialog = null" />
+    </mold-dialog>
   </a-row>
 </template>
 
@@ -121,13 +163,10 @@ import { getAPI } from '@/api'
 import { FilterOutlined } from '@ant-design/icons-vue'
 import { mixin, mixinDevice } from '@/utils/mixin.js'
 import Breadcrumb from '@/components/widgets/Breadcrumb'
-import OsLogo from '@/components/widgets/OsLogo'
-import Status from '@/components/widgets/Status'
-import ActionButton from '@/components/view/ActionButton'
-import InfoCard from '@/components/view/InfoCard'
-import TooltipButton from '@/components/widgets/TooltipButton'
 import ConfigurationHierarchy from './ConfigurationHierarchy'
-import ConfigurationTable from './ConfigurationTable'
+import ConfigurationValue from './ConfigurationValue'
+import MoldDialog from '@/components/view/MoldDialog'
+import { formatConfigurationValue, configurationApplyLabel } from './configurationPresentation'
 import { buildConfigurationHierarchy } from './configurationHierarchy'
 import { readConfigurationQuery, writeConfigurationQuery, listConfigurationParams } from './configurationQuery'
 
@@ -160,15 +199,11 @@ export default {
   components: {
     Breadcrumb,
     FilterOutlined,
-    OsLogo,
-    Status,
-    ActionButton,
-    InfoCard,
-    TooltipButton,
     ConfigurationHierarchy,
-    ConfigurationTable
+    ConfigurationValue,
+    MoldDialog
   },
-  mixins: [listRefreshMixin(['fetchConfigurationData'], { active: vm => vm.groupsLoaded }), mixin, mixinDevice],
+  mixins: [listRefreshMixin(['fetchConfigurationData'], { active: vm => vm.groupsLoaded && !vm.settingDialog }), mixin, mixinDevice],
   props: {
     loading: {
       type: Boolean,
@@ -192,23 +227,20 @@ export default {
       categoryDraft: '',
       filtersOpen: false,
       count: 0,
-      apiName: 'listConfigurations',
-      columns: [
-        {
-          title: 'name',
-          dataIndex: 'name',
-          key: 'name'
-        },
-        {
-          title: 'value',
-          dataIndex: 'value',
-          key: 'value',
-          width: '29%'
-        }
-      ]
+      selectedName: '',
+      settingDialog: null
     }
   },
   computed: {
+    selectedSetting () {
+      return this.config.find(record => record.name === this.selectedName)
+    },
+    dialogRecord () {
+      return this.config.find(record => record.name === this.settingDialog?.record.name) || this.settingDialog?.record
+    },
+    canEditSettings () {
+      return 'updateConfiguration' in this.$store.getters.apis
+    },
     defaultPageSize () {
       return Number(this.$store.getters.defaultListViewPageSize) || 20
     },
@@ -252,7 +284,14 @@ export default {
     this.fetchConfigurationGroups()
   },
   methods: {
+    formatConfigurationValue,
+    configurationApplyLabel,
+    openSettingDialog (record, mode) {
+      this.settingDialog = { record, mode }
+    },
     applyConfigurationRoute () {
+      this.selectedName = ''
+      this.settingDialog = null
       this.filterDraft = this.queryState.filter
       this.nameDraft = this.queryState.name
       this.categoryDraft = this.queryState.category
@@ -371,69 +410,31 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .breadcrumb-card {
+    margin: -16px -24px 12px;
+  }
+
+  .configuration-header,
+  .configuration-header-start,
   .configuration-search-tools {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .configuration-search-tools .ant-input-search {
-    width: min(25vw, 100%);
-  }
-
-  .configuration-filters {
-    width: min(260px, 75vw);
-    display: grid;
-    gap: 8px;
-  }
-
-  .configuration-active-filters {
-    display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .breadcrumb-card {
-    margin-left: -24px;
-    margin-right: -24px;
-    margin-top: -16px;
-    margin-bottom: 12px;
-  }
-
-  .shift-btns {
-    display: flex;
-  }
-
-  .shift-btn {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-
-    &:not(:last-child) {
-      margin-right: 5px;
-    }
-
-    &--rotated {
-      font-size: 10px;
-      transform: rotate(90deg);
-    }
-
+    gap: 8px;
+    min-width: 0;
   }
 
-  .alert-notification-threshold {
-    background-color: rgba(255, 231, 175, 0.75);
-    color: #e87900;
-    padding: 10%;
-  }
+  .configuration-header { justify-content: space-between; }
+  .configuration-search-tools { flex: 0 0 auto; flex-wrap: nowrap; }
+  .configuration-search-tools .ant-input-search { width: 244px; }
+  .configuration-filters { width: min(260px, 75vw); display: grid; gap: 8px; }
+  .configuration-active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .configuration-content,
+  .configuration-content :deep(.ant-tabs-content-holder) { min-width: 0; }
+  .configuration-detail-card { margin-bottom: 16px; overflow-wrap: anywhere; }
 
-  .alert-disable-threshold {
-    background-color: rgba(255, 190, 190, 0.75);
-    color: #f50000;
-    padding: 10%;
+  @media (max-width: 768px) {
+    .configuration-search-tools { flex: 1 1 100%; }
+    .configuration-search-tools .ant-input-search { flex: 1; min-width: 0; }
   }
 </style>
