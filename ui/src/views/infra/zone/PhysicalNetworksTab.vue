@@ -21,7 +21,6 @@
     <resource-table-toolbar :loading="fetchLoading" @refresh="fetchData()">
       <a-button
         type="primary"
-        class="zone-tab-add"
         @click="showAddPhyNetModal"
         :loading="loading"
         :disabled="!('createPhysicalNetwork' in $store.getters.apis)">
@@ -270,7 +269,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.zone-tab-add { margin-bottom: 12px; }
-</style>

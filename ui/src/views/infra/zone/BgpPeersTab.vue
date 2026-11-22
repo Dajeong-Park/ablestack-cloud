@@ -17,15 +17,6 @@
 
 <template>
   <a-spin :spinning="componentLoading">
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-alert
-      v-if="this.resource.ip4routing"
-      type="info">
-      <template #message>
-        <div v-html="$t('message.bgp.peers.null')" />
-      </template>
-    </a-alert>
-    <br>
     <resource-table-toolbar :loading="componentLoading" @refresh="fetchData()">
       <a-button
         v-if="!this.resource.ip4routing"
@@ -36,6 +27,15 @@
         {{ $t('label.add.bgp.peer') }}
       </a-button>
     </resource-table-toolbar>
+    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+    <a-alert
+      v-if="this.resource.ip4routing"
+      type="info"
+      class="bgp-routing-notice">
+      <template #message>
+        <div v-html="$t('message.bgp.peers.null')" />
+      </template>
+    </a-alert>
 
     <a-table
       size="small"
@@ -798,4 +798,8 @@ export default {
     width: 100%;
   }
 
+</style>
+
+<style scoped>
+.bgp-routing-notice { margin-bottom: 12px; }
 </style>

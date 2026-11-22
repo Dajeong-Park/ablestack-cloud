@@ -35,21 +35,23 @@
             :search-label="$t('label.zone.provider.search')"
             :loading="fetchLoading"
             @refresh="fetchData()">
-            <label for="zone-provider-state">{{ $t('label.state') }}</label>
-            <a-select
-              id="zone-provider-state"
-              v-model:value="providerFilter"
-              :options="providerStates"
-              :virtual="false"
-              class="provider-state-filter" />
+            <div class="provider-state-filter">
+              <label for="zone-provider-state">{{ $t('label.state') }}</label>
+              <a-select
+                id="zone-provider-state"
+                v-model:value="providerFilter"
+                :options="providerStates"
+                :virtual="false" />
+            </div>
           </resource-table-toolbar>
           <a-table
             size="small"
             row-key="name"
             :columns="providerColumns"
             :data-source="fetchLoading ? [] : filteredProviders"
-            :pagination="false"
-            :scroll="{ x: 260, y: 300 }">
+            :pagination="providerPagination"
+            table-layout="fixed"
+            @change="changeProviderPage">
             <template #bodyCell="{ column, record }">
               <a-button
                 v-if="column.key === 'name'"
@@ -185,6 +187,8 @@ import { getAPI, postAPI } from '@/api'
 import Status from '@/components/widgets/Status'
 import ProviderItem from '@/views/infra/network/providers/ProviderItem'
 
+const providerPageSize = 6
+
 export default {
   name: 'ServiceProvidersTab',
   components: {
@@ -216,12 +220,13 @@ export default {
       currentAction: {},
       providerSearch: '',
       providerFilter: 'all',
+      providerPage: 1,
       registeredExtensions: []
     }
   },
   computed: {
     providerColumns () {
-      return [{ key: 'name', title: this.$t('label.name') }, { key: 'state', title: this.$t('label.state') }]
+      return [{ key: 'name', title: this.$t('label.name') }, { key: 'state', title: this.$t('label.state'), width: '32%' }]
     },
     providerRows () {
       const known = new Map(this.hardcodedNsps.map(item => [item.title, item]))
@@ -250,6 +255,13 @@ export default {
     },
     activeProvider () {
       return this.filteredProviders.find(provider => provider.name === this.$route.query.provider) || this.filteredProviders[0]
+    },
+    selectedProviderPage () {
+      const index = this.filteredProviders.findIndex(provider => provider.name === this.$route.query.provider)
+      return index < 0 ? 1 : Math.floor(index / providerPageSize) + 1
+    },
+    providerPagination () {
+      return { current: this.providerPage, pageSize: providerPageSize, hideOnSinglePage: true, showSizeChanger: false }
     },
     hardcodedNsps () {
       return [
@@ -1199,6 +1211,10 @@ export default {
     this.fetchData()
   },
   watch: {
+    providerSearch: 'showSelectedProviderPage',
+    providerFilter: 'showSelectedProviderPage',
+    selectedProviderPage: { immediate: true, handler: 'showSelectedProviderPage' },
+    '$route.query.provider': 'showSelectedProviderPage',
     'resource.id' () {
       this.nsps = {}
       this.registeredExtensions = []
@@ -1306,6 +1322,12 @@ export default {
         unsupported: 'label.zone.provider.unsupported',
         unregistered: 'label.not.added'
       }[state] || 'label.unknown')
+    },
+    showSelectedProviderPage () {
+      this.providerPage = this.selectedProviderPage
+    },
+    changeProviderPage ({ current }) {
+      this.providerPage = current
     },
     selectProvider (provider) {
       this.$router.push({ query: { ...this.$route.query, provider } })
@@ -1556,18 +1578,26 @@ export default {
 </script>
 
 <style scoped>
-.provider-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 16px;
+.provider-state-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-.provider-state-filter { width: min(100%, 9rem); }
-.provider-list { overflow-x: auto; }
-.provider-list :deep(.ant-btn-link) { padding-inline: 0; white-space: normal; text-align: start; }
+.provider-state-filter :deep(.ant-select) { width: 8rem; }
+.provider-list :deep(.ant-btn-link) {
+  height: auto;
+  min-height: 32px;
+  max-width: 100%;
+  padding-inline: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: start;
+}
 .provider-list :deep([aria-current='true']) { font-weight: 600; }
-.provider-list, .provider-details { min-width: 0; }
-.provider-details { overflow-x: auto; overflow-wrap: anywhere; }
-@media (max-width: 900px) {
-  .provider-layout { grid-template-columns: minmax(0, 1fr); }
+.provider-details {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ui-border);
+  overflow-wrap: anywhere;
 }
 </style>

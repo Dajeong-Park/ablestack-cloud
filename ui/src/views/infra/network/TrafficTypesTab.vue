@@ -18,26 +18,30 @@
 <template>
   <a-spin :spinning="fetchLoading">
     <resource-table-toolbar v-if="traffictypes.length" :loading="fetchLoading" @refresh="fetchData()">
-      <div class="traffic-type-filter">
-        <label for="zone-traffic-type">{{ $t('label.traffictype') }}</label>
-        <select id="zone-traffic-type" class="ant-input" :value="selectedTraffic?.traffictype" @change="selectTraffic($event.target.value)">
-          <option v-for="item in traffictypes" :key="item.id" :value="item.traffictype">{{ item.traffictype }}</option>
-        </select>
-      </div>
-      <a-popconfirm
-        v-if="selectedTraffic"
-        :title="$t('message.confirm.delete.traffic.type')"
-        @confirm="deleteTrafficType(selectedTraffic)"
-        :okText="$t('label.yes')"
-        :cancelText="$t('label.no')" >
-        <a-button
-          type="primary"
-          danger
-          :loading="loading"
-          :disabled="!('deleteTrafficType' in $store.getters.apis)">
-          <template #icon><delete-outlined /></template> {{ $t('label.delete.traffic.type') }}
-        </a-button>
-      </a-popconfirm>
+      <select
+        id="zone-traffic-type"
+        class="ant-input traffic-type-select"
+        :aria-label="$t('label.traffictype')"
+        :value="selectedTraffic?.traffictype"
+        @change="selectTraffic($event.target.value)">
+        <option v-for="item in traffictypes" :key="item.id" :value="item.traffictype">{{ item.traffictype }}</option>
+      </select>
+      <template #actions>
+        <a-popconfirm
+          v-if="selectedTraffic"
+          :title="$t('message.confirm.delete.traffic.type')"
+          @confirm="deleteTrafficType(selectedTraffic)"
+          :okText="$t('label.yes')"
+          :cancelText="$t('label.no')" >
+          <a-button
+            type="primary"
+            danger
+            :loading="loading"
+            :disabled="!('deleteTrafficType' in $store.getters.apis)">
+            <template #icon><delete-outlined /></template> {{ $t('label.delete.traffic.type') }}
+          </a-button>
+        </a-popconfirm>
+      </template>
     </resource-table-toolbar>
     <div v-if="selectedTraffic" :key="selectedTraffic.traffictype">
       <div
@@ -250,7 +254,12 @@ export default {
 </style>
 
 <style scoped>
-.traffic-type-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.traffic-type-filter select { width: min(100%, 14rem); }
-.traffic-type-filter label { white-space: nowrap; }
+.traffic-type-select {
+  width: 10rem;
+  max-width: 100%;
+  height: 32px;
+}
+@media (max-width: 768px) {
+  .traffic-type-select { width: 100%; }
+}
 </style>

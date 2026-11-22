@@ -20,10 +20,14 @@
     <router-link v-if="returnLocation" class="asn-return-link" :to="returnLocation"><arrow-left-outlined /> {{ $t('label.asn.return') }}</router-link>
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
     <resource-table-toolbar :loading="fetchLoading" @refresh="fetchData()">
-      <h3 class="asn-range-heading">{{ $t('label.asn.manage') }}</h3>
-    <a-button ref="createButton" type="primary" :disabled="!canCreate || fetchLoading || listRefreshFailed || loading || !!deleteTarget" @click="showCreateASRange">
-      <template #icon><plus-outlined /></template> {{ $t('label.create.asnrange') }}
-    </a-button></resource-table-toolbar>
+      <a-button
+        ref="createButton"
+        type="primary"
+        :disabled="!canCreate || fetchLoading || listRefreshFailed || loading || !!deleteTarget"
+        @click="showCreateASRange">
+        <template #icon><plus-outlined /></template> {{ $t('label.create.asnrange') }}
+      </a-button>
+    </resource-table-toolbar>
     <a-table
       :loading="fetchLoading"
       :locale="{ emptyText: $t(listRefreshFailed ? 'message.asn.range.lookup.failed' : 'label.no.data') }"
@@ -297,7 +301,6 @@ export default {
 </script>
 
 <style scoped>
-.asn-range-heading { margin: 0; }
 .asn-return-link { display: inline-block; margin-bottom: 12px; }
 .asn-range-tab { color: var(--ui-text-primary); }
 .asn-range-tab :deep(.ant-table) { color: var(--ui-text-secondary); }

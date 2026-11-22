@@ -18,10 +18,13 @@
 <template>
   <div class="resource-table-toolbar">
     <slot />
-    <a-button v-if="refreshable" :loading="loading" @click="$emit('refresh')">
-      <template #icon><reload-outlined /></template>
-      {{ $t('label.refresh') }}
-    </a-button>
+    <div v-if="refreshable || $slots.actions" class="resource-table-toolbar__actions">
+      <a-button v-if="refreshable" :loading="loading" @click="$emit('refresh')">
+        <template #icon><reload-outlined /></template>
+        {{ $t('label.refresh') }}
+      </a-button>
+      <slot name="actions" />
+    </div>
     <a-input-search
       v-if="searchable"
       :value="search"
@@ -57,6 +60,13 @@ export default {
   align-items: center;
   gap: 8px;
   margin-bottom: 20px;
+}
+.resource-table-toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
 }
 .resource-table-toolbar :deep(.ant-input-search) {
   width: min(100%, 280px);

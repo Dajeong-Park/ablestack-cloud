@@ -28,6 +28,7 @@
       :dataSource="dataSource"
       :rowKey="record => record.id || record.name || record.nvpdeviceid || record.resourceid || record.physicalnetworkid"
       :pagination="false"
+      table-layout="fixed"
       :scroll="scrollable">
       <template #bodyCell="{ column, text, record }">
         <template v-if="column.key === 'name'">
@@ -177,13 +178,7 @@ export default {
   },
   computed: {
     scrollable () {
-      if (this.dataSource.length === 0) {
-        return { y: '60vh', x: 'auto' }
-      } else if (this.columns.length > 3) {
-        return { y: '60vh', x: '50vw' }
-      }
-
-      return { y: '60vh' }
+      return this.columns.length > 4 ? { x: this.columns.length * 140 } : undefined
     },
     listCols () {
       const columns = []

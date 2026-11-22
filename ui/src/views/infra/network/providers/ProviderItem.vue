@@ -17,15 +17,11 @@
 
 <template>
   <div>
-    <a-row :gutter="12">
-      <a-col :md="24" :lg="24" style="text-align: left">
-        <action-button
-          :actions="resource.supported === false ? [] : provider.actions"
-          :resource="resource"
-          :loading="loading"
-          @exec-action="handleExecAction"/>
-      </a-col>
-    </a-row>
+    <action-button
+      :actions="resource.supported === false ? [] : provider.actions"
+      :resource="resource"
+      :loading="loading"
+      @exec-action="handleExecAction" />
     <provider-detail
       style="margin-top: 10px"
       :details="provider.details"
@@ -35,7 +31,7 @@
       v-for="(list, index) in listData"
       :key="index">
       <provider-list-view
-        style="border-top: 1px solid #ddd; padding-top: 5px;"
+        class="provider-resource-list"
         v-if="resource.id"
         :title="list.title"
         :action="currentAction"
@@ -272,4 +268,12 @@ export default {
 </script>
 
 <style scoped>
+</style>
+
+<style scoped>
+.provider-resource-list {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ui-border);
+}
 </style>
