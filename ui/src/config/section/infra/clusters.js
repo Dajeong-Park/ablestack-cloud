@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { clusterSearchFields } from '@/utils/clusterSearch'
 
 export default {
   name: 'cluster',
@@ -24,7 +25,7 @@ export default {
   icon: 'cluster-outlined',
   docHelp: 'conceptsandterminology/concepts.html#about-clusters',
   permission: ['listClustersMetrics'],
-  searchFilters: ['name', 'zoneid', 'podid', 'arch', 'hypervisor'],
+  searchFilters: clusterSearchFields,
   columns: () => {
     const fields = ['name', 'allocationstate', 'clustertype', 'arch', 'hypervisortype']
     const metricsFields = ['haenable', 'state', 'hosts', 'cpuused', 'cpumaxdeviation', 'cpuallocated', 'cputotal', 'memoryused', 'memorymaxdeviation', 'memoryallocated', 'memorytotal', 'drsimbalance']

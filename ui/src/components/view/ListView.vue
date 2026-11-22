@@ -197,6 +197,10 @@
           <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <span v-else-if="$route.path === '/cluster' && !resourcePath && record.id">
+            <router-link :to="{ path: '/cluster/' + record.id, query: clusterListQuery($route.query) }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/cluster/' + record.id, query: { ...clusterListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
+          </span>
           <span v-else-if="$route.path === '/host' && !resourcePath && record.id">
             <router-link :to="{ path: '/host/' + record.id, query: hostListQuery($route.query) }">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/host/' + record.id, query: { ...hostListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
@@ -1320,6 +1324,7 @@ import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } from '@/utils/zone'
+import { clusterListQuery } from '@/utils/clusterSearch'
 import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
@@ -1676,6 +1681,7 @@ export default {
     dnsServerListQuery,
     zoneListQuery,
     hostListQuery,
+    clusterListQuery,
     zoneFeatureState,
     hostStatusColor,
     hostStatusLabel,
