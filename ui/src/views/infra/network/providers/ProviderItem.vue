@@ -20,7 +20,7 @@
     <a-row :gutter="12">
       <a-col :md="24" :lg="24" style="text-align: left">
         <action-button
-          :actions="provider.actions"
+          :actions="resource.supported === false ? [] : provider.actions"
           :resource="resource"
           :loading="loading"
           @exec-action="handleExecAction"/>
@@ -122,19 +122,17 @@ export default {
       if (!this.nsp || Object.keys(this.nsp).length === 0) {
         this.resource = {
           name: this.itemNsp.title,
-          state: 'Disabled',
           physicalnetworkid: this.resourceId,
           zoneid: this.zoneId
         }
       } else {
-        this.resource = this.nsp
-        this.resource.zoneid = this.zoneId
+        this.resource = { ...this.nsp, zoneid: this.zoneId }
       }
       if (this.itemNsp && Object.keys(this.itemNsp).length > 0) {
         this.provider = this.itemNsp
         this.provideSetNsp(this.resource)
 
-        if (!this.provider.lists || this.provider.lists.length === 0) {
+        if (this.resource.supported === false || !this.resource.id || !this.provider.lists?.length) {
           return
         }
         this.provider.lists.map(this.fetchOptions)

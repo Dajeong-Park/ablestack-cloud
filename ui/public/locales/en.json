@@ -1,4 +1,7 @@
 {
+  "label.zone.provider.unsupported": "Unsupported",
+  "message.zone.providers.load.failed": "Could not load network service providers.",
+  "message.zone.providers.forbidden": "You do not have permission to view network service providers.",
   "message.dns.provider.server.id.placeholder": "PowerDNS server ID (optional)",
   "message.dns.server.url.protocol": "Use an HTTP or HTTPS URL.",
   "message.dns.server.url.port": "Enter the port in the port field.",

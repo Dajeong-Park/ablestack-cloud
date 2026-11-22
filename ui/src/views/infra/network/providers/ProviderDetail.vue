@@ -28,7 +28,9 @@
             </div>
             <span v-else-if="item !== 'state'">{{ nsp[item] ? nsp[item] : '' }}</span>
             <span v-else>
-              <status :text="nsp[item] ? nsp[item] : 'Disabled'" displayText />
+              <span v-if="nsp.supported === false">{{ $t('label.zone.provider.unsupported') }}</span>
+              <status v-else-if="nsp.state" :text="nsp.state" displayText />
+              <span v-else>{{ $t('label.not.added') }}</span>
             </span>
           </div>
         </a-list-item>

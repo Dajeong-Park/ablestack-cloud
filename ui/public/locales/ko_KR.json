@@ -1,4 +1,7 @@
 {
+  "label.zone.provider.unsupported": "미지원",
+  "message.zone.providers.load.failed": "네트워크 서비스 제공자를 불러오지 못했습니다.",
+  "message.zone.providers.forbidden": "네트워크 서비스 제공자를 조회할 권한이 없습니다.",
   "message.dns.provider.server.id.placeholder": "PowerDNS 서버 ID(선택)",
   "message.dns.server.url.protocol": "HTTP 또는 HTTPS 주소를 입력하세요.",
   "message.dns.server.url.port": "포트는 포트 입력란에 입력하세요.",

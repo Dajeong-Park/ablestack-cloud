@@ -17,6 +17,15 @@
 
 <template>
   <div>
+    <a-alert
+      v-if="providerLoadError"
+      type="error"
+      show-icon
+      :message="$t(providerLoadError)">
+      <template #description>
+        <a-button size="small" :loading="fetchLoading" @click="fetchData">{{ $t('label.retry') }}</a-button>
+      </template>
+    </a-alert>
     <a-spin :spinning="fetchLoading">
       <a-tabs
         :tabPosition="resourceTabPosition"
@@ -30,11 +39,12 @@
           <template #tab>
             <span>
               {{ $t(item.title) }}
-              <status :text="item.title in nsps ? nsps[item.title].state : $t('label.disabled')" style="margin-bottom: 6px; margin-left: 6px" />
+              <status v-if="nsps[item.title]?.supported !== false && nsps[item.title]?.state" :text="nsps[item.title].state" />
+              <span v-else-if="!fetchLoading && !providerLoadError" class="provider-status">{{ $t(nsps[item.title] ? 'label.zone.provider.unsupported' : 'label.not.added') }}</span>
             </span>
           </template>
           <provider-item
-            v-if="tabKey===item.title"
+            v-if="tabKey === item.title && !fetchLoading && !providerLoadError"
             :loading="loading"
             :itemNsp="item"
             :nsp="nsps[item.title]"
@@ -50,11 +60,12 @@
           <template #tab>
             <span>
               {{ ext.name }}
-              <status :text="nsps[ext.name] ? nsps[ext.name].state : $t('label.not.added')" style="margin-bottom: 6px; margin-left: 6px" />
+              <status v-if="nsps[ext.name]?.supported !== false && nsps[ext.name]?.state" :text="nsps[ext.name].state" />
+            <span v-else-if="!fetchLoading && !providerLoadError" class="provider-status">{{ $t(nsps[ext.name] ? 'label.zone.provider.unsupported' : 'label.not.added') }}</span>
             </span>
           </template>
           <provider-item
-            v-if="tabKey === ext.name"
+            v-if="tabKey === ext.name && !fetchLoading && !providerLoadError"
             :loading="loading"
             :itemNsp="extensionNspItem(ext.name)"
             :nsp="nsps[ext.name]"
@@ -188,7 +199,9 @@ export default {
     return {
       nsps: {},
       nsp: {},
-      fetchLoading: false,
+      fetchLoading: true,
+      providerLoadError: '',
+      providerLoadSequence: 0,
       actionLoading: false,
       showFormAction: false,
       currentAction: {},
@@ -1145,6 +1158,11 @@ export default {
     this.fetchData()
   },
   watch: {
+    'resource.id' () {
+      this.nsps = {}
+      this.registeredExtensions = []
+      this.fetchData()
+    },
     loading (newData, oldData) {
       if (!newData && this.resource.id) {
         this.fetchData()
@@ -1170,21 +1188,22 @@ export default {
       if (!this.resource || !('id' in this.resource)) {
         return
       }
-      this.fetchServiceProvider()
-      this.fetchRegisteredExtensions()
+      this.fetchServiceProvider(this.resource.id)
+      this.fetchRegisteredExtensions(this.resource.id)
     },
-    fetchRegisteredExtensions () {
+    fetchRegisteredExtensions (networkId) {
       // Load NetworkOrchestrator extensions registered to this physical network
       getAPI('listExtensions', {
         type: 'NetworkOrchestrator',
         details: 'resource'
       }).then(json => {
+        if (networkId !== this.resource.id) return
         const exts = (json?.listextensionsresponse?.extension) || []
         this.registeredExtensions = exts.filter(ext =>
-          (ext.resources || []).some(r => r.type === 'PhysicalNetwork' && r.id === this.resource.id)
+          (ext.resources || []).some(r => r.type === 'PhysicalNetwork' && r.id === networkId)
         )
       }).catch(() => {
-        this.registeredExtensions = []
+        if (networkId === this.resource.id) this.registeredExtensions = []
       })
     },
     extensionNspItem (extName) {
@@ -1219,20 +1238,24 @@ export default {
         ]
       }
     },
-    fetchServiceProvider (name) {
+    async fetchServiceProvider (networkId) {
+      const sequence = ++this.providerLoadSequence
       this.fetchLoading = true
-      getAPI('listNetworkServiceProviders', { physicalnetworkid: this.resource.id, name: name }).then(json => {
-        const sps = json.listnetworkserviceprovidersresponse.networkserviceprovider || []
-        if (sps.length > 0) {
-          for (const sp of sps) {
-            this.nsps[sp.name] = sp
-          }
-        }
-      }).catch(error => {
-        this.$notifyError(error)
-      }).finally(() => {
-        this.fetchLoading = false
-      })
+      this.providerLoadError = ''
+      try {
+        const json = await getAPI('listNetworkServiceProviders', { physicalnetworkid: networkId }, { preserveOnFailure: true })
+        if (sequence !== this.providerLoadSequence || networkId !== this.resource.id) return
+        const providers = json.listnetworkserviceprovidersresponse.networkserviceprovider || []
+        this.nsps = Object.fromEntries(providers.map(provider => [provider.name, provider]))
+      } catch (error) {
+        if (sequence !== this.providerLoadSequence || networkId !== this.resource.id) return
+        this.nsps = {}
+        this.providerLoadError = error.response?.status === 403
+          ? 'message.zone.providers.forbidden'
+          : 'message.zone.providers.load.failed'
+      } finally {
+        if (sequence === this.providerLoadSequence && networkId === this.resource.id) this.fetchLoading = false
+      }
     },
     onTabChange (tabKey) {
       this.tabKey = tabKey
@@ -1483,6 +1506,10 @@ export default {
 </script>
 
 <style scoped lang="less">
+.provider-status {
+  margin-inline-start: 6px;
+}
+
 :deep(.ant-tabs) {
   &-left-bar {
     .ant-tabs-tab {
