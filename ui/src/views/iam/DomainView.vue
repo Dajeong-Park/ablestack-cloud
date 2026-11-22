@@ -65,32 +65,46 @@
     </a-card>
 
     <div class="row-element">
-      <resource-view
-        v-if="dataView"
-        :resource="resource"
-        :loading="loading"
-        :tabs="$route.meta.tabs"
-        :actions="actions"
-        @exec-action="execAction" />
+      <template v-if="dataView">
+        <a-alert v-if="readError" type="error" show-icon :message="readError">
+          <template #description><a-button size="small" @click="fetchData()">{{ $t('label.retry') }}</a-button></template>
+        </a-alert>
+        <resource-view
+          v-else-if="loading || resource.id"
+          :key="$route.params.id"
+          :resource="resource"
+          :loading="loading"
+          :tabs="$route.meta.tabs"
+          :actions="actions"
+          @exec-action="execAction" />
+        <a-empty v-else :description="$t('label.no.data')" />
+      </template>
       <tree-view
         v-else
         :key="treeViewKey"
-        :treeData="treeData"
-        :treeSelected="treeSelected"
-        :treeStore="domainStore"
+        :tree-data="treeData"
+        :resource="resource"
+        :keyword="domainStore.keyword"
+        :expanded-keys="domainStore.expanded"
+        :active-tab="treeActiveTab"
+        :tabs="treeTabs"
         :loading="loading"
-        :tabs="$route.meta.tabs"
-        :treeDeletedKey="treeDeletedKey"
+        :selecting="selecting"
+        :error="readError"
         :actions="actions"
-        @change-resource="changeResource"
-        @change-tree-store="changeDomainStore"
-        @exec-action="execAction"/>
+        :load-children="domainStore.keyword ? undefined : loadChildren"
+        @search="searchDomains"
+        @refresh="fetchData()"
+        @select="selectDomain"
+        @expand="expanded => changeDomainStore({ expanded })"
+        @tab-change="tab => changeDomainStore({ tab })"
+        @exec-action="execAction" />
     </div>
 
     <div v-if="showAction">
       <domain-action-form
         :showAction="showAction"
-        :resource="resource"
+        :resource="actionResource"
         :action="action"/>
     </div>
     <domain-delete-confirm
@@ -104,9 +118,11 @@
 </template>
 
 <script>
+import { Empty } from 'ant-design-vue'
 import { getAPI, callAPI, postAPI } from '@/api'
 import store from '@/store'
 import { mixinDevice } from '@/utils/mixin.js'
+import { domainTreeNodes, domainTreePath } from '@/utils/domainTree'
 
 import Breadcrumb from '@/components/widgets/Breadcrumb'
 import ActionButton from '@/components/view/ActionButton'
@@ -119,6 +135,7 @@ import eventBus from '@/config/eventBus'
 export default {
   name: 'DomainView',
   components: {
+    AEmpty: Empty,
     Breadcrumb,
     ActionButton,
     TreeView,
@@ -134,12 +151,13 @@ export default {
       selectedRowKeys: [],
       treeViewKey: 0,
       treeData: [],
-      treeSelected: {},
+      selecting: false,
+      readError: '',
       showAction: false,
       action: {},
+      actionResource: {},
       dataView: false,
       domainStore: {},
-      treeDeletedKey: null,
       detailActionsVisible: false,
       showDeleteConfirm: false,
       deleteDomainResource: null,
@@ -147,7 +165,7 @@ export default {
       domainDeleteError: '',
       domainDeleteReturning: false,
       domainDisposed: false,
-      domainRequestGeneration: 0,
+      domainSelectionGeneration: 0,
       domainRequestAbort: null,
       domainIconRefresh: null
     }
@@ -162,8 +180,23 @@ export default {
       }
       return actions
     },
+    domainOwner () {
+      const user = this.$store.getters.userInfo || {}
+      if (!user.id || !user.domainid) return ''
+      return JSON.stringify([user.id, user.domainid, this.$store.getters.project?.id])
+    },
+    treeTabs () {
+      return (this.$route.meta?.tabs || []).filter(tab =>
+        (!tab.show || tab.show(this.resource, this.$route, this.$store.getters.userInfo)) &&
+        (!tab.permission?.[0] || tab.permission[0] in this.$store.getters.apis))
+    },
+    treeActiveTab () {
+      return this.treeTabs.some(tab => tab.name === this.domainStore.tab)
+        ? this.domainStore.tab
+        : this.treeTabs[0]?.name
+    },
     menuActions () {
-      if (!this.actions || this.actions.length === 0) {
+      if (this.loading || this.selecting || !this.resource.id) {
         return []
       }
       return this.actions.filter(action => {
@@ -183,16 +216,8 @@ export default {
       })
     }
   },
-  beforeRouteUpdate (to, from, next) {
-    next()
-  },
-  beforeRouteLeave (to, from, next) {
-    this.invalidateDomainRead()
-    this.changeDomainStore({})
-    next()
-  },
   created () {
-    this.domainStore = store.getters.domainStore
+    this.restoreDomainStore()
     this.fetchData()
     this.domainIconRefresh = () => {
       if (this.$showIcon()) {
@@ -201,8 +226,16 @@ export default {
     }
     eventBus.on('refresh-domain-icon', this.domainIconRefresh)
   },
-  beforeUnmount () { this.domainDisposed = true; this.invalidateDomainRead(); eventBus.off('refresh-domain-icon', this.domainIconRefresh) },
+  beforeUnmount () {
+    this.domainDisposed = true
+    this.invalidateDomainRead()
+    eventBus.off('refresh-domain-icon', this.domainIconRefresh)
+  },
   watch: {
+    domainOwner () {
+      this.restoreDomainStore()
+      this.fetchData()
+    },
     '$route' (to, from) {
       // When the route changes from /domain/:id to /domain or vice versa, the component is not destroyed and created again
     // So, we need to watch the route params to fetch the data again to update the component
@@ -223,110 +256,175 @@ export default {
       this.detailActionsVisible = false
       this.execAction(action)
     },
-    execAction (action) {
+    async execAction (action) {
       this.detailActionsVisible = false
-      this.treeDeletedKey = null
-      this.treeDeletedKey = action.api === 'deleteDomain' ? this.resource.key : null
+      if (this.loading || this.selecting || this.domainDeletePending) return
+      const id = action.resource?.id || this.resource.id
+      const currentScope = this.domainReadScope()
+      if (id && id !== this.resource.id && !this.dataView) await this.selectDomain(id)
+      if (!id || this.resource.id !== id || currentScope !== this.domainReadScope()) return
+      const configuredAction = this.menuActions.find(item => item.api === action.api)
+      if (!configuredAction) return
+      const target = { ...this.resource }
       if (action.api === 'deleteDomain') {
-        if (this.domainDeletePending) return
-        this.deleteDomainResource = { ...this.resource }
+        this.deleteDomainResource = target
         this.domainDeleteError = ''
         this.showDeleteConfirm = true
         return
       }
-      this.actionData = []
-      this.action = action
-      this.action.params = store.getters.apis[this.action.api].params
-      const paramFields = this.action.params
-      paramFields.sort(function (a, b) {
-        if (a.name === 'name' && b.name !== 'name') { return -1 }
-        if (a.name !== 'name' && b.name === 'name') { return -1 }
-        if (a.name === 'id') { return -1 }
-        if (a.name < b.name) { return -1 }
-        if (a.name > b.name) { return 1 }
-        return 0
-      })
-      this.action.paramFields = []
-      if (action.args) {
-        var args = action.args
-        if (typeof action.args === 'function') {
-          args = action.args(action.resource, this.$store.getters)
-        }
-        if (args.length > 0) {
-          this.action.paramFields = args.map(function (arg) {
-            return paramFields.filter(function (param) {
-              return param.name.toLowerCase() === arg.toLowerCase()
-            })[0]
-          })
-        }
-      }
+      const params = (store.getters.apis[action.api].params || []).map(param => ({ ...param }))
+      const args = typeof configuredAction.args === 'function'
+        ? configuredAction.args(target, this.$store.getters)
+        : configuredAction.args || []
+      const paramFields = args.map(name => params.find(param => param.name.toLowerCase() === name.toLowerCase())).filter(Boolean)
+      this.actionResource = target
+      this.action = { ...configuredAction, params, paramFields, loading: false }
       this.showAction = true
-      for (const param of this.action.paramFields) {
-        if (param.type === 'list' && ['tags', 'hosttags'].includes(param.name)) {
-          param.type = 'string'
-        }
-        if (param.type === 'uuid' || param.type === 'list' || param.name === 'account' || (this.action.mapping && param.name in this.action.mapping)) {
-          this.listUuidOpts(param)
+      for (const field of paramFields) {
+        if (field.type === 'list' && ['tags', 'hosttags'].includes(field.name)) field.type = 'string'
+        if (['uuid', 'list'].includes(field.type) || field.name === 'account' || this.action.mapping?.[field.name]) {
+          this.listUuidOpts(field)
         }
       }
-      this.action.loading = false
     },
-    domainReadScope () { return JSON.stringify([this.$route.fullPath, this.$store.state?.user?.token, this.$store.getters.userInfo?.id, this.$store.getters.project?.id]) },
-    invalidateDomainRead () { this.domainRequestGeneration++; if (this.domainRequestAbort) this.domainRequestAbort.abort(); this.domainRequestAbort = null },
-    fetchData () {
-      if (this.domainDisposed || this.domainDeleteReturning || !this.$route.path.startsWith('/domain')) return Promise.resolve()
-      this.invalidateDomainRead()
-      const generation = this.domainRequestGeneration; const scope = this.domainReadScope()
-      const current = () => !this.domainDisposed && generation === this.domainRequestGeneration && scope === this.domainReadScope()
-      this.domainRequestAbort = new AbortController()
-      this.treeData = []
-      this.treeSelected = {}
-      const params = { listall: true }
-      if (this.$route && this.$route.params && this.$route.params.id) {
-        this.resource = {}
-        this.dataView = true
-        params.id = this.$route.params.id
-      } else {
-        this.dataView = false
-        params.id = this.$store.getters.userInfo.domainid
+    domainReadScope () {
+      return JSON.stringify([this.$route.path, this.$store.state?.user?.token, this.domainOwner])
+    },
+    invalidateDomainRead () {
+      if (this.domainRequestAbort) this.domainRequestAbort.abort()
+      this.domainRequestAbort = null
+    },
+    domainRead (command, params, signal) {
+      return getAPI(command, { listall: true, showicon: true, ...params }, {
+        preserveOnFailure: true, timeout: 20000, signal
+      })
+    },
+    async readChildren (node, signal) {
+      const response = await this.domainRead('listDomainChildren', { id: node.id }, signal)
+      node.children = domainTreeNodes(response.listdomainchildrenresponse?.domain || [])
+      node.isLeaf = node.children.length === 0
+    },
+    async restoreTreeBranches (nodes, requested, signal) {
+      await Promise.all(nodes.filter(node => !node.isLeaf && requested.has(node.id)).map(async node => {
+        await this.readChildren(node, signal)
+        await this.restoreTreeBranches(node.children, requested, signal)
+      }))
+    },
+    async loadChildren (treeNode) {
+      const node = domainTreePath(this.treeData, treeNode.eventKey).at(-1)
+      if (!node || node.children || this.loading || !this.domainRequestAbort) return
+      const controller = this.domainRequestAbort
+      const scope = this.domainReadScope()
+      try {
+        await this.readChildren(node, controller.signal)
+        if (controller === this.domainRequestAbort && scope === this.domainReadScope()) {
+          this.treeData = [...this.treeData]
+        }
+      } catch (error) {
+        if (controller === this.domainRequestAbort && scope === this.domainReadScope()) this.notifyReadError(error)
       }
-
+    },
+    async fetchData (selectSingleMatch = false) {
+      if (this.domainDisposed || this.domainDeleteReturning || !this.$route.path.startsWith('/domain')) return
+      this.invalidateDomainRead()
+      const controller = new AbortController()
+      this.domainRequestAbort = controller
+      const scope = this.domainReadScope()
+      const current = () => !this.domainDisposed && this.domainRequestAbort === controller && scope === this.domainReadScope()
+      this.dataView = !!this.$route.params?.id
       this.loading = true
-      params.showicon = true
-      return getAPI('listDomains', params, { preserveOnFailure: true, timeout: 20000, signal: this.domainRequestAbort.signal }).then(json => {
+      this.selecting = false
+      this.readError = ''
+      this.detailActionsVisible = false
+      this.closeAction()
+      this.resource = {}
+      this.treeData = []
+      try {
+        const id = this.$route.params?.id || this.$store.getters.userInfo.domainid
+        const context = this.domainStore
+        const keyword = !this.dataView && context.keyword
+        const response = await this.domainRead('listDomains', keyword ? { keyword } : { id }, controller.signal)
         if (!current()) return
-        const domains = json.listdomainsresponse.domain || []
-        this.treeData = this.generateTreeData(domains)
-        this.resource = domains[0] || {}
-        this.treeSelected = domains[0] || {}
-      }).catch(error => {
-        if (!current()) return
-        const status = error.response?.status
-        if ([401].includes(status)) {
+        const rows = response.listdomainsresponse?.domain || []
+        const nodes = domainTreeNodes(rows, !!keyword)
+        if (this.dataView) {
+          this.resource = nodes[0] || {}
           return
         }
-
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error.response?.headers?.['x-description'] || this.$t('message.request.failed'),
-          duration: 0
-        })
-
-        if ([405].includes(status)) {
-          this.$router.push({ path: '/dashboard' })
+        if (!keyword) {
+          await this.restoreTreeBranches(nodes, new Set([...(context.expanded || []), ...(context.selectedPath || []).slice(0, -1)]), controller.signal)
         }
-
-        if ([430, 431, 432].includes(status)) {
-          this.$router.push({ path: '/dashboard' })
-        }
-
-        if ([530, 531, 532, 533, 534, 535, 536, 537].includes(status)) {
-          this.$router.push({ path: '/dashboard' })
-        }
-      }).finally(f => {
         if (!current()) return
-        this.loading = false
-      })
+        this.treeData = nodes
+        const wanted = domainTreePath(nodes, context.selectedId)
+        const initial = (!keyword && !context.selectedId) || (selectSingleMatch && rows.length === 1)
+        const path = wanted.length ? wanted : initial && nodes.length ? [nodes[0]] : []
+        const expanded = (context.expanded || []).filter(id => domainTreePath(nodes, id).length)
+        this.changeDomainStore({ expanded })
+        if (path.length > 1 && !keyword) {
+          this.loading = false
+          await this.selectDomain(path.at(-1).id)
+        } else {
+          this.setTreeSelection(path, path.at(-1))
+        }
+      } catch (error) {
+        if (!current()) return
+        this.readError = this.domainErrorText(error)
+        if (this.dataView) this.notifyReadError(error)
+      } finally {
+        if (current()) this.loading = false
+      }
+    },
+    searchDomains (value) {
+      const keyword = value.trim()
+      if (keyword !== (this.domainStore.keyword || '')) {
+        this.changeDomainStore({ keyword, expanded: [], tab: '' })
+      }
+      return this.fetchData(true)
+    },
+    async selectDomain (id) {
+      const path = domainTreePath(this.treeData, id)
+      if (!path.length || this.loading || !this.domainRequestAbort) return
+      if (this.resource.id === id) return
+      const controller = this.domainRequestAbort
+      const generation = ++this.domainSelectionGeneration
+      const scope = this.domainReadScope()
+      const current = () => !this.domainDisposed && this.domainRequestAbort === controller &&
+        generation === this.domainSelectionGeneration && scope === this.domainReadScope()
+      this.selecting = true
+      this.resource = {}
+      try {
+        const response = await this.domainRead('listDomains', { id }, controller.signal)
+        if (!current()) return
+        const record = domainTreeNodes(response.listdomainsresponse?.domain || []).find(domain => domain.id === id)
+        this.setTreeSelection(record ? path : [], record)
+      } catch (error) {
+        if (current()) {
+          this.setTreeSelection([])
+          this.notifyReadError(error)
+        }
+      } finally {
+        if (current()) this.selecting = false
+      }
+    },
+    setTreeSelection (path, record = {}) {
+      this.resource = record
+      this.changeDomainStore({ selectedId: record.id || '', selectedPath: path.map(item => item.id) })
+    },
+    restoreDomainStore () {
+      const stored = store.getters.domainStore || {}
+      this.domainStore = this.domainOwner && stored.owner === this.domainOwner ? stored : {}
+    },
+    changeDomainStore (changes, reset = false) {
+      this.domainStore = { ...(reset ? {} : this.domainStore), ...changes, owner: this.domainOwner }
+      store.dispatch('SetDomainStore', this.domainStore)
+    },
+    domainErrorText (error) {
+      return Object.values(error.response?.data || {}).find(body => body?.errortext)?.errortext ||
+        error.response?.headers?.['x-description'] || this.$t('message.request.failed')
+    },
+    notifyReadError (error) {
+      this.$notification.error({ message: this.$t('message.request.failed'), description: this.domainErrorText(error) })
     },
     listUuidOpts (param) {
       if (this.action.mapping && param.name in this.action.mapping && !this.action.mapping[param.name].api) {
@@ -339,7 +437,7 @@ export default {
       if (this.action.mapping && param.name in this.action.mapping && this.action.mapping[param.name].api) {
         possibleApi = this.action.mapping[param.name].api
         if (this.action.mapping[param.name].params) {
-          const customParams = this.action.mapping[param.name].params(this.resource)
+          const customParams = this.action.mapping[param.name].params(this.actionResource)
           if (customParams) {
             params = { ...params, ...customParams }
           }
@@ -362,7 +460,7 @@ export default {
       callAPI(possibleApi, params)
         .then(json => {
           param.loading = false
-          const responseObj = Object.values(json).find(obj => obj.includes('response'))
+          const responseObj = Object.entries(json).find(([key]) => key.includes('response'))?.[1]
           if (responseObj) {
             const responseData = Object.entries(responseObj).find(([res, value]) => res !== 'count')
             if (responseData) {
@@ -374,33 +472,9 @@ export default {
           param.loading = false
         })
     },
-    generateTreeData (treeData) {
-      const result = []
-      if (!treeData.length) return result
-      const rootItem = treeData
-
-      rootItem[0].title = rootItem[0].title ? rootItem[0].title : rootItem[0].name
-      rootItem[0].key = rootItem[0].id ? rootItem[0].id : 0
-      rootItem[0].resourceIcon = rootItem[0].icon || {}
-      delete rootItem[0].icon
-
-      if (!rootItem[0].haschild) {
-        rootItem[0].isLeaf = true
-      }
-
-      result.push(rootItem[0])
-      return result
-    },
-    changeResource (resource) {
-      this.treeSelected = resource
-      this.resource = this.treeSelected
-    },
-    changeDomainStore (domainStore) {
-      this.domainStore = domainStore
-      store.dispatch('SetDomainStore', domainStore)
-    },
     closeAction () {
       this.showAction = false
+      this.actionResource = {}
     },
     closeDeleteConfirm () {
       if (this.domainDeletePending) return
@@ -410,8 +484,9 @@ export default {
       this.domainDeleteReturning = true
       this.invalidateDomainRead()
       this.showDeleteConfirm = false; this.deleteDomainResource = null
-      this.resource = {}; this.treeData = []; this.treeSelected = {}; this.treeDeletedKey = null
-      this.changeDomainStore({ treeSelected: {}, expands: [], isExpand: false })
+      this.resource = {}
+      this.treeData = []
+      this.changeDomainStore({}, true)
       try {
         await this.$router.replace({ path: '/domain' })
         if (this.domainDisposed || this.$route.path !== '/domain') return
