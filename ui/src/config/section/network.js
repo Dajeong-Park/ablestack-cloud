@@ -1606,8 +1606,9 @@ export default {
       title: 'label.dns.zones',
       icon: 'apartment-outlined',
       permission: ['listDnsZones'],
-      columns: ['name', 'state', 'dnsservername', 'account', 'description'],
-      details: ['name', 'id', 'state', 'dnsservername', 'dnsserverid', 'account', 'domainpath', 'description'],
+      searchFilters: () => ['listDnsServers' in store.getters.apis && store.getters.apis.listDnsZones?.params?.some(param => param.name === 'dnsserverid') ? 'dnsserverid' : null].filter(Boolean),
+      columns: ['name', 'state', 'type', 'dnsservername', 'account', 'description'],
+      details: ['name', 'id', 'state', 'type', 'dnsservername', 'account', 'domain', 'associatednetworks', 'description'],
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))
@@ -1615,7 +1616,7 @@ export default {
       {
         name: 'dns.records',
         component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DnsRecordsTab.vue'))),
-        show: () => true
+        permission: ['listDnsRecords']
       }],
       actions: [
         {
@@ -1624,10 +1625,9 @@ export default {
           label: 'label.dns.create.zone',
           listView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/CreateDnsZone.vue'))),
-          show: () => {
-            return true
-          }
+          show: (_, context) => !!context.apis?.listDnsServers
         },
         {
           api: 'updateDnsZone',
@@ -1635,6 +1635,7 @@ export default {
           label: 'label.dns.update.zone',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/UpdateDnsZone.vue')))
         },
@@ -1645,6 +1646,7 @@ export default {
           message: 'message.action.delete.dns.zone',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DeleteDnsZone.vue'))),
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           groupAction: false

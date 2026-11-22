@@ -23,6 +23,7 @@ import static com.cloud.event.EventTypes.EVENT_NIC_UPDATE;
 import static com.cloud.event.EventTypes.EVENT_VM_UPDATE;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -459,14 +460,12 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
     @Override
     public ListResponse<DnsZoneResponse> listDnsZones(ListDnsZonesCmd cmd) {
         Pair<List<DnsZoneVO>, Integer> result = searchForDnsZonesInternal(cmd);
-        List<String> zoneIds = new ArrayList<>();
-        for (DnsZoneVO zone : result.first()) {
-            zoneIds.add(zone.getUuid());
-        }
-        List<DnsZoneJoinVO> zoneJoinVos = dnsZoneJoinDao.listByUuids(zoneIds);
+        Map<String, DnsZoneVO> zonesByUuid = result.first().stream()
+                .collect(Collectors.toMap(DnsZoneVO::getUuid, zone -> zone));
+        List<DnsZoneJoinVO> zoneJoinVos = dnsZoneJoinDao.listByUuids(new ArrayList<>(zonesByUuid.keySet()));
         List<DnsZoneResponse> zoneResponses = new ArrayList<>();
         for (DnsZoneJoinVO zoneJoin: zoneJoinVos) {
-            zoneResponses.add(createDnsZoneResponse(zoneJoin));
+            zoneResponses.add(createDnsZoneResponse(zoneJoin, zonesByUuid.get(zoneJoin.getUuid())));
         }
         ListResponse<DnsZoneResponse> response = new ListResponse<>();
         response.setResponses(zoneResponses, result.second());
@@ -551,6 +550,11 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
             throw new CloudRuntimeException("The underlying DNS server for this DNS Record is missing.");
         }
         DnsRecord.RecordType recordType = cmd.getType();
+        String name = StringUtils.trimToEmpty(cmd.getName());
+        if (recordType == DnsRecord.RecordType.NS && (name.isEmpty() || "@".equals(name) ||
+                StringUtils.equalsIgnoreCase(StringUtils.removeEnd(name, "."), StringUtils.removeEnd(dnsZone.getName(), ".")))) {
+            throw new InvalidParameterValueException("The DNS zone apex NS record set cannot be deleted.");
+        }
         try {
             DnsRecord record = new DnsRecord();
             record.setName(cmd.getName());
@@ -578,14 +582,23 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         }
         try {
             DnsProvider provider = getProviderByType(server.getProviderType());
-            List<DnsRecord> records = provider.listRecords(server, zone);
-            List<DnsRecordResponse> responses = new ArrayList<>();
-            for (DnsRecord record : records) {
-                responses.add(createDnsRecordResponse(record));
+            String keyword = StringUtils.trimToEmpty(cmd.getKeyword());
+            List<DnsRecord> records = provider.listRecords(server, zone).stream()
+                    .filter(record -> keyword.isEmpty() || StringUtils.containsIgnoreCase(record.getName(), keyword) ||
+                            StringUtils.containsIgnoreCase(record.getType().name(), keyword) ||
+                            record.getContents().stream().anyMatch(value -> StringUtils.containsIgnoreCase(value, keyword)))
+                    .sorted(Comparator.comparing(DnsRecord::getName, String.CASE_INSENSITIVE_ORDER)
+                            .thenComparing(record -> record.getType().name()))
+                    .collect(Collectors.toList());
+            int total = records.size();
+            Long limit = cmd.getPage() == null && cmd.getPageSize() == null ? null : cmd.getPageSizeVal();
+            if (limit != null) {
+                int start = (int) Math.min(cmd.getStartIndex(), total);
+                int end = (int) Math.min(start + limit, total);
+                records = records.subList(start, end);
             }
-
             ListResponse<DnsRecordResponse> listResponse = new ListResponse<>();
-            listResponse.setResponses(responses, responses.size());
+            listResponse.setResponses(records.stream().map(this::createDnsRecordResponse).collect(Collectors.toList()), total);
             return listResponse;
         } catch (DnsNotFoundException ex) {
             logger.error("DNS zone is not found", ex);
@@ -626,6 +639,9 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
             }
             dnsZoneName = DnsProviderUtil.appendPublicSuffixToZone(dnsZoneName, server.getPublicDomainSuffix());
             checkDnsZoneNameConflictsAcrossAccounts(dnsZoneName, server.getId(), caller.getId());
+        }
+        if (server.getState() != DnsServer.State.Enabled) {
+            throw new InvalidParameterValueException("The selected DNS server is disabled.");
         }
         DnsZone.ZoneType type = cmd.getType();
         DnsZoneVO existing = dnsZoneDao.findByNameServerAndType(dnsZoneName, server.getId(), type);
@@ -670,6 +686,9 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
             throw new CloudRuntimeException(String.format("DNS server for zone '%s' no longer exists", dnsZone.getName()));
         }
         try {
+            if (server.getState() != DnsServer.State.Enabled) {
+                throw new CloudRuntimeException("The selected DNS server is disabled.");
+            }
             DnsProvider provider = getProviderByType(server.getProviderType());
             if (isExistingZone) {
                 if (!provider.dnsZoneExists(server, dnsZone)) {
@@ -732,10 +751,10 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         if (zoneJoinVO == null) {
             throw new CloudRuntimeException(String.format("DNS zone join view not found for ID: %s", dnsZone.getId()));
         }
-        return createDnsZoneResponse(zoneJoinVO);
+        return createDnsZoneResponse(zoneJoinVO, dnsZone);
     }
 
-    DnsZoneResponse createDnsZoneResponse(DnsZoneJoinVO zone) {
+    DnsZoneResponse createDnsZoneResponse(DnsZoneJoinVO zone, DnsZone dnsZone) {
         DnsZoneResponse response = new DnsZoneResponse();
         response.setId(zone.getUuid());
         response.setName(zone.getName());
@@ -746,7 +765,32 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         response.setDnsServerName(zone.getDnsServerName());
         response.setDnsServerAccountName(zone.getDnsServerAccountName());
         response.setState(zone.getState());
+        response.setType(dnsZone.getType());
         response.setDescription(zone.getDescription());
+
+        Account caller = CallContext.current().getCallingAccount();
+        List<DnsZoneNetworkMapResponse> networks = new ArrayList<>();
+        for (DnsZoneNetworkMapVO mapping : dnsZoneNetworkMapDao.listByZoneId(dnsZone.getId())) {
+            NetworkVO network = networkDao.findById(mapping.getNetworkId());
+            if (network == null) {
+                continue;
+            }
+            try {
+                accountMgr.checkAccess(caller, null, true, network);
+            } catch (PermissionDeniedException ignored) {
+                continue;
+            }
+            DnsZoneNetworkMapResponse association = new DnsZoneNetworkMapResponse();
+            association.setNetworkId(network.getUuid());
+            association.setNetworkName(network.getName());
+            association.setSubDomain(mapping.getSubDomain());
+            networks.add(association);
+            if (networks.size() == 1) {
+                response.setNetworkId(network.getUuid());
+                response.setNetworkName(network.getName());
+            }
+        }
+        response.setAssociatedNetworks(networks);
         return response;
     }
 

@@ -16,84 +16,123 @@
 // under the License.
 
 <template>
-  <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+  <div class="dns-records-tab">
+    <a-alert
+      v-if="listRefreshFailed"
+      class="dns-records-notice"
+      :type="loadError ? 'error' : 'warning'"
+      show-icon
+      :message="$t(loadError ? 'error.fetching.data' : 'message.list.refresh.stale')">
+      <template #description><a-button size="small" @click="fetchData">{{ $t('label.retry') }}</a-button></template>
+    </a-alert>
     <a-spin :spinning="fetchLoading">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+      <div class="dns-records-toolbar">
+        <a-button v-if="canCreate" type="primary" @click="showAddForm = true">
+          <template #icon><plus-outlined aria-hidden="true" /></template>{{ $t('label.dns.create.record') }}
+        </a-button>
+        <a-button :aria-label="$t('label.refresh')" :title="$t('label.refresh')" @click="fetchData">
+          <template #icon><reload-outlined /></template>
+        </a-button>
         <a-input-search
           v-model:value="searchText"
+          :aria-label="$t('label.search')"
           :placeholder="$t('label.search')"
-          style="width: 250px;"
-          allow-clear />
-        <a-button
-          shape="round"
-          @click="() => { showAddForm = true }">
-          {{ $t('label.dns.create.record') }}
-          <plus-outlined style="margin-left: 5px;" />
-        </a-button>
+          allow-clear
+          @search="searchRecords" />
       </div>
 
       <a-table
         size="small"
-        style="overflow-y: auto; width: 100%;"
-        :columns="columns"
-        :dataSource="filteredRecords"
+        :scroll="{ x: 620 }"
+        :columns="visibleColumns"
+        :dataSource="records"
         :rowKey="item => `${item.name}-${item.type}`"
-        :pagination="tablePagination">
+        :pagination="false">
+        <template #emptyText>{{ $t(fetchLoading ? 'label.loading' : loadError ? 'error.fetching.data' : keyword ? 'message.dns.records.no.matches' : 'message.dns.records.empty') }}</template>
 
         <template #bodyCell="{ column, record }">
           <template v-if="column.dataIndex === 'contents'">
-            <a-tag v-for="(item, idx) in record.contents" :key="idx">{{ item }}</a-tag>
+            <a-tag class="dns-record-content" v-for="(item, idx) in record.contents" :key="idx">{{ item }}</a-tag>
           </template>
           <template v-if="column.dataIndex === 'ttl'">
             {{ record.ttl }}
           </template>
-          <template v-if="column.key === 'actions'">
-            <a-popconfirm
-              :title="$t('message.confirm.delete.dns.record')"
-              @confirm="handleDeleteRecord(record)"
-              :okText="$t('label.yes')"
-              :cancelText="$t('label.no')">
-              <tooltip-button
-                tooltipPlacement="bottom"
-                :tooltip="$t('label.delete')"
-                type="primary"
-                :danger="true"
-                icon="delete-outlined" />
-            </a-popconfirm>
+          <template v-if="column.key === 'actions' && canDelete">
+            <span v-if="isApexNs(record)">{{ $t('label.dns.record.apex.ns.protected') }}</span>
+            <tooltip-button
+              v-else
+              tooltipPlacement="bottom"
+              :tooltip="$t('label.delete')"
+              type="primary"
+              :danger="true"
+              icon="delete-outlined"
+              @onClick="deleteTarget = record" />
           </template>
         </template>
       </a-table>
     </a-spin>
+    <a-pagination
+      v-if="total > 0"
+      class="dns-records-pagination"
+      :current="page"
+      :page-size="pageSize"
+      :total="total"
+      :show-total="count => `${$t('label.total')} ${count} ${$t('label.items')}`"
+      :page-size-options="['10', '20', '40', '80', '100']"
+      show-size-changer
+      @change="changePage" />
 
-    <a-modal
-      v-if="showAddForm"
-      :visible="showAddForm"
+    <MoldDialog
+      v-if="deleteTarget && canDelete"
+      size="sm"
+      form-actions
+      focus-guard
+      :title="$t('label.dns.delete.record')"
+      @cancel="closeDeleteForm">
+      <p>{{ $t('message.dns.record.delete.rrset', { name: deleteTarget.name, type: deleteTarget.type, count: deleteTarget.contents?.length || 0 }) }}</p>
+      <a-alert v-if="jobError" :message="jobError" type="error" show-icon />
+      <MoldDialogActions :busy="deleteLoading">
+        <a-button @click="closeDeleteForm">{{ $t('label.cancel') }}</a-button>
+        <a-button type="primary" danger :loading="deleteLoading" :disabled="jobTracking === 'unconfirmed'" @click="handleDeleteRecord">
+          {{ $t(jobId ? 'label.dns.job.recheck' : 'label.delete') }}
+        </a-button>
+      </MoldDialogActions>
+    </MoldDialog>
+
+    <MoldDialog
+      v-if="showAddForm && canCreate"
+      size="md"
+      form-actions
+      focus-guard
       :title="$t('label.dns.create.record')"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="() => { showAddForm = false }"
-      centered
-      width="auto">
+      @cancel="handleCloseCreateForm">
       <CreateDnsRecord
         :resource="resource"
         @close-action="handleCloseCreateForm" />
-    </a-modal>
+    </MoldDialog>
   </div>
 </template>
 
 <script>
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
-import { getAPI, postAPI } from '@/api'
+import { getAPI } from '@/api'
+import { dnsJob } from './dnsJob'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import CreateDnsRecord from '@/views/network/dns/CreateDnsRecord'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData'])],
+  mixins: [listRefreshMixin(['fetchData'], {
+    active: vm => vm.canRead && vm.$route.params.id === vm.resource.id,
+    scopeKey: vm => [vm.$route.params.id, vm.resource.id, vm.$store.getters.userInfo?.id,
+      vm.$store.state?.user?.token, vm.canRead, vm.keyword, vm.page, vm.pageSize]
+  }), dnsJob],
   name: 'DnsRecordsTab',
   components: {
+    MoldDialog,
+    MoldDialogActions,
     TooltipButton,
     CreateDnsRecord
   },
@@ -110,26 +149,23 @@ export default {
   data () {
     return {
       fetchLoading: false,
-      deleteLoading: false,
+      deleteTarget: null,
       showAddForm: false,
       searchText: '',
+      keyword: '',
+      page: 1,
+      pageSize: 10,
+      total: 0,
+      loadError: false,
       records: [],
-      tablePagination: {
-        defaultPageSize: 10,
-        showSizeChanger: true,
-        pageSizeOptions: ['10', '20', '40', '80', '100'],
-        showTotal: (total) => `${this.$t('label.total')} ${total} ${this.$t('label.items')}`
-      },
       columns: [
         {
           title: this.$t('label.name'),
-          dataIndex: 'name',
-          sorter: (a, b) => a.name.localeCompare(b.name)
+          dataIndex: 'name'
         },
         {
           title: this.$t('label.type'),
-          dataIndex: 'type',
-          sorter: (a, b) => a.type.localeCompare(b.type)
+          dataIndex: 'type'
         },
         {
           title: this.$t('label.contents'),
@@ -137,8 +173,7 @@ export default {
         },
         {
           title: this.$t('label.ttl') + ' (' + this.$t('label.seconds') + ')',
-          dataIndex: 'ttl',
-          sorter: (a, b) => a.ttl - b.ttl
+          dataIndex: 'ttl'
         },
         {
           key: 'actions',
@@ -148,132 +183,108 @@ export default {
     }
   },
   computed: {
-    filteredRecords () {
-      const q = this.searchText.trim().toLowerCase()
-      if (!q) return this.records
-      return this.records.filter(r =>
-        r.name?.toLowerCase().includes(q) ||
-        r.type?.toLowerCase().includes(q) ||
-        r.contents?.some(c => c.toLowerCase().includes(q))
-      )
-    }
+    deleteLoading () { return this.jobLoading },
+    canRead () { return !!this.$store.getters.apis?.listDnsRecords },
+    canCreate () { return this.canRead && !!this.$store.getters.apis?.createDnsRecord },
+    canDelete () { return this.canRead && !!this.$store.getters.apis?.deleteDnsRecord },
+    visibleColumns () { return this.canDelete ? this.columns : this.columns.filter(column => column.key !== 'actions') }
   },
   created () {
     this.fetchData()
   },
   watch: {
-    'resource.id' (newId) {
-      if (!newId) return
+    'resource.id' () {
+      this.page = 1
+      this.total = 0
       this.fetchData()
     }
   },
   methods: {
-    fetchData () {
+    searchRecords (value) {
+      const keyword = value?.trim() || ''
+      if (keyword !== this.keyword) this.total = 0
+      this.keyword = keyword
+      this.page = 1
+      this.fetchData()
+    },
+    changePage (page, size) {
+      this.page = size === this.pageSize ? page : 1
+      this.pageSize = size
+      this.fetchData()
+    },
+    async fetchData () {
+      if (!this.canRead || !this.resource.id || this.$route.params.id !== this.resource.id) return
       const listRequest = this.listRequestToken('fetchData')
-      if (this.fetchLoading) return
-
-      const params = {
-        dnszoneid: this.resource.id
-      }
+      const params = { dnszoneid: this.resource.id, page: this.page, pagesize: this.pageSize }
+      if (this.keyword) params.keyword = this.keyword
       this.fetchLoading = !listRequest.loaded
-      return getAPI('listDnsRecords', params).then(json => {
+      if (!listRequest.loaded) {
+        this.records = []
+        this.loadError = false
+        this.listRefreshFailed = false
+      }
+      try {
+        const json = await getAPI('listDnsRecords', params, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        const response = json.listdnsrecordsresponse || {}
-        this.records = response.dnsrecord || []
-      }).catch(error => {
+        const response = json?.listdnsrecordsresponse
+        const rows = response?.dnsrecord || []
+        const total = Number(response?.count ?? rows.length)
+        if (!response || response.errorcode || !Array.isArray(rows) || !Number.isSafeInteger(total) || total < rows.length) {
+          throw new Error('Invalid DNS record list response')
+        }
+        this.total = total
+        const lastPage = Math.max(1, Math.ceil(total / this.pageSize))
+        if (this.page > lastPage) {
+          this.page = lastPage
+          return this.fetchData()
+        }
+        this.records = rows
+        this.loadError = false
+      } catch (_) {
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
         listRequest.failed = true
+        this.loadError = !listRequest.loaded
         this.listRefreshFailed = true
-        if (listRequest.loaded) return
-
-        this.$notifyError(error)
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        this.fetchLoading = false
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.fetchLoading = false
-      })
-    },
-    handleDeleteRecord (record) {
-      if (this.deleteLoading) return
-      this.deleteLoading = true
-
-      const params = {
-        dnszoneid: this.resource.id,
-        name: record.name,
-        type: record.type
+      } finally {
+        if (this.isListRequestCurrent('fetchData', listRequest)) this.fetchLoading = false
       }
-
-      postAPI('deleteDnsRecord', params).then(response => {
-        const jobId = response?.deletednsrecordresponse?.jobid
-        if (!jobId) {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: 'Failed to get jobid for DeleteDnsRecord',
-            duration: 0
-          })
-          this.deleteLoading = false
-          return
-        }
-        this.$pollJob({
-          jobId,
-          title: this.$t('label.dns.delete.record'),
-          description: record.name,
-          successMethod: () => {
-            this.$notification.success({
-              message: this.$t('message.success.delete.dns.record'),
-              description: `${this.$t('message.success.delete.dns.record')} ${record.name}`
-            })
-            this.records = this.records.filter(r => !(r.name === record.name && r.type === record.type))
-            this.deleteLoading = false
-          },
-          errorMethod: () => {
-            this.deleteLoading = false
-          },
-          loadingMessage: `${this.$t('label.dns.delete.record')} ${record.name} ${this.$t('label.in.progress')}`,
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          action: {
-            isFetchData: false
-          }
-        })
-      }).catch(error => {
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error?.response?.headers['x-description'] || error.message,
-          duration: 0
-        })
-        this.deleteLoading = false
+    },
+    isApexNs (record) {
+      if (record.type !== 'NS') return false
+      const name = record.name?.trim().toLowerCase().replace(/\.$/, '')
+      return name === '@' || name === this.resource.name?.trim().toLowerCase().replace(/\.$/, '')
+    },
+    closeDeleteForm () {
+      this.deleteTarget = null
+      this.jobId = ''
+      this.jobTracking = ''
+      this.jobError = ''
+    },
+    handleDeleteRecord () {
+      const record = this.deleteTarget
+      if (!record || !this.canDelete || this.jobTracking === 'unconfirmed' || this.isApexNs(record)) return
+      const params = { dnszoneid: this.resource.id, name: record.name, type: record.type }
+      return this.submitDnsJob('deleteDnsRecord', params, 'label.dns.delete.record', record.name, () => {
+        this.closeDeleteForm()
+        this.fetchData()
       })
     },
     handleCloseCreateForm (payload) {
       this.showAddForm = false
-      const jobId = payload?.jobId
-      if (!jobId) return
-      const recordName = payload?.recordName || ''
-      this.$pollJob({
-        jobId,
-        title: this.$t('label.dns.create.record'),
-        description: recordName,
-        successMethod: () => {
-          this.$notification.success({
-            message: this.$t('label.dns.create.record'),
-            description: `${this.$t('message.success.create.dns.record')} ${recordName}`
-          })
-          this.fetchData()
-        },
-        errorMethod: () => {
-          this.fetchData()
-        },
-        loadingMessage: `${this.$t('label.dns.create.record')} ${recordName} ${this.$t('label.in.progress')}`,
-        catchMessage: this.$t('error.fetching.async.job.result'),
-        action: {
-          isFetchData: false
-        }
-      })
+      if (payload?.saved) this.fetchData()
     }
   }
 }
 </script>
+
+<style scoped>
+.dns-records-tab { min-width: 0; }
+.dns-records-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+.dns-records-toolbar :deep(.ant-input-search) { width: min(100%, 250px); margin-inline-start: auto; }
+.dns-records-pagination { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; margin-top: 16px; }
+.dns-records-notice { margin-bottom: 16px; }
+.dns-record-content { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  .dns-records-toolbar :deep(.ant-input-search) { flex: 1 0 100%; width: 100%; }
+}
+</style>

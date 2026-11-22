@@ -55,7 +55,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -71,6 +71,23 @@
           <div v-else-if="item === 'protocol'">{{ kmsProtocolOptions($store.getters.features, dataResource.protocol).find(provider => provider.id === dataResource.protocol)?.name || $t('label.unknown') }}</div>
           <div v-else-if="item === 'vendorname'">{{ dataResource.vendor || dataResource.vendorname || $t('label.unknown') }}</div>
           <div v-else>{{ dataResource[item] ?? $t(item === 'state' ? 'label.hsm.connection.unavailable' : 'label.unknown') }}</div>
+        </div>
+      </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'dnszone' && item === 'dnsservername'">
+        <div>
+          <strong>{{ $t('label.dns.server') }}</strong>
+          <div>
+            <router-link v-if="dataResource.dnsserverid && $store.getters.apis?.listDnsServers" :to="{ path: '/dnsserver/' + dataResource.dnsserverid }">{{ dataResource.dnsservername }}</router-link>
+            <span v-else>{{ dataResource.dnsservername }}</span>
+          </div>
+        </div>
+      </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'dnszone' && item === 'associatednetworks' && (dataResource.associatednetworks?.length || dataResource.networkname)">
+        <div>
+          <strong>{{ $t('label.dns.zone.associated.networks') }}</strong>
+          <div v-for="network in dataResource.associatednetworks || [dataResource]" :key="network.networkid">
+            {{ network.networkname }}<span v-if="network.subdomain"> ({{ network.subdomain }})</span>
+          </div>
         </div>
       </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'guestvlans' && ['allocationstate', 'taken', 'isdedicated'].includes(item)">
@@ -98,7 +115,7 @@
       <a-list-item v-else-if="$route.meta.name === 'acllist' && item === 'scope' && dataResource.id">
         <div><strong>{{ $t('label.scope') }}</strong><br/><AclScopeValue :resource="dataResource" /></div>
       </a-list-item>
-      <a-list-item v-else-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || ($route.meta.name === 'ipv4subnets' && ((item === 'networkname' && dataResource.networkid) || (item === 'vpcname' && dataResource.vpcid))) || (item in dataResource && !customDisplayItems.includes(item)) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
+      <a-list-item v-else-if="($route.meta.name !== 's2svpn' || item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin') && (($route.meta.name === 's2svpn' && (item !== 'fordisplay' || $store.getters.userInfo?.roletype === 'Admin')) || ($route.meta.name === 'publicip' && (item === 'virtualmachinename' || publicIpDetailFields.includes(item))) || (['vm', 'vnfapp'].includes($route.meta.name) && (['deleteprotection', 'ostypename', 'osdisplayname', 'state'].includes(item) || vmBooleanFields.has(item))) || allocationDetails[item] || ($route.meta.name === 'ipv4subnets' && ((item === 'networkname' && dataResource.networkid) || (item === 'vpcname' && dataResource.vpcid))) || (item in dataResource && !customDisplayItems.includes(item) && !($route.meta.name === 'dnszone' && item === 'associatednetworks')) || ($route.meta.name === 'ilb' && item === 'loadbalancerrule') || ($route.meta.name === 'guestnetwork' && (item === 'displaytext' || item === 'sharedscope' || (item === 'hideipaddressusage' && dataResource.type === 'Shared'))) || ($route.meta.name === 'computeoffering' && item === 'diskofferingcomputeonly' && dataResource.diskofferingid) || (offeringDetails.includes(item) && dataResource.serviceofferingdetails)|| ($route.path.includes('/alertRules') && ['summary', 'description'].includes(item)))">
         <div style="width: 100%">
           <strong>{{ allocationDetails[item] ? $t(allocationDetails[item].label) : item === 'service' ? $t('label.supportedservices') :
            $route.meta.name === 'cniconfiguration' && item === 'userdata' ? $t('label.' + String($route.meta.name).toLowerCase()) :

@@ -37,17 +37,17 @@
             v-focus="true" />
         </a-form-item>
 
-        <div class="action-button">
+        <MoldDialogActions :busy="loading">
           <a-button @click="closeAction">
             {{ $t('label.cancel') }}
           </a-button>
           <a-button
             type="primary"
             :loading="loading"
-            htmlType="submit">
+            @click="handleSubmit">
             {{ $t('label.ok') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -55,11 +55,13 @@
 
 <script>
 import { postAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'UpdateDnsZone',
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {
@@ -105,7 +107,7 @@ export default {
         if (!zone) {
           this.$notification.error({
             message: this.$t('message.request.failed'),
-            description: 'Failed to get updated DNS zone from response',
+            description: this.$t('error.fetching.data'),
             duration: 0
           })
           this.loading = false
@@ -133,20 +135,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
-</style>
