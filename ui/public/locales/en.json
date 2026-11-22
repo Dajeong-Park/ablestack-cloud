@@ -1719,6 +1719,7 @@
   "label.global": "Global",
   "label.global.settings": "Global Settings",
   "label.global.setting.parent": "Parent setting",
+  "label.global.setting.key": "Setting key",
   "message.global.setting.parent.unavailable": "The parent setting is not available.",
   "label.globo.dns": "GloboDNS",
   "label.globo.dns.configuration": "GloboDNS configuration",

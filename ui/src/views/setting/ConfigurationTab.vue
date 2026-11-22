@@ -31,18 +31,39 @@
             {{ $t('label.refresh') }}
           </a-button>
         </a-col>
-        <a-col :span="12" style="float: right">
+        <a-col :span="12" class="configuration-search-tools">
+          <a-popover v-model:visible="filtersOpen" trigger="click" placement="bottomRight">
+            <template #content>
+              <form class="configuration-filters" @submit.prevent="applyFilters">
+                <label for="configuration-name-filter">{{ $t('label.global.setting.key') }}</label>
+                <a-input id="configuration-name-filter" v-model:value="nameDraft" allow-clear />
+                <label for="configuration-category-filter">{{ $t('label.category') }}</label>
+                <a-input id="configuration-category-filter" v-model:value="categoryDraft" allow-clear />
+                <a-button type="primary" html-type="submit">{{ $t('label.apply') }}</a-button>
+              </form>
+            </template>
+            <a-button :aria-label="$t('label.filterby')"><FilterOutlined /></a-button>
+          </a-popover>
           <a-input-search
-          style="width: 25vw; float: right; margin-bottom: 10px; z-index: 8; display: flex"
-          :placeholder="$t('label.search')"
-          v-model:value="filter"
-          @search="changePage()"
-          v-focus="true" />
+            :placeholder="$t('label.search')"
+            :aria-label="$t('label.search')"
+            v-model:value="filterDraft"
+            allow-clear
+            @search="setConfigurationQuery({ filter: $event, page: 1 })" />
         </a-col>
       </a-card>
     </a-col>
     <a-col :span="24">
       <a-card style="margin-left: 10px;">
+        <div v-if="activeFilters.length" class="configuration-active-filters">
+          <a-tag
+            v-for="condition in activeFilters"
+            :key="condition.key"
+            closable
+            @close.prevent="setConfigurationQuery({ [condition.key]: '', page: 1 })">
+            {{ $t(condition.label) }} {{ condition.value }}
+          </a-tag>
+        </div>
         <a-spin :spinning="configLoading">
           <a-alert v-if="listRefreshFailed" type="error" show-icon :message="$t('message.error.loading.setting')" />
           <a-tabs
@@ -97,6 +118,7 @@
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI } from '@/api'
+import { FilterOutlined } from '@ant-design/icons-vue'
 import { mixin, mixinDevice } from '@/utils/mixin.js'
 import Breadcrumb from '@/components/widgets/Breadcrumb'
 import OsLogo from '@/components/widgets/OsLogo'
@@ -107,6 +129,7 @@ import TooltipButton from '@/components/widgets/TooltipButton'
 import ConfigurationHierarchy from './ConfigurationHierarchy'
 import ConfigurationTable from './ConfigurationTable'
 import { buildConfigurationHierarchy } from './configurationHierarchy'
+import { readConfigurationQuery, writeConfigurationQuery, listConfigurationParams } from './configurationQuery'
 
 const securitySettings = new Set([
   'api.source.cidr.checks.enabled',
@@ -136,6 +159,7 @@ export default {
   name: 'ConfigurationTab',
   components: {
     Breadcrumb,
+    FilterOutlined,
     OsLogo,
     Status,
     ActionButton,
@@ -144,7 +168,7 @@ export default {
     ConfigurationHierarchy,
     ConfigurationTable
   },
-  mixins: [listRefreshMixin(['fetchConfigurationData']), mixin, mixinDevice],
+  mixins: [listRefreshMixin(['fetchConfigurationData'], { active: vm => vm.groupsLoaded }), mixin, mixinDevice],
   props: {
     loading: {
       type: Boolean,
@@ -158,15 +182,15 @@ export default {
   data () {
     return {
       groups: [],
+      groupsLoaded: false,
       config: [],
       expandedRows: {},
       parentLookup: 0,
       configLoading: true,
-      page: 1,
-      pagesize: this.$store.getters.defaultListViewPageSize,
-      group: '',
-      subgroup: '',
-      filter: '',
+      filterDraft: '',
+      nameDraft: '',
+      categoryDraft: '',
+      filtersOpen: false,
       count: 0,
       apiName: 'listConfigurations',
       columns: [
@@ -185,6 +209,31 @@ export default {
     }
   },
   computed: {
+    defaultPageSize () {
+      return Number(this.$store.getters.defaultListViewPageSize) || 20
+    },
+    queryState () {
+      return readConfigurationQuery(this.$route.query, this.groups, this.defaultPageSize)
+    },
+    group () {
+      return this.queryState.group
+    },
+    subgroup () {
+      return this.queryState.subgroup
+    },
+    page () {
+      return this.queryState.page
+    },
+    pagesize () {
+      return this.queryState.pagesize
+    },
+    activeFilters () {
+      return [
+        { key: 'filter', label: 'label.search', value: this.queryState.filter },
+        { key: 'name', label: 'label.global.setting.key', value: this.queryState.name },
+        { key: 'category', label: 'label.category', value: this.queryState.category }
+      ].filter(condition => condition.value)
+    },
     sectionKey () {
       return JSON.stringify([this.group, this.subgroup])
     },
@@ -193,20 +242,9 @@ export default {
     }
   },
   watch: {
-    '$route.fullPath': function () {
-      this.group = this.$route.query.group || ''
-      this.subgroup = this.$route.query.subgroup || ''
-      this.page = parseInt(this.$route.query.page) || 1
-      this.pagesize = parseInt(this.$route.query.pagesize) || this.pagesize
-      this.filter = this.$route.query.filter || ''
-    },
-    resource: {
-      deep: true,
-      handler (newItem) {
-        if (!newItem || !newItem.id) {
-          return
-        }
-        this.fetchConfigurationData()
+    '$route.fullPath' () {
+      if (this.groupsLoaded && this.$route.meta.name === 'globalsetting') {
+        this.applyConfigurationRoute()
       }
     }
   },
@@ -214,41 +252,34 @@ export default {
     this.fetchConfigurationGroups()
   },
   methods: {
+    applyConfigurationRoute () {
+      this.filterDraft = this.queryState.filter
+      this.nameDraft = this.queryState.name
+      this.categoryDraft = this.queryState.category
+      this.filtersOpen = false
+      return this.fetchConfigurationData()
+    },
     fetchConfigurationGroups () {
       this.configLoading = true
       const params = {
         pagesize: -1
       }
       getAPI('listConfigurationGroups', params).then(response => {
-        this.groups = response.listconfigurationgroupsresponse.configurationgroup
+        this.groups = response.listconfigurationgroupsresponse.configurationgroup || []
       }).catch(error => {
         console.error(error)
         this.$message.error(this.$t('message.error.loading.setting'))
       }).finally(() => {
-        this.group = this.$route.query.group || ''
-        this.subgroup = this.$route.query.subgroup || ''
-        this.fetchConfigurationData()
+        if (!this.listRefreshDisposed) {
+          this.groupsLoaded = true
+          this.applyConfigurationRoute()
+        }
       })
     },
     fetchConfigurationData () {
       const listRequest = this.listRequestToken('fetchConfigurationData')
       this.configLoading = !listRequest.loaded
-      const params = {
-        listAll: true
-      }
-      if (this.group.length > 0) {
-        params.group = this.group
-        params.pagesize = -1
-      } else {
-        params.pagesize = this.pagesize || 20
-        params.page = this.page || 1
-      }
-      if (this.subgroup.length > 0) {
-        params.subgroup = this.subgroup
-      }
-      if (this.filter) {
-        params.keyword = this.filter
-      }
+      const params = listConfigurationParams(this.queryState)
 
       return getAPI('listConfigurations', params).then(response => {
         if (!this.isListRequestCurrent('fetchConfigurationData', listRequest)) return
@@ -276,9 +307,8 @@ export default {
     },
     async openParent (record) {
       const request = ++this.parentLookup
-      const section = this.sectionKey
-      const filter = this.filter
-      const isCurrent = () => !this.listRefreshDisposed && request === this.parentLookup && section === this.sectionKey && filter === this.filter
+      const path = this.$route.fullPath
+      const isCurrent = () => !this.listRefreshDisposed && request === this.parentLookup && path === this.$route.fullPath
       try {
         const response = await getAPI('listConfigurations', { name: record.parent, pagesize: -1 })
         if (!isCurrent()) return
@@ -291,10 +321,14 @@ export default {
         }
         const group = this.groups.find(item => item.name === parent.group)
         const subgroup = group?.subgroup?.find(item => item.name === parent.subgroup)
-        this.group = subgroup ? group.name : ''
-        this.subgroup = subgroup?.name || ''
-        this.filter = parent.name
-        this.changePage(1, this.pagesize)
+        await this.setConfigurationQuery({
+          group: subgroup ? group.name : '',
+          subgroup: subgroup?.name || '',
+          filter: parent.name,
+          name: '',
+          category: '',
+          page: 1
+        })
       } catch (error) {
         if (isCurrent()) {
           this.$message.error(this.$t('message.error.loading.setting'))
@@ -302,100 +336,27 @@ export default {
       }
     },
     changePage (page, pagesize) {
-      const query = {}
-      if (page) {
-        query.page = page
-        this.page = page
-      } else {
-        this.page = 1
-      }
-      if (pagesize) {
-        query.pagesize = pagesize
-        this.pagesize = pagesize
-      }
-      if (this.filter) {
-        query.filter = this.filter
-      }
-      if (this.group !== '') {
-        query.group = this.group
-      }
-      if (this.subgroup !== '') {
-        query.subgroup = this.subgroup
-      }
-      this.pushToHistory(query)
-      this.fetchConfigurationData()
+      const pageChanged = pagesize === this.pagesize
+      return this.setConfigurationQuery({ page: pageChanged ? page : 1, pagesize })
     },
-    pushToHistory (query) {
-      history.pushState(
-        {},
-        null,
-        '#' + this.$route.path + '?' + Object.keys(query).map(key => {
-          return (
-            encodeURIComponent(key) + '=' + encodeURIComponent(query[key])
-          )
-        }).join('&')
-      )
-    },
-    changeGroupTab (e) {
-      this.group = e
-      if (this.group.length > 0) {
-        for (const groupIndex in this.groups) {
-          if (this.groups[groupIndex].name === this.group) {
-            const group = this.groups[groupIndex]
-            this.subgroup = group.subgroup[0].name
-          }
-        }
-      } else {
-        this.group = ''
-        this.subgroup = ''
-        this.changePage(1, this.pagesize)
+    setConfigurationQuery (changes) {
+      const state = { ...this.queryState, ...changes }
+      const query = { ...this.$route.query, ...writeConfigurationQuery(state, this.defaultPageSize) }
+      if (this.$router.resolve({ query }).fullPath === this.$route.fullPath) {
+        return this.fetchConfigurationData()
       }
-      if (this.group.length > 0 && this.subgroup.length > 0) {
-        const query = Object.assign({}, this.$route.query)
-        delete query.page
-        delete query.pagesize
-        query.group = this.group
-        query.subgroup = this.subgroup
-        query.filter = this.filter
-        // this.pagesize = -1
-        this.page = 0
-        this.pushToHistory(query)
-        this.fetchConfigurationData()
-      }
+      return this.$router.push({ query })
     },
-    changeSubgroupTab (e) {
-      this.subgroup = e || this.subgroup
-      if (this.group.length > 0 && this.subgroup.length > 0) {
-        const query = Object.assign({}, this.$route.query)
-        delete query.page
-        delete query.pagesize
-        query.group = this.group
-        query.subgroup = this.subgroup
-        // this.pagesize = -1
-        this.page = 0
-        this.pushToHistory(query)
-        this.fetchConfigurationData()
-      } else {
-        history.pushState(
-          {},
-          null,
-          '#' + this.$route.path
-        )
-      }
+    applyFilters () {
+      this.filtersOpen = false
+      return this.setConfigurationQuery({ name: this.nameDraft, category: this.categoryDraft, page: 1 })
     },
-    updateConfiguration (name, value) {
-      getAPI('updateConfiguration', {
-        name: name,
-        value: value
-      }).then(response => {
-        this.$notification.success({
-          message: this.$t('message.success'),
-          description: this.$t('message.configuration.value.updated')
-        })
-        this.fetchConfigurationData()
-      }).catch(error => {
-        this.$notifyError(error)
-      })
+    changeGroupTab (name) {
+      const group = this.groups.find(entry => entry.name === name)
+      return this.setConfigurationQuery({ group: group?.name || '', subgroup: group?.subgroup?.[0]?.name || '', page: 1 })
+    },
+    changeSubgroupTab (name) {
+      return this.setConfigurationQuery({ subgroup: name, page: 1 })
     },
     handleConfigRefresh (name, updatedRecord) {
       if (!name || !updatedRecord) return
@@ -410,6 +371,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .configuration-search-tools {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .configuration-search-tools .ant-input-search {
+    width: min(25vw, 100%);
+  }
+
+  .configuration-filters {
+    width: min(260px, 75vw);
+    display: grid;
+    gap: 8px;
+  }
+
+  .configuration-active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
   .breadcrumb-card {
     margin-left: -24px;
     margin-right: -24px;
