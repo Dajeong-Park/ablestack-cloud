@@ -31,7 +31,7 @@
         <strong>{{ $t('label.account') }}</strong><br/>
         <router-link :to="{ path: '/account/' + dedicatedAccountId }">{{ dedicatedAccountId }}</router-link>
       </p>
-      <a-button style="margin-top: 10px; margin-bottom: 10px;" type="primary" danger :disabled="releaseApi && !$store.getters.apis[releaseApi]" @click="handleRelease">
+      <a-button ref="releaseTrigger" style="margin-top: 10px; margin-bottom: 10px;" type="primary" danger :disabled="releaseApi && !$store.getters.apis[releaseApi]" @click="handleRelease">
         {{ releaseButtonLabel }}
       </a-button>
     </div>
@@ -40,7 +40,7 @@
     <div>
       <strong>{{ $t('label.dedicated') }}</strong>
       <div>{{ $t('label.no') }}</div>
-      <a-button type="primary" style="margin-top: 10px; margin-bottom: 10px;" @click="modalActive = true" :disabled="!dedicateButtonAvailable">
+      <a-button ref="dedicateTrigger" type="primary" style="margin-top: 10px; margin-bottom: 10px;" @click="modalActive = true" :disabled="!dedicateButtonAvailable">
         {{ dedicatedButtonLabel }}
       </a-button>
     </div>
@@ -48,15 +48,28 @@
       :resource="resource"
       :active="modalActive"
       :label="dedicatedModalLabel"
+      :after-close="restoreClusterFocus"
       @close="modalActive = false"
       :fetchData="fetchData" />
   </a-list-item>
-  <mold-dialog v-if="releaseConfirmVisible" :title="releaseButtonLabel" size="md" form-actions focus-guard @cancel="releaseConfirmVisible = false">
-    <p>{{ resource.name }}</p>
-    <p>{{ $t($route.meta.name === 'host' ? 'message.host.release.confirm' : 'message.zone.release.confirm') }}</p>
+  <mold-dialog
+    v-if="releaseConfirmVisible || $route.meta.name === 'cluster'"
+    :visible="releaseConfirmVisible"
+    :title="releaseButtonLabel"
+    size="md"
+    form-actions
+    focus-guard
+    :initial-focus="$route.meta.name === 'cluster' ? '.ant-modal-footer .cluster-release-cancel' : ''"
+    :after-close="restoreClusterFocus"
+    @cancel="releaseConfirmVisible = false">
+    <cluster-action-context v-if="$route.meta.name === 'cluster'" :resource="resource" impact="message.cluster.release.confirm" destructive />
+    <template v-else>
+      <p>{{ resource.name }}</p>
+      <p>{{ $t($route.meta.name === 'host' ? 'message.host.release.confirm' : 'message.zone.release.confirm') }}</p>
+    </template>
     <a-alert v-if="releaseError" type="error" show-icon :message="releaseError" />
     <mold-dialog-actions :busy="releaseBusy">
-      <a-button @click="releaseConfirmVisible = false">{{ $t('label.cancel') }}</a-button>
+      <a-button class="cluster-release-cancel" @click="releaseConfirmVisible = false">{{ $t('label.cancel') }}</a-button>
       <a-button danger type="primary" @click="releaseInfrastructureDedication">{{ releaseJob ? $t($route.meta.name === 'host' ? 'label.host.operation.recheck' : 'label.zone.update.recheck') : releaseButtonLabel }}</a-button>
     </mold-dialog-actions>
   </mold-dialog>
@@ -67,6 +80,7 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI, postAPI } from '@/api'
 import DedicateModal from './DedicateModal'
+import ClusterActionContext from '@/views/infra/ClusterActionContext.vue'
 import MoldDialog from './MoldDialog'
 import MoldDialogActions from './MoldDialogActions'
 
@@ -80,6 +94,7 @@ export default {
   },
   components: {
     DedicateModal,
+    ClusterActionContext,
     MoldDialog,
     MoldDialogActions
   },
@@ -106,6 +121,7 @@ export default {
     releaseApi () {
       if (this.$route.meta.name === 'host') return 'releaseDedicatedHost'
       if (this.$route.meta.name === 'zone') return 'releaseDedicatedZone'
+      if (this.$route.meta.name === 'cluster') return 'releaseDedicatedCluster'
       return ''
     }
   },
@@ -120,6 +136,11 @@ export default {
     }
   },
   methods: {
+    restoreClusterFocus () {
+      if (this.$route.meta.name !== 'cluster' || this.resource.id !== this.$route.params.id) return
+      const trigger = this.$refs.releaseTrigger || this.$refs.dedicateTrigger
+      if (trigger?.$el) trigger.$el.focus({ preventScroll: true })
+    },
     fetchData () {
       this.dedicateButtonAvailable = true
       if (this.$route.meta.name === 'zone') {
@@ -237,11 +258,11 @@ export default {
     },
     async releaseInfrastructureDedication () {
       const api = this.releaseApi
-      const isHost = api === 'releaseDedicatedHost'
       if (this.releaseBusy || !api || !this.$store.getters.apis[api]) return
-      const idKey = isHost ? 'hostid' : 'zoneid'
-      const failure = isHost ? 'error.release.dedicate.host' : 'error.release.dedicate.zone'
-      const success = isHost ? 'message.host.dedication.released' : 'message.dedicated.zone.released'
+      const scope = this.$route.meta.name
+      const idKey = scope + 'id'
+      const failure = 'error.release.dedicate.' + scope
+      const success = scope === 'zone' ? 'message.dedicated.zone.released' : 'message.' + scope + '.dedication.released'
       this.releaseBusy = true
       this.releaseError = ''
       try {
@@ -292,29 +313,6 @@ export default {
         this.$notifyError(error)
       })
     },
-    releaseDedidcatedCluster () {
-      postAPI('releaseDedicatedCluster', {
-        clusterid: this.resource.id
-      }).then(response => {
-        this.$pollJob({
-          jobId: response.releasededicatedclusterresponse.jobid,
-          title: this.$t('label.release.dedicated.cluster'),
-          description: this.resource.id,
-          successMessage: this.$t('message.cluster.dedication.released'),
-          successMethod: () => {
-            this.dedicatedDomainId = null
-          },
-          errorMessage: this.$t('error.release.dedicate.cluster'),
-          loadingMessage: this.$t('message.releasing.dedicated.cluster'),
-          catchMessage: this.$t('error.fetching.async.job.result'),
-          catchMethod: () => {
-            this.parentFetchData()
-          }
-        })
-      }).catch(error => {
-        this.$notifyError(error)
-      })
-    },
     handleRelease () {
       this.modalActive = false
       if (this.releaseApi) {
@@ -323,9 +321,6 @@ export default {
       }
       if (this.$route.meta.name === 'pod') {
         this.releaseDedidcatedPod()
-      }
-      if (this.$route.meta.name === 'cluster') {
-        this.releaseDedidcatedCluster()
       }
     }
   }

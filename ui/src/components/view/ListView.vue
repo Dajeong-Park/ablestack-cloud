@@ -197,6 +197,10 @@
           <router-link v-else-if="$route.meta?.name === 'account' && !resourcePath && record.id" :title="text" :to="accountDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="$route.meta?.name === 'role' && !resourcePath && record.id" :title="text" :to="roleDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
           <router-link v-else-if="kmsListRoute($route) && !resourcePath && record.id" :to="kmsDetailLocation($route, record, $store.getters, $store.state?.user?.token)">{{ text }}</router-link>
+          <span v-else-if="$route.path === '/cluster' && !resourcePath && record.id">
+            <router-link :to="{ path: '/cluster/' + record.id, query: clusterListQuery($route.query) }">{{ text }}</router-link>
+            <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/cluster/' + record.id, query: { ...clusterListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
+          </span>
           <span v-else-if="$route.path === '/host' && !resourcePath && record.id">
             <router-link :to="{ path: '/host/' + record.id, query: hostListQuery($route.query) }">{{ text }}</router-link>
             <router-link v-if="record.hasannotations" :aria-label="$t('label.comments')" :to="{ path: '/host/' + record.id, query: { ...hostListQuery($route.query), tab: 'comments' } }"><message-filled /></router-link>
@@ -653,6 +657,9 @@
       <template v-if="column.key === 'taken' && $route.meta?.name === 'guestvlans'">
         {{ text ? $toLocaleDate(text) : '—' }}
       </template>
+      <template v-if="$route.meta.name === 'cluster' && column.key === 'clustertype'">
+        {{ $t(clusterStateLabel('clustertype', text)) }}
+      </template>
       <template v-if="column.key === 'allocationstate'">
         <status
           :text="text ? text : ''"
@@ -1102,8 +1109,7 @@
         </span>
       </template>
       <template v-if="['cluster', 'zone'].includes($route.meta.name) && column.key === 'haenable'">
-        <status v-if="$route.meta.name === 'zone'" :text="zoneFeatureState(record.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(record.resourcedetails?.resourceHAEnabled ?? false))" display-text />
-        <status v-else :text="record.resourcedetails?.resourceHAEnabled === 'true' ? 'enabled' : 'disabled'" display-text />
+        <status :text="zoneFeatureState(record.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(record.resourcedetails?.resourceHAEnabled ?? false))" display-text />
       </template>
       <template v-if="$route.meta.name === 'host' && column.key === 'hastate'">
         <a-tag :color="hostStatusColor(record.hostha?.hastate)">{{ $t(hostStatusLabel(record.hostha?.hastate)) }}</a-tag>
@@ -1320,6 +1326,7 @@ import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { dnsServerListQuery } from '@/utils/dnsServer'
 import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } from '@/utils/zone'
+import { clusterListQuery, clusterStateLabel } from '@/utils/clusterSearch'
 import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { ipv4SubnetListQuery } from '@/utils/ipv4Subnet'
@@ -1676,6 +1683,8 @@ export default {
     dnsServerListQuery,
     zoneListQuery,
     hostListQuery,
+    clusterListQuery,
+    clusterStateLabel,
     zoneFeatureState,
     hostStatusColor,
     hostStatusLabel,

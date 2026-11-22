@@ -228,8 +228,7 @@
         <div class="resource-detail-item" v-if="($route.meta.name === 'zone' && resource.id) || ($route.meta.name === 'cluster' && resource.resourcedetails)">
           <div class="resource-detail-item__label">{{ $t('label.haenable') }}</div>
           <div class="resource-detail-item__details">
-            <status v-if="$route.meta.name === 'zone'" class="status" :text="zoneFeatureState(resource.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(resource.resourcedetails?.resourceHAEnabled ?? false))" display-text />
-            <status v-else class="status" :text="resource.resourcedetails.resourceHAEnabled === 'true' ? 'enabled' : 'disabled'" display-text />
+            <status class="status" :text="zoneFeatureState(resource.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(resource.resourcedetails?.resourceHAEnabled ?? false))" display-text />
           </div>
         </div>
         <div class="resource-detail-item" v-if="$route.meta.name === 'host' && resource.outofbandmanagement">
