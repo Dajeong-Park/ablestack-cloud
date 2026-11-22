@@ -18,14 +18,16 @@
 <template>
   <a-spin :spinning="fetchLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-button
-      type="primary"
-      class="zone-tab-add"
-      @click="showAddPhyNetModal"
-      :loading="loading"
-      :disabled="!('createPhysicalNetwork' in $store.getters.apis)">
-      <template #icon><plus-outlined /></template> {{ $t('label.add.physical.network') }}
-    </a-button>
+    <resource-table-toolbar :loading="fetchLoading" @refresh="fetchData()">
+      <a-button
+        type="primary"
+        class="zone-tab-add"
+        @click="showAddPhyNetModal"
+        :loading="loading"
+        :disabled="!('createPhysicalNetwork' in $store.getters.apis)">
+        <template #icon><plus-outlined /></template> {{ $t('label.add.physical.network') }}
+      </a-button>
+    </resource-table-toolbar>
     <a-table size="small" row-key="id" :columns="columns" :data-source="networks" :pagination="false" :scroll="{ x: 740 }">
       <template #bodyCell="{ column, record, text }">
         <router-link v-if="column.key === 'name'" :to="{ path: '/physicalnetwork/' + record.id, query: zoneListQuery($route.query) }">{{ text }}</router-link>
@@ -113,6 +115,7 @@
 </template>
 
 <script>
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import MoldDialog from '@/components/view/MoldDialog'
 import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
@@ -127,6 +130,7 @@ export default {
   mixins: [listRefreshMixin(['fetchData'])],
   name: 'PhysicalNetworksTab',
   components: {
+    ResourceTableToolbar,
     MoldDialog,
     MoldDialogActions,
     Status,

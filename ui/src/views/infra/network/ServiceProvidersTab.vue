@@ -29,12 +29,12 @@
     <a-spin :spinning="fetchLoading">
       <div v-if="!providerLoadError" class="provider-layout">
         <div class="provider-list">
-          <div class="provider-filters">
-            <a-input
-              v-model:value="providerSearch"
-              allow-clear
-              :aria-label="$t('label.zone.provider.search')"
-              :placeholder="$t('label.zone.provider.search')" />
+          <resource-table-toolbar
+            v-model:search="providerSearch"
+            searchable
+            :search-label="$t('label.zone.provider.search')"
+            :loading="fetchLoading"
+            @refresh="fetchData()">
             <label for="zone-provider-state">{{ $t('label.state') }}</label>
             <a-select
               id="zone-provider-state"
@@ -42,7 +42,7 @@
               :options="providerStates"
               :virtual="false"
               class="provider-state-filter" />
-          </div>
+          </resource-table-toolbar>
           <a-table
             size="small"
             row-key="name"
@@ -81,15 +81,16 @@
 
     <div v-if="showFormAction">
       <keep-alive v-if="currentAction.component">
-        <a-modal
+        <mold-dialog
+          size="md"
+          form-actions
+          focus-guard
           :title="$t(currentAction.label)"
           :visible="showFormAction"
           :closable="true"
           :maskClosable="false"
-          style="top: 20px;"
           @cancel="onCloseAction"
           :confirmLoading="actionLoading"
-          :footer="null"
           centered>
           <keep-alive>
             <component
@@ -97,18 +98,19 @@
               :resource="nsp"
               :action="currentAction" />
           </keep-alive>
-        </a-modal>
+        </mold-dialog>
       </keep-alive>
-      <a-modal
+      <mold-dialog
+        size="md"
+        form-actions
+        focus-guard
         v-else
         :title="$t(currentAction.label)"
         :visible="showFormAction"
         :confirmLoading="actionLoading"
         :closable="true"
         :maskClosable="false"
-        :footer="null"
-        @cancel="onCloseAction"
-        style="top: 20px;"
+          @cancel="onCloseAction"
         centered
       >
         <a-form
@@ -163,17 +165,20 @@
             </span>
           </a-form-item>
 
-          <div :span="24" class="action-button">
+          <mold-dialog-actions :busy="actionLoading">
             <a-button @click="onCloseAction">{{ $t('label.cancel') }}</a-button>
             <a-button type="primary" ref="submit" @click="handleSubmit">{{ $t('label.ok') }}</a-button>
-          </div>
+          </mold-dialog-actions>
         </a-form>
-      </a-modal>
+      </mold-dialog>
     </div>
   </div>
 </template>
 
 <script>
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import { ref, reactive, toRaw, shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
 import { getAPI, postAPI } from '@/api'
@@ -183,6 +188,9 @@ import ProviderItem from '@/views/infra/network/providers/ProviderItem'
 export default {
   name: 'ServiceProvidersTab',
   components: {
+    MoldDialog,
+    MoldDialogActions,
+    ResourceTableToolbar,
     Status,
     ProviderItem
   },
@@ -1553,14 +1561,6 @@ export default {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
 }
-.provider-filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-.provider-filters :deep(.ant-input-affix-wrapper) { min-width: 0; width: 100%; }
 .provider-state-filter { width: min(100%, 9rem); }
 .provider-list { overflow-x: auto; }
 .provider-list :deep(.ant-btn-link) { padding-inline: 0; white-space: normal; text-align: start; }

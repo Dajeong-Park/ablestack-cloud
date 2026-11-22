@@ -17,14 +17,15 @@
 
 <template>
   <a-spin :spinning="fetchLoading">
-    <div v-if="traffictypes.length" class="traffic-type-filter">
-      <label for="zone-traffic-type">{{ $t('label.traffictype') }}</label>
-      <select id="zone-traffic-type" class="ant-input" :value="selectedTraffic?.traffictype" @change="selectTraffic($event.target.value)">
-        <option v-for="item in traffictypes" :key="item.id" :value="item.traffictype">{{ item.traffictype }}</option>
-      </select>
-    </div>
-    <div v-if="selectedTraffic" :key="selectedTraffic.traffictype">
+    <resource-table-toolbar v-if="traffictypes.length" :loading="fetchLoading" @refresh="fetchData()">
+      <div class="traffic-type-filter">
+        <label for="zone-traffic-type">{{ $t('label.traffictype') }}</label>
+        <select id="zone-traffic-type" class="ant-input" :value="selectedTraffic?.traffictype" @change="selectTraffic($event.target.value)">
+          <option v-for="item in traffictypes" :key="item.id" :value="item.traffictype">{{ item.traffictype }}</option>
+        </select>
+      </div>
       <a-popconfirm
+        v-if="selectedTraffic"
         :title="$t('message.confirm.delete.traffic.type')"
         @confirm="deleteTrafficType(selectedTraffic)"
         :okText="$t('label.yes')"
@@ -32,17 +33,18 @@
         <a-button
           type="primary"
           danger
-          style="width: 100%; margin-bottom: 10px"
           :loading="loading"
           :disabled="!('deleteTrafficType' in $store.getters.apis)">
           <template #icon><delete-outlined /></template> {{ $t('label.delete.traffic.type') }}
         </a-button>
       </a-popconfirm>
+    </resource-table-toolbar>
+    <div v-if="selectedTraffic" :key="selectedTraffic.traffictype">
       <div
         v-for="(type, idx) in ['kvmnetworklabel', 'vmwarenetworklabel', 'xennetworklabel', 'hypervnetworklabel', 'ovm3networklabel']"
         :key="idx"
         style="margin-bottom: 10px;">
-        <div><strong>{{ $t(type) }}</strong></div>
+        <div><strong>{{ $t('label.' + type) }}</strong></div>
         <div>{{ selectedTraffic[type] || $t('label.network.label.display.for.blank.value') }}</div>
       </div>
       <div v-if="selectedTraffic.traffictype === 'Guest' && networkType === 'Advanced'">
@@ -84,6 +86,7 @@
 
 <script>
 import { getAPI, postAPI } from '@/api'
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import IpRangesTabPublic from './IpRangesTabPublic'
 import IpRangesTabManagement from './IpRangesTabManagement'
 import IpRangesTabStorage from './IpRangesTabStorage'
@@ -93,6 +96,7 @@ import { trafficTypeTab } from '@/config/section/infra/phynetworks.js'
 export default {
   name: 'TrafficTypesTab',
   components: {
+    ResourceTableToolbar,
     IpRangesTabPublic,
     IpRangesTabManagement,
     IpRangesTabStorage,
@@ -246,6 +250,7 @@ export default {
 </style>
 
 <style scoped>
-.traffic-type-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.traffic-type-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .traffic-type-filter select { width: min(100%, 14rem); }
+.traffic-type-filter label { white-space: nowrap; }
 </style>

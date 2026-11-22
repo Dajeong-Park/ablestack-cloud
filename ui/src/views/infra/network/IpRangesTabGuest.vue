@@ -18,17 +18,19 @@
 <template>
   <a-spin :spinning="componentLoading">
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
-    <a-button
-      :disabled="!('createNetwork' in $store.getters.apis)"
-      type="dashed"
-      style="margin-bottom: 20px; width: 100%"
-      @click="handleOpenShowCreateForm">
-      <template #icon><plus-outlined /></template>
-      {{ $t('label.add.guest.network') }}
-    </a-button>
+    <resource-table-toolbar :loading="componentLoading" @refresh="fetchData()">
+      <a-button
+        :disabled="!('createNetwork' in $store.getters.apis)"
+        type="primary"
+        @click="handleOpenShowCreateForm">
+        <template #icon><plus-outlined /></template>
+        {{ $t('label.add.guest.network') }}
+      </a-button>
+    </resource-table-toolbar>
 
     <a-table
       size="small"
+      :scroll="{ x: 880 }"
       style="overflow-y: auto"
       :columns="columns"
       :dataSource="items"
@@ -64,14 +66,16 @@
     <br>
     <br>
 
-    <a-button
-      :disabled="!('createGuestNetworkIpv6Prefix' in $store.getters.apis)"
-      type="dashed"
-      style="margin-bottom: 20px; width: 100%"
-      @click="handleOpenAddIpv6PrefixForm()">
-      <template #icon><plus-outlined /></template>
-      {{ $t('label.add.ip.v6.prefix') }}
-    </a-button>
+    <resource-table-toolbar :loading="componentLoading" @refresh="fetchIpv6PrefixData()">
+      <a-button
+        :disabled="!('createGuestNetworkIpv6Prefix' in $store.getters.apis)"
+        type="dashed"
+        style="margin-bottom: 20px; width: 100%"
+        @click="handleOpenAddIpv6PrefixForm()">
+        <template #icon><plus-outlined /></template>
+        {{ $t('label.add.ip.v6.prefix') }}
+      </a-button>
+    </resource-table-toolbar>
     <a-table
       style="overflow-y: auto"
       size="small"
@@ -99,24 +103,28 @@
       </template>
     </a-table>
 
-    <a-modal
+    <mold-dialog
+      size="lg"
+      form-actions
+      focus-guard
       v-if="showCreateForm"
       :visible="showCreateForm"
       :title="$t('label.add.guest.network')"
       :closable="true"
       :maskClosable="false"
-      :footer="null"
       @cancel="showCreateForm = false"
       centered
       width="auto">
       <CreateNetwork :resource="{ zoneid: resource.zoneid }" @close-action="closeAction"/>
-    </a-modal>
+    </mold-dialog>
 
-    <a-modal
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       :visible="addIpv6PrefixModal"
       :title="$t('Add IPv6 Prefix')"
       :maskClosable="false"
-      :footer="null"
       @cancel="handleCloseAddIpv6PrefixForm()"
       centered
       v-ctrl-enter="handleAddIpv6Prefix">
@@ -132,17 +140,20 @@
           <a-input v-model:value="form.prefix" />
         </a-form-item>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions>
           <a-button @click="handleCloseAddIpv6PrefixForm()">{{ $t('label.cancel') }}</a-button>
           <a-button type="primary" ref="submit" @click="handleAddIpv6Prefix">{{ $t('label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
-    </a-modal>
+    </mold-dialog>
 
   </a-spin>
 </template>
 
 <script>
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { ref, reactive, toRaw } from 'vue'
@@ -155,6 +166,9 @@ export default {
   mixins: [listRefreshMixin(['fetchData'])],
   name: 'IpRangesTabGuest',
   components: {
+    ResourceTableToolbar,
+    MoldDialog,
+    MoldDialogActions,
     CreateNetwork,
     ResourceIcon,
     TooltipButton

@@ -26,18 +26,20 @@
       </template>
     </a-alert>
     <br>
-    <a-button
-      v-if="!this.resource.ip4routing"
-      :disabled="!('createBgpPeer' in $store.getters.apis)"
-      type="primary"
-      style="margin-bottom: 20px; width: 100%"
-      @click="handleOpenAddBgpPeerModal">
-      <template #icon><plus-outlined /></template>
-      {{ $t('label.add.bgp.peer') }}
-    </a-button>
+    <resource-table-toolbar :loading="componentLoading" @refresh="fetchData()">
+      <a-button
+        v-if="!this.resource.ip4routing"
+        :disabled="!('createBgpPeer' in $store.getters.apis)"
+        type="primary"
+        @click="handleOpenAddBgpPeerModal">
+        <template #icon><plus-outlined /></template>
+        {{ $t('label.add.bgp.peer') }}
+      </a-button>
+    </resource-table-toolbar>
 
     <a-table
       size="small"
+      :scroll="{ x: 760 }"
       style="overflow-y: auto"
       :columns="bgpPeersColumns"
       :dataSource="bgpPeers"
@@ -122,12 +124,14 @@
       </template>
     </a-pagination>
 
-    <a-modal
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       :visible="accountForBgpPeerModal"
       v-if="selectedBgpPeer"
       :closable="true"
       :maskClosable="false"
-      :footer="null"
       @cancel="accountForBgpPeerModal = false">
       <div>
         <div style="margin-bottom: 10px;">
@@ -140,19 +144,21 @@
         </div>
       </div>
 
-      <div :span="24" class="action-button">
+      <mold-dialog-actions>
         <a-button @click="accountForBgpPeerModal = false">{{ $t('label.close') }}</a-button>
-      </div>
-    </a-modal>
+      </mold-dialog-actions>
+    </mold-dialog>
 
-    <a-modal
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       v-if="addAccountForBgpPeerModal"
       :zIndex="1001"
       :closable="true"
       :maskClosable="false"
       :visible="addAccountForBgpPeerModal"
       :title="$t('label.add.account')"
-      :footer="null"
       @cancel="addAccountForBgpPeerModal = false">
       <a-spin :spinning="domainsLoading" v-ctrl-enter="handleAddAccountForBgpPeer">
         <div style="margin-bottom: 10px;">
@@ -177,20 +183,22 @@
           </a-select>
         </div>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions>
           <a-button @click="addAccountForBgpPeerModal = false">{{ $t('label.cancel') }}</a-button>
           <a-button type="primary" ref="submit" @click="handleAddAccountForBgpPeer">{{ $t('label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-spin>
-    </a-modal>
+    </mold-dialog>
 
-    <a-modal
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       v-if="addBgpPeerModal"
       :visible="addBgpPeerModal"
       :title="$t('label.add.bgp.peer')"
       :closable="true"
       :maskClosable="false"
-      :footer="null"
       @cancel="addBgpPeerModal = false">
       <a-form
         :ref="bgpPeersFormRef"
@@ -242,19 +250,21 @@
           </a-spin>
         </div>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions>
           <a-button @click="addBgpPeerModal = false; showAccountForBgpPeerFields = false">{{ $t('label.cancel') }}</a-button>
           <a-button type="primary" ref="submit" @click="handleAddBgpPeer">{{ $t('label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
-    </a-modal>
+    </mold-dialog>
 
-    <a-modal
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       :visible="updateBgpPeerModal"
       :title="$t('label.update.bgp.peer')"
       v-if="selectedBgpPeer"
       :maskClosable="false"
-      :footer="null"
       @cancel="updateBgpPeerModal = false">
       <a-form
         :ref="updateBgpPeerRef"
@@ -280,20 +290,22 @@
           </a-form-item>
         </div>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions>
           <a-button @click="updateBgpPeerModal = false">{{ $t('label.cancel') }}</a-button>
           <a-button type="primary" ref="submit" @click="handleUpdateBgpPeer">{{ $t('label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
-    </a-modal>
+    </mold-dialog>
 
-    <a-modal
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       v-if="changeBgpPeersForNetworkModal"
       :visible="changeBgpPeersForNetworkModal"
       :title="$t('label.change.bgp.peers')"
       :maskClosable="false"
       :closable="true"
-      :footer="null"
       @cancel="() => { changeBgpPeersForNetworkModal = false }"
       centered
       width="auto">
@@ -301,15 +313,17 @@
         :resource="resource"
         @refresh-data="fetchData"
         @close-action="changeBgpPeersForNetworkModal = false" />
-    </a-modal>
+    </mold-dialog>
 
-    <a-modal
+    <mold-dialog
+      size="md"
+      form-actions
+      focus-guard
       v-if="changeBgpPeersForVpcModal"
       :visible="changeBgpPeersForVpcModal"
       :title="$t('label.change.bgp.peers')"
       :maskClosable="false"
       :closable="true"
-      :footer="null"
       @cancel="() => { changeBgpPeersForVpcModal = false }"
       centered
       width="auto">
@@ -317,7 +331,7 @@
         :resource="resource"
         @refresh-data="fetchData"
         @close-action="changeBgpPeersForVpcModal = false" />
-    </a-modal>
+    </mold-dialog>
 
     <br>
     <a-button
@@ -343,6 +357,9 @@
 </template>
 
 <script>
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { ref, reactive, toRaw } from 'vue'
@@ -356,6 +373,9 @@ export default {
   mixins: [listRefreshMixin(['fetchZoneBgpPeer'])],
   name: 'BgpPeersTab',
   components: {
+    ResourceTableToolbar,
+    MoldDialog,
+    MoldDialogActions,
     ChangeBgpPeersForNetwork,
     ChangeBgpPeersForVpc,
     ResourceIcon,

@@ -17,9 +17,10 @@
 
 <template>
   <div>
-    <strong>{{ $t(title) }}</strong>
+    <resource-table-toolbar :loading="loading" @refresh="provideReload()">
+      <strong>{{ $t(title) }}</strong>
+    </resource-table-toolbar>
     <a-table
-      style="margin-top: 10px;"
       size="small"
       class="row-list-data"
       :loading="loading"
@@ -123,13 +124,14 @@
 </template>
 
 <script>
+import ResourceTableToolbar from '@/components/view/ResourceTableToolbar'
 import { postAPI } from '@/api'
 import Status from '@/components/widgets/Status'
 import TooltipButton from '@/components/widgets/TooltipButton'
 
 export default {
   name: 'ProviderListView',
-  components: { Status, TooltipButton },
+  components: { ResourceTableToolbar, Status, TooltipButton },
   props: {
     title: {
       type: String,
