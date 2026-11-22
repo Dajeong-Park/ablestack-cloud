@@ -8377,6 +8377,8 @@
   "label.delete.kms.key": "KMS 키 삭제",
   "label.dns.add.server": "DNS 서버 추가",
   "label.dns.create.record": "DNS 레코드 생성",
+  "message.dns.record.one.value.per.line": "레코드 값은 한 줄에 하나씩 입력하세요.",
+  "message.dns.record.comma.unsupported": "현재 서버에서는 레코드 값 안의 쉼표를 보존할 수 없습니다.",
   "label.dns.create.zone": "DNS 영역 생성",
   "label.dns.delete.record": "DNS 레코드 삭제",
   "label.dns.delete.server": "DNS 서버 삭제",

@@ -62,12 +62,10 @@
               :title="$t('label.contents')"
               :tooltip="$t('label.dns.record.contents.tooltip')" />
           </template>
-          <a-select
+          <a-textarea
             v-model:value="form.contents"
-            mode="tags"
-            :placeholder="$t('placeholder.dns.record.contents')"
-            style="width: 100%"
-            :token-separators="[',']" />
+            :placeholder="$t('message.dns.record.one.value.per.line')"
+            :auto-size="{ minRows: 2, maxRows: 6 }" />
         </a-form-item>
 
         <a-form-item name="ttl" ref="ttl">
@@ -120,18 +118,22 @@ export default {
       form: {
         name: '',
         type: 'A',
-        contents: [],
+        contents: '',
         ttl: 3600
       },
       rules: {},
       recordTypes: ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'SRV', 'PTR', 'NS']
     }
   },
+  computed: {
+    recordValues () { return this.form.contents.split(/\r?\n/).filter(value => value.trim()) },
+    supportsStructuredContents () { return !!this.$getApiParams('createDnsRecord')?.contentsjson }
+  },
   created () {
     this.rules = {
       name: [{ required: true, message: this.$t('message.error.required.input') }],
       type: [{ required: true, message: this.$t('message.error.required.input') }],
-      contents: [{ required: true, type: 'array', min: 1, message: this.$t('message.error.required.input') }],
+      contents: [{ required: true, validator: this.validateContents }],
       ttl: [
         { required: true, message: this.$t('message.error.required.input') },
         { type: 'number', validator: this.validateNumber }
@@ -155,7 +157,7 @@ export default {
           dnszoneid: this.resource.id,
           name: this.form.name,
           type: this.form.type,
-          contents: this.form.contents.join(','),
+          ...this.contentsParams(),
           ttl: this.form.ttl
         }
         const response = await postAPI('createDnsRecord', params)
@@ -177,6 +179,17 @@ export default {
           duration: 0
         })
         this.loading = false
+      }
+    },
+    contentsParams () {
+      return this.supportsStructuredContents
+        ? { contentsjson: JSON.stringify(this.recordValues) }
+        : { contents: this.recordValues.join(',') }
+    },
+    async validateContents () {
+      if (!this.recordValues.length) throw new Error(this.$t('message.error.required.input'))
+      if (!this.supportsStructuredContents && this.recordValues.some(value => value.includes(','))) {
+        throw new Error(this.$t('message.dns.record.comma.unsupported'))
       }
     },
     async validateNumber (rule, value) {

@@ -8430,6 +8430,8 @@
   "label.publicdomainsuffix": "Public domain suffix",
   "label.dns.add.server": "Add DNS Server",
   "label.dns.create.record": "Create DNS Record",
+  "message.dns.record.one.value.per.line": "Enter one record value per line.",
+  "message.dns.record.comma.unsupported": "This server cannot preserve a comma inside a record value.",
   "label.dns.create.zone": "Create DNS Zone",
   "label.dns.delete.server": "Delete DNS Server",
   "label.dns.delete.zone": "Delete DNS Zone",
