@@ -37,6 +37,13 @@
             v-focus />
         </a-form-item>
 
+        <a-form-item v-if="apiParams.state" name="state" :label="$t('label.state')">
+          <a-select v-model:value="form.state">
+            <a-select-option value="Enabled">{{ $t('state.enabled') }}</a-select-option>
+            <a-select-option value="Disabled">{{ $t('state.disabled') }}</a-select-option>
+          </a-select>
+        </a-form-item>
+
         <a-form-item name="url" ref="url">
           <template #label>
             <tooltip-label
@@ -141,7 +148,8 @@ export default {
         name: '',
         url: '',
         port: 53,
-        dnsapikey: ''
+        dnsapikey: '',
+        state: undefined
       },
       rules: {}
     }
@@ -170,6 +178,7 @@ export default {
       }]
     }
     this.form.name = this.resource.name
+    this.form.state = this.resource.state
     this.form.url = this.resource.url
     this.form.port = this.resource.port
     this.form.nameservers = this.resource.nameservers || []
@@ -202,6 +211,7 @@ export default {
           nameservers: this.form.nameservers || [],
           ispublic: this.form.ispublic
         }
+        if (this.apiParams.state && this.form.state) params.state = this.form.state
         const dnsapikey = this.form.dnsapikey?.trim()
         if (dnsapikey) {
           params.dnsapikey = dnsapikey

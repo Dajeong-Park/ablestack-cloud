@@ -1658,8 +1658,8 @@ export default {
       title: 'label.dns.servers',
       icon: 'cloud-server-outlined',
       permission: ['listDnsServers'],
-      columns: ['name', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix'],
-      details: ['name', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix', 'domain', 'account'],
+      columns: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix'],
+      details: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix', 'domain', 'account'],
       related: [{
         name: 'dnszone',
         title: 'label.dns.zone',

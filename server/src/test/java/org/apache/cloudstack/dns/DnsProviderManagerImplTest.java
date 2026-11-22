@@ -24,6 +24,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -903,7 +904,7 @@ public class DnsProviderManagerImplTest {
         when(domainDao.getDomainParentIds(anyLong())).thenReturn(Collections.emptySet());
         List<DnsServerVO> servers = Collections.singletonList(serverVO);
         Pair<List<DnsServerVO>, Integer> searchPair = new Pair<>(servers, 1);
-        when(dnsServerDao.searchDnsServer(any(), anyLong(), any(), any(), any(), any())).thenReturn(searchPair);
+        when(dnsServerDao.searchDnsServer(any(), anyLong(), any(), any(), any(), anyBoolean(), any())).thenReturn(searchPair);
 
         DnsServerJoinVO joinVO = mock(DnsServerJoinVO.class);
         when(joinVO.getProviderType()).thenReturn(DnsProviderType.PowerDNS.toString());

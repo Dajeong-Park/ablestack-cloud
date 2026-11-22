@@ -51,6 +51,14 @@ public class ListDnsServersCmd  extends BaseListAccountResourcesCmd {
             description = "filter by provider type (e.g. PowerDNS, Cloudflare)")
     private String providerType;
 
+    @Parameter(name = "includedisabled", type = CommandType.BOOLEAN,
+            description = "Include disabled servers visible to the caller. Defaults to false.")
+    private Boolean includeDisabled;
+
+    public boolean includesDisabled() {
+        return Boolean.TRUE.equals(includeDisabled);
+    }
+
     /////////////////////////////////////////////////////
     /////////////////// Accessors ///////////////////////
     /////////////////////////////////////////////////////

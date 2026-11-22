@@ -250,7 +250,7 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         Account caller = CallContext.current().getCallingAccount();
         Set<Long> parentDomainIds = domainDao.getDomainParentIds(caller.getDomainId());
         Filter searchFilter = new Filter(DnsServerVO.class, ApiConstants.ID, true, cmd.getStartIndex(), cmd.getPageSizeVal());
-        return dnsServerDao.searchDnsServer(cmd.getId(), caller.getAccountId(), parentDomainIds, cmd.getProviderType(), cmd.getKeyword(), searchFilter);
+        return dnsServerDao.searchDnsServer(cmd.getId(), caller.getAccountId(), parentDomainIds, cmd.getProviderType(), cmd.getKeyword(), cmd.includesDisabled(), searchFilter);
     }
 
     @Override
