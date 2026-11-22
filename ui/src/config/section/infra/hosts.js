@@ -17,6 +17,7 @@
 
 import { shallowRef, defineAsyncComponent } from 'vue'
 import store from '@/store'
+import { hostSearchFields } from '@/utils/hostSearch'
 
 export default {
   name: 'host',
@@ -24,7 +25,7 @@ export default {
   icon: 'database-outlined',
   docHelp: 'conceptsandterminology/concepts.html#about-hosts',
   permission: ['listHostsMetrics'],
-  searchFilters: ['name', 'zoneid', 'podid', 'clusterid', 'arch', 'hypervisor'],
+  searchFilters: hostSearchFields,
   resourceType: 'Host',
   filters: () => {
     const filters = ['enabled', 'disabled', 'maintenance', 'up', 'down', 'disconnected', 'alert']
@@ -270,16 +271,11 @@ export default {
       message: 'label.ha.configure',
       docHelp: 'adminguide/reliability.html#ha-for-hosts',
       dataView: true,
-      show: (record) => { return ['KVM', 'Simulator'].includes(record.hypervisor) },
-      args: ['hostid', 'provider'],
-      mapping: {
-        hostid: {
-          value: (record) => { return record.id }
-        },
-        provider: {
-          options: ['KVMHAProvider']
-        }
-      }
+      show: (record) => {
+        return !!store.getters.apis?.listHostHAProviders && ['KVM', 'Simulator'].includes(record.hypervisor)
+      },
+      popup: true,
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ConfigureHostHA.vue')))
     },
     {
       api: 'enableHAForHost',
