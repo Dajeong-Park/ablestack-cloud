@@ -1,4 +1,9 @@
 {
+  "label.storageaccessgroup": "스토리지 액세스 그룹",
+  "label.zone.networkdomain": "네트워크 도메인",
+  "label.zone.dnssearchorder": "DNS 검색 순서",
+  "message.zone.dnssearchorder.help": "검색할 순서대로 DNS 접미사를 한 줄씩 입력하세요.",
+  "message.zone.dnssearchorder.invalid": "끝에 점이 없는 유효한 DNS 접미사를 입력하세요.",
   "label.zone.update.recheck": "결과 다시 확인",
   "message.zone.update.base.saving": "Zone 설정을 저장하는 중입니다.",
   "message.zone.update.base.saved": "Zone 기본 설정을 저장했습니다.",

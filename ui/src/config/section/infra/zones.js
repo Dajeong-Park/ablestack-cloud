@@ -24,7 +24,7 @@ export default {
   icon: 'global-outlined',
   docHelp: 'conceptsandterminology/concepts.html#about-zones',
   permission: ['listZonesMetrics'],
-  searchFilters: ['name', 'domainid', 'tags'],
+  searchFilters: ['name', 'domainid', 'tags', 'networktype', 'storageaccessgroup'],
   columns: () => {
     const fields = ['name', 'allocationstate', 'type', 'networktype', 'haenable']
     const metricsFields = ['clusters', 'cpuused', 'cpumaxdeviation', 'cpuallocated', 'cputotal', 'memoryused', 'memorymaxdeviation', 'memoryallocated', 'memorytotal', 'gputotal', 'gpuused']
@@ -34,7 +34,7 @@ export default {
     fields.push('order')
     return fields
   },
-  details: ['name', 'id', 'allocationstate', 'type', 'networktype', 'guestcidraddress', 'localstorageenabled', 'securitygroupsenabled', 'dns1', 'dns2', 'internaldns1', 'internaldns2', 'asnrange', 'storageaccessgroups', 'haenable'],
+  details: ['name', 'id', 'allocationstate', 'type', 'networktype', 'guestcidraddress', 'localstorageenabled', 'securitygroupsenabled', 'dns1', 'dns2', 'ip6dns1', 'ip6dns2', 'networkdomain', 'dnssearchorder', 'internaldns1', 'internaldns2', 'asnrange', 'storageaccessgroups', 'haenable'],
   related: [{
     name: 'pod',
     title: 'label.pods',
@@ -119,16 +119,8 @@ export default {
       label: 'label.action.edit.zone',
       dataView: true,
       popup: true,
-      show: (record) => { return record.networktype === 'Advanced' },
+      show: (record) => ['Advanced', 'Basic'].includes(record.networktype),
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ZoneUpdate.vue')))
-    },
-    {
-      api: 'updateZone',
-      icon: 'edit-outlined',
-      label: 'label.action.edit.zone',
-      dataView: true,
-      args: ['name', 'dns1', 'dns2', 'ip6dns1', 'ip6dns2', 'internaldns1', 'internaldns2', 'domain', 'localstorageenabled'],
-      show: (record) => { return record.networktype === 'Basic' }
     },
     {
       api: 'updateZone',

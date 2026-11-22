@@ -79,7 +79,7 @@
           <a-input v-model:value="form.internaldns2" />
         </a-form-item>
 
-        <a-form-item name="guestcidraddress" ref="guestcidraddress">
+        <a-form-item v-if="resource.networktype === 'Advanced'" name="guestcidraddress" ref="guestcidraddress">
           <template #label>
             <tooltip-label :title="$t('label.guestcidraddress')" :tooltip="apiParams.guestcidraddress.description"/>
           </template>
@@ -88,9 +88,13 @@
 
         <a-form-item name="domain" ref="domain">
           <template #label>
-            <tooltip-label :title="$t('label.domain')" :tooltip="apiParams.domain.description"/>
+            <tooltip-label :title="$t('label.zone.networkdomain')" :tooltip="apiParams.domain.description"/>
           </template>
           <a-input v-model:value="form.domain" />
+        </a-form-item>
+
+        <a-form-item v-if="apiParams.dnssearchorder" name="dnssearchorder" :label="$t('label.zone.dnssearchorder')">
+          <a-textarea v-model:value="form.dnssearchorder" :rows="3" :placeholder="$t('message.zone.dnssearchorder.help')" />
         </a-form-item>
 
         <a-form-item name="localstorageenabled" ref="localstorageenabled">
@@ -130,6 +134,7 @@ import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 import { createJobTracker } from '@/utils/jobTracker'
+import { parseZoneDnsSearchOrder, validZoneDnsSuffix, zoneDnsSearchOrder } from '@/utils/zone'
 
 export default {
   name: 'ZoneUpdate',
@@ -162,7 +167,7 @@ export default {
   },
   computed: {
     canConfigureStorage () {
-      return !!this.apiParamsConfigureStorageAccess?.storageaccessgroups
+      return this.resource.networktype === 'Advanced' && !!this.apiParamsConfigureStorageAccess?.storageaccessgroups
     }
   },
   beforeCreate () {
@@ -196,12 +201,19 @@ export default {
         internaldns2: this.resource.internaldns2,
         guestcidraddress: this.resource.guestcidraddress,
         domain: this.resource.domain,
+        ...(this.apiParams.dnssearchorder ? { dnssearchorder: zoneDnsSearchOrder(this.resource).join('\n') } : {}),
         localstorageenabled: this.resource.localstorageenabled,
         storageaccessgroups: this.resource.storageaccessgroups
           ? this.resource.storageaccessgroups.split(',')
           : []
       })
-      this.rules = reactive({})
+      this.rules = reactive({
+        dnssearchorder: [{
+          validator: async (_, value) => {
+            if (!parseZoneDnsSearchOrder(value).every(validZoneDnsSuffix)) throw new Error(this.$t('message.zone.dnssearchorder.invalid'))
+          }
+        }]
+      })
     },
     fetchStorageAccessGroupsData () {
       const params = {}
@@ -218,7 +230,6 @@ export default {
       }).finally(() => {
         this.storageAccessGroupsLoading = false
       })
-      this.rules = reactive({})
     },
     async handleSubmit () {
       if (this.loading) return
@@ -230,7 +241,9 @@ export default {
         const id = this.resource.id
         if (!this.baseComplete) {
           const changes = Object.fromEntries(Object.entries(values)
-            .filter(([key, value]) => (value ?? '') !== (this.resource[key] ?? '')))
+            .filter(([key, value]) => key !== 'dnssearchorder' && (value ?? '') !== (this.resource[key] ?? '')))
+          const searchOrder = parseZoneDnsSearchOrder(values.dnssearchorder).join(',')
+          if (this.apiParams.dnssearchorder && searchOrder !== zoneDnsSearchOrder(this.resource).join(',')) changes.dnssearchorder = searchOrder
           if (Object.keys(changes).length) {
             this.saveStage = 'message.zone.update.base.saving'
             await postAPI('updateZone', { id, ...changes }, { preserveOnFailure: true })

@@ -73,6 +73,12 @@
           <div v-else>{{ dataResource[item] ?? $t(item === 'state' ? 'label.hsm.connection.unavailable' : 'label.unknown') }}</div>
         </div>
       </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'zone' && ['networkdomain', 'dnssearchorder'].includes(item)">
+        <div>
+          <strong>{{ $t('label.zone.' + item) }}</strong>
+          <div>{{ (item === 'networkdomain' ? dataResource.domain : zoneDnsSearchOrder(dataResource).join(', ')) || '—' }}</div>
+        </div>
+      </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'dnszone' && item === 'dnsservername'">
         <div>
           <strong>{{ $t('label.dns.server') }}</strong>
@@ -495,6 +501,7 @@ display-text />
 </template>
 
 <script>
+import { zoneDnsSearchOrder } from '@/utils/zone'
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel } from '@/utils/vpcAclAccess'
@@ -700,6 +707,7 @@ export default {
     }
   },
   methods: {
+    zoneDnsSearchOrder,
     eventTypeLabel,
     kmsRoute,
     hsmOwnerScope,

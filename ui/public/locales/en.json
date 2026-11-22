@@ -1,4 +1,9 @@
 {
+  "label.storageaccessgroup": "Storage access group",
+  "label.zone.networkdomain": "Network domain",
+  "label.zone.dnssearchorder": "DNS search order",
+  "message.zone.dnssearchorder.help": "Enter one DNS suffix per line, in search order.",
+  "message.zone.dnssearchorder.invalid": "Enter valid DNS suffixes without a trailing dot.",
   "label.zone.update.recheck": "Check result again",
   "message.zone.update.base.saving": "Saving Zone settings…",
   "message.zone.update.base.saved": "Zone settings have been saved.",

@@ -929,6 +929,7 @@ import VpcDialog from '@/components/network/VpcDialog'
 import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
 import { dnsServerListQuery, dnsServerSearchQuery } from '@/utils/dnsServer'
+import { zoneListQuery, zoneReadParams, zoneSearchQuery } from '@/utils/zone'
 import { dnsZoneSearchQuery } from '@/utils/dnsZone'
 import { canDeleteIpv4Subnet, ipv4SubnetListQuery, ipv4SubnetReadParams, ipv4SubnetRoute, ipv4SubnetSearchQuery } from '@/utils/ipv4Subnet'
 import EventCsvDialog from '@/views/event/EventCsvDialog'
@@ -1632,6 +1633,7 @@ export default {
       return this.$route.meta?.name === 'vpncustomergateway' ? vpnCustomerGatewayActionKey(this.$store.getters, this.$route, this.$store.state?.user?.token) : null
     },
     isGuestVlan () { return guestVlanRoute(this.$route) },
+    isZoneList () { return this.$route.meta?.name === 'zone' && !this.$route.params?.id },
     isDnsServer () { return this.$route.meta?.name === 'dnsserver' },
     isDnsZone () { return this.$route.meta?.name === 'dnszone' },
     isIpv4Subnet () { return ipv4SubnetRoute(this.$route) },
@@ -2586,7 +2588,7 @@ export default {
         }
         Object.assign(params, this.$route.query)
       }
-      if ((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'iso', 'kubernetesiso'].includes(this.$route.meta?.name)) && !rebuildSchema) {
+      if ((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'iso', 'kubernetesiso', 'zone'].includes(this.$route.meta?.name)) && !rebuildSchema) {
         this.columns.forEach(column => { column.sortOrder = (params.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === column.key ? (params.sortorder === 'asc' ? 'ascend' : 'descend') : null })
       }
       if (this.$route.name === 'snapshot' && !this.dataView && !rebuildSchema) {
@@ -2714,7 +2716,7 @@ export default {
             title: publicIpRoute(this.$route) && key === 'allocated' ? this.$t('label.public.ip.allocated') : this.$route.name === 'sharedfs' && key === 'capacity' ? this.$t('label.storage.capacity.column') : this.$route.name === 'sharedfs' && key === 'sizegb' ? this.$t('label.storage.capacity.initial') : this.$t('label.' + String(title).toLowerCase()),
             dataIndex: key,
             sorter: kubernetesIsoQuery ? kubernetesIsoSortFields.includes(key) && !!kubernetesIsoCapability('read', this.$store.getters).parameters.sortkey && !!kubernetesIsoCapability('read', this.$store.getters).parameters.sortorder : this.$route.name === 'sharedfs' && ['capacity', 'bootrecovery'].includes(key) ? false : this.$route.name === 'vmsnapshot' ? ['displayname', 'state', 'type', 'current', 'created'].includes(key) : sorter,
-            ...((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'kubernetesiso'].includes(this.$route.meta?.name)) ? { sortOrder: (this.$route.query.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === key ? (this.$route.query.sortorder === 'asc' ? 'ascend' : 'descend') : null } : {}),
+            ...((this.$route.name === 'vmsnapshot' || ['vmgroup', 'cniconfiguration', 'guestnetwork', 'kubernetesiso', 'zone'].includes(this.$route.meta?.name)) ? { sortOrder: (this.$route.query.sortkey || (this.$route.name === 'vmsnapshot' ? 'created' : '')) === key ? (this.$route.query.sortorder === 'asc' ? 'ascend' : 'descend') : null } : {}),
             ...(this.$route.name === 'snapshot' ? storageSnapshotSortColumn(key, this.$route.query) : {}),
             ...(snapshotPolicyListRoute(this.$route) ? snapshotPolicySortColumn(key, this.$route.query, this.$t) : {})
           })
@@ -2925,6 +2927,7 @@ export default {
         if (vpnConnectionDisplaySupported(this.$store.getters)) params.displayall = true
       }
       if (guestVlanRoute(this.$route)) params = guestVlanReadParams(params)
+      if (['listZones', 'listZonesMetrics'].includes(this.apiName) && this.$route.meta?.name === 'zone') params = zoneReadParams(this.$route.query, params)
       if (this.isDnsServer) {
         const id = this.$route.params?.id
         const { providertype, keyword } = dnsServerListQuery(this.$route.query)
@@ -4919,6 +4922,11 @@ export default {
       return this.$router.push({ query })
     },
     onSearch (opts) {
+      if (this.isZoneList) {
+        const query = zoneSearchQuery(this.$route.query, opts || {}, this.pageSize)
+        if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
+        return this.$router.push({ query })
+      }
       if (this.isDnsServer && !this.dataView) {
         const query = dnsServerSearchQuery(this.$route.query, opts || {}, this.pageSize)
         if (JSON.stringify(query) === JSON.stringify(this.$route.query)) return this.fetchData({ irefresh: true })
@@ -5101,11 +5109,16 @@ export default {
     },
     changePage (page, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
+      query.page = (this.isZoneList || this.isRoleList || this.isProjectList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route) || vpnConnectionListRoute(this.$route)) && Number(pageSize) !== this.pageSize ? 1 : page
       query.pagesize = pageSize
       this.$router.push({ query: this.isRoleList ? roleSearchQuery(query) : this.isAccountList ? accountQuery(query) : query })
     },
     handleTableChange (pagination, filters, sorter) {
+      if (this.isZoneList) {
+        const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
+        const query = zoneListQuery({ ...this.$route.query, sortkey: sortorder && (sorter.columnKey || sorter.field), sortorder })
+        return this.$router.push({ query })
+      }
       if (this.isAccountList) {
         const sortorder = sorter?.order === 'ascend' ? 'asc' : sorter?.order === 'descend' ? 'desc' : undefined
         return this.$router.replace({ query: accountQuery({ ...this.$route.query, sortkey: sorter?.columnKey, sortorder }) })
@@ -5155,7 +5168,7 @@ export default {
     },
     changePageSize (currentPage, pageSize) {
       const query = Object.assign({}, this.$route.query)
-      query.page = (['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
+      query.page = (this.isZoneList || ['template', 'iso', 'cniconfiguration', 'guestnetwork', 'vnfapp', 'asnumbers', 'kubernetesiso', 'acllist', 'vpnuser', 'guestvlans', 'ipv4subnets'].includes(this.$route.meta?.name) || this.$route.name === 'snapshot' || snapshotPolicyListRoute(this.$route)) ? 1 : currentPage
       query.pagesize = pageSize
       this.$router.push({ query })
     },
