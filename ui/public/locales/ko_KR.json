@@ -34,6 +34,7 @@
   "message.account.action.unavailable": "이 계정의 현재 상태 또는 범위에서는 선택한 작업을 실행할 수 없습니다.",
   "message.account.action.scope.changed": "계정 선택 또는 관리 범위가 변경됐습니다.",
   "message.image.account.scope": "계정 {account} 소유",
+  "message.image.domain.scope.invalid": "소유 이미지를 조회할 도메인을 확인하세요.",
   "message.image.account.scope.invalid": "소유 이미지를 조회할 계정과 도메인을 확인하세요.",
   "message.account.create.options.failed": "계정 도메인 또는 역할을 불러오지 못했습니다.",
   "message.account.create.confirm.role": "{domain} 도메인에 {role} 역할을 부여하는 것을 확인합니다.",

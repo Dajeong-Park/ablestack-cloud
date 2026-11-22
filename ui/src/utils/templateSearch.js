@@ -29,7 +29,7 @@ export function templateListQuery (query = {}, pageSize = 20) {
   }
   const filter = query.filter ?? query.templatefilter ?? 'self'
   const scope = imageAccountScope(query, filter)
-  if (scope.account) {
+  if (scope.domainid) {
     Object.assign(result, scope, { filter, templatefilter: filter })
     delete result.projectid
   }
@@ -48,7 +48,7 @@ export function templateSearchQuery (query, options, pageSize) {
   return templateListQuery({ ...next, page: '1', pagesize: pageSize })
 }
 export function templateSearchError (query, apiParams = {}) {
-  if (invalidImageAccountScope(query)) return 'message.image.account.scope.invalid'
+  if (invalidImageAccountScope(query)) return query.account === undefined ? 'message.image.domain.scope.invalid' : 'message.image.account.scope.invalid'
   for (const key of templateSearchFields.filter(k => k !== 'tags')) {
     if (!(key in query)) continue
     if (!apiParams[key]) return 'message.template.search.unsupported'
