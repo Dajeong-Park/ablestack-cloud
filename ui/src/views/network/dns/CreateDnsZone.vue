@@ -35,7 +35,7 @@
             </template>
             <a-select
               v-model:value="form.dnsserverid"
-              :placeholder="apiParams.dnsserverid?.description || 'Select DNS Server'"
+              :placeholder="$t('label.dns.server')"
               :loading="serverStatus === 'loading'"
               :disabled="serverStatus !== 'ready' || !!jobId"
               showSearch
@@ -62,23 +62,23 @@
             </template>
             <a-input
               v-model:value="form.name"
-              :placeholder="apiParams.name?.description || 'e.g. example.com'"
+              :placeholder="'example.com'"
               v-focus="true" />
           </a-form-item>
 
           <a-form-item name="description" ref="description">
             <template #label>
-              <tooltip-label :title="$t('label.description')" :tooltip="apiParams.description.description"/>
+              <tooltip-label :title="$t('label.description')" :tooltip="apiParams.description?.description"/>
             </template>
             <a-input
               v-model:value="form.description"
-              :placeholder="apiParams.description.description"/>
+              :placeholder="apiParams.description?.description"/>
           </a-form-item>
 
           <a-form-item name="type" :label="$t('label.type')">
             <a-select v-model:value="form.type" :disabled="jobLoading || !!jobId">
-              <a-select-option value="Public">Public</a-select-option>
-              <a-select-option value="Private">Private</a-select-option>
+              <a-select-option value="Public">{{ $t('label.public') }}</a-select-option>
+              <a-select-option value="Private">{{ $t('label.role.visibility.private') }}</a-select-option>
             </a-select>
           </a-form-item>
 
@@ -90,7 +90,7 @@
           </a-form-item>
         </fieldset>
 
-        <div class="action-button">
+        <MoldDialogActions :busy="jobLoading">
           <a-button :disabled="jobLoading" @click="closeAction">
             {{ $t('label.cancel') }}
           </a-button>
@@ -101,7 +101,7 @@
             @click="handleSubmit">
             {{ $t(jobId ? 'label.dns.job.recheck' : 'label.ok') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -110,12 +110,14 @@
 <script>
 import { getAPI } from '@/api'
 import { dnsJob } from './dnsJob'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'CreateDnsZone',
   mixins: [dnsJob],
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   data () {
@@ -148,6 +150,7 @@ export default {
   },
   methods: {
     async handleSubmit () {
+      if (!this.$store.getters.apis?.createDnsZone) return
       if (this.jobLoading || this.jobTracking === 'unconfirmed' || (!this.jobId && !this.canSelectServer)) return
 
       try {
@@ -192,21 +195,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
+<style scoped>
 .dns-form-fields { border: 0; padding: 0; min-width: 0; }
 .dns-job-error { margin-bottom: 12px; }
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
 </style>

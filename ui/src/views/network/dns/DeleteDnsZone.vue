@@ -31,7 +31,7 @@
         {{ $t('message.dns.zone.delete.networks', { networks: resource.associatednetworks?.map(network => network.networkname).join(', ') || resource.networkname }) }}
       </p>
       <div style="margin-bottom: 20px; word-break: break-all;">
-        Please type <strong>{{ resource.name }}</strong> to confirm.
+        {{ $t('message.confirm.type') }} <strong>{{ resource.name }}</strong>
       </div>
 
       <a-form
@@ -54,10 +54,11 @@
               <tooltip-label :title="$t('label.dns.unmanage.zone')" :tooltip="apiParams.unmanage?.description" />
             </template>
             <a-switch v-model:checked="form.unmanage" />
+            <p class="dns-unmanage-effect">{{ $t(form.unmanage ? 'message.dns.zone.unmanage.keeps.provider' : 'message.dns.zone.delete.removes.provider') }}</p>
           </a-form-item>
         </fieldset>
 
-        <div class="action-button">
+        <MoldDialogActions :busy="jobLoading">
           <a-button :disabled="jobLoading" @click="closeAction">
             {{ $t('label.cancel') }}
           </a-button>
@@ -69,7 +70,7 @@
             @click="handleSubmit">
             {{ $t(jobId ? 'label.dns.job.recheck' : 'label.delete') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -78,12 +79,14 @@
 <script>
 import { dnsZoneListQuery } from '@/utils/dnsZone'
 import { dnsJob } from './dnsJob'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'DeleteDnsZone',
   mixins: [dnsJob],
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {
@@ -128,21 +131,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
+<style scoped>
 .dns-form-fields { border: 0; padding: 0; min-width: 0; }
 .dns-job-error { margin-bottom: 12px; }
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
+.dns-unmanage-effect { margin-block: 8px 0; color: var(--ui-text-secondary); }
 </style>

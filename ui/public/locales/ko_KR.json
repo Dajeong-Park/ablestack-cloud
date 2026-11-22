@@ -1,4 +1,6 @@
 {
+  "message.dns.zone.unmanage.keeps.provider": "제공자에 DNS 영역과 레코드가 유지됩니다.",
+  "message.dns.zone.delete.removes.provider": "제공자에서 DNS 영역과 모든 레코드를 삭제합니다.",
   "message.dns.records.no.matches": "검색 조건에 맞는 DNS 레코드가 없습니다.",
   "message.dns.records.empty": "DNS 레코드가 없습니다.",
   "label.dns.zone.associated.networks": "연결된 네트워크",

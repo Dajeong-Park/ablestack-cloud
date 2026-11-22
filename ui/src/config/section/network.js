@@ -1625,10 +1625,9 @@ export default {
           label: 'label.dns.create.zone',
           listView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/CreateDnsZone.vue'))),
-          show: () => {
-            return true
-          }
+          show: (_, context) => !!context.apis?.listDnsServers
         },
         {
           api: 'updateDnsZone',
@@ -1636,6 +1635,7 @@ export default {
           label: 'label.dns.update.zone',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/UpdateDnsZone.vue')))
         },
@@ -1646,6 +1646,7 @@ export default {
           message: 'message.action.delete.dns.zone',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DeleteDnsZone.vue'))),
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           groupAction: false

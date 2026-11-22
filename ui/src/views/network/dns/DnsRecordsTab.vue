@@ -16,31 +16,26 @@
 // under the License.
 
 <template>
-  <div>
-    <a-alert v-if="listRefreshFailed" :type="loadError ? 'error' : 'warning'" show-icon
+  <div class="dns-records-tab">
+    <a-alert v-if="listRefreshFailed" class="dns-records-notice" :type="loadError ? 'error' : 'warning'" show-icon
       :message="$t(loadError ? 'error.fetching.data' : 'message.list.refresh.stale')">
       <template #action><a-button size="small" @click="fetchData">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
     <a-spin :spinning="fetchLoading">
-      <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-        <a-input-search
-          v-model:value="searchText"
-          :placeholder="$t('label.search')"
-          style="width: 250px;"
-          allow-clear
-          @search="searchRecords" />
-        <a-button
-          v-if="canCreate"
-          shape="round"
-          @click="() => { showAddForm = true }">
-          {{ $t('label.dns.create.record') }}
-          <plus-outlined style="margin-left: 5px;" />
+      <div class="dns-records-toolbar">
+        <a-button v-if="canCreate" type="primary" @click="showAddForm = true">
+          <template #icon><plus-outlined /></template>{{ $t('label.dns.create.record') }}
         </a-button>
+        <a-button :aria-label="$t('label.refresh')" :title="$t('label.refresh')" @click="fetchData">
+          <template #icon><reload-outlined /></template>
+        </a-button>
+        <a-input-search v-model:value="searchText" :aria-label="$t('label.search')"
+          :placeholder="$t('label.search')" allow-clear @search="searchRecords" />
       </div>
 
       <a-table
         size="small"
-        style="overflow-y: auto; width: 100%;"
+        :scroll="{ x: 620 }"
         :columns="visibleColumns"
         :dataSource="records"
         :rowKey="item => `${item.name}-${item.type}`"
@@ -49,7 +44,7 @@
 
         <template #bodyCell="{ column, record }">
           <template v-if="column.dataIndex === 'contents'">
-            <a-tag v-for="(item, idx) in record.contents" :key="idx">{{ item }}</a-tag>
+            <a-tag class="dns-record-content" v-for="(item, idx) in record.contents" :key="idx">{{ item }}</a-tag>
           </template>
           <template v-if="column.dataIndex === 'ttl'">
             {{ record.ttl }}
@@ -68,45 +63,29 @@
         </template>
       </a-table>
     </a-spin>
-    <a-pagination v-if="total > 0" :current="page" :page-size="pageSize" :total="total"
+    <a-pagination v-if="total > 0" class="dns-records-pagination" :current="page" :page-size="pageSize" :total="total"
       :show-total="count => `${$t('label.total')} ${count} ${$t('label.items')}`"
       :page-size-options="['10', '20', '40', '80', '100']"
       show-size-changer @change="changePage" />
 
-    <a-modal
-      v-if="deleteTarget && canDelete"
-      :visible="true"
-      :title="$t('label.dns.delete.record')"
-      :closable="!deleteLoading"
-      :keyboard="!deleteLoading"
-      :mask-closable="false"
-      :footer="null"
-      centered
-      @cancel="closeDeleteForm">
+    <MoldDialog v-if="deleteTarget && canDelete" size="sm" form-actions focus-guard
+      :title="$t('label.dns.delete.record')" @cancel="closeDeleteForm">
       <p>{{ $t('message.dns.record.delete.rrset', { name: deleteTarget.name, type: deleteTarget.type, count: deleteTarget.contents?.length || 0 }) }}</p>
       <a-alert v-if="jobError" :message="jobError" type="error" show-icon />
-      <div class="action-button">
-        <a-button :disabled="deleteLoading" @click="closeDeleteForm">{{ $t('label.cancel') }}</a-button>
+      <MoldDialogActions :busy="deleteLoading">
+        <a-button @click="closeDeleteForm">{{ $t('label.cancel') }}</a-button>
         <a-button type="primary" danger :loading="deleteLoading" :disabled="jobTracking === 'unconfirmed'" @click="handleDeleteRecord">
           {{ $t(jobId ? 'label.dns.job.recheck' : 'label.delete') }}
         </a-button>
-      </div>
-    </a-modal>
+      </MoldDialogActions>
+    </MoldDialog>
 
-    <a-modal
-      v-if="showAddForm && canCreate"
-      :visible="showAddForm"
-      :title="$t('label.dns.create.record')"
-      :maskClosable="false"
-      :closable="true"
-      :footer="null"
-      @cancel="() => { showAddForm = false }"
-      centered
-      width="auto">
+    <MoldDialog v-if="showAddForm && canCreate" size="md" form-actions focus-guard
+      :title="$t('label.dns.create.record')" @cancel="handleCloseCreateForm">
       <CreateDnsRecord
         :resource="resource"
         @close-action="handleCloseCreateForm" />
-    </a-modal>
+    </MoldDialog>
   </div>
 </template>
 
@@ -115,6 +94,8 @@ import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { getAPI } from '@/api'
 import { dnsJob } from './dnsJob'
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipButton from '@/components/widgets/TooltipButton'
 import CreateDnsRecord from '@/views/network/dns/CreateDnsRecord'
 
@@ -126,6 +107,8 @@ export default {
   }), dnsJob],
   name: 'DnsRecordsTab',
   components: {
+    MoldDialog,
+    MoldDialogActions,
     TooltipButton,
     CreateDnsRecord
   },
@@ -267,3 +250,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.dns-records-tab { min-width: 0; }
+.dns-records-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+.dns-records-toolbar :deep(.ant-input-search) { width: min(100%, 250px); margin-inline-start: auto; }
+.dns-records-pagination { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; margin-top: 16px; }
+.dns-records-notice { margin-bottom: 16px; }
+.dns-record-content { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  .dns-records-toolbar :deep(.ant-input-search) { flex: 1 0 100%; width: 100%; }
+}
+</style>

@@ -85,7 +85,7 @@
           </a-form-item>
         </fieldset>
 
-        <div class="action-button">
+        <MoldDialogActions :busy="jobLoading">
           <a-button :disabled="jobLoading" @click="$emit('close-action')">
             {{ $t('label.cancel') }}
           </a-button>
@@ -96,7 +96,7 @@
             @click="handleSubmit">
             {{ $t(jobId ? 'label.dns.job.recheck' : 'label.ok') }}
           </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
@@ -104,12 +104,14 @@
 
 <script>
 import { dnsJob } from './dnsJob'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 export default {
   name: 'CreateDnsRecord',
   mixins: [dnsJob],
   components: {
+    MoldDialogActions,
     TooltipLabel
   },
   props: {
@@ -189,21 +191,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
+<style scoped>
 .dns-form-fields { border: 0; padding: 0; min-width: 0; }
 .dns-job-error { margin-bottom: 12px; }
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
 </style>

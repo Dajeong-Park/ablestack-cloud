@@ -1,4 +1,6 @@
 {
+  "message.dns.zone.unmanage.keeps.provider": "The zone and its records will remain at the provider.",
+  "message.dns.zone.delete.removes.provider": "The zone and all its records will be removed from the provider.",
   "message.dns.records.no.matches": "No DNS records match the search.",
   "message.dns.records.empty": "No DNS records.",
   "label.dns.zone.associated.networks": "Associated networks",
