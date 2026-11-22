@@ -1658,6 +1658,7 @@ export default {
       title: 'label.dns.servers',
       icon: 'cloud-server-outlined',
       permission: ['listDnsServers'],
+      searchFilters: () => ['listDnsProviders' in store.getters.apis && store.getters.apis.listDnsServers?.params?.some(param => param.name === 'providertype') ? 'providertype' : null].filter(Boolean),
       columns: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix'],
       details: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix', 'domain', 'account'],
       related: [{

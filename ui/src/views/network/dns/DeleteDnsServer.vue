@@ -58,6 +58,7 @@
 
 <script>
 import { getAPI } from '@/api'
+import { dnsServerListQuery } from '@/utils/dnsServer'
 import { dnsJob } from './dnsJob'
 
 export default {
@@ -111,7 +112,7 @@ export default {
       return this.submitDnsJob('deleteDnsServer', params, 'label.dns.delete.server', this.resource.name, () => {
         this.$emit('close-action')
         if (this.$route.params.id === params.id) {
-          this.$router.push({ path: '/dnsserver' })
+          this.$router.push({ path: '/dnsserver', query: dnsServerListQuery(this.$route.query) })
         } else {
           this.$emit('refresh-data')
         }
