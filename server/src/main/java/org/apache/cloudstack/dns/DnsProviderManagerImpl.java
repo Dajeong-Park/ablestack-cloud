@@ -23,6 +23,7 @@ import static com.cloud.event.EventTypes.EVENT_NIC_UPDATE;
 import static com.cloud.event.EventTypes.EVENT_VM_UPDATE;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -581,14 +582,23 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         }
         try {
             DnsProvider provider = getProviderByType(server.getProviderType());
-            List<DnsRecord> records = provider.listRecords(server, zone);
-            List<DnsRecordResponse> responses = new ArrayList<>();
-            for (DnsRecord record : records) {
-                responses.add(createDnsRecordResponse(record));
+            String keyword = StringUtils.trimToEmpty(cmd.getKeyword());
+            List<DnsRecord> records = provider.listRecords(server, zone).stream()
+                    .filter(record -> keyword.isEmpty() || StringUtils.containsIgnoreCase(record.getName(), keyword) ||
+                            StringUtils.containsIgnoreCase(record.getType().name(), keyword) ||
+                            record.getContents().stream().anyMatch(value -> StringUtils.containsIgnoreCase(value, keyword)))
+                    .sorted(Comparator.comparing(DnsRecord::getName, String.CASE_INSENSITIVE_ORDER)
+                            .thenComparing(record -> record.getType().name()))
+                    .collect(Collectors.toList());
+            int total = records.size();
+            Long limit = cmd.getPage() == null && cmd.getPageSize() == null ? null : cmd.getPageSizeVal();
+            if (limit != null) {
+                int start = (int) Math.min(cmd.getStartIndex(), total);
+                int end = (int) Math.min(start + limit, total);
+                records = records.subList(start, end);
             }
-
             ListResponse<DnsRecordResponse> listResponse = new ListResponse<>();
-            listResponse.setResponses(responses, responses.size());
+            listResponse.setResponses(records.stream().map(this::createDnsRecordResponse).collect(Collectors.toList()), total);
             return listResponse;
         } catch (DnsNotFoundException ex) {
             logger.error("DNS zone is not found", ex);

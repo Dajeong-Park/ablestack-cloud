@@ -17,14 +17,18 @@
 
 <template>
   <div>
-    <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
+    <a-alert v-if="listRefreshFailed" :type="loadError ? 'error' : 'warning'" show-icon
+      :message="$t(loadError ? 'error.fetching.data' : 'message.list.refresh.stale')">
+      <template #action><a-button size="small" @click="fetchData">{{ $t('label.retry') }}</a-button></template>
+    </a-alert>
     <a-spin :spinning="fetchLoading">
       <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
         <a-input-search
           v-model:value="searchText"
           :placeholder="$t('label.search')"
           style="width: 250px;"
-          allow-clear />
+          allow-clear
+          @search="searchRecords" />
         <a-button
           v-if="canCreate"
           shape="round"
@@ -38,9 +42,10 @@
         size="small"
         style="overflow-y: auto; width: 100%;"
         :columns="visibleColumns"
-        :dataSource="filteredRecords"
+        :dataSource="records"
         :rowKey="item => `${item.name}-${item.type}`"
-        :pagination="tablePagination">
+        :pagination="false">
+        <template #emptyText>{{ $t(fetchLoading ? 'label.loading' : loadError ? 'error.fetching.data' : keyword ? 'message.dns.records.no.matches' : 'message.dns.records.empty') }}</template>
 
         <template #bodyCell="{ column, record }">
           <template v-if="column.dataIndex === 'contents'">
@@ -63,6 +68,10 @@
         </template>
       </a-table>
     </a-spin>
+    <a-pagination v-if="total > 0" :current="page" :page-size="pageSize" :total="total"
+      :show-total="count => `${$t('label.total')} ${count} ${$t('label.items')}`"
+      :page-size-options="['10', '20', '40', '80', '100']"
+      show-size-changer @change="changePage" />
 
     <a-modal
       v-if="deleteTarget && canDelete"
@@ -110,7 +119,11 @@ import TooltipButton from '@/components/widgets/TooltipButton'
 import CreateDnsRecord from '@/views/network/dns/CreateDnsRecord'
 
 export default {
-  mixins: [listRefreshMixin(['fetchData']), dnsJob],
+  mixins: [listRefreshMixin(['fetchData'], {
+    active: vm => vm.canRead && vm.$route.params.id === vm.resource.id,
+    scopeKey: vm => [vm.$route.params.id, vm.resource.id, vm.$store.getters.userInfo?.id,
+      vm.$store.state?.user?.token, vm.canRead, vm.keyword, vm.page, vm.pageSize]
+  }), dnsJob],
   name: 'DnsRecordsTab',
   components: {
     TooltipButton,
@@ -132,23 +145,20 @@ export default {
       deleteTarget: null,
       showAddForm: false,
       searchText: '',
+      keyword: '',
+      page: 1,
+      pageSize: 10,
+      total: 0,
+      loadError: false,
       records: [],
-      tablePagination: {
-        defaultPageSize: 10,
-        showSizeChanger: true,
-        pageSizeOptions: ['10', '20', '40', '80', '100'],
-        showTotal: (total) => `${this.$t('label.total')} ${total} ${this.$t('label.items')}`
-      },
       columns: [
         {
           title: this.$t('label.name'),
-          dataIndex: 'name',
-          sorter: (a, b) => a.name.localeCompare(b.name)
+          dataIndex: 'name'
         },
         {
           title: this.$t('label.type'),
-          dataIndex: 'type',
-          sorter: (a, b) => a.type.localeCompare(b.type)
+          dataIndex: 'type'
         },
         {
           title: this.$t('label.contents'),
@@ -156,8 +166,7 @@ export default {
         },
         {
           title: this.$t('label.ttl') + ' (' + this.$t('label.seconds') + ')',
-          dataIndex: 'ttl',
-          sorter: (a, b) => a.ttl - b.ttl
+          dataIndex: 'ttl'
         },
         {
           key: 'actions',
@@ -171,56 +180,65 @@ export default {
     canRead () { return !!this.$store.getters.apis?.listDnsRecords },
     canCreate () { return this.canRead && !!this.$store.getters.apis?.createDnsRecord },
     canDelete () { return this.canRead && !!this.$store.getters.apis?.deleteDnsRecord },
-    visibleColumns () { return this.canDelete ? this.columns : this.columns.filter(column => column.key !== 'actions') },
-    filteredRecords () {
-      const q = this.searchText.trim().toLowerCase()
-      if (!q) return this.records
-      return this.records.filter(r =>
-        r.name?.toLowerCase().includes(q) ||
-        r.type?.toLowerCase().includes(q) ||
-        r.contents?.some(c => c.toLowerCase().includes(q))
-      )
-    }
+    visibleColumns () { return this.canDelete ? this.columns : this.columns.filter(column => column.key !== 'actions') }
   },
   created () {
     this.fetchData()
   },
   watch: {
-    'resource.id' (newId) {
-      if (!newId) return
+    'resource.id' () {
+      this.page = 1
+      this.total = 0
       this.fetchData()
     }
   },
   methods: {
-    fetchData () {
-      if (!this.canRead || !this.resource.id) return
+    searchRecords (value) {
+      this.keyword = value?.trim() || ''
+      this.page = 1
+      this.fetchData()
+    },
+    changePage (page, size) {
+      this.page = size === this.pageSize ? page : 1
+      this.pageSize = size
+      this.fetchData()
+    },
+    async fetchData () {
+      if (!this.canRead || !this.resource.id || this.$route.params.id !== this.resource.id) return
       const listRequest = this.listRequestToken('fetchData')
-      if (this.fetchLoading) return
-
-      const params = {
-        dnszoneid: this.resource.id
-      }
+      const params = { dnszoneid: this.resource.id, page: this.page, pagesize: this.pageSize }
+      if (this.keyword) params.keyword = this.keyword
       this.fetchLoading = !listRequest.loaded
-      return getAPI('listDnsRecords', params).then(json => {
+      if (!listRequest.loaded) {
+        this.records = []
+        this.loadError = false
+        this.listRefreshFailed = false
+      }
+      try {
+        const json = await getAPI('listDnsRecords', params, { preserveOnFailure: true })
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        const response = json.listdnsrecordsresponse || {}
-        this.records = response.dnsrecord || []
-      }).catch(error => {
+        const response = json?.listdnsrecordsresponse
+        const rows = response?.dnsrecord || []
+        const total = Number(response?.count ?? rows.length)
+        if (!response || response.errorcode || !Array.isArray(rows) || !Number.isSafeInteger(total) || total < rows.length) {
+          throw new Error('Invalid DNS record list response')
+        }
+        this.total = total
+        const lastPage = Math.max(1, Math.ceil(total / this.pageSize))
+        if (this.page > lastPage) {
+          this.page = lastPage
+          return this.fetchData()
+        }
+        this.records = rows
+        this.loadError = false
+      } catch (_) {
         if (!this.isListRequestCurrent('fetchData', listRequest)) return
         listRequest.failed = true
+        this.loadError = !listRequest.loaded
         this.listRefreshFailed = true
-        if (listRequest.loaded) return
-
-        this.$notifyError(error)
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-
-        this.fetchLoading = false
-      }).finally(() => {
-        if (!this.isListRequestCurrent('fetchData', listRequest)) return
-        this.fetchLoading = false
-      })
+      } finally {
+        if (this.isListRequestCurrent('fetchData', listRequest)) this.fetchLoading = false
+      }
     },
     isApexNs (record) {
       if (record.type !== 'NS') return false

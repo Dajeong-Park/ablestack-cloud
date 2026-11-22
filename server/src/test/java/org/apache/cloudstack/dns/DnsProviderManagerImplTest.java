@@ -517,6 +517,32 @@ public class DnsProviderManagerImplTest {
     }
 
     @Test
+    public void testListDnsRecordsFiltersBeforePaging() throws Exception {
+        ListDnsRecordsCmd cmd = mock(ListDnsRecordsCmd.class);
+        when(cmd.getDnsZoneId()).thenReturn(ZONE_ID);
+        when(cmd.getKeyword()).thenReturn("match");
+        when(cmd.getPage()).thenReturn(2);
+        when(cmd.getPageSizeVal()).thenReturn(1L);
+        when(cmd.getStartIndex()).thenReturn(1L);
+        when(dnsZoneDao.findById(ZONE_ID)).thenReturn(zoneVO);
+        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsProviderMock.listRecords(serverVO, zoneVO)).thenReturn(List.of(
+                new DnsRecord("z.example.com.", DnsRecord.RecordType.TXT, List.of("MATCH"), 3600),
+                new DnsRecord("unrelated.example.com.", DnsRecord.RecordType.TXT, List.of("other"), 3600),
+                new DnsRecord("match.example.com.", DnsRecord.RecordType.TXT, List.of("other"), 3600)));
+
+        ListResponse<DnsRecordResponse> result = manager.listDnsRecords(cmd);
+        assertEquals(2, result.getCount().intValue());
+        assertEquals(1, result.getResponses().size());
+        assertEquals("z.example.com.", new Gson().toJsonTree(result.getResponses().get(0)).getAsJsonObject().get("name").getAsString());
+
+        when(cmd.getStartIndex()).thenReturn(5L);
+        ListResponse<DnsRecordResponse> beyondLastPage = manager.listDnsRecords(cmd);
+        assertEquals(2, beyondLastPage.getCount().intValue());
+        assertTrue(beyondLastPage.getResponses().isEmpty());
+    }
+
+    @Test
     public void testListDnsRecordsSuccess() throws Exception {
         ListDnsRecordsCmd cmd = mock(ListDnsRecordsCmd.class);
         when(cmd.getDnsZoneId()).thenReturn(ZONE_ID);
