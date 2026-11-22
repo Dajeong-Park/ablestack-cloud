@@ -16,7 +16,7 @@
 // under the License.
 
 <template>
-  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'account-standard-page': isAccountUi, 'account-standard-list': isAccountList, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'themed-list-toolbar': isZoneList || isZoneRelatedList || isAccountList || isRoleList || isGuestVlan || isIpv4Subnet || isDnsZone || isDnsServer || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
+  <div :class="{ 'autoscale-screen': $route.meta?.name === 'autoscalevmgroup', 'userdata-library': $route.meta?.name === 'userdata', 'affinity-library': $route.meta?.name === 'affinitygroup', 'snapshot-list-page': isSnapshotList, 'object-storage-ui': isObjectStorageUi, 'bucket-list-page': isBucketList, 'vm-list-page': isVmList, 'event-list-page': isEventList, 'vm-acl-standard': standardResourceToolbar, 'vpn-user-page': isVpnUser, 'vpn-customer-gateway-page': isVpnCustomerGateway, 'project-standard-page': isProjectUi, 'role-standard-page': isRoleUi, 'account-standard-page': isAccountUi, 'account-standard-list': isAccountList, 'acl-page': isAclUi, 'kms-management-page': kmsRoute($route), 'kms-list-page': kmsListRoute($route),  'public-ip-page': isPublicIpUi, 'volume-list-page': isVolumeList, 'template-list-page': isTemplateList, 'iso-list-page': isIsoList, 'kubernetes-iso-page': $route.meta?.name === 'kubernetesiso', 'kubernetes-iso-list-page': isKubernetesIsoList, 's2s-gateway-list-page': s2sGatewayListRoute($route), 's2s-connection-page': vpnConnectionRoute($route), 'asn-list-page': !!asnSearchAuth, 'host-standard-page': isHostUi, 'themed-list-toolbar': isHostList || isZoneList || isZoneRelatedList || isAccountList || isRoleList || isGuestVlan || isIpv4Subnet || isDnsZone || isDnsServer || isVpnCustomerGateway || isVpnUser || vpnConnectionRoute($route) || isS2sSearchList || !!asnSearchAuth || isKubernetesIsoList || isPublicIpUi || isTemplateList || isIsoList || isVpcUi || isVmList || isProjectList || isAclUi || isEventList || isVolumeList || isGuestNetworkList || ($route.name === 'sharedfs' && !dataView), 'guest-network-page': isGuestNetworkUi, 'runtime-catalog-screen': $route.meta?.name === 'runtimebundle' }">
     <div class="content-breadcrumb">
       <a-card class="breadcrumb-card" style="z-index: 10">
         <a-row>
@@ -266,7 +266,7 @@
       <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi) ? 1 : undefined" v-else-if="currentAction.component && (!currentAction.invokedAsGroupAction || ['destroyVirtualMachine', 'deleteBackup', 'destroySharedFileSystem'].includes(currentAction.api))">
         <component
           :is="currentAction.fixedFormFooter ? 'SharedFSFormDialog' : isVpcUi ? 'VpcDialog' : standardActionDialog ? 'MoldDialog' : 'a-modal'"
-          :size="currentAction.standardDialogSize || (vmStandardDialog || roleStandardDialog || accountStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
+          :size="currentAction.standardDialogSize || (isHostUi || vmStandardDialog || roleStandardDialog || accountStandardDialog ? 'md' : isVpcUi || isObjectStorageUi ? 'md' : isStorageUi ? storageDialogSize(currentAction.api) : undefined)"
           class="mold-dialog"
           :class="{ 'object-storage-dialog': isObjectStorageUi, 'autoscale-dialog': $route.meta?.name === 'autoscalevmgroup', 'storage-standard-dialog': standardActionDialog, 'vpc-standard-dialog': isVpcUi, 'snapshot-standard-dialog': currentAction.snapshotStandardDialog, 'sharedfs-standard-dialog': $route.meta?.name === 'sharedfs' }"
           centered
@@ -278,7 +278,7 @@
           :confirmLoading="actionLoading"
           :footer="standardActionDialog ? undefined : null"
           :form-actions="standardActionDialog"
-          :focus-guard="isZoneUi || isPhysicalNetworkUi || isDnsZone || isDnsServer || isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
+          :focus-guard="isHostUi || isZoneUi || isPhysicalNetworkUi || isDnsZone || isDnsServer || isIpv4Subnet || isVpcUi || isProjectUi || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || !!currentAction.snapshotStandardDialog || !!currentAction.vnfReinstallCurrent"
           :after-close="restoreClosedActionFocus"
           :width="currentAction.dialogWidth || 'auto'"
         >
@@ -295,6 +295,7 @@
               <question-circle-outlined />
             </a>
           </template>
+          <host-action-context v-if="isHostUi && resource.id && !currentAction.listView && ['configureOutOfBandManagement', 'updateHostPassword', 'configureHAForHost'].includes(currentAction.api)" :resource="resource" :api="currentAction.api" />
           <VpcActionContext v-if="isVpcUi && resource.id && !currentAction.listView" :resources="[resource]" />
           <keep-alive :max="(isStorageUi || isPolicyUi || isObjectStorageUi || currentAction.vmDeletionTargets || currentAction.vmEditCurrent || currentAction.vnfReinstallCurrent || vmStandardDialog || roleStandardDialog || accountStandardDialog || publicIpStandardDialog || isDnsZone || isDnsServer || isZoneUi || isHostUi) ? 1 : undefined">
             <component
@@ -376,6 +377,7 @@
             <question-circle-outlined />
           </a>
         </template>
+        <host-action-context v-if="isHostUi && resource.id && !currentAction.listView" :resource="resource" :api="currentAction.api" />
         <VpcActionContext v-if="isVpcUi && !currentAction.listView" :resources="currentAction.invokedAsGroupAction ? selectedItems : [resource]" />
         <dl v-if="aclStandardDialog && !currentAction.listView && resource.id" class="acl-action-context">
           <dt>{{ $t('label.name') }}</dt><dd>{{ resource.name }}</dd>
@@ -735,7 +737,7 @@
             @click="handleSubmit"
             :disabled="isSubmitDisabled || (vmStandardDialog && (vmActionValidationPending || vmActionUnknown))"
             :loading="actionLoading || (vmStandardDialog && vmActionValidationPending)"
-            :danger="aclDeleteDialog || (projectStandardDialog && currentAction.api === 'deleteProject') || publicIpReleaseDialog || isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'"
+            :danger="isHostUi && currentAction.api === 'deleteHost' || aclDeleteDialog || (projectStandardDialog && currentAction.api === 'deleteProject') || publicIpReleaseDialog || isVpcUi && currentAction.api?.startsWith('delete') || vmStandardDialog && currentAction.api === 'stopVirtualMachine'"
             ref="submit">
             {{ $t(publicIpReleaseDialog ? 'label.public.ip.release.confirm' : (isVpcUi || vmStandardDialog || projectStandardDialog || roleStandardDialog || accountStandardDialog || aclStandardDialog || infrastructureStandardDialog) && currentAction.label ? currentAction.label : 'label.ok') }}
           </a-button>
@@ -807,7 +809,7 @@
           :readyForActions="isKmsDetail ? kmsDetailReady : $route.meta?.name === 'kubernetesiso' ? !listRequestPending && !kubernetesIsoReadError && listLoadedScope === listScope() : ['vm', 'vnfapp', 's2svpn', 's2svpnconn', 'vpncustomergateway'].includes($route.meta?.name) ? storageActionReady : (isStorageUi || isObjectStorageUi || isSnapshotDetail || isPolicyDetail) ? storageActionReady : isSshKeyPairDetail ? sshKeyPairDetailActionReady : ($route.meta?.name === 'cniconfiguration' ? cniDetailActionReady : ($route.meta?.name !== 'vmgroup' || vmGroupQueryReady))"
           :resource="resource"
           :loading="loading"
-          :quiet-refresh="isZoneUi || isPhysicalNetworkUi || isIpv4Subnet || isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
+          :quiet-refresh="isHostUi || isZoneUi || isPhysicalNetworkUi || isIpv4Subnet || isGuestVlan || s2sGatewayRoute($route) || isVpnConnectionDetail || isVpcUi || ['sharedfs', 'runtimebundle'].includes($route.meta?.name)"
           :tabs="$route.meta.tabs"
           :actions="(isSshKeyPairDetail && !sshKeyPairDetailActionReady) || ($route.meta?.name === 'vmgroup' && !vmGroupQueryReady) ? [] : actions"
           @exec-action="handleDataViewAction"
@@ -936,6 +938,7 @@ import ResourceView from '@/components/view/ResourceView'
 import VpcDialog from '@/components/network/VpcDialog'
 import VpcActionContext from '@/components/network/VpcActionContext'
 import MoldDialog from '@/components/view/MoldDialog'
+import HostActionContext from '@/views/infra/HostActionContext.vue'
 import { dnsServerListQuery, dnsServerSearchQuery } from '@/utils/dnsServer'
 import { hostListQuery, hostReadParams, hostSearchQuery, hostStatusQuery } from '@/utils/hostSearch'
 import { zoneListQuery, zoneReadParams, zoneSearchQuery } from '@/utils/zone'
@@ -1008,6 +1011,7 @@ export default {
     BucketStoreFilter,
     Breadcrumb,
     MoldDialog,
+    HostActionContext,
     EventCsvDialog,
     EventMutationDialog,
     VpnUserDeleteDialog,
@@ -1652,12 +1656,12 @@ export default {
       return !this.$route.params?.id && !!this.$route.query.zoneid &&
         ['pod', 'cluster', 'host', 'storagepool', 'imagestore'].includes(this.$route.meta?.name)
     },
-    infrastructureStandardDialog () { return (this.isZoneUi || this.isPhysicalNetworkUi) && !!this.currentAction.api },
+    infrastructureStandardDialog () { return (this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi) && !!this.currentAction.api },
     isDnsServer () { return this.$route.meta?.name === 'dnsserver' },
     isDnsZone () { return this.$route.meta?.name === 'dnszone' },
     isIpv4Subnet () { return ipv4SubnetRoute(this.$route) },
     isVpnCustomerGateway () { return this.$route.meta?.name === 'vpncustomergateway' },
-    standardResourceToolbar () { return this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
+    standardResourceToolbar () { return this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || this.isZoneRelatedList || this.isRoleUi || this.isVmUi || this.isAclUi || this.isVpnUser || this.isProjectUi || this.isVpnCustomerGateway || this.isGuestVlan || this.isIpv4Subnet || this.isDnsZone || this.isDnsServer },
     vpnUserAuth () { return this.isVpnUser ? vpnUserSearchAuth(this.$store.getters, this.$store.state?.user?.token) : null },
     vpnUserScope () { return this.isVpnUser ? vpnUserProject(this.$route.query, this.$store.getters) : null },
     vpnUserDeleteScope () {
@@ -1801,7 +1805,7 @@ export default {
     publicIpReleaseDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'releaseIpAddress' },
     publicIpReservationDialog () { return this.$route.meta?.name === 'publicip' && this.currentAction?.api === 'reserveIpAddress' },
     publicIpStandardDialog () { return this.$route.meta?.name === 'publicip' && ['reserveIpAddress', 'updateIpAddress'].includes(this.currentAction?.api) },
-    standardActionDialog () { return this.roleStandardDialog || this.accountStandardDialog || this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
+    standardActionDialog () { return this.isHostUi || this.roleStandardDialog || this.accountStandardDialog || this.vmStandardDialog || this.isVpcUi || this.isStorageUi || this.isObjectStorageUi || !!this.currentAction.standardDialogSize },
     storageActionReady () { return !this.listRequestPending && !this.listRefreshError && this.listLoadedScope === this.listScope() },
     policySelectionAvailable () {
       return this.isPolicyList && !this.policySearchFailure && this.actions.some(action => action.groupAction && action.api in this.$store.getters.apis)
@@ -3468,7 +3472,7 @@ export default {
       const snapshotDialog = this.currentAction?.storageSnapshotMode || this.currentAction?.snapshotStandardDialog
       const vpnUserDelete = !!this.currentAction?.vpnUserDeleteTargets
       const kmsDialog = kmsRoute(this.$route) && this.currentAction?.selfManagedDialog
-      const guardedDialog = this.isZoneUi || this.isPhysicalNetworkUi || !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.accountStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
+      const guardedDialog = this.isHostUi || this.isZoneUi || this.isPhysicalNetworkUi || !!this.currentAction?.vpnCustomerGatewayScope || ['downloadEvents', 'addVpnUser'].includes(this.currentAction?.api) || !!this.currentAction?.eventMutationTargets || vpnUserDelete || kmsDialog || this.isProjectUi || ['kubernetesiso', 's2svpn', 's2svpnconn'].includes(this.$route.meta?.name) || this.vmStandardDialog || this.roleStandardDialog || this.accountStandardDialog || this.aclStandardDialog || this.publicIpStandardDialog || snapshotDialog || !!this.currentAction?.vnfReinstallCurrent || !!this.currentAction?.vnfUnmanageCurrent
       const policyDeleteDialog = this.currentAction?.policyDeleteDialog
       const deletedPolicyDetail = policyDeleteDialog && policyDetailRoute(this.$route) && this.currentAction.policyListScope === this.listScope() && result?.removed?.includes(this.$route.params?.id)
       let policyListLocation
@@ -3554,7 +3558,8 @@ export default {
       const restoreFocus = () => {
         if ((guardedDialog || this.isVpcUi) && (generation !== this.storageActionGeneration || scope !== this.listScope?.() || originPath !== this.$route?.path)) return
         let replacement = (this.isVpcUi || this.isStorageUi || guardedDialog) && originPath === this.$route?.path
-          ? (this.$refs?.detailActionsTrigger?.$el || (triggerLabel && Array.from(this.$el?.querySelectorAll('.autogen-toolbar-actions button') || []).find(button => button.getAttribute('aria-label') === triggerLabel)))
+          ? (this.$refs?.detailActionsTrigger?.$el || (triggerLabel && Array.from(this.$el?.querySelectorAll('.autogen-toolbar-actions button') || []).find(button => button.getAttribute('aria-label') === triggerLabel)) ||
+            (this.isHostList && this.$el?.querySelector('.autogen-toolbar-actions button[title]')))
           : null
         if (kmsDialog && !replacement && !trigger?.isConnected) replacement = this.$el?.querySelector('.autogen-toolbar-actions button:not([disabled])')
         if (vpnUserDelete && !replacement && (!trigger?.isConnected || !trigger.getClientRects().length || trigger === document.body || trigger.disabled)) {

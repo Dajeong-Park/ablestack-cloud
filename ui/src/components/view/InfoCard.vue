@@ -203,7 +203,8 @@
         <div class="resource-detail-item" v-if="resource.resourcestate">
           <div class="resource-detail-item__label">{{ $t('label.resourcestate') }}</div>
           <div class="resource-detail-item__details">
-            <status class="status" :text="resource.resourcestate" displayText/>
+            <a-tag v-if="$route.meta.name === 'host'" :color="hostStatusColor(resource.resourcestate)">{{ $t(hostStatusLabel(resource.resourcestate)) }}</a-tag>
+            <status v-else class="status" :text="resource.resourcestate" displayText/>
           </div>
         </div>
         <div class="resource-detail-item" v-if="$route.meta.name === 'buckets'">
@@ -234,14 +235,14 @@
         <div class="resource-detail-item" v-if="$route.meta.name === 'host' && resource.outofbandmanagement">
           <div class="resource-detail-item__label">{{ $t('label.powerstate') }}</div>
           <div class="resource-detail-item__details">
-            <status class="status" :text="resource.outofbandmanagement?.powerstate" displayText/>
+            <a-tag :color="hostStatusColor(resource.outofbandmanagement.powerstate)">{{ $t(hostStatusLabel(resource.outofbandmanagement.powerstate)) }}</a-tag>
           </div>
         </div>
         <div class="resource-detail-item" v-if="$route.meta.name === 'host' && resource.hostha">
           <div class="resource-detail-item__label">{{ $t('label.haenable') }}</div>
           <div class="resource-detail-item__details">
-            <status class="status" :text="resource.hostha.haenable ? 'enabled' : 'disabled'" displayText/>
-            <a-tag style="margin-left: 5px; margin-bottom: 5px;">{{ resource.hostha.hastate }}</a-tag>
+            <a-tag :color="hostStatusColor(resource.hostha.haenable)">{{ $t(hostStatusLabel(resource.hostha.haenable)) }}</a-tag>
+            <a-tag :color="hostStatusColor(resource.hostha.hastate)">{{ $t(hostStatusLabel(resource.hostha.hastate)) }}</a-tag>
           </div>
         </div>
         <div class="resource-detail-item" v-if="('success' in resource) && $route.meta.name === 'webhookdeliveries'">
@@ -1205,6 +1206,7 @@
 </template>
 
 <script>
+import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { physicalNetworkZoneLocation, zoneFeatureLabel, zoneFeatureState, zoneMetricText } from '@/utils/zone'
 import AclScopeValue from '@/components/view/AclScopeValue'
 import { aclDisplayLabel, aclDisplaySupported } from '@/utils/vpcAclAccess'
@@ -1490,6 +1492,8 @@ export default {
   methods: {
     physicalNetworkZoneLocation,
     zoneFeatureState,
+    hostStatusColor,
+    hostStatusLabel,
     zoneFeatureLabel,
     zoneMetricText,
     aclDisplayLabel,

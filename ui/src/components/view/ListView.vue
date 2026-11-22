@@ -673,13 +673,17 @@
         />
       </template>
       <template v-if="column.key === 'resourcestate'">
+        <a-tag v-if="$route.meta.name === 'host'" :color="hostStatusColor(text)">{{ $t(hostStatusLabel(text)) }}</a-tag>
         <status
+          v-else
           :text="text ? text : ''"
           displayText
         />
       </template>
       <template v-if="column.key === 'powerstate'">
+        <a-tag v-if="$route.meta.name === 'host'" :color="hostStatusColor(text)">{{ $t(hostStatusLabel(text)) }}</a-tag>
         <status
+          v-else
           :text="text ? text : ''"
           displayText
         />
@@ -1101,16 +1105,11 @@
         <status v-if="$route.meta.name === 'zone'" :text="zoneFeatureState(record.resourcedetails?.resourceHAEnabled ?? false)" :display-label="$t(zoneFeatureLabel(record.resourcedetails?.resourceHAEnabled ?? false))" display-text />
         <status v-else :text="record.resourcedetails?.resourceHAEnabled === 'true' ? 'enabled' : 'disabled'" display-text />
       </template>
-      <template v-if="column.key === 'hastate'">
-        <!-- <a-tag>{{ record.hostha.hastate }}</a-tag> -->
-        <a-tag v-if="record.hostha.hastate === 'Available'" color="success" :styles="{ 'min-width': '250px' }">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Suspect' || record.hostha.hastate === 'Checking'" color="processing">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Fenced'" color="error">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else-if="record.hostha.hastate === 'Degraded'" color="default">{{ record.hostha.hastate }}</a-tag>
-        <a-tag v-else color="warning">{{ record.hostha.hastate }}</a-tag>
+      <template v-if="$route.meta.name === 'host' && column.key === 'hastate'">
+        <a-tag :color="hostStatusColor(record.hostha?.hastate)">{{ $t(hostStatusLabel(record.hostha?.hastate)) }}</a-tag>
       </template>
       <template v-if="$route.meta.name === 'host' && column.key === 'haenable'">
-        <status :text="record.hostha.haenable ? 'enabled' : 'disabled'" displayText/>
+        <a-tag :color="hostStatusColor(record.hostha?.haenable)">{{ $t(hostStatusLabel(record.hostha?.haenable)) }}</a-tag>
       </template>
       <template v-if="['startdate', 'enddate'].includes(column.key) && ['quotasummary', 'usage'].includes($route.path.split('/')[1])">
         {{ $toLocaleDate(text.replace('\'T\'', ' ')) }}
@@ -1319,6 +1318,7 @@
 <script>
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import { dnsServerListQuery } from '@/utils/dnsServer'
+import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { zoneFeatureLabel, zoneFeatureState, zoneListQuery, zoneMetricText } from '@/utils/zone'
 import { hostListQuery } from '@/utils/hostSearch'
 import { dnsZoneListQuery } from '@/utils/dnsZone'
@@ -1677,6 +1677,8 @@ export default {
     zoneListQuery,
     hostListQuery,
     zoneFeatureState,
+    hostStatusColor,
+    hostStatusLabel,
     zoneFeatureLabel,
     zoneMetricText,
     dnsZoneListQuery,

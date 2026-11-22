@@ -106,15 +106,16 @@
           :loading="storageAccessGroupsLoading"
           :placeholder="apiParamsConfigureStorageAccess.storageaccessgroups.description" />
       </a-form-item>
-      <div :span="24" class="action-button">
+      <mold-dialog-actions :busy="loading">
         <a-button :disabled="loading" @click="onCloseAction">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t(groupUnknown ? 'label.host.operation.recheck' : saveError ? 'label.retry' : 'label.ok') }}</a-button>
-      </div>
+      </mold-dialog-actions>
     </a-form>
   </a-spin>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
@@ -125,6 +126,7 @@ import { createHostJobTracker, hostRequestRejected, hostStorageGroups } from '@/
 export default {
   name: 'HostUpdate',
   components: {
+    MoldDialogActions,
     TooltipLabel,
     DetailsInput
   },
@@ -364,10 +366,8 @@ export default {
     margin-bottom: 12px;
   }
 
-  width: 60vw;
-  @media (min-width: 600px) {
-    width: 550px;
-  }
+  width: 100%;
+  min-width: 0;
 
   .action-button {
     text-align: right;

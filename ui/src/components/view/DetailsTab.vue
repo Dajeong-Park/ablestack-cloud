@@ -55,7 +55,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver', 'zone', 'physicalnetwork', 'host'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -71,6 +71,12 @@
           <div v-else-if="item === 'protocol'">{{ kmsProtocolOptions($store.getters.features, dataResource.protocol).find(provider => provider.id === dataResource.protocol)?.name || $t('label.unknown') }}</div>
           <div v-else-if="item === 'vendorname'">{{ dataResource.vendor || dataResource.vendorname || $t('label.unknown') }}</div>
           <div v-else>{{ dataResource[item] ?? $t(item === 'state' ? 'label.hsm.connection.unavailable' : 'label.unknown') }}</div>
+        </div>
+      </a-list-item>
+      <a-list-item v-else-if="$route.meta.name === 'host' && ['state', 'resourcestate'].includes(item)">
+        <div>
+          <strong>{{ $t('label.' + item) }}</strong>
+          <div><a-tag :color="hostStatusColor(dataResource[item])">{{ $t(hostStatusLabel(dataResource[item])) }}</a-tag></div>
         </div>
       </a-list-item>
       <a-list-item v-else-if="$route.meta.name === 'zone' && ['allocationstate', 'haenable', 'localstorageenabled', 'securitygroupsenabled'].includes(item)">
@@ -511,6 +517,7 @@ display-text />
 </template>
 
 <script>
+import { hostStatusColor, hostStatusLabel } from '@/utils/hostPresentation'
 import { zoneDnsSearchOrder, zoneFeatureLabel, zoneFeatureState } from '@/utils/zone'
 import Ipv4SubnetResourceLink from '@/components/widgets/Ipv4SubnetResourceLink'
 import AclScopeValue from '@/components/view/AclScopeValue'
@@ -719,6 +726,8 @@ export default {
   methods: {
     zoneDnsSearchOrder,
     zoneFeatureState,
+    hostStatusColor,
+    hostStatusLabel,
     zoneFeatureLabel,
     eventTypeLabel,
     kmsRoute,

@@ -256,23 +256,24 @@
         </a-form-item>
         <template v-if="showDedicated">
           <DedicateDomain
-            @domainChange="id => { dedicatedDomainId = id; domainError = false }"
+            @domainChange="id => { dedicatedDomainId = id; dedicatedAccount = null; domainError = false }"
             @accountChange="id => dedicatedAccount = id"
             :error="domainError" />
         </template>
 
         </fieldset>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions :busy="submitting">
           <a-button :disabled="submitting" @click="closeAction">{{ $t('label.cancel') }}</a-button>
           <a-button :loading="submitting" :disabled="createUnknown || loading" @click="handleSubmitForm" ref="submit" type="primary">{{ $t(dedicateUnknown ? 'label.host.operation.recheck' : submitError ? 'label.retry' : 'label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
     </a-spin>
   </div>
 </template>
 
 <script>
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import { mixinForm } from '@/utils/mixin'
@@ -286,6 +287,7 @@ export default {
   name: 'HostAdd',
   mixins: [mixinForm],
   components: {
+    MoldDialogActions,
     DedicateDomain,
     ResourceIcon,
     TooltipLabel,
@@ -655,7 +657,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .form-layout {
     fieldset {
       min-width: 0;
@@ -667,10 +669,8 @@ export default {
       margin-bottom: 12px;
     }
 
-    width: 60vw;
-    @media (min-width: 600px) {
-      width: 550px;
-    }
+    width: 100%;
+  min-width: 0;
   }
 
   .required {

@@ -271,16 +271,11 @@ export default {
       message: 'label.ha.configure',
       docHelp: 'adminguide/reliability.html#ha-for-hosts',
       dataView: true,
-      show: (record) => { return ['KVM', 'Simulator'].includes(record.hypervisor) },
-      args: ['hostid', 'provider'],
-      mapping: {
-        hostid: {
-          value: (record) => { return record.id }
-        },
-        provider: {
-          options: ['KVMHAProvider']
-        }
-      }
+      show: (record) => {
+        return !!store.getters.apis?.listHostHAProviders && ['KVM', 'Simulator'].includes(record.hypervisor)
+      },
+      popup: true,
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ConfigureHostHA.vue')))
     },
     {
       api: 'enableHAForHost',
