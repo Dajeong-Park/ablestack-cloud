@@ -79,6 +79,7 @@
           :loading="loading"
           :tabs="$route.meta.tabs"
           :actions="actions"
+          @refresh="refreshSelectedDomain"
           @exec-action="execAction" />
         <a-empty v-else :description="$t('label.no.data')" />
       </template>
@@ -98,6 +99,7 @@
         :load-children="searchMode ? undefined : loadChildren"
         @search="searchDomains"
         @refresh="fetchData()"
+        @refresh-resource="refreshSelectedDomain"
         @select="selectDomain"
         @expand="expanded => changeDomainStore({ expanded })"
         @tab-change="tab => changeDomainStore({ tab })"
@@ -119,7 +121,13 @@
     </div>
 
     <div v-if="showAction">
+      <domain-resource-count
+        v-if="action.api === 'updateResourceCount'"
+        :resource="actionResource"
+        @refresh="refreshSelectedDomain"
+        @close="closeAction" />
       <domain-action-form
+        v-else
         :showAction="showAction"
         :resource="actionResource"
         :action="action"/>
@@ -146,6 +154,7 @@ import ActionButton from '@/components/view/ActionButton'
 import TreeView from '@/components/view/TreeView'
 import DomainActionForm from '@/views/iam/DomainActionForm'
 import DomainTreeFilters from '@/views/iam/DomainTreeFilters'
+import DomainResourceCount from '@/views/iam/DomainResourceCount'
 import ResourceView from '@/components/view/ResourceView'
 import DomainDeleteConfirm from '@/components/view/DomainDeleteConfirm'
 import eventBus from '@/config/eventBus'
@@ -159,6 +168,7 @@ export default {
     TreeView,
     DomainActionForm,
     DomainTreeFilters,
+    DomainResourceCount,
     ResourceView,
     DomainDeleteConfirm
   },
@@ -187,6 +197,7 @@ export default {
       domainDeleteReturning: false,
       domainDisposed: false,
       domainSelectionGeneration: 0,
+      domainRefreshGeneration: 0,
       domainRequestAbort: null,
       moveParentRequest: null,
       domainIconRefresh: null
@@ -365,6 +376,24 @@ export default {
         }
       } catch (error) {
         if (controller === this.domainRequestAbort && scope === this.domainReadScope()) this.notifyReadError(error)
+      }
+    },
+    async refreshSelectedDomain () {
+      const id = this.resource.id
+      if (!id || this.domainDisposed) return
+      const generation = ++this.domainRefreshGeneration
+      const scope = this.domainReadScope()
+      const controller = this.domainRequestAbort
+      const current = () => !this.domainDisposed && this.resource.id === id &&
+        this.domainRefreshGeneration === generation && scope === this.domainReadScope() &&
+        controller === this.domainRequestAbort
+      try {
+        const { rows } = await this.readDomainPage('listDomains', { id }, controller?.signal)
+        if (!current()) return
+        const updated = domainTreeNodes(rows).find(record => record.id === id)
+        if (updated) this.resource = { ...updated, domainLdap: this.resource.domainLdap }
+      } catch (error) {
+        if (current()) this.notifyReadError(error)
       }
     },
     async readLdapState (id) {

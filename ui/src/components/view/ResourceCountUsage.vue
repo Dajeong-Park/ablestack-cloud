@@ -26,10 +26,10 @@
           <strong>
             {{ $t('label.' + item + 'limit') }}
           </strong>
-          ({{ resource[item + 'available'] === '-1' ? $t('label.unlimited') : resource[item + 'available'] }} {{ $t('label.available') }})
+          ({{ displayLimit(resource[item + 'available']) }} {{ $t('label.available') }})
           <div class="list-item__vals">
             <div class="list-item__data">
-              {{ $t('label.used') }} / {{ $t('label.limit') }} : {{ resource[item + 'total'] }} / {{ resource[item + 'limit'] === '-1' ? $t('label.unlimited') : resource[item + 'limit'] }}
+              {{ $t('label.used') }} / {{ $t('label.limit') }} : {{ resource[item + 'total'] }} / {{ displayLimit(resource[item + 'limit']) }}
             </div>
             <a-progress
               status="normal"
@@ -51,10 +51,10 @@
                       <strong>
                         {{ '#' + item.tag }}
                       </strong>
-                      ({{ item.available === '-1' ? $t('label.unlimited') : item.available }} {{ $t('label.available') }})
+                      ({{ displayLimit(item.available) }} {{ $t('label.available') }})
                       <div class="sub-list-item__vals">
                         <div class="sub-list-item__data">
-                          {{ $t('label.used') }} / {{ $t('label.limit') }} : {{ item.total }} / {{ item.limit === '-1' ? $t('label.unlimited') : item.limit }}
+                          {{ $t('label.used') }} / {{ $t('label.limit') }} : {{ item.total }} / {{ displayLimit(item.limit) }}
                         </div>
                         <a-progress
                           status="normal"
@@ -122,8 +122,12 @@ export default {
     }
   },
   methods: {
+    displayLimit (value) {
+      if (value === '-1' || (this.$route.meta?.name === 'domain' && value === 'Unlimited')) return this.$t('label.unlimited')
+      return value
+    },
     getPercentUsed (total, limit) {
-      return (limit === 'Unlimited') ? 0 : (total / limit) * 100
+      return Number(limit) > 0 ? (total / limit) * 100 : 0
     },
     addTaggedUsageToList (taggedResource) {
       var type = this.resourceTypeToNameMap['' + taggedResource.resourcetype]

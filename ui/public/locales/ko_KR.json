@@ -1,4 +1,8 @@
 {
+  "message.domain.count.done": "리소스 유형 {count}개의 집계를 업데이트했습니다.",
+  "message.domain.count.scope": "도메인 {path} 리소스 수 업데이트",
+  "message.domain.limit.values": "현재 적용 한도를 표시합니다. 값을 변경해 저장하면 이 도메인에 설정됩니다. 0은 사용 불가, -1은 상위 범위 내 무제한을 의미합니다.",
+  "message.domain.limit.scope": "도메인 {path} 리소스 한도",
   "label.domain.ldap.domainadmin": "도메인 관리자",
   "label.domain.ldap.ou": "조직 단위",
   "label.domain.ldap.group": "그룹",
