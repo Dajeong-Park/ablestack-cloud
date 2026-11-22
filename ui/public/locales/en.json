@@ -1,4 +1,11 @@
 {
+  "message.dns.server.impact.failed": "Could not verify the zones associated with this DNS server.",
+  "message.dns.server.impact.count": "Associated DNS zones: {count}",
+  "message.dns.server.impact.more": "{count} additional zones",
+  "message.dns.server.cleanup.required": "Clean up or unmanage the associated DNS zones before removing this server.",
+  "message.dns.server.delete.registration": "Remove the DNS server registration.",
+  "message.dns.server.delete.retain": "Remove the zones from Mold and keep them at the DNS provider.",
+  "message.dns.server.delete.provider": "Remove the zones and their records from Mold and the DNS provider.",
   "message.domain.settings.inheritance": "Changes apply to this domain. Reset a setting to use its inherited value.",
   "message.domain.settings.scope": "Settings for {path}",
   "message.domain.count.done": "Resource types recalculated: {count}",

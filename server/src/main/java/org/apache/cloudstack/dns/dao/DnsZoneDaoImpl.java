@@ -128,6 +128,13 @@ public class DnsZoneDaoImpl extends GenericDaoBase<DnsZoneVO, Long> implements D
         return listBy(sc);
     }
 
+    @Override
+    public Pair<List<DnsZoneVO>, Integer> searchByDnsServerId(long dnsServerId, Filter filter) {
+        SearchCriteria<DnsZoneVO> sc = DnsServerZonesSearch.create();
+        sc.setParameters(ApiConstants.DNS_SERVER_ID, dnsServerId);
+        return searchAndCount(sc, filter);
+    }
+
     public List<Long> findDnsZoneIdsByServerId(long dnsServerId) {
         SearchCriteria<DnsZoneVO> sc = DnsServerZoneIdsSearch.create();
         sc.setParameters(ApiConstants.DNS_SERVER_ID, dnsServerId);

@@ -504,6 +504,21 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
     }
 
     private Pair<List<DnsZoneVO>, Integer> searchForDnsZonesInternal(ListDnsZonesCmd cmd) {
+        if (cmd.isDeleteImpact()) {
+            Account caller = CallContext.current().getCallingAccount();
+            enforceRootAdminOnly(caller.getId());
+            Long serverId = cmd.getDnsServerId();
+            if (serverId == null) {
+                throw new InvalidParameterValueException("A DNS server ID is required to preview deletion.");
+            }
+            DnsServerVO server = dnsServerDao.findById(serverId);
+            if (server == null) {
+                throw new InvalidParameterValueException("DNS server not found for the provided ID");
+            }
+            accountMgr.checkAccess(caller, null, true, server);
+            Filter filter = new Filter(DnsZoneVO.class, ApiConstants.ID, true, cmd.getStartIndex(), cmd.getPageSizeVal());
+            return dnsZoneDao.searchByDnsServerId(serverId, filter);
+        }
         if (cmd.getId() != null) {
             DnsZone dnsZone = dnsZoneDao.findById(cmd.getId());
             if (dnsZone == null) {

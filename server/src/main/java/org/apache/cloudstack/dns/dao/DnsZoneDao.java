@@ -36,4 +36,6 @@ public interface DnsZoneDao extends GenericDao<DnsZoneVO, Long> {
     List<Long> findDnsZoneIdsByServerId(long dnsServerId);
 
     List<DnsZoneVO> listByDnsServerId(long dnsServerId);
+
+    Pair<List<DnsZoneVO>, Integer> searchByDnsServerId(long dnsServerId, Filter filter);
 }

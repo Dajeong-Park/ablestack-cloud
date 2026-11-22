@@ -47,6 +47,14 @@ public class ListDnsZonesCmd extends BaseListCmd {
             description = "List DNS zones belonging to a specific DNS server")
     private Long dnsServerId;
 
+    @Parameter(name = "deleteimpact", type = CommandType.BOOLEAN,
+            description = "For root administrators, list all zones attached to the specified DNS server for deletion preview.")
+    private Boolean deleteImpact;
+
+    public boolean isDeleteImpact() {
+        return Boolean.TRUE.equals(deleteImpact);
+    }
+
     @Parameter(name = ApiConstants.NAME, type = CommandType.STRING, description = "List by zone name")
     private String name;
 
