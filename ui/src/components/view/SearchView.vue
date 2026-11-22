@@ -197,7 +197,7 @@
                   <small v-if="isEventSearch && field.name === 'type' && field.eventTypesUnavailable">{{ $t('message.events.search.type.unavailable') }}</small>
                   <small v-if="isEventSearch && field.name === 'startdate'">{{ $t('message.events.search.date.scope') }}</small>
                   <a-alert v-if="isDnsZoneSearch && field.error" type="error" :message="$t('error.fetching.data')">
-                    <template #action><a-button size="small" @click="fetchDnsZoneServers(field)">{{ $t('label.retry') }}</a-button></template>
+                    <template #description><a-button size="small" @click="fetchDnsZoneServers(field)">{{ $t('label.retry') }}</a-button></template>
                   </a-alert>
                   <a-alert v-if="apiName === 'listAffinityGroups' && field.error" type="error" :message="$t('error.fetching.data')">
                     <template #description><a-button size="small" @click="fetchAffinityFilters([field.name])">{{ $t('label.retry') }}</a-button></template>

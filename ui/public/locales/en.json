@@ -8455,7 +8455,7 @@
   "label.dns.records": "DNS Records",
   "label.dns.record.name.tooltip": "The hostname or subdomain for this record (e.g. www)",
   "label.dns.record.type.tooltip": "The DNS record type",
-  "label.dns.record.contents.tooltip": "The content values for this DNS record (type and press Enter to add)",
+  "label.dns.record.contents.tooltip": "Enter one DNS value per line.",
   "label.dns.record.ttl.tooltip": "Time to live in seconds",
   "label.dns.server": "DNS Server",
   "label.dnsserverid": "DNS Server ID",

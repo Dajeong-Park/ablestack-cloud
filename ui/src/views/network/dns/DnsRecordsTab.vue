@@ -23,12 +23,12 @@
       :type="loadError ? 'error' : 'warning'"
       show-icon
       :message="$t(loadError ? 'error.fetching.data' : 'message.list.refresh.stale')">
-      <template #action><a-button size="small" @click="fetchData">{{ $t('label.retry') }}</a-button></template>
+      <template #description><a-button size="small" @click="fetchData">{{ $t('label.retry') }}</a-button></template>
     </a-alert>
     <a-spin :spinning="fetchLoading">
       <div class="dns-records-toolbar">
         <a-button v-if="canCreate" type="primary" @click="showAddForm = true">
-          <template #icon><plus-outlined /></template>{{ $t('label.dns.create.record') }}
+          <template #icon><plus-outlined aria-hidden="true" /></template>{{ $t('label.dns.create.record') }}
         </a-button>
         <a-button :aria-label="$t('label.refresh')" :title="$t('label.refresh')" @click="fetchData">
           <template #icon><reload-outlined /></template>

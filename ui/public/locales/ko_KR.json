@@ -8398,7 +8398,7 @@
   "label.dns.dnsapikey": "DNS API 키",
   "label.dns.pdnsserverid": "PowerDNS 서버 ID",
   "label.dns.publicdomainsuffix": "공용 도메인 접미사",
-  "label.dns.record.contents.tooltip": "DNS 레코드의 값을 입력하고 Enter 키를 눌러 추가하세요.",
+  "label.dns.record.contents.tooltip": "DNS 레코드 값은 한 줄에 하나씩 입력하세요.",
   "label.dns.record.name.tooltip": "이 레코드의 호스트 이름 또는 하위 도메인(예: www)",
   "label.dns.record.ttl.tooltip": "유효 시간(초)",
   "label.dns.record.type.tooltip": "DNS 레코드 유형",

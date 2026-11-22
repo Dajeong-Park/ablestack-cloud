@@ -49,7 +49,7 @@
               </a-select-option>
             </a-select>
             <a-alert v-if="serverStatus === 'error'" type="error" show-icon :message="$t('error.fetching.data')">
-              <template #action><a-button size="small" @click="fetchDnsServers">{{ $t('label.retry') }}</a-button></template>
+              <template #description><a-button size="small" @click="fetchDnsServers">{{ $t('label.retry') }}</a-button></template>
             </a-alert>
             <a-alert v-else-if="serverStatus === 'empty'" type="info" show-icon :message="$t('message.dns.no.enabled.servers')" />
           </a-form-item>
