@@ -39,3 +39,16 @@ export function dnsServerSearchQuery (current, options, pageSize) {
   }
   return { ...query, page: '1', pagesize: String(pageSize) }
 }
+
+const FQDN_REGEX = /^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/
+
+export function normalizeDnsNameservers (values) {
+  return (Array.isArray(values) ? values : []).map(value => value.toLowerCase().trim()).filter(Boolean)
+}
+
+export function dnsNameserverError (values) {
+  const names = normalizeDnsNameservers(values).map(name => name.replace(/\.$/, ''))
+  if (names.some(name => !FQDN_REGEX.test(name))) return 'message.dns.server.nameserver.invalid'
+  if (names.length !== new Set(names).size) return 'message.dns.server.nameserver.duplicate'
+  return ''
+}

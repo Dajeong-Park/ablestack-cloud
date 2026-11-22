@@ -1,4 +1,6 @@
 {
+  "message.dns.server.nameserver.invalid": "올바른 네임서버 호스트 이름을 입력하세요.",
+  "message.dns.server.nameserver.duplicate": "같은 네임서버는 한 번만 입력하세요.",
   "message.dns.server.impact.failed": "이 DNS 서버에 연결된 영역을 확인하지 못했습니다.",
   "message.dns.server.impact.count": "연결된 DNS 영역 {count}개",
   "message.dns.server.impact.more": "외 {count}개",

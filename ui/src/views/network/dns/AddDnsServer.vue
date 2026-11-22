@@ -157,6 +157,7 @@
 
 <script>
 import { getAPI, postAPI } from '@/api'
+import { dnsNameserverError, normalizeDnsNameservers } from '@/utils/dnsServer'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 const FQDN_REGEX = /^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/
@@ -231,7 +232,7 @@ export default {
           port: this.form.port,
           provider: this.form.provider,
           dnsapikey: this.form.dnsapikey?.trim(),
-          nameservers: this.form.nameservers || [],
+          nameservers: normalizeDnsNameservers(this.form.nameservers),
           ispublic: this.form.ispublic
         }
         if (this.form.publicdomainsuffix) {
@@ -314,22 +315,9 @@ export default {
 
       return Promise.resolve()
     },
-    validateNameservers (rule, value) {
-      if (!value || !value.length) {
-        return Promise.resolve()
-      }
-
-      for (const ns of value) {
-        if (!FQDN_REGEX.test(ns)) {
-          return Promise.reject(new Error('Invalid nameserver'))
-        }
-      }
-
-      if (new Set(value).size !== value.length) {
-        return Promise.reject(new Error('Nameservers must be unique'))
-      }
-
-      return Promise.resolve()
+    async validateNameservers (rule, value) {
+      const error = dnsNameserverError(value)
+      if (error) throw new Error(this.$t(error))
     },
     validatePublicDomainSuffix (rule, value) {
       const normalized = value?.toLowerCase().trim()

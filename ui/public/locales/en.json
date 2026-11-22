@@ -1,4 +1,6 @@
 {
+  "message.dns.server.nameserver.invalid": "Enter a valid nameserver hostname.",
+  "message.dns.server.nameserver.duplicate": "Enter each nameserver only once.",
   "message.dns.server.impact.failed": "Could not verify the zones associated with this DNS server.",
   "message.dns.server.impact.count": "Associated DNS zones: {count}",
   "message.dns.server.impact.more": "{count} additional zones",

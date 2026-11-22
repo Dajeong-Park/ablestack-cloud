@@ -125,6 +125,7 @@
 
 <script>
 import { postAPI } from '@/api'
+import { dnsNameserverError, normalizeDnsNameservers } from '@/utils/dnsServer'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
 
 const FQDN_REGEX = /^(?=.{1,253}$)(?:(?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,63}$/
@@ -208,7 +209,7 @@ export default {
           name: this.form.name.trim(),
           url: this.form.url?.trim().replace(/\/+$/, ''),
           port: this.form.port,
-          nameservers: this.form.nameservers || [],
+          nameservers: normalizeDnsNameservers(this.form.nameservers),
           ispublic: this.form.ispublic
         }
         if (this.apiParams.state && this.form.state) params.state = this.form.state
@@ -265,22 +266,9 @@ export default {
 
       return Promise.resolve()
     },
-    validateNameservers (rule, value) {
-      if (!value || !value.length) {
-        return Promise.resolve()
-      }
-
-      for (const ns of value) {
-        if (!FQDN_REGEX.test(ns)) {
-          return Promise.reject(new Error('Invalid nameserver'))
-        }
-      }
-
-      if (new Set(value).size !== value.length) {
-        return Promise.reject(new Error('Nameservers must be unique'))
-      }
-
-      return Promise.resolve()
+    async validateNameservers (rule, value) {
+      const error = dnsNameserverError(value)
+      if (error) throw new Error(this.$t(error))
     },
     validatePublicDomainSuffix (rule, value) {
       const normalized = value?.toLowerCase().trim()
@@ -297,7 +285,7 @@ export default {
       return ['Admin', 'DomainAdmin'].includes(this.$store.getters.userInfo.roletype)
     },
     onNameserversChange (value) {
-      this.form.nameservers = Array.isArray(value) ? value.map(ns => ns.toLowerCase().trim()).filter(Boolean) : []
+      this.form.nameservers = normalizeDnsNameservers(value)
     }
   }
 }
