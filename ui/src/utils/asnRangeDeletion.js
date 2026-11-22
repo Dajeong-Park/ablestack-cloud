@@ -34,7 +34,7 @@ export function deletionTarget (zone, row) {
 }
 export function confirmedList (json, responseName, objectName) {
   const response = json?.[responseName]
-  if (responseName === 'listasnrangesresponse' && response &&
+  if (['listasnrangesresponse', 'listasnumbersresponse'].includes(responseName) && response &&
       Object.getPrototypeOf(response) === Object.prototype && Object.keys(response).length === 0) {
     return { rows: [], count: 0 }
   }
