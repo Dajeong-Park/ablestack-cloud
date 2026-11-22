@@ -72,7 +72,7 @@
               <a-button size="small" @click="selectedName = ''">{{ $t('label.close') }}</a-button>
             </a-space>
           </template>
-          <a-list class="configuration-detail-list" size="small" row-key="label" :data-source="selectedSettingDetails">
+          <a-list class="resource-details-list vm-details-list configuration-detail-list" size="small" row-key="label" :data-source="selectedSettingDetails">
             <template #renderItem="{ item }">
               <a-list-item>
                 <div class="configuration-detail-entry">
@@ -451,6 +451,8 @@ export default {
 
 </script>
 
+<style scoped src="@/style/components/view/resource-details-list.css" />
+
 <style scoped lang="scss">
   .breadcrumb-card {
     margin: -16px -24px 12px;
@@ -479,7 +481,6 @@ export default {
     color: var(--ui-text-secondary);
     border-color: var(--ui-border);
   }
-  .configuration-detail-entry { min-width: 0; max-width: 100%; }
   .configuration-detail-entry strong { color: var(--ui-text-primary); }
 
   @media (max-width: 768px) {
