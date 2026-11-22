@@ -22,17 +22,6 @@
   background: var(--ui-bg-surface);
 }
 
-.resource-details-list :deep(.ant-list-item) {
-  padding: 12px 8px;
-  color: var(--ui-text-secondary);
-  background: transparent;
-  border-color: var(--ui-border);
-}
-
-.resource-details-list :deep(.ant-list-item strong) {
-  color: var(--ui-text-primary);
-}
-
 .template-details-list :deep(.ant-list-item > div), .vm-details-list :deep(.ant-list-item > div) {
   min-width: 0;
   max-width: 100%;

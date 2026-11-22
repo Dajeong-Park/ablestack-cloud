@@ -1027,6 +1027,17 @@ export default {
 
 <style scoped>
 .network-ip-usage-detail p { color: var(--ui-text-secondary); margin: 4px 0 0; overflow-wrap: anywhere; }
+:deep(.resource-details-list .ant-list-item) {
+  padding: 12px 8px;
+  color: var(--ui-text-secondary);
+  background: transparent;
+  border-color: var(--ui-border);
+}
+
+:deep(.resource-details-list .ant-list-item strong) {
+  color: var(--ui-text-primary);
+}
+
 /* Same row rhythm as the VM InstanceTab details. */
 .s2s-gateway-details :deep(.ant-list-item) { padding-top: 12px; padding-bottom: 12px; }
 .preline {
