@@ -20,66 +20,27 @@
     <p v-if="listRefreshFailed" role="status">{{ $t('message.list.refresh.stale') }}</p>
     <a-button
       type="primary"
-      style="width: 100%; margin-bottom: 10px"
+      class="zone-tab-add"
       @click="showAddPhyNetModal"
       :loading="loading"
       :disabled="!('createPhysicalNetwork' in $store.getters.apis)">
       <template #icon><plus-outlined /></template> {{ $t('label.add.physical.network') }}
     </a-button>
-    <a-list class="list">
-      <a-list-item v-for="network in networks" :key="network.id" class="list__item">
-        <div class="list__item-outer-container">
-          <div class="list__item-container">
-            <div class="list__col">
-              <div class="list__label">
-                {{ $t('label.name') }}
-              </div>
-              <div>
-                <router-link :to="{ path: '/physicalnetwork/' + network.id, query: zoneListQuery($route.query) }">{{ network.name }}</router-link>
-              </div>
-            </div>
-            <div class="list__col">
-              <div class="list__label">{{ $t('label.state') }}</div>
-              <div><status :text="network.state" displayText></status></div>
-            </div>
-            <div class="list__col">
-              <div class="list__label">
-                {{ $t('label.isolationmethods') }}
-              </div>
-              <div>
-                {{ network.isolationmethods }}
-              </div>
-            </div>
-            <div class="list__col">
-              <div class="list__label">
-                {{ $t('label.vlan') }}
-              </div>
-              <div>{{ network.vlan }}</div>
-            </div>
-            <div class="list__col">
-              <div class="list__label">
-                {{ $t('label.traffictype') }}
-              </div>
-              <div>
-                {{ network.traffictype }}
-              </div>
-            </div>
-            <div class="list__col">
-              <div class="list__label">
-                {{ $t('label.broadcastdomainrange') }}
-              </div>
-              <div>{{ network.broadcastdomainrange }}</div>
-            </div>
-          </div>
-        </div>
-      </a-list-item>
-    </a-list>
-    <a-modal
+    <a-table size="small" row-key="id" :columns="columns" :data-source="networks" :pagination="false" :scroll="{ x: 740 }">
+      <template #bodyCell="{ column, record, text }">
+        <router-link v-if="column.key === 'name'" :to="{ path: '/physicalnetwork/' + record.id, query: zoneListQuery($route.query) }">{{ text }}</router-link>
+        <status v-else-if="column.key === 'state'" :text="text" display-text />
+        <span v-else>{{ text || '—' }}</span>
+      </template>
+    </a-table>
+    <mold-dialog
+      size="md"
+      focus-guard
+      form-actions
       :visible="addPhyNetModal"
       :title="$t('label.add.physical.network')"
       :maskClosable="false"
       :closable="true"
-      :footer="null"
       @cancel="closeModals">
       <a-form
         :ref="formRef"
@@ -142,16 +103,18 @@
           <a-input v-model:value="form.broadcastdomainrange" :placeholder="apiParams.broadcastdomainrange.description" />
         </a-form-item>
 
-        <div :span="24" class="action-button">
+        <mold-dialog-actions>
           <a-button @click="closeModals">{{ $t('label.cancel') }}</a-button>
           <a-button type="primary" ref="submit" @click="handleAddPhyNet">{{ $t('label.ok') }}</a-button>
-        </div>
+        </mold-dialog-actions>
       </a-form>
-    </a-modal>
+    </mold-dialog>
   </a-spin>
 </template>
 
 <script>
+import MoldDialog from '@/components/view/MoldDialog'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { listRefreshMixin } from '@/utils/listRefreshMixin'
 
 import { ref, reactive, toRaw } from 'vue'
@@ -164,6 +127,8 @@ export default {
   mixins: [listRefreshMixin(['fetchData'])],
   name: 'PhysicalNetworksTab',
   components: {
+    MoldDialog,
+    MoldDialogActions,
     Status,
     TooltipLabel
   },
@@ -204,6 +169,10 @@ export default {
     }
   },
   computed: {
+    columns () {
+      return ['name', 'state', 'isolationmethods', 'vlan', 'traffictype', 'broadcastdomainrange']
+        .map(key => ({ key, dataIndex: key, title: this.$t('label.' + key) }))
+    },
     isolationMethods () {
       return ['VLAN', 'VXLAN', 'GRE', 'STT', 'BCF_SEGMENT', 'SSP', 'ODL', 'L3VPN', 'VCS', 'NSX', 'NETRIS']
     }
@@ -298,41 +267,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.list {
-
-  &__label {
-    font-weight: bold;
-  }
-
-  &__col {
-    flex: 1;
-
-    @media (min-width: 480px) {
-      &:not(:last-child) {
-        margin-right: 20px;
-      }
-    }
-  }
-
-  &__item {
-    margin-right: -8px;
-    align-items: flex-start;
-
-    &-outer-container {
-      width: 100%;
-    }
-
-    &-container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-
-      @media (min-width: 480px) {
-        flex-direction: row;
-        margin-bottom: 10px;
-      }
-    }
-  }
-}
+<style scoped>
+.zone-tab-add { margin-bottom: 12px; }
 </style>

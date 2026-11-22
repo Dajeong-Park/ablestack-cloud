@@ -1,4 +1,9 @@
 {
+  "message.zone.delete.impact.failed": "이 Zone에 연결된 리소스를 확인하지 못했습니다.",
+  "message.zone.delete.blocked": "Zone을 삭제하려면 표시된 리소스를 제거하거나 옮겨야 합니다.",
+  "message.zone.delete.impact.clear": "조회한 리소스에 차단 항목이 없습니다. 삭제 요청을 보내면 Mold에서 나머지 의존성을 확인합니다.",
+  "message.zone.operation.failed": "Zone 작업을 완료하지 못했습니다.",
+  "message.zone.release.confirm": "이 Zone의 전용 지정을 해제하시겠습니까?",
   "label.zone.provider.search": "제공자 검색",
   "label.storageaccessgroup": "스토리지 액세스 그룹",
   "label.zone.networkdomain": "네트워크 도메인",

@@ -121,10 +121,10 @@
           :placeholder="apiParamsConfigureStorageAccess.storageaccessgroups.description" />
       </a-form-item>
 
-      <div :span="24" class="action-button">
+      <mold-dialog-actions :busy="loading">
         <a-button :disabled="loading" @click="onCloseAction">{{ $t('label.cancel') }}</a-button>
         <a-button :loading="loading" ref="submit" type="primary" @click="handleSubmit">{{ $t(groupUnknown ? 'label.zone.update.recheck' : saveError ? 'label.retry' : 'label.ok') }}</a-button>
-      </div>
+      </mold-dialog-actions>
     </a-form>
   </a-spin>
 </template>
@@ -133,13 +133,15 @@
 import { ref, reactive, toRaw } from 'vue'
 import { getAPI, postAPI } from '@/api'
 import TooltipLabel from '@/components/widgets/TooltipLabel'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
 import { createJobTracker } from '@/utils/jobTracker'
 import { parseZoneDnsSearchOrder, validZoneDnsSuffix, zoneDnsSearchOrder } from '@/utils/zone'
 
 export default {
   name: 'ZoneUpdate',
   components: {
-    TooltipLabel
+    TooltipLabel,
+    MoldDialogActions
   },
   props: {
     action: {

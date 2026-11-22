@@ -1,4 +1,9 @@
 {
+  "message.zone.delete.impact.failed": "Could not check the resources that depend on this Zone.",
+  "message.zone.delete.blocked": "Remove or move the listed resources before deleting this Zone.",
+  "message.zone.delete.impact.clear": "The dependent resource check found no blockers. Mold checks for remaining dependencies when you submit.",
+  "message.zone.operation.failed": "The Zone operation failed.",
+  "message.zone.release.confirm": "Release the dedication for this Zone?",
   "label.zone.provider.search": "Search providers",
   "label.storageaccessgroup": "Storage access group",
   "label.zone.networkdomain": "Network domain",

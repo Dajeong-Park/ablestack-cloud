@@ -111,6 +111,7 @@ export default {
       docHelp: 'installguide/configuration.html#adding-a-zone',
       listView: true,
       popup: true,
+      standardDialogSize: 'xl',
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/zone/ZoneWizard.vue')))
     },
     {
@@ -119,6 +120,7 @@ export default {
       label: 'label.action.edit.zone',
       dataView: true,
       popup: true,
+      standardDialogSize: 'md',
       show: (record) => ['Advanced', 'Basic'].includes(record.networktype),
       component: shallowRef(defineAsyncComponent(() => import('@/views/infra/ZoneUpdate.vue')))
     },
@@ -130,6 +132,9 @@ export default {
       docHelp: 'adminguide/hosts.html#disabling-and-enabling-zones-pods-and-clusters',
       dataView: true,
       defaultArgs: { allocationstate: 'Disabled' },
+      popup: true,
+      standardDialogSize: 'md',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/zone/ZoneActionConfirmation.vue'))),
       show: (record) => { return record.allocationstate === 'Enabled' }
     },
     {
@@ -140,6 +145,9 @@ export default {
       docHelp: 'adminguide/hosts.html#disabling-and-enabling-zones-pods-and-clusters',
       dataView: true,
       defaultArgs: { allocationstate: 'Enabled' },
+      popup: true,
+      standardDialogSize: 'md',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/zone/ZoneActionConfirmation.vue'))),
       show: (record) => { return record.allocationstate === 'Disabled' }
     },
     {
@@ -268,6 +276,9 @@ export default {
       icon: 'delete-outlined',
       label: 'label.action.delete.zone',
       message: 'message.action.delete.zone',
+      popup: true,
+      standardDialogSize: 'md',
+      component: shallowRef(defineAsyncComponent(() => import('@/views/infra/zone/ZoneActionConfirmation.vue'))),
       dataView: true
     }
   ]
