@@ -1658,8 +1658,9 @@ export default {
       title: 'label.dns.servers',
       icon: 'cloud-server-outlined',
       permission: ['listDnsServers'],
-      columns: ['name', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix'],
-      details: ['name', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix', 'domain', 'account'],
+      searchFilters: () => ['listDnsProviders' in store.getters.apis && store.getters.apis.listDnsServers?.params?.some(param => param.name === 'providertype') ? 'providertype' : null].filter(Boolean),
+      columns: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix'],
+      details: ['name', 'state', 'url', 'provider', 'ispublic', 'port', 'nameservers', 'publicdomainsuffix', 'domain', 'account'],
       related: [{
         name: 'dnszone',
         title: 'label.dns.zone',
@@ -1672,6 +1673,7 @@ export default {
           label: 'label.dns.add.server',
           listView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/AddDnsServer.vue'))),
           show: () => {
             return true
@@ -1683,6 +1685,7 @@ export default {
           label: 'label.dns.update.server',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/UpdateDnsServer.vue')))
         },
@@ -1693,6 +1696,7 @@ export default {
           message: 'message.action.delete.dns.server',
           dataView: true,
           popup: true,
+          standardDialogSize: 'md',
           component: shallowRef(defineAsyncComponent(() => import('@/views/network/dns/DeleteDnsServer.vue'))),
           show: (record, store) => { return record.account === store.userInfo.account || isAdminOrDomainAdmin(store.userInfo.roletype) },
           groupAction: false,

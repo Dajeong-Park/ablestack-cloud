@@ -55,7 +55,7 @@
     :message="$t(l2Network.configDrive ? 'message.l2.network.configdrive' : 'message.l2.network.basic')" />
   <a-list
     class="resource-details-list"
-    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone'].includes($route.meta.name) }"
+    :class="{ 'template-details-list': ['template', 'iso'].includes($route.meta.name), 's2s-gateway-details': $route.meta.name === 's2svpn', 'vm-details-list': kmsRoute($route) || ['vm', 'vnfapp', 'publicip', 's2svpn', 'acllist', 'event', 'vpnuser', 'project', 'guestvlans', 'ipv4subnets', 'dnszone', 'dnsserver'].includes($route.meta.name) }"
     size="small"
     :dataSource="(fetchDetails() || []).concat(Object.keys(allocationDetails))">
     <template #renderItem="{item}">
@@ -133,7 +133,7 @@
             :field="item"
             :value="dataResource[item]"
             :label="$t(getDetailTitle(item))" />
-          <status v-else-if="$route.meta.name === 'ipv4subnets' && item === 'state'" :text="dataResource.state" display-text />
+          <status v-else-if="['ipv4subnets', 'dnsserver'].includes($route.meta.name) && item === 'state'" :text="dataResource.state" display-text />
           <span v-else-if="$route.meta.name === 'ipv4subnets' && item === 'allocated'">{{ $toLocaleDate(dataResource.allocated) }}</span>
           <status v-else-if="$route.meta.name === 'event' && item === 'state'" :text="dataResource.state" display-text />
           <div v-else-if="$route.meta.name === 'event' && item === 'type'">{{ eventTypeLabel(dataResource.type, $t) }}</div>

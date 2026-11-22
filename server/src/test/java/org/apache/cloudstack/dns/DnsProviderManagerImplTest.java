@@ -24,6 +24,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -160,6 +161,7 @@ public class DnsProviderManagerImplTest {
     Account callerMock;
 
     private MockedStatic<CallContext> callContextMocked;
+    private MockedStatic<Transaction> transactionMocked;
     private CallContext callContextMock;
 
     // Support VOs
@@ -199,6 +201,9 @@ public class DnsProviderManagerImplTest {
 
     @After
     public void tearDown() {
+        if (transactionMocked != null) {
+            transactionMocked.close();
+        }
         callContextMocked.close();
     }
 
@@ -226,10 +231,19 @@ public class DnsProviderManagerImplTest {
         assertTrue(names.isEmpty());
     }
 
+    private void mockTransaction() {
+        transactionMocked = Mockito.mockStatic(Transaction.class);
+        transactionMocked.when(() -> Transaction.execute(any(TransactionCallback.class))).thenAnswer(invocation -> {
+            TransactionCallback<?> callback = invocation.getArgument(0);
+            return callback.doInTransaction(null);
+        });
+    }
+
     @Test(expected = InvalidParameterValueException.class)
     public void testAllocateDnsZoneBlankName() {
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("  ");
+        mockTransaction();
         manager.allocateDnsZone(cmd);
     }
 
@@ -238,7 +252,8 @@ public class DnsProviderManagerImplTest {
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("example.com");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(null);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(null);
+        mockTransaction();
         manager.allocateDnsZone(cmd);
     }
 
@@ -248,19 +263,21 @@ public class DnsProviderManagerImplTest {
         when(cmd.getName()).thenReturn("example.com");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
         when(cmd.getType()).thenReturn(DnsZone.ZoneType.Public);
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         Mockito.doReturn(SERVER_ID).when(serverVO).getId();
         Mockito.doReturn(ACCOUNT_ID).when(serverVO).getAccountId();
         when(dnsZoneDao.findByNameServerAndType(anyString(), anyLong(), any())).thenReturn(zoneVO);
+        mockTransaction();
         manager.allocateDnsZone(cmd);
     }
 
     @Test
     public void testAllocateDnsZoneRejectsDisabledServer() {
+        mockTransaction();
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("example.com");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         when(serverVO.getState()).thenReturn(DnsServer.State.Disabled);
         assertThrows(InvalidParameterValueException.class, () -> manager.allocateDnsZone(cmd));
         verify(dnsZoneDao, never()).persist(any(DnsZoneVO.class));
@@ -268,12 +285,13 @@ public class DnsProviderManagerImplTest {
 
     @Test
     public void testAllocateDnsZoneOwnerSuccess() {
+        mockTransaction();
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("example.com");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
         when(cmd.getType()).thenReturn(DnsZone.ZoneType.Public);
         when(cmd.getDescription()).thenReturn("desc");
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         Mockito.doReturn(SERVER_ID).when(serverVO).getId();
         Mockito.doReturn(ACCOUNT_ID).when(serverVO).getAccountId();
         when(dnsZoneDao.findByNameServerAndType(anyString(), anyLong(), any())).thenReturn(null);
@@ -284,10 +302,11 @@ public class DnsProviderManagerImplTest {
 
     @Test(expected = PermissionDeniedException.class)
     public void testAllocateDnsZoneNonOwnerPrivateServer() {
+        mockTransaction();
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("tenant.com");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         Mockito.doReturn(ACCOUNT_ID + 99).when(serverVO).getAccountId(); // different owner
 
         manager.allocateDnsZone(cmd);
@@ -295,10 +314,11 @@ public class DnsProviderManagerImplTest {
 
     @Test(expected = PermissionDeniedException.class)
     public void testAllocateDnsZoneNonOwnerShadowingOtherAccountZoneRejected() {
+        mockTransaction();
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("www.tenant1.cloud.example");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         Mockito.doReturn(SERVER_ID).when(serverVO).getId();
         Mockito.doReturn(ACCOUNT_ID + 99).when(serverVO).getAccountId(); // different owner
         Mockito.doReturn(true).when(serverVO).getPublicServer();
@@ -312,10 +332,11 @@ public class DnsProviderManagerImplTest {
 
     @Test(expected = PermissionDeniedException.class)
     public void testAllocateDnsZoneNonOwnerParentOfOtherAccountZoneRejected() {
+        mockTransaction();
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("tenant1.cloud.example");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         Mockito.doReturn(SERVER_ID).when(serverVO).getId();
         Mockito.doReturn(ACCOUNT_ID + 99).when(serverVO).getAccountId(); // different owner
         Mockito.doReturn(true).when(serverVO).getPublicServer();
@@ -329,11 +350,12 @@ public class DnsProviderManagerImplTest {
 
     @Test
     public void testAllocateDnsZoneNonOwnerPublicServerSuccess() {
+        mockTransaction();
         CreateDnsZoneCmd cmd = mock(CreateDnsZoneCmd.class);
         when(cmd.getName()).thenReturn("tenant2.cloud.example");
         when(cmd.getDnsServerId()).thenReturn(SERVER_ID);
         when(cmd.getType()).thenReturn(DnsZone.ZoneType.Public);
-        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         Mockito.doReturn(SERVER_ID).when(serverVO).getId();
         Mockito.doReturn(ACCOUNT_ID + 99).when(serverVO).getAccountId(); // different owner
         Mockito.doReturn(true).when(serverVO).getPublicServer();
@@ -458,8 +480,10 @@ public class DnsProviderManagerImplTest {
                 nullable(SecurityChecker.AccessType.class), eq(true), any());
 
         List<Long> zones = Collections.singletonList(ZONE_ID);
-        when(dnsZoneDao.findDnsZoneIdsByServerId(SERVER_ID)).thenReturn(zones);
+        when(dnsZoneDao.findDnsZoneIdsByServerId(SERVER_ID)).thenReturn(zones, Collections.emptyList());
+        zoneVO.setState(DnsZone.State.Active);
         when(dnsZoneDao.findById(ZONE_ID)).thenReturn(zoneVO);
+        when(dnsServerDao.lockRow(SERVER_ID, true)).thenReturn(serverVO);
         when(dnsZoneNetworkMapDao.findByZoneId(ZONE_ID)).thenReturn(null);
         when(dnsServerDao.remove(SERVER_ID)).thenReturn(true);
         when(dnsZoneDao.remove(ZONE_ID)).thenReturn(true);
@@ -475,6 +499,35 @@ public class DnsProviderManagerImplTest {
             verify(dnsServerDao).remove(SERVER_ID);
             verify(dnsProviderMock).deleteZone(any(), any());
         }
+    }
+
+    @Test
+    public void testDeleteDnsServerWithoutCleanupRejectsAttachedZones() {
+        DeleteDnsServerCmd cmd = mock(DeleteDnsServerCmd.class);
+        when(cmd.getId()).thenReturn(SERVER_ID);
+        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsZoneDao.findDnsZoneIdsByServerId(SERVER_ID)).thenReturn(List.of(ZONE_ID));
+
+        assertThrows(InvalidParameterValueException.class, () -> manager.deleteDnsServer(cmd));
+        verify(dnsServerDao, never()).remove(SERVER_ID);
+    }
+
+    @Test
+    public void testDeleteDnsServerRetainsRegistrationOnProviderFailure() throws Exception {
+        DeleteDnsServerCmd cmd = mock(DeleteDnsServerCmd.class);
+        when(cmd.getId()).thenReturn(SERVER_ID);
+        when(cmd.getCleanup()).thenReturn(true);
+        when(dnsServerDao.findById(SERVER_ID)).thenReturn(serverVO);
+        when(dnsZoneDao.findDnsZoneIdsByServerId(SERVER_ID)).thenReturn(List.of(ZONE_ID));
+        zoneVO.setState(DnsZone.State.Active);
+        when(dnsZoneDao.findById(ZONE_ID)).thenReturn(zoneVO);
+        Mockito.doThrow(new RuntimeException("DNS provider unavailable")).when(dnsProviderMock).deleteZone(any(), any());
+
+        mockTransaction();
+        CloudRuntimeException error = assertThrows(CloudRuntimeException.class, () -> manager.deleteDnsServer(cmd));
+        assertTrue(error.getMessage().contains(zoneVO.getName()));
+        verify(dnsServerDao, never()).remove(SERVER_ID);
+        verify(dnsZoneDao, never()).remove(ZONE_ID);
     }
 
     @Test
@@ -851,7 +904,7 @@ public class DnsProviderManagerImplTest {
         when(domainDao.getDomainParentIds(anyLong())).thenReturn(Collections.emptySet());
         List<DnsServerVO> servers = Collections.singletonList(serverVO);
         Pair<List<DnsServerVO>, Integer> searchPair = new Pair<>(servers, 1);
-        when(dnsServerDao.searchDnsServer(any(), anyLong(), any(), any(), any(), any())).thenReturn(searchPair);
+        when(dnsServerDao.searchDnsServer(any(), anyLong(), any(), any(), any(), anyBoolean(), any())).thenReturn(searchPair);
 
         DnsServerJoinVO joinVO = mock(DnsServerJoinVO.class);
         when(joinVO.getProviderType()).thenReturn(DnsProviderType.PowerDNS.toString());

@@ -17,218 +17,118 @@
 
 <template>
   <div class="form-layout" v-ctrl-enter="handleSubmit">
-    <a-spin :spinning="loading">
-      <div style="margin-bottom: 20px;">
-        <a-alert type="warning">
-          <template #message>
-            <div v-html="$t('message.action.delete.dns.server')"></div>
-          </template>
-        </a-alert>
-      </div>
+    <a-alert type="warning" show-icon :message="$t('message.action.delete.dns.server')" />
+    <a-alert v-if="jobError" class="dns-delete-message" type="error" show-icon :message="jobError" />
 
-      <div style="margin-bottom: 20px; word-break: break-all;">
-        Please type <strong>{{ resource.name }}</strong> to confirm.
-      </div>
+    <a-spin :spinning="impactStatus === 'loading' || jobLoading">
+      <a-alert v-if="impactStatus === 'error'" class="dns-delete-message" type="error" show-icon :message="$t('message.dns.server.impact.failed')">
+        <template #description><a-button size="small" @click="fetchDnsZones">{{ $t('label.retry') }}</a-button></template>
+      </a-alert>
+      <a-alert
+        v-else-if="impactStatus === 'ready'"
+        class="dns-delete-message"
+        :type="totalDnsZones ? 'warning' : 'info'"
+        show-icon
+        :message="$t('message.dns.server.impact.count', { count: totalDnsZones })">
+        <template v-if="dnsZones.length" #description>
+          <ul><li v-for="zone in dnsZones" :key="zone.id">{{ zone.name }}</li></ul>
+          <span v-if="totalDnsZones > dnsZones.length">{{ $t('message.dns.server.impact.more', { count: totalDnsZones - dnsZones.length }) }}</span>
+        </template>
+      </a-alert>
 
-      <div v-if="dnsZones && dnsZones.length > 0" style="margin-bottom: 20px;">
-        <a-alert type="error">
-          <template #message>
-            <div>
-              <strong>This action will impact {{ this.totalDnsZones }} DNS Zone(s):</strong>
-              <ul style="margin-top: 10px; margin-bottom: 0; padding-left: 20px;">
-                <li v-for="zone in dnsZones.slice(0, this.maxResults)" :key="zone.id">{{ zone.name }}</li>
-              </ul>
-              <div v-if="this.totalDnsZones > this.maxResults" style="margin-top: 5px; font-style: italic;">
-                ...and {{ this.totalDnsZones - this.maxResults }} more
-              </div>
-            </div>
-          </template>
-        </a-alert>
-      </div>
-
-      <a-form
-        ref="formRef"
-        :model="form"
-        :rules="rules"
-        layout="vertical"
-        @finish="handleSubmit">
-
-        <a-form-item name="name" ref="name">
-          <a-input
-            v-model:value="form.name"
-            :placeholder="resource.name"
-            v-focus="true" />
-        </a-form-item>
-
-        <a-form-item name="cleanup" ref="cleanup">
-          <template #label>
-            <tooltip-label :title="$t('label.cleanup')" :tooltip="apiParams.cleanup?.description" />
-          </template>
-          <a-switch v-model:checked="form.cleanup" @change="onCleanupChange" />
-        </a-form-item>
-
-        <a-form-item v-if="form.cleanup" name="unmanage" ref="unmanage">
-          <template #label>
-            <tooltip-label :title="$t('label.dns.unmanage.zone')" :tooltip="apiParams.unmanage?.description" />
-          </template>
-          <a-switch v-model:checked="form.unmanage" />
-        </a-form-item>
-
-        <div class="action-button">
-          <a-button @click="closeAction">
-            {{ $t('label.cancel') }}
+      <a-form layout="vertical" @finish="handleSubmit">
+        <fieldset class="dns-delete-fields" :disabled="jobLoading || !!jobId || jobTracking === 'unconfirmed'">
+          <a-form-item :label="$t('message.confirm.type') + ' ' + resource.name">
+            <a-input v-model:value="confirmName" :placeholder="resource.name" v-focus="true" />
+          </a-form-item>
+          <a-form-item :label="$t('label.cleanup')">
+            <a-switch v-model:checked="cleanup" @change="onCleanupChange" />
+          </a-form-item>
+          <a-form-item v-if="cleanup" :label="$t('label.dns.unmanage.zone')">
+            <a-switch v-model:checked="unmanage" />
+          </a-form-item>
+        </fieldset>
+        <p>{{ $t(deleteEffect) }}</p>
+        <MoldDialogActions :busy="jobLoading">
+          <a-button :disabled="jobLoading" @click="$emit('close-action')">{{ $t('label.cancel') }}</a-button>
+          <a-button type="primary" danger :disabled="!canSubmit" :loading="jobLoading" @click="handleSubmit">
+            {{ $t(jobId ? 'label.dns.job.recheck' : 'label.delete') }}
           </a-button>
-          <a-button
-            type="primary"
-            danger
-            :disabled="form.name !== resource.name"
-            :loading="loading"
-            htmlType="submit">
-            {{ $t('label.delete') }}
-          </a-button>
-        </div>
+        </MoldDialogActions>
       </a-form>
     </a-spin>
   </div>
 </template>
 
 <script>
-import { getAPI, postAPI } from '@/api'
-import TooltipLabel from '@/components/widgets/TooltipLabel'
+import { getAPI } from '@/api'
+import MoldDialogActions from '@/components/view/MoldDialogActions'
+import { dnsServerListQuery } from '@/utils/dnsServer'
+import { dnsJob } from './dnsJob'
 
 export default {
   name: 'DeleteDnsServer',
-  components: {
-    TooltipLabel
-  },
-  props: {
-    resource: {
-      type: Object,
-      required: true
-    }
-  },
+  mixins: [dnsJob],
+  components: { MoldDialogActions },
+  props: { resource: { type: Object, required: true } },
+  emits: ['close-action', 'refresh-data'],
   data () {
-    return {
-      loading: false,
-      apiParams: {},
-      dnsZones: [],
-      form: {
-        name: '',
-        cleanup: true,
-        unmanage: false
-      },
-      rules: {
-        name: [{ required: true, message: this.$t('message.error.required.input') }]
-      },
-      maxResults: 5,
-      totalDnsZones: 0
+    return { impactStatus: 'loading', dnsZones: [], totalDnsZones: 0, confirmName: '', cleanup: true, unmanage: false }
+  },
+  computed: {
+    deleteEffect () {
+      if (!this.cleanup) return this.totalDnsZones ? 'message.dns.server.cleanup.required' : 'message.dns.server.delete.registration'
+      return this.unmanage ? 'message.dns.server.delete.retain' : 'message.dns.server.delete.provider'
+    },
+    canSubmit () {
+      return !this.jobLoading && this.jobTracking !== 'unconfirmed' && !!this.$store.getters.apis?.deleteDnsServer &&
+        (!!this.jobId || (this.impactStatus === 'ready' && this.confirmName === this.resource.name && (this.cleanup || !this.totalDnsZones)))
     }
   },
   created () {
-    this.apiParams = this.$getApiParams('deleteDnsServer') || {}
     this.fetchDnsZones()
   },
   methods: {
     onCleanupChange (checked) {
-      if (!checked) {
-        this.form.unmanage = false
-      }
+      if (!checked) this.unmanage = false
     },
     async fetchDnsZones () {
-      this.loading = true
+      const id = this.resource.id
+      this.impactStatus = 'loading'
       try {
-        const response = await getAPI('listDnsZones', { dnsserverid: this.resource.id, page: 1, pagesize: this.maxResults, filter: 'name' })
-        this.dnsZones = response?.listdnszonesresponse?.dnszone || []
-        this.totalDnsZones = response?.listdnszonesresponse?.count || 0
-      } catch (error) {
-        console.error('Failed to fetch DNS zones', error)
-      } finally {
-        this.loading = false
+        if (!this.$getApiParams('listDnsZones')?.deleteimpact) throw new Error('Deletion preview unavailable')
+        const response = await getAPI('listDnsZones', { dnsserverid: id, deleteimpact: true, page: 1, pagesize: 5 }, { preserveOnFailure: true })
+        const payload = response?.listdnszonesresponse
+        const rows = payload?.dnszone ?? []
+        const total = Number(payload?.count ?? rows.length)
+        if (!payload || payload.errorcode || !Array.isArray(rows) || !Number.isSafeInteger(total) || total < rows.length || (total > 0 && !rows.length)) {
+          throw new Error('Invalid deletion preview response')
+        }
+        if (id !== this.resource.id) return
+        this.dnsZones = rows
+        this.totalDnsZones = total
+        this.impactStatus = 'ready'
+      } catch {
+        if (id === this.resource.id) this.impactStatus = 'error'
       }
     },
-    async handleSubmit () {
-      if (this.loading || this.form.name !== this.resource.name) return
-
-      this.loading = true
-
-      try {
-        const params = {
-          id: this.resource.id,
-          cleanup: this.form.cleanup
+    handleSubmit () {
+      if (!this.canSubmit) return
+      const params = { id: this.resource.id, cleanup: this.cleanup, ...(this.cleanup && { unmanage: this.unmanage }) }
+      return this.submitDnsJob('deleteDnsServer', params, 'label.dns.delete.server', this.resource.name, () => {
+        this.$emit('close-action')
+        if (this.$route.params.id === params.id) {
+          this.$router.push({ path: '/dnsserver', query: dnsServerListQuery(this.$route.query) })
+        } else {
+          this.$emit('refresh-data')
         }
-
-        if (this.form.cleanup) {
-          params.unmanage = this.form.unmanage
-        }
-
-        const response = await postAPI('deleteDnsServer', params)
-        const jobId = response?.deletednsserverresponse?.jobid
-        if (!jobId) {
-          this.$notification.error({
-            message: this.$t('message.request.failed'),
-            description: 'Failed to get jobid for DeleteDnsServer',
-            duration: 0
-          })
-          this.loading = false
-          return
-        }
-        this.$pollJob({
-          jobId: jobId,
-          title: this.$t('label.dns.delete.server'),
-          description: this.resource.name,
-          successMethod: () => {
-            this.loading = false
-            this.$notification.success({
-              message: this.$t('label.dns.delete.server'),
-              description: `${this.$t('message.success.delete.dns.server')} ${this.resource.name}`
-            })
-
-            if (this.$route.path !== '/dnsserver') {
-              this.$router.push({ path: '/dnsserver' })
-            } else {
-              this.$emit('refresh-data')
-            }
-          },
-          errorMethod: () => {
-            this.loading = false
-            this.$notification.error({
-              message: this.$t('label.dns.delete.server'),
-              description: this.$t('message.error.delete.dns.server')
-            })
-          },
-          loadingMessage: `${this.$t('label.dns.delete.server')} ${this.resource.name} ${this.$t('label.in.progress')}`,
-          catchMessage: this.$t('error.fetching.async.job.result')
-        })
-        this.closeAction()
-      } catch (error) {
-        this.loading = false
-        this.$notification.error({
-          message: this.$t('message.request.failed'),
-          description: error?.response?.headers['x-description'] || error.message,
-          duration: 0
-        })
-      }
-    },
-    closeAction () {
-      this.$emit('close-action')
+      })
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
-.form-layout {
-  width: 80vw;
-  @media (min-width: 600px) {
-    width: 450px;
-  }
-}
-
-.action-button {
-  text-align: right;
-  margin-top: 20px;
-}
-.action-button button {
-  margin-left: 8px;
-}
+<style scoped>
+.dns-delete-message { margin-block: 12px; }
+.dns-delete-fields { border: 0; padding: 0; min-width: 0; }
 </style>

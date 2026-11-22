@@ -196,8 +196,8 @@
                     }" />
                   <small v-if="isEventSearch && field.name === 'type' && field.eventTypesUnavailable">{{ $t('message.events.search.type.unavailable') }}</small>
                   <small v-if="isEventSearch && field.name === 'startdate'">{{ $t('message.events.search.date.scope') }}</small>
-                  <a-alert v-if="isDnsZoneSearch && field.error" type="error" :message="$t('error.fetching.data')">
-                    <template #description><a-button size="small" @click="fetchDnsZoneServers(field)">{{ $t('label.retry') }}</a-button></template>
+                  <a-alert v-if="(isDnsZoneSearch || isDnsServerSearch) && field.error" type="error" :message="$t('error.fetching.data')">
+                    <template #description><a-button size="small" @click="fetchDnsSearchOptions(field)">{{ $t('label.retry') }}</a-button></template>
                   </a-alert>
                   <a-alert v-if="apiName === 'listAffinityGroups' && field.error" type="error" :message="$t('error.fetching.data')">
                     <template #description><a-button size="small" @click="fetchAffinityFilters([field.name])">{{ $t('label.retry') }}</a-button></template>
@@ -231,7 +231,7 @@
               class="filter-button"
               size="small"
               :aria-label="$t('label.advanced.search')"
-                  @click="() => { if (!isDnsZoneSearch && !isIpv4SubnetSearch && !isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents', 'listRoles'].includes(apiName)) searchQuery = null }">
+                  @click="() => { if (!isDnsZoneSearch && !isDnsServerSearch && !isIpv4SubnetSearch && !isGuestVlanSearch && !isAclSearch && !isVpnUserSearch && !['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups', 'listVnfAppliances', 'listEvents', 'listRoles'].includes(apiName)) searchQuery = null }">
               <filter-two-tone v-if="isFiltered" />
               <filter-outlined v-else />
             </a-button>
@@ -362,7 +362,7 @@ export default {
       if (to && to.query && 'q' in to.query) {
         this.searchQuery = to.query.q
       }
-      if (this.isDnsZoneSearch) this.searchQuery = to.query.keyword || ''
+      if (this.isDnsZoneSearch || this.isDnsServerSearch) this.searchQuery = to.query.keyword || ''
       if (this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = to.query.keyword || ''
       this.updateIsFiltered()
       if (this.isAclSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
@@ -380,7 +380,7 @@ export default {
     if (this.$route && this.$route.query && 'q' in this.$route.query) {
       this.searchQuery = this.$route.query.q
     }
-    if (this.isDnsZoneSearch) this.searchQuery = this.$route.query.keyword || ''
+    if (this.isDnsZoneSearch || this.isDnsServerSearch) this.searchQuery = this.$route.query.keyword || ''
     if (this.isIpv4SubnetSearch && !this.searchQuery) this.searchQuery = this.$route.query.keyword || ''
     this.updateIsFiltered()
   },
@@ -401,6 +401,7 @@ export default {
     vnfScope () { return { ...Object.fromEntries(['zoneid', 'domainid', 'account'].filter(k => this.form[k]).map(k => [k, this.form[k]])), projectid: this.$route.query.projectid || vnfProject(this.$store.getters) } },
     isAclSearch () { return this.apiName === 'listNetworkACLLists' && this.$route.meta?.name === 'acllist' },
     aclVpcScope () { return { projectid: publicIpProject(this.$store.getters) } },
+    isDnsServerSearch () { return this.apiName === 'listDnsServers' },
     isDnsZoneSearch () { return this.apiName === 'listDnsZones' },
     isIpv4SubnetSearch () { return this.apiName === ipv4SubnetApi },
     ipv4SubnetZoneChoices () { return ipv4SubnetZoneChoices },
@@ -529,6 +530,7 @@ export default {
       if (['listTemplates', 'listIsos'].includes(this.apiName) && fieldName === 'name') return this.$t('label.template.name.exact')
       if (this.isGuestNetworkSearch && fieldName === 'keyword') return this.$t('label.name')
       if (fieldName === 'networkofferingid') return this.$t('label.network.offering')
+      if (this.isDnsServerSearch && fieldName === 'providertype') return this.$t('label.provider')
       if (this.isDnsZoneSearch && fieldName === 'dnsserverid') return this.$t('label.dns.server')
       if (this.isIpv4SubnetSearch && ipv4SubnetFilterLabel[fieldName]) return this.$t(ipv4SubnetFilterLabel[fieldName])
       if (this.isGuestVlanSearch && fieldName === 'vnet') return this.$t('label.guest.vlan.search.exact')
@@ -626,7 +628,7 @@ export default {
         if (this.isAccountSearch && ['isrecursive', 'iscleanuprequired'].includes(item)) type = 'list'
         if (this.isKmsSearch && [...kmsBooleans, 'projectid'].includes(item)) type = 'list'
         if (this.isKmsSearch && item === 'protocol') type = 'autocomplete'
-        if (this.isDnsZoneSearch && item === 'dnsserverid') type = 'list'
+        if (this.isDnsZoneSearch && item === 'dnsserverid' || this.isDnsServerSearch && item === 'providertype') type = 'list'
         if (this.isEventSearch && item === 'type') type = 'autocomplete'
         if (this.isEventSearch && ['startdate', 'enddate'].includes(item)) type = 'eventDate'
         this.fields.push({
@@ -1273,15 +1275,18 @@ export default {
         if (this.visibleFilter && this.fields.includes(field)) field.eventTypesUnavailable = true
       }
     },
-    async fetchDnsZoneServers (field) {
-      if (!field || !this.$store.getters.apis?.listDnsServers) return
+    async fetchDnsSearchOptions (field) {
+      const providerSearch = field?.name === 'providertype'
+      const api = providerSearch ? 'listDnsProviders' : 'listDnsServers'
+      if (!field || !this.$store.getters.apis?.[api]) return
       field.loading = true
       field.error = false
       try {
-        const response = await getAPI('listDnsServers', { pagesize: -1 }, { preserveOnFailure: true })
-        const body = response?.listdnsserversresponse
-        if (!body || body.errorcode) throw new Error('listDnsServers')
-        field.opts = this.sortArray(body.dnsserver || [], 'name')
+        const response = await getAPI(api, { pagesize: -1 }, { preserveOnFailure: true })
+        const body = response?.[api.toLowerCase() + 'response']
+        if (!body || body.errorcode) throw new Error(api)
+        const rows = providerSearch ? (body.dnsprovider || []).map(({ name }) => ({ id: name, name })) : body.dnsserver || []
+        field.opts = this.sortArray(rows, 'name')
       } catch {
         field.error = true
       } finally {
@@ -1290,10 +1295,10 @@ export default {
     },
     initFormFieldData () {
       const arrayField = this.initFields()
-      if (this.isDnsZoneSearch) {
+      if (this.isDnsZoneSearch || this.isDnsServerSearch) {
         this.form = reactive({})
         this.fillFormFieldValues()
-        this.fetchDnsZoneServers(this.fields.find(field => field.name === 'dnsserverid'))
+        this.fetchDnsSearchOptions(this.fields.find(field => ['dnsserverid', 'providertype'].includes(field.name)))
         return
       }
       if (this.isIpv4SubnetSearch) {
@@ -2172,6 +2177,12 @@ export default {
       this.$emit('search', { searchQuery: this.searchQuery })
     },
     async onClear () {
+      if (this.isDnsServerSearch) {
+        this.visibleFilter = false
+        this.searchQuery = ''
+        this.$emit('search', { dnsServerReset: true })
+        return
+      }
       if (this.isDnsZoneSearch) {
         this.visibleFilter = false
         this.searchQuery = ''
@@ -2299,7 +2310,7 @@ export default {
           this.$emit('search', { roleFilters: this.paramsFilter })
           return
         }
-        if (this.isDnsZoneSearch || this.isAccountSearch || this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
+        if (this.isDnsZoneSearch || this.isDnsServerSearch || this.isAccountSearch || this.isEventSearch || this.isVpnCustomerGatewaySearch || this.isGuestVlanSearch || this.isIpv4SubnetSearch) this.visibleFilter = false
         if (this.isVpnCustomerGatewaySearch && this.paramsFilter.id) this.paramsFilter.id = this.paramsFilter.id.trim()
         if (this.isVnfSearch) {
           if (this.searchQuery) this.paramsFilter.keyword = this.paramsFilter.q = this.searchQuery.trim()
@@ -2316,7 +2327,7 @@ export default {
       this.$emit('change-filter', filter)
     },
     updateIsFiltered () {
-      const params = this.isDnsZoneSearch || this.isAccountSearch || this.isIpv4SubnetSearch || this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
+      const params = this.isDnsZoneSearch || this.isDnsServerSearch || this.isAccountSearch || this.isIpv4SubnetSearch || this.isRoleSearch || this.isGuestVlanSearch || this.isVpnUserSearch || this.isVpnCustomerGatewaySearch || this.isAclSearch || this.isEventSearch || this.isKmsSearch || this.isGuestNetworkSearch || this.isVnfSearch || ['listTemplates', 'listIsos', 'listCniConfiguration', 'listAffinityGroups'].includes(this.apiName) ? this.$route.query : this.searchParams
       this.isFiltered = this.searchFilters.some(item => {
         if (params[item]) {
           return true
