@@ -202,10 +202,12 @@
         <a-form-item name="subnet" ref="subnet" :label="$t('label.subnet')" class="form__item">
           <a-input v-focus="true" v-model:value="ipv4SubnetForm.subnet" />
         </a-form-item>
-        <div class="form__item">
-          <div style="color: black;">{{ $t('label.set.reservation') }}</div>
-          <a-switch v-model:checked="showAccountForIpv4GuestSubnetFields" @change="handleShowAccountForIpv4GuestSubnetFields" />
-        </div>
+        <a-form-item :label="$t('label.set.reservation')" html-for="zone-ipv4-subnet-reservation" class="form__item">
+          <a-switch
+            id="zone-ipv4-subnet-reservation"
+            v-model:checked="showAccountForIpv4GuestSubnetFields"
+            @change="handleShowAccountForIpv4GuestSubnetFields" />
+        </a-form-item>
         <div v-if="showAccountForIpv4GuestSubnetFields" style="margin-top: 20px;">
           <div v-html="$t('label.ipv4.subnet.set.reservation.desc')"></div><br>
           <a-spin :spinning="domainsLoading">

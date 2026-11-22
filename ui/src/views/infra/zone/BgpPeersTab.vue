@@ -221,10 +221,12 @@
         <a-form-item name="password" ref="password" :label="$t('label.password')" class="form__item">
           <a-input-password v-model:value="bgpPeersForm.password" autocomplete="new-password" />
         </a-form-item>
-        <div class="form__item">
-          <div style="color: black;">{{ $t('label.set.reservation') }}</div>
-          <a-switch v-model:checked="showAccountForBgpPeerFields" @change="handleShowAccountForBgpPeerFields" />
-        </div>
+        <a-form-item :label="$t('label.set.reservation')" html-for="zone-bgp-peer-reservation" class="form__item">
+          <a-switch
+            id="zone-bgp-peer-reservation"
+            v-model:checked="showAccountForBgpPeerFields"
+            @change="handleShowAccountForBgpPeerFields" />
+        </a-form-item>
         <div v-if="showAccountForBgpPeerFields" style="margin-top: 20px;">
           <div v-html="$t('label.bgp.peer.set.reservation.desc')"></div><br>
           <a-spin :spinning="domainsLoading">
