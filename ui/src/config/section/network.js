@@ -1606,8 +1606,8 @@ export default {
       title: 'label.dns.zones',
       icon: 'apartment-outlined',
       permission: ['listDnsZones'],
-      columns: ['name', 'state', 'dnsservername', 'account', 'description'],
-      details: ['name', 'id', 'state', 'dnsservername', 'dnsserverid', 'account', 'domainpath', 'description'],
+      columns: ['name', 'state', 'type', 'dnsservername', 'account', 'description'],
+      details: ['name', 'id', 'state', 'type', 'dnsservername', 'dnsserverid', 'account', 'domain', 'description'],
       tabs: [{
         name: 'details',
         component: shallowRef(defineAsyncComponent(() => import('@/components/view/DetailsTab.vue')))

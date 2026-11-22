@@ -68,6 +68,13 @@
             :placeholder="apiParams.description.description"/>
         </a-form-item>
 
+        <a-form-item name="type" :label="$t('label.type')">
+          <a-select v-model:value="form.type">
+            <a-select-option value="Public">Public</a-select-option>
+            <a-select-option value="Private">Private</a-select-option>
+          </a-select>
+        </a-form-item>
+
         <a-form-item name="existing" ref="existing">
           <template #label>
             <tooltip-label :title="$t('label.existing')" :tooltip="apiParams.existing?.description" />
@@ -108,6 +115,7 @@ export default {
         name: '',
         dnsserverid: undefined,
         description: '',
+        type: 'Public',
         existing: false
       },
       rules: {},
@@ -144,6 +152,7 @@ export default {
           name: this.form.name.trim(),
           dnsserverid: this.form.dnsserverid,
           description: this.form.description?.trim(),
+          type: this.form.type,
           existing: this.form.existing
         }
 

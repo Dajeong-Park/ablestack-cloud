@@ -22,6 +22,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -603,8 +604,8 @@ public class DnsProviderManagerImplTest {
         when(join.getDnsServerAccountName()).thenReturn("admin");
         when(join.getState()).thenReturn(DnsZone.State.Active);
         when(join.getDescription()).thenReturn("Test zone");
-        DnsZoneResponse response = manager.createDnsZoneResponse(join);
-        assertNotNull(response);
+        DnsZoneResponse response = manager.createDnsZoneResponse(join, zoneVO);
+        assertEquals("Public", new com.google.gson.Gson().toJsonTree(response).getAsJsonObject().get("type").getAsString());
     }
 
     @Test
@@ -845,10 +846,13 @@ public class DnsProviderManagerImplTest {
         when(dnsZoneDao.searchZones(any(), anyLong(), any(), any(), any(), any())).thenReturn(searchPair);
 
         DnsZoneJoinVO joinVO = mock(DnsZoneJoinVO.class);
+        when(joinVO.getUuid()).thenReturn(zoneVO.getUuid());
+        when(zoneVO.getType()).thenReturn(DnsZone.ZoneType.Private);
         when(dnsZoneJoinDao.listByUuids(any())).thenReturn(Collections.singletonList(joinVO));
 
         ListResponse<DnsZoneResponse> res = manager.listDnsZones(cmd);
         assertEquals(1, res.getCount().intValue());
+        assertEquals("Private", new com.google.gson.Gson().toJsonTree(res.getResponses().get(0)).getAsJsonObject().get("type").getAsString());
     }
 
     @Test(expected = InvalidParameterValueException.class)

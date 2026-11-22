@@ -459,14 +459,12 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
     @Override
     public ListResponse<DnsZoneResponse> listDnsZones(ListDnsZonesCmd cmd) {
         Pair<List<DnsZoneVO>, Integer> result = searchForDnsZonesInternal(cmd);
-        List<String> zoneIds = new ArrayList<>();
-        for (DnsZoneVO zone : result.first()) {
-            zoneIds.add(zone.getUuid());
-        }
-        List<DnsZoneJoinVO> zoneJoinVos = dnsZoneJoinDao.listByUuids(zoneIds);
+        Map<String, DnsZoneVO> zonesByUuid = result.first().stream()
+                .collect(Collectors.toMap(DnsZoneVO::getUuid, zone -> zone));
+        List<DnsZoneJoinVO> zoneJoinVos = dnsZoneJoinDao.listByUuids(new ArrayList<>(zonesByUuid.keySet()));
         List<DnsZoneResponse> zoneResponses = new ArrayList<>();
         for (DnsZoneJoinVO zoneJoin: zoneJoinVos) {
-            zoneResponses.add(createDnsZoneResponse(zoneJoin));
+            zoneResponses.add(createDnsZoneResponse(zoneJoin, zonesByUuid.get(zoneJoin.getUuid())));
         }
         ListResponse<DnsZoneResponse> response = new ListResponse<>();
         response.setResponses(zoneResponses, result.second());
@@ -737,10 +735,10 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         if (zoneJoinVO == null) {
             throw new CloudRuntimeException(String.format("DNS zone join view not found for ID: %s", dnsZone.getId()));
         }
-        return createDnsZoneResponse(zoneJoinVO);
+        return createDnsZoneResponse(zoneJoinVO, dnsZone);
     }
 
-    DnsZoneResponse createDnsZoneResponse(DnsZoneJoinVO zone) {
+    DnsZoneResponse createDnsZoneResponse(DnsZoneJoinVO zone, DnsZone dnsZone) {
         DnsZoneResponse response = new DnsZoneResponse();
         response.setId(zone.getUuid());
         response.setName(zone.getName());
@@ -751,6 +749,7 @@ public class DnsProviderManagerImpl extends ManagerBase implements DnsProviderMa
         response.setDnsServerName(zone.getDnsServerName());
         response.setDnsServerAccountName(zone.getDnsServerAccountName());
         response.setState(zone.getState());
+        response.setType(dnsZone.getType());
         response.setDescription(zone.getDescription());
         return response;
     }
