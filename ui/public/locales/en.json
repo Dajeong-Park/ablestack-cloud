@@ -1,4 +1,12 @@
 {
+  "label.zone.update.recheck": "Check result again",
+  "message.zone.update.base.saving": "Saving Zone settings…",
+  "message.zone.update.base.saved": "Zone settings have been saved.",
+  "message.zone.update.base.failed": "Could not save Zone settings.",
+  "message.zone.update.groups.saving": "Saving storage access groups…",
+  "message.zone.update.groups.failed": "Could not save storage access groups. Retry the group change.",
+  "message.zone.update.groups.unknown": "The storage access group result is unknown. Check the existing operation before submitting again.",
+  "message.zone.update.complete": "Zone changes saved.",
   "label.zone.provider.unsupported": "Unsupported",
   "message.zone.providers.load.failed": "Could not load network service providers.",
   "message.zone.providers.forbidden": "You do not have permission to view network service providers.",

@@ -1,4 +1,12 @@
 {
+  "label.zone.update.recheck": "결과 다시 확인",
+  "message.zone.update.base.saving": "Zone 설정을 저장하는 중입니다.",
+  "message.zone.update.base.saved": "Zone 기본 설정을 저장했습니다.",
+  "message.zone.update.base.failed": "Zone 설정을 저장하지 못했습니다.",
+  "message.zone.update.groups.saving": "스토리지 액세스 그룹을 저장하는 중입니다.",
+  "message.zone.update.groups.failed": "스토리지 액세스 그룹을 저장하지 못했습니다. 그룹 변경을 다시 시도할 수 있습니다.",
+  "message.zone.update.groups.unknown": "스토리지 액세스 그룹 작업 결과를 확인하지 못했습니다. 기존 작업 결과를 다시 확인하세요.",
+  "message.zone.update.complete": "Zone 변경 사항을 저장했습니다.",
   "label.zone.provider.unsupported": "미지원",
   "message.zone.providers.load.failed": "네트워크 서비스 제공자를 불러오지 못했습니다.",
   "message.zone.providers.forbidden": "네트워크 서비스 제공자를 조회할 권한이 없습니다.",
